@@ -1,9 +1,14 @@
-# Sema: Content-Addressed Semantics for Multi-Agent Coordination
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emergent-wisdom/sema/main/docs/images/sema_banner.png" alt="Sema — When the hash is the word" width="800">
+</p>
 
-**Hash the meaning, get the word.**
+# Sema: When the Hash Is the Word
 
-[![Paper](https://img.shields.io/badge/Paper-PDF-red)](paper/sema.pdf)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+**Content-addressed semantics for multi-agent coordination.**
+
+[![PyPI](https://img.shields.io/pypi/v/semahash.svg)](https://pypi.org/project/semahash/)
+[![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf)
+[![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
 
 Sema is a semantic commons that content-addresses meaning itself: the definition *is* the identifier. By deriving identifiers from the cryptographic hash of a pattern's definition, any divergence in meaning produces a distinct hash, guaranteeing that misaligned agents halt rather than fail silently.
 
@@ -12,16 +17,14 @@ Sema is a semantic commons that content-addresses meaning itself: the definition
 ## Install
 
 ```bash
-pip install git+https://github.com/emergent-wisdom/sema.git
+pip install semahash
 ```
 
 For MCP server support (recommended for AI agents):
 
 ```bash
-pip install "semahash[mcp] @ git+https://github.com/emergent-wisdom/sema.git"
+pip install "semahash[mcp]"
 ```
-
-> **PyPI release coming soon.** Once published, install will simplify to `pip install semahash`.
 
 ## Quick Start
 

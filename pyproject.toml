@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "semahash"
 version = "0.1.0"
-description = "Content-addressed semantics for multi-agent coordination. Hash the meaning, get the word."
+description = "Content-addressed semantics for multi-agent coordination. When the hash is the word."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

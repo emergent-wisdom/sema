@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback, createContext, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText } from 'lucide-react'
+import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github } from 'lucide-react'
 import { usePatterns, usePattern, useSearchPatterns } from '@/hooks/useApi'
 import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
@@ -161,12 +161,14 @@ export function HomePage() {
           {/* Header */}
           <div className="flex items-start justify-between mb-12">
             <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center shadow-lg shadow-emerald-900/20">
-                <span className="text-2xl font-semibold text-emerald-400">S</span>
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center shadow-lg shadow-emerald-900/20 text-emerald-400">
+                <svg className="w-8 h-8" viewBox="0 0 387 423" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Sema logo">
+                  <path d="M387 140.715C387 146.472 382.341 151.138 376.593 151.138H295.464C286.483 151.138 278.394 146.118 272.91 138.994C254.76 115.415 226.292 100.217 194.268 100.217C159.175 100.217 128.362 118.477 110.705 146.004C118.93 136.24 129.122 128.2 140.665 122.481C146.383 119.649 153.103 120.356 158.627 123.551L225.918 162.467C226.025 162.529 226.145 162.561 226.268 162.561C226.391 162.561 226.512 162.593 226.619 162.655L363.769 242.163C373.501 247.806 378.383 259.362 374.431 269.907C364.633 296.052 349.748 319.094 331.239 338.195C287.559 383.274 223.688 406.359 158.794 396.404C155.59 395.912 152.317 395.954 149.148 396.644L28.7791 422.85C23.529 423.993 19.4122 418.37 22.0771 413.698L57.401 351.752C57.988 350.723 57.7661 349.423 56.8811 348.635C31.0728 325.681 11.7048 296.376 0.625073 263.877C-1.99 256.207 3.94337 248.563 12.0357 248.563H87.0957C96.0777 248.563 104.166 253.583 109.65 260.708C127.801 284.287 156.269 299.485 188.293 299.485C223.385 299.485 254.198 281.225 271.855 253.698C263.63 263.462 253.438 271.502 241.895 277.221C236.177 280.053 229.457 279.346 223.933 276.151L156.642 237.235C156.536 237.173 156.415 237.141 156.292 237.141C156.169 237.141 156.048 237.108 155.941 237.047L18.7916 157.539C9.0587 151.896 4.17708 140.34 8.12911 129.795C17.9276 103.649 32.812 80.6079 51.3209 61.5066C99.8373 11.4366 173.27 -11.5476 245.338 7.79302C255.263 10.4567 264.807 13.833 273.935 17.8471C280.289 20.6417 287.719 16.1531 287.719 9.20219C287.719 4.11996 291.832 0 296.907 0H337.36C364.775 0 387 22.2604 387 49.72V140.715Z"/>
+                </svg>
               </div>
               <div>
                 <h1 className="text-3xl font-semibold tracking-tight">Sema</h1>
-                <p className="text-sm text-zinc-500">Hash the meaning, get the word</p>
+                <p className="text-sm text-zinc-500">When the hash is the word</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -178,6 +180,15 @@ export function HomePage() {
               >
                 <FileText className="w-4 h-4" />
                 Paper
+              </a>
+              <a
+                href="https://github.com/emergent-wisdom/sema"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
+              >
+                <Github className="w-4 h-4" />
+                GitHub
               </a>
               <Link
                 to="/docs"
@@ -197,7 +208,7 @@ export function HomePage() {
           </div>
 
           {/* Hero content */}
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-4xl mb-12">
             <h2 className="text-4xl font-light tracking-tight text-zinc-100 mb-4">
               Content-addressed patterns for{' '}
               <span className="text-emerald-400">autonomous agents</span>

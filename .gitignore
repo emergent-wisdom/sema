@@ -24,3 +24,4 @@ venv/
 *.synctex.gz
 *.toc
 texput.log
+*.db.bak
