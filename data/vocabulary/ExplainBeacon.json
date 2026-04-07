@@ -14,16 +14,17 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:9c747b016714b86321307b5a7e0259f3b0ff1a039dd2002f463fc449971dd6d2",
-  "sema_ref": "ExplainBeacon#9c74",
-  "sema_stub": "9c74",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:34b3877136d89c6bcdfbfb20cfd27d11484fd2f51bb70a68a36c7976fbfc4b6a",
+  "sema_ref": "ExplainBeacon#34b3",
+  "sema_stub": "34b3",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
     "references": {
       "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
       "greet": "sema:Greet#mh:SHA-256:1bad380cdf48247bbb7ab68e6dcb95eeb6b6ba7535095d64b86c49bab5c4e173",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff"
     }
   }
 }

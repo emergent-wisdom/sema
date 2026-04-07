@@ -47,9 +47,9 @@
       }
     }
   },
-  "sema_ref": "SolverNode#6ade",
-  "sema_id": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
-  "sema_stub": "6ade",
+  "sema_ref": "SolverNode#beef",
+  "sema_id": "sema:SolverNode#mh:SHA-256:beefcfc23d5a4377802e8a9f43e9b4bf5369b18fcfe52571d1f028c4ebc51bd7",
+  "sema_stub": "beef",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

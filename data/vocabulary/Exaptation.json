@@ -33,9 +33,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_ref": "Exaptation#72fa",
-  "sema_id": "sema:Exaptation#mh:SHA-256:72faf4514d97c943dc1baa33477a2908b8519ba71999a370beb96955c062ca99",
-  "sema_stub": "72fa",
+  "sema_ref": "Exaptation#9941",
+  "sema_id": "sema:Exaptation#mh:SHA-256:9941cc1fcf3d50324d88c42af350a0a15f9787ca094091ca65ae005e540d5f4f",
+  "sema_stub": "9941",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",

@@ -33,9 +33,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Governance",
-  "sema_id": "sema:Elect#mh:SHA-256:5df04f494b7d686878e87d3555d2e1d7fd66dae269ee61a91d55acc312b9300c",
-  "sema_ref": "Elect#5df0",
-  "sema_stub": "5df0",
+  "sema_id": "sema:Elect#mh:SHA-256:af6e313ca4ac066c68c3b5f9debfaec551f20b3aacd0792c3eec6fa41bc41282",
+  "sema_ref": "Elect#af6e",
+  "sema_stub": "af6e",
   "dependencies": {
     "composes_with": {
       "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654"

@@ -29,9 +29,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Fermi#mh:SHA-256:24c5e68b409b771a3dc72f9adfd11eb2b58f06abebcb82cd96a649ccfb4bdd44",
-  "sema_ref": "Fermi#24c5",
-  "sema_stub": "24c5",
+  "sema_id": "sema:Fermi#mh:SHA-256:389ddee306aa2de7090a1e9014bacfa4fe2f2f9c9b3aa6c8a8ef8c39f1a60bc1",
+  "sema_ref": "Fermi#389d",
+  "sema_stub": "389d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

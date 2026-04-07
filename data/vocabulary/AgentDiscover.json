@@ -24,9 +24,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:AgentDiscover#mh:SHA-256:42ce7e8e3c7dffbcc2c4a8629f516a5d123d48d4020035482a5ea240458a4d91",
-  "sema_ref": "AgentDiscover#42ce",
-  "sema_stub": "42ce",
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:08920989b13a4fd114a61ed4ec1753b37262152091e0fa8f56451822ce69a3ea",
+  "sema_ref": "AgentDiscover#0892",
+  "sema_stub": "0892",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

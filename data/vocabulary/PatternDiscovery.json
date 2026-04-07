@@ -38,9 +38,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:0d02283760c80e5785b8376894f53f4ebfb49dbff90e9ec8a91c733b07f39381",
-  "sema_ref": "PatternDiscovery#0d02",
-  "sema_stub": "0d02",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:817812421bedb09d6d8d04cdefd7b968a8853cbead54a73ef6133e5501ba8548",
+  "sema_ref": "PatternDiscovery#8178",
+  "sema_stub": "8178",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -48,7 +48,8 @@
       "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
       "search": "sema:Search#mh:SHA-256:b292663d798e96925c03b01a95578d40bafb9c4713b63408ebfc424a8237df72",
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:15d927037bd703976cea2d25f710dc01be41c465358f392dd40e4b76d5366e0d"
     }
   }
 }

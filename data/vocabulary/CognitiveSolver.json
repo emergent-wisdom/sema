@@ -20,15 +20,17 @@
       "RecursionDive"
     ]
   },
-  "sema_id": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc",
-  "sema_ref": "CognitiveSolver#4531",
-  "sema_stub": "4531",
+  "sema_id": "sema:CognitiveSolver#mh:SHA-256:4962ffd534b3a87584f3ba6c57f7db3ae2aa0fd0461fd0363f35418cc3cfe8b7",
+  "sema_ref": "CognitiveSolver#4962",
+  "sema_stub": "4962",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "card": "sema:Card#mh:SHA-256:5c33034fedd84e9d8e42887c003d5b96a694d0549292dd796c3dbcbfe76a06dd",
-      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a"
+      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
+      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:d154cc0926f79078e6b81f336ac51b220771d88bbf92605a87c2c029eeb99600"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

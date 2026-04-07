@@ -16,9 +16,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:EjectionSeat#mh:SHA-256:afa47ff98dc96df29a4c62a91159e1d7d9f339b30ad9a60aac8d4cf3d8e2a1b2",
-  "sema_ref": "EjectionSeat#afa4",
-  "sema_stub": "afa4",
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:3f5e9aba54a95361da1bd2e8bd7238a50a6a27f14becd4e49264c74d113bf6bf",
+  "sema_ref": "EjectionSeat#3f5e",
+  "sema_stub": "3f5e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

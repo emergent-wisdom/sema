@@ -40,9 +40,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654",
-  "sema_ref": "HydraConstitution#8c27",
-  "sema_stub": "8c27",
+  "sema_id": "sema:HydraConstitution#mh:SHA-256:802e139f1e76d021df2681dfce2fb38a1a9eb789534d1eb68bf7ad6185a1687d",
+  "sema_ref": "HydraConstitution#802e",
+  "sema_stub": "802e",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

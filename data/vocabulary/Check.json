@@ -47,14 +47,15 @@
       "Judge#3d5f"
     ]
   },
-  "sema_id": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
-  "sema_ref": "Check#9074",
-  "sema_stub": "9074",
+  "sema_id": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
+  "sema_ref": "Check#1544",
+  "sema_stub": "1544",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d"
     }
   }
 }

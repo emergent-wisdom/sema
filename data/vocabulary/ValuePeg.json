@@ -8,9 +8,9 @@
   "invariants": [
     "Solvency: Reserves > Outstanding Liabilities * RiskRatio."
   ],
-  "sema_id": "sema:ValuePeg#mh:SHA-256:312c554432702987f84c5c2365b686614019abee29131fd866cc22c0448c6c2c",
-  "sema_ref": "ValuePeg#312c",
-  "sema_stub": "312c",
+  "sema_id": "sema:ValuePeg#mh:SHA-256:7e8eaa680a2ad7598e455b8fd143c9be258bc867fe1a275d5d8ce028178b83b9",
+  "sema_ref": "ValuePeg#7e8e",
+  "sema_stub": "7e8e",
   "_meta": {
     "tier": 1,
     "layer": "Society",

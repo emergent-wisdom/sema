@@ -44,9 +44,9 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:a94440c9950aef7fd08fd4897a49054ec11517449a412c3ff38534e594befc07",
-  "sema_ref": "SynergisticMode#a944",
-  "sema_stub": "a944",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:e8bea728fb51a8ca4001045dd06875527d1f52371bd1b0659a23093981eb4a6b",
+  "sema_ref": "SynergisticMode#e8be",
+  "sema_stub": "e8be",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

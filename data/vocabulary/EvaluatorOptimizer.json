@@ -25,9 +25,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:becd6f49b4e5db07c4dc3e8b384c244dafb2ea12818a9d5be58bec765d0ca8cb",
-  "sema_ref": "EvaluatorOptimizer#becd",
-  "sema_stub": "becd",
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2",
+  "sema_ref": "EvaluatorOptimizer#7ec6",
+  "sema_stub": "7ec6",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

@@ -10,9 +10,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:f49031a59ddfc4e0cf6a356b4e2650e3a04d5ffd4f4b58820d312807eb97b7df",
-  "sema_ref": "ReversibilityCheck#f490",
-  "sema_stub": "f490",
+  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:574b1afaee6cd675d04e2b9e3484ddfba1490b19121c881832865d3d31a8a2ee",
+  "sema_ref": "ReversibilityCheck#574b",
+  "sema_stub": "574b",
   "signature": [
     "Check(Reversibility)"
   ],

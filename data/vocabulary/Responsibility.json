@@ -40,9 +40,9 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Responsibility#mh:SHA-256:f4524249a5c89d422baf6c357e331b8c3c3a4c59ef6289ab608d565a3d92ea27",
-  "sema_ref": "Responsibility#f452",
-  "sema_stub": "f452",
+  "sema_id": "sema:Responsibility#mh:SHA-256:b5bcfa7fa9d8dc8136d92c4734f1f0590c91f8e26504835f3d4fdbe78dd25177",
+  "sema_ref": "Responsibility#b5bc",
+  "sema_stub": "b5bc",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

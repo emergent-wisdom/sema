@@ -25,9 +25,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:HackDetect#mh:SHA-256:f1675e5175300275971d6c47fe9d1a3454b6fd39f1e852fa99eda6f4490757e4",
-  "sema_ref": "HackDetect#f167",
-  "sema_stub": "f167",
+  "sema_id": "sema:HackDetect#mh:SHA-256:0846cad7015e648b050b08d13f2e036c99d8afbcdfa0492747bae6d62d0ebf37",
+  "sema_ref": "HackDetect#0846",
+  "sema_stub": "0846",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -28,15 +28,16 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Bubble#mh:SHA-256:277bdf6a78d1890ec0224ccd816dafc5f6cdbb4eda8e2f690430af05d79fed42",
-  "sema_ref": "Bubble#277b",
-  "sema_stub": "277b",
+  "sema_id": "sema:Bubble#mh:SHA-256:eb9a8441896625edfa7d41935d88120a27bf53db353082e49b0c6027d45e6142",
+  "sema_ref": "Bubble#eb9a",
+  "sema_stub": "eb9a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
+      "constraint_first": "sema:ConstraintFirst#mh:SHA-256:c7cb09081701787022c33fa3b1399bd847b0062cf223851c4d98024b640feb99"
     }
   }
 }

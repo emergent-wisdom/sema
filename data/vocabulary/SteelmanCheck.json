@@ -42,9 +42,9 @@
       "AdversarialSteel"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
-  "sema_ref": "SteelmanCheck#9bbd",
-  "sema_stub": "9bbd",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:75a0f70d58f79e59b6641c633e70f4b6e5ff0483cf9a8fcb658257e20dea41d4",
+  "sema_ref": "SteelmanCheck#75a0",
+  "sema_stub": "75a0",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -60,7 +60,8 @@
       "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
       "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
-      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd",
+      "robustness": "sema:Robustness#mh:SHA-256:132c09ccd0ad128aec982b0ba12b672106b6f9aedcd1b052c950ee0eb81162a1"
     }
   }
 }

@@ -11,17 +11,20 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:8ac3ae4946b9e93c687eba0a993d8bdf973b6b7bb9266d71427d94e5be5c166b",
-  "sema_ref": "PURECheck#8ac3",
-  "sema_stub": "8ac3",
+  "sema_id": "sema:PURECheck#mh:SHA-256:b8caa25351b7aca245cf6cdda95bade057c69cb4d789c4a098148d1edb576d6c",
+  "sema_ref": "PURECheck#b8ca",
+  "sema_stub": "b8ca",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
       "layered_check": "sema:LayeredCheck#mh:SHA-256:013785ca767d35d07edc372494a3c069d2117dcfdfef064e989db39293bc66a5",
+      "tri_gate": "sema:TriGate#mh:SHA-256:d4cd658f6ee62f40bd28f0e3d0f253b4a6df62220c2d9b4acd56215b5508affa",
       "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
-      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774"
+      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774",
+      "realizable": "sema:Realizable#mh:SHA-256:f70c35eb5ddbaaa985cd54c8a2bb37c0486867e75eaa5abd9f0c767422bfa2f5",
+      "expansive": "sema:Expansive#mh:SHA-256:5def1def8b3fb126b9e67adfecdb9b21ad51d1e01f96caa652e0b50c9a72a200"
     },
     "composes_with": {
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"

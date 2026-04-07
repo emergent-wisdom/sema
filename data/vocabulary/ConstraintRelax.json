@@ -16,9 +16,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ConstraintRelax#mh:SHA-256:704be74972244b873e4284ac30f5b1f6c5190f8bf98b512a9f63ce9606afea78",
-  "sema_ref": "ConstraintRelax#704b",
-  "sema_stub": "704b",
+  "sema_id": "sema:ConstraintRelax#mh:SHA-256:384d442837c23564ac4cb219e071c691e59f2e2ca3f181d2e4bae9d7caa5694f",
+  "sema_ref": "ConstraintRelax#384d",
+  "sema_stub": "384d",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",

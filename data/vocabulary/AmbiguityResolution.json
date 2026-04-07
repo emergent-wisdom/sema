@@ -12,9 +12,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "AmbiguityResolution#5c50",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:5c50f28c0338483e2e0da1e7d90ed920e7f5c48946e5f8501974096c5bfcbcfb",
-  "sema_stub": "5c50",
+  "sema_ref": "AmbiguityResolution#6487",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:6487ea6de2ce54da7da6a40743c15761467f4653ec054e098e42f2900e68684b",
+  "sema_stub": "6487",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

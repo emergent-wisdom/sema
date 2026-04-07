@@ -15,9 +15,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:4a095e438c638405755b8f1115722e839bf6ba924f2a989f5a71213711d0b2ef",
-  "sema_ref": "AdversarialSteel#4a09",
-  "sema_stub": "4a09",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:b88b0ef8e7b02a319a4d82042fe34981ad48d9c271e5105decd38f699ef4ed8e",
+  "sema_ref": "AdversarialSteel#b88b",
+  "sema_stub": "b88b",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

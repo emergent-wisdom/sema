@@ -16,9 +16,9 @@
     "category": "Coordination",
     "ring": 2
   },
-  "sema_ref": "ProblemFramer#4e5c",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:4e5c452c3e10881a67aa4fdd2b2fd3ecd26570b76c67ba241abb29ef79d6710c",
-  "sema_stub": "4e5c",
+  "sema_ref": "ProblemFramer#f83d",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:f83d5805391f1691dec04c63685ee048954f06b8e7bec3b305b89b77b579dc48",
+  "sema_stub": "f83d",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

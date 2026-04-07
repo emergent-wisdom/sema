@@ -26,9 +26,9 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:AmendLaws#mh:SHA-256:d0739153b98a7784f1e2e6778d71390c4af279719a1f01bd2c42c0bf232f9a49",
-  "sema_ref": "AmendLaws#d073",
-  "sema_stub": "d073",
+  "sema_id": "sema:AmendLaws#mh:SHA-256:5266843d5641614ea8de731bee40022b8da59e05c62b026710bef98fa46e8b07",
+  "sema_ref": "AmendLaws#5266",
+  "sema_stub": "5266",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

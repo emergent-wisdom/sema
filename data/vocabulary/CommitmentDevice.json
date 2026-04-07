@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:20d0ea4bf82026af8d4717682ad13e91979a047f05b94b0542f017ade2342810",
-  "sema_ref": "CommitmentDevice#20d0",
-  "sema_stub": "20d0",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:dbdf489fe9ee22b624663046242ea471580d1e8d01330ff806f6e058f99d6427",
+  "sema_ref": "CommitmentDevice#dbdf",
+  "sema_stub": "dbdf",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {

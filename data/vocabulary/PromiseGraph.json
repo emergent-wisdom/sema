@@ -16,9 +16,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:PromiseGraph#mh:SHA-256:d1395717e2b0c1dd0aa9b86f1730755808c632f999b6f1cb9ee98b6544d7fd42",
-  "sema_ref": "PromiseGraph#d139",
-  "sema_stub": "d139",
+  "sema_id": "sema:PromiseGraph#mh:SHA-256:972a66dbaf3511ccfb1b4b3af8f716ff568231799289843a47e50be4bfa508b8",
+  "sema_ref": "PromiseGraph#972a",
+  "sema_stub": "972a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {

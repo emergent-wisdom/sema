@@ -10,9 +10,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:1cd71faf4dea6aa2d5378a238dcc284907132580bbb36bfe6e89c292678e6862",
-  "sema_ref": "IdentityHandshake#1cd7",
-  "sema_stub": "1cd7",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:7a20ef5a5e26b921795d01365b68115c87d9a88bae3096f7cc7a801b0c005fc5",
+  "sema_ref": "IdentityHandshake#7a20",
+  "sema_stub": "7a20",
   "signature": [
     "Discover(Identity)"
   ],

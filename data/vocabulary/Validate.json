@@ -15,14 +15,15 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
-  "sema_ref": "Validate#d501",
-  "sema_stub": "d501",
+  "sema_id": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619",
+  "sema_ref": "Validate#3de2",
+  "sema_stub": "3de2",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
     }
   }
 }

@@ -36,9 +36,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:9fab8c79736855b6e08c151950aab6602dfcee378055cd060628a86d6307772c",
-  "sema_ref": "NormativeJudge#9fab",
-  "sema_stub": "9fab",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:a2149e83b35ba7b071c1ddefc6010cf690587066178239c888fe4b0348220593",
+  "sema_ref": "NormativeJudge#a214",
+  "sema_stub": "a214",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [

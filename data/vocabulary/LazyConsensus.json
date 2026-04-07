@@ -15,9 +15,9 @@
     "category": "Governance",
     "ring": 0
   },
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:eef739f51576636172b291c92363ea8fc3dd216d777c6395067fc3159d0452c8",
-  "sema_ref": "LazyConsensus#eef7",
-  "sema_stub": "eef7",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:7c9ba20fcd15185dad326a9b5c82c21b0c1577be3025578194e0912e1d504762",
+  "sema_ref": "LazyConsensus#7c9b",
+  "sema_stub": "7c9b",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

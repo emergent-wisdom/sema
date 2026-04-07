@@ -25,15 +25,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:AnalogicalMask#mh:SHA-256:1abd116f2ed52a7d56fb2dcec3cdc6aa7ad8e31c1c62ebedac5c3a955843056d",
-  "sema_ref": "AnalogicalMask#1abd",
-  "sema_stub": "1abd",
+  "sema_id": "sema:AnalogicalMask#mh:SHA-256:852a1f8e0a69d2d6ac061711f8741140ab2e8754a1a912e82d01b321acd6d99e",
+  "sema_ref": "AnalogicalMask#852a",
+  "sema_stub": "852a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613"
     }
   }
 }

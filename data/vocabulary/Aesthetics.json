@@ -8,9 +8,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:dd54f4299d786c2babcc4636ddb911abcae0cd813e6828cf1e4902de217c6bc2",
-  "sema_ref": "Aesthetics#dd54",
-  "sema_stub": "dd54",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:6b3327e2478c8a2203ec76f8f65c0473ed629b1099375c4928096a27f209b69d",
+  "sema_ref": "Aesthetics#6b33",
+  "sema_stub": "6b33",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

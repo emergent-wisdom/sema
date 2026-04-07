@@ -50,9 +50,9 @@
       }
     }
   },
-  "sema_ref": "SolverTree#6e7b",
-  "sema_id": "sema:SolverTree#mh:SHA-256:6e7b944baf526bfabe4070993c035fc9676768dc3fc34f05230a2b6dfd9293a6",
-  "sema_stub": "6e7b",
+  "sema_ref": "SolverTree#496e",
+  "sema_id": "sema:SolverTree#mh:SHA-256:496eab56fade7a64020f6f5e37afd024efc4cb8b691001b403e7bacb61b7c3d8",
+  "sema_stub": "496e",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

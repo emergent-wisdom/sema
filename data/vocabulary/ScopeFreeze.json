@@ -38,9 +38,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:09ce445406798527f17aa8ac3621b4aea87599b917b08c5dbe8562a88ee91580",
-  "sema_ref": "ScopeFreeze#09ce",
-  "sema_stub": "09ce",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:54dbbaae7c24df4dade46112a2b9b2580e169bf3f005e668dc0bdc8cf13389aa",
+  "sema_ref": "ScopeFreeze#54db",
+  "sema_stub": "54db",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
@@ -49,7 +49,9 @@
       "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
       "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "satisfice": "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d"
+      "satisfice": "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "timebox_think": "sema:TimeboxThink#mh:SHA-256:265679a37dcae704c3e9e8c958f42f11751102e0685e55b1fe277c238bd9c05e"
     }
   }
 }

@@ -37,9 +37,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:15d927037bd703976cea2d25f710dc01be41c465358f392dd40e4b76d5366e0d",
-  "sema_ref": "ConstructOntology#15d9",
-  "sema_stub": "15d9",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:e5ced9f3067c292e187b0ee10ac557d4cbb5064436ab07cc389e5cdefbe44eb6",
+  "sema_ref": "ConstructOntology#e5ce",
+  "sema_stub": "e5ce",
   "dependencies": {
     "references": {
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",

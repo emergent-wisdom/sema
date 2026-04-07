@@ -19,9 +19,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_ref": "Realizable#f70c",
-  "sema_id": "sema:Realizable#mh:SHA-256:f70c35eb5ddbaaa985cd54c8a2bb37c0486867e75eaa5abd9f0c767422bfa2f5",
-  "sema_stub": "f70c",
+  "sema_ref": "Realizable#199e",
+  "sema_id": "sema:Realizable#mh:SHA-256:199e1de94d8abb8ff3786e1b025039b64517443d26680699b9bd4f7e8cf9baf2",
+  "sema_stub": "199e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

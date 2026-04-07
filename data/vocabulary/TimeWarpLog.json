@@ -42,16 +42,18 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
-  "sema_ref": "TimeWarpLog#55e0",
-  "sema_stub": "55e0",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:aa7a5f4cc64abcca090f2931d75a7dc0718ec2e20cd42fb0737f5fa4a87c3e32",
+  "sema_ref": "TimeWarpLog#aa7a",
+  "sema_stub": "aa7a",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "causal_barrier": "sema:CausalBarrier#mh:SHA-256:3a88cbbac626b0bc83041ba93652a0bcb1ac654159698ea138352795bc4ffb38",
+      "world_reversible": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe"
     }
   }
 }

@@ -24,5 +24,10 @@
   "sema_ref": "Trace#9057",
   "sema_stub": "9057",
   "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0"
+    }
+  }
 }

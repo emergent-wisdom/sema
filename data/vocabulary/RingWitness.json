@@ -26,5 +26,10 @@
   "sema_ref": "RingWitness#1038",
   "sema_stub": "1038",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification"
+  "sema_category": "Verification",
+  "dependencies": {
+    "references": {
+      "identity_mask": "sema:IdentityMask#mh:SHA-256:f9a7dad03253207e14124a8cba4c80fa5fec7195b26dd12573bf7af2db020279"
+    }
+  }
 }

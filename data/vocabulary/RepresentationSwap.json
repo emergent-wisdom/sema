@@ -15,9 +15,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:ee3bf13c134e9dbce5d61d06bfbf29797040d7f5884a699373f084e1ade67e4d",
-  "sema_ref": "RepresentationSwap#ee3b",
-  "sema_stub": "ee3b",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:fe9baa92ec79a3719004fa492411ccc2bd2532ebcd3ea413062a6b5acffabb05",
+  "sema_ref": "RepresentationSwap#fe9b",
+  "sema_stub": "fe9b",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

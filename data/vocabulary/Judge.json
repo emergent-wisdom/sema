@@ -30,9 +30,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1",
-  "sema_ref": "Judge#98ca",
-  "sema_stub": "98ca",
+  "sema_id": "sema:Judge#mh:SHA-256:b8ba8bfa7fb25cea7dcd6a15d249395cc4663f8dc29c4152890f001409733cff",
+  "sema_ref": "Judge#b8ba",
+  "sema_stub": "b8ba",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

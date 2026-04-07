@@ -26,9 +26,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "EpistemicWager#8bbb",
-  "sema_id": "sema:EpistemicWager#mh:SHA-256:8bbbc3c04198e1162a574b6201e694db97c24aa251ba79fb634ccd817d090de6",
-  "sema_stub": "8bbb",
+  "sema_ref": "EpistemicWager#7002",
+  "sema_id": "sema:EpistemicWager#mh:SHA-256:7002fc120e47e469f6f1d97f88849ae1f6ca3f94ca4104641d85a1ed15b804bd",
+  "sema_stub": "7002",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

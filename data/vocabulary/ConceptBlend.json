@@ -15,14 +15,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
-  "sema_ref": "ConceptBlend#b75e",
-  "sema_stub": "b75e",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:de0119faac3117ebddc1c767f646668f490da960e26643a3f1be6d32161e8857",
+  "sema_ref": "ConceptBlend#de01",
+  "sema_stub": "de01",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52",
+      "realizable": "sema:Realizable#mh:SHA-256:f70c35eb5ddbaaa985cd54c8a2bb37c0486867e75eaa5abd9f0c767422bfa2f5",
+      "tri_gate": "sema:TriGate#mh:SHA-256:d4cd658f6ee62f40bd28f0e3d0f253b4a6df62220c2d9b4acd56215b5508affa"
     }
   }
 }

@@ -22,5 +22,10 @@
   "sema_category": "Reasoning",
   "sema_id": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
   "sema_ref": "Deduction#9c88",
-  "sema_stub": "9c88"
+  "sema_stub": "9c88",
+  "dependencies": {
+    "references": {
+      "axiom": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded"
+    }
+  }
 }

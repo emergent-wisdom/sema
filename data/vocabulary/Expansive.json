@@ -14,9 +14,9 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:5def1def8b3fb126b9e67adfecdb9b21ad51d1e01f96caa652e0b50c9a72a200",
-  "sema_ref": "Expansive#5def",
-  "sema_stub": "5def",
+  "sema_id": "sema:Expansive#mh:SHA-256:ad2d13d8dd381d371d93239e0b1c63176aa1126bbc96fc52ce12f392c10dbaf2",
+  "sema_ref": "Expansive#ad2d",
+  "sema_stub": "ad2d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

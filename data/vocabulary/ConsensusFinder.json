@@ -12,9 +12,9 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:59dedf0a3b36075b9e496fa2ee401fef1dc841dadab3cfcc4b5c886c9055adee",
-  "sema_ref": "ConsensusFinder#59de",
-  "sema_stub": "59de",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:a9c98920caa7c8655e0a5c5229f7b1aa501734eb9229ee3888eeaed535274273",
+  "sema_ref": "ConsensusFinder#a9c9",
+  "sema_stub": "a9c9",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "signature": [

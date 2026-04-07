@@ -12,9 +12,9 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_ref": "OathBind#745d",
-  "sema_id": "sema:OathBind#mh:SHA-256:745d8a967eac5ad0c50551cd7b5ee6e0e3d53cd4cc94f1a51e01fd8ba1db0f97",
-  "sema_stub": "745d",
+  "sema_ref": "OathBind#775a",
+  "sema_id": "sema:OathBind#mh:SHA-256:775ae6f305c8348cb7fb4d072af79f5cfc14a247b660221c94c9b57c82c665ca",
+  "sema_stub": "775a",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {

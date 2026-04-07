@@ -23,9 +23,9 @@
       "LateralOptimization"
     ]
   },
-  "sema_ref": "PUREOptimization#4114",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:4114d67d1729658a76e94afe6f381ecc4ad52fe2d83e9cd832ff1aaf1aaf63ee",
-  "sema_stub": "4114",
+  "sema_ref": "PUREOptimization#c352",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:c352abb258a026750e2cb364eff05df4b53965b2ddabb180f5693353d2a0bb50",
+  "sema_stub": "c352",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -39,7 +39,9 @@
       "pareto_front": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
       "pure_check": "sema:PURECheck#mh:SHA-256:8ac3ae4946b9e93c687eba0a993d8bdf973b6b7bb9266d71427d94e5be5c166b",
       "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
-      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774"
+      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774",
+      "expansive": "sema:Expansive#mh:SHA-256:5def1def8b3fb126b9e67adfecdb9b21ad51d1e01f96caa652e0b50c9a72a200",
+      "realizable": "sema:Realizable#mh:SHA-256:f70c35eb5ddbaaa985cd54c8a2bb37c0486867e75eaa5abd9f0c767422bfa2f5"
     },
     "accepts": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

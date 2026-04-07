@@ -23,15 +23,18 @@
     "category": "Primitives",
     "ring": 2
   },
-  "sema_id": "sema:Uncertain#mh:SHA-256:a3b91034978ace09ffb2dd8ae1500a638fb10dd61794743a6b4ee53e8b63cb7f",
-  "sema_ref": "Uncertain#a3b9",
-  "sema_stub": "a3b9",
+  "sema_id": "sema:Uncertain#mh:SHA-256:b89402ced2faa010330940d426790c0bff7c6ca70294ca53aae0fe6b141d8223",
+  "sema_ref": "Uncertain#b894",
+  "sema_stub": "b894",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "deep_research": "sema:DeepResearch#mh:SHA-256:79f86b19fda4bc37f9986854d2c0720b6dbce79c39362c99401e1e29ab7e3105",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
+      "uncertainty_map": "sema:UncertaintyMap#mh:SHA-256:e883a452d9ec2e4bb7fcb99c34edc45d4584115f6cc128aa61100d84c1b14bc4"
     }
   }
 }

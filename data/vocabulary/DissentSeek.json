@@ -23,9 +23,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:DissentSeek#mh:SHA-256:6c8292214a387f1cee0bfd80543d2b30a813faf671a35aa11263960e36a207fe",
-  "sema_ref": "DissentSeek#6c82",
-  "sema_stub": "6c82",
+  "sema_id": "sema:DissentSeek#mh:SHA-256:bca9e7effdcafe26935739612e7eb649394fe8c2a883cb5f8eadb0086787ee97",
+  "sema_ref": "DissentSeek#bca9",
+  "sema_stub": "bca9",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -29,9 +29,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:320196608b9274bf52da27d46708ca94df42ed0967d8b1258ebd785a0eda2053",
-  "sema_ref": "Delegate#3201",
-  "sema_stub": "3201",
+  "sema_id": "sema:Delegate#mh:SHA-256:7dce193da7c9573a95841772ee70d67bc8b3955dc983873f7fd396cf46dca01a",
+  "sema_ref": "Delegate#7dce",
+  "sema_stub": "7dce",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

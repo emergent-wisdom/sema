@@ -32,9 +32,9 @@
       "AgentDiscover"
     ]
   },
-  "sema_ref": "ToolDiscovery#7880",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:78809169e21fbe778622862a67bfcc677091ebdc2b0c689d58da7295a3b63a9a",
-  "sema_stub": "7880",
+  "sema_ref": "ToolDiscovery#b509",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:b50940f28b3e2571c9d2a24fa391766d2fa3b06a6f99ff7f1b134ab99df756b6",
+  "sema_stub": "b509",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

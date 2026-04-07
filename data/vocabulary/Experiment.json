@@ -11,9 +11,9 @@
       "HypothesisLadder#f88b"
     ]
   },
-  "sema_ref": "Experiment#1b0d",
-  "sema_id": "sema:Experiment#mh:SHA-256:1b0db195171a3758d7d8a5d0e722f5298e1e67f7595f30c833dddcf6ae07d388",
-  "sema_stub": "1b0d",
+  "sema_ref": "Experiment#40e5",
+  "sema_id": "sema:Experiment#mh:SHA-256:40e5e923ead8721b039cd6afa4e49c864a5022483e1c3ff58a12d57fe9a87499",
+  "sema_stub": "40e5",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

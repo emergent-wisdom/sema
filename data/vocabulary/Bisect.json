@@ -14,14 +14,15 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Bisect#mh:SHA-256:07cb9574ef80a5c973a6605067ef86395c24e6af47242d6f12e09e5b41a9c310",
-  "sema_ref": "Bisect#07cb",
-  "sema_stub": "07cb",
+  "sema_id": "sema:Bisect#mh:SHA-256:9bf4f3b6c82ada23e0f16d389621b84755c0593bc442a4c438fc629306d5bbca",
+  "sema_ref": "Bisect#9bf4",
+  "sema_stub": "9bf4",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
+      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e"
     }
   }
 }

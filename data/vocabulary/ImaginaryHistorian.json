@@ -10,9 +10,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ImaginaryHistorian#mh:SHA-256:07be1f68e8f3f48eab4342342e447af17420ba719f65d85d07f42a59b3fe9df5",
-  "sema_ref": "ImaginaryHistorian#07be",
-  "sema_stub": "07be",
+  "sema_id": "sema:ImaginaryHistorian#mh:SHA-256:f818b4b64ef0c5dd06699742a86af741fd3cf8898372ba27ec78260778b1f858",
+  "sema_ref": "ImaginaryHistorian#f818",
+  "sema_stub": "f818",
   "signature": [
     "Trace(Simulation)"
   ],

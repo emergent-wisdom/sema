@@ -14,9 +14,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "Deploy#ce27",
-  "sema_id": "sema:Deploy#mh:SHA-256:ce27c021c0617ccdfb1ae81f938c5af5183ad0aa4c6cab4cae2038501e90b38e",
-  "sema_stub": "ce27",
+  "sema_ref": "Deploy#0d56",
+  "sema_id": "sema:Deploy#mh:SHA-256:0d5689af6010cb28767876fe4c7eea40aec1c411e30d2191b55745e2746fe7f9",
+  "sema_stub": "0d56",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

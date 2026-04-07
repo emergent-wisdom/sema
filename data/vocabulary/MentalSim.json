@@ -40,9 +40,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:0c26a8eb6071051ceaa3c4e694b61ef4a78f54eff3b80326c22a5c073d572183",
-  "sema_ref": "MentalSim#0c26",
-  "sema_stub": "0c26",
+  "sema_id": "sema:MentalSim#mh:SHA-256:1e28ea49dd0ee3fc2a39c7fe7803895b10bc4cbded08ff50400f0d599dc29c61",
+  "sema_ref": "MentalSim#1e28",
+  "sema_stub": "1e28",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -52,7 +52,8 @@
       "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:871978bf94159b4fb9397407879198d38303f3b42585b5fc3ccf956f745d2904"
     }
   }
 }

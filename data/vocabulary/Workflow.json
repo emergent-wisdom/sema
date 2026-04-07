@@ -39,9 +39,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:dcee0211d2449481b784563b12e9bc3895d6feffa83d9da0b6deaed9002f2ae6",
-  "sema_ref": "Workflow#dcee",
-  "sema_stub": "dcee",
+  "sema_id": "sema:Workflow#mh:SHA-256:4ec6b1381e22c12d860c3bb55527e018387b1e6be5faa994c7b1700236e00253",
+  "sema_ref": "Workflow#4ec6",
+  "sema_stub": "4ec6",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

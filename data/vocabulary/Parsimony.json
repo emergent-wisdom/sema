@@ -13,9 +13,9 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
-  "sema_ref": "Parsimony#40f3",
-  "sema_stub": "40f3",
+  "sema_id": "sema:Parsimony#mh:SHA-256:25788dab06b998f95e0447259c9f29c331216ed523b24c4311083af2d53509f0",
+  "sema_ref": "Parsimony#2578",
+  "sema_stub": "2578",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "gloss": "Complexity justification via Occams Razor",

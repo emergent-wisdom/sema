@@ -42,9 +42,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
-  "sema_ref": "Vote#2a54",
-  "sema_stub": "2a54",
+  "sema_id": "sema:Vote#mh:SHA-256:cae4e5707843fea694b91ed741584987cbc9b577a0c9d56914c47e30ff686df8",
+  "sema_ref": "Vote#cae4",
+  "sema_stub": "cae4",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

@@ -11,14 +11,18 @@
       "SolutionNode#2b4a"
     ]
   },
-  "sema_id": "sema:RecursionDive#mh:SHA-256:6076d78908d5e94cfab7e542d4ee68ebf8448b93c7c6d7ae803b770d394ee5ba",
-  "sema_ref": "RecursionDive#6076",
-  "sema_stub": "6076",
+  "sema_id": "sema:RecursionDive#mh:SHA-256:6a5cac9eb4e9ca22eb83add3a5e4b8b94cc143627cb829b49f5a76684940d13e",
+  "sema_ref": "RecursionDive#6a5c",
+  "sema_stub": "6a5c",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "composes_with": {
       "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de"
+    },
+    "references": {
+      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:6e7b944baf526bfabe4070993c035fc9676768dc3fc34f05230a2b6dfd9293a6"
     }
   }
 }

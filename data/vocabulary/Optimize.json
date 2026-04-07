@@ -32,14 +32,15 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8",
-  "sema_ref": "Optimize#8d99",
-  "sema_stub": "8d99",
+  "sema_id": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
+  "sema_ref": "Optimize#3075",
+  "sema_stub": "3075",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29"
+      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
     },
     "accepts": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

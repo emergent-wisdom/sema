@@ -25,9 +25,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:TensionHold#mh:SHA-256:71f46c71157e0ff163c5175d1701d92a08c128d4bd80fa5f89ab852e218ddece",
-  "sema_ref": "TensionHold#71f4",
-  "sema_stub": "71f4",
+  "sema_id": "sema:TensionHold#mh:SHA-256:3496a834ef59ae72725054b262f7844a7551f9c917348b95e704b84e0265a558",
+  "sema_ref": "TensionHold#3496",
+  "sema_stub": "3496",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

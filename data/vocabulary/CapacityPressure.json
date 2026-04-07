@@ -40,9 +40,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:3c3572db0c16bc3cef849ccee61a6718000e61de13d2ce73966efdf257b33ba1",
-  "sema_ref": "CapacityPressure#3c35",
-  "sema_stub": "3c35",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:9e7b9d2a599ff40722c4617ad103851388d702d9c976520929b1f39624322920",
+  "sema_ref": "CapacityPressure#9e7b",
+  "sema_stub": "9e7b",
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",

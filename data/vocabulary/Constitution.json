@@ -6,9 +6,9 @@
     "Clarity: Rules must be machine-verifiable.",
     "Stability: Cannot be modified without a formal {{amend_laws}} process."
   ],
-  "sema_id": "sema:Constitution#mh:SHA-256:578070e3528997d840eee1ccf198c9d0651cf98ddde40c38235bdc5c2ad0d2ac",
-  "sema_ref": "Constitution#5780",
-  "sema_stub": "5780",
+  "sema_id": "sema:Constitution#mh:SHA-256:2391d082a0537c5adf91e0bfe986dae8553f96db6d9c53b09184928b23fc6ea9",
+  "sema_ref": "Constitution#2391",
+  "sema_stub": "2391",
   "_meta": {
     "layer": "Society",
     "category": "Governance",

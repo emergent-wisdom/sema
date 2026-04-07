@@ -20,9 +20,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:7aa46dc3f41520c4955a6063c3aa6202bf33784ba08194af4c8c946a87a37146",
-  "sema_ref": "MemeticSeed#7aa4",
-  "sema_stub": "7aa4",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:f77b494ab19acc3c810b7e5535a6d4f648e075d181d13f8748c7c8294c75291b",
+  "sema_ref": "MemeticSeed#f77b",
+  "sema_stub": "f77b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

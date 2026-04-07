@@ -35,5 +35,10 @@
   "sema_ref": "Chain#5711",
   "sema_stub": "5711",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "linear": "sema:Linear#mh:SHA-256:81affcd5f7c1ea56b7572799fc235cf95d4e3c692de77c9eb8c01930b8e1d41c"
+    }
+  }
 }

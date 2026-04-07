@@ -32,9 +32,9 @@
       "SpotAudit"
     ]
   },
-  "sema_ref": "AuditTrail#7b15",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:7b15df47bf89c2ab8cd92993db234d0f8d18499521835a16652d763fcd2ed9db",
-  "sema_stub": "7b15",
+  "sema_ref": "AuditTrail#d051",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:d051159cb1451a35bd695ae6b3e89c75ffe6b2f8180d9244e3c644f573a45d55",
+  "sema_stub": "d051",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
@@ -46,7 +46,8 @@
       "ledger": "sema:Ledger#mh:SHA-256:2449b13ec018b29f7301a798a92077d5f6983991b38886c19f1aa27c3ac533e5",
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
     }
   }
 }

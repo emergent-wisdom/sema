@@ -28,9 +28,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:604d7bdc517d0fe2fbc5e9591a28425a43c10046ad823dd8a5ab1dd011de3ed6",
-  "sema_ref": "LateralOptimization#604d",
-  "sema_stub": "604d",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:5350ae13501544830ea8db150d55264a15e06ac1d231c16d02207ae0b48eadba",
+  "sema_ref": "LateralOptimization#5350",
+  "sema_stub": "5350",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
@@ -42,7 +42,8 @@
       "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
       "creative": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
     },
     "composes_with": {
       "optimize": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8",

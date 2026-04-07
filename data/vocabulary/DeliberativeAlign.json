@@ -41,9 +41,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:19e207eca525f6d003859242f86bdca2cecf03edec5e683005d8e3b9bdad31a7",
-  "sema_ref": "DeliberativeAlign#19e2",
-  "sema_stub": "19e2",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:fb93216febb5b91b66f8c0021568e16cec72018ecabb494f9382a864d2948908",
+  "sema_ref": "DeliberativeAlign#fb93",
+  "sema_stub": "fb93",
   "dependencies": {
     "references": {
       "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
