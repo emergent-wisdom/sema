@@ -1,0 +1,48 @@
+{
+  "handle": "Prototype",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "prototype_id",
+      "fidelity"
+    ],
+    "properties": {
+      "prototype_id": {
+        "type": "string",
+        "description": "Unique identifier"
+      },
+      "fidelity": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "description": "How close to final product"
+      },
+      "artifact": {
+        "description": "The prototype content or reference"
+      },
+      "learnings": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "What was learned from this prototype"
+      }
+    }
+  },
+  "mechanism": "An early sample, model, or release of a product built to test a concept or process or to act as a thing to be learned from. It is generally low-fidelity and disposable.",
+  "gloss": "Testable early model",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_id": "sema:Prototype#mh:SHA-256:ff187305136dd60765caedabd5eefbc62c94b20909c4886f4baef3c9523e83c7",
+  "sema_ref": "Prototype#ff18",
+  "sema_stub": "ff18",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "ChaosDrift",
+  "mechanism": "A resilience pattern where the system operates Optimistically (Lazy {{consensus}}), but a background process deliberately injects random state mutations (Entropy) into the consensus log. If the system is Robust, these small mutations are absorbed/corrected by the next update. If the system is Brittle (stuck in a local optimum), the noise triggers a cascade of Rollbacks, forcing the agents to renegotiate a more stable equilibrium. It uses noise to stress-test consensus in real-time. It employs {{antifragile_inversion}} to treat noise as a stabilizing signal, and {{semantic_tabu}} to prevent the system from returning to failed equilibria.",
+  "gloss": "Continuous stress-testing via entropic injection",
+  "failure_modes": [
+    "Critical Instability: The injected noise triggers a rollback loop that never settles (system acts like its having a seizure)."
+  ],
+  "invariants": [
+    "{{noise}} Budget: Entropy injection rate < {{system}} Repair Rate",
+    "Rollback Limit: If Rollbacks > Threshold, disable {{entropy_pump}}"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "sema:EntropyPump#mh:SHA-256:c252d412e4de8085a6526d67cf090f009f878e152ab97824e3bafc52c454cff4",
+      "LazyConsensus"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:ChaosDrift#mh:SHA-256:6d592dbde6621577a0974d90bcac492710c64304ad465f74679120ada567b572",
+  "sema_ref": "ChaosDrift#6d59",
+  "sema_stub": "6d59",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
+      "antifragile_inversion": "sema:AntifragileInversion#mh:SHA-256:bf629c568b2bc34726a23d021ef0459528da2aa6084d5f011d3f1abf93b88de4",
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
+      "semantic_tabu": "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

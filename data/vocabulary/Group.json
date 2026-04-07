@@ -1,0 +1,45 @@
+{
+  "handle": "Group",
+  "mechanism": "A defined collection of {{agent}}s sharing a common {{context}} or goal. It serves as the scope for {{consensus}} and {{shout_whisper}}.",
+  "gloss": "Agent collective",
+  "sema_id": "sema:Group#mh:SHA-256:bcb4f9d7cfcb9641621bb6210b758c974138a68c1969968a64918bf4d6da3a85",
+  "sema_ref": "Group#bcb4",
+  "sema_stub": "bcb4",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "group_id",
+      "members"
+    ],
+    "properties": {
+      "group_id": {
+        "type": "string",
+        "description": "Unique identifier"
+      },
+      "members": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Agent IDs in the group"
+      },
+      "shared_context": {
+        "type": "string",
+        "description": "Reference to common context"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

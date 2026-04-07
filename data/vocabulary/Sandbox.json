@@ -1,0 +1,21 @@
+{
+  "handle": "Sandbox",
+  "mechanism": "An isolated execution environment that restricts side effects.",
+  "gloss": "Isolation boundary",
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 1,
+    "related": [
+      "AgentSandbox",
+      "CircuitBreaker",
+      "SafetyCartographer"
+    ]
+  },
+  "sema_id": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
+  "sema_ref": "Sandbox#2be7",
+  "sema_stub": "2be7",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

@@ -1,0 +1,25 @@
+{
+  "handle": "StateTransition",
+  "mechanism": "Finite State Machine. A {{transition}} is defined as T: S x Event -> S. Only valid transitions allowed. Current {{state}} determines available actions.",
+  "gloss": "Explicit finite-state machine governance",
+  "sema_id": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57",
+  "sema_ref": "StateTransition#3737",
+  "sema_stub": "3737",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "signature": [
+    "Transition(State)"
+  ],
+  "dependencies": {
+    "references": {
+      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

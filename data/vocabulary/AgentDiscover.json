@@ -1,0 +1,42 @@
+{
+  "handle": "AgentDiscover",
+  "mechanism": "Macro for {{discover}}({{agent}}). A protocol for agents to advertise their capabilities and discover other agents dynamically. Each agent publishes a capability {{card}} describing what it can do, its input/output schemas, and trust requirements. Agents query a registry (or broadcast) to find collaborators for subtasks. Enables dynamic multi-agent composition without hardcoded agent references. It instantiates the abstract {{discover}} primitive on the {{agent}} type, specifically querying capability registries rather than passive data stores.",
+  "gloss": "Advertise capabilities and discover collaborating agents",
+  "failure_modes": [
+    "Capability Inflation: Agents over-claiming abilities.",
+    "Discovery Spam: Too many irrelevant agents matching queries.",
+    "Trust Bootstrap: No basis for trusting newly discovered agents."
+  ],
+  "invariants": [
+    "Discovery protocol must be public/standard",
+    "No sensitive state leaked during handshake"
+  ],
+  "preconditions": [
+    "Broadcast capability",
+    "Listener on known channel"
+  ],
+  "postconditions": [
+    "{{agent}} ID and capabilities exchanged"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:42ce7e8e3c7dffbcc2c4a8629f516a5d123d48d4020035482a5ea240458a4d91",
+  "sema_ref": "AgentDiscover#42ce",
+  "sema_stub": "42ce",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Discover(Agent)"
+  ],
+  "dependencies": {
+    "references": {
+      "card": "sema:Card#mh:SHA-256:5c33034fedd84e9d8e42887c003d5b96a694d0549292dd796c3dbcbfe76a06dd",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4"
+    }
+  }
+}

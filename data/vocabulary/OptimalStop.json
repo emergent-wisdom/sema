@@ -1,0 +1,48 @@
+{
+  "handle": "OptimalStop",
+  "mechanism": "Dynamic stopping rule. If Recall=False, apply 1/e rule. If Recall=True, apply Marginal Gain threshold (stop when Cost_Next > Expected_Improvement). Balances information gathering against missing the best. It acts as a {{compute_budget}} aware termination condition for search processes.",
+  "gloss": "Resource-aware search termination",
+  "failure_modes": [
+    "Empty Handed: Strict 1/e rule exhausted all options without beating baseline.",
+    "Infinite Search: Unknown N resulted in endless calibration phase."
+  ],
+  "invariants": [
+    "Budget Adherence: Search must terminate before {{compute_budget}} == 0"
+  ],
+  "parameters": [
+    {
+      "name": "recall_allowed",
+      "type": "Boolean",
+      "range": "unspecified",
+      "description": "Can you go back to rejected options?"
+    },
+    {
+      "name": "satisficing_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Accept any score > X regardless of phase"
+    },
+    {
+      "name": "total_budget",
+      "type": "Float",
+      "range": "unspecified",
+      "description": "Tokens or Time"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:OptimalStop#mh:SHA-256:74391a0813dfa1c767a2221d9fd50da3c1bd6714bd77a402f0178c707a8ad95f",
+  "sema_ref": "OptimalStop#7439",
+  "sema_stub": "7439",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+    }
+  }
+}

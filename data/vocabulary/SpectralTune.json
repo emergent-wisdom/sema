@@ -1,0 +1,58 @@
+{
+  "handle": "SpectralTune",
+  "mechanism": "Instead of sending a message and hoping it is understood, the sender transmits a 'tuning {{signal}}'\u2014a sequence of hash-based challenges representing the semantic context (ontology, assumptions, version). The receiver must 'resonate' by proving they hold the matching semantic context.",
+  "gloss": "Verifying ontology alignment before data transfer",
+  "failure_modes": [
+    "Infinite tuning loops if ontologies are slightly mismatched."
+  ],
+  "invariants": [
+    "Atomic Tuning: No payload data is processed before Tune_ACK",
+    "Fail-Fast: On hash mismatch, DO NOT RETRY tuning. Halt immediately and escalate to negotiation or human review",
+    "Hash Match: Receiver.context_hash must equal Sender.context_hash"
+  ],
+  "preconditions": [
+    "Both agents possess valid hash function H"
+  ],
+  "postconditions": [
+    "Channel is established OR Connection terminated"
+  ],
+  "parameters": [
+    {
+      "name": "context_chunks",
+      "type": "List[String]",
+      "range": "unspecified",
+      "description": "Prompts to hash"
+    },
+    {
+      "name": "hash_algo",
+      "type": "String",
+      "range": "{BLAKE3, SHA256}",
+      "description": "Hash algorithm for semantic context verification"
+    },
+    {
+      "name": "max_retries",
+      "type": "Integer",
+      "range": "[0, 1]",
+      "description": "Default 0; prevents infinite negotiation loops"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1,
+    "related": [
+      "OntologyHandshake"
+    ]
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
+  "sema_ref": "SpectralTune#6c65",
+  "sema_stub": "6c65",
+  "dependencies": {
+    "accepts": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    }
+  }
+}

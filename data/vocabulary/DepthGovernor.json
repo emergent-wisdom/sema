@@ -1,0 +1,50 @@
+{
+  "handle": "DepthGovernor",
+  "mechanism": "Entropy-Bounded Recursion: Decomposition depth is not fixed but governed by informational entropy. {{agent}} measures uncertainty of current {{plan}}. If entropy > action_cost_threshold, {{decompose}} further. If entropy < threshold, execute. Stop thinking when uncertainty drops below action cost. Depth is a function of ambiguity, not arbitrary limits. It acts as the termination {{condition}} for {{recursion_dive}}, halting descent when informational entropy drops below the threshold.",
+  "gloss": "Entropy-based stopping condition for recursion",
+  "failure_modes": [
+    "Ambiguity {{loop}}: Entropy never drops because the {{problem}} is inherently subjective (e.g., Write a good poem).",
+    "Miscalculating entropy leads to premature action.",
+    "Infinite regression on high-ambiguity paradoxes.",
+    "Entropy estimation itself has computational cost."
+  ],
+  "invariants": [
+    "Governor cannot be bypassed."
+  ],
+  "parameters": [
+    {
+      "name": "entropy_threshold",
+      "type": "Float",
+      "range": "[0.1, 0.5]",
+      "description": "Stop when uncertainty below this"
+    },
+    {
+      "name": "max_depth",
+      "type": "Integer",
+      "range": "[3, 20]",
+      "description": "Hard limit on recursion"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 0
+  },
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:5c8ec0d9f5e6b095a54157fc3fe2ac05b2d0a4145e09f9d2e9c69f2f22fe4e80",
+  "sema_ref": "DepthGovernor#5c8e",
+  "sema_stub": "5c8e",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:6076d78908d5e94cfab7e542d4ee68ebf8448b93c7c6d7ae803b770d394ee5ba",
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    }
+  }
+}

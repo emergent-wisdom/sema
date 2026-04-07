@@ -1,0 +1,66 @@
+{
+  "handle": "Belief",
+  "mechanism": "A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting evidence. Unlike a Fact, a Belief is subjective and mutable.",
+  "gloss": "A subjective claim with confidence and evidence",
+  "parameters": [
+    {
+      "name": "confidence",
+      "type": "Float",
+      "range": "unspecified",
+      "description": "Subjective probability that this belief is true"
+    },
+    {
+      "name": "evidence",
+      "type": "List[Context]",
+      "range": "unspecified",
+      "description": "Supporting evidence contexts for this belief"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "proposition",
+      "confidence"
+    ],
+    "properties": {
+      "proposition": {
+        "type": "string",
+        "description": "The claim held by the agent"
+      },
+      "confidence": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "description": "Subjective probability (Bayesian Prior)"
+      },
+      "supporting_evidence": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of observations supporting this belief"
+      },
+      "provenance": {
+        "type": "string",
+        "description": "Source of the belief (Inference, Axiom, Observation)"
+      }
+    }
+  },
+  "sema_id": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd",
+  "sema_ref": "Belief#6690",
+  "sema_stub": "6690",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

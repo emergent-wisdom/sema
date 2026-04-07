@@ -1,0 +1,41 @@
+{
+  "handle": "WhyClimb",
+  "mechanism": "A root-cause analysis protocol where the agent iteratively asks 'Why is this a problem?' to {{reframe}} the {{problem}} and ascend the abstraction hierarchy. The goal is to reach the 'Ceiling'\u2014the highest level where the problem is still actionable but the solution space is maximized. Utilizes {{recursive_root_cause}}.",
+  "gloss": "Recursive problem abstraction",
+  "failure_modes": [
+    "Climbing too high (solving 'Entropy' instead of 'Fix Bug')."
+  ],
+  "invariants": [
+    "Ascension: Scope(Level N+1) > Scope(Level N)",
+    "Stop {{condition}}: Halt when 'Why' leads to a value judgment or physics constraint"
+  ],
+  "preconditions": [
+    "{{problem}} is well-formed"
+  ],
+  "postconditions": [
+    "{{solution}} space expanded"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:WhyClimb#mh:SHA-256:156aa8762c7c0007b72d0869b470c7c9d31aaf19d0815e51b9bce872d925db4f",
+  "sema_ref": "WhyClimb#156a",
+  "sema_stub": "156a",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Reframe(Problem)"
+  ],
+  "dependencies": {
+    "references": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
+    }
+  }
+}

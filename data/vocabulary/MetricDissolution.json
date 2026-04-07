@@ -1,0 +1,37 @@
+{
+  "handle": "MetricDissolution",
+  "mechanism": "A high-level reframing move. Instead of optimizing a problematic metric (e.g., 'Maximize Speed'), the agent dissolves the metric entirely (e.g., '{{eliminate}} the need for travel'). It solves the problem by proving the constraint was an artifact of the formulation, not reality. It applies {{invert}} to question the necessity of the optimization target, often allowing the agent to {{eliminate}} the constraint entirely.",
+  "gloss": "Solving by deleting the problem variable",
+  "failure_modes": [
+    "Cheating (solving a different problem than asked)."
+  ],
+  "invariants": [
+    "Functional Equivalence: The user's intent is met without the proxy metric",
+    "{{variable}} Reduction: Count(Variables_New) < Count(Variables_Old)"
+  ],
+  "preconditions": [
+    "Standard optimization is hitting diminishing returns"
+  ],
+  "postconditions": [
+    "{{problem}} complexity reduced"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:MetricDissolution#mh:SHA-256:b840cc85842c1add353edfadfbd13a8059cb35a87ffd070106040b8dc414c6bb",
+  "sema_ref": "MetricDissolution#b840",
+  "sema_stub": "b840",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "eliminate": "sema:Eliminate#mh:SHA-256:43ea687e3560a55f221807138469697a6f331e687fa542c66ddf4d97f07174b0",
+      "invert": "sema:Invert#mh:SHA-256:d1b9169d5b598e4f7f3d4d58bc2feea0f45c7830b32445fa6ab2666db271fa42",
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    }
+  }
+}

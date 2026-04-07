@@ -1,0 +1,2049 @@
+{
+  "generated_at": "2025-12-17T23:30:23.854781",
+  "stats": {
+    "total": 254,
+    "tier_1": 156,
+    "tier_2": 97,
+    "tier_3": 1
+  },
+  "patterns": {
+    "tier_1_ironclad": [
+      {
+        "handle": "AbductiveLeap",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "AgentDiscover",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "AgentSandbox",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Aggregate",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "AnalogicalMask",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "AnalogyBridge",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "AnchorDrop",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "AntifragileInversion",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "AttentionMarkets",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "BackwardChain",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "BaseRateInclude",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "BeliefTracking",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "BreadthGovernor",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Break",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Bubble",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Canary",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "CapacityPressure",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "CircuitBreaker",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "CiteBack",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "CognitiveEcho",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "CommitmentDevice",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Compensate",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ComputeBudget",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "ConstructOntology",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ContextCompress",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "ContingencyPlan",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Cooldown",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "CostlySignal",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "CounterfactualAnchor",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Crystallize",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "CurriculumReplay",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "DataMinimization",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "DeepResearch",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Defer",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "DeliberativeAlign",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Disband",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "DissentSeek",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "DogfoodFirst",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "EbbFlowSync",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "EdgeSimulates",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Elect",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "EmpathySim",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "EphemeralTool",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "EpistemicCalibrate",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "EpistemicROI",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "EvaluatorOptimizer",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 3,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "EventReact",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ExperienceSharding",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Experiment",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "ExtendedThinking",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "FailClosed",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ForkingProtocol",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "FractalAnte",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "FractalContext",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "GateExpansive",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "GateParsimony",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "GateRealizable",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "GateUnique",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Generalize",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "GracefulDegradation",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "HackDetect",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Handoff",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Heartbeat",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "HeuristicSnap",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "HydraConstitution",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "HypothesisLadder",
+        "contracts": {
+          "invariants": 5,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "IdempotentWrite",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "IdentityMask",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "InvariantFilter",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "LatentAttachment",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "LeastToMost",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "LivedProof",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "MemeticSeed",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "MentalSim",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "MetaCheck",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "MetaPrompt",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "MetricDissolution",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "MimicMask",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "MintWhenFriction",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ModestClaim",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "MonotonicCounter",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "NegativeProof",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "NoiseInjection",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "NormativeJudge",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Nucleate",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "OntologicalAccommodation",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "OpportunityCost",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "OutputGuard",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Overlap",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "PURECheck",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Parallelize",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ParetoFront",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "PatternDiscovery",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "PatternEmergence",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "PatternSketch",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "PermissionEscalate",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "PreMortem",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Prioritize",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Probe",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 3
+        }
+      },
+      {
+        "handle": "ProgramOfThought",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ProphetFanOut",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "QuorumPulse",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Rally",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Rank",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ReAct",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "RecursionDive",
+        "contracts": {
+          "invariants": 5,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "RedTeam",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Reflexion",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Reframe",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "RegimeSense",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Resonate",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Responsibility",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Retry",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ReversibilityCheck",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "RingWitness",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "RootHashGossip",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Route",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SacrificialProbe",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ScopeFreeze",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Select",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SemanticTabu",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ShoutWhisper",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SignalReflection",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SimulationTrace",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SkeletonOfThought",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SmuggledNormativityCheck",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SocraticLoop",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Solution",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Specialize",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SpectralTune",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SpotAudit",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "StateAudit",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "StateLock",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "StateSnapshot",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SteelmanCheck",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "StepBack",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "StrategicReading",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "StructuralCoaching",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SunkCostIgnore",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SurprisalUpdate",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "SurvivorCorrect",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Task",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "TensionHold",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "ThreeLevelCollision",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "TieredAccess",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "TimeWarpLog",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "TimeboxThink",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Trace",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "TranslationProxy",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Uncertain",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "UptakeAsGround",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "UptakeOverTimestamp",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "WhyClimb",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "WorkerMode",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 2,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "WorldReversible",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "WorldTransparent",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      }
+    ],
+    "tier_2_stable": [
+      {
+        "handle": "AcceptSpec",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "AdversarialSteel",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "AgentProtocol",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Backoff",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Ballot",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "BayesUpdate",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "BearerToken",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Bisect",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "BoundaryProbe",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Card",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "CausalBarrier",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ChainOfThought",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ChaosDrift",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ChunkMerge",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "CognitiveSolver",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConceptAnchor",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConceptBlend",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConfidenceCalibrate",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConfirmationBlock",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConstitutionalAmendment",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConstraintBox",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ConstraintRelax",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Context",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ContextFirst",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ContextSwitch",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "CryptoShred",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Dampen",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Decay",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Decompose",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Delegate",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "DepthGovernor",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Dialectic",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "DriftWatch",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "EjectionSeat",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Eliminate",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "EntropyPump",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ExpiringToken",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ExplainBeacon",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ExploreExploit",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "FabricSharding",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Fermi",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "FirstPrinciples",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "GenealogicalTrace",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "GhostTrail",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 2,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "GlacialVault",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Greet",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "HeldRelease",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "HindsightBlock",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "HolographicShard",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "HumanApprove",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Hysteresis",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "InputGuard",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Invert",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "LatentWander",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "LatticeCommit",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "LazyConsensus",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "LocalizedFeedback",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "MECE",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "MirrorStake",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Mutex",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "OathBind",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "OntologyHandshake",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "OptimalStop",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "OsmoticFilter",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "PerspectiveEnsemble",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "PromiseGraph",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "PromptChain",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "PropheticQuorum",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Proprioception",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Quorum",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "RecursiveRootCause",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Reflex",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "RegretMinimization",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "RepresentationSwap",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "RetrievalAugment",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Satisfice",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "Scratchpad",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "SelfConsistency",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "SelfReminder",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Signal",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "SomaticMarker",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "SourceEvaluate",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "StateTransition",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "SteelmanFirst",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "SynergisticMode",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ThermodynamicAuction",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ThinSlice",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Throttle",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "ToolInvoke",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "TreeOfThoughts",
+        "contracts": {
+          "invariants": 3,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "UncertaintyMap",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "UniqueHandle",
+        "contracts": {
+          "invariants": 4,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Validate",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      },
+      {
+        "handle": "ValuePeg",
+        "contracts": {
+          "invariants": 2,
+          "preconditions": 1,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Vote",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      },
+      {
+        "handle": "Warmup",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 1,
+          "postconditions": 2
+        }
+      },
+      {
+        "handle": "Yield",
+        "contracts": {
+          "invariants": 1,
+          "preconditions": 0,
+          "postconditions": 0
+        }
+      }
+    ],
+    "tier_3_experimental": [
+      {
+        "handle": "Compose",
+        "contracts": {
+          "invariants": 0,
+          "preconditions": 1,
+          "postconditions": 1
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "handle": "SolverTree",
+  "mechanism": "The active command hierarchy that organizes {{solver_node}} instances into a coordinated {{topology}} for solving a {{task}}. Unlike a passive data tree, this structure represents the flow of Authority (downwards via delegation) and Results (upwards via reporting). It defines the Chain of Command: resources ({{budget}}) cascade from {{solver_root}} to children, while outcomes propagate back up. Each node in the tree is a unit of Blame\u2014failures can be traced to specific {{solver_node}}s for {{localized_learning}}.",
+  "gloss": "Active hierarchy of coordinated solver instances",
+  "failure_modes": [
+    "Fragmentation: Sub-trees become disconnected from the Root, breaking the command chain.",
+    "Budget Exhaustion: Resources depleted before solution found.",
+    "Blame Diffusion: Failures cannot be attributed to specific nodes."
+  ],
+  "invariants": [
+    "Chain of Command: Every node (except root) has exactly one active supervisor.",
+    "Budget Flow: Resources flow down; Results flow up.",
+    "Connectivity: All nodes must be traceable back to the {{solver_root}}.",
+    "Acyclicity: The structure must form a DAG or {{tree}}."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1,
+    "related": [
+      "UniversalSolverTree"
+    ]
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "root_ref",
+      "nodes"
+    ],
+    "properties": {
+      "root_ref": {
+        "type": "string",
+        "description": "Reference to SolverRoot"
+      },
+      "nodes": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "All SolverNode refs in tree"
+      },
+      "topology": {
+        "type": "string",
+        "enum": [
+          "tree",
+          "dag"
+        ],
+        "description": "Structure type"
+      }
+    }
+  },
+  "sema_ref": "SolverTree#6e7b",
+  "sema_id": "sema:SolverTree#mh:SHA-256:6e7b944baf526bfabe4070993c035fc9676768dc3fc34f05230a2b6dfd9293a6",
+  "sema_stub": "6e7b",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "solver_root": "sema:SolverRoot#mh:SHA-256:806ec83c59d595334d236b3e7a87b5fa900fde9e23aa397cd0f54017eccdaba0",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

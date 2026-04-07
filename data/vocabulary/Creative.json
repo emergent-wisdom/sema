@@ -1,0 +1,16 @@
+{
+  "handle": "Creative",
+  "mechanism": "The cognitive mode focused on generating novel and valuable ideas, artifacts, or solutions. It involves divergent thinking, making remote associations, and breaking established patterns.",
+  "gloss": "Generating novelty and value",
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_id": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
+  "sema_ref": "Creative#5574",
+  "sema_stub": "5574",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

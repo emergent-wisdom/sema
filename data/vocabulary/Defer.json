@@ -1,0 +1,39 @@
+{
+  "handle": "Defer",
+  "mechanism": "Strategic Postponement: When facing decision with high uncertainty, ask: \"What would I learn by waiting?\" If waiting reveals information that changes the decision, defer. If not, decide now. Avoid analysis paralysis by setting a deadline. It relies on {{prioritize}} to re-insert the task into the queue once the waiting condition is met.",
+  "gloss": "Postponing decisions until more information available",
+  "failure_modes": [
+    "{{decision}} Debt: Deferred choices accumulate until deadline forces rushed, poor decisions."
+  ],
+  "invariants": [
+    "Deferral must have information value.",
+    "{{state}} Preservation: {{context}} must be saved for resumption",
+    "Trigger Definition: WakeUpCondition must be explicit"
+  ],
+  "preconditions": [
+    "{{task}} is not urgent"
+  ],
+  "postconditions": [
+    "{{task}} queued"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3",
+  "sema_ref": "Defer#6460",
+  "sema_stub": "6460",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

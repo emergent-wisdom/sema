@@ -1,0 +1,58 @@
+{
+  "handle": "Warmup",
+  "mechanism": "Gradual Capacity Ramp: On activation, start at reduced capacity C_min and increase to C_max over time T following a defined curve. Prevents 'thundering herd' overload on cold systems. Utilizes {{greet}}, {{throttle}}.",
+  "gloss": "Gradual capacity increase to stabilize cold systems",
+  "failure_modes": [
+    "Premature Load: Traffic arrives before warmup completes.",
+    "False Warmth: Timer completes but internal state (e.g.",
+    "cache) is still cold."
+  ],
+  "invariants": [
+    "Capacity Limit: Accepted_Load <= Current_Warmup_Cap(t)"
+  ],
+  "preconditions": [
+    "{{system}} state is inactive or reset"
+  ],
+  "postconditions": [
+    "Capacity limit equals C_max",
+    "{{system}} state is active"
+  ],
+  "parameters": [
+    {
+      "name": "curve",
+      "type": "Enum",
+      "range": "{Linear, Exponential, Step}",
+      "description": "Default: Linear"
+    },
+    {
+      "name": "initial_capacity",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Starting capacity as fraction of full (0 = cold start)"
+    },
+    {
+      "name": "ramp_duration",
+      "type": "Duration",
+      "range": "[10s, 1h]",
+      "description": "Time to reach full capacity from initial"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:Warmup#mh:SHA-256:fc59e3c519412f120d1071e6d2176532bef3d628effeac6906c2067be037a603",
+  "sema_ref": "Warmup#fc59",
+  "sema_stub": "fc59",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "greet": "sema:Greet#mh:SHA-256:1bad380cdf48247bbb7ab68e6dcb95eeb6b6ba7535095d64b86c49bab5c4e173",
+      "throttle": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

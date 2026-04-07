@@ -1,0 +1,45 @@
+{
+  "handle": "Anomaly",
+  "mechanism": "A piece of {{datum}} that deviates from the expected standard or pattern. It creates the spark for thinking and often triggers further investigation.",
+  "gloss": "Deviation from expectation",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "observed_value",
+      "expected_baseline",
+      "deviation_score"
+    ],
+    "properties": {
+      "observed_value": {
+        "description": "The data point that triggered detection (any type)"
+      },
+      "expected_baseline": {
+        "description": "The prediction or mean value (any type)"
+      },
+      "deviation_score": {
+        "type": "number",
+        "description": "Standard deviations (sigma) or distance metric"
+      },
+      "detected_at": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893",
+  "sema_ref": "Anomaly#7987",
+  "sema_stub": "7987",
+  "dependencies": {
+    "references": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    }
+  }
+}

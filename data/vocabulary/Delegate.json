@@ -1,0 +1,54 @@
+{
+  "handle": "Delegate",
+  "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction or uses {{mirror_stake}} for collateral. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
+  "gloss": "Enable structured work distribution with accountability",
+  "failure_modes": [
+    "No one accepts (all refuse or auction has no takers\u2014task orphaned).",
+    "Capability mismatch (assigned to incapable agent\u2014fails late).",
+    "Delegatee disappears (no progress updates\u2014need timeout).",
+    "Circular delegation (A\u2192B\u2192A\u2014detect and reject).",
+    "Overload (one agent accepts everything\u2014need load awareness).",
+    "Progress lies (reports complete when not\u2014need verification).",
+    "Dependency deadlock (A waits for B waits for A)."
+  ],
+  "invariants": [
+    "Delegation is REQUEST not command (acceptance protocol unless pre-waived at RALLY). Refused tasks must be handled (reassign or escalate, not silently dropped). Progress must be trackable (delegatee reports status updates). Failure propagates (delegated task failure triggers {{break}} to delegator). Dependencies enforced (task blocked until dependencies complete). One owner per task (no ambiguous responsibility)."
+  ],
+  "preconditions": [
+    "Principal has authority. Delegate capable. Scope of delegation defined."
+  ],
+  "postconditions": [
+    "Delegate acts within scope. Principal notified of actions. Revocation possible."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Governance",
+    "related": [
+      "Handoff"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:Delegate#mh:SHA-256:320196608b9274bf52da27d46708ca94df42ed0967d8b1258ebd785a0eda2053",
+  "sema_ref": "Delegate#3201",
+  "sema_stub": "3201",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "composes_with": {
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "mirror_stake": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff"
+    },
+    "references": {
+      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    },
+    "yields": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "accepts": {
+      "holographic_shard": "sema:HolographicShard#mh:SHA-256:df0df3247fd137a24dc7fd9a26885d64b77554833536778901c6ea4e31856907"
+    }
+  }
+}

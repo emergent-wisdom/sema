@@ -1,0 +1,30 @@
+{
+  "handle": "Prompt",
+  "mechanism": "The input text or instruction provided to a generative model.",
+  "gloss": "Model input instruction",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string"
+      },
+      "role": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "text"
+    ]
+  },
+  "sema_id": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+  "sema_ref": "Prompt#5ded",
+  "sema_stub": "5ded",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

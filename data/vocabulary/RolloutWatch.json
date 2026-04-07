@@ -1,0 +1,59 @@
+{
+  "handle": "RolloutWatch",
+  "derived_from": "sema:Monitor",
+  "gloss": "Continuous verification of deployed state against manifest",
+  "mechanism": "The final {{state}} of workflow orchestration. It implements {{monitor}} by using {{observe}} to track the deployed {{solution}}'s performance on the {{system}} against the 'Definition of Done' defined in the {{rollout_manifest}}. If reality deviates from the plan (e.g., error rate spikes), it routes evidence back upstream via a {{monitor_report}}. It closes the feedback {{loop}}.",
+  "signature": [
+    "Observe(System, RolloutManifest)"
+  ],
+  "invariants": [
+    "Fidelity: Metrics must accurately reflect the 'Definition of Done'.",
+    "Actionability: Alerts must be routed to an agent capable of fixing them."
+  ],
+  "preconditions": [
+    "Rollout complete",
+    "Telemetry active"
+  ],
+  "postconditions": [
+    "MonitorReport artifact generated"
+  ],
+  "failure_modes": [
+    "Alert Fatigue: Too many false positives ignore real issues.",
+    "Lagging Indicators: Detecting failure after damage is done.",
+    "Silent Failure: Metrics look good but user experience is broken."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1,
+    "related": [
+      "SpotAudit",
+      "DriftWatch",
+      "Reflexion"
+    ]
+  },
+  "sema_ref": "RolloutWatch#5b2d",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1",
+  "sema_stub": "5b2d",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
+    },
+    "references": {
+      "monitor": "sema:Monitor#mh:SHA-256:9a8f8879765fe55f9ab79786671b7e4cf0aa0e61730e20897214b22fb6fa08bb",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    },
+    "yields": {
+      "monitor_report": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d"
+    },
+    "accepts": {
+      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:9e7fe2b3bcd73879f8f55164530c8f5e6773a39b9719cfaca8dce18452ac1463"
+    }
+  }
+}

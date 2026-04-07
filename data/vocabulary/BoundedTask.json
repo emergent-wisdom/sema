@@ -1,0 +1,28 @@
+{
+  "handle": "BoundedTask",
+  "mechanism": "A specialized {{task}} enforcing {{budget}} and {{accept_spec}} to ensure economic and quality boundaries.",
+  "gloss": "Economically constrained task",
+  "invariants": [
+    "Budget Enclosure",
+    "Quality Gate"
+  ],
+  "derived_from": "sema:Task#mh:SHA-256:aa452d4a85efe37eed426f6529f3f2e1ee359999ff5ce3dd822f986f1513b4e7",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543",
+  "sema_ref": "BoundedTask#06a6",
+  "sema_stub": "06a6",
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2,
+    "tier": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "handle": "System",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "system_id",
+      "components"
+    ],
+    "properties": {
+      "system_id": {
+        "type": "string",
+        "description": "Unique system identifier"
+      },
+      "components": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of component parts"
+      },
+      "boundaries": {
+        "type": "object",
+        "description": "What is inside vs outside the system"
+      },
+      "purpose": {
+        "type": "string",
+        "description": "The function or goal of the system"
+      }
+    }
+  },
+  "mechanism": "A set of interacting or interdependent component parts forming a complex/intricate whole. Systems have boundaries, structure, and purpose (or function) expressed in their interactions.",
+  "gloss": "Complex whole of interacting parts",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+  "sema_ref": "System#e314",
+  "sema_stub": "e314",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "MarginalValueRule",
+  "mechanism": "The economic {{budget}} governor of {{recursion_dive}}. It permits going one level deeper only if Expected Improvement in Quality > Incremental Cost. It calculates the marginal value of additional depth using {{estimate}} and compares against remaining {{budget}}. This ensures the system solves problems with precision proportional to their stakes\u2014simple problems get shallow treatment, complex problems get deep exploration.",
+  "gloss": "Economic stop-condition for recursion",
+  "failure_modes": [
+    "Underestimation: Expected value is too optimistic, wasting budget on low-value dives.",
+    "Overestimation: Expected value is too pessimistic, stopping too early on valuable problems.",
+    "Sunk Cost Fallacy: Continuing to invest because of prior investment, not future value."
+  ],
+  "invariants": [
+    "Marginal Comparison: Dive only if E[\u0394Quality] > Cost(Dive).",
+    "Budget Respect: Never approve a dive that exceeds remaining budget.",
+    "Diminishing Returns: Deeper levels must show proportionally higher marginal value."
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Economics",
+    "tier": 2,
+    "ring": 1
+  },
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:b65b3972faf7fbf09baa8d07f10e3c5f8567ff2addca51984229cdeb0fa29475",
+  "sema_ref": "MarginalValueRule#b65b",
+  "sema_stub": "b65b",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "signature": [
+    "Budget(RecursionDive)"
+  ],
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "estimate": "sema:Estimate#mh:SHA-256:454ae77d8009b70b9ae87c64a6e4f76a90f31e662d9152d5917f97f099a2e8ad",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:6076d78908d5e94cfab7e542d4ee68ebf8448b93c7c6d7ae803b770d394ee5ba"
+    }
+  }
+}

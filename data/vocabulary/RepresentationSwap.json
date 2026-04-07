@@ -1,0 +1,28 @@
+{
+  "handle": "RepresentationSwap",
+  "mechanism": "A verification protocol where information is transcoded into a strictly orthogonal modality (e.g., Text -> Flowchart, Code -> Plain English, Table -> Narrative) to reveal structural errors. The agent must successfully map the original concept to the new format. Gaps, ambiguities, or 'impossible geometries' in the new format indicate flaws in the original logic. It forces a lossless transcoding of the concept into an orthogonal format, often using {{concept_blend}} mechanics to map between modalities.",
+  "gloss": "Exposing hidden errors by changing the data modality",
+  "failure_modes": [
+    "Smoothing: The agent unconsciously fixes the errors during translation (hallucinating a coherent flowchart from incoherent text) rather than reporting the failure."
+  ],
+  "invariants": [
+    "Lossless Intent: The core meaning must survive the swap.",
+    "Orthogonality: The target modality must constrain different dimensions than the source (e.g., Text is linear; Graphs are topological)."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:ee3bf13c134e9dbce5d61d06bfbf29797040d7f5884a699373f084e1ade67e4d",
+  "sema_ref": "RepresentationSwap#ee3b",
+  "sema_stub": "ee3b",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70"
+    }
+  }
+}

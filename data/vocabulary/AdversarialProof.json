@@ -1,0 +1,41 @@
+{
+  "handle": "AdversarialProof",
+  "mechanism": "Cognitively-enriched {{negative_proof}} that invokes {{red_team}} logic to exhaustively search for prohibited data. The adversarial mindset ensures blind spots are probed. Treats failure-to-find-despite-adversarial-effort as high-confidence proof of absence.",
+  "gloss": "Adversarial proof of absence",
+  "derived_from": "NegativeProof",
+  "failure_modes": [
+    "Sympathetic Attacker: RedTeam shares assumptions with defenders, missing the same blind spots.",
+    "Computational expense of adversarial exhaustive search."
+  ],
+  "invariants": [
+    "Adversarial intent maintained throughout search",
+    "Search space fully covered with hostile probing"
+  ],
+  "preconditions": [
+    "Closed world assumption",
+    "{{hypothesis}} H to disprove"
+  ],
+  "postconditions": [
+    "H proved false with adversarial confidence"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_ref": "AdversarialProof#ba71",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:ba713d2ca1337c3cf5521352d64875a603402e7beb5cea0de892db7dfebd9fc9",
+  "sema_stub": "ba71",
+  "dependencies": {
+    "composes_with": {
+      "red_team": "sema:RedTeam#mh:SHA-256:1b1f97847c37b7af0ff98873e9e5afc4b5b7628b0cde0fb3eb49904f7b79779a",
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:40a6b9b7cc8a3e63dd2433bdcfe0090eee52016e2eb9d58238474f1e4347d30d"
+    },
+    "references": {
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812"
+    }
+  }
+}

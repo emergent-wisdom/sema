@@ -1,0 +1,29 @@
+{
+  "handle": "RegretMinimization",
+  "mechanism": "{{decision}}-making based on minimizing the maximum possible loss (emotional safety/Minimax) rather than maximizing expected value (Utility/Kelly). Useful for survival-critical contexts. It factors {{opportunity_cost}} into the loss function, selecting the path with the least damaging worst-case scenario.",
+  "gloss": "Safety-first decision making based on loss avoidance",
+  "invariants": [
+    "Pessimism: Assume worst-case outcome for each branch",
+    "Safety Floor: Never choose option with catastrophic worst-case"
+  ],
+  "_meta": {
+    "tier": 3,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "sema:PreMortem#mh:SHA-256:6ef6ac14740e5ba8e300b71892dc48d4c2f493ed00139aee45d327bce195dd2d"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:RegretMinimization#mh:SHA-256:4a570e1a52413390bf1d3773f73317af065ce06c807764ab0d1958aa77f1260a",
+  "sema_ref": "RegretMinimization#4a57",
+  "sema_stub": "4a57",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e"
+    }
+  }
+}

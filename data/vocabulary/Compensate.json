@@ -1,0 +1,46 @@
+{
+  "handle": "Compensate",
+  "mechanism": "Execute inverse actions to undo partial coordination after BREAK. On receiving BREAK, agent retrieves compensation_log (built during forward execution\u2014each action logged its inverse). Execute inverses in REVERSE chronological order (LIFO). For each inverse: attempt execution, if fail retry (inverses must be idempotent), if still fail log and continue or escalate. Report COMPENSATE_RESULT: {completed: [steps undone], failed: [steps that couldn't undo], clean: bool, downstream_confirmed: bool}. Multi-agent coordination: each agent compensates their own scope. BREAK propagates with upstream_agents hint for cross-agent dependencies\u2014downstream agents compensate first, confirm, then upstream proceeds. Compensation cannot introduce NEW coordinated work (only cleanup and notification). Triggered by {{break}}, it reads the {{time_warp_log}} in reverse to execute the idempotent inverse of each prior action.",
+  "gloss": "Enable clean failure recovery through structured rollback, preventing orphaned resources and corrupted state",
+  "failure_modes": [
+    "Inverse wasn't logged (can't compensate what wasn't tracked).",
+    "Inverse isn't truly idempotent (retry corrupts state).",
+    "External state changed between action and compensation (assumption invalid).",
+    "Compensation creates new failure (cascading compensation).",
+    "Time-sensitive compensation (too late to undo, window passed).",
+    "Compensation log lost or corrupted.",
+    "Downstream agent doesn't confirm (blocks upstream compensation)."
+  ],
+  "invariants": [
+    "Action is semantically opposite to failure",
+    "Compensation action value >= loss value"
+  ],
+  "preconditions": [
+    "Compensation mechanism available",
+    "Detected failure/loss"
+  ],
+  "postconditions": [
+    "{{system}} utility restored to baseline"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0,
+    "related": [
+      "Retry"
+    ]
+  },
+  "sema_id": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
+  "sema_ref": "Compensate#9170",
+  "sema_stub": "9170",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
+      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "handle": "Solution",
+  "mechanism": "Recursive {{work}} Unit. Encapsulates the output {{artifact}}, its Provenance (Creator, Time), and the Component {{tree}} of sub-solutions used to generate it. It serves as the verifiable output container for a {{task}}, validated against the acceptance criteria.",
+  "gloss": "The fractal unit of completed work",
+  "failure_modes": [
+    "Orphaned {{artifact}}: Solution does not reference a valid {{task}} ID.",
+    "Broken Lineage: Sub-solution verification failed ({{chain}} of Custody broken).",
+    "Schema Violation: {{artifact}} data does not match acceptance criteria type."
+  ],
+  "invariants": [
+    "Immutability: Once finalized, {{artifact}} and Provenance cannot be modified.",
+    "Traceability: Provenance must be cryptographically signed by the Creator."
+  ],
+  "preconditions": [
+    "{{artifact}} generated",
+    "{{task}} ID is valid"
+  ],
+  "postconditions": [
+    "Solution sealed and ready for transport"
+  ],
+  "parameters": [
+    {
+      "name": "confidence",
+      "type": "Probability",
+      "range": "[0.0, 1.0]",
+      "description": "Self-assessed reliability"
+    },
+    {
+      "name": "cost_incurred",
+      "type": "TokenAmount",
+      "range": "unspecified",
+      "description": "Total compute cost"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "artifact",
+      "provenance",
+      "task_ref"
+    ],
+    "properties": {
+      "artifact": {
+        "description": "The output produced by this solution"
+      },
+      "provenance": {
+        "type": "object",
+        "properties": {
+          "creator_id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "signature": {
+            "type": "string"
+          }
+        }
+      },
+      "task_ref": {
+        "type": "string",
+        "description": "Reference to the originating task"
+      },
+      "component_tree": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Sub-solutions used"
+      },
+      "confidence": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "cost_incurred": {
+        "type": "number",
+        "description": "Total compute cost in tokens"
+      }
+    }
+  },
+  "sema_id": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+  "sema_ref": "Solution#7186",
+  "sema_stub": "7186",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

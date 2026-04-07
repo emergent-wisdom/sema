@@ -1,0 +1,32 @@
+{
+  "handle": "Reversibility",
+  "mechanism": "Evaluates whether the post-state of an action allows a return to the pre-state with zero information loss (or within acceptable cost). Returns TRUE for Type 2 decisions (reversible), FALSE for Type 1 (one-way doors).",
+  "gloss": "Condition: Can this action be undone?",
+  "invariants": [
+    "Entropy {{constraint}}: Reversal must not violate thermodynamic limits (e.g., cannot un-burn toast)."
+  ],
+  "parameters": [
+    {
+      "name": "cost_limit",
+      "type": "Cost",
+      "range": "unspecified",
+      "description": "Maximum acceptable cost to reverse the action"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74",
+  "sema_ref": "Reversibility#049f",
+  "sema_stub": "049f",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

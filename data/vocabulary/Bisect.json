@@ -1,0 +1,27 @@
+{
+  "handle": "Bisect",
+  "mechanism": "Binary Partition: Define the possibility space. Find a question that splits space roughly in half. Ask it. Discard eliminated half. Repeat on remaining half. O(log n) questions to isolate answer. Requires ordered or divisible domain. It relies on {{boundary_probe}} to correctly define the split-point and often underpins the execution of {{recursive_root_cause}}.",
+  "gloss": "Logarithmic search via binary splitting",
+  "failure_modes": [
+    "False Negative: Discarding the half that actually contained the answer because the splitting question was flawed."
+  ],
+  "invariants": [
+    "Each question eliminates \u226540% of remaining space."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:Bisect#mh:SHA-256:07cb9574ef80a5c973a6605067ef86395c24e6af47242d6f12e09e5b41a9c310",
+  "sema_ref": "Bisect#07cb",
+  "sema_stub": "07cb",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "handle": "Skeleton",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "outline"
+    ],
+    "properties": {
+      "outline": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "High-level points to be expanded"
+      },
+      "expansions": {
+        "type": "object",
+        "description": "Map of outline point index to expanded content"
+      }
+    }
+  },
+  "mechanism": "First generates a skeletal outline of the answer, then expands each point in parallel. Optimizes for latency over depth. Defines the parallel structure for rapid reasoning.",
+  "gloss": "Parallel outline-first topology",
+  "invariants": [
+    "Independence: Expansion of Point A must not depend on Point B."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2
+  },
+  "sema_id": "sema:Skeleton#mh:SHA-256:c363c9db1e917d4920a28b689c8e0f3fcfcd7060fde1963cea22b352570d5c87",
+  "sema_ref": "Skeleton#c363",
+  "sema_stub": "c363",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

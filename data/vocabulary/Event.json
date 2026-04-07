@@ -1,0 +1,48 @@
+{
+  "handle": "Event",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "event_id",
+      "timestamp",
+      "type"
+    ],
+    "properties": {
+      "event_id": {
+        "type": "string",
+        "description": "Unique identifier"
+      },
+      "type": {
+        "type": "string",
+        "description": "Event classification"
+      },
+      "payload": {
+        "type": "object",
+        "description": "Data associated with the occurrence"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "mechanism": "A discrete occurrence involving a change in {{state}} at a specific point in time. Events are the atomic units of causality and history, distinct from continuous {{stream}}s.",
+  "gloss": "Discrete temporal occurrence",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
+  "sema_ref": "Event#7e71",
+  "sema_stub": "7e71",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
+    }
+  }
+}

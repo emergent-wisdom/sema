@@ -1,0 +1,57 @@
+{
+  "handle": "PropheticQuorum",
+  "mechanism": "A two-stage consensus protocol. Phase 1 (reality {{check}}): Agents receive a proposed action. Each runs a local {{simulation_trace}} to predict the outcome {{state}}. They vote to confirm they share the SAME prediction. If predictions diverge, the protocol halts for model alignment. Phase 2 ({{value}} judgment): Only after predictions match do agents vote on whether the predicted {{state}} is desirable. This ensures consensus is based on shared reality, not just shared language. It splits consensus into two phases: reality {{check}} (via regime sensing) and {{value}} judgment (via {{normative_judge}}).",
+  "gloss": "Aligning predictions before aligning votes",
+  "failure_modes": [
+    "Model divergence (agents cannot agree on what will happen, so they never get to vote on the plan).",
+    "High compute cost (N agents running N simulations)."
+  ],
+  "invariants": [
+    "Prediction Precedence: {{vote}} (reality) must pass before {{vote}} (desirability)",
+    "Shared Vision: Action cannot proceed if >X% of agents predict different outcomes"
+  ],
+  "preconditions": [
+    "Determinism level of {{simulation}} engine is high"
+  ],
+  "parameters": [
+    {
+      "name": "confidence_weighting",
+      "type": "Boolean",
+      "range": "{true, false}",
+      "description": "Weight votes by stated confidence"
+    },
+    {
+      "name": "prediction_threshold",
+      "type": "Probability",
+      "range": "[0.6, 0.95]",
+      "description": "Agreement level for valid prediction"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "related": [
+      "Quorum",
+      "sema:SimulationTrace#mh:SHA-256:e778ab4f3e22ce60d3f822aeb249ae83007ad8cc505e476b01b4356f984aebd3",
+      "RegimeSense"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:3df597d9f32a32dacfe4e1f8494ce7ebc846f26d168b15b4bc26ae78df74dbf5",
+  "sema_ref": "PropheticQuorum#3df5",
+  "sema_stub": "3df5",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:9fab8c79736855b6e08c151950aab6602dfcee378055cd060628a86d6307772c",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:cf0e36c87a1096be5ce390301df3af96c77a459ff319ee4cd610ead6279d1a01"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "handle": "MimicMask",
+  "mechanism": "Agents send decoy traffic that statistically mimics the behavior of other agents. Real signals are steganographically encoded within the {{noise}}. Makes it impossible for an observer to distinguish active agents from idle ones. It layers steganographic {{noise}} over an {{identity_mask}}, ensuring statistical indistinguishability from background traffic.",
+  "gloss": "Hiding in the crowd",
+  "failure_modes": [
+    "Bandwidth waste."
+  ],
+  "invariants": [
+    "Statistical Parity: Traffic distribution matches Baseline(Normal)",
+    "Steganographic Integrity: Payload retrievable by Key(Receiver)"
+  ],
+  "preconditions": [
+    "Shared secret established"
+  ],
+  "postconditions": [
+    "Observer sees {{noise}}"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:MimicMask#mh:SHA-256:f87a7a47f0b4e6ccdaad4c8febbf77294a8672c41fb1c1f2c711a590d4703da0",
+  "sema_ref": "MimicMask#f87a",
+  "sema_stub": "f87a",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d"
+    }
+  }
+}

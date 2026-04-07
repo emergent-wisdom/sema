@@ -1,0 +1,52 @@
+{
+  "handle": "Judge",
+  "mechanism": "Qualitative Evaluation. Evaluates the structural merit or quality of a {{subject}} on a continuous scale [0.0, 1.0]. Unlike {{check}} (which validates binary truth) or {{validate}} (which checks schema), Judge evaluates gradients of quality based on {{criteria}}, yielding a {{score}}.",
+  "gloss": "Scalar evaluation of merit",
+  "failure_modes": [
+    "Subjectivity Creep: {{criteria}} drift from objective to subjective without detection",
+    "Threshold Gaming: {{agent}} optimizes for passing threshold rather than actual quality"
+  ],
+  "invariants": [
+    "Range Bound: Score must be between 0.0 and 1.0 inclusive.",
+    "Determinism: Same input context yields same score."
+  ],
+  "parameters": [
+    {
+      "name": "criteria",
+      "type": "String",
+      "range": "unspecified",
+      "description": "Evaluation standard to judge against"
+    },
+    {
+      "name": "threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Minimum score to pass evaluation"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1",
+  "sema_ref": "Judge#98ca",
+  "sema_stub": "98ca",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
+      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    },
+    "accepts": {
+      "subject": "sema:Subject#mh:SHA-256:788f7cb48e982144f15691fa0259a8b4f620e6eaf4447129c95f23d8e3008d1e"
+    },
+    "yields": {
+      "score": "sema:Score#mh:SHA-256:29da7b609182c3ecef85ebafc34cae5acd221d65ef0e5c4b2b41bbededb6d414"
+    }
+  }
+}

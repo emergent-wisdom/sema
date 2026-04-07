@@ -1,0 +1,38 @@
+{
+  "handle": "Generalize",
+  "mechanism": "Pattern Extraction: Given multiple instances, identify shared structure. Replace specific values with variables. {{state}} the invariant that holds across all instances. Test: does pattern predict behavior of new instances? Refine until predictive. It employs {{analogy_bridge}} to map specific instances to abstract schemata, validating the invariant across the set.",
+  "gloss": "Inductive pattern extraction",
+  "failure_modes": [
+    "Overfitting: extracting a pattern that includes noise/coincidence."
+  ],
+  "invariants": [
+    "Abstract rule covers all specific examples",
+    "Information loss minimized"
+  ],
+  "preconditions": [
+    "Set of specific instances"
+  ],
+  "postconditions": [
+    "General principle extracted"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "Specialize"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:Generalize#mh:SHA-256:931391f2fdaca5c5eaa2afc80b25a36c0c186db71fb2b56944da537c028d0a1a",
+  "sema_ref": "Generalize#9313",
+  "sema_stub": "9313",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+    }
+  }
+}

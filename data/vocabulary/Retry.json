@@ -1,0 +1,47 @@
+{
+  "handle": "Retry",
+  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status (or escalation to {{human_approve}}). Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
+  "gloss": "Transform retry from blind re-attempt to intelligent, failure-informed recovery strategy",
+  "failure_modes": [
+    "Misclassifying persistent failure as transient (wastes retry budget).",
+    "Misclassifying transient as persistent (gives up too soon).",
+    "{{backoff}} too aggressive (slow recovery from transient issues).",
+    "{{backoff}} too timid (hammers already-failing system).",
+    "{{circuit_breaker}} too sensitive (abandons recoverable situations).",
+    "Retry succeeds but same failure recurs (didn't address root cause).",
+    "Changed_conditions check misses relevant changes."
+  ],
+  "invariants": [
+    "{{backoff}} applied",
+    "Retry count <= Max_Retries"
+  ],
+  "preconditions": [
+    "Transient failure"
+  ],
+  "postconditions": [
+    "Success or definitive failure"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "related": [
+      "sema:Backoff#mh:SHA-256:14b48b9a05b8b47aea8484dbd426cc39dcff0c2c293010415a233ce23fccab9c"
+    ],
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Retry#mh:SHA-256:643eaf21af4c22215e1da7dea3c51aeb3c75cedf87c532e3360495691f762568",
+  "sema_ref": "Retry#643e",
+  "sema_stub": "643e",
+  "dependencies": {
+    "references": {
+      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
+      "compensate": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
+      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "handle": "CognitiveSolver",
+  "mechanism": "The universal polymorphic atom of intelligence. A CognitiveSolver is any entity\u2014from a fleeting thought process to a complex swarm\u2014that implements the 5-Stage Cognitive Contract (Manifest via {{card}}, Execute, Question, Verify via {{validate}}, Feedback). It acts as a fractal node in the {{universal_solver_tree}}, accepting a {{task}} and using {{reason}} to orchestrate a lifecycle on a {{solver_node}}. It yields a {{solution}}, wrapping operations like {{tool_invoke}} with {{compute_budget}} checks, {{socratic_loop}} refinement, or {{reflexion}} for self-improvement.",
+  "gloss": "The universal polymorphic atom of recursive intelligence",
+  "failure_modes": [
+    "Interface Non-Compliance: Solver fails to implement one of the 5 mandatory endpoints.",
+    "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
+  ],
+  "invariants": [
+    "Polymorphism: External Runtime treats all Solvers identically via this Interface.",
+    "Recursion: Solver must accept sub-tasks via the same Interface it exposes."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "related": [
+      "EpistemicROI",
+      "RecursionDive"
+    ]
+  },
+  "sema_id": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc",
+  "sema_ref": "CognitiveSolver#4531",
+  "sema_stub": "4531",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "card": "sema:Card#mh:SHA-256:5c33034fedd84e9d8e42887c003d5b96a694d0549292dd796c3dbcbfe76a06dd",
+      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    },
+    "composes_with": {
+      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

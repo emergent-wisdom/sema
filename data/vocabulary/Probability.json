@@ -1,0 +1,32 @@
+{
+  "handle": "Probability",
+  "mechanism": "A measure of likelihood on [0,1] expressing the degree of belief or frequency with which an {{event}} is expected to occur. Forms the basis for risk assessment, decision-making under uncertainty, and Bayesian updating.",
+  "gloss": "Likelihood measure for uncertain events",
+  "invariants": [
+    "Bounded: 0 \u2264 P \u2264 1",
+    "Normalization: P(certain) = 1, P(impossible) = 0",
+    "Additivity: P(A or B) = P(A) + P(B) for mutually exclusive events"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "number",
+    "minimum": 0,
+    "maximum": 1,
+    "description": "Probability value between 0 and 1"
+  },
+  "sema_ref": "Probability#356b",
+  "sema_id": "sema:Probability#mh:SHA-256:356bf7e4b6ca99e4fe7705cb088c3f1cd3a5919334a772e00dc829065c71dffd",
+  "sema_stub": "356b",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d"
+    }
+  }
+}

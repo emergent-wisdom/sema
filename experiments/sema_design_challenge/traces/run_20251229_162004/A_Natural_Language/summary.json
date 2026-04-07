@@ -1,0 +1,10 @@
+{
+  "scenario": "Condition A: Natural Language (Baseline)",
+  "status": "completed",
+  "turns_executed": 27,
+  "max_turns": 100,
+  "start_time": "2025-12-29T16:20:05.276350",
+  "end_time": "2025-12-29T16:25:09.721510",
+  "duration_seconds": 304.44516,
+  "run_id": "A_Natural_Language"
+}

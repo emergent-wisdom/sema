@@ -1,0 +1,43 @@
+{
+  "handle": "Fermi",
+  "mechanism": "Decomposed Estimation: break unknown quantity into factors you can {{estimate}}. Multiply factors. Accept order-of-magnitude accuracy. Example: \"pianos in Chicago\" = population \u00d7 household fraction \u00d7 piano-owning fraction. Errors often cancel across factors. It invokes {{decompose}} to break an unknown quantity into estimable sub-factors.",
+  "gloss": "Estimation via decomposition",
+  "failure_modes": [
+    "Correlated Error Stacking: If all sub-estimates are biased in the same direction (e.g., all optimistic), the errors compound rather than cancel."
+  ],
+  "invariants": [
+    "Error Cancellation: Overestimation in sub-factors tends to cancel underestimation",
+    "Geometric Mean: Final estimate is geometric mean of bounds"
+  ],
+  "parameters": [
+    {
+      "name": "confidence_interval",
+      "type": "Percentage",
+      "range": "[50%, 95%]",
+      "description": "Target coverage of true value"
+    },
+    {
+      "name": "decomposition_depth",
+      "type": "Integer",
+      "range": "[2, 6]",
+      "description": "Estimation chain length"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:Fermi#mh:SHA-256:24c5e68b409b771a3dc72f9adfd11eb2b58f06abebcb82cd96a649ccfb4bdd44",
+  "sema_ref": "Fermi#24c5",
+  "sema_stub": "24c5",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "estimate": "sema:Estimate#mh:SHA-256:454ae77d8009b70b9ae87c64a6e4f76a90f31e662d9152d5917f97f099a2e8ad",
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "handle": "SolverNode",
+  "mechanism": "An active runtime container that wraps a static {{solver_manifest}} with dynamic state. It handles a specific {{problem_space}}, tracks {{budget}} expenditure, and maintains communication with its parent node. The node is the unit of Blame\u2014when it fails, {{responsibility}} is attributed here for {{localized_learning}}. It holds the current partial {{solution}}, accumulated cost, and status.",
+  "gloss": "Stateful container for a running solver instance",
+  "invariants": [
+    "Statefulness: Must hold a status (Pending, Active, Solved, Failed).",
+    "Linkage: Must maintain pointers to Parent and Children (if any).",
+    "Accountability: Failures must be traceable to this node for blame attribution.",
+    "Budget Tracking: Must track resources spent vs. allocated."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "description": "Schema for SolverNode",
+    "required": [
+      "manifest_id",
+      "status",
+      "budget_spent"
+    ],
+    "properties": {
+      "manifest_id": {
+        "type": "string",
+        "description": "Reference to the SolverManifest defining capabilities"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "Pending",
+          "Active",
+          "Solved",
+          "Failed"
+        ],
+        "description": "Current execution state"
+      },
+      "budget_spent": {
+        "type": "number",
+        "description": "Resources consumed so far"
+      },
+      "budget_allocated": {
+        "type": "number",
+        "description": "Resources allocated by parent"
+      }
+    }
+  },
+  "sema_ref": "SolverNode#6ade",
+  "sema_id": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
+  "sema_stub": "6ade",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1",
+      "responsibility": "sema:Responsibility#mh:SHA-256:f4524249a5c89d422baf6c357e331b8c3c3a4c59ef6289ab608d565a3d92ea27",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b"
+    }
+  }
+}

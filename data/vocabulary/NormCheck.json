@@ -1,0 +1,56 @@
+{
+  "handle": "NormCheck",
+  "mechanism": "A {{check}} filter that scans the Prophet's descriptive output for normative adjectives (e.g., 'dangerous', 'unfortunate', 'unfair') that masquerade as objective facts. It forces a rewrite to strip these biases, ensuring the separation of Is (Prophet) and Ought ({{judge}} of {{value}}). Utilizes {{quorum}}, {{prophet_fan_out}}, {{normative_judge}}.",
+  "gloss": "Detection of value-laden facts",
+  "failure_modes": [
+    "Strips relevant safety warnings that were actually factual."
+  ],
+  "invariants": [
+    "Fact Preservation: Rewritten text must preserve all causal claims",
+    "Neutral Tone: Count(NormativeAdjectives) == 0"
+  ],
+  "preconditions": [
+    "Text claims to be descriptive"
+  ],
+  "postconditions": [
+    "Text certified neutral"
+  ],
+  "parameters": [
+    {
+      "name": "action_on_detect",
+      "type": "Enum",
+      "range": "{Flag, Rewrite, Reject}",
+      "description": "Response to smuggled norms"
+    },
+    {
+      "name": "sensitivity",
+      "type": "Enum",
+      "range": "{Low, Medium, High, Paranoid}",
+      "description": "Detection threshold"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 0
+  },
+  "sema_id": "sema:NormCheck#mh:SHA-256:31ff0925b8bcb759bc0eb720c84791caade398033d2364563aecc62bab2b8f24",
+  "sema_ref": "NormCheck#31ff",
+  "sema_stub": "31ff",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "signature": [
+    "Check(Value)"
+  ],
+  "dependencies": {
+    "references": {
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:9fab8c79736855b6e08c151950aab6602dfcee378055cd060628a86d6307772c",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:6972d19d015bb785ec16660c5a465e9451e2109e435e465b16a7432b806ecf7f",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

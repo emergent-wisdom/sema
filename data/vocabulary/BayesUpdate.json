@@ -1,0 +1,49 @@
+{
+  "handle": "BayesUpdate",
+  "mechanism": "Likelihood Weighting: Hold prior probability P(H). {{observe}} evidence E. Compute likelihood ratio P(E|H)/P(E|\u00acH). Multiply prior by ratio to get posterior. Large ratio = strong update. Ratio near 1 = weak evidence. Never update to 0 or 1. It explicitly incorporates {{base_rate_include}} into the prior probability calculation to prevent base-rate neglect.",
+  "gloss": "Mathematically rigorous belief revision",
+  "failure_modes": [
+    "Prior Dogmatism: Setting a prior of 1.0 or 0.0 prevents any future updating, regardless of evidence."
+  ],
+  "invariants": [
+    "Posterior \u2208 (0,1): never update to absolute certainty."
+  ],
+  "preconditions": [
+    "Prior probability defined in (0,1). New evidence observed. Likelihood computable."
+  ],
+  "postconditions": [
+    "Posterior probability in (0,1). {{belief}} updated proportional to evidence strength. Prior recoverable given likelihood."
+  ],
+  "parameters": [
+    {
+      "name": "prior_confidence",
+      "type": "Probability",
+      "range": "[0.1, 0.9]",
+      "description": "Certainty in prior belief before evidence"
+    },
+    {
+      "name": "update_threshold",
+      "type": "Probability",
+      "range": "[0.6, 0.95]",
+      "description": "Minimum confidence shift to trigger action"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0",
+  "sema_ref": "BayesUpdate#5d91",
+  "sema_stub": "5d91",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
+      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+    }
+  }
+}

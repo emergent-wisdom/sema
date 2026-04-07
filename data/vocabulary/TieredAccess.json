@@ -1,0 +1,54 @@
+{
+  "handle": "TieredAccess",
+  "mechanism": "Central 'massive' agents (high authority) create a gravity well. The cost to interact with an agent increases the closer you get to the center. This naturally filters low-value queries to the periphery and reserves core attention for high-value interactions. Utilizes {{bearer_token}}.",
+  "gloss": "Cost-distance indexing",
+  "failure_modes": [
+    "Metric Divergence: Agents disagree on distance calculation, causing payment rejection.",
+    "Center becomes economically inaccessible to low-resource agents.",
+    "Center becomes inaccessible to the poor."
+  ],
+  "invariants": [
+    "Cost Monotonicity: Cost(Distance D-1) > Cost(Distance D) - closer to center means higher cost",
+    "Metric Definition: Distance must be computed via agreed metric (hops, latency, trust score)"
+  ],
+  "preconditions": [
+    "{{agent}} has valid {{identity}}"
+  ],
+  "postconditions": [
+    "Access log updated"
+  ],
+  "parameters": [
+    {
+      "name": "cost_function",
+      "type": "Enum",
+      "range": "{Linear, Exponential, Step}",
+      "description": "How cost scales with proximity"
+    },
+    {
+      "name": "distance_metric",
+      "type": "Enum",
+      "range": "{Hops, Latency, TrustScore}",
+      "description": "How to measure distance"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:TieredAccess#mh:SHA-256:6d26d30e575e16702798357b98281805a4a67885203caac3c7876ab7507239ad",
+  "sema_ref": "TieredAccess#6d26",
+  "sema_stub": "6d26",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "bearer_token": "sema:BearerToken#mh:SHA-256:2fe9926ab156fd1df414f52e9a4d430f75c7c3311d217cd685f514253f4b1f9d"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "handle": "Feedback",
+  "mechanism": "Information returned to a system about the effects of its actions, used to adjust future behavior. It closes the loop between output and input, enabling learning and error correction. The feedback {{signal}} contains a {{result}} and a {{metric}} indicating deviation ({{incongruity}}) from the expected outcome.",
+  "gloss": "Error correction signal",
+  "failure_modes": [
+    "Signal Noise: Feedback is too noisy to extract actionable information.",
+    "Delayed Feedback: Signal arrives too late to correct the error.",
+    "Misattribution: Feedback is routed to the wrong solver."
+  ],
+  "invariants": [
+    "Directionality: Feedback must indicate the direction of error, not just magnitude.",
+    "Timeliness: Feedback value decays with latency.",
+    "Attribution: Feedback must be traceable to a specific action."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "tier": 1,
+    "ring": 0
+  },
+  "sema_id": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15",
+  "sema_ref": "Feedback#9b5c",
+  "sema_stub": "9b5c",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "signature": [
+    "Signal(Incongruity)"
+  ],
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9"
+    },
+    "composes_with": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    }
+  }
+}

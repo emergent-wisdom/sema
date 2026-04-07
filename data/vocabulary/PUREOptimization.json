@@ -1,0 +1,48 @@
+{
+  "handle": "PUREOptimization",
+  "gloss": "Deeply optimizing a solution across PURE dimensions",
+  "mechanism": "A multi-agent {{optimize}} strategy. It accepts a candidate {{solution}} that has already passed the {{pure_check}}. It {{decompose}}s the solution into four parallel streams, assigning a specialized {{cognitive_solver}} to maximize each PURE metric: {{parsimony}} (Efficiency), {{novelty}} (Uniqueness), {{realizable}} (Feasibility), and {{expansive}} (Impact). The results are re-integrated via {{synthesis}} to find the {{pareto_front}} among competing improvements.",
+  "signature": [
+    "Optimize(Solution)"
+  ],
+  "invariants": [
+    "Monotonic Improvement: The output score must be >= input score on all axes.",
+    "Non-Destructive: Optimization of one axis (e.g., Parsimony) must not break another (e.g., Realizable)."
+  ],
+  "failure_modes": [
+    "Optimization Conflict: Making it more Novel makes it less Realizable (Requires trade-off negotiation).",
+    "Synthesis Failure: The four optimized parts cannot be merged back into a coherent whole."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2,
+    "related": [
+      "EvaluatorOptimizer",
+      "LateralOptimization"
+    ]
+  },
+  "sema_ref": "PUREOptimization#4114",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:4114d67d1729658a76e94afe6f381ecc4ad52fe2d83e9cd832ff1aaf1aaf63ee",
+  "sema_stub": "4114",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "composes_with": {
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
+      "optimize": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc"
+    },
+    "references": {
+      "pareto_front": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
+      "pure_check": "sema:PURECheck#mh:SHA-256:8ac3ae4946b9e93c687eba0a993d8bdf973b6b7bb9266d71427d94e5be5c166b",
+      "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
+      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774"
+    },
+    "accepts": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

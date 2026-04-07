@@ -1,0 +1,25 @@
+{
+  "handle": "CompatibilityCheck",
+  "mechanism": "A binary verification process that compares the definition hashes or schema of two entities (agents, {{artifact}}s, or protocols) to determine if they can interact without translation.",
+  "gloss": "Schema compatibility verification",
+  "invariants": [
+    "Determinism: Identical inputs always yield the same compatibility result.",
+    "Symmetry: If A is compatible with B, B is compatible with A."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 0
+  },
+  "sema_ref": "CompatibilityCheck#3abb",
+  "sema_id": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
+  "sema_stub": "3abb",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "dependencies": {
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+    }
+  }
+}

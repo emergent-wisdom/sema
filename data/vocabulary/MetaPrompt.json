@@ -1,0 +1,43 @@
+{
+  "handle": "MetaPrompt",
+  "mechanism": "A higher-order {{meta}} {{prompt}}ing technique where prompts are used to generate, refine, or analyze other prompts rather than directly answering questions. The LLM acts as a prompt engineer, creating task-specific prompts from templates or improving existing prompts through critique. Enables reusable prompt templates that generalize across problem categories. It constructs a {{prompt_chain}} where the output of the first stage is the prompt instruction for the second.",
+  "gloss": "Use prompts to generate or refine other prompts",
+  "failure_modes": [
+    "{{prompt}} Drift: Generated prompts diverge from intent over iterations.",
+    "{{meta}}-Complexity: {{meta}}-prompt harder to write than direct prompt.",
+    "Overfitting: Generated prompts too specific to examples."
+  ],
+  "invariants": [
+    "Output is a prompt",
+    "{{prompt}} instructs how to prompt"
+  ],
+  "preconditions": [
+    "{{prompt}} engineering principles",
+    "{{task}} description"
+  ],
+  "postconditions": [
+    "Optimized prompt generated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:9b7f3772bd0bc51b4f3fcec45a71897c6e6cf6f640e93d1fe10fdd23a0ea2f45",
+  "sema_ref": "MetaPrompt#9b7f",
+  "sema_stub": "9b7f",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Meta(Prompt)"
+  ],
+  "dependencies": {
+    "references": {
+      "prompt": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+      "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:f9c4407f0371d044b56406239b07a23ee59980c6f9a907203126ad34b085a885",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

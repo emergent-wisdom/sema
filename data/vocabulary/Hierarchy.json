@@ -1,0 +1,42 @@
+{
+  "handle": "Hierarchy",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "levels",
+      "relationships"
+    ],
+    "properties": {
+      "levels": {
+        "type": "array",
+        "description": "Ordered ranks (Top -> Bottom)"
+      },
+      "relationships": {
+        "type": "object",
+        "description": "Parent-Child map"
+      },
+      "root_id": {
+        "type": "string",
+        "description": "Apex node"
+      }
+    }
+  },
+  "mechanism": "The vertical ranking of {{category}}s or objects. Defines Upper vs. Lower relationships, inheritance, and authority.",
+  "gloss": "Vertical ranking",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
+  "sema_ref": "Hierarchy#aa9b",
+  "sema_stub": "aa9b",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "handle": "HumanApprove",
+  "mechanism": "A checkpoint gate where execution pauses and awaits explicit human approval before proceeding. The agent presents its proposed {{task}}, rationale, and risk assessment to a human operator. Only upon receiving affirmative consent does execution continue. Critical for high-stakes actions (financial transactions, deployments, irreversible changes).",
+  "gloss": "Pause for human approval before critical actions",
+  "parameters": [
+    {
+      "name": "challenge_required",
+      "type": "Boolean",
+      "range": "unspecified",
+      "description": "Default: True"
+    },
+    {
+      "name": "timeout",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Maximum wait time for human response before escalation"
+    }
+  ],
+  "failure_modes": [
+    "Approval Fatigue: Humans rubber-stamp requests without review due to high volume.",
+    "Blocking: {{system}} halts indefinitely if human is unavailable.",
+    "{{context}} Loss: Human lacks sufficient context to make informed decision."
+  ],
+  "invariants": [
+    "Cognitive Friction: Approval requires matching a context-specific challenge code.",
+    "{{audit}} Trail: All approvals/rejections logged with timestamp and rationale",
+    "Blocking: Execution MUST halt until approval received",
+    "Timeout Policy: Define behavior if approval not received within SLA"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "sema_id": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
+  "sema_ref": "HumanApprove#e64a",
+  "sema_stub": "e64a",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "references": {
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

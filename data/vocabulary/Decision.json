@@ -1,0 +1,60 @@
+{
+  "handle": "Decision",
+  "mechanism": "The cognitive act of committing to a specific {{option}} after weighing alternatives. It transforms a set of possibilities into a single committed trajectory using {{select}}. Unlike a simple filter, a Decision implies the resolution of ambiguity and the assumption of consequences.",
+  "gloss": "Irrevocable selection from a set of options",
+  "invariants": [
+    "Selection: Must choose exactly one option from the available set.",
+    "Irrevocability: Once made, the decision cannot be unmade without a new Decision process."
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_id": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+  "sema_ref": "Decision#acfb",
+  "sema_stub": "acfb",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "decision_id",
+      "selected_option_id",
+      "rationale"
+    ],
+    "properties": {
+      "decision_id": {
+        "type": "string"
+      },
+      "context_id": {
+        "type": "string"
+      },
+      "options_considered": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of Option IDs rejected"
+      },
+      "selected_option_id": {
+        "type": "string"
+      },
+      "rationale": {
+        "type": "string",
+        "description": "Reasoning trace for the selection"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
+    }
+  }
+}

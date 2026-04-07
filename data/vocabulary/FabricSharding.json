@@ -1,0 +1,49 @@
+{
+  "handle": "FabricSharding",
+  "mechanism": "Applies {{shard}} across orthogonal dimensions (e.g., Spatial, Temporal, Semantic). Agents subscribe only to dimensions relevant to their function ('Slices'). It enables massive {{parallelize}} by decoupling {{state}} into orthogonal dimensions.",
+  "gloss": "Interlocking state threads",
+  "failure_modes": [
+    "Cross-thread coordination latency."
+  ],
+  "invariants": [
+    "Domain must be orderable or partitionable."
+  ],
+  "parameters": [
+    {
+      "name": "consistency_level",
+      "type": "Enum",
+      "range": "{Eventual, Strong, Causal}",
+      "description": "Cross-shard guarantees"
+    },
+    {
+      "name": "partition_count",
+      "type": "Integer",
+      "range": "[2, 256]",
+      "description": "Number of fabric partitions"
+    },
+    {
+      "name": "rebalance_threshold",
+      "type": "Float",
+      "range": "[0.1, 0.5]",
+      "description": "Imbalance triggering reshard"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:FabricSharding#mh:SHA-256:59148b0213b915c49e000a716c62af829a5f1c9bd192ae5bb6aaa788fd30aecd",
+  "sema_ref": "FabricSharding#5914",
+  "sema_stub": "5914",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "parallelize": "sema:Parallelize#mh:SHA-256:dac1ca99ae8c379c9ba093e840eaab9eb2ad16ccfbdb07d6c0e25e3fad2fae6c",
+      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

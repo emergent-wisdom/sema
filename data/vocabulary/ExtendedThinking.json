@@ -1,0 +1,40 @@
+{
+  "handle": "ExtendedThinking",
+  "mechanism": "Inference-time compute scaling where the model generates extended reasoning traces (potentially thousands of tokens) before producing a final answer. Unlike standard {{chain}}-of-Thought, this pattern explicitly trades latency and compute cost for accuracy by allowing the model to 'think longer'. The reasoning budget can be user-controlled or adaptive based on {{task}} complexity.",
+  "gloss": "Scale inference compute via extended reasoning",
+  "failure_modes": [
+    "Confabulation Chains: Long reasoning traces that sound plausible but contain errors.",
+    "Overthinking: Spending compute on simple problems that don't benefit.",
+    "Hidden Reasoning: Model reaches conclusions via paths not shown in the trace."
+  ],
+  "invariants": [
+    "Intermediate steps visible/logged",
+    "Thinking time proportional to problem difficulty"
+  ],
+  "preconditions": [
+    "Complex prompt",
+    "High token budget"
+  ],
+  "postconditions": [
+    "High-accuracy answer"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:ExtendedThinking#mh:SHA-256:ca3c54e46218935876ca5c993974742069fe61871fae7af38a2fef745753dc98",
+  "sema_ref": "ExtendedThinking#ca3c",
+  "sema_stub": "ca3c",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "references": {
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332"
+    }
+  }
+}

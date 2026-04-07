@@ -1,0 +1,28 @@
+{
+  "handle": "Experiment",
+  "mechanism": "A structured {{protocol}} for causal discovery. Unlike {{verification}} (which confirms a claim), Experiment generates a {{solution}} (new knowledge) by isolating variables using a Control and Treatment group.",
+  "gloss": "Structured causal discovery via variable isolation",
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2,
+    "related": [
+      "HypothesisLadder#f88b"
+    ]
+  },
+  "sema_ref": "Experiment#1b0d",
+  "sema_id": "sema:Experiment#mh:SHA-256:1b0db195171a3758d7d8a5d0e722f5298e1e67f7595f30c833dddcf6ae07d388",
+  "sema_stub": "1b0d",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "verification": "sema:Verification#mh:SHA-256:a8a5a252aba9bf0a9fbf2f977677147b517e6228089d62e2c5721eb8f01e504b"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

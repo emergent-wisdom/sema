@@ -1,0 +1,44 @@
+{
+  "handle": "LeastToMost",
+  "mechanism": "A prompting strategy that breaks a complex {{task}} into a series of simpler subproblems, then solves them in sequence. Each subproblem's solution becomes context for the next. Unlike standard decomposition, the subproblems are ordered from easiest to hardest, and solutions explicitly build on each other. It employs {{decompose}} to sort sub-tasks by complexity, solving them sequentially.",
+  "gloss": "Solve subproblems from easiest to hardest sequentially",
+  "failure_modes": [
+    "Subproblem Coupling: Later subproblems depend on earlier errors.",
+    "Ordering Misjudgment: Wrong difficulty ordering leads to missing prerequisites.",
+    "Overhead: Simple problems don't benefit from decomposition."
+  ],
+  "invariants": [
+    "{{solution}} to P(i) enables P(i+1)",
+    "Subproblems solved in order of dependency"
+  ],
+  "preconditions": [
+    "Complex problem",
+    "Decomposition strategy"
+  ],
+  "postconditions": [
+    "Full solution built from simple parts"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "RecursionDive"
+    ],
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:LeastToMost#mh:SHA-256:2cceb392a547b5697483cfd568e27a712dd76542d57c8cdf091df96d68b04cbf",
+  "sema_ref": "LeastToMost#2cce",
+  "sema_stub": "2cce",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "references": {
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

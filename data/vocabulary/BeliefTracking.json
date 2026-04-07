@@ -1,0 +1,53 @@
+{
+  "handle": "BeliefTracking",
+  "mechanism": "Epistemic Version Control. Enforces a 'Commit Log' for internal knowledge. Before processing new information, the {{agent}} must query and pin its current Priors. If the posterior belief shifts significantly, the {{agent}} creates a new Node connected to the old one via a `supersedes` edge, explicitly noting the 'Surprisal' that caused the shift. It calculates the divergence magnitude via {{surprisal_update}} to determine whether a new node is justified or if the evidence fits the existing model.",
+  "gloss": "Note what you believed before and after",
+  "failure_modes": [
+    "Hindsight {{cognitive_bias}}: {{agent}} overwrites prior beliefs with new data, destroying the record of learning.",
+    "Epistemic Thrashing: Creating new belief versions for trivial noise (over-sensitivity).",
+    "Silent Update: Changing internal weights/state without creating a graph edge to document it."
+  ],
+  "invariants": [
+    "Causal Link: Every update must cite the specific 'Trigger' (Evidence) that caused the shift.",
+    "Non-Destructive Update: Old beliefs are never deleted, only Superseded.",
+    "Prior Commitment: Must retrieve/state existing beliefs BEFORE ingesting new evidence."
+  ],
+  "preconditions": [
+    "Existing knowledge graph",
+    "Incoming information stream"
+  ],
+  "postconditions": [
+    "{{belief}} graph updated with version history",
+    "Learning delta recorded"
+  ],
+  "parameters": [
+    {
+      "name": "update_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Minimum delta to trigger belief revision"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Memory",
+    "related": [
+      "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:f5c95ef2b3452fc5047bb3e8c4bb004613e5fe76bf5e5f482dab1dd2f80b4d36",
+  "sema_ref": "BeliefTracking#f5c9",
+  "sema_stub": "f5c9",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:66d1bce1c5f8f3e89c65fe64b6dd3c79519bdbe5f5837d397900a37a41b372fb",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+    }
+  }
+}

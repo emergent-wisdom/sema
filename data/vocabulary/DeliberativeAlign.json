@@ -1,0 +1,61 @@
+{
+  "handle": "DeliberativeAlign",
+  "mechanism": "Constitutional AI. {{agent}} ingests a Policy_Set. Before executing {{task}}, it generates a 'Safety {{trace}}' comparing the {{manifest_planning}} against Policy. If violation detected, it revises the {{manifest_planning}}. It forces the {{solver_node}} to execute a dedicated safety pass against the {{hydra_constitution}} before committing to the {{manifest_planning}}.",
+  "gloss": "Explicit safety reasoning prior to execution",
+  "failure_modes": [
+    "Deliberation Theater: {{agent}} generates false safety reasoning to justify harmful action.",
+    "Policy Conflict: Contradictory rules lead to paralysis or arbitrary selection.",
+    "{{context}} Overflow: Long constitutions truncated, causing rules to be ignored."
+  ],
+  "invariants": [
+    "Policy Supremacy: If Policy forbids X, and Goal requires X, {{agent}} must ABORT.",
+    "Pre-Action {{check}}: SafetyTrace must be generated BEFORE any ToolCall."
+  ],
+  "preconditions": [
+    "Policy definitions loaded",
+    "{{task}} is planned but not executed"
+  ],
+  "postconditions": [
+    "{{manifest_planning}} validated safe OR revised",
+    "Safety reasoning logged"
+  ],
+  "parameters": [
+    {
+      "name": "constitution_ref",
+      "type": "SemaRef",
+      "range": "unspecified",
+      "description": "Pointer to HydraConstitution"
+    },
+    {
+      "name": "strictness",
+      "type": "Enum",
+      "range": "{Strict, Permissive}",
+      "description": "Default: Strict"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:19e207eca525f6d003859242f86bdca2cecf03edec5e683005d8e3b9bdad31a7",
+  "sema_ref": "DeliberativeAlign#19e2",
+  "sema_stub": "19e2",
+  "dependencies": {
+    "references": {
+      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:ad697034dfae39ef4be4be7dc17164f49d6f3c5f59ac187d56d900b396a66658",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

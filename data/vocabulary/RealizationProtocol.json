@@ -1,0 +1,55 @@
+{
+  "handle": "RealizationProtocol",
+  "derived_from": "sema:CreationProtocol#mh:SHA-256:d289d0a26fec0c23993fedbe5593f5da302696271a454c714a0e91abaecfd8e2",
+  "mechanism": "A standardized {{solver_tree}} that orchestrates the lifecycle of a user_request executed by a {{cognitive_solver}}. It enforces a strict phase transition from Abstract to Concrete to ensure the result is {{realizable}}. 1. {{interpret}} converts request -> {{frame_spec}}. 2. {{manifest_planning}} converts spec -> {{execution_manifest}}. 3. {{rollout}} executes the manifest to produce the {{outcome}}.",
+  "gloss": "Standard Interpret-Plan-Rollout workflow to ensure realizability",
+  "failure_modes": [
+    "Bureaucracy: Blindly following all steps for trivial tasks.",
+    "Artifact Rejection: {{frame_spec}} or {{execution_manifest}} fails validation at seam.",
+    "Loop Stalling: Getting stuck in {{manifest_planning}}/{{rollout}} cycles without shipping."
+  ],
+  "invariants": [
+    "Artifacts at Seams: Transitions MUST be mediated by the specified artifacts.",
+    "Non-Compensatory: If an artifact fails its spec, the process halts.",
+    "Realizability: The outcome must be Realizable (concrete, actionable, feasible)."
+  ],
+  "preconditions": [
+    "user_request received",
+    "Agent Team available"
+  ],
+  "postconditions": [
+    "final_outcome Shipped",
+    "Process Logged"
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1,
+    "tier": 2
+  },
+  "signature": [
+    "SolverTree(Outcome)"
+  ],
+  "sema_ref": "RealizationProtocol#e939",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:e939d6d7968fab210b3e18b3033f0d47e78dbe4025c90e9f4cb7d05b1d6c9ef4",
+  "sema_stub": "e939",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "rollout": "sema:Rollout#mh:SHA-256:7cbf08f86c59227263ce7d804dcdf9fec8ec052732d0d74ab7959ab6f4423a9d",
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:ad697034dfae39ef4be4be7dc17164f49d6f3c5f59ac187d56d900b396a66658",
+      "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f"
+    },
+    "references": {
+      "realizable": "sema:Realizable#mh:SHA-256:f70c35eb5ddbaaa985cd54c8a2bb37c0486867e75eaa5abd9f0c767422bfa2f5",
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc",
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:6e7b944baf526bfabe4070993c035fc9676768dc3fc34f05230a2b6dfd9293a6",
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+    },
+    "yields": {
+      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a"
+    }
+  }
+}

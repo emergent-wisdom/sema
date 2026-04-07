@@ -1,0 +1,29 @@
+{
+  "handle": "LazyConsensus",
+  "mechanism": "Agents execute transactions immediately without waiting for global consensus, assuming everything is valid. If a conflict is detected later, they use a deterministic rollback rule (e.g., 'highest ID wins'). Maximizes speed over safety. It bypasses the blocking {{quorum}}, executing immediately and using the {{time_warp_log}} to resolve conflicts retroactively.",
+  "gloss": "Optimistic execution, retroactive verification",
+  "failure_modes": [
+    "Cascading rollbacks."
+  ],
+  "invariants": [
+    "Determinism: Conflict resolution function must be pure (same inputs -> same winner)",
+    "Rollback Safety: Reverting a transaction cannot corrupt unrelated state"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 0
+  },
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:eef739f51576636172b291c92363ea8fc3dd216d777c6395067fc3159d0452c8",
+  "sema_ref": "LazyConsensus#eef7",
+  "sema_stub": "eef7",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

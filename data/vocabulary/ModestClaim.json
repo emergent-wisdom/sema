@@ -1,0 +1,40 @@
+{
+  "handle": "ModestClaim",
+  "mechanism": "Epistemic {{reframe}}. Transforms assertions of '{{identity}}' (A == B means same meaning) into assertions of 'Divergence' (Hash(A) != Hash(B) means different meaning). This shifts the burden of proof from verifying universal truth to detecting local mismatch. It applies {{epistemic_calibrate}} to reduce the scope of assertions from 'Universal Truth' to 'Local Observation'.",
+  "gloss": "Defensible over ambitious",
+  "failure_modes": [
+    "Ontological Trap: Claiming the hash solves the Symbol Grounding {{problem}} (it doesn't).",
+    "Brittle Authority: Making absolute claims that invite refutation by a single edge case."
+  ],
+  "invariants": [
+    "Epistemic Priority: Claims must describe 'Evidence of Divergence', not 'Proof of Meaning'.",
+    "Pragmatic Grounding: The measure of success is Coordination Utility, not Semantic Truth."
+  ],
+  "preconditions": [
+    "{{system}} or {{agent}} formulating a capability claim"
+  ],
+  "postconditions": [
+    "Claim scope reduced to defensible limits (Epistemic/Utility)"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:ModestClaim#mh:SHA-256:a257e1318e9ba89e290893692bb9745712457fdbfa45bb99f4e58e00349c6277",
+  "sema_ref": "ModestClaim#a257",
+  "sema_stub": "a257",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

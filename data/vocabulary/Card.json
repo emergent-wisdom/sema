@@ -1,0 +1,75 @@
+{
+  "handle": "Card",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "public_key",
+      "claims"
+    ],
+    "properties": {
+      "public_key": {
+        "type": "string",
+        "description": "Cryptographic identifier of the Agent"
+      },
+      "claims": {
+        "type": "object",
+        "description": "Map of protocols and capabilities supported"
+      },
+      "reputation_score": {
+        "type": "number",
+        "description": "Aggregate trust metric (optional)"
+      },
+      "endpoints": {
+        "type": "array",
+        "description": "Reachability addresses"
+      }
+    }
+  },
+  "mechanism": "Structured capability advertisement enabling agent discovery before contact. {{agent}} creates CARD: {agent_id (unique), endpoint (how to reach), protocols[] (compatibility), capabilities[] (what agent claims to do), constraints (availability, rate limits, requirements), metadata (version, ttl, published timestamp)}. {{agent}} PUBLISHES card via registry, broadcast, DHT, or well-known endpoint (mechanism-agnostic). Discovering agents QUERY: {capability_match, protocol_match, semantic_search}. Query returns ranked CARD list. Discoverer selects promising CARDs, then GREETs at card.endpoint to establish channel. CARDs have TTL\u2014agents must REFRESH periodically to maintain visibility. CARD capabilities are CLAIMS not proofs: verification happens via {{probe}} after GREET establishes channel. It enables discovery via {{select}} queries against the registry, filtering candidates by capability and protocol compatibility.",
+  "gloss": "Enable capability-based agent discovery, making coordination ecosystems dynamic and self-describing",
+  "parameters": [
+    {
+      "name": "verification_tier",
+      "type": "Enum",
+      "range": "{SelfReported, Verified, Bonded}",
+      "description": "Default: SelfReported"
+    },
+    {
+      "name": "proof",
+      "type": "String",
+      "range": "unspecified",
+      "description": "Optional hash of past Success artifact"
+    }
+  ],
+  "failure_modes": [
+    "Stale CARDs (agent changed capabilities, CARD not updated\u2014TTL mitigates).",
+    "False claims (CARD says X, agent cannot X\u2014PROBE mitigates).",
+    "Registry unavailable (discovery fails\u2014use multiple publication methods).",
+    "CARD spam (fake CARDs pollute discovery\u2014use reputation/filtering).",
+    "Privacy leak (CARD reveals too much about agent\u2014include only necessary info).",
+    "Version skew (CARD protocol version differs from actual\u2014GREET catches this)."
+  ],
+  "invariants": [
+    "Card immutable after issue."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Card#mh:SHA-256:5c33034fedd84e9d8e42887c003d5b96a694d0549292dd796c3dbcbfe76a06dd",
+  "sema_ref": "Card#5c33",
+  "sema_stub": "5c33",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    },
+    "composes_with": {
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
+    }
+  }
+}

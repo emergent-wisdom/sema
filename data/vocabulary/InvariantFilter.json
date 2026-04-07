@@ -1,0 +1,57 @@
+{
+  "handle": "InvariantFilter",
+  "mechanism": "A strict communication firewall that intercepts {{message}}s (incoming or outgoing) and evaluates them against a set of explicit logical predicates (Invariants). If a {{message}} satisfies all invariants, it is permitted to pass. If it fails even one, it is blocked, dropped, or flagged for review. This enforces 'Contractual Safety' on the communication channel. It inspects every {{message}} via a rigorous {{check}} against defined predicates before allowing transit.",
+  "gloss": "Rule-based message filtering",
+  "failure_modes": [
+    "Incomplete Invariants: If the filter does not catch a specific edge case, bad data leaks through.",
+    "False Positives: Overly strict invariants blocking legitimate messages.",
+    "Latency: Complex predicate evaluation slowing down high-throughput streams."
+  ],
+  "invariants": [
+    "Atomic Blocking: If Predicate(M) is False, M is NOT forwarded.",
+    "Fail-Closed: If evaluation errors (e.g. timeout), default to BLOCK.",
+    "Isolation: The protected agent state is not mutated by evaluation."
+  ],
+  "preconditions": [
+    "A defined Invariant Set (Predicates)",
+    "A {{message}} or {{stream}} to evaluate"
+  ],
+  "postconditions": [
+    "Only compliant messages reach the destination",
+    "Blocked messages are logged (optional)"
+  ],
+  "parameters": [
+    {
+      "name": "predicates",
+      "type": "List[Expression]",
+      "range": "unspecified",
+      "description": "Boolean expressions that messages must satisfy to pass"
+    },
+    {
+      "name": "action_on_fail",
+      "type": "Enum",
+      "range": "[DROP, REJECT, FLAG]",
+      "description": "What happens when a message violates a predicate"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:b5fbd80b7d6260b87f4412a453bb98bfc4e258fac1929c517ea3db333c54ae1f",
+  "sema_ref": "InvariantFilter#b5fb",
+  "sema_stub": "b5fb",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "accepts": {
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+    },
+    "references": {
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "handle": "Build",
+  "mechanism": "Performs the {{act}} of constructing a low-cost {{artifact}} (prototype) to verify critical assumptions in the {{spec}} before full commitment. Governed by the Marginal {{value}} Rule.",
+  "gloss": "Low-cost prototype generation",
+  "failure_modes": [
+    "Over-engineering: Building the full product instead of a prototype.",
+    "False Negative: {{prototype}} fails due to low fidelity, killing a good plan.",
+    "Scope Creep: {{prototype}} expands beyond verification needs."
+  ],
+  "invariants": [
+    "Cost(Build) << Cost(rollout)",
+    "{{prototype}} must address specific risks identified in {{plan}}"
+  ],
+  "preconditions": [
+    "PlanBundle with high uncertainty/risk"
+  ],
+  "postconditions": [
+    "ProtoPack artifact (Evidence of feasibility)"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "Simulation",
+      "DogfoodFirst",
+      "SacrificialProbe"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:Build#mh:SHA-256:00f3e2cc017af17d5de5a121ddd38017635736aa54c5ef23ee43c84abe5ddab6",
+  "sema_ref": "Build#00f3",
+  "sema_stub": "00f3",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "signature": [
+    "Act(Artifact)"
+  ],
+  "dependencies": {
+    "references": {
+      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "prototype": "sema:Prototype#mh:SHA-256:ff187305136dd60765caedabd5eefbc62c94b20909c4886f4baef3c9523e83c7",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "accepts": {
+      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5"
+    },
+    "yields": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+    }
+  }
+}

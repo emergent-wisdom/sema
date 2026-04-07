@@ -1,0 +1,57 @@
+{
+  "handle": "ProblemSpace",
+  "mechanism": "A defined region of the problem landscape, bounded by {{constraint}}s and initial {{state}}. It represents the domain within which a solver must operate to find a valid {{solution}}.",
+  "gloss": "Bounded domain of a problem",
+  "invariants": [
+    "Boundedness: Must have defined constraints.",
+    "Consistency: The space must not contain contradictory definitions."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "boundaries",
+      "variables"
+    ],
+    "properties": {
+      "domain": {
+        "type": "string"
+      },
+      "boundaries": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Hard constraints (e.g. Physics, Law)"
+      },
+      "variables": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Degrees of freedom available to change"
+      },
+      "constants": {
+        "type": "object",
+        "description": "Immutable facts"
+      }
+    }
+  },
+  "sema_ref": "ProblemSpace#78da",
+  "sema_id": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1",
+  "sema_stub": "78da",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

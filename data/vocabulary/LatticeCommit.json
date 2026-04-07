@@ -1,0 +1,38 @@
+{
+  "handle": "LatticeCommit",
+  "mechanism": "Agents are arranged in a virtual lattice. A {{state_transition}} is only valid if it is cryptographically signed by the agent AND its immediate geometric neighbors (Up, Down, Left, Right). {{quorum}} is local, not global. It requires a localized {{quorum}} of geometric neighbors to validate {{state_transition}}s.",
+  "gloss": "Geometric neighbor consensus",
+  "failure_modes": [
+    "Fracture of the lattice isolates clusters."
+  ],
+  "invariants": [
+    "Local {{quorum}}: Commit requires signatures from defined Geometric Neighbors",
+    "Progress must be monotonic - no backtracking.",
+    "{{topology}} {{check}}: Node degree must match Lattice definition (e.g. 4 for 2D grid)"
+  ],
+  "preconditions": [
+    "Network topology is static/known"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "related": [
+      "sema:RootHashGossip#mh:SHA-256:145cec2ca1c4d328da0256b0a245eadda7da63a6a77083405220c432d2210438"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:f6a8397260ccd267efaf6af48d51db8b975064e74585390f1fa4830fb10e788a",
+  "sema_ref": "LatticeCommit#f6a8",
+  "sema_stub": "f6a8",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57",
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

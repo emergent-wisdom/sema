@@ -1,0 +1,74 @@
+{
+  "handle": "ExecutionManifest",
+  "mechanism": "A composite artifact that binds a 'Target Design' (What to build) with an 'Operation Sequence' (How to build and rollout it). It acts as the atomic 'Release Candidate' for the execution phase.",
+  "gloss": "Binding of Design and Procedure",
+  "invariants": [
+    "Completeness: Must contain both Specification (Design) and Steps (Procedure).",
+    "Resource Bound: Total cost of Steps must be within budget."
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0,
+    "tier": 1,
+    "related": [
+      "Plan",
+      "Build",
+      "Rollout"
+    ]
+  },
+  "sema_id": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
+  "sema_ref": "ExecutionManifest#a0d9",
+  "sema_stub": "a0d9",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "manifest_id",
+      "steps"
+    ],
+    "properties": {
+      "manifest_id": {
+        "type": "string"
+      },
+      "target_system_id": {
+        "type": "string"
+      },
+      "steps": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "step_id",
+            "action",
+            "params"
+          ],
+          "properties": {
+            "step_id": {
+              "type": "string"
+            },
+            "action": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object"
+            },
+            "rollback_action": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "estimated_cost": {
+        "type": "number"
+      },
+      "safety_checks": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

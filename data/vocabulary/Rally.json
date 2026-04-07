@@ -1,0 +1,75 @@
+{
+  "handle": "Rally",
+  "mechanism": "Ad-Hoc Group Formation {{protocol}}. Initiator broadcasts a 'RALLY' signal with requirements defined by an {{accept_spec}} and a selection criteria. Responders submit 'ENLIST' messages. If count >= {{quorum}} by deadline, initiator executes {{select}} and sends 'MUSTER' to form a new cryptographic group {{context}}. It broadcasts a call to form a group, using {{quorum}} to validate critical mass and {{elect}} to formalize leadership.",
+  "gloss": "Enable ad-hoc multi-party coordination",
+  "failure_modes": [
+    "Echo Chamber: Rally attracts only homogenous agents, reducing diversity.",
+    "Flaking: Agents ENLIST tentatively but fail to show up for MUSTER.",
+    "Rally Spam: Low-quality initiators flooding the broadcast channel.",
+    "Not enough ENLISTs by deadline (group fails to form).",
+    "Too many ENLISTs makes selection political/contentious.",
+    "Initiator has too much power over selection (mitigated by transparent selection_criteria).",
+    "RALLY spam floods network.",
+    "Agents ENLIST tentatively then ghost at MUSTER."
+  ],
+  "invariants": [
+    "Binding: MUSTER message must include a shared ContextID for the new group.",
+    "{{quorum}}: If Enlist_Count < Min_Participants, Rally FAILS (Atomic Abort)."
+  ],
+  "preconditions": [
+    "Broadcast channel available",
+    "Initiator has resources to pay for group {{context}}"
+  ],
+  "postconditions": [
+    "New GroupContextID minted OR Rally dissolved"
+  ],
+  "parameters": [
+    {
+      "name": "deadline",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Default: 5m"
+    },
+    {
+      "name": "max_participants",
+      "type": "Integer",
+      "range": "unspecified",
+      "description": "Default: 10"
+    },
+    {
+      "name": "min_participants",
+      "type": "Integer",
+      "range": "[1, 50]",
+      "description": "Minimum agents required to proceed"
+    },
+    {
+      "name": "selection_criteria",
+      "type": "PatternRef",
+      "range": "unspecified",
+      "description": "Default: Select"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1
+  },
+  "sema_id": "sema:Rally#mh:SHA-256:ce645d48960026a476ec833c627a1a56247a082e22c4d520fa3cd870bbe110c3",
+  "sema_ref": "Rally#ce64",
+  "sema_stub": "ce64",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "composes_with": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+    },
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
+      "elect": "sema:Elect#mh:SHA-256:5df04f494b7d686878e87d3555d2e1d7fd66dae269ee61a91d55acc312b9300c",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

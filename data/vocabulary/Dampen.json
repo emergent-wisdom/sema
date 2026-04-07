@@ -1,0 +1,23 @@
+{
+  "handle": "Dampen",
+  "mechanism": "The reduction of {{signal}} intensity or {{value}} magnitude in response to resistance or {{noise}}. It acts as a negative feedback loop to prevent oscillation or runaway amplification.",
+  "gloss": "Passive attenuation of signal or force",
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_ref": "Dampen#ff89",
+  "sema_id": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
+  "sema_stub": "ff89",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "handle": "Workflow",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "steps",
+      "dependencies"
+    ],
+    "properties": {
+      "steps": {
+        "type": "array",
+        "description": "List of executable units"
+      },
+      "dependencies": {
+        "type": "array",
+        "description": "DAG edges (step_A -> step_B)"
+      },
+      "artifacts": {
+        "type": "object",
+        "description": "Typed outputs flowing on edges"
+      }
+    }
+  },
+  "mechanism": "A directed graph of {{step}}s where the output of one {{solver}} becomes the input of another. It defines the sequence of operations required to complete a complex objective. Unlike a simple chain, a workflow handles branching, parallelism, and conditional logic. Each edge carries a typed {{artifact}} that must satisfy an {{accept_spec}} before the next node can execute. It binds {{role}}s to steps but does not instantiate them.",
+  "gloss": "Directed graph of operations",
+  "failure_modes": [
+    "Deadlock: Circular dependencies prevent progress.",
+    "Cascade Failure: One node failure propagates to all dependents.",
+    "Orphan Output: A node produces artifacts that no downstream node consumes."
+  ],
+  "invariants": [
+    "Causality: Step B cannot start before Step A's prerequisites are met.",
+    "Acyclicity: Unless explicitly recursive, workflows must terminate.",
+    "Artifact Typing: Each edge carries a typed artifact, not raw data."
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "tier": 1,
+    "ring": 0
+  },
+  "sema_id": "sema:Workflow#mh:SHA-256:dcee0211d2449481b784563b12e9bc3895d6feffa83d9da0b6deaed9002f2ae6",
+  "sema_ref": "Workflow#dcee",
+  "sema_stub": "dcee",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
+      "role": "sema:Role#mh:SHA-256:d76856192b629f90887d51ec608840b05f8ef4dbf1e18d43ea91c09b0569aaa1",
+      "solver": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982"
+    }
+  }
+}

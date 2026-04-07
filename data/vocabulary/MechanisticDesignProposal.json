@@ -1,0 +1,83 @@
+{
+  "handle": "MechanisticDesignProposal",
+  "mechanism": "A structured blueprint for a systemic {{solution}} that addresses a {{problem}} in a {{system}}. It goes beyond a standard proposal by requiring the definition of a core mechanism\u2014the specific leverage point and causal chain used to alter system behavior. The proposal integrates the 'Why it Works' (defense) and 'Why it Fails' (attack) dialectic, along with medium-term implementation and long-term vision projections.",
+  "gloss": "Dialectic blueprint of a system mechanism with temporal projections",
+  "invariants": [
+    "Dialectic Balance: 'why_it_fails' must be as detailed as 'why_it_works'.",
+    "Causal Clarity: Must define the mechanism of action (how A causes B).",
+    "Novelty Requirement: 'what_is_new' must identify the unique contribution.",
+    "Temporal Completeness: Must include both medium_term and long_term_vision."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "label",
+      "design_principles",
+      "core_mechanism",
+      "how_it_works",
+      "what_is_new",
+      "why_it_works",
+      "why_it_fails",
+      "medium_term",
+      "long_term_vision"
+    ],
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "A concise, evocative name for the solution (e.g., 'Parametric Storm-Trigger Retirement')"
+      },
+      "design_principles": {
+        "type": "string",
+        "description": "The guiding philosophy behind the design. What mental model or heuristic drives this solution?"
+      },
+      "core_mechanism": {
+        "type": "string",
+        "description": "The specific leverage point and causal chain. What is the ONE thing that makes this work?"
+      },
+      "how_it_works": {
+        "type": "string",
+        "description": "Concrete operational description. Step-by-step: what happens when this is deployed?"
+      },
+      "what_is_new": {
+        "type": "string",
+        "description": "The novel contribution. What does this do that existing solutions cannot? Why hasn't this been done before?"
+      },
+      "why_it_works": {
+        "type": "string",
+        "description": "The dialectic defense. Steel-man argument for why this mechanism will succeed."
+      },
+      "why_it_fails": {
+        "type": "string",
+        "description": "The dialectic attack. Pre-mortem: what are the failure modes, risks, and unintended consequences?"
+      },
+      "medium_term": {
+        "type": "string",
+        "description": "Implementation trajectory for 1-3 years. What does adoption look like? What ecosystem changes occur?"
+      },
+      "long_term_vision": {
+        "type": "string",
+        "description": "The end-state aspiration. If this succeeds fully, what does the world look like in 10+ years?"
+      }
+    }
+  },
+  "sema_ref": "MechanisticDesignProposal#8cf7",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06",
+  "sema_stub": "8cf7",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "accepts": {
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

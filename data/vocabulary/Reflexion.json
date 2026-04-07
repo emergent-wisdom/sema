@@ -1,0 +1,47 @@
+{
+  "handle": "Reflexion",
+  "mechanism": "A self-improvement loop where after completing a {{task}} attempt, the agent generates linguistic self-critique analyzing what went wrong with the {{plan}} regarding the {{goal}}, then uses this reflection as context for a retry. Unlike fine-tuning, the model is frozen\u2014improvement comes from explicit textual feedback stored in an episodic memory buffer. It writes self-critique to a {{scratchpad}} memory buffer, using this feedback to improve the next attempt.",
+  "gloss": "Self-critique and retry after failure",
+  "failure_modes": [
+    "Shallow Reflection: {{critique}} is generic ('try harder') without actionable insight.",
+    "Reflection Drift: Each retry diverges further from the goal.",
+    "Premature Success: Declaring success before the task is actually solved."
+  ],
+  "invariants": [
+    "Memory of error persists",
+    "Self-correction based on past failure"
+  ],
+  "preconditions": [
+    "Failed trial",
+    "{{outcome}} signal"
+  ],
+  "postconditions": [
+    "Improved policy/next trial"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "sema:EvaluatorOptimizer#mh:SHA-256:6c2dd39e3dfae94dee24fb49b8769219134e2ca9bb79e047165d9424614eb729"
+    ],
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+  "sema_ref": "Reflexion#51b9",
+  "sema_stub": "51b9",
+  "dependencies": {
+    "references": {
+      "goal": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
+      "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "scratchpad": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e",
+      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "handle": "Task",
+  "mechanism": "A specification of intent to be performed by a {{system}}. It encapsulates what to achieve without prescribing the method (how). A Task is recursive: it can be decomposed into child Tasks. Tasks form a {{hierarchy}} where child {{constraint}}s must be a superset of parent {{constraint}}s (Holographic Inheritance).",
+  "gloss": "The atomic unit of intent",
+  "failure_modes": [
+    "{{constraint}} Escape: Child task violates parent safety constraints.",
+    "Orphan Task: Task created without linkage to parent (except Root).",
+    "Zombie Task: Task continues after its {{context}} is invalidated.",
+    "Ambiguous Intent: Task description admits multiple incompatible interpretations."
+  ],
+  "invariants": [
+    "Holographic Inheritance: {{constraint}}s(Child) must include ALL {{constraint}}s(Parent).",
+    "Intent Preservation: Decomposition must not lose the original goal.",
+    "Linkage: Every non-root Task must reference its parent."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+  "sema_ref": "Task#d9f9",
+  "sema_stub": "d9f9",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "task_id",
+      "description",
+      "status",
+      "created_at"
+    ],
+    "properties": {
+      "task_id": {
+        "type": "string",
+        "description": "Unique UUID for the task"
+      },
+      "parent_id": {
+        "type": "string",
+        "description": "ID of the super-task, if any"
+      },
+      "description": {
+        "type": "string",
+        "description": "Natural language intent"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "Pending",
+          "Active",
+          "Blocked",
+          "Complete",
+          "Failed"
+        ],
+        "default": "Pending"
+      },
+      "requirements": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of acceptance criteria"
+      },
+      "assigned_solver_id": {
+        "type": "string",
+        "description": "The agent/node working on this"
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "deadline": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

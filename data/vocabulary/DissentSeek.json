@@ -1,0 +1,39 @@
+{
+  "handle": "DissentSeek",
+  "mechanism": "Active Disagreement: After reaching conclusion, find smartest person who disagrees. {{understand}} their model fully before dismissing. Ask: What do they see that I don't? Unanimous agreement is suspicious\u2014either groupthink or the question is trivial. It triggers a {{confirmation_block}} until a valid {{steelman_check}} of the opposing view has been integrated.",
+  "gloss": "Mitigating groupthink via mandatory devils advocacy",
+  "failure_modes": [
+    "Strawman Dissent: The agent selects a weak disagreement to easily defeat, creating a false sense of robustness."
+  ],
+  "invariants": [
+    "Dissent must be substantive (not trivial)",
+    "Must find at least one disagreement or critical view"
+  ],
+  "preconditions": [
+    "{{quorum}} view",
+    "Diverse pool of critics"
+  ],
+  "postconditions": [
+    "Blind spots revealed",
+    "Confidence intervals widened"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:DissentSeek#mh:SHA-256:6c8292214a387f1cee0bfd80543d2b30a813faf671a35aa11263960e36a207fe",
+  "sema_ref": "DissentSeek#6c82",
+  "sema_stub": "6c82",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
+      "confirmation_block": "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd",
+      "understand": "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
+    }
+  }
+}

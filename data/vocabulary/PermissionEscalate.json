@@ -1,0 +1,37 @@
+{
+  "handle": "PermissionEscalate",
+  "mechanism": "Standardizes request elevation. When `Risk > Threshold`, the {{agent}} blocks execution and emits a `PermissionRequest`. Waits for `SignedApproval` before proceeding. It requests a {{tiered_access}} upgrade, often pausing execution until {{human_approve}} is granted.",
+  "gloss": "Requesting elevated privileges for sensitive operations",
+  "failure_modes": [
+    "Privilege Creep: Escalated permissions become permanent, violating least-privilege principle."
+  ],
+  "invariants": [
+    "Approval required for higher tier",
+    "Escalation logged"
+  ],
+  "preconditions": [
+    "Blocked action",
+    "Justification"
+  ],
+  "postconditions": [
+    "Access granted or denied"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:5d679cf53de921b8d7a577963214cefe6323f966340212d273fa58097336f4e6",
+  "sema_ref": "PermissionEscalate#5d67",
+  "sema_stub": "5d67",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
+      "tiered_access": "sema:TieredAccess#mh:SHA-256:6d26d30e575e16702798357b98281805a4a67885203caac3c7876ab7507239ad"
+    }
+  }
+}

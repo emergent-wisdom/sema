@@ -1,0 +1,51 @@
+{
+  "handle": "Consensus",
+  "mechanism": "A distributed protocol allowing a set of agents to agree on a single data value or state transition. It orchestrates {{vote}} exchange and uses {{quorum}} to validate the result. It ensures safety and liveness in an adversarial network, accepting a {{proposal}} and yielding a {{value}}.",
+  "gloss": "Distributed agreement process",
+  "failure_modes": [
+    "Split Brain: Network partition causes two subgroups to reach different {{value}}s.",
+    "Liveness Failure: The system stalls and never reaches agreement on the {{proposal}}.",
+    "Sybil Attack: One malicious actor creates multiple identities to sway the {{vote}}.",
+    "Byzantine Failure: Agents lying or acting maliciously to prevent consensus."
+  ],
+  "invariants": [
+    "Agreement: All correct agents who decide must decide the same {{value}}.",
+    "Validity: If all agents propose V, then the {{value}} must be V.",
+    "Termination: Eventually, every correct agent decides on a {{value}}."
+  ],
+  "preconditions": [
+    "Group of agents is defined (Membership List)",
+    "Communication channel is available",
+    "{{proposal}} received"
+  ],
+  "postconditions": [
+    "A single {{value}} is committed to the shared state",
+    "All agents are notified of the {{value}}"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 0,
+    "related": [
+      "Sync"
+    ]
+  },
+  "sema_id": "sema:Consensus#mh:SHA-256:986562fe8b9bcfda2a62c40b276a8ff136e732d6f788dc6fa610bf2ef18f4123",
+  "sema_ref": "Consensus#9865",
+  "sema_stub": "9865",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "composes_with": {
+      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    },
+    "yields": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "accepts": {
+      "proposal": "sema:Proposal#mh:SHA-256:48400f03d012e37914685f66064ccd4c3875efb0bb4dff24d88c8f1ca9aa247d"
+    }
+  }
+}

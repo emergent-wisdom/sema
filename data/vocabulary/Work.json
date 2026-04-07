@@ -1,0 +1,62 @@
+{
+  "handle": "Work",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "timestamp",
+      "effort_cost"
+    ],
+    "properties": {
+      "previous_hash": {
+        "type": "string",
+        "description": "State before work"
+      },
+      "new_hash": {
+        "type": "string",
+        "description": "State after work"
+      },
+      "effort_cost": {
+        "type": "object",
+        "description": "Resources consumed (tokens, time)"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "mechanism": "The primitive representation of directed effort. It represents the expenditure of resources (Compute, Time, Energy) to transform a {{task}} from an 'Open' state to a 'Solved' state (reducing local entropy). Work is the bridge between Intent (thinking) and Reality ({{act}}). Work is validated against an acceptance criteria.",
+  "gloss": "The application of effort to reduce entropy",
+  "failure_modes": [
+    "Thrashing: Expending resources without making progress toward the goal.",
+    "Burnout: Exhausting the {{budget}} before the task is complete.",
+    "Busywork: Performing valid actions that do not contribute to the objective function."
+  ],
+  "invariants": [
+    "Cost: Work always consumes resources (Time/Tokens > 0).",
+    "Directionality: Work must be vector-aligned with a Goal (otherwise it is just 'Heat')."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "related": [
+      "EntropyPump"
+    ],
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
+  "sema_ref": "Work#aaad",
+  "sema_stub": "aaad",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+    },
+    "composes_with": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

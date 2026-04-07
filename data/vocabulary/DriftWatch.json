@@ -1,0 +1,53 @@
+{
+  "handle": "DriftWatch",
+  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if Distance(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
+  "gloss": "Reputation becomes pattern-fidelity measurement - trustworthiness equals predictability. Agents are trusted not for peak performance but for behavioral consistency. Gaming reputation through occasional spectacular actions becomes impossible.",
+  "failure_modes": [
+    "Witness collusion: Coordinated false drift reports.",
+    "Mitigated by random witness selection and meta-drift analysis on witness behavior.",
+    "False reports: Single malicious witness.",
+    "Mitigated by N-of-M threshold requirement.",
+    "Cold start: New agents have no baseline.",
+    "Mitigated by probationary period with higher friction, initial baseline borrowed from similar-role agents.",
+    "Baseline gaming: {{agent}} varies early to establish wide baseline.",
+    "Mitigated by crystallization window limits and anomaly detection during bootstrap."
+  ],
+  "invariants": [
+    "Baseline Persistence: Baseline must remain immutable during measurement",
+    "Drift Detection: Alert if Distance(Current, Baseline) > Threshold"
+  ],
+  "preconditions": [
+    "Baseline state is established"
+  ],
+  "parameters": [
+    {
+      "name": "threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Distance trigger"
+    },
+    {
+      "name": "window_size",
+      "type": "Integer",
+      "range": "[10, 10000]",
+      "description": "Samples for baseline"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:DriftWatch#mh:SHA-256:45def9613965f9a51777a3cce031db4cccc7b248d1735bd8000b7df65960ec51",
+  "sema_ref": "DriftWatch#45de",
+  "sema_stub": "45de",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f"
+    }
+  }
+}

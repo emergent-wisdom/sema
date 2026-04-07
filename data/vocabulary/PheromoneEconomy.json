@@ -1,0 +1,27 @@
+{
+  "handle": "PheromoneEconomy",
+  "mechanism": "Macro for {{stigmergy}}({{value}}). Agents coordinate by attaching value (bounties, priority signals) to intermediate states in the shared environment. Other agents discover and process these states to claim the value, driving system-wide progress without explicit commands. It attaches {{value}} to environmental signals via {{stigmergy}}, creating a {{ghost_trail}} that guides agents through a {{continuous_resource_auction}} of effort.",
+  "gloss": "Value-driven coordination",
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_id": "sema:PheromoneEconomy#mh:SHA-256:0a9cf79644f47bce5442d6962fec3f7db60a90dd80d6d95010d1c8cef052fa34",
+  "sema_ref": "PheromoneEconomy#0a9c",
+  "sema_stub": "0a9c",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "signature": [
+    "Stigmergy(Value)"
+  ],
+  "dependencies": {
+    "references": {
+      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "ghost_trail": "sema:GhostTrail#mh:SHA-256:91ae8d7d1b3e4bd39696fc0583fae5f2238600d7a041e010374c7edc01732cd2",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed"
+    }
+  }
+}

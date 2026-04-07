@@ -1,0 +1,31 @@
+{
+  "handle": "Gardener",
+  "mechanism": "Macro for {{stigmergy}}({{care}}). The agent performs maintenance actions (refactoring, praising, organizing) that have no immediate payoff but increase the long-term health of the environment. It fights entropy through non-transactional investment. It applies {{stigmergy}} to signal {{care}} for the environment, ensuring {{graceful_degradation}} through proactive {{compensate}} actions.",
+  "gloss": "Stewardship and maintenance",
+  "invariants": [
+    "Non-Transactional: Maintenance actions are not directly compensated per-task.",
+    "Long-Termism: Optimizes for system longevity over short-term efficiency."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 0
+  },
+  "sema_id": "sema:Gardener#mh:SHA-256:eb97b58841c1d26e5dd719ff343991beb7a477bfbaa068742508760a508ab0af",
+  "sema_ref": "Gardener#eb97",
+  "sema_stub": "eb97",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "signature": [
+    "Stigmergy(Care)"
+  ],
+  "dependencies": {
+    "references": {
+      "compensate": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
+      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485",
+      "care": "sema:Care#mh:SHA-256:9186944f2f3e4e9641a5f310c0fb1cf52129c46af485f4b5fe9bbff1618a8ae5"
+    }
+  }
+}

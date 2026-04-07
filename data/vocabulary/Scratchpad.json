@@ -1,0 +1,45 @@
+{
+  "handle": "Scratchpad",
+  "mechanism": "A designated working memory region where the agent can write intermediate calculations, partial results, and notes-to-self during multi-step reasoning. Unlike the main output, scratchpad content is explicitly for the agent's own use and may be hidden from the final response. Prevents context pollution while enabling complex reasoning. It provides the persistence layer for chain-of-thought, storing the intermediate states of the reasoning process.",
+  "gloss": "Working memory for intermediate reasoning steps",
+  "failure_modes": [
+    "Scratchpad Leak: Internal working notes accidentally included in user-facing output.",
+    "Memory Overflow: Scratchpad grows unboundedly, consuming context window."
+  ],
+  "invariants": [
+    "Bounded: Maximum scratchpad size is enforced",
+    "Persistence: Contents survive across reasoning steps within a task",
+    "Separation: Scratchpad content is distinct from final output"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 0
+  },
+  "sema_id": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e",
+  "sema_ref": "Scratchpad#75bf",
+  "sema_stub": "75bf",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "content"
+    ],
+    "properties": {
+      "content": {
+        "type": "string",
+        "description": "Working memory contents"
+      },
+      "max_size": {
+        "type": "integer",
+        "description": "Maximum allowed size in tokens"
+      },
+      "owner_id": {
+        "type": "string",
+        "description": "Agent that owns this scratchpad"
+      }
+    }
+  }
+}

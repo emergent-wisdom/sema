@@ -1,0 +1,56 @@
+{
+  "handle": "CommitmentDevice",
+  "mechanism": "Future Self Binding: Anticipate that future self will face temptation or weakness. Remove future options by present action. Examples: delete the app, announce publicly, create penalty for deviation. Cost of breaking commitment must exceed temptation value. It constructs an {{oath_bind}} contract that penalizes future deviation from the chosen path.",
+  "gloss": "Pre-commitment against hyperbolic discounting",
+  "failure_modes": [
+    "Over-commitment: Binding too early locks out legitimate pivots when new information arrives."
+  ],
+  "invariants": [
+    "Binding: Cost(Breaking) > Benefit(Breaking)",
+    "Irrevocability: {{agent}} cannot unilaterally remove the constraint"
+  ],
+  "preconditions": [
+    "{{agent}} expects future preference reversal (hyperbolic discounting)"
+  ],
+  "postconditions": [
+    "Future action set constrained"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:20d0ea4bf82026af8d4717682ad13e91979a047f05b94b0542f017ade2342810",
+  "sema_ref": "CommitmentDevice#20d0",
+  "sema_stub": "20d0",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "commitment",
+      "penalty"
+    ],
+    "properties": {
+      "commitment": {
+        "type": "string",
+        "description": "The action being committed to"
+      },
+      "penalty": {
+        "type": "object",
+        "description": "Cost incurred if commitment broken"
+      },
+      "irrevocable": {
+        "type": "boolean",
+        "description": "Whether commitment can be undone"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "oath_bind": "sema:OathBind#mh:SHA-256:745d8a967eac5ad0c50551cd7b5ee6e0e3d53cd4cc94f1a51e01fd8ba1db0f97",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

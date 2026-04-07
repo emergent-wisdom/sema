@@ -1,0 +1,59 @@
+{
+  "handle": "TaskLifecycle",
+  "mechanism": "Explicit {{state_transition}} machine governing {{task}} progression through five states: PENDING (created, awaiting assignment), ASSIGNED (claimed by an {{agent}}), RUNNING (actively executing, emitting {{heartbeat}}), COMPLETED (successfully finished, {{result}} attached), FAILED (terminated with {{exception}}, retry decision required). Each transition requires a typed {{event}}: assign, start, complete, fail, cancel. Invalid transitions are rejected. RUNNING state requires periodic {{heartbeat}}; timeout triggers automatic FAILED transition. Follows the Agent-to-Agent protocol task management model.",
+  "gloss": "Formal state machine governing task progression",
+  "invariants": [
+    "Forward-Only: Tasks must not regress (no COMPLETED to RUNNING via {{state_transition}})",
+    "Single Owner: Exactly one {{agent}} owns a {{task}} in ASSIGNED or RUNNING state",
+    "FAILED tasks must include an {{exception}} describing the failure",
+    "RUNNING tasks must emit {{heartbeat}} within configured interval"
+  ],
+  "preconditions": [
+    "{{task}} exists in PENDING state"
+  ],
+  "postconditions": [
+    "{{task}} in terminal state (COMPLETED, FAILED, or CANCELLED)"
+  ],
+  "failure_modes": [
+    "Heartbeat timeout (agent dies silently \u2014 task stuck in RUNNING without timeout enforcement).",
+    "State desync (two agents believe they own the same task due to network partition).",
+    "Zombie tasks (FAILED tasks never retried or escalated \u2014 accumulate in queue)."
+  ],
+  "parameters": [
+    {
+      "name": "heartbeat_interval_seconds",
+      "type": "Integer",
+      "range": "[5, 300]",
+      "description": "Maximum seconds between heartbeats before RUNNING task is marked FAILED"
+    }
+  ],
+  "signature": [
+    "StateTransition(Task)"
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 1,
+    "tier": 1,
+    "related": []
+  },
+  "sema_ref": "TaskLifecycle#85d6",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:85d6377ea470eea983a6ee82162a983b83625c7dc028cddc4a25d867b2b26f57",
+  "sema_stub": "85d6",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "exception": "sema:Exception#mh:SHA-256:d38164d96c0a44fda0bd6dd312e5d99f8390ca32218a07e1b0248f7435a3365e",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    },
+    "yields": {
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
+    },
+    "composes_with": {
+      "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57"
+    }
+  }
+}

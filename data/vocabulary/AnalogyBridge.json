@@ -1,0 +1,36 @@
+{
+  "handle": "AnalogyBridge",
+  "mechanism": "To solve a novel {{problem}}, the {{agent}} explicitly searches its training data for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. It merges the structural properties of the source and target domains, identifying the isomorphic mapping.",
+  "gloss": "Mapping to known solutions",
+  "failure_modes": [
+    "False analogy (mapping superficial similarities)."
+  ],
+  "invariants": [
+    "Attribute Independence: Object attributes (color, size) are ignored",
+    "Structure Mapping: Relations in Source must map to Relations in Target"
+  ],
+  "preconditions": [
+    "Isomorphism exists"
+  ],
+  "postconditions": [
+    "Inference transferred"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52",
+  "sema_ref": "AnalogyBridge#87de",
+  "sema_stub": "87de",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    }
+  }
+}

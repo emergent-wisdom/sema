@@ -1,0 +1,36 @@
+{
+  "handle": "Gate",
+  "mechanism": "Evaluates the truth-value of the target {{condition}}. If the result is FALSE, the Gate DROPS the current payload/message but allows the system to continue processing other items (Fail-Safe/Filter). If TRUE, the payload passes through.",
+  "gloss": "Filter payload if the target condition is not met",
+  "failure_modes": [
+    "Silent Loss: Important data dropped without alerting the operator."
+  ],
+  "invariants": [
+    "Idempotent: Re-evaluating the gate with the same context yields the same result (within validity window).",
+    "Non-Blocking: A false condition must not halt the broader system, only the specific item."
+  ],
+  "parameters": [
+    {
+      "name": "policy",
+      "type": "Enum",
+      "range": "unspecified",
+      "description": "Behavior on condition failure (reject, queue, redirect)"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+  "sema_ref": "Gate#206d",
+  "sema_stub": "206d",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "handle": "AttentionMarkets",
+  "mechanism": "Agents bid for priority in message queues. High-stakes messages pay to jump the line; spam is priced out by congestion pricing. Queue manager runs continuous auction: incoming {{signal}}s include a {{value}} bid, manager sorts by bid/urgency ratio, losers wait or increase bid. Price discovery via second-price auction prevents overpayment. Revenue redistributed to queue participants or burned. It instantiates the {{continuous_resource_auction}} mechanism to continuously price bandwidth availability based on network congestion.",
+  "gloss": "Pricing bandwidth to filter spam",
+  "failure_modes": [
+    "Plutocratic Blockage: Wealthy agents monopolize bandwidth, silencing critical low-budget signals (e.g., emergency alerts).",
+    "Starvation: Low-value signals never clear the queue during high congestion."
+  ],
+  "invariants": [
+    "Attention supply is rivalrous (Bandwidth < Demand).",
+    "Price reflects aggregate demand (Congestion Pricing).",
+    "Bid Monotonicity: Higher bid guarantees strictly better or equal placement.",
+    "Clearing: Messages with Bid < CurrentPrice are dropped or buffered."
+  ],
+  "preconditions": [
+    "Limited processing bandwidth",
+    "Multiple information sources",
+    "Liquid currency for bidding"
+  ],
+  "postconditions": [
+    "Resources allocated to highest-bid signals",
+    "Market price established for current tick"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_id": "sema:AttentionMarkets#mh:SHA-256:abdda155165282a52b447988e6d25eb9bb85e9e6deaaf8983eeaf16f3aa05180",
+  "sema_ref": "AttentionMarkets#abdd",
+  "sema_stub": "abdd",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "composes_with": {
+      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962"
+    },
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    }
+  }
+}

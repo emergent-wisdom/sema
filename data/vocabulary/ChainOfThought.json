@@ -1,0 +1,38 @@
+{
+  "handle": "ChainOfThought",
+  "mechanism": "The canonical implementation of sequential reasoning. Instantiates the '{{think}}' primitive with a linear '{{chain}}' {{topology}}. Elicits a step-by-step derivation of the answer to improve accuracy and transparency. It implements the {{think}} primitive as a linear {{chain}}, optionally invoking {{step_back}} or {{reflexion}} to self-correct during the derivation.",
+  "gloss": "Step-by-step reasoning (Macro for Think(Chain))",
+  "invariants": [
+    "Inherits invariants from {{think}} and {{chain}}",
+    "Reasoning Before Answer: Intermediate steps must precede final conclusion"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "ProgramOfThought",
+      "ReAct"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
+  "sema_ref": "ChainOfThought#6201",
+  "sema_stub": "6201",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Think(Chain)"
+  ],
+  "dependencies": {
+    "composes_with": {
+      "step_back": "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a",
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f"
+    },
+    "references": {
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+    }
+  }
+}

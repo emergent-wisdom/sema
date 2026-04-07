@@ -1,0 +1,30 @@
+{
+  "handle": "Solver",
+  "mechanism": "The abstract role (or {{protocol}}) of any agent or process that accepts a {{task}} and produces a {{solution}}. A Solver is the fundamental unit of work execution in the system, adhering to the input/output contract defined by the Task protocol.",
+  "gloss": "Abstract interface for transforming Tasks into Solutions",
+  "signature": [
+    "Protocol(Task)"
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "ring": 0,
+    "category": "Strategy",
+    "tier": 0
+  },
+  "sema_id": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982",
+  "sema_ref": "Solver#1c9b",
+  "sema_stub": "1c9b",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

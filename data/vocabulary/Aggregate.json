@@ -1,0 +1,57 @@
+{
+  "handle": "Aggregate",
+  "mechanism": "Mathematical Reduction. A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. It serves as the computational backbone for consensus mechanisms.",
+  "gloss": "Reduce a set to a summary statistic",
+  "failure_modes": [
+    "Type Mismatch: Input list contains incomparable types (e.g., Integers mixed with Strings).",
+    "Empty Set: Attempting to aggregate a list with length 0 (Undefined for Mean/{{mode}}).",
+    "Overflow: Sum of inputs exceeds maximum integer size (if strictly typed)."
+  ],
+  "invariants": [
+    "Determinism: F(Input) always yields the same Output.",
+    "Reduction: Size(Output) < Size(Input)."
+  ],
+  "preconditions": [
+    "All elements in list share a comparable type",
+    "Input list is non-empty"
+  ],
+  "postconditions": [
+    "Single summary value returned"
+  ],
+  "parameters": [
+    {
+      "name": "function",
+      "type": "Enum",
+      "range": "{Mean, Median, Mode, Sum, Min, Max, Variance, StdDev}",
+      "description": "Default: Mean"
+    },
+    {
+      "name": "weights",
+      "type": "List<Float>",
+      "range": "unspecified",
+      "description": "Relative importance weights for each input element"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f",
+  "sema_ref": "Aggregate#0291",
+  "sema_stub": "0291",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772"
+    },
+    "accepts": {
+      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc"
+    },
+    "yields": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    }
+  }
+}

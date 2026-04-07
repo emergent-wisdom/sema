@@ -1,0 +1,54 @@
+{
+  "handle": "Assessment",
+  "mechanism": "A structured qualitative evaluation of a target artifact, produced by critique, containing identified strengths, weaknesses, and specific recommendations for improvement. It serves as the input for reflexion and refinement loops.",
+  "gloss": "Structured qualitative feedback",
+  "invariants": [
+    "Actionability: Must contain at least one specific recommendation.",
+    "Reference: Must cite specific parts of the target artifact."
+  ],
+  "sema_id": "sema:Assessment#mh:SHA-256:a76518b956c1f22aec39c6402db8725510ea23bd6eda56844ef118a948de3c77",
+  "sema_ref": "Assessment#a765",
+  "sema_stub": "a765",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "target_ref",
+      "recommendations"
+    ],
+    "properties": {
+      "target_ref": {
+        "type": "string",
+        "description": "Reference to artifact being assessed"
+      },
+      "strengths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Positive aspects"
+      },
+      "weaknesses": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Areas for improvement"
+      },
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Actionable suggestions"
+      }
+    }
+  }
+}

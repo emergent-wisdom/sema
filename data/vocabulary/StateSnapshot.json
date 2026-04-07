@@ -1,0 +1,39 @@
+{
+  "handle": "StateSnapshot",
+  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{crypto_shred}}, {{idempotent_write}}.",
+  "gloss": "Durable persistence of volatile state",
+  "invariants": [
+    "Atomicity: {{snapshot}} is either fully written or discarded (no partial corruption)",
+    "Roundtrip Integrity: Deserialize(Serialize(S)) must equal S"
+  ],
+  "preconditions": [
+    "Serializable {{state}}",
+    "Write access to durable storage"
+  ],
+  "postconditions": [
+    "Resume point established"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:01c99fd1a5b7fe33a7065bfddcce746f76ecb2f2737cdd578801903cb7f1e990",
+  "sema_ref": "StateSnapshot#01c9",
+  "sema_stub": "01c9",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "State(Snapshot)"
+  ],
+  "dependencies": {
+    "references": {
+      "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:15e8ae521f88a6137d551fd3c61e350e4a027b6b063a35ade4565adfee83c14a",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1",
+      "crypto_shred": "sema:CryptoShred#mh:SHA-256:e0b99771b604e6fdd9311327bfd36cc7745106047662e6870a8fc7f3aaacaf07"
+    }
+  }
+}

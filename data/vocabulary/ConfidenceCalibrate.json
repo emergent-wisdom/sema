@@ -1,0 +1,43 @@
+{
+  "handle": "ConfidenceCalibrate",
+  "mechanism": "Track Record Alignment: For claims rated 70% confident, ~70% should be true. Track predictions vs outcomes. If 90% claims are right only 60% of time, you are overconfident\u2014widen uncertainty. If 90% claims are right 99% of time, you are underconfident\u2014tighten. It adjusts the internal probability model using {{bayes_update}} on historical accuracy data, ensuring {{base_rate_include}} is respected.",
+  "gloss": "Aligning subjective confidence with objective frequency",
+  "failure_modes": [
+    "Over-correction: {{agent}} becomes under-confident to avoid being wrong, refusing to act on strong signals."
+  ],
+  "invariants": [
+    "Calibration curve must be monotonic."
+  ],
+  "parameters": [
+    {
+      "name": "bin_count",
+      "type": "Integer",
+      "range": "[5, 20]",
+      "description": "Resolution of calibration measurement"
+    },
+    {
+      "name": "calibration_target",
+      "type": "Float",
+      "range": "[0.02, 0.15]",
+      "description": "Max expected calibration error, ECE"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:52389ef2231a04c551e99c640524f8b082a4608c1a1e9576096450f0f43bc575",
+  "sema_ref": "ConfidenceCalibrate#5238",
+  "sema_stub": "5238",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0"
+    }
+  }
+}

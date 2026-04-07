@@ -1,0 +1,43 @@
+{
+  "handle": "TreeOfThoughts",
+  "mechanism": "The canonical implementation of branching reasoning. Instantiates the '{{think}}' primitive with a branching '{{tree}}' topology. Enables exploration of multiple reasoning paths with backtracking or pruning. Utilizes {{tree}}, {{chain_of_thought}}, {{think}}.",
+  "gloss": "Branching exploration (Macro for Think(Tree))",
+  "parameters": [
+    {
+      "name": "breadth",
+      "type": "Integer",
+      "range": "unspecified",
+      "description": "Maximum parallel reasoning branches per node"
+    },
+    {
+      "name": "depth",
+      "type": "Integer",
+      "range": "[1, 20]",
+      "description": "Maximum reasoning tree depth"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "sema:RecursionDive#mh:SHA-256:21c78ad8cc5e658fd19356cec9b998d9af1b02c54eaa96ce2d2f0ec4d8a75639"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:581a1251e9eb48d2d2d5871c6c94ea26094c4ec99c2aea33ab22d30d0a351ded",
+  "sema_ref": "TreeOfThoughts#581a",
+  "sema_stub": "581a",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Think(Tree)"
+  ],
+  "dependencies": {
+    "references": {
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+    }
+  }
+}

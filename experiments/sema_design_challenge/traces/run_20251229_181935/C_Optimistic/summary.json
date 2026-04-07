@@ -1,0 +1,10 @@
+{
+  "scenario": "Condition C: Optimistic Solver (Test)",
+  "status": "completed",
+  "turns_executed": 16,
+  "max_turns": 100,
+  "start_time": "2025-12-29T18:19:36.926086",
+  "end_time": "2025-12-29T18:22:35.956941",
+  "duration_seconds": 179.030855,
+  "run_id": "C_Optimistic"
+}

@@ -1,0 +1,31 @@
+{
+  "handle": "StakedProbe",
+  "mechanism": "A high-assurance verification pattern where a {{probe}} is backed by economic collateral via {{mirror_stake}}. If the probe returns false or malicious data, the stake is slashed. Essential for adversarial environments where simple querying is insufficient.",
+  "gloss": "Economically backed verification query",
+  "failure_modes": [
+    "Insufficient Stake: Collateral too low to deter manipulation.",
+    "Slashing Failure: Incorrect data not detected, stake not forfeited."
+  ],
+  "invariants": [
+    "Skin in the Game: Stake must be > 0.",
+    "Slashable: False reporting triggers automatic asset forfeiture."
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Economics",
+    "tier": 2,
+    "ring": 1
+  },
+  "sema_id": "sema:StakedProbe#mh:SHA-256:c52fef498943c78c929563f2efeca09fc762e23468cccf80e2782bda0f1b3cb0",
+  "sema_ref": "StakedProbe#c52f",
+  "sema_stub": "c52f",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "derived_from": "Probe",
+  "dependencies": {
+    "composes_with": {
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "mirror_stake": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82"
+    }
+  }
+}

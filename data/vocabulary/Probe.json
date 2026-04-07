@@ -1,0 +1,64 @@
+{
+  "handle": "Probe",
+  "mechanism": "An active query that returns verifiable information about system or environment state. Unlike passive observation, a Probe interacts with its target to extract ground truth. It is the primitive mechanism for verification. Probes have cost (resources to execute) and latency (time to return). Stateful probes execute in a {{sandbox}} to prevent production impact.",
+  "gloss": "Active verification query",
+  "failure_modes": [
+    "Observer Effect: Probe changes the state it measures.",
+    "Stale Probe: Result reflects past state, not current.",
+    "Probe Cost: Verification cost exceeds value of information.",
+    "False Positive/Negative: Probe returns incorrect result.",
+    "Sandbox Escape: Probe execution affects production state.",
+    "Proxy Failure: Passing the quiz does not guarantee performance on the job."
+  ],
+  "invariants": [
+    "Ground Truth: Probe result reflects actual state at time of query.",
+    "Repeatability: Same probe on unchanged state returns same result.",
+    "Cost Bound: Probe execution must complete within specified resource limits.",
+    "Non-Destructive: Production state must remain invariant."
+  ],
+  "preconditions": [
+    "Response timeout defined",
+    "Target agent addressable"
+  ],
+  "postconditions": [
+    "No side effects on production target",
+    "Probe cost paid",
+    "Target capability verified OR timeout"
+  ],
+  "parameters": [
+    {
+      "name": "difficulty",
+      "type": "Int",
+      "range": "[1-5]",
+      "description": "Complexity of the verification challenge (1 = trivial, 5 = hard)"
+    },
+    {
+      "name": "timeout_ms",
+      "type": "Int",
+      "range": "[100, 30000]",
+      "description": "Maximum milliseconds to wait for probe response"
+    },
+    {
+      "name": "verification_mode",
+      "type": "Enum",
+      "range": "{StaticVector, Procedural, Sandbox, StakedReport}",
+      "description": "Method used to verify probe response"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+  "sema_ref": "Probe#9f2b",
+  "sema_stub": "9f2b",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0"
+    }
+  }
+}

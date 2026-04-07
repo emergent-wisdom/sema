@@ -1,0 +1,58 @@
+{
+  "handle": "PromptChain",
+  "mechanism": "Decomposes a {{task}} into a fixed {{sequence}} of LLM calls. Each step's output is validated against an {{accept_spec}} before being passed to the next. Trades latency for accuracy by linearizing thought. It orchestrates a sequence of {{tool_invoke}} calls, wrapping each step with {{input_guard}} validation and {{retry}} logic.",
+  "gloss": "Sequential LLM calls with validation gates",
+  "failure_modes": [
+    "Error Propagation: Step N failure corrupts N+1.",
+    "{{gate}} Brittleness: Valid intermediate outputs rejected by strict regex."
+  ],
+  "invariants": [
+    "Halt on Error: {{chain}} aborts if {{gate}}(N) returns False.",
+    "Schema Continuity: Output(N) must satisfy InputSchema(N+1)."
+  ],
+  "parameters": [
+    {
+      "name": "gate_mode",
+      "type": "Enum",
+      "range": "{Strict, Retry, Skip}",
+      "description": "Behavior on failure"
+    },
+    {
+      "name": "max_retries_per_step",
+      "type": "Integer",
+      "range": "[0, 3]",
+      "description": "Maximum retry attempts per step before chain fails"
+    },
+    {
+      "name": "steps",
+      "type": "List[StepDefinition]",
+      "range": "unspecified",
+      "description": "Ordered list of prompts"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:PromptChain#mh:SHA-256:f9c4407f0371d044b56406239b07a23ee59980c6f9a907203126ad34b085a885",
+  "sema_ref": "PromptChain#f9c4",
+  "sema_stub": "f9c4",
+  "dependencies": {
+    "references": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "retry": "sema:Retry#mh:SHA-256:643eaf21af4c22215e1da7dea3c51aeb3c75cedf87c532e3360495691f762568",
+      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
+      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

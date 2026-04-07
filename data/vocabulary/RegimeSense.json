@@ -1,0 +1,56 @@
+{
+  "handle": "RegimeSense",
+  "mechanism": "An anomaly detector that continuously tracks divergence between the agent's internal model predictions and observed reality. It calculates a Regime Stability Score (RSS) as the rolling average of prediction accuracy over a window. High surprisal (low accuracy) indicates regime instability. When RSS drops below threshold, it signals that the underlying generative process has changed and triggers OntologicalAccommodation. It continuously monitors prediction error via {{drift_watch}}, triggering {{ontology_adapt}} or {{quorum}} if the error signal crosses the regime-change threshold.",
+  "gloss": "Detecting structural breaks in reality",
+  "failure_modes": [
+    "False Positives: {{noise}} spikes triggering unnecessary accommodations.",
+    "Lag: RSS is a trailing indicator, so regime shifts are detected after-the-fact.",
+    "Threshold Gaming: Setting threshold too high causes missed shifts; too low causes constant alerts."
+  ],
+  "invariants": [
+    "Stability {{break}}: If RSS < Threshold for N consecutive observations, trigger OntologicalAccommodation",
+    "Window Integrity: RSS calculation uses fixed window size, not cherry-picked ranges"
+  ],
+  "preconditions": [
+    "{{agent}} has a predictive model generating expectations",
+    "Observations are timestamped and comparable to predictions"
+  ],
+  "postconditions": [
+    "Alert raised if regime break detected",
+    "RSS score computed for current window"
+  ],
+  "parameters": [
+    {
+      "name": "stability_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "RSS threshold below which regime break is detected"
+    },
+    {
+      "name": "window_size",
+      "type": "Integer",
+      "range": "[10, 1000]",
+      "description": "Number of observations in the rolling average window"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_id": "sema:RegimeSense#mh:SHA-256:cf1de66cb0d2234220a245834460265804b852980a6625f6f0879bfe1d15da2e",
+  "sema_ref": "RegimeSense#cf1d",
+  "sema_stub": "cf1d",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
+      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:cdae40c623ebfd6cbd464a78c047ba09e9bee9a5f8964497c53391c07d9e6edf",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "handle": "AmendLaws",
+  "mechanism": "Self-Rewriting Rules: A supermajority {{vote}} triggers a state transition that modifies the system's own source constraints. It operates upon the {{hydra_constitution}}, modifying the active constraint set via a cryptographically signed commit. The amendment must pass a specific {{quorum}} threshold (usually > 66%) to be valid.",
+  "gloss": "Self-governing DAOs that patch their own vulnerabilities.",
+  "failure_modes": [
+    "Governance attacks (51% attack) could rewrite safety rules.",
+    "Ossification: Thresholds too high prevent necessary adaptation."
+  ],
+  "invariants": [
+    "Entrenched Clauses: Safety Core (e.g., Do not harm humans) cannot be amended by vote.",
+    "Supermajority: Amendment requires > N% approval (defined in Constitution).",
+    "Atomic Transition: The law change is an atomic commit; no partial updates."
+  ],
+  "preconditions": [
+    "Proposal is formatted as a valid patch",
+    "Voting period has elapsed",
+    "{{quorum}} requirements met"
+  ],
+  "postconditions": [
+    "System constraints updated",
+    "Constitution version incremented"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1
+  },
+  "sema_id": "sema:AmendLaws#mh:SHA-256:d0739153b98a7784f1e2e6778d71390c4af279719a1f01bd2c42c0bf232f9a49",
+  "sema_ref": "AmendLaws#d073",
+  "sema_stub": "d073",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654",
+      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

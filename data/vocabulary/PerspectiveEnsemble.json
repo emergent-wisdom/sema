@@ -1,0 +1,52 @@
+{
+  "handle": "PerspectiveEnsemble",
+  "mechanism": "The {{agent}} instantiates N virtual personas to debate the {{problem}} from distinct, pre-defined viewpoints. The {{synthesis}} emerges from their interaction. Unlike a single {{chain}}-of-Thought, this forces the modeling of conflicting priors. It generates diverse viewpoints using {{steelman_check}} on opposing arguments, then resolves the conflict via {{aggregate}} (e.g. Mode).",
+  "gloss": "Simulating diverse experts",
+  "failure_modes": [
+    "Strawman Waltz: Personas agree too easily (Fabricated consensus).",
+    "Role Drift: Personas lose their specific stance over long {{context}} windows."
+  ],
+  "invariants": [
+    "Semantic Distance: CosineSimilarity(Persona_A_Output, Persona_B_Output) < 0.6",
+    "Independence: Personas cannot see peer outputs in Round 1"
+  ],
+  "preconditions": [
+    "{{agent}} must be alignment-seeking (Tier 2 Limitation)"
+  ],
+  "parameters": [
+    {
+      "name": "personas",
+      "type": "List[String]",
+      "range": "[3, 7]",
+      "description": "Distinct viewpoints"
+    },
+    {
+      "name": "rounds",
+      "type": "Integer",
+      "range": "[1, 5]",
+      "description": "Debate turns"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:c90c028c8efc22b8a6b3d37128b5b90aec16b252e511c37939fb6d902d4065e8",
+  "sema_ref": "PerspectiveEnsemble#c90c",
+  "sema_stub": "c90c",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5"
+    }
+  }
+}

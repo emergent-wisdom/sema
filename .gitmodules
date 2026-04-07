@@ -1,0 +1,3 @@
+[submodule "experiments/emergent-swarm"]
+	path = experiments/emergent-swarm
+	url = https://github.com/emergent-wisdom/emergent-swarm.git

@@ -1,0 +1,57 @@
+{
+  "handle": "Constraint",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "constraint_type",
+      "expression"
+    ],
+    "properties": {
+      "constraint_type": {
+        "type": "string",
+        "enum": [
+          "resource",
+          "safety",
+          "legal",
+          "physical"
+        ],
+        "description": "Category of constraint"
+      },
+      "expression": {
+        "type": "string",
+        "description": "The constraint as a boolean expression or inequality"
+      },
+      "priority": {
+        "type": "integer",
+        "description": "Enforcement order when multiple constraints apply"
+      },
+      "source": {
+        "type": "string",
+        "description": "Origin of the constraint (parent task, law, etc.)"
+      }
+    }
+  },
+  "mechanism": "A boundary condition that must be satisfied by any valid solution. Constraints are non-compensatory: violating one constraint cannot be offset by exceeding another. They come in types: Resource (budget, time), Safety (harm prevention), Legal (compliance), Physical (laws of nature). Constraints propagate via Holographic Inheritance: child tasks inherit parent constraints.",
+  "gloss": "Non-negotiable boundary condition",
+  "failure_modes": [
+    "Constraint Relaxation: Silently loosening a constraint to fit a preferred solution.",
+    "Hidden Constraint: A real-world constraint not captured in the specification.",
+    "Constraint Conflict: Two constraints are mutually exclusive (no solution exists)."
+  ],
+  "invariants": [
+    "Non-Compensatory: Violation of any constraint = rejection.",
+    "Inheritance: Child constraints must include all parent constraints.",
+    "Explicitness: All constraints must be stated, not implied."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+  "sema_ref": "Constraint#87fe",
+  "sema_stub": "87fe",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

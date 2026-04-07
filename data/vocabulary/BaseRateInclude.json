@@ -1,0 +1,33 @@
+{
+  "handle": "BaseRateInclude",
+  "mechanism": "Prior Probability Anchor: Before evaluating specific case, ask: \"How often does this happen in general?\" Start with base rate. Adjust for specific evidence. Vivid details don't change base rates. \"This startup feels special\" doesn't change 90% failure rate.",
+  "gloss": "Outside view over inside view",
+  "failure_modes": [
+    "Reference Class Tennis: Gaming the output by cherry-picking a favorable reference class."
+  ],
+  "invariants": [
+    "Base rate source must be reference class relevant",
+    "Posterior probability must respect prior base rate"
+  ],
+  "preconditions": [
+    "General population statistics",
+    "Specific case evidence"
+  ],
+  "postconditions": [
+    "Probability estimate adjusted towards mean"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "related": [
+      "BayesUpdate"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
+  "sema_ref": "BaseRateInclude#aa0b",
+  "sema_stub": "aa0b",
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

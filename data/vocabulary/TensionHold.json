@@ -1,0 +1,43 @@
+{
+  "handle": "TensionHold",
+  "mechanism": "Cognitive Suspension protocol. When two high-confidence inputs conflict (A \u22a5 B), the {{agent}} instantiates a {{tension}} object that binds them together. This blocks downstream decision-making until a reconciling insight (Pattern C) is found via {{dialectic}} or {{synthesis}}.",
+  "gloss": "Maintain contradictions without premature resolution",
+  "failure_modes": [
+    "Premature Convergence: {{agent}} resolves {{tension}} by arbitrarily discarding one side to reduce cognitive load.",
+    "Tension Blindness: {{agent}} treats a contradiction as a simple error/hallucination and ignores it.",
+    "Analysis Paralysis: Accumulating {{tension}} objects without ever triggering {{dialectic}} resolution."
+  ],
+  "invariants": [
+    "No Selection: Output cannot be simply 'A' or 'B' (must be {{tension}}{A,B}).",
+    "Persistence: {{tension}} object remains active until explicitly resolved via {{synthesis}} or Falsification."
+  ],
+  "preconditions": [
+    "Mutually exclusive valid inputs identified",
+    "Resolution threshold not met"
+  ],
+  "postconditions": [
+    "Execution flow diverted to Information Retrieval (to break the tie)",
+    "{{tension}} object created in Graph"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:TensionHold#mh:SHA-256:71f46c71157e0ff163c5175d1701d92a08c128d4bd80fa5f89ab852e218ddece",
+  "sema_ref": "TensionHold#71f4",
+  "sema_stub": "71f4",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "yields": {
+      "tension": "sema:Tension#mh:SHA-256:01e63bf25f762dff619e7125453ed1434525f7c40adfdb1b6391db6713e872bc"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "dialectic": "sema:Dialectic#mh:SHA-256:fae9f2cb66a8be390dad665ac54ed7415746a76ac5a20ff3e983dbf7d3983940"
+    }
+  }
+}

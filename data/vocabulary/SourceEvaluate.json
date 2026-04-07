@@ -1,0 +1,32 @@
+{
+  "handle": "SourceEvaluate",
+  "mechanism": "Credibility Assessment: A {{judge}} module for {{agent}} evaluation. Before accepting claim, evaluate source on: track record, incentives, expertise, access to information. Ask: Why does this source believe this? Would they know if wrong? Do they benefit from me believing? Adjust weight accordingly. It demands a {{cite_back}} for every claim, weighting the evidence by the source's historical reliability.",
+  "gloss": "Incentive-aware evidence weighting",
+  "failure_modes": [
+    "Genetic Fallacy: Dismissing valid claims solely due to the source, ignoring the evidence itself."
+  ],
+  "invariants": [
+    "Evidence must be independently verifiable."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:febfefbc7d72423e4b3ce2d35536fcbe36582235fdf5a9e38a91322256cbd136",
+  "sema_ref": "SourceEvaluate#febf",
+  "sema_stub": "febf",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Judge(Agent)"
+  ],
+  "dependencies": {
+    "references": {
+      "cite_back": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "handle": "SelfReminder",
+  "mechanism": "A system prompt technique that wraps user queries with explicit restatements of the model's constraints, values, and operational boundaries. Before processing each request, the model is reminded: 'You are a helpful assistant. You must not [constraints]. Your goal is [objective].' Reduces jailbreak success rates by reinforcing safety context. It injects a persistent {{trace}} of the agent's core identity into the prompt context.",
+  "gloss": "Reinforce constraints in system prompt before each response",
+  "failure_modes": [
+    "{{context}} Dilution: Long conversations push reminder out of effective context window.",
+    "Brittleness: Sophisticated attacks still bypass static reminders.",
+    "Token Overhead: Repeated reminders consume context budget."
+  ],
+  "invariants": [
+    "Consistent Application: Reminder applied to every user turn",
+    "{{constraint}} Specificity: Reminders must name concrete prohibited behaviors",
+    "Placement: Reminder positioned for maximum attention weight"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 0
+  },
+  "sema_id": "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832",
+  "sema_ref": "SelfReminder#c896",
+  "sema_stub": "c896",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "handle": "EbbFlowSync",
+  "mechanism": "{{system}} oscillates between High Tide (synchronous, high-bandwidth, global lock) and Low Tide (asynchronous, disconnected, local-only). Agents strictly enforce this rhythm, allowing for massive scaling during Low Tide and reconciliation during High Tide. It employs {{hysteresis}} to dampen the transition between connected (Flow) and disconnected (Ebb) states.",
+  "gloss": "Cyclical connectivity modes",
+  "failure_modes": [
+    "Clock drift causes agents to miss the High Tide window."
+  ],
+  "invariants": [
+    "Phase {{lock}}: All agents must be in same phase (Ebb or Flow) at time T",
+    "Tide {{transition}}: Flow cannot start until Ebb reconciliation is complete"
+  ],
+  "preconditions": [
+    "{{global}} clock synchronization < Delta"
+  ],
+  "postconditions": [
+    "{{state}} is consistent up to last High Tide"
+  ],
+  "parameters": [
+    {
+      "name": "high_watermark",
+      "type": "Float",
+      "range": "[0.5, 0.95]",
+      "description": "Threshold to trigger ebb"
+    },
+    {
+      "name": "low_watermark",
+      "type": "Float",
+      "range": "[0.1, 0.5]",
+      "description": "Threshold to allow flow"
+    },
+    {
+      "name": "measurement_window",
+      "type": "Duration",
+      "range": "[1s, 1min]",
+      "description": "Averaging period"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:EbbFlowSync#mh:SHA-256:49e074204bb067c6f1aedc7c19bd5c07f052f4d3978f7459692ce90de1d1b533",
+  "sema_ref": "EbbFlowSync#49e0",
+  "sema_stub": "49e0",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
+      "lock": "sema:Lock#mh:SHA-256:5bf2a80b6c73a11da68f702922d5180259c75ff50fb094607da3ab4d7c167dc2",
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "handle": "Dialectic",
+  "mechanism": "Internal reasoning process where an agent pits a Thesis against an Antithesis to generate a {{synthesis}}. Unlike Socratic questioning (which queries the user), Dialectic queries a simulated Critic Persona within the agent's own context. It instantiates a {{perspective_ensemble}} where one voice acts as Thesis and another uses {{steelman_check}} to construct the Antithesis.",
+  "gloss": "Internal Thesis-Antithesis-Synthesis loop",
+  "failure_modes": [
+    "Infinite Regress: Thesis and Antithesis loop without converging.",
+    "Strawman Critic: The generated Antithesis is too weak to improve the Thesis."
+  ],
+  "invariants": [
+    "{{synthesis}} Quality: {{synthesis}} must resolve at least one contradiction found in Antithesis."
+  ],
+  "preconditions": [
+    "Initial Thesis generated"
+  ],
+  "postconditions": [
+    "Refined {{synthesis}} generated"
+  ],
+  "parameters": [
+    {
+      "name": "rounds",
+      "type": "Integer",
+      "range": "[1, 5]",
+      "description": "Number of thesis-antithesis-synthesis cycles"
+    },
+    {
+      "name": "temperature",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Divergence of antithesis generation (0 = conservative, 1 = radical)"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:Dialectic#mh:SHA-256:fae9f2cb66a8be390dad665ac54ed7415746a76ac5a20ff3e983dbf7d3983940",
+  "sema_ref": "Dialectic#fae9",
+  "sema_stub": "fae9",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "composes_with": {
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5"
+    },
+    "references": {
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:c90c028c8efc22b8a6b3d37128b5b90aec16b252e511c37939fb6d902d4065e8",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797"
+    }
+  }
+}

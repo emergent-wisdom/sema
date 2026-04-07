@@ -1,0 +1,39 @@
+{
+  "handle": "AnchorDrop",
+  "mechanism": "When network turbulence or disagreement exceeds a threshold, agents trigger an 'Anchor Drop'. They stop accepting new transactions and aggressively seek {{quorum}} on the last valid state (the Anchor). Progress resumes only after the Anchor is solidified. It invokes first principles to re-derive the valid state from the bedrock axioms when the consensus chain is corrupted.",
+  "gloss": "Emergency state checkpointing",
+  "failure_modes": [
+    "{{system}} stalls completely."
+  ],
+  "invariants": [
+    "{{consensus}} Threshold: >2/3 agents must sign Anchor",
+    "Immutability: Anchor state cannot be modified once finalized"
+  ],
+  "preconditions": [
+    "Network partition detected"
+  ],
+  "postconditions": [
+    "{{system}} restarts from Anchor state"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "related": [
+      "ConceptAnchor"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:b117c4c8281f0c1096546e7832d6d633708fba9e0badef904d229233db70d965",
+  "sema_ref": "AnchorDrop#b117",
+  "sema_stub": "b117",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "consensus": "sema:Consensus#mh:SHA-256:986562fe8b9bcfda2a62c40b276a8ff136e732d6f788dc6fa610bf2ef18f4123",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

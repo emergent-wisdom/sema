@@ -1,0 +1,30 @@
+{
+  "handle": "RingWitness",
+  "mechanism": "A cryptographic signature scheme where a message is signed by a 'ring' of N agents. The signature proves that 'one of the N agents signed this', but it is mathematically impossible to determine WHICH one. It provides authenticity with plausible deniability. It leverages {{identity_mask}} to prove group membership without revealing individual identity.",
+  "gloss": "Group-level attribution without individual identification",
+  "failure_modes": [
+    "Sybil attacks (one agent flooding the ring with fake identities)."
+  ],
+  "invariants": [
+    "All N witnesses signed",
+    "Order of signing preserved"
+  ],
+  "preconditions": [
+    "Document/Fact",
+    "Ring of verifiers"
+  ],
+  "postconditions": [
+    "Proof of consensus"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 1
+  },
+  "sema_id": "sema:RingWitness#mh:SHA-256:1038a04f0c68ad710717eedc0f6512fc55c480bedb0922e874163f8e234afe01",
+  "sema_ref": "RingWitness#1038",
+  "sema_stub": "1038",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
+}

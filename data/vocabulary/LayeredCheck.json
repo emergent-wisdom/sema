@@ -1,0 +1,38 @@
+{
+  "handle": "LayeredCheck",
+  "mechanism": "A {{check}} strategy that evaluates constraints in a strict {{hierarchy}} of abstraction (e.g., existence -> {{validate}} (schema) -> {{understand}} (semantics)). It uses a {{sequence}} of {{gate}}s where lower-level failures halt execution immediately, preventing resource waste on higher-level checks for fundamentally broken inputs.",
+  "gloss": "Hierarchical verification strategy",
+  "signature": [
+    "Check(Hierarchy)"
+  ],
+  "invariants": [
+    "Fail-Fast: If Layer(N) fails, Layer(N+1) is NOT executed.",
+    "Hierarchy Obedience: Checks are strictly ordered by abstraction level."
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "PURECheck"
+    ]
+  },
+  "sema_ref": "LayeredCheck#0137",
+  "sema_id": "sema:LayeredCheck#mh:SHA-256:013785ca767d35d07edc372494a3c069d2117dcfdfef064e989db39293bc66a5",
+  "sema_stub": "0137",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
+      "understand": "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
+    },
+    "composes_with": {
+      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
+      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    }
+  }
+}

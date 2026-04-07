@@ -1,0 +1,36 @@
+{
+  "handle": "ProphetFanOut",
+  "mechanism": "A purely descriptive module that utilizes computational abundance to generate multiple branching future timelines resulting from a proposed action. Unlike standard {{chain}}-of-Thought which follows one likely path (mimicking human laziness), the Prophet forces exploration of low-probability but high-impact tails. It feeds into {{quorum}} by generating the diverse timeline candidates required for the {{aggregate}}.",
+  "gloss": "High-fanout causal simulation",
+  "failure_modes": [
+    "Fan-out explosion (generating too many irrelevant futures)."
+  ],
+  "invariants": [
+    "Descriptive Only: Output must contain zero normative judgment",
+    "Diversity: Entropy(Timelines) > Threshold (Must explore distinct futures)"
+  ],
+  "preconditions": [
+    "Action A is well-defined"
+  ],
+  "postconditions": [
+    "At least 3 distinct futures generated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 1
+  },
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:6972d19d015bb785ec16660c5a465e9451e2109e435e465b16a7432b806ecf7f",
+  "sema_ref": "ProphetFanOut#6972",
+  "sema_stub": "6972",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332"
+    }
+  }
+}

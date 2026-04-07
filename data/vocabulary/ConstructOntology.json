@@ -1,0 +1,50 @@
+{
+  "handle": "ConstructOntology",
+  "mechanism": "A primitive for building a structured set of concepts and relationships (an ontology) from raw data or seed axioms. It defines the 'physics' or 'rules' of a domain. This is the constructive counterpart to 'Adversarial Ontology Construction' (which is a methodology using this primitive). It builds the semantic graph from {{first_principles}}, validating edge coherence via {{adversarial_steel}} and establishing shared context through {{ontology_handshake}}.",
+  "gloss": "Building a structured conceptual framework",
+  "failure_modes": [
+    "Incoherence: Contradictory axioms or definitions."
+  ],
+  "invariants": [
+    "Completeness: All referenced terms are defined",
+    "Consistency: No contradictions within the ontology"
+  ],
+  "preconditions": [
+    "Seed concepts or data available"
+  ],
+  "postconditions": [
+    "Valid ontology object created"
+  ],
+  "parameters": [
+    {
+      "name": "depth",
+      "type": "Integer",
+      "range": "[1, 10]",
+      "description": "Hierarchical depth"
+    },
+    {
+      "name": "format",
+      "type": "Enum",
+      "range": "{OWL, JSON-LD, Sema}",
+      "description": "Output format"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:15d927037bd703976cea2d25f710dc01be41c465358f392dd40e4b76d5366e0d",
+  "sema_ref": "ConstructOntology#15d9",
+  "sema_stub": "15d9",
+  "dependencies": {
+    "references": {
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
+      "first_principles": "sema:FirstPrinciples#mh:SHA-256:77c2ebad48095ce9b68a0a8a841fee31c9cf209e4dc0cddd5ff7a0c8de9b1de5",
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:4a095e438c638405755b8f1115722e839bf6ba924f2a989f5a71213711d0b2ef"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "handle": "SynergisticMode",
+  "mechanism": "Broadcasts a 'Cognitive {{mode}}' {{signal}} (Generative vs. Verifier) to downstream {{agent}}s. Downstream solvers MUST adjust their `{{accept_spec}}` strictness to match the upstream mode. Utilizes {{compose}}.",
+  "gloss": "Protocol-level cognitive mode switching",
+  "failure_modes": [
+    "{{mode}} Confusion: Downstream agent misinterprets the intent of the upstream mode.",
+    "{{mode}} Locking: {{system}} gets stuck in Conservative mode and refuses to innovate."
+  ],
+  "invariants": [
+    "Complementary Coupling: Wild generation MUST be paired with strict verification",
+    "Explicit Declaration: {{mode}} must be part of the {{ontology_handshake}}"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "mode",
+      "target_agents"
+    ],
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": [
+          "Generative",
+          "Verifier"
+        ],
+        "description": "Cognitive mode being broadcast"
+      },
+      "target_agents": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Downstream agents to adjust"
+      },
+      "accept_spec_adjustment": {
+        "type": "object",
+        "description": "How to modify strictness"
+      }
+    }
+  },
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:a94440c9950aef7fd08fd4897a49054ec11517449a412c3ff38534e594befc07",
+  "sema_ref": "SynergisticMode#a944",
+  "sema_stub": "a944",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
+      "compose": "sema:Compose#mh:SHA-256:d83e9e6ce1592dbfa78134440aa8f751f567ddd4964b573d1d44fadfd914f39b",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

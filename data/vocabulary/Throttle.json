@@ -1,0 +1,55 @@
+{
+  "handle": "Throttle",
+  "mechanism": "Rate Limiting: Maximum N {{task}}s per time window W. Excess requests rejected, queued, or delayed. Window can be sliding or fixed. Separate limits per action type or global. Utilizes {{backoff}}.",
+  "gloss": "Rate-limiting to prevent resource exhaustion",
+  "failure_modes": [
+    "Legitimate Denial: Throttle cannot distinguish attack traffic from legitimate burst."
+  ],
+  "invariants": [
+    "Queue Bounding: Dropped requests > 0 if InputRate >> MaxRate",
+    "Rate Limit: Output events per second <= MaxRate",
+    "Rate never exceeds limit within any window."
+  ],
+  "preconditions": [
+    "Token bucket or Leaky bucket state initialized"
+  ],
+  "parameters": [
+    {
+      "name": "burst_size",
+      "type": "Integer",
+      "range": "[1, 100]",
+      "description": "Temporary overflow allowance"
+    },
+    {
+      "name": "rate_limit",
+      "type": "Integer",
+      "range": "[1, 10000]",
+      "description": "Max requests per window"
+    },
+    {
+      "name": "window",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Time window for rate calculation"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
+  "sema_ref": "Throttle#3b43",
+  "sema_stub": "3b43",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "composes_with": {
+      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+    }
+  }
+}

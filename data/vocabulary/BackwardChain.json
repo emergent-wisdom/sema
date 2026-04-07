@@ -1,0 +1,38 @@
+{
+  "handle": "BackwardChain",
+  "mechanism": "Goal-First Decomposition: Start from desired end-state, recursively identify prerequisites. For each prerequisite, ask \"what must be true for this to hold?\" until reaching known facts or actionable steps. Execution order is reverse of discovery order. It structures the {{chain_of_thought}} in reverse chronological order, linking the desired future state to present preconditions.",
+  "gloss": "Goal-driven reasoning from target to preconditions",
+  "failure_modes": [
+    "Infinite Regression: The precondition chain never terminates because base facts are missing."
+  ],
+  "invariants": [
+    "Causal Sufficiency: Step(T) must be sufficient condition for Step(T+1)",
+    "Goal Anchoring: {{chain}} must start at DesiredEndState",
+    "Leaf nodes must be actionable or known-true."
+  ],
+  "preconditions": [
+    "Goal is clearly defined",
+    "Goal state clearly defined. Domain has prerequisite structure. Knowledge base queryable."
+  ],
+  "postconditions": [
+    "Execution plan produced OR goal proven unachievable. {{plan}} steps in executable order. All prerequisites satisfied."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b",
+  "sema_ref": "BackwardChain#0484",
+  "sema_stub": "0484",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332"
+    }
+  }
+}

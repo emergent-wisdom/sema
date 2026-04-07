@@ -1,0 +1,28 @@
+{
+  "handle": "Validate",
+  "mechanism": "Syntactic Verification. Checks if a data artifact conforms to a predefined structure (Schema) or set of constraints. Rejects malformed inputs before processing. Utilizes {{accept_spec}}. Distinct from {{check}} (Logic Gate) and quality scoring (Judge).",
+  "gloss": "Verifying inputs conform to expected schema",
+  "failure_modes": [
+    "Validator Bypass: Attacker finds encoding that passes validation but exploits downstream parser."
+  ],
+  "invariants": [
+    "Binary Result: Pass or Fail.",
+    "Side-Effect Free: Validation must not alter the payload."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 1
+  },
+  "sema_id": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
+  "sema_ref": "Validate#d501",
+  "sema_stub": "d501",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "dependencies": {
+    "references": {
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    }
+  }
+}

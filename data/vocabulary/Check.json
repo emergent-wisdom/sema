@@ -1,0 +1,60 @@
+{
+  "handle": "Check",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "target_id",
+      "condition",
+      "status"
+    ],
+    "properties": {
+      "target_id": {
+        "type": "string",
+        "description": "The entity being checked"
+      },
+      "condition": {
+        "type": "string",
+        "description": "The logic predicate"
+      },
+      "status": {
+        "type": "boolean",
+        "description": "True/False result"
+      },
+      "evidence": {
+        "type": "string",
+        "description": "Why it passed/failed"
+      }
+    }
+  },
+  "mechanism": "A non-blocking verification primitive. Evaluates the truth-value of a {{condition}} against a target and returns a Boolean status. Unlike a {{gate}} (which alters control flow based on the result), a Check is purely observational and side-effect free. It answers 'Is this true?' without deciding 'Should we stop?'.",
+  "gloss": "Non-blocking truth evaluation",
+  "failure_modes": [
+    "False Positive: Check returns True due to flawed logic or sensor noise.",
+    "Heisenbug: The act of checking alters the state being checked."
+  ],
+  "invariants": [
+    "Side-Effect Free: Running a check must not mutate the target state.",
+    "Determinism: Same input context yields same boolean result."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "related": [
+      "Gate#5c08",
+      "Validate#16b2",
+      "Judge#3d5f"
+    ]
+  },
+  "sema_id": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+  "sema_ref": "Check#9074",
+  "sema_stub": "9074",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    }
+  }
+}

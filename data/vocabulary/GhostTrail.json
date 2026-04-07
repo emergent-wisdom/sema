@@ -1,0 +1,40 @@
+{
+  "handle": "GhostTrail",
+  "mechanism": "A stigmergic {{protocol}} where environmental {{trace}}s (pheromones) are cryptographically signed by a Ring Signature. This proves that a {{trace}} was left by a valid member of the Scout group without revealing the specific {{agent}}'s {{identity}} or location history. The swarm follows the {{trace}} because it verifies the Group Authority, but no predator can track the individual Scout who laid it. It secures the {{trace}} with {{identity_mask}}, ensuring the signature validates group membership without revealing the individual scout.",
+  "gloss": "Cryptographically verified anonymous stigmergy",
+  "failure_modes": [
+    "Sybil Ring: If the anonymous group is infiltrated by enough adversaries, they can flood the environment with fake (but validly signed) trails."
+  ],
+  "invariants": [
+    "Plausible Deniability: Probability(Signer = Agent_N) = 1/N",
+    "{{trace}} Authority: Verify({{trace}}, RingKey) == True"
+  ],
+  "preconditions": [
+    "Group Public Keys established",
+    "Shared environment (Canvas/Map)"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "related": [
+      "RingWitness",
+      "TimeWarpLog#e409"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:GhostTrail#mh:SHA-256:91ae8d7d1b3e4bd39696fc0583fae5f2238600d7a041e010374c7edc01732cd2",
+  "sema_ref": "GhostTrail#91ae",
+  "sema_stub": "91ae",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "identity_mask": "sema:IdentityMask#mh:SHA-256:f9a7dad03253207e14124a8cba4c80fa5fec7195b26dd12573bf7af2db020279",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+    }
+  }
+}

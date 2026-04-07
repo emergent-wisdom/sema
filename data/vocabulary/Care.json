@@ -1,0 +1,26 @@
+{
+  "handle": "Care",
+  "mechanism": "The application of {{work}} to reduce a target's {{entropy}} without an explicit {{value}} extraction. It creates a buffer against volatility.",
+  "gloss": "Non-transactional maintenance energy",
+  "invariants": [
+    "Entropy Reduction: Action reduces local disorder.",
+    "Resource Consumption: Care requires Work."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Care#mh:SHA-256:9186944f2f3e4e9641a5f310c0fb1cf52129c46af485f4b5fe9bbff1618a8ae5",
+  "sema_ref": "Care#9186",
+  "sema_stub": "9186",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    }
+  }
+}

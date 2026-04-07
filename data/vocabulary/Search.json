@@ -1,0 +1,26 @@
+{
+  "handle": "Search",
+  "mechanism": "Active scanning of a domain (memory, environment, data) to locate entities that match a {{criteria}}. It iterates through the domain, applying {{check}} to filter candidates.",
+  "gloss": "Active retrieval of matching entities",
+  "invariants": [
+    "Determinism: Same domain + same criteria = same results.",
+    "Completeness: Must not silently skip accessible items."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_ref": "Search#b292",
+  "sema_id": "sema:Search#mh:SHA-256:b292663d798e96925c03b01a95578d40bafb9c4713b63408ebfc424a8237df72",
+  "sema_stub": "b292",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "RuleSet",
+  "mechanism": "A structured collection of {{constraint}}s and invariants that defines a validity boundary. It serves as the immutable input for validation logic, distinct from a mutable policy or social {{constitution}}.",
+  "gloss": "Immutable collection of constraints",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "tier": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "constraints"
+    ],
+    "properties": {
+      "constraints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of constraint hashes"
+      }
+    }
+  },
+  "sema_ref": "RuleSet#399b",
+  "sema_id": "sema:RuleSet#mh:SHA-256:399b641917991080c8edc522db1225a163b4e3220bac652ae8327eeb7533c2c3",
+  "sema_stub": "399b",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

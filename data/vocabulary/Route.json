@@ -1,0 +1,40 @@
+{
+  "handle": "Route",
+  "mechanism": "A classifier that examines a {{task}} input and directs it to a specialized downstream handler. Enables separation of concerns\u2014different query types get different prompts, tools, or models. Can route based on intent, complexity, domain, or cost optimization (simple queries to small models, complex to large).",
+  "gloss": "Classify input and direct to specialized handler",
+  "failure_modes": [
+    "Misrouting: Input sent to wrong specialist, causing errors.",
+    "Ambiguous Classification: Input matches multiple routes or none.",
+    "Routing Bottleneck: Classifier becomes slower than just handling directly."
+  ],
+  "invariants": [
+    "Input directed to best-fit handler",
+    "No dropped requests"
+  ],
+  "preconditions": [
+    "Input query",
+    "Router logic/embeddings"
+  ],
+  "postconditions": [
+    "Query dispatched"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "related": [
+      "sema:Select#mh:SHA-256:b37174cf130148f0e486f85d892b6fd42d27a35d8493ff826602c0bbdc2fbde5"
+    ],
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Route#mh:SHA-256:627330c3657b0c1829a6841757736f62c16a41a7309e3c317aa933893d6a23ec",
+  "sema_ref": "Route#6273",
+  "sema_stub": "6273",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

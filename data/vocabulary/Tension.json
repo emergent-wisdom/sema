@@ -1,0 +1,60 @@
+{
+  "handle": "Tension",
+  "mechanism": "A data structure representing a detected conflict between two or more valid but mutually exclusive signals, constraints, or values. It serves as the input for resolution protocols like {{dialectic}} or {{yield}}.",
+  "gloss": "Reified conflict state",
+  "invariants": [
+    "Mutually Exclusive: The bound elements cannot both be fully satisfied simultaneously.",
+    "Persistence: Must persist until explicitly resolved."
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_id": "sema:Tension#mh:SHA-256:01e63bf25f762dff619e7125453ed1434525f7c40adfdb1b6391db6713e872bc",
+  "sema_ref": "Tension#01e6",
+  "sema_stub": "01e6",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "tension_id",
+      "polarity_a",
+      "polarity_b",
+      "status"
+    ],
+    "properties": {
+      "tension_id": {
+        "type": "string"
+      },
+      "polarity_a": {
+        "type": "object",
+        "description": "The first conflicting force/idea/constraint"
+      },
+      "polarity_b": {
+        "type": "object",
+        "description": "The opposing force/idea/constraint"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "Active",
+          "Resolving",
+          "Resolved",
+          "Ignored"
+        ]
+      },
+      "resolution_strategy": {
+        "type": "string",
+        "description": "How the tension is being handled"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "dialectic": "sema:Dialectic#mh:SHA-256:fae9f2cb66a8be390dad665ac54ed7415746a76ac5a20ff3e983dbf7d3983940"
+    }
+  }
+}

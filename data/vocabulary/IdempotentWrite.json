@@ -1,0 +1,38 @@
+{
+  "handle": "IdempotentWrite",
+  "mechanism": "A technical primitive where every write request includes a unique 'Idempotency Key'. The receiver tracks processed keys. If it receives a duplicate key, it returns the stored result without re-executing the side effects. This makes 'At-Least-Once' delivery safe. It uses a keyed {{state_lock}} to deduplicate requests, ensuring only the first write executes while subsequent ones return the cached result.",
+  "gloss": "Safe retries via unique keys",
+  "failure_modes": [
+    "Key collision (two different requests use same key)."
+  ],
+  "invariants": [
+    "{{identity}}: Apply(Req) == Apply(Req)",
+    "Safety: Duplicate requests trigger zero additional side effects"
+  ],
+  "preconditions": [
+    "Receiver has state storage for keys"
+  ],
+  "postconditions": [
+    "Action executed exactly once (logically)"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "related": [
+      "sema:UniqueHandle#mh:SHA-256:c3fb079be6908528bb340de26feb85f429a61fc13db10e728ea0ec3fffb19110"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:15e8ae521f88a6137d551fd3c61e350e4a027b6b063a35ade4565adfee83c14a",
+  "sema_ref": "IdempotentWrite#15e8",
+  "sema_stub": "15e8",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+    }
+  }
+}

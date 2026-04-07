@@ -1,0 +1,56 @@
+{
+  "handle": "CapacityPressure",
+  "mechanism": "A regularization pattern that forces abstraction by artificially constraining resources (bandwidth, memory, parameter count, or time). By creating a bottleneck where Capacity < Information, the agent is compelled to compress the signal, discarding noise and memorized details in favor of high-level concepts and generalizations. It artificially tightens the {{budget}}, forcing the agent to employ {{generalize}}, {{concept_blend}}, and {{context_compress}} to fit the signal within the bottleneck.",
+  "gloss": "Forcing abstraction via resource starvation",
+  "failure_modes": [
+    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting) Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint) False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget"
+  ],
+  "invariants": [
+    "Bottleneck Existence: Available Capacity must be strictly less than Input Information Content",
+    "Lossy Requirement: Output must be a simplified representation, effectively barring exact replication/memorization",
+    "Utility Preservation: The compressed form must retain predictive power for the target task"
+  ],
+  "preconditions": [
+    "A mechanism to enforce hard limits (e.g., context window, dimensions, token count)",
+    "A stream of information or a learning task"
+  ],
+  "postconditions": [
+    "A highly compressed, abstract representation of the input",
+    "Loss of fine-grained detail/noise"
+  ],
+  "parameters": [
+    {
+      "name": "compression_ratio",
+      "type": "Float",
+      "range": "unspecified",
+      "description": "Target resource utilization ratio that triggers forced abstraction"
+    },
+    {
+      "name": "resource_type",
+      "type": "Enum",
+      "range": "unspecified",
+      "description": "Type of resource being constrained (compute, memory, bandwidth)"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:3c3572db0c16bc3cef849ccee61a6718000e61de13d2ce73966efdf257b33ba1",
+  "sema_ref": "CapacityPressure#3c35",
+  "sema_stub": "3c35",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
+      "generalize": "sema:Generalize#mh:SHA-256:931391f2fdaca5c5eaa2afc80b25a36c0c186db71fb2b56944da537c028d0a1a",
+      "context_compress": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "ContingencyPlan",
+  "mechanism": "If-Then Preparation: For each critical assumption in a {{plan}}, define trigger condition for failure. Pre-compute response: \"If X happens, I will do Y.\" Store contingencies before they are needed. When trigger fires, execute pre-made backup {{plan}} without deliberation under stress. It pre-defines the logic that {{retry}} or recovery mechanisms should execute upon specific trigger conditions.",
+  "gloss": "Pre-computed responses to critical failure",
+  "failure_modes": [
+    "Maginot Line: Planning for the wrong disaster while ignoring the actual threat model."
+  ],
+  "invariants": [
+    "Resources reserved for contingency",
+    "Trigger condition is disjoint from main plan success"
+  ],
+  "preconditions": [
+    "Identified failure modes",
+    "Primary plan"
+  ],
+  "postconditions": [
+    "Backup path defined and viable"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:ContingencyPlan#mh:SHA-256:9d1af8bde720462097404b12af1f69e84213e1e084fd3b1786f3fd92289da68c",
+  "sema_ref": "ContingencyPlan#9d1a",
+  "sema_stub": "9d1a",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "retry": "sema:Retry#mh:SHA-256:643eaf21af4c22215e1da7dea3c51aeb3c75cedf87c532e3360495691f762568",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+    }
+  }
+}

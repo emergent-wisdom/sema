@@ -1,0 +1,30 @@
+{
+  "handle": "EjectionSeat",
+  "mechanism": "Hardware-interrupt style kill switch allowing human to force-terminate agent swarm regardless of internal consensus state. Operates outside agent communication layer - cannot be blocked, negotiated, or delayed by agents. Implementation: dedicated signal channel (not shared with agent traffic), cryptographic operator key required, cascading shutdown propagates to all connected agents. Three modes: PAUSE (freeze state, resume possible), TERMINATE (graceful shutdown with state dump), EMERGENCY (immediate halt, no cleanup). Agents MUST implement receiver - non-compliance detectable via heartbeat absence. It overrides standard protocols to force a shutdown, triggering best-effort {{compensate}} logic where possible.",
+  "gloss": "Hardware-interrupt kill switch",
+  "failure_modes": [
+    "False Positive: Operator panics and kills a healthy system during a critical transaction."
+  ],
+  "invariants": [
+    "Fail-Safe: Activation defaults to a safe shutdown state",
+    "Kill switch always accessible.",
+    "Unblockable: The Kill {{signal}} bypasses all agent logic/negotiation"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:afa47ff98dc96df29a4c62a91159e1d7d9f339b30ad9a60aac8d4cf3d8e2a1b2",
+  "sema_ref": "EjectionSeat#afa4",
+  "sema_stub": "afa4",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "compensate": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    }
+  }
+}

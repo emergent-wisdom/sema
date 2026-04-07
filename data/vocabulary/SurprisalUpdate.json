@@ -1,0 +1,56 @@
+{
+  "handle": "SurprisalUpdate",
+  "mechanism": "A learning protocol where the agent updates its internal model (weights, embeddings, or context) based on failed predictions, weighted by the magnitude of surprise. Higher surprisal = larger update. 'Learn most from what confused you most.' This implements Surprisal-Weighted Fine-Tuning (SWFT): loss contribution is proportional to -log(P(observed|predicted)). Utilizes {{regime_sense}}, {{epistemic_roi}}.",
+  "gloss": "Learning weighted by prediction failure magnitude",
+  "failure_modes": [
+    "Outlier Overfitting: Rare high-surprisal events dominating learning.",
+    "Catastrophic Forgetting: Aggressive updates erasing previously stable knowledge.",
+    "Compute Cost: High-surprisal events require expensive gradient updates."
+  ],
+  "invariants": [
+    "Loss Magnitude: Update size proportional to surprisal (-log P)",
+    "Stability Guard: No single update may shift model more than max_update_rate"
+  ],
+  "preconditions": [
+    "Actual outcome observed and diverged from prediction",
+    "Prediction was made with computable probability"
+  ],
+  "postconditions": [
+    "Model updated proportional to surprisal",
+    "Update logged for audit trail"
+  ],
+  "parameters": [
+    {
+      "name": "learning_rate",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "How much to update the model based on surprisal"
+    },
+    {
+      "name": "max_update_rate",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Maximum allowed model shift per single update"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "related": [
+      "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:66d1bce1c5f8f3e89c65fe64b6dd3c79519bdbe5f5837d397900a37a41b372fb",
+  "sema_ref": "SurprisalUpdate#66d1",
+  "sema_stub": "66d1",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:edbce57a36c74b8d412d2bc7c4b8ef9922c5380ace04292ceaf020f3b8205785",
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:cf1de66cb0d2234220a245834460265804b852980a6625f6f0879bfe1d15da2e"
+    }
+  }
+}

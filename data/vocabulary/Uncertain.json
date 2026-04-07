@@ -1,0 +1,37 @@
+{
+  "handle": "Uncertain",
+  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Utilizes {{deep_research}}, {{uncertainty_map}}, {{socratic_loop}}.",
+  "gloss": "Epistemic status: genuinely don't know",
+  "failure_modes": [
+    "False Certainty: {{agent}} feels pressure to answer and fabricates a 'likely' answer instead of using this flag.",
+    "Lazy Agnosticism: {{agent}} uses 'Uncertain' to avoid the work of reasoning (Tier 2 failure)."
+  ],
+  "invariants": [
+    "Actionable Void: A node marked 'Uncertain' is a high-priority target for Information Retrieval.",
+    "Specificity: Must target a specific scope (e.g., 'Uncertain about X', not just 'Uncertain')."
+  ],
+  "preconditions": [
+    "Knowledge gap identified"
+  ],
+  "postconditions": [
+    "Confidence score set to 0.0",
+    "Target marked as requiring investigation"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 2
+  },
+  "sema_id": "sema:Uncertain#mh:SHA-256:a3b91034978ace09ffb2dd8ae1500a638fb10dd61794743a6b4ee53e8b63cb7f",
+  "sema_ref": "Uncertain#a3b9",
+  "sema_stub": "a3b9",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

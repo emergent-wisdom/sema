@@ -1,0 +1,49 @@
+{
+  "handle": "ReAct",
+  "mechanism": "An interleaved reasoning-action loop where the agent cycles through Thought (reason about the situation), Action (invoke a tool or take a step), and Observation (process the result). Unlike pure {{chain}}-of-Thought which reasons then answers, ReAct interleaves reasoning with environmental feedback, allowing the agent to adjust plans based on real-world results. It interleaves reasoning traces for a {{task}} with {{tool_invoke}} execution, updating the context with observation results.",
+  "gloss": "Interleaved thought-action-observation cycle",
+  "failure_modes": [
+    "Observation Blindness: {{agent}} ignores observations and follows initial plan.",
+    "{{loop}} Explosion: Endless thought-action cycles without termination.",
+    "Action {{cognitive_bias}}: Jumping to actions without sufficient reasoning."
+  ],
+  "invariants": [
+    "Action based on reasoning",
+    "Cycle of Thought-Action-Observation"
+  ],
+  "preconditions": [
+    "Environment access",
+    "Goal"
+  ],
+  "postconditions": [
+    "Goal reached or deemed impossible"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "sema:Reflexion#mh:SHA-256:c5b155b3053281ade32b43be8c274c6c0f1bb4315c3ec0313ce03c3c3ae97c76"
+    ],
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:ReAct#mh:SHA-256:db09f71ac22f6917fb5b7dc3fbc14409a057f20b30243cd262150f29d73a4298",
+  "sema_ref": "ReAct#db09",
+  "sema_stub": "db09",
+  "dependencies": {
+    "references": {
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "composes_with": {
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416"
+    }
+  }
+}

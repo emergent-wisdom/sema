@@ -1,0 +1,28 @@
+{
+  "handle": "Novelty",
+  "mechanism": "Acts as a {{judge}} to evaluate structural distinctness and {{value}} against the incumbent knowledge base. Classifies candidates into three qualitative states: (1) Derivative: Pure relabeling of an existing concept. (2) Marginal: Incremental variation; distinctness is unproven. (3) Distinct: Introduces a new orthogonal mechanism or predicts a divergent outcome.",
+  "invariants": [
+    "Orthogonality: High novelty requires low embedding similarity to nearest neighbor."
+  ],
+  "signature": [
+    "Judge(Value)"
+  ],
+  "gloss": "Evaluates structural distinctness",
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2,
+    "tier": 1
+  },
+  "sema_id": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774",
+  "sema_ref": "Novelty#6a48",
+  "sema_stub": "6a48",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+    }
+  }
+}

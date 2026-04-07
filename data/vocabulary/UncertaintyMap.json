@@ -1,0 +1,29 @@
+{
+  "handle": "UncertaintyMap",
+  "mechanism": "Known-Unknown Matrix: Categorize all relevant factors into: Known-Known (facts), Known-Unknown (questions), Unknown-Unknown (blind spots). For each Known-Unknown, estimate cost to resolve. {{prioritize}} high-impact uncertainties. Actively {{probe}} for Unknown-Unknowns. Utilizes {{prioritize}}, {{confidence_calibrate}}.",
+  "gloss": "Systematic categorization of ignorance",
+  "failure_modes": [
+    "False Precision: Treating a Known-Unknown (risk) as a Known-Known (fact) with a wide error bar."
+  ],
+  "invariants": [
+    "Every factor must be categorized exactly once."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:UncertaintyMap#mh:SHA-256:e883a452d9ec2e4bb7fcb99c34edc45d4584115f6cc128aa61100d84c1b14bc4",
+  "sema_ref": "UncertaintyMap#e883",
+  "sema_stub": "e883",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "confidence_calibrate": "sema:ConfidenceCalibrate#mh:SHA-256:52389ef2231a04c551e99c640524f8b082a4608c1a1e9576096450f0f43bc575"
+    }
+  }
+}

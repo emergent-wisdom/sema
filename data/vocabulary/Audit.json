@@ -1,0 +1,72 @@
+{
+  "handle": "Audit",
+  "mechanism": "The process of verifying that a {{system}}'s {{state}} or behavior matches its specifications.",
+  "gloss": "Verification of conformance",
+  "invariants": [
+    "Immutability: Audit logs cannot be altered once written.",
+    "Completeness: All checked items must have a verdict."
+  ],
+  "preconditions": [
+    "Target {{system}} exists and is accessible"
+  ],
+  "postconditions": [
+    "Audit report generated",
+    "Pass/Fail status assigned"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "target_id",
+      "auditor_id",
+      "verdict",
+      "timestamp"
+    ],
+    "properties": {
+      "target_id": {
+        "type": "string",
+        "description": "Hash or ID of the system/artifact audited"
+      },
+      "auditor_id": {
+        "type": "string",
+        "description": "ID of the agent performing the check"
+      },
+      "verdict": {
+        "type": "string",
+        "enum": [
+          "Pass",
+          "Fail",
+          "Warn"
+        ],
+        "description": "Conformance result"
+      },
+      "evidence_log": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of checks performed"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "sema_id": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+  "sema_ref": "Audit#4044",
+  "sema_stub": "4044",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

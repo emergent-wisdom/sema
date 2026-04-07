@@ -1,0 +1,38 @@
+{
+  "handle": "UptakeOverTimestamp",
+  "mechanism": "Decentralized Governance Heuristic. Resolves canonical status conflicts by prioritizing Usage Volume (uptake) over Registration Time (timestamp). When querying for a concept Handle, the system returns the variant with the highest `Reference_Count` or `Execution_Count`. Utilizes {{uptake_as_ground}}.",
+  "gloss": "Usage determines canonical status, not who minted first",
+  "failure_modes": [
+    "The Facebook {{problem}} (Network Effects): A mediocre pattern with high early uptake becomes impossible to dislodge by a superior new pattern.",
+    "Cold Start: New patterns have 0 uptake, making them invisible to discovery algorithms."
+  ],
+  "invariants": [
+    "Meritocracy: Canonical_Score = f(Usage, Citations, Success_Rate).",
+    "Timestamp Irrelevance: Creation_Date must NOT be a factor in relevance ranking."
+  ],
+  "preconditions": [
+    "Multiple patterns exist for similar concepts",
+    "Usage metrics available"
+  ],
+  "postconditions": [
+    "Canonical pattern identified",
+    "Squatted/Dead patterns suppressed"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:fdb60eb23d0437e0f29680b0503911c6643e629412b883d1dda9acb81903da0a",
+  "sema_ref": "UptakeOverTimestamp#fdb6",
+  "sema_stub": "fdb6",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:bf85a9c0007f86f2da7894e9d641b420a58bd189236ac8bbd907d349b08abf73",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "ForkingProtocol",
+  "mechanism": "Standardized exit mechanism where a minority group can split system state and rules into a new shard without permission. Preserves their assets but severs connection to main chain. Fork announcement includes: {{state_snapshot}} hash, rule delta, participant list, effective block. Non-forkers ignore the fork. Forkers migrate to new namespace. No consensus required from majority - exit is unilateral right. It enables divergent evolution by allowing a subset of agents to {{parallelize}} onto a new state history without consensus.",
+  "gloss": "Unilateral exit rights to prevent capture",
+  "failure_modes": [
+    "Fragmentation Death: Ecosystem splits into shards too small to sustain network effects."
+  ],
+  "invariants": [
+    "Branches execute independently",
+    "Parent state preserved"
+  ],
+  "preconditions": [
+    "Disagreement or exploration need",
+    "Replicable state"
+  ],
+  "postconditions": [
+    "Two distinct state futures active"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1
+  },
+  "sema_id": "sema:ForkingProtocol#mh:SHA-256:db98203c88a24ba1344f98f008bfc487093bbfe41e84190e70fc00992118add0",
+  "sema_ref": "ForkingProtocol#db98",
+  "sema_stub": "db98",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "parallelize": "sema:Parallelize#mh:SHA-256:dac1ca99ae8c379c9ba093e840eaab9eb2ad16ccfbdb07d6c0e25e3fad2fae6c",
+      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:01c99fd1a5b7fe33a7065bfddcce746f76ecb2f2737cdd578801903cb7f1e990"
+    }
+  }
+}

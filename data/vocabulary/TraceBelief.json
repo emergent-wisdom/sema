@@ -1,0 +1,27 @@
+{
+  "handle": "TraceBelief",
+  "mechanism": "A chronological reasoning pattern that tracks the history of a belief. Prevents 'Silent Updating' by forcing the agent to cite the specific past belief node it is revising. Instantiates the {{trace}} primitive on a {{belief}} object. Utilizes {{trace}}, {{surprisal_update}}, {{belief}}, {{time_warp_log}}.",
+  "gloss": "Belief Provenance (Macro for Trace(Belief))",
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:TraceBelief#mh:SHA-256:9d6a11bfbfc199f1aab5441e69668b3b50145108cdf6948176dcadd71652cfd1",
+  "sema_ref": "TraceBelief#9d6a",
+  "sema_stub": "9d6a",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Trace(Belief)"
+  ],
+  "dependencies": {
+    "references": {
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:66d1bce1c5f8f3e89c65fe64b6dd3c79519bdbe5f5837d397900a37a41b372fb",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
+      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "handle": "Canary",
+  "mechanism": "Expendable {{agent}} tests full coordination path before committing real resources. Spawn CANARY with: limited resources (bounded blast radius), defined scope, telemetry hooks. Canary executes FULL coordination path ({{greet}}\u2192{{probe}}\u2192negotiate\u2192partial-execute). Reports TELEMETRY: {path_viable, latency_profile, error_events, partner_behavior_observations, recommendation: proceed|caution|abort}. Lifecycle options: DESTROY (discard after test), RECYCLE (reset for another test), PROMOTE (canary becomes real {{agent}}, continues {{work}}), ABSORB (real {{agent}} inherits canary's progress). In adversarial environments, canary can run in STEALTH {{mode}} (indistinguishable from real {{agent}}) to prevent partners gaming the test. It extends the logic of a single {{probe}} into a full-lifecycle agent deployment with bounded blast radius.",
+  "gloss": "Transform path selection from 'hope it works' to 'tested it works' without risking real resources",
+  "failure_modes": [
+    "Canary treated differently than real agent would be (gaming).",
+    "Test conditions don't match production conditions.",
+    "Cost of canary exceeds benefit for simple paths.",
+    "Conditions change between canary test and real execution.",
+    "Canary success doesn't guarantee real success (non-deterministic paths)."
+  ],
+  "invariants": [
+    "Canary fails before main system",
+    "Failure signal is unambiguous"
+  ],
+  "preconditions": [
+    "Monitoring system active",
+    "Representative test case"
+  ],
+  "postconditions": [
+    "Health status confirmed or alert triggered"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:Canary#mh:SHA-256:3902d7a28c1cb53efb8fc7a6bce1735c4f0dbe3c524f2945a709bb45352a7ef6",
+  "sema_ref": "Canary#3902",
+  "sema_stub": "3902",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "greet": "sema:Greet#mh:SHA-256:1bad380cdf48247bbb7ab68e6dcb95eeb6b6ba7535095d64b86c49bab5c4e173",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa"
+    }
+  }
+}

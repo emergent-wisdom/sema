@@ -1,0 +1,97 @@
+# Sema + Claude Code Integration
+
+Use Sema patterns as semantic contracts in your Claude Code projects.
+
+## Setup
+
+### 1. Install Sema
+
+```bash
+pip install "semahash[mcp] @ git+https://github.com/emergent-wisdom/sema.git"
+```
+
+### 2. Add Sema as an MCP server
+
+```bash
+claude mcp add sema -- sema mcp
+```
+
+### 3. Verify
+
+Ask Claude Code:
+
+```
+Search sema for "coordination" patterns
+```
+
+It should call `sema_search` and return matching patterns.
+
+## Usage
+
+Once added, Claude Code can call any of the 8 Sema tools:
+
+```
+sema_search query="coordination"
+sema_handshake ref="StateLock#a375"
+sema_resolve handle="ChainOfThought"
+sema_lookup ref="Abduction#fe2b"
+sema_tree layer="Society"
+sema_validate pattern_json='{"handle": "MyPattern", ...}'
+sema_stats
+sema_graph_skeleton
+```
+
+## Project Configuration
+
+Add Sema instructions to your project's `CLAUDE.md` to make coordination automatic:
+
+```markdown
+## Semantic Coordination Protocol
+
+This project uses Sema for semantic alignment between agents.
+
+Before coordinating with other agents on a shared concept, verify alignment:
+
+1. Search for the relevant pattern: use `sema_search`
+2. Handshake to verify you share the same definition:
+   use `sema_handshake` with the pattern's ref (e.g., "StateLock#a375")
+3. Only proceed if verdict is `PROCEED`. On `HALT`, stop and report the mismatch.
+
+Key patterns for this project:
+- `StateLock#a375` — mutex for shared state
+- `Check#0a1b` — non-blocking truth evaluation
+- `MechanisticDesignProposal#ad31` — structured design contract
+```
+
+## Multi-Agent Example
+
+Two Claude Code instances coordinating on a design task:
+
+**Agent 1 (Architect)** — CLAUDE.md:
+```markdown
+Before delegating a design task, handshake on MechanisticDesignProposal#ad31
+to ensure the other agent shares your contract for what a valid proposal looks like.
+```
+
+**Agent 2 (Engineer)** — CLAUDE.md:
+```markdown
+When receiving a design task, verify the contract:
+Use sema_handshake with ref="MechanisticDesignProposal#ad31"
+Only begin work if verdict is PROCEED.
+```
+
+The handshake guarantees both agents are working from the exact same definition. If either side has drifted, the hash won't match and coordination halts before silent failures compound.
+
+## Quick Demo
+
+Run the local handshake demo to see the protocol in action (no API keys needed):
+
+```bash
+python experiments/demos/local_handshake.py
+```
+
+## Also works with
+
+- **OpenClaw**: See [openclaw.md](openclaw.md)
+- **Any MCP client**: Sema exposes a standard MCP stdio server (`sema mcp`)
+- **Direct Python**: `from sema.core.actions import sema_handshake`

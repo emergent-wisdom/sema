@@ -1,0 +1,60 @@
+{
+  "handle": "CircuitBreaker",
+  "mechanism": "{{state}} machine wrapper for fallible operations. Monitors failure rates of a target resource. States: (1) 'CLOSED': Requests pass normally. (2) 'OPEN': Requests fail immediately (Fail Fast) without invoking target. (3) 'HALF-OPEN': Limited trial requests allowed to test recovery. Transitions: 'CLOSED' -> 'OPEN' if failure count > threshold. 'OPEN' -> 'HALF-OPEN' after reset timeout. It wraps operations, switching to an open state on failure to prevent cascading overloads, while using {{backoff}} and retry logic to schedule recovery probes.",
+  "gloss": "Fail-fast protection against cascading failures",
+  "failure_modes": [
+    "Flapping: Threshold too sensitive causes circuit to oscillate between Open/Closed.",
+    "Zombie {{state}}: Circuit stuck 'OPEN' because reset logic failed to trigger or persists in failure.",
+    "False Positive: Transient network blips trip circuit, blocking healthy traffic."
+  ],
+  "invariants": [
+    "Fail Fast: If {{state}} == 'OPEN', request MUST be rejected immediately with zero backend cost.",
+    "Leakage Protection: In 'HALF-OPEN' state, concurrency is capped (default: 1) to prevent flood during recovery.",
+    "{{state}} Persistence: Failure counts reset only on successful transition to 'CLOSED'."
+  ],
+  "preconditions": [
+    "Failure threshold defined",
+    "Target resource identified"
+  ],
+  "postconditions": [
+    "Internal state updated based on outcome",
+    "Request processed OR Blocked"
+  ],
+  "parameters": [
+    {
+      "name": "failure_threshold",
+      "type": "Integer",
+      "range": "[1, 100]",
+      "description": "Default: 5"
+    },
+    {
+      "name": "half_open_limit",
+      "type": "Integer",
+      "range": "[1, 10]",
+      "description": "Max probes allowed in half-open state"
+    },
+    {
+      "name": "reset_timeout",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Default: 60s"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "sema_ref": "CircuitBreaker#4162",
+  "sema_id": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
+  "sema_stub": "4162",
+  "dependencies": {
+    "references": {
+      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

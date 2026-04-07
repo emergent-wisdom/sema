@@ -1,0 +1,53 @@
+{
+  "handle": "Correlation",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "variable_a",
+      "variable_b",
+      "coefficient"
+    ],
+    "properties": {
+      "variable_a": {
+        "type": "string",
+        "description": "First variable ID"
+      },
+      "variable_b": {
+        "type": "string",
+        "description": "Second variable ID"
+      },
+      "coefficient": {
+        "type": "number",
+        "minimum": -1,
+        "maximum": 1,
+        "description": "Pearson correlation coefficient [-1, 1]"
+      },
+      "p_value": {
+        "type": "number",
+        "description": "Statistical significance of the correlation"
+      },
+      "sample_size": {
+        "type": "integer",
+        "description": "Number of observations"
+      }
+    }
+  },
+  "mechanism": "A relationship where two {{variable}}s move together, but one does not necessarily cause the other. 'Cum hoc ergo propter hoc' fallacy trap.",
+  "gloss": "Shared movement",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625",
+  "sema_ref": "Correlation#091f",
+  "sema_stub": "091f",
+  "dependencies": {
+    "references": {
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c"
+    }
+  }
+}

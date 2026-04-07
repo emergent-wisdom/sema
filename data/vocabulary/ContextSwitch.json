@@ -1,0 +1,29 @@
+{
+  "handle": "ContextSwitch",
+  "mechanism": "{{agent}}s explicitly use {{switch}} to signal a change in {{context}} (protocol {{mode}}). All subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent.",
+  "gloss": "Explicit mode toggling",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:5bb8b7ef36dbdfdf6f32e4b26586a975db765c79c87ce17ac28ed6e83b1e8e5c",
+  "sema_ref": "ContextSwitch#5bb8",
+  "sema_stub": "5bb8",
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Switch(Context)"
+  ],
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "switch": "sema:Switch#mh:SHA-256:70bf716e37b356e0da9e2d0d61e6708bdc56999b69cc12895546f2b350add433",
+      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772"
+    },
+    "accepts": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

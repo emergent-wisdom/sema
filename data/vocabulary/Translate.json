@@ -1,0 +1,41 @@
+{
+  "handle": "Translate",
+  "mechanism": "The process of converting {{datum}} from one representation (Language, Format, {{protocol}}, Ontology) to target content while preserving its semantic meaning. It requires a Source Schema and a Target Schema. It is distinct from 'Summarize' (which loses information) and '{{interpret}}' (which adds meaning).",
+  "gloss": "Convert form while preserving meaning",
+  "failure_modes": [
+    "Lossy Translation: Semantic nuance lost in conversion (e.g., 'Schadenfreude' -> 'Happy').",
+    "Hallucination: Translator adds information not present in the source.",
+    "Format Error: Output violates the strict syntax of the target schema."
+  ],
+  "invariants": [
+    "Semantic Equivalence: Meaning(Source) == Meaning(Target).",
+    "{{reversibility}}: In ideal cases, Translate(Target, Source) should recover the original (Round-trip)."
+  ],
+  "preconditions": [
+    "Source data matches Source Schema",
+    "Target Schema is well-defined"
+  ],
+  "postconditions": [
+    "Output data matches Target Schema"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_id": "sema:Translate#mh:SHA-256:5651dd9fb35b2f4468b002f8a7423399f0415d7c5b1fc34322396d6bf88eefbe",
+  "sema_ref": "Translate#5651",
+  "sema_stub": "5651",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "accepts": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    },
+    "references": {
+      "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    }
+  }
+}

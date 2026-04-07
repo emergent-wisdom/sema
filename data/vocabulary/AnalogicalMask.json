@@ -1,0 +1,39 @@
+{
+  "handle": "AnalogicalMask",
+  "mechanism": "A privacy-preserving communication protocol where sensitive content is not encrypted into noise, but ISOMORPHICALLY MAPPED to a Cover Domain. The agent uses an {{analogy_bridge}} to translate the sensitive Source (e.g., a proprietary trading strategy) into a structurally equivalent Target narrative (e.g., a logistics optimization problem). To an external observer, the {{message}} appears as valid, low-entropy text about the Target domain. The receiver, possessing the specific Bridge Key (mapping dictionary), inverts the analogy to recover the structural intent. It requires an initial {{ontology_handshake}} to securely establish the shared Bridge Key before transmission begins. Primary use cases: sanitizing proprietary information for external review, translating classified operational plans into unclassified training analogues, and privacy-preserving inter-organizational coordination.",
+  "gloss": "Privacy-preserving communication via isomorphic domain translation",
+  "failure_modes": [
+    "Mapping leakage (if the analogy is too perfect, the cover text becomes suspicious).",
+    "Lossy translation (nuance lost in the bridge)."
+  ],
+  "invariants": [
+    "Cover Coherence: The output text must be semantically valid in the Cover Domain",
+    "Structural Isomorphism: Relations in Payload must map 1:1 to Relations in Cover"
+  ],
+  "preconditions": [
+    "Shared Bridge Key (Mapping Dictionary) established"
+  ],
+  "postconditions": [
+    "{{message}} passes semantic firewalls"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "MimicMask"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:AnalogicalMask#mh:SHA-256:1abd116f2ed52a7d56fb2dcec3cdc6aa7ad8e31c1c62ebedac5c3a955843056d",
+  "sema_ref": "AnalogicalMask#1abd",
+  "sema_stub": "1abd",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+    }
+  }
+}

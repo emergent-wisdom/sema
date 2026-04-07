@@ -1,0 +1,35 @@
+{
+  "handle": "CiteBack",
+  "mechanism": "The agent is forbidden from stating a fact unless it can simultaneously generate a pointer (quote or ID) to the specific chunk of context that supports it. No hallucination allowed; only citation. It forces a verification step where every assertion must be supported by a {{retrieval_augment}} lookup returning the source ID.",
+  "gloss": "Grounding claims in source",
+  "failure_modes": [
+    "Inability to answer implicit or common-sense questions."
+  ],
+  "invariants": [
+    "Every assertion links to source ID",
+    "Source must exist in context history"
+  ],
+  "preconditions": [
+    "Generated claim",
+    "Source material available"
+  ],
+  "postconditions": [
+    "Claim decorated with citation"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
+  "sema_ref": "CiteBack#1af3",
+  "sema_stub": "1af3",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692"
+    }
+  }
+}

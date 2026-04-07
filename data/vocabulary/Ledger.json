@@ -1,0 +1,65 @@
+{
+  "handle": "Ledger",
+  "mechanism": "An immutable record of {{value}} transfers, debts, and obligations between {{agent}}s. It serves as the shared memory for economic coordination.",
+  "gloss": "Immutable transactional history",
+  "invariants": [
+    "Immutability: Past entries cannot be modified.",
+    "Append-Only: New transactions are added to the end."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_id": "sema:Ledger#mh:SHA-256:2449b13ec018b29f7301a798a92077d5f6983991b38886c19f1aa27c3ac533e5",
+  "sema_ref": "Ledger#2449",
+  "sema_stub": "2449",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "ledger_id",
+      "entries"
+    ],
+    "properties": {
+      "ledger_id": {
+        "type": "string",
+        "description": "Unique identifier"
+      },
+      "entries": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "from_agent": {
+              "type": "string"
+            },
+            "to_agent": {
+              "type": "string"
+            },
+            "amount": {
+              "type": "number"
+            },
+            "timestamp": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "description": "Immutable transaction history"
+      },
+      "balance_snapshot": {
+        "type": "object",
+        "description": "Current balances per agent"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

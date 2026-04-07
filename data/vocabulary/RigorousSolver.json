@@ -1,0 +1,31 @@
+{
+  "handle": "RigorousSolver",
+  "mechanism": "A high-reliability, high-latency implementation of {{cognitive_solver}}. Unlike the base interface which allows best-effort resolution, RigorousSolver MANDATES strict verification: it must execute {{probe}} to verify reality alignment and engage in {{socratic_loop}} to disambiguate intent before action. It incorporates {{feedback}} to improve future reliability. It trades speed for assurance (System 2).",
+  "gloss": "High-reliability, high-latency System 2 solver",
+  "invariants": [
+    "Lifecycle Completeness: Must complete all 5 stages including Verification.",
+    "Mandatory Verification: Cannot skip Probe step."
+  ],
+  "derived_from": "sema:CognitiveSolver#mh:SHA-256:ae5ca9a47f9753157ff7177a76ed3b32e4bbecb67fd5207fb4b9a72acc6a6d20",
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2,
+    "tier": 2
+  },
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:605bc87c13db42f817dc4c741ecd51944ff3280c694a9d7438898433e76e8fe8",
+  "sema_ref": "RigorousSolver#605b",
+  "sema_stub": "605b",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "composes_with": {
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "feedback": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15"
+    },
+    "references": {
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc"
+    }
+  }
+}

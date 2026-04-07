@@ -1,0 +1,31 @@
+{
+  "handle": "TriGate",
+  "mechanism": "A generic {{gate}} traffic-light enforcement primitive. Wraps a {{judge}} or {{condition}} that returns a Trinary status (Red/Yellow/Green). Enforces standard flow control: Red -> CLOSE (Halt execution). Yellow -> DEBT (Proceed with obligation recorded to {{ledger}}). Green -> OPEN (Proceed).",
+  "gloss": "Generic Red/Yellow/Green flow control",
+  "invariants": [
+    "Fail-Closed: Red triggers immediate halt.",
+    "Debt Awareness: Yellow must append a remediation item to the context and record obligation in Ledger."
+  ],
+  "signature": [
+    "Gate(Judge)"
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_ref": "TriGate#d4cd",
+  "sema_id": "sema:TriGate#mh:SHA-256:d4cd658f6ee62f40bd28f0e3d0f253b4a6df62220c2d9b4acd56215b5508affa",
+  "sema_stub": "d4cd",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+      "ledger": "sema:Ledger#mh:SHA-256:2449b13ec018b29f7301a798a92077d5f6983991b38886c19f1aa27c3ac533e5",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+    }
+  }
+}

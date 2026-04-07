@@ -1,0 +1,33 @@
+{
+  "handle": "InternalConsistency",
+  "mechanism": "A {{check}} that validates whether the components of an {{artifact}} adhere to the Principle of Non-Contradiction. It ensures that no two propositions within the {{context}} conflict with each other. Distinct from external {{validate}} (checking against a schema) or fact-checking (checking against reality).",
+  "gloss": "Checking for self-contradiction",
+  "signature": [
+    "Check(Context)"
+  ],
+  "invariants": [
+    "Non-Contradiction: No two propositions within the context can logically negate each other.",
+    "Completeness: All reachable nodes in the artifact are visited."
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2,
+    "tier": 2
+  },
+  "sema_ref": "InternalConsistency#d603",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:d603a1c86986c35512b1d9189cb398ad3d7549b30d6fee31df67dfc78621c6ac",
+  "sema_stub": "d603",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    },
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

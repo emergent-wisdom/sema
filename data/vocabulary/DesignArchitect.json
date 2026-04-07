@@ -1,0 +1,32 @@
+{
+  "handle": "DesignArchitect",
+  "mechanism": "The strategic agent responsible for formulating a {{mechanistic_design_proposal}}. It uses the adversarial method to robustify the design: defending it via {{steelman_check}} and attacking it via {{pre_mortem}}. It integrates with {{strategy}} to project future impact and uses {{translate}} and {{summarize}} to refine the final output for clarity.",
+  "gloss": "Agent that architects mechanistic design proposals",
+  "invariants": [
+    "Dialectic Rigor: Must apply both Steelman and PreMortem to the design.",
+    "Output Quality: Must produce a valid MechanisticDesignProposal."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_ref": "DesignArchitect#22c6",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:22c6912b50142006c818dce6228b9aa0af8e1f89bc97accd8eca46e5100b8d86",
+  "sema_stub": "22c6",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "yields": {
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06"
+    },
+    "composes_with": {
+      "pre_mortem": "sema:PreMortem#mh:SHA-256:8565f4dcf6f230b679b7503d67f0fadb042ad1e4b1f259e45943235019116f8d",
+      "summarize": "sema:Summarize#mh:SHA-256:25827845767f37f49e61bed211e1fabc11f3ca5d9f57d5bbb764a79c5a3102e5",
+      "translate": "sema:Translate#mh:SHA-256:5651dd9fb35b2f4468b002f8a7423399f0415d7c5b1fc34322396d6bf88eefbe",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
+      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4"
+    }
+  }
+}

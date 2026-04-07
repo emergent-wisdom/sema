@@ -1,0 +1,62 @@
+{
+  "handle": "Overlap",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "set_a",
+      "set_b"
+    ],
+    "properties": {
+      "set_a": {
+        "type": "array",
+        "description": "First accept-set (outcome IDs)"
+      },
+      "set_b": {
+        "type": "array",
+        "description": "Second accept-set (outcome IDs)"
+      },
+      "intersection": {
+        "type": "array",
+        "description": "Common elements between sets"
+      },
+      "expansion_count": {
+        "type": "integer",
+        "description": "How many times sets were expanded to find overlap"
+      }
+    }
+  },
+  "mechanism": "Before stating positions, each agent declares their ACCEPT-SET: all outcomes they can live with. Sets are hash-committed before reveal (commit-reveal protocol). Compute intersection. If non-empty, select from intersection. If empty, both agents EXPAND accept-sets by one step and recompute. Repeat until overlap found or expansion-limit hit. It employs {{mece}} partitioning to cleanly identify the intersection of distinct accept-sets.",
+  "gloss": "Transform negotiations from position-based battles to interest-based discovery of shared ground",
+  "failure_modes": [
+    "Strategic minimal accept-sets (mitigated but not eliminated by commit-reveal).",
+    "Expansion limit hit with no overlap.",
+    "Accept-sets too abstract to intersect meaningfully.",
+    "Requires both agents to support commit-reveal protocol."
+  ],
+  "invariants": [
+    "Private regions respected",
+    "Shared region contains agreed facts"
+  ],
+  "preconditions": [
+    "Two ontologies/datasets"
+  ],
+  "postconditions": [
+    "Intersection identified"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_id": "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
+  "sema_ref": "Overlap#bcfa",
+  "sema_stub": "bcfa",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "mece": "sema:MECE#mh:SHA-256:8cb062d51bcfd89368c58a5e6247e2070596f01be8e03382dd19a0c61abe8c1b"
+    }
+  }
+}

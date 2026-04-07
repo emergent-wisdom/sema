@@ -1,0 +1,55 @@
+{
+  "handle": "MetaCheck",
+  "mechanism": "Reasoning {{audit}}: Periodically pause object-level work. Evaluate: Am I making progress? Is my approach sound? Am I missing something obvious? Have my assumptions changed? Correct course or continue based on audit results. It triggers a recursive {{reflexion}} cycle where the reasoning process itself becomes the object of critique. The checker {{check}}s the checking process at a {{meta}} level.",
+  "gloss": "Recursive self-verification of reasoning",
+  "failure_modes": [
+    "Infinite {{meta}}-Regress: Checking the checker that checks the checker, never terminating."
+  ],
+  "invariants": [
+    "Checker checks the checking process",
+    "Infinite regress avoided (max depth)"
+  ],
+  "preconditions": [
+    "{{audit}} logic",
+    "Verification result"
+  ],
+  "postconditions": [
+    "Verification validated"
+  ],
+  "parameters": [
+    {
+      "name": "consistency_required",
+      "type": "Float",
+      "range": "[0.8, 1.0]",
+      "description": "Agreement across meta-levels"
+    },
+    {
+      "name": "recursion_depth",
+      "type": "Integer",
+      "range": "[1, 5]",
+      "description": "Levels of meta-verification"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_id": "sema:MetaCheck#mh:SHA-256:1c957e4e87c0ba744830bd77c9e957a51108499c3783823670a9a198d3efd706",
+  "sema_ref": "MetaCheck#1c95",
+  "sema_stub": "1c95",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "signature": [
+    "Meta(Check)"
+  ],
+  "dependencies": {
+    "references": {
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+      "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f"
+    }
+  }
+}

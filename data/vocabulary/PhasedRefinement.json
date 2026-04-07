@@ -1,0 +1,42 @@
+{
+  "handle": "PhasedRefinement",
+  "mechanism": "A structured {{refine}} strategy that improves an {{artifact}} through a defined {{sequence}} of passes, where each pass targets a specific layer of abstraction (e.g., {{reason}} (logic) -> {{structural_coaching}} (structure) -> {{aesthetics}} (polish)). It uses a {{gate}} to prevent premature optimization by ensuring deep structural issues are resolved before surface-level polishing begins.",
+  "gloss": "Layered, multi-pass improvement",
+  "signature": [
+    "Refine(Artifact)"
+  ],
+  "invariants": [
+    "Non-Regression: Modifications in Phase(N) must not violate invariants established in Phase(N-1).",
+    "Monotonic Quality: The artifact's quality score should not decrease after a pass."
+  ],
+  "preconditions": [
+    "Artifact exists and is mutable"
+  ],
+  "postconditions": [
+    "Artifact satisfies the acceptance criteria of the final phase"
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2,
+    "tier": 2
+  },
+  "sema_ref": "PhasedRefinement#3749",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:3749f3971391c50e3b48d12d3fb65c16eee0fbf208dcb2a833e653ec1555be3f",
+  "sema_stub": "3749",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:dd54f4299d786c2babcc4636ddb911abcae0cd813e6828cf1e4902de217c6bc2",
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
+      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4"
+    },
+    "composes_with": {
+      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
+      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+      "refine": "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d"
+    }
+  }
+}

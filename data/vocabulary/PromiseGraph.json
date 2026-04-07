@@ -1,0 +1,77 @@
+{
+  "handle": "PromiseGraph",
+  "mechanism": "Agents do not trust each other directly; they trust a graph of promises. {{agent}} A accepts a promise from {{agent}} B only if B provides a dependency graph of sub-promises it relies on. A verifies the leaves of the graph or checks B's 'credit score' for fulfilling similar graph structures. It maintains a DAG of trust, validating leaf nodes via {{spot_audit}} and ensuring acyclic dependencies via {{negative_proof}} logic.",
+  "gloss": "Recursive trust dependencies modeled as a DAG",
+  "failure_modes": [
+    "Graph explosion (too much verification overhead)."
+  ],
+  "invariants": [
+    "Acyclic: Promise dependencies cannot form a loop",
+    "Cycles forbidden.",
+    "Leaf Verification: All leaf promises must be anchored in verified truth"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:PromiseGraph#mh:SHA-256:d1395717e2b0c1dd0aa9b86f1730755808c632f999b6f1cb9ee98b6544d7fd42",
+  "sema_ref": "PromiseGraph#d139",
+  "sema_stub": "d139",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "nodes",
+      "edges"
+    ],
+    "properties": {
+      "nodes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "promise_id": {
+              "type": "string"
+            },
+            "promisor": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Promise nodes"
+      },
+      "edges": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "from": {
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Dependency edges"
+      },
+      "leaf_anchors": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Verified leaf promises"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "spot_audit": "sema:SpotAudit#mh:SHA-256:6e72e0806208b60fe980eb7a3c502423706fbe9a46b83b8ad2a46fbdcb24eb7e",
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:40a6b9b7cc8a3e63dd2433bdcfe0090eee52016e2eb9d58238474f1e4347d30d",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

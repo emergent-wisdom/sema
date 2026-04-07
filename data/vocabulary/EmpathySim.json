@@ -1,0 +1,62 @@
+{
+  "handle": "EmpathySim",
+  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized with Target_Agent's known priors, goals, and constraints. It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective, sometimes using {{mirror_stake}} to align incentives for accurate prediction.",
+  "gloss": "Predictive modeling of external agent states",
+  "failure_modes": [
+    "Projection {{cognitive_bias}}: Leaking Self-Knowledge into the simulation (Mirroring Error).",
+    "Infinite Regress: {{simulation}} of Target simulating Self simulating Target..",
+    "{{simulation}} Capture: Hostile memetics in simulated {{context}} corrupting host {{state}}."
+  ],
+  "invariants": [
+    "Isolation: Simulated context must have NO write access to Host memory.",
+    "Priors Shift: Utility function used must be Target's, not Host's."
+  ],
+  "preconditions": [
+    "{{budget}} available for sub-simulation",
+    "Target profile (goals/constraints) known"
+  ],
+  "postconditions": [
+    "Confidence_Score generated",
+    "Predicted_Action vector generated"
+  ],
+  "parameters": [
+    {
+      "name": "simulation_depth",
+      "type": "Integer",
+      "range": "[1, 3]",
+      "description": "Default: 1"
+    },
+    {
+      "name": "target_profile",
+      "type": "AgentProfile",
+      "range": "unspecified",
+      "description": "Profile of the agent whose state is being modeled"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "related": [
+      "sema:MentalSim#mh:SHA-256:1eca2a515c38f3be5c3956be9885e8f1e5b931a958f60b8e21d97e99dd65f3dd"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:EmpathySim#mh:SHA-256:1eee92ef7f1a4b21402aa9a81c793975d48cf3e3957f040b2f0bd5c9d7ad5a6b",
+  "sema_ref": "EmpathySim#1eee",
+  "sema_stub": "1eee",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "mirror_stake": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:871978bf94159b4fb9397407879198d38303f3b42585b5fc3ccf956f745d2904"
+    }
+  }
+}

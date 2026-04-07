@@ -1,0 +1,58 @@
+{
+  "handle": "Responsibility",
+  "mechanism": "A standing governance contract where an {{agent}} explicitly bonds to a {{system}} Invariant over a specific Scope. Unlike a {{task}} (which has a completion state), Responsibility is a continuous maintenance loop\u2014a 'standing wave' rather than an event. The {{agent}} is liable for any violation of the Invariant within the Scope, regardless of cause. Responsibility implies owning externalities. It formalizes ownership via {{oath_bind}} and requires a continuous {{heartbeat}} to prove the invariant is being monitored.",
+  "gloss": "Continuous ownership of a system invariant",
+  "failure_modes": [
+    "Scapegoating: The agent blames external factors for a failure within its scope.",
+    "Responsibility Vacuum: No agent is bound to a critical invariant.",
+    "Overreach: {{agent}} claims responsibility for scope they cannot monitor."
+  ],
+  "invariants": [
+    "Bounded Scope: Responsibility is defined over explicit {{state}} boundaries",
+    "Exclusivity: For any writable {{state}} S, only one {{agent}} can hold WriteResponsibility (Single Writer Principle)",
+    "Liveness: {{agent}} must produce {{heartbeat}} verifying Invariant check"
+  ],
+  "preconditions": [
+    "{{agent}} has capability to intervene on violations",
+    "{{agent}} has capability to monitor Scope"
+  ],
+  "postconditions": [
+    "Invariant is continuously maintained",
+    "Violations are detected and reported"
+  ],
+  "parameters": [
+    {
+      "name": "check_interval",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Frequency of invariant verification"
+    },
+    {
+      "name": "escalation_path",
+      "type": "String",
+      "range": "unspecified",
+      "description": "Who to notify on violation"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1
+  },
+  "sema_id": "sema:Responsibility#mh:SHA-256:f4524249a5c89d422baf6c357e331b8c3c3a4c59ef6289ab608d565a3d92ea27",
+  "sema_ref": "Responsibility#f452",
+  "sema_stub": "f452",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff",
+      "oath_bind": "sema:OathBind#mh:SHA-256:745d8a967eac5ad0c50551cd7b5ee6e0e3d53cd4cc94f1a51e01fd8ba1db0f97",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

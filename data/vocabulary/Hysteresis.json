@@ -1,0 +1,42 @@
+{
+  "handle": "Hysteresis",
+  "mechanism": "Asymmetric Thresholds: {{state}} change from A\u2192B requires crossing threshold T_up. {{state}} change from B\u2192A requires crossing lower threshold T_down. Gap between thresholds prevents oscillation near boundary. Thresholds fixed or adaptive. It uses a {{dampen}} effect on state transitions, requiring the signal to cross distinct upper and lower thresholds to switch modes.",
+  "gloss": "Preventing oscillation via asymmetric thresholds",
+  "failure_modes": [
+    "Stuck {{state}}: Gap between thresholds is too wide, system never transitions back."
+  ],
+  "invariants": [
+    "T_up > T_down always."
+  ],
+  "parameters": [
+    {
+      "name": "lower_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Trigger to switch OFF, must be < upper"
+    },
+    {
+      "name": "upper_threshold",
+      "type": "Float",
+      "range": "unspecified",
+      "description": "Trigger to switch ON"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
+  "sema_ref": "Hysteresis#78b0",
+  "sema_stub": "78b0",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

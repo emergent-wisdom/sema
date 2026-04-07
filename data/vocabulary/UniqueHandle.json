@@ -1,0 +1,32 @@
+{
+  "handle": "UniqueHandle",
+  "mechanism": "A cryptographic pointer to a singular, rivalrous resource (e.g., a specific file, a hardware port, a unique role). Unlike a copyable variable, a UniqueHandle obeys Linear Logic: it can be Transferred but not Copied. If {{agent}} A sends the Handle to {{agent}} B, {{agent}} A loses access immediately. Attempts to use a transferred Handle result in a capability fault. Utilizes {{state_lock}}.",
+  "gloss": "Transferable ownership of a singular resource",
+  "failure_modes": [
+    "Orphaned Resource: If the Handle is deleted or lost, the underlying resource remains locked forever (requires a '{{break}} Glass' expiration or Admin override)."
+  ],
+  "invariants": [
+    "Exclusivity: Access(Resource) requires Proof(Handle)",
+    "Linear Logic: Transfer(A -> B) implies A loses access immediately",
+    "Linearity: Count(Handle) == 1 always",
+    "Non-Duplication: Handle cannot be copied, only moved"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:UniqueHandle#mh:SHA-256:68791b2f756edd02f2710f7d4f55891ecab267df6373bd5048d997ee84f326eb",
+  "sema_ref": "UniqueHandle#6879",
+  "sema_stub": "6879",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c",
+      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "handle": "StateAudit",
+  "mechanism": "A safety pattern where an agent performs an explicit {{audit}} of the {{state}} immediately after a write to ensure the {{state_transition}} occurred as expected. Catches silent API failures.",
+  "gloss": "Verifying system state after an operation",
+  "sema_id": "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e",
+  "sema_ref": "StateAudit#ce13",
+  "sema_stub": "ce13",
+  "_meta": {
+    "layer": "Physics",
+    "category": "Time",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Time",
+  "signature": [
+    "Audit(State)"
+  ],
+  "dependencies": {
+    "references": {
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57"
+    }
+  }
+}

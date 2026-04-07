@@ -1,0 +1,65 @@
+{
+  "handle": "Queue",
+  "mechanism": "A linear data structure for ordering {{task}}s or {{message}}s. It enforces First-In-First-Out (FIFO) or Priority ordering.",
+  "gloss": "Ordered task buffer",
+  "sema_id": "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
+  "sema_ref": "Queue#2ec3",
+  "sema_stub": "2ec3",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "queue_id",
+      "items",
+      "policy"
+    ],
+    "properties": {
+      "queue_id": {
+        "type": "string"
+      },
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "description": "Enqueued Task or Message objects"
+        }
+      },
+      "policy": {
+        "type": "string",
+        "enum": [
+          "FIFO",
+          "LIFO",
+          "Priority"
+        ],
+        "default": "FIFO"
+      },
+      "capacity": {
+        "type": "integer"
+      },
+      "metrics": {
+        "type": "object",
+        "properties": {
+          "depth": {
+            "type": "integer"
+          },
+          "average_wait_time": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

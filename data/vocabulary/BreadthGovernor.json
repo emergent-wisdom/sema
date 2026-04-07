@@ -1,0 +1,57 @@
+{
+  "handle": "BreadthGovernor",
+  "mechanism": "{{parsimony}}-Bounded Expansion. Limits the maximum number of parallel branches (fan-out) at any single node. Prioritizes branches by 'Distinctness' and 'Expected {{value}}'. If Candidates > Max_Breadth, applies Truncation (Top-K) or Clustering (merge similar branches). It enforces limits defined by {{budget}} during the {{decompose}} phase, often employing {{prophet_fan_out}} to pre-score and prune branches.",
+  "gloss": "Structural limit on parallel execution (Fan-out)",
+  "failure_modes": [
+    "Fork Bomb: Unchecked decomposition creates exponential agent explosion.",
+    "Choice Overload: Too many weak hypotheses dilute the quality of the best ones.",
+    "{{context}} Fragmentation: Parent agent cannot integrate results from N > 7 children."
+  ],
+  "invariants": [
+    "Distinctness: {{parallel}} branches must be semantically orthogonal (cosine_sim < 0.8).",
+    "Miller's Law: Active sub-tasks should rarely exceed 7 +/- 2."
+  ],
+  "preconditions": [
+    "Candidate list generated",
+    "Decomposition request received"
+  ],
+  "postconditions": [
+    "Candidate list truncated to <= max_breadth"
+  ],
+  "parameters": [
+    {
+      "name": "max_breadth",
+      "type": "Integer",
+      "range": "[3, 10]",
+      "description": "Default: 5"
+    },
+    {
+      "name": "selection_strategy",
+      "type": "Enum",
+      "range": "{TopK, Cluster, Random}",
+      "description": "Default: TopK"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 0
+  },
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:f85c769e10557a3cb61dd8721ec6b554d33589f888f4e908b6a58e52ad2c6f13",
+  "sema_ref": "BreadthGovernor#f85c",
+  "sema_stub": "f85c",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:6972d19d015bb785ec16660c5a465e9451e2109e435e465b16a7432b806ecf7f",
+      "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
+      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3"
+    }
+  }
+}

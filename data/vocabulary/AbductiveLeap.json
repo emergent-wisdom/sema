@@ -1,0 +1,43 @@
+{
+  "handle": "AbductiveLeap",
+  "mechanism": "Inference to Best Explanation: Given surprising observation, generate candidate explanations. {{rank}} by simplicity, scope, and coherence with existing knowledge. Adopt highest-ranked as working hypothesis. Flag as provisional, not proven. It employs {{chain_of_thought}} to trace the reasoning path from observation to explanation, ensuring the logical leap is explicit and verifiable.",
+  "gloss": "Inference to the best explanation",
+  "failure_modes": [
+    "Conspiracy Thinking: Preferring complex, coherent explanations over simple, messy ones (overfitting the narrative)."
+  ],
+  "invariants": [
+    "Explanation must cover all observed anomalies",
+    "Simplicity heuristic (Occam's Razor) applied"
+  ],
+  "preconditions": [
+    "No deductive path to explanation",
+    "Set of observations"
+  ],
+  "postconditions": [
+    "{{hypothesis}} generated",
+    "{{hypothesis}} ranked by likelihood"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "sema:HypothesisLadder#mh:SHA-256:476819744eb5c404da8d783327c0bc1c4fa68cded30da839746ca14638eafccb"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
+  "sema_ref": "AbductiveLeap#1069",
+  "sema_stub": "1069",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812"
+    },
+    "composes_with": {
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+    }
+  }
+}

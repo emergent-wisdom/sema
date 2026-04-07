@@ -1,0 +1,38 @@
+{
+  "handle": "Think",
+  "mechanism": "A single cognitive step that transforms input {{context}} into a new {{datum}}. The atomic unit of reasoning\u2014one inference, one connection, one realization. Side-effect free and instantaneous from the perspective of the external world.",
+  "gloss": "Atomic cognitive step",
+  "failure_modes": [
+    "Hallucination: Generating a conclusion that does not follow from the {{context}}.",
+    "Premature Closure: Stopping at the first plausible insight without considering alternatives."
+  ],
+  "invariants": [
+    "Side-Effect Free: Thinking does not change the external world.",
+    "Context-Bound: Output must be derivable from input {{context}}."
+  ],
+  "preconditions": [
+    "{{context}} is available"
+  ],
+  "postconditions": [
+    "An insight or intermediate conclusion is produced"
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 0
+  },
+  "sema_id": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+  "sema_ref": "Think#e1bd",
+  "sema_stub": "e1bd",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "yields": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    },
+    "accepts": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

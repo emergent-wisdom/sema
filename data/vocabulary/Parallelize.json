@@ -1,0 +1,51 @@
+{
+  "handle": "Parallelize",
+  "mechanism": "Runs multiple LLM calls simultaneously and aggregates results. Two modes: Sectioning (split {{task}} into independent subtasks, run in {{parallel}}, merge) and Voting (run same {{task}} multiple times, {{aggregate}} via majority {{mode}} or selection). Trades compute cost for speed and/or confidence. It spawns concurrent execution threads and employs {{aggregate}} to unify the results into a final {{result}}.",
+  "gloss": "Run subtasks simultaneously and aggregate",
+  "failure_modes": [
+    "Merge Conflicts: {{parallel}} outputs are incompatible and can't be combined.",
+    "Unanimous Wrong: All parallel paths make the same error.",
+    "Aggregation {{cognitive_bias}}: Merge {{strategy}} systematically favors certain outputs."
+  ],
+  "invariants": [
+    "Tasks are independent",
+    "Total time = Max(Task_i) + Overhead"
+  ],
+  "preconditions": [
+    "Batch of tasks",
+    "Multiple workers"
+  ],
+  "postconditions": [
+    "All results aggregated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 0
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "sema_id": "sema:Parallelize#mh:SHA-256:dac1ca99ae8c379c9ba093e840eaab9eb2ad16ccfbdb07d6c0e25e3fad2fae6c",
+  "sema_ref": "Parallelize#dac1",
+  "sema_stub": "dac1",
+  "signature": [
+    "Parallel(Task)",
+    "Aggregate(Result)"
+  ],
+  "dependencies": {
+    "references": {
+      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
+      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3"
+    },
+    "composes_with": {
+      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

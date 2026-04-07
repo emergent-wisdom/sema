@@ -1,0 +1,49 @@
+{
+  "handle": "Cooldown",
+  "mechanism": "Minimum Interval Enforcement: After action A, enforce minimum delay D before A can repeat. Attempts during cooldown rejected or queued. Cooldown timer starts on action completion. Different actions can have different cooldowns. It acts as the enforcement mechanism for {{throttle}} policies, rejecting requests until the timer expires.",
+  "gloss": "Mandatory delay between repeated actions",
+  "failure_modes": [
+    "Deadlock: Critical action needed during cooldown period, system stuck waiting."
+  ],
+  "invariants": [
+    "Action blocked until T_last + Duration",
+    "Timer is monotonic"
+  ],
+  "preconditions": [
+    "Action executed",
+    "Rate limit policy"
+  ],
+  "postconditions": [
+    "Ready state restored after delay"
+  ],
+  "parameters": [
+    {
+      "name": "duration",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Mandatory wait period"
+    },
+    {
+      "name": "reset_trigger",
+      "type": "Enum",
+      "range": "{Success, Failure, Any}",
+      "description": "What resets the cooldown"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Cooldown#mh:SHA-256:0cde8197149b258f1e6126f179b30468c12cb5e35352fcd0a8ae0bce0823c8ac",
+  "sema_ref": "Cooldown#0cde",
+  "sema_stub": "0cde",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "throttle": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af"
+    }
+  }
+}

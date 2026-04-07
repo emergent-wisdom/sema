@@ -1,0 +1,51 @@
+{
+  "handle": "Elect",
+  "mechanism": "Establish leadership role with nomination, powers, term, and succession. Phase 1 NOMINATE: Members send NOMINATE: {nominee, nominator, reason}. Self-nomination allowed if configured. Nominees must satisfy {{accept_spec}} to appear on {{ballot}}\u2014cannot elect unwilling leader. Phase 2 VOTE: Standard VOTE mechanism among accepted nominees. Phase 3 INVEST: Winner receives {{solution}} (Election Result): {elected, powers[] (explicitly granted authorities), term (fixed|task|indefinite|renewable), succession_plan (automatic|re_elect|fallback)}. Leader exercises granted powers until term ends, resignation, or recall. On term end: succession triggers per plan. RECALL mechanism if enabled: member initiates RECALL_MOTION: {reason}, group VOTEs, if threshold met leader removed and succession triggers. It operates within the bounds of the {{hydra_constitution}} to nominate, vote, and invest authority in a leader.",
+  "gloss": "Enable efficient group coordination through configurable leadership with clear authority boundaries and succession planning",
+  "failure_modes": [
+    "No candidates (no one willing to lead\u2014group operates leaderless or incentivize).",
+    "Election deadlock (no majority\u2014use runoff or plurality fallback).",
+    "Leader abuse (exceeds granted powers\u2014recall or DISBAND).",
+    "Succession failure (successor also unavailable\u2014chain or re-elect).",
+    "Recall wars (constant removal attempts\u2014raise threshold or cooldown).",
+    "Power creep (leader accumulates ungrantled powers\u2014audit against ELECT_RESULT)."
+  ],
+  "invariants": [
+    "One and only one leader selected per term",
+    "Selection process is verifiable"
+  ],
+  "preconditions": [
+    "Candidate set",
+    "Voting mechanism"
+  ],
+  "postconditions": [
+    "Leader identified",
+    "Term started"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "related": [
+      "Vote"
+    ],
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "sema_id": "sema:Elect#mh:SHA-256:5df04f494b7d686878e87d3555d2e1d7fd66dae269ee61a91d55acc312b9300c",
+  "sema_ref": "Elect#5df0",
+  "sema_stub": "5df0",
+  "dependencies": {
+    "composes_with": {
+      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654"
+    },
+    "accepts": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "ballot": "sema:Ballot#mh:SHA-256:c5c5f7a0dc23a23835d0b9f8ce25f104818431062160e753010e4077e7a27062"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

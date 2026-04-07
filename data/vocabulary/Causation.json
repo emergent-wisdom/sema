@@ -1,0 +1,21 @@
+{
+  "handle": "Causation",
+  "mechanism": "A relationship where one event directly forces another to occur. Distinct from {{correlation}} in that manipulating the cause alters the effect.",
+  "gloss": "Direct force relationship",
+  "_meta": {
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc",
+  "sema_ref": "Causation#63e1",
+  "sema_stub": "63e1",
+  "dependencies": {
+    "references": {
+      "correlation": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625"
+    }
+  }
+}

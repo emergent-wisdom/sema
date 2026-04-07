@@ -1,0 +1,37 @@
+{
+  "handle": "EpistemicCalibrate",
+  "mechanism": "Enforces a decay function on confidence as the prediction horizon increases. Unlike human intuition which maintains high confidence to signal status, this pattern forces the agent's reported certainty to mathematically degrade over time (T).",
+  "gloss": "Structural confidence degradation",
+  "failure_modes": [
+    "Paralysis (confidence drops to zero too fast)."
+  ],
+  "invariants": [
+    "Horizon {{decay}}: Confidence(T+1) < Confidence(T)",
+    "Unknown Unknowns: A reserved probability mass for 'Unmodeled Event'"
+  ],
+  "preconditions": [
+    "Base prediction available"
+  ],
+  "postconditions": [
+    "Confidence score adjusted downward"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "related": [
+      "sema:ConfidenceCalibrate#mh:SHA-256:5cf79b805014b4108d7d00bdf0fb6cd7ea9f3da94535d4dbe33c8c278c5cb7b5"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437",
+  "sema_ref": "EpistemicCalibrate#6069",
+  "sema_stub": "6069",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0"
+    }
+  }
+}

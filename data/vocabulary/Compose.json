@@ -1,0 +1,39 @@
+{
+  "handle": "Compose",
+  "mechanism": "Recursive Assembly: Given solved subproblems, {{combine}} solutions respecting interfaces. {{check}}: does combined solution satisfy original problem constraints? If interaction effects emerge, add coordination layer or revise decomposition. It often employs {{prompt_chain}} to sequentially feed sub-solutions into the integration step.",
+  "gloss": "Building complex behavior from simple primitives",
+  "failure_modes": [
+    "Interface Mismatch: Component outputs do not match expected inputs of downstream components."
+  ],
+  "invariants": [
+    "Type Safety: Component outputs must match downstream inputs.",
+    "Acyclicity: Composition graph must be a DAG."
+  ],
+  "preconditions": [
+    "Subproblem solutions available. Interface contracts defined. Composition order known if order-dependent."
+  ],
+  "postconditions": [
+    "Combined solution satisfies original problem. No interface violations. Emergent interactions handled."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:Compose#mh:SHA-256:d83e9e6ce1592dbfa78134440aa8f751f567ddd4964b573d1d44fadfd914f39b",
+  "sema_ref": "Compose#d83e",
+  "sema_stub": "d83e",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Combine(PromptChain)"
+  ],
+  "dependencies": {
+    "references": {
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:f9c4407f0371d044b56406239b07a23ee59980c6f9a907203126ad34b085a885",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "combine": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6"
+    }
+  }
+}

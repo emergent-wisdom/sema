@@ -1,0 +1,53 @@
+{
+  "handle": "GracefulDegradation",
+  "mechanism": "Resolution Fallback {{strategy}}. When a Pattern_ID is not found in local storage, the system attempts to resolve it via secondary channels (Inline Payload -> Network Request) rather than halting immediately. Crucially, any definition acquired this way must be cryptographically verified against the requested Pattern_ID. It defaults to {{fail_closed}} if verification fails, but attempts to parse verified inline definitions to maintain continuity.",
+  "gloss": "When verification fails, fall back to inline definition",
+  "failure_modes": [
+    "Hash Mismatch: Inline definition claims to be Pattern#X but hashes to Pattern#Y (Spoofing).",
+    "DoS via Definition: Sender includes massive multi-megabyte 'definition' to exhaust receiver memory.",
+    "Dependency Hell: Inline definition references other unknown patterns, triggering recursive lookups."
+  ],
+  "invariants": [
+    "Atomic Load: A definition is only added to Local DB if it validates fully.",
+    "Trust but Verify: Externally acquired definitions must be Hashed and Verified before loading."
+  ],
+  "preconditions": [
+    "{{message}} contains fallback data OR sender is reachable",
+    "Pattern lookup failed"
+  ],
+  "postconditions": [
+    "Pattern resolved and locally minted OR Transaction aborted"
+  ],
+  "parameters": [
+    {
+      "name": "max_def_size",
+      "type": "ByteSize",
+      "range": "unspecified",
+      "description": "Default: 100KB"
+    },
+    {
+      "name": "max_recursion_depth",
+      "type": "Integer",
+      "range": "[1, 5]",
+      "description": "Maximum inline definition expansion depth"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485",
+  "sema_ref": "GracefulDegradation#f6d7",
+  "sema_stub": "f6d7",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1"
+    }
+  }
+}

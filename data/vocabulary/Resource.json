@@ -1,0 +1,74 @@
+{
+  "handle": "Resource",
+  "mechanism": "A finite, identifiable entity that can be allocated, consumed, or locked. Resources have {{identity}}, may be renewable or exhaustible, and are subject to contention when demand exceeds supply. Forms the basis for {{budget}} allocation and mutex coordination.",
+  "gloss": "Finite allocatable entity",
+  "invariants": [
+    "Conservation: Resources cannot be created from nothing within a closed system",
+    "Identity: Each resource instance has a unique handle"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "resource_id",
+      "type",
+      "owner_id"
+    ],
+    "properties": {
+      "resource_id": {
+        "type": "string",
+        "description": "Unique asset ID"
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "Compute",
+          "Storage",
+          "Bandwidth",
+          "Token"
+        ]
+      },
+      "quantity": {
+        "type": "number"
+      },
+      "unit": {
+        "type": "string"
+      },
+      "owner_id": {
+        "type": "string",
+        "description": "Current holder/owner"
+      },
+      "lock_state": {
+        "type": "object",
+        "properties": {
+          "locked": {
+            "type": "boolean"
+          },
+          "locked_until": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "holder_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "sema_ref": "Resource#9bb2",
+  "sema_id": "sema:Resource#mh:SHA-256:9bb2dd733e5900d441d35d2c6e74f69dc4e4afe536c12adbcfc5863f3ada2922",
+  "sema_stub": "9bb2",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+    }
+  }
+}

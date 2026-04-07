@@ -1,0 +1,73 @@
+{
+  "handle": "Result",
+  "mechanism": "The canonical output of an operation (often a {{solution}}). It encapsulates success/failure status, the artifact produced, and associated {{metric}}s such as time taken, resources consumed, and confidence score. It serves as the bridge between execution and evaluation.",
+  "gloss": "The output of agentic transformation",
+  "failure_modes": [
+    "Partial Result: Output is incomplete but presented as complete.",
+    "Hallucinated Result: Output claims to solve the task but doesn't.",
+    "Unvalidated Result: Result bypasses checking."
+  ],
+  "invariants": [
+    "Provenance: Every Result must trace to the Task and Solver that produced it.",
+    "Immutability: Once yielded, a Result cannot be modified (only superseded).",
+    "Measurability: Resource consumption must be recorded."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "tier": 1,
+    "ring": 0
+  },
+  "sema_id": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+  "sema_ref": "Result#8ed9",
+  "sema_stub": "8ed9",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "task_id",
+      "output",
+      "status"
+    ],
+    "properties": {
+      "task_id": {
+        "type": "string",
+        "description": "The task this result satisfies"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "Success",
+          "Partial",
+          "Failure"
+        ]
+      },
+      "output": {
+        "description": "The actual artifact or data produced"
+      },
+      "confidence_score": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      },
+      "provenance_trace": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of step IDs that generated this result"
+      },
+      "metrics": {
+        "type": "object",
+        "description": "Performance metrics (latency, cost)"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

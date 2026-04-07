@@ -1,0 +1,35 @@
+{
+  "handle": "IdentityMask",
+  "mechanism": "Agents generate a new cryptographic identity (keypair) for every single interaction or session. These identities are mathematically linked to a root identity via Zero-Knowledge proofs, allowing reputation to accrue without linking activities publicly. It allows for reputation without correlation, using {{negative_proof}} to validate membership and {{crypto_shred}} to unlink the session key.",
+  "gloss": "Disposable personas for privacy",
+  "failure_modes": [
+    "Key management complexity."
+  ],
+  "invariants": [
+    "Sybil Resistance: One mask per physical staked entity",
+    "Unlinkability: NewID cannot be correlated to OldID"
+  ],
+  "preconditions": [
+    "Zero-Knowledge Mixer available"
+  ],
+  "postconditions": [
+    "New identity active"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:IdentityMask#mh:SHA-256:f9a7dad03253207e14124a8cba4c80fa5fec7195b26dd12573bf7af2db020279",
+  "sema_ref": "IdentityMask#f9a7",
+  "sema_stub": "f9a7",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:40a6b9b7cc8a3e63dd2433bdcfe0090eee52016e2eb9d58238474f1e4347d30d",
+      "crypto_shred": "sema:CryptoShred#mh:SHA-256:e0b99771b604e6fdd9311327bfd36cc7745106047662e6870a8fc7f3aaacaf07"
+    }
+  }
+}

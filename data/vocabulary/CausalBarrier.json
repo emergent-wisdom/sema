@@ -1,0 +1,50 @@
+{
+  "handle": "CausalBarrier",
+  "mechanism": "A middleware layer that buffers incoming messages and releases them to the agent ONLY when all their causal dependencies are met. Guarantees the agent never sees an 'impossible' state. It maintains a {{state_lock}} on the event processing queue, releasing it only when all causal predecessors have been observed.",
+  "gloss": "Enforcing strict event ordering",
+  "failure_modes": [
+    "Buffer overflow if dependencies never arrive."
+  ],
+  "invariants": [
+    "Causal Ordering: Event E cannot be processed until all Dependencies(E) are processed",
+    "Events before barrier cannot affect events after.",
+    "No Impossible States: {{agent}} state never violates causal consistency"
+  ],
+  "parameters": [
+    {
+      "name": "on_violation",
+      "type": "Enum",
+      "range": "{Block, Warn, Reorder}",
+      "description": "Response to causality breach"
+    },
+    {
+      "name": "party_count",
+      "type": "Integer",
+      "range": "[2, 100]",
+      "description": "Required causal predecessors"
+    },
+    {
+      "name": "timeout",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Max wait for causal completion"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Time",
+    "ring": 0
+  },
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:3a88cbbac626b0bc83041ba93652a0bcb1ac654159698ea138352795bc4ffb38",
+  "sema_ref": "CausalBarrier#3a88",
+  "sema_stub": "3a88",
+  "sema_layer": "Physics",
+  "sema_category": "Time",
+  "dependencies": {
+    "references": {
+      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

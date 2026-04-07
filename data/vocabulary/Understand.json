@@ -1,0 +1,25 @@
+{
+  "handle": "Understand",
+  "mechanism": "The process of applying {{think}} to construct an internal model that accurately reflects the causal structure, semantics, and {{context}} of an input. It goes beyond simple parsing to grasp 'why' and 'how'.",
+  "gloss": "Deep semantic modeling",
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_id": "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b",
+  "sema_ref": "Understand#96d4",
+  "sema_stub": "96d4",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Think(Context)"
+  ],
+  "dependencies": {
+    "references": {
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

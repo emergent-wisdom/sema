@@ -1,0 +1,55 @@
+{
+  "handle": "DogfoodFirst",
+  "mechanism": "Validation {{protocol}}. Before releasing a tool or pattern, the creator must use it to solve a non-trivial problem in their own workflow. This generates 'Friction Logs' that identify usability gaps missed by theoretical design. It requires the creator to act as a {{canary}}, using the tool in production and generating a {{reflexion}} log of friction points.",
+  "gloss": "Use your own tool before shipping",
+  "failure_modes": [
+    "Hello World Fallacy: Validating only on trivial 'demo' cases instead of production loads.",
+    "Creator {{cognitive_bias}}: Creator unconsciously avoids edge cases they know will fail."
+  ],
+  "invariants": [
+    "Friction Documentation: All UX hurdles encountered must be logged.",
+    "Skin in the Game: Validation must involve real risk or real work (not a simulation)."
+  ],
+  "preconditions": [
+    "Real-world use case identified",
+    "Tool/Pattern is functionally complete"
+  ],
+  "postconditions": [
+    "Friction Log generated",
+    "Release {{gate}} passed OR Refactor triggered"
+  ],
+  "parameters": [
+    {
+      "name": "duration",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Default: 1h"
+    },
+    {
+      "name": "output_artifact",
+      "type": "Solution",
+      "range": "unspecified",
+      "description": "The solution artifact produced by self-testing"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 0
+  },
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:826e2ceafda81d7db4a19d1cf6bd8ad0c2cd86b24c65d1654ba7efb345374260",
+  "sema_ref": "DogfoodFirst#826e",
+  "sema_stub": "826e",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "canary": "sema:Canary#mh:SHA-256:3902d7a28c1cb53efb8fc7a6bce1735c4f0dbe3c524f2945a709bb45352a7ef6",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "handle": "FractalIntelligence",
+  "mechanism": "The unified {{system}} of scalable cognition that uses {{reason}} to orchestrate the fractal expansion of intelligence within the {{universal_solver_tree}}. A {{problem_framer}} initiates the process, formulating a high-level {{strategy}} before assigning a {{cognitive_solver}} to a {{task}}. The solver executes a {{recursion_dive}} to spawn child nodes. As the tree deepens, nodes apply {{specialize}} to adapt to local sub-problems, using {{localized_learning}} to optimize performance. To ensure continuity and global coherence, the system employs {{experience_sharding}} to preserve memory and {{synthesis}} to integrate specialized insights back into the whole. {{state_snapshot}} creates save points for crash recovery. Efficiency is governed by the {{marginal_value_rule}}. If a path fails, {{reframe}} is triggered to restructure the tree or find a new {{problem_framer}}.",
+  "gloss": "The unified fractal architecture of scalable, self-correcting intelligence",
+  "invariants": [
+    "Fractal Self-Similarity: The process at the Root is identical to the process at the Leaf.",
+    "Bounded Expansion: Recursion is limited by Economic constraints (Marginal Value).",
+    "Memory Conservation: Specialization must not result in the loss of global context."
+  ],
+  "signature": [
+    "System(Reason)"
+  ],
+  "derived_from": "sema:RecursiveIntelligence#mh:SHA-256:216c297a34a0847957d1a6a8701987248bc8d63294953a78346b5b68dbb9aef6",
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_ref": "FractalIntelligence#bab6",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:bab6fb811755ec72651953ea0aa328b60bd86acb58e7e7075ffc8526d40032f4",
+  "sema_stub": "bab6",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:d154cc0926f79078e6b81f336ac51b220771d88bbf92605a87c2c029eeb99600",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "specialize": "sema:Specialize#mh:SHA-256:c9366f294294647d6a398d79f98a377efdb67907e4000e827347f811c69cb82a",
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:65ccbf94035f6821c53097b6c5da6a9b6da01cddab844b8876f8b35d62e93f39",
+      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4"
+    },
+    "composes_with": {
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
+      "problem_framer": "sema:ProblemFramer#mh:SHA-256:4e5c452c3e10881a67aa4fdd2b2fd3ecd26570b76c67ba241abb29ef79d6710c",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
+      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
+      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:01c99fd1a5b7fe33a7065bfddcce746f76ecb2f2737cdd578801903cb7f1e990",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:6076d78908d5e94cfab7e542d4ee68ebf8448b93c7c6d7ae803b770d394ee5ba",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:b65b3972faf7fbf09baa8d07f10e3c5f8567ff2addca51984229cdeb0fa29475",
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc"
+    }
+  }
+}

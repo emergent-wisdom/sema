@@ -1,0 +1,41 @@
+{
+  "handle": "Hypothesis",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "proposition",
+      "confidence"
+    ],
+    "properties": {
+      "proposition": {
+        "type": "string",
+        "description": "The tentative explanation"
+      },
+      "confidence": {
+        "type": "number",
+        "description": "Initial probability estimate (0-1)"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "Open",
+          "Proven",
+          "Falsified"
+        ]
+      }
+    }
+  },
+  "mechanism": "A tentative explanation or prediction that is subject to verification or falsification.",
+  "gloss": "A tentative explanation",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
+  "sema_ref": "Hypothesis#e95b",
+  "sema_stub": "e95b"
+}

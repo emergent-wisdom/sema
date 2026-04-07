@@ -1,0 +1,21 @@
+{
+  "handle": "Compare",
+  "mechanism": "Evaluate relation between two values: Equal, Less, Greater, Incomparable.",
+  "gloss": "Relational check",
+  "invariants": [
+    "Reflexivity: A == A is always True.",
+    "Symmetry: If A == B, then B == A.",
+    "Transitivity: If A == B and B == C, then A == C."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 0
+  },
+  "sema_id": "sema:Compare#mh:SHA-256:48815374a8845487f135578867a9a36ffeeb0e786007b63da5713292723e2109",
+  "sema_ref": "Compare#4881",
+  "sema_stub": "4881",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

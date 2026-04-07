@@ -1,0 +1,34 @@
+{
+  "handle": "Kairos",
+  "mechanism": "Aggregates environmental signals (receptivity, system load, friction) to calculate a 'Readiness Potential'. Returns TRUE if the potential exceeds the sensitivity threshold.",
+  "gloss": "Sensing the opportune moment",
+  "invariants": [
+    "Ephemerality: A True result at t=0 implies nothing about t+1.",
+    "Non-Compensatory: If the moment is wrong, more effort cannot fix it."
+  ],
+  "parameters": [
+    {
+      "name": "sensitivity",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Readiness threshold (0 = always ready, 1 = never ready)"
+    },
+    {
+      "name": "window",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Observation window for aggregating readiness signals"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:Kairos#mh:SHA-256:5e4224ffffb7866b6c865b3b95fee40b2259e6b515ee594a680d9f0ed7c18314",
+  "sema_ref": "Kairos#5e42",
+  "sema_stub": "5e42",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

@@ -1,0 +1,34 @@
+{
+  "handle": "SpotAudit",
+  "mechanism": "A probabilistic audit where a verifier requests a random sample of an agent's internal memory or logs. The agent must provide a Merkle proof for that specific slice. Keeps agents honest without full audits. Utilizes {{state_audit}}.",
+  "gloss": "Random sampling of internal state",
+  "failure_modes": [
+    "Privacy leakage from the sample."
+  ],
+  "invariants": [
+    "Randomness: {{audit}} target must be selected via VRF",
+    "Response Time: Proof must be returned within T_max"
+  ],
+  "preconditions": [
+    "Auditor has authority key"
+  ],
+  "postconditions": [
+    "{{audit}} result published to ledger"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 1
+  },
+  "sema_id": "sema:SpotAudit#mh:SHA-256:6e72e0806208b60fe980eb7a3c502423706fbe9a46b83b8ad2a46fbdcb24eb7e",
+  "sema_ref": "SpotAudit#6e72",
+  "sema_stub": "6e72",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "dependencies": {
+    "references": {
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1"
+    }
+  }
+}

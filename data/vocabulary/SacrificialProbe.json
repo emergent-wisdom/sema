@@ -1,0 +1,54 @@
+{
+  "handle": "SacrificialProbe",
+  "mechanism": "A Generalized Pattern where an {{agent}} sends a low-cost 'probe' into a {{system}} expecting it to fail, but designs the failure to be instructive. The probe must be cheap relative to the main payload, and the failure {{mode}} must update the {{strategy}} for the main payload. Common in startups (landing pages), immunology (dendritic cells), and warfare (reconnaissance). It wraps the concept of a staked probe in a higher-order strategy where the probe's destruction is the intended {{signal}}.",
+  "gloss": "Learning via cheap, instructive failure",
+  "failure_modes": [
+    "{{probe}} is too expensive; {{probe}} failure is silent."
+  ],
+  "invariants": [
+    "Cost Asymmetry: Cost({{probe}}) << Cost(MainPayload)",
+    "Instructive Failure: InfoGain(Failure) > EntropyReductionThreshold",
+    "{{strategy}} Update: MainPayload parameters are a function of ProbeResult"
+  ],
+  "preconditions": [
+    "{{system}} failure {{mode}}s are observable"
+  ],
+  "postconditions": [
+    "{{strategy}} updated"
+  ],
+  "parameters": [
+    {
+      "name": "cost_ratio",
+      "type": "Float",
+      "range": "[0.0, 0.1]",
+      "description": "Probe cost relative to payload"
+    },
+    {
+      "name": "failure_mode",
+      "type": "Enum",
+      "range": "unspecified",
+      "description": "Silent, Loud, Byzantine"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:2372fc7a6d00a9d9b86f5f5cd7561ec60a8527973ff52b395f3ec3f56b5c78e4",
+  "sema_ref": "SacrificialProbe#2372",
+  "sema_stub": "2372",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "handle": "Compromise",
+  "mechanism": "Iterative Negotiation Protocol. Each {{agent}} states preferences with INTENSITY scores (0-1). The {{system}} computes DISSONANCE (Sum(Intensity_A * Intensity_B)). To reach consensus, agents must {{dampen}} their preference intensity until Dissonance < Threshold. Unlike {{yield}} (which is binary surrender), Compromise is a continuous reduction of demand.",
+  "gloss": "Finding a mutual sacrifice zone via intensity reduction",
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_ref": "Compromise#955f",
+  "sema_id": "sema:Compromise#mh:SHA-256:955f5b17e14c2998dda12fb21506656505eb987503cf1b2bb06acfaa06433d55",
+  "sema_stub": "955f",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    },
+    "composes_with": {
+      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
+    }
+  }
+}

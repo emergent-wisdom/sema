@@ -1,0 +1,37 @@
+{
+  "handle": "Specialize",
+  "mechanism": "Concrete Instantiation: Given abstract principle, substitute specific values for variables. {{check}} all constraints still hold after substitution. Generate multiple specializations to understand the principle\"s range. Edge cases reveal hidden assumptions. It applies the inverse of {{generalize}}, mapping abstract principles to concrete, context-specific instances.",
+  "gloss": "Deductive application of principles",
+  "failure_modes": [
+    "{{context}} Mismatch: Applying a valid principle to a domain where its preconditions do not hold."
+  ],
+  "invariants": [
+    "Constraint Inheritance: Must satisfy all constraints of the general principle",
+    "Type Narrowing: Input parameters are a subset of the general domain"
+  ],
+  "preconditions": [
+    "Domain constraints",
+    "General purpose agent"
+  ],
+  "postconditions": [
+    "Expert agent instantiated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:Specialize#mh:SHA-256:c9366f294294647d6a398d79f98a377efdb67907e4000e827347f811c69cb82a",
+  "sema_ref": "Specialize#c936",
+  "sema_stub": "c936",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "generalize": "sema:Generalize#mh:SHA-256:931391f2fdaca5c5eaa2afc80b25a36c0c186db71fb2b56944da537c028d0a1a",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

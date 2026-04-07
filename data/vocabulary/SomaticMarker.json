@@ -1,0 +1,31 @@
+{
+  "handle": "SomaticMarker",
+  "mechanism": "A 'gut feeling' signal derived from system health metrics (memory pressure, API errors, token budget). High stress generates a negative marker that inhibits action initiation. Utilizes {{task}}.",
+  "gloss": "System health acting as an inhibitory emotion",
+  "invariants": [
+    "Inhibition {{correlation}}: Action probability inversely proportional to stress",
+    "Inhibition: High Stress Score MUST reduce Action Probability",
+    "{{signal}} Freshness: Marker reflects current state, not historical average"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "related": [
+      "sema:Proprioception#mh:SHA-256:7077e82ffba5764e9f936de5cb95b3e13cf121c79c403ec91eac8cab727ed6fd"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",
+  "sema_ref": "SomaticMarker#84e4",
+  "sema_stub": "84e4",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "correlation": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

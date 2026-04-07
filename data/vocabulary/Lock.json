@@ -1,0 +1,16 @@
+{
+  "handle": "Lock",
+  "mechanism": "A synchronization primitive that enforces exclusive access to a resource.",
+  "gloss": "Mutual exclusion enforcement",
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Lock#mh:SHA-256:5bf2a80b6c73a11da68f702922d5180259c75ff50fb094607da3ab4d7c167dc2",
+  "sema_ref": "Lock#5bf2",
+  "sema_stub": "5bf2",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

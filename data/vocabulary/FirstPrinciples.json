@@ -1,0 +1,28 @@
+{
+  "handle": "FirstPrinciples",
+  "mechanism": "Axiomatic Reconstruction: Strip away {{assumption}}s until reaching fundamental truths that cannot be deduced from anything else. Rebuild solution from these {{axiom}}s only. Reject inherited solutions; derive from scratch. It rebuilds the argument from bedrock using {{chain_of_thought}}, explicitly rejecting any cached or inherited {{assumption}}s.",
+  "gloss": "Axiomatic reconstruction of truth",
+  "failure_modes": [
+    "Infinite Regress: Wasting resources proving 1+1=2 instead of solving the actual logistics problem."
+  ],
+  "invariants": [
+    "Axioms cannot be derived from other statements."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:77c2ebad48095ce9b68a0a8a841fee31c9cf209e4dc0cddd5ff7a0c8de9b1de5",
+  "sema_ref": "FirstPrinciples#77c2",
+  "sema_stub": "77c2",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "assumption": "sema:Assumption#mh:SHA-256:efb5be2691c91cb98b493543154f2a9d7d492911088e3bf1cbc048f5ac317978",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+    }
+  }
+}

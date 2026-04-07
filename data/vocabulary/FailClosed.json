@@ -1,0 +1,45 @@
+{
+  "handle": "FailClosed",
+  "mechanism": "Safety Default. If an operation fails, times out, or returns an ambiguous result, the system MUST treat it as a Negative (Deny/Stop/Reject). Prevents 'bypass on error' vulnerabilities. It acts as the wrapper for input guarding, {{output_guard}}, and {{circuit_breaker}}, enforcing a default-deny policy on any error or ambiguity.",
+  "gloss": "Default-deny policy for uncertain states",
+  "failure_modes": [
+    "Availability Hit: {{system}} shuts down during minor outages (False Positive Denial).",
+    "Dependency Deadlock: If a non-critical dependency fails, the whole system locks up."
+  ],
+  "invariants": [
+    "Default Deny: Ambiguity == Rejection.",
+    "Error Atomicity: Partial failure = Total failure (Transaction Rollback)."
+  ],
+  "preconditions": [
+    "Fallible operation initiated"
+  ],
+  "postconditions": [
+    "{{system}} state remains invariant (no side effects) OR Operation succeeds"
+  ],
+  "parameters": [
+    {
+      "name": "timeout_action",
+      "type": "Enum",
+      "range": "{Reject, Retry, Fallback}",
+      "description": "Default: Reject"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",
+  "sema_ref": "FailClosed#ae79",
+  "sema_stub": "ae79",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "output_guard": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0",
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

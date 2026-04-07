@@ -1,0 +1,38 @@
+{
+  "handle": "RedTeam",
+  "mechanism": "Adversarial Stress Test: Adopt attacker mindset. Goal: break the system, find exploits, identify weaknesses. No loyalty to the design. Document attack vectors with severity and likelihood. {{switch}} back to defender to patch highest-risk vectors. It adopts an attacker persona via {{adversarial_steel}}, probing the system for exploit paths.",
+  "gloss": "Adversarial stress testing",
+  "failure_modes": [
+    "Sympathetic Attacker: The Red Team shares the same assumptions as the designers, missing the same blind spots."
+  ],
+  "invariants": [
+    "Adversarial intent simulated",
+    "Goal is to find flaws, not fix them"
+  ],
+  "preconditions": [
+    "Proposed plan/system"
+  ],
+  "postconditions": [
+    "Vulnerability report"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "sema:SteelmanCheck#mh:SHA-256:95fbecc2b836fd92b57f02a1c7cf25bd3e37a5f06e1847065598e37328290a7c"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:RedTeam#mh:SHA-256:1b1f97847c37b7af0ff98873e9e5afc4b5b7628b0cde0fb3eb49904f7b79779a",
+  "sema_ref": "RedTeam#1b1f",
+  "sema_stub": "1b1f",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "switch": "sema:Switch#mh:SHA-256:70bf716e37b356e0da9e2d0d61e6708bdc56999b69cc12895546f2b350add433",
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:4a095e438c638405755b8f1115722e839bf6ba924f2a989f5a71213711d0b2ef"
+    }
+  }
+}

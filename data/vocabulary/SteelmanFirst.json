@@ -1,0 +1,45 @@
+{
+  "handle": "SteelmanFirst",
+  "mechanism": "Reasoning Heuristic. Before proposing a solution, the agent actively constructs the strongest possible version of the opposing argument or constraint. It ensures the critique phase of {{steelman_check}} is populated with high-quality data, not strawmen. Utilizes {{steelman_check}}.",
+  "gloss": "Construct strongest counter-argument before proposing",
+  "failure_modes": [
+    "Performative Steelman: {{agent}} lists weak counter-arguments to appear unbiased.",
+    "{{cognitive_bias}} Leakage: {{agent}} frames the counter-argument in a way that makes it easy to defeat."
+  ],
+  "invariants": [
+    "Prioritization: Counter-argument generation must precede Proposal generation in the chain."
+  ],
+  "preconditions": [
+    "{{problem}} statement defined"
+  ],
+  "postconditions": [
+    "Strongest counter-argument cached"
+  ],
+  "parameters": [
+    {
+      "name": "effort_ratio",
+      "type": "Float",
+      "range": "[0.3, 0.5]",
+      "description": "Portion of budget spent on counter-argument"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:6670346c1f0f4b809089e285ab977fff1a3b84e51e7ad264fd0772349aa82a29",
+  "sema_ref": "SteelmanFirst#6670",
+  "sema_stub": "6670",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    }
+  }
+}

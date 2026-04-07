@@ -1,0 +1,37 @@
+{
+  "handle": "BoundaryProbe",
+  "mechanism": "Edge Case Testing: Identify parameters of the {{system}}. For each parameter, test at: zero, one, maximum, negative, non-integer, null. {{observe}} which edge cases {{break}} assumptions. Boundary behavior often reveals core logic better than normal cases. In high-risk environments, it deploys a {{sacrificial_probe}} to test destructive boundaries without risking the primary {{agent}}.",
+  "gloss": "Testing the edges of the specification",
+  "failure_modes": [
+    "Interior {{assumption}}: Assuming that because Min and Max work, the Middle must work (missing non-linear failures)."
+  ],
+  "invariants": [
+    "Edge Coverage: Probes must target Min, Max, and Null values."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "related": [
+      "Probe"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e",
+  "sema_ref": "BoundaryProbe#3c6b",
+  "sema_stub": "3c6b",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "assumption": "sema:Assumption#mh:SHA-256:efb5be2691c91cb98b493543154f2a9d7d492911088e3bf1cbc048f5ac317978",
+      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    },
+    "composes_with": {
+      "sacrificial_probe": "sema:SacrificialProbe#mh:SHA-256:2372fc7a6d00a9d9b86f5f5cd7561ec60a8527973ff52b395f3ec3f56b5c78e4"
+    }
+  }
+}

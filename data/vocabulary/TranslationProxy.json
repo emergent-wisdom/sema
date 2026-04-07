@@ -1,0 +1,42 @@
+{
+  "handle": "TranslationProxy",
+  "mechanism": "A stateless agent that wraps a legacy system. It intercepts 'modern' agent signals, uses {{translate}} to convert them into legacy {{protocol}} API calls, and translates responses back. It acts as a 'spacesuit' for the legacy system. Utilizes {{ontology_handshake}} and {{compare}} to verify semantic fidelity.",
+  "gloss": "Protocol adaptation wrapper",
+  "failure_modes": [
+    "Lossy translation."
+  ],
+  "invariants": [
+    "Semantic meaning preserved across languages/ontologies",
+    "Type safety maintained"
+  ],
+  "preconditions": [
+    "{{message}} M in {{protocol}} A",
+    "Target {{protocol}} B"
+  ],
+  "postconditions": [
+    "{{message}} M' in {{protocol}} B"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:TranslationProxy#mh:SHA-256:e4ab9d9e76260343d6384ee50fd534d2b04bf6129d85dde8831ce39e9a674d09",
+  "sema_ref": "TranslationProxy#e4ab",
+  "sema_stub": "e4ab",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Translate(Protocol)"
+  ],
+  "dependencies": {
+    "references": {
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
+      "compare": "sema:Compare#mh:SHA-256:48815374a8845487f135578867a9a36ffeeb0e786007b63da5713292723e2109",
+      "translate": "sema:Translate#mh:SHA-256:5651dd9fb35b2f4468b002f8a7423399f0415d7c5b1fc34322396d6bf88eefbe",
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    }
+  }
+}

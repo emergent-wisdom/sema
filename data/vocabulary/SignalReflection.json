@@ -1,0 +1,36 @@
+{
+  "handle": "SignalReflection",
+  "mechanism": "To prove a {{message}} was received, the receiver must 'reflect' it back with a specific, computationally non-trivial transformation (not just a hash). This proves active processing power was available and the {{agent}} is 'live'. It requires the receiver to echo the {{message}} modulated by {{spectral_tune}} logic to prove active processing.",
+  "gloss": "Proof of receipt via modification",
+  "failure_modes": [
+    "Asymmetry (too expensive for receiver)."
+  ],
+  "invariants": [
+    "Reflected signal matches origin",
+    "Source authenticated"
+  ],
+  "preconditions": [
+    "Incoming {{message}}"
+  ],
+  "postconditions": [
+    "Acknowledgement sent"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:SignalReflection#mh:SHA-256:0b8c5e666668635b64ecebab88c01900ac49a24b00aa97b8d03443a90b492ef5",
+  "sema_ref": "SignalReflection#0b8c",
+  "sema_stub": "0b8c",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+    }
+  }
+}

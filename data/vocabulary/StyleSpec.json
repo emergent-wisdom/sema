@@ -1,0 +1,44 @@
+{
+  "handle": "StyleSpec",
+  "mechanism": "A structured {{spec}} defining the required {{aesthetics}} and formatting rules. It serves as the reference standard for passes in a {{phased_refinement}} loop focused on polish. Unlike functional requirements, this spec targets the subjective and presentational layer.",
+  "gloss": "Codified aesthetic standards",
+  "signature": [
+    "Spec(Aesthetics)"
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2,
+    "tier": 2
+  },
+  "data_schema": {
+    "type": "object",
+    "description": "Schema for StyleSpec",
+    "properties": {
+      "rules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "examples": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "sema_ref": "StyleSpec#58a3",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:58a3db392bbd3b174998a7f80f14316a527498ad29a674b28dfd5d2c28808b60",
+  "sema_stub": "58a3",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:dd54f4299d786c2babcc4636ddb911abcae0cd813e6828cf1e4902de217c6bc2",
+      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:3749f3971391c50e3b48d12d3fb65c16eee0fbf208dcb2a833e653ec1555be3f"
+    }
+  }
+}

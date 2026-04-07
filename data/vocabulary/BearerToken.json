@@ -1,0 +1,39 @@
+{
+  "handle": "BearerToken",
+  "mechanism": "A portable authorization artifact. Unlike {{identity}}-Based Access Control (IBAC) which checks 'Who are you?', this checks 'Do you have the token?'. The Token grants specific rights (e.g., 'Read /data/logs') to the bearer. It can be passed freely between agents to delegate authority without re-configuring the server's Access Control List. It often encodes an access level directly within its signed payload, allowing stateless verification of privilege scopes. May function as an expiring token.",
+  "gloss": "Possession-based authorization",
+  "failure_modes": [
+    "Theft: If a BearerToken is intercepted, the attacker gains full rights (no identity check is performed).",
+    "Replay Attack: Using a spent token again (requires Nonce or Expiry).",
+    "Scope Creep: Token grants more rights than necessary for the task."
+  ],
+  "invariants": [
+    "Possession Equals Access: The token itself grants rights; no identity check required.",
+    "Possession Equals Authority: Verifier checks Token signature, not ID.",
+    "Revocability: Token MUST have an Expiry or RevocationID.",
+    "Integrity: Payload must be cryptographically signed by a trusted Issuer."
+  ],
+  "preconditions": [
+    "Issuer public key is known to Verifier",
+    "Token is within validity window"
+  ],
+  "postconditions": [
+    "Access granted or denied based on signature verification"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:BearerToken#mh:SHA-256:2fe9926ab156fd1df414f52e9a4d430f75c7c3311d217cd685f514253f4b1f9d",
+  "sema_ref": "BearerToken#2fe9",
+  "sema_stub": "2fe9",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+    }
+  }
+}

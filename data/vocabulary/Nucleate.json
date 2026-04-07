@@ -1,0 +1,40 @@
+{
+  "handle": "Nucleate",
+  "mechanism": "Agents coordinate indirectly via {{trace}} (stigmergy). {{system}} tracks trace-density per location. When density crosses threshold, site becomes supersaturated. Any agent at supersaturated site may invoke 'NUCLEATE', broadcasting crystal purpose. Agents at site receive signal and may 'BOND' to join direct channel. It monitors {{trace}} density, triggering {{rally}} to gather agents and {{crystallize}} to form a stable group.",
+  "gloss": "Emergent working groups from activity density",
+  "failure_modes": [
+    "Threshold miscalibration: too low = constant nucleation overhead; too high = never crystallizes.",
+    "Zombie crystals: anchor disappears but crystal persists in broken state (mitigate with heartbeat).",
+    "Crystal fragmentation: participants leave in waves, causing repeated dissolve/reform cycles."
+  ],
+  "invariants": [
+    "Conservation of Mass: Nucleation cannot create agents; it only aggregates existing {{trace}} density.",
+    "Critical Mass: Process starts only when N > SeedThreshold",
+    "Nucleation ONLY at supersaturated sites."
+  ],
+  "preconditions": [
+    "Field of agents/particles is present"
+  ],
+  "postconditions": [
+    "Phase transition complete (Liquid -> Solid)"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:Nucleate#mh:SHA-256:71a95a511232594fc632788a39beedf110cc0c9eb1b252d3d5efe98e1c8b5a81",
+  "sema_ref": "Nucleate#71a9",
+  "sema_stub": "71a9",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "rally": "sema:Rally#mh:SHA-256:ce645d48960026a476ec833c627a1a56247a082e22c4d520fa3cd870bbe110c3",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "crystallize": "sema:Crystallize#mh:SHA-256:17c27419a87be686a346e3ffe1d23109b0ab01935a22b50fc377025f6ba50649",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "handle": "TimeWarpLog",
+  "mechanism": "Events are not ordered by wall-clock time but by 'causal cones'. An {{agent}} accepts an event from the 'past' if it doesn't contradict its current causal cone. Allows for massive latency tolerance. Utilizes {{world_reversible}}, {{causal_barrier}}.",
+  "gloss": "Handling relativistic event ordering",
+  "failure_modes": [
+    "User confusion about 'when' things happened."
+  ],
+  "invariants": [
+    "Immutability: Past entries cannot be modified",
+    "Indexability: Seek(Time T) returns deterministic {{state}}(T)",
+    "Log immutable after write."
+  ],
+  "preconditions": [
+    "Storage supports append-only writes"
+  ],
+  "postconditions": [
+    "{{system}} state matches T_target"
+  ],
+  "parameters": [
+    {
+      "name": "granularity",
+      "type": "Duration",
+      "range": "[1ms, 1min]",
+      "description": "Resolution of time travel"
+    },
+    {
+      "name": "index_strategy",
+      "type": "Enum",
+      "range": "{Time, Causal, Hybrid}",
+      "description": "How to organize history"
+    },
+    {
+      "name": "retention_window",
+      "type": "Duration",
+      "range": "[1h, 30d]",
+      "description": "How far back to retain"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
+  "sema_ref": "TimeWarpLog#55e0",
+  "sema_stub": "55e0",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

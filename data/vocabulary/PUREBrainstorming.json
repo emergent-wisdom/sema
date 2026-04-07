@@ -1,0 +1,29 @@
+{
+  "handle": "PUREBrainstorming",
+  "mechanism": "A rigorous ideation protocol. Unlike standard brainstorming (which prioritizes quantity), PUREBrainstorming enforces immediate quality filtering. It generates candidate concepts and subjects them to {{pure_check}}. Surviving concepts undergo {{pure_optimization}} to maximize their scores. The process converges only when a concept can be fully articulated as a {{mechanistic_design_proposal}}, ensuring that every idea is backed by a causal mechanism.",
+  "gloss": "Generate -> Check -> Optimize -> Propose",
+  "invariants": [
+    "Filter-First: No concept moves to the Proposal stage without passing PURECheck.",
+    "Mechanistic Rigor: The final output must match the MechanisticDesignProposal schema."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_ref": "PUREBrainstorming#02e7",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:02e7912cbc6b63ca0677f1ca8a9b371c8d5e1dec240bbed087f2c9c7e1ddbcb9",
+  "sema_stub": "02e7",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "composes_with": {
+      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:4114d67d1729658a76e94afe6f381ecc4ad52fe2d83e9cd832ff1aaf1aaf63ee",
+      "pure_check": "sema:PURECheck#mh:SHA-256:8ac3ae4946b9e93c687eba0a993d8bdf973b6b7bb9266d71427d94e5be5c166b"
+    },
+    "yields": {
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06"
+    }
+  }
+}

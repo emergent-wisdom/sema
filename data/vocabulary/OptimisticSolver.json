@@ -1,0 +1,41 @@
+{
+  "handle": "OptimisticSolver",
+  "mechanism": "A high-velocity implementation of {{cognitive_solver}} designed for efficient multi-agent coordination. Requires a {{parallel}} runtime (Actor Model with Mailboxes) to prevent serial deadlock. It explicitly couples the standard Solver lifecycle (Reason -> Solution) with the {{atomic_bid}} protocol. Unlike the base abstraction, this pattern MANDATES that the agent plan and execute in a single turn. It relies on {{reflexion}} and {{compensate}} for error correction rather than pre-action permission. Use {{compute_budget}} to bound resource consumption. Contrast with {{rigorous_solver}} which prioritizes safety over speed.",
+  "gloss": "High-velocity solver requiring parallel runtime",
+  "preconditions": [
+    "Runtime supports Asynchronous/Parallel message delivery (Actor Model).",
+    "Message Bus is non-blocking (Mailbox pattern)."
+  ],
+  "invariants": [
+    "Turn Atomicity: Must output [BID] and [TOOL] in the same response.",
+    "Non-Blocking: Cannot wait for Orchestrator approval on standard tasks."
+  ],
+  "failure_modes": [
+    "Over-Eager Execution: Solving the wrong problem efficiently because feedback was skipped.",
+    "Serial Deadlock: If deployed on a single-threaded (Talking Stick) engine, multiple atomic outputs will be dropped, halting the swarm."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_ref": "OptimisticSolver#f632",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:f6323ff24ef14ba109f7840604ffe0fddb7e288cde605e6a041c50e864d3f6de",
+  "sema_stub": "f632",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:605bc87c13db42f817dc4c741ecd51944ff3280c694a9d7438898433e76e8fe8",
+      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc"
+    },
+    "composes_with": {
+      "atomic_bid": "sema:AtomicBid#mh:SHA-256:31b0d05e0fd79231916471c4ba9a5b8eb36bed076edb4e4ca38f8325a7bd35e0",
+      "compensate": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+    }
+  }
+}

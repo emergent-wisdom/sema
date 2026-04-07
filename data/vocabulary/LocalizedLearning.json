@@ -1,0 +1,39 @@
+{
+  "handle": "LocalizedLearning",
+  "mechanism": "A learning process that performs the {{act}} of routing {{feedback_signal}} exclusively to the specific {{solver_manifest}} that generated the result. By partitioning memory updates by subproblem type, it prevents the catastrophic interference common in monolithic models. The feedback signal is tagged with solver ID, ensuring updates are isolated.",
+  "gloss": "Partitioned feedback router for solver learning",
+  "failure_modes": [
+    "Echo Chamber: A specialist solver over-optimizes for its narrow metric, ignoring global context.",
+    "Feedback Sparsity: Rare modules receive insufficient feedback to learn.",
+    "Misrouting: Feedback is attributed to the wrong solver.",
+    "Signal Decay: Feedback arrives too late to be useful."
+  ],
+  "invariants": [
+    "Isolation: Update(Solver_A) cannot change Weights(Solver_B).",
+    "Attribution: Each feedback signal must identify its source solver.",
+    "Standardization: Feedback format is universal across all solver types."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
+  "sema_ref": "LocalizedLearning#69bb",
+  "sema_stub": "69bb",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Act(FeedbackSignal)"
+  ],
+  "dependencies": {
+    "accepts": {
+      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c"
+    },
+    "references": {
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
+      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+    }
+  }
+}

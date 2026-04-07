@@ -1,0 +1,34 @@
+{
+  "handle": "WorldReversible",
+  "mechanism": "A safety constraint where the agent must design the system such that every action can be perfectly inverted at low cost. This forces the use of immutable logs, versioning, and 'soft deletes' instead of destructive updates.",
+  "gloss": "Designing for zero-cost undo",
+  "failure_modes": [
+    "Storage explosion (keeping all history)."
+  ],
+  "invariants": [
+    "Lossless Undo: {{state}}(T) can be fully restored from {{state}}(T+1)",
+    "Low Friction: Cost(Undo) ~ Cost(Do)"
+  ],
+  "preconditions": [
+    "Storage is sufficient for history"
+  ],
+  "postconditions": [
+    "Irreversible actions wrapped in 'Commit' gates"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe",
+  "sema_ref": "WorldReversible#f664",
+  "sema_stub": "f664",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

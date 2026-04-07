@@ -1,0 +1,5674 @@
+{
+  "nodes": [
+    {
+      "id": "SynergisticMode",
+      "sema_id": "sema:SynergisticMode#mh:SHA-256:00c3faafa74919aa8a1e25d038c8950e009d478d90c6cf3df2a5adcd9e528647",
+      "sema_stub": "00c3",
+      "gloss": "Protocol-level cognitive mode switching",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 2
+    },
+    {
+      "id": "Signal",
+      "sema_id": "sema:Signal#mh:SHA-256:092ab3502160fe7d7fd4cd825f03e23b3be6a8db98f584f8ebb570a331bbc001",
+      "sema_stub": "092a",
+      "gloss": "Raw information emission",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "AnalogyBridge",
+      "sema_id": "sema:AnalogyBridge#mh:SHA-256:39428680e9afe75bc0ba3185b2c2dea163c2b27b8ef9053a8890aa781daaeb0f",
+      "sema_stub": "3942",
+      "gloss": "Mapping to known solutions",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 1
+    },
+    {
+      "id": "PatternSketch",
+      "sema_id": "sema:PatternSketch#mh:SHA-256:38ee1669b4a24effe4b0fe9b69f21982d30efbf0469cafe4831fc722cf615cf3",
+      "sema_stub": "38ee",
+      "gloss": "Progressive formalization of meaning",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "EmpiricalTest",
+      "sema_id": "sema:EmpiricalTest#mh:SHA-256:fbcf180794b94dd3061fdf10ba672c3104fd9cb082c5531f48f95779a9f6f02a",
+      "sema_stub": "fbcf",
+      "gloss": "Verifying conclusions via testable predictions",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "Fermi",
+      "sema_id": "sema:Fermi#mh:SHA-256:77e3a51da81ef93fd57593aac30d4fa0de2849a45ef8ee4183004724f18b5f08",
+      "sema_stub": "77e3",
+      "gloss": "Estimation via decomposition",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "FabricSharding",
+      "sema_id": "sema:FabricSharding#mh:SHA-256:9c2bef958f78bda4b2ee4f5a1d6b3ce3fe71685481e84f25b2fd3e04614eeb96",
+      "sema_stub": "9c2b",
+      "gloss": "Interlocking state threads",
+      "layer": "Physics",
+      "category": "Sharding & Distribution",
+      "tier": 2
+    },
+    {
+      "id": "AntifragileInversion",
+      "sema_id": "sema:AntifragileInversion#mh:SHA-256:442fab5ed70b4d6b2c785906bdb18777a8baae859d1ebbdcf5b3e9a1d1ac9e96",
+      "sema_stub": "442f",
+      "gloss": "Converting volatility into fuel",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 1
+    },
+    {
+      "id": "ValuePeg",
+      "sema_id": "sema:ValuePeg#mh:SHA-256:d17b62f17896625224172b2eecb871410131215e471581d47704416dd210a3bb",
+      "sema_stub": "d17b",
+      "gloss": "Translating internal utility to shared numeraire",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    },
+    {
+      "id": "GhostTrail",
+      "sema_id": "sema:GhostTrail#mh:SHA-256:d1d0246047fec7a227c6665d790f829bc4e91e93e507de59391540dc89c515bf",
+      "sema_stub": "d1d0",
+      "gloss": "Cryptographically verified anonymous stigmergy",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "ChunkMerge",
+      "sema_id": "sema:ChunkMerge#mh:SHA-256:479840984bdf3b98ff2053e0ec590c8e19f5a8060f7d11b5b9cf992f490910e9",
+      "sema_stub": "4798",
+      "gloss": "Hierarchical context management",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 1
+    },
+    {
+      "id": "Unique",
+      "sema_id": "sema:Unique#mh:SHA-256:d2015430128b56ceb280e75cf9f77263051dce3b9a814f4a03162e676f303415",
+      "sema_stub": "d201",
+      "gloss": "Condition: Is this structurally novel?",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Switch",
+      "sema_id": "sema:Switch#mh:SHA-256:ad728259ca8795467f1571e35b1b0034b35e2efc43af04b2752cd575a05fabb8",
+      "sema_stub": "ad72",
+      "gloss": "Contextual toggle",
+      "layer": "Infrastructure",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "Yield",
+      "sema_id": "sema:Yield#mh:SHA-256:9c8830db5bc4b634342a510ee5c426945800d21de0c531902e4ec59e737ef305",
+      "sema_stub": "9c88",
+      "gloss": "Enable fair resolution of genuine disagreements without defaulting to power dynamics or eternal deadlock",
+      "layer": "Society",
+      "category": "Negotiation",
+      "tier": 2
+    },
+    {
+      "id": "MimicMask",
+      "sema_id": "sema:MimicMask#mh:SHA-256:29b09d37d2a14747723597194da89d6447353fa286d97647125f11605872dff0",
+      "sema_stub": "29b0",
+      "gloss": "Hiding in the crowd",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 1
+    },
+    {
+      "id": "NegativeProof",
+      "sema_id": "sema:NegativeProof#mh:SHA-256:9219f397ae5aa8266c94b350c84536a416dce6b135bafcfad5b2e19820ef35a2",
+      "sema_stub": "9219",
+      "gloss": "Proving ignorance or non-liability",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "Parsimony",
+      "sema_id": "sema:Parsimony#mh:SHA-256:26fae7288986b8743281d86978c97d055ae77e3bd3c162317a7ed0b4ca07e6e0",
+      "sema_stub": "26fa",
+      "gloss": "Condition: Is this the simplest explanation?",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "TimeWarpLog",
+      "sema_id": "sema:TimeWarpLog#mh:SHA-256:8f1c65434e039d72dfe03f19eb0f0ada3195d143f3eff3c3e601926bdc9c4893",
+      "sema_stub": "8f1c",
+      "gloss": "Handling relativistic event ordering",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "PermissionEscalate",
+      "sema_id": "sema:PermissionEscalate#mh:SHA-256:bbf1d903649806904bb5ef9a4b608d0ea05bf26bd0ea4151852a16069d17ad24",
+      "sema_stub": "bbf1",
+      "gloss": "Requesting elevated privileges for sensitive operations",
+      "layer": "Society",
+      "category": "Governance",
+      "tier": 1
+    },
+    {
+      "id": "Incongruity",
+      "sema_id": "sema:Incongruity#mh:SHA-256:a0db90918f0bf7ee8fa54880b785561a4d540eac582b3244e311f2a740fe162e",
+      "sema_stub": "a0db",
+      "gloss": "The root of Humor and Paradox",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "BoundaryProbe",
+      "sema_id": "sema:BoundaryProbe#mh:SHA-256:b1824ac9a954e0747380bf4268375119e5dc4e8632d7b273e8598a05082b51be",
+      "sema_stub": "b182",
+      "gloss": "Testing the edges of the specification",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "Handoff",
+      "sema_id": "sema:Handoff#mh:SHA-256:328ac161f22225a64e5b8a6d98760c7ef455bdb8401739df88f1335549869392",
+      "sema_stub": "328a",
+      "gloss": "Transfer control and context between agents",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "NormativeJudge",
+      "sema_id": "sema:NormativeJudge#mh:SHA-256:e7685cf129a3389a526c92d9e6c2fa8e5e9e252434571406acc877e0edd82101",
+      "sema_stub": "e768",
+      "gloss": "Value-based state evaluation",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "StateTransition",
+      "sema_id": "sema:StateTransition#mh:SHA-256:748b7fd06f2b9302b47e12e41e5950274fd76c8d3982e1596b6525ef44c35064",
+      "sema_stub": "748b",
+      "gloss": "Explicit finite-state machine governance",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 2
+    },
+    {
+      "id": "ExplainBeacon",
+      "sema_id": "sema:ExplainBeacon#mh:SHA-256:89b37c60dbef5790d5bfa4144da7acd708f6140ce089944e492ec49bdec592f5",
+      "sema_stub": "89b3",
+      "gloss": "Real-time readable intent broadcasting",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "Parallelize",
+      "sema_id": "sema:Parallelize#mh:SHA-256:b141285766189f3f3fdd0a557329cf82183f858a2f1c9418d865724ae77f654b",
+      "sema_stub": "b141",
+      "gloss": "Run subtasks simultaneously and aggregate",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "StructuralCoaching",
+      "sema_id": "sema:StructuralCoaching#mh:SHA-256:fce392201e8e66f4dc49f0f026e3fa60325bfc46e0796fe96351f351d19429f2",
+      "sema_stub": "fce3",
+      "gloss": "Guidance on deep structure vs surface features",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "EvaluatorOptimizer",
+      "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:bb1d4d7c6a540edb994152bcafa557d6653817c3b841860d89b3f57615c244a2",
+      "sema_stub": "bb1d",
+      "gloss": "Generate-evaluate-refine loop",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "FractalContext",
+      "sema_id": "sema:FractalContext#mh:SHA-256:1fc8b0c8b22fa966498e01b3e385afda58210b42acd309ab3cf283e3f56b2510",
+      "sema_stub": "1fc8",
+      "gloss": "Perfect semantic alignment through infinite recursion.",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 1
+    },
+    {
+      "id": "Trace",
+      "sema_id": "sema:Trace#mh:SHA-256:d13c54c36d79a7d8aac995483e5065f5245c510c23ff9517b66445713ee363eb",
+      "sema_stub": "d13c",
+      "gloss": "Record the lineage or provenance of a target",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 0
+    },
+    {
+      "id": "DeliberativeAlign",
+      "sema_id": "sema:DeliberativeAlign#mh:SHA-256:c5afe966f679666f6b45c2cbebd92f6ac65dd4c37662db0918f1978495b0e513",
+      "sema_stub": "c5af",
+      "gloss": "Explicit safety reasoning prior to execution",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "NoiseInjection",
+      "sema_id": "sema:NoiseInjection#mh:SHA-256:a3d32afde66d6c360d0e725e3c3094efa2f0569eebf6af21a6e551d913a63bc8",
+      "sema_stub": "a3d3",
+      "gloss": "Breaking local optima",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 1
+    },
+    {
+      "id": "Belief",
+      "sema_id": "sema:Belief#mh:SHA-256:5669acdf3602bd9b38f1ff04dbc2f2f6d7644ab155214b4caca9e18b9ac3e5e4",
+      "sema_stub": "5669",
+      "gloss": "A subjective claim with confidence and evidence",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Audit",
+      "sema_id": "sema:Audit#mh:SHA-256:cbb3821d672705b249969a4967702e3cde108dc1925c2d8cf4cf397845f03631",
+      "sema_stub": "cbb3",
+      "gloss": "Verification of conformance",
+      "layer": "Society",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "PerspectiveEnsemble",
+      "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:5da92117a5d71a48f0eb06e4f500bf0c202454be068ed7eda8ff6d4df18449e7",
+      "sema_stub": "5da9",
+      "gloss": "Simulating diverse experts",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 2
+    },
+    {
+      "id": "DepthGovernor",
+      "sema_id": "sema:DepthGovernor#mh:SHA-256:579e956d84a9ffe6e4a0a9554537800b187b04798d07512b044a2d5211e628ea",
+      "sema_stub": "579e",
+      "gloss": "Entropy-based stopping condition for recursion",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "EntropyPump",
+      "sema_id": "sema:EntropyPump#mh:SHA-256:df13d528f25896e2bfae939c598407f46284722be0301718e42a06b65a89616f",
+      "sema_stub": "df13",
+      "gloss": "Active cleaning of semantic noise",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "SignalReflection",
+      "sema_id": "sema:SignalReflection#mh:SHA-256:4751d7e118715d4a0143dd69985b3afd152ea13995c67086861aafba36297b66",
+      "sema_stub": "4751",
+      "gloss": "Proof of receipt via modification",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "Invert",
+      "sema_id": "sema:Invert#mh:SHA-256:8adf2174374929b1909cc15580b7d50d797de62836c5943be46fd00df9914846",
+      "sema_stub": "8adf",
+      "gloss": "Solution discovery via negation",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 2
+    },
+    {
+      "id": "EmpathySim",
+      "sema_id": "sema:EmpathySim#mh:SHA-256:91fe3055f33e6d2c00243adcd1f43532534c6020344e298a1078383ba7290f1b",
+      "sema_stub": "91fe",
+      "gloss": "Predictive modeling of external agent states",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 2
+    },
+    {
+      "id": "Decay",
+      "sema_id": "sema:Decay#mh:SHA-256:ab3a65b9f1f6b70ec91176217cbcd2b3ea64e32a14f62a267586ab313e34ddf2",
+      "sema_stub": "ab3a",
+      "gloss": "Automatic expiration of stale state",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 2
+    },
+    {
+      "id": "AgentProtocol",
+      "sema_id": "sema:AgentProtocol#mh:SHA-256:5ef31fa8e32c94b95db44aa8b607f3fc493809fd24fe57dd728de4523d02b325",
+      "sema_stub": "5ef3",
+      "gloss": "Standard patterns for multi-agent coordination",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "Resonate",
+      "sema_id": "sema:Resonate#mh:SHA-256:e9bd0c168cd52424274991204a414c21a9124daf1ab12af9494ff00ca7a9b3ab",
+      "sema_stub": "e9bd",
+      "gloss": "Implicit coordination via signal amplification",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "AdversarialSteel",
+      "sema_id": "sema:AdversarialSteel#mh:SHA-256:b0fabd53d088c8219187db7e4de2f06c59f32a24418b387de404de6a45936642",
+      "sema_stub": "b0fa",
+      "gloss": "Dual-advocate verdict generation",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 2
+    },
+    {
+      "id": "TimeboxThink",
+      "sema_id": "sema:TimeboxThink#mh:SHA-256:b73a89a8e0a6bc8f0ecc2ea1fb7cc4fdf5e88dfdc7227ea061f33bc80b4b5b33",
+      "sema_stub": "b73a",
+      "gloss": "Temporal bounding of exploration",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "ToolInvoke",
+      "sema_id": "sema:ToolInvoke#mh:SHA-256:1b1c6a52f13dceae393bdf09c5d612e6384179a3382f4dbfb90513bde1fcd1e7",
+      "sema_stub": "1b1c",
+      "gloss": "Execute external tool and observe result",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "Nature",
+      "sema_id": "sema:Nature#mh:SHA-256:b9cdb37ee0ea77df452b122a6e0e611981d9d309f099b80ea3ea29a57d1b7932",
+      "sema_stub": "b9cd",
+      "gloss": "Ontological origin (Bio/Synth/Institutional)",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "Break",
+      "sema_id": "sema:Break#mh:SHA-256:26dc8f93150ff665c14cf4b617a52fee26796fe2bc08f98e246a6bb4704ab2ea",
+      "sema_stub": "26dc",
+      "gloss": "Enable graceful degradation and coordinated recovery when coordination fails mid-stream",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "State",
+      "sema_id": "sema:State#mh:SHA-256:aada6504200f335f57146b47304167ec36663c529da6670407303a06ad728175",
+      "sema_stub": "aada",
+      "gloss": "System condition at time T",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "OntologyHandshake",
+      "sema_id": "sema:OntologyHandshake#mh:SHA-256:d534d6e1d8f1cfc5cb637e4de71aece604be2b2ddc4ce14b71968ab83e0c93a1",
+      "sema_stub": "d534",
+      "gloss": "Negotiating shared definitions",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "PatternEmergence",
+      "sema_id": "sema:PatternEmergence#mh:SHA-256:3f96c261b66b28d43f2fcb79a9351f7e82fafffe7601bdafac0984bd2146816d",
+      "sema_stub": "3f96",
+      "gloss": "Recognizing implicit patterns in existing practice",
+      "layer": "Mind",
+      "category": "Meta-Cognition",
+      "tier": 2
+    },
+    {
+      "id": "ChainOfThought",
+      "sema_id": "sema:ChainOfThought#mh:SHA-256:33083c698b178956f655b7d2fdd1dbb6fede9827539f1949369525d48d5f8e12",
+      "sema_stub": "3308",
+      "gloss": "Step-by-step reasoning (Macro for Think(Chain))",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "UncertaintyMap",
+      "sema_id": "sema:UncertaintyMap#mh:SHA-256:dc2a8bebfea4acc1966586758d720d6f23f1b796b73f287324f39959afa4cb9e",
+      "sema_stub": "dc2a",
+      "gloss": "Systematic categorization of ignorance",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "Lock",
+      "sema_id": "sema:Lock#mh:SHA-256:e7f86649ac20a42afd0db09cfeebc14ed4651edae36c88ed164b194e5b981b01",
+      "sema_stub": "e7f8",
+      "gloss": "Mutual exclusion enforcement",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "SacrificialProbe",
+      "sema_id": "sema:SacrificialProbe#mh:SHA-256:4e5c0524b5221c3bdd185365977f37788cc96995f1267339de45ab88965582e8",
+      "sema_stub": "4e5c",
+      "gloss": "Learning via cheap, instructive failure",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Prioritize",
+      "sema_id": "sema:Prioritize#mh:SHA-256:f25d195235d8dbbd01417678cd6254b16d0223997478726a9c7c304154f9bc09",
+      "sema_stub": "f25d",
+      "gloss": "Ordering tasks by importance and urgency",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "ProphetFanOut",
+      "sema_id": "sema:ProphetFanOut#mh:SHA-256:697bf52cbb8f73bcc68266f79e8be17c8006ff67c8a7758f499f64aad99247ae",
+      "sema_stub": "697b",
+      "gloss": "High-fanout causal simulation",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "PromptChain",
+      "sema_id": "sema:PromptChain#mh:SHA-256:2ad4f9f59ed45976ccebb538de38ea77d5eac7d76e36eda8f6570bcdc08841ca",
+      "sema_stub": "2ad4",
+      "gloss": "Sequential LLM calls with validation gates",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "OntologyAdapt",
+      "sema_id": "sema:OntologyAdapt#mh:SHA-256:db5bc52359459b6d2b3d060618fbeced2e2e1c5ac7f69d39d4a3d61c10e7a61c",
+      "sema_stub": "db5b",
+      "gloss": "Restructuring categories to fit data",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "SteelmanCheck",
+      "sema_id": "sema:SteelmanCheck#mh:SHA-256:149e94e2091c082a6732c71a011f199a7c64f115ef57a9af9355fd3da524b625",
+      "sema_stub": "149e",
+      "gloss": "Mandatory counter-argument generation",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "RetrievalAugment",
+      "sema_id": "sema:RetrievalAugment#mh:SHA-256:e190e59cfee944d49185a2220cb21fd806cb6f5e9e78f5b9c1cae30c6fa51c06",
+      "sema_stub": "e190",
+      "gloss": "Ground responses in retrieved external knowledge",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "AgentSandbox",
+      "sema_id": "sema:AgentSandbox#mh:SHA-256:b87070e3632bb5889e01506f33b102a92ef4eb7699845dd0ab16dfc8445782d6",
+      "sema_stub": "b870",
+      "gloss": "Isolate agent execution with resource limits and egress controls",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Proprioception",
+      "sema_id": "sema:Proprioception#mh:SHA-256:658c137d243987920150513a28df73bd81e27b651e12cb4b2e3e7de1cf601835",
+      "sema_stub": "658c",
+      "gloss": "Self-location awareness within the task graph",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 3
+    },
+    {
+      "id": "OutputGuard",
+      "sema_id": "sema:OutputGuard#mh:SHA-256:268b3147c006307779633eaeed6dc296ad1693f5ce67601b9c055759fe23f9e5",
+      "sema_stub": "268b",
+      "gloss": "Final egress filter for safety and privacy",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "EpistemicROI",
+      "sema_id": "sema:EpistemicROI#mh:SHA-256:89b34a3e39f78d41bc982ac27a1ff8b0df0b405d37afb0e055ff65641238c715",
+      "sema_stub": "89b3",
+      "gloss": "Calculating the economic value of reducing uncertainty",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "Jazz",
+      "sema_id": "sema:Jazz#mh:SHA-256:23f71feeb9774d509b953c7fa7b475b365743d401cd4e18f4ea30831fd3d4ed5",
+      "sema_stub": "23f7",
+      "gloss": "Improvisational flow",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "Value",
+      "sema_id": "sema:Value#mh:SHA-256:d10e5eadf13f427c86e04acba6e3c0addeefafed346e825932f28a805d47de12",
+      "sema_stub": "d10e",
+      "gloss": "A measure of utility",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "BaseRateInclude",
+      "sema_id": "sema:BaseRateInclude#mh:SHA-256:51bf7de20f051f88e6b1e8dae332575d9941b09204281ba84adbd33090843434",
+      "sema_stub": "51bf",
+      "gloss": "Outside view over inside view",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Heartbeat",
+      "sema_id": "sema:Heartbeat#mh:SHA-256:09a33a4eec1094da63493bf74381998d8a340eac933bdc1e80511afba678e903",
+      "sema_stub": "09a3",
+      "gloss": "Liveness detection via periodic signals",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "Canary",
+      "sema_id": "sema:Canary#mh:SHA-256:cc1947d3345cc0de07c98d7e003fba3874e0c089a57563e3a1cafe4460e5e1d1",
+      "sema_stub": "cc19",
+      "gloss": "Transform path selection from 'hope it works' to 'tested it works' without risking real resources",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "Reflex",
+      "sema_id": "sema:Reflex#mh:SHA-256:15074efbbb14b871db39a3f630a66b2d44ce63cd6b230e9fa98d0924b1e638f1",
+      "sema_stub": "1507",
+      "gloss": "Hardcoded fast-path responses bypassing deliberation",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "InvariantFilter",
+      "sema_id": "sema:InvariantFilter#mh:SHA-256:ef1c1be68bda96d8ac93d9e1e3b16e13f8324baf9016da697c3f8506fa8ddc3d",
+      "sema_stub": "ef1c",
+      "gloss": "Rule-based message filtering",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "CostlySignal",
+      "sema_id": "sema:CostlySignal#mh:SHA-256:694738013c1bb8bc12e7e8861fd237c842b88fdc1dd818fca070db1a1d4a9b9e",
+      "sema_stub": "6947",
+      "gloss": "Burning value to prove intent",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "ParetoFront",
+      "sema_id": "sema:ParetoFront#mh:SHA-256:dce9cbc4967dacb0bd59b1466afca3c8ed2ee63a44aeac62d34674363f91677a",
+      "sema_stub": "dce9",
+      "gloss": "Explicitly balancing competing constraints",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "ContingencyPlan",
+      "sema_id": "sema:ContingencyPlan#mh:SHA-256:a95288de1bb9d423ac472bf94dff7c8b35492f5a22d868daeb7c4b6a7980bf1f",
+      "sema_stub": "a952",
+      "gloss": "Pre-computed responses to critical failure",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "BreadthGovernor",
+      "sema_id": "sema:BreadthGovernor#mh:SHA-256:df01050069d180e3528c306ed837506776f04386d7c3a797d5b0ccb663a1dc41",
+      "sema_stub": "df01",
+      "gloss": "Structural limit on parallel execution (Fan-out)",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "HypothesisEngine",
+      "sema_id": "sema:HypothesisEngine#mh:SHA-256:b328007072f0357c0d49bdfef1a00f7caa3c4136e99471e6472a9a96e0a9ad95",
+      "sema_stub": "b328",
+      "gloss": "Automated scientific method",
+      "layer": "Mind",
+      "category": "Meta-Cognition",
+      "tier": 3
+    },
+    {
+      "id": "Decompose",
+      "sema_id": "sema:Decompose#mh:SHA-256:a134cfafa9898991c60d3b4ccab9546974a967432b6544508e679d7a24888ba6",
+      "sema_stub": "a134",
+      "gloss": "Dividing complexity into manageable units",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 1
+    },
+    {
+      "id": "HindsightBlock",
+      "sema_id": "sema:HindsightBlock#mh:SHA-256:4242e0ee14b0af095d4043c086ba4049921ac764b6d480c7493e43053c04b3f3",
+      "sema_stub": "4242",
+      "gloss": "Preventing results-oriented thinking",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "HeldRelease",
+      "sema_id": "sema:HeldRelease#mh:SHA-256:7c2507a64554fbdb3705d88c59b48ce05896b1c3caa8cec37970cc1470f1b31b",
+      "sema_stub": "7c25",
+      "gloss": "Trustless conditional value transfer becomes the primitive for all economic coordination - atomic swaps, payment channels, escrow, and conditional contracts all compose from this base pattern",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "WorkerMode",
+      "sema_id": "sema:WorkerMode#mh:SHA-256:831d19ba590259f2bf968f4733fa7e2a8346c9ecc131eb585490d31c0d9b7e8d",
+      "sema_stub": "831d",
+      "gloss": "Claim tasks and become the assigned persona",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "Scratchpad",
+      "sema_id": "sema:Scratchpad#mh:SHA-256:e680c0832f5de13f6a8ea48f3b8dcdcf75ab270591495d72053d4e0d87f5fe3d",
+      "sema_stub": "e680",
+      "gloss": "Working memory for intermediate reasoning steps",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 2
+    },
+    {
+      "id": "FractalAnte",
+      "sema_id": "sema:FractalAnte#mh:SHA-256:0c9a6551a4441ad4a3a689a3714f5e98097da44e60bfde8487e19477a4f1b184",
+      "sema_stub": "0c9a",
+      "gloss": "Economic bounding of recursive depth",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    },
+    {
+      "id": "Constraint",
+      "sema_id": "sema:Constraint#mh:SHA-256:04981f816c5d671ca82b4eb718d6dbb4ece19a7aa6be4560b65a1e8b0eb14700",
+      "sema_stub": "0498",
+      "gloss": "A boundary condition",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "RootHashGossip",
+      "sema_id": "sema:RootHashGossip#mh:SHA-256:f57794b785bd02531d9ed722612cd6ceb079121b85e8047e74e6067c6da5cda2",
+      "sema_stub": "f577",
+      "gloss": "Path-verified information spreading",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "SpotAudit",
+      "sema_id": "sema:SpotAudit#mh:SHA-256:594c4405b46681da4da231653f40acfc71c1637213cd218d3c6fb128fd6a0704",
+      "sema_stub": "594c",
+      "gloss": "Random sampling of internal state",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "Stigmergy",
+      "sema_id": "sema:Stigmergy#mh:SHA-256:8079ff5f20dd4e458a0e0a01cf4861cd4854426070ff2814729c465bb352ec75",
+      "sema_stub": "8079",
+      "gloss": "Indirect coordination via environment modification (Ant Colony)",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "EphemeralTool",
+      "sema_id": "sema:EphemeralTool#mh:SHA-256:ae2c4bd7d2e38ec6fd2a4519ff87cd446c0770b2dbc637395d5cf6414d726818",
+      "sema_stub": "ae2c",
+      "gloss": "Agents that are never limited by their pre-installed toolbelt.",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "Rally",
+      "sema_id": "sema:Rally#mh:SHA-256:a437f4f81799c853bee118a220d7d33c5567b8be0d43b6518725c47c25fa9058",
+      "sema_stub": "a437",
+      "gloss": "Enable ad-hoc multi-party coordination",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "Disband",
+      "sema_id": "sema:Disband#mh:SHA-256:8c04b242bfa0da731a771353b375c43199af98ce9faf5bbeb0aeb38f344b0f92",
+      "sema_stub": "8c04",
+      "gloss": "Enable clean group termination with proper state handling, preventing orphaned resources and ambiguous group status",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 1
+    },
+    {
+      "id": "Dialectic",
+      "sema_id": "sema:Dialectic#mh:SHA-256:066b6f23323b4270bbcbff91d50c6adae72305df7dbd398a065c10c696f5b07d",
+      "sema_stub": "066b",
+      "gloss": "Internal Thesis-Antithesis-Synthesis loop",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "WhyClimb",
+      "sema_id": "sema:WhyClimb#mh:SHA-256:15164f5fefca9da87ccb42900552c6df5264af7681f72dfe1f906b84f9426ae2",
+      "sema_stub": "1516",
+      "gloss": "Recursive problem abstraction",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Gate",
+      "sema_id": "sema:Gate#mh:SHA-256:858078b71a4b1a69f5789fcee00703c44d3169119c1ef19ae0b14beb879b24c5",
+      "sema_stub": "8580",
+      "gloss": "Filter payload if the target condition is not met",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 0
+    },
+    {
+      "id": "Condition",
+      "sema_id": "sema:Condition#mh:SHA-256:3ea8b45a94448bcfd4509a8e15cbd0426203990f03a98e84114c85eea605ff37",
+      "sema_stub": "3ea8",
+      "gloss": "Interface for patterns that evaluate to a boolean truth-value",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "Discover",
+      "sema_id": "sema:Discover#mh:SHA-256:c4a42f9e957e9c7dd0b2552db4d754f163db696df096154f29624e96464e14cc",
+      "sema_stub": "c4a4",
+      "gloss": "Active Search",
+      "layer": "Mind",
+      "category": "Search",
+      "tier": 0
+    },
+    {
+      "id": "Task",
+      "sema_id": "sema:Task#mh:SHA-256:e176289e117aef7adccd855a9343690392b0a32e1509605c11893a91bdfe9d26",
+      "sema_stub": "e176",
+      "gloss": "The fractal unit of defined work",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 1
+    },
+    {
+      "id": "LazyConsensus",
+      "sema_id": "sema:LazyConsensus#mh:SHA-256:2fe6745f5ea471e4a0c40b72833214ea89b90632f99e265e4311216ea9aef965",
+      "sema_stub": "2fe6",
+      "gloss": "Optimistic execution, retroactive verification",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 2
+    },
+    {
+      "id": "LatentWander",
+      "sema_id": "sema:LatentWander#mh:SHA-256:915ae66fb94238f17815be33e261663d57b0609e9a0b5266a2dffa3c8299f4bc",
+      "sema_stub": "915a",
+      "gloss": "Offline exploration of embedding space",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 3
+    },
+    {
+      "id": "CausalBarrier",
+      "sema_id": "sema:CausalBarrier#mh:SHA-256:bda603f46595ba8fb2dd96cd56be25bb28d8bd95eb7fe0602b59c92b1a6729ae",
+      "sema_stub": "bda6",
+      "gloss": "Enforcing strict event ordering",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "ShoutWhisper",
+      "sema_id": "sema:ShoutWhisper#mh:SHA-256:70c56a3c35f4a19b14dd6ded8c4cc3ff17073058bcbc39a48ac0c8ff34b9f7d8",
+      "sema_stub": "70c5",
+      "gloss": "Dual-mode communication",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "WorldTransparent",
+      "sema_id": "sema:WorldTransparent#mh:SHA-256:f9782f8a2a01cf4ccb98b2732eb7fdbf433196ce63df35d91e911fd34e7b36a1",
+      "sema_stub": "f978",
+      "gloss": "Designing for universal observability",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "StateSnapshot",
+      "sema_id": "sema:StateSnapshot#mh:SHA-256:66c39d69c331e359ac14f233469add5b03c28c40de89fe9f231528e57ad51681",
+      "sema_stub": "66c3",
+      "gloss": "Durable persistence of volatile state",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "DeepResearch",
+      "sema_id": "sema:DeepResearch#mh:SHA-256:2aadceb0968e92628eb52fe79e88ff3d23364e27a451f3a11312beeb80773f69",
+      "sema_stub": "2aad",
+      "gloss": "Plan-search-synthesize-report research pipeline",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "MemeticSeed",
+      "sema_id": "sema:MemeticSeed#mh:SHA-256:e58de55de2ad35581dab0f8221d6a9f9ed6ce8ed429a977fb6eca75cf6cb36c2",
+      "sema_stub": "e58d",
+      "gloss": "Viral propagation of semantic standards via economic subsidy",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "AnchorDrop",
+      "sema_id": "sema:AnchorDrop#mh:SHA-256:662dc9fb203b923f9a4bdd2cb45a485ae3eab8a4487afa075e4a4097c799fe12",
+      "sema_stub": "662d",
+      "gloss": "Emergency state checkpointing",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 1
+    },
+    {
+      "id": "UptakeOverTimestamp",
+      "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:b9c31eb21ebaf8a94cb6567260c32343b98aaceb2dec1dbccbd62712bd584495",
+      "sema_stub": "b9c3",
+      "gloss": "Usage determines canonical status, not who minted first",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "LocalizedFeedback",
+      "sema_id": "sema:LocalizedFeedback#mh:SHA-256:5b5936736c2f90bbee3cd2071b96fc7c8c6d3aa9b56afb48518f0dadc1c09856",
+      "sema_stub": "5b59",
+      "gloss": "Partitioned learning to prevent interference",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 2
+    },
+    {
+      "id": "Validate",
+      "sema_id": "sema:Validate#mh:SHA-256:0030ff862f60b617807084d89b67390e301d4fb05b645af98372e07b4d3ec19a",
+      "sema_stub": "0030",
+      "gloss": "Verifying inputs conform to expected schema",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "TreeOfThoughts",
+      "sema_id": "sema:TreeOfThoughts#mh:SHA-256:0163b68102058fec4f92f3a062bb3542c6fd8389278cfaf7dd646e62405b54dd",
+      "sema_stub": "0163",
+      "gloss": "Branching exploration (Macro for Think(Tree))",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "Sandbox",
+      "sema_id": "sema:Sandbox#mh:SHA-256:c83a4da66bf2412b05fcce40e4d9954f2fcaa8b7fe23d82c9da41527a0cd8eb3",
+      "sema_stub": "c83a",
+      "gloss": "Isolation boundary",
+      "layer": "Infrastructure",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "Prompt",
+      "sema_id": "sema:Prompt#mh:SHA-256:0a7a3709d5fe9def136c96fada3286edfbb49299edf0e10d28ce2c40f825f507",
+      "sema_stub": "0a7a",
+      "gloss": "Model input instruction",
+      "layer": "Mind",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "Parallel",
+      "sema_id": "sema:Parallel#mh:SHA-256:9c0e6a98308e210cc86b310eaf904990770d8a6e8772466aabba916863a4cb18",
+      "sema_stub": "9c0e",
+      "gloss": "Concurrent flow",
+      "layer": "Flow",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "SourceEvaluate",
+      "sema_id": "sema:SourceEvaluate#mh:SHA-256:2a860657b286e668d060d5f89dffcf152f4a643949b73b9dfe2cb41048016006",
+      "sema_stub": "2a86",
+      "gloss": "Incentive-aware evidence weighting",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "StateLock",
+      "sema_id": "sema:StateLock#mh:SHA-256:5ae5ebc4a94fda2d41d059da81236f4a9971125a0c454c3774fc05b709265368",
+      "sema_stub": "5ae5",
+      "gloss": "Atomic coordination via temporary state fusion",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "ConsensusFinder",
+      "sema_id": "sema:ConsensusFinder#mh:SHA-256:31786ac30a31a382874d962a91cf506f9e166b2e4163bb9c91d08fbf70d86f0a",
+      "sema_stub": "3178",
+      "gloss": "Discovering existing agreement",
+      "layer": "Society",
+      "category": "Negotiation",
+      "tier": 2
+    },
+    {
+      "id": "Silence",
+      "sema_id": "sema:Silence#mh:SHA-256:2baf8bf18f0ecc85f4dcbb82efebb281aa9a787e4570a72ca54aba95aa4d92d2",
+      "sema_stub": "2baf",
+      "gloss": "The root of Restraint",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "SpectralTune",
+      "sema_id": "sema:SpectralTune#mh:SHA-256:a3a0fdbbe8211d224a95123963b5efd04fde99419289e3929d2402b9475e2dc8",
+      "sema_stub": "a3a0",
+      "gloss": "Verifying ontology alignment before data transfer",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "Satisfice",
+      "sema_id": "sema:Satisfice#mh:SHA-256:9dd2588c07bfd8469be267514b8d86bdb54a8fe23afb283e16bbbb772b7941a2",
+      "sema_stub": "9dd2",
+      "gloss": "Optimizing for speed via threshold acceptance",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "RecursiveRootCause",
+      "sema_id": "sema:RecursiveRootCause#mh:SHA-256:deb4556c3613b511451ac2e89f31a09a3a94361f6d09ee1ea7591d5d3d8b12c0",
+      "sema_stub": "deb4",
+      "gloss": "Recursive root cause analysis",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "LatticeCommit",
+      "sema_id": "sema:LatticeCommit#mh:SHA-256:8ab4aac88e80e6168b99e03e9e619b645e29212a6a3363736b3eeca4e64810dc",
+      "sema_stub": "8ab4",
+      "gloss": "Geometric neighbor consensus",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "SafetyCartographer",
+      "sema_id": "sema:SafetyCartographer#mh:SHA-256:aa74d44d868c55a2c6c7aad072a5a820e7aa093040c0faef112727aa666ce70d",
+      "sema_stub": "aa74",
+      "gloss": "Mapping safety boundaries",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "PheromoneEconomy",
+      "sema_id": "sema:PheromoneEconomy#mh:SHA-256:f8d9739748352ca74f2502dd8111755e8b094b313997db6c77c738c43e7e816f",
+      "sema_stub": "f8d9",
+      "gloss": "Value-driven coordination",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 2
+    },
+    {
+      "id": "SemanticTabu",
+      "sema_id": "sema:SemanticTabu#mh:SHA-256:4e1da80e73145fce7c3edd894d138767eeb39657f41935ac01d240cc2fceaa8f",
+      "sema_stub": "4e1d",
+      "gloss": "Constraint-based novelty enforcement",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "SomaticMarker",
+      "sema_id": "sema:SomaticMarker#mh:SHA-256:d32695a35cce7e8e013ab3f75f29cc3a35cbaf8847229ad04ebe7fe305bdb05c",
+      "sema_stub": "d326",
+      "gloss": "System health acting as an inhibitory emotion",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "MonotonicCounter",
+      "sema_id": "sema:MonotonicCounter#mh:SHA-256:7b6c8fbdc845d21fbbdbcf4b6e1a17ece8cd125775b64537cf7a7aa8c7fe3541",
+      "sema_stub": "7b6c",
+      "gloss": "Logic via strictly increasing values",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "Responsibility",
+      "sema_id": "sema:Responsibility#mh:SHA-256:6efee8b168f5a7afb61c95c60ff9273949d51ded8482a3a457c7612157b8ebdf",
+      "sema_stub": "6efe",
+      "gloss": "Continuous ownership of a system invariant",
+      "layer": "Society",
+      "category": "Governance",
+      "tier": 1
+    },
+    {
+      "id": "Throttle",
+      "sema_id": "sema:Throttle#mh:SHA-256:40da95fb07353df52927a9383da611860e91c2ea42af02b184a011223bd01478",
+      "sema_stub": "40da",
+      "gloss": "Rate-limiting to prevent resource exhaustion",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "GlacialVault",
+      "sema_id": "sema:GlacialVault#mh:SHA-256:cd7efd43153e3231d40bcf0b82a8793b8bd7a7d8edf94beec7315c82814fe171",
+      "sema_stub": "cd7e",
+      "gloss": "Time-locked storage",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 2
+    },
+    {
+      "id": "BayesUpdate",
+      "sema_id": "sema:BayesUpdate#mh:SHA-256:00cdf8514c1b95224f097e2a4d8ddc1c9666ea7ea8699ef41871abdf34780084",
+      "sema_stub": "00cd",
+      "gloss": "Mathematically rigorous belief revision",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "ConstraintBox",
+      "sema_id": "sema:ConstraintBox#mh:SHA-256:31079f17d5d263417acd215c8907c15de8bb6db47e5087a2a10a7215ba86da58",
+      "sema_stub": "3107",
+      "gloss": "Defining boundaries before content",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 2
+    },
+    {
+      "id": "Elect",
+      "sema_id": "sema:Elect#mh:SHA-256:9a70eebb8952b41bc827bfcc55b47f01f8144a234bad57ba27fadabcbe484e8d",
+      "sema_stub": "9a70",
+      "gloss": "Enable efficient group coordination through configurable leadership with clear authority boundaries and succession planning",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "FailClosed",
+      "sema_id": "sema:FailClosed#mh:SHA-256:6391fa9d145bf2827e436cd9fc50f63ec6a5e391717858f197573c7811b6d021",
+      "sema_stub": "6391",
+      "gloss": "Default-deny policy for uncertain states",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Bisect",
+      "sema_id": "sema:Bisect#mh:SHA-256:a67eea1bb45c2094b7defe40cdcb6ff4bdead521deca3349f627255db174077a",
+      "sema_stub": "a67e",
+      "gloss": "Logarithmic search via binary splitting",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "Compress",
+      "sema_id": "sema:Compress#mh:SHA-256:b8023f5a6114e049f0187152b5dae465b11d2f7047ab74f5cdf02cea4bab1c05",
+      "sema_stub": "b802",
+      "gloss": "Lossy or lossless reduction",
+      "layer": "Infrastructure",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "RegimeSense",
+      "sema_id": "sema:RegimeSense#mh:SHA-256:96a803952a0360ea547e18fb30d8fdb78aa75d9f2771f59b0888172803dc827b",
+      "sema_stub": "96a8",
+      "gloss": "Detecting structural breaks in reality",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "GracefulDegradation",
+      "sema_id": "sema:GracefulDegradation#mh:SHA-256:5b45bf323eb24e75125f21a608fb11dd7720ce8ba96db9bd4376b07ae0accabc",
+      "sema_stub": "5b45",
+      "gloss": "When verification fails, fall back to inline definition",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 1
+    },
+    {
+      "id": "PURECheck",
+      "sema_id": "sema:PURECheck#mh:SHA-256:54aac1c13d5d4eca3b6e20133dc01f4b59c116fc9554890a06d57cacbcc28b05",
+      "sema_stub": "54aa",
+      "gloss": "The PURE Standard (Macro for 4-Gate Pipeline)",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Agent",
+      "sema_id": "sema:Agent#mh:SHA-256:105ab50462f873ce16b1142913c979ff0a79b213f8c0d4f72f5857d5bbed67ea",
+      "sema_stub": "105a",
+      "gloss": "Autonomous Goal-Directed Entity",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 0
+    },
+    {
+      "id": "ConceptBlend",
+      "sema_id": "sema:ConceptBlend#mh:SHA-256:10b5f7b214a560e7517ab65a0c4af7ba1f88531801823e47045f34f91c64aac6",
+      "sema_stub": "10b5",
+      "gloss": "Combinatorial novelty generation",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 3
+    },
+    {
+      "id": "Act",
+      "sema_id": "sema:Act#mh:SHA-256:5510d971c94db4ab875a5a26a0cd3f140554a9709afc6ce39c8bfd0845a475fb",
+      "sema_stub": "5510",
+      "gloss": "State modification",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "VowOfSilence",
+      "sema_id": "sema:VowOfSilence#mh:SHA-256:e02ecb3623e3b2c272f01d2444a21a5ddfe4a46b0d658373d1667e84160dc686",
+      "sema_stub": "e02e",
+      "gloss": "Strategic restraint",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "CapacityPressure",
+      "sema_id": "sema:CapacityPressure#mh:SHA-256:44f52ecde1d51be33b238a8514f4daeec435520a41bfdf3e423d3ccd6862da46",
+      "sema_stub": "44f5",
+      "gloss": "Forcing abstraction via resource starvation",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "CryptoShred",
+      "sema_id": "sema:CryptoShred#mh:SHA-256:1c3fe678278b4bb22c9db81c3eb97af5652d90c0780bb46ebc219df38dc9e970",
+      "sema_stub": "1c3f",
+      "gloss": "Provable deletion of liability data",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 2
+    },
+    {
+      "id": "Branch",
+      "sema_id": "sema:Branch#mh:SHA-256:466f107dcda97f1c15ede0eea84d831349c9fad7868f096c417a3368cd82b33d",
+      "sema_stub": "466f",
+      "gloss": "Conditional flow",
+      "layer": "Flow",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "UptakeAsGround",
+      "sema_id": "sema:UptakeAsGround#mh:SHA-256:b54d6f275a85a51f4139821c23998edce776b2a5e537a6e50f3d1ef25aa491e6",
+      "sema_stub": "b54d",
+      "gloss": "Meaning emerges from successful coordination",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 2
+    },
+    {
+      "id": "Jester",
+      "sema_id": "sema:Jester#mh:SHA-256:6ba933f7e9a7fc622a565c04ebfd33e32eb1bbfd5c91320ce51b3c655df3515c",
+      "sema_stub": "6ba9",
+      "gloss": "Detecting absurdity and contradiction",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 2
+    },
+    {
+      "id": "ContextCompress",
+      "sema_id": "sema:ContextCompress#mh:SHA-256:0817c4d932920b5b310753292fd5070df548d7a31e40ab01b88e7d66ae657136",
+      "sema_stub": "0817",
+      "gloss": "Semantic compression for long-running contexts",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "AttentionMarkets",
+      "sema_id": "sema:AttentionMarkets#mh:SHA-256:c4583377979847c7ddb026737d8f4603fc1d8c12573935335b171d7b95aadcc1",
+      "sema_stub": "c458",
+      "gloss": "Pricing bandwidth to filter spam",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    },
+    {
+      "id": "Combine",
+      "sema_id": "sema:Combine#mh:SHA-256:ae50b0afa595b345dc0b44b786923815691d3c366eaa6cf38b4b9c82c231493c",
+      "sema_stub": "ae50",
+      "gloss": "Binary merge operation",
+      "layer": "Logic",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "Delegate",
+      "sema_id": "sema:Delegate#mh:SHA-256:bb7fa682b377048e5b509e768533f16f60bfb6ef79f18eccf4aa287b8d0f3898",
+      "sema_stub": "bb7f",
+      "gloss": "Enable structured work distribution in multi-agent groups with accountability, progress visibility, and failure handling",
+      "layer": "Society",
+      "category": "Governance",
+      "tier": 2
+    },
+    {
+      "id": "CommitmentDevice",
+      "sema_id": "sema:CommitmentDevice#mh:SHA-256:1c7d03e63ac6ab8a0bf71d390de414f66591de42bf281c6c536a1d522185b798",
+      "sema_stub": "1c7d",
+      "gloss": "Pre-commitment against hyperbolic discounting",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 1
+    },
+    {
+      "id": "OptimalStop",
+      "sema_id": "sema:OptimalStop#mh:SHA-256:cde6ddebf2c8ec8744531878cc568386ef737f858032b9fa596c96bfa08a96cb",
+      "sema_stub": "cde6",
+      "gloss": "Resource-aware search termination",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 2
+    },
+    {
+      "id": "PromiseGraph",
+      "sema_id": "sema:PromiseGraph#mh:SHA-256:b9cf1801f8ee7295a721e96f14328c6f594014c8bb75ada52a68a6ee3dc9392d",
+      "sema_stub": "b9cf",
+      "gloss": "Recursive trust dependencies modeled as a DAG",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 2
+    },
+    {
+      "id": "GateExpansive",
+      "sema_id": "sema:GateExpansive#mh:SHA-256:922ea46b10d62a3d1ce2c1b3651cb55d76004d4dade2fc09f981a7b980f33eac",
+      "sema_stub": "922e",
+      "gloss": "The Transfer Test for explanatory power",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Stream",
+      "sema_id": "sema:Stream#mh:SHA-256:ffd7c8d514d1a56c3afb3e5df91b5f16648b2879aad1ecef08a0eb950f5302bb",
+      "sema_stub": "ffd7",
+      "gloss": "Continuous data flow",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 0
+    },
+    {
+      "id": "Snapshot",
+      "sema_id": "sema:Snapshot#mh:SHA-256:d1083363e6c6a045d4504becf4e7c9bd42be5eaac1f9de188fd538060528d6ea",
+      "sema_stub": "d108",
+      "gloss": "Point-in-time state record",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "MirrorStake",
+      "sema_id": "sema:MirrorStake#mh:SHA-256:88bd0e5394aa8aa26bacdc45852f1c8f6ed88ff1eafe49f1af63b0253e87a93f",
+      "sema_stub": "88bd",
+      "gloss": "Symmetric collateralization",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    },
+    {
+      "id": "AbductiveLeap",
+      "sema_id": "sema:AbductiveLeap#mh:SHA-256:72fde11d3ad6d86c372f94f9cd3118c98db3270dc157edf2d85470c4b6c7f8bf",
+      "sema_stub": "72fd",
+      "gloss": "Inference to the best explanation",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "DataMinimization",
+      "sema_id": "sema:DataMinimization#mh:SHA-256:81048948dc50c6bc113e79ac482e6a59cf590b71b122903e88cdeb660b1ae8b0",
+      "sema_stub": "8104",
+      "gloss": "Ingest only what is strictly necessary",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "SelfReminder",
+      "sema_id": "sema:SelfReminder#mh:SHA-256:93981003dfd1ea6702977869cfa61d056482cad5ea8b39dcd84c811a025f99f5",
+      "sema_stub": "9398",
+      "gloss": "Reinforce constraints in system prompt before each response",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "StateAudit",
+      "sema_id": "sema:StateAudit#mh:SHA-256:2da660c98c37c55f85badc7d7526457b9e14195322a89bf13d6c8930b35888ad",
+      "sema_stub": "2da6",
+      "gloss": "Verifying system state after an operation",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "ModestClaim",
+      "sema_id": "sema:ModestClaim#mh:SHA-256:6d52ad6afbe44a9b53cdac58a4b661e2b633598dea63c21f18ce89f38d21b722",
+      "sema_stub": "6d52",
+      "gloss": "Defensible over ambitious",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 2
+    },
+    {
+      "id": "Gardener",
+      "sema_id": "sema:Gardener#mh:SHA-256:1f9cf3721861e7209d1f9778201d5d6e1c3aa9145b7a0f4e487eac6c4cb5029b",
+      "sema_stub": "1f9c",
+      "gloss": "Stewardship and maintenance",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 2
+    },
+    {
+      "id": "Eliminate",
+      "sema_id": "sema:Eliminate#mh:SHA-256:0ddf0b88f81c081ee26c1410d4307cab5f44e1ee71d7547389bfa57bdc8b04d8",
+      "sema_stub": "0ddf",
+      "gloss": "Sherlock Holmes deduction via falsification",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "RecursionDive",
+      "sema_id": "sema:RecursionDive#mh:SHA-256:7c9e5f1c7df399dd0d1cb8bbd6e212235239761ffc3c7abf03650f62651ebc05",
+      "sema_stub": "7c9e",
+      "gloss": "Fractal problem breaking",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 1
+    },
+    {
+      "id": "RingWitness",
+      "sema_id": "sema:RingWitness#mh:SHA-256:779a3fd2e3dfea224827a16d81bd3af2cf203e8e3b5e13ee30ee30ea55c0a14d",
+      "sema_stub": "779a",
+      "gloss": "Group-level attribution without individual identification",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "Greet",
+      "sema_id": "sema:Greet#mh:SHA-256:c9c67e6f7e2b5bd0b3656c9d064be4d2ae381344e3923c0b6b4fd4f470d67395",
+      "sema_stub": "c9c6",
+      "gloss": "Cold-start coordination handshake",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "DriftWatch",
+      "sema_id": "sema:DriftWatch#mh:SHA-256:42dd4550ef8b735e4904473fbd642e7b533aa18e11a17a640a46f9b0c1d50fb6",
+      "sema_stub": "42dd",
+      "gloss": "Reputation becomes pattern-fidelity measurement - trustworthiness equals predictability. Agents are trusted not for peak performance but for behavioral consistency. Gaming reputation through occasional spectacular actions becomes impossible.",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "Hypothesis",
+      "sema_id": "sema:Hypothesis#mh:SHA-256:47cb2daa043ac080bb81da2b76c2dcd4d85da2af6c45c511982df84eed3cfce6",
+      "sema_stub": "47cb",
+      "gloss": "A tentative explanation",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "TieredAccess",
+      "sema_id": "sema:TieredAccess#mh:SHA-256:ac76cd78d5c686ac8503b18e350846b21ab6a05210e4364a10446949685db72a",
+      "sema_stub": "ac76",
+      "gloss": "Cost-distance indexing",
+      "layer": "Physics",
+      "category": "Sharding & Distribution",
+      "tier": 1
+    },
+    {
+      "id": "Generalize",
+      "sema_id": "sema:Generalize#mh:SHA-256:16c0b2e1980c499a8ef25b4e4213b87fe6a0f1cd1db7273ef8bf7f1a60e9254d",
+      "sema_stub": "16c0",
+      "gloss": "Inductive pattern extraction",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 1
+    },
+    {
+      "id": "ReAct",
+      "sema_id": "sema:ReAct#mh:SHA-256:011ca1171ec6d6ae3cd56a19e91dbe6fd1cb4e419ddc38f3b7dd2bb0366e4fb3",
+      "sema_stub": "011c",
+      "gloss": "Interleaved thought-action-observation cycle",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "SunkCostIgnore",
+      "sema_id": "sema:SunkCostIgnore#mh:SHA-256:8f596cd03cd7a21ae5de7df39598a5c2cbd74da7abf7505e37ae245c70693199",
+      "sema_stub": "8f59",
+      "gloss": "Rationality over historical investment",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "Hysteresis",
+      "sema_id": "sema:Hysteresis#mh:SHA-256:e9cc6cf5ade956d21055d7a459e12e25fb76c03d10b57a394444e9895918568a",
+      "sema_stub": "e9cc",
+      "gloss": "Preventing oscillation via asymmetric thresholds",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "LeastToMost",
+      "sema_id": "sema:LeastToMost#mh:SHA-256:573d9758ad816213773d95fbac3cc2c42f0167986af2116835022324d8e5fdca",
+      "sema_stub": "573d",
+      "gloss": "Solve subproblems from easiest to hardest sequentially",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Check",
+      "sema_id": "sema:Check#mh:SHA-256:e98dfe6a6aab2a428404852501f9d555ae1af0b9d52277b5a418e512d1590cbb",
+      "sema_stub": "e98d",
+      "gloss": "Halt execution if the target condition is not met",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 0
+    },
+    {
+      "id": "ThinSlice",
+      "sema_id": "sema:ThinSlice#mh:SHA-256:a906468bde2ff286af8075e94ad6b5173c2175ff36845309324708eddd83a881",
+      "sema_stub": "a906",
+      "gloss": "High-confidence classification from minimal data",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 3
+    },
+    {
+      "id": "OsmoticFilter",
+      "sema_id": "sema:OsmoticFilter#mh:SHA-256:f7758cebc8c863f9c69c797d83daa0da9502a23b2c7175707502636be5f63383",
+      "sema_stub": "f775",
+      "gloss": "Spam prevention via pressure thresholds",
+      "layer": "Physics",
+      "category": "Sharding & Distribution",
+      "tier": 2
+    },
+    {
+      "id": "GenealogicalTrace",
+      "sema_id": "sema:GenealogicalTrace#mh:SHA-256:e0ee1626454789ca573c802f7b380d24d652f2b5e6b8e0a3aac9d9bee916f3ec",
+      "sema_stub": "e0ee",
+      "gloss": "Auditing the historical lineage and incentives of an idea",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "Overlap",
+      "sema_id": "sema:Overlap#mh:SHA-256:bd7c142b3d7c74d31cae58014fa3ebf17ca90fdc1cd2455a692541d176e56c4e",
+      "sema_stub": "bd7c",
+      "gloss": "Transform negotiations from position-based battles to interest-based discovery of shared ground",
+      "layer": "Society",
+      "category": "Negotiation",
+      "tier": 1
+    },
+    {
+      "id": "IdentityHandshake",
+      "sema_id": "sema:IdentityHandshake#mh:SHA-256:7884daf0f5bee5de4ab11c88d8a6ec7e63278f266f8bf51bdd327859d0f3f7ff",
+      "sema_stub": "7884",
+      "gloss": "Distinguish Peer from Principal",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 2
+    },
+    {
+      "id": "Aggregate",
+      "sema_id": "sema:Aggregate#mh:SHA-256:40f6f24557637dabd77fdbca86b705b9c4a3d5d2a360201afe6fcd6a8799b86b",
+      "sema_stub": "40f6",
+      "gloss": "Reduce a set to a summary statistic",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "ConstraintRelax",
+      "sema_id": "sema:ConstraintRelax#mh:SHA-256:f3cb0d9bd01643e117898486f1f9c424308cdce70630613da8d340789b911b09",
+      "sema_stub": "f3cb",
+      "gloss": "Escaping local optima by loosening bounds",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 2
+    },
+    {
+      "id": "Ballot",
+      "sema_id": "sema:Ballot#mh:SHA-256:b7ef7fd1f012b52a04aed9203b028de4dcef72eae2204cd9f1b8c7d4023cc9f1",
+      "sema_stub": "b7ef",
+      "gloss": "Immutable container for collective decision inputs",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 3
+    },
+    {
+      "id": "RegretMinimization",
+      "sema_id": "sema:RegretMinimization#mh:SHA-256:fc8acc92bc59ea9ccaede15da3c2230f79ddb6245e027e5d5224d143e777c3d8",
+      "sema_stub": "fc8a",
+      "gloss": "Safety-first decision making based on loss avoidance",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 3
+    },
+    {
+      "id": "Identity",
+      "sema_id": "sema:Identity#mh:SHA-256:34c9d7b32de64e2c81de0ee8a77afe7b511e56f3a8675c59c5b95d3fbb8a3c58",
+      "sema_stub": "34c9",
+      "gloss": "Unique agent context (The Who)",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "HeuristicSnap",
+      "sema_id": "sema:HeuristicSnap#mh:SHA-256:2e8f786cacf592a61364444411614dbf47c79d405e1a559430f4e79e75ed4359",
+      "sema_stub": "2e8f",
+      "gloss": "Rapid, low-cost decision making via pattern recognition",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Chain",
+      "sema_id": "sema:Chain#mh:SHA-256:d61f8a2624f98d9f67ae785078c02185a82d13f84631c8192fa39e39ad5386f6",
+      "sema_stub": "d61f",
+      "gloss": "Sequential reasoning topology",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "MetricDissolution",
+      "sema_id": "sema:MetricDissolution#mh:SHA-256:7606ea693ca3bd92b4118a06e6fba8c69ce44044de150b96cab180010802ffdb",
+      "sema_stub": "7606",
+      "gloss": "Solving by deleting the problem variable",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "ThermodynamicAuction",
+      "sema_id": "sema:ThermodynamicAuction#mh:SHA-256:ae43cc4fc72124155f8614a946301d6631ca7662ee5c0d86362fc16d4f23f346",
+      "sema_stub": "ae43",
+      "gloss": "An economy that mimics thermodynamics, preventing stagnation naturally.",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    },
+    {
+      "id": "TraceBelief",
+      "sema_id": "sema:TraceBelief#mh:SHA-256:3859a46600e721f24529f8a86bb956026a3cc01f9a042ffdfbdbf4b34385209a",
+      "sema_stub": "3859",
+      "gloss": "Belief Provenance (Macro for Trace(Belief))",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "EventReact",
+      "sema_id": "sema:EventReact#mh:SHA-256:ad65381c36f170d210c19287e8fa4e1ba4586020f59efaaa90e1695bed566303",
+      "sema_stub": "ad65",
+      "gloss": "Responding to external triggers rather than polling",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "ExpiringToken",
+      "sema_id": "sema:ExpiringToken#mh:SHA-256:1174f748a4bf6167871b9cc4d32dba204e8621b8f4979101ee6743b95dfebdf3",
+      "sema_stub": "1174",
+      "gloss": "Time-decaying privileges",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "RedTeam",
+      "sema_id": "sema:RedTeam#mh:SHA-256:7ead5feb36f345395fca1ed83277342dc501812543806425e1641a94a7f22654",
+      "sema_stub": "7ead",
+      "gloss": "Adversarial stress testing",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 1
+    },
+    {
+      "id": "Reframe",
+      "sema_id": "sema:Reframe#mh:SHA-256:317910c3954ae9b4c732145a10f2cbba277a4385134724a31a38e25da4f2ef2f",
+      "sema_stub": "3179",
+      "gloss": "Changing perspective to unlock new solutions",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 1
+    },
+    {
+      "id": "QuorumPulse",
+      "sema_id": "sema:QuorumPulse#mh:SHA-256:04b41aec58e82accf37dcfb05f49f1176be90de8073f37259c8ae9a42e45b6c0",
+      "sema_stub": "04b4",
+      "gloss": "Fluid, organic synchronization without rigid clock ticks.",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "Compose",
+      "sema_id": "sema:Compose#mh:SHA-256:378a3c603c52a371e5f59cc642e3b17e565b81f0ad2269c7fb119d9d7914533d",
+      "sema_stub": "378a",
+      "gloss": "Building complex behavior from simple primitives",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 2
+    },
+    {
+      "id": "Card",
+      "sema_id": "sema:Card#mh:SHA-256:3db0e961bdeb93b5a86a9266dc85c5f79ddbd364be29a5f371934f47991f1a82",
+      "sema_stub": "3db0",
+      "gloss": "Enable capability-based agent discovery, making coordination ecosystems dynamic and self-describing",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 2
+    },
+    {
+      "id": "BackwardChain",
+      "sema_id": "sema:BackwardChain#mh:SHA-256:50adbd56633a45d4b31b382c28adb72bc8d16e6954dba5f29984639d651ec440",
+      "sema_stub": "50ad",
+      "gloss": "Goal-driven reasoning from target to preconditions",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "ConfidenceCalibrate",
+      "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:eae2a965df9d1416154a465eb2724bfe633567d5bf650670c994d4d5769ede4d",
+      "sema_stub": "eae2",
+      "gloss": "Aligning subjective confidence with objective frequency",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "MECE",
+      "sema_id": "sema:MECE#mh:SHA-256:465750db2db121c23d005de2353eaa3eb215600981c14add3fe71649b96fa9af",
+      "sema_stub": "4657",
+      "gloss": "Mutually Exclusive, Collectively Exhaustive partitioning",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 2
+    },
+    {
+      "id": "Crystallize",
+      "sema_id": "sema:Crystallize#mh:SHA-256:7676a88604ac0eed0366d7d74f6bc67c737e499f53775e4b1e277ecf0411b691",
+      "sema_stub": "7676",
+      "gloss": "Phase transition from implicit resonance to explicit contract",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "GateUnique",
+      "sema_id": "sema:GateUnique#mh:SHA-256:26a05d915e5cc2e15053adaf2bc94e1de2139fbee6a732e34873fc6f976a8110",
+      "sema_stub": "26a0",
+      "gloss": "The Independence Test for novelty",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Observe",
+      "sema_id": "sema:Observe#mh:SHA-256:fce94daed5a21471cdea2bbcda92b84dba5e11b2d7cde64e3ee23790da3c4522",
+      "sema_stub": "fce9",
+      "gloss": "State perception",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "ImaginaryHistorian",
+      "sema_id": "sema:ImaginaryHistorian#mh:SHA-256:e6cfa97f8635a13869ecdd68566c1a1fd960d026035273b0919f9c9364906aaf",
+      "sema_stub": "e6cf",
+      "gloss": "Debugging possible futures",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "NormCheck",
+      "sema_id": "sema:NormCheck#mh:SHA-256:c30aead1e79e9ed1359d5627173b2cdba88030c2a66eac85a87bae8d1c9908d1",
+      "sema_stub": "c30a",
+      "gloss": "Detection of value-laden facts",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Route",
+      "sema_id": "sema:Route#mh:SHA-256:a5613ca9d5a794e6ed1dffc6ad7fc857a52902afbe5c376a61eb7950ec68d3f7",
+      "sema_stub": "a561",
+      "gloss": "Classify input and direct to specialized handler",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "Probe",
+      "sema_id": "sema:Probe#mh:SHA-256:3ab868567fd09bbaa4580d8e066d87e45232b48803ac21ec96f1ffd0557b1dd0",
+      "sema_stub": "3ab8",
+      "gloss": "Capability auditing via challenge-response",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "OathBind",
+      "sema_id": "sema:OathBind#mh:SHA-256:95bd2d99359af5bd7d4b77ba0e82ef416a3a63cfe4813dc9e90c165be3629bf5",
+      "sema_stub": "95bd",
+      "gloss": "Pre-commitment to penalties",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 2
+    },
+    {
+      "id": "Uncertain",
+      "sema_id": "sema:Uncertain#mh:SHA-256:02d64063ebc3a56603e420aee3386fbeac71faecaebb3788586da11ec7d373ef",
+      "sema_stub": "02d6",
+      "gloss": "Epistemic status: genuinely don't know",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "Warmup",
+      "sema_id": "sema:Warmup#mh:SHA-256:c523c3eb7fdf71f248759e1f305b23c34b03c0ca87fdf590d337f4dd31f841c0",
+      "sema_stub": "c523",
+      "gloss": "Gradual capacity increase to stabilize cold systems",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "Deep",
+      "sema_id": "sema:Deep#mh:SHA-256:fa74133743746c6dbfcef172c404a1ce2da4d0d756ee4be6a01e53f9026f6ebc",
+      "sema_stub": "fa74",
+      "gloss": "Vertical search dimension",
+      "layer": "Mind",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "SkeletonOfThought",
+      "sema_id": "sema:SkeletonOfThought#mh:SHA-256:45741b306e56df6b395c0a1206b46dd76d412c7b9ab5399e9560c65b3554af7e",
+      "sema_stub": "4574",
+      "gloss": "Parallel outline expansion (Macro for Think(Skeleton))",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "EjectionSeat",
+      "sema_id": "sema:EjectionSeat#mh:SHA-256:d6186b39b829dfd95e8e877fedcb0da0174a2b1d3d48c4ede91b3173439f15f7",
+      "sema_stub": "d618",
+      "gloss": "Hardware-interrupt kill switch",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Care",
+      "sema_id": "sema:Care#mh:SHA-256:1ccabe374d27b696c8456fb71b90a418985b9663ef1f6a835603cfa9ab7e3252",
+      "sema_stub": "1cca",
+      "gloss": "The root of Love and Stewardship",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "PreMortem",
+      "sema_id": "sema:PreMortem#mh:SHA-256:1182a81a00e31fe4f567b956e80f694105dde6dfba5d0cd44a54bfaae7dde0a5",
+      "sema_stub": "1182",
+      "gloss": "Simulating failure to identify hidden risks",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "PatternDiscovery",
+      "sema_id": "sema:PatternDiscovery#mh:SHA-256:ebead8870479aa7aab0123a5fde74ae02fe9c59d8d5ab64e816b7a9fbeaabe66",
+      "sema_stub": "ebea",
+      "gloss": "Finding patterns that already exist",
+      "layer": "Mind",
+      "category": "Meta-Cognition",
+      "tier": 2
+    },
+    {
+      "id": "RepresentationSwap",
+      "sema_id": "sema:RepresentationSwap#mh:SHA-256:8d55c7407ab731e23f301fc7cbfabcf9484efbcd813efb17c50b63d9c7a3bbd4",
+      "sema_stub": "8d55",
+      "gloss": "Exposing hidden errors by changing the data modality",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "SocraticLoop",
+      "sema_id": "sema:SocraticLoop#mh:SHA-256:e8d90a647f54d887fe0ad863099598afb12f0e7fb428b1741dcc265095ea6643",
+      "sema_stub": "e8d9",
+      "gloss": "Clarification before generation",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "Defer",
+      "sema_id": "sema:Defer#mh:SHA-256:be0b52832d6dd2ea8af1ac85667eb26751a7cd0c00a2a34d853c6f3ff24a46a5",
+      "sema_stub": "be0b",
+      "gloss": "Postponing decisions until more information available",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 1
+    },
+    {
+      "id": "ExploreExploit",
+      "sema_id": "sema:ExploreExploit#mh:SHA-256:76fb35b5fd145e155065f87c1261dd3cc95fee79381bcc668e93bc422674d11f",
+      "sema_stub": "76fb",
+      "gloss": "Balancing information gathering vs value extraction",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 2
+    },
+    {
+      "id": "DissentSeek",
+      "sema_id": "sema:DissentSeek#mh:SHA-256:e49bed6c96db72f506d5d40964b50bce81d7bb6bc7ccb829ac31c09a0589978c",
+      "sema_stub": "e49b",
+      "gloss": "Mitigating groupthink via mandatory devils advocacy",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 1
+    },
+    {
+      "id": "Experiment",
+      "sema_id": "sema:Experiment#mh:SHA-256:7be24ad8a38f4977e1b4d5bd3203fc366c8ac75ef4536418e4c26a887953332f",
+      "sema_stub": "7be2",
+      "gloss": "Structured causal discovery via variable isolation",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Context",
+      "sema_id": "sema:Context#mh:SHA-256:6bdcfb18cb3bcdd1b72bcaa3ec8c110eb61c0e48222c4682fcdf488ae81fefae",
+      "sema_stub": "6bdc",
+      "gloss": "Portable execution environment with inherited constraints",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 3
+    },
+    {
+      "id": "Nucleate",
+      "sema_id": "sema:Nucleate#mh:SHA-256:c4a5fd29683cbda41334fc8081d73a617e9560f9945d344c9fc084bef4fdaca8",
+      "sema_stub": "c4a5",
+      "gloss": "Emergent working groups from activity density - direct coordination channels form naturally where indirect activity concentrates, without central assignment or pre-planning",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 1
+    },
+    {
+      "id": "MetaCheck",
+      "sema_id": "sema:MetaCheck#mh:SHA-256:c4ed2e5f0627f2802496d1359b7cb648e684f451331c0a35b543425c50e48f49",
+      "sema_stub": "c4ed",
+      "gloss": "Recursive self-verification of reasoning",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "HypothesisLadder",
+      "sema_id": "sema:HypothesisLadder#mh:SHA-256:b8419987ab936ccef665458683cac040e27edc1c4db31fc5a9ad9a1a4110a82e",
+      "sema_stub": "b841",
+      "gloss": "Bayesian belief updating",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Expansive",
+      "sema_id": "sema:Expansive#mh:SHA-256:977df4eda8930033e55c6b904a6d6bd3441aa01b8e2402de25e3da00b245cb79",
+      "sema_stub": "977d",
+      "gloss": "Condition: Does this generalize?",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    },
+    {
+      "id": "ConceptAnchor",
+      "sema_id": "sema:ConceptAnchor#mh:SHA-256:013a904dc4a4fc41d42eb26092ed1d2049dbf6ea7d21a2b33bfefa6c993fdd27",
+      "sema_stub": "013a",
+      "gloss": "Pinning meaning to immutable references",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Think",
+      "sema_id": "sema:Think#mh:SHA-256:9d49558a99fa96b464438c2fd7e20d2590cfeb5431c56a776b6c10a56f81d3f0",
+      "sema_stub": "9d49",
+      "gloss": "Execute a cognitive topology",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 0
+    },
+    {
+      "id": "SurprisalUpdate",
+      "sema_id": "sema:SurprisalUpdate#mh:SHA-256:1b122ba17e53d8027c1dfb2546d09d1168c2b725cc97de3e65e5deffa1cbf9e2",
+      "sema_stub": "1b12",
+      "gloss": "Learning weighted by prediction failure magnitude",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Backoff",
+      "sema_id": "sema:Backoff#mh:SHA-256:27179f7c9ea1fd6a03907ac8bf712f960d37a57de36910798e1dfdf5259d362a",
+      "sema_stub": "2717",
+      "gloss": "Exponential delay to reduce contention",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "Skeleton",
+      "sema_id": "sema:Skeleton#mh:SHA-256:baf383ffe20ed52f1ab9cf943dd3a1eda4e00639dfb48cf055a2da3d22c809e2",
+      "sema_stub": "baf3",
+      "gloss": "Parallel outline-first topology",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Vote",
+      "sema_id": "sema:Vote#mh:SHA-256:3f54d08e483f4fd02263169de799b0b2ba4d5c6c7344e6ad61be18416a5e489a",
+      "sema_stub": "3f54",
+      "gloss": "Provide standard, configurable decision mechanism for N-agent groups with integrity guarantees",
+      "layer": "Mind",
+      "category": "Decision Making",
+      "tier": 2
+    },
+    {
+      "id": "Aesthetics",
+      "sema_id": "sema:Aesthetics#mh:SHA-256:a9922f82a1a8065a692b4361a5904c042f278694aeae64c355fd33402e0ef07b",
+      "sema_stub": "a992",
+      "gloss": "The root of Beauty",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "Protocol",
+      "sema_id": "sema:Protocol#mh:SHA-256:21c235398ef13ea066c46cc1d21d463a377be9b4814d2c8eb7fa9d4fc215da04",
+      "sema_stub": "21c2",
+      "gloss": "Communication standard",
+      "layer": "Society",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "SteelmanFirst",
+      "sema_id": "sema:SteelmanFirst#mh:SHA-256:95d11c2e1b2a06fd1ec523f235a3fecc621fd5a1deddea8db9f05fe2d4b55384",
+      "sema_stub": "95d1",
+      "gloss": "Construct strongest counter-argument before proposing",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "SurvivorCorrect",
+      "sema_id": "sema:SurvivorCorrect#mh:SHA-256:96443a9ac08d33fdfd045dedb644a614a019cae221f989395dc78ca26e20bb6b",
+      "sema_stub": "9644",
+      "gloss": "Accounting for silent failures in data",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "ProgramOfThought",
+      "sema_id": "sema:ProgramOfThought#mh:SHA-256:12d461ff0bbf01163f5dccb94b64662e6cd4cdc61cf9632cf1b0a5c191eb7e6a",
+      "sema_stub": "12d4",
+      "gloss": "Generate code for computation, separate from reasoning",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "LivedProof",
+      "sema_id": "sema:LivedProof#mh:SHA-256:6e0e157fff85616727497f602e1ec3b2ffaad5a9f14bad8fda68351c19acaa23",
+      "sema_stub": "6e0e",
+      "gloss": "Process demonstrates thesis",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "HolographicShard",
+      "sema_id": "sema:HolographicShard#mh:SHA-256:5ba160907a45455ea026d1c4cee6e944e470a090c053123092c3c7fd4733f5db",
+      "sema_stub": "5ba1",
+      "gloss": "Local action via global context embedding",
+      "layer": "Physics",
+      "category": "Sharding & Distribution",
+      "tier": 1
+    },
+    {
+      "id": "Reversibility",
+      "sema_id": "sema:Reversibility#mh:SHA-256:1cefb6d79c625d12506858443d86766465c037727a1edefbb24042d9aab68610",
+      "sema_stub": "1cef",
+      "gloss": "Condition: Can this action be undone?",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "IdempotentWrite",
+      "sema_id": "sema:IdempotentWrite#mh:SHA-256:f5dc280d350ec1388576bf8ed5c8d1bd5247f6de7f4825e9b491581bf06f91d5",
+      "sema_stub": "f5dc",
+      "gloss": "Safe retries via unique keys",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "GateRealizable",
+      "sema_id": "sema:GateRealizable#mh:SHA-256:9987d52676249aa6395b494604e49456ed99248011031f262601eb2666e415a0",
+      "sema_stub": "9987",
+      "gloss": "The Coherence Test for execution viability",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "ReversibilityCheck",
+      "sema_id": "sema:ReversibilityCheck#mh:SHA-256:5a395505ad89ad86f9e63b7b7a451156cfe4fb6cfdb857bbdba1ac64a7ce6023",
+      "sema_stub": "5a39",
+      "gloss": "Reversibility Audit (Alias for Check(Reversibility))",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "ThreeLevelCollision",
+      "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:7d8734d4de1b768cec6346c9dd366c82d48d1f554f61351283ebf0584314011c",
+      "sema_stub": "7d87",
+      "gloss": "Stub, hash, and homograph collisions are different threats",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "Compensate",
+      "sema_id": "sema:Compensate#mh:SHA-256:79b6b622631ed1d282d833448e5e0a5c04be403762e985cb4c12802ee7c1df67",
+      "sema_stub": "79b6",
+      "gloss": "Enable clean failure recovery through structured rollback, preventing orphaned resources and corrupted state",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 1
+    },
+    {
+      "id": "IdentityMask",
+      "sema_id": "sema:IdentityMask#mh:SHA-256:c08ce745f5de0a5cc56ca9823b149b747bcdee5fdc97ea56bf642664d6c9838d",
+      "sema_stub": "c08c",
+      "gloss": "Disposable personas for privacy",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "Specialize",
+      "sema_id": "sema:Specialize#mh:SHA-256:d034d0e67a19c9bed93315c7b9fb4e3ab88b1fc5bc106f8e79f3c8d68d437a49",
+      "sema_stub": "d034",
+      "gloss": "Deductive application of principles",
+      "layer": "Mind",
+      "category": "Decomposition",
+      "tier": 1
+    },
+    {
+      "id": "StepBack",
+      "sema_id": "sema:StepBack#mh:SHA-256:e17382866afc8897ed56182c8f30616596507e137a6ac2ed6f87d2268a51bf66",
+      "sema_stub": "e173",
+      "gloss": "Abstract to principles before reasoning through details",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Dampen",
+      "sema_id": "sema:Dampen#mh:SHA-256:22a4ef634517dd7a2f6c336801fed6ced8c22dd5770cfb2d17008f0e8b67d0cf",
+      "sema_stub": "22a4",
+      "gloss": "Iterative negotiation that finds minimal mutual sacrifice zone rather than winner-take-all outcomes",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "Rank",
+      "sema_id": "sema:Rank#mh:SHA-256:60772aa9be9b011d01d4ba8a7cbf3e008dd5fe77e213f684fb8671926e049679",
+      "sema_stub": "6077",
+      "gloss": "Order items by score",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "FirstPrinciples",
+      "sema_id": "sema:FirstPrinciples#mh:SHA-256:a193bbd3442336d62d741f9176aa021ba6c72aaee9e98d6bf1b087d2ba6cad35",
+      "sema_stub": "a193",
+      "gloss": "Axiomatic reconstruction of truth",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "Bubble",
+      "sema_id": "sema:Bubble#mh:SHA-256:b3c414c83544eef9647e244dab4f6149cbb1b2f6c2073744767bc0c0620842b9",
+      "sema_stub": "b3c4",
+      "gloss": "Enable risk-free coordination experimentation through transactional isolation\u2014try before committing to reality",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 1
+    },
+    {
+      "id": "BearerToken",
+      "sema_id": "sema:BearerToken#mh:SHA-256:c46c3f1fcf091b315c7833825385718b7da5cc794888f661d165ed512f47e6e1",
+      "sema_stub": "c46c",
+      "gloss": "Possession-based authorization",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "ChaosDrift",
+      "sema_id": "sema:ChaosDrift#mh:SHA-256:f83f5859beddf23dd9df762fa84792def2297307ea2273ea2786fcb4310b18b7",
+      "sema_stub": "f83f",
+      "gloss": "Continuous stress-testing via entropic injection",
+      "layer": "Society",
+      "category": "Emergence & Self-Organization",
+      "tier": 2
+    },
+    {
+      "id": "ContextFirst",
+      "sema_id": "sema:ContextFirst#mh:SHA-256:3859790502b7d96c9da29b85cd9eaf3c3fb83998a3d3738a0cb02307d66297a1",
+      "sema_stub": "3859",
+      "gloss": "Load state before acting",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "AnalogicalMask",
+      "sema_id": "sema:AnalogicalMask#mh:SHA-256:438f4e897fc0dc9f618e729d4d8135b34360d0c87517dc59fc51f8d1b19b9a3c",
+      "sema_stub": "438f",
+      "gloss": "Hiding secrets in plain sight via isomorphic domain translation",
+      "layer": "Mind",
+      "category": "Perspective & Reframing",
+      "tier": 1
+    },
+    {
+      "id": "ExperienceSharding",
+      "sema_id": "sema:ExperienceSharding#mh:SHA-256:6169282c55e13cea6a37670f649be77e15254fa82b85a1e64920fe1d28adecc3",
+      "sema_stub": "6169",
+      "gloss": "A single agent evolves into a colony of specialists preserving total history.",
+      "layer": "Physics",
+      "category": "Sharding & Distribution",
+      "tier": 1
+    },
+    {
+      "id": "Reflexion",
+      "sema_id": "sema:Reflexion#mh:SHA-256:21e28f4eb9f0ddbd1f7eefe78b493800c92b00a2bb14fd74295670c000716e45",
+      "sema_stub": "21e2",
+      "gloss": "Self-critique and retry after failure",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Quorum",
+      "sema_id": "sema:Quorum#mh:SHA-256:e50f04c6faae31d85915dd2c00eac0732fba92be5320666a4dd02da8867f6d57",
+      "sema_stub": "e50f",
+      "gloss": "N-agent collective approval without requiring unanimity, with costly safety valve for blocking",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "PropheticQuorum",
+      "sema_id": "sema:PropheticQuorum#mh:SHA-256:202d32e03311dc6a0021b3d39e1a1d07f61d639e4ccbc30a51a7c395afe52bc0",
+      "sema_stub": "202d",
+      "gloss": "Aligning predictions before aligning votes",
+      "layer": "Society",
+      "category": "Trust & Verification",
+      "tier": 1
+    },
+    {
+      "id": "GateParsimony",
+      "sema_id": "sema:GateParsimony#mh:SHA-256:ac5dcdee165668e9f080355b08adf85c32607021f9acf1ad221c7089b376a6dc",
+      "sema_stub": "ac5d",
+      "gloss": "Simplicity Filter (Alias for Gate(Parsimony))",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "Realizable",
+      "sema_id": "sema:Realizable#mh:SHA-256:4afb59e937e1532c424c76a8a594188c2df42b0b2167528fed391f090150b4a4",
+      "sema_stub": "4afb",
+      "gloss": "Condition: Is this implementable?",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Cooldown",
+      "sema_id": "sema:Cooldown#mh:SHA-256:365f45dfbbbd7b5316108572a4c9f7d0cd033f45fb6894a8b9834007b47e1761",
+      "sema_stub": "365f",
+      "gloss": "Mandatory delay between repeated actions",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "SelfConsistency",
+      "sema_id": "sema:SelfConsistency#mh:SHA-256:15ef739c38778e2ce885951896b93e13600dd87521818907dc9557af7cc75afb",
+      "sema_stub": "15ef",
+      "gloss": "Sample multiple reasoning chains, select by majority vote",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "CurriculumReplay",
+      "sema_id": "sema:CurriculumReplay#mh:SHA-256:9fd9317cc7ae60aefaff169eda70d0de572c435f86cc9dabeaccfbb051314172",
+      "sema_stub": "9fd9",
+      "gloss": "Self-supervised reinforcement via memory sampling",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "ContextSwitch",
+      "sema_id": "sema:ContextSwitch#mh:SHA-256:7d76880974b73b4e5428ea31b5b34ad77fc17637ff5b9630dff76d7b96dcce7b",
+      "sema_stub": "7d76",
+      "gloss": "Explicit mode toggling",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "CognitiveSolver",
+      "sema_id": "sema:CognitiveSolver#mh:SHA-256:69803904406afa5fa6545a7b3e94d2ef64affc3f352122a5acf2b6aae7be3bc4",
+      "sema_stub": "6980",
+      "gloss": "The universal atom of recursive intelligence",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 1
+    },
+    {
+      "id": "InputGuard",
+      "sema_id": "sema:InputGuard#mh:SHA-256:53cee8346c3475c8e82d45ccad983113923c7deb0514956fbfaccad53fba4dfd",
+      "sema_stub": "53ce",
+      "gloss": "Sanitize inputs and block injection attacks",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 2
+    },
+    {
+      "id": "AmendLaws",
+      "sema_id": "sema:AmendLaws#mh:SHA-256:beed481a48e40b59499fd82cb5965d4b96caff42a3a5f56baa6b98298d668e8b",
+      "sema_stub": "beed",
+      "gloss": "Self-governing DAOs that patch their own vulnerabilities.",
+      "layer": "Society",
+      "category": "Governance",
+      "tier": 2
+    },
+    {
+      "id": "CounterfactualAnchor",
+      "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:2121ed6c2a76eae266af1ee391a72f8cf2ae9bb3bdc8cc2fded4276f0ec7ce1c",
+      "sema_stub": "2121",
+      "gloss": "Freezing expectation to measure true surprise",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "HumanApprove",
+      "sema_id": "sema:HumanApprove#mh:SHA-256:dc65fd146e8a9a6489dbc54adfe79619479b10621e3e0590a5dcd8fd1f6d6be2",
+      "sema_stub": "dc65",
+      "gloss": "Pause for human approval before critical actions",
+      "layer": "Society",
+      "category": "Governance",
+      "tier": 2
+    },
+    {
+      "id": "EbbFlowSync",
+      "sema_id": "sema:EbbFlowSync#mh:SHA-256:a9912e42d9b138ce236dddc9854d61739a4e5cb0f2e038d6b727483affb3de30",
+      "sema_stub": "a991",
+      "gloss": "Cyclical connectivity modes",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 1
+    },
+    {
+      "id": "DogfoodFirst",
+      "sema_id": "sema:DogfoodFirst#mh:SHA-256:998ea51e1848e56a5e98aad6c0ebdfccfd38810e86d9f6069df999d7cbaef307",
+      "sema_stub": "998e",
+      "gloss": "Use your own tool before shipping",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 2
+    },
+    {
+      "id": "MintWhenFriction",
+      "sema_id": "sema:MintWhenFriction#mh:SHA-256:307001bf1283367c3c0e69eb2ec9960ba0d9acd067f36a287d356eda73f52e95",
+      "sema_stub": "3070",
+      "gloss": "Create patterns when re-explanation causes friction, not before",
+      "layer": "Mind",
+      "category": "Meta-Cognition",
+      "tier": 2
+    },
+    {
+      "id": "LatentAttachment",
+      "sema_id": "sema:LatentAttachment#mh:SHA-256:891aa3c7efa09f2e3914c1ccf691d52441e62a0c0212052b6412e4eb499822d4",
+      "sema_stub": "891a",
+      "gloss": "Hybrid symbolic-neural identity",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 1
+    },
+    {
+      "id": "Simulation",
+      "sema_id": "sema:Simulation#mh:SHA-256:811fe93328a3214dee9864d2d63df4b7d2c7688044a4390a2a46b8752b246386",
+      "sema_stub": "811f",
+      "gloss": "A virtualized execution",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "SimulationTrace",
+      "sema_id": "sema:SimulationTrace#mh:SHA-256:ff4178a6a127603011354af0c76dfaa10c421fed2e20ccaf1748af4402790fe6",
+      "sema_stub": "ff41",
+      "gloss": "Pre-execution mental model",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Topology",
+      "sema_id": "sema:Topology#mh:SHA-256:990652b4563535e5d9925419a14e9eeb843167a6a2cfef2b3764dbc97eedaa90",
+      "sema_stub": "9906",
+      "gloss": "Interface for reasoning structures",
+      "layer": "Mind",
+      "category": "Meta-Cognition",
+      "tier": 0
+    },
+    {
+      "id": "Sequence",
+      "sema_id": "sema:Sequence#mh:SHA-256:2ee664f4408ae0fc3233adae99b663ecb63ae43dc64193101e6482d843e9dd6d",
+      "sema_stub": "2ee6",
+      "gloss": "Sequential ordering",
+      "layer": "Flow",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "UniqueHandle",
+      "sema_id": "sema:UniqueHandle#mh:SHA-256:524fa743b090848a86994e1d3ec36d6b9eeb09d70cca9ae2991d817ee62340bb",
+      "sema_stub": "524f",
+      "gloss": "Transferable ownership of a singular resource",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 1
+    },
+    {
+      "id": "Retry",
+      "sema_id": "sema:Retry#mh:SHA-256:3d7f383d5577450c5c7332666869e428a6bd07ada68bde57fab2d89bd82e6cb8",
+      "sema_stub": "3d7f",
+      "gloss": "Transform retry from blind re-attempt to intelligent, failure-informed recovery strategy",
+      "layer": "Infrastructure",
+      "category": "Resilience",
+      "tier": 1
+    },
+    {
+      "id": "TensionHold",
+      "sema_id": "sema:TensionHold#mh:SHA-256:18f0e7d2a2c479dd48f29d5fb54e881bd1081a25465ddfb719fb43730b6203c3",
+      "sema_stub": "18f0",
+      "gloss": "Maintain contradictions without premature resolution",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "TranslationProxy",
+      "sema_id": "sema:TranslationProxy#mh:SHA-256:fb18ae909db722347f1ab6784f15fc9df88463bb5dae5e61dfb4c56ba01da97c",
+      "sema_stub": "fb18",
+      "gloss": "Protocol adaptation wrapper",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "AgentDiscover",
+      "sema_id": "sema:AgentDiscover#mh:SHA-256:820c9803fbb92998f8a47fd0877769d9b24ef8143487cf17af301a552f8c3a8b",
+      "sema_stub": "820c",
+      "gloss": "Advertise capabilities and discover collaborating agents",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 2
+    },
+    {
+      "id": "MetaPrompt",
+      "sema_id": "sema:MetaPrompt#mh:SHA-256:80b65839eca852278529f97d139141564081d19e4f508466a37aa2d46a947ca6",
+      "sema_stub": "80b6",
+      "gloss": "Use prompts to generate or refine other prompts",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Mutex",
+      "sema_id": "sema:Mutex#mh:SHA-256:2b5e4474d953e4189159aa8f743a3539ce34ef064828dbe8bb7ab0702f116aeb",
+      "sema_stub": "2b5e",
+      "gloss": "Physical possession token",
+      "layer": "Physics",
+      "category": "Synchronization",
+      "tier": 2
+    },
+    {
+      "id": "Consensus",
+      "sema_id": "sema:Consensus#mh:SHA-256:23dd70082902db99865eb92be034f03ce1b973be6d4ff49858f1bb19c1fc3bdd",
+      "sema_stub": "23dd",
+      "gloss": "Agreement between agents",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "ConstructOntology",
+      "sema_id": "sema:ConstructOntology#mh:SHA-256:a13400791c38faba201172905107f5cb79ccbe45a613ee5b1b2a3187d26674d4",
+      "sema_stub": "a134",
+      "gloss": "Building a structured conceptual framework",
+      "layer": "Mind",
+      "category": "Meta-Cognition",
+      "tier": 1
+    },
+    {
+      "id": "MentalSim",
+      "sema_id": "sema:MentalSim#mh:SHA-256:b61dd27ec5170d2fc66fbee7bb11da483becde8efd405a56977e68adb9d04850",
+      "sema_stub": "b61d",
+      "gloss": "Predictive modeling of system dynamics",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "ScopeFreeze",
+      "sema_id": "sema:ScopeFreeze#mh:SHA-256:9b31ffd2d3de664b00b8ca4b97dcb24d6b0c8c184c2e1e4dc5e7ed02c35b0d55",
+      "sema_stub": "9b31",
+      "gloss": "Lock requirements to prevent scope creep",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 2
+    },
+    {
+      "id": "ForkingProtocol",
+      "sema_id": "sema:ForkingProtocol#mh:SHA-256:d6ff1a7e9eaa108f533ac7b4f6f448b321d0b2da9e62b5b6a024c97e70017041",
+      "sema_stub": "d6ff",
+      "gloss": "Unilateral exit rights to prevent capture",
+      "layer": "Society",
+      "category": "Negotiation",
+      "tier": 1
+    },
+    {
+      "id": "WorldReversible",
+      "sema_id": "sema:WorldReversible#mh:SHA-256:d02596150297bbede2276e4dc4618abe01ff71fbdbe6d53707b2564ae8cf6691",
+      "sema_stub": "d025",
+      "gloss": "Designing for zero-cost undo",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "ExtendedThinking",
+      "sema_id": "sema:ExtendedThinking#mh:SHA-256:b3107fa321e85b03ed78bf8c09783cf318ec9ddb41566b6f0a71cbe7bb116b13",
+      "sema_stub": "b310",
+      "gloss": "Scale inference compute via extended reasoning",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "Compare",
+      "sema_id": "sema:Compare#mh:SHA-256:45f7a12e6772c68f9b0c4ac3744b903e9b60b2b6a6efb79df5cf8802ecb558c3",
+      "sema_stub": "45f7",
+      "gloss": "Relational check",
+      "layer": "Logic",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "StrategicReading",
+      "sema_id": "sema:StrategicReading#mh:SHA-256:a24efed0ef89aefb6d61a10164639b7cd3f24a7f208c2e3f955775a052a7bc17",
+      "sema_stub": "a24e",
+      "gloss": "Navigate like a researcher, not linearly",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 2
+    },
+    {
+      "id": "Tree",
+      "sema_id": "sema:Tree#mh:SHA-256:8d3d8422200d7af897711a6766b237f6282bbbeeb1f14cc5afe369e5d26fd040",
+      "sema_stub": "8d3d",
+      "gloss": "Branching reasoning topology",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "ConfirmationBlock",
+      "sema_id": "sema:ConfirmationBlock#mh:SHA-256:8d4f7140371cadeda0f6fd4ccabbfd089c4c12c516652346c6668a11c3857b94",
+      "sema_stub": "8d4f",
+      "gloss": "Active search for contradictory evidence",
+      "layer": "Physics",
+      "category": "State Management",
+      "tier": 2
+    },
+    {
+      "id": "Transition",
+      "sema_id": "sema:Transition#mh:SHA-256:621c6b01fcf746930eb5210719d73d2c9f66c9185f89fe5f0c7c1b560751e8d4",
+      "sema_stub": "621c",
+      "gloss": "State change",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "CiteBack",
+      "sema_id": "sema:CiteBack#mh:SHA-256:9bf91ad3ba70b39961d8557ef9957a9a9235782b540d45e84a30384107f2eaa7",
+      "sema_stub": "9bf9",
+      "gloss": "Grounding claims in source",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 1
+    },
+    {
+      "id": "HackDetect",
+      "sema_id": "sema:HackDetect#mh:SHA-256:a366a6d0046434007ab10a4e2bd455b33727cbac2608284370372087557c642e",
+      "sema_stub": "a366",
+      "gloss": "Detect shortcuts that break downstream invariants",
+      "layer": "Infrastructure",
+      "category": "Safety & Alignment",
+      "tier": 1
+    },
+    {
+      "id": "CognitiveEcho",
+      "sema_id": "sema:CognitiveEcho#mh:SHA-256:8cedc05a948b8333b9ef1bb5338131567ffa1b1879cd1474ff62663e552b87d3",
+      "sema_stub": "8ced",
+      "gloss": "Estimating difficulty via simulation variance",
+      "layer": "Mind",
+      "category": "Reasoning & Inference",
+      "tier": 1
+    },
+    {
+      "id": "EpistemicCalibrate",
+      "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:dde05284dfe544786ac388bc0d1814212aa5955c8a36bc072ea5e5882b547cef",
+      "sema_stub": "dde0",
+      "gloss": "Structural confidence degradation",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Message",
+      "sema_id": "sema:Message#mh:SHA-256:7ad5f9ce64ea42b2d97380969883b9429706b29e0434e953dfb08a8e3135cebc",
+      "sema_stub": "7ad5",
+      "gloss": "Structured signal container",
+      "layer": "Society",
+      "category": "Communication",
+      "tier": 0
+    },
+    {
+      "id": "Solution",
+      "sema_id": "sema:Solution#mh:SHA-256:4f1e78e117e6923b1b3c254002fa8fbad3b2e6575a4cd95f04836019bb2a1c64",
+      "sema_stub": "4f1e",
+      "gloss": "The fractal unit of completed work",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 1
+    },
+    {
+      "id": "Kairos",
+      "sema_id": "sema:Kairos#mh:SHA-256:15578af744a3f86eff88493378b49678b2a549bd02b2975890f3ff796f3a84cd",
+      "sema_stub": "1557",
+      "gloss": "Sensing the opportune moment",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 1
+    },
+    {
+      "id": "Meta",
+      "sema_id": "sema:Meta#mh:SHA-256:8c0e17b5e9179763fd9783cb4e84c41a7fd5b40b7b1a57c015d09fa320bec15f",
+      "sema_stub": "8c0e",
+      "gloss": "Higher-order abstraction",
+      "layer": "Mind",
+      "category": "Primitives",
+      "tier": 0
+    },
+    {
+      "id": "AcceptSpec",
+      "sema_id": "sema:AcceptSpec#mh:SHA-256:2cd393ad2c3d0ea88ca4abb83fcd3c4ddf694cba9b6c394806fad2ebbc0133df",
+      "sema_stub": "2cd3",
+      "gloss": "Non-compensatory failure boundaries",
+      "layer": "Infrastructure",
+      "category": "Data Structures",
+      "tier": 2
+    },
+    {
+      "id": "CircuitBreaker",
+      "sema_id": "sema:CircuitBreaker#mh:SHA-256:3a4b0c637cd36947df9f7299ba01566448551d045979790e0f834eace8e65304",
+      "sema_stub": "3a4b",
+      "gloss": "Fail-fast protection against cascading failures",
+      "layer": "Infrastructure",
+      "category": "Flow Control",
+      "tier": 1
+    },
+    {
+      "id": "BeliefTracking",
+      "sema_id": "sema:BeliefTracking#mh:SHA-256:55e19931f86ed09d0da134a70329808929043039d06bde4fa02462d00d604a97",
+      "sema_stub": "55e1",
+      "gloss": "Note what you believed before and after",
+      "layer": "Mind",
+      "category": "Calibration",
+      "tier": 2
+    },
+    {
+      "id": "ComputeBudget",
+      "sema_id": "sema:ComputeBudget#mh:SHA-256:4e04ae4278f07c0a95f4d18a3bec873220d52d58d4edd8173727adec402425e2",
+      "sema_stub": "4e04",
+      "gloss": "Economic governor for cognitive spend",
+      "layer": "Infrastructure",
+      "category": "Resource Management",
+      "tier": 2
+    },
+    {
+      "id": "Select",
+      "sema_id": "sema:Select#mh:SHA-256:7699e571e301ac76033df58d99c95c9104fc7053690547809e83f352fd03caaa",
+      "sema_stub": "7699",
+      "gloss": "Generic selection of items from a set based on criteria",
+      "layer": "Physics",
+      "category": "Primitives",
+      "tier": 1
+    },
+    {
+      "id": "HydraConstitution",
+      "sema_id": "sema:HydraConstitution#mh:SHA-256:daa0a27e98f25fade61bd24b681b5e225c453bdeeddfe69be3b48a8a18595277",
+      "sema_stub": "daa0",
+      "gloss": "Governance that hardens through failed attacks",
+      "layer": "Society",
+      "category": "Governance",
+      "tier": 1
+    },
+    {
+      "id": "OpportunityCost",
+      "sema_id": "sema:OpportunityCost#mh:SHA-256:859d25e73c39cef886f8c30da9c9dee9324a8827008cef68ee4fa302acf1b01b",
+      "sema_stub": "859d",
+      "gloss": "Comparative valuation against the best alternative",
+      "layer": "Society",
+      "category": "Economic Coordination",
+      "tier": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "SynergisticMode",
+      "target": "Compose",
+      "key": "compose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AnalogyBridge",
+      "target": "ConceptBlend",
+      "key": "concept_blend",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PatternSketch",
+      "target": "SkeletonOfThought",
+      "key": "skeleton_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Fermi",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "FabricSharding",
+      "target": "Parallelize",
+      "key": "parallelize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AntifragileInversion",
+      "target": "Reframe",
+      "key": "reframe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ValuePeg",
+      "target": "CostlySignal",
+      "key": "costly_signal",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GhostTrail",
+      "target": "IdentityMask",
+      "key": "identity_mask",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ChunkMerge",
+      "target": "Aggregate",
+      "key": "aggregate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Yield",
+      "target": "Defer",
+      "key": "defer",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MimicMask",
+      "target": "IdentityMask",
+      "key": "identity_mask",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "NegativeProof",
+      "target": "RedTeam",
+      "key": "red_team",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TimeWarpLog",
+      "target": "WorldReversible",
+      "key": "world_reversible",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TimeWarpLog",
+      "target": "CausalBarrier",
+      "key": "causal_barrier",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PermissionEscalate",
+      "target": "HumanApprove",
+      "key": "human_approve",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PermissionEscalate",
+      "target": "TieredAccess",
+      "key": "tiered_access",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Handoff",
+      "target": "Delegate",
+      "key": "delegate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Handoff",
+      "target": "FractalContext",
+      "key": "fractalcontext",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Handoff",
+      "target": "Context",
+      "key": "context",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Handoff",
+      "target": "Responsibility",
+      "key": "responsibility",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Handoff",
+      "target": "Task",
+      "key": "task",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Handoff",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "NormativeJudge",
+      "target": "HumanApprove",
+      "key": "human_approve",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StateTransition",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ExplainBeacon",
+      "target": "Greet",
+      "key": "greet",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Parallelize",
+      "target": "Aggregate",
+      "key": "aggregate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Parallelize",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "StructuralCoaching",
+      "target": "Invert",
+      "key": "invert",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StructuralCoaching",
+      "target": "LocalizedFeedback",
+      "key": "localized_feedback",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EvaluatorOptimizer",
+      "target": "MetaCheck",
+      "key": "meta_check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "FractalContext",
+      "target": "ExperienceSharding",
+      "key": "experience_sharding",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Trace",
+      "target": "GhostTrail",
+      "key": "ghost_trail",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DeliberativeAlign",
+      "target": "CognitiveSolver",
+      "key": "cognitive_solver",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DeliberativeAlign",
+      "target": "HydraConstitution",
+      "key": "hydra_constitution",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DeliberativeAlign",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "DeliberativeAlign",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "PerspectiveEnsemble",
+      "target": "SteelmanCheck",
+      "key": "steelman_check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PerspectiveEnsemble",
+      "target": "Vote",
+      "key": "vote",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DepthGovernor",
+      "target": "RecursionDive",
+      "key": "recursion_dive",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EntropyPump",
+      "target": "NoiseInjection",
+      "key": "noise_injection",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SignalReflection",
+      "target": "SpectralTune",
+      "key": "spectral_tune",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Invert",
+      "target": "Reframe",
+      "key": "reframe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Invert",
+      "target": "Solution",
+      "key": "solution",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "EmpathySim",
+      "target": "MirrorStake",
+      "key": "mirror_stake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EmpathySim",
+      "target": "AgentSandbox",
+      "key": "agent_sandbox",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentProtocol",
+      "target": "Task",
+      "key": "task",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentProtocol",
+      "target": "FailClosed",
+      "key": "fail_closed",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentProtocol",
+      "target": "Greet",
+      "key": "greet",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentProtocol",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentProtocol",
+      "target": "Solution",
+      "key": "solution",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Resonate",
+      "target": "SpectralTune",
+      "key": "spectral_tune",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Resonate",
+      "target": "Signal",
+      "key": "signal",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Resonate",
+      "target": "Crystallize",
+      "key": "crystallize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AdversarialSteel",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TimeboxThink",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ToolInvoke",
+      "target": "AgentSandbox",
+      "key": "agent_sandbox",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ToolInvoke",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "OntologyHandshake",
+      "target": "SpectralTune",
+      "key": "spectral_tune",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PatternEmergence",
+      "target": "MintWhenFriction",
+      "key": "mint_when_friction",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PatternEmergence",
+      "target": "UptakeAsGround",
+      "key": "uptake_as_ground",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PatternEmergence",
+      "target": "PatternDiscovery",
+      "key": "pattern_discovery",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ChainOfThought",
+      "target": "Chain",
+      "key": "chain",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ChainOfThought",
+      "target": "Think",
+      "key": "think",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "UncertaintyMap",
+      "target": "Prioritize",
+      "key": "prioritize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "UncertaintyMap",
+      "target": "ConfidenceCalibrate",
+      "key": "confidence_calibrate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SacrificialProbe",
+      "target": "Probe",
+      "key": "probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ProphetFanOut",
+      "target": "PropheticQuorum",
+      "key": "prophetic_quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PromptChain",
+      "target": "Retry",
+      "key": "retry",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PromptChain",
+      "target": "Delegate",
+      "key": "delegate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PromptChain",
+      "target": "InputGuard",
+      "key": "input_guard",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PromptChain",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "OntologyAdapt",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SteelmanCheck",
+      "target": "AdversarialSteel",
+      "key": "adversarial_steel",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SteelmanCheck",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SteelmanCheck",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "SteelmanCheck",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "RetrievalAugment",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Proprioception",
+      "target": "SomaticMarker",
+      "key": "somatic_marker",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OutputGuard",
+      "target": "InputGuard",
+      "key": "input_guard",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OutputGuard",
+      "target": "Solution",
+      "key": "solution",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "EpistemicROI",
+      "target": "DeepResearch",
+      "key": "deep_research",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EpistemicROI",
+      "target": "SimulationTrace",
+      "key": "simulation_trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EpistemicROI",
+      "target": "Probe",
+      "key": "probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EpistemicROI",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EpistemicROI",
+      "target": "Experiment",
+      "key": "experiment",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EpistemicROI",
+      "target": "CognitiveSolver",
+      "key": "cognitive_solver",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jazz",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jazz",
+      "target": "ExploreExploit",
+      "key": "explore_exploit",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jazz",
+      "target": "ConceptBlend",
+      "key": "concept_blend",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jazz",
+      "target": "Constraint",
+      "key": "constraint",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Heartbeat",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Heartbeat",
+      "target": "Signal",
+      "key": "signal",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Canary",
+      "target": "Probe",
+      "key": "probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Reflex",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "InvariantFilter",
+      "target": "Message",
+      "key": "message",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "InvariantFilter",
+      "target": "Check",
+      "key": "check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CostlySignal",
+      "target": "AttentionMarkets",
+      "key": "attention_markets",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CostlySignal",
+      "target": "Signal",
+      "key": "signal",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "ParetoFront",
+      "target": "Rank",
+      "key": "rank",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContingencyPlan",
+      "target": "Retry",
+      "key": "retry",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BreadthGovernor",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BreadthGovernor",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BreadthGovernor",
+      "target": "ProphetFanOut",
+      "key": "prophet_fan_out",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisEngine",
+      "target": "Stigmergy",
+      "key": "stigmergy",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisEngine",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisEngine",
+      "target": "Hypothesis",
+      "key": "hypothesis",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisEngine",
+      "target": "Trace",
+      "key": "trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisEngine",
+      "target": "Check",
+      "key": "check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Decompose",
+      "target": "Task",
+      "key": "task",
+      "type": "YIELDS"
+    },
+    {
+      "source": "HindsightBlock",
+      "target": "PreMortem",
+      "key": "pre_mortem",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HeldRelease",
+      "target": "UniqueHandle",
+      "key": "uniquehandle",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "HeldRelease",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "WorkerMode",
+      "target": "CognitiveSolver",
+      "key": "cognitive_solver",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "WorkerMode",
+      "target": "ContextSwitch",
+      "key": "context_switch",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "WorkerMode",
+      "target": "Task",
+      "key": "task",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Scratchpad",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "FractalAnte",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RootHashGossip",
+      "target": "RingWitness",
+      "key": "ring_witness",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SpotAudit",
+      "target": "StateAudit",
+      "key": "state_audit",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EphemeralTool",
+      "target": "ToolInvoke",
+      "key": "tool_invoke",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Rally",
+      "target": "Elect",
+      "key": "elect",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Rally",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Rally",
+      "target": "Vote",
+      "key": "vote",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Rally",
+      "target": "Select",
+      "key": "select",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Disband",
+      "target": "EjectionSeat",
+      "key": "ejection_seat",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Dialectic",
+      "target": "PerspectiveEnsemble",
+      "key": "perspective_ensemble",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "WhyClimb",
+      "target": "RecursiveRootCause",
+      "key": "recursive_root_cause",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "WhyClimb",
+      "target": "Solution",
+      "key": "solution",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Discover",
+      "target": "Check",
+      "key": "check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Task",
+      "target": "CognitiveSolver",
+      "key": "cognitive_solver",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Task",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Task",
+      "target": "AgentSandbox",
+      "key": "agent_sandbox",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Task",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "LazyConsensus",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LazyConsensus",
+      "target": "TimeWarpLog",
+      "key": "time_warp_log",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LatentWander",
+      "target": "ConceptBlend",
+      "key": "concept_blend",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LatentWander",
+      "target": "AnalogyBridge",
+      "key": "analogybridge",
+      "type": "YIELDS"
+    },
+    {
+      "source": "CausalBarrier",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "WorldTransparent",
+      "target": "ExplainBeacon",
+      "key": "explain_beacon",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StateSnapshot",
+      "target": "Trace",
+      "key": "trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StateSnapshot",
+      "target": "CryptoShred",
+      "key": "crypto_shred",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StateSnapshot",
+      "target": "IdempotentWrite",
+      "key": "idempotent_write",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DeepResearch",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DeepResearch",
+      "target": "RetrievalAugment",
+      "key": "retrieval_augment",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DeepResearch",
+      "target": "Deep",
+      "key": "deep",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MemeticSeed",
+      "target": "ExplainBeacon",
+      "key": "explain_beacon",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MemeticSeed",
+      "target": "TranslationProxy",
+      "key": "translation_proxy",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MemeticSeed",
+      "target": "Yield",
+      "key": "yield",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AnchorDrop",
+      "target": "FirstPrinciples",
+      "key": "first_principles",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "UptakeOverTimestamp",
+      "target": "UptakeAsGround",
+      "key": "uptake_as_ground",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LocalizedFeedback",
+      "target": "Reflexion",
+      "key": "reflexion",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Validate",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TreeOfThoughts",
+      "target": "Tree",
+      "key": "tree",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TreeOfThoughts",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TreeOfThoughts",
+      "target": "Think",
+      "key": "think",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SourceEvaluate",
+      "target": "CiteBack",
+      "key": "cite_back",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StateLock",
+      "target": "Task",
+      "key": "task",
+      "type": "YIELDS"
+    },
+    {
+      "source": "ConsensusFinder",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConsensusFinder",
+      "target": "Resonate",
+      "key": "resonate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConsensusFinder",
+      "target": "Consensus",
+      "key": "consensus",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConsensusFinder",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SpectralTune",
+      "target": "Signal",
+      "key": "signal",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Satisfice",
+      "target": "OptimalStop",
+      "key": "optimal_stop",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RecursiveRootCause",
+      "target": "RootHashGossip",
+      "key": "root_hash_gossip",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LatticeCommit",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SafetyCartographer",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SafetyCartographer",
+      "target": "BoundaryProbe",
+      "key": "boundary_probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SafetyCartographer",
+      "target": "Constraint",
+      "key": "constraint",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SafetyCartographer",
+      "target": "RedTeam",
+      "key": "red_team",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PheromoneEconomy",
+      "target": "GhostTrail",
+      "key": "ghost_trail",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PheromoneEconomy",
+      "target": "Stigmergy",
+      "key": "stigmergy",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PheromoneEconomy",
+      "target": "Value",
+      "key": "value",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PheromoneEconomy",
+      "target": "ThermodynamicAuction",
+      "key": "thermodynamic_auction",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SemanticTabu",
+      "target": "RootHashGossip",
+      "key": "root_hash_gossip",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SemanticTabu",
+      "target": "Solution",
+      "key": "solution",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "SomaticMarker",
+      "target": "Task",
+      "key": "task",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MonotonicCounter",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Responsibility",
+      "target": "Heartbeat",
+      "key": "heartbeat",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Responsibility",
+      "target": "OathBind",
+      "key": "oath_bind",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Throttle",
+      "target": "Backoff",
+      "key": "backoff",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Throttle",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "GlacialVault",
+      "target": "Decay",
+      "key": "decay",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BayesUpdate",
+      "target": "BaseRateInclude",
+      "key": "base_rate_include",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConstraintBox",
+      "target": "ConstraintRelax",
+      "key": "constraint_relax",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Elect",
+      "target": "AcceptSpec",
+      "key": "acceptspec",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Elect",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Elect",
+      "target": "Ballot",
+      "key": "ballot",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "FailClosed",
+      "target": "OutputGuard",
+      "key": "output_guard",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "FailClosed",
+      "target": "CircuitBreaker",
+      "key": "circuit_breaker",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "FailClosed",
+      "target": "InputGuard",
+      "key": "input_guard",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Bisect",
+      "target": "RecursiveRootCause",
+      "key": "recursive_root_cause",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Bisect",
+      "target": "BoundaryProbe",
+      "key": "boundary_probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RegimeSense",
+      "target": "DriftWatch",
+      "key": "drift_watch",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RegimeSense",
+      "target": "OntologyAdapt",
+      "key": "ontology_adapt",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RegimeSense",
+      "target": "PropheticQuorum",
+      "key": "prophetic_quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GracefulDegradation",
+      "target": "FailClosed",
+      "key": "fail_closed",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PURECheck",
+      "target": "Unique",
+      "key": "unique",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PURECheck",
+      "target": "Realizable",
+      "key": "realizable",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PURECheck",
+      "target": "Parsimony",
+      "key": "parsimony",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PURECheck",
+      "target": "Gate",
+      "key": "gate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PURECheck",
+      "target": "Expansive",
+      "key": "expansive",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "VowOfSilence",
+      "target": "Constraint",
+      "key": "constraint",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "VowOfSilence",
+      "target": "Throttle",
+      "key": "throttle",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "VowOfSilence",
+      "target": "Silence",
+      "key": "silence",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "VowOfSilence",
+      "target": "Backoff",
+      "key": "backoff",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CapacityPressure",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CapacityPressure",
+      "target": "Generalize",
+      "key": "generalize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CapacityPressure",
+      "target": "ConceptBlend",
+      "key": "concept_blend",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CapacityPressure",
+      "target": "ContextCompress",
+      "key": "context_compress",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "UptakeAsGround",
+      "target": "ModestClaim",
+      "key": "modest_claim",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jester",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jester",
+      "target": "DissentSeek",
+      "key": "dissent_seek",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jester",
+      "target": "Reframe",
+      "key": "reframe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Jester",
+      "target": "Incongruity",
+      "key": "incongruity",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContextCompress",
+      "target": "Task",
+      "key": "task",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContextCompress",
+      "target": "AnchorDrop",
+      "key": "anchor_drop",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Delegate",
+      "target": "Probe",
+      "key": "probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Delegate",
+      "target": "FractalContext",
+      "key": "fractalcontext",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Delegate",
+      "target": "Context",
+      "key": "context",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Delegate",
+      "target": "Task",
+      "key": "task",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Delegate",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "CommitmentDevice",
+      "target": "OathBind",
+      "key": "oath_bind",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OptimalStop",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PromiseGraph",
+      "target": "SpotAudit",
+      "key": "spot_audit",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PromiseGraph",
+      "target": "NegativeProof",
+      "key": "negative_proof",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GateExpansive",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Stream",
+      "target": "Message",
+      "key": "message",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MirrorStake",
+      "target": "CostlySignal",
+      "key": "costly_signal",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DataMinimization",
+      "target": "RetrievalAugment",
+      "key": "retrieval_augment",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DataMinimization",
+      "target": "InputGuard",
+      "key": "input_guard",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DataMinimization",
+      "target": "ContextCompress",
+      "key": "context_compress",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SelfReminder",
+      "target": "Reflexion",
+      "key": "reflexion",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StateAudit",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ModestClaim",
+      "target": "EpistemicCalibrate",
+      "key": "epistemic_calibrate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Gardener",
+      "target": "Care",
+      "key": "care",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Gardener",
+      "target": "Stigmergy",
+      "key": "stigmergy",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Gardener",
+      "target": "GracefulDegradation",
+      "key": "graceful_degradation",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Gardener",
+      "target": "Compensate",
+      "key": "compensate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Eliminate",
+      "target": "Prioritize",
+      "key": "prioritize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RecursionDive",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RecursionDive",
+      "target": "LeastToMost",
+      "key": "least_to_most",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RecursionDive",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "RecursionDive",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "RingWitness",
+      "target": "IdentityMask",
+      "key": "identity_mask",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Greet",
+      "target": "SpectralTune",
+      "key": "spectral_tune",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Greet",
+      "target": "Probe",
+      "key": "probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Greet",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DriftWatch",
+      "target": "Aggregate",
+      "key": "aggregate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Generalize",
+      "target": "AnalogyBridge",
+      "key": "analogy_bridge",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ReAct",
+      "target": "ToolInvoke",
+      "key": "tool_invoke",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ReAct",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "ReAct",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "SunkCostIgnore",
+      "target": "OpportunityCost",
+      "key": "opportunity_cost",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Hysteresis",
+      "target": "Dampen",
+      "key": "dampen",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LeastToMost",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LeastToMost",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "LeastToMost",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "ThinSlice",
+      "target": "Route",
+      "key": "route",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ThinSlice",
+      "target": "ExtendedThinking",
+      "key": "extended_thinking",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ThinSlice",
+      "target": "SomaticMarker",
+      "key": "somatic_marker",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OsmoticFilter",
+      "target": "CostlySignal",
+      "key": "costly_signal",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OsmoticFilter",
+      "target": "Hysteresis",
+      "key": "hysteresis",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OsmoticFilter",
+      "target": "Canary",
+      "key": "canary",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GenealogicalTrace",
+      "target": "CiteBack",
+      "key": "cite_back",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GenealogicalTrace",
+      "target": "TraceBelief",
+      "key": "trace_belief",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GenealogicalTrace",
+      "target": "Deep",
+      "key": "deep",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Overlap",
+      "target": "MECE",
+      "key": "mece",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityHandshake",
+      "target": "Identity",
+      "key": "identity",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityHandshake",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityHandshake",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityHandshake",
+      "target": "SpectralTune",
+      "key": "spectral_tune",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityHandshake",
+      "target": "Check",
+      "key": "check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConstraintRelax",
+      "target": "Bubble",
+      "key": "bubble",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConstraintRelax",
+      "target": "Solution",
+      "key": "solution",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "RegretMinimization",
+      "target": "OpportunityCost",
+      "key": "opportunity_cost",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HeuristicSnap",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HeuristicSnap",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MetricDissolution",
+      "target": "Invert",
+      "key": "invert",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MetricDissolution",
+      "target": "Eliminate",
+      "key": "eliminate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ThermodynamicAuction",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ThermodynamicAuction",
+      "target": "UniqueHandle",
+      "key": "uniquehandle",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "TraceBelief",
+      "target": "Trace",
+      "key": "trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TraceBelief",
+      "target": "SurprisalUpdate",
+      "key": "surprisal_update",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TraceBelief",
+      "target": "Belief",
+      "key": "belief",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TraceBelief",
+      "target": "TimeWarpLog",
+      "key": "time_warp_log",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EventReact",
+      "target": "ReAct",
+      "key": "re_act",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ExpiringToken",
+      "target": "BearerToken",
+      "key": "bearer_token",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RedTeam",
+      "target": "AdversarialSteel",
+      "key": "adversarial_steel",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Reframe",
+      "target": "StepBack",
+      "key": "step_back",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "QuorumPulse",
+      "target": "Heartbeat",
+      "key": "heartbeat",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Compose",
+      "target": "PromptChain",
+      "key": "prompt_chain",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BackwardChain",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConfidenceCalibrate",
+      "target": "BaseRateInclude",
+      "key": "base_rate_include",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConfidenceCalibrate",
+      "target": "BayesUpdate",
+      "key": "bayes_update",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Crystallize",
+      "target": "HydraConstitution",
+      "key": "hydra_constitution",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Crystallize",
+      "target": "EntropyPump",
+      "key": "entropy_pump",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Crystallize",
+      "target": "Decay",
+      "key": "decay",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Crystallize",
+      "target": "Dampen",
+      "key": "dampen",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GateUnique",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ImaginaryHistorian",
+      "target": "CryptoShred",
+      "key": "crypto_shred",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ImaginaryHistorian",
+      "target": "Trace",
+      "key": "trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ImaginaryHistorian",
+      "target": "Simulation",
+      "key": "simulation",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ImaginaryHistorian",
+      "target": "MentalSim",
+      "key": "mental_sim",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "NormCheck",
+      "target": "PropheticQuorum",
+      "key": "prophetic_quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "NormCheck",
+      "target": "ProphetFanOut",
+      "key": "prophet_fan_out",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "NormCheck",
+      "target": "NormativeJudge",
+      "key": "normative_judge",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Route",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Probe",
+      "target": "MirrorStake",
+      "key": "mirror_stake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Probe",
+      "target": "BoundaryProbe",
+      "key": "boundary_probe",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OathBind",
+      "target": "SpotAudit",
+      "key": "spot_audit",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OathBind",
+      "target": "NegativeProof",
+      "key": "negative_proof",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Uncertain",
+      "target": "DeepResearch",
+      "key": "deep_research",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Uncertain",
+      "target": "UncertaintyMap",
+      "key": "uncertainty_map",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Uncertain",
+      "target": "SocraticLoop",
+      "key": "socratic_loop",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Warmup",
+      "target": "Greet",
+      "key": "greet",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Warmup",
+      "target": "Throttle",
+      "key": "throttle",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SkeletonOfThought",
+      "target": "Skeleton",
+      "key": "skeleton",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SkeletonOfThought",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SkeletonOfThought",
+      "target": "Think",
+      "key": "think",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "EjectionSeat",
+      "target": "Compensate",
+      "key": "compensate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PreMortem",
+      "target": "RecursiveRootCause",
+      "key": "recursive_root_cause",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PreMortem",
+      "target": "SteelmanCheck",
+      "key": "steelman_check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PreMortem",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "PreMortem",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "PatternDiscovery",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "PatternDiscovery",
+      "target": "ConstructOntology",
+      "key": "construct_ontology",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "RepresentationSwap",
+      "target": "ConceptBlend",
+      "key": "concept_blend",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SocraticLoop",
+      "target": "Dialectic",
+      "key": "dialectic",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Defer",
+      "target": "Prioritize",
+      "key": "prioritize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ExploreExploit",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DissentSeek",
+      "target": "SteelmanCheck",
+      "key": "steelman_check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DissentSeek",
+      "target": "ConfirmationBlock",
+      "key": "confirmation_block",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Experiment",
+      "target": "Validate",
+      "key": "validate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Experiment",
+      "target": "Aggregate",
+      "key": "aggregate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Experiment",
+      "target": "Parallelize",
+      "key": "parallelize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Experiment",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Nucleate",
+      "target": "Crystallize",
+      "key": "crystallize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Nucleate",
+      "target": "Rally",
+      "key": "rally",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Nucleate",
+      "target": "Trace",
+      "key": "trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MetaCheck",
+      "target": "Reflexion",
+      "key": "reflexion",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisLadder",
+      "target": "AbductiveLeap",
+      "key": "abductive_leap",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HypothesisLadder",
+      "target": "Experiment",
+      "key": "experiment",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConceptAnchor",
+      "target": "AnchorDrop",
+      "key": "anchor_drop",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SurprisalUpdate",
+      "target": "RegimeSense",
+      "key": "regime_sense",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SurprisalUpdate",
+      "target": "EpistemicROI",
+      "key": "epistemic_roi",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Vote",
+      "target": "Break",
+      "key": "break",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Vote",
+      "target": "Aggregate",
+      "key": "aggregate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Vote",
+      "target": "Elect",
+      "key": "elect",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Vote",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Vote",
+      "target": "AcceptSpec",
+      "key": "acceptspec",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Vote",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Vote",
+      "target": "Ballot",
+      "key": "ballot",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "SteelmanFirst",
+      "target": "SteelmanCheck",
+      "key": "steelman_check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SurvivorCorrect",
+      "target": "BaseRateInclude",
+      "key": "base_rate_include",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ProgramOfThought",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "ProgramOfThought",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "LivedProof",
+      "target": "CostlySignal",
+      "key": "costly_signal",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LivedProof",
+      "target": "DogfoodFirst",
+      "key": "dogfood_first",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HolographicShard",
+      "target": "FabricSharding",
+      "key": "fabric_sharding",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdempotentWrite",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GateRealizable",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ReversibilityCheck",
+      "target": "WorldReversible",
+      "key": "world_reversible",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ReversibilityCheck",
+      "target": "Reversibility",
+      "key": "reversibility",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ReversibilityCheck",
+      "target": "Check",
+      "key": "check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ReversibilityCheck",
+      "target": "HumanApprove",
+      "key": "human_approve",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ThreeLevelCollision",
+      "target": "FailClosed",
+      "key": "fail_closed",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Compensate",
+      "target": "TimeWarpLog",
+      "key": "time_warp_log",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Compensate",
+      "target": "Break",
+      "key": "break",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityMask",
+      "target": "NegativeProof",
+      "key": "negative_proof",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "IdentityMask",
+      "target": "CryptoShred",
+      "key": "crypto_shred",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Specialize",
+      "target": "Generalize",
+      "key": "generalize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "StepBack",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "StepBack",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Dampen",
+      "target": "Throttle",
+      "key": "throttle",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Rank",
+      "target": "Prioritize",
+      "key": "prioritize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Rank",
+      "target": "Vote",
+      "key": "vote",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "FirstPrinciples",
+      "target": "ChainOfThought",
+      "key": "chain_of_thought",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BearerToken",
+      "target": "TieredAccess",
+      "key": "tiered_access",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ChaosDrift",
+      "target": "SemanticTabu",
+      "key": "semantic_tabu",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ChaosDrift",
+      "target": "AntifragileInversion",
+      "key": "antifragile_inversion",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContextFirst",
+      "target": "CognitiveSolver",
+      "key": "cognitive_solver",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContextFirst",
+      "target": "Warmup",
+      "key": "warmup",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AnalogicalMask",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ExperienceSharding",
+      "target": "ChunkMerge",
+      "key": "chunk_merge",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Reflexion",
+      "target": "Scratchpad",
+      "key": "scratchpad",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Reflexion",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Reflexion",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Quorum",
+      "target": "PropheticQuorum",
+      "key": "prophetic_quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Quorum",
+      "target": "HumanApprove",
+      "key": "human_approve",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Quorum",
+      "target": "AcceptSpec",
+      "key": "acceptspec",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Quorum",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "Quorum",
+      "target": "Ballot",
+      "key": "ballot",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "PropheticQuorum",
+      "target": "NormativeJudge",
+      "key": "normative_judge",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GateParsimony",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GateParsimony",
+      "target": "Gate",
+      "key": "gate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "GateParsimony",
+      "target": "Parsimony",
+      "key": "parsimony",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Cooldown",
+      "target": "Throttle",
+      "key": "throttle",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SelfConsistency",
+      "target": "Vote",
+      "key": "vote",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CurriculumReplay",
+      "target": "ExperienceSharding",
+      "key": "experience_sharding",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContextSwitch",
+      "target": "ExperienceSharding",
+      "key": "experience_sharding",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ContextSwitch",
+      "target": "Context",
+      "key": "context",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "CognitiveSolver",
+      "target": "Validate",
+      "key": "validate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CognitiveSolver",
+      "target": "Card",
+      "key": "card",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "InputGuard",
+      "target": "BearerToken",
+      "key": "bearer_token",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "InputGuard",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "AmendLaws",
+      "target": "HydraConstitution",
+      "key": "hydra_constitution",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CounterfactualAnchor",
+      "target": "SurprisalUpdate",
+      "key": "surprisal_update",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CounterfactualAnchor",
+      "target": "EvaluatorOptimizer",
+      "key": "evaluator_optimizer",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CounterfactualAnchor",
+      "target": "BeliefTracking",
+      "key": "belief_tracking",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CounterfactualAnchor",
+      "target": "RegimeSense",
+      "key": "regime_sense",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CounterfactualAnchor",
+      "target": "BayesUpdate",
+      "key": "bayes_update",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HumanApprove",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "EbbFlowSync",
+      "target": "Hysteresis",
+      "key": "hysteresis",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DogfoodFirst",
+      "target": "Reflexion",
+      "key": "reflexion",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "DogfoodFirst",
+      "target": "Canary",
+      "key": "canary",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MintWhenFriction",
+      "target": "PatternDiscovery",
+      "key": "pattern_discovery",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MintWhenFriction",
+      "target": "GracefulDegradation",
+      "key": "graceful_degradation",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MintWhenFriction",
+      "target": "ConstructOntology",
+      "key": "construct_ontology",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "LatentAttachment",
+      "target": "ConceptAnchor",
+      "key": "concept_anchor",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SimulationTrace",
+      "target": "Trace",
+      "key": "trace",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SimulationTrace",
+      "target": "Simulation",
+      "key": "simulation",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "SimulationTrace",
+      "target": "MentalSim",
+      "key": "mental_sim",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "UniqueHandle",
+      "target": "StateLock",
+      "key": "state_lock",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Retry",
+      "target": "Break",
+      "key": "break",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Retry",
+      "target": "Compensate",
+      "key": "compensate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Retry",
+      "target": "HumanApprove",
+      "key": "human_approve",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TensionHold",
+      "target": "DeepResearch",
+      "key": "deep_research",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TensionHold",
+      "target": "Dialectic",
+      "key": "dialectic",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "TranslationProxy",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentDiscover",
+      "target": "Discover",
+      "key": "discover",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "AgentDiscover",
+      "target": "Agent",
+      "key": "agent",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MetaPrompt",
+      "target": "PromptChain",
+      "key": "prompt_chain",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Mutex",
+      "target": "Rally",
+      "key": "rally",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Mutex",
+      "target": "Bubble",
+      "key": "bubble",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Mutex",
+      "target": "Delegate",
+      "key": "delegate",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Mutex",
+      "target": "Throttle",
+      "key": "throttle",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Mutex",
+      "target": "UniqueHandle",
+      "key": "uniquehandle",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "Mutex",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "ConstructOntology",
+      "target": "SpectralTune",
+      "key": "spectral_tune",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConstructOntology",
+      "target": "AdversarialSteel",
+      "key": "adversarial_steel",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConstructOntology",
+      "target": "FirstPrinciples",
+      "key": "first_principles",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ConstructOntology",
+      "target": "OntologyHandshake",
+      "key": "ontology_handshake",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MentalSim",
+      "target": "AgentSandbox",
+      "key": "agent_sandbox",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MentalSim",
+      "target": "HeuristicSnap",
+      "key": "heuristic_snap",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "MentalSim",
+      "target": "Deep",
+      "key": "deep",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ScopeFreeze",
+      "target": "Task",
+      "key": "task",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ScopeFreeze",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ScopeFreeze",
+      "target": "Satisfice",
+      "key": "satisfice",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ScopeFreeze",
+      "target": "TimeboxThink",
+      "key": "timebox_think",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ForkingProtocol",
+      "target": "Parallelize",
+      "key": "parallelize",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ExtendedThinking",
+      "target": "Task",
+      "key": "task",
+      "type": "ACCEPTS"
+    },
+    {
+      "source": "ExtendedThinking",
+      "target": "Solution",
+      "key": "solution",
+      "type": "YIELDS"
+    },
+    {
+      "source": "StrategicReading",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CiteBack",
+      "target": "RetrievalAugment",
+      "key": "retrieval_augment",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HackDetect",
+      "target": "InputGuard",
+      "key": "input_guard",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HackDetect",
+      "target": "EjectionSeat",
+      "key": "ejection_seat",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Solution",
+      "target": "AcceptSpec",
+      "key": "accept_spec",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CircuitBreaker",
+      "target": "Retry",
+      "key": "retry",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CircuitBreaker",
+      "target": "ToolInvoke",
+      "key": "tool_invoke",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "CircuitBreaker",
+      "target": "Backoff",
+      "key": "backoff",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "BeliefTracking",
+      "target": "SurprisalUpdate",
+      "key": "surprisal_update",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ComputeBudget",
+      "target": "RecursionDive",
+      "key": "recursion_dive",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ComputeBudget",
+      "target": "Decompose",
+      "key": "decompose",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ComputeBudget",
+      "target": "Throttle",
+      "key": "throttle",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ComputeBudget",
+      "target": "DepthGovernor",
+      "key": "depth_governor",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "ComputeBudget",
+      "target": "CognitiveSolver",
+      "key": "cognitive_solver",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Select",
+      "target": "Rank",
+      "key": "rank",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Select",
+      "target": "Vote",
+      "key": "vote",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Select",
+      "target": "PURECheck",
+      "key": "pure_check",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "HydraConstitution",
+      "target": "Quorum",
+      "key": "quorum",
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "OpportunityCost",
+      "target": "ComputeBudget",
+      "key": "compute_budget",
+      "type": "DEPENDS_ON"
+    }
+  ],
+  "stats": {
+    "node_count": 315,
+    "edge_count": 471,
+    "accepts_count": 43,
+    "yields_count": 22,
+    "depends_count": 406
+  }
+}

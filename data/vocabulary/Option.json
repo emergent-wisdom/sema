@@ -1,0 +1,44 @@
+{
+  "handle": "Option",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "option_id",
+      "description",
+      "predicted_outcome"
+    ],
+    "properties": {
+      "option_id": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "cost_estimate": {
+        "type": "number"
+      },
+      "risk_score": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0
+      },
+      "predicted_outcome": {
+        "type": "string",
+        "description": "Simulation result if this option is chosen"
+      }
+    }
+  },
+  "mechanism": "A discrete, actionable alternative within a decision space. An Option must be fully specified (executable) and mutually exclusive from other options in the same set. It represents a valid path for state transition.",
+  "gloss": "A discrete, executable alternative",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_id": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
+  "sema_ref": "Option#483e",
+  "sema_stub": "483e",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

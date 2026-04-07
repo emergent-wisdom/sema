@@ -1,0 +1,55 @@
+{
+  "handle": "SocraticLoop",
+  "mechanism": "Ambiguity detection loop. If Confidence({{prompt}}) < Threshold, {{agent}} pauses execution to query the user. {{loop}} continues until intent is disambiguated or max_questions reached. It engages the user in a {{dialectic}} exchange to progressively narrow the ambiguity space.",
+  "gloss": "Clarification before generation",
+  "failure_modes": [
+    "User Fatigue: Too many questions cause user to abandon session.",
+    "Premature Stop: {{agent}} accepts vague answer without fully resolving ambiguity.",
+    "Annoying the user with too many questions."
+  ],
+  "invariants": [
+    "Information Gain: Each Question(N) must reduce entropy of UserIntent.",
+    "Diminishing Returns: Entropy_Delta(Question_N) must be < Entropy_Delta(Question_N-1).",
+    "Termination: {{loop}} halts when Confidence > Threshold OR Iterations >= Limit."
+  ],
+  "preconditions": [
+    "Ambiguity detected",
+    "User prompt received"
+  ],
+  "postconditions": [
+    "User intent disambiguated OR fallback to best-guess"
+  ],
+  "parameters": [
+    {
+      "name": "ambiguity_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Confidence below which the agent asks a clarifying question instead of acting"
+    },
+    {
+      "name": "max_questions",
+      "type": "Integer",
+      "range": "[1, 3]",
+      "description": "Maximum clarification questions before the agent must proceed"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
+  "sema_ref": "SocraticLoop#fbe3",
+  "sema_stub": "fbe3",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "prompt": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "dialectic": "sema:Dialectic#mh:SHA-256:fae9f2cb66a8be390dad665ac54ed7415746a76ac5a20ff3e983dbf7d3983940"
+    }
+  }
+}

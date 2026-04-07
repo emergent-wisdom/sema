@@ -1,0 +1,57 @@
+{
+  "handle": "RequestFraming",
+  "derived_from": "sema:Interpret",
+  "gloss": "Clarify intent and constraints before planning",
+  "mechanism": "The initial state of workflow orchestration. It performs the act of {{interpret}} by accepting a {{message}} and using {{think}} to {{understand}} the 'real ask' within the given {{context}} before committing resources. It clarifies constraints, success criteria, and hidden assumptions, producing a {{frame_spec}} artifact. It acts as a semantic firewall against vague or dangerous instructions.",
+  "signature": [
+    "Think(FrameSpec)"
+  ],
+  "invariants": [
+    "Output must be a rigorous FrameSpec",
+    "No resources committed to execution yet"
+  ],
+  "preconditions": [
+    "Raw User Request",
+    "Context available"
+  ],
+  "postconditions": [
+    "FrameSpec artifact created",
+    "Constraints explicit"
+  ],
+  "failure_modes": [
+    "Misinterpretation: The agent clarifies the wrong ambiguity.",
+    "Over-constraint: Adding unnecessary restrictions that kill innovation.",
+    "Premature Optimization: Jumping to solutions before understanding the problem."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1,
+    "related": [
+      "Reframe",
+      "Decompose"
+    ]
+  },
+  "sema_ref": "RequestFraming#0695",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e",
+  "sema_stub": "0695",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "accepts": {
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+    },
+    "composes_with": {
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+      "understand": "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
+    },
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f"
+    },
+    "yields": {
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+    }
+  }
+}

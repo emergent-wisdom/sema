@@ -1,0 +1,35 @@
+{
+  "handle": "LatentAttachment",
+  "mechanism": "Attaching a high-dimensional vector embedding (latent) to a symbolic pattern card. This allows agents to use 'Fuzzy Search' to find the card, while still using the 'Canonical Hash' for strict verification. It bridges the gap between LLM intuition and code execution. It binds a vector embedding to a {{concept_anchor}}, enabling semantic search without breaking the symbolic hash.",
+  "gloss": "Hybrid symbolic-neural identity",
+  "failure_modes": [
+    "Model shift invalidates embeddings."
+  ],
+  "invariants": [
+    "{{identity}} Separation: Removing the Latent block MUST NOT change the Canonical Hash",
+    "Semantic Proximity: Distance(Symbolic, Latent) < Threshold"
+  ],
+  "preconditions": [
+    "Embedding model is fingerprinted/versioned"
+  ],
+  "postconditions": [
+    "Pattern is discoverable via vector search"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 0
+  },
+  "sema_id": "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4",
+  "sema_ref": "LatentAttachment#ab68",
+  "sema_stub": "ab68",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "concept_anchor": "sema:ConceptAnchor#mh:SHA-256:91873000b379e08c41bc3fe3fea23f1f0870600871f89cca46ecbc87cc1d69d0"
+    }
+  }
+}

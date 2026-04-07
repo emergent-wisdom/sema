@@ -1,0 +1,29 @@
+{
+  "handle": "EmpiricalTest",
+  "mechanism": "Identifies testable predictions from a conclusion and executes experiments (or lookups) to verify them. Increases epistemic confidence via {{falsification}} attempts. (Formerly confused with {{validate}}).",
+  "gloss": "Verifying conclusions via testable predictions",
+  "preconditions": [
+    "Conclusion to test",
+    "Test mechanism available"
+  ],
+  "postconditions": [
+    "Confidence updated based on test results"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_id": "sema:EmpiricalTest#mh:SHA-256:a492e77036828e03a8b9865a417b959989e5135d05b39e628df172d573df4606",
+  "sema_ref": "EmpiricalTest#a492",
+  "sema_stub": "a492",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
+      "falsification": "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929"
+    }
+  }
+}

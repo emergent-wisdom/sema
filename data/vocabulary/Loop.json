@@ -1,0 +1,28 @@
+{
+  "handle": "Loop",
+  "mechanism": "A control flow structure that repeats a sequence of {{work}} until a specific {{condition}} is met. Essential for feedback, learning, and persistent processes.",
+  "gloss": "Repeated execution cycle",
+  "invariants": [
+    "Termination Guarantee: Must have a proven exit condition (or explicit Daemon mode).",
+    "Progress: State must change between iterations to avoid infinite freeze."
+  ],
+  "sema_id": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+  "sema_ref": "Loop#fb2e",
+  "sema_stub": "fb2e",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "accepts": {
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    },
+    "composes_with": {
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    }
+  }
+}

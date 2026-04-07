@@ -1,0 +1,77 @@
+{
+  "handle": "Goal",
+  "mechanism": "A specification of a desired end state. It defines the target that {{work}} aims to achieve and that evaluation measures against. A Goal is testable: given a {{result}}, one can determine if the Goal is satisfied. Goals can be composed (AND/OR) and prioritized.",
+  "gloss": "Specification of desired end state",
+  "failure_modes": [
+    "Goal Ambiguity: Goal admits multiple incompatible interpretations.",
+    "Goal Conflict: Multiple goals cannot all be satisfied simultaneously.",
+    "Moving Target: Goal changes during execution without proper signaling."
+  ],
+  "invariants": [
+    "Testability: Given a Result, Goal satisfaction must be decidable.",
+    "Stability: Goal should not change during a single execution cycle."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "tier": 1,
+    "ring": 0
+  },
+  "sema_id": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
+  "sema_ref": "Goal#456a",
+  "sema_stub": "456a",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "goal_statement",
+      "success_criteria"
+    ],
+    "properties": {
+      "goal_statement": {
+        "type": "string",
+        "description": "The desired end state"
+      },
+      "success_criteria": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Binary conditions that define completion"
+      },
+      "priority": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "metric_target": {
+        "type": "object",
+        "properties": {
+          "metric_name": {
+            "type": "string"
+          },
+          "target_value": {
+            "type": "number"
+          },
+          "comparator": {
+            "type": "string",
+            "enum": [
+              ">",
+              "<",
+              ">=",
+              "<=",
+              "="
+            ]
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    }
+  }
+}

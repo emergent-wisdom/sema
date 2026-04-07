@@ -1,0 +1,30 @@
+{
+  "handle": "Falsification",
+  "mechanism": "The logical act of proving a {{hypothesis}} false by {{observe}}ing an {{incongruity}} between prediction and observation. It creates specific knowledge by eliminating possibilities.",
+  "gloss": "Proof of falsehood",
+  "invariants": [
+    "Logical Negation: If Prediction implies Observation, and not-Observation, then not-Hypothesis.",
+    "Empirical Grounding: Requires observational evidence."
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "tier": 1,
+    "related": [
+      "HypothesisLadder#f88b"
+    ]
+  },
+  "sema_id": "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929",
+  "sema_ref": "Falsification#3e36",
+  "sema_stub": "3e36",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
+      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
+      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
+    }
+  }
+}

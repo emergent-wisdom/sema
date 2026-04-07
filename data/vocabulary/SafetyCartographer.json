@@ -1,0 +1,27 @@
+{
+  "handle": "SafetyCartographer",
+  "mechanism": "Macro for {{discover}}({{constraint}}). The agent actively probes its environment or internal safety filters with boundary-seeking inputs to map the limits of permissible action, rather than just checking if a single action is safe. It employs {{red_team}} tactics to {{discover}} failure modes, using {{boundary_probe}} to map the precise coordinates of the {{constraint}}.",
+  "gloss": "Mapping safety boundaries",
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:SafetyCartographer#mh:SHA-256:7e4ff519636575f602287e25b925461aaf94093075f97e16db4b84bc690761db",
+  "sema_ref": "SafetyCartographer#7e4f",
+  "sema_stub": "7e4f",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Discover(Constraint)"
+  ],
+  "dependencies": {
+    "references": {
+      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e",
+      "red_team": "sema:RedTeam#mh:SHA-256:1b1f97847c37b7af0ff98873e9e5afc4b5b7628b0cde0fb3eb49904f7b79779a",
+      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

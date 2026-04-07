@@ -1,0 +1,61 @@
+{
+  "handle": "Tree",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "nodes",
+      "edges",
+      "root_id"
+    ],
+    "properties": {
+      "nodes": {
+        "type": "array",
+        "description": "List of node IDs or objects"
+      },
+      "edges": {
+        "type": "array",
+        "description": "Adjacency list (parent->child)"
+      },
+      "root_id": {
+        "type": "string",
+        "description": "The single root node"
+      }
+    }
+  },
+  "mechanism": "A branching {{topology}} where multiple lines of reasoning are explored simultaneously. Allows backtracking and pruning of unpromising branches (BFS/DFS). Equivalent to 'tree-of-thoughts reasoning'.",
+  "gloss": "Branching reasoning topology",
+  "invariants": [
+    "Rootedness: All nodes descend from a single root.",
+    "Acyclicity: No node is an ancestor of itself."
+  ],
+  "parameters": [
+    {
+      "name": "breadth",
+      "type": "Integer",
+      "range": "unspecified",
+      "description": "Maximum branches explored per reasoning node"
+    },
+    {
+      "name": "depth",
+      "type": "Integer",
+      "range": "[1, 20]",
+      "description": "Maximum tree depth"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2
+  },
+  "sema_ref": "Tree#ddce",
+  "sema_id": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+  "sema_stub": "ddce",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+    }
+  }
+}

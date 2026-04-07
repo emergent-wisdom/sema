@@ -1,0 +1,36 @@
+{
+  "handle": "OpportunityCost",
+  "mechanism": "Alternative Valuation: Cost of any choice includes value of best forgone alternative. Don't just ask \"Is this good?\" Ask \"Is this better than what else I could do with same resources?\" Time/money/attention spent here can't be spent elsewhere. It explicitly deducts the value of the foregone alternative from the {{budget}} calculation.",
+  "gloss": "Comparative valuation against the best alternative",
+  "failure_modes": [
+    "Analysis Paralysis: Infinite search for the perfect alternative prevents any action."
+  ],
+  "invariants": [
+    "Cost = {{value}} of best foregone alternative",
+    "Resources are finite"
+  ],
+  "preconditions": [
+    "Choice set > 1",
+    "Resource constraint"
+  ],
+  "postconditions": [
+    "Implicit cost made explicit"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_ref": "OpportunityCost#1c66",
+  "sema_id": "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e",
+  "sema_stub": "1c66",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    }
+  }
+}

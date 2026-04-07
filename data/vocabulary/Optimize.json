@@ -1,0 +1,48 @@
+{
+  "handle": "Optimize",
+  "mechanism": "The iterative process of adjusting parameters or structure to maximize (or minimize) a specific Objective Function defined by a {{metric}}. It involves generating candidate {{solution}}s, evaluating them against the metric, and selecting the best. It can be Local (Gradient Descent) or {{global}} (Evolutionary).",
+  "gloss": "Maximize utility against a metric",
+  "failure_modes": [
+    "Overfitting: {{solution}} works perfectly on test data but fails in reality.",
+    "Goodhart's Law: Optimizing for a proxy {{metric}} destroys the actual value.",
+    "Local Optima: Getting stuck in a 'good enough' state that prevents finding the best state.",
+    "Premature Optimization: Optimizing before the problem is fully understood."
+  ],
+  "invariants": [
+    "Monotonicity: Each step (or epoch) should ideally improve (or not degrade) the best-known {{solution}}.",
+    "Measurability: The Objective Function must be quantifiable via a {{metric}}."
+  ],
+  "preconditions": [
+    "Objective Function is defined",
+    "Candidate space is explorable",
+    "Baseline {{metric}} is known"
+  ],
+  "postconditions": [
+    "Best Candidate {{solution}} found",
+    "{{metric}} improved over Baseline"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "EvaluatorOptimizer",
+      "RegretMinimization",
+      "ParetoFront"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8",
+  "sema_ref": "Optimize#8d99",
+  "sema_stub": "8d99",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29"
+    },
+    "accepts": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

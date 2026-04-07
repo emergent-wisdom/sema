@@ -1,0 +1,57 @@
+{
+  "handle": "UniversalSolverTree",
+  "mechanism": "The theoretical aggregation of all possible valid {{solver_tree}}s across all agents in the system. It represents the total epistemological state of {{problem}}-solving knowledge\u2014the collective wisdom of self and others. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within this Universal {{tree}}. It enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The Universal Tree is the ground truth against which {{localized_learning}} updates are integrated.",
+  "gloss": "Collective knowledge graph of all problem-solving",
+  "failure_modes": [
+    "Fragmentation: Parts of the universal tree become inaccessible across agent boundaries.",
+    "Inconsistency: Contradictory solutions exist in different branches without reconciliation.",
+    "Knowledge Silos: Agent-local trees fail to sync with the universal tree."
+  ],
+  "invariants": [
+    "Singularity: There is logically only one Universal {{tree}} containing all knowledge.",
+    "Coherence: Contradictions must eventually be resolved via synthesis or rejection."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "trees"
+    ],
+    "properties": {
+      "trees": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "All SolverTree refs"
+      },
+      "global_solutions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Cross-tree reusable solutions"
+      }
+    }
+  },
+  "sema_ref": "UniversalSolverTree#d154",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:d154cc0926f79078e6b81f336ac51b220771d88bbf92605a87c2c029eeb99600",
+  "sema_stub": "d154",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:6e7b944baf526bfabe4070993c035fc9676768dc3fc34f05230a2b6dfd9293a6"
+    }
+  }
+}

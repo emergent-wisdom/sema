@@ -1,0 +1,42 @@
+{
+  "handle": "HypothesisLadder",
+  "mechanism": "The agent explicitly lists its current hypotheses about the world state and assigns probabilities. As new data arrives, it updates these probabilities using {{bayes_update}}. It acts on the highest-probability {{hypothesis}} but keeps others alive. It structures {{abductive_leap}} into falsifiable rungs, climbing to higher certainty only when an {{experiment}} validates the current level.",
+  "gloss": "Bayesian belief updating via falsification rungs",
+  "failure_modes": [
+    "Clinging to low-probability priors."
+  ],
+  "invariants": [
+    "Ascension Rule: Cannot move to {{hypothesis}}(N+1) until {{hypothesis}}(N) is validated",
+    "Evidence required to advance.",
+    "Exclusivity: Hypotheses at same rung should be mutually exclusive",
+    "Falsifiability: Each rung must have a testable disprove condition",
+    "Falsifiability: Every rung must have a disproof condition"
+  ],
+  "preconditions": [
+    "Data is valid"
+  ],
+  "postconditions": [
+    "{{experiment}} defined"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:bb204ace074374c6e9a4511e47d8ab44ca730d6c2613a43a10cc2918a41c0478",
+  "sema_ref": "HypothesisLadder#bb20",
+  "sema_stub": "bb20",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "abductive_leap": "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812"
+    },
+    "composes_with": {
+      "experiment": "sema:Experiment#mh:SHA-256:1b0db195171a3758d7d8a5d0e722f5298e1e67f7595f30c833dddcf6ae07d388"
+    }
+  }
+}

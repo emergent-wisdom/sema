@@ -1,0 +1,43 @@
+{
+  "handle": "ManifestPlanning",
+  "derived_from": "sema:Plan",
+  "gloss": "Transform FrameSpec into ExecutionManifest via optimization",
+  "mechanism": "The architectural phase of workflow orchestration. It produces a structured {{plan}} by performing {{think}} to transform a {{frame_spec}} into a runnable {{execution_manifest}}. This process must {{optimize}} the step sequence for resource feasibility and generate a strict 'Definition of Done'.",
+  "signature": [
+    "Think(ExecutionManifest)"
+  ],
+  "invariants": [
+    "Causality: Step B cannot precede Step A dependencies.",
+    "Resource Bound: Total cost must be within FrameSpec budget."
+  ],
+  "failure_modes": [
+    "Hallucinated Resources: Planning to use tools that do not exist.",
+    "Fragile Chain: A single step failure collapses the entire plan."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_ref": "ManifestPlanning#ad69",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:ad697034dfae39ef4be4be7dc17164f49d6f3c5f59ac187d56d900b396a66658",
+  "sema_stub": "ad69",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+      "optimize": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8"
+    },
+    "accepts": {
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+    },
+    "references": {
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+    },
+    "yields": {
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "handle": "NegativeProof",
+  "mechanism": "Using Zero-Knowledge Range Proofs to prove that an {{agent}} does NOT hold a specific piece of data (or that a {{value}} is NOT within a target range) without revealing what they actually hold. Essential for 'deniable' coordination. Operates via exhaustive search over a closed domain, treating failure-to-find as proof of absence.",
+  "gloss": "Proving ignorance or non-liability",
+  "failure_modes": [
+    "Proving a negative is computationally expensive."
+  ],
+  "invariants": [
+    "Absence of evidence is evidence of absence (under exhaustive search)",
+    "Search space fully covered"
+  ],
+  "preconditions": [
+    "Closed world assumption",
+    "{{hypothesis}} H"
+  ],
+  "postconditions": [
+    "H proved false"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 1
+  },
+  "sema_id": "sema:NegativeProof#mh:SHA-256:40a6b9b7cc8a3e63dd2433bdcfe0090eee52016e2eb9d58238474f1e4347d30d",
+  "sema_ref": "NegativeProof#40a6",
+  "sema_stub": "40a6",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

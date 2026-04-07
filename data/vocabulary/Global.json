@@ -1,0 +1,16 @@
+{
+  "handle": "Global",
+  "mechanism": "Scope modifier indicating that a concept or operation applies to the entire system or context, rather than a local subset.",
+  "gloss": "System-wide scope",
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
+  "sema_ref": "Global#803d",
+  "sema_stub": "803d",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

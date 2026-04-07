@@ -1,0 +1,52 @@
+{
+  "handle": "OsmoticFilter",
+  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates. It requires a {{costly_signal}} to penetrate the membrane, using {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
+  "gloss": "Spam prevention via pressure thresholds",
+  "failure_modes": [
+    "Starvation of low-stake but high-importance messages (mitigated by Whitelist).",
+    "Starvation of low-stake but high-importance messages."
+  ],
+  "invariants": [
+    "Normalized Pressure: Sum(Weighted_Solvents) > Membrane.tension",
+    "Permeability: If Queue < Capacity, tension must approach zero (membrane relaxes)",
+    "Snapback: If Queue drops rapidly, tension must reset instantly (anti-hysteresis)"
+  ],
+  "parameters": [
+    {
+      "name": "accepted_solvents",
+      "type": "Map<Solvent, Rate> (Conversion rates, e.g., {Tokens:1.0, Reputation:5.0})",
+      "range": "unspecified",
+      "description": "Accepted payment types with conversion rates"
+    },
+    {
+      "name": "decay_rate",
+      "type": "Float",
+      "range": "[0.1, 0.9]",
+      "description": "Linear relaxation"
+    },
+    {
+      "name": "snapback_threshold",
+      "type": "Float",
+      "range": "[0.0, 0.2]",
+      "description": "Queue depth % triggering instant reset"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:4eb3809154a6ebb825423e95c88caa5b0499fcccc83388fa99eb27df110fbb1e",
+  "sema_ref": "OsmoticFilter#4eb3",
+  "sema_stub": "4eb3",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
+      "costly_signal": "sema:CostlySignal#mh:SHA-256:7fe2d815d2edd1dddec88a02544199266b0f4038fc4cb445781b948df677100e",
+      "canary": "sema:Canary#mh:SHA-256:3902d7a28c1cb53efb8fc7a6bce1735c4f0dbe3c524f2945a709bb45352a7ef6"
+    }
+  }
+}

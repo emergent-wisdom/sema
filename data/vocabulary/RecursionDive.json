@@ -1,0 +1,24 @@
+{
+  "handle": "RecursionDive",
+  "mechanism": "Execution: The active process of traversing a {{solver_tree}} downwards. Accepts a {{solver_node}}, applies the strategy of {{decompose}} to its task, and generates child {{solver_node}}s.",
+  "gloss": "Vertical traversal of the solution tree",
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2,
+    "related": [
+      "SolutionNode#2b4a"
+    ]
+  },
+  "sema_id": "sema:RecursionDive#mh:SHA-256:6076d78908d5e94cfab7e542d4ee68ebf8448b93c7c6d7ae803b770d394ee5ba",
+  "sema_ref": "RecursionDive#6076",
+  "sema_stub": "6076",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "composes_with": {
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de"
+    }
+  }
+}

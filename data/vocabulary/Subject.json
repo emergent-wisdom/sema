@@ -1,0 +1,42 @@
+{
+  "handle": "Subject",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "subject_id",
+      "entity_type"
+    ],
+    "properties": {
+      "subject_id": {
+        "type": "string",
+        "description": "Unique identifier for the subject"
+      },
+      "entity_type": {
+        "type": "string",
+        "description": "What kind of entity (agent, artifact, system)"
+      },
+      "reference": {
+        "type": "string",
+        "description": "Pointer to the actual entity"
+      }
+    }
+  },
+  "mechanism": "The target entity of an observation, evaluation, or {{act}}. It represents the 'Who' or 'What' in a subject-object relationship.",
+  "gloss": "The target of an operation",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_ref": "Subject#788f",
+  "sema_id": "sema:Subject#mh:SHA-256:788f7cb48e982144f15691fa0259a8b4f620e6eaf4447129c95f23d8e3008d1e",
+  "sema_stub": "788f",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+    }
+  }
+}

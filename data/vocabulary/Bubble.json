@@ -1,0 +1,42 @@
+{
+  "handle": "Bubble",
+  "mechanism": "Isolated sandbox where coordination is tried before committing to reality. Creator sends BUBBLE_CREATE: {participants, ttl (time-to-live), isolation_level, parent_bubble (for nesting)}. Participants JOIN to enter isolated context. Inside bubble: state changes are copy-on-write (snapshot isolation), resource acquisitions are soft-reservations (intent, not actual), messages to non-participants are queued (not sent). {{work}} proceeds normally but nothing affects real world. When ready, creator calls PREPARE (2-phase commit). Each participant responds READY (can commit) or ABORT (cannot). If ALL READY: COMMIT\u2014queued messages sent, state changes applied atomically, reservations converted to hard acquisitions. If ANY ABORT or TTL expires: ROLLBACK\u2014all tentative work discarded silently, no compensation needed. Nested bubbles commit to parent context, not real world; parent commit makes all nested work real. It enforces a {{constraint_first}} approach around the simulation context to ensure no side effects leak into the production environment.",
+  "gloss": "Enable risk-free coordination experimentation through transactional isolation\u2014try before committing to reality",
+  "failure_modes": [
+    "Participant crashes after READY but before COMMIT (blocking\u2014use timeout and recovery).",
+    "Long-running bubbles hold soft-reservations too long (resource starvation).",
+    "{{state}} snapshot becomes stale (external world changed during bubble).",
+    "Nested bubble complexity (multiple isolation levels, commit ordering).",
+    "Commit overhead (2PC protocol is expensive).",
+    "Bubble escape (agent accidentally affects real world from inside bubble\u2014discipline required)."
+  ],
+  "invariants": [
+    "Information within bubble is isolated from outside",
+    "Internal consistency maintained"
+  ],
+  "preconditions": [
+    "Group of agents",
+    "Shared context"
+  ],
+  "postconditions": [
+    "Bubble dissolved or merged",
+    "Local consensus reached"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_id": "sema:Bubble#mh:SHA-256:277bdf6a78d1890ec0224ccd816dafc5f6cdbb4eda8e2f690430af05d79fed42",
+  "sema_ref": "Bubble#277b",
+  "sema_stub": "277b",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    }
+  }
+}

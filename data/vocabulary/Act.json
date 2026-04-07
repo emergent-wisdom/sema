@@ -1,0 +1,47 @@
+{
+  "handle": "Act",
+  "mechanism": "The fundamental primitive for any operation that modifies state external to the actor's private memory. It is the root interface for tool invocations, API calls, and physical actuation. All Acts must be authorized, logged, and potentially reversible (or explicitly marked irreversible).",
+  "gloss": "Root primitive for state modification",
+  "failure_modes": [
+    "Unintended Side-effect: The action changed state in a way not predicted by the actor.",
+    "Partial Execution: The action failed midway, leaving the system in an inconsistent state.",
+    "Authorization Failure: The actor attempted an action it lacks permission to perform."
+  ],
+  "invariants": [
+    "Authorization: Action must be permitted by the current {{context}} constraints.",
+    "Observability: All Acts must produce a signal (Success/Failure/Result) observable by the actor.",
+    "Causality: An Act cannot precede its Cause (the {{select}}ion of action)."
+  ],
+  "preconditions": [
+    "Actor has decided to act",
+    "Target system is available",
+    "Permissions grant access"
+  ],
+  "postconditions": [
+    "External state is modified",
+    "Action log is updated",
+    "Resources (energy/credits) are consumed"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "related": [
+      "ToolInvoke",
+      "ReAct",
+      "AgentSandbox"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
+  "sema_ref": "Act#5d55",
+  "sema_stub": "5d55",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
+    }
+  }
+}

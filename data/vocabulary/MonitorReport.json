@@ -1,0 +1,44 @@
+{
+  "handle": "MonitorReport",
+  "mechanism": "A telemetry artifact comparing the deployed state against a 'Definition of Done'. Generated to close the feedback loop.",
+  "gloss": "Deployment telemetry artifact",
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0,
+    "tier": 1,
+    "related": [
+      "Monitor"
+    ]
+  },
+  "sema_id": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d",
+  "sema_ref": "MonitorReport#063c",
+  "sema_stub": "063c",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "manifest_ref",
+      "metrics"
+    ],
+    "properties": {
+      "manifest_ref": {
+        "type": "string",
+        "description": "Reference to RolloutManifest"
+      },
+      "metrics": {
+        "type": "object",
+        "description": "Observed telemetry data"
+      },
+      "definition_of_done": {
+        "type": "object",
+        "description": "Expected success criteria"
+      },
+      "deviation": {
+        "type": "object",
+        "description": "Difference from expected state"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "handle": "SkeletonOfThought",
+  "mechanism": "The canonical implementation of parallel reasoning. Instantiates the '{{think}}' primitive with a '{{skeleton}}' topology. Generates an outline first (using {{decompose}}), then expands all points in parallel to minimize latency. It implements the {{think}} primitive by first generating a structural {{skeleton}} and then triggering parallel expansion.",
+  "gloss": "Parallel outline expansion (Macro for Think(Skeleton))",
+  "invariants": [
+    "Structural Completeness: {{skeleton}} covers all required aspects; Point Independence: {{skeleton}} points can be expanded independently; Coherent Assembly: Final output reads as unified response"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:f40a8f04a44d5592db9400af2b43c18841d35dfb6a73d104983e0d6e91ba917e",
+  "sema_ref": "SkeletonOfThought#f40a",
+  "sema_stub": "f40a",
+  "signature": [
+    "Think(Skeleton)"
+  ],
+  "dependencies": {
+    "references": {
+      "skeleton": "sema:Skeleton#mh:SHA-256:c363c9db1e917d4920a28b689c8e0f3fcfcd7060fde1963cea22b352570d5c87",
+      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
+    }
+  }
+}

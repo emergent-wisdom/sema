@@ -1,0 +1,28 @@
+{
+  "handle": "ThinSlice",
+  "mechanism": "Sampling a tiny fraction of data (e.g., first 512 bytes) to make a high-confidence classification. Used for triage and routing where full processing is too expensive. Utilizes {{route}}, {{extended_thinking}}, {{somatic_marker}}.",
+  "gloss": "High-confidence classification from minimal data",
+  "invariants": [
+    "Fail-Safe: If classification low confidence, forward to full processor",
+    "Sample Limit: Input size <= Slice Size",
+    "Representative Sample: The slice must statistically resemble the whole for the target feature"
+  ],
+  "_meta": {
+    "tier": 3,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:ThinSlice#mh:SHA-256:4c34bbb03a2da524d67565e0504d2ab1ed839cef474cb7981fdeda9081f96e8d",
+  "sema_ref": "ThinSlice#4c34",
+  "sema_stub": "4c34",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",
+      "route": "sema:Route#mh:SHA-256:627330c3657b0c1829a6841757736f62c16a41a7309e3c317aa933893d6a23ec",
+      "extended_thinking": "sema:ExtendedThinking#mh:SHA-256:ca3c54e46218935876ca5c993974742069fe61871fae7af38a2fef745753dc98"
+    }
+  }
+}

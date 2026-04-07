@@ -1,0 +1,34 @@
+{
+  "handle": "RecursiveRootCause",
+  "mechanism": "Causal Drill: {{state}} the problem. Ask \"Why did this happen?\" Take the answer as new problem. Repeat N times (defined by depth parameter) (or until reaching actionable root). Each level moves from symptom toward cause. Stop when you reach something you can change. It iteratively asks 'why' to traverse the causal chain, using {{trace}} to validate provenance of each cause.",
+  "gloss": "Recursive root cause analysis",
+  "failure_modes": [
+    "Single Track Blindness: Assuming a single linear chain of causality when the reality is a multi-factor mesh."
+  ],
+  "invariants": [
+    "Answers must be factual, not speculative.",
+    "Causality Chain: Step(N) must be the direct cause of Step(N-1).",
+    "Termination: Recursion stops at actionable root or fundamental axiom."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "sema:Bisect#mh:SHA-256:20cceef8a924c82071b0e536bf6164512ca1a80f1f3bad033e6efa9eb3acfff3",
+      "sema:RecursionDive#mh:SHA-256:21c78ad8cc5e658fd19356cec9b998d9af1b02c54eaa96ce2d2f0ec4d8a75639"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
+  "sema_ref": "RecursiveRootCause#6dc1",
+  "sema_stub": "6dc1",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

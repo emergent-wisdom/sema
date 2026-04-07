@@ -1,0 +1,45 @@
+{
+  "handle": "DeepResearch",
+  "mechanism": "An autonomous research pipeline with four stages: (1) Planning - decompose query into research questions, (2) Multi-Round Search - iteratively search, identify gaps, refine queries, (3) {{synthesis}} - integrate findings across sources, resolve contradictions, (4) Report - generate comprehensive analytical report with citations. The agent loops between search and synthesis until coverage is sufficient. It chains {{discover}} for breadth and {{retrieval_augment}} for depth, orchestrated by the {{deep}} primitive to ensure rigor.",
+  "gloss": "Plan-search-synthesize-report research pipeline",
+  "failure_modes": [
+    "Source {{cognitive_bias}}: Over-relying on first sources found.",
+    "{{synthesis}} Hallucination: Inventing connections not in sources.",
+    "Premature Closure: Stopping search before finding contradicting evidence."
+  ],
+  "invariants": [
+    "Information synthesized from multiple disparate sources",
+    "Search depth > 1"
+  ],
+  "preconditions": [
+    "Access to external knowledge base",
+    "Broad user query"
+  ],
+  "postconditions": [
+    "Citations included",
+    "Comprehensive report generated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:DeepResearch#mh:SHA-256:79f86b19fda4bc37f9986854d2c0720b6dbce79c39362c99401e1e29ab7e3105",
+  "sema_ref": "DeepResearch#79f8",
+  "sema_stub": "79f8",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Deep(Discover)"
+  ],
+  "dependencies": {
+    "references": {
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692",
+      "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797"
+    }
+  }
+}

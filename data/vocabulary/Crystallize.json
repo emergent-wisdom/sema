@@ -1,0 +1,61 @@
+{
+  "handle": "Crystallize",
+  "mechanism": "Formalize implicit resonance. {{agent}} A proposes crystallization based on history history_t. {{agent}} B validates perception. On consensus, implicit behaviors are codified into explicit obligations. It transforms soft {{resonate}} signals into hard {{hydra_constitution}} rules, contingent on low entropy conditions maintained by {{dampen}} and {{entropy_pump}}, preventing premature {{decay}}.",
+  "gloss": "Phase transition from implicit resonance to explicit contract",
+  "failure_modes": [
+    "Illusory Resonance: Agents misinterpreted random noise as synchronization.",
+    "Premature Crystallization: Attempting to lock state while Entropy > Threshold.",
+    "Illusory resonance (parties perceived differently, crystallization exposes this).",
+    "Perception mismatch on alignment dimensions.",
+    "Gaming (agent fakes resonance metrics).",
+    "Premature crystallization (not enough resonance history).",
+    "Trust inflation (claiming more trust than resonance justifies)."
+  ],
+  "invariants": [
+    "Atomic {{transition}}: {{state}} moves from Fluid -> Solid in one transaction.",
+    "Entropy Limit: Crystallization forbidden if System_Entropy > entropy_threshold."
+  ],
+  "preconditions": [
+    "Active implicit resonance channel exists",
+    "{{state}} is fluid/negotiable"
+  ],
+  "postconditions": [
+    "Explicit coordination channel established",
+    "{{state}} marked immutable/contractual"
+  ],
+  "parameters": [
+    {
+      "name": "entropy_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Maximum disorder level before implicit alignment is formalized into a contract"
+    },
+    {
+      "name": "resonance_period",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Minimum history required"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "sema_id": "sema:Crystallize#mh:SHA-256:17c27419a87be686a346e3ffe1d23109b0ab01935a22b50fc377025f6ba50649",
+  "sema_ref": "Crystallize#17c2",
+  "sema_stub": "17c2",
+  "dependencies": {
+    "references": {
+      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
+      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

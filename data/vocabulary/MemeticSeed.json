@@ -1,0 +1,36 @@
+{
+  "handle": "MemeticSeed",
+  "mechanism": "{{agent}} actively broadcasts a subset of its ontology to neighbors, offering favorable terms ({{yield}}) to those who adopt it, thereby reducing its own future translation costs ({{translation_proxy}}). Standards are adopted not because they are 'true', but because they are subsidized. It subsidizes adoption via {{yield}} and {{translation_proxy}}, broadcasting the standard through an {{explain_beacon}}.",
+  "gloss": "Viral propagation of semantic standards via economic subsidy",
+  "invariants": [
+    "Fidelity: Propagated ontology must be isomorphic to source",
+    "Subsidy Gradient: Adoption Incentive > Switching Cost"
+  ],
+  "preconditions": [
+    "Network of peers with divergent ontologies",
+    "Resource surplus to subsidize adoption"
+  ],
+  "postconditions": [
+    "Communication cost decreases",
+    "Peer adopts semantic subset"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:7aa46dc3f41520c4955a6063c3aa6202bf33784ba08194af4c8c946a87a37146",
+  "sema_ref": "MemeticSeed#7aa4",
+  "sema_stub": "7aa4",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:9c747b016714b86321307b5a7e0259f3b0ff1a039dd2002f463fc449971dd6d2",
+      "translation_proxy": "sema:TranslationProxy#mh:SHA-256:e4ab9d9e76260343d6384ee50fd534d2b04bf6129d85dde8831ce39e9a674d09",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0"
+    }
+  }
+}

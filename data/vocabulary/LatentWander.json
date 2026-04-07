@@ -1,0 +1,32 @@
+{
+  "handle": "LatentWander",
+  "mechanism": "Offline processing mode where the agent explores its own embedding space, connecting distant concepts (Daydreaming). Used for memory consolidation and generating novel {{analogy_bridge}}s. It uses {{concept_blend}} during offline states to traverse the embedding space and discover non-obvious connections.",
+  "gloss": "Offline exploration of embedding space",
+  "invariants": [
+    "Drift: Exploration temperature > standard inference temperature",
+    "{{silence}}: No external output allowed during Wandering"
+  ],
+  "_meta": {
+    "tier": 3,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "sema:ChaosDrift#mh:SHA-256:37fb483903b835dd8b676c0116087291bb055934f9a681e28a54268d2dea328c"
+    ],
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "sema_id": "sema:LatentWander#mh:SHA-256:64ade71e9589c10fb450d2d4d9445fa7dc84de41d1e5ff0e93b9857d06dc2bcb",
+  "sema_ref": "LatentWander#64ad",
+  "sema_stub": "64ad",
+  "dependencies": {
+    "references": {
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
+      "silence": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5"
+    },
+    "yields": {
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+    }
+  }
+}

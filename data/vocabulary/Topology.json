@@ -1,0 +1,43 @@
+{
+  "handle": "Topology",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "shape"
+    ],
+    "properties": {
+      "shape": {
+        "type": "string",
+        "enum": [
+          "Linear",
+          "Tree",
+          "DAG",
+          "Cyclic",
+          "Graph"
+        ],
+        "description": "The structural pattern"
+      },
+      "nodes": {
+        "type": "array",
+        "description": "List of node definitions"
+      },
+      "edges": {
+        "type": "array",
+        "description": "List of edge definitions (connections)"
+      }
+    }
+  },
+  "mechanism": "Defines the node-edge structure of a reasoning process. Returns the 'Shape' of execution (e.g., Linear, Tree, DAG, Cyclic).",
+  "gloss": "Interface for reasoning structures",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2
+  },
+  "sema_ref": "Topology#2408",
+  "sema_id": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
+  "sema_stub": "2408",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

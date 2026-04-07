@@ -1,0 +1,81 @@
+{
+  "handle": "SolverManifest",
+  "mechanism": "A typed declaration of a {{solver}}'s identity and capabilities. It contains: 1. Name/ID (unique identifier), 2. Competencies (what problem types it handles), 3. Tool Access (what actions it can perform), 4. Cost Model (expected resource usage), 5. {{constraint}}s (what it must never do). Manifests enable runtime solver selection and composition. It serves as the boot-loader for worker mode.",
+  "gloss": "Typed solver identity and capability declaration",
+  "failure_modes": [
+    "Capability Inflation: Manifest claims more than solver can deliver.",
+    "Stale Manifest: Manifest doesn't reflect current solver state.",
+    "Missing Constraint: Manifest omits a critical limitation."
+  ],
+  "invariants": [
+    "Accuracy: Manifest must truthfully reflect solver capabilities.",
+    "Completeness: All relevant capabilities and constraints must be listed.",
+    "Immutability: Manifest is versioned; changes require new version.",
+    "Identity Lock: Must specify a distinct persona/system prompt.",
+    "Capability Bound: Must explicitly list available tools."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
+  "sema_ref": "SolverManifest#67ac",
+  "sema_stub": "67ac",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "solver_id",
+      "input_schema",
+      "output_schema"
+    ],
+    "properties": {
+      "solver_id": {
+        "type": "string"
+      },
+      "version": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "capabilities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "cost_model": {
+        "type": "object",
+        "properties": {
+          "base_cost": {
+            "type": "number"
+          },
+          "per_token_cost": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "input_schema": {
+        "type": "object",
+        "description": "JSON Schema for valid inputs"
+      },
+      "output_schema": {
+        "type": "object",
+        "description": "JSON Schema for guaranteed outputs"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "solver": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

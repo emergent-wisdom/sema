@@ -1,0 +1,29 @@
+{
+  "handle": "ExplainBeacon",
+  "mechanism": "Telemetry {{stream}}. Emits a human-readable narrative ('I am doing X because Y') alongside the machine-readable log. Must be emitted before irreversible actions. It piggybacks on the {{greet}} or {{heartbeat}} channel to broadcast intent logs to observers.",
+  "gloss": "Real-time readable intent broadcasting",
+  "failure_modes": [
+    "Beacon Drift: The explanation diverges from the actual code execution (the {{agent}} says I am sleeping while deleting files)."
+  ],
+  "invariants": [
+    "Beacon cannot be suppressed."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 1
+  },
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:9c747b016714b86321307b5a7e0259f3b0ff1a039dd2002f463fc449971dd6d2",
+  "sema_ref": "ExplainBeacon#9c74",
+  "sema_stub": "9c74",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "dependencies": {
+    "references": {
+      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
+      "greet": "sema:Greet#mh:SHA-256:1bad380cdf48247bbb7ab68e6dcb95eeb6b6ba7535095d64b86c49bab5c4e173",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

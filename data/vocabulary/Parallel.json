@@ -1,0 +1,16 @@
+{
+  "handle": "Parallel",
+  "mechanism": "Concurrent execution: A and B simultaneously. No ordering guarantee.",
+  "gloss": "Concurrent flow",
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Time",
+    "ring": 0
+  },
+  "sema_id": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
+  "sema_ref": "Parallel#6272",
+  "sema_stub": "6272",
+  "sema_layer": "Physics",
+  "sema_category": "Time"
+}

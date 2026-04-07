@@ -1,0 +1,608 @@
+"""Sema MCP Server - Query Sema vocabulary via MCP tools."""
+
+import json
+import sys
+from collections import defaultdict
+
+from mcp.server.fastmcp import FastMCP
+
+# Relative Imports
+from ..core.config import get_config
+from ..core.registry import RegistryManager, get_default_db_path, get_default_vocab_dir
+
+# Initialize Config
+CONFIG = get_config()
+PROFILE = CONFIG.get_active_profile()
+
+# Initialize server
+mcp = FastMCP(
+    name="Sema Vocabulary Server",
+    instructions=(
+        "Sema is a shared namespace where agents mint, share, and verify cognitive patterns.\n"
+        "Hash the thought, get the name. Same bytes = same meaning, guaranteed.\n\n"
+        "WORKFLOW:\n"
+        "1. ORIENT: `sema_graph_skeleton()` - map the terrain\n"
+        "2. EXPLORE: `sema_search(query)` - find existing patterns by concept\n"
+        "3. DEEPEN: `sema_resolve(handle)` - inspect mechanism & dependencies\n"
+        "4. ALIGN: `sema_handshake(ref)` - verify exact definition match\n"
+        "5. COORDINATE: `sema_propose_context` / `sema_verify_context` - multi-agent alignment\n"
+        "6. CREATE: `sema_mint(pattern_json)` - mint new patterns into the vocabulary\n\n"
+        "Patterns are reusable thought-chunks. Reference them to compress communication; "
+        "verify them to ensure alignment. Mint new ones when existing patterns don't fit."
+    ),
+)
+
+
+# Configuration - use shared path resolution from registry
+DEFAULT_VOCAB_DIR = get_default_vocab_dir()
+DEFAULT_DB_PATH = get_default_db_path()
+
+# Registry Manager
+REGISTRY_MGR = RegistryManager(DEFAULT_VOCAB_DIR, db_path=DEFAULT_DB_PATH)
+
+
+@mcp.tool()
+def sema_search(query: str) -> str:
+    """Search Sema patterns by name, description, or meaning (semantic search).
+
+    Args:
+        query: Search term or concept description.
+
+    Returns:
+        JSON array of matching patterns.
+    """
+    REGISTRY_MGR.refresh()
+
+    # Use RegistryManager's hybrid search (keyword + semantic)
+    results = REGISTRY_MGR.search(query, use_semantic=True)
+
+    # Enrich top 3 results with graph context
+    for result in results[:3]:
+        handle = result.get("handle")
+        if handle:
+            # Strip hash if present for lookup
+            clean_handle = handle.split("#")[0]
+            context = REGISTRY_MGR.get_context(clean_handle)
+            if context["dependencies"] or context["used_by"]:
+                result["graph_context"] = context
+
+    return json.dumps(results, indent=2)
+
+
+@mcp.tool()
+def sema_resolve(handle: str, depth: int = 1) -> str:
+    """Get a pattern with its dependencies expanded.
+
+    Args:
+        handle: Pattern handle (e.g., "ChainOfThought")
+        depth: How many hops to expand (1 = direct deps, 2 = deps of deps)
+
+    Returns:
+        JSON object with the pattern and its resolved dependencies
+    """
+    REGISTRY_MGR.refresh()
+    subgraph = REGISTRY_MGR.resolve(handle, depth=depth)
+
+    if not subgraph:
+        return json.dumps({"error": f"Pattern '{handle}' not found"})
+
+    return json.dumps(
+        {"root": handle, "depth": depth, "patterns": subgraph, "count": len(subgraph)}, indent=2
+    )
+
+
+@mcp.tool()
+def sema_tree(layer: str | None = None, category: str | None = None, verbose: bool = False) -> str:
+    """Browse the vocabulary structure organized by layer and category.
+
+    Args:
+        layer: Filter to specific layer (Physics, Mind, Society, Infrastructure)
+        category: Filter to specific category
+        verbose: If True, includes the gloss (description) for each pattern.
+
+    Returns:
+        JSON tree structure of patterns
+    """
+    REGISTRY_MGR.refresh()
+    registry = REGISTRY_MGR.registry
+    patterns = []
+
+    for handle, data in registry.items():
+        p_layer = data.get("sema_layer") or data.get("layer", "Unknown")
+        p_category = data.get("sema_category") or data.get("category", "UNCATEGORIZED")
+
+        # Apply filters
+        if layer and p_layer != layer:
+            continue
+        if category and p_category != category:
+            continue
+
+        if verbose:
+            gloss = data.get("gloss", "")
+            entry = f"{handle}: {gloss}" if gloss else handle
+        else:
+            entry = handle
+
+        patterns.append({"entry": entry, "category": p_category, "layer": p_layer})
+
+    # Group by layer -> category
+    tree = defaultdict(lambda: defaultdict(list))
+    for p in patterns:
+        tree[p["layer"]][p["category"]].append(p["entry"])
+
+    # Convert to regular dict for JSON
+    result = {
+        layer_name: {cat: sorted(entries) for cat, entries in cats.items()}
+        for layer_name, cats in tree.items()
+    }
+
+    return json.dumps(
+        {
+            "tree": result,
+            "total_patterns": len(patterns),
+            "layers": list(tree.keys()),
+            "filter": {"layer": layer, "category": category, "verbose": verbose},
+        },
+        indent=2,
+    )
+
+
+@mcp.tool()
+def sema_lookup(ref: str) -> str:
+    """Lookup a pattern by its Sema reference (Handle#stub).
+
+    Args:
+        ref: Pattern reference like "ChainOfThought#a1b2" or just "ChainOfThought"
+
+    Returns:
+        Full pattern JSON
+    """
+    REGISTRY_MGR.refresh()
+
+    # Parse reference
+    parts = ref.split("#")
+    handle = parts[0]
+    stub = parts[1] if len(parts) > 1 else None
+
+    pattern = REGISTRY_MGR.get_pattern(handle)
+    if not pattern:
+        return json.dumps({"error": f"Pattern '{handle}' not found"})
+
+    # Verify stub if provided
+    if stub:
+        pattern_stub = pattern.get("sema_stub", "")
+        if stub != pattern_stub:
+            return json.dumps(
+                {
+                    "warning": f"Stub mismatch: requested '{stub}' but pattern has '{pattern_stub}'",
+                    "pattern": pattern,
+                }
+            )
+
+    return json.dumps(pattern, indent=2)
+
+
+@mcp.tool()
+def sema_validate(pattern_json: str) -> str:
+    """Validate a pattern JSON for correctness.
+
+    Args:
+        pattern_json: JSON string of a pattern to validate
+
+    Returns:
+        Validation result with any errors or warnings
+    """
+    try:
+        pattern = json.loads(pattern_json)
+    except json.JSONDecodeError as e:
+        return json.dumps({"valid": False, "errors": [f"Invalid JSON: {e}"]})
+
+    errors = []
+    warnings = []
+
+    # Required fields
+    if "handle" not in pattern:
+        errors.append("Missing required field: 'handle'")
+    if "mechanism" not in pattern:
+        errors.append("Missing required field: 'mechanism'")
+
+    # Recommended fields
+    if "gloss" not in pattern:
+        warnings.append("Missing recommended field: 'gloss'")
+    if "invariants" not in pattern:
+        warnings.append("Missing recommended field: 'invariants'")
+
+    # Validate links if present
+    REGISTRY_MGR.refresh()
+    registry = REGISTRY_MGR.registry
+    if "links" in pattern:
+        for _rel, targets in pattern.get("links", {}).items():
+            for target in targets:
+                target_handle = target.split("#")[0]
+                if target_handle not in registry:
+                    warnings.append(f"Link target not in vocabulary: '{target}'")
+
+    return json.dumps(
+        {
+            "valid": len(errors) == 0,
+            "errors": errors,
+            "warnings": warnings,
+            "handle": pattern.get("handle", "Unknown"),
+        },
+        indent=2,
+    )
+
+
+@mcp.tool()
+def sema_stats() -> str:
+    """Get statistics about the Sema vocabulary.
+
+    Returns:
+        JSON with vocabulary statistics
+    """
+    REGISTRY_MGR.refresh()
+    registry = REGISTRY_MGR.registry
+
+    # Count by layer and category
+    layers = defaultdict(int)
+    categories = defaultdict(int)
+
+    for _handle, data in registry.items():
+        layers[data.get("sema_layer") or data.get("layer", "Unknown")] += 1
+        categories[data.get("sema_category") or data.get("category", "Unknown")] += 1
+
+    return json.dumps(
+        {
+            "total_patterns": len(registry),
+            "by_layer": dict(layers),
+            "by_category": dict(categories),
+            "vocab_dir": DEFAULT_VOCAB_DIR,
+            "data_source": REGISTRY_MGR.source,
+            "db_path": REGISTRY_MGR.db_path,
+        },
+        indent=2,
+    )
+
+
+@mcp.tool()
+def sema_graph_skeleton() -> str:
+    """Ultra-minimal graph overview (~150 tokens). Shows regions, hubs, and recent activity.
+
+    Returns:
+        Text summary of the graph structure.
+    """
+    REGISTRY_MGR.refresh()
+    return REGISTRY_MGR.get_graph_skeleton()
+
+
+@mcp.tool()
+def sema_handshake(ref: str, your_hash: str | None = None) -> str:
+    """Fail-closed semantic verification (SpectralTune protocol).
+
+    Before coordinating using a Sema pattern, agents MUST verify they share
+    the same definition. This implements the Anti-Postel regime:
+    "Same bytes = PROCEED. Different bytes = HALT."
+
+    Args:
+        ref: Pattern reference (e.g., "StateLock#2f3c" or "StateLock")
+        your_hash: Your local 4-char hash stub. If provided, verifies match.
+                   If omitted, returns the canonical hash for you to compare.
+
+    Returns:
+        JSON with verdict: PROCEED (hashes match), HALT (mismatch), or
+        PROVIDE_HASH (canonical hash for your comparison)
+
+    Example workflow:
+        1. Agent A: sema_handshake("StateLock") -> gets canonical hash "2f3c"
+        2. Agent A: sema_handshake("StateLock", "2f3c") -> PROCEED
+        3. Agent B with drift: sema_handshake("StateLock", "9x7z") -> HALT
+    """
+    REGISTRY_MGR.refresh()
+    registry = REGISTRY_MGR.registry
+
+    # Parse reference
+    parts = ref.split("#")
+    handle = parts[0]
+    ref_stub = parts[1] if len(parts) > 1 else None
+
+    if handle not in registry:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": f"Pattern '{handle}' not found in vocabulary",
+                "action": "Cannot coordinate - pattern unknown",
+            },
+            indent=2,
+        )
+
+    pattern = registry[handle]
+    canonical_stub = pattern.get("sema_stub", "")
+    canonical_ref = pattern.get("sema_ref", f"{handle}#{canonical_stub}")
+    full_hash = pattern.get("sema_id", "")
+
+    # If no hash provided, return the canonical for comparison
+    if your_hash is None and ref_stub is None:
+        return json.dumps(
+            {
+                "verdict": "PROVIDE_HASH",
+                "handle": handle,
+                "canonical_stub": canonical_stub,
+                "canonical_ref": canonical_ref,
+                "full_sema_id": full_hash,
+                "action": (
+                    "Compare this hash with your local definition. "
+                    "Call again with your_hash to verify."
+                ),
+            },
+            indent=2,
+        )
+
+    # Determine which hash to compare
+    compare_hash = your_hash or ref_stub
+
+    # Perform fail-closed verification
+    if compare_hash == canonical_stub:
+        return json.dumps(
+            {
+                "verdict": "PROCEED",
+                "handle": handle,
+                "verified_ref": canonical_ref,
+                "message": "Semantic alignment confirmed. Safe to coordinate.",
+                "invariants": pattern.get("invariants", []),
+                "tier": pattern.get("tier", 1),
+            },
+            indent=2,
+        )
+    else:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "handle": handle,
+                "your_hash": compare_hash,
+                "canonical_hash": canonical_stub,
+                "reason": "SEMANTIC DRIFT DETECTED",
+                "action": (
+                    "DO NOT PROCEED. Your definition differs from the canonical vocabulary. "
+                    "Either update your local definition or escalate to OntologyHandshake."
+                ),
+                "canonical_ref": canonical_ref,
+                "full_sema_id": full_hash,
+            },
+            indent=2,
+        )
+
+
+@mcp.tool()
+def sema_mint(pattern_json: str) -> str:
+    """Create a new pattern and add it to the vocabulary.
+
+    The pattern is validated (schema, dependency wiring, DAG check),
+    hashed to produce a content-addressed identity, and added to the
+    local database. Returns the new pattern's sema_id on success.
+
+    Args:
+        pattern_json: JSON string of the pattern to mint. Required fields:
+            - handle: PascalCase name (e.g., "MyPattern")
+            - mechanism: How the pattern works
+            - gloss: One-line summary
+            Recommended: invariants, preconditions, postconditions,
+            failure_modes, dependencies, _meta (layer, category, tier)
+
+    Returns:
+        JSON with the minted pattern's sema_id, or validation errors.
+    """
+    import os
+    import tempfile
+
+    try:
+        pattern = json.loads(pattern_json)
+    except json.JSONDecodeError as e:
+        return json.dumps({"success": False, "errors": [f"Invalid JSON: {e}"]})
+
+    handle = pattern.get("handle")
+    if not handle:
+        return json.dumps({"success": False, "errors": ["Missing required field: 'handle'"]})
+    if not pattern.get("mechanism"):
+        return json.dumps({"success": False, "errors": ["Missing required field: 'mechanism'"]})
+
+    # Write to a temp file for the apply pipeline
+    tmp_dir = tempfile.mkdtemp(prefix="sema_mint_")
+    tmp_file = os.path.join(tmp_dir, f"{handle}.json")
+    with open(tmp_file, "w") as f:
+        json.dump(pattern, f, indent=2)
+
+    try:
+        # Use the CLI apply pipeline (validate + hash + add)
+        import io
+        from contextlib import redirect_stdout
+
+        from ..cli.main import apply_changes
+
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            result = apply_changes(add_files=[tmp_file], check_only=False)
+
+        output = buf.getvalue()
+
+        # Check if it was added
+        if result is False or "failed" in output.lower():
+            return json.dumps(
+                {"success": False, "errors": [output.strip()]},
+                indent=2,
+            )
+
+        # Refresh registry and get the new pattern
+        REGISTRY_MGR.refresh()
+        new_pattern = REGISTRY_MGR.get_pattern(handle)
+        if new_pattern:
+            return json.dumps(
+                {
+                    "success": True,
+                    "handle": handle,
+                    "sema_ref": new_pattern.get("sema_ref"),
+                    "sema_id": new_pattern.get("sema_id"),
+                    "message": f"Pattern '{handle}' minted successfully.",
+                },
+                indent=2,
+            )
+        else:
+            return json.dumps(
+                {"success": True, "handle": handle, "message": output.strip()},
+                indent=2,
+            )
+    except Exception as e:
+        return json.dumps({"success": False, "errors": [str(e)]}, indent=2)
+    finally:
+        # Cleanup temp file
+        try:
+            os.remove(tmp_file)
+            os.rmdir(tmp_dir)
+        except OSError:
+            pass
+
+
+@mcp.tool()
+def sema_propose_context(handles: list[str]) -> str:
+    """Propose a semantic context for multi-agent coordination.
+
+    Generates a context set with a Merkle root hash that can be sent to
+    another agent for verification. The receiving agent calls
+    sema_verify_context with the same handles and compares roots.
+
+    Workflow:
+        1. Agent A: sema_propose_context(["StateLock", "Check", "Task"])
+           -> returns context_hash "7f3a..."
+        2. Agent A sends context_hash to Agent B
+        3. Agent B: sema_verify_context(["StateLock", "Check", "Task"], "7f3a...")
+           -> PROCEED or HALT
+
+    Args:
+        handles: List of pattern handles to include in the context.
+
+    Returns:
+        JSON with the context hash (Merkle root) and pattern refs.
+    """
+    from ..core.actions import _compute_context_hash
+
+    REGISTRY_MGR.refresh()
+
+    patterns = []
+    refs = []
+    missing = []
+
+    for handle in handles:
+        clean = handle.split("#")[0]
+        pattern = REGISTRY_MGR.get_pattern(clean)
+        if pattern:
+            patterns.append(pattern)
+            refs.append(pattern.get("sema_ref", clean))
+        else:
+            missing.append(handle)
+
+    if missing:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "Patterns not found",
+                "missing": missing,
+            },
+            indent=2,
+        )
+
+    context_hash = _compute_context_hash(patterns)
+
+    return json.dumps(
+        {
+            "context_hash": context_hash,
+            "patterns": refs,
+            "count": len(patterns),
+            "action": "Send context_hash to the other agent. They verify with sema_verify_context.",
+        },
+        indent=2,
+    )
+
+
+@mcp.tool()
+def sema_verify_context(handles: list[str], remote_hash: str) -> str:
+    """Verify a semantic context proposed by another agent.
+
+    Computes the local Merkle root for the given pattern set and compares
+    it against the remote agent's hash. PROCEED if identical, HALT if not.
+
+    Args:
+        handles: List of pattern handles in the proposed context.
+        remote_hash: The context_hash received from the proposing agent.
+
+    Returns:
+        JSON with verdict: PROCEED (contexts match) or HALT (drift detected).
+    """
+    from ..core.actions import _compute_context_hash
+
+    REGISTRY_MGR.refresh()
+
+    patterns = []
+    missing = []
+
+    for handle in handles:
+        clean = handle.split("#")[0]
+        pattern = REGISTRY_MGR.get_pattern(clean)
+        if pattern:
+            patterns.append(pattern)
+        else:
+            missing.append(handle)
+
+    if missing:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "Patterns not found locally",
+                "missing": missing,
+            },
+            indent=2,
+        )
+
+    local_hash = _compute_context_hash(patterns)
+
+    if local_hash == remote_hash:
+        return json.dumps(
+            {
+                "verdict": "PROCEED",
+                "context_hash": local_hash,
+                "patterns": [p.get("sema_ref", h) for p, h in zip(patterns, handles, strict=True)],
+                "count": len(patterns),
+                "message": "Context verified. All patterns match. Safe to coordinate.",
+            },
+            indent=2,
+        )
+    else:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "CONTEXT DRIFT DETECTED",
+                "local_hash": local_hash,
+                "remote_hash": remote_hash,
+                "patterns": handles,
+                "action": "DO NOT PROCEED. Vocabulary mismatch detected.",
+            },
+            indent=2,
+        )
+
+
+def main():
+    """Run the Sema MCP server."""
+
+    # Check for custom paths via args
+    for i, arg in enumerate(sys.argv):
+        if arg == "--vocab-dir" and i + 1 < len(sys.argv):
+            global DEFAULT_VOCAB_DIR
+            DEFAULT_VOCAB_DIR = sys.argv[i + 1]
+        elif arg == "--db-path" and i + 1 < len(sys.argv):
+            global DEFAULT_DB_PATH
+            DEFAULT_DB_PATH = sys.argv[i + 1]
+
+    # Run in stdio mode for MCP
+    mcp.run()
+
+
+if __name__ == "__main__":
+    main()

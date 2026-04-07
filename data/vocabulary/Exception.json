@@ -1,0 +1,52 @@
+{
+  "handle": "Exception",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "error_code",
+      "message",
+      "stack_trace"
+    ],
+    "properties": {
+      "error_code": {
+        "type": "string",
+        "description": "Standardized failure ID"
+      },
+      "message": {
+        "type": "string",
+        "description": "Human-readable description"
+      },
+      "stack_trace": {
+        "type": "array",
+        "description": "Execution context at failure"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "Fatal",
+          "Error",
+          "Warning"
+        ]
+      }
+    }
+  },
+  "mechanism": "A signal indicating that the standard execution flow has encountered a critical anomaly or invalid {{state}}. Must be handled explicitly by a {{circuit_breaker}} or {{fail_closed}} policy to prevent system corruption.",
+  "gloss": "Runtime anomaly signal",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Exception#mh:SHA-256:d38164d96c0a44fda0bd6dd312e5d99f8390ca32218a07e1b0248f7435a3365e",
+  "sema_ref": "Exception#d381",
+  "sema_stub": "d381",
+  "dependencies": {
+    "references": {
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

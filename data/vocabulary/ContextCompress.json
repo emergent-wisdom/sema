@@ -1,0 +1,27 @@
+{
+  "handle": "ContextCompress",
+  "mechanism": "A memory management primitive that uses {{compress}} to reduce the token footprint of a {{context}} while preserving critical {{state}}. It explicitly retains active {{constraint}}s and unresolved goals.",
+  "gloss": "Semantic compression for long-running contexts",
+  "sema_id": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817",
+  "sema_ref": "ContextCompress#6dbd",
+  "sema_stub": "6dbd",
+  "_meta": {
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "signature": [
+    "Compress(Context)"
+  ],
+  "dependencies": {
+    "references": {
+      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

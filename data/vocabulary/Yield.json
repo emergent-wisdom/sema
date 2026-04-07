@@ -1,0 +1,33 @@
+{
+  "handle": "Yield",
+  "mechanism": "Negotiation {{backoff}}. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.",
+  "gloss": "Enable fair resolution of genuine disagreements without defaulting to power dynamics or eternal deadlock",
+  "failure_modes": [
+    "Weight inflation (mitigated by historical consistency tracking).",
+    "Gaming ledger with trivial yields.",
+    "Hard constraints genuinely indistinguishable from strategic intransigence.",
+    "Ledger requires persistence infrastructure."
+  ],
+  "invariants": [
+    "Yielder cannot reclaim."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_id": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
+  "sema_ref": "Yield#7eaf",
+  "sema_stub": "7eaf",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "overlap": "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
+      "defer": "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

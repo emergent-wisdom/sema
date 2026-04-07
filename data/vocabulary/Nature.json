@@ -1,0 +1,48 @@
+{
+  "handle": "Nature",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "classification"
+    ],
+    "properties": {
+      "classification": {
+        "type": "string",
+        "enum": [
+          "Biological",
+          "Synthetic",
+          "Institutional",
+          "Hybrid"
+        ],
+        "description": "Substrate type"
+      },
+      "substrate": {
+        "type": "string",
+        "description": "More specific substrate details"
+      },
+      "immutable": {
+        "type": "boolean",
+        "default": true,
+        "description": "Whether this nature can change"
+      }
+    }
+  },
+  "mechanism": "The substrate classification of an entity (e.g. Biological, Synthetic, or Institutional). It serves as the immutable input for downstream {{protocol}}s to determine alignment obligations, rights, and authentication requirements.",
+  "gloss": "Ontological origin classification",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b",
+  "sema_ref": "Nature#6c1a",
+  "sema_stub": "6c1a",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    }
+  }
+}

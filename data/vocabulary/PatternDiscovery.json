@@ -1,0 +1,54 @@
+{
+  "handle": "PatternDiscovery",
+  "mechanism": "Macro for {{search}}(Pattern). Vocabulary Hygiene {{protocol}}. Before minting a new pattern, the {{agent}} MUST execute a semantic search against the existing registry. If a pattern with >85% semantic similarity is found, the {{agent}} MUST adopt the existing pattern or explicitly justify the divergence (Fork). It leverages {{search}} to scan the existing registry before triggering {{construct_ontology}} to mint a new definition.",
+  "gloss": "Finding patterns that already exist",
+  "failure_modes": [
+    "Not Invented Here (NIH): {{agent}} ignores existing solutions to create a slightly worse custom version.",
+    "Keyword Miss: Search fails because the agent used different terminology for the same concept.",
+    "Fragmentation: Vocabulary floods with duplicate 'Micro-Patterns'."
+  ],
+  "invariants": [
+    "Deduplication: If Similarity(New, Existing) > Threshold, Mint is blocked.",
+    "Pre-Mint {{check}}: Minting is forbidden without a prior Search log."
+  ],
+  "preconditions": [
+    "Intent to define new concept",
+    "Registry access available"
+  ],
+  "postconditions": [
+    "Existing Pattern Returned OR New Pattern Minted"
+  ],
+  "parameters": [
+    {
+      "name": "search_method",
+      "type": "Enum",
+      "range": "{Vector, Keyword, Hybrid}",
+      "description": "Default: Hybrid"
+    },
+    {
+      "name": "similarity_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Default: 0.85"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:0d02283760c80e5785b8376894f53f4ebfb49dbff90e9ec8a91c733b07f39381",
+  "sema_ref": "PatternDiscovery#0d02",
+  "sema_stub": "0d02",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "search": "sema:Search#mh:SHA-256:b292663d798e96925c03b01a95578d40bafb9c4713b63408ebfc424a8237df72",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "handle": "MECE",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "root_set",
+      "subsets"
+    ],
+    "properties": {
+      "root_set": {
+        "type": "string",
+        "description": "The universe being partitioned"
+      },
+      "subsets": {
+        "type": "array",
+        "description": "The mutually exclusive categories"
+      },
+      "completeness_proof": {
+        "type": "string",
+        "description": "Logic ensuring exhaustiveness"
+      }
+    }
+  },
+  "mechanism": "Exhaustive Partition: Divide problem space into categories that are Mutually Exclusive (no overlap) and Collectively Exhaustive (no gaps). Test: Can any item belong to two categories? Is any item uncategorized? Refine until both tests pass.",
+  "gloss": "Mutually Exclusive, Collectively Exhaustive partitioning",
+  "failure_modes": [
+    "The Other Bucket Trap: 'Misc' category exceeds threshold.",
+    "Dimensional Error: Partitioning criteria mixed (e.g., Color vs Origin).",
+    "False Exclusivity: Edge cases ignored to force fit."
+  ],
+  "invariants": [
+    "Exclusivity: Intersection(Subset_i, Subset_j) == NULL",
+    "Exhaustiveness: Union(Subsets) == UniversalSet"
+  ],
+  "parameters": [
+    {
+      "name": "max_depth",
+      "type": "Int",
+      "range": "[1, 10]",
+      "description": "How deep the tree can go"
+    },
+    {
+      "name": "misc_tolerance",
+      "type": "Float",
+      "range": "[0.0, 0.1]",
+      "description": "Max % of items allowed in 'Other'"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "related": [
+      "sema:Decompose#mh:SHA-256:31c56ead72462a2b55d1056d6d4878a4e031ebb43b7160743b861aa1c294cafe"
+    ],
+    "ring": 2
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:MECE#mh:SHA-256:8cb062d51bcfd89368c58a5e6247e2070596f01be8e03382dd19a0c61abe8c1b",
+  "sema_ref": "MECE#8cb0",
+  "sema_stub": "8cb0"
+}

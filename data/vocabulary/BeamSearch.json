@@ -1,0 +1,35 @@
+{
+  "handle": "BeamSearch",
+  "mechanism": "A heuristic search algorithm that explores a graph by expanding the most promising {{solver_node}}s in a limited set (the beam). It manages a {{queue}} of fixed size 'k'. At each step, it generates all successors of all nodes in the beam, {{rank}}s them, and {{select}}s the top 'k' for the next iteration.",
+  "gloss": "Width-limited heuristic search",
+  "invariants": [
+    "Breadth Constraint: Active nodes never exceed Beam Width.",
+    "Optimality: The K nodes selected are the highest ranked."
+  ],
+  "parameters": [
+    {
+      "name": "beam_width",
+      "type": "Integer",
+      "range": "[1, 100]",
+      "description": "Number of parallel paths to keep"
+    }
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_id": "sema:BeamSearch#mh:SHA-256:b5c037a96d5ddebccf52b9dc873904cedf6d56da0172b7c1bb399e0140ab045b",
+  "sema_ref": "BeamSearch#b5c0",
+  "sema_stub": "b5c0",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "queue": "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
+      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
+    }
+  }
+}

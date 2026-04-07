@@ -1,0 +1,68 @@
+{
+  "handle": "ToolInvoke",
+  "mechanism": "The actor emits a structured tool call (function name + arguments), validated by {{input_guard}}, execution is delegated to an external runtime, and the observation (result or error) is fed back into the actor's {{context}}. This is the atomic unit of agent-environment interaction. The pattern enables capabilities beyond text generation: code execution, API calls, file operations, web search.",
+  "gloss": "Execute external tool and observe result",
+  "failure_modes": [
+    "Hallucinated Tools: Actor invokes a tool that doesn't exist.",
+    "Argument Mismatch: Tool call has wrong parameter types or missing required fields.",
+    "Observation Blindness: Actor ignores or misinterprets tool output."
+  ],
+  "invariants": [
+    "{{context}} Inheritance: Tool Execution {{context}} permissions MUST be <= {{task}} Constraints. Elevation forbidden.",
+    "Observation Integration: Result must be incorporated into subsequent reasoning",
+    "Sandboxing: Tool execution must respect capability boundaries",
+    "Schema Conformance: Tool call must match declared function signature"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "related": [
+      "AgentSandbox"
+    ]
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "function_name",
+      "arguments"
+    ],
+    "properties": {
+      "function_name": {
+        "type": "string",
+        "description": "Name of the tool to invoke"
+      },
+      "arguments": {
+        "type": "object",
+        "description": "Parameters for the tool call"
+      },
+      "observation": {
+        "description": "Result returned from tool execution"
+      },
+      "status": {
+        "type": "string",
+        "enum": [
+          "pending",
+          "success",
+          "error"
+        ],
+        "description": "Invocation status"
+      }
+    }
+  },
+  "sema_ref": "ToolInvoke#cf0a",
+  "sema_id": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416",
+  "sema_stub": "cf0a",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    },
+    "composes_with": {
+      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+    }
+  }
+}

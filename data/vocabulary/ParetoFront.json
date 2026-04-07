@@ -1,0 +1,51 @@
+{
+  "handle": "ParetoFront",
+  "mechanism": "A decision primitive for explicitly balancing competing constraints (Tradeoff Space). Instead of optimizing a single metric, the agent identifies the frontier curve where improving Metric A necessitates degrading Metric B. The goal is to move the system state TO the frontier (efficiency) and then slide ALONG the frontier (preference). It uses {{rank}} to order solutions by dominance, discarding those strictly inferior on all axes.",
+  "gloss": "Explicitly balancing competing constraints",
+  "invariants": [
+    "Efficiency: {{state}} is optimal if no metric can improve without another degrading",
+    "Tradeoff Rate: Gain(A) * ExchangeRate > Loss(B)"
+  ],
+  "preconditions": [
+    "Metrics are conflicting",
+    "Metrics are quantifiable"
+  ],
+  "postconditions": [
+    "Selected solution lies on the Pareto Frontier"
+  ],
+  "parameters": [
+    {
+      "name": "axes",
+      "type": "List[Metric]",
+      "range": "unspecified",
+      "description": "Dimensions to optimize"
+    },
+    {
+      "name": "resolution",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Granularity of the curve"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "sema:OpportunityCost#mh:SHA-256:f0a3f074464fb30b60adac59167d2d34aeadf8fdd47de6c433f278c0036223fb",
+      "sema:Satisfice#mh:SHA-256:fa75c44d4d400749a16f521c8c2793207877c783154cc00a93390beae85d2e0d"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
+  "sema_ref": "ParetoFront#9091",
+  "sema_stub": "9091",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "handle": "Resonate",
+  "mechanism": "Alignment emerges from observable actions and mutual adjustment without explicit negotiation. Agents perform actions with attached INTENT_TAGS. Observers AMPLIFY (reinforce) or {{dampen}} (ignore) based on compatibility. It detects alignment via {{signal}} amplification and {{spectral_tune}}, eventually allowing the relationship to solidify into a stable bond.",
+  "gloss": "Implicit coordination via signal amplification",
+  "failure_modes": [
+    "False Resonance: Apparent alignment that is actually random {{noise}}.",
+    "Echo Chamber: Feedback {{loop}} amplifies error instead of {{signal}}.",
+    "Spoofing: Adversarial agents emit fake intent tags (Cheap Talk).",
+    "Precise coordination required (RESONATE only achieves approximate alignment).",
+    "High-stakes actions where approximate isn't good enough.",
+    "Adversarial agents exploit {{signal}}s (fake intent tags).",
+    "{{signal}} {{noise}} drowns real patterns.",
+    "False resonance (apparent alignment that isn't real).",
+    "Oscillation between conflicting patterns."
+  ],
+  "invariants": [
+    "Action Causality: Response(t+1) must be function of Stimulus(t)",
+    "{{signal}} {{decay}}: Unreinforced signals must fade over time"
+  ],
+  "preconditions": [
+    "At least two agents",
+    "Shared signal medium (Environment)"
+  ],
+  "postconditions": [
+    "Local alignment cluster formed OR dispersed"
+  ],
+  "parameters": [
+    {
+      "name": "amplification_factor",
+      "type": "Float",
+      "range": "[1.0, 2.0]",
+      "description": "How much repeated alignment signals boost coordination strength"
+    },
+    {
+      "name": "signal_decay",
+      "type": "Float",
+      "range": "[0.1, 0.9]",
+      "description": "Rate at which unconfirmed alignment signals weaken over time"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_id": "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4",
+  "sema_ref": "Resonate#99d9",
+  "sema_stub": "99d9",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
+      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
+      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    }
+  }
+}

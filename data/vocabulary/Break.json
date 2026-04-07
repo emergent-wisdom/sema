@@ -1,0 +1,99 @@
+{
+  "handle": "Break",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "break_id",
+      "severity"
+    ],
+    "properties": {
+      "break_id": {
+        "type": "string",
+        "description": "Unique identifier for this break event"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "transient",
+          "permanent",
+          "catastrophic"
+        ],
+        "description": "How serious is the failure"
+      },
+      "reason": {
+        "type": "string",
+        "description": "Human-readable explanation of the break cause"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time",
+        "description": "When the break occurred"
+      }
+    }
+  },
+  "mechanism": "{{protocol}} for announcing coordination failure. Failing {{agent}} broadcasts BREAK: {severity, reason, recoverable}. Partners must ACK. Coordination terminates or pauses based on severity. Unacknowledged BREAK escalates to FAILED. It coordinates with retry logic to distinguish transient from permanent failures, optionally triggering ejection seat in catastrophic scenarios.",
+  "gloss": "Enable graceful degradation and coordinated recovery when coordination fails mid-stream",
+  "failure_modes": [
+    "BREAK {{message}} itself fails to deliver ({{meta}}-failure).",
+    "Partners disagree on recovery action.",
+    "Cascading BREAKs overwhelm system.",
+    "Inaccurate completed_state leads to wrong compensation.",
+    "Timeout too short/long for ACK collection."
+  ],
+  "invariants": [
+    "No data loss during interruption",
+    "{{system}} state paused safely"
+  ],
+  "preconditions": [
+    "Interrupt signal",
+    "Running process"
+  ],
+  "postconditions": [
+    "Process halted",
+    "Resumption point saved"
+  ],
+  "parameters": [
+    {
+      "name": "break_signal",
+      "type": "Enum",
+      "range": "{Silent, Loud, Cascade}",
+      "description": "How break propagates"
+    },
+    {
+      "name": "failure_threshold",
+      "type": "Integer",
+      "range": "[3, 10]",
+      "description": "Consecutive failures before breaking"
+    },
+    {
+      "name": "recovery_timeout",
+      "type": "Duration",
+      "range": "[10s, 5min]",
+      "description": "Cool-off before reconnection attempt"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "related": [
+      "EjectionSeat",
+      "Retry"
+    ]
+  },
+  "sema_id": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
+  "sema_ref": "Break#9d98",
+  "sema_stub": "9d98",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

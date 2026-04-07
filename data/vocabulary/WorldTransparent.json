@@ -1,0 +1,35 @@
+{
+  "handle": "WorldTransparent",
+  "mechanism": "A design constraint where the agent assumes all state and actions are publicly visible. This forces the invention of systems that rely on auditability and shame rather than secrecy or access control. It essentially ports 'Open Source' philosophy to system architecture. Utilizes {{explain_beacon}}.",
+  "gloss": "Designing for universal observability",
+  "failure_modes": [
+    "Privacy leaks if not paired with Zero-Knowledge proofs."
+  ],
+  "invariants": [
+    "Security Independence: {{system}} remains secure even if all logs are public",
+    "Witness Effect: Bad behavior is disincentivized by visibility, not prevention"
+  ],
+  "preconditions": [
+    "Privacy is not the primary goal (or is handled via Zero Knowledge)"
+  ],
+  "postconditions": [
+    "Secrets eliminated from critical path"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 0
+  },
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:46a3224b0314ef59dab3323424ac18c79a0c42afb7895e0aa2e115136050e018",
+  "sema_ref": "WorldTransparent#46a3",
+  "sema_stub": "46a3",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:9c747b016714b86321307b5a7e0259f3b0ff1a039dd2002f463fc449971dd6d2",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

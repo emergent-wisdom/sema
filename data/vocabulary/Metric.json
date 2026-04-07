@@ -1,0 +1,54 @@
+{
+  "handle": "Metric",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "name",
+      "value",
+      "unit",
+      "timestamp"
+    ],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "value": {
+        "type": "number"
+      },
+      "unit": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "dimensions": {
+        "type": "object",
+        "description": "Tags for filtering (e.g., {region: 'us-east', service: 'db'})"
+      },
+      "resolution": {
+        "type": "string",
+        "description": "Sampling interval (e.g., '1s', '1m')"
+      }
+    }
+  },
+  "mechanism": "A definable, quantifiable measure of a specific property within a {{system}} or {{state}}. It provides the signal for optimization and monitoring.",
+  "gloss": "Quantifiable unit of measure",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_id": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+  "sema_ref": "Metric#8895",
+  "sema_stub": "8895",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

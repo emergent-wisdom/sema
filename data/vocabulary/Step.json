@@ -1,0 +1,67 @@
+{
+  "handle": "Step",
+  "mechanism": "An atomic unit of action. It specifies: 1. Preconditions (what must be true before), 2. Action (what to do), 3. Postconditions (what will be true after), 4. Rollback (how to undo if needed). It acts as a node in a causal graph.",
+  "gloss": "Atomic action with pre/post conditions",
+  "failure_modes": [
+    "Precondition Violation: Step executed when preconditions not met.",
+    "Postcondition Failure: Step completes but postconditions not achieved.",
+    "Rollback Failure: Unable to undo a failed step."
+  ],
+  "invariants": [
+    "Atomicity: A Step either fully completes or fully rolls back.",
+    "Causal Closure: Step preconditions must be satisfiable by prior steps or initial state."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "tier": 1,
+    "ring": 0,
+    "related": [
+      "Plan"
+    ]
+  },
+  "sema_id": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
+  "sema_ref": "Step#5f22",
+  "sema_stub": "5f22",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "step_id",
+      "action_type",
+      "params"
+    ],
+    "properties": {
+      "step_id": {
+        "type": "string"
+      },
+      "action_type": {
+        "type": "string",
+        "description": "The verb or tool to invoke"
+      },
+      "params": {
+        "type": "object",
+        "description": "Arguments for the action"
+      },
+      "dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of steps that must complete first"
+      },
+      "retry_policy": {
+        "type": "object",
+        "properties": {
+          "max_attempts": {
+            "type": "integer"
+          },
+          "backoff_strategy": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

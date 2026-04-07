@@ -1,0 +1,38 @@
+{
+  "handle": "IntentGap",
+  "mechanism": "Cognitive analysis of the divergence between intended {{decision}} and actual {{outcome}}. Examines why reality differed from intent: external factors, execution errors, model misspecification, or unforeseen consequences. Essential for learning and calibration.",
+  "gloss": "Analyzing intent-outcome divergence",
+  "failure_modes": [
+    "Hindsight Bias: Judging past decisions by outcomes rather than information available at decision time.",
+    "Attribution Error: Blaming external factors when internal errors caused the gap."
+  ],
+  "invariants": [
+    "Analysis separates decision quality from outcome luck",
+    "Causal attribution must be evidence-based"
+  ],
+  "preconditions": [
+    "{{decision}} was made with explicit intent",
+    "{{outcome}} is observable and measurable"
+  ],
+  "postconditions": [
+    "Gap analysis produced",
+    "Learning opportunities identified"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_ref": "IntentGap#5dc4",
+  "sema_id": "sema:IntentGap#mh:SHA-256:5dc4af64c8178e975cb7d6c1325132b7af673a69e445a37f9dc1e4aa8565ef14",
+  "sema_stub": "5dc4",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a"
+    }
+  }
+}

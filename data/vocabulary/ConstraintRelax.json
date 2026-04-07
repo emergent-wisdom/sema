@@ -1,0 +1,33 @@
+{
+  "handle": "ConstraintRelax",
+  "mechanism": "Boundary Softening: When stuck, list all constraints. {{rank}} by actual importance vs assumed importance. Temporarily remove lowest-ranked constraint. Solve relaxed problem. {{check}} if {{solution}} can be adapted to respect original constraint. It performs the relaxation experiment within a {{bubble}} to verify the solution's viability before altering real production constraints.",
+  "gloss": "Escaping local optima by loosening bounds",
+  "failure_modes": [
+    "{{constraint}} Collapse: Relaxing too many constraints produces invalid or meaningless solutions."
+  ],
+  "invariants": [
+    "{{solution}} must be checked against original constraints."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:ConstraintRelax#mh:SHA-256:704be74972244b873e4284ac30f5b1f6c5190f8bf98b512a9f63ce9606afea78",
+  "sema_ref": "ConstraintRelax#704b",
+  "sema_stub": "704b",
+  "dependencies": {
+    "references": {
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
+      "bubble": "sema:Bubble#mh:SHA-256:277bdf6a78d1890ec0224ccd816dafc5f6cdbb4eda8e2f690430af05d79fed42",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

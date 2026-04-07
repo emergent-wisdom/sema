@@ -1,0 +1,28 @@
+{
+  "handle": "Expansive",
+  "gloss": "Evaluates generalization potential",
+  "mechanism": "Evaluates generalization potential. Classifies scope into three qualitative states: (1) Niche: Overfit to a single problem instance or domain. (2) Untested: Plausible transfer to other domains, but unproven. (3) General: Proven utility across multiple distinct domains or a 'Hostile Slice'. It acts as a {{judge}} of the potential {{value}} of a solution beyond its initial context.",
+  "invariants": [
+    "Transfer: Must operate outside training distribution."
+  ],
+  "signature": [
+    "Judge(Value)"
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2,
+    "tier": 1
+  },
+  "sema_id": "sema:Expansive#mh:SHA-256:5def1def8b3fb126b9e67adfecdb9b21ad51d1e01f96caa652e0b50c9a72a200",
+  "sema_ref": "Expansive#5def",
+  "sema_stub": "5def",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+    }
+  }
+}

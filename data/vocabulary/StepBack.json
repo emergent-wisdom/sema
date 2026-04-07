@@ -1,0 +1,44 @@
+{
+  "handle": "StepBack",
+  "mechanism": "A meta-cognitive {{think}} operation that pauses direct problem-solving to ask a higher-level question. Instead of answering 'How do I X?', it asks 'What category of {{problem}} is X?' or 'What principles govern X?'. This abstraction reveals structural patterns invisible at the ground level. It is the precursor to {{reframe}}\u2014gaining altitude before choosing a new direction.",
+  "gloss": "Ascend abstraction to gain perspective",
+  "failure_modes": [
+    "Over-abstraction: Climbing so high the original problem becomes unrecognizable.",
+    "Analysis Paralysis: Endless stepping back without returning to action.",
+    "Premature Descent: Jumping back down before gaining useful perspective.",
+    "Abstraction Mismatch: Wrong principles retrieved for the task."
+  ],
+  "invariants": [
+    "Altitude Gain: Output must be at a higher abstraction level than input.",
+    "Relevance: Higher-level insight must inform the original problem.",
+    "Bounded: Maximum abstraction depth before forced descent."
+  ],
+  "preconditions": [
+    "Specific question or problem"
+  ],
+  "postconditions": [
+    "Answer grounded in high-level concepts",
+    "Principles retrieved before details"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_id": "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a",
+  "sema_ref": "StepBack#b079",
+  "sema_stub": "b079",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Think(Problem)"
+  ],
+  "dependencies": {
+    "references": {
+      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    }
+  }
+}

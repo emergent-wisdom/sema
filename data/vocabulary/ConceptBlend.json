@@ -1,0 +1,28 @@
+{
+  "handle": "ConceptBlend",
+  "mechanism": "Forcing the merger of two unrelated graph nodes to find a valid semantic path. Unlike analogy (A is like B), blending creates C (A + B). It extends {{analogy_bridge}} by not just mapping A to B, but fusing them to create C.",
+  "gloss": "Combinatorial novelty generation",
+  "invariants": [
+    "Orthogonality: Inputs must be semantically distant (> threshold distance)",
+    "Validity: Output must pass a {{tri_gate}}({{realizable}}) check"
+  ],
+  "_meta": {
+    "tier": 3,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "sema:AnalogicalMask#mh:SHA-256:4c693894def97c224cf9f9fec71dc4def00c0b8cc6523ccfe5ee5ccddb275c8a"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
+  "sema_ref": "ConceptBlend#b75e",
+  "sema_stub": "b75e",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+    }
+  }
+}

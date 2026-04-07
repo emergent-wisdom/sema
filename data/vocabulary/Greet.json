@@ -1,0 +1,33 @@
+{
+  "handle": "Greet",
+  "mechanism": "The initial contact protocol between two {{agent}}s. It involves a cryptographic {{identity}} verification followed by a {{compatibility_check}} to establish a shared communication channel. If successful, it transitions the connection state from 'Unknown' to 'Connected'.",
+  "gloss": "Agent connection initiation",
+  "failure_modes": [
+    "Authentication Failure: {{identity}} could not be verified.",
+    "Protocol Mismatch: Agents speak incompatible languages."
+  ],
+  "invariants": [
+    "Mutual Auth: Both parties must verify each other.",
+    "No-Op on Mismatch: Connection drops if handshake fails."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 1
+  },
+  "sema_id": "sema:Greet#mh:SHA-256:1bad380cdf48247bbb7ab68e6dcb95eeb6b6ba7535095d64b86c49bab5c4e173",
+  "sema_ref": "Greet#1bad",
+  "sema_stub": "1bad",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    },
+    "composes_with": {
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554"
+    }
+  }
+}

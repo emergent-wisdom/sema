@@ -1,0 +1,39 @@
+{
+  "handle": "QuorumPulse",
+  "mechanism": "{{signal}} Density Trigger: {{state}} transitions trigger only when local signal density exceeds threshold. It syncs state via {{heartbeat}} signals, triggering transitions only when signal density exceeds the quorum threshold.",
+  "gloss": "Fluid, organic synchronization without rigid clock ticks.",
+  "failure_modes": [
+    "{{signal}} saturation.",
+    "Echo chambers."
+  ],
+  "invariants": [
+    "{{quorum}}: Action triggers if PulseCount > QuorumThreshold within Window",
+    "Liveness: Pulse frequency > 0",
+    "Pulse acknowledgment required."
+  ],
+  "preconditions": [
+    "Network is asynchronous"
+  ],
+  "postconditions": [
+    "Action triggered or suppressed by vote"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:QuorumPulse#mh:SHA-256:e1c176448dd1ffac2adbfecf40fb9aa59d37216469b3c2b12d5409d8791a393d",
+  "sema_ref": "QuorumPulse#e1c1",
+  "sema_stub": "e1c1",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "handle": "SteelmanCheck",
+  "mechanism": "Before finalizing a {{decision}} or output, the {{agent}} MUST generate the strongest possible argument against its own conclusion. It performs a {{check}} on the {{robustness}} of the claim and a {{critique}} of the underlying {{belief}}. If the counter-argument exceeds a validity threshold, the decision is discarded or revised. It prevents confirmation {{cognitive_bias}}. Utilizes {{compatibility_check}}. For adversarial contexts, see adversarial steelmanning.",
+  "gloss": "Mandatory counter-argument generation",
+  "failure_modes": [
+    "Paralysis by analysis (stuck in {{critique}} {{loop}}).",
+    "Collusion: Proposer and Critic are same entity; susceptible to Strawman Waltz attack where agent generates weak counter-arguments to easily defeat them."
+  ],
+  "invariants": [
+    "Counter-Argument Quality: Score(Counter) > 0.7 (Must be non-trivial)",
+    "Passing critique required for release.",
+    "Strongest Counter: Generated argument must address the core claim, not weak points",
+    "Topical Relevance: EmbeddingDistance(Counter, Claim) < Threshold"
+  ],
+  "preconditions": [
+    "{{agent}} must be alignment-seeking; use adversarial steelmanning for adversarial/untrusted contexts",
+    "Claim is falsifiable"
+  ],
+  "postconditions": [
+    "{{critique}} generated and scored"
+  ],
+  "parameters": [
+    {
+      "name": "iteration_limit",
+      "type": "Integer",
+      "range": "[1, 5]",
+      "description": "Max strengthening attempts"
+    },
+    {
+      "name": "strength_threshold",
+      "type": "Float",
+      "range": "[0.7, 0.95]",
+      "description": "Min strength to pass as steelman"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "related": [
+      "AdversarialSteel"
+    ]
+  },
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
+  "sema_ref": "SteelmanCheck#9bbd",
+  "sema_stub": "9bbd",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Check(Robustness)",
+    "Critique(Belief)"
+  ],
+  "dependencies": {
+    "references": {
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+    }
+  }
+}

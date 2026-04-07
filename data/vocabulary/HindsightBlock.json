@@ -1,0 +1,48 @@
+{
+  "handle": "HindsightBlock",
+  "mechanism": "{{decision}}-Time Evaluation: When evaluating past decision, reconstruct information available AT DECISION TIME. {{judge}} decision quality by expected value given that information, not by outcome. Good decisions can have bad outcomes. Bad decisions can have good outcomes. It mirrors {{pre_mortem}} logic after the fact, reconstructing the ex-ante probability space to judge decision quality independent of outcome.",
+  "gloss": "Preventing results-oriented thinking",
+  "failure_modes": [
+    "{{outcome}} Blindness: Ignoring outcomes entirely prevents learning from black swans or model errors."
+  ],
+  "invariants": [
+    "No Revision: Log is immutable",
+    "Prior Commitment: Prediction(T) must be cryptographically committed before {{outcome}}(T+delta)"
+  ],
+  "preconditions": [
+    "Prediction registry active"
+  ],
+  "parameters": [
+    {
+      "name": "lookback_window",
+      "type": "Duration",
+      "range": "[1min, 24h]",
+      "description": "How far back to evaluate"
+    },
+    {
+      "name": "regret_threshold",
+      "type": "Float",
+      "range": "[0.0, 0.5]",
+      "description": "Max acceptable regret score"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 0
+  },
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:0a59530009ce5d80aecba72a26a310f0f0e20b9f17c43d60136fc36a05aa60d8",
+  "sema_ref": "HindsightBlock#0a59",
+  "sema_stub": "0a59",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "pre_mortem": "sema:PreMortem#mh:SHA-256:8565f4dcf6f230b679b7503d67f0fadb042ad1e4b1f259e45943235019116f8d",
+      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+    }
+  }
+}

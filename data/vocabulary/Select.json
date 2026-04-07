@@ -1,0 +1,46 @@
+{
+  "handle": "Select",
+  "mechanism": "Deterministic Filter. Applies a Predicate Function P(x) to every element in Input Set S. Returns a new Subset S' containing only elements where P(x) is True. It filters a set based on specific inclusion criteria.",
+  "gloss": "Generic selection of items from a set based on criteria",
+  "failure_modes": [
+    "Empty Result: No items satisfy the criterion (returns empty set).",
+    "Predicate Error: The criterion function fails or throws an error for specific inputs."
+  ],
+  "invariants": [
+    "Predicate Truth: For all x in Output, Criterion(x) must be True.",
+    "Subset Property: Output must be a subset of Input (no new items created).",
+    "Determinism: Same input set + same criteria = same output set."
+  ],
+  "preconditions": [
+    "Criterion is decidable for item type",
+    "Input set is iterable"
+  ],
+  "postconditions": [
+    "Subset returned"
+  ],
+  "parameters": [
+    {
+      "name": "limit",
+      "type": "Integer",
+      "range": "[1, 10000]",
+      "description": "Max items to return"
+    },
+    {
+      "name": "strategy",
+      "type": "Enum",
+      "range": "{Filter, First, Random}",
+      "description": "Default: Filter"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
+  "sema_ref": "Select#15c2",
+  "sema_stub": "15c2",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

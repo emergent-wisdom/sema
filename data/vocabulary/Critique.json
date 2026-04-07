@@ -1,0 +1,97 @@
+{
+  "handle": "Critique",
+  "mechanism": "Analyzes a target {{datum}} against specific {{criteria}} and generates a structured {{assessment}}. Unlike judgment (which yields a scalar), Critique produces descriptive, actionable advice.",
+  "gloss": "Qualitative feedback generation",
+  "failure_modes": [
+    "Nitpicking: Focusing on trivial details while missing structural flaws.",
+    "Vague Praise: Generic feedback that offers no actionable path.",
+    "Projection: Critiquing the artifact for not being what the critic would have built."
+  ],
+  "invariants": [
+    "Feedback must be descriptive, not just scalar.",
+    "Must reference specific criteria."
+  ],
+  "parameters": [
+    {
+      "name": "criteria",
+      "type": "List[String]",
+      "range": "unspecified",
+      "description": "Evaluation dimensions to assess against"
+    }
+  ],
+  "sema_id": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
+  "sema_ref": "Critique#3e00",
+  "sema_stub": "3e00",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "target",
+      "criteria",
+      "feedback"
+    ],
+    "properties": {
+      "target": {
+        "type": "string",
+        "description": "Reference to the artifact being critiqued"
+      },
+      "criteria": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "The criteria used for evaluation"
+      },
+      "feedback": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "criterion": {
+              "type": "string"
+            },
+            "observation": {
+              "type": "string"
+            },
+            "suggestion": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "Structured feedback items"
+      },
+      "strengths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Identified positive aspects"
+      },
+      "weaknesses": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Identified areas for improvement"
+      }
+    }
+  },
+  "dependencies": {
+    "accepts": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    },
+    "references": {
+      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
+    },
+    "yields": {
+      "assessment": "sema:Assessment#mh:SHA-256:a76518b956c1f22aec39c6402db8725510ea23bd6eda56844ef118a948de3c77"
+    }
+  }
+}

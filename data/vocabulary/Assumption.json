@@ -1,0 +1,57 @@
+{
+  "handle": "Assumption",
+  "mechanism": "A gap-filler used when {{datum}} is missing; treated as true temporarily to allow thinking to proceed. Must be tracked and validated.",
+  "gloss": "Provisional truth",
+  "invariants": [
+    "Provisionality: Must be explicitly flagged as unverified.",
+    "Tracking: Must maintain a link to the missing datum it replaces."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "premise",
+      "risk_level"
+    ],
+    "properties": {
+      "premise": {
+        "type": "string",
+        "description": "The statement treated as temporarily true"
+      },
+      "risk_level": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Probability of falsity"
+      },
+      "criticality": {
+        "type": "string",
+        "enum": [
+          "Low",
+          "Medium",
+          "Existential"
+        ],
+        "description": "Impact if assumption fails"
+      },
+      "validation_deadline": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Assumption#mh:SHA-256:efb5be2691c91cb98b493543154f2a9d7d492911088e3bf1cbc048f5ac317978",
+  "sema_ref": "Assumption#efb5",
+  "sema_stub": "efb5",
+  "dependencies": {
+    "references": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    }
+  }
+}

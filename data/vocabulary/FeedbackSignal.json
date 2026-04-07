@@ -1,0 +1,58 @@
+{
+  "handle": "FeedbackSignal",
+  "mechanism": "A structured packet containing the evaluation of a specific {{solution}} for a {{task}}. Carries outcome and details to the {{feedback}} mechanism.",
+  "gloss": "Standardized learning feedback packet",
+  "invariants": [
+    "Targeted",
+    "Structured"
+  ],
+  "sema_id": "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c",
+  "sema_ref": "FeedbackSignal#f904",
+  "sema_stub": "f904",
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "solution_ref",
+      "task_ref",
+      "outcome"
+    ],
+    "properties": {
+      "solution_ref": {
+        "type": "string",
+        "description": "Reference to evaluated solution"
+      },
+      "task_ref": {
+        "type": "string",
+        "description": "Reference to originating task"
+      },
+      "outcome": {
+        "type": "string",
+        "enum": [
+          "success",
+          "failure",
+          "partial"
+        ],
+        "description": "Evaluation result"
+      },
+      "details": {
+        "type": "object",
+        "description": "Structured feedback details"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "feedback": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

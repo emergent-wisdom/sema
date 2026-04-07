@@ -1,0 +1,27 @@
+{
+  "handle": "OathBind",
+  "mechanism": "An automated binding mechanism where an {{actor}} cryptographically commits to a {{rule_set}}. This creates a self-enforcing constraint where deviation triggers an automatic penalty (defined in the rules) via {{spot_audit}}.",
+  "gloss": "Pre-commitment to penalties",
+  "invariants": [
+    "Automated Justice: Penalty execution depends solely on cryptographic evidence.",
+    "Immutability: Rules cannot be changed after signing."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 1
+  },
+  "sema_ref": "OathBind#745d",
+  "sema_id": "sema:OathBind#mh:SHA-256:745d8a967eac5ad0c50551cd7b5ee6e0e3d53cd4cc94f1a51e01fd8ba1db0f97",
+  "sema_stub": "745d",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "dependencies": {
+    "references": {
+      "rule_set": "sema:RuleSet#mh:SHA-256:399b641917991080c8edc522db1225a163b4e3220bac652ae8327eeb7533c2c3",
+      "spot_audit": "sema:SpotAudit#mh:SHA-256:6e72e0806208b60fe980eb7a3c502423706fbe9a46b83b8ad2a46fbdcb24eb7e",
+      "actor": "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89"
+    }
+  }
+}

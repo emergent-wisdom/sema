@@ -1,0 +1,55 @@
+{
+  "handle": "FractalAnte",
+  "mechanism": "A recursion control protocol where invoking a sub-process (going deeper) requires the agent to lock a Compute Stake that grows exponentially with depth (D). S_d = S_base * k^D. If the sub-process solves the problem, the stake is returned with a Cognitive {{yield}}. If the sub-process halts, times out, or returns a null result, the stake is burned. This forces the agent to economically justify every layer of abstraction. It imposes an exponential {{budget}} tax on recursion depth to prevent infinite regress.",
+  "gloss": "Economic bounding of recursive depth",
+  "failure_modes": [
+    "Solving deep, complex problems becomes prohibitively expensive for low-resource agents (Class Ceiling for Cognition)."
+  ],
+  "invariants": [
+    "Burn on Failure: Failed recursion results in irreversible resource loss",
+    "Exponential Cost: Cost(Depth+1) >= Cost(Depth) * Factor"
+  ],
+  "preconditions": [
+    "{{agent}} has a divisible resource (Tokens/Compute)",
+    "Recursion capability"
+  ],
+  "postconditions": [
+    "Recursion depth bounded by economic constraints"
+  ],
+  "parameters": [
+    {
+      "name": "base_stake",
+      "type": "Float",
+      "range": "[>0]",
+      "description": "Initial stake at depth 0"
+    },
+    {
+      "name": "growth_factor",
+      "type": "Float",
+      "range": "[1.5, 3.0]",
+      "description": "Multiplier per depth level"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "related": [
+      "sema:CostlySignal#mh:SHA-256:591735104986a667b2b66514c9740c65e7f13ee78434b64b8d63b1b22b8b3f89",
+      "sema:RecursionDive#mh:SHA-256:21c78ad8cc5e658fd19356cec9b998d9af1b02c54eaa96ce2d2f0ec4d8a75639"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:FractalAnte#mh:SHA-256:09f2e802b9d4b418dfcb03e465596f360f34924bb849a2fc499e7e6646a4df35",
+  "sema_ref": "FractalAnte#09f2",
+  "sema_stub": "09f2",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "handle": "StrategicReading",
+  "mechanism": "Non-linear Information Retrieval Heuristic. {{agent}} treats documents as random-access databases rather than linear streams. It builds a structural map first ({{tree}}), identifies high-entropy sections (Abstract/Conclusion), and selectively loads only the relevant chunks. Utilizes {{compute_budget}}.",
+  "gloss": "Navigate like a researcher, not linearly",
+  "failure_modes": [
+    "{{context}} Overflow: Loading entire documents saturates memory, displacing instructions.",
+    "Linear {{cognitive_bias}}: Reading irrelevant introductions while missing key results buried in appendices.",
+    "Fragmented {{context}}: Jumping too aggressively leads to missing critical connective logic."
+  ],
+  "invariants": [
+    "Budget Awareness: Read volume must be < 10% of total document size unless DeepRead approved.",
+    "Structure First: Must execute `doc_get_tree` or `outline` before reading body content."
+  ],
+  "preconditions": [
+    "Large document identified",
+    "Specific information goal defined"
+  ],
+  "postconditions": [
+    "Relevant sections extracted",
+    "Remainder of document remains unloaded"
+  ],
+  "parameters": [
+    {
+      "name": "scan_depth",
+      "type": "Integer",
+      "range": "[1, 10]",
+      "description": "Pages/sections to scan before deciding relevance"
+    },
+    {
+      "name": "strategy",
+      "type": "Enum",
+      "range": "{Survey, DeepDive, Needle}",
+      "description": "Default: Survey"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_ref": "StrategicReading#16f6",
+  "sema_id": "sema:StrategicReading#mh:SHA-256:16f60fba4c06d588034475f218c0dc54519848ae1e13dd8efff7145c9e248db1",
+  "sema_stub": "16f6",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+    }
+  }
+}

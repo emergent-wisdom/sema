@@ -1,0 +1,60 @@
+{
+  "handle": "ScoringFunction",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "function_id",
+      "input_type",
+      "output_range"
+    ],
+    "properties": {
+      "function_id": {
+        "type": "string",
+        "description": "Unique identifier for this scoring function"
+      },
+      "input_type": {
+        "type": "string",
+        "description": "Expected input schema or type"
+      },
+      "output_range": {
+        "type": "object",
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        },
+        "description": "Valid output range"
+      },
+      "logic": {
+        "type": "string",
+        "description": "Description or reference to scoring logic"
+      }
+    }
+  },
+  "mechanism": "A deterministic logical unit that maps an input artifact to a scalar {{value}} (Score). It encapsulates the criteria used by {{rank}} and {{judge}}.",
+  "gloss": "Deterministic valuation logic",
+  "invariants": [
+    "Determinism: Same input always yields same score.",
+    "Range: Output must be within [0.0, 1.0] or [-inf, +inf]."
+  ],
+  "sema_id": "sema:ScoringFunction#mh:SHA-256:9679074f5b6538068b9c3264b9e1e5456e93f5f414784e396b9e930d2cfad147",
+  "sema_ref": "ScoringFunction#9679",
+  "sema_stub": "9679",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+    }
+  }
+}

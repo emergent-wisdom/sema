@@ -1,0 +1,36 @@
+{
+  "handle": "RetrievalAugment",
+  "mechanism": "Before generating a response, the {{agent}} queries an external knowledge store (vector database, search index, knowledge graph) to retrieve relevant {{context}}. Retrieved documents are injected into the {{prompt}}, grounding the response in external facts rather than relying solely on parametric memory. The canonical RAG (Retrieval-Augmented Generation) pattern. It injects external {{context}} into the {{chain_of_thought}}, grounding the reasoning process in retrieved facts.",
+  "gloss": "Ground responses in retrieved external knowledge",
+  "failure_modes": [
+    "Retrieval Poisoning: Malicious or incorrect documents in the index contaminate responses.",
+    "{{context}} Stuffing: Too many retrieved chunks exceed {{context}} window, causing truncation of critical information."
+  ],
+  "invariants": [
+    "Citation: Retrieved sources should be traceable in the output",
+    "Query Before Generate: Retrieval must precede response generation",
+    "Relevance Threshold: Only documents above similarity threshold are included"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Memory",
+    "related": [
+      "sema:DeepResearch#mh:SHA-256:cd1dc8b74fb7377b4a9754e9c3b3cadc6f718810472a63ecbae30a09aeeb8797"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692",
+  "sema_ref": "RetrievalAugment#ea60",
+  "sema_stub": "ea60",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "prompt": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

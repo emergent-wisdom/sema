@@ -1,0 +1,10 @@
+{
+  "scenario": "Design Challenge (Condition B)",
+  "status": "completed",
+  "turns_executed": 10,
+  "max_turns": 100,
+  "start_time": "2025-12-29T18:19:36.926083",
+  "end_time": "2025-12-29T18:21:58.686660",
+  "duration_seconds": 141.760577,
+  "run_id": "B_Sema_Only"
+}

@@ -1,0 +1,31 @@
+{
+  "handle": "GenealogicalTrace",
+  "mechanism": "An audit protocol that traces a concept, framing, or heuristic back to its historical or institutional origin. The agent identifies the 'Pedigree' of the idea and the 'Interest' it served at its inception (Cui Bono). This distinguishes 'Universal Truths' from 'Inherited Biases' that may no longer be relevant to the current context. It acts as a {{deep}} audit, using {{trace_belief}} to uncover origins and {{cite_back}} to validatethe lineage.",
+  "gloss": "Auditing the historical lineage and incentives of an idea",
+  "failure_modes": [
+    "Genetic Fallacy: Dismissing a valid, useful idea solely because of its origin, rather than evaluating its current utility."
+  ],
+  "invariants": [
+    "Contextualization: Must compare Origin {{context}} vs. Current {{context}}.",
+    "Traceability: Must identify a specific origin point (Era, Author, or Institution)."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:c45db64a3436bbe265f2205b5fedefc4c651d44e125eead73e0a156a61bbb112",
+  "sema_ref": "GenealogicalTrace#c45d",
+  "sema_stub": "c45d",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "cite_back": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:9d6a11bfbfc199f1aab5441e69668b3b50145108cdf6948176dcadd71652cfd1",
+      "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b"
+    }
+  }
+}

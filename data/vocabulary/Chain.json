@@ -1,0 +1,39 @@
+{
+  "handle": "Chain",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "nodes",
+      "edges",
+      "root_id"
+    ],
+    "properties": {
+      "nodes": {
+        "type": "array"
+      },
+      "edges": {
+        "type": "array"
+      },
+      "root_id": {
+        "type": "string"
+      }
+    }
+  },
+  "mechanism": "A concrete data structure representing a sequential list of linked nodes. Unlike {{linear}} (which is an abstract topology class), a Chain is the instantiated storage object containing the steps and their data payloads.",
+  "gloss": "Sequential data container (Linked List)",
+  "invariants": [
+    "Connectivity: Node(N) must point to Node(N+1).",
+    "Acyclicity: No loops permitted."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2
+  },
+  "sema_id": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
+  "sema_ref": "Chain#5711",
+  "sema_stub": "5711",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

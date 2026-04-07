@@ -1,0 +1,39 @@
+{
+  "handle": "ThreeLevelCollision",
+  "mechanism": "Threat Modeling Primitive. Distinguishes three collision classes and assigns specific defenses: (1) Stub Collision (Namespace exhaustion) -> Defended by full-hash verification. (2) Hash Collision (Cryptographic failure) -> Defended by SHA-256 entropy. (3) Homograph Collision (Semantic spoofing) -> Defended by Social Uptake and Reputation. Utilizes {{fail_closed}}.",
+  "gloss": "Stub, hash, and homograph collisions are different threats",
+  "failure_modes": [
+    "Stub Confusion: Relying on 4-char stub (#a1b2) for security instead of convenience.",
+    "Homograph Attack: Malicious actor mints a pattern with a trusted Handle but malicious Definition.",
+    "(Social Engineering).",
+    "Pre-image Attack: Theoretical break of SHA-256 (renders Level 2 defense void)."
+  ],
+  "invariants": [
+    "L1 Defense: Stub match is NOT verification. Full hash check is mandatory.",
+    "L3 Defense: {{identity}} is Content, not Handle. A 'spoofed' pattern is simply a different pattern with zero reputation."
+  ],
+  "preconditions": [
+    "Sema Hashing Algorithm (SHA-256) is secure"
+  ],
+  "postconditions": [
+    "Appropriate verification logic applied",
+    "Threat level identified"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:5db438e5f38882afa181ea527d06b673f64139f42390b9e795cf2ecc9efa29af",
+  "sema_ref": "ThreeLevelCollision#5db4",
+  "sema_stub": "5db4",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "fail_closed": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+    }
+  }
+}

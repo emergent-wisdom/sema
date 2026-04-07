@@ -1,0 +1,38 @@
+{
+  "handle": "Reframe",
+  "mechanism": "{{problem}} Rotation: Transform the {{problem}} statement by changing perspective, scope, or framing. This mechanism not only restructures the current solver tree but actively seeks a new solver root better aligned with the transformed problem. Techniques: invert the goal, change the subject, shift time horizon, alter constraints. A problem unsolvable in frame A may be trivial in frame B.",
+  "gloss": "Changing perspective to restructure the tree and find a new solution root",
+  "failure_modes": [
+    "Frame Blindness: New frame has its own blind spots, trading one bias for another."
+  ],
+  "invariants": [
+    "{{problem}} semantics preserved",
+    "perspective shifted"
+  ],
+  "preconditions": [
+    "Stuck problem state"
+  ],
+  "postconditions": [
+    "New solution path visible"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2,
+    "related": [
+      "SolutionRoot",
+      "SolutionTree"
+    ]
+  },
+  "sema_id": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
+  "sema_ref": "Reframe#ba00",
+  "sema_stub": "ba00",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    }
+  }
+}

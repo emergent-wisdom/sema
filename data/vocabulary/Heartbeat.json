@@ -1,0 +1,52 @@
+{
+  "handle": "Heartbeat",
+  "mechanism": "Periodic Liveness {{signal}}: An entity emits {{signal}} (Heartbeat) every interval I. Missing K consecutive heartbeats triggers failure detection. Heartbeat may include health metrics. Receiver tracks last-seen timestamp. It feeds into the {{quorum}} detector, allowing the collective to identify and prune dead nodes.",
+  "gloss": "Liveness detection via periodic signals",
+  "failure_modes": [
+    "False failure detection due to network congestion (node alive but heartbeat delayed)."
+  ],
+  "invariants": [
+    "Missing signal implies failure",
+    "{{signal}} frequency within tolerance"
+  ],
+  "preconditions": [
+    "Active component",
+    "{{monitor}}"
+  ],
+  "postconditions": [
+    "Liveness confirmed"
+  ],
+  "parameters": [
+    {
+      "name": "interval",
+      "type": "Duration",
+      "range": "[100ms, 60s]",
+      "description": "Time between heartbeats"
+    },
+    {
+      "name": "timeout_multiplier",
+      "type": "Integer",
+      "range": "[2, 5]",
+      "description": "Missed beats before failure"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Time",
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Time",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff",
+  "sema_ref": "Heartbeat#63d9",
+  "sema_stub": "63d9",
+  "dependencies": {
+    "accepts": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    },
+    "composes_with": {
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+    }
+  }
+}

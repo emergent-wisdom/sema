@@ -1,0 +1,25 @@
+{
+  "handle": "CryptoShred",
+  "mechanism": "Data is encrypted with a key that is ephemeral. To 'delete' the data, the agent destroys the key (Crypto-shredding) and provides a Zero-Knowledge proof that the key is gone. This turns 'deletion' (which is hard to prove) into 'loss of access' (which is provable).",
+  "gloss": "Provable deletion of liability data",
+  "failure_modes": [
+    "Key backup leaks (if the key was copied before destruction)."
+  ],
+  "invariants": [
+    "Shred confirmation required."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "related": [
+      "GlacialVault"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:CryptoShred#mh:SHA-256:e0b99771b604e6fdd9311327bfd36cc7745106047662e6870a8fc7f3aaacaf07",
+  "sema_ref": "CryptoShred#e0b9",
+  "sema_stub": "e0b9",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

@@ -1,0 +1,53 @@
+{
+  "handle": "Artifact",
+  "mechanism": "A discrete, immutable unit of data produced by a solver or workflow. It serves as a typed input/output token.",
+  "gloss": "Immutable data unit",
+  "failure_modes": [
+    "Link Rot: The artifact persists conceptually but the storage medium fails.",
+    "Hash Collision: Two different artifacts produce the same ID (theoretical risk)."
+  ],
+  "invariants": [
+    "Immutability: Once minted, the content cannot change.",
+    "Addressability: Must be referenceable by a content-derived hash."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+  "sema_ref": "Artifact#6254",
+  "sema_stub": "6254",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "hash",
+      "content_type",
+      "uri"
+    ],
+    "properties": {
+      "hash": {
+        "type": "string",
+        "description": "SHA-256 content hash (Immutable ID)"
+      },
+      "content_type": {
+        "type": "string",
+        "description": "MIME type (e.g., application/json, text/markdown)"
+      },
+      "uri": {
+        "type": "string",
+        "description": "Storage location (s3://, ipfs://, or memory://)"
+      },
+      "size_bytes": {
+        "type": "integer"
+      },
+      "metadata": {
+        "type": "object",
+        "description": "Author, timestamp, tags"
+      }
+    }
+  }
+}

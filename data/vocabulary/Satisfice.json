@@ -1,0 +1,35 @@
+{
+  "handle": "Satisfice",
+  "mechanism": "Threshold Acceptance: Define minimum acceptable criteria upfront. Evaluate options sequentially. Accept first option meeting all thresholds. Stop searching. Optimality is sacrificed for speed and cognitive efficiency. It implements a relaxed version of {{optimal_stop}}, terminating the search as soon as the first valid candidate is found.",
+  "gloss": "Optimizing for speed via threshold acceptance",
+  "failure_modes": [
+    "Threshold Drift: Unconsciously lowering standards during the search to force a match."
+  ],
+  "invariants": [
+    "Threshold cannot change mid-search."
+  ],
+  "preconditions": [
+    "{{option}} space enumerable. Acceptance threshold defined. Evaluation function exists."
+  ],
+  "postconditions": [
+    "{{option}} meeting threshold found OR space exhausted. No backtracking occurred. {{decision}} final."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d",
+  "sema_ref": "Satisfice#9161",
+  "sema_stub": "9161",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
+      "optimal_stop": "sema:OptimalStop#mh:SHA-256:74391a0813dfa1c767a2221d9fd50da3c1bd6714bd77a402f0178c707a8ad95f"
+    }
+  }
+}

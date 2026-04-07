@@ -1,0 +1,67 @@
+{
+  "handle": "Risk",
+  "mechanism": "A structured representation of potential negative outcomes. It combines: 1. {{probability}} (likelihood of occurrence), 2. Severity (impact {{metric}} if it occurs), 3. Mitigation (actions to reduce probability or severity), 4. Trigger (conditions that indicate the risk is materializing). Risks are attached to steps, aggregated at the manifest level, and may violate constraints if they materialize.",
+  "gloss": "Quantified potential for negative outcome",
+  "failure_modes": [
+    "Risk Blindness: Failing to identify a material risk.",
+    "Risk Theater: Documenting risks without meaningful mitigation.",
+    "Probability Miscalibration: Systematically under/over-estimating likelihood.",
+    "Cascade Blindness: Missing that one risk triggers others."
+  ],
+  "invariants": [
+    "Quantification: Probability and severity must be estimated, not just named.",
+    "Mitigation: Each significant risk must have at least one mitigation strategy.",
+    "Monitoring: Triggers must be observable during execution."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Risk#mh:SHA-256:37748bbbeb3ee23c5a258a49faee4d04a16064136fdfd8721a365d3764c73fb8",
+  "sema_ref": "Risk#3774",
+  "sema_stub": "3774",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "probability",
+      "severity"
+    ],
+    "properties": {
+      "risk_id": {
+        "type": "string",
+        "description": "Unique identifier"
+      },
+      "probability": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Likelihood of occurrence"
+      },
+      "severity": {
+        "type": "number",
+        "description": "Impact metric if materialized"
+      },
+      "mitigation": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Actions to reduce risk"
+      },
+      "trigger": {
+        "type": "string",
+        "description": "Observable condition indicating materialization"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+      "probability": "sema:Probability#mh:SHA-256:356bf7e4b6ca99e4fe7705cb088c3f1cd3a5919334a772e00dc829065c71dffd"
+    }
+  }
+}

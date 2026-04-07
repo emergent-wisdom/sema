@@ -1,0 +1,56 @@
+{
+  "handle": "FrameSpec",
+  "mechanism": "A structured {{spec}} of the {{problem}} space, {{constraint}}s, and success criteria derived from a raw request via interpretation. It is an {{artifact}} that acts as the contract defining the boundaries for execution.",
+  "gloss": "Structured problem definition artifact",
+  "invariants": [
+    "Constraint Clarity: Must contain explicit, testable {{constraint}}s.",
+    "Success Definition: Must define unambiguous success criteria."
+  ],
+  "_meta": {
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0,
+    "tier": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "properties": {
+      "problem_statement": {
+        "type": "string"
+      },
+      "constraints": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "success_criteria": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "problem_statement",
+      "constraints",
+      "success_criteria"
+    ]
+  },
+  "signature": [
+    "Artifact(Constraint)"
+  ],
+  "sema_id": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
+  "sema_ref": "FrameSpec#d5b8",
+  "sema_stub": "d5b8",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

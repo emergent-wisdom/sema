@@ -1,0 +1,54 @@
+{
+  "handle": "Proposal",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "proposal_id",
+      "action",
+      "justification"
+    ],
+    "properties": {
+      "proposal_id": {
+        "type": "string",
+        "description": "Unique identifier"
+      },
+      "action": {
+        "type": "string",
+        "description": "The proposed action or transition"
+      },
+      "justification": {
+        "type": "string",
+        "description": "Why this action should be taken"
+      },
+      "proposer_id": {
+        "type": "string",
+        "description": "Who submitted the proposal"
+      }
+    }
+  },
+  "mechanism": "A formal {{message}} suggesting a specific {{act}} or {{transition}}. It serves as the input payload for decision-making processes, encapsulating the 'What' and 'Why' of a requested change.",
+  "gloss": "A suggested course of action",
+  "invariants": [
+    "Clarity: The proposed action must be unambiguous."
+  ],
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_ref": "Proposal#4840",
+  "sema_id": "sema:Proposal#mh:SHA-256:48400f03d012e37914685f66064ccd4c3875efb0bb4dff24d88c8f1ca9aa247d",
+  "sema_stub": "4840",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
+      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+    },
+    "composes_with": {
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+    }
+  }
+}

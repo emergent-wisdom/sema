@@ -1,0 +1,55 @@
+{
+  "handle": "MintWhenFriction",
+  "mechanism": "Vocabulary Growth Heuristic. A decision procedure that permits minting ONLY when specific 'Friction Signals' are detected. It rejects speculative minting ('Just in Case') in favor of reactive minting ('Just in Time'). It monitors for repetition via {{pattern_discovery}} and formalizes the concept via {{construct_ontology}} only when explanation costs exceed a threshold.",
+  "gloss": "Create patterns when re-explanation causes friction, not before",
+  "failure_modes": [
+    "Premature Optimization: Minting patterns for edge cases that never recur.",
+    "Registry Bloat: Flooding the namespace with low-value patterns makes discovery harder.",
+    "Definition Drift: Minting a concept before it has stabilized leads to frequent version churning."
+  ],
+  "invariants": [
+    "{{check}} Prior Art: Must execute {{pattern_discovery}} before minting.",
+    "Compression {{value}}: Token_Count(Reference) must be < 0.7 * Token_Count(Definition).",
+    "Proof of Friction: Must cite 3+ instances of explanation overhead OR 1+ critical coordination failure."
+  ],
+  "preconditions": [
+    "New concept identified",
+    "Usage history available"
+  ],
+  "postconditions": [
+    "Minting Approved OR Rejected"
+  ],
+  "parameters": [
+    {
+      "name": "min_compression",
+      "type": "Float",
+      "range": "unspecified",
+      "description": "Default: 0.3"
+    },
+    {
+      "name": "occurrence_threshold",
+      "type": "Integer",
+      "range": "[2, 20]",
+      "description": "Minimum re-explanations before minting is justified"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:70a05bb4f7a5281e761af15da7972c07bc4df97fa076473298192f589ee98064",
+  "sema_ref": "MintWhenFriction#70a0",
+  "sema_stub": "70a0",
+  "dependencies": {
+    "references": {
+      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:0d02283760c80e5785b8376894f53f4ebfb49dbff90e9ec8a91c733b07f39381",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:15d927037bd703976cea2d25f710dc01be41c465358f392dd40e4b76d5366e0d"
+    }
+  }
+}

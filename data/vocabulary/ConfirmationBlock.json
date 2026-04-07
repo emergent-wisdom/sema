@@ -1,0 +1,39 @@
+{
+  "handle": "ConfirmationBlock",
+  "mechanism": "Disconfirmation Seek: After forming hypothesis, ask: \"What evidence would prove me WRONG?\" Actively search for that evidence. Weight disconfirming evidence fairly (don't explain it away). If you can't imagine what would change your mind, belief is not rational. It enforces a pause state until active search has exhausted reasonable counter-evidence.",
+  "gloss": "Active search for contradictory evidence",
+  "failure_modes": [
+    "Performative Doubt: Generating weak counter-evidence just to tick the box, without genuine intent to falsify."
+  ],
+  "invariants": [
+    "Evidence must be independently verifiable."
+  ],
+  "parameters": [
+    {
+      "name": "confirmations_required",
+      "type": "Integer",
+      "range": "[1, 100]",
+      "description": "Blocks before finality"
+    },
+    {
+      "name": "timeout",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Max wait for confirmations"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 0,
+    "related": [
+      "DissentSeek"
+    ]
+  },
+  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",
+  "sema_ref": "ConfirmationBlock#3dae",
+  "sema_stub": "3dae",
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

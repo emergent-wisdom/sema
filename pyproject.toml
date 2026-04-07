@@ -1,0 +1,107 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "semahash"
+version = "0.1.0"
+description = "Content-addressed semantics for multi-agent coordination. Hash the meaning, get the word."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "Henrik Westerberg", email = "henrik@emergentwisdom.org" },
+]
+keywords = ["ai", "agents", "mcp", "semantics", "coordination", "content-addressing", "vocabulary"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "typer>=0.9",
+  "rich>=13.0",
+  "pydantic>=2.0",
+  "httpx>=0.24",
+  "platformdirs>=3.0",
+  "numpy>=1.24",
+  "networkx>=3.0",
+  "fastembed>=0.2",
+]
+
+[project.optional-dependencies]
+full = [
+  "fastapi>=0.100",
+  "uvicorn>=0.20",
+  "mcp>=1.0",
+]
+mcp = [
+  "mcp>=1.0",
+]
+api = [
+  "fastapi>=0.100",
+  "uvicorn>=0.20",
+]
+embeddings = []  # fastembed is now a base dependency
+
+[project.urls]
+Homepage = "https://semahash.org"
+Repository = "https://github.com/emergent-wisdom/sema"
+Paper = "https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf"
+
+[project.scripts]
+sema = "sema.cli.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sema"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"data/vocabulary" = "sema/data/vocabulary"
+"data/taxonomy.db" = "sema/data/taxonomy.db"
+"data/graph.json" = "sema/data/graph.json"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/sema/",
+  "data/vocabulary/",
+  "data/taxonomy.db",
+  "data/graph.json",
+  "README.md",
+  "LICENSE",
+]
+
+[tool.ruff]
+exclude = [
+    ".bzr", ".direnv", ".eggs", ".git", ".git-rewrite", ".hg",
+    ".mypy_cache", ".nox", ".pants.d", ".pytype", ".ruff_cache",
+    ".svn", ".tox", ".venv", "__pypackages__", "_build",
+    "buck-out", "build", "dist", "node_modules", "venv",
+]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "E701", "E402"]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+pythonpath = "src"
+testpaths = ["src/sema/cli/tests"]
+addopts = "-v"

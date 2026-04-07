@@ -1,0 +1,38 @@
+{
+  "handle": "Cache",
+  "mechanism": "A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}}. It enables {{heuristic_snap}} by bypassing re-computation.",
+  "gloss": "Temporary high-speed storage",
+  "failure_modes": [
+    "Staleness: Serving outdated data after the source has changed.",
+    "Thrashing: Frequent evictions due to insufficient size."
+  ],
+  "invariants": [
+    "Consistency: Cache(Key) == Source(Key) if valid.",
+    "Freshness: Expired items must not be returned."
+  ],
+  "preconditions": [
+    "Key is hashable",
+    "Value is serializable"
+  ],
+  "postconditions": [
+    "Value retrieved significantly faster than source"
+  ],
+  "sema_id": "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073",
+  "sema_ref": "Cache#1ea9",
+  "sema_stub": "1ea9",
+  "_meta": {
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329",
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    }
+  }
+}

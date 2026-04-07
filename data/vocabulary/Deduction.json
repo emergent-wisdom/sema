@@ -1,0 +1,26 @@
+{
+  "handle": "Deduction",
+  "mechanism": "Moving from general rules ({{axiom}}) to specific conclusions. If premises are true, the conclusion MUST be true. (All men are mortal -> Socrates is a man -> Socrates is mortal).",
+  "gloss": "General to specific logic",
+  "invariants": [
+    "Truth Preservation: If premises are true, conclusion MUST be true.",
+    "Validity: The argument structure follows formal logic rules."
+  ],
+  "preconditions": [
+    "Premises are accepted as true"
+  ],
+  "postconditions": [
+    "Conclusion is logically necessary"
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
+  "sema_ref": "Deduction#9c88",
+  "sema_stub": "9c88"
+}

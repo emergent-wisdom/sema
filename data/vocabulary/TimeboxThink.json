@@ -1,0 +1,52 @@
+{
+  "handle": "TimeboxThink",
+  "mechanism": "Bounded Exploration: Set hard time limit before starting. When limit hits, stop regardless of completion. Assess: What did I learn? Is more time justified? Prevents rabbit holes. Forces prioritization of highest-{{value}} {{work}} within {{constraint}}. Utilizes {{budget}}.",
+  "gloss": "Temporal bounding of exploration",
+  "failure_modes": [
+    "Premature Cutoff: Stopping the process just before the breakthrough occurs."
+  ],
+  "invariants": [
+    "Best-so-far answer returned",
+    "Execution halts at T_max"
+  ],
+  "preconditions": [
+    "Open-ended task",
+    "Time budget"
+  ],
+  "postconditions": [
+    "Result within deadline"
+  ],
+  "parameters": [
+    {
+      "name": "checkpoint_interval",
+      "type": "Duration",
+      "range": "[100ms, 5min]",
+      "description": "Save partial results frequency"
+    },
+    {
+      "name": "max_duration",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Hard cutoff for thinking"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:TimeboxThink#mh:SHA-256:265679a37dcae704c3e9e8c958f42f11751102e0685e55b1fe277c238bd9c05e",
+  "sema_ref": "TimeboxThink#2656",
+  "sema_stub": "2656",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+    }
+  }
+}

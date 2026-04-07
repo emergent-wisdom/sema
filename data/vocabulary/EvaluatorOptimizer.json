@@ -1,0 +1,45 @@
+{
+  "handle": "EvaluatorOptimizer",
+  "mechanism": "A two-role {{loop}} to {{optimize}} a solution where a Generator produces output and an Evaluator critiques it, providing structured feedback. The feedback is fed back to the Generator for refinement. {{loop}} continues until the Evaluator approves or max iterations reached. The Evaluator can be the same model with a different {{context}}, or a separate model. It invokes a {{meta_check}} to ensure the scoring {{criteria}} remain consistent across optimization cycles.",
+  "gloss": "Generate-evaluate-refine loop",
+  "failure_modes": [
+    "Evaluation Drift: Evaluator criteria shift across iterations.",
+    "Cosmetic Changes: Generator makes superficial edits that don't address feedback.",
+    "Evaluator Capture: Generator learns to game the evaluator's criteria."
+  ],
+  "invariants": [
+    "Feedback loop converges",
+    "Optimizer improves score on Evaluator metric"
+  ],
+  "preconditions": [
+    "Initial solution",
+    "Modification operator",
+    "Scoring function"
+  ],
+  "postconditions": [
+    "High-quality solution found"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:becd6f49b4e5db07c4dc3e8b384c244dafb2ea12818a9d5be58bec765d0ca8cb",
+  "sema_ref": "EvaluatorOptimizer#becd",
+  "sema_stub": "becd",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "signature": [
+    "Optimize(Loop)"
+  ],
+  "dependencies": {
+    "references": {
+      "meta_check": "sema:MetaCheck#mh:SHA-256:1c957e4e87c0ba744830bd77c9e957a51108499c3783823670a9a198d3efd706",
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "optimize": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
+    }
+  }
+}

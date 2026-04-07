@@ -1,0 +1,54 @@
+{
+  "handle": "Criteria",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "metric",
+      "threshold"
+    ],
+    "properties": {
+      "criteria_id": {
+        "type": "string",
+        "description": "Unique identifier for this criteria"
+      },
+      "metric": {
+        "type": "string",
+        "description": "What is being measured (e.g., 'cost', 'latency')"
+      },
+      "threshold": {
+        "description": "The target value or boundary (any type)"
+      },
+      "comparator": {
+        "type": "string",
+        "enum": [
+          "<",
+          "<=",
+          "=",
+          ">=",
+          ">",
+          "in",
+          "not_in"
+        ],
+        "description": "How to compare against threshold"
+      }
+    }
+  },
+  "mechanism": "The specific standards used to judge the success of an {{artifact}}. e.g., 'must be under $50'. Used by the judgment.",
+  "gloss": "Judgment standards",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_id": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
+  "sema_ref": "Criteria#ef6b",
+  "sema_stub": "ef6b",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+    }
+  }
+}

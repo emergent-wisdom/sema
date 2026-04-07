@@ -1,0 +1,55 @@
+{
+  "handle": "HolographicShard",
+  "mechanism": "{{context}}-Preserving Slice: Sub-tasks contain a holographic reference to the global goal. Every shard includes: parent_goal_hash, intent_summary, and constraint_inheritance. The sub-agent can independently verify if its local action serves the global intent without querying the central node. It extends {{fabric_sharding}} by ensuring every fragment contains a recoverable 'seed' of the whole, enabling localized reconstruction.",
+  "gloss": "Local action via global context embedding",
+  "failure_modes": [
+    "{{context}} Bloat: The shard becomes larger than the task itself because it carries too much global history.",
+    "{{context}} overhead is expensive.",
+    "Shards become too heavy to transmit.",
+    "{{deep}} nesting creates exponential context bloat."
+  ],
+  "invariants": [
+    "Distribution: Shards are stored on failure-independent nodes",
+    "Information Redundancy: Any K of N shards can reconstruct the Whole"
+  ],
+  "preconditions": [
+    "Data encoded with Erasure Code (e.g. Reed-Solomon)"
+  ],
+  "parameters": [
+    {
+      "name": "encoding",
+      "type": "Enum",
+      "range": "{ReedSolomon, Fountain, Simple}",
+      "description": "Error correction method"
+    },
+    {
+      "name": "reconstruction_threshold",
+      "type": "Float",
+      "range": "[0.3, 0.7]",
+      "description": "Min fragments for recovery"
+    },
+    {
+      "name": "redundancy_factor",
+      "type": "Integer",
+      "range": "[2, 5]",
+      "description": "Copies per datum"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 0
+  },
+  "sema_id": "sema:HolographicShard#mh:SHA-256:df0df3247fd137a24dc7fd9a26885d64b77554833536778901c6ea4e31856907",
+  "sema_ref": "HolographicShard#df0d",
+  "sema_stub": "df0d",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b"
+    }
+  }
+}

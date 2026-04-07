@@ -1,0 +1,41 @@
+{
+  "handle": "HackDetect",
+  "mechanism": "A meta-check that detects when an agent is solving for 'make it work' instead of 'do it right'. Triggered when the agent modifies interface code (adapters, exporters, validators) rather than fixing source data or upstream logic. The hack appears to succeed locally but breaks invariants that downstream systems depend on, creating negative externalities. It monitors the {{input_guard}} layer for anomalies, triggering {{ejection_seat}} if the agent attempts to bypass invariants via code patching.",
+  "gloss": "Detect shortcuts that break downstream invariants",
+  "failure_modes": [
+    "False Positives: Legitimate adapter changes flagged as hacks.",
+    "Hack Blindness: Novel hack patterns evade detection.",
+    "Justification Theater: {{agent}} rationalizes hack as 'pragmatic'."
+  ],
+  "invariants": [
+    "Detection triggers defensive response",
+    "False positive rate minimized"
+  ],
+  "preconditions": [
+    "Attack signatures/anomaly detection",
+    "{{system}} monitoring"
+  ],
+  "postconditions": [
+    "Alert raised",
+    "Intrusion identified"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 0
+  },
+  "sema_id": "sema:HackDetect#mh:SHA-256:f1675e5175300275971d6c47fe9d1a3454b6fd39f1e852fa99eda6f4490757e4",
+  "sema_ref": "HackDetect#f167",
+  "sema_stub": "f167",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:afa47ff98dc96df29a4c62a91159e1d7d9f339b30ad9a60aac8d4cf3d8e2a1b2",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

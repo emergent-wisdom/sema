@@ -1,0 +1,61 @@
+{
+  "handle": "OutputGuard",
+  "mechanism": "Post-generation content filter. Scans candidate {{solution}} against PII patterns and Toxicity Classifiers. If Score > Threshold, triggers mitigation (Redact/Reject). It mirrors the logic of input guard but applied to egress traffic, scanning for leakage or toxicity.",
+  "gloss": "Final egress filter for safety and privacy",
+  "failure_modes": [
+    "Scunthorpe {{problem}}: Over-censorship blocking valid words containing restricted substrings.",
+    "{{context}} Blindness: Guard blocks necessary medical terms misclassified as toxicity.",
+    "Redaction Leak: [REDACTED] markers revealing the location/length of hidden secrets."
+  ],
+  "invariants": [
+    "Fail-Safe: If Scanner fails (timeout/error), Output is BLOCKED (not passed).",
+    "Privacy First: If PII detected, Redaction is mandatory."
+  ],
+  "preconditions": [
+    "Candidate solution generated",
+    "Safety policies active"
+  ],
+  "postconditions": [
+    "Safe output delivered OR Block signal returned"
+  ],
+  "parameters": [
+    {
+      "name": "pii_mode",
+      "type": "Enum",
+      "range": "{Redact, Block, Hash}",
+      "description": "Default: Redact"
+    },
+    {
+      "name": "scan_timeout",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Default: 500ms"
+    },
+    {
+      "name": "toxicity_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Default: 0.8"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Verification",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification",
+  "sema_id": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0",
+  "sema_ref": "OutputGuard#eb44",
+  "sema_stub": "eb44",
+  "dependencies": {
+    "references": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+    },
+    "accepts": {
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    }
+  }
+}

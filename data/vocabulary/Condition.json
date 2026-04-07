@@ -1,0 +1,46 @@
+{
+  "handle": "Condition",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "predicate"
+    ],
+    "properties": {
+      "predicate": {
+        "type": "string",
+        "description": "The boolean expression or check to evaluate"
+      },
+      "required_context": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Keys that must be present in context for evaluation"
+      },
+      "timeout_ms": {
+        "type": "integer",
+        "description": "Maximum time allowed for evaluation before returning Error"
+      }
+    }
+  },
+  "mechanism": "A marker interface (Trait). Patterns implementing 'Condition' MUST provide an evaluation logic that returns a strict Boolean (True/False) based on provided context.",
+  "gloss": "Interface for patterns that evaluate to a boolean truth-value",
+  "failure_modes": [
+    "Ambiguity: Returning 'Maybe' or probabilistic float where Boolean is required."
+  ],
+  "invariants": [
+    "Boolean Output: Result must be binary.",
+    "Decidability: Must always return a value (or error), never hang."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+  "sema_ref": "Condition#cbd5",
+  "sema_stub": "cbd5",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

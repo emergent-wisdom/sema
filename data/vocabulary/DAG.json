@@ -1,0 +1,47 @@
+{
+  "handle": "DAG",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "nodes",
+      "edges",
+      "root_id"
+    ],
+    "properties": {
+      "nodes": {
+        "type": "array",
+        "description": "List of task nodes"
+      },
+      "edges": {
+        "type": "array",
+        "description": "Dependency arrows (Task A -> Task B)"
+      },
+      "root_id": {
+        "type": "string",
+        "description": "Entry point(s) for execution"
+      }
+    }
+  },
+  "mechanism": "A directed acyclic graph {{topology}} that allows branching ({{parallelize}}) and merging, but forbids cycles. It models complex dependency chains where tasks can run concurrently but must respect precedence.",
+  "gloss": "Directed acyclic dependency graph",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2,
+    "tier": 1
+  },
+  "invariants": [
+    "Acyclicity: No path exists from Node(A) to itself.",
+    "Directedness: Edges have a single direction."
+  ],
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:DAG#mh:SHA-256:2d3d87686721cc992dccefdb025c8a61ddd9cf549beca3715e6eb6339d379484",
+  "sema_ref": "DAG#2d3d",
+  "sema_stub": "2d3d",
+  "dependencies": {
+    "references": {
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+    }
+  }
+}

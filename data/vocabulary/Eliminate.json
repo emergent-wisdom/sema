@@ -1,0 +1,34 @@
+{
+  "handle": "Eliminate",
+  "mechanism": "Systematic Exclusion: Enumerate all possible answers. For each, find a test that could falsify it. Apply tests in order of cost (cheapest first). Remove falsified options. Continue until one remains or no tests left. Remaining options are candidates. It uses {{prioritize}} to order falsification tests by cost/efficiency before executing them.",
+  "gloss": "Sherlock Holmes deduction via falsification",
+  "failure_modes": [
+    "Premature Exclusion: Eliminating the true cause because of a faulty test, leaving an empty set."
+  ],
+  "invariants": [
+    "{{option}} set must be exhaustive at start."
+  ],
+  "preconditions": [
+    "{{option}} set exhaustive. Falsification tests available. At least one option must survive."
+  ],
+  "postconditions": [
+    "Remaining options equally valid. Eliminated options have falsifying evidence. Search space reduced."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_ref": "Eliminate#43ea",
+  "sema_id": "sema:Eliminate#mh:SHA-256:43ea687e3560a55f221807138469697a6f331e687fa542c66ddf4d97f07174b0",
+  "sema_stub": "43ea",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
+      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13"
+    }
+  }
+}

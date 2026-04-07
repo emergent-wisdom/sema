@@ -1,0 +1,79 @@
+{
+  "handle": "ContinuousResourceAuction",
+  "mechanism": "A market {{protocol}} for allocating rivalrous resources (e.g., compute, bandwidth, state slots) where the pricing function is continuous and algorithmic. It actively invokes {{state_lock}} to serialize bidding attempts and accepts {{value}} metrics to determine allocation. Unlike static auctions, it supports configurable pricing models via parameters, allowing agents to implement congestion pricing (e.g., EIP-1559), Dutch auctions, or linear decay.",
+  "gloss": "Algorithmic pricing for rivalrous resources",
+  "signature": [
+    "Protocol(Value)"
+  ],
+  "failure_modes": [
+    "Price Instability: Aggressive pricing curves lead to volatility that discourages long-term resource planning.",
+    "Monopoly Lockout: Wealthy agents can permanently rent-seek if the holding cost is too low relative to their capital."
+  ],
+  "invariants": [
+    "Circulation Pressure: The cost of holding the resource must be non-zero (HoldingCost > 0) to prevent infinite hoarding.",
+    "Price Discovery: Price must dynamically adjust to Demand or Time.",
+    "Clearance: The auction must resolve to a winner or reset within T_cycle."
+  ],
+  "parameters": [
+    {
+      "name": "pricing_model",
+      "type": "Enum",
+      "range": "{CongestionPricing, DutchAuction, Linear}",
+      "description": "Default: CongestionPricing"
+    },
+    {
+      "name": "cycle_time",
+      "type": "Duration",
+      "range": "[100ms, 1h]",
+      "description": "Duration of each auction cycle"
+    },
+    {
+      "name": "holding_cost_rate",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Per-cycle cost of holding a resource without using it"
+    }
+  ],
+  "data_schema": {
+    "type": "object",
+    "properties": {
+      "resource_id": {
+        "type": "string"
+      },
+      "current_price": {
+        "type": "number"
+      },
+      "current_holder": {
+        "type": "string"
+      },
+      "next_cycle_start": {
+        "type": "integer"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1,
+    "related": [
+      "AttentionMarkets"
+    ]
+  },
+  "sema_ref": "ContinuousResourceAuction#5776",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962",
+  "sema_stub": "5776",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "composes_with": {
+      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c"
+    },
+    "accepts": {
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    }
+  }
+}

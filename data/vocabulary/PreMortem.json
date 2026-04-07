@@ -1,0 +1,55 @@
+{
+  "handle": "PreMortem",
+  "mechanism": "Prospective Hindsight: Before executing {{task}} ({{plan}}), assume it has failed catastrophically. Ask: \"What went wrong?\" Generate failure scenarios without defensiveness. For each plausible failure, add mitigation to plan or reconsider approach entirely. It invokes {{recursive_root_cause}} on a hypothetical failure state, often employing {{steelman_check}} to ensure the disaster scenario is plausible.",
+  "gloss": "Simulating failure to identify hidden risks",
+  "failure_modes": [
+    "Performative Doomerism: Listing generic catastrophes (e.g., Asteroid Strike) instead of specific, endogenous failure modes."
+  ],
+  "invariants": [
+    "Future Perspective: Analysis must assume failure has ALREADY happened",
+    "Perspective Shift: Analysis assumes failure has ALREADY occurred (Probability=1.0)",
+    "Specific Cause: Failure reasons must be actionable, not generic bad luck",
+    "Specificity: Failure causes must be actionable"
+  ],
+  "preconditions": [
+    "{{plan}} is fully specified"
+  ],
+  "postconditions": [
+    "{{plan}} robustified"
+  ],
+  "parameters": [
+    {
+      "name": "confidence_required",
+      "type": "Probability",
+      "range": "[0.7, 0.95]",
+      "description": "Certainty needed to dismiss risk"
+    },
+    {
+      "name": "failure_probability_floor",
+      "type": "Probability",
+      "range": "[0.01, 0.30]",
+      "description": "Min failure chance to investigate"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "sema_id": "sema:PreMortem#mh:SHA-256:8565f4dcf6f230b679b7503d67f0fadb042ad1e4b1f259e45943235019116f8d",
+  "sema_ref": "PreMortem#8565",
+  "sema_stub": "8565",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "references": {
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
+    }
+  }
+}

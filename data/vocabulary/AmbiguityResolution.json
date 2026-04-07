@@ -1,0 +1,26 @@
+{
+  "handle": "AmbiguityResolution",
+  "mechanism": "A social protocol for cleaning the knowledge base. When agents flag ambiguous or conflicting data, this protocol forces a resolution event. Agents must {{vote}} to clarify, delete, or fork the data. It uses an {{entropy_pump}} to surface latent ambiguities, preventing the system from settling on false certainties.",
+  "gloss": "Social clearing of semantic noise",
+  "invariants": [
+    "Forced Resolution: Conflicts cannot persist indefinitely.",
+    "Clarity: Ambiguity must decrease over time."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_ref": "AmbiguityResolution#5c50",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:5c50f28c0338483e2e0da1e7d90ed920e7f5c48946e5f8501974096c5bfcbcfb",
+  "sema_stub": "5c50",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "composes_with": {
+      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63"
+    }
+  }
+}

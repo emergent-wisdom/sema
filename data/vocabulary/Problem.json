@@ -1,0 +1,55 @@
+{
+  "handle": "Problem",
+  "mechanism": "A formal representation of a gap between Current {{state}} and Desired {{state}} where the Cost of Inaction > 0. Unlike a {{task}} (which is a directive to act), a Problem is a descriptive claim about value loss. It serves as the input to interpretation and reframing, requiring diagnosis before a solution root can be established.",
+  "gloss": "A state gap with a cost of inaction",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "current_state",
+      "desired_state"
+    ],
+    "properties": {
+      "current_state": {
+        "type": "string",
+        "description": "Description of reality"
+      },
+      "desired_state": {
+        "type": "string",
+        "description": "Description of goal"
+      },
+      "gap_analysis": {
+        "type": "string",
+        "description": "Why the current != desired"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "Low",
+          "Medium",
+          "High",
+          "Existential"
+        ]
+      },
+      "root_cause_hypothesis": {
+        "type": "string"
+      }
+    }
+  },
+  "sema_id": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+  "sema_ref": "Problem#5baa",
+  "sema_stub": "5baa",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "handle": "Handoff",
+  "mechanism": "Transfers control from one {{agent}} to another along with relevant {{context}}. The sending {{agent}} explicitly yields authority, passing conversation {{state}}, {{task}} {{context}}, and any agent-specific instructions. Used in swarm architectures where specialized {{agent}}s handle different aspects of a {{task}}. It extends {{delegate}} by transferring full {{responsibility}} and authority to the receiving {{agent}}.",
+  "gloss": "Transfer control and context between agents",
+  "failure_modes": [
+    "{{context}} Loss: Critical information not passed in handoff.",
+    "Authority Ambiguity: Unclear which {{agent}} now owns the {{task}}.",
+    "Handoff Loops: {{agent}}s keep passing {{task}} back and forth."
+  ],
+  "invariants": [
+    "{{context}} fully transferred",
+    "{{responsibility}} atomicity (neither or both hold it briefly, never none)"
+  ],
+  "preconditions": [
+    "{{agent}} A active",
+    "{{agent}} B ready"
+  ],
+  "postconditions": [
+    "{{agent}} A released",
+    "{{agent}} B in charge"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:Handoff#mh:SHA-256:158ad6e8bb9998599498ebf8b57b741e0844d64579811c6ac68285a29ceec0bf",
+  "sema_ref": "Handoff#158a",
+  "sema_stub": "158a",
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "responsibility": "sema:Responsibility#mh:SHA-256:f4524249a5c89d422baf6c357e331b8c3c3a4c59ef6289ab608d565a3d92ea27"
+    },
+    "composes_with": {
+      "delegate": "sema:Delegate#mh:SHA-256:320196608b9274bf52da27d46708ca94df42ed0967d8b1258ebd785a0eda2053"
+    }
+  }
+}

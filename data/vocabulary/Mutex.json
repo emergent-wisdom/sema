@@ -1,0 +1,43 @@
+{
+  "handle": "Mutex",
+  "mechanism": "Exclusive access token. Lifecycle: ACQUIRE {{task}} -> GRANT/QUEUE -> HOLD -> RELEASE/YIELD. Token represents a unique handle ({{resource}}). Sequence increments on transfer. Priority queue prevents starvation. Fencing tokens handle revocation. It manages exclusive access by enforcing a strict queue via delegation or throttling, often isolating the critical section.",
+  "gloss": "Physical possession token",
+  "failure_modes": [
+    "Totem loss (requires regeneration protocol).",
+    "Failure modes: (1) Holder crash - token orphaned, mitigated by expires_at + heartbeat.",
+    "(2) Token corruption - mitigated by REGENERATE protocol.",
+    "(3) Deadlock - mitigated by wait-for graph detection + ordered acquisition.",
+    "(4) Starvation - mitigated by aging + anti-starvation rule (no consecutive preemption).",
+    "(5) Byzantine holder - mitigated by forcible REVOKE + fencing.",
+    "(6) Split brain - mitigated by fencing tokens that invalidate on revocation."
+  ],
+  "invariants": [
+    "Uniqueness, Conservation of Totem"
+  ],
+  "preconditions": [
+    "Resource exists and is lockable. At least 2 agents contending. Agents can communicate."
+  ],
+  "postconditions": [
+    "Exactly one agent holds lock. Other agents blocked or notified. {{lock}} state consistent across all observers."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Mutex#mh:SHA-256:9c8399aaa6fe3528358fb93e826aced3b1e3e3f31ef58e68c4720ce640a0a2b5",
+  "sema_ref": "Mutex#9c83",
+  "sema_stub": "9c83",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "references": {
+      "lock": "sema:Lock#mh:SHA-256:5bf2a80b6c73a11da68f702922d5180259c75ff50fb094607da3ab4d7c167dc2",
+      "resource": "sema:Resource#mh:SHA-256:9bb2dd733e5900d441d35d2c6e74f69dc4e4afe536c12adbcfc5863f3ada2922"
+    }
+  }
+}

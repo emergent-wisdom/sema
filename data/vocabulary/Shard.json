@@ -1,0 +1,65 @@
+{
+  "handle": "Shard",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "shard_id",
+      "partition_index"
+    ],
+    "properties": {
+      "shard_id": {
+        "type": "string",
+        "description": "Unique identifier for this shard"
+      },
+      "key": {
+        "type": "string",
+        "description": "The key used to route to this shard"
+      },
+      "partition_index": {
+        "type": "integer",
+        "description": "Which partition this shard belongs to"
+      },
+      "data": {
+        "description": "The shard's contents"
+      }
+    }
+  },
+  "mechanism": "The fundamental primitive of distribution. It deterministically partitions a Resource, {{state}}, or {{vector}} into disjoint subsets (Shards) based on a Key (e.g., ID, Hash, Time). Unlike `Decompose` (which splits complexity), `Shard` splits volume/load.",
+  "gloss": "Deterministic partitioning of state",
+  "invariants": [
+    "Conservation: Sum(Shards) == Total.",
+    "Disjointness: Intersection(Shard_A, Shard_B) == Empty.",
+    "Determinism: Key K always routes to Shard S."
+  ],
+  "parameters": [
+    {
+      "name": "key_function",
+      "type": "Enum",
+      "range": "{Hash, Range, Directory}",
+      "description": "Partitioning strategy for distributing data across shards"
+    },
+    {
+      "name": "partitions",
+      "type": "Integer",
+      "range": "[2, 256]",
+      "description": "Number of partitions to divide state into"
+    }
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
+  "sema_ref": "Shard#1e74",
+  "sema_stub": "1e74",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  }
+}

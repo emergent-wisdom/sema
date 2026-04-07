@@ -1,0 +1,26 @@
+{
+  "handle": "ExchangeRate",
+  "mechanism": "A definable ratio between two distinct {{value}} types or {{metric}}s at a specific point in time. It allows agents with orthogonal utility functions to transact.",
+  "gloss": "Conversion ratio between value systems",
+  "invariants": [
+    "Bijectivity: Rate(A->B) must equal 1 / Rate(B->A).",
+    "Time-Bound: Must include a timestamp or validity window."
+  ],
+  "sema_id": "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6",
+  "sema_ref": "ExchangeRate#be29",
+  "sema_stub": "be29",
+  "_meta": {
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    }
+  }
+}

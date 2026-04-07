@@ -1,0 +1,35 @@
+{
+  "handle": "Summarize",
+  "mechanism": "The cognitive process of {{compress}}ing a large {{datum}} or {{artifact}} into a smaller {{summary}} while preserving its most high-{{value}} (salient) information. Distinct from {{translate}}, which preserves the full semantic scope. It is a lossy transformation.",
+  "gloss": "Lossy compression preserving salience",
+  "invariants": [
+    "Compression: Output size < Input size",
+    "Salience: Information Density(Output) > Information Density(Input)",
+    "Fidelity: No new information added (No hallucination)"
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_id": "sema:Summarize#mh:SHA-256:25827845767f37f49e61bed211e1fabc11f3ca5d9f57d5bbb764a79c5a3102e5",
+  "sema_ref": "Summarize#2582",
+  "sema_stub": "2582",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "translate": "sema:Translate#mh:SHA-256:5651dd9fb35b2f4468b002f8a7423399f0415d7c5b1fc34322396d6bf88eefbe",
+      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "yields": {
+      "summary": "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de"
+    },
+    "accepts": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+    }
+  }
+}

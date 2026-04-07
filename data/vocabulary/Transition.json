@@ -1,0 +1,48 @@
+{
+  "handle": "Transition",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "from_state",
+      "to_state",
+      "trigger_event"
+    ],
+    "properties": {
+      "from_state": {
+        "type": "string",
+        "description": "Origin state ID"
+      },
+      "to_state": {
+        "type": "string",
+        "description": "Destination state ID"
+      },
+      "trigger_event": {
+        "type": "object",
+        "description": "Event causing the transition"
+      },
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "mechanism": "The atomic progression from an origin {{state}} to a destination {{state}}, adhering to {{system}} transition rules.",
+  "gloss": "State change",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
+  "sema_ref": "Transition#072d",
+  "sema_stub": "072d",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

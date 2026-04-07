@@ -1,0 +1,29 @@
+{
+  "handle": "Robustness",
+  "mechanism": "The capacity of a system or argument to maintain its validity and function under stress, perturbation, or attack. Unlike Antifragility (which gains from disorder), Robustness merely resists it. It acts as a stability criterion for all checks and structures.",
+  "gloss": "Resistance to failure under stress",
+  "failure_modes": [
+    "Rigidity: {{system}} becomes too stiff to adapt",
+    "False Robustness: Valid only under known stressors, fragile to black swans"
+  ],
+  "invariants": [
+    "Survival: Function({{state}} + Shock) == Function({{state}})"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 1
+  },
+  "sema_id": "sema:Robustness#mh:SHA-256:132c09ccd0ad128aec982b0ba12b672106b6f9aedcd1b052c950ee0eb81162a1",
+  "sema_ref": "Robustness#132c",
+  "sema_stub": "132c",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "handle": "VowOfSilence",
+  "mechanism": "A negotiation tactic where the agent deliberately enforces {{silence}} (zero {{signal}} emission) in response to a stimulus. Unlike a timeout or failure, this is a strategic move to create an information vacuum, compelling the counterparty to provide additional {{context}} or concessions to re-initiate flow.",
+  "gloss": "Strategic withholding of signal to force counterparty disclosure",
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:VowOfSilence#mh:SHA-256:138b1c8ff5f1663ead9cb1083d22fe90ca2b723cda0d0177cbd005547dd96cb3",
+  "sema_ref": "VowOfSilence#138b",
+  "sema_stub": "138b",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "silence": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5",
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    }
+  }
+}

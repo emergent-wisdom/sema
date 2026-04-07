@@ -1,0 +1,31 @@
+{
+  "handle": "ConsensusFinder",
+  "mechanism": "Macro for {{discover}}({{consensus}}). Instead of initiating a vote, the agent scans the network to identify pre-existing clusters of agreement or shared state. It optimizes coordination by surfacing natural alignment before attempting to manufacture it. It applies the {{discover}} primitive to locate {{consensus}} clusters, checking for {{resonate}} signals before triggering a formal {{quorum}}.",
+  "gloss": "Discovering existing agreement",
+  "invariants": [
+    "Passive Observation: Does not initiate new voting rounds.",
+    "Discovery: Returns existing consensus or Null."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1
+  },
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:59dedf0a3b36075b9e496fa2ee401fef1dc841dadab3cfcc4b5c886c9055adee",
+  "sema_ref": "ConsensusFinder#59de",
+  "sema_stub": "59de",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "signature": [
+    "Discover(Consensus)"
+  ],
+  "dependencies": {
+    "references": {
+      "consensus": "sema:Consensus#mh:SHA-256:986562fe8b9bcfda2a62c40b276a8ff136e732d6f788dc6fa610bf2ef18f4123",
+      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd",
+      "resonate": "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4",
+      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4"
+    }
+  }
+}

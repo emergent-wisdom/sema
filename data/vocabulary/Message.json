@@ -1,0 +1,55 @@
+{
+  "handle": "Message",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "header",
+      "body"
+    ],
+    "properties": {
+      "header": {
+        "type": "object",
+        "properties": {
+          "sender": {
+            "type": "string"
+          },
+          "recipient": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "body": {
+        "description": "The content payload"
+      },
+      "signature": {
+        "type": "string",
+        "description": "Sender verification"
+      }
+    }
+  },
+  "mechanism": "A structured container for a {{signal}}, adding Metadata (Sender, Recipient, Timestamp) to the raw emission.",
+  "gloss": "Structured signal container",
+  "invariants": [
+    "Immutability: Once sent, the message content cannot be changed.",
+    "Addressability: Must contain Sender and (optional) Recipient identifiers."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+  "sema_ref": "Message#f767",
+  "sema_stub": "f767",
+  "dependencies": {
+    "references": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    }
+  }
+}

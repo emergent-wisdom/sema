@@ -1,0 +1,39 @@
+{
+  "handle": "Category",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "label"
+    ],
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "Name of the category"
+      },
+      "parent": {
+        "type": "string",
+        "description": "Parent category ID (optional, for hierarchies)"
+      },
+      "members": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of items belonging to this category"
+      }
+    }
+  },
+  "mechanism": "A specific grouping or 'bin' for objects. It defines the taxonomy and allows the agent to treat distinct items as equivalent for certain operations.",
+  "gloss": "Grouping of objects",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1",
+  "sema_ref": "Category#1ab7",
+  "sema_stub": "1ab7"
+}

@@ -1,0 +1,49 @@
+{
+  "handle": "Protocol",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "protocol_id",
+      "version",
+      "rules"
+    ],
+    "properties": {
+      "protocol_id": {
+        "type": "string",
+        "description": "Unique protocol identifier"
+      },
+      "version": {
+        "type": "string",
+        "description": "Semantic version (e.g., '1.0.0')"
+      },
+      "rules": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of rules defining the protocol"
+      },
+      "formats": {
+        "type": "object",
+        "description": "Message format specifications"
+      }
+    }
+  },
+  "mechanism": "A defined set of rules and formats for communication between agents.",
+  "gloss": "Communication standard",
+  "failure_modes": [
+    "Version Drift: Agents attempting to communicate with incompatible protocol versions.",
+    "Ambiguous Spec: Rules that allow for multiple valid interpretations."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+  "sema_ref": "Protocol#7e1c",
+  "sema_stub": "7e1c",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

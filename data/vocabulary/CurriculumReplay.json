@@ -1,0 +1,37 @@
+{
+  "handle": "CurriculumReplay",
+  "mechanism": "Agents re-train on their own high-scoring past outputs during downtime to reinforce successful behaviors. Self-distillation without external supervision. {{agent}} maintains a replay buffer of successful interactions ranked by outcome quality. During idle cycles, agent samples from buffer and fine-tunes on its own best work. {{decay}} function prioritizes recent successes over stale ones. It draws training examples from the {{experience_sharding}} database, filtering for high-quality outcomes.",
+  "gloss": "Self-supervised reinforcement via memory sampling",
+  "failure_modes": [
+    "Model Collapse: {{agent}} over-fits to its own outputs, drifting into a closed loop of hallucination."
+  ],
+  "invariants": [
+    "Examples ordered by complexity (easy to hard)",
+    "No catastrophic forgetting of earlier lessons"
+  ],
+  "preconditions": [
+    "Dataset of task examples",
+    "Learning agent"
+  ],
+  "postconditions": [
+    "{{agent}} performance improved on target distribution"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:1ba4752102db483edac3d0b5e7f88bc182b176446346aecd938f504ab4e993e6",
+  "sema_ref": "CurriculumReplay#1ba4",
+  "sema_stub": "1ba4",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "dependencies": {
+    "references": {
+      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:65ccbf94035f6821c53097b6c5da6a9b6da01cddab844b8876f8b35d62e93f39"
+    }
+  }
+}

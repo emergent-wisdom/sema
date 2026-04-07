@@ -1,0 +1,51 @@
+{
+  "handle": "SimulationTrace",
+  "mechanism": "Before taking an irreversible action (e.g., `delete_file`), the agent simulates the execution step-by-step in a scratchpad. It inspects the predicted state after the action. If the state looks bad, it aborts. It generates a verifiable {{trace}} of a {{mental_sim}}, creating an immutable record of the predicted future state.",
+  "gloss": "Pre-execution mental model",
+  "failure_modes": [
+    "{{simulation}} inaccuracy (the map is not the territory)."
+  ],
+  "invariants": [
+    "Causality: Every step T+1 is derived from T",
+    "Replayability: {{trace}}(Start) == End",
+    "{{trace}} immutable after creation."
+  ],
+  "preconditions": [
+    "{{simulation}} engine initialized"
+  ],
+  "postconditions": [
+    "Verifiable trace artifact generated"
+  ],
+  "parameters": [
+    {
+      "name": "confidence_floor",
+      "type": "Probability",
+      "range": "[0.5, 0.9]",
+      "description": "Min certainty to trust trace"
+    },
+    {
+      "name": "simulation_fidelity",
+      "type": "Percentage",
+      "range": "[70%, 99%]",
+      "description": "Required model accuracy"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Protocols",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:SimulationTrace#mh:SHA-256:cf0e36c87a1096be5ce390301df3af96c77a459ff319ee4cd610ead6279d1a01",
+  "sema_ref": "SimulationTrace#cf0e",
+  "sema_stub": "cf0e",
+  "dependencies": {
+    "references": {
+      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "mental_sim": "sema:MentalSim#mh:SHA-256:0c26a8eb6071051ceaa3c4e694b61ef4a78f54eff3b80326c22a5c073d572183"
+    }
+  }
+}

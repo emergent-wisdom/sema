@@ -1,0 +1,50 @@
+{
+  "handle": "Role",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "role_id",
+      "permissions"
+    ],
+    "properties": {
+      "role_id": {
+        "type": "string",
+        "description": "Unique role identifier"
+      },
+      "permissions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Permission IDs granted by this role"
+      },
+      "responsibilities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Responsibility IDs required by this role"
+      }
+    }
+  },
+  "mechanism": "A named collection of {{permission}}s and {{responsibility}}s assigned to an {{agent}}. Decouples identity from capability, allowing agents to switch contexts by adopting different roles.",
+  "gloss": "Bundle of permissions and responsibilities",
+  "_meta": {
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_ref": "Role#d768",
+  "sema_id": "sema:Role#mh:SHA-256:d76856192b629f90887d51ec608840b05f8ef4dbf1e18d43ea91c09b0569aaa1",
+  "sema_stub": "d768",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "references": {
+      "responsibility": "sema:Responsibility#mh:SHA-256:f4524249a5c89d422baf6c357e331b8c3c3a4c59ef6289ab608d565a3d92ea27",
+      "permission": "sema:Permission#mh:SHA-256:f5838c2aa8a10fbf23b5ae4fee6c184698dffadca0eaeef6e4af07cb5c8b92c7",
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+    }
+  }
+}

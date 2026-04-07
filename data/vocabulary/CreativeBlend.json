@@ -1,0 +1,50 @@
+{
+  "handle": "CreativeBlend",
+  "derived_from": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
+  "gloss": "Generating novelty via combinatorial blending and noise",
+  "signature": [
+    "Strategy(Artifact)"
+  ],
+  "mechanism": "A generative {{strategy}} that produces an {{artifact}} by identifying orthogonal concepts in the {{context}} and fusing them via {{concept_blend}}. It applies {{noise_injection}} to the seed inputs to escape local optima. The output is filtered through a rigorous dual-{{check}} against {{novelty}} and {{value}}. Only artifacts passing both gates are yielded.",
+  "invariants": [
+    "Divergence: Output similarity to input < Threshold.",
+    "Utility: Must maintain structural coherence (not pure noise)."
+  ],
+  "parameters": [
+    {
+      "name": "temperature",
+      "type": "Float",
+      "range": "[0.7, 1.5]",
+      "description": "Randomness injection level"
+    }
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "tier": 2
+  },
+  "sema_ref": "CreativeBlend#c0ff",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:c0ff88a6e8346e53c9b84ad60aa4ccf127682371237a8266f1d2ed350c03ae99",
+  "sema_stub": "c0ff",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
+      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774",
+      "noise_injection": "sema:NoiseInjection#mh:SHA-256:53b36cfe3d333d99412073f819e001225b53449bd95438ec85e6c51087fa43df",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "accepts": {
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    },
+    "composes_with": {
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
+      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+    },
+    "yields": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+    }
+  }
+}

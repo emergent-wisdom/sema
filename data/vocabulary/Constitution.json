@@ -1,0 +1,67 @@
+{
+  "handle": "Constitution",
+  "mechanism": "A structured document defining the fundamental principles, immutable rights, and automated penalty rules for a group of {{agent}}s. It serves as the static input for oath binding.",
+  "gloss": "Immutable rule set",
+  "invariants": [
+    "Clarity: Rules must be machine-verifiable.",
+    "Stability: Cannot be modified without a formal {{amend_laws}} process."
+  ],
+  "sema_id": "sema:Constitution#mh:SHA-256:578070e3528997d840eee1ccf198c9d0651cf98ddde40c38235bdc5c2ad0d2ac",
+  "sema_ref": "Constitution#5780",
+  "sema_stub": "5780",
+  "_meta": {
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "constitution_id",
+      "version",
+      "invariants"
+    ],
+    "properties": {
+      "constitution_id": {
+        "type": "string"
+      },
+      "version": {
+        "type": "integer"
+      },
+      "invariants": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Immutable safety rules (cannot be voted away)"
+      },
+      "rights": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Guaranteed agent privileges"
+      },
+      "amendment_process": {
+        "type": "object",
+        "properties": {
+          "quorum_threshold": {
+            "type": "number"
+          },
+          "delay_period": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "amend_laws": "sema:AmendLaws#mh:SHA-256:d0739153b98a7784f1e2e6778d71390c4af279719a1f01bd2c42c0bf232f9a49"
+    }
+  }
+}
