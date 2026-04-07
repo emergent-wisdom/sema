@@ -27,22 +27,41 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configuration
-# If SEMA_DB_PATH is set (e.g. during development), use it.
-# Otherwise, ask the Client where the user's DB is.
+# Configuration — DB discovery order:
+#   1. SEMA_DB_PATH env var (explicit override)
+#   2. Bundled DB next to the installed package (`sema/data/taxonomy.db` — wheel force-include)
+#   3. Bundled DB in the source tree (`<repo>/data/taxonomy.db` — editable install / direct run)
+#   4. Bundled DB relative to CWD (`./data/taxonomy.db` — running from repo root)
+#   5. User DB via platformdirs client (may try to download)
 env_db_path = os.environ.get("SEMA_DB_PATH")
 if env_db_path:
     DB_PATH = env_db_path
     print(f"Using DB from ENV: {DB_PATH}")
 else:
-    # Use the Client to find the DB
-    try:
-        client = get_default_client()
-        DB_PATH = client.get_db_path()  # This will download it if missing!
-        print(f"Using User DB: {DB_PATH}")
-    except Exception as e:
-        print(f"Warning: Could not initialize client DB: {e}")
-        DB_PATH = "taxonomy.db"
+    from pathlib import Path as _Path
+    import sema as _sema_pkg
+
+    _candidate_paths = [
+        _Path(_sema_pkg.__file__).parent / "data" / "taxonomy.db",
+        _Path(__file__).resolve().parents[3] / "data" / "taxonomy.db",
+        _Path.cwd() / "data" / "taxonomy.db",
+    ]
+    DB_PATH = None
+    for _p in _candidate_paths:
+        if _p.exists():
+            DB_PATH = str(_p)
+            print(f"Using bundled DB: {DB_PATH}")
+            break
+
+    if DB_PATH is None:
+        # Last resort: ask the Client (which may try to download)
+        try:
+            client = get_default_client()
+            DB_PATH = client.get_db_path()
+            print(f"Using User DB: {DB_PATH}")
+        except Exception as e:
+            print(f"Warning: Could not initialize client DB: {e}")
+            DB_PATH = "taxonomy.db"
 
 print(f"Loading Registry with DB: {DB_PATH}")
 
