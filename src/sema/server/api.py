@@ -46,6 +46,7 @@ async def www_to_apex_redirect(request: Request, call_next):
         return RedirectResponse(url=f"https://{apex}{path}{query}", status_code=301)
     return await call_next(request)
 
+
 # Configuration — DB discovery order:
 #   1. SEMA_DB_PATH env var (explicit override)
 #   2. Bundled DB next to the installed package (`sema/data/taxonomy.db` — wheel force-include)
