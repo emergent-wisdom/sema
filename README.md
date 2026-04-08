@@ -8,7 +8,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/semahash.svg)](https://pypi.org/project/semahash/)
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf)
-[![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
+[![Code: MIT](https://img.shields.io/badge/Code-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
+[![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-lightgrey)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE-CONTENT)
 
 Sema is a semantic commons that content-addresses meaning itself: the definition *is* the identifier. By deriving identifiers from the cryptographic hash of a pattern's definition, any divergence in meaning produces a distinct hash, guaranteeing that misaligned agents halt rather than fail silently.
 
@@ -233,4 +234,17 @@ Want to add patterns, improve existing ones, or host the frontend locally? See [
 
 ## License
 
-MIT
+Sema is dual-licensed:
+
+- **Code** (everything in `src/`, `web/`, `experiments/`, `scripts/`, and the
+  package config) — [MIT](LICENSE). Self-host it, fork it, build commercial
+  products on top of it.
+- **Content** (the pattern vocabulary in `data/`, the documentation in `docs/`,
+  the academic paper in `paper/`, and the prose displayed on
+  [semahash.org](https://semahash.org)) —
+  [CC BY 4.0](LICENSE-CONTENT). Reuse the patterns and prose anywhere, for any
+  purpose including commercial, as long as you attribute Henrik Westerberg.
+
+For academic citation, see [`CITATION.cff`](CITATION.cff). GitHub renders this
+as a "Cite this repository" button on the project page that generates APA and
+BibTeX automatically.

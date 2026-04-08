@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react'
 import { useDocs, useAllDocs } from '@/hooks/useApi'
 import { cn } from '@/lib/utils'
 import { SemaLogo } from '@/components/SemaLogo'
+import { LicenseLine } from '@/components/LicenseLine'
 
 export function DocsPage() {
   const { data: docList, isLoading: isLoadingList } = useDocs()
@@ -204,6 +205,9 @@ export function DocsPage() {
                     <ArrowLeft className="w-4 h-4" />
                     Back to Pattern Library
                   </Link>
+                </div>
+                <div className="mt-8">
+                  <LicenseLine />
                 </div>
               </div>
             </div>

@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use Sema in your research or build on the pattern vocabulary,
+  please cite the preprint below. If you are citing the software
+  itself rather than the underlying ideas, the metadata at the top of
+  this file is also valid as a software citation.
+title: "Sema: Content-Addressed Semantics for Multi-Agent Coordination"
+abstract: >-
+  Sema is a semantic commons that content-addresses meaning itself:
+  the definition is the identifier. By deriving identifiers from the
+  cryptographic hash of a pattern's definition, any divergence in
+  meaning produces a distinct hash, guaranteeing that misaligned
+  agents halt rather than fail silently.
+authors:
+  - family-names: Westerberg
+    given-names: Henrik
+type: software
+url: "https://semahash.org"
+repository-code: "https://github.com/emergent-wisdom/sema"
+license: MIT
+keywords:
+  - multi-agent-systems
+  - alignment
+  - content-addressing
+  - semantic-coordination
+  - knowledge-graph
+  - mcp
+preferred-citation:
+  type: article
+  title: "Sema: Content-Addressing Meaning for Safe Multi-Agent Coordination"
+  authors:
+    - family-names: Westerberg
+      given-names: Henrik
+  year: 2026
+  notes: "Preprint"
+  url: "https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf"

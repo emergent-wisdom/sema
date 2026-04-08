@@ -6,6 +6,7 @@ import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
 import { ParsedText } from '@/components/DetailsPanel'
 import { SemaLogo } from '@/components/SemaLogo'
+import { LicenseLine } from '@/components/LicenseLine'
 
 // Context to allow pattern cards to register themselves and handle navigation
 type PatternNavigationContextType = {
@@ -413,6 +414,9 @@ export function HomePage() {
           <div className="flex items-center justify-between text-sm text-zinc-600">
             <p>Sema Pattern Vocabulary</p>
             <p>Content-addressed semantic coordination</p>
+          </div>
+          <div className="mt-3 flex justify-end">
+            <LicenseLine />
           </div>
         </div>
       </footer>
