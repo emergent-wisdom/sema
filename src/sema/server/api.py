@@ -39,6 +39,7 @@ if env_db_path:
     print(f"Using DB from ENV: {DB_PATH}")
 else:
     from pathlib import Path as _Path
+
     import sema as _sema_pkg
 
     _candidate_paths = [
