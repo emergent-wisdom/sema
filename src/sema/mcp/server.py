@@ -277,11 +277,17 @@ def sema_graph_skeleton() -> str:
 
 @mcp.tool()
 def sema_handshake(ref: str, your_hash: str | None = None) -> str:
-    """Fail-closed semantic verification (SpectralTune protocol).
+    """Byte-level definition agreement check between two agents.
 
-    Before coordinating using a Sema pattern, agents MUST verify they share
-    the same definition. This implements the Anti-Postel regime:
-    "Same bytes = PROCEED. Different bytes = HALT."
+    Verifies that the requesting agent and the local registry have the
+    *same definition* of a pattern, by comparing hash stubs. This is a
+    necessary precondition for shared reasoning about a pattern, but it
+    is NOT a guarantee of shared behavior: two agents can agree on the
+    definition text and still implement it differently. Think of it as
+    "we read the same paragraph," not "we will do the same thing."
+
+    Use this when you need to rule out silent vocabulary drift before
+    coordinating on a pattern. It does not replace behavioral testing.
 
     Args:
         ref: Pattern reference (e.g., "StateLock#2f3c" or "StateLock")
@@ -463,11 +469,19 @@ def sema_mint(pattern_json: str) -> str:
 
 @mcp.tool()
 def sema_propose_context(handles: list[str]) -> str:
-    """Propose a semantic context for multi-agent coordination.
+    """Propose a shared definition set for multi-agent coordination.
 
-    Generates a context set with a Merkle root hash that can be sent to
-    another agent for verification. The receiving agent calls
-    sema_verify_context with the same handles and compares roots.
+    Generates a Merkle root hash over a set of pattern definitions that
+    can be sent to another agent for verification. The receiving agent
+    calls sema_verify_context with the same handles and compares roots.
+
+    What this verifies: that both agents have byte-identical definitions
+    for every pattern in the set. What it does NOT verify: that both
+    agents will behave compatibly when executing those patterns. The hash
+    is a 32-bit abbreviation (8 hex chars); it is sufficient for detecting
+    accidental drift between cooperating agents, but it is not a security
+    primitive against an active adversary who can trivially brute-force
+    a matching 32-bit prefix.
 
     Workflow:
         1. Agent A: sema_propose_context(["StateLock", "Check", "Task"])

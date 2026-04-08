@@ -337,36 +337,90 @@ class RegistryManager:
 
     def search(self, query: str, use_semantic: bool = True) -> list[dict]:
         """Search the registry. Returns a list of dicts (compatible with SearchResult)."""
-        # 1. Keyword Search
+        import re
+
+        # 1. Keyword Search with tiered scoring
+        #
+        # Every keyword hit used to get a flat 1.0 regardless of where it
+        # matched, which meant a handle-match and a substring-buried-in-
+        # a-400-word-mechanism came back indistinguishable. Now each field
+        # has a weight, exact-word hits beat substring hits, and repeated
+        # hits accumulate so "consensus consensus consensus" beats a single
+        # off-hand mention.
         keyword_results = []
         query_lower = query.lower()
+
+        # Build a word-boundary regex for exact token matching.
+        # re.escape handles punctuation; \b gives us word boundaries.
+        try:
+            word_re = re.compile(rf"\b{re.escape(query_lower)}\b")
+        except re.error:
+            word_re = None
+
+        # Field weights (max attainable per field if the match is clean).
+        # Handle > signature > gloss > mechanism matches the cognitive
+        # hierarchy of what a term "means" in a pattern.
+        FIELD_WEIGHTS = {
+            "handle": 1.00,
+            "signature": 0.75,
+            "gloss": 0.70,
+            "mechanism": 0.55,
+        }
+
+        def _field_score(text: str, weight: float) -> float:
+            """Score a field: word-boundary hit gets full weight, substring
+            hit gets 60% of weight, and additional occurrences add a small
+            log bonus (so frequency matters but doesn't dominate)."""
+            if not text:
+                return 0.0
+            text_lower = text.lower()
+            if query_lower not in text_lower:
+                return 0.0
+            # Exact word hit beats substring hit
+            has_word = bool(word_re and word_re.search(text_lower))
+            base = weight if has_word else weight * 0.6
+            # Frequency bonus (capped)
+            n = text_lower.count(query_lower)
+            if n > 1:
+                import math
+                base = min(1.0, base + 0.05 * math.log2(n))
+            return base
+
         for handle, data in self.registry.items():
             gloss = data.get("gloss", "")
             mechanism = data.get("mechanism", "")
-            # Join signatures into a single string for searching
             signatures = " ".join(data.get("signature", []))
 
-            if (
-                query_lower in handle.lower()
-                or query_lower in gloss.lower()
-                or query_lower in mechanism.lower()
-                or query_lower in signatures.lower()
-            ):
-                # Resolve templates for the result snippet
-                resolved_gloss = self.resolve_templates(gloss)
-                resolved_mechanism = self.resolve_templates(mechanism)
+            # Per-field sub-scores
+            scores = {
+                "handle": _field_score(handle, FIELD_WEIGHTS["handle"]),
+                "signature": _field_score(signatures, FIELD_WEIGHTS["signature"]),
+                "gloss": _field_score(gloss, FIELD_WEIGHTS["gloss"]),
+                "mechanism": _field_score(mechanism, FIELD_WEIGHTS["mechanism"]),
+            }
+            total_score = max(scores.values())
+            if total_score == 0.0:
+                continue
 
-                result = {
-                    "handle": data.get("sema_ref", handle),
-                    "gloss": resolved_gloss,
-                    "mechanism": resolved_mechanism,
-                    "category": data.get("sema_category") or data.get("category", "Unknown"),
-                    "layer": data.get("sema_layer") or data.get("layer", "Unknown"),
-                    "sema_ref": data.get("sema_ref", f"{handle}#????"),
-                    "score": 1.0,  # Keyword match gets high score
-                    "source": "keyword",
-                }
-                keyword_results.append(result)
+            # Resolve templates for the result snippet
+            resolved_gloss = self.resolve_templates(gloss)
+            resolved_mechanism = self.resolve_templates(mechanism)
+
+            # Record which field the top score came from (debug aid)
+            matched_fields = [f for f, s in scores.items() if s > 0]
+
+            result = {
+                "handle": data.get("sema_ref", handle),
+                "gloss": resolved_gloss,
+                "mechanism": resolved_mechanism,
+                "category": data.get("sema_category") or data.get("category", "Unknown"),
+                "layer": data.get("sema_layer") or data.get("layer", "Unknown"),
+                "sema_ref": data.get("sema_ref", f"{handle}#????"),
+                "score": round(total_score, 3),
+                "source": "keyword",
+                "matched_fields": matched_fields,
+            }
+            keyword_results.append(result)
 
         # 2. Semantic Search (Optional)
         semantic_results = []

@@ -297,17 +297,143 @@ def search_patterns(query, use_semantic=False, verbose=False, as_json=False):
         print("  No matches found.")
 
 
+def _strip_stub(handle: str) -> str:
+    """Accept both bare handles ('Stigmergy') and stub-suffixed forms
+    ('Stigmergy#f624' or even full sema IDs), and return the bare handle."""
+    if not handle:
+        return handle
+    if handle.startswith("sema:"):
+        handle = handle[5:]
+    return handle.split("#", 1)[0]
+
+
 def resolve_graph(handle):
-    print(f"🕸️  Resolving Subgraph for: '{handle}'...")
+    bare_handle = _strip_stub(handle)
+    print(f"🕸️  Resolving Subgraph for: '{bare_handle}'...")
     manager = get_registry()
-    subgraph = manager.resolve(handle, depth=1)
+    subgraph = manager.resolve(bare_handle, depth=1)
     if not subgraph:
-        print(f"❌ Pattern '{handle}' not found or could not be resolved.")
+        print(f"❌ Pattern '{bare_handle}' not found or could not be resolved.")
         return
     print(f"✅ Resolved Context ({len(subgraph)} patterns):")
     for k in subgraph.keys():
         print(f"  - {k}")
     return subgraph
+
+
+def show_pattern(handle):
+    """Print a pattern's full body: mechanism, invariants, pre/post conditions,
+    failure modes, parameters, and dependencies. This is the primary read-path
+    for literate-semantics use: 'give me the definition behind this inline ref'."""
+    try:
+        from rich.console import Console
+        from rich.panel import Panel
+        from rich.text import Text
+
+        _rich = True
+        console = Console()
+    except ImportError:
+        _rich = False
+        console = None
+
+    bare_handle = _strip_stub(handle)
+    manager = get_registry()
+    pattern = manager.get_pattern(bare_handle)
+    if not pattern:
+        print(f"❌ Pattern '{bare_handle}' not found.")
+        return
+
+    # Title with sema_ref if available
+    ref = pattern.get("sema_ref") or bare_handle
+    title = f"{ref}"
+
+    def _print_field(label, value):
+        if value is None or value == "" or value == [] or value == {}:
+            return
+        if _rich:
+            console.print(f"[bold cyan]{label}[/bold cyan]")
+            if isinstance(value, list):
+                for item in value:
+                    console.print(f"  • {item}")
+            elif isinstance(value, dict):
+                for k, v in value.items():
+                    console.print(f"  [dim]{k}[/dim]: {v}")
+            else:
+                console.print(f"  {value}")
+            console.print()
+        else:
+            print(f"{label}:")
+            if isinstance(value, list):
+                for item in value:
+                    print(f"  • {item}")
+            elif isinstance(value, dict):
+                for k, v in value.items():
+                    print(f"  {k}: {v}")
+            else:
+                print(f"  {value}")
+            print()
+
+    if _rich:
+        console.print(Panel(Text(title, style="bold green"), expand=False))
+        meta = pattern.get("_meta", {})
+        if meta:
+            layer = meta.get("layer", "—")
+            category = meta.get("category", "—")
+            tier = meta.get("tier", "—")
+            console.print(
+                f"[dim]Layer:[/dim] {layer}  "
+                f"[dim]Category:[/dim] {category}  "
+                f"[dim]Tier:[/dim] {tier}"
+            )
+            console.print()
+    else:
+        print(f"=== {title} ===")
+        print()
+
+    _print_field("Gloss", pattern.get("gloss"))
+    _print_field("Mechanism", pattern.get("mechanism"))
+    _print_field("Signature", pattern.get("signature"))
+    _print_field("Invariants", pattern.get("invariants"))
+    _print_field("Preconditions", pattern.get("preconditions"))
+    _print_field("Postconditions", pattern.get("postconditions"))
+    _print_field("Failure modes", pattern.get("failure_modes"))
+    _print_field("Parameters", pattern.get("parameters"))
+
+    deps = pattern.get("dependencies") or {}
+    if deps:
+        if _rich:
+            console.print("[bold cyan]Dependencies[/bold cyan]")
+        else:
+            print("Dependencies:")
+        for section in ("references", "composes_with", "accepts", "yields"):
+            section_deps = deps.get(section) or {}
+            if not section_deps:
+                continue
+            if _rich:
+                console.print(f"  [dim]{section}[/dim]")
+            else:
+                print(f"  {section}")
+            for key, ref_str in section_deps.items():
+                # Shorten sema:Handle#mh:SHA-256:hash to Handle#stub
+                short = ref_str
+                if short.startswith("sema:"):
+                    short = short[5:]
+                if "#mh:SHA-256:" in short:
+                    name, _, hashpart = short.partition("#mh:SHA-256:")
+                    short = f"{name}#{hashpart[:4]}"
+                if _rich:
+                    console.print(f"    {key} → [green]{short}[/green]")
+                else:
+                    print(f"    {key} → {short}")
+        if _rich:
+            console.print()
+
+    if _rich:
+        console.print(f"[dim]ID: {pattern.get('sema_id', '—')}[/dim]")
+    else:
+        print(f"ID: {pattern.get('sema_id', '—')}")
+
+    return pattern
 
 
 def show_skeleton():
@@ -382,8 +508,18 @@ def main():
     search.add_argument("--json", action="store_true", help="JSON output")
 
     # Resolve
-    resolve = subparsers.add_parser("resolve", help="Resolve pattern dependencies")
+    resolve = subparsers.add_parser(
+        "resolve",
+        help="Resolve pattern dependencies (accepts 'Handle' or 'Handle#stub')",
+    )
     resolve.add_argument("handle")
+
+    # Show
+    show = subparsers.add_parser(
+        "show",
+        help="Print a pattern's full definition (accepts 'Handle' or 'Handle#stub')",
+    )
+    show.add_argument("handle")
 
     # Skeleton
     subparsers.add_parser("skeleton", help="Show the graph skeleton")
@@ -392,12 +528,18 @@ def main():
     subparsers.add_parser("pull", help="Download latest DB")
 
     # Serve
-    serve = subparsers.add_parser("serve", help="Start API server")
+    serve = subparsers.add_parser(
+        "serve",
+        help="Start API server [requires: pip install semahash[api]]",
+    )
     serve.add_argument("--host", default="0.0.0.0")
     serve.add_argument("--port", type=int, default=3000)
 
     # MCP
-    subparsers.add_parser("mcp", help="Start MCP server")
+    subparsers.add_parser(
+        "mcp",
+        help="Start MCP server [requires: pip install semahash[mcp]]",
+    )
 
     args = parser.parse_args()
 
@@ -409,6 +551,8 @@ def main():
         )
     elif args.command == "resolve":
         resolve_graph(args.handle)
+    elif args.command == "show":
+        show_pattern(args.handle)
     elif args.command == "skeleton":
         show_skeleton()
     elif args.command == "pull":
