@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { useDocs, useAllDocs } from '@/hooks/useApi'
 import { cn } from '@/lib/utils'
+import { SemaLogo } from '@/components/SemaLogo'
 
 export function DocsPage() {
   const { data: docList, isLoading: isLoadingList } = useDocs()
@@ -67,15 +68,15 @@ export function DocsPage() {
       {/* Floating header */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
         <div className="max-w-[1400px] mx-auto px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center">
-              <span className="text-emerald-400 text-sm font-mono">S</span>
+          <Link to="/" className="flex items-center gap-4 group">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:from-emerald-500/30 group-hover:to-emerald-500/10 transition-colors">
+              <SemaLogo className="w-5 h-5" />
             </div>
             <div>
               <h1 className="text-lg font-medium tracking-tight">Documentation</h1>
               <p className="text-xs text-zinc-500">Sema Protocol Specification</p>
             </div>
-          </div>
+          </Link>
           <Link
             to="/"
             className="flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-200 transition-colors group"
