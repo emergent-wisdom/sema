@@ -383,6 +383,7 @@ class RegistryManager:
             n = text_lower.count(query_lower)
             if n > 1:
                 import math
+
                 base = min(1.0, base + 0.05 * math.log2(n))
             return base
 
