@@ -4,21 +4,36 @@ Use Sema patterns as semantic contracts in your OpenClaw agents.
 
 ## Setup
 
-### 1. Install Sema and mcporter
+### Fastest: zero-install via uvx
+
+If you have [uv](https://docs.astral.sh/uv/) installed, let `uvx` manage an
+isolated environment and skip the pip step:
 
 ```bash
-pip install "semahash[mcp] @ git+https://github.com/emergent-wisdom/sema.git"
 npm install -g mcporter
+mcporter config add sema \
+  --command uvx \
+  --arg --from --arg semahash --arg sema --arg mcp \
+  --scope home \
+  --description "Sema: Content-addressed semantics for multi-agent coordination"
 ```
 
-### 2. Register Sema as an MCP server
+### Alternative: pip install
 
 ```bash
+pip install "semahash[mcp]"
+npm install -g mcporter
 mcporter config add sema --command sema --arg mcp --scope home \
   --description "Sema: Content-addressed semantics for multi-agent coordination"
 ```
 
-### 3. Verify
+Or install from source for development:
+
+```bash
+pip install "semahash[mcp] @ git+https://github.com/emergent-wisdom/sema.git"
+```
+
+### Verify
 
 ```bash
 mcporter list sema --schema     # should show 11 tools
@@ -31,7 +46,7 @@ Any OpenClaw agent with the `mcporter` skill can now call Sema tools:
 
 ```
 mcporter call sema.sema_search query="coordination"
-mcporter call sema.sema_handshake ref="StateLock#a375"
+mcporter call sema.sema_handshake ref="StateLock#7859"
 mcporter call sema.sema_resolve handle="ChainOfThought"
 ```
 
@@ -50,9 +65,9 @@ Before coordinating with other agents on a shared concept, verify alignment:
 3. Only proceed if verdict is `PROCEED`. On `HALT`, stop and report the mismatch.
 
 Key patterns for this workspace:
-- `StateLock#a375` — mutex for shared state
-- `Check#0a1b` — non-blocking truth evaluation
-- `PUREBrainstorming#55d8` — structured ideation (Filter -> Refine -> Specify)
+- `StateLock#7859` — mutex for shared state
+- `Check#1544` — non-blocking truth evaluation
+- `PUREBrainstorming#9191` — structured ideation (Filter -> Refine -> Specify)
 ```
 
 ## Multi-Agent Example
@@ -67,14 +82,14 @@ openclaw agents add engineer --workspace ~/.openclaw/agents/engineer/workspace -
 
 In `architect`'s AGENTS.md, add:
 ```markdown
-Before delegating a design task, handshake on MechanisticDesignProposal#ad31
+Before delegating a design task, handshake on MechanisticDesignProposal#8cf7
 to ensure the engineer shares your contract for what a valid proposal looks like.
 ```
 
 In `engineer`'s AGENTS.md, add:
 ```markdown
 When receiving a design task, verify the contract:
-mcporter call sema.sema_handshake ref="MechanisticDesignProposal#ad31"
+mcporter call sema.sema_handshake ref="MechanisticDesignProposal#8cf7"
 Only begin work if verdict is PROCEED.
 ```
 

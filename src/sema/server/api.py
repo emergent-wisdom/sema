@@ -4,9 +4,9 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -26,6 +26,25 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# www → apex 301 redirect.
+# Only matches hosts that literally start with "www.", so Railway's
+# internal health check (Host: healthcheck.railway.app) and apex
+# requests pass through untouched. Hardcoding https:// is safe here:
+# Railway terminates TLS at the edge and only public traffic reaches
+# this process, so any www.* request originated as HTTPS.
+@app.middleware("http")
+async def www_to_apex_redirect(request: Request, call_next):
+    host = request.headers.get("host", "")
+    # Strip optional :port suffix before the prefix check
+    host_no_port = host.split(":", 1)[0]
+    if host_no_port.startswith("www."):
+        apex = host_no_port[4:]
+        path = request.url.path
+        query = f"?{request.url.query}" if request.url.query else ""
+        return RedirectResponse(url=f"https://{apex}{path}{query}", status_code=301)
+    return await call_next(request)
 
 # Configuration — DB discovery order:
 #   1. SEMA_DB_PATH env var (explicit override)
@@ -522,6 +541,38 @@ def get_paper():
     if paper_path.exists():
         return FileResponse(paper_path, media_type="application/pdf", filename="sema.pdf")
     return JSONResponse({"error": "Paper not found"}, status_code=404)
+
+
+# ── MCP Registry ───────────────────────────────────────────────────────────────
+# Serve server.json at /.well-known/mcp/server.json per the 2026 MCP Registry
+# discovery convention (registry.modelcontextprotocol.io). Also available at
+# /server.json for convenience.
+
+
+def _find_server_json() -> Path | None:
+    """Locate server.json in the repo root (editable install) or CWD (deployed)."""
+    root = _get_repo_root()
+    if root and (root / "server.json").exists():
+        return root / "server.json"
+    cwd_candidate = Path.cwd() / "server.json"
+    if cwd_candidate.exists():
+        return cwd_candidate
+    return None
+
+
+@app.get("/.well-known/mcp/server.json")
+def get_well_known_server_json():
+    from fastapi.responses import FileResponse
+
+    path = _find_server_json()
+    if path is None:
+        raise HTTPException(status_code=404, detail="server.json not found")
+    return FileResponse(path, media_type="application/json")
+
+
+@app.get("/server.json")
+def get_server_json():
+    return get_well_known_server_json()
 
 
 # ── Static Frontend ───────────────────────────────────────────────────────────

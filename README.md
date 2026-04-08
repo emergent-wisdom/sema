@@ -1,3 +1,5 @@
+<!-- mcp-name: io.github.emergent-wisdom/semahash -->
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/emergent-wisdom/sema/main/docs/images/sema_banner.png" alt="Sema — When the hash is the word" width="800">
 </p>
@@ -7,6 +9,7 @@
 **Content-addressed semantics for multi-agent coordination.**
 
 [![PyPI](https://img.shields.io/pypi/v/semahash.svg)](https://pypi.org/project/semahash/)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blue)](https://registry.modelcontextprotocol.io/servers/io.github.emergent-wisdom/semahash)
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf)
 [![Code: MIT](https://img.shields.io/badge/Code-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-lightgrey)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE-CONTENT)
@@ -16,6 +19,20 @@ Sema is a semantic commons that content-addresses meaning itself: the definition
 **Web:** [semahash.org](https://semahash.org)
 
 ## Install
+
+### Claude Code (zero-install via uvx)
+
+The fastest way to add sema to Claude Code — no prior `pip install` needed:
+
+```bash
+claude mcp add sema -- uvx --from semahash sema mcp
+```
+
+This uses [uv](https://docs.astral.sh/uv/) to download, install, and run sema
+in an isolated environment on first invocation, then caches it for subsequent
+calls. Same shape as `npx -y` in the Node ecosystem.
+
+### Permanent install (pip)
 
 ```bash
 pip install semahash
@@ -27,24 +44,25 @@ For MCP server support (recommended for AI agents):
 pip install "semahash[mcp]"
 ```
 
-## Quick Start
-
-### Use with AI Agents (MCP)
-
-Add Sema to **Claude Code** in one command:
+Then register with Claude Code:
 
 ```bash
 claude mcp add sema -- sema mcp
 ```
 
-Add Sema to **OpenClaw** via mcporter:
+## Quick Start
+
+### Use with AI Agents (MCP)
+
+Already covered above via the `uvx` or `pip install` paths. To add Sema to
+**OpenClaw** via mcporter:
 
 ```bash
 npm install -g mcporter
 mcporter config add sema --command sema --arg mcp --scope home
 ```
 
-Or clone and install locally:
+Or clone and install locally for development:
 
 ```bash
 git clone https://github.com/emergent-wisdom/sema.git
@@ -101,10 +119,10 @@ import json
 
 # Look up the canonical hash
 result = json.loads(sema_handshake("StateLock"))
-print(result["canonical_ref"])  # StateLock#a375
+print(result["canonical_ref"])  # StateLock#7859
 
 # Verify alignment
-result = json.loads(sema_handshake("StateLock#a375"))
+result = json.loads(sema_handshake("StateLock#7859"))
 print(result["verdict"])  # PROCEED
 ```
 
@@ -125,8 +143,8 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Agent A: "Let's use StateLock#a375"
-Agent B: sema_handshake("StateLock#a375")
+Agent A: "Let's use StateLock#7859"
+Agent B: sema_handshake("StateLock#7859")
          -> PROCEED (hashes match) or HALT (drift detected)
 ```
 
@@ -150,7 +168,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | Tool | Description |
 |------|-------------|
 | `sema_search` | Search patterns by name, description, or meaning |
-| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#a375`) |
+| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#7859`) |
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
@@ -199,6 +217,23 @@ See [`experiments/sema_design_challenge/README.md`](experiments/sema_design_chal
 - **16.9x average token compression** via content-addressed stubs
 - **Fail-closed architecture** — mismatches halt, never fail silently
 - **Mean embedding similarity of 0.21** — high structural distinctness
+
+## Using with understanding-graph
+
+Sema gives your agents shared *semantic* memory — a vocabulary of cognitive patterns with content-addressed identity. [Understanding Graph](https://github.com/emergent-wisdom/understanding-graph) gives them shared *episodic* memory — the actual thinking trail behind a decision. They compose:
+
+```bash
+claude mcp add sema -- uvx --from semahash sema mcp
+claude mcp add ug   -- npx -y understanding-graph mcp
+```
+
+With both installed, an agent can:
+
+1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#7859`) so the meaning of the primitive can never drift.
+2. Use `graph_semantic_search` to find all past graph nodes that reference a given sema pattern — hash-stable history, not keyword matching.
+3. Call `sema_handshake` *before* writing a decision that depends on a shared concept; if it returns `HALT`, the agent writes a `tension` node instead and stops, preventing silent divergence.
+
+Full walkthrough: [docs/using-with-understanding-graph.md](docs/using-with-understanding-graph.md)
 
 ## Repository Structure
 

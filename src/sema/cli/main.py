@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from ..client import get_default_client
@@ -314,7 +315,8 @@ def resolve_graph(handle):
     subgraph = manager.resolve(bare_handle, depth=1)
     if not subgraph:
         print(f"❌ Pattern '{bare_handle}' not found or could not be resolved.")
-        return
+        # Non-zero exit so scripts and shell pipelines can detect the failure.
+        sys.exit(1)
     print(f"✅ Resolved Context ({len(subgraph)} patterns):")
     for k in subgraph.keys():
         print(f"  - {k}")
@@ -341,7 +343,8 @@ def show_pattern(handle):
     pattern = manager.get_pattern(bare_handle)
     if not pattern:
         print(f"❌ Pattern '{bare_handle}' not found.")
-        return
+        # Non-zero exit so scripts and shell pipelines can detect the failure.
+        sys.exit(1)
 
     # Title with sema_ref if available
     ref = pattern.get("sema_ref") or bare_handle
@@ -514,8 +517,23 @@ def run_mcp():
     mcp.run()
 
 
+def _resolve_version() -> str:
+    try:
+        from importlib.metadata import PackageNotFoundError, version
+
+        return version("semahash")
+    except PackageNotFoundError:
+        return "unknown"
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sema CLI")
+    parser.add_argument(
+        "--version",
+        "-V",
+        action="version",
+        version=f"sema (semahash) {_resolve_version()}",
+    )
     subparsers = parser.add_subparsers(dest="command")
 
     # Apply - atomic add/remove
