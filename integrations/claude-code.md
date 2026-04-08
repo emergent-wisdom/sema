@@ -28,7 +28,7 @@ It should call `sema_search` and return matching patterns.
 
 ## Usage
 
-Once added, Claude Code can call any of the 8 Sema tools:
+Once added, Claude Code can call any of the 11 Sema tools:
 
 ```
 sema_search query="coordination"
@@ -39,6 +39,9 @@ sema_tree layer="Society"
 sema_validate pattern_json='{"handle": "MyPattern", ...}'
 sema_stats
 sema_graph_skeleton
+sema_mint pattern_json='{"handle": "NewIdea", ...}'
+sema_propose_context handles='["StateLock", "Check"]'
+sema_verify_context handles='["StateLock", "Check"]' remote_hash="..."
 ```
 
 ## Project Configuration

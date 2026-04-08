@@ -62,6 +62,13 @@ class PatternMeta(BaseModel):
     )
     # Optional fields that exist in some patterns
     related: list[str] | None = Field(default=None, description="Related patterns")
+    # Versioning hook (see docs/VERSIONING.md). Optional list of full sema_id
+    # strings of older definitions this pattern is intended to replace. Purely
+    # a metadata claim — old hashes still resolve, sema_handshake still HALTs
+    # on stub mismatch. Future tooling can walk supersession chains.
+    supersedes: list[str] | None = Field(
+        default=None, description="Older sema_ids this pattern is intended to replace"
+    )
 
     @model_validator(mode="after")
     def validate_category_for_layer(self) -> "PatternMeta":

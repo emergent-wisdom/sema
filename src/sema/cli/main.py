@@ -451,7 +451,37 @@ def update_db():
         print(f"❌ Update failed: {e}")
 
 
-def run_server(host="0.0.0.0", port=3000):
+def init_registry(path: str):
+    """Create an empty taxonomy DB at <path>.
+
+    Calls GraphStore(path), which auto-initializes the schema (nodes, edges,
+    indexes) when given a fresh path. Prints the export line so subsequent
+    `sema` commands use the new registry.
+    """
+    from ..taxonomy_graph.graph_store import GraphStore
+
+    target = Path(path).expanduser().resolve()
+    if target.exists():
+        print(f"❌ Path already exists: {target}")
+        print("   Choose a different path, or remove the existing file first.")
+        return False
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+
+    # GraphStore auto-creates schema on a fresh path
+    GraphStore(str(target))
+
+    print(f"✅ Created empty registry at {target}")
+    print("")
+    print("To use this registry in subsequent sema commands:")
+    print(f"  export SEMA_DB_PATH={target}")
+    print("")
+    print("Then add patterns with:")
+    print("  sema apply --add path/to/MyPattern.json")
+    return True
+
+
+def run_server(host="127.0.0.1", port=3000):
     try:
         import uvicorn
     except ImportError:
@@ -524,6 +554,13 @@ def main():
     # Skeleton
     subparsers.add_parser("skeleton", help="Show the graph skeleton")
 
+    # Init - create an empty registry
+    init_cmd = subparsers.add_parser(
+        "init",
+        help="Create an empty taxonomy DB at <path> (for building your own vocabulary)",
+    )
+    init_cmd.add_argument("path", help="Filesystem path for the new SQLite registry")
+
     # Pull
     subparsers.add_parser("pull", help="Download latest DB")
 
@@ -532,7 +569,7 @@ def main():
         "serve",
         help="Start API server [requires: pip install semahash[api]]",
     )
-    serve.add_argument("--host", default="0.0.0.0")
+    serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=3000)
 
     # MCP
@@ -555,6 +592,8 @@ def main():
         show_pattern(args.handle)
     elif args.command == "skeleton":
         show_skeleton()
+    elif args.command == "init":
+        init_registry(args.path)
     elif args.command == "pull":
         update_db()
     elif args.command == "serve":

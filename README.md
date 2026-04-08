@@ -66,12 +66,31 @@ sema search "coordination"
 # Look up a specific pattern
 sema resolve StateLock
 
+# Print a pattern's full definition
+sema show StateLock
+
 # Browse the graph structure
 sema skeleton
 
-# Start local API + web frontend
+# Start local API + web frontend (binds to 127.0.0.1 by default)
 sema serve
 ```
+
+### Bring Your Own Vocabulary
+
+Build a private registry from scratch — no PR or maintainer in the loop:
+
+```bash
+sema init ./mylib.db
+export SEMA_DB_PATH=$(pwd)/mylib.db
+sema apply --add path/to/MyPattern.json
+sema search "..."
+```
+
+Subsequent `sema` commands (including `sema mcp`) read from your private
+registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
+contribution path and [docs/versioning.md](docs/versioning.md) for the
+refinement and supersession policy.
 
 ### Use in Python
 
@@ -114,7 +133,7 @@ This is the **Anti-Postel principle**: same bytes = PROCEED, different bytes = H
 
 ## The Vocabulary
 
-450 patterns across 13 categories and 4 layers:
+453 patterns across 13 categories and 4 layers:
 
 - **Physics** — Immutable substrate (locks, entropy, causality)
 - **Mind** — Hybrid cognition (reasoning, inference, strategy)
@@ -134,7 +153,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
-| `sema_propose_context` | Generate a Merkle root for a multi-agent context set |
+| `sema_propose_context` | Compute a context digest for a multi-agent definition set (drift detection) |
 | `sema_verify_context` | Verify a context proposal from another agent |
 | `sema_tree` | Browse vocabulary by layer and category |
 | `sema_validate` | Validate a pattern JSON for correctness |
@@ -185,7 +204,7 @@ See [`experiments/sema_design_challenge/README.md`](experiments/sema_design_chal
 ```
 sema/
 ├── src/sema/              Core library (hashing, validation, MCP server, API)
-├── data/                  Vocabulary (450 pattern cards + taxonomy database)
+├── data/                  Vocabulary (453 pattern cards + taxonomy database)
 ├── docs/                  Documentation (philosophy, schema spec, CLI reference)
 ├── paper/                 Academic paper (sema.tex)
 ├── web/                   Web frontend (React + Three.js graph visualization)

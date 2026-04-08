@@ -3,6 +3,8 @@
 import json
 import sys
 from collections import defaultdict
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
 
 from mcp.server.fastmcp import FastMCP
 
@@ -13,6 +15,13 @@ from ..core.registry import RegistryManager, get_default_db_path, get_default_vo
 # Initialize Config
 CONFIG = get_config()
 PROFILE = CONFIG.get_active_profile()
+
+# Resolve our own package version dynamically so the MCP `initialize` response
+# advertises semahash's version rather than the FastMCP SDK's version.
+try:
+    _SEMA_VERSION = _pkg_version("semahash")
+except PackageNotFoundError:
+    _SEMA_VERSION = "unknown"
 
 # Initialize server
 mcp = FastMCP(
@@ -31,6 +40,11 @@ mcp = FastMCP(
         "verify them to ensure alignment. Mint new ones when existing patterns don't fit."
     ),
 )
+
+# FastMCP's constructor does not expose `version=`, but the underlying low-level
+# Server (which renders the MCP `initialize` response) does. Set it directly so
+# `serverInfo.version` reflects semahash's release, not the FastMCP SDK version.
+mcp._mcp_server.version = _SEMA_VERSION
 
 
 # Configuration - use shared path resolution from registry
@@ -86,8 +100,21 @@ def sema_resolve(handle: str, depth: int = 1) -> str:
     if not subgraph:
         return json.dumps({"error": f"Pattern '{handle}' not found"})
 
+    # Re-fetch each pattern via get_pattern() so template placeholders like
+    # {{vote}} are resolved to their canonical refs (e.g. Vote#cae4). This
+    # keeps sema_resolve and sema_lookup output consistent — both go through
+    # the same template-resolution path. Without this, sema_resolve leaks
+    # raw {{...}} placeholders that sema_lookup never shows.
+    rendered = {}
+    for entry_handle in subgraph.keys():
+        clean = entry_handle.split("#")[0]
+        resolved_pattern = REGISTRY_MGR.get_pattern(clean)
+        # Fall back to the raw subgraph entry if get_pattern misses (shouldn't
+        # happen for anything resolve() returned, but be defensive).
+        rendered[entry_handle] = resolved_pattern or subgraph[entry_handle]
+
     return json.dumps(
-        {"root": handle, "depth": depth, "patterns": subgraph, "count": len(subgraph)}, indent=2
+        {"root": handle, "depth": depth, "patterns": rendered, "count": len(rendered)}, indent=2
     )
 
 
@@ -471,17 +498,22 @@ def sema_mint(pattern_json: str) -> str:
 def sema_propose_context(handles: list[str]) -> str:
     """Propose a shared definition set for multi-agent coordination.
 
-    Generates a Merkle root hash over a set of pattern definitions that
-    can be sent to another agent for verification. The receiving agent
-    calls sema_verify_context with the same handles and compares roots.
+    Computes a truncated SHA-256 digest over the sorted set of canonicalized
+    pattern definitions in `handles`. The receiving agent calls
+    sema_verify_context with the same handles and compares digests.
 
-    What this verifies: that both agents have byte-identical definitions
-    for every pattern in the set. What it does NOT verify: that both
-    agents will behave compatibly when executing those patterns. The hash
-    is a 32-bit abbreviation (8 hex chars); it is sufficient for detecting
-    accidental drift between cooperating agents, but it is not a security
-    primitive against an active adversary who can trivially brute-force
-    a matching 32-bit prefix.
+    Properties of the digest:
+      - Order-independent: this is a SET digest, not a Merkle tree. Two
+        agents that submit the same handles in different orders produce
+        the same digest.
+      - 32 bits wide (8 hex chars). That gives roughly a 65k collision
+        domain — sufficient to catch ACCIDENTAL vocabulary drift between
+        cooperating agents, but NOT a security primitive: an active
+        adversary can trivially brute-force a matching 4-byte prefix.
+      - What it verifies: that both agents have byte-identical definitions
+        for every pattern in the set.
+      - What it does NOT verify: that both agents will behave compatibly
+        when executing those patterns.
 
     Workflow:
         1. Agent A: sema_propose_context(["StateLock", "Check", "Task"])
@@ -494,7 +526,7 @@ def sema_propose_context(handles: list[str]) -> str:
         handles: List of pattern handles to include in the context.
 
     Returns:
-        JSON with the context hash (Merkle root) and pattern refs.
+        JSON with the context_hash (truncated SHA-256 set digest) and pattern refs.
     """
     from ..core.actions import _compute_context_hash
 
@@ -528,6 +560,7 @@ def sema_propose_context(handles: list[str]) -> str:
     return json.dumps(
         {
             "context_hash": context_hash,
+            "digest_kind": "truncated SHA-256 set digest, 32 bits",
             "patterns": refs,
             "count": len(patterns),
             "action": "Send context_hash to the other agent. They verify with sema_verify_context.",
@@ -540,8 +573,11 @@ def sema_propose_context(handles: list[str]) -> str:
 def sema_verify_context(handles: list[str], remote_hash: str) -> str:
     """Verify a semantic context proposed by another agent.
 
-    Computes the local Merkle root for the given pattern set and compares
-    it against the remote agent's hash. PROCEED if identical, HALT if not.
+    Computes the local truncated SHA-256 set digest for the given pattern set
+    and compares it against the remote agent's digest. PROCEED if identical,
+    HALT if not. The digest is a drift-detection primitive between cooperating
+    agents, not a security primitive against an adversary (see
+    sema_propose_context for details).
 
     Args:
         handles: List of pattern handles in the proposed context.
@@ -592,11 +628,16 @@ def sema_verify_context(handles: list[str], remote_hash: str) -> str:
         return json.dumps(
             {
                 "verdict": "HALT",
-                "reason": "CONTEXT DRIFT DETECTED",
+                "reason": "Context digest mismatch",
                 "local_hash": local_hash,
                 "remote_hash": remote_hash,
                 "patterns": handles,
-                "action": "DO NOT PROCEED. Vocabulary mismatch detected.",
+                "action": (
+                    "Vocabularies differ on at least one pattern in this set. "
+                    "Inspect which handles resolved to which hashes (sema_handshake) "
+                    "to find the disagreement. This is a drift-detection signal between "
+                    "cooperating agents, not an authenticated security check."
+                ),
             },
             indent=2,
         )

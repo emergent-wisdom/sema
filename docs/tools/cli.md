@@ -5,7 +5,13 @@ The **Sema CLI** (`sema`) is the primary tool for managing the vocabulary. It en
 ## Installation
 
 ```bash
-pip install -e .
+pip install semahash
+```
+
+For development against this repo:
+
+```bash
+pip install -e ".[full]"
 ```
 
 ## Features
@@ -15,6 +21,19 @@ pip install -e .
 *   **Dependency Checking:** Prevents removing patterns that are still in use.
 
 ## Commands
+
+### init - Create an Empty Registry
+
+Creates a fresh, empty taxonomy database at `<path>` so you can build your
+own vocabulary from scratch without touching the bundled canonical one.
+
+```bash
+sema init ./mylib.db
+```
+
+The output prints the `export SEMA_DB_PATH=...` line to set in your shell.
+Once exported, every subsequent `sema` command (`search`, `apply`, `mcp`,
+`serve`, ...) reads from your private registry instead of the bundled one.
 
 ### apply - Atomic Add/Remove
 
@@ -57,10 +76,23 @@ sema search --json "verification"
 
 ### resolve - Resolve Dependencies
 
-Shows the dependency subgraph for a pattern.
+Shows the dependency subgraph for a pattern. Accepts a bare handle or a
+handle with a stub (`Handle#stub`).
 
 ```bash
 sema resolve <Handle>
+sema resolve 'Stigmergy#f624'
+```
+
+### show - Print Pattern Definition
+
+Prints a pattern's full body: gloss, mechanism, invariants, pre/post
+conditions, failure modes, parameters, and dependencies. The primary
+read-path for "give me the definition behind this inline ref."
+
+```bash
+sema show <Handle>
+sema show 'StateLock#7859'
 ```
 
 ### skeleton - Graph Overview
@@ -81,10 +113,15 @@ sema pull
 
 ### serve - Start API Server
 
-Starts the REST API server.
+Starts the REST API server. Defaults to `127.0.0.1` (loopback only) so
+local-dev installs are not exposed to the LAN. Pass `--host 0.0.0.0`
+explicitly when you actually want to bind on all interfaces (e.g.
+when running inside a container or on a remote box).
 
 ```bash
-sema serve --host 0.0.0.0 --port 3000
+sema serve                           # localhost only (recommended)
+sema serve --port 3001               # different port
+sema serve --host 0.0.0.0 --port 80  # explicit external bind
 ```
 
 ### mcp - Start MCP Server

@@ -21,7 +21,7 @@ mcporter config add sema --command sema --arg mcp --scope home \
 ### 3. Verify
 
 ```bash
-mcporter list sema --schema     # should show 8 tools
+mcporter list sema --schema     # should show 11 tools
 mcporter call sema.sema_stats   # vocabulary stats
 ```
 

@@ -418,6 +418,7 @@ DOCS_ORDER = [
     ("specification/naming", "Naming Taxonomy"),
     ("specification/schema", "Schema Spec"),
     ("specification/validation", "Validation Rules"),
+    ("versioning", "Versioning & Refinement"),
     ("tools/cli", "CLI Reference"),
     ("integrations/claude-code", "Claude Code Integration"),
     ("integrations/openclaw", "OpenClaw Integration"),
