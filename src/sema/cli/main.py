@@ -507,12 +507,26 @@ def run_server(host="127.0.0.1", port=3000):
 
 
 def run_mcp():
+    # Loud, fast failure if the optional `mcp` dependency is missing.
+    # The previous version printed to stdout and returned exit-0, which made
+    # `sema mcp` look successful to a parent process (an MCP host like
+    # OpenClaw bundle-mcp) while actually never starting the JSON-RPC loop.
+    # The host then connects to a process that has already exited and sees
+    # "MCP error -32000: Connection closed", which is a useless symptom.
+    # Print to stderr, exit with non-zero, so the parent gets a real signal.
     try:
         from ..mcp.server import mcp
-    except ImportError:
-        print("MCP server requires extra dependencies. Install with:")
-        print('  pip install "semahash[mcp]"')
-        return
+    except ImportError as e:
+        print(
+            "ERROR: sema mcp requires the optional `mcp` dependency.\n"
+            "Install with:\n"
+            '  pip install "semahash[mcp]"\n'
+            "or with uv:\n"
+            "  uv tool install 'semahash[mcp]'\n"
+            f"underlying ImportError: {e}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     mcp.run()
 
