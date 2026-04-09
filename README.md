@@ -11,6 +11,7 @@
 [![PyPI](https://img.shields.io/pypi/v/semahash.svg)](https://pypi.org/project/semahash/)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blue)](https://registry.modelcontextprotocol.io/servers/io.github.emergent-wisdom/semahash)
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19462703.svg)](https://doi.org/10.5281/zenodo.19462703)
 [![Code: MIT](https://img.shields.io/badge/Code-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-lightgrey)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE-CONTENT)
 
@@ -259,13 +260,19 @@ Want to add patterns, improve existing ones, or host the frontend locally? See [
 ## Citing
 
 ```bibtex
-@unpublished{westerberg2026sema,
-  title={Sema: Content-Addressing Meaning for Safe Multi-Agent Coordination},
-  author={Westerberg, Henrik},
-  year={2026},
-  note={Preprint}
+@misc{westerberg2026sema,
+  title        = {Sema: When the Hash Is the Word},
+  author       = {Westerberg, Henrik},
+  year         = {2026},
+  month        = apr,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.19462703},
+  url          = {https://doi.org/10.5281/zenodo.19462703}
 }
 ```
+
+See [`CITATION.cff`](CITATION.cff) for the machine-readable version (GitHub
+renders a "Cite this repository" button from it).
 
 ## License
 
