@@ -536,3 +536,5 @@ function MarkdownContent({ content, onNavigate }: { content: string; onNavigate?
 
   return <>{elements}</>
 }
+
+export default DocsPage;

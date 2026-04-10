@@ -25,3 +25,7 @@ venv/
 *.toc
 texput.log
 *.db.bak
+
+# React Router build output
+web/build/
+web/.react-router/

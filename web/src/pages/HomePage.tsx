@@ -849,3 +849,5 @@ function PatternDetails({ patternId }: { patternId: string }) {
     </div>
   )
 }
+
+export default HomePage;

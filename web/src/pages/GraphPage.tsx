@@ -46,3 +46,5 @@ export function GraphPage() {
     </div>
   )
 }
+
+export default GraphPage;
