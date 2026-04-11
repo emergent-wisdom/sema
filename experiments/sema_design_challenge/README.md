@@ -44,7 +44,7 @@ These results are discussed in Section 6 of the [Sema paper](../../paper/sema.pd
    pip install "semahash[mcp]"
    ```
 
-3. **emergent-swarm** is bundled at `../emergent-swarm/` (no separate install needed)
+3. **orchestrator** is bundled at `../orchestrator/` (no separate install needed)
 
 ### Run
 

@@ -5,10 +5,10 @@ set -e
 cd "$(dirname "$0")"
 
 # ---- CONFIGURATION ----
-SWARM_DIR="$(cd "$(dirname "$0")/../emergent-swarm" && pwd)"
+SWARM_DIR="$(cd "$(dirname "$0")/../orchestrator" && pwd)"
 
 if [ ! -d "$SWARM_DIR/src/swarm" ]; then
-    echo "ERROR: emergent-swarm not found at $SWARM_DIR"
+    echo "ERROR: orchestrator not found at $SWARM_DIR"
     exit 1
 fi
 

@@ -246,7 +246,7 @@ sema/
 ├── paper/                 Academic paper (sema.tex)
 ├── web/                   Web frontend (React + Three.js graph visualization)
 ├── experiments/
-│   ├── emergent-swarm/    Multi-agent engine (bundled for experiment reproduction)
+│   ├── orchestrator/      Multi-agent engine (bundled for experiment reproduction)
 │   ├── sema_design_challenge/  Main experiment (3 conditions, 5 runs, full traces)
 │   └── demos/             Standalone demos (local handshake, Babel Test)
 ├── integrations/          Integration guides (Claude Code, OpenClaw, any MCP client)
