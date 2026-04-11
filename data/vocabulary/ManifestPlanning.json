@@ -28,16 +28,16 @@
   "dependencies": {
     "composes_with": {
       "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
-      "optimize": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8"
+      "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32"
+    },
+    "yields": {
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
     },
     "accepts": {
       "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
     },
     "references": {
       "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
-    },
-    "yields": {
-      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
     }
   }
 }

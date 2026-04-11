@@ -31,16 +31,16 @@
       "Retry"
     ]
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:2f1d8b8a48bde0bf6a349e7646499abc99fa274b880a1606f7226859cac2f3cf",
-  "sema_ref": "Compensate#2f1d",
-  "sema_stub": "2f1d",
+  "sema_id": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
+  "sema_ref": "Compensate#81a5",
+  "sema_stub": "81a5",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
-      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
     }
   }
 }

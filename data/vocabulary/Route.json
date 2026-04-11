@@ -1,6 +1,6 @@
 {
   "handle": "Route",
-  "mechanism": "A classifier that examines a {{task}} input and directs it to a specialized downstream handler. Enables separation of concerns\u2014different query types get different prompts, tools, or models. Can route based on intent, complexity, domain, or cost optimization (simple queries to small models, complex to large).",
+  "mechanism": "A classifier that examines a {{task}} input and directs it to a specialized downstream handler. Enables separation of concerns\u2014different query types get different prompts, tools, or models. Routes based on type tags, metadata fields, token weight, or configurable dispatch rules (simple queries to small models, complex to large).",
   "gloss": "Classify input and direct to specialized handler",
   "failure_modes": [
     "Misrouting: Input sent to wrong specialist, causing errors.",
@@ -13,7 +13,7 @@
   ],
   "preconditions": [
     "Input query",
-    "Router logic/embeddings"
+    "Router logic configured"
   ],
   "postconditions": [
     "Query dispatched"
@@ -27,11 +27,11 @@
     ],
     "ring": 0
   },
+  "sema_ref": "Route#9698",
+  "sema_id": "sema:Route#mh:SHA-256:96986e6c4fccc6496d735394acf1f4c7c5a4ae72cee77e0686fbaf3a8b9021b6",
+  "sema_stub": "9698",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Route#mh:SHA-256:627330c3657b0c1829a6841757736f62c16a41a7309e3c317aa933893d6a23ec",
-  "sema_ref": "Route#6273",
-  "sema_stub": "6273",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"

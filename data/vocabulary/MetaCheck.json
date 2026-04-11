@@ -46,10 +46,10 @@
   ],
   "dependencies": {
     "references": {
-      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
       "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
-      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f"
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
     }
   }
 }

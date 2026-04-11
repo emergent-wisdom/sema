@@ -38,21 +38,21 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:CostlySignal#mh:SHA-256:7fe2d815d2edd1dddec88a02544199266b0f4038fc4cb445781b948df677100e",
-  "sema_ref": "CostlySignal#7fe2",
-  "sema_stub": "7fe2",
+  "sema_id": "sema:CostlySignal#mh:SHA-256:8d9224acfbac324627894e043fc971712a7747625feb431d829423ba90ca0f36",
+  "sema_ref": "CostlySignal#8d92",
+  "sema_stub": "8d92",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "composes_with": {
+      "attention_markets": "sema:AttentionMarkets#mh:SHA-256:45c58856dcc5f1dd258552665a7a9a7c16ee4792d43085bb698223de0494daba"
     },
     "accepts": {
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
-    },
-    "composes_with": {
-      "attention_markets": "sema:AttentionMarkets#mh:SHA-256:abdda155165282a52b447988e6d25eb9bb85e9e6deaaf8983eeaf16f3aa05180"
     }
   }
 }

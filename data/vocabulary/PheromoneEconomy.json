@@ -8,9 +8,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:PheromoneEconomy#mh:SHA-256:0a9cf79644f47bce5442d6962fec3f7db60a90dd80d6d95010d1c8cef052fa34",
-  "sema_ref": "PheromoneEconomy#0a9c",
-  "sema_stub": "0a9c",
+  "sema_id": "sema:PheromoneEconomy#mh:SHA-256:b9781dfc56239ae21db6feef94e7c4655fd4f805b843e746437c72d03731df40",
+  "sema_ref": "PheromoneEconomy#b978",
+  "sema_stub": "b978",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [
@@ -18,10 +18,10 @@
   ],
   "dependencies": {
     "references": {
-      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
+      "ghost_trail": "sema:GhostTrail#mh:SHA-256:4fa7221e47350680f6a0ac94a1a1ddb34819c99aec937633cbaa1ceebd7c2426",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "ghost_trail": "sema:GhostTrail#mh:SHA-256:91ae8d7d1b3e4bd39696fc0583fae5f2238600d7a041e010374c7edc01732cd2",
-      "stigmergy": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed"
+      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08"
     }
   }
 }

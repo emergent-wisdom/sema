@@ -8,15 +8,15 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Switch#mh:SHA-256:70bf716e37b356e0da9e2d0d61e6708bdc56999b69cc12895546f2b350add433",
-  "sema_ref": "Switch#70bf",
-  "sema_stub": "70bf",
+  "sema_id": "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0",
+  "sema_ref": "Switch#e7f9",
+  "sema_stub": "e7f9",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826"
     }
   }
 }

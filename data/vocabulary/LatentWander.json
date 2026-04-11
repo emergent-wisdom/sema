@@ -17,16 +17,16 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:LatentWander#mh:SHA-256:a7bbe4b0a0097d7bd9f2d7f53b8344e287325135d15c95fae4144d82bf827c55",
-  "sema_ref": "LatentWander#a7bb",
-  "sema_stub": "a7bb",
+  "sema_id": "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc",
+  "sema_ref": "LatentWander#7495",
+  "sema_stub": "7495",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
-      "silence": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5"
+      "silence": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5"
     },
     "yields": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef"
     }
   }
 }

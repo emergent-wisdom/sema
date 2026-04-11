@@ -20,27 +20,27 @@
       "RecursionDive"
     ]
   },
-  "sema_id": "sema:CognitiveSolver#mh:SHA-256:4962ffd534b3a87584f3ba6c57f7db3ae2aa0fd0461fd0363f35418cc3cfe8b7",
-  "sema_ref": "CognitiveSolver#4962",
-  "sema_stub": "4962",
+  "sema_id": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
+  "sema_ref": "CognitiveSolver#42e5",
+  "sema_stub": "42e5",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "references": {
-      "card": "sema:Card#mh:SHA-256:5c33034fedd84e9d8e42887c003d5b96a694d0549292dd796c3dbcbfe76a06dd",
-      "validate": "sema:Validate#mh:SHA-256:d5018c864dd80aa794446437d5487e49f24b8598fb5d3a2b83e90034559aca0a",
-      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:d154cc0926f79078e6b81f336ac51b220771d88bbf92605a87c2c029eeb99600"
+    "composes_with": {
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
     },
-    "composes_with": {
-      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
-      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416"
+    "references": {
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
+      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+      "card": "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626",
+      "validate": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619"
     },
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"

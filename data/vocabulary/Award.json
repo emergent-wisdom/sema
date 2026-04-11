@@ -15,27 +15,27 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "Award#2eda",
-  "sema_id": "sema:Award#mh:SHA-256:2eda44e2b2ebcf367563cd9dd7ac71e47a431f6aeeb4c0f2c5e9c6683ca877ad",
-  "sema_stub": "2eda",
+  "sema_ref": "Award#cfe2",
+  "sema_id": "sema:Award#mh:SHA-256:cfe24da55c73b4046503716821d17f42264ac98b8a7e5f0289582b01dbb604ed",
+  "sema_stub": "cfe2",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
+    "yields": {
+      "contract": "sema:Contract#mh:SHA-256:06241d8925a848e07b8b7afab2c37767b126c3f2363faba11bcc455ebb6a4d04"
+    },
     "composes_with": {
-      "held_release": "sema:HeldRelease#mh:SHA-256:5b7a43f760dc439c0880f720faf1be428aa39a119e55a579d249aa264a38ee93",
       "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
-      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
+      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba",
+      "held_release": "sema:HeldRelease#mh:SHA-256:3ed68df815a35cd4f70e51c3504036ced51f92529b82c4ac9bb4fa2e1d5c5436"
     },
     "accepts": {
-      "bid": "sema:Bid#mh:SHA-256:48d97b6e0556034fa6db2caa671a80dc91dcc7a44076a8c431dd4f3a998dc3df"
-    },
-    "yields": {
-      "contract": "sema:Contract#mh:SHA-256:c6c68e2ebb85a6553bcc7a4f4e1c77974d93278776e01b52a38a0bcf0ebcc521"
+      "bid": "sema:Bid#mh:SHA-256:cf07d1105de889786c1fbb618128ab03b34964fa4a7ab983c8d0f4d1d984b43e"
     },
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "solver": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982"
+      "solver": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }

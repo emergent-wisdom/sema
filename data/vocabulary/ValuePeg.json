@@ -8,9 +8,9 @@
   "invariants": [
     "Solvency: Reserves > Outstanding Liabilities * RiskRatio."
   ],
-  "sema_id": "sema:ValuePeg#mh:SHA-256:7e8eaa680a2ad7598e455b8fd143c9be258bc867fe1a275d5d8ce028178b83b9",
-  "sema_ref": "ValuePeg#7e8e",
-  "sema_stub": "7e8e",
+  "sema_id": "sema:ValuePeg#mh:SHA-256:def2c4ac346c611054e090f40bddc3061b5916e620bf1f707e496fe8a739c26b",
+  "sema_ref": "ValuePeg#def2",
+  "sema_stub": "def2",
   "_meta": {
     "tier": 1,
     "layer": "Society",
@@ -21,9 +21,9 @@
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "costly_signal": "sema:CostlySignal#mh:SHA-256:7fe2d815d2edd1dddec88a02544199266b0f4038fc4cb445781b948df677100e",
-      "optimize": "sema:Optimize#mh:SHA-256:8d99fc3f0ebcde99f9d4780f191ec7bf5a68d86e7d11f2ae603b2968569165d8"
+      "costly_signal": "sema:CostlySignal#mh:SHA-256:8d9224acfbac324627894e043fc971712a7747625feb431d829423ba90ca0f36",
+      "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     },
     "yields": {
       "exchange_rate": "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6"

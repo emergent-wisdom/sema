@@ -10,20 +10,20 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:7a20ef5a5e26b921795d01365b68115c87d9a88bae3096f7cc7a801b0c005fc5",
-  "sema_ref": "IdentityHandshake#7a20",
-  "sema_stub": "7a20",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:3a336d82fa7e2ee48ba131781e470179d64be0f70915687a6adcc65fff2c05a9",
+  "sema_ref": "IdentityHandshake#3a33",
+  "sema_stub": "3a33",
   "signature": [
     "Discover(Identity)"
   ],
   "dependencies": {
     "references": {
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
-      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4",
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
-      "mode": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
+      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
+      "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
       "nature": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b"
     }
   }

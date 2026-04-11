@@ -8,9 +8,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:533499acf3ed3270a039dca18f66b170db485ddf56e47d72b68f770dce949da1",
-  "sema_ref": "TraceBelief#5334",
-  "sema_stub": "5334",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
+  "sema_ref": "TraceBelief#cee3",
+  "sema_stub": "cee3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -18,10 +18,10 @@
   ],
   "dependencies": {
     "references": {
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:66d1bce1c5f8f3e89c65fe64b6dd3c79519bdbe5f5837d397900a37a41b372fb",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
+      "belief": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
-      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca"
     }
   }
 }

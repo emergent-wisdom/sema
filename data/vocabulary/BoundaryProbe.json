@@ -17,21 +17,21 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e",
-  "sema_ref": "BoundaryProbe#3c6b",
-  "sema_stub": "3c6b",
+  "sema_id": "sema:BoundaryProbe#mh:SHA-256:f6fe36cd7f7c8478eea578a1b5e75e07a31dedcb9170ea0b06882ab18eeec55c",
+  "sema_ref": "BoundaryProbe#f6fe",
+  "sema_stub": "f6fe",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
       "assumption": "sema:Assumption#mh:SHA-256:efb5be2691c91cb98b493543154f2a9d7d492911088e3bf1cbc048f5ac317978",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
     },
     "composes_with": {
-      "sacrificial_probe": "sema:SacrificialProbe#mh:SHA-256:2372fc7a6d00a9d9b86f5f5cd7561ec60a8527973ff52b395f3ec3f56b5c78e4"
+      "sacrificial_probe": "sema:SacrificialProbe#mh:SHA-256:1e1674548e3438a28f913e340d956e5178aeb8710176e56251ef9370de28e544"
     }
   }
 }

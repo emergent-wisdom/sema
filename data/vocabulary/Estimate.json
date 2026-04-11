@@ -28,9 +28,6 @@
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "yields": {
-      "bid": "sema:Bid#mh:SHA-256:48d97b6e0556034fa6db2caa671a80dc91dcc7a44076a8c431dd4f3a998dc3df"
-    },
     "composes_with": {
       "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
     },
@@ -41,6 +38,9 @@
     },
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    },
+    "yields": {
+      "bid": "sema:Bid#mh:SHA-256:cf07d1105de889786c1fbb618128ab03b34964fa4a7ab983c8d0f4d1d984b43e"
     }
   }
 }

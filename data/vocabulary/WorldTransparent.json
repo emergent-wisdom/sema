@@ -21,14 +21,14 @@
     "category": "Governance",
     "ring": 0
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:d41625e457165f80e273facbf7f629bdab7d95ee14d0c3aa47187e76e0883708",
-  "sema_ref": "WorldTransparent#d416",
-  "sema_stub": "d416",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977",
+  "sema_ref": "WorldTransparent#0212",
+  "sema_stub": "0212",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:9c747b016714b86321307b5a7e0259f3b0ff1a039dd2002f463fc449971dd6d2",
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
   }

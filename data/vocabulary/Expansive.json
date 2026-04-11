@@ -14,15 +14,15 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:ad2d13d8dd381d371d93239e0b1c63176aa1126bbc96fc52ce12f392c10dbaf2",
-  "sema_ref": "Expansive#ad2d",
-  "sema_stub": "ad2d",
+  "sema_id": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
+  "sema_ref": "Expansive#c3b7",
+  "sema_stub": "c3b7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }

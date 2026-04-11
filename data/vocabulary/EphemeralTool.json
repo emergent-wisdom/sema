@@ -23,16 +23,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:EphemeralTool#mh:SHA-256:1c6b7afef01dd8056cf26d516b3a1e0295b471ab1f6a7a3b7651287caf28f602",
-  "sema_ref": "EphemeralTool#1c6b",
-  "sema_stub": "1c6b",
+  "sema_id": "sema:EphemeralTool#mh:SHA-256:1595c94276c9d1541df7b5136a6eb5b2800abef1a438a6d2af406a8e99c4a804",
+  "sema_ref": "EphemeralTool#1595",
+  "sema_stub": "1595",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416"
     }

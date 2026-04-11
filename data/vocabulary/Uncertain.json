@@ -1,6 +1,6 @@
 {
   "handle": "Uncertain",
-  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Utilizes {{deep_research}}, {{uncertainty_map}}, {{socratic_loop}}.",
+  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Tagged nodes become high-priority targets for information retrieval. Tracked via {{uncertainty_map}}.",
   "gloss": "Epistemic status: genuinely don't know",
   "failure_modes": [
     "False Certainty: {{agent}} feels pressure to answer and fabricates a 'likely' answer instead of using this flag.",
@@ -23,18 +23,16 @@
     "category": "Primitives",
     "ring": 2
   },
-  "sema_id": "sema:Uncertain#mh:SHA-256:b89402ced2faa010330940d426790c0bff7c6ca70294ca53aae0fe6b141d8223",
-  "sema_ref": "Uncertain#b894",
-  "sema_stub": "b894",
+  "sema_ref": "Uncertain#d530",
+  "sema_id": "sema:Uncertain#mh:SHA-256:d530cb44023db8c31fcf38084d2880df7e6a9d0c51f3785cb7a42d75bd504bf8",
+  "sema_stub": "d530",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
+      "uncertainty_map": "sema:UncertaintyMap#mh:SHA-256:942cea71810d05d014de70e85cd6ef591b81424bdba2b6ade8866f5ed440caeb",
       "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "deep_research": "sema:DeepResearch#mh:SHA-256:79f86b19fda4bc37f9986854d2c0720b6dbce79c39362c99401e1e29ab7e3105",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
-      "uncertainty_map": "sema:UncertaintyMap#mh:SHA-256:e883a452d9ec2e4bb7fcb99c34edc45d4584115f6cc128aa61100d84c1b14bc4"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

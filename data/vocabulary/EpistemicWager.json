@@ -26,23 +26,23 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "EpistemicWager#7002",
-  "sema_id": "sema:EpistemicWager#mh:SHA-256:7002fc120e47e469f6f1d97f88849ae1f6ca3f94ca4104641d85a1ed15b804bd",
-  "sema_stub": "7002",
+  "sema_ref": "EpistemicWager#89cd",
+  "sema_id": "sema:EpistemicWager#mh:SHA-256:89cd0f3477891b2e87b2d6ad54fd445356c30031c5b0c80ffe5f1868b712e3c3",
+  "sema_stub": "89cd",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "oracle": "sema:Oracle#mh:SHA-256:45e5ab8c062bb4acc74eb83dedc96772014b28cc2203519199fbac0dd1f944e4",
-      "spot_audit": "sema:SpotAudit#mh:SHA-256:6e72e0806208b60fe980eb7a3c502423706fbe9a46b83b8ad2a46fbdcb24eb7e",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "oracle": "sema:Oracle#mh:SHA-256:1537b697dabd1dcda5ae750a5e90a58fe151c322522f511a0b0c26ceb38d6ca3",
       "falsification": "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+      "belief": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
+      "spot_audit": "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d"
     },
     "composes_with": {
-      "mirror_stake": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0"
+      "mirror_stake": "sema:MirrorStake#mh:SHA-256:38a3f024c71c10914811321131a706e94eb9502808878d06439becf1c46b8daf",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487"
     }
   }
 }

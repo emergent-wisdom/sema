@@ -14,15 +14,15 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Novelty#mh:SHA-256:2218bd2b82619a01d35eb54e4160c5975abf23e46c3611a85db5442537dad3f5",
-  "sema_ref": "Novelty#2218",
-  "sema_stub": "2218",
+  "sema_id": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
+  "sema_ref": "Novelty#51b5",
+  "sema_stub": "51b5",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }

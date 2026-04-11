@@ -22,17 +22,17 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:56ee9ccc63ee18c8800066de71f4727ed77b74fcdb37ed597e2a7015a9f20521",
-  "sema_ref": "LatticeCommit#56ee",
-  "sema_stub": "56ee",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0",
+  "sema_ref": "LatticeCommit#3c5d",
+  "sema_stub": "3c5d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
+      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
     }
   }
 }

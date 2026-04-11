@@ -25,9 +25,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:5b8b36ccee0d571309ff7d7b8d31b30e4c1338bd7189d19950e2bc89083a2e7c",
-  "sema_ref": "DeepResearch#5b8b",
-  "sema_stub": "5b8b",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
+  "sema_ref": "DeepResearch#cbe3",
+  "sema_stub": "cbe3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -35,11 +35,11 @@
   ],
   "dependencies": {
     "references": {
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4",
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
-      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797"
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9"
     }
   }
 }

@@ -15,8 +15,8 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
-      "goal": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a"
+      "goal": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
     }
   }
 }

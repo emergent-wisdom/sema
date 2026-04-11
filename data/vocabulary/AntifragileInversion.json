@@ -21,18 +21,18 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:AntifragileInversion#mh:SHA-256:bf629c568b2bc34726a23d021ef0459528da2aa6084d5f011d3f1abf93b88de4",
-  "sema_ref": "AntifragileInversion#bf62",
-  "sema_stub": "bf62",
+  "sema_id": "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c",
+  "sema_ref": "AntifragileInversion#6b0e",
+  "sema_stub": "6b0e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc",
+      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9"
     }
   }
 }

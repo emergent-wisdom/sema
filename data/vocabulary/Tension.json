@@ -12,9 +12,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:Tension#mh:SHA-256:f398756ed7e5152f907750a4a841be04460a6192e90c016a75579eb53e41bb44",
-  "sema_ref": "Tension#f398",
-  "sema_stub": "f398",
+  "sema_id": "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5",
+  "sema_ref": "Tension#5493",
+  "sema_stub": "5493",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "data_schema": {
@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "references": {
-      "dialectic": "sema:Dialectic#mh:SHA-256:fae9f2cb66a8be390dad665ac54ed7415746a76ac5a20ff3e983dbf7d3983940",
+      "dialectic": "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242",
       "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0"
     }
   }

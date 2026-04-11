@@ -28,16 +28,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:87944cff5800be8185dcd8ec13bb1c2f4f1455562e387b1ab8d57205f17073ba",
-  "sema_ref": "CognitiveEcho#8794",
-  "sema_stub": "8794",
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758",
+  "sema_ref": "CognitiveEcho#4a95",
+  "sema_stub": "4a95",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270"
+      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

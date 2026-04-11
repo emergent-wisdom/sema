@@ -3,7 +3,7 @@
   "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast\u2014amendments require a new Ballot.",
   "gloss": "Immutable container for collective decision inputs",
   "failure_modes": [
-    "Spoiled {{select}}ion: Ambiguous or invalid ballot format.",
+    "Spoiled ballot: ambiguous or invalid {{select}} format.",
     "Double Voting: Single agent submitting multiple ballots (Sybil risk)."
   ],
   "invariants": [
@@ -16,11 +16,6 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Ballot#mh:SHA-256:c5c5f7a0dc23a23835d0b9f8ce25f104818431062160e753010e4077e7a27062",
-  "sema_ref": "Ballot#c5c5",
-  "sema_stub": "c5c5",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -57,6 +52,11 @@
       }
     }
   },
+  "sema_ref": "Ballot#f1d7",
+  "sema_id": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
+  "sema_stub": "f1d7",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"

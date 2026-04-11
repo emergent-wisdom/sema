@@ -8,16 +8,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:6b3327e2478c8a2203ec76f8f65c0473ed629b1099375c4928096a27f209b69d",
-  "sema_ref": "Aesthetics#6b33",
-  "sema_stub": "6b33",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
+  "sema_ref": "Aesthetics#0be2",
+  "sema_stub": "0be2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
       "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8"
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
     }
   }
 }

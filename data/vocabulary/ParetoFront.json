@@ -44,8 +44,8 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f"
+      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

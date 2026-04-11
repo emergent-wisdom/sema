@@ -37,9 +37,9 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "output_guard": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0",
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "output_guard": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0"
     }
   }
 }

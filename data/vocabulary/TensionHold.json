@@ -1,15 +1,16 @@
 {
   "handle": "TensionHold",
-  "mechanism": "Cognitive Suspension protocol. When two high-confidence inputs conflict (A \u22a5 B), the {{agent}} instantiates a {{tension}} object that binds them together. This blocks downstream decision-making until a reconciling insight (Pattern C) is found via {{dialectic}} or {{synthesis}}.",
+  "mechanism": "Cognitive Suspension protocol. When two high-confidence inputs conflict (A \u22a5 B), the {{agent}} instantiates a {{tension}} object that binds them together. This blocks downstream decision-making until a reconciling insight (Pattern C) is found via {{dialectic}} or {{synthesis}}, or until the hold timeout expires.",
   "gloss": "Maintain contradictions without premature resolution",
   "failure_modes": [
     "Premature Convergence: {{agent}} resolves {{tension}} by arbitrarily discarding one side to reduce cognitive load.",
     "Tension Blindness: {{agent}} treats a contradiction as a simple error/hallucination and ignores it.",
-    "Analysis Paralysis: Accumulating {{tension}} objects without ever triggering {{dialectic}} resolution."
+    "Analysis Paralysis: Accumulating {{tension}} objects without ever triggering {{dialectic}} resolution.",
+    "Timeout Waste: Hold expires without resolution, forcing fallback when more time would have yielded insight."
   ],
   "invariants": [
     "No Selection: Output cannot be simply 'A' or 'B' (must be {{tension}}{A,B}).",
-    "Persistence: {{tension}} object remains active until explicitly resolved via {{synthesis}} or Falsification."
+    "Persistence: {{tension}} object remains active until explicitly resolved via {{synthesis}}, Falsification, or timeout expiry."
   ],
   "preconditions": [
     "Mutually exclusive valid inputs identified",
@@ -19,25 +20,33 @@
     "Execution flow diverted to Information Retrieval (to break the tie)",
     "{{tension}} object created in Graph"
   ],
+  "parameters": [
+    {
+      "name": "timeout",
+      "type": "Duration",
+      "range": "[5m, 48h]",
+      "description": "Maximum hold duration before fallback to Yield, Compromise, or Escalation"
+    }
+  ],
   "_meta": {
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:TensionHold#mh:SHA-256:3496a834ef59ae72725054b262f7844a7551f9c917348b95e704b84e0265a558",
-  "sema_ref": "TensionHold#3496",
-  "sema_stub": "3496",
+  "sema_ref": "TensionHold#cca2",
+  "sema_id": "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0",
+  "sema_stub": "cca2",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "yields": {
-      "tension": "sema:Tension#mh:SHA-256:01e63bf25f762dff619e7125453ed1434525f7c40adfdb1b6391db6713e872bc"
-    },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "dialectic": "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242",
       "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
-      "dialectic": "sema:Dialectic#mh:SHA-256:fae9f2cb66a8be390dad665ac54ed7415746a76ac5a20ff3e983dbf7d3983940"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+    },
+    "yields": {
+      "tension": "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5"
     }
   }
 }

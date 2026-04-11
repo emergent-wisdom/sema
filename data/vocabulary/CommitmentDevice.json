@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:dbdf489fe9ee22b624663046242ea471580d1e8d01330ff806f6e058f99d6427",
-  "sema_ref": "CommitmentDevice#dbdf",
-  "sema_stub": "dbdf",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:b706eb4f41562594083392b3100c37ba37fa19524ac0fb409b289be8e483774b",
+  "sema_ref": "CommitmentDevice#b706",
+  "sema_stub": "b706",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {
@@ -49,8 +49,8 @@
   },
   "dependencies": {
     "references": {
-      "oath_bind": "sema:OathBind#mh:SHA-256:745d8a967eac5ad0c50551cd7b5ee6e0e3d53cd4cc94f1a51e01fd8ba1db0f97",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "oath_bind": "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

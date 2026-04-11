@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Compose#mh:SHA-256:41f61756a73065e6a7b3a80e1ac9938567f7e22dd85d437fd96be12a8ea8ce6f",
-  "sema_ref": "Compose#41f6",
-  "sema_stub": "41f6",
+  "sema_id": "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14",
+  "sema_ref": "Compose#4f8d",
+  "sema_stub": "4f8d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -31,8 +31,8 @@
   ],
   "dependencies": {
     "references": {
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:f9c4407f0371d044b56406239b07a23ee59980c6f9a907203126ad34b085a885",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5",
+      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008",
       "combine": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6"
     }
   }

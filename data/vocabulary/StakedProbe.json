@@ -16,16 +16,16 @@
     "tier": 2,
     "ring": 1
   },
-  "sema_id": "sema:StakedProbe#mh:SHA-256:c52fef498943c78c929563f2efeca09fc762e23468cccf80e2782bda0f1b3cb0",
-  "sema_ref": "StakedProbe#c52f",
-  "sema_stub": "c52f",
+  "sema_id": "sema:StakedProbe#mh:SHA-256:9067f232b8b1e22dd6fea285aba19b2253c4e9737892e9a2d117eba259731a51",
+  "sema_ref": "StakedProbe#9067",
+  "sema_stub": "9067",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "derived_from": "Probe",
   "dependencies": {
     "composes_with": {
-      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
-      "mirror_stake": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82"
+      "mirror_stake": "sema:MirrorStake#mh:SHA-256:38a3f024c71c10914811321131a706e94eb9502808878d06439becf1c46b8daf",
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa"
     }
   }
 }

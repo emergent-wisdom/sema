@@ -1,28 +1,28 @@
 {
   "handle": "StateLock",
-  "mechanism": "A coordination pattern where two {{agent}}s temporarily 'fuse' a subset of their writable {{state}}. During the {{lock}}, changes require a cryptographic signature from both. Contention triggers {{backoff}} and {{cooldown}}.",
+  "mechanism": "A coordination pattern where two {{actor}}s temporarily 'fuse' a subset of their writable {{state}}. During the {{lock}}, changes require a cryptographic signature from both. Contention triggers {{backoff}} and {{cooldown}}.",
   "gloss": "Atomic coordination via temporary state fusion",
-  "sema_id": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c",
-  "sema_ref": "StateLock#7859",
-  "sema_stub": "7859",
   "_meta": {
     "layer": "Physics",
     "category": "Time",
     "ring": 0,
     "tier": 1
   },
-  "sema_layer": "Physics",
-  "sema_category": "Time",
   "signature": [
     "Lock(State)"
   ],
+  "sema_ref": "StateLock#b91b",
+  "sema_id": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a",
+  "sema_stub": "b91b",
+  "sema_layer": "Physics",
+  "sema_category": "Time",
   "dependencies": {
     "references": {
-      "lock": "sema:Lock#mh:SHA-256:5bf2a80b6c73a11da68f702922d5180259c75ff50fb094607da3ab4d7c167dc2",
-      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "cooldown": "sema:Cooldown#mh:SHA-256:0cde8197149b258f1e6126f179b30468c12cb5e35352fcd0a8ae0bce0823c8ac",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "actor": "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89"
     }
   }
 }

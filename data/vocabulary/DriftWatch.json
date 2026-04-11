@@ -39,15 +39,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:45def9613965f9a51777a3cce031db4cccc7b248d1735bd8000b7df65960ec51",
-  "sema_ref": "DriftWatch#45de",
-  "sema_stub": "45de",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
+  "sema_ref": "DriftWatch#a20d",
+  "sema_stub": "a20d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
     }
   }
 }

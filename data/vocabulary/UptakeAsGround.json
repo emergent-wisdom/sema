@@ -24,15 +24,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:bf85a9c0007f86f2da7894e9d641b420a58bd189236ac8bbd907d349b08abf73",
-  "sema_ref": "UptakeAsGround#bf85",
-  "sema_stub": "bf85",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
+  "sema_ref": "UptakeAsGround#d5f3",
+  "sema_stub": "d5f3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "modest_claim": "sema:ModestClaim#mh:SHA-256:a257e1318e9ba89e290893692bb9745712457fdbfa45bb99f4e58e00349c6277",
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "modest_claim": "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb"
     }
   }
 }

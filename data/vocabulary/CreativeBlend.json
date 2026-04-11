@@ -24,27 +24,27 @@
     "ring": 1,
     "tier": 2
   },
-  "sema_ref": "CreativeBlend#22d2",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:22d24a773a6e4e883d7e777636cd7969e9c22646234a78352f09f6a0b8faff30",
-  "sema_stub": "22d2",
+  "sema_ref": "CreativeBlend#cc91",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:cc9130dd92520118a4b6047b2544fa67126e7bf2c81285c792a2f9c6433c3e75",
+  "sema_stub": "cc91",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774",
-      "noise_injection": "sema:NoiseInjection#mh:SHA-256:53b36cfe3d333d99412073f819e001225b53449bd95438ec85e6c51087fa43df",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "noise_injection": "sema:NoiseInjection#mh:SHA-256:08547db652ddf20462b64c7a0824173b7ccc1612c5fb2537a9785d8fb517fc49",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e"
+    },
+    "yields": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
     },
     "accepts": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
     },
     "composes_with": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
-    },
-    "yields": {
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5"
     }
   }
 }

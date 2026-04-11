@@ -28,11 +28,11 @@
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "yields": {
-      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
-    },
     "accepts": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    },
+    "yields": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
     }
   }
 }

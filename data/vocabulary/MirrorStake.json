@@ -34,16 +34,16 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82",
-  "sema_ref": "MirrorStake#7807",
-  "sema_stub": "7807",
+  "sema_id": "sema:MirrorStake#mh:SHA-256:38a3f024c71c10914811321131a706e94eb9502808878d06439becf1c46b8daf",
+  "sema_ref": "MirrorStake#38a3",
+  "sema_stub": "38a3",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
+      "costly_signal": "sema:CostlySignal#mh:SHA-256:8d9224acfbac324627894e043fc971712a7747625feb431d829423ba90ca0f36",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "costly_signal": "sema:CostlySignal#mh:SHA-256:7fe2d815d2edd1dddec88a02544199266b0f4038fc4cb445781b948df677100e",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

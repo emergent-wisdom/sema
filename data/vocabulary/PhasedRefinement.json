@@ -21,21 +21,21 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "PhasedRefinement#9334",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:9334e01fd5b7b2c1abfeb3b05f53e8aeb4ba8036c23609d9a31b97dbbf7f5549",
-  "sema_stub": "9334",
+  "sema_ref": "PhasedRefinement#4a90",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab",
+  "sema_stub": "4a90",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:dd54f4299d786c2babcc4636ddb911abcae0cd813e6828cf1e4902de217c6bc2",
+      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
-      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4"
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
+      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846"
     },
     "composes_with": {
-      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
       "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
       "refine": "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d"
     }
   }

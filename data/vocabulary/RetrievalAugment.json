@@ -20,17 +20,17 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692",
-  "sema_ref": "RetrievalAugment#ea60",
-  "sema_stub": "ea60",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
+  "sema_ref": "RetrievalAugment#ca58",
+  "sema_stub": "ca58",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "prompt": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
       "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "prompt": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

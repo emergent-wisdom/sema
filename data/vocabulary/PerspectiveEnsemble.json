@@ -33,20 +33,20 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:581616f76817ec08f652a538226cdabc79e5ff56e03c06857cd2a53e78d43a8b",
-  "sema_ref": "PerspectiveEnsemble#5816",
-  "sema_stub": "5816",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a",
+  "sema_ref": "PerspectiveEnsemble#2927",
+  "sema_stub": "2927",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
       "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5"
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7"
     }
   }
 }

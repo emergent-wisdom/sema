@@ -19,19 +19,19 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:ChaosDrift#mh:SHA-256:ee438c58f13195b2cf4c1317072166d4a8cd833e9f32d203a77eb5758dd74e38",
-  "sema_ref": "ChaosDrift#ee43",
-  "sema_stub": "ee43",
+  "sema_id": "sema:ChaosDrift#mh:SHA-256:e6642a965264f0c0197c8579940096e79e359b886dc0a8414107214268033045",
+  "sema_ref": "ChaosDrift#e664",
+  "sema_stub": "e664",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
-      "antifragile_inversion": "sema:AntifragileInversion#mh:SHA-256:bf629c568b2bc34726a23d021ef0459528da2aa6084d5f011d3f1abf93b88de4",
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "semantic_tabu": "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "consensus": "sema:Consensus#mh:SHA-256:986562fe8b9bcfda2a62c40b276a8ff136e732d6f788dc6fa610bf2ef18f4123"
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
+      "consensus": "sema:Consensus#mh:SHA-256:b862129bd2b8e4a8aa030b4a62a57343385ee7e3863a0639a3563c9800da75f7",
+      "antifragile_inversion": "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c",
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
+      "semantic_tabu": "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176"
     }
   }
 }

@@ -22,14 +22,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
-  "sema_ref": "CiteBack#1af3",
-  "sema_stub": "1af3",
+  "sema_id": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
+  "sema_ref": "CiteBack#d09c",
+  "sema_stub": "d09c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692"
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241"
     }
   }
 }

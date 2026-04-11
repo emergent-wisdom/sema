@@ -31,21 +31,21 @@
       "Sync"
     ]
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:27226a36cf5431b783c0713f42bcc4d9ac70207840206f8b15335ce5a43a50e2",
-  "sema_ref": "Consensus#2722",
-  "sema_stub": "2722",
+  "sema_id": "sema:Consensus#mh:SHA-256:b862129bd2b8e4a8aa030b4a62a57343385ee7e3863a0639a3563c9800da75f7",
+  "sema_ref": "Consensus#b862",
+  "sema_stub": "b862",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
+    "accepts": {
+      "proposal": "sema:Proposal#mh:SHA-256:48400f03d012e37914685f66064ccd4c3875efb0bb4dff24d88c8f1ca9aa247d"
+    },
     "composes_with": {
-      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+      "vote": "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
     },
     "yields": {
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
-    },
-    "accepts": {
-      "proposal": "sema:Proposal#mh:SHA-256:48400f03d012e37914685f66064ccd4c3875efb0bb4dff24d88c8f1ca9aa247d"
     }
   }
 }

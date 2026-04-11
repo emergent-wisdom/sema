@@ -22,15 +22,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:519bd7e685b5596b3091517ae269223f39a8354ff0a6569385c5d74b43caa32f",
-  "sema_ref": "PatternSketch#519b",
-  "sema_stub": "519b",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:f8fd94a51759adfbabbf38b704d132e010071b3aceb6b3e2378be9a0823336d2",
+  "sema_ref": "PatternSketch#f8fd",
+  "sema_stub": "f8fd",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:f40a8f04a44d5592db9400af2b43c18841d35dfb6a73d104983e0d6e91ba917e"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:d99ac47fca9164a2de7b43196ce9c8455ab430b31b1c34928bddba952002cda4"
     }
   }
 }

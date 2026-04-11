@@ -55,21 +55,21 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Rally#mh:SHA-256:b6ca0c695f0c13412b0e9ec0a6778fc6d245065054869b311eaa26f11fcccc77",
-  "sema_ref": "Rally#b6ca",
-  "sema_stub": "b6ca",
+  "sema_id": "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
+  "sema_ref": "Rally#c284",
+  "sema_stub": "c284",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
-    "composes_with": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
-    },
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
-      "elect": "sema:Elect#mh:SHA-256:5df04f494b7d686878e87d3555d2e1d7fd66dae269ee61a91d55acc312b9300c",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+      "elect": "sema:Elect#mh:SHA-256:fe172e2804d566d70e13201034804789a37db8deb9dd33600fafa274f70aba59",
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    },
+    "composes_with": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
     }
   }
 }

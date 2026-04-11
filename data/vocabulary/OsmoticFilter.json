@@ -37,16 +37,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:4eb3809154a6ebb825423e95c88caa5b0499fcccc83388fa99eb27df110fbb1e",
-  "sema_ref": "OsmoticFilter#4eb3",
-  "sema_stub": "4eb3",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:73cff08a2f607adc184a600d9c90bf200b8d0639c24ff92f323ea5773f4a2ad5",
+  "sema_ref": "OsmoticFilter#73cf",
+  "sema_stub": "73cf",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
-      "costly_signal": "sema:CostlySignal#mh:SHA-256:7fe2d815d2edd1dddec88a02544199266b0f4038fc4cb445781b948df677100e",
-      "canary": "sema:Canary#mh:SHA-256:3902d7a28c1cb53efb8fc7a6bce1735c4f0dbe3c524f2945a709bb45352a7ef6"
+      "costly_signal": "sema:CostlySignal#mh:SHA-256:8d9224acfbac324627894e043fc971712a7747625feb431d829423ba90ca0f36",
+      "canary": "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2",
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a"
     }
   }
 }

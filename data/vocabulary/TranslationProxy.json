@@ -32,10 +32,10 @@
   ],
   "dependencies": {
     "references": {
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
-      "compare": "sema:Compare#mh:SHA-256:48815374a8845487f135578867a9a36ffeeb0e786007b63da5713292723e2109",
-      "translate": "sema:Translate#mh:SHA-256:5651dd9fb35b2f4468b002f8a7423399f0415d7c5b1fc34322396d6bf88eefbe",
+      "translate": "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429",
       "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "compare": "sema:Compare#mh:SHA-256:48815374a8845487f135578867a9a36ffeeb0e786007b63da5713292723e2109",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
     }
   }

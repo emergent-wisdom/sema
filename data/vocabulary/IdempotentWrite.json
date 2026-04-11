@@ -24,15 +24,15 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:IdempotentWrite#mh:SHA-256:15e8ae521f88a6137d551fd3c61e350e4a027b6b063a35ade4565adfee83c14a",
-  "sema_ref": "IdempotentWrite#15e8",
-  "sema_stub": "15e8",
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:9b95e06ae2e4eec89639328bae9c7988f4b5873ff676a1a5f040bf73373e7857",
+  "sema_ref": "IdempotentWrite#9b95",
+  "sema_stub": "9b95",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "state_lock": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a"
     }
   }
 }

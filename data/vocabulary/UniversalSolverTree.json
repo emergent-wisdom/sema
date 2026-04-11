@@ -39,19 +39,19 @@
       }
     }
   },
-  "sema_ref": "UniversalSolverTree#64d8",
-  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:64d835862a3419f898a4bddc54104a5daaed16f65e4e990e961c12274336e7ae",
-  "sema_stub": "64d8",
+  "sema_ref": "UniversalSolverTree#f683",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
+  "sema_stub": "f683",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
-      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
       "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
       "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:6e7b944baf526bfabe4070993c035fc9676768dc3fc34f05230a2b6dfd9293a6"
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81"
     }
   }
 }

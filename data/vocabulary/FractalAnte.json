@@ -40,16 +40,16 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:FractalAnte#mh:SHA-256:09f2e802b9d4b418dfcb03e465596f360f34924bb849a2fc499e7e6646a4df35",
-  "sema_ref": "FractalAnte#09f2",
-  "sema_stub": "09f2",
+  "sema_id": "sema:FractalAnte#mh:SHA-256:cbcca136d4ff76358259d958a7a8a1c0a640f51529c2bf57d43a8605d2ea5491",
+  "sema_ref": "FractalAnte#cbcc",
+  "sema_stub": "cbcc",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
       "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

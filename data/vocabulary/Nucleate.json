@@ -24,17 +24,17 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Nucleate#mh:SHA-256:8550f88958a49031016edba372e7d5350a5b52afcd9dd1312378d60dd2c52f34",
-  "sema_ref": "Nucleate#8550",
-  "sema_stub": "8550",
+  "sema_id": "sema:Nucleate#mh:SHA-256:32c03e8bf26291ab9297e0fad910d8ffdd470c4d40d90e2482abd4c0372435a7",
+  "sema_ref": "Nucleate#32c0",
+  "sema_stub": "32c0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "rally": "sema:Rally#mh:SHA-256:ce645d48960026a476ec833c627a1a56247a082e22c4d520fa3cd870bbe110c3",
+      "crystallize": "sema:Crystallize#mh:SHA-256:32bccff954af661e8595adba2daaf5dc15bda30645dd1d397efd411272df00f8",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "crystallize": "sema:Crystallize#mh:SHA-256:17c27419a87be686a346e3ffe1d23109b0ab01935a22b50fc377025f6ba50649",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "rally": "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5"
     }
   }
 }

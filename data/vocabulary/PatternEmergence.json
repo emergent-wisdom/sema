@@ -25,21 +25,21 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:e47f0fdc5b59c3de4669457f01fdf37d0bd4280b566bb4d48e14910efd19be91",
-  "sema_ref": "PatternEmergence#e47f",
-  "sema_stub": "e47f",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0",
+  "sema_ref": "PatternEmergence#6b39",
+  "sema_stub": "6b39",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:0d02283760c80e5785b8376894f53f4ebfb49dbff90e9ec8a91c733b07f39381",
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:bf85a9c0007f86f2da7894e9d641b420a58bd189236ac8bbd907d349b08abf73",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "generalize": "sema:Generalize#mh:SHA-256:931391f2fdaca5c5eaa2afc80b25a36c0c186db71fb2b56944da537c028d0a1a",
-      "mint_when_friction": "sema:MintWhenFriction#mh:SHA-256:70a05bb4f7a5281e761af15da7972c07bc4df97fa076473298192f589ee98064",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "mint_when_friction": "sema:MintWhenFriction#mh:SHA-256:d48d58e14fdd17707bd90aaeab196fc13189a2d39b37aaa8b086c4e03356ff57",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
+      "generalize": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
+      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea"
     }
   }
 }

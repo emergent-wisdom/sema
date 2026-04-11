@@ -13,19 +13,19 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:151a5f118efaa4275a0735761c266e5656f4e7e8fda559c84b7c75be7b7384e0",
-  "sema_ref": "RigorousSolver#151a",
-  "sema_stub": "151a",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
+  "sema_ref": "RigorousSolver#f041",
+  "sema_stub": "f041",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
+    "references": {
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0"
+    },
     "composes_with": {
       "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
       "feedback": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15"
-    },
-    "references": {
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fbe3308e07db4e5f0199fb14b8072eff35a3051aa519c1c1b2a7f352aa596abc",
-      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc"
     }
   }
 }

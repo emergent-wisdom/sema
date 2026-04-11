@@ -18,9 +18,9 @@
     "tier": 2,
     "ring": 1
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:aea3ccd2f413700043fed8c949cabea597179b15bf9a85a175c736eab6bb3cce",
-  "sema_ref": "MarginalValueRule#aea3",
-  "sema_stub": "aea3",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:314d8f02234530572de34b8f0616021e51e166f2341b9a5c40491e81f7ce5201",
+  "sema_ref": "MarginalValueRule#314d",
+  "sema_stub": "314d",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [
@@ -28,9 +28,9 @@
   ],
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "estimate": "sema:Estimate#mh:SHA-256:454ae77d8009b70b9ae87c64a6e4f76a90f31e662d9152d5917f97f099a2e8ad",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:6076d78908d5e94cfab7e542d4ee68ebf8448b93c7c6d7ae803b770d394ee5ba"
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83",
+      "estimate": "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449",
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
     }
   }
 }

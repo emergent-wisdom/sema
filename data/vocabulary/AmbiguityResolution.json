@@ -12,14 +12,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "AmbiguityResolution#6487",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:6487ea6de2ce54da7da6a40743c15761467f4653ec054e098e42f2900e68684b",
-  "sema_stub": "6487",
+  "sema_ref": "AmbiguityResolution#6031",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:60315fece3de182c70627c9275d03be549416ef41af8112637019dc37ba2c4b9",
+  "sema_stub": "6031",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
+      "vote": "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63"
     }
   }

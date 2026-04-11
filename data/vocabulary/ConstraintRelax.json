@@ -21,10 +21,10 @@
   "sema_stub": "384d",
   "dependencies": {
     "references": {
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
       "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
-      "bubble": "sema:Bubble#mh:SHA-256:277bdf6a78d1890ec0224ccd816dafc5f6cdbb4eda8e2f690430af05d79fed42",
-      "check": "sema:Check#mh:SHA-256:9074b8df89c07f0a21f9a7a4ae8c1e05e9494c5effa6bdbdb5fd75c3519722c5"
+      "bubble": "sema:Bubble#mh:SHA-256:eb9a8441896625edfa7d41935d88120a27bf53db353082e49b0c6027d45e6142",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

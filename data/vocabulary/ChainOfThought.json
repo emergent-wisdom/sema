@@ -25,14 +25,14 @@
     "Think(Chain)"
   ],
   "dependencies": {
-    "composes_with": {
-      "step_back": "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a",
-      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f"
-    },
     "references": {
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
       "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
+      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
+    },
+    "composes_with": {
+      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "step_back": "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a"
     }
   }
 }

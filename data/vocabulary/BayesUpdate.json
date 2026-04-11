@@ -34,16 +34,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0",
-  "sema_ref": "BayesUpdate#5d91",
-  "sema_stub": "5d91",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
+  "sema_ref": "BayesUpdate#911b",
+  "sema_stub": "911b",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
-      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
-      "belief": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd"
+      "belief": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916"
     }
   }
 }

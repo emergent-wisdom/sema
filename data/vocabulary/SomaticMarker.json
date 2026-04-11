@@ -23,9 +23,9 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "correlation": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625",
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "correlation": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625"
     }
   }
 }

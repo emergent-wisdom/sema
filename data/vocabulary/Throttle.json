@@ -45,11 +45,11 @@
   "sema_ref": "Throttle#3b43",
   "sema_stub": "3b43",
   "dependencies": {
-    "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
-    },
     "composes_with": {
       "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+    },
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
     }
   }
 }

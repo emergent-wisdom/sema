@@ -79,10 +79,10 @@
   },
   "dependencies": {
     "references": {
-      "hierarchy": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
     }
   }
 }

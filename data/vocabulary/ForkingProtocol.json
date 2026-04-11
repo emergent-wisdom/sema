@@ -22,15 +22,15 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:ForkingProtocol#mh:SHA-256:db98203c88a24ba1344f98f008bfc487093bbfe41e84190e70fc00992118add0",
-  "sema_ref": "ForkingProtocol#db98",
-  "sema_stub": "db98",
+  "sema_id": "sema:ForkingProtocol#mh:SHA-256:ba3dd97f86989c5bfdc8c15c0dde81a0886455154c81cec1b8c5e5bf13e49776",
+  "sema_ref": "ForkingProtocol#ba3d",
+  "sema_stub": "ba3d",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:dac1ca99ae8c379c9ba093e840eaab9eb2ad16ccfbdb07d6c0e25e3fad2fae6c",
-      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:01c99fd1a5b7fe33a7065bfddcce746f76ecb2f2737cdd578801903cb7f1e990"
+      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:4c11617a12ffdeb4b786202c50c8c3c1fd708dd6a6c0d0e4e19cd0685ba7178e",
+      "parallelize": "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391"
     }
   }
 }

@@ -33,20 +33,20 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_ref": "Exaptation#9941",
-  "sema_id": "sema:Exaptation#mh:SHA-256:9941cc1fcf3d50324d88c42af350a0a15f9787ca094091ca65ae005e540d5f4f",
-  "sema_stub": "9941",
+  "sema_ref": "Exaptation#d946",
+  "sema_id": "sema:Exaptation#mh:SHA-256:d946c35334c55725bdf8484ed97b9a6d4a9a132fc717af9f04a2ca7dd539cee8",
+  "sema_stub": "d946",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
       "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-      "sacrificial_probe": "sema:SacrificialProbe#mh:SHA-256:2372fc7a6d00a9d9b86f5f5cd7561ec60a8527973ff52b395f3ec3f56b5c78e4"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
+      "sacrificial_probe": "sema:SacrificialProbe#mh:SHA-256:1e1674548e3438a28f913e340d956e5178aeb8710176e56251ef9370de28e544"
     },
     "composes_with": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52",
-      "translate": "sema:Translate#mh:SHA-256:5651dd9fb35b2f4468b002f8a7423399f0415d7c5b1fc34322396d6bf88eefbe",
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
+      "translate": "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416"
     }
   }

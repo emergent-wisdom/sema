@@ -25,17 +25,17 @@
     "category": "Economics",
     "ring": 2
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:82a6b57e99850fa92c5b9588e99fdbf758920d748012c2e1b51932aaf6482d89",
-  "sema_ref": "LivedProof#82a6",
-  "sema_stub": "82a6",
+  "sema_id": "sema:LivedProof#mh:SHA-256:ae2df3c960792c30d022bff87745721b39d9384ddc511993d610b68b6b526183",
+  "sema_ref": "LivedProof#ae2d",
+  "sema_stub": "ae2d",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:826e2ceafda81d7db4a19d1cf6bd8ad0c2cd86b24c65d1654ba7efb345374260",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

@@ -29,15 +29,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Fermi#mh:SHA-256:389ddee306aa2de7090a1e9014bacfa4fe2f2f9c9b3aa6c8a8ef8c39f1a60bc1",
-  "sema_ref": "Fermi#389d",
-  "sema_stub": "389d",
+  "sema_id": "sema:Fermi#mh:SHA-256:1e06d04bfff04954ad09852a7a4b1b583acc76c431dc926b4afe3cce5abfe210",
+  "sema_ref": "Fermi#1e06",
+  "sema_stub": "1e06",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "estimate": "sema:Estimate#mh:SHA-256:454ae77d8009b70b9ae87c64a6e4f76a90f31e662d9152d5917f97f099a2e8ad",
-      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de"
+      "estimate": "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449",
+      "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4"
     }
   }
 }

@@ -37,14 +37,14 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:e5ced9f3067c292e187b0ee10ac557d4cbb5064436ab07cc389e5cdefbe44eb6",
-  "sema_ref": "ConstructOntology#e5ce",
-  "sema_stub": "e5ce",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
+  "sema_ref": "ConstructOntology#b59e",
+  "sema_stub": "b59e",
   "dependencies": {
     "references": {
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
-      "first_principles": "sema:FirstPrinciples#mh:SHA-256:77c2ebad48095ce9b68a0a8a841fee31c9cf209e4dc0cddd5ff7a0c8de9b1de5",
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:4a095e438c638405755b8f1115722e839bf6ba924f2a989f5a71213711d0b2ef"
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234",
+      "first_principles": "sema:FirstPrinciples#mh:SHA-256:c379f7e5629befb5ccbee33b6fccbc3c4f5ec181b2704c4f82064d5cdc810f61"
     }
   }
 }

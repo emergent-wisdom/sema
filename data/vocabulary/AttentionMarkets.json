@@ -27,18 +27,18 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:AttentionMarkets#mh:SHA-256:abdda155165282a52b447988e6d25eb9bb85e9e6deaaf8983eeaf16f3aa05180",
-  "sema_ref": "AttentionMarkets#abdd",
-  "sema_stub": "abdd",
+  "sema_id": "sema:AttentionMarkets#mh:SHA-256:45c58856dcc5f1dd258552665a7a9a7c16ee4792d43085bb698223de0494daba",
+  "sema_ref": "AttentionMarkets#45c5",
+  "sema_stub": "45c5",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
-    "composes_with": {
-      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962"
-    },
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+    },
+    "composes_with": {
+      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08"
     }
   }
 }

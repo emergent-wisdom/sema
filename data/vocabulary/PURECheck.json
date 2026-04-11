@@ -11,20 +11,20 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:b8caa25351b7aca245cf6cdda95bade057c69cb4d789c4a098148d1edb576d6c",
-  "sema_ref": "PURECheck#b8ca",
-  "sema_stub": "b8ca",
+  "sema_id": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
+  "sema_ref": "PURECheck#3ebb",
+  "sema_stub": "3ebb",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "layered_check": "sema:LayeredCheck#mh:SHA-256:013785ca767d35d07edc372494a3c069d2117dcfdfef064e989db39293bc66a5",
-      "tri_gate": "sema:TriGate#mh:SHA-256:d4cd658f6ee62f40bd28f0e3d0f253b4a6df62220c2d9b4acd56215b5508affa",
-      "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
-      "novelty": "sema:Novelty#mh:SHA-256:6a48ae0f25626dbab021bed61cacf4673d50b0c2c7d346962d21c3599a261774",
-      "realizable": "sema:Realizable#mh:SHA-256:f70c35eb5ddbaaa985cd54c8a2bb37c0486867e75eaa5abd9f0c767422bfa2f5",
-      "expansive": "sema:Expansive#mh:SHA-256:5def1def8b3fb126b9e67adfecdb9b21ad51d1e01f96caa652e0b50c9a72a200"
+      "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
+      "tri_gate": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
+      "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
+      "layered_check": "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0",
+      "expansive": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
+      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e"
     },
     "composes_with": {
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"

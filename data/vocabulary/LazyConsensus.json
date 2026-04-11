@@ -3,11 +3,20 @@
   "mechanism": "Agents execute transactions immediately without waiting for global consensus, assuming everything is valid. If a conflict is detected later, they use a deterministic rollback rule (e.g., 'highest ID wins'). Maximizes speed over safety. It bypasses the blocking {{quorum}}, executing immediately and using the {{time_warp_log}} to resolve conflicts retroactively.",
   "gloss": "Optimistic execution, retroactive verification",
   "failure_modes": [
-    "Cascading rollbacks."
+    "Cascading rollbacks.",
+    "Applied to irreversible external action (email sent, funds transferred, API called)\u2014rollback impossible, inconsistency permanent."
   ],
   "invariants": [
     "Determinism: Conflict resolution function must be pure (same inputs -> same winner)",
     "Rollback Safety: Reverting a transaction cannot corrupt unrelated state"
+  ],
+  "preconditions": [
+    "Target operations are internally reversible (no irreversible external side-effects)",
+    "Conflict detection mechanism is active"
+  ],
+  "postconditions": [
+    "Transaction applied optimistically",
+    "Conflict resolution triggered if divergence detected"
   ],
   "_meta": {
     "tier": 2,
@@ -15,15 +24,15 @@
     "category": "Governance",
     "ring": 0
   },
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:7c9ba20fcd15185dad326a9b5c82c21b0c1577be3025578194e0912e1d504762",
-  "sema_ref": "LazyConsensus#7c9b",
-  "sema_stub": "7c9b",
+  "sema_ref": "LazyConsensus#81a3",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:81a36b7edd2128ea672990d4487c64770b4da347d359cd217564514017fa9032",
+  "sema_stub": "81a3",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:55e000bc4747509e86c10bad5959c887d64bcc75aeaf1b33bdad12d543c68214",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
     }
   }
 }

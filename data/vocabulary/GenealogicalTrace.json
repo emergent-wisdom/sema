@@ -15,16 +15,16 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:d1786f8d92432962871f3a077e272ff47ca56fc6a7ba155d53ea0a905bef54f7",
-  "sema_ref": "GenealogicalTrace#d178",
-  "sema_stub": "d178",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f",
+  "sema_ref": "GenealogicalTrace#7cf1",
+  "sema_stub": "7cf1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "cite_back": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "trace_belief": "sema:TraceBelief#mh:SHA-256:9d6a11bfbfc199f1aab5441e69668b3b50145108cdf6948176dcadd71652cfd1",
+      "cite_back": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b"
     }
   }

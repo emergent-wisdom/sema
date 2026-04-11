@@ -47,19 +47,19 @@
       }
     }
   },
-  "sema_ref": "SolverNode#beef",
-  "sema_id": "sema:SolverNode#mh:SHA-256:beefcfc23d5a4377802e8a9f43e9b4bf5369b18fcfe52571d1f028c4ebc51bd7",
-  "sema_stub": "beef",
+  "sema_ref": "SolverNode#058e",
+  "sema_id": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+  "sema_stub": "058e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "problem_space": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1",
-      "responsibility": "sema:Responsibility#mh:SHA-256:f4524249a5c89d422baf6c357e331b8c3c3a4c59ef6289ab608d565a3d92ea27",
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
+      "responsibility": "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31",
       "solver_manifest": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b"
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1"
     }
   }
 }

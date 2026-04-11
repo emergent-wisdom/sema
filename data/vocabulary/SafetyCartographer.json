@@ -8,9 +8,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:SafetyCartographer#mh:SHA-256:9bc4be4c215b4eb8a9dd29f83ad3b10553e74debfd03df0f1be717f76cc4cd7c",
-  "sema_ref": "SafetyCartographer#9bc4",
-  "sema_stub": "9bc4",
+  "sema_id": "sema:SafetyCartographer#mh:SHA-256:30c5d9e3a73de2c087034bd06ae7dcb3e478bb1899caffa829e6fd83413051f4",
+  "sema_ref": "SafetyCartographer#30c5",
+  "sema_stub": "30c5",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -18,9 +18,9 @@
   ],
   "dependencies": {
     "references": {
-      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e",
-      "red_team": "sema:RedTeam#mh:SHA-256:1b1f97847c37b7af0ff98873e9e5afc4b5b7628b0cde0fb3eb49904f7b79779a",
-      "discover": "sema:Discover#mh:SHA-256:1d30c2924d34db0abfa75519f874fc8c27c58e129a0441f77d58cad230e73fe4",
+      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:f6fe36cd7f7c8478eea578a1b5e75e07a31dedcb9170ea0b06882ab18eeec55c",
+      "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
+      "red_team": "sema:RedTeam#mh:SHA-256:7a8d8a9c68f25e1a8b23a1b57db4a3083709aec4b6904138a0e8d439d2781a5c",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
     }
   }

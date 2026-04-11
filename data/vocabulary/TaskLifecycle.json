@@ -37,24 +37,24 @@
     "tier": 1,
     "related": []
   },
-  "sema_ref": "TaskLifecycle#d346",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:d34694951f32cbd9f4e9a2f68d914589921e6f7fbbc6a1600ace85113d5012f5",
-  "sema_stub": "d346",
+  "sema_ref": "TaskLifecycle#ecd8",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda",
+  "sema_stub": "ecd8",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "exception": "sema:Exception#mh:SHA-256:d38164d96c0a44fda0bd6dd312e5d99f8390ca32218a07e1b0248f7435a3365e",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff"
-    },
-    "yields": {
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
+      "exception": "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6",
+      "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2"
     },
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57"
+    },
+    "yields": {
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
     }
   }
 }

@@ -22,8 +22,8 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
-      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e"
+      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e",
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
     }
   }
 }

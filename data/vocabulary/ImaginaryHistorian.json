@@ -10,18 +10,18 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ImaginaryHistorian#mh:SHA-256:f818b4b64ef0c5dd06699742a86af741fd3cf8898372ba27ec78260778b1f858",
-  "sema_ref": "ImaginaryHistorian#f818",
-  "sema_stub": "f818",
+  "sema_id": "sema:ImaginaryHistorian#mh:SHA-256:2df10dd22ab9d4ba31500f21f8bb0c6bc748961fb3ece0ec79d93611152cd3e4",
+  "sema_ref": "ImaginaryHistorian#2df1",
+  "sema_stub": "2df1",
   "signature": [
     "Trace(Simulation)"
   ],
   "dependencies": {
     "references": {
-      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "crypto_shred": "sema:CryptoShred#mh:SHA-256:e0b99771b604e6fdd9311327bfd36cc7745106047662e6870a8fc7f3aaacaf07",
-      "mental_sim": "sema:MentalSim#mh:SHA-256:0c26a8eb6071051ceaa3c4e694b61ef4a78f54eff3b80326c22a5c073d572183"
+      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "crypto_shred": "sema:CryptoShred#mh:SHA-256:03870f9e53c9c3c6a04e9fc79f6b5fedaa82b9f73a42195bd8623be0f1ea36f8",
+      "mental_sim": "sema:MentalSim#mh:SHA-256:7212dad44c65f6241e70f0fc2e20440788e837a84cc644fea6bcc5f59e09f94e"
     }
   }
 }

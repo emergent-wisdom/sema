@@ -39,17 +39,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:PreMortem#mh:SHA-256:eb4f7f98ba5434aefc6b4e7f0059dde5d6a08bf80525a2577e413554d9f33022",
-  "sema_ref": "PreMortem#eb4f",
-  "sema_stub": "eb4f",
+  "sema_id": "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
+  "sema_ref": "PreMortem#f69d",
+  "sema_stub": "f69d",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
     },
     "references": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9bbd869a0de3863e08da695b92835dfe9293ae9596337a652f9cd50a947335b5",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
     }
   }
 }

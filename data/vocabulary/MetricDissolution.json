@@ -28,9 +28,9 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
       "eliminate": "sema:Eliminate#mh:SHA-256:43ea687e3560a55f221807138469697a6f331e687fa542c66ddf4d97f07174b0",
       "invert": "sema:Invert#mh:SHA-256:d1b9169d5b598e4f7f3d4d58bc2feea0f45c7830b32445fa6ab2666db271fa42",
-      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
       "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
     }
   }

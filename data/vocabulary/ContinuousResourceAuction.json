@@ -60,20 +60,20 @@
       "AttentionMarkets"
     ]
   },
-  "sema_ref": "ContinuousResourceAuction#5776",
-  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962",
-  "sema_stub": "5776",
+  "sema_ref": "ContinuousResourceAuction#46f6",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08",
+  "sema_stub": "46f6",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
-    "composes_with": {
-      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c"
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
     },
     "accepts": {
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     },
-    "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+    "composes_with": {
+      "state_lock": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a"
     }
   }
 }

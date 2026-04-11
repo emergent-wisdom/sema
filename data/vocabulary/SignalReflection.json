@@ -21,16 +21,16 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:SignalReflection#mh:SHA-256:0b8c5e666668635b64ecebab88c01900ac49a24b00aa97b8d03443a90b492ef5",
-  "sema_ref": "SignalReflection#0b8c",
-  "sema_stub": "0b8c",
+  "sema_id": "sema:SignalReflection#mh:SHA-256:aac2c4b3fbc861b911c232b754116f4a56085e25dfd61c7ff6bb193b359578d0",
+  "sema_ref": "SignalReflection#aac2",
+  "sema_stub": "aac2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

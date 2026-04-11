@@ -17,14 +17,14 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "SelfConsistency#1793",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:1793d1f73eb71f1153093c2223715de06100e2414f0ae47145b2f9a911276888",
-  "sema_stub": "1793",
+  "sema_ref": "SelfConsistency#543d",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d",
+  "sema_stub": "543d",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f"
+      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
     }
   }
 }

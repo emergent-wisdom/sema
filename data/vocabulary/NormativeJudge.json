@@ -36,9 +36,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:a2149e83b35ba7b071c1ddefc6010cf690587066178239c888fe4b0348220593",
-  "sema_ref": "NormativeJudge#a214",
-  "sema_stub": "a214",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
+  "sema_ref": "NormativeJudge#2316",
+  "sema_stub": "2316",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
@@ -46,15 +46,15 @@
   ],
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "human_approve": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
     },
     "composes_with": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:c90c028c8efc22b8a6b3d37128b5b90aec16b252e511c37939fb6d902d4065e8"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a"
     }
   }
 }

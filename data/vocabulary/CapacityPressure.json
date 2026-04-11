@@ -40,17 +40,17 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:9e7b9d2a599ff40722c4617ad103851388d702d9c976520929b1f39624322920",
-  "sema_ref": "CapacityPressure#9e7b",
-  "sema_stub": "9e7b",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85",
+  "sema_ref": "CapacityPressure#739d",
+  "sema_stub": "739d",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "context_compress": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:b75efef6b5e3f3b529cd656bc34e5ed6922e675f85b41fc06bb2336519c49f70",
-      "generalize": "sema:Generalize#mh:SHA-256:931391f2fdaca5c5eaa2afc80b25a36c0c186db71fb2b56944da537c028d0a1a",
-      "context_compress": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817"
+      "generalize": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
     }
   }
 }

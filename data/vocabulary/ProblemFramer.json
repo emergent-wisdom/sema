@@ -16,23 +16,23 @@
     "category": "Coordination",
     "ring": 2
   },
-  "sema_ref": "ProblemFramer#f83d",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:f83d5805391f1691dec04c63685ee048954f06b8e7bec3b305b89b77b579dc48",
-  "sema_stub": "f83d",
+  "sema_ref": "ProblemFramer#ecc1",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:ecc198beafea4353d2393ec31121ed9db92fa79996ffa6b9d45a5b353e4627c7",
+  "sema_stub": "ecc1",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
-    "references": {
-      "solver_root": "sema:SolverRoot#mh:SHA-256:806ec83c59d595334d236b3e7a87b5fa900fde9e23aa397cd0f54017eccdaba0",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:d154cc0926f79078e6b81f336ac51b220771d88bbf92605a87c2c029eeb99600"
-    },
     "composes_with": {
-      "request_framing": "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e",
       "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
-      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9"
+      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e"
     },
     "yields": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+    },
+    "references": {
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
+      "solver_root": "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1"
     }
   }
 }

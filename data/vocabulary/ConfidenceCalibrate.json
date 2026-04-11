@@ -28,16 +28,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:52389ef2231a04c551e99c640524f8b082a4608c1a1e9576096450f0f43bc575",
-  "sema_ref": "ConfidenceCalibrate#5238",
-  "sema_stub": "5238",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60",
+  "sema_ref": "ConfidenceCalibrate#0ae5",
+  "sema_stub": "0ae5",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0"
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

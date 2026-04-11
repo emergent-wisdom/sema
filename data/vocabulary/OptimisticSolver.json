@@ -20,22 +20,22 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "OptimisticSolver#0e2e",
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:0e2edb38b8469329a7c4cb40c08c87c590f0f37ae17f34e5d6b5477964ef340e",
-  "sema_stub": "0e2e",
+  "sema_ref": "OptimisticSolver#0074",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8",
+  "sema_stub": "0074",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "references": {
-      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:605bc87c13db42f817dc4c741ecd51944ff3280c694a9d7438898433e76e8fe8",
-      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
-      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:453198eedf2633e73425b7fe5857677fe89565ab616ecc19a9c2a84df4f8a7cc"
-    },
     "composes_with": {
-      "atomic_bid": "sema:AtomicBid#mh:SHA-256:31b0d05e0fd79231916471c4ba9a5b8eb36bed076edb4e4ca38f8325a7bd35e0",
-      "compensate": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
+      "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
+      "atomic_bid": "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1",
       "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+    },
+    "references": {
+      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
+      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
+      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3"
     }
   }
 }

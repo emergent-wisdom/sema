@@ -35,15 +35,15 @@
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "composes_with": {
-      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
-      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
-    },
     "references": {
-      "anomaly": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "anomaly": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893"
+    },
+    "composes_with": {
+      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"
     }
   }
 }

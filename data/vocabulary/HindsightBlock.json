@@ -32,17 +32,17 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:HindsightBlock#mh:SHA-256:be410c26fbe672bee226f7c5656faea456646fd9f776193d1e5bbc7ecb9f94df",
-  "sema_ref": "HindsightBlock#be41",
-  "sema_stub": "be41",
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:bdb602218783e07b6eb5e68e900635bcd80e7b6d2ff32ac26ec03e383837f363",
+  "sema_ref": "HindsightBlock#bdb6",
+  "sema_stub": "bdb6",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
-      "pre_mortem": "sema:PreMortem#mh:SHA-256:8565f4dcf6f230b679b7503d67f0fadb042ad1e4b1f259e45943235019116f8d",
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
       "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+      "pre_mortem": "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
     }
   }
 }

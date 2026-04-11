@@ -6,9 +6,9 @@
     "Clarity: Rules must be machine-verifiable.",
     "Stability: Cannot be modified without a formal {{amend_laws}} process."
   ],
-  "sema_id": "sema:Constitution#mh:SHA-256:2391d082a0537c5adf91e0bfe986dae8553f96db6d9c53b09184928b23fc6ea9",
-  "sema_ref": "Constitution#2391",
-  "sema_stub": "2391",
+  "sema_id": "sema:Constitution#mh:SHA-256:08ef9d378c3bc5c024f0ed9ad47c6cb39f633e0618b42af46dedc69d4f1353d8",
+  "sema_ref": "Constitution#08ef",
+  "sema_stub": "08ef",
   "_meta": {
     "layer": "Society",
     "category": "Governance",
@@ -60,8 +60,8 @@
   },
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "amend_laws": "sema:AmendLaws#mh:SHA-256:d0739153b98a7784f1e2e6778d71390c4af279719a1f01bd2c42c0bf232f9a49"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "amend_laws": "sema:AmendLaws#mh:SHA-256:716b9e521e00524899bd0f2da57d7815d739f38fdc3d5d1b4644e5d91c84655c"
     }
   }
 }

@@ -27,20 +27,20 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Disband#mh:SHA-256:89348c638b3f33296f02c557bb5d357349f7879a6ea7f2dd90f7096102685765",
-  "sema_ref": "Disband#8934",
-  "sema_stub": "8934",
+  "sema_id": "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48",
+  "sema_ref": "Disband#86c6",
+  "sema_stub": "86c6",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
-    "references": {
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:afa47ff98dc96df29a4c62a91159e1d7d9f339b30ad9a60aac8d4cf3d8e2a1b2",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
-    },
     "yields": {
       "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:ef8d130d2b83256b01c3544548b56b475a70ff53fde619bd091587f628a2eb77",
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
     }
   }
 }

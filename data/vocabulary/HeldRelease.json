@@ -41,17 +41,17 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:HeldRelease#mh:SHA-256:5b7a43f760dc439c0880f720faf1be428aa39a119e55a579d249aa264a38ee93",
-  "sema_ref": "HeldRelease#5b7a",
-  "sema_stub": "5b7a",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:3ed68df815a35cd4f70e51c3504036ced51f92529b82c4ac9bb4fa2e1d5c5436",
+  "sema_ref": "HeldRelease#3ed6",
+  "sema_stub": "3ed6",
   "dependencies": {
-    "accepts": {
-      "unique_handle": "sema:UniqueHandle#mh:SHA-256:68791b2f756edd02f2710f7d4f55891ecab267df6373bd5048d997ee84f326eb"
-    },
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    },
+    "accepts": {
+      "unique_handle": "sema:UniqueHandle#mh:SHA-256:9a006e6fd1ca395b18fa7f17f95124c432b111f15cba24fcec039142a3ca539b"
     }
   }
 }

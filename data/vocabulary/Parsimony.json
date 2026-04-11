@@ -13,17 +13,17 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:25788dab06b998f95e0447259c9f29c331216ed523b24c4311083af2d53509f0",
-  "sema_ref": "Parsimony#2578",
-  "sema_stub": "2578",
+  "sema_id": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
+  "sema_ref": "Parsimony#1dd3",
+  "sema_stub": "1dd3",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "gloss": "Complexity justification via Occams Razor",
   "dependencies": {
     "references": {
+      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1",
-      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621"
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56"
     }
   }
 }

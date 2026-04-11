@@ -26,16 +26,16 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:AmendLaws#mh:SHA-256:5266843d5641614ea8de731bee40022b8da59e05c62b026710bef98fa46e8b07",
-  "sema_ref": "AmendLaws#5266",
-  "sema_stub": "5266",
+  "sema_id": "sema:AmendLaws#mh:SHA-256:716b9e521e00524899bd0f2da57d7815d739f38fdc3d5d1b4644e5d91c84655c",
+  "sema_ref": "AmendLaws#716b",
+  "sema_stub": "716b",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654",
-      "vote": "sema:Vote#mh:SHA-256:2a542c6a8b1f3b4ca36ad4edfdd5b11951d6c55953bad5997d3455aa8f332a75",
-      "quorum": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd"
+      "vote": "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
+      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
+      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:fcd81ba0a693acc4e0e3a9fa826f7c85f5f74798637d7bca82e97452445ccf51"
     }
   }
 }

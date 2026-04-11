@@ -34,9 +34,9 @@
       "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
     },
     "references": {
+      "reversibility": "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74",
       "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "reversibility": "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74"
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
     }
   }
 }

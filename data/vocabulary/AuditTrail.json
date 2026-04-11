@@ -32,22 +32,22 @@
       "SpotAudit"
     ]
   },
-  "sema_ref": "AuditTrail#d051",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:d051159cb1451a35bd695ae6b3e89c75ffe6b2f8180d9244e3c644f573a45d55",
-  "sema_stub": "d051",
+  "sema_ref": "AuditTrail#ff66",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c",
+  "sema_stub": "ff66",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
+    "references": {
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "ledger": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
+    },
     "composes_with": {
       "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
-    },
-    "references": {
-      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
-      "ledger": "sema:Ledger#mh:SHA-256:2449b13ec018b29f7301a798a92077d5f6983991b38886c19f1aa27c3ac533e5",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
     }
   }
 }

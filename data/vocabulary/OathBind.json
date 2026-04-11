@@ -12,16 +12,16 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_ref": "OathBind#775a",
-  "sema_id": "sema:OathBind#mh:SHA-256:775ae6f305c8348cb7fb4d072af79f5cfc14a247b660221c94c9b57c82c665ca",
-  "sema_stub": "775a",
+  "sema_ref": "OathBind#d4e5",
+  "sema_id": "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509",
+  "sema_stub": "d4e5",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
     "references": {
-      "rule_set": "sema:RuleSet#mh:SHA-256:399b641917991080c8edc522db1225a163b4e3220bac652ae8327eeb7533c2c3",
-      "spot_audit": "sema:SpotAudit#mh:SHA-256:6e72e0806208b60fe980eb7a3c502423706fbe9a46b83b8ad2a46fbdcb24eb7e",
-      "actor": "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89"
+      "actor": "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89",
+      "spot_audit": "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d",
+      "rule_set": "sema:RuleSet#mh:SHA-256:e91d3830512ca5aa5a8cf7f50ad7d186de4b82aeced94c8cb106258a8663e482"
     }
   }
 }

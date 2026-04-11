@@ -20,17 +20,17 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:BeamSearch#mh:SHA-256:23b1817f69e5b2090c5931b8e195437932834e0b1aeb2ebbe9f928bc70adc8eb",
-  "sema_ref": "BeamSearch#23b1",
-  "sema_stub": "23b1",
+  "sema_id": "sema:BeamSearch#mh:SHA-256:5a3460aa9dc10ab22ddf87f740cb0dc1166e96d7d07fd31bf312cf8b35b1e559",
+  "sema_ref": "BeamSearch#5a34",
+  "sema_stub": "5a34",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "queue": "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
       "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
-      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
-      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c"
+      "queue": "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
+      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
     }
   }
 }

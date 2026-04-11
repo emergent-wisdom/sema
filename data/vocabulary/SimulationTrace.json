@@ -38,14 +38,14 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:SimulationTrace#mh:SHA-256:1bc5ce892c33fe0da334ebe253a27afbf94965f03112c08aff5af743d657e5c2",
-  "sema_ref": "SimulationTrace#1bc5",
-  "sema_stub": "1bc5",
+  "sema_id": "sema:SimulationTrace#mh:SHA-256:096eee69576638b38a5595613c41f79ae093e1036bdb70cd852edf65c42eead3",
+  "sema_ref": "SimulationTrace#096e",
+  "sema_stub": "096e",
   "dependencies": {
     "references": {
-      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "mental_sim": "sema:MentalSim#mh:SHA-256:0c26a8eb6071051ceaa3c4e694b61ef4a78f54eff3b80326c22a5c073d572183"
+      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "mental_sim": "sema:MentalSim#mh:SHA-256:7212dad44c65f6241e70f0fc2e20440788e837a84cc644fea6bcc5f59e09f94e"
     }
   }
 }

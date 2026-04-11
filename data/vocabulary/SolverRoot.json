@@ -46,21 +46,21 @@
       }
     }
   },
-  "sema_ref": "SolverRoot#cb05",
-  "sema_id": "sema:SolverRoot#mh:SHA-256:cb0502d76289179d7cc606db9940c07685098bb5d9a57184e2ee56cc7ddd96fc",
-  "sema_stub": "cb05",
+  "sema_ref": "SolverRoot#8a84",
+  "sema_id": "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1",
+  "sema_stub": "8a84",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "solver_node": "sema:SolverNode#mh:SHA-256:6adef095b260db0bfea7df485fa87d8dcbcb1f4111a72988babb62aba50dc81c",
-      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
-      "problem_space": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1",
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1"
     }
   }
 }

@@ -2,9 +2,9 @@
   "handle": "Group",
   "mechanism": "A defined collection of {{agent}}s sharing a common {{context}} or goal. It serves as the scope for {{consensus}} and {{shout_whisper}}.",
   "gloss": "Agent collective",
-  "sema_id": "sema:Group#mh:SHA-256:0a3835b5b26dc6c7ba8cab19ec784439cdd662b7bb91c8852cda2091bf4b9dc0",
-  "sema_ref": "Group#0a38",
-  "sema_stub": "0a38",
+  "sema_id": "sema:Group#mh:SHA-256:1af4fe427bdd068518c866039039fea402aba3a0429d9af253b16b8c3897c52b",
+  "sema_ref": "Group#1af4",
+  "sema_stub": "1af4",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -40,9 +40,9 @@
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "consensus": "sema:Consensus#mh:SHA-256:986562fe8b9bcfda2a62c40b276a8ff136e732d6f788dc6fa610bf2ef18f4123",
-      "shout_whisper": "sema:ShoutWhisper#mh:SHA-256:dbdeaf3c0293ad65154b16de48847e5193557550288ec7c995c7620032fa89b8"
+      "consensus": "sema:Consensus#mh:SHA-256:b862129bd2b8e4a8aa030b4a62a57343385ee7e3863a0639a3563c9800da75f7",
+      "shout_whisper": "sema:ShoutWhisper#mh:SHA-256:35ddf298feb20dc16aeaa1294566eddb2dda1928744d7d25e747ae9a697d0d78",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

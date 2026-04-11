@@ -21,15 +21,15 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:MimicMask#mh:SHA-256:0fe8418d9f34643affbdab2d7372dd7b07ed50ef3d4447c0c5042dc20225147a",
-  "sema_ref": "MimicMask#0fe8",
-  "sema_stub": "0fe8",
+  "sema_id": "sema:MimicMask#mh:SHA-256:f299f07c9b76a465ed8fe968879eb46bdc5e3f932e4dff1dfe43b80ed9d8e9bc",
+  "sema_ref": "MimicMask#f299",
+  "sema_stub": "f299",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "identity_mask": "sema:IdentityMask#mh:SHA-256:f9a7dad03253207e14124a8cba4c80fa5fec7195b26dd12573bf7af2db020279"
+      "identity_mask": "sema:IdentityMask#mh:SHA-256:c4649a1b5d324c1405dbc74febc4d78b23d8662cb160eb50a267334de732e430"
     }
   }
 }

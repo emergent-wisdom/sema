@@ -14,9 +14,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:SourceEvaluate#mh:SHA-256:b847e556c70226d42b50ef6b197d9473037bb11d30ef9b2fa2aed641ebdfe232",
-  "sema_ref": "SourceEvaluate#b847",
-  "sema_stub": "b847",
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:ceb14e641fee7940e36ad6c28b096bcf8bf90b50bee79a243d2b8eba788f0ba7",
+  "sema_ref": "SourceEvaluate#ceb1",
+  "sema_stub": "ceb1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -24,9 +24,9 @@
   ],
   "dependencies": {
     "references": {
-      "cite_back": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "cite_back": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3"
     }
   }
 }

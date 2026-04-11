@@ -1,12 +1,15 @@
 {
   "handle": "CryptoShred",
-  "mechanism": "Data is encrypted with a key that is ephemeral. To 'delete' the data, the agent destroys the key (Crypto-shredding) and provides a Zero-Knowledge proof that the key is gone. This turns 'deletion' (which is hard to prove) into 'loss of access' (which is provable).",
-  "gloss": "Provable deletion of liability data",
+  "mechanism": "Data is encrypted with a key that is ephemeral and held only in volatile memory (ideally within a hardware security module or TEE). To 'delete' the data, the agent destroys the key (crypto-shredding). This turns 'deletion' (which is hard to prove globally) into 'loss of access' (which is operationally achievable). Destruction is attested via audit log and hardware attestation where available, but remains fundamentally trust-dependent: the guarantee is only as strong as the key-management boundary.",
+  "gloss": "Deletion-by-key-destruction within a trusted execution boundary",
   "failure_modes": [
-    "Key backup leaks (if the key was copied before destruction)."
+    "Key backup leaks (if the key was copied before destruction).",
+    "Software-only environments cannot provide hardware attestation of destruction.",
+    "Compromised HSM/TEE voids the destruction guarantee."
   ],
   "invariants": [
-    "Shred confirmation required."
+    "Shred confirmation required.",
+    "Key must never exist outside volatile memory or hardware enclave."
   ],
   "_meta": {
     "tier": 2,
@@ -17,9 +20,9 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:CryptoShred#mh:SHA-256:e0b99771b604e6fdd9311327bfd36cc7745106047662e6870a8fc7f3aaacaf07",
-  "sema_ref": "CryptoShred#e0b9",
-  "sema_stub": "e0b9",
+  "sema_ref": "CryptoShred#0387",
+  "sema_id": "sema:CryptoShred#mh:SHA-256:03870f9e53c9c3c6a04e9fc79f6b5fedaa82b9f73a42195bd8623be0f1ea36f8",
+  "sema_stub": "0387",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

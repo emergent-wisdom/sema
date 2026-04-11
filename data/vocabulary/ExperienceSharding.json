@@ -45,15 +45,15 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:65ccbf94035f6821c53097b6c5da6a9b6da01cddab844b8876f8b35d62e93f39",
-  "sema_ref": "ExperienceSharding#65cc",
-  "sema_stub": "65cc",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
+  "sema_ref": "ExperienceSharding#d920",
+  "sema_stub": "d920",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:26e23e7ef95ba9c9136d95f59b319f3eb378890f0c4b709b7a3c7fef350fb29a"
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351",
+      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b"
     }
   }
 }

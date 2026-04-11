@@ -12,18 +12,18 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "PUREBrainstorming#9191",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:91919a162e79e32c28e829ba3e7f2b55d345cf1f200b100e771caef7016fc59e",
-  "sema_stub": "9191",
+  "sema_ref": "PUREBrainstorming#2e83",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:2e83f252cc40be9f0eb974bf5c6a70b62cad3a53c6f8a0589d60b0393995b6f5",
+  "sema_stub": "2e83",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "composes_with": {
-      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:4114d67d1729658a76e94afe6f381ecc4ad52fe2d83e9cd832ff1aaf1aaf63ee",
-      "pure_check": "sema:PURECheck#mh:SHA-256:8ac3ae4946b9e93c687eba0a993d8bdf973b6b7bb9266d71427d94e5be5c166b"
-    },
     "yields": {
       "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06"
+    },
+    "composes_with": {
+      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:d1f9eeafbaac69e359c689410fc44f7802f7c1320427f49ea27ccbdaed06cf4d",
+      "pure_check": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f"
     }
   }
 }

@@ -12,9 +12,9 @@
     "category": "Economics",
     "ring": 0
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:83bb53188617efad30b5d5a92ebf9e619133a16bcccb934b71b580ceb6149abb",
-  "sema_ref": "Gardener#83bb",
-  "sema_stub": "83bb",
+  "sema_id": "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c",
+  "sema_ref": "Gardener#b002",
+  "sema_stub": "b002",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [
@@ -22,10 +22,10 @@
   ],
   "dependencies": {
     "references": {
-      "compensate": "sema:Compensate#mh:SHA-256:9170069ffd68f22e22e079e23f5a2e67fd9744b5408444f38596066df251a7c9",
       "stigmergy": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
-      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485",
-      "care": "sema:Care#mh:SHA-256:9186944f2f3e4e9641a5f310c0fb1cf52129c46af485f4b5fe9bbff1618a8ae5"
+      "care": "sema:Care#mh:SHA-256:cdfae572389ee7b84aa847b9320c072053f25827a7b06891cb08cd8d18aef40b",
+      "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
+      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485"
     }
   }
 }

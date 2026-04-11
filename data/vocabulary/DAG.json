@@ -36,13 +36,13 @@
   ],
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:DAG#mh:SHA-256:5e07cccaa9071223b76debbf27ffb748b0b49ce202dd10dd11db9d5823eb7b54",
-  "sema_ref": "DAG#5e07",
-  "sema_stub": "5e07",
+  "sema_id": "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f",
+  "sema_ref": "DAG#ed37",
+  "sema_stub": "ed37",
   "dependencies": {
     "references": {
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "parallelize": "sema:Parallelize#mh:SHA-256:dac1ca99ae8c379c9ba093e840eaab9eb2ad16ccfbdb07d6c0e25e3fad2fae6c"
+      "parallelize": "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391"
     }
   }
 }

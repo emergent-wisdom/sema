@@ -21,15 +21,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:MonotonicCounter#mh:SHA-256:3a1201d0c954088c016b8d5ac039fd29d491bb158e865f1ea0b634bf073dfc1f",
-  "sema_ref": "MonotonicCounter#3a12",
-  "sema_stub": "3a12",
+  "sema_id": "sema:MonotonicCounter#mh:SHA-256:40968470b9f8326f0171ebdc2ca7253982dc677e69aedfec61957a4ea5489131",
+  "sema_ref": "MonotonicCounter#4096",
+  "sema_stub": "4096",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "state_lock": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c"
+      "state_lock": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }

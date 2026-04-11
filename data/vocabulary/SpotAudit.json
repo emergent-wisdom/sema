@@ -28,8 +28,8 @@
   "sema_category": "Verification",
   "dependencies": {
     "references": {
-      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
-      "state_audit": "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e"
+      "state_audit": "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e",
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1"
     }
   }
 }

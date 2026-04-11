@@ -1,7 +1,7 @@
 {
   "handle": "ConfusedDeputy",
   "mechanism": "An {{agent}} that holds {{permission}} on behalf of one principal is tricked by a less-privileged caller into exercising that authority for the caller's benefit. The classic 1988 Hardy framing: a privileged compiler asked to write debug output to a billing file ends up corrupting the billing file because access was checked against the compiler's identity, not the requesting user's. In LLM systems the same shape appears as prompt injection: an {{actor}} with tool access is induced by adversarial input to invoke its tools on the attacker's behalf, because permission was bound to the agent process, not to the upstream request that motivated each tool call.",
-  "gloss": "A privileged agent tricked into exercising its authority on behalf of a less-privileged caller",
+  "gloss": "Guard against privilege confusion by binding authority checks to the upstream caller, not the executing deputy",
   "failure_modes": [
     "Prompt injection: untrusted input redirects an LLM {{agent}}'s tool use toward the attacker's goals.",
     "Capability leak: a holder of {{permission}} forwards or exposes that capability without re-checking the requester.",
@@ -26,16 +26,16 @@
     "category": "Protocols",
     "ring": 0
   },
+  "sema_ref": "ConfusedDeputy#6eb5",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:6eb586b85aa5ebf88afbd6b1e77c365c87e5f5d7ee3098479518066de00b331a",
+  "sema_stub": "6eb5",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
+      "permission": "sema:Permission#mh:SHA-256:4ee0362513125ffdfa6589c4848eb078ac9906acf26057520e000fc070c8cf6d",
       "actor": "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89",
-      "permission": "sema:Permission#mh:SHA-256:f5838c2aa8a10fbf23b5ae4fee6c184698dffadca0eaeef6e4af07cb5c8b92c7"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
-  },
-  "sema_ref": "ConfusedDeputy#c62c",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:c62c51a6821fb91dda537d42aada698d8642891c635bab77c402a8263012195f",
-  "sema_stub": "c62c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  }
 }

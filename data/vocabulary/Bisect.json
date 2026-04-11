@@ -14,15 +14,15 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Bisect#mh:SHA-256:9bf4f3b6c82ada23e0f16d389621b84755c0593bc442a4c438fc629306d5bbca",
-  "sema_ref": "Bisect#9bf4",
-  "sema_stub": "9bf4",
+  "sema_id": "sema:Bisect#mh:SHA-256:0c4f40e51e98feba821ba4c3f8e724a69e6b51173dc49ae94ff928fffaf73705",
+  "sema_ref": "Bisect#0c4f",
+  "sema_stub": "0c4f",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
-      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e"
+      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:f6fe36cd7f7c8478eea578a1b5e75e07a31dedcb9170ea0b06882ab18eeec55c",
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
     }
   }
 }

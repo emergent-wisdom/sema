@@ -16,9 +16,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:PromiseGraph#mh:SHA-256:972a66dbaf3511ccfb1b4b3af8f716ff568231799289843a47e50be4bfa508b8",
-  "sema_ref": "PromiseGraph#972a",
-  "sema_stub": "972a",
+  "sema_id": "sema:PromiseGraph#mh:SHA-256:b71f80814ed80753cff7a03dc7b0969e1afafb207e0eef5edd5dcd74c1eb93ec",
+  "sema_ref": "PromiseGraph#b71f",
+  "sema_stub": "b71f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {
@@ -69,9 +69,9 @@
   },
   "dependencies": {
     "references": {
-      "spot_audit": "sema:SpotAudit#mh:SHA-256:6e72e0806208b60fe980eb7a3c502423706fbe9a46b83b8ad2a46fbdcb24eb7e",
-      "negative_proof": "sema:NegativeProof#mh:SHA-256:40a6b9b7cc8a3e63dd2433bdcfe0090eee52016e2eb9d58238474f1e4347d30d",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "spot_audit": "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d",
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:5225bbc358d41d3ef16f0466a4e33160d9c7d020132726c74c576eef5d399d4e"
     }
   }
 }

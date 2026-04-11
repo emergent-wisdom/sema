@@ -15,17 +15,17 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_ref": "TriGate#a30f",
-  "sema_id": "sema:TriGate#mh:SHA-256:a30fece9632e91a1089f646c9bd11a648fdd6264edd95aad7f81981090672d2c",
-  "sema_stub": "a30f",
+  "sema_ref": "TriGate#07fc",
+  "sema_id": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
+  "sema_stub": "07fc",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
+      "ledger": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
       "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
-      "ledger": "sema:Ledger#mh:SHA-256:2449b13ec018b29f7301a798a92077d5f6983991b38886c19f1aa27c3ac533e5",
-      "judge": "sema:Judge#mh:SHA-256:98ca79898ad25ea9eca89cd84358c5a474d07f9cfc7af6d775cd4ff4bbf962f1"
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
     }
   }
 }

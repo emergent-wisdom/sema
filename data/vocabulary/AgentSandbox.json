@@ -28,9 +28,9 @@
       "Task"
     ]
   },
-  "sema_id": "sema:AgentSandbox#mh:SHA-256:871978bf94159b4fb9397407879198d38303f3b42585b5fc3ccf956f745d2904",
-  "sema_ref": "AgentSandbox#8719",
-  "sema_stub": "8719",
+  "sema_id": "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
+  "sema_ref": "AgentSandbox#06f2",
+  "sema_stub": "06f2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -38,14 +38,14 @@
   ],
   "dependencies": {
     "references": {
-      "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1"
+      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0"
     },
     "composes_with": {
-      "output_guard": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0",
-      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb",
+      "output_guard": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0"
     }
   }
 }

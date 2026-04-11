@@ -25,9 +25,9 @@
   "dependencies": {
     "references": {
       "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "overlap": "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
-      "defer": "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "defer": "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3"
     }
   }
 }

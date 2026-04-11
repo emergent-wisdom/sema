@@ -33,16 +33,16 @@
   },
   "sema_layer": "Society",
   "sema_category": "Governance",
-  "sema_id": "sema:Elect#mh:SHA-256:af6e313ca4ac066c68c3b5f9debfaec551f20b3aacd0792c3eec6fa41bc41282",
-  "sema_ref": "Elect#af6e",
-  "sema_stub": "af6e",
+  "sema_id": "sema:Elect#mh:SHA-256:fe172e2804d566d70e13201034804789a37db8deb9dd33600fafa274f70aba59",
+  "sema_ref": "Elect#fe17",
+  "sema_stub": "fe17",
   "dependencies": {
     "composes_with": {
-      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:8c2751d01ae615d897961fd6d575c2feb5914eac8463a5591b49e86b21542654"
+      "hydra_constitution": "sema:HydraConstitution#mh:SHA-256:fcd81ba0a693acc4e0e3a9fa826f7c85f5f74798637d7bca82e97452445ccf51"
     },
     "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
-      "ballot": "sema:Ballot#mh:SHA-256:c5c5f7a0dc23a23835d0b9f8ce25f104818431062160e753010e4077e7a27062"
+      "ballot": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

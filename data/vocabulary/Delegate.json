@@ -29,26 +29,26 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:7dce193da7c9573a95841772ee70d67bc8b3955dc983873f7fd396cf46dca01a",
-  "sema_ref": "Delegate#7dce",
-  "sema_stub": "7dce",
+  "sema_id": "sema:Delegate#mh:SHA-256:ff2de3a693c718105e74390cbaab3a22431e0d414dc88f33fb1fdab193774f9e",
+  "sema_ref": "Delegate#ff2d",
+  "sema_stub": "ff2d",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
-    "composes_with": {
-      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
-      "mirror_stake": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:63d94ef7c7c9a24850e971f070e00f53f4a1d1dfbc3f69dc1a59e280019dcaff"
-    },
     "references": {
-      "break": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
-      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
+      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
+    },
+    "composes_with": {
+      "mirror_stake": "sema:MirrorStake#mh:SHA-256:38a3f024c71c10914811321131a706e94eb9502808878d06439becf1c46b8daf",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
+      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa"
     },
     "yields": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
     },
     "accepts": {
-      "holographic_shard": "sema:HolographicShard#mh:SHA-256:df0df3247fd137a24dc7fd9a26885d64b77554833536778901c6ea4e31856907"
+      "holographic_shard": "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f"
     }
   }
 }

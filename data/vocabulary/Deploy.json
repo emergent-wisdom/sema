@@ -14,15 +14,15 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "Deploy#0d56",
-  "sema_id": "sema:Deploy#mh:SHA-256:0d5689af6010cb28767876fe4c7eea40aec1c411e30d2191b55745e2746fe7f9",
-  "sema_stub": "0d56",
+  "sema_ref": "Deploy#2adf",
+  "sema_id": "sema:Deploy#mh:SHA-256:2adf31981783f19de75dfdd1ebf2dab527b06adf703a61e649cdc28b99760815",
+  "sema_stub": "2adf",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "rollout": "sema:Rollout#mh:SHA-256:7cbf08f86c59227263ce7d804dcdf9fec8ec052732d0d74ab7959ab6f4423a9d",
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
+      "rollout": "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb"
     }
   }
 }

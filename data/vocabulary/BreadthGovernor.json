@@ -38,20 +38,20 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:c98e2057dd8d67125f34aafcb2f6397574af172c0a20113aa042574bd8e31a7c",
-  "sema_ref": "BreadthGovernor#c98e",
-  "sema_stub": "c98e",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169",
+  "sema_ref": "BreadthGovernor#d220",
+  "sema_stub": "d220",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "decompose": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:6972d19d015bb785ec16660c5a465e9451e2109e435e465b16a7432b806ecf7f",
-      "parsimony": "sema:Parsimony#mh:SHA-256:40f33717fcb1e6a52d22532d8094414c1a3d33d717a72bb230e820eb2e2d61f8",
-      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3"
+      "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
+      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa",
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }
