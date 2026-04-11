@@ -1,18 +1,36 @@
 """Embedding service using sentence-transformers for semantic similarity."""
 
+import os
 import sqlite3
+from pathlib import Path
 
 import numpy as np
+from platformdirs import user_cache_dir
+
+
+def _cache_db_path() -> str:
+    """Return path to the embedding cache DB in the user's cache directory.
+
+    Override with SEMA_CACHE_DIR env var.
+    """
+    cache_dir = Path(os.environ.get("SEMA_CACHE_DIR", user_cache_dir("sema")))
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    return str(cache_dir / "embedding_cache.db")
 
 
 class EmbeddingService:
-    """Handles text embeddings using sentence-transformers MiniLM model."""
+    """Handles text embeddings using sentence-transformers MiniLM model.
+
+    The taxonomy db_path is used read-only (for node embeddings).
+    Query embedding caches go to ~/.cache/sema/embedding_cache.db.
+    """
 
     MODEL_NAME = "all-MiniLM-L6-v2"
     EMBEDDING_DIM = 384
 
     def __init__(self, db_path: str = "taxonomy.db"):
         self.db_path = db_path
+        self._cache_path = _cache_db_path()
         self._model = None
         self._init_cache_table()
 
@@ -21,18 +39,11 @@ class EmbeddingService:
         """Lazy load the model. Prefers fastembed (lightweight) over sentence-transformers."""
         if self._model is None:
             try:
-                # Try lightweight fastembed first
                 from fastembed import TextEmbedding
 
-                # map 'all-MiniLM-L6-v2' to fastembed's name if needed,
-                # but fastembed handles this standard model name well.
-                # standard name in fastembed is "BAAI/bge-small-en-v1.5" or similar defaults,
-                # but "sentence-transformers/all-MiniLM-L6-v2" is supported.
-                # We stick to the default one for compatibility or specify explicitly.
                 self._model = TextEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
                 self._model_type = "fastembed"
             except ImportError:
-                # Fallback to heavy sentence-transformers
                 try:
                     from sentence_transformers import SentenceTransformer
 
@@ -46,10 +57,9 @@ class EmbeddingService:
         return self._model
 
     def _init_cache_table(self):
-        """Create embedding cache table if it doesn't exist."""
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        cursor.execute("""
+        """Create embedding cache table in the cache DB (not taxonomy DB)."""
+        conn = sqlite3.connect(self._cache_path)
+        conn.execute("""
             CREATE TABLE IF NOT EXISTS embedding_cache (
                 text_hash TEXT PRIMARY KEY,
                 text TEXT NOT NULL,
@@ -69,7 +79,7 @@ class EmbeddingService:
         """Get embedding for text, using cache if available."""
         text_hash = self._hash_text(text)
 
-        conn = sqlite3.connect(self.db_path)
+        conn = sqlite3.connect(self._cache_path)
         cursor = conn.cursor()
         cursor.execute("SELECT embedding FROM embedding_cache WHERE text_hash = ?", (text_hash,))
         row = cursor.fetchone()
@@ -78,17 +88,15 @@ class EmbeddingService:
             conn.close()
             return np.frombuffer(row[0], dtype=np.float32)
 
-        # Generate embedding - access self.model to ensure it's initialized
+        # Generate embedding
         model = self.model
         if self._model_type == "fastembed":
-            # fastembed returns a generator of numpy arrays
             embedding = next(model.embed([text])).astype(np.float32)
         else:
-            # sentence-transformers
             embedding = model.encode(text, convert_to_numpy=True).astype(np.float32)
 
         cursor.execute(
-            "INSERT INTO embedding_cache (text_hash, text, embedding) VALUES (?, ?, ?)",
+            "INSERT OR IGNORE INTO embedding_cache (text_hash, text, embedding) VALUES (?, ?, ?)",
             (text_hash, text, embedding.tobytes()),
         )
         conn.commit()
@@ -115,17 +123,7 @@ class EmbeddingService:
         threshold: float = 0.85,
         top_k: int = 5,
     ) -> list[tuple[str, float]]:
-        """Find candidates similar to query above threshold.
-
-        Args:
-            query_embedding: The embedding to search for
-            candidates: List of (id, embedding) tuples to search
-            threshold: Minimum similarity to include
-            top_k: Maximum results to return
-
-        Returns:
-            List of (id, similarity) tuples, sorted by similarity desc
-        """
+        """Find candidates similar to query above threshold."""
         results = []
         for node_id, embedding in candidates:
             sim = self.cosine_similarity(query_embedding, embedding)
