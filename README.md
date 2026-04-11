@@ -1,4 +1,5 @@
 <!-- mcp-name: io.github.emergent-wisdom/semahash -->
+<!-- deploy-trigger: 2026-04-11 -->
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/emergent-wisdom/sema/main/docs/images/sema_banner.png" alt="Sema — When the hash is the word" width="800">
