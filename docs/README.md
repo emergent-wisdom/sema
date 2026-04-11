@@ -1,47 +1,54 @@
 # Sema Documentation
 
-Welcome to the Sema documentation. This library is organized into packages covering core philosophy, technical specifications, operational workflows, and tooling.
+Welcome to the Sema documentation. Start at the top and read down — each section builds on the previous one.
 
-## 📚 Documentation Structure
+## Orientation
 
-### 1. [Core Philosophy](core/philosophy.md)
-Understanding the "why" behind Sema.
-- **[Philosophy](core/philosophy.md):** The fundamental principles of semantic stability, content-addressing, and "Text is Code".
+- **[Overview](README.md):** You are here.
+- **[Core Philosophy](core/philosophy.md):** Why Sema exists — content-addressing, "Text is Code", the Civilization Stack.
 
-### 2. [Specification](specification/naming.md)
-The strict rules that define the Sema protocol.
-- **[Pattern Authoring Guide](specification/authoring.md):** Complete guide to minting patterns — schema, rules A-K, hashing protocol, naming morphology, and the staging workflow.
-- **[Naming & Taxonomy](specification/naming.md):** Rules for Handles, Layers, and Categories.
-- **[Schema Specification](specification/schema.md):** The JSON structure of a Pattern Card.
-- **[Validation Rules](specification/validation.md):** The invariants enforced by the compiler (e.g., Truth in Advertising).
-- **[Validation Matrix](specification/validation-matrix.md):** All 42 compiler checks with implementation status and code locations.
+## The Pattern Card
 
-### 3. [Tooling](tools/cli.md)
-Tools for interacting with the vocabulary.
-- **[CLI](tools/cli.md):** The primary tool for adding, updating, and removing patterns (`sema` command).
+- **[Schema Spec](specification/schema.md):** The JSON structure of a Pattern Card — hashed fields, metadata, dependency map.
+- **[Naming Taxonomy](specification/naming.md):** Rules for Handles, Layers, Categories, and naming suffixes.
 
-### 4. [Operations](operations/legacy_workflow.md)
-Workflows for maintaining the vocabulary.
-- **[Vocabulary Maintenance](operations/legacy_workflow.md):** Adding, removing, and validating patterns with `sema apply`.
+## Lifecycle & Rules
 
-### 5. [Information](information/vocabulary_information.md)
-System status and cryptographic verification.
-- **[Vocabulary Information](information/vocabulary_information.md):** The cryptographic root hash and statistical breakdown of the current vocabulary.
+- **[Validation Rules](specification/validation.md):** Rules A-K enforced by the compiler (dependency integrity, signatures, schemas).
+- **[Validation Matrix](specification/validation-matrix.md):** All compiler checks with implementation status and code locations.
+- **[Versioning & Refinement](specification/versioning.md):** How immutable hashes coexist with mutable handles; refinement and supersession.
 
-## 🚀 Getting Started
+## Practical Guides
 
-To modify the vocabulary, use the `sema` CLI:
+- **[Pattern Lifecycle](guides/lifecycle.md):** The full loop: create, validate, hash, apply, export, distribute, pull, rebuild.
+- **[Pattern Authoring Guide](guides/authoring.md):** Step-by-step workflow for minting and modifying patterns.
+- **[CLI Reference](tools/cli.md):** The `sema` command — apply, search, resolve, show, pull, serve.
+
+## Integrations
+
+- **[Claude Code](integrations/claude-code.md):** MCP server setup for Claude Code.
+- **[OpenClaw](integrations/openclaw.md):** Channel plugin for OpenClaw.
+- **[Understanding Graph](guides/understanding-graph.md):** Composing semantic memory (Sema) with episodic memory (UG).
+
+## Reference
+
+- **[Vocabulary Information](information/vocabulary_information.md):** Cryptographic Merkle root and statistical breakdown of the current vocabulary.
+
+## Getting Started
 
 ```bash
-# Install the package
-pip install -e .
+# Install
+pip install semahash
 
-# Add patterns (validates before applying)
+# Add a pattern (validates before applying)
 sema apply --add MyPattern.json
 
-# Remove patterns (validates dependencies first)
-sema apply --remove MyPattern
+# Validate without applying
+sema apply --check --add MyPattern.json
 
-# Atomic add + remove in one operation
-sema apply --add NewPattern.json --remove OldPattern
+# Search the vocabulary
+sema search "coordination"
+
+# Start the MCP server for AI integration
+sema mcp
 ```

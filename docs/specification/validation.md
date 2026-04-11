@@ -61,3 +61,75 @@ When the linter reports an **Unused Dependency** (Inverse Rule Violation), do NO
 4. **Remove (Hallucination):** The relationship is truly irrelevant or legacy.
    * *Action:* Delete the dependency key.
 
+## 4. Signature & Naming Rules
+
+### Rule F: Signature Syntax (`signature`)
+
+The `signature` field declares the **Type Constructor** or **Functional Interface** of the pattern. Every entry MUST have at least one argument.
+
+**Valid Syntax Forms:**
+
+1. **Single Argument:** `Intent(Target)` (e.g., `Check(Nature)`)
+2. **Nested Arguments:** `Intent(Target(Subtarget))` (e.g., `Deep(Check(Proof))`)
+3. **Multiple Arguments:** `Intent(Target, Modifier)` (e.g., `Transform(Input, Output)`)
+
+**Forbidden:**
+
+* `"signature": ["Check"]` — Bare name, no argument
+* `"signature": ["Trace", "Validate"]` — Two bare names
+* `"signature": ["Deep"]` — Even abstract intents need targets
+
+**Rationale:** A bare signature like `["Check"]` is ambiguous—*what* does it check? The argument specifies the domain or target of the polymorphic behavior, enabling the compiler to resolve abstract intents to concrete patterns at runtime.
+
+**The "Truth in Advertising" Invariant:**
+If a Pattern claims a `signature`, it MUST fulfill that contract entirely. Do not claim `Act(Deploy)` if the pattern only writes a file but does not execute the deployment.
+
+### Rule G: The Dependency Direction Rule
+
+**The Fundamental Principle:** Dependencies always flow from specific to general. The more fundamental (more general, less specific) pattern is always upstream. Specific patterns depend on general patterns, never the reverse.
+
+**The Rule:** A pattern may only declare dependencies on patterns that are **more fundamental** than itself.
+
+| Pattern | Depends On | Rationale |
+| --- | --- | --- |
+| `Toyota` | `Car` | Toyota is a specific instance; Car is the general concept |
+| `Car` | `Wheel` | Car is an assembly; Wheel is a component |
+| `Wheel` | `Circle` | Wheel is a physical object; Circle is a geometric primitive |
+
+**Violations:**
+
+* **Bad:** `Car` depends on `Toyota`. (General cannot depend on specific)
+* **Bad:** `Physics` layer referencing `Society` layer. (Lower layers are more fundamental)
+
+### Rule H: The Concept Suspicion Rule
+
+Any **Capitalized Concept** (e.g., "Creation Protocol", "FrameSpec", "MonitorReport") appearing in the text fields MUST be a linked dependency `{{key}}`.
+
+* **Suspicious:** "Executes the Creation Protocol." (Unlinked Proper Noun).
+* **Action:**
+
+1. **Mint it:** If it's a real pattern, create it and link it: "Executes the {{creation_protocol}}."
+2. **Lowercase it:** If it's just a description, lowercase it: "Executes the creation protocol."
+
+### Rule I: The Half-Concept Ban
+
+It is strictly forbidden to reference "half concepts" by splitting a compound term into separate parts.
+
+* **Bad:** "The {{problem}} Statement..."
+* **Good:** "The {{problem_statement}}..." (referencing `sema:ProblemStatement#...`)
+
+### Rule J: Semantic Meaningfulness
+
+Patterns must be semantically substantial and meaningful.
+
+* **No Tautologies:** A pattern cannot define itself by itself.
+* **No Vacuous Definitions:** Avoid vague corporate speak or fluff.
+
+### Rule K: The Schema Requirement
+
+Any pattern that serves as a **Data Structure** or a **State-Bearing Primitive** (e.g., `Work`, `Trace`) MUST explicitly define its structure via `data_schema`.
+
+* **Field:** `data_schema` (JSON Schema standard).
+* **Rationale:** This defines the "Shape of the Noun," not the "Signature of the Verb." Prevents "Schema Drift."
+* **Do Not:** Define `input_schema` here. Inputs are defined by the `accepts` dependency. The verb inherits the schema from the Noun it accepts.
+

@@ -141,3 +141,38 @@ The CLI enforces the following strictly:
 3.  **Taxonomy:** Layer and Category must match the allowed list.
 4.  **Schema:** Patterns in `Data Structures` must have a `data_schema`.
 5.  **Signature:** Signatures must follow `Verb(Noun)` syntax.
+
+For the complete rule set (Rules A-K), see [Validation Rules](../specification/validation.md).
+
+## Troubleshooting
+
+### Explicit Dependency Violation
+
+```
+Forward dependency violations: '{{tool_invoke}}' used in 'mechanism' but not declared in dependencies
+```
+
+**Fix:** Add `"tool_invoke": "sema:ToolInvoke#..."` to `dependencies.references` (or the appropriate category).
+
+### Empty Field Violation
+
+```
+EMPTY FIELD RULE VIOLATION: dependencies = {}
+```
+
+**Fix:** Delete the field entirely. If a pattern has no dependencies, omit the `dependencies` block.
+
+### Missing Metadata
+
+```
+_meta.ring; Field required
+```
+
+**Fix:** Ensure `_meta` has all four fields: `layer`, `category`, `ring`, `tier`.
+
+## Best Practices
+
+- **Validate first:** Always run with `--check` before applying
+- **Small batches:** Debugging 3 new patterns is easier than 30
+- **Review dependencies:** A dependency is a semantic claim. Don't auto-fix without understanding the relationship
+- **Use staging:** Put work-in-progress patterns in `data/staging/`, move to `data/vocabulary/` when ready

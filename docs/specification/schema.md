@@ -55,15 +55,33 @@ Every Sema pattern is a JSON object adhering to this strict schema. This structu
     "properties": { ... } // JSON Schema or Zod definition
   },
 
+  // 7. Parameters: Identity Configuration (Control Plane)
+  // Variables that change the Hash/Identity of the pattern.
+  // Defaults are OPTIONAL — the base pattern represents the abstract capability.
+  "parameters": [
+    {
+      "name": "strictness",
+      "type": "Enum",
+      "range": "{Lenient, Normal, Strict}",
+      // "default": "Normal",  <-- OPTIONAL. Omit for abstract type.
+      "description": "Configures the tolerance level."
+    }
+  ],
+
   // --- METADATA (Unhashed / Mutable) ---
   // These fields help organization but do not change the Identity.
-  "sema_id": "sema:Handle#mh:SHA-256:...", // The computed Merkle Root
+  "sema_id": "sema:Handle#mh:SHA-256:...",  // The computed Merkle Root
+  "sema_ref": "Handle#stub",                // Short reference (handle + 4-char hash prefix)
+  "sema_stub": "stub",                      // 4-char hash prefix alone
+  "sema_layer": "Society",                  // Flattened layer for easy access
+  "sema_category": "Governance",            // Flattened category for easy access
   "_meta": {
     "layer": "Society",                   // Stack Layer
     "category": "Governance",             // Functional Group
     "ring": 1,                            // Stability Ring (0=Kernel, 1=StdLib, 2=User)
     "tier": 2,                            // Rigor Tier (0=Primitive, 1=Hard, 2=Soft)
-    "related": ["Pattern#stub"]           // Soft links
+    "related": ["Pattern#stub"],          // Soft links
+    "supersedes": ["sema:OldHandle#mh:SHA-256:..."]  // [Optional] Version chain
   }
 }
 ```
