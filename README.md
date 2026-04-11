@@ -22,57 +22,55 @@ Sema is a semantic commons that content-addresses meaning itself: the definition
 
 ## Install
 
-### Claude Code (zero-install via uvx)
+### MCP Server (recommended)
 
-The fastest way to add sema to Claude Code — no prior `pip install` needed:
+Add to any MCP client (Claude Code, Cursor, VS Code, Windsurf, Claude Desktop):
+
+```json
+{
+  "mcpServers": {
+    "sema": {
+      "command": "uvx",
+      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+    }
+  }
+}
+```
+
+Or via Claude Code CLI:
 
 ```bash
-claude mcp add sema -- uvx --from semahash sema mcp
+claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
 ```
 
 This uses [uv](https://docs.astral.sh/uv/) to download, install, and run sema
 in an isolated environment on first invocation, then caches it for subsequent
-calls. Same shape as `npx -y` in the Node ecosystem.
+calls.
 
 ### Permanent install (pip)
-
-```bash
-pip install semahash
-```
-
-For MCP server support (recommended for AI agents):
 
 ```bash
 pip install "semahash[mcp]"
 ```
 
-Then register with Claude Code:
+For CLI-only use (no MCP server):
 
 ```bash
-claude mcp add sema -- sema mcp
+pip install semahash
 ```
 
 ## Quick Start
 
 ### Use with AI Agents (MCP)
 
-Already covered above via the `uvx` or `pip install` paths. To add Sema to
-**OpenClaw** via mcporter:
-
-```bash
-npm install -g mcporter
-mcporter config add sema --command sema --arg mcp --scope home
-```
-
-Or clone and install locally for development:
+Already covered above via the JSON config or `pip install` path. For development against this repo:
 
 ```bash
 git clone https://github.com/emergent-wisdom/sema.git
 pip install -e "./sema[mcp]"
-claude mcp add sema -- sema mcp
 ```
 
-Your agent now has access to `sema_search`, `sema_lookup`, `sema_handshake`, and 5 more tools. Any MCP-compatible framework works — Sema exposes a standard stdio server.
+Your agent now has access to `sema_search`, `sema_lookup`, `sema_handshake`, and 8 more tools. Any MCP-compatible client works — Sema exposes a standard stdio server.
 
 **Verify it works** — ask your agent: *"Search sema for coordination patterns and handshake on StateLock"*
 
@@ -225,7 +223,7 @@ See [`experiments/sema_design_challenge/README.md`](experiments/sema_design_chal
 Sema gives your agents shared *semantic* memory — a vocabulary of cognitive patterns with content-addressed identity. [Understanding Graph](https://github.com/emergent-wisdom/understanding-graph) gives them shared *episodic* memory — the actual thinking trail behind a decision. They compose:
 
 ```bash
-claude mcp add sema -- uvx --from semahash sema mcp
+claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
 claude mcp add ug   -- npx -y understanding-graph mcp
 ```
 

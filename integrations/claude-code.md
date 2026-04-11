@@ -10,7 +10,7 @@ If you have [uv](https://docs.astral.sh/uv/) installed, you can skip the pip
 step entirely and let uvx manage an isolated environment for you:
 
 ```bash
-claude mcp add sema -- uvx --from semahash sema mcp
+claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
 ```
 
 `uvx` downloads, caches, and runs `semahash` on first invocation; subsequent

@@ -24,7 +24,7 @@ reasoning commons that survives across sessions and across agents.
 ## Install both
 
 ```bash
-claude mcp add sema -- uvx --from semahash sema mcp
+claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
 claude mcp add ug   -- npx -y understanding-graph mcp
 ```
 
