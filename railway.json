@@ -6,7 +6,7 @@
     "buildCommand": "pip install -e '.[api]' && cd web && npm install && rm -rf build && npm run build && mkdir -p ../src/sema/server/static && cp -r build/client/* ../src/sema/server/static/"
   },
   "deploy": {
-    "startCommand": "sema serve --host 0.0.0.0 --port $PORT",
+    "startCommand": "cd /app/web && rm -rf build && npm run build && mkdir -p ../src/sema/server/static && cp -r build/client/* ../src/sema/server/static/ && cd /app && sema serve --host 0.0.0.0 --port $PORT",
     "healthcheckPath": "/",
     "restartPolicyType": "ON_FAILURE"
   }
