@@ -32,16 +32,20 @@ export function GraphPage() {
   return (
     <div className="h-screen w-screen overflow-hidden bg-zinc-950">
       <GraphCanvas />
-      <TopBar />
-      <DetailsPanel />
+      <div className="hidden sm:block">
+        <TopBar />
+      </div>
+      <div className="hidden sm:block">
+        <DetailsPanel />
+      </div>
 
       {/* Back button */}
       <Link
         to="/"
-        className="absolute top-4 left-4 z-50 flex items-center gap-2 px-3 py-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg text-sm text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 transition-colors"
+        className="absolute top-4 left-4 z-50 flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg text-xs sm:text-sm text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
-        Back to List
+        <span className="hidden sm:inline">Back to List</span>
       </Link>
     </div>
   )
