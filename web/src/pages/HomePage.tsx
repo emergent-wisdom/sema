@@ -161,7 +161,7 @@ export function HomePage() {
 
         <div className="relative max-w-6xl mx-auto px-6 pt-12 pb-16">
           {/* Header */}
-          <div className="flex items-start justify-between mb-12">
+          <div className="flex flex-col sm:flex-row items-start sm:justify-between gap-6 mb-12">
             <div className="flex items-center gap-5">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center shadow-lg shadow-emerald-900/20 text-emerald-400">
                 <SemaLogo className="w-8 h-8" />
@@ -171,7 +171,7 @@ export function HomePage() {
                 <p className="text-sm text-zinc-500">When the hash is the word</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <a
                 href="/api/paper"
                 target="_blank"
@@ -220,7 +220,7 @@ export function HomePage() {
           </div>
 
           {/* Layer stats */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {LAYERS.map((layer, i) => (
               <button
                 key={layer}
@@ -236,15 +236,15 @@ export function HomePage() {
                   animationDelay: `${i * 100}ms`,
                 }}
               >
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-1">
                   <div
                     className="w-2 h-2 rounded-full"
                     style={{ backgroundColor: LAYER_COLORS[layer] }}
                   />
                   <span className="text-sm font-medium text-zinc-200">{layer}</span>
-                  <span className="ml-auto text-2xl font-light text-zinc-400 tabular-nums">
-                    {layerCounts[layer] || 0}
-                  </span>
+                </div>
+                <div className="text-2xl font-light text-zinc-400 tabular-nums mb-1">
+                  {layerCounts[layer] || 0}
                 </div>
                 <p className="text-xs text-zinc-600 leading-relaxed">
                   {LAYER_DESCRIPTIONS[layer]}
