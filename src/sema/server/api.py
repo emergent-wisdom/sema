@@ -435,30 +435,25 @@ def get_pattern_source(handle: str):
 # --- Documentation API ---
 DOCS_ORDER = [
     # --- ORIENTATION ---
-    ("README",                              "Overview"),
-    ("core/philosophy",                     "Core Philosophy"),
-
+    ("README", "Overview"),
+    ("core/philosophy", "Core Philosophy"),
     # --- THE PATTERN CARD ---
-    ("specification/schema",                "The Pattern Card"),
-    ("specification/naming",                "Naming Taxonomy"),
-
+    ("specification/schema", "The Pattern Card"),
+    ("specification/naming", "Naming Taxonomy"),
     # --- LIFECYCLE ---
-    ("specification/validation",            "Validation Rules"),
-    ("specification/validation-matrix",     "Validation Matrix"),
-    ("specification/versioning",            "Versioning & Refinement"),
-
+    ("specification/validation", "Validation Rules"),
+    ("specification/validation-matrix", "Validation Matrix"),
+    ("specification/versioning", "Versioning & Refinement"),
     # --- PRACTICAL GUIDES ---
-    ("guides/lifecycle",                    "Pattern Lifecycle"),
-    ("guides/authoring",                    "Pattern Authoring Guide"),
-    ("tools/cli",                           "CLI Reference"),
-
+    ("guides/lifecycle", "Pattern Lifecycle"),
+    ("guides/authoring", "Pattern Authoring Guide"),
+    ("tools/cli", "CLI Reference"),
     # --- INTEGRATIONS ---
-    ("integrations/claude-code",            "Claude Code Integration"),
-    ("integrations/openclaw",               "OpenClaw Integration"),
-    ("guides/understanding-graph",          "Using with Understanding Graph"),
-
+    ("integrations/claude-code", "Claude Code Integration"),
+    ("integrations/openclaw", "OpenClaw Integration"),
+    ("guides/understanding-graph", "Using with Understanding Graph"),
     # --- REFERENCE ---
-    ("information/vocabulary_information",  "Vocabulary Info"),
+    ("information/vocabulary_information", "Vocabulary Info"),
 ]
 
 
