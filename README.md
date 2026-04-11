@@ -110,7 +110,7 @@ sema search "..."
 
 Subsequent `sema` commands (including `sema mcp`) read from your private
 registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
-contribution path and [docs/versioning.md](docs/versioning.md) for the
+contribution path and [docs/specification/versioning.md](docs/specification/versioning.md) for the
 refinement and supersession policy.
 
 ### Use in Python
@@ -121,10 +121,10 @@ import json
 
 # Look up the canonical hash
 result = json.loads(sema_handshake("StateLock"))
-print(result["canonical_ref"])  # StateLock#7859
+print(result["canonical_ref"])  # StateLock#f165
 
 # Verify alignment
-result = json.loads(sema_handshake("StateLock#7859"))
+result = json.loads(sema_handshake("StateLock#f165"))
 print(result["verdict"])  # PROCEED
 ```
 
@@ -145,8 +145,8 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Agent A: "Let's use StateLock#7859"
-Agent B: sema_handshake("StateLock#7859")
+Agent A: "Let's use StateLock#f165"
+Agent B: sema_handshake("StateLock#f165")
          -> PROCEED (hashes match) or HALT (drift detected)
 ```
 
@@ -170,7 +170,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | Tool | Description |
 |------|-------------|
 | `sema_search` | Search patterns by name, description, or meaning |
-| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#7859`) |
+| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#f165`) |
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
@@ -231,11 +231,11 @@ claude mcp add ug   -- npx -y understanding-graph mcp
 
 With both installed, an agent can:
 
-1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#7859`) so the meaning of the primitive can never drift.
+1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#f165`) so the meaning of the primitive can never drift.
 2. Use `graph_semantic_search` to find all past graph nodes that reference a given sema pattern — hash-stable history, not keyword matching.
 3. Call `sema_handshake` *before* writing a decision that depends on a shared concept; if it returns `HALT`, the agent writes a `tension` node instead and stops, preventing silent divergence.
 
-Full walkthrough: [docs/using-with-understanding-graph.md](docs/using-with-understanding-graph.md)
+Full walkthrough: [docs/guides/understanding-graph.md](docs/guides/understanding-graph.md)
 
 ## Repository Structure
 

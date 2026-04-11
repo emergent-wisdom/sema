@@ -46,7 +46,7 @@ Once added, Claude Code can call any of the 11 Sema tools:
 
 ```
 sema_search query="coordination"
-sema_handshake ref="StateLock#7859"
+sema_handshake ref="StateLock#f165"
 sema_resolve handle="ChainOfThought"
 sema_lookup ref="Abduction#fe2b"
 sema_tree layer="Society"
@@ -71,11 +71,11 @@ Before coordinating with other agents on a shared concept, verify alignment:
 
 1. Search for the relevant pattern: use `sema_search`
 2. Handshake to verify you share the same definition:
-   use `sema_handshake` with the pattern's ref (e.g., "StateLock#7859")
+   use `sema_handshake` with the pattern's ref (e.g., "StateLock#f165")
 3. Only proceed if verdict is `PROCEED`. On `HALT`, stop and report the mismatch.
 
 Key patterns for this project:
-- `StateLock#7859` — mutex for shared state
+- `StateLock#f165` — mutex for shared state
 - `Check#1544` — non-blocking truth evaluation
 - `MechanisticDesignProposal#8cf7` — structured design contract
 ```

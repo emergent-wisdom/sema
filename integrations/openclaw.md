@@ -46,7 +46,7 @@ Any OpenClaw agent with the `mcporter` skill can now call Sema tools:
 
 ```
 mcporter call sema.sema_search query="coordination"
-mcporter call sema.sema_handshake ref="StateLock#7859"
+mcporter call sema.sema_handshake ref="StateLock#f165"
 mcporter call sema.sema_resolve handle="ChainOfThought"
 ```
 
@@ -65,7 +65,7 @@ Before coordinating with other agents on a shared concept, verify alignment:
 3. Only proceed if verdict is `PROCEED`. On `HALT`, stop and report the mismatch.
 
 Key patterns for this workspace:
-- `StateLock#7859` — mutex for shared state
+- `StateLock#f165` — mutex for shared state
 - `Check#1544` — non-blocking truth evaluation
 - `PUREBrainstorming#9191` — structured ideation (Filter -> Refine -> Specify)
 ```
