@@ -1,12 +1,21 @@
 {
   "name": "sema",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Content-addressed vocabulary protocol — shared meaning for AI agents",
   "skills": "./skills/",
+  "userConfig": {
+    "allow_mint": {
+      "description": "Allow minting new sema patterns (true/false, default: false)",
+      "sensitive": false
+    }
+  },
   "mcpServers": {
     "sema": {
       "command": "uvx",
-      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+      "args": ["--from", "semahash[mcp]", "sema", "mcp"],
+      "env": {
+        "SEMA_ALLOW_MINT": "${user_config.allow_mint}"
+      }
     }
   }
 }

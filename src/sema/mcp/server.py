@@ -1,6 +1,7 @@
 """Sema MCP Server - Query Sema vocabulary via MCP tools."""
 
 import json
+import os
 import sys
 from collections import defaultdict
 from importlib.metadata import PackageNotFoundError
@@ -37,7 +38,12 @@ mcp = FastMCP(
         "5. COORDINATE: `sema_propose_context` / `sema_verify_context` - multi-agent alignment\n"
         "6. CREATE: `sema_mint(pattern_json)` - mint new patterns into the vocabulary\n\n"
         "Patterns are reusable thought-chunks. Reference them to compress communication; "
-        "verify them to ensure alignment. Mint new ones when existing patterns don't fit."
+        "verify them to ensure alignment. Mint new ones when existing patterns don't fit.\n\n"
+        "SESSION CACHE:\n"
+        "The server tracks which patterns you've seen. After the first time, search results "
+        "return compact stubs (`_seen: true`) instead of full definitions to save context space.\n"
+        "- If you see `_seen: true` but don't remember what the pattern means: call `sema_resolve(handle)`.\n"
+        "- If your context was compressed or you need all full results again: call `sema_reset_session()`."
     ),
 )
 
@@ -454,13 +460,14 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
         )
 
 
-@mcp.tool()
-def sema_mint(pattern_json: str) -> str:
+def _sema_mint(pattern_json: str) -> str:
     """Create a new pattern and add it to the vocabulary.
 
     The pattern is validated (schema, dependency wiring, DAG check),
     hashed to produce a content-addressed identity, and added to the
     local database. Returns the new pattern's sema_id on success.
+
+    Requires SEMA_ALLOW_MINT=true to be available as a tool.
 
     Args:
         pattern_json: JSON string of the pattern to mint. Required fields:
@@ -690,6 +697,12 @@ def sema_verify_context(handles: list[str], remote_hash: str) -> str:
             },
             indent=2,
         )
+
+
+# Conditionally register sema_mint based on SEMA_ALLOW_MINT env var.
+# Default: disabled. Set SEMA_ALLOW_MINT=true to expose the tool.
+if os.environ.get("SEMA_ALLOW_MINT", "").lower() == "true":
+    sema_mint = mcp.tool()(_sema_mint)
 
 
 def main():
