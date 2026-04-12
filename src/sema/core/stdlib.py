@@ -191,7 +191,7 @@ class CounterfactualAnchor(SemaPattern):
         self.observation = reality
 
         # Simple delta calculation (can be overridden for complex objects)
-        if isinstance(self.anchor, (int, float)) and isinstance(reality, (int, float)):
+        if isinstance(self.anchor, int | float) and isinstance(reality, int | float):
             delta = abs(self.anchor - reality)
             return delta
         elif isinstance(self.anchor, str) and isinstance(reality, str):
