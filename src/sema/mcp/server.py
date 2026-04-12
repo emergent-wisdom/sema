@@ -102,13 +102,15 @@ def sema_search(query: str) -> str:
         ref = result.get("sema_ref") or result.get("handle", "")
         if ref in _served_patterns:
             # Already served this session — compact form
-            compacted.append({
-                "handle": result.get("handle"),
-                "sema_ref": ref,
-                "gloss": result.get("gloss"),
-                "score": result.get("score"),
-                "_seen": True,
-            })
+            compacted.append(
+                {
+                    "handle": result.get("handle"),
+                    "sema_ref": ref,
+                    "gloss": result.get("gloss"),
+                    "score": result.get("score"),
+                    "_seen": True,
+                }
+            )
         else:
             # New pattern — full result
             _served_patterns.add(ref)
