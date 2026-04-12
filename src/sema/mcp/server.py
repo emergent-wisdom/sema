@@ -98,7 +98,7 @@ def sema_search(query: str) -> str:
     # Compact already-seen patterns; enrich new ones
     compacted = []
     new_count = 0
-    for i, result in enumerate(results):
+    for _i, result in enumerate(results):
         ref = result.get("sema_ref") or result.get("handle", "")
         if ref in _served_patterns:
             # Already served this session — compact form
