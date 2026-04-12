@@ -52,10 +52,16 @@ calls.
 Sema also ships as a Claude Code plugin — MCP server plus a skill that teaches the agent the search/resolve/mint/handshake workflow:
 
 ```bash
-claude --plugin-dir /path/to/sema
+claude plugin install semahash
 ```
 
 This gives you the MCP server **and** the `sema-usage` skill (auto-loaded), which teaches when to search vs mint, how to embed handles in text, and how to verify meaning at boundaries. The skill is a Claude Code convenience — the MCP server works with any client.
+
+For local development:
+
+```bash
+claude --plugin-dir /path/to/sema
+```
 
 ### Permanent install (pip)
 
