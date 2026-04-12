@@ -30,6 +30,8 @@ Not footnotes — actual words you think with.
 
 The server tracks which patterns you've already seen. Subsequent searches return compact results for known patterns (`handle + gloss + _seen: true`). Just use the handle — the full definition is already in your context. Call `sema_resolve` only if you need to re-read a pattern's mechanism.
 
+Call `sema_reset_session()` if your context was compressed or you need full results again.
+
 ## The workflow
 
 1. **Search** — `sema_search({ query: "trust model" })` — find existing patterns by meaning
@@ -97,3 +99,7 @@ The patterns aren't labels you slap on afterward. They're lenses that change wha
 - Simple factual questions
 - The user wants a quick answer, not a framework
 - No relevant patterns exist after searching
+
+## Thinking nodes should use sema too
+
+When you create concept nodes alongside creative work (stories, analysis, prose), check whether a sema pattern captures the cognitive move you're making. It won't always fit — a narrative tension node doesn't need a handle forced in — but consider it. The thinking layer is where sema is most useful, because it compresses recurring patterns into precise vocabulary that future agents can reason with.
