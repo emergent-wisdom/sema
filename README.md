@@ -47,6 +47,16 @@ This uses [uv](https://docs.astral.sh/uv/) to download, install, and run sema
 in an isolated environment on first invocation, then caches it for subsequent
 calls.
 
+### Claude Code plugin (MCP server + skill)
+
+Sema also ships as a Claude Code plugin — MCP server plus a skill that teaches the agent the search/resolve/mint/handshake workflow:
+
+```bash
+claude --plugin-dir /path/to/sema
+```
+
+This gives you the MCP server **and** the `sema-usage` skill (auto-loaded), which teaches when to search vs mint, how to embed handles in text, and how to verify meaning at boundaries. The skill is a Claude Code convenience — the MCP server works with any client.
+
 ### Permanent install (pip)
 
 ```bash
