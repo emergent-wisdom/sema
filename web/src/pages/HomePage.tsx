@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback, createContext, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github } from 'lucide-react'
+import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github, MessageCircle } from 'lucide-react'
 import { usePatterns, usePattern, useSearchPatterns } from '@/hooks/useApi'
 import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
@@ -189,6 +189,15 @@ export function HomePage() {
               >
                 <Github className="w-4 h-4" />
                 GitHub
+              </a>
+              <a
+                href="https://discord.gg/hRhVqAuDYQ"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
+              >
+                <MessageCircle className="w-4 h-4" />
+                Discord
               </a>
               <Link
                 to="/docs"
