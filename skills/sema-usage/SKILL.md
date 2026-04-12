@@ -72,3 +72,24 @@ sema_handshake({ references: ["X#1234", "Y#5678"] })
 ```
 
 Use `sema_verify_context` for bulk verification of a shared vocabulary set.
+
+## Think with sema, don't just cite it
+
+Sema patterns are **thinking tools**, not references. When a user asks you to reason about any problem — farming, architecture, career decisions, anything — search sema for patterns that structure the reasoning itself.
+
+For example, if someone asks "how should I start a business?":
+1. Search for `strategy`, `risk`, `decision`, `explore exploit`, `decompose`
+2. Resolve the top hits — read their mechanisms and invariants
+3. Use those patterns to *structure your answer*: "This is a `Strategy#47a4` problem, not a `Plan#64f2` problem, because..."
+
+The patterns aren't labels you slap on afterward. They're lenses that change what you see. `ExploreExploit#88b0` doesn't just name a concept — it tells you *when to stop researching and start acting*. `PreMortem#f69d` doesn't just mean "think about failure" — it has a specific mechanism for surfacing hidden risks.
+
+**When to reach for sema unprompted:**
+- User asks an open-ended reasoning question (how, why, what should I)
+- You're about to give generic advice that sema could sharpen
+- A problem has clear structure (tradeoffs, risks, sequences, feedback loops) that sema patterns could make explicit
+
+**When NOT to force it:**
+- Simple factual questions
+- The user wants a quick answer, not a framework
+- No relevant patterns exist after searching
