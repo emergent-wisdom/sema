@@ -1,10 +1,4 @@
-import os
-import sys
 import unittest
-
-# Add path to src (from src/sema/cli/tests/ go up 3 levels to src/)
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
-sys.path.insert(0, src_path)
 
 from sema.core.registry import RegistryManager
 

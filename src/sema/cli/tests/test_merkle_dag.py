@@ -3,20 +3,15 @@
 import json
 import os
 import sqlite3
-import sys
 import tempfile
 import unittest
 
-# Add path to src (from src/sema/cli/tests/ go up 3 levels to src/)
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
-sys.path.insert(0, src_path)
-
-from sema.core.hashing import (  # noqa: E402
+from sema.core.hashing import (
     extract_handle_from_ref,
     generate_sema_hash,
     resolve_dependencies_to_sema_ids,
 )
-from sema.taxonomy_graph.graph_store import GraphStore  # noqa: E402
+from sema.taxonomy_graph.graph_store import GraphStore
 
 
 class TestDependenciesAsEdges(unittest.TestCase):

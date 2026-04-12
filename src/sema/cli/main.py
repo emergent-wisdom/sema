@@ -5,7 +5,6 @@ from pathlib import Path
 
 from ..client import get_default_client
 from ..core.dependencies import topological_sort
-from ..core.hashing import generate_sema_hash
 from ..core.registry import RegistryManager, get_default_db_path
 from ..core.utils import compact_dict
 from ..core.validator import validate_pattern
@@ -65,7 +64,7 @@ def apply_changes(
         print(f"  ✓ {len(remove_handles)} patterns to remove: {', '.join(remove_handles)}")
 
     # 1b. Validate additions
-    add_patterns = []  # List of (file_path, data, computed_hash)
+    add_patterns = []  # List of (file_path, data)
     add_handles = set()
 
     for file_str in add_files:
@@ -79,14 +78,14 @@ def apply_changes(
                 if result["error"]:
                     errors.append(result["error"])
                 else:
-                    add_patterns.append((jf, result["data"], result["hash"]))
+                    add_patterns.append((jf, result["data"]))
                     add_handles.add(result["data"]["handle"])
         elif file_path.exists():
             result = _validate_pattern_file(file_path)
             if result["error"]:
                 errors.append(result["error"])
             else:
-                add_patterns.append((file_path, result["data"], result["hash"]))
+                add_patterns.append((file_path, result["data"]))
                 add_handles.add(result["data"]["handle"])
         else:
             errors.append(f"File not found: {file_path}")
@@ -198,30 +197,23 @@ def apply_changes(
     else:
         sorted_patterns = []
 
-    # 2c. Add patterns
-    for file_path, data, computed in sorted_patterns:
-        # Update data with computed hash and layer/category
-        data["sema_ref"] = computed["reference"]
-        data["sema_id"] = computed["full_id"]
-        data["sema_stub"] = computed["stub"]
+    # 2c. Add patterns via mint_pattern
+    from ..core.mint import mint_pattern
 
-        # Promote layer/category from _meta for Registry compatibility
-        meta = data.get("_meta", {})
-        data["sema_layer"] = meta.get("layer", "Unknown")
-        data["sema_category"] = meta.get("category", "Uncategorized")
+    for file_path, data in sorted_patterns:
+        mint_result = mint_pattern(data, store)
+        if mint_result.success:
+            print(f"  ✓ Added {mint_result.sema_ref}")
 
-        result = store.add_pattern(data)
-        if result.get("success"):
-            print(f"  ✓ Added {computed['reference']}")
-
-            # Write hash back to file
+            # Write hash back to file (CLI-specific: persist hashes to source)
             try:
                 with open(file_path, "w") as f:
                     json.dump(data, f, indent=2)
             except Exception as e:
                 print(f"  ⚠️  Could not update file {file_path}: {e}")
         else:
-            print(f"  ❌ Failed to add {data['handle']}: {result.get('error')}")
+            err_msg = "; ".join(mint_result.errors)
+            print(f"  ❌ Failed to add {data['handle']}: {err_msg}")
             return False
 
     # ============ DONE ============
@@ -237,9 +229,9 @@ def _validate_pattern_file(file_path: Path) -> dict:
         with open(file_path) as f:
             data = json.load(f)
     except json.JSONDecodeError as e:
-        return {"error": f"Invalid JSON in {file_path}: {e}", "data": None, "hash": None}
+        return {"error": f"Invalid JSON in {file_path}: {e}", "data": None}
     except Exception as e:
-        return {"error": f"Cannot read {file_path}: {e}", "data": None, "hash": None}
+        return {"error": f"Cannot read {file_path}: {e}", "data": None}
 
     # Validate required fields
     is_valid, val_errors, val_warnings = validate_pattern(data)
@@ -247,13 +239,9 @@ def _validate_pattern_file(file_path: Path) -> dict:
         return {
             "error": f"Validation failed for {file_path}: {'; '.join(val_errors)}",
             "data": None,
-            "hash": None,
         }
 
-    # Compute hash
-    computed = generate_sema_hash(data)
-
-    return {"error": None, "data": data, "hash": computed}
+    return {"error": None, "data": data}
 
 
 def search_patterns(query, use_semantic=False, verbose=False, as_json=False):

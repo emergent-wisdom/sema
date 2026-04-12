@@ -1,13 +1,8 @@
 """Tests for the MCP server session cache (compact already-seen patterns)."""
 
 import json
-import os
-import sys
 import unittest
 from unittest.mock import patch
-
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
-sys.path.insert(0, src_path)
 
 
 def _make_search_result(handle, stub="ab12", gloss="A pattern", score=0.9, **extra):

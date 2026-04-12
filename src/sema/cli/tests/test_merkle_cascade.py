@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Test Merkle DAG cascade functionality.
 
@@ -10,15 +9,11 @@ Verifies that:
 
 import os
 import shutil
-import sys
 import tempfile
 
 import pytest
 
-# Ensure we can import from src
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
-
-from sema.taxonomy_graph.graph_store import GraphStore  # noqa: E402
+from sema.taxonomy_graph.graph_store import GraphStore
 
 
 class TestMerkleCascade:

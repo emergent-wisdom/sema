@@ -2,13 +2,10 @@
 
 import json
 import os
-import sys
 import unittest
 from unittest.mock import patch
 
-src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
-sys.path.insert(0, src_path)
-
+from sema.core.mint import MintResult
 from sema.mcp import server
 from sema.mcp.server import _sema_mint
 
@@ -38,16 +35,18 @@ class TestSemaMintTool(unittest.TestCase):
         self.assertTrue(any("mechanism" in e for e in result["errors"]))
 
     def test_successful_mint(self):
-        """Valid pattern → calls apply_changes and returns sema_ref."""
-        mock_pattern = {
-            "handle": "TestMint",
-            "sema_ref": "TestMint#abcd",
-            "sema_id": "sema:TestMint#mh:SHA-256:abcd1234",
-        }
+        """Valid pattern → calls mint_pattern and returns sema_ref."""
+        mock_result = MintResult(
+            success=True,
+            handle="TestMint",
+            sema_ref="TestMint#abcd",
+            sema_id="sema:TestMint#mh:SHA-256:abcd1234",
+            sema_stub="abcd",
+        )
 
-        with patch("sema.cli.main.apply_changes", return_value=True):
-            with patch.object(server.REGISTRY_MGR, "refresh"):
-                with patch.object(server.REGISTRY_MGR, "get_pattern", return_value=mock_pattern):
+        with patch("sema.core.mint.mint_pattern", return_value=mock_result):
+            with patch("sema.taxonomy_graph.graph_store.GraphStore"):
+                with patch.object(server.REGISTRY_MGR, "refresh"):
                     raw = _sema_mint(
                         json.dumps(
                             {
@@ -64,69 +63,58 @@ class TestSemaMintTool(unittest.TestCase):
         self.assertEqual(result["sema_ref"], "TestMint#abcd")
         self.assertIn("sema_id", result)
 
-    def test_apply_failure_returns_error(self):
-        """apply_changes returning False → error result."""
-        with patch("sema.cli.main.apply_changes", return_value=False):
-            raw = _sema_mint(
-                json.dumps(
-                    {
-                        "handle": "FailMint",
-                        "mechanism": "Will fail",
-                    }
+    def test_mint_failure_returns_error(self):
+        """mint_pattern returning failure → error result."""
+        mock_result = MintResult(
+            success=False,
+            handle="FailMint",
+            errors=["Validation failed for FailMint"],
+        )
+
+        with patch("sema.core.mint.mint_pattern", return_value=mock_result):
+            with patch("sema.taxonomy_graph.graph_store.GraphStore"):
+                raw = _sema_mint(
+                    json.dumps(
+                        {
+                            "handle": "FailMint",
+                            "mechanism": "Will fail",
+                        }
+                    )
                 )
-            )
 
         result = json.loads(raw)
         self.assertFalse(result["success"])
 
-    def test_apply_exception_returns_error(self):
-        """Exception during apply_changes → error with message."""
-        with patch("sema.cli.main.apply_changes", side_effect=RuntimeError("DB locked")):
-            raw = _sema_mint(
-                json.dumps(
-                    {
-                        "handle": "ExcMint",
-                        "mechanism": "Will throw",
-                    }
+    def test_exception_returns_error(self):
+        """Exception during mint_pattern → error with message."""
+        with patch("sema.core.mint.mint_pattern", side_effect=RuntimeError("DB locked")):
+            with patch("sema.taxonomy_graph.graph_store.GraphStore"):
+                raw = _sema_mint(
+                    json.dumps(
+                        {
+                            "handle": "ExcMint",
+                            "mechanism": "Will throw",
+                        }
+                    )
                 )
-            )
 
         result = json.loads(raw)
         self.assertFalse(result["success"])
         self.assertTrue(any("DB locked" in e for e in result["errors"]))
 
-    def test_temp_files_cleaned_up(self):
-        """Temp files are removed after minting, even on failure."""
-        import tempfile
-
-        created_dirs = []
-        original_mkdtemp = tempfile.mkdtemp
-
-        def track_mkdtemp(**kwargs):
-            d = original_mkdtemp(**kwargs)
-            created_dirs.append(d)
-            return d
-
-        with patch("tempfile.mkdtemp", side_effect=track_mkdtemp):
-            with patch("sema.cli.main.apply_changes", side_effect=RuntimeError("fail")):
-                _sema_mint(
-                    json.dumps(
-                        {
-                            "handle": "CleanupTest",
-                            "mechanism": "Test cleanup",
-                        }
-                    )
-                )
-
-        # Temp dir should have been cleaned up
-        for d in created_dirs:
-            self.assertFalse(os.path.exists(d), f"Temp dir not cleaned up: {d}")
-
     def test_pattern_not_in_registry_after_mint(self):
-        """If apply succeeds but pattern not found in registry → still success with message."""
-        with patch("sema.cli.main.apply_changes", return_value=True):
-            with patch.object(server.REGISTRY_MGR, "refresh"):
-                with patch.object(server.REGISTRY_MGR, "get_pattern", return_value=None):
+        """Successful mint returns sema_ref from MintResult directly."""
+        mock_result = MintResult(
+            success=True,
+            handle="GhostMint",
+            sema_ref="GhostMint#1234",
+            sema_id="sema:GhostMint#mh:SHA-256:12345678",
+            sema_stub="1234",
+        )
+
+        with patch("sema.core.mint.mint_pattern", return_value=mock_result):
+            with patch("sema.taxonomy_graph.graph_store.GraphStore"):
+                with patch.object(server.REGISTRY_MGR, "refresh"):
                     raw = _sema_mint(
                         json.dumps(
                             {
@@ -139,6 +127,7 @@ class TestSemaMintTool(unittest.TestCase):
         result = json.loads(raw)
         self.assertTrue(result["success"])
         self.assertEqual(result["handle"], "GhostMint")
+        self.assertEqual(result["sema_ref"], "GhostMint#1234")
 
 
 class TestConditionalRegistration(unittest.TestCase):

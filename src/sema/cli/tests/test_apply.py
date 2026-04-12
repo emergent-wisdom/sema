@@ -271,7 +271,6 @@ class TestValidatePatternFile(unittest.TestCase):
 
         self.assertIsNone(result["error"])
         self.assertIsNotNone(result["data"])
-        self.assertIsNotNone(result["hash"])
 
     def test_invalid_json(self):
         """Test validation catches invalid JSON."""

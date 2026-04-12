@@ -483,6 +483,92 @@ class TestLayerDirection:
             validate_layer_direction(patterns, existing)
 
 
+class TestNullValues:
+    """Test Rule 1.9: No Null Values."""
+
+    def test_null_value_in_mechanism_fails(self):
+        """1.9: null value in mechanism should fail validation."""
+        pattern = {
+            "handle": "TestPattern",
+            "mechanism": None,
+            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+        }
+        with pytest.raises(ValueError):
+            SemaPattern.model_validate(pattern)
+
+
+class TestComplexDataSchema:
+    """Test Rule 5.3: Non-Empty Schema."""
+
+    def test_complex_nested_data_schema(self):
+        """5.3: Nested JSON Schema with $ref should pass validation."""
+        pattern = {
+            "handle": "TestNested",
+            "mechanism": "A nested data structure.",
+            "_meta": {
+                "layer": "Infrastructure",
+                "category": "Data Structures",
+                "ring": 0,
+                "tier": 1,
+            },
+            "data_schema": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "key": {"type": "string"},
+                                "value": {"type": "number"},
+                            },
+                            "required": ["key"],
+                        },
+                    }
+                },
+                "required": ["items"],
+            },
+        }
+        p = SemaPattern.model_validate(pattern)
+        assert p.data_schema is not None
+
+
+class TestDependencyRelatedSeparation:
+    """Test Rule 9.1: Dependency/Related Separation."""
+
+    def test_dependency_in_related_fails(self):
+        """9.1: Same handle in deps and _meta.related should fail."""
+        pattern = {
+            "handle": "TestOverlap",
+            "mechanism": "Uses {{gate}} for control.",
+            "dependencies": {"references": {"gate": make_sema_id("Gate")}},
+            "_meta": {
+                "layer": "Infrastructure",
+                "category": "Primitives",
+                "ring": 0,
+                "tier": 1,
+                "related": ["Gate"],
+            },
+        }
+        with pytest.raises(ValueError, match="Dependency/Related separation"):
+            SemaPattern.model_validate(pattern)
+
+
+class TestSignatureBareName:
+    """Test Rule 6.2: No Bare Names in Signature."""
+
+    def test_signature_bare_name_fails(self):
+        """6.2: Signature entry without parens (bare name) should fail."""
+        pattern = {
+            "handle": "TestBare",
+            "mechanism": "A test pattern.",
+            "signature": ["Check"],
+            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+        }
+        with pytest.raises(ValueError, match="Invalid signature syntax"):
+            SemaPattern.model_validate(pattern)
+
+
 class TestTaxonomy:
     """Test taxonomy structure is complete."""
 

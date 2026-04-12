@@ -480,8 +480,8 @@ def _sema_mint(pattern_json: str) -> str:
     Returns:
         JSON with the minted pattern's sema_id, or validation errors.
     """
-    import os
-    import tempfile
+    from ..core.mint import mint_pattern
+    from ..taxonomy_graph.graph_store import GraphStore
 
     try:
         pattern = json.loads(pattern_json)
@@ -494,60 +494,29 @@ def _sema_mint(pattern_json: str) -> str:
     if not pattern.get("mechanism"):
         return json.dumps({"success": False, "errors": ["Missing required field: 'mechanism'"]})
 
-    # Write to a temp file for the apply pipeline
-    tmp_dir = tempfile.mkdtemp(prefix="sema_mint_")
-    tmp_file = os.path.join(tmp_dir, f"{handle}.json")
-    with open(tmp_file, "w") as f:
-        json.dump(pattern, f, indent=2)
-
     try:
-        # Use the CLI apply pipeline (validate + hash + add)
-        import io
-        from contextlib import redirect_stdout
-
-        from ..cli.main import apply_changes
-
-        buf = io.StringIO()
-        with redirect_stdout(buf):
-            result = apply_changes(add_files=[tmp_file], check_only=False)
-
-        output = buf.getvalue()
-
-        # Check if it was added
-        if result is False or "failed" in output.lower():
-            return json.dumps(
-                {"success": False, "errors": [output.strip()]},
-                indent=2,
-            )
-
-        # Refresh registry and get the new pattern
+        store = GraphStore(DEFAULT_DB_PATH)
+        result = mint_pattern(pattern, store)
         REGISTRY_MGR.refresh()
-        new_pattern = REGISTRY_MGR.get_pattern(handle)
-        if new_pattern:
+
+        if not result.success:
             return json.dumps(
-                {
-                    "success": True,
-                    "handle": handle,
-                    "sema_ref": new_pattern.get("sema_ref"),
-                    "sema_id": new_pattern.get("sema_id"),
-                    "message": f"Pattern '{handle}' minted successfully.",
-                },
+                {"success": False, "errors": result.errors},
                 indent=2,
             )
-        else:
-            return json.dumps(
-                {"success": True, "handle": handle, "message": output.strip()},
-                indent=2,
-            )
+
+        return json.dumps(
+            {
+                "success": True,
+                "handle": result.handle,
+                "sema_ref": result.sema_ref,
+                "sema_id": result.sema_id,
+                "message": f"Pattern '{result.handle}' minted successfully.",
+            },
+            indent=2,
+        )
     except Exception as e:
         return json.dumps({"success": False, "errors": [str(e)]}, indent=2)
-    finally:
-        # Cleanup temp file
-        try:
-            os.remove(tmp_file)
-            os.rmdir(tmp_dir)
-        except OSError:
-            pass
 
 
 @mcp.tool()
