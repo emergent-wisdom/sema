@@ -5,7 +5,9 @@
   "skills": "./skills/",
   "userConfig": {
     "allow_mint": {
+      "title": "Allow Minting",
       "description": "Allow minting new sema patterns (true/false, default: false)",
+      "type": "string",
       "sensitive": false
     }
   },
