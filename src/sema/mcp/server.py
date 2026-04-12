@@ -54,10 +54,35 @@ DEFAULT_DB_PATH = get_default_db_path()
 # Registry Manager
 REGISTRY_MGR = RegistryManager(DEFAULT_VOCAB_DIR, db_path=DEFAULT_DB_PATH)
 
+# Session state: track which patterns have been fully served this session.
+# When a pattern has already been served (full mechanism shown), subsequent
+# search results return only handle + gloss to save context window space.
+# The agent can always sema_resolve() to get the full pattern again.
+_served_patterns: set[str] = set()
+
+
+@mcp.tool()
+def sema_reset_session() -> str:
+    """Reset the session pattern cache.
+
+    Clears the record of which patterns have been served this session,
+    so subsequent searches return full results again. Use when context
+    has been compressed or you need fresh full-detail results.
+
+    Returns:
+        Confirmation with count of patterns cleared.
+    """
+    count = len(_served_patterns)
+    _served_patterns.clear()
+    return json.dumps({"reset": True, "patterns_cleared": count})
+
 
 @mcp.tool()
 def sema_search(query: str) -> str:
     """Search Sema patterns by name, description, or meaning (semantic search).
+
+    Patterns you've already seen this session are returned in compact form
+    (handle + gloss only). Use sema_resolve() to re-fetch full details.
 
     Args:
         query: Search term or concept description.
@@ -70,17 +95,35 @@ def sema_search(query: str) -> str:
     # Use RegistryManager's hybrid search (keyword + semantic)
     results = REGISTRY_MGR.search(query, use_semantic=True)
 
-    # Enrich top 3 results with graph context
-    for result in results[:3]:
-        handle = result.get("handle")
-        if handle:
-            # Strip hash if present for lookup
-            clean_handle = handle.split("#")[0]
-            context = REGISTRY_MGR.get_context(clean_handle)
-            if context["dependencies"] or context["used_by"]:
-                result["graph_context"] = context
+    # Compact already-seen patterns; enrich new ones
+    compacted = []
+    new_count = 0
+    for i, result in enumerate(results):
+        ref = result.get("sema_ref") or result.get("handle", "")
+        if ref in _served_patterns:
+            # Already served this session — compact form
+            compacted.append({
+                "handle": result.get("handle"),
+                "sema_ref": ref,
+                "gloss": result.get("gloss"),
+                "score": result.get("score"),
+                "_seen": True,
+            })
+        else:
+            # New pattern — full result
+            _served_patterns.add(ref)
+            # Enrich top 3 new results with graph context
+            if new_count < 3:
+                handle = result.get("handle")
+                if handle:
+                    clean_handle = handle.split("#")[0]
+                    context = REGISTRY_MGR.get_context(clean_handle)
+                    if context["dependencies"] or context["used_by"]:
+                        result["graph_context"] = context
+            new_count += 1
+            compacted.append(result)
 
-    return json.dumps(results, indent=2)
+    return json.dumps(compacted, indent=2)
 
 
 @mcp.tool()
@@ -112,6 +155,10 @@ def sema_resolve(handle: str, depth: int = 1) -> str:
         # Fall back to the raw subgraph entry if get_pattern misses (shouldn't
         # happen for anything resolve() returned, but be defensive).
         rendered[entry_handle] = resolved_pattern or subgraph[entry_handle]
+
+    # Mark all resolved patterns as served this session
+    for entry_handle in rendered:
+        _served_patterns.add(entry_handle)
 
     return json.dumps(
         {"root": handle, "depth": depth, "patterns": rendered, "count": len(rendered)}, indent=2

@@ -26,6 +26,10 @@ Before defining a concept from scratch, check if sema already has a word:
 
 Not footnotes — actual words you think with.
 
+## Session memory
+
+The server tracks which patterns you've already seen. Subsequent searches return compact results for known patterns (`handle + gloss + _seen: true`). Just use the handle — the full definition is already in your context. Call `sema_resolve` only if you need to re-read a pattern's mechanism.
+
 ## The workflow
 
 1. **Search** — `sema_search({ query: "trust model" })` — find existing patterns by meaning
