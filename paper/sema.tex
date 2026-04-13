@@ -743,7 +743,7 @@ Qualitative analysis verified vocabulary adoption by extracting pattern referenc
 \subsection{Implementation: Interactive Tooling}
 \label{sec:tooling}
 
-The vocabulary is deployed as an open-source web application\footnote{\url{https://semahash.org}; source: \url{https://github.com/emergent-wisdom/sema-app}.} backed by a Python (FastAPI) server and a React/TypeScript frontend with Three.js-based 3D visualization. The system is launched via a single command (\texttt{sema serve}) and exposes the full vocabulary through three complementary interfaces.
+The vocabulary is deployed as an open-source web application\footnote{\url{https://semahash.org}; source: \url{https://github.com/emergent-wisdom/sema}.} backed by a Python (FastAPI) server and a React/TypeScript frontend with Three.js-based 3D visualization. The system is launched via a single command (\texttt{sema serve}) and exposes the full vocabulary through three complementary interfaces.
 
 \paragraph{Pattern Browser.} The homepage organizes all \semaPatternCount~patterns by the four Civilization Stack layers (Section~\ref{sec:standard_library}). Each pattern card displays the handle, hash stub, one-line gloss, and---on expansion---the full specification: mechanism, preconditions, postconditions, invariants, failure modes, and related patterns. Real-time hybrid search combines keyword matching with embedding-based semantic retrieval, allowing queries like ``consensus'' to surface \sema{LazyConsensus}{81a3} alongside structurally related patterns such as \sema{LatticeCommit}{3c5d}.
 
@@ -871,7 +871,7 @@ Sema holds no authority over what concepts exist or how they are named; that aut
 \textit{Same bytes, same meaning. Different bytes, halt and clarify.}
 \end{center}
 
-\noindent The vocabulary, interactive graph, and source code are available at \url{https://semahash.org}.\footnote{Frontend source code: \url{https://github.com/emergent-wisdom/sema-app}.}
+\noindent The vocabulary, interactive graph, and source code are available at \url{https://semahash.org}.\footnote{Source code: \url{https://github.com/emergent-wisdom/sema}.}
 
 %==============================================================================
 \appendix
