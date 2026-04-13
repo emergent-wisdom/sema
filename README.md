@@ -12,7 +12,7 @@
 [![PyPI](https://img.shields.io/pypi/v/semahash.svg)](https://pypi.org/project/semahash/)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blue)](https://registry.modelcontextprotocol.io/servers/io.github.emergent-wisdom/semahash)
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19462703.svg)](https://doi.org/10.5281/zenodo.19462703)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19548971.svg)](https://doi.org/10.5281/zenodo.19548971)
 [![Code: MIT](https://img.shields.io/badge/Code-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-lightgrey)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE-CONTENT)
 
@@ -285,8 +285,8 @@ Want to add patterns, improve existing ones, or host the frontend locally? See [
   year         = {2026},
   month        = apr,
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.19462703},
-  url          = {https://doi.org/10.5281/zenodo.19462703}
+  doi          = {10.5281/zenodo.19548971},
+  url          = {https://doi.org/10.5281/zenodo.19548971}
 }
 ```
 
