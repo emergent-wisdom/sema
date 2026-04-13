@@ -44,7 +44,7 @@ def merkle_hash(obj: Any) -> tuple[str, Any]:
         norm = normalize_string(obj)
         return _sha256(norm.encode("utf-8")), norm
 
-    elif isinstance(obj, (int, float, bool, type(None))):
+    elif isinstance(obj, int | float | bool | type(None)):
         canon = canonical_json(obj)
         return _sha256(canon), obj
 
