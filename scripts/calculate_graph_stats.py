@@ -108,14 +108,14 @@ def calculate_stats():
     print("\n--- Table 3 ---")
     print(f"Total patterns: {pattern_count}")
     print(
-        f"Patterns with formal invariants: {with_invariants} ({with_invariants/pattern_count:.0%})"
+        f"Patterns with formal invariants: {with_invariants} ({with_invariants / pattern_count:.0%})"
     )
-    print(f"Patterns with preconditions: {with_pre} ({with_pre/pattern_count:.0%})")
-    print(f"Patterns with postconditions: {with_post} ({with_post/pattern_count:.0%})")
-    print(f"Patterns with typed I/O: {with_io} ({with_io/pattern_count:.0%})")
-    print(f"Patterns with parameters: {with_params} ({with_params/pattern_count:.0%})")
+    print(f"Patterns with preconditions: {with_pre} ({with_pre / pattern_count:.0%})")
+    print(f"Patterns with postconditions: {with_post} ({with_post / pattern_count:.0%})")
+    print(f"Patterns with typed I/O: {with_io} ({with_io / pattern_count:.0%})")
+    print(f"Patterns with parameters: {with_params} ({with_params / pattern_count:.0%})")
     print(f"Total parameters: {total_params}")
-    print(f"Patterns that compose: {with_compose} ({with_compose/pattern_count:.0%})")
+    print(f"Patterns that compose: {with_compose} ({with_compose / pattern_count:.0%})")
 
     # Generate LaTeX file
     with open(OUTPUT_TEX, "w") as f:
@@ -129,24 +129,42 @@ def calculate_stats():
 
         # Table 3 stats (use \% for LaTeX-escaped percent)
         f.write(f"\\newcommand{{\\semaPatternsWithInvariants}}{{{with_invariants}}}\n")
-        f.write(f"\\newcommand{{\\semaInvariantPct}}{{{with_invariants*100//pattern_count}\\%}}\n")
+        f.write(
+            f"\\newcommand{{\\semaInvariantPct}}{{{with_invariants * 100 // pattern_count}\\%}}\n"
+        )
 
         f.write(f"\\newcommand{{\\semaPatternsWithPre}}{{{with_pre}}}\n")
-        f.write(f"\\newcommand{{\\semaPrePct}}{{{with_pre*100//pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaPrePct}}{{{with_pre * 100 // pattern_count}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithPost}}{{{with_post}}}\n")
-        f.write(f"\\newcommand{{\\semaPostPct}}{{{with_post*100//pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaPostPct}}{{{with_post * 100 // pattern_count}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithIO}}{{{with_io}}}\n")
-        f.write(f"\\newcommand{{\\semaIOPct}}{{{with_io*100//pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaIOPct}}{{{with_io * 100 // pattern_count}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithParams}}{{{with_params}}}\n")
-        f.write(f"\\newcommand{{\\semaParamPct}}{{{with_params*100//pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaParamPct}}{{{with_params * 100 // pattern_count}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaPatternsWithCompose}}{{{with_compose}}}\n")
-        f.write(f"\\newcommand{{\\semaComposePct}}{{{with_compose*100//pattern_count}\\%}}\n")
+        f.write(f"\\newcommand{{\\semaComposePct}}{{{with_compose * 100 // pattern_count}\\%}}\n")
 
         f.write(f"\\newcommand{{\\semaTotalParams}}{{{total_params}}}\n")
+
+        # Tier and category counts
+        from collections import Counter
+
+        tier_counts = Counter()
+        categories = set()
+        for p in patterns:
+            meta = p.get("_meta", {})
+            tier = meta.get("tier")
+            cat = meta.get("category") or p.get("sema_category")
+            if tier is not None:
+                tier_counts[tier] += 1
+            if cat:
+                categories.add(cat)
+        f.write(f"\\newcommand{{\\semaTierOneCount}}{{{tier_counts.get(1, 0)}}}\n")
+        f.write(f"\\newcommand{{\\semaCategoryCount}}{{{len(categories)}}}\n")
 
     print(f"Stats written to {OUTPUT_TEX}")
 

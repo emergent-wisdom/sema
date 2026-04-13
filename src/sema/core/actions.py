@@ -11,17 +11,17 @@ def _hash_bytes(data: bytes) -> str:
 def _extract_semantic_fields(pattern: dict[str, Any]) -> dict[str, Any]:
     """Extract only the semantic fields that define meaning (not metadata)."""
     semantic_keys = [
-        "handle",
+        "dependencies",
+        "signature",
+        "data_schema",
         "mechanism",
         "gloss",
         "invariants",
         "preconditions",
         "postconditions",
-        "inputs",
-        "outputs",
         "parameters",
-        "interface",
-        "dependencies",
+        "failure_modes",
+        "derived_from",
     ]
     return {k: pattern[k] for k in semantic_keys if k in pattern}
 
