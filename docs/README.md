@@ -26,9 +26,8 @@ Welcome to the Sema documentation. Start at the top and read down — each secti
 
 ## Integrations
 
-- **[Claude Code](integrations/claude-code.md):** MCP server setup for Claude Code.
-- **[OpenClaw](integrations/openclaw.md):** Channel plugin for OpenClaw.
 - **[Understanding Graph](guides/understanding-graph.md):** Composing semantic memory (Sema) with episodic memory (UG).
+- MCP server setup for Claude Code, OpenClaw, and other clients is in the [main README](../README.md#install).
 
 ## Reference
 

@@ -114,6 +114,6 @@ This recipe guarantees:
 
 ## See also
 
-- [Sema integrations](../integrations/) — per-client setup guides
+- [Sema README — Install](../../README.md#install) — MCP server setup for any client
 - [Understanding Graph integrations](https://github.com/emergent-wisdom/understanding-graph/tree/main/integrations) — per-client setup guides
 - [Understanding Graph: using-with-sema](https://github.com/emergent-wisdom/understanding-graph/blob/main/docs/using-with-sema.md) — the mirror walkthrough

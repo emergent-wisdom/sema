@@ -90,11 +90,11 @@ git clone https://github.com/emergent-wisdom/sema.git
 pip install -e "./sema[mcp]"
 ```
 
-Your agent now has access to `sema_search`, `sema_lookup`, `sema_handshake`, and 8 more tools. Any MCP-compatible client works — Sema exposes a standard stdio server.
+Your agent now has access to `sema_search`, `sema_lookup`, `sema_handshake`, and 9 more tools. Any MCP-compatible client works — Sema exposes a standard stdio server.
 
 **Verify it works** — ask your agent: *"Search sema for coordination patterns and handshake on StateLock"*
 
-Full integration guides: [Claude Code](integrations/claude-code.md) | [OpenClaw](integrations/openclaw.md)
+Sema exposes a standard MCP stdio server — any MCP-compatible client works, including [OpenClaw](https://openclaw.ai/) (`openclaw mcp set sema '{"command":"uvx","args":["--from","semahash[mcp]","sema","mcp"]}'`).
 
 ### Use via CLI
 
@@ -198,6 +198,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | `sema_validate` | Validate a pattern JSON for correctness |
 | `sema_stats` | Vocabulary statistics |
 | `sema_graph_skeleton` | Ultra-minimal graph overview (~150 tokens) |
+| `sema_reset_session` | Clear session cache so searches return full results again |
 
 ## Web Frontend
 
@@ -268,7 +269,6 @@ sema/
 │   ├── orchestrator/      Multi-agent engine (bundled for experiment reproduction)
 │   ├── sema_design_challenge/  Main experiment (3 conditions, 5 runs, full traces)
 │   └── demos/             Standalone demos (local handshake, Babel Test)
-├── integrations/          Integration guides (Claude Code, OpenClaw, any MCP client)
 └── pyproject.toml         Package config (extras: [mcp], [api], [full])
 ```
 
