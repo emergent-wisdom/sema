@@ -17,7 +17,7 @@ The main vocabulary (`data/taxonomy.db`) was subsequently improved:
 - 3 patterns added (ToolDiscovery, TaskLifecycle, AuditTrail)
 - 1 pattern removed (FractalContext, merged into HolographicShard)
 - Parameter descriptions and ranges improved
-- Bid moved from Society to Infrastructure
+- Category assignments reviewed (Bid remains Society/Economics)
 
 These changes cascade through the Merkle DAG, changing 75% of pattern
 hashes. The experiment results in the paper correspond to the v1 hashes
