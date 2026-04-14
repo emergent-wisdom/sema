@@ -10,8 +10,6 @@ from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from ..client import get_default_client
-
 # Relative Imports
 from ..core.registry import RegistryManager
 from ..core.utils import compact_dict
@@ -47,43 +45,10 @@ async def www_to_apex_redirect(request: Request, call_next):
     return await call_next(request)
 
 
-# Configuration — DB discovery order:
-#   1. SEMA_DB_PATH env var (explicit override)
-#   2. Bundled DB next to the installed package (`sema/data/taxonomy.db` — wheel force-include)
-#   3. Bundled DB in the source tree (`<repo>/data/taxonomy.db` — editable install / direct run)
-#   4. Bundled DB relative to CWD (`./data/taxonomy.db` — running from repo root)
-#   5. User DB via platformdirs client (may try to download)
-env_db_path = os.environ.get("SEMA_DB_PATH")
-if env_db_path:
-    DB_PATH = env_db_path
-    print(f"Using DB from ENV: {DB_PATH}")
-else:
-    from pathlib import Path as _Path
+# DB discovery — single source of truth in registry.get_default_db_path()
+from ..core.registry import get_default_db_path as _get_db_path
 
-    import sema as _sema_pkg
-
-    _candidate_paths = [
-        _Path(_sema_pkg.__file__).parent / "data" / "taxonomy.db",
-        _Path(__file__).resolve().parents[3] / "data" / "taxonomy.db",
-        _Path.cwd() / "data" / "taxonomy.db",
-    ]
-    DB_PATH = None
-    for _p in _candidate_paths:
-        if _p.exists():
-            DB_PATH = str(_p)
-            print(f"Using bundled DB: {DB_PATH}")
-            break
-
-    if DB_PATH is None:
-        # Last resort: ask the Client (which may try to download)
-        try:
-            client = get_default_client()
-            DB_PATH = client.get_db_path()
-            print(f"Using User DB: {DB_PATH}")
-        except Exception as e:
-            print(f"Warning: Could not initialize client DB: {e}")
-            DB_PATH = "taxonomy.db"
-
+DB_PATH = _get_db_path() or "taxonomy.db"
 print(f"Loading Registry with DB: {DB_PATH}")
 
 # Registry loads from database only

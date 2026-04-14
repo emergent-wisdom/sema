@@ -39,6 +39,10 @@ mcp = FastMCP(
         "6. CREATE: `sema_mint(pattern_json)` - mint new patterns into the vocabulary\n\n"
         "Patterns are reusable thought-chunks. Reference them to compress communication; "
         "verify them to ensure alignment. Mint new ones when existing patterns don't fit.\n\n"
+        "FIRST USE:\n"
+        "Call `sema_stats()` first. If total_patterns is 0, the vocabulary is empty.\n"
+        "Ask your user which preset to load (full, standard, or empty), then run the\n"
+        "shell command shown in the setup instructions.\n\n"
         "SESSION CACHE:\n"
         "The server tracks which patterns you've seen. After the first time, search results "
         "return compact stubs (`_seen: true`) instead of full definitions to save context space.\n"
@@ -333,17 +337,28 @@ def sema_stats() -> str:
         layers[data.get("sema_layer") or data.get("layer", "Unknown")] += 1
         categories[data.get("sema_category") or data.get("category", "Unknown")] += 1
 
-    return json.dumps(
-        {
-            "total_patterns": len(registry),
-            "by_layer": dict(layers),
-            "by_category": dict(categories),
-            "vocab_dir": DEFAULT_VOCAB_DIR,
-            "data_source": REGISTRY_MGR.source,
-            "db_path": REGISTRY_MGR.db_path,
-        },
-        indent=2,
-    )
+    result = {
+        "total_patterns": len(registry),
+        "by_layer": dict(layers),
+        "by_category": dict(categories),
+        "vocab_dir": DEFAULT_VOCAB_DIR,
+        "data_source": REGISTRY_MGR.source,
+        "db_path": REGISTRY_MGR.db_path,
+    }
+
+    if len(registry) == 0:
+        result["setup"] = {
+            "message": "Your vocabulary is empty. Ask your user which preset to load.",
+            "options": {
+                "full": "All ~450 patterns — the complete vocabulary",
+                "standard": "~380 curated patterns — common patterns for general use",
+                "empty": "Start blank — add patterns manually with sema apply",
+            },
+            "command": "sema build <path-to-db> --preset <choice>",
+            "hint": "Run the command via shell, then restart the MCP server to load the new vocabulary.",
+        }
+
+    return json.dumps(result, indent=2)
 
 
 @mcp.tool()

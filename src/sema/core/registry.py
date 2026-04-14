@@ -24,39 +24,61 @@ _PKG_VOCAB = Path(__file__).parent.parent / "data" / "vocabulary"
 
 
 def get_default_db_path() -> str | None:
-    """Get default DB path. Priority: env var > dev DB > client DB."""
+    """Get default DB path.
+
+    Priority:
+      1. SEMA_DB_PATH env var (explicit override)
+      2. User-local DB (~/.local/share/sema/) — survives pip upgrades
+      3. Dev DB (repo data/ — for local development)
+      4. Bundled package DB (read-only, seeds user-local on first use)
+    """
     if os.environ.get("SEMA_DB_PATH"):
         return os.environ["SEMA_DB_PATH"]
-    # Check if dev directory exists (allows creating new db file on rebuild)
+    # Dev path (editable install / running from repo — always has latest)
     if _DEV_DB.parent.exists():
         return str(_DEV_DB)
-    # Check if data is bundled inside the installed package
-    if _PKG_DB.exists():
-        return str(_PKG_DB)
+    # User-local DB (created by client.get_db_path() on first use)
     if get_default_client:
         try:
             client = get_default_client()
-            return str(client.get_db_path())
+            if client.is_initialized():
+                return str(client.db_path)
+        except Exception:
+            pass
+    # Bundled package DB (fallback — also triggers seeding via client)
+    if _PKG_DB.exists():
+        if get_default_client:
+            try:
+                # Seed user-local copy from bundled DB, return that
+                return get_default_client().get_db_path()
+            except Exception:
+                pass
+        return str(_PKG_DB)
+    # Last resort: client will try to download
+    if get_default_client:
+        try:
+            return get_default_client().get_db_path()
         except Exception:
             pass
     return None
 
 
 def get_default_vocab_dir() -> str | None:
-    """Get default vocab dir. Priority: env var > dev vocab > client vocab."""
+    """Get default vocab dir. Same priority as get_default_db_path."""
     if os.environ.get("SEMA_VOCAB_DIR"):
         return os.environ["SEMA_VOCAB_DIR"]
-    if _DEV_VOCAB.exists():
-        return str(_DEV_VOCAB)
-    # Check if data is bundled inside the installed package
-    if _PKG_VOCAB.exists():
-        return str(_PKG_VOCAB)
     if get_default_client:
         try:
             client = get_default_client()
-            return str(client.data_dir / "vocabulary")
+            vocab = client.data_dir / "vocabulary"
+            if vocab.exists():
+                return str(vocab)
         except Exception:
             pass
+    if _DEV_VOCAB.exists():
+        return str(_DEV_VOCAB)
+    if _PKG_VOCAB.exists():
+        return str(_PKG_VOCAB)
     return None
 
 
