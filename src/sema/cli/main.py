@@ -434,10 +434,23 @@ def show_skeleton():
 
 
 def update_db():
+    """Update the user-local DB from the bundled package DB, or download if unavailable."""
+    import shutil
+
+    import sema as _sema_pkg
+
+    client = get_default_client()
+    bundled = Path(_sema_pkg.__file__).parent / "data" / "taxonomy.db"
+
+    if bundled.exists():
+        shutil.copy2(str(bundled), str(client.db_path))
+        count = RegistryManager(db_path=str(client.db_path)).count()
+        print(f"✅ Updated vocabulary at {client.db_path} ({count} patterns)")
+        return
+
     try:
-        client = get_default_client()
         client.download_db(force=True)
-        print("✅ Database updated successfully.")
+        print("✅ Database downloaded successfully.")
     except Exception as e:
         print(f"❌ Update failed: {e}")
 

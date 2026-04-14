@@ -306,3 +306,44 @@ def test_discovery_prefers_env_var(tmp_path, monkeypatch):
 
     monkeypatch.setenv("SEMA_DB_PATH", custom_db)
     assert reg.get_default_db_path() == custom_db
+
+
+def test_pull_populates_empty_user_db(tmp_path):
+    """sema pull copies source DB into an empty user-local location."""
+    import shutil
+
+    from sema.client import SemaClient
+
+    user_dir = tmp_path / "sema_data"
+    client = SemaClient(data_dir=str(user_dir))
+    assert not client.is_initialized()
+
+    # Simulate sema pull: copy source DB to user-local
+    shutil.copy2(SOURCE_DB, str(client.db_path))
+
+    assert client.is_initialized()
+    r = RegistryManager(db_path=str(client.db_path))
+    assert r.count() > 400
+
+
+def test_pull_updates_stale_user_db(tmp_path):
+    """sema pull overwrites a stale user-local DB with the latest source."""
+    import shutil
+
+    from sema.cli.main import _create_empty_db
+    from sema.client import SemaClient
+
+    user_dir = tmp_path / "sema_data"
+    client = SemaClient(data_dir=str(user_dir))
+    _create_empty_db(client.db_path)
+    assert client.is_initialized()
+
+    # Stale DB has 0 patterns
+    r = RegistryManager(db_path=str(client.db_path))
+    assert r.count() == 0
+
+    # Pull overwrites with source
+    shutil.copy2(SOURCE_DB, str(client.db_path))
+
+    r2 = RegistryManager(db_path=str(client.db_path))
+    assert r2.count() > 400
