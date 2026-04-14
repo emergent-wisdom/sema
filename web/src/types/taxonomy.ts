@@ -63,6 +63,7 @@ export interface PatternMeta {
   layer?: string;
   category?: string;
   related?: string[];
+  responsible_use?: string;
 }
 
 export interface Pattern {

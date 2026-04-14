@@ -321,6 +321,7 @@ def get_pattern_details(handle: str):
             "ring": meta.get("ring"),
             "layer": data.get("sema_layer"),
             "category": data.get("sema_category"),
+            "responsible_use": meta.get("responsible_use"),
         },
         "relatedPatterns": related_patterns,
         "dependencies": data.get("dependencies", {}),
@@ -551,6 +552,23 @@ def get_paper():
     if paper_path.exists():
         return FileResponse(paper_path, media_type="application/pdf", filename="sema.pdf")
     return JSONResponse({"error": "Paper not found"}, status_code=404)
+
+
+# ── Install Guide ──────────────────────────────────────────────────────────────
+# Serve install.md at /install.md for agents to fetch and follow.
+
+
+@app.get("/install.md")
+def get_install_md():
+    from fastapi.responses import PlainTextResponse
+
+    root = _get_repo_root()
+    if root and (root / "install.md").exists():
+        return PlainTextResponse((root / "install.md").read_text(), media_type="text/markdown")
+    cwd = Path.cwd() / "install.md"
+    if cwd.exists():
+        return PlainTextResponse(cwd.read_text(), media_type="text/markdown")
+    raise HTTPException(status_code=404, detail="install.md not found")
 
 
 # ── MCP Registry ───────────────────────────────────────────────────────────────
