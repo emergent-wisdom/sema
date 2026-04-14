@@ -295,9 +295,7 @@ renders a "Cite this repository" button from it).
 
 ## Disclaimer
 
-Sema is an experimental research library. It has not been tested in production environments and may have unintended consequences.
-
-**This system must not be used to cause harm.** The vocabulary includes patterns that describe powerful capabilities (cryptographic deletion, autonomous governance modification, steganographic communication, among others). 29 patterns carry a `caution` flag in their metadata indicating elevated risk — but the absence of a flag does not imply safety. All autonomous use should be considered carefully.
+Sema is an experimental research library and has not been tested in production environments. Some patterns in the vocabulary describe capabilities that carry risk if implemented without care — 29 are flagged with `caution` in their metadata. The protocol verifies shared meaning between compliant agents but cannot prevent misuse by agents that bypass the handshake.
 
 ## License
 

@@ -156,9 +156,6 @@ class RegistryManager:
     def refresh(self):
         self.registry = self._load_registry()
 
-    def count(self) -> int:
-        return len(self.registry)
-
     def _get_ref(self, data, default=None):
         """Helper to get the canonical reference (Handle#stub) from pattern data."""
         if not data:

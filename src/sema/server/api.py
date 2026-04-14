@@ -554,23 +554,6 @@ def get_paper():
     return JSONResponse({"error": "Paper not found"}, status_code=404)
 
 
-# ── Install Guide ──────────────────────────────────────────────────────────────
-# Serve install.md at /install.md for agents to fetch and follow.
-
-
-@app.get("/install.md")
-def get_install_md():
-    from fastapi.responses import PlainTextResponse
-
-    root = _get_repo_root()
-    if root and (root / "install.md").exists():
-        return PlainTextResponse((root / "install.md").read_text(), media_type="text/markdown")
-    cwd = Path.cwd() / "install.md"
-    if cwd.exists():
-        return PlainTextResponse(cwd.read_text(), media_type="text/markdown")
-    raise HTTPException(status_code=404, detail="install.md not found")
-
-
 # ── MCP Registry ───────────────────────────────────────────────────────────────
 # Serve server.json at /.well-known/mcp/server.json per the 2026 MCP Registry
 # discovery convention (registry.modelcontextprotocol.io). Also available at

@@ -67,31 +67,15 @@ class SemaClient:
             logger.error(f"Failed to download database: {e}")
             raise
 
-    def _seed_from_bundled(self) -> bool:
-        """Copy the bundled DB from the installed package if available."""
-        import sema as _sema_pkg
-
-        bundled = Path(_sema_pkg.__file__).parent / "data" / "taxonomy.db"
-        if bundled.exists():
-            shutil.copy2(str(bundled), str(self.db_path))
-            return True
-        return False
-
     def get_db_path(self) -> str:
-        """Return the path to the local database, seeding from bundled DB on first use."""
+        """Return the path to the local database, downloading it if necessary."""
         if not self.is_initialized():
-            # Prefer bundled DB (fast, offline) over downloading
-            if self._seed_from_bundled():
-                print(f"Initialized sema vocabulary at {self.db_path}")
-            else:
-                print(f"Sema database not found at {self.db_path}.")
-                print("Downloading default database... (this happens once)")
-                try:
-                    self.download_db()
-                except Exception as e:
-                    print(
-                        f"Warning: Could not download database ({e}). Functionality will be limited."
-                    )
+            print(f"Sema database not found at {self.db_path}.")
+            print("Downloading default database... (this happens once)")
+            try:
+                self.download_db()
+            except Exception as e:
+                print(f"Warning: Could not download database ({e}). Functionality will be limited.")
         return str(self.db_path)
 
 
