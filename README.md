@@ -293,6 +293,14 @@ Want to add patterns, improve existing ones, or host the frontend locally? See [
 See [`CITATION.cff`](CITATION.cff) for the machine-readable version (GitHub
 renders a "Cite this repository" button from it).
 
+## Disclaimer
+
+Sema is an experimental research library. It has not been tested in production environments and may have unintended consequences. This project is the product of unfunded independent research.
+
+**This system must not be used to cause harm.** Anyone installing or deploying Sema is solely responsible for the outcomes of how it is used. The vocabulary includes patterns that describe powerful capabilities (cryptographic deletion, autonomous governance modification, steganographic communication, among others). 29 patterns carry a `caution` flag in their metadata indicating elevated risk — but the absence of a flag does not imply safety. All use should be supervised and considered carefully.
+
+The authors provide this software as-is, without warranty, and accept no liability for its use or misuse.
+
 ## License
 
 Sema is dual-licensed:

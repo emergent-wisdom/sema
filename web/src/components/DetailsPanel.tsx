@@ -408,13 +408,13 @@ function PatternDetails({
         </div>
       </div>
 
-      {/* Responsible Use Notice */}
-      {pattern.meta?.responsible_use && (
+      {/* Caution Notice */}
+      {pattern.meta?.caution && (
         <div className="px-3 py-2 bg-amber-950/40 border border-amber-800/50 rounded-lg">
           <div className="flex items-start gap-2">
             <span className="text-amber-500 text-sm mt-0.5 shrink-0">&#9888;</span>
             <p className="text-xs text-amber-200/80 leading-relaxed">
-              {pattern.meta.responsible_use}
+              {pattern.meta.caution}
             </p>
           </div>
         </div>

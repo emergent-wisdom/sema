@@ -321,7 +321,7 @@ def get_pattern_details(handle: str):
             "ring": meta.get("ring"),
             "layer": data.get("sema_layer"),
             "category": data.get("sema_category"),
-            "responsible_use": meta.get("responsible_use"),
+            "caution": meta.get("caution"),
         },
         "relatedPatterns": related_patterns,
         "dependencies": data.get("dependencies", {}),
