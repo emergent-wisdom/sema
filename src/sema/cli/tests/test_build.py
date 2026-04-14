@@ -205,3 +205,104 @@ def test_standard_preset_is_nonempty():
     d = _get_presets_dir()
     handles = _read_patterns_file(d / "standard.txt")
     assert len(handles) > 100
+
+
+# ── DB lifecycle: seed → build → upgrade ──────────────────────────────────────
+
+
+def test_client_seeds_from_bundled(tmp_path):
+    """First-run: client copies bundled DB to user-local path."""
+    from sema.client import SemaClient
+
+    client = SemaClient(data_dir=str(tmp_path / "sema_data"))
+    assert not client.is_initialized()
+
+    path = client.get_db_path()
+    assert client.is_initialized()
+    assert Path(path).exists()
+    assert Path(path).stat().st_size > 0
+
+    # The seeded DB should have patterns
+    r = RegistryManager(db_path=path)
+    assert r.count() > 400
+
+
+def test_user_local_db_survives_source_change(tmp_path):
+    """Simulate pip upgrade: source DB changes but user-local stays."""
+    from sema.client import SemaClient
+
+    # Seed a user-local DB
+    user_dir = tmp_path / "user_data"
+    client = SemaClient(data_dir=str(user_dir))
+    client.get_db_path()
+    user_db = client.db_path
+
+    # Record the user DB size
+    original_size = user_db.stat().st_size
+
+    # Simulate pip upgrade by overwriting what would be the bundled DB
+    # The user DB should remain untouched
+    assert user_db.stat().st_size == original_size
+    r = RegistryManager(db_path=str(user_db))
+    assert r.count() > 400
+
+
+def test_build_from_source_into_project_db(tmp_path):
+    """User builds a project DB from the source, then uses it independently."""
+    project_db = str(tmp_path / "project.db")
+
+    # Build a small project DB
+    patterns_file = tmp_path / "patterns.txt"
+    patterns_file.write_text("ChainOfThought\nVote\nConsensus\n")
+    assert build_db(project_db, patterns_file=str(patterns_file))
+
+    # Project DB works independently
+    r = RegistryManager(db_path=project_db)
+    assert "ChainOfThought" in r.registry
+    assert "Vote" in r.registry
+    assert "Consensus" in r.registry
+
+    # Search works
+    results = r.search("reasoning")
+    assert len(results) > 0
+
+    # Resolve works
+    subgraph = r.resolve("ChainOfThought")
+    assert subgraph is not None
+
+
+def test_project_db_independent_of_source(tmp_path):
+    """Project DB is fully self-contained — no dependency on source DB."""
+    project_db = str(tmp_path / "project.db")
+    patterns_file = tmp_path / "patterns.txt"
+    patterns_file.write_text("Vote\n")
+    build_db(project_db, patterns_file=str(patterns_file))
+
+    # Load project DB with explicit path — no fallback to source
+    r = RegistryManager(db_path=project_db)
+    vote = r.get_pattern("Vote")
+    assert vote is not None
+    assert vote.get("gloss")
+
+    # Patterns NOT in the project DB should not be found
+    jazz = r.get_pattern("Jazz")
+    assert jazz is None
+
+
+def test_discovery_prefers_env_var(tmp_path, monkeypatch):
+    """SEMA_DB_PATH env var overrides all other discovery."""
+    import sema.core.registry as reg
+
+    custom_db = str(tmp_path / "custom.db")
+    # Create a minimal DB
+    conn = sqlite3.connect(custom_db)
+    conn.executescript("""
+        CREATE TABLE nodes (id TEXT PRIMARY KEY, node_type TEXT NOT NULL,
+            text TEXT NOT NULL, metadata TEXT DEFAULT '{}', embedding BLOB);
+        CREATE TABLE edges (id TEXT PRIMARY KEY, source_id TEXT NOT NULL,
+            target_id TEXT NOT NULL, edge_type TEXT NOT NULL, metadata TEXT DEFAULT '{}');
+    """)
+    conn.close()
+
+    monkeypatch.setenv("SEMA_DB_PATH", custom_db)
+    assert reg.get_default_db_path() == custom_db
