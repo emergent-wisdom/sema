@@ -81,10 +81,26 @@ Every Sema pattern is a JSON object adhering to this strict schema. This structu
     "ring": 1,                            // Stability Ring (0=Kernel, 1=StdLib, 2=User)
     "tier": 2,                            // Rigor Tier (0=Primitive, 1=Hard, 2=Soft)
     "related": ["Pattern#stub"],          // Soft links
-    "supersedes": ["sema:OldHandle#mh:SHA-256:..."]  // [Optional] Version chain
+    "supersedes": ["sema:OldHandle#mh:SHA-256:..."],  // [Optional] Version chain
+    "caution": "Brief warning..."         // [Optional] Risk notice — see below
   }
 }
 ```
+
+### The `caution` field
+
+Optional one-sentence warning shown to agents and humans when a pattern carries elevated risk that isn't already self-evident from its `mechanism`, `invariants`, or `failure_modes`. It lives in `_meta` (unhashed), so it can be revised without changing the pattern's identity.
+
+Add `caution` when the pattern:
+- Enables irreversible action (data loss, financial commitment, governance changes)
+- Bypasses safety checks or oversight
+- Enables evasion, manipulation, or covert coordination
+
+Skip it when:
+- The risk is already explicit in the existing fields
+- The pattern is purely cognitive with no external effect
+
+The absence of a `caution` flag does not imply safety — many patterns with no flag still require careful application.
 
 ## 2. The Dependency Map Categories
 

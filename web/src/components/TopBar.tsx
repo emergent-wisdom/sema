@@ -5,6 +5,7 @@ import { useAppStore, SEMANTIC_EDGE_TYPES, STRUCTURAL_EDGE_TYPES, ALL_FILTERABLE
 import type { NodeType } from '@/types/taxonomy'
 import { LAYER_COLORS, NODE_TYPE_COLORS, EDGE_TYPE_COLORS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
+import { DbSwitcher } from './DbSwitcher'
 
 const LAYERS = ['Physics', 'Mind', 'Society', 'Infrastructure']
 const NODE_TYPES: NodeType[] = ['PATTERN', 'CATEGORY', 'LAYER']
@@ -19,6 +20,11 @@ export function TopBar() {
 
   return (
     <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-zinc-900/90 backdrop-blur-md px-4 py-2 rounded-lg border border-zinc-800 shadow-lg z-50 flex items-center gap-3">
+      {/* DB Switcher */}
+      <DbSwitcher />
+
+      <div className="w-px h-4 bg-zinc-700" />
+
       {/* Stats */}
       <div className="flex items-center gap-3 text-xs">
         <span className="text-zinc-500">

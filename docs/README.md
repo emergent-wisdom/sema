@@ -2,9 +2,9 @@
 
 Welcome to the Sema documentation. Start at the top and read down — each section builds on the previous one.
 
-## Disclaimer
+## Safety
 
-Sema is an experimental research project. The patterns described here represent a set of technical capabilities and should not be interpreted as an endorsement of their execution. Sema has not been tested in, and is not ready for, production environments. We recommend running it in a sandboxed environment.
+Sema is an experimental research project. It has not been tested in production environments. We recommend running it in a sandboxed environment.
 
 Some patterns are marked with a `caution` field in their metadata to flag them as potentially risky. The absence of a caution flag does not imply safety — many patterns carry no identifier regarding their safety status. Agents connecting via MCP are informed that referencing a pattern is not authorization to perform the actions it describes.
 

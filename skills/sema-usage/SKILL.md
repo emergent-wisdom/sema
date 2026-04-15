@@ -28,6 +28,10 @@ Before defining a concept from scratch, check if sema already has a word:
 
 Not footnotes — actual words you think with.
 
+## When the user wants to see patterns visually
+
+If the user asks to "see", "view", "show", or "explore" patterns visually — or asks to see the graph or browse the vocabulary — invoke the `sema-ui` skill to launch http://localhost:3030. The UI gives them an interactive pattern browser, search, and 3D graph.
+
 ## Session memory
 
 The server tracks which patterns you've already seen. Subsequent searches return compact results for known patterns (`handle + gloss + _seen: true`). Just use the handle — the full definition is already in your context. Call `sema_resolve` only if you need to re-read a pattern's mechanism.

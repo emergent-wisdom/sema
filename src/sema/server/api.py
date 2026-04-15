@@ -569,6 +569,74 @@ def get_install_md():
     raise HTTPException(status_code=404, detail="install.md not found")
 
 
+# ── DB Management ──────────────────────────────────────────────────────────────
+
+
+def _is_local_server() -> bool:
+    """True when running locally (not deployed to production)."""
+    # Production sets RAILWAY_ENVIRONMENT; local does not.
+    return not os.environ.get("RAILWAY_ENVIRONMENT") and not os.environ.get("PRODUCTION")
+
+
+@app.get("/api/dbs")
+def get_dbs():
+    """List all known vocabulary databases. Local-only."""
+    if not _is_local_server():
+        raise HTTPException(status_code=404, detail="DB management is local-only")
+
+    from ..core.registry import list_dbs
+
+    dbs = list_dbs()
+    for db in dbs:
+        db["active"] = db["path"] == DB_PATH
+    return {"current": DB_PATH, "databases": dbs, "local": True}
+
+
+@app.post("/api/use")
+def use_db_endpoint(payload: dict):
+    """Switch the active database for this server process. Local-only."""
+    if not _is_local_server():
+        raise HTTPException(status_code=404, detail="DB management is local-only")
+
+    from ..core.registry import is_bundled_db, register_db, set_active_db
+
+    global DB_PATH, registry
+
+    target = payload.get("path")
+    use_default = payload.get("default", False)
+
+    if use_default:
+        from ..core.registry import get_bundled_db_path
+
+        bundled = get_bundled_db_path()
+        if not bundled:
+            raise HTTPException(status_code=500, detail="Bundled DB not found")
+        DB_PATH = bundled
+        registry = RegistryManager(db_path=bundled)
+        set_active_db(None)
+        count = len(registry.registry)
+        return {"success": True, "db_path": bundled, "total_patterns": count}
+
+    if not target:
+        raise HTTPException(status_code=400, detail="Missing 'path' or 'default' field")
+
+    resolved = Path(target).expanduser().resolve()
+    if not resolved.exists():
+        raise HTTPException(status_code=404, detail=f"Database not found: {resolved}")
+    if is_bundled_db(str(resolved)):
+        raise HTTPException(
+            status_code=400,
+            detail="Cannot use the bundled DB as active — it gets overwritten on upgrade.",
+        )
+
+    DB_PATH = str(resolved)
+    registry = RegistryManager(db_path=str(resolved))
+    set_active_db(str(resolved))
+    register_db(str(resolved))
+    count = len(registry.registry)
+    return {"success": True, "db_path": str(resolved), "total_patterns": count}
+
+
 # ── MCP Registry ───────────────────────────────────────────────────────────────
 # Serve server.json at /.well-known/mcp/server.json per the 2026 MCP Registry
 # discovery convention (registry.modelcontextprotocol.io). Also available at
