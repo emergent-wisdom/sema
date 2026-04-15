@@ -577,7 +577,7 @@ class RegistryManager:
 
                 if candidates:
                     sim_results = service.find_similar(
-                        query_vec, candidates, top_k=10, threshold=0.3
+                        query_vec, candidates, top_k=20, threshold=0.2
                     )
 
                     for node_id, score in sim_results:

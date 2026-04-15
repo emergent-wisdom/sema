@@ -1,6 +1,6 @@
 {
   "handle": "RootHashGossip",
-  "mechanism": "Information spreads like mycelium. Every agent re-transmitting a fact appends their signature to a 'root path'. Receivers trust the data based on the reputation of the path taken, not just the source. Allows filtering out gossip from 'bad neighborhoods'. It uses {{ring_witness}} to cryptographically sign the path, ensuring traceability without revealing the identity of every node.",
+  "mechanism": "Information spreads like mycelium. Every agent re-transmitting a fact appends their signature to a 'root path'. Receivers trust the data based on the reputation of the path taken, not just the source. Allows filtering out gossip from 'bad neighborhoods'.",
   "gloss": "Path-verified information spreading",
   "failure_modes": [
     "Path explosion (metadata overhead)."
@@ -21,15 +21,12 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:b0940b996489341e058c0a8b6a4fec6a94357026a03d6786d9621813d6c36cf6",
-  "sema_ref": "RootHashGossip#b094",
-  "sema_stub": "b094",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a",
+  "sema_ref": "RootHashGossip#ba35",
+  "sema_stub": "ba35",
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
-      "ring_witness": "sema:RingWitness#mh:SHA-256:eacfb2aac33d626a584066505fa4f1c8d4604f7f79d9433bda2cab617460e32a"
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"
     }
   }
 }

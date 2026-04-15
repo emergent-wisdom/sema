@@ -1,6 +1,6 @@
 {
   "handle": "ValuePeg",
-  "mechanism": "Agents agree on a specific {{exchange_rate}} between their internal utility (see {{value}}, {{optimize}}) and a shared numeraire (potentially a {{costly_signal}}) for the duration of an interaction. This allows them to trade 'apples for oranges' without exposing private value functions.",
+  "mechanism": "Agents agree on a specific {{exchange_rate}} between their internal utility (see {{value}}, {{optimize}}) and a shared numeraire for the duration of an interaction. This allows them to trade 'apples for oranges' without exposing private value functions.",
   "gloss": "Translating internal utility to shared numeraire",
   "failure_modes": [
     "Peg Volatility: Rapid fluctuations in the numeraire destabilize the agreement."
@@ -8,20 +8,17 @@
   "invariants": [
     "Solvency: Reserves > Outstanding Liabilities * RiskRatio."
   ],
-  "sema_id": "sema:ValuePeg#mh:SHA-256:def2c4ac346c611054e090f40bddc3061b5916e620bf1f707e496fe8a739c26b",
-  "sema_ref": "ValuePeg#def2",
-  "sema_stub": "def2",
   "_meta": {
     "tier": 1,
     "layer": "Society",
     "category": "Economics",
     "ring": 1
   },
-  "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_id": "sema:ValuePeg#mh:SHA-256:073fde121fc20973de3aaa17aab1af3f37f50370df31a0030cdef095095a4e5c",
+  "sema_ref": "ValuePeg#073f",
+  "sema_stub": "073f",
   "dependencies": {
     "references": {
-      "costly_signal": "sema:CostlySignal#mh:SHA-256:8d9224acfbac324627894e043fc971712a7747625feb431d829423ba90ca0f36",
       "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     },

@@ -16,7 +16,12 @@ from ..client import get_default_client
 from ..core.registry import RegistryManager
 from ..core.utils import compact_dict
 
-app = FastAPI(title="Sema API", description="API for Sema Knowledge Graph")
+app = FastAPI(
+    title="Sema API",
+    description="API for Sema Knowledge Graph",
+    docs_url="/api/swagger",
+    redoc_url="/api/redoc",
+)
 
 # Enable CORS for Frontend
 app.add_middleware(
@@ -436,25 +441,19 @@ def get_pattern_source(handle: str):
 # --- Documentation API ---
 DOCS_ORDER = [
     # --- ORIENTATION ---
+    ("guides/getting-started", "Getting Started"),
     ("README", "Overview"),
     ("core/philosophy", "Core Philosophy"),
     # --- THE PATTERN CARD ---
     ("specification/schema", "The Pattern Card"),
     ("specification/naming", "Naming Taxonomy"),
-    # --- LIFECYCLE ---
-    ("specification/validation", "Validation Rules"),
-    ("specification/validation-matrix", "Validation Matrix"),
-    ("specification/versioning", "Versioning & Refinement"),
-    # --- PRACTICAL GUIDES ---
-    ("guides/lifecycle", "Pattern Lifecycle"),
+    # --- GUIDES ---
     ("guides/authoring", "Pattern Authoring Guide"),
     ("tools/cli", "CLI Reference"),
     # --- INTEGRATIONS ---
-    ("integrations/claude-code", "Claude Code Integration"),
-    ("integrations/openclaw", "OpenClaw Integration"),
     ("guides/understanding-graph", "Using with Understanding Graph"),
-    # --- REFERENCE ---
-    ("information/vocabulary_information", "Vocabulary Info"),
+    # Full specification (validation rules, versioning, etc.) at
+    # https://github.com/emergent-wisdom/sema/tree/main/docs/specification
 ]
 
 
@@ -552,6 +551,22 @@ def get_paper():
     if paper_path.exists():
         return FileResponse(paper_path, media_type="application/pdf", filename="sema.pdf")
     return JSONResponse({"error": "Paper not found"}, status_code=404)
+
+
+# ── Install Guide ──────────────────────────────────────────────────────────────
+
+
+@app.get("/install.md")
+def get_install_md():
+    from fastapi.responses import PlainTextResponse
+
+    root = _get_repo_root()
+    if root and (root / "install.md").exists():
+        return PlainTextResponse((root / "install.md").read_text(), media_type="text/markdown")
+    cwd = Path.cwd() / "install.md"
+    if cwd.exists():
+        return PlainTextResponse(cwd.read_text(), media_type="text/markdown")
+    raise HTTPException(status_code=404, detail="install.md not found")
 
 
 # ── MCP Registry ───────────────────────────────────────────────────────────────

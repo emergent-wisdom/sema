@@ -1,6 +1,6 @@
 {
   "handle": "Bisect",
-  "mechanism": "Binary Partition: Define the possibility space. Find a question that splits space roughly in half. Ask it. Discard eliminated half. Repeat on remaining half. O(log n) questions to isolate answer. Requires ordered or divisible domain. It relies on {{boundary_probe}} to correctly define the split-point and often underpins the execution of {{recursive_root_cause}}.",
+  "mechanism": "Binary Partition: Define the possibility space. Find a question that splits space roughly in half. Ask it. Discard eliminated half. Repeat on remaining half. O(log n) questions to isolate answer. Requires ordered or divisible domain. Often underpins the execution of {{recursive_root_cause}}.",
   "gloss": "Logarithmic search via binary splitting",
   "failure_modes": [
     "False Negative: Discarding the half that actually contained the answer because the splitting question was flawed."
@@ -14,14 +14,11 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Bisect#mh:SHA-256:0c4f40e51e98feba821ba4c3f8e724a69e6b51173dc49ae94ff928fffaf73705",
-  "sema_ref": "Bisect#0c4f",
-  "sema_stub": "0c4f",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
+  "sema_id": "sema:Bisect#mh:SHA-256:88b3085fd8a158f3fa253cbc18eb121c6ea858a1b0fd8045fd4452ae00a81901",
+  "sema_ref": "Bisect#88b3",
+  "sema_stub": "88b3",
   "dependencies": {
     "references": {
-      "boundary_probe": "sema:BoundaryProbe#mh:SHA-256:f6fe36cd7f7c8478eea578a1b5e75e07a31dedcb9170ea0b06882ab18eeec55c",
       "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310"
     }
   }

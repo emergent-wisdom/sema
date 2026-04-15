@@ -29,3 +29,14 @@ texput.log
 # React Router build output
 web/build/
 web/.react-router/
+my.db
+
+# UG project data (not sema's)
+projects/
+
+# Frontend build artifacts (generated)
+src/sema/server/static/__spa-fallback.html
+src/sema/server/static/assets/
+
+# Experiment traces
+experiments/sema_design_challenge/traces/test_run/

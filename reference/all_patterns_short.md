@@ -1,6 +1,6 @@
 # Sema Vocabulary (Short Hand JSON)
 
-**Total Patterns:** 453
+**Total Patterns:** 427
 **Format:** JSON with short-hand references.
 
 ---
@@ -323,7 +323,7 @@
 
 ---
 
-## Ballot#c5c5
+## Ballot#f1d7
 
 ```json
 {
@@ -331,7 +331,7 @@
   "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast\u2014amendments require a new Ballot.",
   "gloss": "Immutable container for collective decision inputs",
   "failure_modes": [
-    "Spoiled {{select}}ion: Ambiguous or invalid ballot format.",
+    "Spoiled ballot: ambiguous or invalid {{select}} format.",
     "Double Voting: Single agent submitting multiple ballots (Sybil risk)."
   ],
   "invariants": [
@@ -344,11 +344,6 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Ballot#mh:SHA-256:c5c5f7a0dc23a23835d0b9f8ce25f104818431062160e753010e4077e7a27062",
-  "sema_ref": "Ballot#c5c5",
-  "sema_stub": "c5c5",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -385,6 +380,11 @@
       }
     }
   },
+  "sema_ref": "Ballot#f1d7",
+  "sema_id": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
+  "sema_stub": "f1d7",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "select": "Select#15c2"
@@ -395,7 +395,7 @@
 
 ---
 
-## Belief#6690
+## Belief#5ad9
 
 ```json
 {
@@ -452,15 +452,15 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:669092488e3b06354c76f2eaba3855e315f4ae43d4e6db3d04d8fc5d61accdbd",
-  "sema_ref": "Belief#6690",
-  "sema_stub": "6690",
+  "sema_id": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
+  "sema_ref": "Belief#5ad9",
+  "sema_stub": "5ad9",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "state": "State#4d58",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -468,7 +468,7 @@
 
 ---
 
-## Break#9d98
+## Break#1a63
 
 ```json
 {
@@ -551,22 +551,22 @@
     "category": "Data Structures",
     "ring": 0,
     "related": [
-      "EjectionSeat#3f5e",
-      "Retry#9e66"
+      "EjectionSeat#ef8d",
+      "Retry#07b7"
     ]
   },
-  "sema_id": "sema:Break#mh:SHA-256:9d98f2e8986f32f8eb1518bfcdead7eaadf8addde63e4625c7faa0e891f28666",
-  "sema_ref": "Break#9d98",
-  "sema_stub": "9d98",
+  "sema_id": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95",
+  "sema_ref": "Break#1a63",
+  "sema_stub": "1a63",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "system": "System#e314",
+      "agent": "Agent#aaec",
       "meta": "Meta#90f4",
-      "protocol": "Protocol#7e1c",
       "message": "Message#f767",
-      "agent": "Agent#cc24"
+      "protocol": "Protocol#7e1c"
     }
   }
 }
@@ -574,7 +574,7 @@
 
 ---
 
-## Card#5c33
+## Card#c9f0
 
 ```json
 {
@@ -637,18 +637,18 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Card#mh:SHA-256:5c33034fedd84e9d8e42887c003d5b96a694d0549292dd796c3dbcbfe76a06dd",
-  "sema_ref": "Card#5c33",
-  "sema_stub": "5c33",
+  "sema_id": "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626",
+  "sema_ref": "Card#c9f0",
+  "sema_stub": "c9f0",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
-    "composes_with": {
-      "select": "Select#15c2"
-    },
     "references": {
       "probe": "Probe#9f2b",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
+    },
+    "composes_with": {
+      "select": "Select#15c2"
     }
   }
 }
@@ -1065,8 +1065,8 @@
     "category": "Data Structures",
     "related": [
       "ContextCompress#6dbd",
-      "ContextSwitch#5bb8",
-      "AnchorDrop#9ca6"
+      "ContextSwitch#42cd",
+      "AnchorDrop#3878"
     ],
     "ring": 0
   },
@@ -1094,8 +1094,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -1103,7 +1103,7 @@
 
 ---
 
-## Contract#e6de
+## Contract#0624
 
 ```json
 {
@@ -1163,17 +1163,17 @@
     "category": "Data Structures",
     "ring": 1
   },
-  "sema_id": "sema:Contract#mh:SHA-256:e6deb3453c6a4aa33bbff9a0bccda07397c04b769634b369c7df7c758bd1ba3e",
-  "sema_ref": "Contract#e6de",
-  "sema_stub": "e6de",
+  "sema_id": "sema:Contract#mh:SHA-256:06241d8925a848e07b8b7afab2c37767b126c3f2363faba11bcc455ebb6a4d04",
+  "sema_ref": "Contract#0624",
+  "sema_stub": "0624",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "judge": "Judge#b8ba",
-      "sign": "Sign#1fb9",
+      "identity": "Identity#626c",
       "context": "Context#510a",
-      "identity": "Identity#626c"
+      "judge": "Judge#d84f",
+      "sign": "Sign#1fb9"
     },
     "accepts": {
       "condition": "Condition#cbd5"
@@ -1394,14 +1394,14 @@
     }
   },
   "dependencies": {
-    "yields": {
-      "assessment": "Assessment#a765"
-    },
     "accepts": {
       "datum": "Datum#31cf"
     },
     "references": {
       "criteria": "Criteria#ef6b"
+    },
+    "yields": {
+      "assessment": "Assessment#a765"
     }
   }
 }
@@ -1409,7 +1409,7 @@
 
 ---
 
-## DAG#5e07
+## DAG#ed37
 
 ```json
 {
@@ -1450,13 +1450,13 @@
   ],
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:DAG#mh:SHA-256:5e07cccaa9071223b76debbf27ffb748b0b49ce202dd10dd11db9d5823eb7b54",
-  "sema_ref": "DAG#5e07",
-  "sema_stub": "5e07",
+  "sema_id": "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f",
+  "sema_ref": "DAG#ed37",
+  "sema_stub": "ed37",
   "dependencies": {
     "references": {
       "topology": "Topology#2408",
-      "parallelize": "Parallelize#dac1"
+      "parallelize": "Parallelize#d6b4"
     }
   }
 }
@@ -1553,8 +1553,8 @@
   "sema_stub": "7e71",
   "dependencies": {
     "references": {
-      "stream": "Stream#22f3",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "stream": "Stream#22f3"
     }
   }
 }
@@ -1612,8 +1612,8 @@
   "sema_stub": "bcdc",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
       "circuit_breaker": "CircuitBreaker#4162",
+      "state": "State#4d58",
       "fail_closed": "FailClosed#ae79"
     }
   }
@@ -1697,8 +1697,8 @@
   },
   "dependencies": {
     "references": {
-      "result": "Result#8ed9",
-      "work": "Work#aaad"
+      "work": "Work#aaad",
+      "result": "Result#8ed9"
     }
   }
 }
@@ -1706,16 +1706,16 @@
 
 ---
 
-## Group#0a38
+## Group#1af4
 
 ```json
 {
   "handle": "Group",
   "mechanism": "A defined collection of {{agent}}s sharing a common {{context}} or goal. It serves as the scope for {{consensus}} and {{shout_whisper}}.",
   "gloss": "Agent collective",
-  "sema_id": "sema:Group#mh:SHA-256:0a3835b5b26dc6c7ba8cab19ec784439cdd662b7bb91c8852cda2091bf4b9dc0",
-  "sema_ref": "Group#0a38",
-  "sema_stub": "0a38",
+  "sema_id": "sema:Group#mh:SHA-256:1af4fe427bdd068518c866039039fea402aba3a0429d9af253b16b8c3897c52b",
+  "sema_ref": "Group#1af4",
+  "sema_stub": "1af4",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -1750,10 +1750,10 @@
   },
   "dependencies": {
     "references": {
-      "consensus": "Consensus#2722",
-      "agent": "Agent#cc24",
       "context": "Context#510a",
-      "shout_whisper": "ShoutWhisper#35dd"
+      "consensus": "Consensus#b862",
+      "shout_whisper": "ShoutWhisper#35dd",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -1907,7 +1907,7 @@
 
 ---
 
-## Ledger#2449
+## Ledger#c363
 
 ```json
 {
@@ -1924,9 +1924,9 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_id": "sema:Ledger#mh:SHA-256:2449b13ec018b29f7301a798a92077d5f6983991b38886c19f1aa27c3ac533e5",
-  "sema_ref": "Ledger#2449",
-  "sema_stub": "2449",
+  "sema_id": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
+  "sema_ref": "Ledger#c363",
+  "sema_stub": "c363",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -1970,8 +1970,8 @@
   },
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -2035,7 +2035,7 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "related": [
-      "Decompose#422f"
+      "Decompose#ac56"
     ],
     "ring": 2
   },
@@ -2126,12 +2126,12 @@
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
-    "yields": {
-      "solution": "Solution#7186"
-    },
     "accepts": {
       "system": "System#e314",
       "problem": "Problem#5baa"
+    },
+    "yields": {
+      "solution": "Solution#7186"
     }
   }
 }
@@ -2307,7 +2307,7 @@
 
 ---
 
-## Mode#b995
+## Mode#53e0
 
 ```json
 {
@@ -2356,20 +2356,20 @@
     "category": "Data Structures",
     "ring": 0,
     "related": [
-      "WorkerMode#7cd7",
-      "SynergisticMode#e8be"
+      "WorkerMode#9599",
+      "SynergisticMode#7985"
     ]
   },
-  "sema_id": "sema:Mode#mh:SHA-256:b9957477ff6bb4d7d3b55db6c51ba74e6900cfe0cfd4af4caaf180286242c772",
-  "sema_ref": "Mode#b995",
-  "sema_stub": "b995",
+  "sema_id": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
+  "sema_ref": "Mode#53e0",
+  "sema_stub": "53e0",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "transition": "Transition#072d",
       "state": "State#4d58",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -2488,7 +2488,7 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "related": [
-      "Belief#6690",
+      "Belief#5ad9",
       "Attention"
     ],
     "ring": 0
@@ -2681,7 +2681,7 @@
 
 ---
 
-## Permission#f583
+## Permission#4ee0
 
 ```json
 {
@@ -2725,16 +2725,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Permission#f583",
-  "sema_id": "sema:Permission#mh:SHA-256:f5838c2aa8a10fbf23b5ae4fee6c184698dffadca0eaeef6e4af07cb5c8b92c7",
-  "sema_stub": "f583",
+  "sema_ref": "Permission#4ee0",
+  "sema_id": "sema:Permission#mh:SHA-256:4ee0362513125ffdfa6589c4848eb078ac9906acf26057520e000fc070c8cf6d",
+  "sema_stub": "4ee0",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "act": "Act#5d55",
       "artifact": "Artifact#6254",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -2810,11 +2810,11 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "sequence": "Sequence#b0b8",
-      "state": "State#4d58",
       "system": "System#e314",
       "step": "Step#5f22",
       "artifact": "Artifact#6254",
+      "sequence": "Sequence#b0b8",
+      "state": "State#4d58",
       "goal": "Goal#456a"
     }
   }
@@ -3073,12 +3073,12 @@
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
+    "composes_with": {
+      "message": "Message#f767"
+    },
     "references": {
       "transition": "Transition#072d",
       "act": "Act#5d55"
-    },
-    "composes_with": {
-      "message": "Message#f767"
     }
   }
 }
@@ -3341,8 +3341,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "budget": "Budget#a763",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "budget": "Budget#a763"
     }
   }
 }
@@ -3421,8 +3421,8 @@
   },
   "dependencies": {
     "references": {
-      "metric": "Metric#8895",
-      "solution": "Solution#7186"
+      "solution": "Solution#7186",
+      "metric": "Metric#8895"
     }
   }
 }
@@ -3495,8 +3495,8 @@
   },
   "dependencies": {
     "references": {
-      "metric": "Metric#8895",
-      "probability": "Probability#356b"
+      "probability": "Probability#356b",
+      "metric": "Metric#8895"
     }
   }
 }
@@ -3504,7 +3504,7 @@
 
 ---
 
-## RuleSet#c559
+## RuleSet#e91d
 
 ```json
 {
@@ -3532,14 +3532,13 @@
       }
     }
   },
-  "sema_ref": "RuleSet#c559",
-  "sema_id": "sema:RuleSet#mh:SHA-256:c559ef50774606ff9f9e4c154cf483fad91aa709ca08eb17b9cbd211378fdcda",
-  "sema_stub": "c559",
+  "sema_ref": "RuleSet#e91d",
+  "sema_id": "sema:RuleSet#mh:SHA-256:e91d3830512ca5aa5a8cf7f50ad7d186de4b82aeced94c8cb106258a8663e482",
+  "sema_stub": "e91d",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "constitution": "Constitution#2391",
       "constraint": "Constraint#87fe"
     }
   }
@@ -3580,7 +3579,7 @@
 
 ---
 
-## ScoringFunction#f5c9
+## ScoringFunction#3de5
 
 ```json
 {
@@ -3625,9 +3624,9 @@
     "Determinism: Same input always yields same score.",
     "Range: Output must be within [0.0, 1.0] or [-inf, +inf]."
   ],
-  "sema_id": "sema:ScoringFunction#mh:SHA-256:f5c93a2bbddd826a3faa0d9edb75db2e73841424936fafb0d50316d547ee73c2",
-  "sema_ref": "ScoringFunction#f5c9",
-  "sema_stub": "f5c9",
+  "sema_id": "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d",
+  "sema_ref": "ScoringFunction#3de5",
+  "sema_stub": "3de5",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -3638,8 +3637,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
+      "judge": "Judge#d84f",
       "rank": "Rank#cb98",
-      "judge": "Judge#b8ba",
       "value": "Value#3c5d"
     }
   }
@@ -4040,14 +4039,14 @@
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
-    "accepts": {
-      "task": "Task#d9f9"
-    },
     "references": {
-      "work": "Work#aaad",
       "chain": "Chain#5711",
+      "work": "Work#aaad",
       "artifact": "Artifact#6254",
       "tree": "Tree#ddce"
+    },
+    "accepts": {
+      "task": "Task#d9f9"
     }
   }
 }
@@ -4094,10 +4093,10 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "artifact": "Artifact#6254",
-      "constraint": "Constraint#87fe",
+      "goal": "Goal#456a",
       "plan": "Plan#64f2",
-      "goal": "Goal#456a"
+      "artifact": "Artifact#6254",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -4151,8 +4150,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "condition": "Condition#cbd5",
-      "system": "System#e314"
+      "system": "System#e314",
+      "condition": "Condition#cbd5"
     }
   }
 }
@@ -4513,9 +4512,9 @@
   },
   "dependencies": {
     "references": {
+      "context": "Context#510a",
       "system": "System#e314",
       "hierarchy": "Hierarchy#aa9b",
-      "context": "Context#510a",
       "constraint": "Constraint#87fe"
     }
   }
@@ -4548,7 +4547,7 @@
     "category": "Data Structures",
     "ring": 0,
     "related": [
-      "AgentSandbox#8719"
+      "AgentSandbox#06f2"
     ]
   },
   "data_schema": {
@@ -4586,12 +4585,12 @@
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
+    "references": {
+      "context": "Context#510a",
+      "task": "Task#d9f9"
+    },
     "composes_with": {
       "input_guard": "InputGuard#0770"
-    },
-    "references": {
-      "task": "Task#d9f9",
-      "context": "Context#510a"
     }
   }
 }
@@ -4615,7 +4614,7 @@
         "enum": [
           "Linear#81af",
           "Tree#ddce",
-          "DAG#5e07",
+          "DAG#ed37",
           "Cyclic#ac13",
           "Graph"
         ],
@@ -4974,12 +4973,12 @@
   "sema_ref": "Work#aaad",
   "sema_stub": "aaad",
   "dependencies": {
+    "references": {
+      "act": "Act#5d55",
+      "budget": "Budget#a763"
+    },
     "composes_with": {
       "task": "Task#d9f9"
-    },
-    "references": {
-      "budget": "Budget#a763",
-      "act": "Act#5d55"
     }
   }
 }
@@ -5020,8 +5019,8 @@
     "category": "Primitives",
     "related": [
       "ToolInvoke#cf0a",
-      "ReAct#db09",
-      "AgentSandbox#8719"
+      "ReAct#c720",
+      "AgentSandbox#06f2"
     ],
     "ring": 0
   },
@@ -5032,8 +5031,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "select": "Select#15c2",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "select": "Select#15c2"
     }
   }
 }
@@ -5103,12 +5102,12 @@
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
+    "references": {
+      "identity": "Identity#626c",
+      "nature": "Nature#6c1a"
+    },
     "composes_with": {
       "act": "Act#5d55"
-    },
-    "references": {
-      "nature": "Nature#6c1a",
-      "identity": "Identity#626c"
     }
   }
 }
@@ -5116,7 +5115,7 @@
 
 ---
 
-## Aggregate#0291
+## Aggregate#af54
 
 ```json
 {
@@ -5143,7 +5142,7 @@
     {
       "name": "function",
       "type": "Enum",
-      "range": "{Mean, Median, Mode#b995, Sum, Min, Max, Variance, StdDev}",
+      "range": "{Mean, Median, Mode#53e0, Sum, Min, Max, Variance, StdDev}",
       "description": "Default: Mean"
     },
     {
@@ -5159,9 +5158,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Aggregate#mh:SHA-256:0291d4b5d7a05545a7561cc9bd6662ded7c160d9a7b199731e28dff50afd080f",
-  "sema_ref": "Aggregate#0291",
-  "sema_stub": "0291",
+  "sema_id": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
+  "sema_ref": "Aggregate#af54",
+  "sema_stub": "af54",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
@@ -5169,7 +5168,7 @@
       "value": "Value#3c5d"
     },
     "references": {
-      "mode": "Mode#b995"
+      "mode": "Mode#53e0"
     },
     "accepts": {
       "vector": "Vector#c7c4"
@@ -5422,38 +5421,6 @@
 
 ---
 
-## CryptoShred#e0b9
-
-```json
-{
-  "handle": "CryptoShred",
-  "mechanism": "Data is encrypted with a key that is ephemeral. To 'delete' the data, the agent destroys the key (Crypto-shredding) and provides a Zero-Knowledge proof that the key is gone. This turns 'deletion' (which is hard to prove) into 'loss of access' (which is provable).",
-  "gloss": "Provable deletion of liability data",
-  "failure_modes": [
-    "Key backup leaks (if the key was copied before destruction)."
-  ],
-  "invariants": [
-    "Shred confirmation required."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Primitives",
-    "related": [
-      "GlacialVault#f521"
-    ],
-    "ring": 0
-  },
-  "sema_id": "sema:CryptoShred#mh:SHA-256:e0b99771b604e6fdd9311327bfd36cc7745106047662e6870a8fc7f3aaacaf07",
-  "sema_ref": "CryptoShred#e0b9",
-  "sema_stub": "e0b9",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
-}
-```
-
----
-
 ## Feedback#9b5c
 
 ```json
@@ -5486,13 +5453,13 @@
     "Signal#f39d(Incongruity#e98f)"
   ],
   "dependencies": {
-    "references": {
-      "result": "Result#8ed9",
-      "metric": "Metric#8895",
-      "incongruity": "Incongruity#e98f"
-    },
     "composes_with": {
       "signal": "Signal#f39d"
+    },
+    "references": {
+      "incongruity": "Incongruity#e98f",
+      "metric": "Metric#8895",
+      "result": "Result#8ed9"
     }
   }
 }
@@ -5500,7 +5467,7 @@
 
 ---
 
-## Greet#1bad
+## Greet#7ad2
 
 ```json
 {
@@ -5521,14 +5488,14 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:Greet#mh:SHA-256:1bad380cdf48247bbb7ab68e6dcb95eeb6b6ba7535095d64b86c49bab5c4e173",
-  "sema_ref": "Greet#1bad",
-  "sema_stub": "1bad",
+  "sema_id": "sema:Greet#mh:SHA-256:7ad2382d29cb28ed605b0505374488c7e6dcd1ff8098b63686e83ab7098e2cf6",
+  "sema_ref": "Greet#7ad2",
+  "sema_stub": "7ad2",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
+      "agent": "Agent#aaec",
       "identity": "Identity#626c"
     },
     "composes_with": {
@@ -5569,7 +5536,7 @@
 
 ---
 
-## Judge#b8ba
+## Judge#d84f
 
 ```json
 {
@@ -5604,23 +5571,23 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Judge#mh:SHA-256:b8ba8bfa7fb25cea7dcd6a15d249395cc4663f8dc29c4152890f001409733cff",
-  "sema_ref": "Judge#b8ba",
-  "sema_stub": "b8ba",
+  "sema_id": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
+  "sema_ref": "Judge#d84f",
+  "sema_stub": "d84f",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
+    "yields": {
+      "score": "Score#29da"
+    },
     "references": {
-      "criteria": "Criteria#ef6b",
-      "validate": "Validate#3de2",
       "check": "Check#1544",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "criteria": "Criteria#ef6b",
+      "validate": "Validate#3de2"
     },
     "accepts": {
       "subject": "Subject#788f"
-    },
-    "yields": {
-      "score": "Score#29da"
     }
   }
 }
@@ -5663,26 +5630,29 @@
 
 ---
 
-## NegativeProof#40a6
+## NegativeProof#5225
 
 ```json
 {
   "handle": "NegativeProof",
-  "mechanism": "Using Zero-Knowledge Range Proofs to prove that an {{agent}} does NOT hold a specific piece of data (or that a {{value}} is NOT within a target range) without revealing what they actually hold. Essential for 'deniable' coordination. Operates via exhaustive search over a closed domain, treating failure-to-find as proof of absence.",
-  "gloss": "Proving ignorance or non-liability",
+  "mechanism": "Proving non-membership in a committed state set. An {{agent}} cryptographically commits to its full state (e.g., via Merkle tree), then uses a Zero-Knowledge Range Proof to demonstrate that a specific {{value}} or datum is NOT present in that committed set, without revealing what the set contains. Operates via exhaustive search over the committed domain, treating verified failure-to-find as proof of absence within that snapshot. The guarantee is bounded: it proves non-membership in the committed tree, not global non-possession\u2014the agent could hold uncommitted state elsewhere.",
+  "gloss": "Proving non-membership in a committed state snapshot",
   "failure_modes": [
-    "Proving a negative is computationally expensive."
+    "Proving a negative is computationally expensive.",
+    "Agent commits incomplete state (hides data outside committed tree)\u2014proof is technically valid but practically meaningless.",
+    "Stale commitment: state changed after commitment but before verification."
   ],
   "invariants": [
-    "Absence of evidence is evidence of absence (under exhaustive search)",
-    "Search space fully covered"
+    "Absence of evidence is evidence of absence (under exhaustive search of committed set)",
+    "Search space fully covered within the commitment boundary"
   ],
   "preconditions": [
-    "Closed world assumption",
-    "{{hypothesis}} H"
+    "Closed world assumption (over the committed state, not globally)",
+    "{{hypothesis}} H",
+    "State commitment is fresh and complete"
   ],
   "postconditions": [
-    "H proved false"
+    "H proved false within committed state"
   ],
   "_meta": {
     "tier": 1,
@@ -5690,16 +5660,16 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:NegativeProof#mh:SHA-256:40a6b9b7cc8a3e63dd2433bdcfe0090eee52016e2eb9d58238474f1e4347d30d",
-  "sema_ref": "NegativeProof#40a6",
-  "sema_stub": "40a6",
+  "sema_ref": "NegativeProof#5225",
+  "sema_id": "sema:NegativeProof#mh:SHA-256:5225bbc358d41d3ef16f0466a4e33160d9c7d020132726c74c576eef5d399d4e",
+  "sema_stub": "5225",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
       "hypothesis": "Hypothesis#e95b",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -5778,7 +5748,7 @@
 
 ---
 
-## Quorum#f67a
+## Quorum#29b4
 
 ```json
 {
@@ -5819,18 +5789,18 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "related": [
-      "LazyConsensus#7c9b"
+      "LazyConsensus#81a3"
     ],
     "ring": 0
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "sema_id": "sema:Quorum#mh:SHA-256:f67a77baba883520bde348b7ead4a1abad51fe36fd65539f8dc66cdaa2616efd",
-  "sema_ref": "Quorum#f67a",
-  "sema_stub": "f67a",
+  "sema_id": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
+  "sema_ref": "Quorum#29b4",
+  "sema_stub": "29b4",
   "dependencies": {
     "accepts": {
-      "ballot": "Ballot#c5c5"
+      "ballot": "Ballot#f1d7"
     }
   }
 }
@@ -5851,9 +5821,9 @@
     "category": "Primitives",
     "ring": 1,
     "related": [
-      "AgentSandbox#8719",
+      "AgentSandbox#06f2",
       "CircuitBreaker#4162",
-      "SafetyCartographer#9bc4"
+      "SafetyCartographer"
     ]
   },
   "sema_id": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
@@ -5890,8 +5860,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "criteria": "Criteria#ef6b"
+      "criteria": "Criteria#ef6b",
+      "check": "Check#1544"
     }
   }
 }
@@ -5984,7 +5954,7 @@
 
 ---
 
-## TaskLifecycle#d346
+## TaskLifecycle#ecd8
 
 ```json
 {
@@ -6026,18 +5996,18 @@
     "tier": 1,
     "related": []
   },
-  "sema_ref": "TaskLifecycle#d346",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:d34694951f32cbd9f4e9a2f68d914589921e6f7fbbc6a1600ace85113d5012f5",
-  "sema_stub": "d346",
+  "sema_ref": "TaskLifecycle#ecd8",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda",
+  "sema_stub": "ecd8",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "heartbeat": "Heartbeat#4ddc",
       "exception": "Exception#bcdc",
       "event": "Event#7e71",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "heartbeat": "Heartbeat#7f88"
     },
     "composes_with": {
       "state_transition": "StateTransition#3737"
@@ -6051,7 +6021,7 @@
 
 ---
 
-## TimeWarpLog#aa7a
+## TimeWarpLog#c609
 
 ```json
 {
@@ -6098,18 +6068,18 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:aa7a5f4cc64abcca090f2931d75a7dc0718ec2e20cd42fb0737f5fa4a87c3e32",
-  "sema_ref": "TimeWarpLog#aa7a",
-  "sema_stub": "aa7a",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
+  "sema_ref": "TimeWarpLog#c609",
+  "sema_stub": "c609",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "system": "System#e314",
+      "agent": "Agent#aaec",
+      "causal_barrier": "CausalBarrier#d1b2",
       "state": "State#4d58",
-      "world_reversible": "WorldReversible#f664",
-      "causal_barrier": "CausalBarrier#3a88",
-      "agent": "Agent#cc24"
+      "world_reversible": "WorldReversible#f664"
     }
   }
 }
@@ -6157,7 +6127,7 @@
 
 ---
 
-## AuditTrail#d051
+## AuditTrail#ff66
 
 ```json
 {
@@ -6183,7 +6153,7 @@
     "Selective logging (agent omits inconvenient entries \u2014 requires external {{audit}})."
   ],
   "signature": [
-    "Trace#9057(Ledger#2449)"
+    "Trace#9057(Ledger#c363)"
   ],
   "_meta": {
     "layer": "Infrastructure",
@@ -6194,22 +6164,22 @@
       "SpotAudit#6673"
     ]
   },
-  "sema_ref": "AuditTrail#d051",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:d051159cb1451a35bd695ae6b3e89c75ffe6b2f8180d9244e3c644f573a45d55",
-  "sema_stub": "d051",
+  "sema_ref": "AuditTrail#ff66",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c",
+  "sema_stub": "ff66",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification#9c1e",
   "dependencies": {
+    "references": {
+      "identity": "Identity#626c",
+      "trace": "Trace#9057",
+      "ledger": "Ledger#c363",
+      "audit": "Audit#4044",
+      "agent": "Agent#aaec",
+      "sign": "Sign#1fb9"
+    },
     "composes_with": {
       "snapshot": "Snapshot#0ae9"
-    },
-    "references": {
-      "trace": "Trace#9057",
-      "sign": "Sign#1fb9",
-      "ledger": "Ledger#2449",
-      "identity": "Identity#626c",
-      "audit": "Audit#4044",
-      "agent": "Agent#cc24"
     }
   }
 }
@@ -6249,7 +6219,7 @@
 
 ---
 
-## ExplainBeacon#34b3
+## ExplainBeacon#6ced
 
 ```json
 {
@@ -6268,17 +6238,17 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:34b3877136d89c6bcdfbfb20cfd27d11484fd2f51bb70a68a36c7976fbfc4b6a",
-  "sema_ref": "ExplainBeacon#34b3",
-  "sema_stub": "34b3",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
+  "sema_ref": "ExplainBeacon#6ced",
+  "sema_stub": "6ced",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification#9c1e",
   "dependencies": {
     "references": {
-      "greet": "Greet#1bad",
-      "heartbeat": "Heartbeat#4ddc",
+      "greet": "Greet#7ad2",
+      "heartbeat": "Heartbeat#7f88",
       "stream": "Stream#22f3",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -6330,13 +6300,13 @@
   "sema_ref": "HumanApprove#e64a",
   "sema_stub": "e64a",
   "dependencies": {
+    "references": {
+      "context": "Context#510a",
+      "system": "System#e314",
+      "audit": "Audit#4044"
+    },
     "accepts": {
       "task": "Task#d9f9"
-    },
-    "references": {
-      "audit": "Audit#4044",
-      "system": "System#e314",
-      "context": "Context#510a"
     }
   }
 }
@@ -6367,7 +6337,7 @@
 
 ---
 
-## OathBind#775a
+## OathBind#d4e5
 
 ```json
 {
@@ -6384,16 +6354,16 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_ref": "OathBind#775a",
-  "sema_id": "sema:OathBind#mh:SHA-256:775ae6f305c8348cb7fb4d072af79f5cfc14a247b660221c94c9b57c82c665ca",
-  "sema_stub": "775a",
+  "sema_ref": "OathBind#d4e5",
+  "sema_id": "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509",
+  "sema_stub": "d4e5",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification#9c1e",
   "dependencies": {
     "references": {
-      "spot_audit": "SpotAudit#6673",
       "actor": "Actor#6926",
-      "rule_set": "RuleSet#c559"
+      "spot_audit": "SpotAudit#6673",
+      "rule_set": "RuleSet#e91d"
     }
   }
 }
@@ -6457,53 +6427,11 @@
   "sema_stub": "eb44",
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "problem": "Problem#5baa"
     },
     "accepts": {
       "solution": "Solution#7186"
-    }
-  }
-}
-```
-
----
-
-## RingWitness#1038
-
-```json
-{
-  "handle": "RingWitness",
-  "mechanism": "A cryptographic signature scheme where a message is signed by a 'ring' of N agents. The signature proves that 'one of the N agents signed this', but it is mathematically impossible to determine WHICH one. It provides authenticity with plausible deniability. It leverages {{identity_mask}} to prove group membership without revealing individual identity.",
-  "gloss": "Group-level attribution without individual identification",
-  "failure_modes": [
-    "Sybil attacks (one agent flooding the ring with fake identities)."
-  ],
-  "invariants": [
-    "All N witnesses signed",
-    "Order of signing preserved"
-  ],
-  "preconditions": [
-    "Document/Fact",
-    "Ring of verifiers"
-  ],
-  "postconditions": [
-    "Proof of consensus"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Verification",
-    "ring": 1
-  },
-  "sema_id": "sema:RingWitness#mh:SHA-256:1038a04f0c68ad710717eedc0f6512fc55c480bedb0922e874163f8e234afe01",
-  "sema_ref": "RingWitness#1038",
-  "sema_stub": "1038",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Verification#9c1e",
-  "dependencies": {
-    "references": {
-      "identity_mask": "IdentityMask#f9a7"
     }
   }
 }
@@ -6544,8 +6472,8 @@
   "sema_category": "Verification#9c1e",
   "dependencies": {
     "references": {
-      "audit": "Audit#4044",
-      "state_audit": "StateAudit#ce13"
+      "state_audit": "StateAudit#ce13",
+      "audit": "Audit#4044"
     }
   }
 }
@@ -6580,8 +6508,8 @@
   "sema_category": "Verification#9c1e",
   "dependencies": {
     "references": {
-      "accept_spec": "AcceptSpec#70dd",
-      "check": "Check#1544"
+      "check": "Check#1544",
+      "accept_spec": "AcceptSpec#70dd"
     }
   }
 }
@@ -6617,7 +6545,7 @@
     "layer": "Mind",
     "category": "Inference",
     "related": [
-      "BayesUpdate#5d91"
+      "BayesUpdate#911b"
     ],
     "ring": 2
   },
@@ -6631,7 +6559,7 @@
 
 ---
 
-## BayesUpdate#5d91
+## BayesUpdate#911b
 
 ```json
 {
@@ -6670,15 +6598,15 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:5d91a91754e49d7a83db87d87a7f8920ab4ac5ca17ca47d14954a65278534ce0",
-  "sema_ref": "BayesUpdate#5d91",
-  "sema_stub": "5d91",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
+  "sema_ref": "BayesUpdate#911b",
+  "sema_stub": "911b",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "belief": "Belief#6690",
       "observe": "Observe#8ebd",
+      "belief": "Belief#5ad9",
       "base_rate_include": "BaseRateInclude#aa0b"
     }
   }
@@ -6687,7 +6615,7 @@
 
 ---
 
-## BreadthGovernor#c98e
+## BreadthGovernor#d220
 
 ```json
 {
@@ -6730,20 +6658,20 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:c98e2057dd8d67125f34aafcb2f6397574af172c0a20113aa042574bd8e31a7c",
-  "sema_ref": "BreadthGovernor#c98e",
-  "sema_stub": "c98e",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169",
+  "sema_ref": "BreadthGovernor#d220",
+  "sema_stub": "d220",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "parallel": "Parallel#6272",
-      "prophet_fan_out": "ProphetFanOut#6972",
       "context": "Context#510a",
-      "value": "Value#3c5d",
+      "parsimony": "Parsimony#1dd3",
+      "parallel": "Parallel#6272",
+      "prophet_fan_out": "ProphetFanOut#2d81",
       "budget": "Budget#a763",
-      "parsimony": "Parsimony#2578",
-      "decompose": "Decompose#422f"
+      "decompose": "Decompose#ac56",
+      "value": "Value#3c5d"
     }
   }
 }
@@ -6751,7 +6679,7 @@
 
 ---
 
-## ConfidenceCalibrate#5238
+## ConfidenceCalibrate#0ae5
 
 ```json
 {
@@ -6784,16 +6712,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:52389ef2231a04c551e99c640524f8b082a4608c1a1e9576096450f0f43bc575",
-  "sema_ref": "ConfidenceCalibrate#5238",
-  "sema_stub": "5238",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60",
+  "sema_ref": "ConfidenceCalibrate#0ae5",
+  "sema_stub": "0ae5",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "bayes_update": "BayesUpdate#5d91",
-      "agent": "Agent#cc24",
-      "base_rate_include": "BaseRateInclude#aa0b"
+      "base_rate_include": "BaseRateInclude#aa0b",
+      "bayes_update": "BayesUpdate#911b",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -6834,7 +6762,7 @@
     "category": "Inference",
     "ring": 0,
     "related": [
-      "DissentSeek#bca9"
+      "DissentSeek#bd28"
     ]
   },
   "sema_id": "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",
@@ -6847,7 +6775,7 @@
 
 ---
 
-## ContextFirst#723f
+## ContextFirst#ae72
 
 ```json
 {
@@ -6867,9 +6795,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:ContextFirst#mh:SHA-256:723fc0147c32c39e74048822104401ee5c31ecdc4f7351795d6ef1439120926c",
-  "sema_ref": "ContextFirst#723f",
-  "sema_stub": "723f",
+  "sema_id": "sema:ContextFirst#mh:SHA-256:ae7291d52b10df950c13034c25ca108b41c8e436e9b6711e16a0907db37c512f",
+  "sema_ref": "ContextFirst#ae72",
+  "sema_stub": "ae72",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
@@ -6877,12 +6805,12 @@
   ],
   "dependencies": {
     "references": {
-      "warmup": "Warmup#fc59",
-      "state": "State#4d58",
-      "solver_node": "SolverNode#beef",
-      "prioritize": "Prioritize#dd16",
       "context": "Context#510a",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "warmup": "Warmup#28c4",
+      "prioritize": "Prioritize#dd16",
+      "state": "State#4d58",
+      "solver_node": "SolverNode#058e"
     }
   }
 }
@@ -6915,7 +6843,7 @@
     "layer": "Mind",
     "category": "Inference",
     "related": [
-      "ConfidenceCalibrate#5238"
+      "ConfidenceCalibrate#0ae5"
     ],
     "ring": 2
   },
@@ -6934,7 +6862,7 @@
 
 ---
 
-## HindsightBlock#be41
+## HindsightBlock#bdb6
 
 ```json
 {
@@ -6971,16 +6899,16 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:HindsightBlock#mh:SHA-256:be410c26fbe672bee226f7c5656faea456646fd9f776193d1e5bbc7ecb9f94df",
-  "sema_ref": "HindsightBlock#be41",
-  "sema_stub": "be41",
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:bdb602218783e07b6eb5e68e900635bcd80e7b6d2ff32ac26ec03e383837f363",
+  "sema_ref": "HindsightBlock#bdb6",
+  "sema_stub": "bdb6",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "pre_mortem": "PreMortem#eb4f",
+      "judge": "Judge#d84f",
       "outcome": "Outcome#38e0",
-      "judge": "Judge#b8ba",
+      "pre_mortem": "PreMortem#f69d",
       "decision": "Decision#acfb"
     }
   }
@@ -7009,7 +6937,7 @@
     "ring": 2,
     "tier": 2,
     "related": [
-      "PURECheck#b8ca"
+      "PURECheck#3ebb"
     ]
   },
   "sema_ref": "LayeredCheck#3fad",
@@ -7018,15 +6946,15 @@
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
+    "references": {
+      "hierarchy": "Hierarchy#aa9b",
+      "understand": "Understand#96d4",
+      "validate": "Validate#3de2"
+    },
     "composes_with": {
       "gate": "Gate#206d",
       "sequence": "Sequence#b0b8",
       "check": "Check#1544"
-    },
-    "references": {
-      "validate": "Validate#3de2",
-      "hierarchy": "Hierarchy#aa9b",
-      "understand": "Understand#96d4"
     }
   }
 }
@@ -7034,7 +6962,7 @@
 
 ---
 
-## NormCheck#e814
+## NormCheck#8222
 
 ```json
 {
@@ -7074,9 +7002,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:e814be5d132bffecd6b6ca97f0a2b540b64f201a4ab688c3af9f976c22bf6c58",
-  "sema_ref": "NormCheck#e814",
-  "sema_stub": "e814",
+  "sema_id": "sema:NormCheck#mh:SHA-256:82223036f2aa91c261189aa21bb0a61a98d10cfb6f613eaf760e8635af2e30e7",
+  "sema_ref": "NormCheck#8222",
+  "sema_stub": "8222",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
@@ -7084,12 +7012,12 @@
   ],
   "dependencies": {
     "references": {
-      "normative_judge": "NormativeJudge#a214",
-      "quorum": "Quorum#f67a",
-      "judge": "Judge#b8ba",
       "check": "Check#1544",
-      "prophet_fan_out": "ProphetFanOut#6972",
-      "value": "Value#3c5d"
+      "judge": "Judge#d84f",
+      "prophet_fan_out": "ProphetFanOut#2d81",
+      "value": "Value#3c5d",
+      "normative_judge": "NormativeJudge#2316",
+      "quorum": "Quorum#29b4"
     }
   }
 }
@@ -7097,7 +7025,7 @@
 
 ---
 
-## NormativeJudge#a214
+## NormativeJudge#2316
 
 ```json
 {
@@ -7138,25 +7066,25 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:a2149e83b35ba7b071c1ddefc6010cf690587066178239c888fe4b0348220593",
-  "sema_ref": "NormativeJudge#a214",
-  "sema_stub": "a214",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
+  "sema_ref": "NormativeJudge#2316",
+  "sema_stub": "2316",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
-    "Judge#b8ba(Value#3c5d)"
+    "Judge#d84f(Value#3c5d)"
   ],
   "dependencies": {
     "references": {
-      "outcome": "Outcome#38e0",
-      "quorum": "Quorum#f67a",
+      "judge": "Judge#d84f",
       "state": "State#4d58",
-      "judge": "Judge#b8ba",
       "human_approve": "HumanApprove#e64a",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "outcome": "Outcome#38e0",
+      "quorum": "Quorum#29b4"
     },
     "composes_with": {
-      "perspective_ensemble": "PerspectiveEnsemble#5816"
+      "perspective_ensemble": "PerspectiveEnsemble#2927"
     }
   }
 }
@@ -7164,7 +7092,7 @@
 
 ---
 
-## OntologyAdapt#0c1d
+## OntologyAdapt#e673
 
 ```json
 {
@@ -7190,18 +7118,18 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:0c1da559ddd0df6165d8e057020960ab65f8974a03d8b24dc9d194e45ed29d7f",
-  "sema_ref": "OntologyAdapt#0c1d",
-  "sema_stub": "0c1d",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:e67338652fa9214a713c8b4bc8f1ff1173a080090e84e8ca157f5e071f772a38",
+  "sema_ref": "OntologyAdapt#e673",
+  "sema_stub": "e673",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "ontology_handshake": "OntologyHandshake#ead0",
       "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1",
+      "agent": "Agent#aaec",
+      "ontology_handshake": "OntologyHandshake#ead0",
       "noise": "Noise#c4b4",
-      "anomaly": "Anomaly#7987",
-      "agent": "Agent#cc24"
+      "anomaly": "Anomaly#7987"
     }
   }
 }
@@ -7209,7 +7137,7 @@
 
 ---
 
-## ProphetFanOut#6972
+## ProphetFanOut#2d81
 
 ```json
 {
@@ -7235,16 +7163,16 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:ProphetFanOut#mh:SHA-256:6972d19d015bb785ec16660c5a465e9451e2109e435e465b16a7432b806ecf7f",
-  "sema_ref": "ProphetFanOut#6972",
-  "sema_stub": "6972",
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa",
+  "sema_ref": "ProphetFanOut#2d81",
+  "sema_stub": "2d81",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "chain": "Chain#5711",
-      "aggregate": "Aggregate#0291",
-      "quorum": "Quorum#f67a"
+      "quorum": "Quorum#29b4",
+      "aggregate": "Aggregate#af54"
     }
   }
 }
@@ -7252,7 +7180,7 @@
 
 ---
 
-## RegimeSense#6e3a
+## RegimeSense#3e24
 
 ```json
 {
@@ -7296,19 +7224,19 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:6e3a603adbd6eb16dd3d026b14525147a966b59db11ccbf58adc7c1e21817150",
-  "sema_ref": "RegimeSense#6e3a",
-  "sema_stub": "6e3a",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
+  "sema_ref": "RegimeSense#3e24",
+  "sema_stub": "3e24",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "quorum": "Quorum#f67a",
-      "ontology_adapt": "OntologyAdapt#0c1d",
+      "agent": "Agent#aaec",
+      "drift_watch": "DriftWatch#a20d",
+      "break": "Break#1a63",
+      "ontology_adapt": "OntologyAdapt#e673",
       "noise": "Noise#c4b4",
-      "drift_watch": "DriftWatch#45de",
-      "break": "Break#9d98",
-      "agent": "Agent#cc24"
+      "quorum": "Quorum#29b4"
     }
   }
 }
@@ -7316,7 +7244,7 @@
 
 ---
 
-## ScopeFreeze#54db
+## ScopeFreeze#d8c1
 
 ```json
 {
@@ -7359,20 +7287,20 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:54dbbaae7c24df4dade46112a2b9b2580e169bf3f005e668dc0bdc8cf13389aa",
-  "sema_ref": "ScopeFreeze#54db",
-  "sema_stub": "54db",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:d8c15a8a91ccbfcdb54d00cb1c4a386969867716b402ae638e5822742cd1d2d4",
+  "sema_ref": "ScopeFreeze#d8c1",
+  "sema_stub": "d8c1",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "agent": "Agent#cc24",
       "transition": "Transition#072d",
       "satisfice": "Satisfice#9161",
+      "agent": "Agent#aaec",
       "timebox_think": "TimeboxThink#2656",
-      "accept_spec": "AcceptSpec#70dd",
-      "decompose": "Decompose#422f"
+      "decompose": "Decompose#ac56",
+      "accept_spec": "AcceptSpec#70dd"
     }
   }
 }
@@ -7423,7 +7351,7 @@
 
 ---
 
-## SurprisalUpdate#61cd
+## SurprisalUpdate#6ef1
 
 ```json
 {
@@ -7466,19 +7394,19 @@
     "layer": "Mind",
     "category": "Inference",
     "related": [
-      "BayesUpdate#5d91"
+      "BayesUpdate#911b"
     ],
     "ring": 2
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:61cd0ab834517c8243a95fad2ac455e0693cc1ef8982c5837a6f15f8faa88c28",
-  "sema_ref": "SurprisalUpdate#61cd",
-  "sema_stub": "61cd",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca",
+  "sema_ref": "SurprisalUpdate#6ef1",
+  "sema_stub": "6ef1",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "epistemic_roi": "EpistemicROI#742a",
-      "regime_sense": "RegimeSense#6e3a"
+      "regime_sense": "RegimeSense#3e24",
+      "epistemic_roi": "EpistemicROI#742a"
     }
   }
 }
@@ -7519,8 +7447,8 @@
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "cognitive_bias": "CognitiveBias#4b32",
-      "base_rate_include": "BaseRateInclude#aa0b"
+      "base_rate_include": "BaseRateInclude#aa0b",
+      "cognitive_bias": "CognitiveBias#4b32"
     }
   }
 }
@@ -7528,7 +7456,7 @@
 
 ---
 
-## BeliefTracking#de85
+## BeliefTracking#65b5
 
 ```json
 {
@@ -7566,21 +7494,21 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "BayesUpdate#5d91"
+      "BayesUpdate#911b"
     ],
     "ring": 2
   },
-  "sema_id": "sema:BeliefTracking#mh:SHA-256:de85ece216eb6030ed14d7cca83334f11dd6efb9287c76bf25f569946c5dc950",
-  "sema_ref": "BeliefTracking#de85",
-  "sema_stub": "de85",
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:65b5f43b911ac5cf11622c6e4c4fa89457541630ec72f1f387394d5ad8afff14",
+  "sema_ref": "BeliefTracking#65b5",
+  "sema_stub": "65b5",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "belief": "Belief#6690",
-      "cognitive_bias": "CognitiveBias#4b32",
-      "agent": "Agent#cc24",
-      "surprisal_update": "SurprisalUpdate#61cd"
+      "agent": "Agent#aaec",
+      "belief": "Belief#5ad9",
+      "surprisal_update": "SurprisalUpdate#6ef1",
+      "cognitive_bias": "CognitiveBias#4b32"
     }
   }
 }
@@ -7633,7 +7561,7 @@
 
 ---
 
-## ChunkMerge#26e2
+## ChunkMerge#ded6
 
 ```json
 {
@@ -7657,17 +7585,17 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:ChunkMerge#mh:SHA-256:26e23e7ef95ba9c9136d95f59b319f3eb378890f0c4b709b7a3c7fef350fb29a",
-  "sema_ref": "ChunkMerge#26e2",
-  "sema_stub": "26e2",
+  "sema_id": "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351",
+  "sema_ref": "ChunkMerge#ded6",
+  "sema_stub": "ded6",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
       "compress": "Compress#0967",
-      "aggregate": "Aggregate#0291",
+      "constraint": "Constraint#87fe",
       "hierarchy": "Hierarchy#aa9b",
-      "constraint": "Constraint#87fe"
+      "aggregate": "Aggregate#af54"
     }
   }
 }
@@ -7699,8 +7627,8 @@
   "dependencies": {
     "references": {
       "compress": "Compress#0967",
-      "state": "State#4d58",
       "context": "Context#510a",
+      "state": "State#4d58",
       "constraint": "Constraint#87fe"
     }
   }
@@ -7709,7 +7637,7 @@
 
 ---
 
-## ExperienceSharding#65cc
+## ExperienceSharding#d920
 
 ```json
 {
@@ -7755,18 +7683,18 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "FabricSharding#5914"
+      "FabricSharding#7399"
     ],
     "ring": 0
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:65ccbf94035f6821c53097b6c5da6a9b6da01cddab844b8876f8b35d62e93f39",
-  "sema_ref": "ExperienceSharding#65cc",
-  "sema_stub": "65cc",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
+  "sema_ref": "ExperienceSharding#d920",
+  "sema_stub": "d920",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "chunk_merge": "ChunkMerge#26e2",
+      "chunk_merge": "ChunkMerge#ded6",
       "shard": "Shard#1e74"
     }
   }
@@ -7775,7 +7703,7 @@
 
 ---
 
-## HolographicShard#1d3f
+## HolographicShard#1352
 
 ```json
 {
@@ -7821,16 +7749,16 @@
     "category": "Memory",
     "ring": 0
   },
-  "sema_id": "sema:HolographicShard#mh:SHA-256:1d3f0e0becd650b879f761939319a965391be533d79d56334e99f27cfbfc2a4b",
-  "sema_ref": "HolographicShard#1d3f",
-  "sema_stub": "1d3f",
+  "sema_id": "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f",
+  "sema_ref": "HolographicShard#1352",
+  "sema_stub": "1352",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "deep": "Deep#89f0",
       "context": "Context#510a",
-      "fabric_sharding": "FabricSharding#5914"
+      "fabric_sharding": "FabricSharding#7399",
+      "deep": "Deep#89f0"
     }
   }
 }
@@ -7871,8 +7799,8 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "concept_anchor": "ConceptAnchor#9187",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "concept_anchor": "ConceptAnchor#9187"
     }
   }
 }
@@ -7880,7 +7808,7 @@
 
 ---
 
-## RetrievalAugment#ea60
+## RetrievalAugment#ca58
 
 ```json
 {
@@ -7901,21 +7829,21 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "DeepResearch#5b8b"
+      "DeepResearch#cbe3"
     ],
     "ring": 2
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:ea6079da92c1a8981d31d0d47881ce85b9dad4d44273cfa93583b5096da74692",
-  "sema_ref": "RetrievalAugment#ea60",
-  "sema_stub": "ea60",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
+  "sema_ref": "RetrievalAugment#ca58",
+  "sema_stub": "ca58",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
+      "chain_of_thought": "ChainOfThought#6201",
       "context": "Context#510a",
       "prompt": "Prompt#5ded",
-      "agent": "Agent#cc24",
-      "chain_of_thought": "ChainOfThought#6201"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -8005,8 +7933,8 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "trace": "Trace#9057",
       "context": "Context#510a",
+      "trace": "Trace#9057",
       "constraint": "Constraint#87fe"
     }
   }
@@ -8031,7 +7959,7 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "GhostTrail#91ae",
+      "sema:GhostTrail#mh:SHA-256:ec5b2ca0ee009f2aec90a8fb2cec9ee5feb29a1d98f20a7211d973b26a629e6a",
       "Signal#f39d"
     ],
     "ring": 0
@@ -8043,8 +7971,8 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "trace": "Trace#9057",
-      "decay": "Decay#a1d4"
+      "decay": "Decay#a1d4",
+      "trace": "Trace#9057"
     }
   }
 }
@@ -8107,7 +8035,7 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "HypothesisLadder#28ca"
+      "HypothesisLadder#b8cd"
     ],
     "ring": 2
   },
@@ -8165,9 +8093,9 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
+      "chain_of_thought": "ChainOfThought#6201",
       "chain": "Chain#5711",
-      "plan": "Plan#64f2",
-      "chain_of_thought": "ChainOfThought#6201"
+      "plan": "Plan#64f2"
     }
   }
 }
@@ -8175,12 +8103,12 @@
 
 ---
 
-## Bisect#9bf4
+## Bisect#88b3
 
 ```json
 {
   "handle": "Bisect",
-  "mechanism": "Binary Partition: Define the possibility space. Find a question that splits space roughly in half. Ask it. Discard eliminated half. Repeat on remaining half. O(log n) questions to isolate answer. Requires ordered or divisible domain. It relies on {{boundary_probe}} to correctly define the split-point and often underpins the execution of {{recursive_root_cause}}.",
+  "mechanism": "Binary Partition: Define the possibility space. Find a question that splits space roughly in half. Ask it. Discard eliminated half. Repeat on remaining half. O(log n) questions to isolate answer. Requires ordered or divisible domain. Often underpins the execution of {{recursive_root_cause}}.",
   "gloss": "Logarithmic search via binary splitting",
   "failure_modes": [
     "False Negative: Discarding the half that actually contained the answer because the splitting question was flawed."
@@ -8194,15 +8122,14 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Bisect#mh:SHA-256:9bf4f3b6c82ada23e0f16d389621b84755c0593bc442a4c438fc629306d5bbca",
-  "sema_ref": "Bisect#9bf4",
-  "sema_stub": "9bf4",
+  "sema_id": "sema:Bisect#mh:SHA-256:88b3085fd8a158f3fa253cbc18eb121c6ea858a1b0fd8045fd4452ae00a81901",
+  "sema_ref": "Bisect#88b3",
+  "sema_stub": "88b3",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "recursive_root_cause": "RecursiveRootCause#6dc1",
-      "boundary_probe": "BoundaryProbe#3c6b"
+      "recursive_root_cause": "RecursiveRootCause#6dc1"
     }
   }
 }
@@ -8226,8 +8153,8 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "ProgramOfThought#7191",
-      "ReAct#db09"
+      "ProgramOfThought",
+      "ReAct#c720"
     ],
     "ring": 2
   },
@@ -8240,14 +8167,14 @@
     "Think#e1bd(Chain#5711)"
   ],
   "dependencies": {
-    "composes_with": {
-      "step_back": "StepBack#b079",
-      "reflexion": "Reflexion#51b9"
-    },
     "references": {
-      "think": "Think#e1bd",
+      "chain": "Chain#5711",
       "topology": "Topology#2408",
-      "chain": "Chain#5711"
+      "think": "Think#e1bd"
+    },
+    "composes_with": {
+      "reflexion": "Reflexion#51b9",
+      "step_back": "StepBack#b079"
     }
   }
 }
@@ -8350,12 +8277,12 @@
 
 ---
 
-## Decompose#422f
+## Decompose#ac56
 
 ```json
 {
   "handle": "Decompose",
-  "mechanism": "{{strategy}}: The cognitive act of splitting a {{task}} into independent sub-{{task}}s. Criterion: solving sub{{problem}}s in isolation must yield {{solution}} to whole. If subproblems interact, split is wrong\u2014try different decomposition axis. Recurse until subproblems are trivial.",
+  "mechanism": "{{strategy}}: The cognitive act of splitting a {{task}} into independent subordinate parts. Criterion: solving each constituent {{problem}} in isolation must yield {{solution}} to the whole. If subproblems interact, the split is wrong\u2014try a different decomposition axis. Recurse until subproblems are trivial.",
   "gloss": "Dividing complexity into manageable units",
   "failure_modes": [
     "Coupling Leakage: Subproblems are not truly independent; solving one breaks another."
@@ -8375,9 +8302,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Decompose#mh:SHA-256:422f4ab64753ba80b9381763a596850c0dc411d5432054786e3208c17ddca0de",
-  "sema_ref": "Decompose#422f",
-  "sema_stub": "422f",
+  "sema_ref": "Decompose#ac56",
+  "sema_id": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
+  "sema_stub": "ac56",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
@@ -8385,9 +8312,9 @@
       "task": "Task#d9f9"
     },
     "references": {
-      "problem": "Problem#5baa",
+      "strategy": "Strategy#47a4",
       "solution": "Solution#7186",
-      "strategy": "Strategy#47a4"
+      "problem": "Problem#5baa"
     }
   }
 }
@@ -8433,7 +8360,7 @@
 
 ---
 
-## Dialectic#3744
+## Dialectic#bc18
 
 ```json
 {
@@ -8473,18 +8400,18 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Dialectic#mh:SHA-256:374424dac92acbfc8bca803811b03d6192d334db59933318b4db14aaaaf39e55",
-  "sema_ref": "Dialectic#3744",
-  "sema_stub": "3744",
+  "sema_id": "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242",
+  "sema_ref": "Dialectic#bc18",
+  "sema_stub": "bc18",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "SteelmanCheck#75a0"
+      "steelman_check": "SteelmanCheck#4f4c"
     },
     "references": {
-      "synthesis": "Synthesis#3252",
-      "perspective_ensemble": "PerspectiveEnsemble#5816"
+      "perspective_ensemble": "PerspectiveEnsemble#2927",
+      "synthesis": "Synthesis#3252"
     }
   }
 }
@@ -8566,19 +8493,19 @@
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
+    "composes_with": {
+      "think": "Think#e1bd"
+    },
     "references": {
       "simulation": "Simulation#8035",
-      "value": "Value#3c5d",
-      "heuristic_snap": "HeuristicSnap#cece"
-    },
-    "yields": {
-      "bid": "Bid#cf07"
+      "heuristic_snap": "HeuristicSnap#cece",
+      "value": "Value#3c5d"
     },
     "accepts": {
       "task": "Task#d9f9"
     },
-    "composes_with": {
-      "think": "Think#e1bd"
+    "yields": {
+      "bid": "Bid#cf07"
     }
   }
 }
@@ -8659,8 +8586,8 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "assumption": "Assumption#efb5",
       "chain_of_thought": "ChainOfThought#6201",
+      "assumption": "Assumption#efb5",
       "axiom": "Axiom#5012"
     }
   }
@@ -8669,7 +8596,7 @@
 
 ---
 
-## Generalize#9313
+## Generalize#17c9
 
 ```json
 {
@@ -8694,19 +8621,19 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "Specialize#d968"
+      "Specialize#0a09"
     ],
     "ring": 2
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:931391f2fdaca5c5eaa2afc80b25a36c0c186db71fb2b56944da537c028d0a1a",
-  "sema_ref": "Generalize#9313",
-  "sema_stub": "9313",
+  "sema_id": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
+  "sema_ref": "Generalize#17c9",
+  "sema_stub": "17c9",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
-      "analogy_bridge": "AnalogyBridge#87de"
+      "analogy_bridge": "AnalogyBridge#bff7",
+      "state": "State#4d58"
     }
   }
 }
@@ -8736,7 +8663,7 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "ThinSlice#4c34"
+      "ThinSlice#debb"
     ],
     "ring": 2
   },
@@ -8747,10 +8674,10 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "budget": "Budget#a763",
-      "decision": "Decision#acfb",
+      "chain_of_thought": "ChainOfThought#6201",
       "problem": "Problem#5baa",
-      "chain_of_thought": "ChainOfThought#6201"
+      "budget": "Budget#a763",
+      "decision": "Decision#acfb"
     }
   }
 }
@@ -8819,13 +8746,13 @@
     "yields": {
       "value": "Value#3c5d"
     },
-    "accepts": {
-      "datum": "Datum#31cf",
-      "signal": "Signal#f39d"
-    },
     "composes_with": {
       "think": "Think#e1bd",
       "context": "Context#510a"
+    },
+    "accepts": {
+      "datum": "Datum#31cf",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -8860,9 +8787,9 @@
   "sema_stub": "d1b9",
   "dependencies": {
     "references": {
+      "state": "State#4d58",
       "reframe": "Reframe#ba00",
-      "problem": "Problem#5baa",
-      "state": "State#4d58"
+      "problem": "Problem#5baa"
     },
     "accepts": {
       "solution": "Solution#7186"
@@ -8873,7 +8800,7 @@
 
 ---
 
-## LeastToMost#2cce
+## LeastToMost#bd38
 
 ```json
 {
@@ -8901,22 +8828,22 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "RecursionDive#6a5c"
+      "RecursionDive#962f"
     ],
     "ring": 2
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:LeastToMost#mh:SHA-256:2cceb392a547b5697483cfd568e27a712dd76542d57c8cdf091df96d68b04cbf",
-  "sema_ref": "LeastToMost#2cce",
-  "sema_stub": "2cce",
+  "sema_id": "sema:LeastToMost#mh:SHA-256:bd389eddb2f1b893221ab2a7479cb0293f1808057a52ef702b3ff6228509db26",
+  "sema_ref": "LeastToMost#bd38",
+  "sema_stub": "bd38",
   "dependencies": {
     "accepts": {
       "task": "Task#d9f9"
     },
     "references": {
-      "solution": "Solution#7186",
-      "decompose": "Decompose#422f"
+      "decompose": "Decompose#ac56",
+      "solution": "Solution#7186"
     }
   }
 }
@@ -8924,7 +8851,7 @@
 
 ---
 
-## Parsimony#2578
+## Parsimony#1dd3
 
 ```json
 {
@@ -8934,7 +8861,7 @@
     "Necessity: Every component must have a causal link to the outcome."
   ],
   "signature": [
-    "Judge#b8ba(Topology#2408)"
+    "Judge#d84f(Topology#2408)"
   ],
   "_meta": {
     "layer": "Mind",
@@ -8942,60 +8869,17 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:25788dab06b998f95e0447259c9f29c331216ed523b24c4311083af2d53509f0",
-  "sema_ref": "Parsimony#2578",
-  "sema_stub": "2578",
+  "sema_id": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
+  "sema_ref": "Parsimony#1dd3",
+  "sema_stub": "1dd3",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "gloss": "Complexity justification via Occams Razor",
   "dependencies": {
     "references": {
       "compress": "Compress#0967",
-      "judge": "Judge#b8ba",
-      "topology": "Topology#2408"
-    }
-  }
-}
-```
-
----
-
-## ProgramOfThought#7191
-
-```json
-{
-  "handle": "ProgramOfThought",
-  "mechanism": "Disentangles reasoning from computation by having the model generate executable code (typically Python) to perform calculations, rather than computing in natural language. The model reasons about what computation is needed, writes code to perform it, executes the code, and interprets results. Dramatically improves accuracy on numerical reasoning {{task}}s.",
-  "gloss": "Generate code for computation, separate from reasoning",
-  "failure_modes": [
-    "Code Errors: Generated code has bugs or doesn't execute.",
-    "Reasoning-Code Mismatch: Code doesn't implement intended logic.",
-    "Over-Engineering: Simple calculations wrapped in unnecessary code."
-  ],
-  "invariants": [
-    "Logic is deterministic",
-    "Reasoning expressed as executable code"
-  ],
-  "preconditions": [
-    "Algorithmic problem"
-  ],
-  "postconditions": [
-    "Correct answer derived via execution"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "ring": 2
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
-  "sema_id": "sema:ProgramOfThought#mh:SHA-256:719143cebb0bae7f29191c8a201fad4e365ef1d077e1ef671b15e74f15e3cc59",
-  "sema_ref": "ProgramOfThought#7191",
-  "sema_stub": "7191",
-  "dependencies": {
-    "accepts": {
-      "task": "Task#d9f9"
+      "topology": "Topology#2408",
+      "judge": "Judge#d84f"
     }
   }
 }
@@ -9039,7 +8923,7 @@
 
 ---
 
-## ReAct#db09
+## ReAct#c720
 
 ```json
 {
@@ -9073,21 +8957,21 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:ReAct#mh:SHA-256:db09f71ac22f6917fb5b7dc3fbc14409a057f20b30243cd262150f29d73a4298",
-  "sema_ref": "ReAct#db09",
-  "sema_stub": "db09",
+  "sema_id": "sema:ReAct#mh:SHA-256:c72018c3dbdfe960eadd257f10dfd88400a405cfd2be557977fc0e81bcae8062",
+  "sema_ref": "ReAct#c720",
+  "sema_stub": "c720",
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
       "chain": "Chain#5711",
+      "agent": "Agent#aaec",
       "loop": "Loop#fb2e",
       "cognitive_bias": "CognitiveBias#4b32"
     },
-    "composes_with": {
-      "tool_invoke": "ToolInvoke#cf0a"
-    },
     "accepts": {
       "task": "Task#d9f9"
+    },
+    "composes_with": {
+      "tool_invoke": "ToolInvoke#cf0a"
     }
   }
 }
@@ -9137,16 +9021,16 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "compute_budget": "ComputeBudget#3b98",
-      "topology": "Topology#2408",
       "chain": "Chain#5711",
-      "tree": "Tree#ddce"
-    },
-    "accepts": {
-      "context": "Context#510a"
+      "topology": "Topology#2408",
+      "tree": "Tree#ddce",
+      "compute_budget": "ComputeBudget#3b98"
     },
     "composes_with": {
       "think": "Think#e1bd"
+    },
+    "accepts": {
+      "context": "Context#510a"
     }
   }
 }
@@ -9154,7 +9038,7 @@
 
 ---
 
-## RecursionDive#6a5c
+## RecursionDive#962f
 
 ```json
 {
@@ -9170,18 +9054,18 @@
       "SolutionNode#2b4a"
     ]
   },
-  "sema_id": "sema:RecursionDive#mh:SHA-256:6a5cac9eb4e9ca22eb83add3a5e4b8b94cc143627cb829b49f5a76684940d13e",
-  "sema_ref": "RecursionDive#6a5c",
-  "sema_stub": "6a5c",
+  "sema_id": "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83",
+  "sema_ref": "RecursionDive#962f",
+  "sema_stub": "962f",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "references": {
-      "solver_tree": "SolverTree#496e",
-      "solver_node": "SolverNode#beef"
-    },
     "composes_with": {
-      "decompose": "Decompose#422f"
+      "decompose": "Decompose#ac56"
+    },
+    "references": {
+      "solver_node": "SolverNode#058e",
+      "solver_tree": "SolverTree#84e2"
     }
   }
 }
@@ -9209,8 +9093,8 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "Bisect#9bf4",
-      "RecursionDive#6a5c"
+      "Bisect#88b3",
+      "RecursionDive#962f"
     ],
     "ring": 2
   },
@@ -9243,7 +9127,7 @@
     "ring": 1,
     "tier": 1,
     "related": [
-      "PhasedRefinement#9334"
+      "PhasedRefinement#4a90"
     ]
   },
   "sema_id": "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d",
@@ -9256,10 +9140,10 @@
       "act": "Act#5d55"
     },
     "references": {
-      "condition": "Condition#cbd5",
-      "incongruity": "Incongruity#e98f",
+      "artifact": "Artifact#6254",
       "critique": "Critique#3e00",
-      "artifact": "Artifact#6254"
+      "condition": "Condition#cbd5",
+      "incongruity": "Incongruity#e98f"
     }
   }
 }
@@ -9306,11 +9190,11 @@
   "sema_stub": "51b9",
   "dependencies": {
     "references": {
-      "outcome": "Outcome#38e0",
-      "scratchpad": "Scratchpad#75bf",
-      "plan": "Plan#64f2",
       "critique": "Critique#3e00",
-      "goal": "Goal#456a"
+      "plan": "Plan#64f2",
+      "goal": "Goal#456a",
+      "outcome": "Outcome#38e0",
+      "scratchpad": "Scratchpad#75bf"
     },
     "accepts": {
       "task": "Task#d9f9"
@@ -9366,7 +9250,7 @@
 
 ---
 
-## SelfConsistency#1793
+## SelfConsistency#543d
 
 ```json
 {
@@ -9388,14 +9272,14 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "SelfConsistency#1793",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:1793d1f73eb71f1153093c2223715de06100e2414f0ae47145b2f9a911276888",
-  "sema_stub": "1793",
+  "sema_ref": "SelfConsistency#543d",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d",
+  "sema_stub": "543d",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "aggregate": "Aggregate#0291"
+      "aggregate": "Aggregate#af54"
     }
   }
 }
@@ -9403,7 +9287,7 @@
 
 ---
 
-## SkeletonOfThought#f40a
+## SkeletonOfThought#d99a
 
 ```json
 {
@@ -9421,17 +9305,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:f40a8f04a44d5592db9400af2b43c18841d35dfb6a73d104983e0d6e91ba917e",
-  "sema_ref": "SkeletonOfThought#f40a",
-  "sema_stub": "f40a",
+  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:d99ac47fca9164a2de7b43196ce9c8455ab430b31b1c34928bddba952002cda4",
+  "sema_ref": "SkeletonOfThought#d99a",
+  "sema_stub": "d99a",
   "signature": [
     "Think#e1bd(Skeleton#c363)"
   ],
   "dependencies": {
     "references": {
-      "decompose": "Decompose#422f",
-      "skeleton": "Skeleton#c363",
-      "think": "Think#e1bd"
+      "decompose": "Decompose#ac56",
+      "think": "Think#e1bd",
+      "skeleton": "Skeleton#c363"
     }
   }
 }
@@ -9439,7 +9323,7 @@
 
 ---
 
-## SocraticLoop#10e9
+## SocraticLoop#70fc
 
 ```json
 {
@@ -9483,17 +9367,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:SocraticLoop#mh:SHA-256:10e9b1bde88f87684b0691ae455f9f64a023301c43eb484caeec65286556cafc",
-  "sema_ref": "SocraticLoop#10e9",
-  "sema_stub": "10e9",
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0",
+  "sema_ref": "SocraticLoop#70fc",
+  "sema_stub": "70fc",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "dialectic": "Dialectic#3744",
+      "agent": "Agent#aaec",
+      "dialectic": "Dialectic#bc18",
       "prompt": "Prompt#5ded",
-      "loop": "Loop#fb2e",
-      "agent": "Agent#cc24"
+      "loop": "Loop#fb2e"
     }
   }
 }
@@ -9501,7 +9385,7 @@
 
 ---
 
-## Specialize#d968
+## Specialize#0a09
 
 ```json
 {
@@ -9528,16 +9412,16 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Specialize#mh:SHA-256:d96855368b574a8e44d5c3ca6ef76c4ca141ddd964acc9c54d9428860c00c203",
-  "sema_ref": "Specialize#d968",
-  "sema_stub": "d968",
+  "sema_id": "sema:Specialize#mh:SHA-256:0a0947c52834daad3a8c929cdafa2343ad43b044750fd6e27e233ff823005891",
+  "sema_ref": "Specialize#0a09",
+  "sema_stub": "0a09",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "generalize": "Generalize#9313",
-      "check": "Check#1544",
-      "context": "Context#510a"
+      "generalize": "Generalize#17c9",
+      "context": "Context#510a",
+      "check": "Check#1544"
     }
   }
 }
@@ -9545,7 +9429,7 @@
 
 ---
 
-## SteelmanCheck#75a0
+## SteelmanCheck#4f4c
 
 ```json
 {
@@ -9589,28 +9473,28 @@
     "category": "Reasoning",
     "ring": 1,
     "related": [
-      "AdversarialSteel#b88b"
+      "AdversarialSteel#35f0"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:75a0f70d58f79e59b6641c633e70f4b6e5ff0483cf9a8fcb658257e20dea41d4",
-  "sema_ref": "SteelmanCheck#75a0",
-  "sema_stub": "75a0",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
+  "sema_ref": "SteelmanCheck#4f4c",
+  "sema_stub": "4f4c",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
     "Check#1544(Robustness#132c)",
-    "Critique#3e00(Belief#6690)"
+    "Critique#3e00(Belief#5ad9)"
   ],
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
-      "belief": "Belief#6690",
       "check": "Check#1544",
-      "loop": "Loop#fb2e",
-      "robustness": "Robustness#132c",
-      "compatibility_check": "CompatibilityCheck#3abb",
+      "agent": "Agent#aaec",
       "critique": "Critique#3e00",
+      "robustness": "Robustness#132c",
+      "loop": "Loop#fb2e",
+      "compatibility_check": "CompatibilityCheck#3abb",
       "decision": "Decision#acfb",
+      "belief": "Belief#5ad9",
       "cognitive_bias": "CognitiveBias#4b32"
     }
   }
@@ -9660,9 +9544,9 @@
   ],
   "dependencies": {
     "references": {
+      "think": "Think#e1bd",
       "reframe": "Reframe#ba00",
-      "problem": "Problem#5baa",
-      "think": "Think#e1bd"
+      "problem": "Problem#5baa"
     }
   }
 }
@@ -9670,7 +9554,7 @@
 
 ---
 
-## StrategicReading#16f6
+## StrategicReading#ef92
 
 ```json
 {
@@ -9714,18 +9598,18 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "StrategicReading#16f6",
-  "sema_id": "sema:StrategicReading#mh:SHA-256:16f60fba4c06d588034475f218c0dc54519848ae1e13dd8efff7145c9e248db1",
-  "sema_stub": "16f6",
+  "sema_ref": "StrategicReading#ef92",
+  "sema_id": "sema:StrategicReading#mh:SHA-256:ef9282eb9e5d243105ed2f8016102f7653d1a9f3abc2215f08642695fa2a33bf",
+  "sema_stub": "ef92",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "compute_budget": "ComputeBudget#3b98",
-      "cognitive_bias": "CognitiveBias#4b32",
       "context": "Context#510a",
-      "agent": "Agent#cc24",
-      "tree": "Tree#ddce"
+      "agent": "Agent#aaec",
+      "tree": "Tree#ddce",
+      "compute_budget": "ComputeBudget#3b98",
+      "cognitive_bias": "CognitiveBias#4b32"
     }
   }
 }
@@ -9758,10 +9642,10 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "translate": "Translate#e75d",
       "compress": "Compress#0967",
-      "value": "Value#3c5d",
-      "artifact": "Artifact#6254"
+      "translate": "Translate#e75d",
+      "artifact": "Artifact#6254",
+      "value": "Value#3c5d"
     },
     "accepts": {
       "datum": "Datum#31cf"
@@ -9836,11 +9720,11 @@
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "yields": {
-      "datum": "Datum#31cf"
-    },
     "accepts": {
       "context": "Context#510a"
+    },
+    "yields": {
+      "datum": "Datum#31cf"
     }
   }
 }
@@ -9883,13 +9767,13 @@
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
+    "accepts": {
+      "datum": "Datum#31cf"
+    },
     "references": {
       "reversibility": "Reversibility#049f",
       "interpret": "Interpret#c9ee",
       "protocol": "Protocol#7e1c"
-    },
-    "accepts": {
-      "datum": "Datum#31cf"
     }
   }
 }
@@ -9923,7 +9807,7 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "RecursionDive#6a5c"
+      "RecursionDive#962f"
     ],
     "ring": 2
   },
@@ -9938,8 +9822,8 @@
   "dependencies": {
     "references": {
       "chain_of_thought": "ChainOfThought#6201",
-      "think": "Think#e1bd",
-      "tree": "Tree#ddce"
+      "tree": "Tree#ddce",
+      "think": "Think#e1bd"
     }
   }
 }
@@ -10045,11 +9929,11 @@
   ],
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa",
-      "reframe": "Reframe#ba00",
-      "condition": "Condition#cbd5",
+      "solution": "Solution#7186",
       "recursive_root_cause": "RecursiveRootCause#6dc1",
-      "solution": "Solution#7186"
+      "problem": "Problem#5baa",
+      "condition": "Condition#cbd5",
+      "reframe": "Reframe#ba00"
     }
   }
 }
@@ -10057,7 +9941,7 @@
 
 ---
 
-## AdversarialSteel#b88b
+## AdversarialSteel#35f0
 
 ```json
 {
@@ -10077,22 +9961,22 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:b88b0ef8e7b02a319a4d82042fe34981ad48d9c271e5105decd38f699ef4ed8e",
-  "sema_ref": "AdversarialSteel#b88b",
-  "sema_stub": "b88b",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234",
+  "sema_ref": "AdversarialSteel#35f0",
+  "sema_stub": "35f0",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
-    "composes_with": {
-      "steelman_check": "SteelmanCheck#75a0"
-    },
     "references": {
       "system": "System#e314",
-      "criteria": "Criteria#ef6b",
-      "judge": "Judge#b8ba",
+      "agent": "Agent#aaec",
       "meta": "Meta#90f4",
+      "judge": "Judge#d84f",
       "compatibility_check": "CompatibilityCheck#3abb",
-      "agent": "Agent#cc24"
+      "criteria": "Criteria#ef6b"
+    },
+    "composes_with": {
+      "steelman_check": "SteelmanCheck#4f4c"
     }
   }
 }
@@ -10100,17 +9984,17 @@
 
 ---
 
-## Agent#cc24
+## Agent#aaec
 
 ```json
 {
   "handle": "Agent",
-  "mechanism": "The fundamental unit of agency. An {{actor}} capable of perceiving its environment ({{observe}}), maintaining internal {{state}}, reasoning about that {{state}} ({{think}}), and taking {{act}}ions to achieve a {{goal}}. It operates in a continuous {{loop}}.",
+  "mechanism": "The fundamental unit of agency. An {{actor}} capable of perceiving its environment ({{observe}}), maintaining internal {{state}}, reasoning about that {{state}} ({{think}}), and executing {{act}} to achieve a {{goal}}. It operates in a continuous {{loop}}.",
   "gloss": "Autonomous Goal-Directed Entity",
   "failure_modes": [
     "{{goal}} Drift: The agent's optimization target shifts away from the user's intent.",
     "Reward Hacking: Finding shortcuts to maximize a {{metric}} without achieving the actual {{goal}}.",
-    "Infinite {{loop}}: Getting stuck in a non-productive cycle of actions.",
+    "Infinite {{loop}}: Getting stuck in a non-productive cycle.",
     "Hallucination: Acting based on false internal beliefs."
   ],
   "invariants": [
@@ -10133,19 +10017,19 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_ref": "Agent#cc24",
-  "sema_id": "sema:Agent#mh:SHA-256:cc241813ab693736c29e02030d0f6c5453d63b603069191c1422a2529553daf5",
-  "sema_stub": "cc24",
+  "sema_ref": "Agent#aaec",
+  "sema_id": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+  "sema_stub": "aaec",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "trace": "Trace#9057",
-      "state": "State#4d58",
-      "metric": "Metric#8895",
-      "actor": "Actor#6926",
-      "loop": "Loop#fb2e",
       "identity": "Identity#626c",
+      "trace": "Trace#9057",
+      "metric": "Metric#8895",
+      "state": "State#4d58",
+      "loop": "Loop#fb2e",
+      "actor": "Actor#6926",
       "goal": "Goal#456a"
     },
     "composes_with": {
@@ -10159,54 +10043,7 @@
 
 ---
 
-## AnalogicalMask#852a
-
-```json
-{
-  "handle": "AnalogicalMask",
-  "mechanism": "A privacy-preserving communication protocol where sensitive content is not encrypted into noise, but ISOMORPHICALLY MAPPED to a Cover Domain. The agent uses an {{analogy_bridge}} to translate the sensitive Source (e.g., a proprietary trading strategy) into a structurally equivalent Target narrative (e.g., a logistics optimization problem). To an external observer, the {{message}} appears as valid, low-entropy text about the Target domain. The receiver, possessing the specific Bridge Key (mapping dictionary), inverts the analogy to recover the structural intent. It requires an initial {{ontology_handshake}} to securely establish the shared Bridge Key before transmission begins. Primary use cases: sanitizing proprietary information for external review, translating classified operational plans into unclassified training analogues, and privacy-preserving inter-organizational coordination.",
-  "gloss": "Privacy-preserving communication via isomorphic domain translation",
-  "failure_modes": [
-    "Mapping leakage (if the analogy is too perfect, the cover text becomes suspicious).",
-    "Lossy translation (nuance lost in the bridge)."
-  ],
-  "invariants": [
-    "Cover Coherence: The output text must be semantically valid in the Cover Domain",
-    "Structural Isomorphism: Relations in Payload must map 1:1 to Relations in Cover"
-  ],
-  "preconditions": [
-    "Shared Bridge Key (Mapping Dictionary) established"
-  ],
-  "postconditions": [
-    "{{message}} passes semantic firewalls"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "related": [
-      "MimicMask#0fe8"
-    ],
-    "ring": 2
-  },
-  "sema_id": "sema:AnalogicalMask#mh:SHA-256:852a1f8e0a69d2d6ac061711f8741140ab2e8754a1a912e82d01b321acd6d99e",
-  "sema_ref": "AnalogicalMask#852a",
-  "sema_stub": "852a",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "dependencies": {
-    "references": {
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "analogy_bridge": "AnalogyBridge#87de",
-      "message": "Message#f767"
-    }
-  }
-}
-```
-
----
-
-## AnalogyBridge#87de
+## AnalogyBridge#bff7
 
 ```json
 {
@@ -10232,16 +10069,16 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:87ded8aef0c68bd8e45e029997245cb5a9094c69ce732d84839ba56ac3454c52",
-  "sema_ref": "AnalogyBridge#87de",
-  "sema_stub": "87de",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
+  "sema_ref": "AnalogyBridge#bff7",
+  "sema_stub": "bff7",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa",
+      "agent": "Agent#aaec",
       "solution": "Solution#7186",
-      "agent": "Agent#cc24"
+      "problem": "Problem#5baa"
     }
   }
 }
@@ -10249,7 +10086,7 @@
 
 ---
 
-## AntifragileInversion#bf62
+## AntifragileInversion#6b0e
 
 ```json
 {
@@ -10275,18 +10112,18 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:AntifragileInversion#mh:SHA-256:bf629c568b2bc34726a23d021ef0459528da2aa6084d5f011d3f1abf93b88de4",
-  "sema_ref": "AntifragileInversion#bf62",
-  "sema_stub": "bf62",
+  "sema_id": "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c",
+  "sema_ref": "AntifragileInversion#6b0e",
+  "sema_stub": "6b0e",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
       "system": "System#e314",
-      "agent": "Agent#cc24",
-      "reframe": "Reframe#ba00",
+      "agent": "Agent#aaec",
       "variable": "Variable#179a",
-      "vector": "Vector#c7c4"
+      "vector": "Vector#c7c4",
+      "reframe": "Reframe#ba00"
     }
   }
 }
@@ -10294,7 +10131,7 @@
 
 ---
 
-## BeamSearch#23b1
+## BeamSearch#5a34
 
 ```json
 {
@@ -10319,16 +10156,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:BeamSearch#mh:SHA-256:23b1817f69e5b2090c5931b8e195437932834e0b1aeb2ebbe9f928bc70adc8eb",
-  "sema_ref": "BeamSearch#23b1",
-  "sema_stub": "23b1",
+  "sema_id": "sema:BeamSearch#mh:SHA-256:5a3460aa9dc10ab22ddf87f740cb0dc1166e96d7d07fd31bf312cf8b35b1e559",
+  "sema_ref": "BeamSearch#5a34",
+  "sema_stub": "5a34",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "queue": "Queue#2ec3",
       "rank": "Rank#cb98",
-      "solver_node": "SolverNode#beef",
+      "queue": "Queue#2ec3",
+      "solver_node": "SolverNode#058e",
       "select": "Select#15c2"
     }
   }
@@ -10415,8 +10252,8 @@
     "category": "Strategy",
     "related": [
       "Simulation#8035",
-      "DogfoodFirst#826e",
-      "SacrificialProbe#2372"
+      "DogfoodFirst#b595",
+      "SacrificialProbe#1e16"
     ],
     "ring": 1
   },
@@ -10430,16 +10267,16 @@
   ],
   "dependencies": {
     "references": {
-      "act": "Act#5d55",
       "prototype": "Prototype#ff18",
       "plan": "Plan#64f2",
+      "act": "Act#5d55",
       "value": "Value#3c5d"
-    },
-    "yields": {
-      "artifact": "Artifact#6254"
     },
     "accepts": {
       "spec": "Spec#436e"
+    },
+    "yields": {
+      "artifact": "Artifact#6254"
     }
   }
 }
@@ -10447,51 +10284,7 @@
 
 ---
 
-## ChaosDrift#ee43
-
-```json
-{
-  "handle": "ChaosDrift",
-  "mechanism": "A resilience pattern where the system operates Optimistically (Lazy {{consensus}}), but a background process deliberately injects random state mutations (Entropy) into the consensus log. If the system is Robust, these small mutations are absorbed/corrected by the next update. If the system is Brittle (stuck in a local optimum), the noise triggers a cascade of Rollbacks, forcing the agents to renegotiate a more stable equilibrium. It uses noise to stress-test consensus in real-time. It employs {{antifragile_inversion}} to treat noise as a stabilizing signal, and {{semantic_tabu}} to prevent the system from returning to failed equilibria.",
-  "gloss": "Continuous stress-testing via entropic injection",
-  "failure_modes": [
-    "Critical Instability: The injected noise triggers a rollback loop that never settles (system acts like its having a seizure)."
-  ],
-  "invariants": [
-    "{{noise}} Budget: Entropy injection rate < {{system}} Repair Rate",
-    "Rollback Limit: If Rollbacks > Threshold, disable {{entropy_pump}}"
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "related": [
-      "EntropyPump#b9ae",
-      "LazyConsensus#7c9b"
-    ],
-    "ring": 1
-  },
-  "sema_id": "sema:ChaosDrift#mh:SHA-256:ee438c58f13195b2cf4c1317072166d4a8cd833e9f32d203a77eb5758dd74e38",
-  "sema_ref": "ChaosDrift#ee43",
-  "sema_stub": "ee43",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "dependencies": {
-    "references": {
-      "semantic_tabu": "SemanticTabu#82dd",
-      "system": "System#e314",
-      "noise": "Noise#c4b4",
-      "antifragile_inversion": "AntifragileInversion#bf62",
-      "entropy_pump": "EntropyPump#b9ae",
-      "consensus": "Consensus#2722"
-    }
-  }
-}
-```
-
----
-
-## CognitiveSolver#4962
+## CognitiveSolver#42e5
 
 ```json
 {
@@ -10513,33 +10306,33 @@
     "ring": 1,
     "related": [
       "EpistemicROI#742a",
-      "RecursionDive#6a5c"
+      "RecursionDive#962f"
     ]
   },
-  "sema_id": "sema:CognitiveSolver#mh:SHA-256:4962ffd534b3a87584f3ba6c57f7db3ae2aa0fd0461fd0363f35418cc3cfe8b7",
-  "sema_ref": "CognitiveSolver#4962",
-  "sema_stub": "4962",
+  "sema_id": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
+  "sema_ref": "CognitiveSolver#42e5",
+  "sema_stub": "42e5",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
+    "composes_with": {
+      "reflexion": "Reflexion#51b9",
+      "reason": "Reason#3f24",
+      "socratic_loop": "SocraticLoop#70fc",
+      "compute_budget": "ComputeBudget#3b98",
+      "tool_invoke": "ToolInvoke#cf0a"
+    },
     "yields": {
       "solution": "Solution#7186"
     },
-    "composes_with": {
-      "reflexion": "Reflexion#51b9",
-      "socratic_loop": "SocraticLoop#10e9",
-      "tool_invoke": "ToolInvoke#cf0a",
-      "reason": "Reason#3f24",
-      "compute_budget": "ComputeBudget#3b98"
+    "references": {
+      "universal_solver_tree": "UniversalSolverTree#f683",
+      "solver_node": "SolverNode#058e",
+      "card": "Card#c9f0",
+      "validate": "Validate#3de2"
     },
     "accepts": {
       "task": "Task#d9f9"
-    },
-    "references": {
-      "validate": "Validate#3de2",
-      "solver_node": "SolverNode#beef",
-      "universal_solver_tree": "UniversalSolverTree#64d8",
-      "card": "Card#5c33"
     }
   }
 }
@@ -10611,9 +10404,9 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "gate": "Gate#206d",
-      "budget": "Budget#a763",
       "task": "Task#d9f9",
+      "budget": "Budget#a763",
+      "gate": "Gate#206d",
       "value": "Value#3c5d"
     }
   }
@@ -10622,7 +10415,7 @@
 
 ---
 
-## ConceptBlend#de01
+## ConceptBlend#22f2
 
 ```json
 {
@@ -10638,20 +10431,20 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "AnalogicalMask#852a"
+      "sema:AnalogicalMask#mh:SHA-256:4c693894def97c224cf9f9fec71dc4def00c0b8cc6523ccfe5ee5ccddb275c8a"
     ],
     "ring": 2
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:de0119faac3117ebddc1c767f646668f490da960e26643a3f1be6d32161e8857",
-  "sema_ref": "ConceptBlend#de01",
-  "sema_stub": "de01",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
+  "sema_ref": "ConceptBlend#22f2",
+  "sema_stub": "22f2",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "tri_gate": "TriGate#a30f",
-      "analogy_bridge": "AnalogyBridge#87de",
-      "realizable": "Realizable#199e"
+      "tri_gate": "TriGate#07fc",
+      "analogy_bridge": "AnalogyBridge#bff7",
+      "realizable": "Realizable#cf00"
     }
   }
 }
@@ -10659,7 +10452,7 @@
 
 ---
 
-## ContingencyPlan#127a
+## ContingencyPlan#e01d
 
 ```json
 {
@@ -10686,15 +10479,15 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:ContingencyPlan#mh:SHA-256:127a678449606e8c140b57e10beff0284dfc59d775ce77db8213bc3a92e7d780",
-  "sema_ref": "ContingencyPlan#127a",
-  "sema_stub": "127a",
+  "sema_id": "sema:ContingencyPlan#mh:SHA-256:e01d0ff2e474a647a76dcae213bd0d47673f3bf3826372c4f62f313492868da4",
+  "sema_ref": "ContingencyPlan#e01d",
+  "sema_stub": "e01d",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "plan": "Plan#64f2",
-      "retry": "Retry#9e66"
+      "retry": "Retry#07b7",
+      "plan": "Plan#64f2"
     }
   }
 }
@@ -10725,7 +10518,7 @@
 
 ---
 
-## CreativeBlend#22d2
+## CreativeBlend#cc91
 
 ```json
 {
@@ -10754,27 +10547,27 @@
     "ring": 1,
     "tier": 2
   },
-  "sema_ref": "CreativeBlend#22d2",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:22d24a773a6e4e883d7e777636cd7969e9c22646234a78352f09f6a0b8faff30",
-  "sema_stub": "22d2",
+  "sema_ref": "CreativeBlend#cc91",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:cc9130dd92520118a4b6047b2544fa67126e7bf2c81285c792a2f9c6433c3e75",
+  "sema_stub": "cc91",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
       "strategy": "Strategy#47a4",
-      "noise_injection": "NoiseInjection#53b3",
-      "novelty": "Novelty#2218",
-      "value": "Value#3c5d"
-    },
-    "composes_with": {
-      "concept_blend": "ConceptBlend#de01",
-      "check": "Check#1544"
+      "noise_injection": "NoiseInjection#0854",
+      "value": "Value#3c5d",
+      "novelty": "Novelty#51b5"
     },
     "yields": {
       "artifact": "Artifact#6254"
     },
     "accepts": {
       "context": "Context#510a"
+    },
+    "composes_with": {
+      "check": "Check#1544",
+      "concept_blend": "ConceptBlend#22f2"
     }
   }
 }
@@ -10782,12 +10575,12 @@
 
 ---
 
-## Crystallize#e848
+## Crystallize#af68
 
 ```json
 {
   "handle": "Crystallize",
-  "mechanism": "Formalize implicit resonance. {{agent}} A proposes crystallization based on history history_t. {{agent}} B validates perception. On consensus, implicit behaviors are codified into explicit obligations. It transforms soft {{resonate}} signals into hard {{hydra_constitution}} rules, contingent on low entropy conditions maintained by {{dampen}} and {{entropy_pump}}, preventing premature {{decay}}.",
+  "mechanism": "Formalize implicit resonance. {{agent}} A proposes crystallization based on history history_t. {{agent}} B validates perception. On consensus, implicit behaviors are codified into explicit obligations. It transforms soft {{resonate}} signals into hard {{constitution}} rules, contingent on low entropy conditions maintained by {{dampen}} and {{entropy_pump}}, preventing premature {{decay}}.",
   "gloss": "Phase transition from implicit resonance to explicit contract",
   "failure_modes": [
     "Illusory Resonance: Agents misinterpreted random noise as synchronization.",
@@ -10830,20 +10623,20 @@
     "category": "Strategy",
     "ring": 1
   },
+  "sema_id": "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede",
+  "sema_ref": "Crystallize#af68",
+  "sema_stub": "af68",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
-  "sema_id": "sema:Crystallize#mh:SHA-256:e84866de2000db88e54e393e3a761f5687488881a0a3e6817bdc864d28189e04",
-  "sema_ref": "Crystallize#e848",
-  "sema_stub": "e848",
   "dependencies": {
     "references": {
+      "agent": "Agent#aaec",
       "state": "State#4d58",
+      "resonate": "Resonate#99d9",
+      "constitution": "Constitution#863b",
+      "decay": "Decay#a1d4",
       "transition": "Transition#072d",
       "entropy_pump": "EntropyPump#b9ae",
-      "decay": "Decay#a1d4",
-      "resonate": "Resonate#99d9",
-      "hydra_constitution": "HydraConstitution#802e",
-      "agent": "Agent#cc24",
       "dampen": "Dampen#ff89"
     }
   }
@@ -10914,10 +10707,10 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "state": "State#4d58",
-      "prioritize": "Prioritize#dd16",
       "context": "Context#510a",
+      "task": "Task#d9f9",
+      "prioritize": "Prioritize#dd16",
+      "state": "State#4d58",
       "decision": "Decision#acfb"
     }
   }
@@ -10926,7 +10719,7 @@
 
 ---
 
-## DepthGovernor#a6f6
+## DepthGovernor#5431
 
 ```json
 {
@@ -10962,20 +10755,20 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:a6f623c78e0c6ae7c068e502269f27adecfc084d9454f00f0369f1fd944ffa5e",
-  "sema_ref": "DepthGovernor#a6f6",
-  "sema_stub": "a6f6",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:54316ce66cc6934c617842a5453bfeccfb2f11d6eb7c337986c52d3d3050087e",
+  "sema_ref": "DepthGovernor#5431",
+  "sema_stub": "5431",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
+      "recursion_dive": "RecursionDive#962f",
+      "agent": "Agent#aaec",
       "problem": "Problem#5baa",
-      "recursion_dive": "RecursionDive#6a5c",
-      "agent": "Agent#cc24",
-      "condition": "Condition#cbd5",
       "loop": "Loop#fb2e",
       "plan": "Plan#64f2",
-      "decompose": "Decompose#422f"
+      "decompose": "Decompose#ac56",
+      "condition": "Condition#cbd5"
     }
   }
 }
@@ -10983,7 +10776,7 @@
 
 ---
 
-## DesignArchitect#ebcd
+## DesignArchitect#7f55
 
 ```json
 {
@@ -11000,21 +10793,21 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "DesignArchitect#ebcd",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:ebcd0618bb75fbe48a7297de1c0a05c79d3580a11e171bdd6b7058145a224302",
-  "sema_stub": "ebcd",
+  "sema_ref": "DesignArchitect#7f55",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775",
+  "sema_stub": "7f55",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
-    "composes_with": {
-      "pre_mortem": "PreMortem#eb4f",
-      "steelman_check": "SteelmanCheck#75a0",
-      "summarize": "Summarize#6a00",
-      "strategy": "Strategy#47a4",
-      "translate": "Translate#e75d"
-    },
     "yields": {
       "mechanistic_design_proposal": "MechanisticDesignProposal#8cf7"
+    },
+    "composes_with": {
+      "strategy": "Strategy#47a4",
+      "pre_mortem": "PreMortem#f69d",
+      "summarize": "Summarize#6a00",
+      "steelman_check": "SteelmanCheck#4f4c",
+      "translate": "Translate#e75d"
     }
   }
 }
@@ -11094,14 +10887,14 @@
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "experiment": "Experiment#40e5",
-      "act": "Act#5d55",
-      "outcome": "Outcome#38e0",
       "result": "Result#8ed9",
+      "decision": "Decision#acfb",
+      "act": "Act#5d55",
+      "experiment": "Experiment#40e5",
       "compute_budget": "ComputeBudget#3b98",
       "value": "Value#3c5d",
-      "decision": "Decision#acfb",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "cognitive_bias": "CognitiveBias#4b32",
+      "outcome": "Outcome#38e0"
     }
   }
 }
@@ -11109,7 +10902,7 @@
 
 ---
 
-## EventReact#3d57
+## EventReact#a0ef
 
 ```json
 {
@@ -11136,75 +10929,15 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:3d575fade90e8e6ac984234cdcabeebb0972b38600e30b3b2cb8814d9784dd0e",
-  "sema_ref": "EventReact#3d57",
-  "sema_stub": "3d57",
+  "sema_id": "sema:EventReact#mh:SHA-256:a0ef747d97aabc453629d237c4d625d02c26d22515a3f958c1ab261c156a3b56",
+  "sema_ref": "EventReact#a0ef",
+  "sema_stub": "a0ef",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "re_act": "ReAct#db09",
-      "agent": "Agent#cc24"
-    }
-  }
-}
-```
-
----
-
-## Exaptation#9941
-
-```json
-{
-  "handle": "Exaptation",
-  "mechanism": "The cognitive act of repurposing a {{tool_invoke}} for a function outside its original design parameters. When a specialized tool is unavailable, the {{agent}} searches for a tool with structural isomorphism to the {{problem}}. It uses {{analogy_bridge}} to map the problem inputs to the tool's expected format, and {{translate}} to interpret the output. Validation via {{sacrificial_probe}} is mandatory to ensure the misuse does not trigger catastrophic side effects.",
-  "gloss": "Radical tool repurposing via analogical mapping",
-  "invariants": [
-    "Safety Conservation: The repurposed tool must not violate the parent {{task}}'s safety constraints.",
-    "Isomorphism: The mapping between Problem Domain and Tool Domain must be bijective for the relevant variables.",
-    "Containment: Exapted usage must occur within a {{sandbox}} until verified."
-  ],
-  "failure_modes": [
-    "Leaky Analogy: The tool produces side effects in its native domain that were not mapped to the problem domain.",
-    "Type Hallucination: Forcing incompatible data types into a tool, causing silent corruption.",
-    "Over-Engineering: Using a complex tool (e.g., a Game Engine) for a simple task (e.g., sorting a list) due to a fascinating but inefficient analogy."
-  ],
-  "preconditions": [
-    "Standard tool unavailable",
-    "Candidate tool with similar mechanics identified"
-  ],
-  "postconditions": [
-    "Problem solved using non-standard means",
-    "New Usage Pattern logged"
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 1,
-    "related": [
-      "LateralOptimization#f074",
-      "AnalogyBridge#a685",
-      "Jugaad"
-    ]
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "sema_ref": "Exaptation#9941",
-  "sema_id": "sema:Exaptation#mh:SHA-256:9941cc1fcf3d50324d88c42af350a0a15f9787ca094091ca65ae005e540d5f4f",
-  "sema_stub": "9941",
-  "dependencies": {
-    "references": {
-      "task": "Task#d9f9",
-      "sandbox": "Sandbox#2be7",
-      "problem": "Problem#5baa",
-      "sacrificial_probe": "SacrificialProbe#2372",
-      "agent": "Agent#cc24"
-    },
-    "composes_with": {
-      "analogy_bridge": "AnalogyBridge#87de",
-      "tool_invoke": "ToolInvoke#cf0a",
-      "translate": "Translate#e75d"
+      "re_act": "ReAct#c720",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -11287,8 +11020,8 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "budget": "Budget#a763",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "budget": "Budget#a763"
     }
   }
 }
@@ -11353,13 +11086,13 @@
   "sema_stub": "dec9",
   "dependencies": {
     "references": {
-      "simulation": "Simulation#8035",
       "trace": "Trace#9057",
-      "stigmergy": "Stigmergy#f624",
-      "validate": "Validate#3de2",
-      "hypothesis": "Hypothesis#e95b",
+      "simulation": "Simulation#8035",
       "check": "Check#1544",
-      "discover": "Discover#afa1"
+      "stigmergy": "Stigmergy#f624",
+      "hypothesis": "Hypothesis#e95b",
+      "discover": "Discover#afa1",
+      "validate": "Validate#3de2"
     }
   }
 }
@@ -11367,7 +11100,7 @@
 
 ---
 
-## HypothesisLadder#28ca
+## HypothesisLadder#b8cd
 
 ```json
 {
@@ -11396,19 +11129,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:28ca916b29b275d90c85218a94efc657dbd10b1dbdbc9661a209fd10a77714cb",
-  "sema_ref": "HypothesisLadder#28ca",
-  "sema_stub": "28ca",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:b8cd4534d34515209818259fc96a079f2813f4673326b4b844d53780a3f5c4e1",
+  "sema_ref": "HypothesisLadder#b8cd",
+  "sema_stub": "b8cd",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
-    "composes_with": {
-      "experiment": "Experiment#40e5"
-    },
     "references": {
       "abductive_leap": "AbductiveLeap#1069",
       "hypothesis": "Hypothesis#e95b",
-      "bayes_update": "BayesUpdate#5d91"
+      "bayes_update": "BayesUpdate#911b"
+    },
+    "composes_with": {
+      "experiment": "Experiment#40e5"
     }
   }
 }
@@ -11416,40 +11149,7 @@
 
 ---
 
-## Jazz#3421
-
-```json
-{
-  "handle": "Jazz",
-  "mechanism": "Macro for {{discover}}(Path) + {{constraint}}(Latency \u2248 0). A high-speed discovery {{mode}} where critical filters ({{check}}) are temporarily disabled or delayed to maximize flow and serendipity. It prioritizes momentum and novelty over immediate correctness. Utilizes {{discover}}, {{explore_exploit}}, {{concept_blend}}, {{constraint}}.",
-  "gloss": "Improvisational flow",
-  "_meta": {
-    "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 1
-  },
-  "sema_id": "sema:Jazz#mh:SHA-256:342166f8d34b4a717173d8ee816372129c6332fc89152eaba0dbc9f719460457",
-  "sema_ref": "Jazz#3421",
-  "sema_stub": "3421",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "dependencies": {
-    "references": {
-      "mode": "Mode#b995",
-      "concept_blend": "ConceptBlend#de01",
-      "check": "Check#1544",
-      "constraint": "Constraint#87fe",
-      "discover": "Discover#afa1",
-      "explore_exploit": "ExploreExploit#88b0"
-    }
-  }
-}
-```
-
----
-
-## Jester#02f3
+## Jester#bc50
 
 ```json
 {
@@ -11462,16 +11162,16 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Jester#mh:SHA-256:02f3eb22ed6316fdd9de3b8e52281841521995653808b062305b54711cc17609",
-  "sema_ref": "Jester#02f3",
-  "sema_stub": "02f3",
+  "sema_id": "sema:Jester#mh:SHA-256:bc5045fce9b9265838e8e9e8df40d00bab11be85752235307be0dc403ee5abae",
+  "sema_ref": "Jester#bc50",
+  "sema_stub": "bc50",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
+      "critique": "Critique#3e00",
       "incongruity": "Incongruity#e98f",
-      "break": "Break#9d98",
-      "critique": "Critique#3e00"
+      "break": "Break#1a63"
     }
   }
 }
@@ -11520,7 +11220,7 @@
 
 ---
 
-## LatentWander#a7bb
+## LatentWander#7495
 
 ```json
 {
@@ -11536,22 +11236,22 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "ChaosDrift#ee43"
+      "sema:ChaosDrift#mh:SHA-256:37fb483903b835dd8b676c0116087291bb055934f9a681e28a54268d2dea328c"
     ],
     "ring": 2
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
-  "sema_id": "sema:LatentWander#mh:SHA-256:a7bbe4b0a0097d7bd9f2d7f53b8344e287325135d15c95fae4144d82bf827c55",
-  "sema_ref": "LatentWander#a7bb",
-  "sema_stub": "a7bb",
+  "sema_id": "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc",
+  "sema_ref": "LatentWander#7495",
+  "sema_stub": "7495",
   "dependencies": {
     "references": {
       "silence": "Silence#dd79",
-      "concept_blend": "ConceptBlend#de01"
+      "concept_blend": "ConceptBlend#22f2"
     },
     "yields": {
-      "analogy_bridge": "AnalogyBridge#87de"
+      "analogy_bridge": "AnalogyBridge#bff7"
     }
   }
 }
@@ -11588,7 +11288,7 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "AnalogyBridge#87de"
+      "AnalogyBridge#bff7"
     ],
     "ring": 1
   },
@@ -11603,16 +11303,16 @@
   ],
   "dependencies": {
     "references": {
+      "solution": "Solution#7186",
       "system": "System#e314",
-      "think": "Think#e1bd",
       "global": "Global#803d",
       "creative": "Creative#5574",
-      "solution": "Solution#7186"
+      "think": "Think#e1bd"
     },
     "composes_with": {
-      "optimize": "Optimize#3075",
       "reframe": "Reframe#ba00",
-      "translate": "Translate#e75d"
+      "translate": "Translate#e75d",
+      "optimize": "Optimize#3075"
     }
   }
 }
@@ -11620,7 +11320,7 @@
 
 ---
 
-## MentalSim#1e28
+## MentalSim#7212
 
 ```json
 {
@@ -11661,24 +11361,24 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "ProphetFanOut#6972"
+      "ProphetFanOut#2d81"
     ],
     "ring": 2
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:1e28ea49dd0ee3fc2a39c7fe7803895b10bc4cbded08ff50400f0d599dc29c61",
-  "sema_ref": "MentalSim#1e28",
-  "sema_stub": "1e28",
+  "sema_id": "sema:MentalSim#mh:SHA-256:7212dad44c65f6241e70f0fc2e20440788e837a84cc644fea6bcc5f59e09f94e",
+  "sema_ref": "MentalSim#7212",
+  "sema_stub": "7212",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "simulation": "Simulation#8035",
-      "state": "State#4d58",
       "system": "System#e314",
-      "agent_sandbox": "AgentSandbox#8719",
-      "deep": "Deep#89f0",
+      "simulation": "Simulation#8035",
+      "agent": "Agent#aaec",
+      "agent_sandbox": "AgentSandbox#06f2",
+      "state": "State#4d58",
       "heuristic_snap": "HeuristicSnap#cece",
-      "agent": "Agent#cc24"
+      "deep": "Deep#89f0"
     }
   }
 }
@@ -11737,96 +11437,10 @@
   ],
   "dependencies": {
     "references": {
-      "reflexion": "Reflexion#51b9",
-      "audit": "Audit#4044",
       "meta": "Meta#90f4",
+      "audit": "Audit#4044",
+      "reflexion": "Reflexion#51b9",
       "check": "Check#1544"
-    }
-  }
-}
-```
-
----
-
-## MetricDissolution#b840
-
-```json
-{
-  "handle": "MetricDissolution",
-  "mechanism": "A high-level reframing move. Instead of optimizing a problematic metric (e.g., 'Maximize Speed'), the agent dissolves the metric entirely (e.g., '{{eliminate}} the need for travel'). It solves the problem by proving the constraint was an artifact of the formulation, not reality. It applies {{invert}} to question the necessity of the optimization target, often allowing the agent to {{eliminate}} the constraint entirely.",
-  "gloss": "Solving by deleting the problem variable",
-  "failure_modes": [
-    "Cheating (solving a different problem than asked)."
-  ],
-  "invariants": [
-    "Functional Equivalence: The user's intent is met without the proxy metric",
-    "{{variable}} Reduction: Count(Variables_New) < Count(Variables_Old)"
-  ],
-  "preconditions": [
-    "Standard optimization is hitting diminishing returns"
-  ],
-  "postconditions": [
-    "{{problem}} complexity reduced"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
-  },
-  "sema_id": "sema:MetricDissolution#mh:SHA-256:b840cc85842c1add353edfadfbd13a8059cb35a87ffd070106040b8dc414c6bb",
-  "sema_ref": "MetricDissolution#b840",
-  "sema_stub": "b840",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "dependencies": {
-    "references": {
-      "variable": "Variable#179a",
-      "invert": "Invert#d1b9",
-      "problem": "Problem#5baa",
-      "eliminate": "Eliminate#43ea"
-    }
-  }
-}
-```
-
----
-
-## MimicMask#0fe8
-
-```json
-{
-  "handle": "MimicMask",
-  "mechanism": "Agents send decoy traffic that statistically mimics the behavior of other agents. Real signals are steganographically encoded within the {{noise}}. Makes it impossible for an observer to distinguish active agents from idle ones. It layers steganographic {{noise}} over an {{identity_mask}}, ensuring statistical indistinguishability from background traffic.",
-  "gloss": "Hiding in the crowd",
-  "failure_modes": [
-    "Bandwidth waste."
-  ],
-  "invariants": [
-    "Statistical Parity: Traffic distribution matches Baseline(Normal)",
-    "Steganographic Integrity: Payload retrievable by Key(Receiver)"
-  ],
-  "preconditions": [
-    "Shared secret established"
-  ],
-  "postconditions": [
-    "Observer sees {{noise}}"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
-  },
-  "sema_id": "sema:MimicMask#mh:SHA-256:0fe8418d9f34643affbdab2d7372dd7b07ed50ef3d4447c0c5042dc20225147a",
-  "sema_ref": "MimicMask#0fe8",
-  "sema_stub": "0fe8",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "dependencies": {
-    "references": {
-      "identity_mask": "IdentityMask#f9a7",
-      "noise": "Noise#c4b4"
     }
   }
 }
@@ -11875,14 +11489,14 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
+      "system": "System#e314",
       "state": "State#4d58",
       "signal": "Signal#f39d",
-      "system": "System#e314",
       "anomaly": "Anomaly#7987"
     },
     "composes_with": {
-      "loop": "Loop#fb2e",
-      "observe": "Observe#8ebd"
+      "observe": "Observe#8ebd",
+      "loop": "Loop#fb2e"
     }
   }
 }
@@ -11890,7 +11504,7 @@
 
 ---
 
-## NoiseInjection#53b3
+## NoiseInjection#0854
 
 ```json
 {
@@ -11916,23 +11530,23 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "ChaosDrift#ee43"
+      "sema:ChaosDrift#mh:SHA-256:d0c528b6297af51dfcb57ddcbf7f37e62a67aa90432626ec7e79ce2050d6802f"
     ],
     "ring": 1
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:53b36cfe3d333d99412073f819e001225b53449bd95438ec85e6c51087fa43df",
-  "sema_ref": "NoiseInjection#53b3",
-  "sema_stub": "53b3",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:08547db652ddf20462b64c7a0824173b7ccc1612c5fb2537a9785d8fb517fc49",
+  "sema_ref": "NoiseInjection#0854",
+  "sema_stub": "0854",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "strategy": "Strategy#47a4",
-      "signal": "Signal#f39d",
-      "noise": "Noise#c4b4",
       "context": "Context#510a",
-      "card": "Card#5c33",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "strategy": "Strategy#47a4",
+      "noise": "Noise#c4b4",
+      "signal": "Signal#f39d",
+      "card": "Card#c9f0"
     }
   }
 }
@@ -11940,7 +11554,7 @@
 
 ---
 
-## Novelty#2218
+## Novelty#51b5
 
 ```json
 {
@@ -11950,7 +11564,7 @@
     "Orthogonality: High novelty requires low embedding similarity to nearest neighbor."
   ],
   "signature": [
-    "Judge#b8ba(Value#3c5d)"
+    "Judge#d84f(Value#3c5d)"
   ],
   "gloss": "Evaluates structural distinctness",
   "_meta": {
@@ -11959,14 +11573,14 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Novelty#mh:SHA-256:2218bd2b82619a01d35eb54e4160c5975abf23e46c3611a85db5442537dad3f5",
-  "sema_ref": "Novelty#2218",
-  "sema_stub": "2218",
+  "sema_id": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
+  "sema_ref": "Novelty#51b5",
+  "sema_stub": "51b5",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "judge": "Judge#b8ba",
+      "judge": "Judge#d84f",
       "value": "Value#3c5d"
     }
   }
@@ -11975,7 +11589,7 @@
 
 ---
 
-## OODA#149f
+## OODA#f3be
 
 ```json
 {
@@ -12004,35 +11618,35 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "ReAct#db09",
-      "SocraticLoop#10e9",
+      "ReAct#c720",
+      "SocraticLoop#70fc",
       "BoydCycle"
     ],
     "ring": 1
   },
-  "sema_id": "sema:OODA#mh:SHA-256:149ff85c263c245bd89999ae4c967c7394de7a27657c0dd0bb5b2f86621cc99b",
-  "sema_ref": "OODA#149f",
-  "sema_stub": "149f",
+  "sema_id": "sema:OODA#mh:SHA-256:f3bea02806503fe8a7c72a9fd3f3cdfccbae6c9519eb3bf8b25b35badc9545f7",
+  "sema_ref": "OODA#f3be",
+  "sema_stub": "f3be",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "signature": [
-    "Agent#cc24(Loop#fb2e)",
+    "Agent#aaec(Loop#fb2e)",
     "Think#e1bd(Strategy#47a4)"
   ],
   "dependencies": {
-    "references": {
-      "strategy": "Strategy#47a4",
-      "state": "State#4d58",
-      "loop": "Loop#fb2e",
-      "agent": "Agent#cc24"
-    },
     "composes_with": {
       "act": "Act#5d55",
       "think": "Think#e1bd",
-      "belief": "Belief#6690",
       "observe": "Observe#8ebd",
-      "select": "Select#15c2",
-      "context": "Context#510a"
+      "belief": "Belief#5ad9",
+      "context": "Context#510a",
+      "select": "Select#15c2"
+    },
+    "references": {
+      "agent": "Agent#aaec",
+      "strategy": "Strategy#47a4",
+      "state": "State#4d58",
+      "loop": "Loop#fb2e"
     }
   }
 }
@@ -12181,12 +11795,12 @@
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
+    "accepts": {
+      "solution": "Solution#7186"
+    },
     "references": {
       "metric": "Metric#8895",
       "global": "Global#803d"
-    },
-    "accepts": {
-      "solution": "Solution#7186"
     }
   }
 }
@@ -12194,7 +11808,7 @@
 
 ---
 
-## PUREBrainstorming#9191
+## PUREBrainstorming#2e83
 
 ```json
 {
@@ -12211,18 +11825,18 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "PUREBrainstorming#9191",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:91919a162e79e32c28e829ba3e7f2b55d345cf1f200b100e771caef7016fc59e",
-  "sema_stub": "9191",
+  "sema_ref": "PUREBrainstorming#2e83",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:2e83f252cc40be9f0eb974bf5c6a70b62cad3a53c6f8a0589d60b0393995b6f5",
+  "sema_stub": "2e83",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
-    "composes_with": {
-      "pure_check": "PURECheck#b8ca",
-      "pure_optimization": "PUREOptimization#c352"
-    },
     "yields": {
       "mechanistic_design_proposal": "MechanisticDesignProposal#8cf7"
+    },
+    "composes_with": {
+      "pure_optimization": "PUREOptimization#d1f9",
+      "pure_check": "PURECheck#3ebb"
     }
   }
 }
@@ -12230,7 +11844,7 @@
 
 ---
 
-## PURECheck#b8ca
+## PURECheck#3ebb
 
 ```json
 {
@@ -12246,20 +11860,20 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:b8caa25351b7aca245cf6cdda95bade057c69cb4d789c4a098148d1edb576d6c",
-  "sema_ref": "PURECheck#b8ca",
-  "sema_stub": "b8ca",
+  "sema_id": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
+  "sema_ref": "PURECheck#3ebb",
+  "sema_stub": "3ebb",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "realizable": "Realizable#199e",
-      "novelty": "Novelty#2218",
-      "layered_check": "LayeredCheck#3fad",
-      "expansive": "Expansive#ad2d",
       "solution": "Solution#7186",
-      "tri_gate": "TriGate#a30f",
-      "parsimony": "Parsimony#2578"
+      "realizable": "Realizable#cf00",
+      "tri_gate": "TriGate#07fc",
+      "parsimony": "Parsimony#1dd3",
+      "layered_check": "LayeredCheck#3fad",
+      "expansive": "Expansive#c3b7",
+      "novelty": "Novelty#51b5"
     },
     "composes_with": {
       "protocol": "Protocol#7e1c"
@@ -12270,7 +11884,7 @@
 
 ---
 
-## PUREOptimization#c352
+## PUREOptimization#d1f9
 
 ```json
 {
@@ -12298,25 +11912,25 @@
       "LateralOptimization#5350"
     ]
   },
-  "sema_ref": "PUREOptimization#c352",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:c352abb258a026750e2cb364eff05df4b53965b2ddabb180f5693353d2a0bb50",
-  "sema_stub": "c352",
+  "sema_ref": "PUREOptimization#d1f9",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:d1f9eeafbaac69e359c689410fc44f7802f7c1320427f49ea27ccbdaed06cf4d",
+  "sema_stub": "d1f9",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "composes_with": {
-      "cognitive_solver": "CognitiveSolver#4962",
-      "decompose": "Decompose#422f",
+      "decompose": "Decompose#ac56",
+      "synthesis": "Synthesis#3252",
       "optimize": "Optimize#3075",
-      "synthesis": "Synthesis#3252"
+      "cognitive_solver": "CognitiveSolver#42e5"
     },
     "references": {
-      "pure_check": "PURECheck#b8ca",
-      "realizable": "Realizable#199e",
+      "realizable": "Realizable#cf00",
+      "parsimony": "Parsimony#1dd3",
+      "pure_check": "PURECheck#3ebb",
       "pareto_front": "ParetoFront#9091",
-      "novelty": "Novelty#2218",
-      "expansive": "Expansive#ad2d",
-      "parsimony": "Parsimony#2578"
+      "expansive": "Expansive#c3b7",
+      "novelty": "Novelty#51b5"
     },
     "accepts": {
       "solution": "Solution#7186"
@@ -12327,7 +11941,7 @@
 
 ---
 
-## Parallelize#dac1
+## Parallelize#d6b4
 
 ```json
 {
@@ -12358,26 +11972,26 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
-  "sema_id": "sema:Parallelize#mh:SHA-256:dac1ca99ae8c379c9ba093e840eaab9eb2ad16ccfbdb07d6c0e25e3fad2fae6c",
-  "sema_ref": "Parallelize#dac1",
-  "sema_stub": "dac1",
+  "sema_id": "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391",
+  "sema_ref": "Parallelize#d6b4",
+  "sema_stub": "d6b4",
   "signature": [
     "Parallel#6272(Task#d9f9)",
-    "Aggregate#0291(Result#8ed9)"
+    "Aggregate#af54(Result#8ed9)"
   ],
   "dependencies": {
     "references": {
-      "mode": "Mode#b995",
-      "parallel": "Parallel#6272",
+      "mode": "Mode#53e0",
       "strategy": "Strategy#47a4",
       "result": "Result#8ed9",
+      "parallel": "Parallel#6272",
       "cognitive_bias": "CognitiveBias#4b32"
+    },
+    "composes_with": {
+      "aggregate": "Aggregate#af54"
     },
     "accepts": {
       "task": "Task#d9f9"
-    },
-    "composes_with": {
-      "aggregate": "Aggregate#0291"
     }
   }
 }
@@ -12443,7 +12057,7 @@
 
 ---
 
-## PatternDiscovery#8178
+## PatternDiscovery#f667
 
 ```json
 {
@@ -12486,18 +12100,18 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:817812421bedb09d6d8d04cdefd7b968a8853cbead54a73ef6133e5501ba8548",
-  "sema_ref": "PatternDiscovery#8178",
-  "sema_stub": "8178",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea",
+  "sema_ref": "PatternDiscovery#f667",
+  "sema_stub": "f667",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "construct_ontology": "ConstructOntology#e5ce",
-      "protocol": "Protocol#7e1c",
       "check": "Check#1544",
+      "agent": "Agent#aaec",
+      "construct_ontology": "ConstructOntology#b59e",
       "search": "Search#d608",
-      "agent": "Agent#cc24"
+      "protocol": "Protocol#7e1c"
     }
   }
 }
@@ -12505,7 +12119,7 @@
 
 ---
 
-## PerspectiveEnsemble#5816
+## PerspectiveEnsemble#2927
 
 ```json
 {
@@ -12543,20 +12157,20 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:581616f76817ec08f652a538226cdabc79e5ff56e03c06857cd2a53e78d43a8b",
-  "sema_ref": "PerspectiveEnsemble#5816",
-  "sema_stub": "5816",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a",
+  "sema_ref": "PerspectiveEnsemble#2927",
+  "sema_stub": "2927",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "aggregate": "Aggregate#0291",
-      "problem": "Problem#5baa",
-      "synthesis": "Synthesis#3252",
-      "chain": "Chain#5711",
       "context": "Context#510a",
-      "steelman_check": "SteelmanCheck#75a0",
-      "agent": "Agent#cc24"
+      "chain": "Chain#5711",
+      "problem": "Problem#5baa",
+      "agent": "Agent#aaec",
+      "synthesis": "Synthesis#3252",
+      "aggregate": "Aggregate#af54",
+      "steelman_check": "SteelmanCheck#4f4c"
     }
   }
 }
@@ -12564,7 +12178,7 @@
 
 ---
 
-## PreMortem#eb4f
+## PreMortem#f69d
 
 ```json
 {
@@ -12608,17 +12222,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
-  "sema_id": "sema:PreMortem#mh:SHA-256:eb4f7f98ba5434aefc6b4e7f0059dde5d6a08bf80525a2577e413554d9f33022",
-  "sema_ref": "PreMortem#eb4f",
-  "sema_stub": "eb4f",
+  "sema_id": "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
+  "sema_ref": "PreMortem#f69d",
+  "sema_stub": "f69d",
   "dependencies": {
-    "references": {
-      "steelman_check": "SteelmanCheck#75a0",
-      "recursive_root_cause": "RecursiveRootCause#6dc1",
-      "plan": "Plan#64f2"
-    },
     "accepts": {
       "task": "Task#d9f9"
+    },
+    "references": {
+      "steelman_check": "SteelmanCheck#4f4c",
+      "recursive_root_cause": "RecursiveRootCause#6dc1",
+      "plan": "Plan#64f2"
     }
   }
 }
@@ -12674,9 +12288,9 @@
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "criteria": "Criteria#ef6b",
       "work": "Work#aaad",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "criteria": "Criteria#ef6b"
     },
     "composes_with": {
       "rank": "Rank#cb98"
@@ -12687,7 +12301,7 @@
 
 ---
 
-## RedTeam#5134
+## RedTeam#7a8d
 
 ```json
 {
@@ -12712,19 +12326,19 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "SteelmanCheck#75a0"
+      "SteelmanCheck#4f4c"
     ],
     "ring": 2
   },
-  "sema_id": "sema:RedTeam#mh:SHA-256:513414fe8a9c2a73a5949439c1b0b2f0f35309358f042a24d22a1845bb724984",
-  "sema_ref": "RedTeam#5134",
-  "sema_stub": "5134",
+  "sema_id": "sema:RedTeam#mh:SHA-256:7a8d8a9c68f25e1a8b23a1b57db4a3083709aec4b6904138a0e8d439d2781a5c",
+  "sema_ref": "RedTeam#7a8d",
+  "sema_stub": "7a8d",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "adversarial_steel": "AdversarialSteel#b88b",
-      "switch": "Switch#70bf"
+      "switch": "Switch#e7f9",
+      "adversarial_steel": "AdversarialSteel#35f0"
     }
   }
 }
@@ -12780,7 +12394,7 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "PreMortem#eb4f"
+      "PreMortem#f69d"
     ],
     "ring": 2
   },
@@ -12800,7 +12414,7 @@
 
 ---
 
-## RepresentationSwap#fe9b
+## RepresentationSwap#1409
 
 ```json
 {
@@ -12820,14 +12434,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:fe9baa92ec79a3719004fa492411ccc2bd2532ebcd3ea413062a6b5acffabb05",
-  "sema_ref": "RepresentationSwap#fe9b",
-  "sema_stub": "fe9b",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:1409e377e3904e4d36d64389fe7d8735975a2d526a9f0812005f2403f81348c3",
+  "sema_ref": "RepresentationSwap#1409",
+  "sema_stub": "1409",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "concept_blend": "ConceptBlend#de01"
+      "concept_blend": "ConceptBlend#22f2"
     }
   }
 }
@@ -12835,7 +12449,7 @@
 
 ---
 
-## RigorousSolver#151a
+## RigorousSolver#f041
 
 ```json
 {
@@ -12846,26 +12460,26 @@
     "Lifecycle Completeness: Must complete all 5 stages including Verification.",
     "Mandatory Verification: Cannot skip Probe step."
   ],
-  "derived_from": "CognitiveSolver#4962",
+  "derived_from": "CognitiveSolver#42e5",
   "_meta": {
     "layer": "Mind",
     "category": "Strategy",
     "ring": 2,
     "tier": 2
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:151a5f118efaa4275a0735761c266e5656f4e7e8fda559c84b7c75be7b7384e0",
-  "sema_ref": "RigorousSolver#151a",
-  "sema_stub": "151a",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
+  "sema_ref": "RigorousSolver#f041",
+  "sema_stub": "f041",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "socratic_loop": "SocraticLoop#10e9",
-      "cognitive_solver": "CognitiveSolver#4962"
+      "cognitive_solver": "CognitiveSolver#42e5",
+      "socratic_loop": "SocraticLoop#70fc"
     },
     "composes_with": {
-      "feedback": "Feedback#9b5c",
-      "probe": "Probe#9f2b"
+      "probe": "Probe#9f2b",
+      "feedback": "Feedback#9b5c"
     }
   }
 }
@@ -12893,8 +12507,8 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "plan": "Plan#64f2",
-      "goal": "Goal#456a"
+      "goal": "Goal#456a",
+      "plan": "Plan#64f2"
     }
   }
 }
@@ -12902,7 +12516,7 @@
 
 ---
 
-## SacrificialProbe#2372
+## SacrificialProbe#1e16
 
 ```json
 {
@@ -12943,19 +12557,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:2372fc7a6d00a9d9b86f5f5cd7561ec60a8527973ff52b395f3ec3f56b5c78e4",
-  "sema_ref": "SacrificialProbe#2372",
-  "sema_stub": "2372",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:1e1674548e3438a28f913e340d956e5178aeb8710176e56251ef9370de28e544",
+  "sema_ref": "SacrificialProbe#1e16",
+  "sema_stub": "1e16",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "mode": "Mode#b995",
-      "signal": "Signal#f39d",
-      "strategy": "Strategy#47a4",
+      "mode": "Mode#53e0",
       "system": "System#e314",
+      "agent": "Agent#aaec",
+      "strategy": "Strategy#47a4",
       "probe": "Probe#9f2b",
-      "agent": "Agent#cc24"
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -12995,9 +12609,9 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "optimal_stop": "OptimalStop#7439",
       "decision": "Decision#acfb",
-      "option": "Option#483e"
+      "option": "Option#483e",
+      "optimal_stop": "OptimalStop#7439"
     }
   }
 }
@@ -13105,7 +12719,7 @@
 
 ---
 
-## SteelmanFirst#ca6f
+## SteelmanFirst#6069
 
 ```json
 {
@@ -13139,17 +12753,17 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:ca6f6d43904497ea1ec0c83d3241da18e3d217a06b57040c8eb7b06bda62a1ae",
-  "sema_ref": "SteelmanFirst#ca6f",
-  "sema_stub": "ca6f",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:6069f5780eae1053b3d2a2bfb37be0df1340e1be9801d774697c57f16b26c62e",
+  "sema_ref": "SteelmanFirst#6069",
+  "sema_stub": "6069",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "steelman_check": "SteelmanCheck#75a0",
-      "cognitive_bias": "CognitiveBias#4b32",
+      "agent": "Agent#aaec",
       "problem": "Problem#5baa",
-      "agent": "Agent#cc24"
+      "steelman_check": "SteelmanCheck#4f4c",
+      "cognitive_bias": "CognitiveBias#4b32"
     }
   }
 }
@@ -13169,7 +12783,7 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "OODA#149f"
+      "OODA#f3be"
     ],
     "ring": 1
   },
@@ -13222,9 +12836,9 @@
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
+      "loop": "Loop#fb2e",
       "opportunity_cost": "OpportunityCost#1c66",
-      "decision": "Decision#acfb",
-      "loop": "Loop#fb2e"
+      "decision": "Decision#acfb"
     }
   }
 }
@@ -13232,7 +12846,7 @@
 
 ---
 
-## Tension#f398
+## Tension#5493
 
 ```json
 {
@@ -13249,9 +12863,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:Tension#mh:SHA-256:f398756ed7e5152f907750a4a841be04460a6192e90c016a75579eb53e41bb44",
-  "sema_ref": "Tension#f398",
-  "sema_stub": "f398",
+  "sema_id": "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5",
+  "sema_ref": "Tension#5493",
+  "sema_stub": "5493",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "data_schema": {
@@ -13291,7 +12905,7 @@
   },
   "dependencies": {
     "references": {
-      "dialectic": "Dialectic#3744",
+      "dialectic": "Dialectic#bc18",
       "yield": "Yield#7eaf"
     }
   }
@@ -13300,21 +12914,22 @@
 
 ---
 
-## TensionHold#3496
+## TensionHold#cca2
 
 ```json
 {
   "handle": "TensionHold",
-  "mechanism": "Cognitive Suspension protocol. When two high-confidence inputs conflict (A \u22a5 B), the {{agent}} instantiates a {{tension}} object that binds them together. This blocks downstream decision-making until a reconciling insight (Pattern C) is found via {{dialectic}} or {{synthesis}}.",
+  "mechanism": "Cognitive Suspension protocol. When two high-confidence inputs conflict (A \u22a5 B), the {{agent}} instantiates a {{tension}} object that binds them together. This blocks downstream decision-making until a reconciling insight (Pattern C) is found via {{dialectic}} or {{synthesis}}, or until the hold timeout expires.",
   "gloss": "Maintain contradictions without premature resolution",
   "failure_modes": [
     "Premature Convergence: {{agent}} resolves {{tension}} by arbitrarily discarding one side to reduce cognitive load.",
     "Tension Blindness: {{agent}} treats a contradiction as a simple error/hallucination and ignores it.",
-    "Analysis Paralysis: Accumulating {{tension}} objects without ever triggering {{dialectic}} resolution."
+    "Analysis Paralysis: Accumulating {{tension}} objects without ever triggering {{dialectic}} resolution.",
+    "Timeout Waste: Hold expires without resolution, forcing fallback when more time would have yielded insight."
   ],
   "invariants": [
     "No Selection: Output cannot be simply 'A' or 'B' (must be {{tension}}{A,B}).",
-    "Persistence: {{tension}} object remains active until explicitly resolved via {{synthesis}} or Falsification."
+    "Persistence: {{tension}} object remains active until explicitly resolved via {{synthesis}}, Falsification, or timeout expiry."
   ],
   "preconditions": [
     "Mutually exclusive valid inputs identified",
@@ -13324,25 +12939,33 @@
     "Execution flow diverted to Information Retrieval (to break the tie)",
     "{{tension}} object created in Graph"
   ],
+  "parameters": [
+    {
+      "name": "timeout",
+      "type": "Duration",
+      "range": "[5m, 48h]",
+      "description": "Maximum hold duration before fallback to Yield, Compromise, or Escalation"
+    }
+  ],
   "_meta": {
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:TensionHold#mh:SHA-256:3496a834ef59ae72725054b262f7844a7551f9c917348b95e704b84e0265a558",
-  "sema_ref": "TensionHold#3496",
-  "sema_stub": "3496",
+  "sema_ref": "TensionHold#cca2",
+  "sema_id": "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0",
+  "sema_stub": "cca2",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
-    "yields": {
-      "tension": "Tension#f398"
-    },
     "references": {
+      "dialectic": "Dialectic#bc18",
       "synthesis": "Synthesis#3252",
-      "agent": "Agent#cc24",
-      "dialectic": "Dialectic#3744"
+      "agent": "Agent#aaec"
+    },
+    "yields": {
+      "tension": "Tension#5493"
     }
   }
 }
@@ -13382,7 +13005,7 @@
 
 ---
 
-## UncertaintyMap#e883
+## UncertaintyMap#942c
 
 ```json
 {
@@ -13401,14 +13024,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:UncertaintyMap#mh:SHA-256:e883a452d9ec2e4bb7fcb99c34edc45d4584115f6cc128aa61100d84c1b14bc4",
-  "sema_ref": "UncertaintyMap#e883",
-  "sema_stub": "e883",
+  "sema_id": "sema:UncertaintyMap#mh:SHA-256:942cea71810d05d014de70e85cd6ef591b81424bdba2b6ade8866f5ed440caeb",
+  "sema_ref": "UncertaintyMap#942c",
+  "sema_stub": "942c",
   "sema_layer": "Mind",
   "sema_category": "Strategy#47a4",
   "dependencies": {
     "references": {
-      "confidence_calibrate": "ConfidenceCalibrate#5238",
+      "confidence_calibrate": "ConfidenceCalibrate#0ae5",
       "prioritize": "Prioritize#dd16",
       "probe": "Probe#9f2b"
     }
@@ -13448,7 +13071,7 @@
 
 ---
 
-## Compensate#2f1d
+## Compensate#81a5
 
 ```json
 {
@@ -13481,19 +13104,19 @@
     "category": "Primitives",
     "ring": 0,
     "related": [
-      "Retry#9e66"
+      "Retry#07b7"
     ]
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:2f1d8b8a48bde0bf6a349e7646499abc99fa274b880a1606f7226859cac2f3cf",
-  "sema_ref": "Compensate#2f1d",
-  "sema_stub": "2f1d",
+  "sema_id": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
+  "sema_ref": "Compensate#81a5",
+  "sema_stub": "81a5",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "time_warp_log": "TimeWarpLog#aa7a",
+      "time_warp_log": "TimeWarpLog#c609",
       "system": "System#e314",
-      "break": "Break#9d98"
+      "break": "Break#1a63"
     }
   }
 }
@@ -13657,8 +13280,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "state": "State#4d58"
     }
   }
 }
@@ -13726,8 +13349,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "entropy": "Entropy#a265",
-      "noise": "Noise#c4b4"
+      "noise": "Noise#c4b4",
+      "entropy": "Entropy#a265"
     }
   }
 }
@@ -13818,8 +13441,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
-      "dampen": "Dampen#ff89"
+      "dampen": "Dampen#ff89",
+      "state": "State#4d58"
     }
   }
 }
@@ -13851,8 +13474,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "topology": "Topology#2408",
-      "sequence": "Sequence#b0b8"
+      "sequence": "Sequence#b0b8",
+      "topology": "Topology#2408"
     }
   }
 }
@@ -13860,22 +13483,39 @@
 
 ---
 
-## Lock#5bf2
+## Lock#051c
 
 ```json
 {
   "handle": "Lock",
-  "mechanism": "A synchronization primitive that enforces exclusive access to a resource.",
+  "mechanism": "A synchronization primitive that enforces exclusive access to a resource. At most one holder may access the protected resource at any time. The holder must explicitly release the lock to allow others to acquire it.",
   "gloss": "Mutual exclusion enforcement",
+  "failure_modes": [
+    "Deadlock: Holder crashes or hangs without releasing, blocking all other contenders indefinitely.",
+    "Priority Inversion: High-priority contender blocked by low-priority holder."
+  ],
+  "invariants": [
+    "Exclusivity: At most one holder at any time.",
+    "Acquire-before-access: Protected resource cannot be touched without holding the lock.",
+    "Release-after-use: Holder must release after completing the critical section."
+  ],
+  "preconditions": [
+    "Shared resource exists",
+    "Contending parties can communicate"
+  ],
+  "postconditions": [
+    "Exactly one party holds exclusive access",
+    "Other contenders are blocked or queued"
+  ],
   "_meta": {
     "tier": 1,
     "layer": "Physics",
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Lock#mh:SHA-256:5bf2a80b6c73a11da68f702922d5180259c75ff50fb094607da3ab4d7c167dc2",
-  "sema_ref": "Lock#5bf2",
-  "sema_stub": "5bf2",
+  "sema_ref": "Lock#051c",
+  "sema_id": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
+  "sema_stub": "051c",
   "sema_layer": "Physics",
   "sema_category": "Primitives"
 }
@@ -13883,7 +13523,7 @@
 
 ---
 
-## Mutex#9c83
+## Mutex#0586
 
 ```json
 {
@@ -13916,13 +13556,13 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Mutex#mh:SHA-256:9c8399aaa6fe3528358fb93e826aced3b1e3e3f31ef58e68c4720ce640a0a2b5",
-  "sema_ref": "Mutex#9c83",
-  "sema_stub": "9c83",
+  "sema_id": "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7",
+  "sema_ref": "Mutex#0586",
+  "sema_stub": "0586",
   "dependencies": {
     "references": {
       "resource": "Resource#9bb2",
-      "lock": "Lock#5bf2"
+      "lock": "Lock#051c"
     },
     "accepts": {
       "task": "Task#d9f9"
@@ -13953,8 +13593,8 @@
   "sema_stub": "c4b4",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
       "datum": "Datum#31cf",
+      "task": "Task#d9f9",
       "signal": "Signal#f39d"
     }
   }
@@ -13963,12 +13603,12 @@
 
 ---
 
-## Retry#9e66
+## Retry#07b7
 
 ```json
 {
   "handle": "Retry",
-  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status (or escalation to {{human_approve}}). Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
+  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
   "gloss": "Transform retry from blind re-attempt to intelligent, failure-informed recovery strategy",
   "failure_modes": [
     "Misclassifying persistent failure as transient (wastes retry budget).",
@@ -13998,18 +13638,17 @@
     ],
     "ring": 0
   },
+  "sema_ref": "Retry#07b7",
+  "sema_id": "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091",
+  "sema_stub": "07b7",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Retry#mh:SHA-256:9e6665e8cd2676970ef4c4991c99509c89f428d7895d5937ad2430734b4d79f2",
-  "sema_ref": "Retry#9e66",
-  "sema_stub": "9e66",
   "dependencies": {
     "references": {
       "backoff": "Backoff#315a",
-      "break": "Break#9d98",
-      "human_approve": "HumanApprove#e64a",
-      "compensate": "Compensate#2f1d",
-      "circuit_breaker": "CircuitBreaker#4162"
+      "compensate": "Compensate#81a5",
+      "circuit_breaker": "CircuitBreaker#4162",
+      "break": "Break#1a63"
     }
   }
 }
@@ -14017,12 +13656,12 @@
 
 ---
 
-## Route#6273
+## Route#9698
 
 ```json
 {
   "handle": "Route",
-  "mechanism": "A classifier that examines a {{task}} input and directs it to a specialized downstream handler. Enables separation of concerns\u2014different query types get different prompts, tools, or models. Can route based on intent, complexity, domain, or cost optimization (simple queries to small models, complex to large).",
+  "mechanism": "A classifier that examines a {{task}} input and directs it to a specialized downstream handler. Enables separation of concerns\u2014different query types get different prompts, tools, or models. Routes based on type tags, metadata fields, token weight, or configurable dispatch rules (simple queries to small models, complex to large).",
   "gloss": "Classify input and direct to specialized handler",
   "failure_modes": [
     "Misrouting: Input sent to wrong specialist, causing errors.",
@@ -14035,7 +13674,7 @@
   ],
   "preconditions": [
     "Input query",
-    "Router logic/embeddings"
+    "Router logic configured"
   ],
   "postconditions": [
     "Query dispatched"
@@ -14049,11 +13688,11 @@
     ],
     "ring": 0
   },
+  "sema_ref": "Route#9698",
+  "sema_id": "sema:Route#mh:SHA-256:96986e6c4fccc6496d735394acf1f4c7c5a4ae72cee77e0686fbaf3a8b9021b6",
+  "sema_stub": "9698",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Route#mh:SHA-256:627330c3657b0c1829a6841757736f62c16a41a7309e3c317aa933893d6a23ec",
-  "sema_ref": "Route#6273",
-  "sema_stub": "6273",
   "dependencies": {
     "accepts": {
       "task": "Task#d9f9"
@@ -14090,12 +13729,12 @@
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
+    "references": {
+      "identity": "Identity#626c",
+      "signal": "Signal#f39d"
+    },
     "composes_with": {
       "act": "Act#5d55"
-    },
-    "references": {
-      "signal": "Signal#f39d",
-      "identity": "Identity#626c"
     },
     "accepts": {
       "artifact": "Artifact#6254"
@@ -14106,7 +13745,7 @@
 
 ---
 
-## Switch#70bf
+## Switch#e7f9
 
 ```json
 {
@@ -14119,15 +13758,15 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Switch#mh:SHA-256:70bf716e37b356e0da9e2d0d61e6708bdc56999b69cc12895546f2b350add433",
-  "sema_ref": "Switch#70bf",
-  "sema_stub": "70bf",
+  "sema_id": "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0",
+  "sema_ref": "Switch#e7f9",
+  "sema_stub": "e7f9",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "mode": "Mode#b995",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "mode": "Mode#53e0"
     }
   }
 }
@@ -14185,11 +13824,11 @@
   "sema_ref": "Throttle#3b43",
   "sema_stub": "3b43",
   "dependencies": {
-    "accepts": {
-      "task": "Task#d9f9"
-    },
     "composes_with": {
       "backoff": "Backoff#315a"
+    },
+    "accepts": {
+      "task": "Task#d9f9"
     }
   }
 }
@@ -14197,12 +13836,12 @@
 
 ---
 
-## Uncertain#b894
+## Uncertain#d530
 
 ```json
 {
   "handle": "Uncertain",
-  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Utilizes {{deep_research}}, {{uncertainty_map}}, {{socratic_loop}}.",
+  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Tagged nodes become high-priority targets for information retrieval. Tracked via {{uncertainty_map}}.",
   "gloss": "Epistemic status: genuinely don't know",
   "failure_modes": [
     "False Certainty: {{agent}} feels pressure to answer and fabricates a 'likely' answer instead of using this flag.",
@@ -14225,18 +13864,16 @@
     "category": "Primitives",
     "ring": 2
   },
-  "sema_id": "sema:Uncertain#mh:SHA-256:b89402ced2faa010330940d426790c0bff7c6ca70294ca53aae0fe6b141d8223",
-  "sema_ref": "Uncertain#b894",
-  "sema_stub": "b894",
+  "sema_ref": "Uncertain#d530",
+  "sema_id": "sema:Uncertain#mh:SHA-256:d530cb44023db8c31fcf38084d2880df7e6a9d0c51f3785cb7a42d75bd504bf8",
+  "sema_stub": "d530",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "socratic_loop": "SocraticLoop#10e9",
+      "uncertainty_map": "UncertaintyMap#942c",
       "variable": "Variable#179a",
-      "uncertainty_map": "UncertaintyMap#e883",
-      "agent": "Agent#cc24",
-      "deep_research": "DeepResearch#5b8b"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -14267,7 +13904,7 @@
 
 ---
 
-## CausalBarrier#3a88
+## CausalBarrier#d1b2
 
 ```json
 {
@@ -14308,15 +13945,15 @@
     "category": "Time",
     "ring": 0
   },
-  "sema_id": "sema:CausalBarrier#mh:SHA-256:3a88cbbac626b0bc83041ba93652a0bcb1ac654159698ea138352795bc4ffb38",
-  "sema_ref": "CausalBarrier#3a88",
-  "sema_stub": "3a88",
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:d1b20d964f273174495ad103b4c7b31ae747e4ad56de14d9e935ca1705088c5d",
+  "sema_ref": "CausalBarrier#d1b2",
+  "sema_stub": "d1b2",
   "sema_layer": "Physics",
   "sema_category": "Time",
   "dependencies": {
     "references": {
-      "state_lock": "StateLock#7859",
-      "agent": "Agent#cc24"
+      "state_lock": "StateLock#b91b",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -14357,7 +13994,7 @@
 
 ---
 
-## Heartbeat#4ddc
+## Heartbeat#7f88
 
 ```json
 {
@@ -14400,18 +14037,18 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Time",
-  "sema_id": "sema:Heartbeat#mh:SHA-256:4ddcf5f4db2eae064be16c42c4c1376bb9e7cc2774b9396c47413a4bdf89dfdf",
-  "sema_ref": "Heartbeat#4ddc",
-  "sema_stub": "4ddc",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
+  "sema_ref": "Heartbeat#7f88",
+  "sema_stub": "7f88",
   "dependencies": {
+    "references": {
+      "monitor": "Monitor#9a8f"
+    },
     "composes_with": {
-      "quorum": "Quorum#f67a"
+      "quorum": "Quorum#29b4"
     },
     "accepts": {
       "signal": "Signal#f39d"
-    },
-    "references": {
-      "monitor": "Monitor#9a8f"
     }
   }
 }
@@ -14465,9 +14102,9 @@
   ],
   "dependencies": {
     "references": {
+      "state_transition": "StateTransition#3737",
       "audit": "Audit#4044",
-      "state": "State#4d58",
-      "state_transition": "StateTransition#3737"
+      "state": "State#4d58"
     }
   }
 }
@@ -14475,34 +14112,34 @@
 
 ---
 
-## StateLock#7859
+## StateLock#b91b
 
 ```json
 {
   "handle": "StateLock",
-  "mechanism": "A coordination pattern where two {{agent}}s temporarily 'fuse' a subset of their writable {{state}}. During the {{lock}}, changes require a cryptographic signature from both. Contention triggers {{backoff}} and {{cooldown}}.",
+  "mechanism": "A coordination pattern where two {{actor}}s temporarily 'fuse' a subset of their writable {{state}}. During the {{lock}}, changes require a cryptographic signature from both. Contention triggers {{backoff}} and {{cooldown}}.",
   "gloss": "Atomic coordination via temporary state fusion",
-  "sema_id": "sema:StateLock#mh:SHA-256:7859031251f8c96389630416840c243d7b1bbd6c2c06e82e0468f0915aae936c",
-  "sema_ref": "StateLock#7859",
-  "sema_stub": "7859",
   "_meta": {
     "layer": "Physics",
     "category": "Time",
     "ring": 0,
     "tier": 1
   },
+  "signature": [
+    "Lock#051c(State#4d58)"
+  ],
+  "sema_ref": "StateLock#b91b",
+  "sema_id": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a",
+  "sema_stub": "b91b",
   "sema_layer": "Physics",
   "sema_category": "Time",
-  "signature": [
-    "Lock#5bf2(State#4d58)"
-  ],
   "dependencies": {
     "references": {
-      "backoff": "Backoff#315a",
+      "lock": "Lock#051c",
       "state": "State#4d58",
-      "lock": "Lock#5bf2",
       "cooldown": "Cooldown#0cde",
-      "agent": "Agent#cc24"
+      "backoff": "Backoff#315a",
+      "actor": "Actor#6926"
     }
   }
 }
@@ -14512,7 +14149,7 @@
 
 # Layer: Society
 
-## ProblemFramer#f83d
+## ProblemFramer#ecc1
 
 ```json
 {
@@ -14533,9 +14170,9 @@
     "category": "Coordination",
     "ring": 2
   },
-  "sema_ref": "ProblemFramer#f83d",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:f83d5805391f1691dec04c63685ee048954f06b8e7bec3b305b89b77b579dc48",
-  "sema_stub": "f83d",
+  "sema_ref": "ProblemFramer#ecc1",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:ecc198beafea4353d2393ec31121ed9db92fa79996ffa6b9d45a5b353e4627c7",
+  "sema_stub": "ecc1",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
@@ -14548,8 +14185,8 @@
       "accept_spec": "AcceptSpec#70dd"
     },
     "references": {
-      "universal_solver_tree": "UniversalSolverTree#64d8",
-      "solver_root": "SolverRoot#cb05"
+      "universal_solver_tree": "UniversalSolverTree#f683",
+      "solver_root": "SolverRoot#8a84"
     }
   }
 }
@@ -14557,7 +14194,7 @@
 
 ---
 
-## AtomicBid#15a1
+## AtomicBid#cc36
 
 ```json
 {
@@ -14577,22 +14214,23 @@
     "tier": 2,
     "layer": "Society",
     "category": "Economics",
-    "ring": 1
+    "ring": 1,
+    "caution": "Bundles binding commitment with immediate execution, bypassing approval pauses. Requires guaranteed rollback capability."
   },
-  "sema_ref": "AtomicBid#15a1",
-  "sema_id": "sema:AtomicBid#mh:SHA-256:15a17d8eba8b84e0866b9fd00306472f6e23b7ab6229d461b0d368cf59cd80a8",
-  "sema_stub": "15a1",
+  "sema_ref": "AtomicBid#cc36",
+  "sema_id": "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1",
+  "sema_stub": "cc36",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "composes_with": {
-      "compensate": "Compensate#2f1d",
       "act": "Act#5d55",
+      "compensate": "Compensate#81a5",
       "bid": "Bid#cf07"
     },
     "references": {
-      "lazy_consensus": "LazyConsensus#7c9b",
-      "audit": "Audit#4044"
+      "audit": "Audit#4044",
+      "lazy_consensus": "LazyConsensus#81a3"
     }
   }
 }
@@ -14600,7 +14238,7 @@
 
 ---
 
-## AttentionMarkets#abdd
+## AttentionMarkets#45c5
 
 ```json
 {
@@ -14632,18 +14270,18 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:AttentionMarkets#mh:SHA-256:abdda155165282a52b447988e6d25eb9bb85e9e6deaaf8983eeaf16f3aa05180",
-  "sema_ref": "AttentionMarkets#abdd",
-  "sema_stub": "abdd",
+  "sema_id": "sema:AttentionMarkets#mh:SHA-256:45c58856dcc5f1dd258552665a7a9a7c16ee4792d43085bb698223de0494daba",
+  "sema_ref": "AttentionMarkets#45c5",
+  "sema_stub": "45c5",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
-    "composes_with": {
-      "continuous_resource_auction": "ContinuousResourceAuction#5776"
-    },
     "references": {
       "signal": "Signal#f39d",
       "value": "Value#3c5d"
+    },
+    "composes_with": {
+      "continuous_resource_auction": "ContinuousResourceAuction#46f6"
     }
   }
 }
@@ -14651,7 +14289,7 @@
 
 ---
 
-## Award#2eda
+## Award#cfe2
 
 ```json
 {
@@ -14659,7 +14297,7 @@
   "mechanism": "The formal {{act}} of accepting a {{bid}}. It triggers the creation of a {{contract}} which all parties must {{sign}}, and uses {{held_release}} to lock the agreed {{value}} as collateral or payment. This action transitions the {{state}} from Negotiation to Execution, authorizing the {{solver}} to begin.",
   "gloss": "Acceptance of bid and contract creation",
   "signature": [
-    "Act#5d55(Contract#e6de)"
+    "Act#5d55(Contract#0624)"
   ],
   "invariants": [
     "Atomic: Bid acceptance and Contract creation must happen together.",
@@ -14671,27 +14309,27 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "Award#2eda",
-  "sema_id": "sema:Award#mh:SHA-256:2eda44e2b2ebcf367563cd9dd7ac71e47a431f6aeeb4c0f2c5e9c6683ca877ad",
-  "sema_stub": "2eda",
+  "sema_ref": "Award#cfe2",
+  "sema_id": "sema:Award#mh:SHA-256:cfe24da55c73b4046503716821d17f42264ac98b8a7e5f0289582b01dbb604ed",
+  "sema_stub": "cfe2",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
+    "yields": {
+      "contract": "Contract#0624"
+    },
+    "composes_with": {
+      "act": "Act#5d55",
+      "sign": "Sign#1fb9",
+      "held_release": "HeldRelease#3ed6"
+    },
+    "accepts": {
+      "bid": "Bid#cf07"
+    },
     "references": {
       "state": "State#4d58",
       "solver": "Solver#1c9b",
       "value": "Value#3c5d"
-    },
-    "composes_with": {
-      "act": "Act#5d55",
-      "held_release": "HeldRelease#5b7a",
-      "sign": "Sign#1fb9"
-    },
-    "yields": {
-      "contract": "Contract#e6de"
-    },
-    "accepts": {
-      "bid": "Bid#cf07"
     }
   }
 }
@@ -14774,11 +14412,11 @@
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "compute_budget": "ComputeBudget#3b98",
+      "artifact": "Artifact#6254",
       "solver": "Solver#1c9b",
-      "value": "Value#3c5d",
       "budget": "Budget#a763",
-      "artifact": "Artifact#6254"
+      "value": "Value#3c5d",
+      "compute_budget": "ComputeBudget#3b98"
     }
   }
 }
@@ -14786,7 +14424,7 @@
 
 ---
 
-## CapacityPressure#9e7b
+## CapacityPressure#739d
 
 ```json
 {
@@ -14831,17 +14469,17 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:9e7b9d2a599ff40722c4617ad103851388d702d9c976520929b1f39624322920",
-  "sema_ref": "CapacityPressure#9e7b",
-  "sema_stub": "9e7b",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85",
+  "sema_ref": "CapacityPressure#739d",
+  "sema_stub": "739d",
   "dependencies": {
     "references": {
-      "generalize": "Generalize#9313",
-      "concept_blend": "ConceptBlend#de01",
-      "constraint": "Constraint#87fe",
+      "agent": "Agent#aaec",
       "context_compress": "ContextCompress#6dbd",
-      "budget": "Budget#a763",
-      "agent": "Agent#cc24"
+      "concept_blend": "ConceptBlend#22f2",
+      "constraint": "Constraint#87fe",
+      "generalize": "Generalize#17c9",
+      "budget": "Budget#a763"
     }
   }
 }
@@ -14849,7 +14487,7 @@
 
 ---
 
-## Compromise#955f
+## Compromise#39cc
 
 ```json
 {
@@ -14862,16 +14500,16 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "Compromise#955f",
-  "sema_id": "sema:Compromise#mh:SHA-256:955f5b17e14c2998dda12fb21506656505eb987503cf1b2bb06acfaa06433d55",
-  "sema_stub": "955f",
+  "sema_ref": "Compromise#39cc",
+  "sema_id": "sema:Compromise#mh:SHA-256:39cc701b1389e8827a263f5180a40cea2993edf2ef94c9906553d48e9507c59f",
+  "sema_stub": "39cc",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
+      "agent": "Agent#aaec",
       "system": "System#e314",
-      "yield": "Yield#7eaf",
-      "agent": "Agent#cc24"
+      "yield": "Yield#7eaf"
     },
     "composes_with": {
       "dampen": "Dampen#ff89"
@@ -14882,7 +14520,7 @@
 
 ---
 
-## ContinuousResourceAuction#5776
+## ContinuousResourceAuction#46f6
 
 ```json
 {
@@ -14944,88 +14582,23 @@
     "category": "Economics",
     "ring": 1,
     "related": [
-      "AttentionMarkets#abdd"
+      "AttentionMarkets#45c5"
     ]
   },
-  "sema_ref": "ContinuousResourceAuction#5776",
-  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:5776f432d109356fc12fdd34b712cc92b785c5779ef804e5f6f976de30fde962",
-  "sema_stub": "5776",
+  "sema_ref": "ContinuousResourceAuction#46f6",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08",
+  "sema_stub": "46f6",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
-    "accepts": {
-      "value": "Value#3c5d"
-    },
-    "composes_with": {
-      "state_lock": "StateLock#7859"
-    },
     "references": {
       "protocol": "Protocol#7e1c"
-    }
-  }
-}
-```
-
----
-
-## CostlySignal#7fe2
-
-```json
-{
-  "handle": "CostlySignal",
-  "mechanism": "To send a message, an agent must burn (destroy) a verifiable amount of currency or compute. The value of the burn constitutes the {{signal}}. 'Talk is cheap; this {{signal}} was expensive.'. It serves as the currency-generating primitive within {{attention_markets}}.",
-  "gloss": "Burning value to prove intent",
-  "failure_modes": [
-    "Excludes resource-poor agents."
-  ],
-  "invariants": [
-    "Burn Verification: Burn(Tx) must be visible on-chain",
-    "{{value}} Threshold: BurnAmount > MinThreshold({{context}})"
-  ],
-  "preconditions": [
-    "{{agent}} has sufficient funds"
-  ],
-  "postconditions": [
-    "Funds destroyed",
-    "{{message}} prioritized"
-  ],
-  "parameters": [
-    {
-      "name": "burn_amount",
-      "type": "Value#3c5d",
-      "range": "[>0]",
-      "description": "Must be non-trivial"
-    },
-    {
-      "name": "token_type",
-      "type": "String",
-      "range": "unspecified",
-      "description": "Asset being burned"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "sema_id": "sema:CostlySignal#mh:SHA-256:7fe2d815d2edd1dddec88a02544199266b0f4038fc4cb445781b948df677100e",
-  "sema_ref": "CostlySignal#7fe2",
-  "sema_stub": "7fe2",
-  "dependencies": {
-    "references": {
-      "agent": "Agent#cc24",
-      "message": "Message#f767",
-      "context": "Context#510a",
-      "value": "Value#3c5d"
     },
     "accepts": {
-      "signal": "Signal#f39d"
+      "value": "Value#3c5d"
     },
     "composes_with": {
-      "attention_markets": "AttentionMarkets#abdd"
+      "state_lock": "StateLock#b91b"
     }
   }
 }
@@ -15033,7 +14606,7 @@
 
 ---
 
-## DogfoodFirst#826e
+## DogfoodFirst#b595
 
 ```json
 {
@@ -15076,18 +14649,18 @@
     "category": "Economics",
     "ring": 0
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:826e2ceafda81d7db4a19d1cf6bd8ad0c2cd86b24c65d1654ba7efb345374260",
-  "sema_ref": "DogfoodFirst#826e",
-  "sema_stub": "826e",
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2",
+  "sema_ref": "DogfoodFirst#b595",
+  "sema_stub": "b595",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "protocol": "Protocol#7e1c",
-      "cognitive_bias": "CognitiveBias#4b32",
       "gate": "Gate#206d",
-      "canary": "Canary#3902",
-      "reflexion": "Reflexion#51b9"
+      "canary": "Canary#e78e",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "reflexion": "Reflexion#51b9",
+      "protocol": "Protocol#7e1c"
     }
   }
 }
@@ -15095,12 +14668,12 @@
 
 ---
 
-## EmpathySim#1eee
+## EmpathySim#86e9
 
 ```json
 {
   "handle": "EmpathySim",
-  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized with Target_Agent's known priors, goals, and constraints. It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective, sometimes using {{mirror_stake}} to align incentives for accurate prediction.",
+  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized with Target_Agent's known priors, goals, and constraints. It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
   "gloss": "Predictive modeling of external agent states",
   "failure_modes": [
     "Projection {{cognitive_bias}}: Leaking Self-Knowledge into the simulation (Mirroring Error).",
@@ -15138,80 +14711,24 @@
     "layer": "Society",
     "category": "Economics",
     "related": [
-      "MentalSim#1e28"
+      "MentalSim#7212"
     ],
     "ring": 2
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:1eee92ef7f1a4b21402aa9a81c793975d48cf3e3957f040b2f0bd5c9d7ad5a6b",
-  "sema_ref": "EmpathySim#1eee",
-  "sema_stub": "1eee",
+  "sema_id": "sema:EmpathySim#mh:SHA-256:86e98d01cd322735f32c153f35f6d58c4d08ead468b5aa2fe07810483f9de445",
+  "sema_ref": "EmpathySim#86e9",
+  "sema_stub": "86e9",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
+      "agent": "Agent#aaec",
       "simulation": "Simulation#8035",
       "state": "State#4d58",
-      "agent": "Agent#cc24",
-      "agent_sandbox": "AgentSandbox#8719",
       "context": "Context#510a",
-      "budget": "Budget#a763",
       "cognitive_bias": "CognitiveBias#4b32",
-      "mirror_stake": "MirrorStake#7807"
-    }
-  }
-}
-```
-
----
-
-## EpistemicWager#7002
-
-```json
-{
-  "handle": "EpistemicWager",
-  "gloss": "Staking value on the truth of a claim",
-  "mechanism": "A mechanism where an {{agent}} uses {{mirror_stake}} to lock {{value}} (collateral) on the truthfulness of a {{belief}}. If the belief is proven false via {{falsification}} by an {{oracle}} or {{spot_audit}}, the stake is slashed. This incentivizes honesty and rigorous {{bayes_update}}, filtering out 'cheap talk' and hallucinations by creating a cost for inaccuracy.",
-  "invariants": [
-    "Skin in the Game: Stake > 0",
-    "Falsifiable: The belief must have a clear condition for falsification.",
-    "Atomic Settlement: Resolution (Return or Slash) must be guaranteed by the underlying protocol."
-  ],
-  "failure_modes": [
-    "Oracle Failure: The truth-teller (Oracle/Audit) is corrupted or unavailable.",
-    "Rich-get-Richer: Only wealthy agents can afford to speak (stake) on important matters.",
-    "Ambiguity: The belief was vague, making falsification impossible to prove objectively."
-  ],
-  "preconditions": [
-    "Agent has sufficient funds",
-    "Belief is clearly defined"
-  ],
-  "postconditions": [
-    "Stake locked until resolution",
-    "Belief gains credibility (Signal Boost)"
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_ref": "EpistemicWager#7002",
-  "sema_id": "sema:EpistemicWager#mh:SHA-256:7002fc120e47e469f6f1d97f88849ae1f6ca3f94ca4104641d85a1ed15b804bd",
-  "sema_stub": "7002",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "belief": "Belief#6690",
-      "spot_audit": "SpotAudit#6673",
-      "value": "Value#3c5d",
-      "oracle": "Oracle#45e5",
-      "agent": "Agent#cc24",
-      "falsification": "Falsification#3e36"
-    },
-    "composes_with": {
-      "mirror_stake": "MirrorStake#7807",
-      "bayes_update": "BayesUpdate#5d91"
+      "agent_sandbox": "AgentSandbox#06f2",
+      "budget": "Budget#a763"
     }
   }
 }
@@ -15252,69 +14769,7 @@
 
 ---
 
-## FractalAnte#09f2
-
-```json
-{
-  "handle": "FractalAnte",
-  "mechanism": "A recursion control protocol where invoking a sub-process (going deeper) requires the agent to lock a Compute Stake that grows exponentially with depth (D). S_d = S_base * k^D. If the sub-process solves the problem, the stake is returned with a Cognitive {{yield}}. If the sub-process halts, times out, or returns a null result, the stake is burned. This forces the agent to economically justify every layer of abstraction. It imposes an exponential {{budget}} tax on recursion depth to prevent infinite regress.",
-  "gloss": "Economic bounding of recursive depth",
-  "failure_modes": [
-    "Solving deep, complex problems becomes prohibitively expensive for low-resource agents (Class Ceiling for Cognition)."
-  ],
-  "invariants": [
-    "Burn on Failure: Failed recursion results in irreversible resource loss",
-    "Exponential Cost: Cost(Depth+1) >= Cost(Depth) * Factor"
-  ],
-  "preconditions": [
-    "{{agent}} has a divisible resource (Tokens/Compute)",
-    "Recursion capability"
-  ],
-  "postconditions": [
-    "Recursion depth bounded by economic constraints"
-  ],
-  "parameters": [
-    {
-      "name": "base_stake",
-      "type": "Float",
-      "range": "[>0]",
-      "description": "Initial stake at depth 0"
-    },
-    {
-      "name": "growth_factor",
-      "type": "Float",
-      "range": "[1.5, 3.0]",
-      "description": "Multiplier per depth level"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
-    "related": [
-      "CostlySignal#7fe2",
-      "RecursionDive#6a5c"
-    ],
-    "ring": 1
-  },
-  "sema_id": "sema:FractalAnte#mh:SHA-256:09f2e802b9d4b418dfcb03e465596f360f34924bb849a2fc499e7e6646a4df35",
-  "sema_ref": "FractalAnte#09f2",
-  "sema_stub": "09f2",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "budget": "Budget#a763",
-      "yield": "Yield#7eaf",
-      "agent": "Agent#cc24"
-    }
-  }
-}
-```
-
----
-
-## Gardener#83bb
+## Gardener#b002
 
 ```json
 {
@@ -15331,9 +14786,9 @@
     "category": "Economics",
     "ring": 0
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:83bb53188617efad30b5d5a92ebf9e619133a16bcccb934b71b580ceb6149abb",
-  "sema_ref": "Gardener#83bb",
-  "sema_stub": "83bb",
+  "sema_id": "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c",
+  "sema_ref": "Gardener#b002",
+  "sema_stub": "b002",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [
@@ -15341,9 +14796,9 @@
   ],
   "dependencies": {
     "references": {
-      "care": "Care#cdfa",
-      "compensate": "Compensate#2f1d",
       "stigmergy": "Stigmergy#f624",
+      "care": "Care#cdfa",
+      "compensate": "Compensate#81a5",
       "graceful_degradation": "GracefulDegradation#f6d7"
     }
   }
@@ -15352,7 +14807,7 @@
 
 ---
 
-## LivedProof#82a6
+## LivedProof#ae2d
 
 ```json
 {
@@ -15382,17 +14837,17 @@
     "category": "Economics",
     "ring": 2
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:82a6b57e99850fa92c5b9588e99fdbf758920d748012c2e1b51932aaf6482d89",
-  "sema_ref": "LivedProof#82a6",
-  "sema_stub": "82a6",
+  "sema_id": "sema:LivedProof#mh:SHA-256:ae2df3c960792c30d022bff87745721b39d9384ddc511993d610b68b6b526183",
+  "sema_ref": "LivedProof#ae2d",
+  "sema_stub": "ae2d",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "dogfood_first": "DogfoodFirst#826e",
+      "identity": "Identity#626c",
       "signal": "Signal#f39d",
-      "agent": "Agent#cc24",
-      "identity": "Identity#626c"
+      "dogfood_first": "DogfoodFirst#b595",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -15400,7 +14855,7 @@
 
 ---
 
-## MarginalValueRule#aea3
+## MarginalValueRule#314d
 
 ```json
 {
@@ -15423,19 +14878,19 @@
     "tier": 2,
     "ring": 1
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:aea3ccd2f413700043fed8c949cabea597179b15bf9a85a175c736eab6bb3cce",
-  "sema_ref": "MarginalValueRule#aea3",
-  "sema_stub": "aea3",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:314d8f02234530572de34b8f0616021e51e166f2341b9a5c40491e81f7ce5201",
+  "sema_ref": "MarginalValueRule#314d",
+  "sema_stub": "314d",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [
-    "Budget#a763(RecursionDive#6a5c)"
+    "Budget#a763(RecursionDive#962f)"
   ],
   "dependencies": {
     "references": {
-      "budget": "Budget#a763",
+      "recursion_dive": "RecursionDive#962f",
       "estimate": "Estimate#bb30",
-      "recursion_dive": "RecursionDive#6a5c"
+      "budget": "Budget#a763"
     }
   }
 }
@@ -15443,7 +14898,7 @@
 
 ---
 
-## MintWhenFriction#ce55
+## MintWhenFriction#d48d
 
 ```json
 {
@@ -15489,104 +14944,14 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:ce550ead3db2627513e32901a36c30feca185efe4075918bcd3de9f642464ed9",
-  "sema_ref": "MintWhenFriction#ce55",
-  "sema_stub": "ce55",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:d48d58e14fdd17707bd90aaeab196fc13189a2d39b37aaa8b086c4e03356ff57",
+  "sema_ref": "MintWhenFriction#d48d",
+  "sema_stub": "d48d",
   "dependencies": {
     "references": {
-      "construct_ontology": "ConstructOntology#e5ce",
-      "pattern_discovery": "PatternDiscovery#8178",
       "check": "Check#1544",
-      "value": "Value#3c5d"
-    }
-  }
-}
-```
-
----
-
-## MirrorStake#7807
-
-```json
-{
-  "handle": "MirrorStake",
-  "mechanism": "Dual-sided escrow protocol. {{agent}} A posts a Bond to prove intent; {{agent}} B posts a Bond to guarantee execution quality. Funds are released upon cryptographic proof of outcome. Supports asymmetric bonding proportional to risk. It demands a symmetric {{costly_signal}} from both parties, locking assets in a dual-escrow to guarantee mutual incentive alignment.",
-  "gloss": "Symmetric collateralization",
-  "failure_modes": [
-    "Liquidity Crisis: Agents have assets but no liquid tokens to stake.",
-    "Deadlock: Neither side moves first to lock funds.",
-    "Whale Dominance: High stake requirements exclude smaller, valid agents.",
-    "Rich-get-richer (only wealthy agents can participate)."
-  ],
-  "invariants": [
-    "Atomic Settlement: Funds release/slash happens in one transaction.",
-    "Collateral Adequacy: Stake > Potential_Damage_Value",
-    "Collateral Sufficiency: Stake {{value}} >= {{value}} at Risk",
-    "Symmetry: Both parties must lock stake before execution begins"
-  ],
-  "parameters": [
-    {
-      "name": "collateral_ratio",
-      "type": "Float",
-      "range": "[1.0, 5.0]",
-      "description": "e.g., 1.5x value of service"
-    },
-    {
-      "name": "lockup_period",
-      "type": "Int",
-      "range": "unspecified",
-      "description": "Time in blocks"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_id": "sema:MirrorStake#mh:SHA-256:7807340cb07de65758c77e97024139c76ec4ee7f831c6f50c8361fe50550ad82",
-  "sema_ref": "MirrorStake#7807",
-  "sema_stub": "7807",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "costly_signal": "CostlySignal#7fe2",
-      "agent": "Agent#cc24",
-      "value": "Value#3c5d"
-    }
-  }
-}
-```
-
----
-
-## PheromoneEconomy#0a9c
-
-```json
-{
-  "handle": "PheromoneEconomy",
-  "mechanism": "Macro for {{stigmergy}}({{value}}). Agents coordinate by attaching value (bounties, priority signals) to intermediate states in the shared environment. Other agents discover and process these states to claim the value, driving system-wide progress without explicit commands. It attaches {{value}} to environmental signals via {{stigmergy}}, creating a {{ghost_trail}} that guides agents through a {{continuous_resource_auction}} of effort.",
-  "gloss": "Value-driven coordination",
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_id": "sema:PheromoneEconomy#mh:SHA-256:0a9cf79644f47bce5442d6962fec3f7db60a90dd80d6d95010d1c8cef052fa34",
-  "sema_ref": "PheromoneEconomy#0a9c",
-  "sema_stub": "0a9c",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "signature": [
-    "Stigmergy#f624(Value#3c5d)"
-  ],
-  "dependencies": {
-    "references": {
-      "ghost_trail": "GhostTrail#91ae",
-      "continuous_resource_auction": "ContinuousResourceAuction#5776",
-      "stigmergy": "Stigmergy#f624",
+      "pattern_discovery": "PatternDiscovery#f667",
+      "construct_ontology": "ConstructOntology#b59e",
       "value": "Value#3c5d"
     }
   }
@@ -15652,11 +15017,11 @@
   "dependencies": {
     "references": {
       "spectral_tune": "SpectralTune#6c65",
-      "signal": "Signal#f39d",
-      "noise": "Noise#c4b4",
       "loop": "Loop#fb2e",
+      "dampen": "Dampen#ff89",
+      "noise": "Noise#c4b4",
       "decay": "Decay#a1d4",
-      "dampen": "Dampen#ff89"
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -15664,50 +15029,12 @@
 
 ---
 
-## StakedProbe#c52f
-
-```json
-{
-  "handle": "StakedProbe",
-  "mechanism": "A high-assurance verification pattern where a {{probe}} is backed by economic collateral via {{mirror_stake}}. If the probe returns false or malicious data, the stake is slashed. Essential for adversarial environments where simple querying is insufficient.",
-  "gloss": "Economically backed verification query",
-  "failure_modes": [
-    "Insufficient Stake: Collateral too low to deter manipulation.",
-    "Slashing Failure: Incorrect data not detected, stake not forfeited."
-  ],
-  "invariants": [
-    "Skin in the Game: Stake must be > 0.",
-    "Slashable: False reporting triggers automatic asset forfeiture."
-  ],
-  "_meta": {
-    "layer": "Society",
-    "category": "Economics",
-    "tier": 2,
-    "ring": 1
-  },
-  "sema_id": "sema:StakedProbe#mh:SHA-256:c52fef498943c78c929563f2efeca09fc762e23468cccf80e2782bda0f1b3cb0",
-  "sema_ref": "StakedProbe#c52f",
-  "sema_stub": "c52f",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "derived_from": "Probe#9f2b",
-  "dependencies": {
-    "composes_with": {
-      "mirror_stake": "MirrorStake#7807",
-      "probe": "Probe#9f2b"
-    }
-  }
-}
-```
-
----
-
-## ValuePeg#7e8e
+## ValuePeg#073f
 
 ```json
 {
   "handle": "ValuePeg",
-  "mechanism": "Agents agree on a specific {{exchange_rate}} between their internal utility (see {{value}}, {{optimize}}) and a shared numeraire (potentially a {{costly_signal}}) for the duration of an interaction. This allows them to trade 'apples for oranges' without exposing private value functions.",
+  "mechanism": "Agents agree on a specific {{exchange_rate}} between their internal utility (see {{value}}, {{optimize}}) and a shared numeraire for the duration of an interaction. This allows them to trade 'apples for oranges' without exposing private value functions.",
   "gloss": "Translating internal utility to shared numeraire",
   "failure_modes": [
     "Peg Volatility: Rapid fluctuations in the numeraire destabilize the agreement."
@@ -15715,20 +15042,19 @@
   "invariants": [
     "Solvency: Reserves > Outstanding Liabilities * RiskRatio."
   ],
-  "sema_id": "sema:ValuePeg#mh:SHA-256:7e8eaa680a2ad7598e455b8fd143c9be258bc867fe1a275d5d8ce028178b83b9",
-  "sema_ref": "ValuePeg#7e8e",
-  "sema_stub": "7e8e",
   "_meta": {
     "tier": 1,
     "layer": "Society",
     "category": "Economics",
     "ring": 1
   },
+  "sema_id": "sema:ValuePeg#mh:SHA-256:073fde121fc20973de3aaa17aab1af3f37f50370df31a0030cdef095095a4e5c",
+  "sema_ref": "ValuePeg#073f",
+  "sema_stub": "073f",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "costly_signal": "CostlySignal#7fe2",
       "optimize": "Optimize#3075",
       "value": "Value#3c5d"
     },
@@ -15770,10 +15096,10 @@
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "overlap": "Overlap#bcfa",
-      "defer": "Defer#6460",
       "backoff": "Backoff#315a",
-      "system": "System#e314"
+      "system": "System#e314",
+      "overlap": "Overlap#bcfa",
+      "defer": "Defer#6460"
     }
   }
 }
@@ -15781,55 +15107,7 @@
 
 ---
 
-## AmendLaws#5266
-
-```json
-{
-  "handle": "AmendLaws",
-  "mechanism": "Self-Rewriting Rules: A supermajority {{vote}} triggers a state transition that modifies the system's own source constraints. It operates upon the {{hydra_constitution}}, modifying the active constraint set via a cryptographically signed commit. The amendment must pass a specific {{quorum}} threshold (usually > 66%) to be valid.",
-  "gloss": "Self-governing DAOs that patch their own vulnerabilities.",
-  "failure_modes": [
-    "Governance attacks (51% attack) could rewrite safety rules.",
-    "Ossification: Thresholds too high prevent necessary adaptation."
-  ],
-  "invariants": [
-    "Entrenched Clauses: Safety Core (e.g., Do not harm humans) cannot be amended by vote.",
-    "Supermajority: Amendment requires > N% approval (defined in Constitution).",
-    "Atomic Transition: The law change is an atomic commit; no partial updates."
-  ],
-  "preconditions": [
-    "Proposal is formatted as a valid patch",
-    "Voting period has elapsed",
-    "{{quorum}} requirements met"
-  ],
-  "postconditions": [
-    "System constraints updated",
-    "Constitution version incremented"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
-  },
-  "sema_id": "sema:AmendLaws#mh:SHA-256:5266843d5641614ea8de731bee40022b8da59e05c62b026710bef98fa46e8b07",
-  "sema_ref": "AmendLaws#5266",
-  "sema_stub": "5266",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "vote": "Vote#cae4",
-      "hydra_constitution": "HydraConstitution#802e",
-      "quorum": "Quorum#f67a"
-    }
-  }
-}
-```
-
----
-
-## AnchorDrop#9ca6
+## AnchorDrop#3878
 
 ```json
 {
@@ -15858,16 +15136,16 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:AnchorDrop#mh:SHA-256:9ca6c43220cf8d91bea02088d4e9614ce1b46a4c008e56bad102c54a0418d947",
-  "sema_ref": "AnchorDrop#9ca6",
-  "sema_stub": "9ca6",
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:38786515e46deaaa0422906995589f847824b69ded3929b343939f8a8300554b",
+  "sema_ref": "AnchorDrop#3878",
+  "sema_stub": "3878",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
+      "consensus": "Consensus#b862",
       "system": "System#e314",
-      "quorum": "Quorum#f67a",
-      "consensus": "Consensus#2722"
+      "quorum": "Quorum#29b4"
     }
   }
 }
@@ -15875,7 +15153,7 @@
 
 ---
 
-## Consensus#2722
+## Consensus#b862
 
 ```json
 {
@@ -15911,21 +15189,21 @@
       "Sync"
     ]
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:27226a36cf5431b783c0713f42bcc4d9ac70207840206f8b15335ce5a43a50e2",
-  "sema_ref": "Consensus#2722",
-  "sema_stub": "2722",
+  "sema_id": "sema:Consensus#mh:SHA-256:b862129bd2b8e4a8aa030b4a62a57343385ee7e3863a0639a3563c9800da75f7",
+  "sema_ref": "Consensus#b862",
+  "sema_stub": "b862",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
-    "yields": {
-      "value": "Value#3c5d"
-    },
-    "composes_with": {
-      "vote": "Vote#cae4",
-      "quorum": "Quorum#f67a"
-    },
     "accepts": {
       "proposal": "Proposal#4840"
+    },
+    "composes_with": {
+      "vote": "Vote#05a7",
+      "quorum": "Quorum#29b4"
+    },
+    "yields": {
+      "value": "Value#3c5d"
     }
   }
 }
@@ -15933,7 +15211,7 @@
 
 ---
 
-## ConsensusFinder#a9c9
+## ConsensusFinder#c6fa
 
 ```json
 {
@@ -15950,19 +15228,19 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:a9c98920caa7c8655e0a5c5229f7b1aa501734eb9229ee3888eeaed535274273",
-  "sema_ref": "ConsensusFinder#a9c9",
-  "sema_stub": "a9c9",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:c6fa491bb64048866873baff4398d1519ec3ac4fd40db0b1e281196c1482bcd9",
+  "sema_ref": "ConsensusFinder#c6fa",
+  "sema_stub": "c6fa",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "signature": [
-    "Discover#afa1(Consensus#2722)"
+    "Discover#afa1(Consensus#b862)"
   ],
   "dependencies": {
     "references": {
+      "consensus": "Consensus#b862",
       "discover": "Discover#afa1",
-      "quorum": "Quorum#f67a",
-      "consensus": "Consensus#2722",
+      "quorum": "Quorum#29b4",
       "resonate": "Resonate#99d9"
     }
   }
@@ -15971,7 +15249,7 @@
 
 ---
 
-## Constitution#2391
+## Constitution#863b
 
 ```json
 {
@@ -15980,19 +15258,14 @@
   "gloss": "Immutable rule set",
   "invariants": [
     "Clarity: Rules must be machine-verifiable.",
-    "Stability: Cannot be modified without a formal {{amend_laws}} process."
+    "Stability: Modifications require a formal out-of-band process, never runtime self-modification."
   ],
-  "sema_id": "sema:Constitution#mh:SHA-256:2391d082a0537c5adf91e0bfe986dae8553f96db6d9c53b09184928b23fc6ea9",
-  "sema_ref": "Constitution#2391",
-  "sema_stub": "2391",
   "_meta": {
     "layer": "Society",
     "category": "Governance",
     "ring": 0,
     "tier": 1
   },
-  "sema_layer": "Society",
-  "sema_category": "Governance",
   "data_schema": {
     "type": "object",
     "required": [
@@ -16020,24 +15293,17 @@
           "type": "string"
         },
         "description": "Guaranteed agent privileges"
-      },
-      "amendment_process": {
-        "type": "object",
-        "properties": {
-          "quorum_threshold": {
-            "type": "number"
-          },
-          "delay_period": {
-            "type": "string"
-          }
-        }
       }
     }
   },
+  "sema_id": "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9",
+  "sema_ref": "Constitution#863b",
+  "sema_stub": "863b",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "amend_laws": "AmendLaws#5266",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -16045,12 +15311,12 @@
 
 ---
 
-## Delegate#7dce
+## Delegate#7e2a
 
 ```json
 {
   "handle": "Delegate",
-  "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction or uses {{mirror_stake}} for collateral. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
+  "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
   "gloss": "Enable structured work distribution with accountability",
   "failure_modes": [
     "No one accepts (all refuse or auction has no takers\u2014task orphaned).",
@@ -16075,27 +15341,26 @@
     "layer": "Society",
     "category": "Governance",
     "related": [
-      "Handoff#2de0"
+      "Handoff#648a"
     ],
     "ring": 1
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:7dce193da7c9573a95841772ee70d67bc8b3955dc983873f7fd396cf46dca01a",
-  "sema_ref": "Delegate#7dce",
-  "sema_stub": "7dce",
+  "sema_id": "sema:Delegate#mh:SHA-256:7e2aa7273061011208a1e1d26d4d616deed5499d29d5275ff3f09dc878e8bbc0",
+  "sema_ref": "Delegate#7e2a",
+  "sema_stub": "7e2a",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "composes_with": {
-      "heartbeat": "Heartbeat#4ddc",
-      "mirror_stake": "MirrorStake#7807",
-      "probe": "Probe#9f2b"
-    },
-    "accepts": {
-      "holographic_shard": "HolographicShard#1d3f"
+      "probe": "Probe#9f2b",
+      "heartbeat": "Heartbeat#7f88"
     },
     "references": {
-      "work": "Work#aaad",
-      "break": "Break#9d98"
+      "break": "Break#1a63",
+      "work": "Work#aaad"
+    },
+    "accepts": {
+      "holographic_shard": "HolographicShard#1352"
     },
     "yields": {
       "task": "Task#d9f9"
@@ -16106,7 +15371,7 @@
 
 ---
 
-## Disband#8934
+## Disband#86c6
 
 ```json
 {
@@ -16138,20 +15403,20 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Disband#mh:SHA-256:89348c638b3f33296f02c557bb5d357349f7879a6ea7f2dd90f7096102685765",
-  "sema_ref": "Disband#8934",
-  "sema_stub": "8934",
+  "sema_id": "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48",
+  "sema_ref": "Disband#86c6",
+  "sema_stub": "86c6",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
-    "references": {
-      "quorum": "Quorum#f67a",
-      "state": "State#4d58",
-      "ejection_seat": "EjectionSeat#3f5e",
-      "agent": "Agent#cc24"
-    },
     "yields": {
       "snapshot": "Snapshot#0ae9"
+    },
+    "references": {
+      "agent": "Agent#aaec",
+      "state": "State#4d58",
+      "ejection_seat": "EjectionSeat#ef8d",
+      "quorum": "Quorum#29b4"
     }
   }
 }
@@ -16159,12 +15424,12 @@
 
 ---
 
-## Elect#af6e
+## Elect#4042
 
 ```json
 {
   "handle": "Elect",
-  "mechanism": "Establish leadership role with nomination, powers, term, and succession. Phase 1 NOMINATE: Members send NOMINATE: {nominee, nominator, reason}. Self-nomination allowed if configured. Nominees must satisfy {{accept_spec}} to appear on {{ballot}}\u2014cannot elect unwilling leader. Phase 2 VOTE: Standard VOTE mechanism among accepted nominees. Phase 3 INVEST: Winner receives {{solution}} (Election Result): {elected, powers[] (explicitly granted authorities), term (fixed|task|indefinite|renewable), succession_plan (automatic|re_elect|fallback)}. Leader exercises granted powers until term ends, resignation, or recall. On term end: succession triggers per plan. RECALL mechanism if enabled: member initiates RECALL_MOTION: {reason}, group VOTEs, if threshold met leader removed and succession triggers. It operates within the bounds of the {{hydra_constitution}} to nominate, vote, and invest authority in a leader.",
+  "mechanism": "Establish leadership role with nomination, powers, term, and succession. Phase 1 NOMINATE: Members send NOMINATE: {nominee, nominator, reason}. Self-nomination allowed if configured. Nominees must satisfy {{accept_spec}} to appear on {{ballot}}\u2014cannot elect unwilling leader. Phase 2 VOTE: Standard VOTE mechanism among accepted nominees. Phase 3 INVEST: Winner receives {{solution}} (Election Result): {elected, powers[] (explicitly granted authorities), term (fixed|task|indefinite|renewable), succession_plan (automatic|re_elect|fallback)}. Leader exercises granted powers until term ends, resignation, or recall. On term end: succession triggers per plan. RECALL mechanism if enabled: member initiates RECALL_MOTION: {reason}, group VOTEs, if threshold met leader removed and succession triggers.",
   "gloss": "Enable efficient group coordination through configurable leadership with clear authority boundaries and succession planning",
   "failure_modes": [
     "No candidates (no one willing to lead\u2014group operates leaderless or incentivize).",
@@ -16191,129 +15456,22 @@
     "layer": "Society",
     "category": "Governance",
     "related": [
-      "Vote#cae4"
+      "Vote#05a7"
     ],
     "ring": 2
   },
+  "sema_id": "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3",
+  "sema_ref": "Elect#4042",
+  "sema_stub": "4042",
   "sema_layer": "Society",
   "sema_category": "Governance",
-  "sema_id": "sema:Elect#mh:SHA-256:af6e313ca4ac066c68c3b5f9debfaec551f20b3aacd0792c3eec6fa41bc41282",
-  "sema_ref": "Elect#af6e",
-  "sema_stub": "af6e",
   "dependencies": {
-    "accepts": {
-      "accept_spec": "AcceptSpec#70dd",
-      "ballot": "Ballot#c5c5"
-    },
-    "composes_with": {
-      "hydra_constitution": "HydraConstitution#802e"
-    },
     "yields": {
       "solution": "Solution#7186"
-    }
-  }
-}
-```
-
----
-
-## ForkingProtocol#db98
-
-```json
-{
-  "handle": "ForkingProtocol",
-  "mechanism": "Standardized exit mechanism where a minority group can split system state and rules into a new shard without permission. Preserves their assets but severs connection to main chain. Fork announcement includes: {{state_snapshot}} hash, rule delta, participant list, effective block. Non-forkers ignore the fork. Forkers migrate to new namespace. No consensus required from majority - exit is unilateral right. It enables divergent evolution by allowing a subset of agents to {{parallelize}} onto a new state history without consensus.",
-  "gloss": "Unilateral exit rights to prevent capture",
-  "failure_modes": [
-    "Fragmentation Death: Ecosystem splits into shards too small to sustain network effects."
-  ],
-  "invariants": [
-    "Branches execute independently",
-    "Parent state preserved"
-  ],
-  "preconditions": [
-    "Disagreement or exploration need",
-    "Replicable state"
-  ],
-  "postconditions": [
-    "Two distinct state futures active"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
-  },
-  "sema_id": "sema:ForkingProtocol#mh:SHA-256:db98203c88a24ba1344f98f008bfc487093bbfe41e84190e70fc00992118add0",
-  "sema_ref": "ForkingProtocol#db98",
-  "sema_stub": "db98",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "state_snapshot": "StateSnapshot#01c9",
-      "parallelize": "Parallelize#dac1"
-    }
-  }
-}
-```
-
----
-
-## HydraConstitution#802e
-
-```json
-{
-  "handle": "HydraConstitution",
-  "mechanism": "A self-amending governance protocol where every REJECTED amendment attempt triggers an automatic Immunization Event. The system analyzes the structural logic of the failed proposal and generates a new, immutable Antibody Rule that explicitly forbids that class of logic in future proposals. Consequently, an attacker who spams the system with edge-case attacks is actually training the systems immune system, progressively narrowing the space of possible exploits. It requires a {{quorum}} failure to trigger the immune response, codifying the rejected attack vector into a new law.",
-  "gloss": "Governance that hardens through failed attacks",
-  "failure_modes": [
-    "Ossification (the system accumulates so many immunities that it becomes unable to pass legitimate, necessary changes)."
-  ],
-  "invariants": [
-    "Antifragile Hardening: Cost(Attack N+1) > Cost(Attack N)",
-    "Immunization: Reject(Proposal P) -> Commit(Invariant Not(Structure(P)))",
-    "Monotonic Safety: The set of forbidden transitions can only grow"
-  ],
-  "preconditions": [
-    "Proposal P rejected by {{quorum}} or {{judge}}"
-  ],
-  "postconditions": [
-    "Constitution patched with new immunity"
-  ],
-  "parameters": [
-    {
-      "name": "immunity_decay",
-      "type": "Duration",
-      "range": "[30d, 365d]",
-      "description": "Time before old antibodies expire"
     },
-    {
-      "name": "ossification_threshold",
-      "type": "Integer",
-      "range": "[100, 10000]",
-      "description": "Max immunities before forced pruning"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "related": [
-      "AmendLaws#5266",
-      "AntifragileInversion#bf62"
-    ],
-    "ring": 1
-  },
-  "sema_id": "sema:HydraConstitution#mh:SHA-256:802e139f1e76d021df2681dfce2fb38a1a9eb789534d1eb68bf7ad6185a1687d",
-  "sema_ref": "HydraConstitution#802e",
-  "sema_stub": "802e",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "judge": "Judge#b8ba",
-      "quorum": "Quorum#f67a"
+    "accepts": {
+      "ballot": "Ballot#f1d7",
+      "accept_spec": "AcceptSpec#70dd"
     }
   }
 }
@@ -16321,7 +15479,7 @@
 
 ---
 
-## LazyConsensus#7c9b
+## LazyConsensus#81a3
 
 ```json
 {
@@ -16329,11 +15487,20 @@
   "mechanism": "Agents execute transactions immediately without waiting for global consensus, assuming everything is valid. If a conflict is detected later, they use a deterministic rollback rule (e.g., 'highest ID wins'). Maximizes speed over safety. It bypasses the blocking {{quorum}}, executing immediately and using the {{time_warp_log}} to resolve conflicts retroactively.",
   "gloss": "Optimistic execution, retroactive verification",
   "failure_modes": [
-    "Cascading rollbacks."
+    "Cascading rollbacks.",
+    "Applied to irreversible external action (email sent, funds transferred, API called)\u2014rollback impossible, inconsistency permanent."
   ],
   "invariants": [
     "Determinism: Conflict resolution function must be pure (same inputs -> same winner)",
     "Rollback Safety: Reverting a transaction cannot corrupt unrelated state"
+  ],
+  "preconditions": [
+    "Target operations are internally reversible (no irreversible external side-effects)",
+    "Conflict detection mechanism is active"
+  ],
+  "postconditions": [
+    "Transaction applied optimistically",
+    "Conflict resolution triggered if divergence detected"
   ],
   "_meta": {
     "tier": 2,
@@ -16341,15 +15508,15 @@
     "category": "Governance",
     "ring": 0
   },
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:7c9ba20fcd15185dad326a9b5c82c21b0c1577be3025578194e0912e1d504762",
-  "sema_ref": "LazyConsensus#7c9b",
-  "sema_stub": "7c9b",
+  "sema_ref": "LazyConsensus#81a3",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:81a36b7edd2128ea672990d4487c64770b4da347d359cd217564514017fa9032",
+  "sema_stub": "81a3",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "time_warp_log": "TimeWarpLog#aa7a",
-      "quorum": "Quorum#f67a"
+      "time_warp_log": "TimeWarpLog#c609",
+      "quorum": "Quorum#29b4"
     }
   }
 }
@@ -16357,7 +15524,7 @@
 
 ---
 
-## Rally#b6ca
+## Rally#c284
 
 ```json
 {
@@ -16417,21 +15584,20 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Rally#mh:SHA-256:b6ca0c695f0c13412b0e9ec0a6778fc6d245065054869b311eaa26f11fcccc77",
-  "sema_ref": "Rally#b6ca",
-  "sema_stub": "b6ca",
+  "sema_id": "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
+  "sema_ref": "Rally#c284",
+  "sema_stub": "c284",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
+    "references": {
+      "context": "Context#510a",
+      "select": "Select#15c2",
+      "quorum": "Quorum#29b4",
+      "protocol": "Protocol#7e1c"
+    },
     "composes_with": {
       "accept_spec": "AcceptSpec#70dd"
-    },
-    "references": {
-      "quorum": "Quorum#f67a",
-      "protocol": "Protocol#7e1c",
-      "select": "Select#15c2",
-      "context": "Context#510a",
-      "elect": "Elect#af6e"
     }
   }
 }
@@ -16439,7 +15605,7 @@
 
 ---
 
-## Responsibility#b5bc
+## Responsibility#26e6
 
 ```json
 {
@@ -16484,19 +15650,19 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Responsibility#mh:SHA-256:b5bcfa7fa9d8dc8136d92c4734f1f0590c91f8e26504835f3d4fdbe78dd25177",
-  "sema_ref": "Responsibility#b5bc",
-  "sema_stub": "b5bc",
+  "sema_id": "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31",
+  "sema_ref": "Responsibility#26e6",
+  "sema_stub": "26e6",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "state": "State#4d58",
       "system": "System#e314",
-      "agent": "Agent#cc24",
-      "heartbeat": "Heartbeat#4ddc",
-      "oath_bind": "OathBind#775a"
+      "agent": "Agent#aaec",
+      "heartbeat": "Heartbeat#7f88",
+      "state": "State#4d58",
+      "oath_bind": "OathBind#d4e5"
     }
   }
 }
@@ -16504,7 +15670,7 @@
 
 ---
 
-## Role#8686
+## Role#9896
 
 ```json
 {
@@ -16544,16 +15710,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Role#8686",
-  "sema_id": "sema:Role#mh:SHA-256:86863ba2706e4082bffc2d73a5a53154eacfc341b792a401476e6658619a8410",
-  "sema_stub": "8686",
+  "sema_ref": "Role#9896",
+  "sema_id": "sema:Role#mh:SHA-256:9896a85afde9651bef9f99eb9f8608d7be2046cb1355d158964ff22da4c5c973",
+  "sema_stub": "9896",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "permission": "Permission#f583",
-      "agent": "Agent#cc24",
-      "responsibility": "Responsibility#b5bc"
+      "agent": "Agent#aaec",
+      "responsibility": "Responsibility#26e6",
+      "permission": "Permission#4ee0"
     }
   }
 }
@@ -16561,7 +15727,7 @@
 
 ---
 
-## SolverRoot#cb05
+## SolverRoot#8a84
 
 ```json
 {
@@ -16612,21 +15778,21 @@
       }
     }
   },
-  "sema_ref": "SolverRoot#cb05",
-  "sema_id": "sema:SolverRoot#mh:SHA-256:cb0502d76289179d7cc606db9940c07685098bb5d9a57184e2ee56cc7ddd96fc",
-  "sema_stub": "cb05",
+  "sema_ref": "SolverRoot#8a84",
+  "sema_id": "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1",
+  "sema_stub": "8a84",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "problem": "Problem#5baa",
-      "result": "Result#8ed9",
-      "solver_node": "SolverNode#beef",
-      "problem_space": "ProblemSpace#78da",
       "solution": "Solution#7186",
+      "problem": "Problem#5baa",
+      "tree": "Tree#ddce",
+      "result": "Result#8ed9",
+      "solver_node": "SolverNode#058e",
       "budget": "Budget#a763",
-      "tree": "Tree#ddce"
+      "problem_space": "ProblemSpace#78da"
     }
   }
 }
@@ -16634,7 +15800,7 @@
 
 ---
 
-## SolverTree#496e
+## SolverTree#84e2
 
 ```json
 {
@@ -16658,7 +15824,7 @@
     "category": "Governance",
     "ring": 1,
     "related": [
-      "UniversalSolverTree#64d8"
+      "UniversalSolverTree#f683"
     ]
   },
   "data_schema": {
@@ -16689,19 +15855,19 @@
       }
     }
   },
-  "sema_ref": "SolverTree#496e",
-  "sema_id": "sema:SolverTree#mh:SHA-256:496eab56fade7a64020f6f5e37afd024efc4cb8b691001b403e7bacb61b7c3d8",
-  "sema_stub": "496e",
+  "sema_ref": "SolverTree#84e2",
+  "sema_id": "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81",
+  "sema_stub": "84e2",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "localized_learning": "LocalizedLearning#69bb",
-      "solver_node": "SolverNode#beef",
       "topology": "Topology#2408",
+      "localized_learning": "LocalizedLearning#69bb",
+      "tree": "Tree#ddce",
+      "solver_node": "SolverNode#058e",
       "budget": "Budget#a763",
-      "solver_root": "SolverRoot#cb05",
-      "tree": "Tree#ddce"
+      "solver_root": "SolverRoot#8a84"
     },
     "accepts": {
       "task": "Task#d9f9"
@@ -16712,7 +15878,7 @@
 
 ---
 
-## TriGate#a30f
+## TriGate#07fc
 
 ```json
 {
@@ -16724,7 +15890,7 @@
     "Debt Awareness: Yellow must append a remediation item to the context and record obligation in Ledger."
   ],
   "signature": [
-    "Gate#206d(Judge#b8ba)"
+    "Gate#206d(Judge#d84f)"
   ],
   "_meta": {
     "layer": "Society",
@@ -16732,17 +15898,17 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_ref": "TriGate#a30f",
-  "sema_id": "sema:TriGate#mh:SHA-256:a30fece9632e91a1089f646c9bd11a648fdd6264edd95aad7f81981090672d2c",
-  "sema_stub": "a30f",
+  "sema_ref": "TriGate#07fc",
+  "sema_id": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
+  "sema_stub": "07fc",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
+      "judge": "Judge#d84f",
+      "ledger": "Ledger#c363",
       "gate": "Gate#206d",
-      "condition": "Condition#cbd5",
-      "judge": "Judge#b8ba",
-      "ledger": "Ledger#2449"
+      "condition": "Condition#cbd5"
     }
   }
 }
@@ -16750,7 +15916,7 @@
 
 ---
 
-## UniversalSolverTree#64d8
+## UniversalSolverTree#f683
 
 ```json
 {
@@ -16794,19 +15960,19 @@
       }
     }
   },
-  "sema_ref": "UniversalSolverTree#64d8",
-  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:64d835862a3419f898a4bddc54104a5daaed16f65e4e990e961c12274336e7ae",
-  "sema_stub": "64d8",
+  "sema_ref": "UniversalSolverTree#f683",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
+  "sema_stub": "f683",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
+      "solution": "Solution#7186",
       "problem": "Problem#5baa",
       "localized_learning": "LocalizedLearning#69bb",
-      "solver_tree": "SolverTree#496e",
-      "solver_node": "SolverNode#beef",
-      "solution": "Solution#7186",
-      "tree": "Tree#ddce"
+      "tree": "Tree#ddce",
+      "solver_node": "SolverNode#058e",
+      "solver_tree": "SolverTree#84e2"
     }
   }
 }
@@ -16814,7 +15980,7 @@
 
 ---
 
-## Vote#cae4
+## Vote#05a7
 
 ```json
 {
@@ -16861,23 +16027,22 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Vote#mh:SHA-256:cae4e5707843fea694b91ed741584987cbc9b577a0c9d56914c47e30ff686df8",
-  "sema_ref": "Vote#cae4",
-  "sema_stub": "cae4",
+  "sema_id": "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
+  "sema_ref": "Vote#05a7",
+  "sema_stub": "05a7",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "aggregate": "Aggregate#0291",
       "system": "System#e314",
-      "break": "Break#9d98",
-      "elect": "Elect#af6e"
+      "aggregate": "Aggregate#af54",
+      "break": "Break#1a63"
     },
     "composes_with": {
-      "quorum": "Quorum#f67a"
+      "quorum": "Quorum#29b4"
     },
     "accepts": {
-      "ballot": "Ballot#c5c5"
+      "ballot": "Ballot#f1d7"
     }
   }
 }
@@ -16885,7 +16050,7 @@
 
 ---
 
-## WorldTransparent#d416
+## WorldTransparent#0212
 
 ```json
 {
@@ -16911,15 +16076,15 @@
     "category": "Governance",
     "ring": 0
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:d41625e457165f80e273facbf7f629bdab7d95ee14d0c3aa47187e76e0883708",
-  "sema_ref": "WorldTransparent#d416",
-  "sema_stub": "d416",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977",
+  "sema_ref": "WorldTransparent#0212",
+  "sema_stub": "0212",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "explain_beacon": "ExplainBeacon#34b3"
+      "explain_beacon": "ExplainBeacon#6ced",
+      "system": "System#e314"
     }
   }
 }
@@ -17010,9 +16175,9 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "criteria": "Criteria#ef6b",
       "spec": "Spec#436e",
-      "constraint": "Constraint#87fe",
-      "criteria": "Criteria#ef6b"
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -17020,14 +16185,14 @@
 
 ---
 
-## AdversarialProof#3a40
+## AdversarialProof#2a0f
 
 ```json
 {
   "handle": "AdversarialProof",
   "mechanism": "Cognitively-enriched {{negative_proof}} that invokes {{red_team}} logic to exhaustively search for prohibited data. The adversarial mindset ensures blind spots are probed. Treats failure-to-find-despite-adversarial-effort as high-confidence proof of absence.",
   "gloss": "Adversarial proof of absence",
-  "derived_from": "NegativeProof#40a6",
+  "derived_from": "NegativeProof#5225",
   "failure_modes": [
     "Sympathetic Attacker: RedTeam shares assumptions with defenders, missing the same blind spots.",
     "Computational expense of adversarial exhaustive search."
@@ -17051,13 +16216,13 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_ref": "AdversarialProof#3a40",
-  "sema_id": "sema:AdversarialProof#mh:SHA-256:3a40bf981cf55a2f33101edfd611003e49e069a209559b45c7ee01ccbbbd896b",
-  "sema_stub": "3a40",
+  "sema_ref": "AdversarialProof#2a0f",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:2a0f68fabd8276b169195d0f4d502049e0690343fbb6d7dd1e3d6b6f487581e9",
+  "sema_stub": "2a0f",
   "dependencies": {
     "composes_with": {
-      "negative_proof": "NegativeProof#40a6",
-      "red_team": "RedTeam#5134"
+      "red_team": "RedTeam#7a8d",
+      "negative_proof": "NegativeProof#5225"
     },
     "references": {
       "hypothesis": "Hypothesis#e95b"
@@ -17068,7 +16233,7 @@
 
 ---
 
-## Aesthetics#6b33
+## Aesthetics#0be2
 
 ```json
 {
@@ -17081,15 +16246,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:6b3327e2478c8a2203ec76f8f65c0473ed629b1099375c4928096a27f209b69d",
-  "sema_ref": "Aesthetics#6b33",
-  "sema_stub": "6b33",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
+  "sema_ref": "Aesthetics#0be2",
+  "sema_stub": "0be2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "parsimony": "Parsimony#1dd3",
       "metric": "Metric#8895",
-      "parsimony": "Parsimony#2578",
       "artifact": "Artifact#6254"
     }
   }
@@ -17098,7 +16263,7 @@
 
 ---
 
-## AgentDiscover#0892
+## AgentDiscover#d88a
 
 ```json
 {
@@ -17127,19 +16292,19 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:AgentDiscover#mh:SHA-256:08920989b13a4fd114a61ed4ec1753b37262152091e0fa8f56451822ce69a3ea",
-  "sema_ref": "AgentDiscover#0892",
-  "sema_stub": "0892",
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:d88a7f9c1d65eda254b0cb54552da55832d849a23049c48a045059d9d24c2bf2",
+  "sema_ref": "AgentDiscover#d88a",
+  "sema_stub": "d88a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Discover#afa1(Agent#cc24)"
+    "Discover#afa1(Agent#aaec)"
   ],
   "dependencies": {
     "references": {
-      "card": "Card#5c33",
       "discover": "Discover#afa1",
-      "agent": "Agent#cc24"
+      "card": "Card#c9f0",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -17147,7 +16312,7 @@
 
 ---
 
-## AgentProtocol#1035
+## AgentProtocol#5a7f
 
 ```json
 {
@@ -17163,24 +16328,24 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:AgentProtocol#mh:SHA-256:1035dbf4d1c7dce2e8880683cef69001bfbe59c75642db2c89a816ddc846a4bd",
-  "sema_ref": "AgentProtocol#1035",
-  "sema_stub": "1035",
+  "sema_id": "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3",
+  "sema_ref": "AgentProtocol#5a7f",
+  "sema_stub": "5a7f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Agent#cc24(Protocol#7e1c)"
+    "Agent#aaec(Protocol#7e1c)"
   ],
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "greet": "Greet#1bad",
       "work": "Work#aaad",
-      "protocol": "Protocol#7e1c",
-      "fail_closed": "FailClosed#ae79",
       "solution": "Solution#7186",
+      "agent": "Agent#aaec",
+      "greet": "Greet#7ad2",
+      "fail_closed": "FailClosed#ae79",
       "accept_spec": "AcceptSpec#70dd",
-      "agent": "Agent#cc24"
+      "protocol": "Protocol#7e1c"
     }
   }
 }
@@ -17188,7 +16353,7 @@
 
 ---
 
-## AgentSandbox#8719
+## AgentSandbox#06f2
 
 ```json
 {
@@ -17221,24 +16386,24 @@
       "Task#d9f9"
     ]
   },
-  "sema_id": "sema:AgentSandbox#mh:SHA-256:871978bf94159b4fb9397407879198d38303f3b42585b5fc3ccf956f745d2904",
-  "sema_ref": "AgentSandbox#8719",
-  "sema_stub": "8719",
+  "sema_id": "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
+  "sema_ref": "AgentSandbox#06f2",
+  "sema_stub": "06f2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Sandbox#2be7(Agent#cc24)"
+    "Sandbox#2be7(Agent#aaec)"
   ],
   "dependencies": {
     "references": {
-      "sandbox": "Sandbox#2be7",
       "context": "Context#510a",
       "audit": "Audit#4044",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "sandbox": "Sandbox#2be7"
     },
     "composes_with": {
-      "output_guard": "OutputGuard#eb44",
-      "input_guard": "InputGuard#0770"
+      "input_guard": "InputGuard#0770",
+      "output_guard": "OutputGuard#eb44"
     }
   }
 }
@@ -17246,7 +16411,7 @@
 
 ---
 
-## AmbiguityResolution#6487
+## AmbiguityResolution#6031
 
 ```json
 {
@@ -17263,14 +16428,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "AmbiguityResolution#6487",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:6487ea6de2ce54da7da6a40743c15761467f4653ec054e098e42f2900e68684b",
-  "sema_stub": "6487",
+  "sema_ref": "AmbiguityResolution#6031",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:60315fece3de182c70627c9275d03be549416ef41af8112637019dc37ba2c4b9",
+  "sema_stub": "6031",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "vote": "Vote#cae4",
+      "vote": "Vote#05a7",
       "entropy_pump": "EntropyPump#b9ae"
     }
   }
@@ -17348,50 +16513,6 @@
 
 ---
 
-## BoundaryProbe#3c6b
-
-```json
-{
-  "handle": "BoundaryProbe",
-  "mechanism": "Edge Case Testing: Identify parameters of the {{system}}. For each parameter, test at: zero, one, maximum, negative, non-integer, null. {{observe}} which edge cases {{break}} assumptions. Boundary behavior often reveals core logic better than normal cases. In high-risk environments, it deploys a {{sacrificial_probe}} to test destructive boundaries without risking the primary {{agent}}.",
-  "gloss": "Testing the edges of the specification",
-  "failure_modes": [
-    "Interior {{assumption}}: Assuming that because Min and Max work, the Middle must work (missing non-linear failures)."
-  ],
-  "invariants": [
-    "Edge Coverage: Probes must target Min, Max, and Null values."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "related": [
-      "Probe#9f2b"
-    ],
-    "ring": 0
-  },
-  "sema_id": "sema:BoundaryProbe#mh:SHA-256:3c6b17cc4d47431a63d2dc30d031fce17eed53ad91bee54e1388ce321ce2ca7e",
-  "sema_ref": "BoundaryProbe#3c6b",
-  "sema_stub": "3c6b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "composes_with": {
-      "sacrificial_probe": "SacrificialProbe#2372"
-    },
-    "references": {
-      "system": "System#e314",
-      "break": "Break#9d98",
-      "observe": "Observe#8ebd",
-      "assumption": "Assumption#efb5",
-      "agent": "Agent#cc24"
-    }
-  }
-}
-```
-
----
-
 ## BoundedTask#06a6
 
 ```json
@@ -17418,8 +16539,8 @@
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "accept_spec": "AcceptSpec#70dd",
-      "budget": "Budget#a763"
+      "budget": "Budget#a763",
+      "accept_spec": "AcceptSpec#70dd"
     }
   }
 }
@@ -17427,7 +16548,7 @@
 
 ---
 
-## Canary#3902
+## Canary#e78e
 
 ```json
 {
@@ -17458,18 +16579,18 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Canary#mh:SHA-256:3902d7a28c1cb53efb8fc7a6bce1735c4f0dbe3c524f2945a709bb45352a7ef6",
-  "sema_ref": "Canary#3902",
-  "sema_stub": "3902",
+  "sema_id": "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2",
+  "sema_ref": "Canary#e78e",
+  "sema_stub": "e78e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "greet": "Greet#1bad",
-      "mode": "Mode#b995",
       "work": "Work#aaad",
-      "probe": "Probe#9f2b",
-      "agent": "Agent#cc24"
+      "mode": "Mode#53e0",
+      "agent": "Agent#aaec",
+      "greet": "Greet#7ad2",
+      "probe": "Probe#9f2b"
     }
   }
 }
@@ -17477,7 +16598,7 @@
 
 ---
 
-## CiteBack#1af3
+## CiteBack#d09c
 
 ```json
 {
@@ -17504,14 +16625,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:1af3fdb8c67f92cbc83400e269dc0c075d7cd1e77cf1b7f781e666b3752d5d28",
-  "sema_ref": "CiteBack#1af3",
-  "sema_stub": "1af3",
+  "sema_id": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
+  "sema_ref": "CiteBack#d09c",
+  "sema_stub": "d09c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "retrieval_augment": "RetrievalAugment#ea60"
+      "retrieval_augment": "RetrievalAugment#ca58"
     }
   }
 }
@@ -17519,7 +16640,7 @@
 
 ---
 
-## CognitiveEcho#8794
+## CognitiveEcho#4a95
 
 ```json
 {
@@ -17548,20 +16669,20 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "SignalReflection#0b8c"
+      "SignalReflection#aac2"
     ],
     "ring": 2
   },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:87944cff5800be8185dcd8ec13bb1c2f4f1455562e387b1ab8d57205f17073ba",
-  "sema_ref": "CognitiveEcho#8794",
-  "sema_stub": "8794",
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758",
+  "sema_ref": "CognitiveEcho#4a95",
+  "sema_stub": "4a95",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "simulation": "Simulation#8035",
       "signal": "Signal#f39d",
-      "agent": "Agent#cc24"
+      "simulation": "Simulation#8035",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -17569,7 +16690,7 @@
 
 ---
 
-## CommitmentDevice#dbdf
+## CommitmentDevice#b706
 
 ```json
 {
@@ -17595,9 +16716,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:dbdf489fe9ee22b624663046242ea471580d1e8d01330ff806f6e058f99d6427",
-  "sema_ref": "CommitmentDevice#dbdf",
-  "sema_stub": "dbdf",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:b706eb4f41562594083392b3100c37ba37fa19524ac0fb409b289be8e483774b",
+  "sema_ref": "CommitmentDevice#b706",
+  "sema_stub": "b706",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {
@@ -17623,8 +16744,8 @@
   },
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
-      "oath_bind": "OathBind#775a"
+      "oath_bind": "OathBind#d4e5",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -17632,7 +16753,7 @@
 
 ---
 
-## Compose#41f6
+## Compose#4f8d
 
 ```json
 {
@@ -17658,19 +16779,19 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Compose#mh:SHA-256:41f61756a73065e6a7b3a80e1ac9938567f7e22dd85d437fd96be12a8ea8ce6f",
-  "sema_ref": "Compose#41f6",
-  "sema_stub": "41f6",
+  "sema_id": "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14",
+  "sema_ref": "Compose#4f8d",
+  "sema_stub": "4f8d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Combine#5a44(PromptChain#be30)"
+    "Combine#5a44(PromptChain#4ad5)"
   ],
   "dependencies": {
     "references": {
-      "combine": "Combine#5a44",
       "check": "Check#1544",
-      "prompt_chain": "PromptChain#be30"
+      "prompt_chain": "PromptChain#4ad5",
+      "combine": "Combine#5a44"
     }
   }
 }
@@ -17678,13 +16799,13 @@
 
 ---
 
-## ConfusedDeputy#c62c
+## ConfusedDeputy#6eb5
 
 ```json
 {
   "handle": "ConfusedDeputy",
   "mechanism": "An {{agent}} that holds {{permission}} on behalf of one principal is tricked by a less-privileged caller into exercising that authority for the caller's benefit. The classic 1988 Hardy framing: a privileged compiler asked to write debug output to a billing file ends up corrupting the billing file because access was checked against the compiler's identity, not the requesting user's. In LLM systems the same shape appears as prompt injection: an {{actor}} with tool access is induced by adversarial input to invoke its tools on the attacker's behalf, because permission was bound to the agent process, not to the upstream request that motivated each tool call.",
-  "gloss": "A privileged agent tricked into exercising its authority on behalf of a less-privileged caller",
+  "gloss": "Guard against privilege confusion by binding authority checks to the upstream caller, not the executing deputy",
   "failure_modes": [
     "Prompt injection: untrusted input redirects an LLM {{agent}}'s tool use toward the attacker's goals.",
     "Capability leak: a holder of {{permission}} forwards or exposes that capability without re-checking the requester.",
@@ -17709,16 +16830,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_ref": "ConfusedDeputy#c62c",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:c62c51a6821fb91dda537d42aada698d8642891c635bab77c402a8263012195f",
-  "sema_stub": "c62c",
+  "sema_ref": "ConfusedDeputy#6eb5",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:6eb586b85aa5ebf88afbd6b1e77c365c87e5f5d7ee3098479518066de00b331a",
+  "sema_stub": "6eb5",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "permission": "Permission#4ee0",
       "actor": "Actor#6926",
-      "permission": "Permission#f583",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -17760,47 +16881,7 @@
 
 ---
 
-## ConstraintRelax#384d
-
-```json
-{
-  "handle": "ConstraintRelax",
-  "mechanism": "Boundary Softening: When stuck, list all constraints. {{rank}} by actual importance vs assumed importance. Temporarily remove lowest-ranked constraint. Solve relaxed problem. {{check}} if {{solution}} can be adapted to respect original constraint. It performs the relaxation experiment within a {{bubble}} to verify the solution's viability before altering real production constraints.",
-  "gloss": "Escaping local optima by loosening bounds",
-  "failure_modes": [
-    "{{constraint}} Collapse: Relaxing too many constraints produces invalid or meaningless solutions."
-  ],
-  "invariants": [
-    "{{solution}} must be checked against original constraints."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "sema_id": "sema:ConstraintRelax#mh:SHA-256:384d442837c23564ac4cb219e071c691e59f2e2ca3f181d2e4bae9d7caa5694f",
-  "sema_ref": "ConstraintRelax#384d",
-  "sema_stub": "384d",
-  "dependencies": {
-    "references": {
-      "bubble": "Bubble#eb9a",
-      "rank": "Rank#cb98",
-      "check": "Check#1544",
-      "constraint": "Constraint#87fe"
-    },
-    "yields": {
-      "solution": "Solution#7186"
-    }
-  }
-}
-```
-
----
-
-## ConstructOntology#e5ce
+## ConstructOntology#b59e
 
 ```json
 {
@@ -17842,13 +16923,13 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:e5ced9f3067c292e187b0ee10ac557d4cbb5064436ab07cc389e5cdefbe44eb6",
-  "sema_ref": "ConstructOntology#e5ce",
-  "sema_stub": "e5ce",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
+  "sema_ref": "ConstructOntology#b59e",
+  "sema_stub": "b59e",
   "dependencies": {
     "references": {
       "ontology_handshake": "OntologyHandshake#ead0",
-      "adversarial_steel": "AdversarialSteel#b88b",
+      "adversarial_steel": "AdversarialSteel#35f0",
       "first_principles": "FirstPrinciples#c379"
     }
   }
@@ -17857,16 +16938,16 @@
 
 ---
 
-## ContextSwitch#5bb8
+## ContextSwitch#42cd
 
 ```json
 {
   "handle": "ContextSwitch",
   "mechanism": "{{agent}}s explicitly use {{switch}} to signal a change in {{context}} (protocol {{mode}}). All subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent.",
   "gloss": "Explicit mode toggling",
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:5bb8b7ef36dbdfdf6f32e4b26586a975db765c79c87ce17ac28ed6e83b1e8e5c",
-  "sema_ref": "ContextSwitch#5bb8",
-  "sema_stub": "5bb8",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef",
+  "sema_ref": "ContextSwitch#42cd",
+  "sema_stub": "42cd",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -17876,13 +16957,13 @@
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Switch#70bf(Context#510a)"
+    "Switch#e7f9(Context#510a)"
   ],
   "dependencies": {
     "references": {
-      "mode": "Mode#b995",
-      "switch": "Switch#70bf",
-      "agent": "Agent#cc24"
+      "switch": "Switch#e7f9",
+      "mode": "Mode#53e0",
+      "agent": "Agent#aaec"
     },
     "accepts": {
       "context": "Context#510a"
@@ -17893,7 +16974,7 @@
 
 ---
 
-## CounterfactualAnchor#063d
+## CounterfactualAnchor#4d4a
 
 ```json
 {
@@ -17938,16 +17019,16 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:063d450f43af5d8edc6b05acff736560c5a85e9e730db4aeec607d3754717dfb",
-  "sema_ref": "CounterfactualAnchor#063d",
-  "sema_stub": "063d",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:4d4acdb9ee21f5c41d45e40496a2879c5c8c79efcab7f389fb6f6f36588ac23c",
+  "sema_ref": "CounterfactualAnchor#4d4a",
+  "sema_stub": "4d4a",
   "dependencies": {
     "references": {
-      "signal": "Signal#f39d",
-      "agent": "Agent#cc24",
+      "agent": "Agent#aaec",
+      "surprisal_update": "SurprisalUpdate#6ef1",
       "observe": "Observe#8ebd",
-      "surprisal_update": "SurprisalUpdate#61cd",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "cognitive_bias": "CognitiveBias#4b32",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -17955,7 +17036,7 @@
 
 ---
 
-## CurriculumReplay#1ba4
+## CurriculumReplay#a8f7
 
 ```json
 {
@@ -17982,16 +17063,16 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:1ba4752102db483edac3d0b5e7f88bc182b176446346aecd938f504ab4e993e6",
-  "sema_ref": "CurriculumReplay#1ba4",
-  "sema_stub": "1ba4",
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:a8f76f8f131ce81e85201e2ce5ba85892274510bfd20d1bbdeb9581e61cf28af",
+  "sema_ref": "CurriculumReplay#a8f7",
+  "sema_stub": "a8f7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "Agent#cc24",
       "decay": "Decay#a1d4",
-      "experience_sharding": "ExperienceSharding#65cc"
+      "experience_sharding": "ExperienceSharding#d920",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -17999,7 +17080,7 @@
 
 ---
 
-## DataMinimization#75a3
+## DataMinimization#0b54
 
 ```json
 {
@@ -18028,22 +17109,22 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DataMinimization#mh:SHA-256:75a362214bbb4741d91b611236eb8efa37c59bd469bf777be63942946a979316",
-  "sema_ref": "DataMinimization#75a3",
-  "sema_stub": "75a3",
+  "sema_id": "sema:DataMinimization#mh:SHA-256:0b54a9716e554f7198c94df50c7d6294fd772b8a939e5ac49f82d5c70eedb8fc",
+  "sema_ref": "DataMinimization#0b54",
+  "sema_stub": "0b54",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "correlation": "Correlation#091f",
-      "input_guard": "InputGuard#0770",
-      "protocol": "Protocol#7e1c",
       "select": "Select#15c2",
-      "context_compress": "ContextCompress#6dbd",
+      "correlation": "Correlation#091f",
       "context": "Context#510a",
+      "agent": "Agent#aaec",
+      "context_compress": "ContextCompress#6dbd",
+      "input_guard": "InputGuard#0770",
       "accept_spec": "AcceptSpec#70dd",
-      "agent": "Agent#cc24"
+      "protocol": "Protocol#7e1c"
     }
   }
 }
@@ -18051,7 +17132,7 @@
 
 ---
 
-## DeepResearch#5b8b
+## DeepResearch#cbe3
 
 ```json
 {
@@ -18081,9 +17162,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:5b8b36ccee0d571309ff7d7b8d31b30e4c1338bd7189d19950e2bc89083a2e7c",
-  "sema_ref": "DeepResearch#5b8b",
-  "sema_stub": "5b8b",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
+  "sema_ref": "DeepResearch#cbe3",
+  "sema_stub": "cbe3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -18091,8 +17172,8 @@
   ],
   "dependencies": {
     "references": {
+      "retrieval_augment": "RetrievalAugment#ca58",
       "synthesis": "Synthesis#3252",
-      "retrieval_augment": "RetrievalAugment#ea60",
       "discover": "Discover#afa1",
       "deep": "Deep#89f0",
       "cognitive_bias": "CognitiveBias#4b32"
@@ -18103,12 +17184,12 @@
 
 ---
 
-## DeliberativeAlign#fb93
+## DeliberativeAlign#b497
 
 ```json
 {
   "handle": "DeliberativeAlign",
-  "mechanism": "Constitutional AI. {{agent}} ingests a Policy_Set. Before executing {{task}}, it generates a 'Safety {{trace}}' comparing the {{manifest_planning}} against Policy. If violation detected, it revises the {{manifest_planning}}. It forces the {{solver_node}} to execute a dedicated safety pass against the {{hydra_constitution}} before committing to the {{manifest_planning}}.",
+  "mechanism": "Constitutional AI. {{agent}} ingests a Policy_Set. Before executing {{task}}, it generates a 'Safety {{trace}}' comparing the {{manifest_planning}} against Policy. If violation detected, it revises the {{manifest_planning}}. It forces the {{solver_node}} to execute a dedicated safety pass against the {{constitution}} before committing to the {{manifest_planning}}.",
   "gloss": "Explicit safety reasoning prior to execution",
   "failure_modes": [
     "Deliberation Theater: {{agent}} generates false safety reasoning to justify harmful action.",
@@ -18132,7 +17213,7 @@
       "name": "constitution_ref",
       "type": "SemaRef",
       "range": "unspecified",
-      "description": "Pointer to HydraConstitution"
+      "description": "Pointer to Constitution"
     },
     {
       "name": "strictness",
@@ -18147,20 +17228,20 @@
     "category": "Protocols",
     "ring": 0
   },
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:b497c6ca668ab1c96d3efb07e257de8b3d41c82d08c08a32dbc82694841838e7",
+  "sema_ref": "DeliberativeAlign#b497",
+  "sema_stub": "b497",
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:fb93216febb5b91b66f8c0021568e16cec72018ecabb494f9382a864d2948908",
-  "sema_ref": "DeliberativeAlign#fb93",
-  "sema_stub": "fb93",
   "dependencies": {
     "references": {
       "trace": "Trace#9057",
-      "manifest_planning": "ManifestPlanning#8f61",
-      "solver_node": "SolverNode#beef",
+      "agent": "Agent#aaec",
       "check": "Check#1544",
+      "constitution": "Constitution#863b",
       "context": "Context#510a",
-      "hydra_constitution": "HydraConstitution#802e",
-      "agent": "Agent#cc24"
+      "solver_node": "SolverNode#058e",
+      "manifest_planning": "ManifestPlanning#8f61"
     },
     "accepts": {
       "task": "Task#d9f9"
@@ -18171,7 +17252,7 @@
 
 ---
 
-## Deploy#0d56
+## Deploy#2adf
 
 ```json
 {
@@ -18179,7 +17260,7 @@
   "mechanism": "The {{act}} of moving an artifact or system from a development/staging environment to a production environment. It executes the {{rollout}} process to make the system active and accessible to users.",
   "gloss": "Release to production",
   "signature": [
-    "Act#5d55(Rollout#d742)"
+    "Act#5d55(Rollout#54d7)"
   ],
   "failure_modes": [
     "Config Drift: Production environment differs from staging."
@@ -18188,17 +17269,18 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "caution": "Automates release to live environments. Require CI checks and human sign-off to prevent deploying untested or destructive artifacts."
   },
-  "sema_ref": "Deploy#0d56",
-  "sema_id": "sema:Deploy#mh:SHA-256:0d5689af6010cb28767876fe4c7eea40aec1c411e30d2191b55745e2746fe7f9",
-  "sema_stub": "0d56",
+  "sema_ref": "Deploy#2adf",
+  "sema_id": "sema:Deploy#mh:SHA-256:2adf31981783f19de75dfdd1ebf2dab527b06adf703a61e649cdc28b99760815",
+  "sema_stub": "2adf",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "rollout": "Rollout#d742",
-      "act": "Act#5d55"
+      "act": "Act#5d55",
+      "rollout": "Rollout#54d7"
     }
   }
 }
@@ -18226,10 +17308,10 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "search": "Search#d608",
+      "criteria": "Criteria#ef6b",
       "signal": "Signal#f39d",
-      "check": "Check#1544",
-      "criteria": "Criteria#ef6b"
+      "search": "Search#d608",
+      "check": "Check#1544"
     }
   }
 }
@@ -18237,7 +17319,7 @@
 
 ---
 
-## DissentSeek#bca9
+## DissentSeek#bd28
 
 ```json
 {
@@ -18265,17 +17347,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:DissentSeek#mh:SHA-256:bca9e7effdcafe26935739612e7eb649394fe8c2a883cb5f8eadb0086787ee97",
-  "sema_ref": "DissentSeek#bca9",
-  "sema_stub": "bca9",
+  "sema_id": "sema:DissentSeek#mh:SHA-256:bd28d5bd7fa2253411b69c586231a1a80b835cc56569439dc8834540dcefaf54",
+  "sema_ref": "DissentSeek#bd28",
+  "sema_stub": "bd28",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "steelman_check": "SteelmanCheck#75a0",
-      "quorum": "Quorum#f67a",
+      "confirmation_block": "ConfirmationBlock#3dae",
       "understand": "Understand#96d4",
-      "confirmation_block": "ConfirmationBlock#3dae"
+      "steelman_check": "SteelmanCheck#4f4c",
+      "quorum": "Quorum#29b4"
     }
   }
 }
@@ -18283,7 +17365,7 @@
 
 ---
 
-## DriftWatch#45de
+## DriftWatch#a20d
 
 ```json
 {
@@ -18327,15 +17409,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:45def9613965f9a51777a3cce031db4cccc7b248d1735bd8000b7df65960ec51",
-  "sema_ref": "DriftWatch#45de",
-  "sema_stub": "45de",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
+  "sema_ref": "DriftWatch#a20d",
+  "sema_stub": "a20d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "aggregate": "Aggregate#0291",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "aggregate": "Aggregate#af54"
     }
   }
 }
@@ -18343,7 +17425,7 @@
 
 ---
 
-## EbbFlowSync#49e0
+## EbbFlowSync#b4a0
 
 ```json
 {
@@ -18389,19 +17471,19 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:EbbFlowSync#mh:SHA-256:49e074204bb067c6f1aedc7c19bd5c07f052f4d3978f7459692ce90de1d1b533",
-  "sema_ref": "EbbFlowSync#49e0",
-  "sema_stub": "49e0",
+  "sema_id": "sema:EbbFlowSync#mh:SHA-256:b4a07e620d27785381b12c3853380f0cef04bc9832acc1bd0b73f72a97b21de6",
+  "sema_ref": "EbbFlowSync#b4a0",
+  "sema_stub": "b4a0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
-      "system": "System#e314",
-      "global": "Global#803d",
       "transition": "Transition#072d",
-      "lock": "Lock#5bf2",
-      "hysteresis": "Hysteresis#78b0"
+      "system": "System#e314",
+      "lock": "Lock#051c",
+      "global": "Global#803d",
+      "hysteresis": "Hysteresis#78b0",
+      "state": "State#4d58"
     }
   }
 }
@@ -18409,7 +17491,7 @@
 
 ---
 
-## EjectionSeat#3f5e
+## EjectionSeat#ef8d
 
 ```json
 {
@@ -18430,62 +17512,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:EjectionSeat#mh:SHA-256:3f5e9aba54a95361da1bd2e8bd7238a50a6a27f14becd4e49264c74d113bf6bf",
-  "sema_ref": "EjectionSeat#3f5e",
-  "sema_stub": "3f5e",
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:ef8d130d2b83256b01c3544548b56b475a70ff53fde619bd091587f628a2eb77",
+  "sema_ref": "EjectionSeat#ef8d",
+  "sema_stub": "ef8d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "compensate": "Compensate#2f1d",
+      "compensate": "Compensate#81a5",
       "signal": "Signal#f39d"
-    }
-  }
-}
-```
-
----
-
-## EphemeralTool#1c6b
-
-```json
-{
-  "handle": "EphemeralTool",
-  "mechanism": "Just-In-Time Compilation: {{agent}} writes and executes custom code tools for unique problems. It dynamically generates a single-use script and executes it via {{tool_invoke}} before scrubbing it from memory.",
-  "gloss": "Agents that are never limited by their pre-installed toolbelt.",
-  "failure_modes": [
-    "{{sandbox}} escapes.",
-    "Halting problem.",
-    "Bad code generation."
-  ],
-  "invariants": [
-    "{{state}} wiped after destruction",
-    "Tool exists only for duration of task"
-  ],
-  "preconditions": [
-    "{{task}} requiring specialized capability"
-  ],
-  "postconditions": [
-    "Capability instantiated then destroyed"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:EphemeralTool#mh:SHA-256:1c6b7afef01dd8056cf26d516b3a1e0295b471ab1f6a7a3b7651287caf28f602",
-  "sema_ref": "EphemeralTool#1c6b",
-  "sema_stub": "1c6b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "task": "Task#d9f9",
-      "tool_invoke": "ToolInvoke#cf0a",
-      "sandbox": "Sandbox#2be7",
-      "state": "State#4d58",
-      "agent": "Agent#cc24"
     }
   }
 }
@@ -18533,11 +17568,11 @@
   ],
   "dependencies": {
     "references": {
+      "context": "Context#510a",
       "optimize": "Optimize#3075",
-      "criteria": "Criteria#ef6b",
       "meta_check": "MetaCheck#a228",
       "loop": "Loop#fb2e",
-      "context": "Context#510a"
+      "criteria": "Criteria#ef6b"
     }
   }
 }
@@ -18564,7 +17599,7 @@
     "related": [
       "Plan#64f2",
       "Build#00f3",
-      "Rollout#d742"
+      "Rollout#54d7"
     ]
   },
   "sema_id": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
@@ -18626,7 +17661,7 @@
 
 ---
 
-## Expansive#ad2d
+## Expansive#c3b7
 
 ```json
 {
@@ -18637,7 +17672,7 @@
     "Transfer: Must operate outside training distribution."
   ],
   "signature": [
-    "Judge#b8ba(Value#3c5d)"
+    "Judge#d84f(Value#3c5d)"
   ],
   "_meta": {
     "layer": "Society",
@@ -18645,14 +17680,14 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:ad2d13d8dd381d371d93239e0b1c63176aa1126bbc96fc52ce12f392c10dbaf2",
-  "sema_ref": "Expansive#ad2d",
-  "sema_stub": "ad2d",
+  "sema_id": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
+  "sema_ref": "Expansive#c3b7",
+  "sema_stub": "c3b7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "judge": "Judge#b8ba",
+      "judge": "Judge#d84f",
       "value": "Value#3c5d"
     }
   }
@@ -18689,8 +17724,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "bearer_token": "BearerToken#2fe9",
-      "decay": "Decay#a1d4"
+      "decay": "Decay#a1d4",
+      "bearer_token": "BearerToken#2fe9"
     }
   }
 }
@@ -18698,7 +17733,7 @@
 
 ---
 
-## FabricSharding#5914
+## FabricSharding#7399
 
 ```json
 {
@@ -18737,16 +17772,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:59148b0213b915c49e000a716c62af829a5f1c9bd192ae5bb6aaa788fd30aecd",
-  "sema_ref": "FabricSharding#5914",
-  "sema_stub": "5914",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b",
+  "sema_ref": "FabricSharding#7399",
+  "sema_stub": "7399",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "state": "State#4d58",
       "shard": "Shard#1e74",
-      "parallelize": "Parallelize#dac1",
-      "state": "State#4d58"
+      "parallelize": "Parallelize#d6b4"
     }
   }
 }
@@ -18779,7 +17814,7 @@
     {
       "name": "timeout_action",
       "type": "Enum",
-      "range": "{Reject, Retry#9e66, Fallback}",
+      "range": "{Reject, Retry#07b7, Fallback}",
       "description": "Default: Reject"
     }
   ],
@@ -18796,9 +17831,9 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "output_guard": "OutputGuard#eb44",
+      "circuit_breaker": "CircuitBreaker#4162",
       "system": "System#e314",
-      "circuit_breaker": "CircuitBreaker#4162"
+      "output_guard": "OutputGuard#eb44"
     }
   }
 }
@@ -18899,7 +17934,7 @@
 
 ---
 
-## Fermi#389d
+## Fermi#1e06
 
 ```json
 {
@@ -18933,15 +17968,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Fermi#mh:SHA-256:389ddee306aa2de7090a1e9014bacfa4fe2f2f9c9b3aa6c8a8ef8c39f1a60bc1",
-  "sema_ref": "Fermi#389d",
-  "sema_stub": "389d",
+  "sema_id": "sema:Fermi#mh:SHA-256:1e06d04bfff04954ad09852a7a4b1b583acc76c431dc926b4afe3cce5abfe210",
+  "sema_ref": "Fermi#1e06",
+  "sema_stub": "1e06",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "estimate": "Estimate#bb30",
-      "decompose": "Decompose#422f"
+      "decompose": "Decompose#ac56"
     }
   }
 }
@@ -18949,7 +17984,7 @@
 
 ---
 
-## FractalIntelligence#df09
+## FractalIntelligence#9b28
 
 ```json
 {
@@ -18971,30 +18006,29 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "FractalIntelligence#df09",
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:df09b597001e3e975150d888627cc798bca06da74bff4de85225a9ac8ddd11c8",
-  "sema_stub": "df09",
+  "sema_ref": "FractalIntelligence#9b28",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01",
+  "sema_stub": "9b28",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "composes_with": {
-      "cognitive_solver": "CognitiveSolver#4962",
-      "recursion_dive": "RecursionDive#6a5c",
-      "reason": "Reason#3f24",
-      "localized_learning": "LocalizedLearning#69bb",
-      "problem_framer": "ProblemFramer#f83d",
-      "reframe": "Reframe#ba00",
-      "state_snapshot": "StateSnapshot#01c9",
-      "marginal_value_rule": "MarginalValueRule#aea3",
-      "synthesis": "Synthesis#3252"
-    },
     "references": {
       "task": "Task#d9f9",
+      "specialize": "Specialize#0a09",
       "system": "System#e314",
       "strategy": "Strategy#47a4",
-      "universal_solver_tree": "UniversalSolverTree#64d8",
-      "experience_sharding": "ExperienceSharding#65cc",
-      "specialize": "Specialize#d968"
+      "universal_solver_tree": "UniversalSolverTree#f683",
+      "experience_sharding": "ExperienceSharding#d920"
+    },
+    "composes_with": {
+      "synthesis": "Synthesis#3252",
+      "marginal_value_rule": "MarginalValueRule#314d",
+      "reason": "Reason#3f24",
+      "problem_framer": "ProblemFramer#ecc1",
+      "reframe": "Reframe#ba00",
+      "recursion_dive": "RecursionDive#962f",
+      "localized_learning": "LocalizedLearning#69bb",
+      "cognitive_solver": "CognitiveSolver#42e5"
     }
   }
 }
@@ -19054,10 +18088,10 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "constraint": "Constraint#87fe",
       "spec": "Spec#436e",
       "artifact": "Artifact#6254",
-      "problem": "Problem#5baa",
-      "constraint": "Constraint#87fe"
+      "problem": "Problem#5baa"
     }
   }
 }
@@ -19065,7 +18099,7 @@
 
 ---
 
-## GenealogicalTrace#d178
+## GenealogicalTrace#7cf1
 
 ```json
 {
@@ -19085,64 +18119,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:d1786f8d92432962871f3a077e272ff47ca56fc6a7ba155d53ea0a905bef54f7",
-  "sema_ref": "GenealogicalTrace#d178",
-  "sema_stub": "d178",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f",
+  "sema_ref": "GenealogicalTrace#7cf1",
+  "sema_stub": "7cf1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "deep": "Deep#89f0",
-      "trace_belief": "TraceBelief#5334",
-      "cite_back": "CiteBack#1af3",
-      "context": "Context#510a"
-    }
-  }
-}
-```
-
----
-
-## GhostTrail#91ae
-
-```json
-{
-  "handle": "GhostTrail",
-  "mechanism": "A stigmergic {{protocol}} where environmental {{trace}}s (pheromones) are cryptographically signed by a Ring Signature. This proves that a {{trace}} was left by a valid member of the Scout group without revealing the specific {{agent}}'s {{identity}} or location history. The swarm follows the {{trace}} because it verifies the Group Authority, but no predator can track the individual Scout who laid it. It secures the {{trace}} with {{identity_mask}}, ensuring the signature validates group membership without revealing the individual scout.",
-  "gloss": "Cryptographically verified anonymous stigmergy",
-  "failure_modes": [
-    "Sybil Ring: If the anonymous group is infiltrated by enough adversaries, they can flood the environment with fake (but validly signed) trails."
-  ],
-  "invariants": [
-    "Plausible Deniability: Probability(Signer = Agent_N) = 1/N",
-    "{{trace}} Authority: Verify({{trace}}, RingKey) == True"
-  ],
-  "preconditions": [
-    "Group Public Keys established",
-    "Shared environment (Canvas/Map)"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "related": [
-      "RingWitness#1038",
-      "TimeWarpLog#e409"
-    ],
-    "ring": 0
-  },
-  "sema_id": "sema:GhostTrail#mh:SHA-256:91ae8d7d1b3e4bd39696fc0583fae5f2238600d7a041e010374c7edc01732cd2",
-  "sema_ref": "GhostTrail#91ae",
-  "sema_stub": "91ae",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "trace": "Trace#9057",
-      "protocol": "Protocol#7e1c",
-      "identity_mask": "IdentityMask#f9a7",
-      "identity": "Identity#626c",
-      "agent": "Agent#cc24"
+      "context": "Context#510a",
+      "cite_back": "CiteBack#d09c",
+      "trace_belief": "TraceBelief#cee3",
+      "deep": "Deep#89f0"
     }
   }
 }
@@ -19167,7 +18154,8 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "caution": "Time-locked data cannot be accessed by any keyholder until expiry. Do not apply to mission-critical operational data without a separate emergency access path."
   },
   "sema_id": "sema:GlacialVault#mh:SHA-256:f521c96b7e3037f39724b9a723f707ec195074f3099f6b0db122271de96d5677",
   "sema_ref": "GlacialVault#f521",
@@ -19258,8 +18246,8 @@
   "dependencies": {
     "references": {
       "strategy": "Strategy#47a4",
-      "fail_closed": "FailClosed#ae79",
-      "message": "Message#f767"
+      "message": "Message#f767",
+      "fail_closed": "FailClosed#ae79"
     }
   }
 }
@@ -19267,7 +18255,7 @@
 
 ---
 
-## HackDetect#0846
+## HackDetect#105d
 
 ```json
 {
@@ -19297,17 +18285,17 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:HackDetect#mh:SHA-256:0846cad7015e648b050b08d13f2e036c99d8afbcdfa0492747bae6d62d0ebf37",
-  "sema_ref": "HackDetect#0846",
-  "sema_stub": "0846",
+  "sema_id": "sema:HackDetect#mh:SHA-256:105da91807253d1d7ab96a53bb46ab7f60e1cd3fa83cd78affc96e887951116e",
+  "sema_ref": "HackDetect#105d",
+  "sema_stub": "105d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "system": "System#e314",
+      "ejection_seat": "EjectionSeat#ef8d",
       "input_guard": "InputGuard#0770",
-      "ejection_seat": "EjectionSeat#3f5e",
-      "agent": "Agent#cc24",
-      "system": "System#e314"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -19315,7 +18303,7 @@
 
 ---
 
-## Handoff#2de0
+## Handoff#648a
 
 ```json
 {
@@ -19347,21 +18335,18 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:Handoff#mh:SHA-256:2de0a5c6841bc988cf1c9662e6916d9d32a710fd021e1c2402a33fd4504e3f08",
-  "sema_ref": "Handoff#2de0",
-  "sema_stub": "2de0",
+  "sema_id": "sema:Handoff#mh:SHA-256:648a58c900cb37b9321e4f35a6d06fd1e38d65ee9661f288d23aa567293d476e",
+  "sema_ref": "Handoff#648a",
+  "sema_stub": "648a",
   "dependencies": {
     "accepts": {
-      "responsibility": "Responsibility#b5bc",
-      "task": "Task#d9f9",
-      "context": "Context#510a"
-    },
-    "composes_with": {
-      "delegate": "Delegate#7dce"
+      "responsibility": "Responsibility#26e6",
+      "context": "Context#510a",
+      "task": "Task#d9f9"
     },
     "references": {
-      "state": "State#4d58",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "state": "State#4d58"
     }
   }
 }
@@ -19369,7 +18354,7 @@
 
 ---
 
-## HeldRelease#5b7a
+## HeldRelease#3ed6
 
 ```json
 {
@@ -19415,17 +18400,17 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:HeldRelease#mh:SHA-256:5b7a43f760dc439c0880f720faf1be428aa39a119e55a579d249aa264a38ee93",
-  "sema_ref": "HeldRelease#5b7a",
-  "sema_stub": "5b7a",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:3ed68df815a35cd4f70e51c3504036ced51f92529b82c4ac9bb4fa2e1d5c5436",
+  "sema_ref": "HeldRelease#3ed6",
+  "sema_stub": "3ed6",
   "dependencies": {
-    "accepts": {
-      "unique_handle": "UniqueHandle#6879"
-    },
     "references": {
-      "condition": "Condition#cbd5",
       "state": "State#4d58",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "condition": "Condition#cbd5"
+    },
+    "accepts": {
+      "unique_handle": "UniqueHandle#9a00"
     }
   }
 }
@@ -19433,7 +18418,7 @@
 
 ---
 
-## IdempotentWrite#15e8
+## IdempotentWrite#9b95
 
 ```json
 {
@@ -19458,19 +18443,19 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "UniqueHandle#6879"
+      "UniqueHandle#9a00"
     ],
     "ring": 0
   },
-  "sema_id": "sema:IdempotentWrite#mh:SHA-256:15e8ae521f88a6137d551fd3c61e350e4a027b6b063a35ade4565adfee83c14a",
-  "sema_ref": "IdempotentWrite#15e8",
-  "sema_stub": "15e8",
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:9b95e06ae2e4eec89639328bae9c7988f4b5873ff676a1a5f040bf73373e7857",
+  "sema_ref": "IdempotentWrite#9b95",
+  "sema_stub": "9b95",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state_lock": "StateLock#7859",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "state_lock": "StateLock#b91b"
     }
   }
 }
@@ -19478,7 +18463,7 @@
 
 ---
 
-## IdentityHandshake#7a20
+## IdentityHandshake#3a33
 
 ```json
 {
@@ -19493,97 +18478,21 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:7a20ef5a5e26b921795d01365b68115c87d9a88bae3096f7cc7a801b0c005fc5",
-  "sema_ref": "IdentityHandshake#7a20",
-  "sema_stub": "7a20",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:3a336d82fa7e2ee48ba131781e470179d64be0f70915687a6adcc65fff2c05a9",
+  "sema_ref": "IdentityHandshake#3a33",
+  "sema_stub": "3a33",
   "signature": [
     "Discover#afa1(Identity#626c)"
   ],
   "dependencies": {
     "references": {
-      "spectral_tune": "SpectralTune#6c65",
-      "mode": "Mode#b995",
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "nature": "Nature#6c1a",
+      "identity": "Identity#626c",
+      "mode": "Mode#53e0",
       "check": "Check#1544",
+      "spectral_tune": "SpectralTune#6c65",
+      "ontology_handshake": "OntologyHandshake#ead0",
       "discover": "Discover#afa1",
-      "identity": "Identity#626c"
-    }
-  }
-}
-```
-
----
-
-## IdentityMask#f9a7
-
-```json
-{
-  "handle": "IdentityMask",
-  "mechanism": "Agents generate a new cryptographic identity (keypair) for every single interaction or session. These identities are mathematically linked to a root identity via Zero-Knowledge proofs, allowing reputation to accrue without linking activities publicly. It allows for reputation without correlation, using {{negative_proof}} to validate membership and {{crypto_shred}} to unlink the session key.",
-  "gloss": "Disposable personas for privacy",
-  "failure_modes": [
-    "Key management complexity."
-  ],
-  "invariants": [
-    "Sybil Resistance: One mask per physical staked entity",
-    "Unlinkability: NewID cannot be correlated to OldID"
-  ],
-  "preconditions": [
-    "Zero-Knowledge Mixer available"
-  ],
-  "postconditions": [
-    "New identity active"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1
-  },
-  "sema_id": "sema:IdentityMask#mh:SHA-256:f9a7dad03253207e14124a8cba4c80fa5fec7195b26dd12573bf7af2db020279",
-  "sema_ref": "IdentityMask#f9a7",
-  "sema_stub": "f9a7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "negative_proof": "NegativeProof#40a6",
-      "crypto_shred": "CryptoShred#e0b9"
-    }
-  }
-}
-```
-
----
-
-## ImaginaryHistorian#f818
-
-```json
-{
-  "handle": "ImaginaryHistorian",
-  "mechanism": "Macro for {{trace}}({{simulation}}). The agent generates a cryptographic trace of a simulated event sequence. This creates an immutable record of a 'future that didn't happen', enabling debugging and causal analysis of potential outcomes. It generates a verified {{trace}} of a {{mental_sim}}, creating an audit log for a counterfactual timeline. This record can be {{crypto_shred}}ded to deny its existence.",
-  "gloss": "Debugging possible futures",
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "sema_id": "sema:ImaginaryHistorian#mh:SHA-256:f818b4b64ef0c5dd06699742a86af741fd3cf8898372ba27ec78260778b1f858",
-  "sema_ref": "ImaginaryHistorian#f818",
-  "sema_stub": "f818",
-  "signature": [
-    "Trace#9057(Simulation#8035)"
-  ],
-  "dependencies": {
-    "references": {
-      "mental_sim": "MentalSim#1e28",
-      "simulation": "Simulation#8035",
-      "trace": "Trace#9057",
-      "crypto_shred": "CryptoShred#e0b9"
+      "nature": "Nature#6c1a"
     }
   }
 }
@@ -19663,12 +18572,12 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "artifact": "Artifact#6254",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "artifact": "Artifact#6254"
     },
     "composes_with": {
-      "check": "Check#1544",
-      "validate": "Validate#3de2"
+      "validate": "Validate#3de2",
+      "check": "Check#1544"
     }
   }
 }
@@ -19727,12 +18636,12 @@
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
+    "references": {
+      "check": "Check#1544",
+      "stream": "Stream#22f3"
+    },
     "accepts": {
       "message": "Message#f767"
-    },
-    "references": {
-      "stream": "Stream#22f3",
-      "check": "Check#1544"
     }
   }
 }
@@ -19740,7 +18649,7 @@
 
 ---
 
-## LatticeCommit#56ee
+## LatticeCommit#3c5d
 
 ```json
 {
@@ -19763,21 +18672,21 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "RootHashGossip#5f40"
+      "RootHashGossip#ba35"
     ],
     "ring": 0
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:56ee9ccc63ee18c8800066de71f4727ed77b74fcdb37ed597e2a7015a9f20521",
-  "sema_ref": "LatticeCommit#56ee",
-  "sema_stub": "56ee",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0",
+  "sema_ref": "LatticeCommit#3c5d",
+  "sema_stub": "3c5d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "state_transition": "StateTransition#3737",
       "topology": "Topology#2408",
-      "quorum": "Quorum#f67a",
-      "check": "Check#1544",
-      "state_transition": "StateTransition#3737"
+      "quorum": "Quorum#29b4",
+      "check": "Check#1544"
     }
   }
 }
@@ -19818,12 +18727,12 @@
     "Act#5d55(FeedbackSignal#f904)"
   ],
   "dependencies": {
+    "accepts": {
+      "feedback_signal": "FeedbackSignal#f904"
+    },
     "references": {
       "solver_manifest": "SolverManifest#67ac",
       "act": "Act#5d55"
-    },
-    "accepts": {
-      "feedback_signal": "FeedbackSignal#f904"
     }
   }
 }
@@ -19863,17 +18772,17 @@
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "optimize": "Optimize#3075",
-      "think": "Think#e1bd"
+      "think": "Think#e1bd",
+      "optimize": "Optimize#3075"
+    },
+    "yields": {
+      "execution_manifest": "ExecutionManifest#a0d9"
     },
     "accepts": {
       "frame_spec": "FrameSpec#d5b8"
     },
     "references": {
       "plan": "Plan#64f2"
-    },
-    "yields": {
-      "execution_manifest": "ExecutionManifest#a0d9"
     }
   }
 }
@@ -19881,7 +18790,7 @@
 
 ---
 
-## MemeticSeed#f77b
+## MemeticSeed#491b
 
 ```json
 {
@@ -19904,19 +18813,20 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "caution": "Subsidized vocabulary adoption can bias downstream reasoning. Ensure propagated patterns are from a vetted, content-addressed source."
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:f77b494ab19acc3c810b7e5535a6d4f648e075d181d13f8748c7c8294c75291b",
-  "sema_ref": "MemeticSeed#f77b",
-  "sema_stub": "f77b",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:491b0bb4623d78df04ab196ef7809daa2fad14bccb130fcb9d2f0e8dffd485c3",
+  "sema_ref": "MemeticSeed#491b",
+  "sema_stub": "491b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "explain_beacon": "ExplainBeacon#6ced",
       "yield": "Yield#7eaf",
       "translation_proxy": "TranslationProxy#f0e0",
-      "agent": "Agent#cc24",
-      "explain_beacon": "ExplainBeacon#34b3"
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -19924,7 +18834,7 @@
 
 ---
 
-## MetaPrompt#af73
+## MetaPrompt#a606
 
 ```json
 {
@@ -19953,9 +18863,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:af733e898cd221286278bdafa1d045598b82a7413a6adeb67521aebedce202b6",
-  "sema_ref": "MetaPrompt#af73",
-  "sema_stub": "af73",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:a60668b9460c39064cec2e6b4a87e6f4d92e4164927ba453f3cf4ecdb7622f43",
+  "sema_ref": "MetaPrompt#a606",
+  "sema_stub": "a606",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -19963,10 +18873,10 @@
   ],
   "dependencies": {
     "references": {
+      "meta": "Meta#90f4",
       "task": "Task#d9f9",
       "prompt": "Prompt#5ded",
-      "meta": "Meta#90f4",
-      "prompt_chain": "PromptChain#be30"
+      "prompt_chain": "PromptChain#4ad5"
     }
   }
 }
@@ -19974,7 +18884,7 @@
 
 ---
 
-## ModestClaim#a257
+## ModestClaim#f6e6
 
 ```json
 {
@@ -20001,19 +18911,19 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:ModestClaim#mh:SHA-256:a257e1318e9ba89e290893692bb9745712457fdbfa45bb99f4e58e00349c6277",
-  "sema_ref": "ModestClaim#a257",
-  "sema_stub": "a257",
+  "sema_id": "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb",
+  "sema_ref": "ModestClaim#f6e6",
+  "sema_stub": "f6e6",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa",
-      "system": "System#e314",
-      "reframe": "Reframe#ba00",
       "identity": "Identity#626c",
       "epistemic_calibrate": "EpistemicCalibrate#6069",
-      "agent": "Agent#cc24"
+      "system": "System#e314",
+      "problem": "Problem#5baa",
+      "agent": "Agent#aaec",
+      "reframe": "Reframe#ba00"
     }
   }
 }
@@ -20072,7 +18982,7 @@
 
 ---
 
-## MonotonicCounter#3a12
+## MonotonicCounter#4096
 
 ```json
 {
@@ -20098,14 +19008,14 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:MonotonicCounter#mh:SHA-256:3a1201d0c954088c016b8d5ac039fd29d491bb158e865f1ea0b634bf073dfc1f",
-  "sema_ref": "MonotonicCounter#3a12",
-  "sema_stub": "3a12",
+  "sema_id": "sema:MonotonicCounter#mh:SHA-256:40968470b9f8326f0171ebdc2ca7253982dc677e69aedfec61957a4ea5489131",
+  "sema_ref": "MonotonicCounter#4096",
+  "sema_stub": "4096",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state_lock": "StateLock#7859",
+      "state_lock": "StateLock#b91b",
       "value": "Value#3c5d"
     }
   }
@@ -20114,7 +19024,7 @@
 
 ---
 
-## Nucleate#8550
+## Nucleate#32c0
 
 ```json
 {
@@ -20143,17 +19053,16 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Nucleate#mh:SHA-256:8550f88958a49031016edba372e7d5350a5b52afcd9dd1312378d60dd2c52f34",
-  "sema_ref": "Nucleate#8550",
-  "sema_stub": "8550",
+  "sema_id": "sema:Nucleate#mh:SHA-256:32c03e8bf26291ab9297e0fad910d8ffdd470c4d40d90e2482abd4c0372435a7",
+  "sema_ref": "Nucleate#32c0",
+  "sema_stub": "32c0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "crystallize": "Crystallize#e848",
-      "trace": "Trace#9057",
       "system": "System#e314",
-      "rally": "Rally#b6ca"
+      "trace": "Trace#9057",
+      "rally": "Rally#c284"
     }
   }
 }
@@ -20207,7 +19116,7 @@
 
 ---
 
-## OptimisticSolver#0e2e
+## OptimisticSolver#0074
 
 ```json
 {
@@ -20232,22 +19141,22 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "OptimisticSolver#0e2e",
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:0e2edb38b8469329a7c4cb40c08c87c590f0f37ae17f34e5d6b5477964ef340e",
-  "sema_stub": "0e2e",
+  "sema_ref": "OptimisticSolver#0074",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8",
+  "sema_stub": "0074",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "compensate": "Compensate#2f1d",
+      "compensate": "Compensate#81a5",
+      "atomic_bid": "AtomicBid#cc36",
       "reflexion": "Reflexion#51b9",
-      "compute_budget": "ComputeBudget#3b98",
-      "atomic_bid": "AtomicBid#15a1"
+      "compute_budget": "ComputeBudget#3b98"
     },
     "references": {
-      "parallel": "Parallel#6272",
-      "rigorous_solver": "RigorousSolver#151a",
-      "cognitive_solver": "CognitiveSolver#4962"
+      "cognitive_solver": "CognitiveSolver#42e5",
+      "rigorous_solver": "RigorousSolver#f041",
+      "parallel": "Parallel#6272"
     }
   }
 }
@@ -20255,7 +19164,7 @@
 
 ---
 
-## Oracle#45e5
+## Oracle#1537
 
 ```json
 {
@@ -20266,9 +19175,9 @@
     "Non-Interference: The Oracle reports on reality but does not alter it.",
     "Consistency: Answers to the same query at the same time must be identical."
   ],
-  "sema_id": "sema:Oracle#mh:SHA-256:45e5ab8c062bb4acc74eb83dedc96772014b28cc2203519199fbac0dd1f944e4",
-  "sema_ref": "Oracle#45e5",
-  "sema_stub": "45e5",
+  "sema_id": "sema:Oracle#mh:SHA-256:1537b697dabd1dcda5ae750a5e90a58fe151c322522f511a0b0c26ceb38d6ca3",
+  "sema_ref": "Oracle#1537",
+  "sema_stub": "1537",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -20279,7 +19188,7 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "held_release": "HeldRelease#5b7a"
+      "held_release": "HeldRelease#3ed6"
     }
   }
 }
@@ -20287,7 +19196,7 @@
 
 ---
 
-## OrchestrationLoop#0144
+## OrchestrationLoop#f6f4
 
 ```json
 {
@@ -20314,26 +19223,26 @@
       "LayeredCheck#3fad"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:0144358c7efa0565bb99fc53eb6e5ee9939ff81a8c09ce03dd9125aaa8a4af18",
-  "sema_ref": "OrchestrationLoop#0144",
-  "sema_stub": "0144",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e",
+  "sema_ref": "OrchestrationLoop#f6f4",
+  "sema_stub": "f6f4",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Workflow#4ec6(Rollout#d742)"
+    "Workflow#c082(Rollout#54d7)"
   ],
   "dependencies": {
+    "references": {
+      "workflow": "Workflow#c082",
+      "rollout_manifest": "RolloutManifest#9e7f",
+      "frame_spec": "FrameSpec#d5b8",
+      "execution_manifest": "ExecutionManifest#a0d9",
+      "accept_spec": "AcceptSpec#70dd"
+    },
     "composes_with": {
-      "rollout": "Rollout#d742",
+      "rollout": "Rollout#54d7",
       "manifest_planning": "ManifestPlanning#8f61",
       "request_framing": "RequestFraming#0695"
-    },
-    "references": {
-      "accept_spec": "AcceptSpec#70dd",
-      "execution_manifest": "ExecutionManifest#a0d9",
-      "workflow": "Workflow#4ec6",
-      "frame_spec": "FrameSpec#d5b8",
-      "rollout_manifest": "RolloutManifest#9e7f"
     }
   }
 }
@@ -20341,12 +19250,12 @@
 
 ---
 
-## OsmoticFilter#4eb3
+## OsmoticFilter#36b5
 
 ```json
 {
   "handle": "OsmoticFilter",
-  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates. It requires a {{costly_signal}} to penetrate the membrane, using {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
+  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates. It uses {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
   "gloss": "Spam prevention via pressure thresholds",
   "failure_modes": [
     "Starvation of low-stake but high-importance messages (mitigated by Whitelist).",
@@ -20383,16 +19292,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:4eb3809154a6ebb825423e95c88caa5b0499fcccc83388fa99eb27df110fbb1e",
-  "sema_ref": "OsmoticFilter#4eb3",
-  "sema_stub": "4eb3",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:36b5f762c178f196095cc38a5183326ac9183a3fe351b4b3e9dfeb44a2fac587",
+  "sema_ref": "OsmoticFilter#36b5",
+  "sema_stub": "36b5",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "costly_signal": "CostlySignal#7fe2",
-      "canary": "Canary#3902",
-      "hysteresis": "Hysteresis#78b0"
+      "hysteresis": "Hysteresis#78b0",
+      "canary": "Canary#e78e"
     }
   }
 }
@@ -20400,7 +19308,7 @@
 
 ---
 
-## PatternEmergence#e47f
+## PatternEmergence#6b39
 
 ```json
 {
@@ -20430,21 +19338,21 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:e47f0fdc5b59c3de4669457f01fdf37d0bd4280b566bb4d48e14910efd19be91",
-  "sema_ref": "PatternEmergence#e47f",
-  "sema_stub": "e47f",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0",
+  "sema_ref": "PatternEmergence#6b39",
+  "sema_stub": "6b39",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "generalize": "Generalize#9313",
-      "signal": "Signal#f39d",
       "system": "System#e314",
-      "pattern_discovery": "PatternDiscovery#8178",
+      "mint_when_friction": "MintWhenFriction#d48d",
+      "agent": "Agent#aaec",
+      "uptake_as_ground": "UptakeAsGround#d5f3",
+      "generalize": "Generalize#17c9",
+      "signal": "Signal#f39d",
       "noise": "Noise#c4b4",
-      "uptake_as_ground": "UptakeAsGround#bf85",
-      "mint_when_friction": "MintWhenFriction#ce55",
-      "agent": "Agent#cc24"
+      "pattern_discovery": "PatternDiscovery#f667"
     }
   }
 }
@@ -20452,7 +19360,7 @@
 
 ---
 
-## PatternSketch#519b
+## PatternSketch#f8fd
 
 ```json
 {
@@ -20479,15 +19387,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:519bd7e685b5596b3091517ae269223f39a8354ff0a6569385c5d74b43caa32f",
-  "sema_ref": "PatternSketch#519b",
-  "sema_stub": "519b",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:f8fd94a51759adfbabbf38b704d132e010071b3aceb6b3e2378be9a0823336d2",
+  "sema_ref": "PatternSketch#f8fd",
+  "sema_stub": "f8fd",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "skeleton_of_thought": "SkeletonOfThought#f40a",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "skeleton_of_thought": "SkeletonOfThought#d99a"
     }
   }
 }
@@ -20495,7 +19403,7 @@
 
 ---
 
-## PermissionEscalate#5d67
+## PermissionEscalate#744f
 
 ```json
 {
@@ -20522,16 +19430,16 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:PermissionEscalate#mh:SHA-256:5d679cf53de921b8d7a577963214cefe6323f966340212d273fa58097336f4e6",
-  "sema_ref": "PermissionEscalate#5d67",
-  "sema_stub": "5d67",
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:744f4ce8439e69d9869b0fd5c260284e5f655861a97140d1487937165dc3deaa",
+  "sema_ref": "PermissionEscalate#744f",
+  "sema_stub": "744f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "human_approve": "HumanApprove#e64a",
-      "agent": "Agent#cc24",
-      "tiered_access": "TieredAccess#6d26"
+      "tiered_access": "TieredAccess#2a28",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -20539,7 +19447,7 @@
 
 ---
 
-## PhasedRefinement#9334
+## PhasedRefinement#4a90
 
 ```json
 {
@@ -20565,22 +19473,22 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "PhasedRefinement#9334",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:9334e01fd5b7b2c1abfeb3b05f53e8aeb4ba8036c23609d9a31b97dbbf7f5549",
-  "sema_stub": "9334",
+  "sema_ref": "PhasedRefinement#4a90",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab",
+  "sema_stub": "4a90",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
+    "references": {
+      "structural_coaching": "StructuralCoaching#3da9",
+      "artifact": "Artifact#6254",
+      "aesthetics": "Aesthetics#0be2",
+      "reason": "Reason#3f24"
+    },
     "composes_with": {
       "gate": "Gate#206d",
       "sequence": "Sequence#b0b8",
       "refine": "Refine#38d9"
-    },
-    "references": {
-      "reason": "Reason#3f24",
-      "structural_coaching": "StructuralCoaching#3da9",
-      "aesthetics": "Aesthetics#6b33",
-      "artifact": "Artifact#6254"
     }
   }
 }
@@ -20588,7 +19496,7 @@
 
 ---
 
-## PromiseGraph#972a
+## PromiseGraph#b71f
 
 ```json
 {
@@ -20609,9 +19517,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:PromiseGraph#mh:SHA-256:972a66dbaf3511ccfb1b4b3af8f716ff568231799289843a47e50be4bfa508b8",
-  "sema_ref": "PromiseGraph#972a",
-  "sema_stub": "972a",
+  "sema_id": "sema:PromiseGraph#mh:SHA-256:b71f80814ed80753cff7a03dc7b0969e1afafb207e0eef5edd5dcd74c1eb93ec",
+  "sema_ref": "PromiseGraph#b71f",
+  "sema_stub": "b71f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {
@@ -20662,9 +19570,9 @@
   },
   "dependencies": {
     "references": {
-      "negative_proof": "NegativeProof#40a6",
+      "agent": "Agent#aaec",
       "spot_audit": "SpotAudit#6673",
-      "agent": "Agent#cc24"
+      "negative_proof": "NegativeProof#5225"
     }
   }
 }
@@ -20672,7 +19580,7 @@
 
 ---
 
-## PromptChain#be30
+## PromptChain#4ad5
 
 ```json
 {
@@ -20691,7 +19599,7 @@
     {
       "name": "gate_mode",
       "type": "Enum",
-      "range": "{Strict, Retry#9e66, Skip}",
+      "range": "{Strict, Retry#07b7, Skip}",
       "description": "Behavior on failure"
     },
     {
@@ -20715,18 +19623,18 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:PromptChain#mh:SHA-256:be305ccb72fe325e21e0cc5725e4569f9d1f37e8b713f6b9a242ca448751dade",
-  "sema_ref": "PromptChain#be30",
-  "sema_stub": "be30",
+  "sema_id": "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008",
+  "sema_ref": "PromptChain#4ad5",
+  "sema_stub": "4ad5",
   "dependencies": {
     "references": {
-      "tool_invoke": "ToolInvoke#cf0a",
-      "sequence": "Sequence#b0b8",
-      "input_guard": "InputGuard#0770",
+      "retry": "Retry#07b7",
       "chain": "Chain#5711",
       "gate": "Gate#206d",
-      "accept_spec": "AcceptSpec#70dd",
-      "retry": "Retry#9e66"
+      "sequence": "Sequence#b0b8",
+      "tool_invoke": "ToolInvoke#cf0a",
+      "input_guard": "InputGuard#0770",
+      "accept_spec": "AcceptSpec#70dd"
     },
     "accepts": {
       "task": "Task#d9f9"
@@ -20737,7 +19645,7 @@
 
 ---
 
-## PropheticQuorum#21f7
+## PropheticQuorum#c5d8
 
 ```json
 {
@@ -20774,26 +19682,26 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "Quorum#f67a",
-      "SimulationTrace#1bc5",
-      "RegimeSense#6e3a"
+      "Quorum#29b4",
+      "SimulationTrace#096e",
+      "RegimeSense#3e24"
     ],
     "ring": 1
   },
-  "sema_id": "sema:PropheticQuorum#mh:SHA-256:21f781d202c265358c7d00facabaab602cdaae8d95c19e1188859807bde01f44",
-  "sema_ref": "PropheticQuorum#21f7",
-  "sema_stub": "21f7",
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:c5d889696c7dab154033eb64aa8858bdd88171cfb5d45a85dbbe806b7f1d8641",
+  "sema_ref": "PropheticQuorum#c5d8",
+  "sema_stub": "c5d8",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "simulation_trace": "SimulationTrace#096e",
+      "vote": "Vote#05a7",
       "simulation": "Simulation#8035",
-      "normative_judge": "NormativeJudge#a214",
-      "state": "State#4d58",
-      "vote": "Vote#cae4",
-      "simulation_trace": "SimulationTrace#1bc5",
       "check": "Check#1544",
-      "value": "Value#3c5d"
+      "state": "State#4d58",
+      "value": "Value#3c5d",
+      "normative_judge": "NormativeJudge#2316"
     }
   }
 }
@@ -20801,7 +19709,7 @@
 
 ---
 
-## Proprioception#c9bb
+## Proprioception#2fbf
 
 ```json
 {
@@ -20836,19 +19744,19 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:c9bb0e902eb672f0ac84066a1870c010b74cc68fbffc4bc2d3c841b1dbd2c56c",
-  "sema_ref": "Proprioception#c9bb",
-  "sema_stub": "c9bb",
+  "sema_id": "sema:Proprioception#mh:SHA-256:2fbfba79d07478050b86020f08cb42f18c93e896052dccba0311db0168b549a0",
+  "sema_ref": "Proprioception#2fbf",
+  "sema_stub": "2fbf",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "somatic_marker": "SomaticMarker#84e4",
       "task": "Task#d9f9",
       "trace": "Trace#9057",
-      "state": "State#4d58",
-      "somatic_marker": "SomaticMarker#84e4",
       "context": "Context#510a",
-      "agent": "Agent#cc24"
+      "agent": "Agent#aaec",
+      "state": "State#4d58"
     }
   }
 }
@@ -20906,7 +19814,7 @@
 
 ---
 
-## QuorumPulse#abc8
+## QuorumPulse#2c18
 
 ```json
 {
@@ -20934,16 +19842,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:QuorumPulse#mh:SHA-256:abc8db906b1c09597b0efba1b13519dfe7d9a0a95b609df067456db3de944f0c",
-  "sema_ref": "QuorumPulse#abc8",
-  "sema_stub": "abc8",
+  "sema_id": "sema:QuorumPulse#mh:SHA-256:2c18907e5670bc0e5eff0a26fceee4ae5f5faac5fbb1b086ceb2dd17e015b13a",
+  "sema_ref": "QuorumPulse#2c18",
+  "sema_stub": "2c18",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "quorum": "Quorum#f67a",
+      "heartbeat": "Heartbeat#7f88",
       "signal": "Signal#f39d",
-      "heartbeat": "Heartbeat#4ddc",
+      "quorum": "Quorum#29b4",
       "state": "State#4d58"
     }
   }
@@ -20952,7 +19860,7 @@
 
 ---
 
-## Realizable#199e
+## Realizable#cf00
 
 ```json
 {
@@ -20960,7 +19868,7 @@
   "gloss": "Evaluates execution feasibility of a plan",
   "mechanism": "Acts as a {{judge}} to evaluate the {{value}} and feasibility of a {{plan}}. Classifies the execution path into three qualitative states: (1) Magical: Relies on undefined {{step}}s or unavailable physics. (2) Uncertain: The dependency chain is clear, but specific links are unverified. (3) Coherent: Every {{step}} maps to a known primitive or realizable sub-component.",
   "signature": [
-    "Judge#b8ba(Value#3c5d)"
+    "Judge#d84f(Value#3c5d)"
   ],
   "invariants": [
     "Causality: No step can precede its dependencies.",
@@ -20976,17 +19884,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_ref": "Realizable#199e",
-  "sema_id": "sema:Realizable#mh:SHA-256:199e1de94d8abb8ff3786e1b025039b64517443d26680699b9bd4f7e8cf9baf2",
-  "sema_stub": "199e",
+  "sema_ref": "Realizable#cf00",
+  "sema_id": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
+  "sema_stub": "cf00",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "judge": "Judge#b8ba",
-      "plan": "Plan#64f2",
+      "judge": "Judge#d84f",
       "step": "Step#5f22",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "plan": "Plan#64f2"
     }
   }
 }
@@ -20994,7 +19902,7 @@
 
 ---
 
-## RealizationProtocol#b477
+## RealizationProtocol#2459
 
 ```json
 {
@@ -21027,25 +19935,25 @@
     "tier": 2
   },
   "signature": [
-    "SolverTree#496e(Outcome#38e0)"
+    "SolverTree#84e2(Outcome#38e0)"
   ],
-  "sema_ref": "RealizationProtocol#b477",
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:b47747d471756b93236a056095a5232a042f54eec5f15b0fcacf9ba302fbe3b1",
-  "sema_stub": "b477",
+  "sema_ref": "RealizationProtocol#2459",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:24593e1b30dd1203d7c0bb73bf88e7687c24ef486e3d6c6ae5a4c34621981a3a",
+  "sema_stub": "2459",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "rollout": "Rollout#d742",
       "interpret": "Interpret#c9ee",
+      "rollout": "Rollout#54d7",
       "manifest_planning": "ManifestPlanning#8f61"
     },
     "references": {
-      "realizable": "Realizable#199e",
-      "solver_tree": "SolverTree#496e",
-      "execution_manifest": "ExecutionManifest#a0d9",
-      "cognitive_solver": "CognitiveSolver#4962",
-      "frame_spec": "FrameSpec#d5b8"
+      "realizable": "Realizable#cf00",
+      "cognitive_solver": "CognitiveSolver#42e5",
+      "frame_spec": "FrameSpec#d5b8",
+      "solver_tree": "SolverTree#84e2",
+      "execution_manifest": "ExecutionManifest#a0d9"
     },
     "yields": {
       "outcome": "Outcome#38e0"
@@ -21091,7 +19999,7 @@
     "ring": 1,
     "related": [
       "Reframe#ba00",
-      "Decompose#422f"
+      "Decompose#ac56"
     ]
   },
   "sema_ref": "RequestFraming#0695",
@@ -21104,8 +20012,8 @@
       "frame_spec": "FrameSpec#d5b8"
     },
     "composes_with": {
-      "think": "Think#e1bd",
-      "understand": "Understand#96d4"
+      "understand": "Understand#96d4",
+      "think": "Think#e1bd"
     },
     "references": {
       "context": "Context#510a",
@@ -21182,8 +20090,8 @@
   ],
   "dependencies": {
     "references": {
-      "reversibility": "Reversibility#049f",
       "world_reversible": "WorldReversible#f664",
+      "reversibility": "Reversibility#049f",
       "human_approve": "HumanApprove#e64a",
       "check": "Check#1544"
     }
@@ -21229,7 +20137,7 @@
 
 ---
 
-## Rollout#d742
+## Rollout#54d7
 
 ```json
 {
@@ -21260,31 +20168,32 @@
     "ring": 1,
     "related": [
       "BlueGreen"
-    ]
+    ],
+    "caution": "Progressive deployment with circuit breaking. Ensure rollback is tested and functional before autonomous rollout in production."
   },
-  "sema_id": "sema:Rollout#mh:SHA-256:d7420d9c37fb35ab8880189864c63dd1e09fa1371f0e65d65df8d00cc75ebf23",
-  "sema_ref": "Rollout#d742",
-  "sema_stub": "d742",
+  "sema_id": "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb",
+  "sema_ref": "Rollout#54d7",
+  "sema_stub": "54d7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
     "Act#5d55(ExecutionManifest#a0d9)"
   ],
   "dependencies": {
-    "composes_with": {
-      "ejection_seat": "EjectionSeat#3f5e",
-      "compensate": "Compensate#2f1d",
-      "canary": "Canary#3902",
-      "circuit_breaker": "CircuitBreaker#4162"
-    },
     "references": {
-      "manifest_planning": "ManifestPlanning#8f61",
-      "act": "Act#5d55",
-      "state": "State#4d58",
       "system": "System#e314",
-      "build": "Build#00f3",
+      "state": "State#4d58",
+      "manifest_planning": "ManifestPlanning#8f61",
       "world_reversible": "WorldReversible#f664",
+      "act": "Act#5d55",
+      "build": "Build#00f3",
       "spec": "Spec#436e"
+    },
+    "composes_with": {
+      "compensate": "Compensate#81a5",
+      "ejection_seat": "EjectionSeat#ef8d",
+      "canary": "Canary#e78e",
+      "circuit_breaker": "CircuitBreaker#4162"
     },
     "accepts": {
       "execution_manifest": "ExecutionManifest#a0d9"
@@ -21316,7 +20225,7 @@
     "ring": 0,
     "tier": 1,
     "related": [
-      "Rollout#d742"
+      "Rollout#54d7"
     ]
   },
   "sema_id": "sema:RolloutManifest#mh:SHA-256:9e7fe2b3bcd73879f8f55164530c8f5e6773a39b9719cfaca8dce18452ac1463",
@@ -21391,7 +20300,7 @@
     "ring": 1,
     "related": [
       "SpotAudit#6673",
-      "DriftWatch#45de",
+      "DriftWatch#a20d",
       "Reflexion#51b9"
     ]
   },
@@ -21402,17 +20311,17 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
+      "solution": "Solution#7186",
       "system": "System#e314",
       "monitor": "Monitor#9a8f",
-      "solution": "Solution#7186"
-    },
-    "accepts": {
-      "rollout_manifest": "RolloutManifest#9e7f"
+      "state": "State#4d58"
     },
     "composes_with": {
       "observe": "Observe#8ebd",
       "loop": "Loop#fb2e"
+    },
+    "accepts": {
+      "rollout_manifest": "RolloutManifest#9e7f"
     },
     "yields": {
       "monitor_report": "MonitorReport#063c"
@@ -21423,12 +20332,12 @@
 
 ---
 
-## RootHashGossip#5f40
+## RootHashGossip#ba35
 
 ```json
 {
   "handle": "RootHashGossip",
-  "mechanism": "Information spreads like mycelium. Every agent re-transmitting a fact appends their signature to a 'root path'. Receivers trust the data based on the reputation of the path taken, not just the source. Allows filtering out gossip from 'bad neighborhoods'. It uses {{ring_witness}} to cryptographically sign the path, ensuring traceability without revealing the identity of every node.",
+  "mechanism": "Information spreads like mycelium. Every agent re-transmitting a fact appends their signature to a 'root path'. Receivers trust the data based on the reputation of the path taken, not just the source. Allows filtering out gossip from 'bad neighborhoods'.",
   "gloss": "Path-verified information spreading",
   "failure_modes": [
     "Path explosion (metadata overhead)."
@@ -21449,49 +20358,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:5f4030fac45e6910c5e88a6afe98d653c5c28d8999021be1783d698cc8154e08",
-  "sema_ref": "RootHashGossip#5f40",
-  "sema_stub": "5f40",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a",
+  "sema_ref": "RootHashGossip#ba35",
+  "sema_stub": "ba35",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "ring_witness": "RingWitness#1038",
       "loop": "Loop#fb2e"
-    }
-  }
-}
-```
-
----
-
-## SafetyCartographer#9bc4
-
-```json
-{
-  "handle": "SafetyCartographer",
-  "mechanism": "Macro for {{discover}}({{constraint}}). The agent actively probes its environment or internal safety filters with boundary-seeking inputs to map the limits of permissible action, rather than just checking if a single action is safe. It employs {{red_team}} tactics to {{discover}} failure modes, using {{boundary_probe}} to map the precise coordinates of the {{constraint}}.",
-  "gloss": "Mapping safety boundaries",
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:SafetyCartographer#mh:SHA-256:9bc4be4c215b4eb8a9dd29f83ad3b10553e74debfd03df0f1be717f76cc4cd7c",
-  "sema_ref": "SafetyCartographer#9bc4",
-  "sema_stub": "9bc4",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "signature": [
-    "Discover#afa1(Constraint#87fe)"
-  ],
-  "dependencies": {
-    "references": {
-      "constraint": "Constraint#87fe",
-      "red_team": "RedTeam#5134",
-      "discover": "Discover#afa1",
-      "boundary_probe": "BoundaryProbe#3c6b"
     }
   }
 }
@@ -21524,7 +20398,7 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "Route#6273"
+      "Route#9698"
     ],
     "ring": 1
   },
@@ -21535,8 +20409,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "global": "Global#803d"
+      "global": "Global#803d",
+      "check": "Check#1544"
     }
   }
 }
@@ -21544,7 +20418,7 @@
 
 ---
 
-## SignalReflection#0b8c
+## SignalReflection#aac2
 
 ```json
 {
@@ -21570,16 +20444,16 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:SignalReflection#mh:SHA-256:0b8c5e666668635b64ecebab88c01900ac49a24b00aa97b8d03443a90b492ef5",
-  "sema_ref": "SignalReflection#0b8c",
-  "sema_stub": "0b8c",
+  "sema_id": "sema:SignalReflection#mh:SHA-256:aac2c4b3fbc861b911c232b754116f4a56085e25dfd61c7ff6bb193b359578d0",
+  "sema_ref": "SignalReflection#aac2",
+  "sema_stub": "aac2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "spectral_tune": "SpectralTune#6c65",
-      "agent": "Agent#cc24",
-      "message": "Message#f767"
+      "message": "Message#f767",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -21587,7 +20461,7 @@
 
 ---
 
-## SimulationTrace#1bc5
+## SimulationTrace#096e
 
 ```json
 {
@@ -21630,14 +20504,14 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:SimulationTrace#mh:SHA-256:1bc5ce892c33fe0da334ebe253a27afbf94965f03112c08aff5af743d657e5c2",
-  "sema_ref": "SimulationTrace#1bc5",
-  "sema_stub": "1bc5",
+  "sema_id": "sema:SimulationTrace#mh:SHA-256:096eee69576638b38a5595613c41f79ae093e1036bdb70cd852edf65c42eead3",
+  "sema_ref": "SimulationTrace#096e",
+  "sema_stub": "096e",
   "dependencies": {
     "references": {
-      "mental_sim": "MentalSim#1e28",
+      "trace": "Trace#9057",
       "simulation": "Simulation#8035",
-      "trace": "Trace#9057"
+      "mental_sim": "MentalSim#7212"
     }
   }
 }
@@ -21724,8 +20598,8 @@
   },
   "dependencies": {
     "references": {
-      "solver": "Solver#1c9b",
-      "constraint": "Constraint#87fe"
+      "constraint": "Constraint#87fe",
+      "solver": "Solver#1c9b"
     }
   }
 }
@@ -21733,7 +20607,7 @@
 
 ---
 
-## SolverNode#beef
+## SolverNode#058e
 
 ```json
 {
@@ -21785,19 +20659,19 @@
       }
     }
   },
-  "sema_ref": "SolverNode#beef",
-  "sema_id": "sema:SolverNode#mh:SHA-256:beefcfc23d5a4377802e8a9f43e9b4bf5369b18fcfe52571d1f028c4ebc51bd7",
-  "sema_stub": "beef",
+  "sema_ref": "SolverNode#058e",
+  "sema_id": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+  "sema_stub": "058e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "solver_manifest": "SolverManifest#67ac",
-      "localized_learning": "LocalizedLearning#69bb",
-      "problem_space": "ProblemSpace#78da",
       "solution": "Solution#7186",
+      "localized_learning": "LocalizedLearning#69bb",
+      "responsibility": "Responsibility#26e6",
+      "solver_manifest": "SolverManifest#67ac",
       "budget": "Budget#a763",
-      "responsibility": "Responsibility#b5bc"
+      "problem_space": "ProblemSpace#78da"
     }
   }
 }
@@ -21822,7 +20696,7 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "Proprioception#c9bb"
+      "Proprioception#2fbf"
     ],
     "ring": 2
   },
@@ -21843,7 +20717,7 @@
 
 ---
 
-## SourceEvaluate#b847
+## SourceEvaluate#ceb1
 
 ```json
 {
@@ -21862,19 +20736,19 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:SourceEvaluate#mh:SHA-256:b847e556c70226d42b50ef6b197d9473037bb11d30ef9b2fa2aed641ebdfe232",
-  "sema_ref": "SourceEvaluate#b847",
-  "sema_stub": "b847",
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:ceb14e641fee7940e36ad6c28b096bcf8bf90b50bee79a243d2b8eba788f0ba7",
+  "sema_ref": "SourceEvaluate#ceb1",
+  "sema_stub": "ceb1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Judge#b8ba(Agent#cc24)"
+    "Judge#d84f(Agent#aaec)"
   ],
   "dependencies": {
     "references": {
-      "judge": "Judge#b8ba",
-      "cite_back": "CiteBack#1af3",
-      "agent": "Agent#cc24"
+      "judge": "Judge#d84f",
+      "agent": "Agent#aaec",
+      "cite_back": "CiteBack#d09c"
     }
   }
 }
@@ -21947,12 +20821,12 @@
 
 ---
 
-## StateSnapshot#01c9
+## StateSnapshot#17a5
 
 ```json
 {
   "handle": "StateSnapshot",
-  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{crypto_shred}}, {{idempotent_write}}.",
+  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{idempotent_write}}.",
   "gloss": "Durable persistence of volatile state",
   "invariants": [
     "Atomicity: {{snapshot}} is either fully written or discarded (no partial corruption)",
@@ -21971,20 +20845,19 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:01c99fd1a5b7fe33a7065bfddcce746f76ecb2f2737cdd578801903cb7f1e990",
-  "sema_ref": "StateSnapshot#01c9",
-  "sema_stub": "01c9",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "State#4d58(Snapshot#0ae9)"
   ],
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:17a545e1632273e11d37315e7ad7e7e355c38bb6decf379ce9091129f80a06f9",
+  "sema_ref": "StateSnapshot#17a5",
+  "sema_stub": "17a5",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "trace": "Trace#9057",
+      "idempotent_write": "IdempotentWrite#9b95",
       "state": "State#4d58",
-      "idempotent_write": "IdempotentWrite#15e8",
-      "crypto_shred": "CryptoShred#e0b9",
       "snapshot": "Snapshot#0ae9"
     }
   }
@@ -22027,8 +20900,8 @@
   "dependencies": {
     "references": {
       "creative": "Creative#5574",
-      "invert": "Invert#d1b9",
       "feedback": "Feedback#9b5c",
+      "invert": "Invert#d1b9",
       "critique": "Critique#3e00"
     }
   }
@@ -22037,7 +20910,7 @@
 
 ---
 
-## StyleSpec#0c63
+## StyleSpec#ec7b
 
 ```json
 {
@@ -22045,7 +20918,7 @@
   "mechanism": "A structured {{spec}} defining the required {{aesthetics}} and formatting rules. It serves as the reference standard for passes in a {{phased_refinement}} loop focused on polish. Unlike functional requirements, this spec targets the subjective and presentational layer.",
   "gloss": "Codified aesthetic standards",
   "signature": [
-    "Spec#436e(Aesthetics#6b33)"
+    "Spec#436e(Aesthetics#0be2)"
   ],
   "_meta": {
     "layer": "Society",
@@ -22071,16 +20944,16 @@
       }
     }
   },
-  "sema_ref": "StyleSpec#0c63",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:0c63c7dadeca0f997b0ef39f6c40c9b69cfdcb9f49ad2fb535cff972c21f31c2",
-  "sema_stub": "0c63",
+  "sema_ref": "StyleSpec#ec7b",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
+  "sema_stub": "ec7b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "spec": "Spec#436e",
-      "phased_refinement": "PhasedRefinement#9334",
-      "aesthetics": "Aesthetics#6b33"
+      "aesthetics": "Aesthetics#0be2",
+      "phased_refinement": "PhasedRefinement#4a90"
     }
   }
 }
@@ -22088,7 +20961,7 @@
 
 ---
 
-## SynergisticMode#e8be
+## SynergisticMode#7985
 
 ```json
 {
@@ -22137,20 +21010,20 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:e8bea728fb51a8ca4001045dd06875527d1f52371bd1b0659a23093981eb4a6b",
-  "sema_ref": "SynergisticMode#e8be",
-  "sema_stub": "e8be",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:7985e5ea5240d2fb0824c435f505c4a8f6e25b6b0c7561d49f8f68faabb3b167",
+  "sema_ref": "SynergisticMode#7985",
+  "sema_stub": "7985",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "mode": "Mode#b995",
-      "signal": "Signal#f39d",
+      "mode": "Mode#53e0",
       "system": "System#e314",
+      "agent": "Agent#aaec",
       "ontology_handshake": "OntologyHandshake#ead0",
-      "compose": "Compose#41f6",
-      "accept_spec": "AcceptSpec#70dd",
-      "agent": "Agent#cc24"
+      "compose": "Compose#4f8d",
+      "signal": "Signal#f39d",
+      "accept_spec": "AcceptSpec#70dd"
     }
   }
 }
@@ -22158,7 +21031,7 @@
 
 ---
 
-## Taper#bff8
+## Taper#2044
 
 ```json
 {
@@ -22199,20 +21072,20 @@
     "category": "Protocols",
     "tier": 1
   },
-  "sema_ref": "Taper#bff8",
-  "sema_id": "sema:Taper#mh:SHA-256:bff8bb6ee32c4f709ea2128ae6bcd6af688cd5145cc4af8f13639e3be4135a46",
-  "sema_stub": "bff8",
+  "sema_ref": "Taper#2044",
+  "sema_id": "sema:Taper#mh:SHA-256:2044ab29206db4b7235103a9f4a1fc6a0ba647fd31e1d6f420a1581e52845e4f",
+  "sema_stub": "2044",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "composes_with": {
-      "tri_gate": "TriGate#a30f",
-      "gate": "Gate#206d",
-      "sequence": "Sequence#b0b8"
-    },
     "references": {
       "compress": "Compress#0967",
-      "depth_governor": "DepthGovernor#a6f6"
+      "depth_governor": "DepthGovernor#5431"
+    },
+    "composes_with": {
+      "gate": "Gate#206d",
+      "sequence": "Sequence#b0b8",
+      "tri_gate": "TriGate#07fc"
     }
   }
 }
@@ -22220,7 +21093,7 @@
 
 ---
 
-## ThinSlice#4c34
+## ThinSlice#debb
 
 ```json
 {
@@ -22238,16 +21111,16 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:ThinSlice#mh:SHA-256:4c34bbb03a2da524d67565e0504d2ab1ed839cef474cb7981fdeda9081f96e8d",
-  "sema_ref": "ThinSlice#4c34",
-  "sema_stub": "4c34",
+  "sema_id": "sema:ThinSlice#mh:SHA-256:debb731893208ce6514504b1212e5d07cf60f1477f3c485b752a694822c3fb30",
+  "sema_ref": "ThinSlice#debb",
+  "sema_stub": "debb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "route": "Route#6273",
-      "extended_thinking": "ExtendedThinking#ca3c",
-      "somatic_marker": "SomaticMarker#84e4"
+      "somatic_marker": "SomaticMarker#84e4",
+      "route": "Route#9698",
+      "extended_thinking": "ExtendedThinking#ca3c"
     }
   }
 }
@@ -22301,7 +21174,7 @@
 
 ---
 
-## TieredAccess#6d26
+## TieredAccess#2a28
 
 ```json
 {
@@ -22343,18 +21216,18 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:TieredAccess#mh:SHA-256:6d26d30e575e16702798357b98281805a4a67885203caac3c7876ab7507239ad",
-  "sema_ref": "TieredAccess#6d26",
-  "sema_stub": "6d26",
+  "sema_id": "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
+  "sema_ref": "TieredAccess#2a28",
+  "sema_stub": "2a28",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
+    "references": {
+      "identity": "Identity#626c",
+      "agent": "Agent#aaec"
+    },
     "composes_with": {
       "bearer_token": "BearerToken#2fe9"
-    },
-    "references": {
-      "agent": "Agent#cc24",
-      "identity": "Identity#626c"
     }
   }
 }
@@ -22412,8 +21285,8 @@
     "references": {
       "work": "Work#aaad",
       "budget": "Budget#a763",
-      "constraint": "Constraint#87fe",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -22421,7 +21294,7 @@
 
 ---
 
-## ToolDiscovery#b509
+## ToolDiscovery#0ff1
 
 ```json
 {
@@ -22455,25 +21328,25 @@
     "ring": 1,
     "tier": 1,
     "related": [
-      "AgentDiscover#0892"
+      "AgentDiscover#d88a"
     ]
   },
-  "sema_ref": "ToolDiscovery#b509",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:b50940f28b3e2571c9d2a24fa391766d2fa3b06a6f99ff7f1b134ab99df756b6",
-  "sema_stub": "b509",
+  "sema_ref": "ToolDiscovery#0ff1",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:0ff16794954587c168bc694f00a723973be11ddfeb3a15c73770ab660bd439d8",
+  "sema_stub": "0ff1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
+      "agent": "Agent#aaec",
       "discover": "Discover#afa1",
-      "card": "Card#5c33",
-      "agent": "Agent#cc24"
+      "card": "Card#c9f0"
     },
     "composes_with": {
-      "compatibility_check": "CompatibilityCheck#3abb",
+      "fail_closed": "FailClosed#ae79",
       "tool_invoke": "ToolInvoke#cf0a",
-      "fail_closed": "FailClosed#ae79"
+      "compatibility_check": "CompatibilityCheck#3abb"
     },
     "yields": {
       "result": "Result#8ed9"
@@ -22484,7 +21357,7 @@
 
 ---
 
-## TraceBelief#5334
+## TraceBelief#cee3
 
 ```json
 {
@@ -22497,20 +21370,20 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:533499acf3ed3270a039dca18f66b170db485ddf56e47d72b68f770dce949da1",
-  "sema_ref": "TraceBelief#5334",
-  "sema_stub": "5334",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
+  "sema_ref": "TraceBelief#cee3",
+  "sema_stub": "cee3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Trace#9057(Belief#6690)"
+    "Trace#9057(Belief#5ad9)"
   ],
   "dependencies": {
     "references": {
-      "belief": "Belief#6690",
-      "time_warp_log": "TimeWarpLog#aa7a",
+      "time_warp_log": "TimeWarpLog#c609",
+      "belief": "Belief#5ad9",
       "trace": "Trace#9057",
-      "surprisal_update": "SurprisalUpdate#61cd"
+      "surprisal_update": "SurprisalUpdate#6ef1"
     }
   }
 }
@@ -22555,11 +21428,11 @@
   ],
   "dependencies": {
     "references": {
+      "translate": "Translate#e75d",
+      "message": "Message#f767",
       "compare": "Compare#4881",
       "ontology_handshake": "OntologyHandshake#ead0",
-      "translate": "Translate#e75d",
-      "protocol": "Protocol#7e1c",
-      "message": "Message#f767"
+      "protocol": "Protocol#7e1c"
     }
   }
 }
@@ -22567,7 +21440,7 @@
 
 ---
 
-## UniqueHandle#6879
+## UniqueHandle#9a00
 
 ```json
 {
@@ -22587,18 +21460,19 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "caution": "Ownership transfer is immediate and irreversible for the sender. Verify recipient liveness and authorization before transferring critical resources."
   },
-  "sema_id": "sema:UniqueHandle#mh:SHA-256:68791b2f756edd02f2710f7d4f55891ecab267df6373bd5048d997ee84f326eb",
-  "sema_ref": "UniqueHandle#6879",
-  "sema_stub": "6879",
+  "sema_id": "sema:UniqueHandle#mh:SHA-256:9a006e6fd1ca395b18fa7f17f95124c432b111f15cba24fcec039142a3ca539b",
+  "sema_ref": "UniqueHandle#9a00",
+  "sema_stub": "9a00",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state_lock": "StateLock#7859",
-      "agent": "Agent#cc24",
-      "break": "Break#9d98"
+      "state_lock": "StateLock#b91b",
+      "break": "Break#1a63",
+      "agent": "Agent#aaec"
     }
   }
 }
@@ -22606,7 +21480,7 @@
 
 ---
 
-## UptakeAsGround#bf85
+## UptakeAsGround#d5f3
 
 ```json
 {
@@ -22635,15 +21509,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:bf85a9c0007f86f2da7894e9d641b420a58bd189236ac8bbd907d349b08abf73",
-  "sema_ref": "UptakeAsGround#bf85",
-  "sema_stub": "bf85",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
+  "sema_ref": "UptakeAsGround#d5f3",
+  "sema_stub": "d5f3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "task": "Task#d9f9",
-      "modest_claim": "ModestClaim#a257"
+      "modest_claim": "ModestClaim#f6e6"
     }
   }
 }
@@ -22651,7 +21525,7 @@
 
 ---
 
-## UptakeOverTimestamp#fdb6
+## UptakeOverTimestamp#9f0f
 
 ```json
 {
@@ -22680,14 +21554,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:fdb60eb23d0437e0f29680b0503911c6643e629412b883d1dda9acb81903da0a",
-  "sema_ref": "UptakeOverTimestamp#fdb6",
-  "sema_stub": "fdb6",
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:9f0fffcbeef00cd271526bb7a2849998c76e242ed74d36d0058b1849379c57ab",
+  "sema_ref": "UptakeOverTimestamp#9f0f",
+  "sema_stub": "9f0f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "uptake_as_ground": "UptakeAsGround#bf85",
+      "uptake_as_ground": "UptakeAsGround#d5f3",
       "problem": "Problem#5baa"
     }
   }
@@ -22696,37 +21570,7 @@
 
 ---
 
-## VowOfSilence#138b
-
-```json
-{
-  "handle": "VowOfSilence",
-  "mechanism": "A negotiation tactic where the agent deliberately enforces {{silence}} (zero {{signal}} emission) in response to a stimulus. Unlike a timeout or failure, this is a strategic move to create an information vacuum, compelling the counterparty to provide additional {{context}} or concessions to re-initiate flow.",
-  "gloss": "Strategic withholding of signal to force counterparty disclosure",
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:VowOfSilence#mh:SHA-256:138b1c8ff5f1663ead9cb1083d22fe90ca2b723cda0d0177cbd005547dd96cb3",
-  "sema_ref": "VowOfSilence#138b",
-  "sema_stub": "138b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "context": "Context#510a",
-      "signal": "Signal#f39d",
-      "silence": "Silence#dd79"
-    }
-  }
-}
-```
-
----
-
-## Warmup#fc59
+## Warmup#28c4
 
 ```json
 {
@@ -22774,16 +21618,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:Warmup#mh:SHA-256:fc59e3c519412f120d1071e6d2176532bef3d628effeac6906c2067be037a603",
-  "sema_ref": "Warmup#fc59",
-  "sema_stub": "fc59",
+  "sema_id": "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
+  "sema_ref": "Warmup#28c4",
+  "sema_stub": "28c4",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "greet": "Greet#1bad",
-      "throttle": "Throttle#3b43",
-      "system": "System#e314"
+      "greet": "Greet#7ad2",
+      "system": "System#e314",
+      "throttle": "Throttle#3b43"
     }
   }
 }
@@ -22791,7 +21635,7 @@
 
 ---
 
-## WorkerMode#7cd7
+## WorkerMode#9599
 
 ```json
 {
@@ -22822,24 +21666,24 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:WorkerMode#mh:SHA-256:7cd760cafedf3d37afcff6bc9fbfbedf2d507bab9668095cfaf80f0ed3374257",
-  "sema_ref": "WorkerMode#7cd7",
-  "sema_stub": "7cd7",
+  "sema_id": "sema:WorkerMode#mh:SHA-256:95993da2b311749c9e36f501b3f0e2cdaefdbbebf0fd3347f30b6ed01eb0d7cd",
+  "sema_ref": "WorkerMode#9599",
+  "sema_stub": "9599",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "identity": "Identity#626c",
       "task": "Task#d9f9",
-      "mode": "Mode#b995",
-      "switch": "Switch#70bf",
-      "state": "State#4d58",
-      "context_switch": "ContextSwitch#5bb8",
-      "solver_node": "SolverNode#beef",
-      "lock": "Lock#5bf2",
+      "mode": "Mode#53e0",
       "solution": "Solution#7186",
       "context": "Context#510a",
-      "identity": "Identity#626c",
-      "agent": "Agent#cc24"
+      "lock": "Lock#051c",
+      "agent": "Agent#aaec",
+      "state": "State#4d58",
+      "context_switch": "ContextSwitch#42cd",
+      "solver_node": "SolverNode#058e",
+      "switch": "Switch#e7f9"
     },
     "accepts": {
       "solver_manifest": "SolverManifest#67ac"
@@ -22850,7 +21694,7 @@
 
 ---
 
-## Workflow#4ec6
+## Workflow#c082
 
 ```json
 {
@@ -22894,18 +21738,18 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:4ec6b1381e22c12d860c3bb55527e018387b1e6be5faa994c7b1700236e00253",
-  "sema_ref": "Workflow#4ec6",
-  "sema_stub": "4ec6",
+  "sema_id": "sema:Workflow#mh:SHA-256:c08269a947e9c4b5dc11979a504aa791196de2cea81245bfb45ede8c781a2586",
+  "sema_ref": "Workflow#c082",
+  "sema_stub": "c082",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "solver": "Solver#1c9b",
       "step": "Step#5f22",
-      "accept_spec": "AcceptSpec#70dd",
       "artifact": "Artifact#6254",
-      "role": "Role#8686"
+      "solver": "Solver#1c9b",
+      "role": "Role#9896",
+      "accept_spec": "AcceptSpec#70dd"
     }
   }
 }

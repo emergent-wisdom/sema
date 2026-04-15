@@ -18,7 +18,9 @@
 
 Sema is a semantic commons that content-addresses meaning itself: the definition *is* the identifier. By deriving identifiers from the cryptographic hash of a pattern's definition, any divergence in meaning produces a distinct hash, guaranteeing that misaligned agents halt rather than fail silently.
 
-**Web:** [semahash.org](https://semahash.org)
+**Note:** Sema is an experimental research project. It has not been tested in, and is not ready for, production environments. We recommend running it in a sandboxed environment. See the full [Disclaimer](#disclaimer) at the bottom of this page.
+
+**Web:** [semahash.org](https://semahash.org) · **Discord:** [Join](https://discord.gg/hRhVqAuDYQ)
 
 ## Install
 
@@ -172,7 +174,7 @@ This is the **Anti-Postel principle**: same bytes = PROCEED, different bytes = H
 
 ## The Vocabulary
 
-453 patterns across 13 categories and 4 layers:
+427 default patterns across 4 layers (additional patterns with a higher risk surface are kept in a separate DB — see [Disclaimer](#disclaimer)):
 
 - **Physics** — Immutable substrate (locks, entropy, causality)
 - **Mind** — Hybrid cognition (reasoning, inference, strategy)
@@ -261,7 +263,7 @@ Full walkthrough: [docs/guides/understanding-graph.md](docs/guides/understanding
 ```
 sema/
 ├── src/sema/              Core library (hashing, validation, MCP server, API)
-├── data/                  Vocabulary (453 pattern cards + taxonomy database)
+├── data/                  Vocabulary (427 default + 26 higher-risk pattern cards + taxonomy databases)
 ├── docs/                  Documentation (philosophy, schema spec, CLI reference)
 ├── paper/                 Academic paper (sema.tex)
 ├── web/                   Web frontend (React + Three.js graph visualization)
@@ -295,7 +297,11 @@ renders a "Cite this repository" button from it).
 
 ## Disclaimer
 
-Sema is an experimental research library and has not been tested in production environments. Some patterns in the vocabulary describe capabilities that carry risk if implemented without care — 29 are flagged with `caution` in their metadata.
+Sema is an experimental research project. The patterns described here represent a set of technical capabilities and should not be interpreted as an endorsement of their execution. Sema has not been tested in, and is not ready for, production environments. We recommend running it in a sandboxed environment.
+
+Some patterns are marked with a `caution` field in their metadata to flag them as potentially risky. The absence of a caution flag does not imply safety — many patterns carry no identifier regarding their safety status. Agents connecting via MCP are informed that referencing a pattern is not authorization to perform the actions it describes.
+
+The long-term goal is cryptographically enforced safety constraints for agent-to-agent communication, but further research is required to achieve this.
 
 ## License
 

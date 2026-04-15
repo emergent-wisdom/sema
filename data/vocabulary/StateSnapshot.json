@@ -1,6 +1,6 @@
 {
   "handle": "StateSnapshot",
-  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{crypto_shred}}, {{idempotent_write}}.",
+  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{idempotent_write}}.",
   "gloss": "Durable persistence of volatile state",
   "invariants": [
     "Atomicity: {{snapshot}} is either fully written or discarded (no partial corruption)",
@@ -19,21 +19,18 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:4c11617a12ffdeb4b786202c50c8c3c1fd708dd6a6c0d0e4e19cd0685ba7178e",
-  "sema_ref": "StateSnapshot#4c11",
-  "sema_stub": "4c11",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "State(Snapshot)"
   ],
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:17a545e1632273e11d37315e7ad7e7e355c38bb6decf379ce9091129f80a06f9",
+  "sema_ref": "StateSnapshot#17a5",
+  "sema_stub": "17a5",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
       "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:9b95e06ae2e4eec89639328bae9c7988f4b5873ff676a1a5f040bf73373e7857",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1",
-      "crypto_shred": "sema:CryptoShred#mh:SHA-256:03870f9e53c9c3c6a04e9fc79f6b5fedaa82b9f73a42195bd8623be0f1ea36f8"
+      "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
     }
   }
 }

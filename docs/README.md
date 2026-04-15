@@ -2,6 +2,14 @@
 
 Welcome to the Sema documentation. Start at the top and read down — each section builds on the previous one.
 
+## Disclaimer
+
+Sema is an experimental research project. The patterns described here represent a set of technical capabilities and should not be interpreted as an endorsement of their execution. Sema has not been tested in, and is not ready for, production environments. We recommend running it in a sandboxed environment.
+
+Some patterns are marked with a `caution` field in their metadata to flag them as potentially risky. The absence of a caution flag does not imply safety — many patterns carry no identifier regarding their safety status. Agents connecting via MCP are informed that referencing a pattern is not authorization to perform the actions it describes.
+
+The long-term goal is cryptographically enforced safety constraints for agent-to-agent communication, but further research is required to achieve this.
+
 ## Orientation
 
 - **[Overview](README.md):** You are here.
@@ -51,3 +59,8 @@ sema search "coordination"
 # Start the MCP server for AI integration
 sema mcp
 ```
+
+## Community
+
+- **[Discord](https://discord.gg/hRhVqAuDYQ)** — Questions, feedback, pattern discussions
+- **[GitHub](https://github.com/emergent-wisdom/sema)** — Issues, PRs, full specification
