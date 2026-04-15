@@ -75,6 +75,7 @@ include = [
   "data/vocabulary/",
   "data/taxonomy.db",
   "data/graph.json",
+  "data/presets/",
   ".claude-plugin/",
   "skills/",
   "README.md",
