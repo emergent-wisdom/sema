@@ -4,9 +4,18 @@ Sema is a growing vocabulary of cognitive patterns with cryptographic identity. 
 
 ## Install
 
-### MCP Server (recommended)
+### Claude Code plugin (easiest)
 
-Add to your MCP client (Claude Code, Cursor, VS Code, Claude Desktop):
+```bash
+claude plugin marketplace add emergent-wisdom/marketplace
+claude plugin install sema@emergent-wisdom
+```
+
+This installs the MCP server plus the `sema-usage` skill that teaches the agent the search/resolve/mint/handshake workflow.
+
+### MCP Server (any client)
+
+Add to your MCP client config (Claude Code, Cursor, VS Code, Claude Desktop):
 
 ```json
 {
@@ -29,6 +38,14 @@ claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
 
 ```bash
 pip install "semahash[mcp]"
+```
+
+### Enabling minting
+
+To create new patterns, set `SEMA_ALLOW_MINT=true` in the environment before launching your client:
+
+```bash
+SEMA_ALLOW_MINT=true claude --dangerously-skip-permissions
 ```
 
 ## Verify it works

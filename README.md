@@ -18,7 +18,7 @@
 
 Sema is a semantic commons that content-addresses meaning itself: the definition *is* the identifier. By deriving identifiers from the cryptographic hash of a pattern's definition, any divergence in meaning produces a distinct hash, guaranteeing that misaligned agents halt rather than fail silently.
 
-**Note:** Sema is an experimental research project. It has not been tested in, and is not ready for, production environments. We recommend running it in a sandboxed environment. See the full [Disclaimer](#disclaimer) at the bottom of this page.
+**Note:** Sema is experimental research. Run it in a sandboxed environment. See [Safety](#safety).
 
 **Web:** [semahash.org](https://semahash.org) · **Discord:** [Join](https://discord.gg/hRhVqAuDYQ)
 
@@ -174,7 +174,7 @@ This is the **Anti-Postel principle**: same bytes = PROCEED, different bytes = H
 
 ## The Vocabulary
 
-427 default patterns across 4 layers (additional patterns with a higher risk surface are kept in a separate DB — see [Disclaimer](#disclaimer)):
+427 default patterns across 4 layers (additional patterns with a higher risk surface are kept in a separate DB — see [Safety](#safety)):
 
 - **Physics** — Immutable substrate (locks, entropy, causality)
 - **Mind** — Hybrid cognition (reasoning, inference, strategy)
@@ -295,9 +295,9 @@ Want to add patterns, improve existing ones, or host the frontend locally? See [
 See [`CITATION.cff`](CITATION.cff) for the machine-readable version (GitHub
 renders a "Cite this repository" button from it).
 
-## Disclaimer
+## Safety
 
-Sema is an experimental research project. The patterns described here represent a set of technical capabilities and should not be interpreted as an endorsement of their execution. Sema has not been tested in, and is not ready for, production environments. We recommend running it in a sandboxed environment.
+Sema is an experimental research project. It has not been tested in production environments. We recommend running it in a sandboxed environment.
 
 Some patterns are marked with a `caution` field in their metadata to flag them as potentially risky. The absence of a caution flag does not imply safety — many patterns carry no identifier regarding their safety status. Agents connecting via MCP are informed that referencing a pattern is not authorization to perform the actions it describes.
 

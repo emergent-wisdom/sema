@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { GraphData, Pattern, PatternWithRelated } from '@/types/taxonomy';
 
 async function fetchJson<T>(url: string): Promise<T> {
@@ -7,6 +7,75 @@ async function fetchJson<T>(url: string): Promise<T> {
     throw new Error(`Failed to fetch ${url}: ${res.statusText}`);
   }
   return res.json();
+}
+
+async function postJson<T>(url: string, body: unknown): Promise<T> {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(text || res.statusText);
+  }
+  return res.json();
+}
+
+export interface DbInfo {
+  name: string;
+  path: string;
+  active: boolean;
+  bundled: boolean;
+  exists: boolean;
+}
+
+export interface DbList {
+  current: string;
+  databases: DbInfo[];
+}
+
+export function useDbs() {
+  return useQuery({
+    queryKey: ['dbs'],
+    queryFn: async () => {
+      const res = await fetch('/api/dbs');
+      if (res.status === 404) return null;  // Production deploy — DB management disabled
+      if (!res.ok) throw new Error(`Failed to fetch /api/dbs: ${res.statusText}`);
+      return res.json() as Promise<DbList>;
+    },
+    staleTime: 5000,
+    retry: false,
+    refetchInterval: 5000,
+  });
+}
+
+// True when the server has DB management enabled (local mode).
+// Used to gate live-refresh polling.
+export function useIsLocal(): boolean {
+  const { data } = useDbs();
+  return data !== null && data !== undefined;
+}
+
+const LOCAL_POLL_MS = 5000;
+
+function pollIfLocal(isLocal: boolean): number | false {
+  return isLocal ? LOCAL_POLL_MS : false;
+}
+
+export function useSwitchDb() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: { path?: string; default?: boolean }) =>
+      postJson<{ success: boolean; db_path: string; total_patterns: number }>('/api/use', payload),
+    onSuccess: () => {
+      // Invalidate everything that depends on the active DB
+      qc.invalidateQueries({ queryKey: ['dbs'] });
+      qc.invalidateQueries({ queryKey: ['graph'] });
+      qc.invalidateQueries({ queryKey: ['patterns'] });
+      qc.invalidateQueries({ queryKey: ['pattern'] });
+    },
+  });
 }
 
 export const queryKeys = {
@@ -19,18 +88,24 @@ export const queryKeys = {
 };
 
 export function useGraph() {
+  const isLocal = useIsLocal();
   return useQuery({
     queryKey: queryKeys.graph,
     queryFn: () => fetchJson<GraphData>('/api/graph'),
-    staleTime: 30000,
+    staleTime: isLocal ? 1000 : 30000,
+    refetchInterval: pollIfLocal(isLocal),
+    refetchIntervalInBackground: false,
   });
 }
 
 export function usePatterns() {
+  const isLocal = useIsLocal();
   return useQuery({
     queryKey: queryKeys.patterns,
     queryFn: () => fetchJson<Pattern[]>('/api/patterns'),
-    staleTime: 30000,
+    staleTime: isLocal ? 1000 : 30000,
+    refetchInterval: pollIfLocal(isLocal),
+    refetchIntervalInBackground: false,
   });
 }
 

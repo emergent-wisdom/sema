@@ -17,6 +17,29 @@ allowed-tools: |
 
 Minting creates a new content-addressed pattern in the sema vocabulary. The definition IS the identity — hash the content, get the name. Change one invariant, get a different hash.
 
+## Before you start a minting session
+
+**1. Check that minting is enabled.** If `sema_mint` is not in your available MCP tools, the server was started without `SEMA_ALLOW_MINT=true`. Tell the user:
+
+> "Minting isn't currently enabled. To turn it on, exit Claude Code and restart with:
+> ```
+> SEMA_ALLOW_MINT=true claude --dangerously-skip-permissions
+> ```
+> Then come back and we can mint."
+
+**2. Make sure the active DB is writable.** The bundled vocabulary is read-only — minting into it will be blocked with an error. If the user wants to mint, they need a project DB:
+
+```bash
+sema build my-project.db --preset full
+sema use my-project.db
+```
+
+Or use `sema_use(db_path="...")` via MCP.
+
+**3. Offer the UI.** Ask: *"Want to open the Sema UI to watch the patterns appear as they get minted?"* If yes, invoke the `sema-ui` skill. The UI refreshes every 5 seconds locally, so each new pattern appears within a few seconds of being minted.
+
+## When to mint
+
 **Minting is rare.** Before minting, search at least three different glosses. Only mint when:
 - You've explained the same concept 3+ times across conversations
 - The concept has stable, non-negotiable invariants
@@ -62,6 +85,21 @@ If any step fails, the pattern is rejected with an error message. No partial wri
 | `_meta.category` | Valid for the layer (see category table below) |
 | `_meta.ring` | `0` (core), `1` (extended), `2` (experimental) |
 | `_meta.tier` | `0` (primitive), `1` (ironclad), `2` (honesty-dependent), `3` (experimental) |
+| `_meta.caution` | Optional. One-sentence warning about elevated risk. Add only if the risk isn't already obvious from the pattern's invariants or failure_modes, and adding it promotes safer use. |
+
+### When to add a `caution` flag
+
+Add `_meta.caution` if:
+- The pattern enables irreversible action (data loss, financial commitment, governance changes)
+- The pattern bypasses safety checks or oversight
+- The pattern enables evasion, manipulation, or covert coordination
+- The risk isn't already explicit in the mechanism, invariants, or failure_modes
+
+Skip the flag if:
+- The pattern's existing fields make the risk self-evident
+- The pattern is purely cognitive (a reasoning lens) with no external effect
+
+The caution sits in `_meta` (unhashed), so it can be revised without changing the pattern's identity.
 
 ### Layer categories
 

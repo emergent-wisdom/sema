@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { ParsedText } from '@/components/DetailsPanel'
 import { SemaLogo } from '@/components/SemaLogo'
 import { LicenseLine } from '@/components/LicenseLine'
+import { DbSwitcher } from '@/components/DbSwitcher'
 
 // Context to allow pattern cards to register themselves and handle navigation
 type PatternNavigationContextType = {
@@ -271,6 +272,9 @@ export function HomePage() {
       <div className="sticky top-0 z-50 border-b border-zinc-800/50 bg-zinc-950/80 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-6 py-3">
           <div className="flex items-center gap-4 flex-wrap">
+            {/* DB Switcher (local only) */}
+            <DbSwitcher />
+
             {/* Search */}
             <div className="flex items-center gap-2 bg-zinc-900/80 border border-zinc-800/50 rounded-lg px-4 py-2.5 flex-1 max-w-md focus-within:border-zinc-700 focus-within:bg-zinc-900 transition-all">
               <Search className="w-4 h-4 text-zinc-500" />
