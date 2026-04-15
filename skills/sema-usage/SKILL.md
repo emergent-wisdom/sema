@@ -43,11 +43,13 @@ Call `sema_reset_session()` if your context was compressed or you need full resu
 
 ## Switching and managing databases
 
-The MCP tool `sema_use` handles all database switching — do NOT use the CLI for switching:
+The CLI and MCP server are **separate processes with separate DB state**. `sema use` on the CLI does NOT affect the running MCP server. Always use the MCP tool for switching:
 
 - `sema_use()` — show current DB
 - `sema_use(db_path="/path/to/my.db")` — switch to a project DB
 - `sema_use(default=true)` — switch back to the bundled vocabulary
+
+If `sema_use` MCP tool is unavailable (older server version), the MCP server cannot be hot-swapped. Use CLI for search/resolve and accept the limitation — do not confuse CLI state with MCP state.
 
 ## Before you can mint
 
