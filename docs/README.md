@@ -22,7 +22,7 @@ Welcome to the Sema documentation. Start at the top and read down — each secti
 
 - **[Pattern Lifecycle](guides/lifecycle.md):** The full loop: create, validate, hash, apply, export, distribute, pull, rebuild.
 - **[Pattern Authoring Guide](guides/authoring.md):** Step-by-step workflow for minting and modifying patterns.
-- **[CLI Reference](tools/cli.md):** The `sema` command — apply, search, resolve, show, pull, serve.
+- **[CLI Reference](tools/cli.md):** The `sema` command — build, use, list, init, apply, search, resolve, show, pull, serve.
 
 ## Integrations
 

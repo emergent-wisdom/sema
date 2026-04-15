@@ -23,14 +23,137 @@ _PKG_DB = Path(__file__).parent.parent / "data" / "taxonomy.db"
 _PKG_VOCAB = Path(__file__).parent.parent / "data" / "vocabulary"
 
 
-def get_default_db_path() -> str | None:
-    """Get default DB path. Priority: env var > dev DB > client DB."""
-    if os.environ.get("SEMA_DB_PATH"):
-        return os.environ["SEMA_DB_PATH"]
-    # Check if dev directory exists (allows creating new db file on rebuild)
-    if _DEV_DB.parent.exists():
+def _get_active_db_config() -> str | None:
+    """Read the active DB path from ~/.config/sema/active_db."""
+    config_file = Path.home() / ".config" / "sema" / "active_db"
+    if config_file.exists():
+        path = config_file.read_text().strip()
+        if path and Path(path).exists():
+            return path
+    return None
+
+
+def set_active_db(path: str | None):
+    """Write the active DB path to ~/.config/sema/active_db."""
+    config_dir = Path.home() / ".config" / "sema"
+    config_dir.mkdir(parents=True, exist_ok=True)
+    config_file = config_dir / "active_db"
+    if path is None:
+        config_file.unlink(missing_ok=True)
+    else:
+        config_file.write_text(str(Path(path).expanduser().resolve()))
+
+
+def _get_db_registry_path() -> Path:
+    return Path.home() / ".config" / "sema" / "databases.json"
+
+
+def register_db(path: str, name: str | None = None):
+    """Register a DB in the known databases list."""
+    registry_file = _get_db_registry_path()
+    registry_file.parent.mkdir(parents=True, exist_ok=True)
+
+    dbs = {}
+    if registry_file.exists():
+        try:
+            dbs = json.loads(registry_file.read_text())
+        except (json.JSONDecodeError, ValueError):
+            dbs = {}
+
+    resolved = str(Path(path).expanduser().resolve())
+    if not name:
+        name = Path(resolved).stem
+
+    dbs[resolved] = {"name": name, "path": resolved}
+    registry_file.write_text(json.dumps(dbs, indent=2))
+
+
+def list_dbs() -> list[dict]:
+    """List all known databases with their status."""
+    registry_file = _get_db_registry_path()
+    active = _get_active_db_config()
+    bundled = get_bundled_db_path()
+
+    env_db = os.environ.get("SEMA_DB_PATH")
+    if env_db:
+        env_db = str(Path(env_db).expanduser().resolve())
+
+    results = []
+
+    # Bundled DB always listed first
+    if bundled:
+        results.append(
+            {
+                "name": "default",
+                "path": bundled,
+                "active": active is None and not env_db,
+                "bundled": True,
+                "exists": Path(bundled).exists(),
+            }
+        )
+
+    if registry_file.exists():
+        try:
+            dbs = json.loads(registry_file.read_text())
+        except (json.JSONDecodeError, ValueError):
+            dbs = {}
+        for path, info in dbs.items():
+            results.append(
+                {
+                    "name": info.get("name", Path(path).stem),
+                    "path": path,
+                    "active": active == path or env_db == path,
+                    "bundled": False,
+                    "exists": Path(path).exists(),
+                }
+            )
+
+    return results
+
+
+def get_bundled_db_path() -> str | None:
+    """Find the bundled catalog DB, ignoring user config and SEMA_DB_PATH."""
+    if _DEV_DB.exists():
         return str(_DEV_DB)
-    # Check if data is bundled inside the installed package
+    if _PKG_DB.exists():
+        return str(_PKG_DB)
+    return None
+
+
+def is_bundled_db(path: str | None) -> bool:
+    """Check if a DB path points to the installed package's read-only catalog.
+
+    The dev DB (repo data/) is NOT considered bundled — maintainers
+    need to mint into it. Only the pip-installed copy is read-only.
+    """
+    if not path:
+        return False
+    resolved = Path(path).resolve()
+    if _PKG_DB.exists() and resolved.exists():
+        try:
+            return resolved.samefile(_PKG_DB)
+        except OSError:
+            pass
+    return str(resolved) == str(_PKG_DB.resolve())
+
+
+def get_default_db_path() -> str | None:
+    """Get default DB path.
+
+    Priority:
+      1. SEMA_DB_PATH env var (explicit override)
+      2. Active DB from ~/.config/sema/active_db (set via `sema use`)
+      3. Dev DB (repo data/ — for local development)
+      4. Bundled package DB (read-only catalog)
+      5. Client fallback (download)
+    """
+    if os.environ.get("SEMA_DB_PATH"):
+        return str(Path(os.environ["SEMA_DB_PATH"]).expanduser().resolve())
+    active = _get_active_db_config()
+    if active:
+        return active
+    if _DEV_DB.exists():
+        return str(_DEV_DB)
     if _PKG_DB.exists():
         return str(_PKG_DB)
     if get_default_client:
@@ -155,6 +278,9 @@ class RegistryManager:
 
     def refresh(self):
         self.registry = self._load_registry()
+
+    def count(self) -> int:
+        return len(self.registry)
 
     def _get_ref(self, data, default=None):
         """Helper to get the canonical reference (Handle#stub) from pattern data."""

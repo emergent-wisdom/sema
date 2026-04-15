@@ -31,9 +31,70 @@ own vocabulary from scratch without touching the bundled canonical one.
 sema init ./mylib.db
 ```
 
-The output prints the `export SEMA_DB_PATH=...` line to set in your shell.
-Once exported, every subsequent `sema` command (`search`, `apply`, `mcp`,
-`serve`, ...) reads from your private registry instead of the bundled one.
+After creating the database, switch to it with `sema use`:
+
+```bash
+sema use ./mylib.db
+```
+
+Every subsequent `sema` command (`search`, `apply`, `mcp`, `serve`, ...)
+now reads from your private registry instead of the bundled one.
+
+### build - Build a Project Database
+
+Creates a new vocabulary database from a preset or a patterns file. The
+bundled DB is read-only (overwritten on upgrade), so use `build` to create
+a writable copy for your project.
+
+```bash
+# Full copy of the bundled vocabulary
+sema build my_project.db --preset full
+
+# Empty database (add patterns later with `apply`)
+sema build my_project.db --preset empty
+
+# Standard subset (curated default selection)
+sema build my_project.db --preset standard
+
+# Custom selection from a patterns file (one handle per line)
+sema build my_project.db --from patterns.txt
+
+# Build from a different source database
+sema build my_project.db --preset full --source other.db
+```
+
+Transitive dependencies are resolved automatically — the resulting DB is
+self-contained. After building, switch to it with `sema use my_project.db`.
+
+### use - Switch Active Vocabulary
+
+Switches which vocabulary database all `sema` commands read from.
+
+```bash
+# Switch to a project database
+sema use my_project.db
+
+# Show current active database
+sema use
+
+# Reset to the bundled (default) vocabulary
+sema use --default
+```
+
+The active DB is stored in `~/.config/sema/active_db`. If `SEMA_DB_PATH`
+is set in the environment, it takes priority over `sema use`.
+
+### list - List Known Databases
+
+Lists all vocabulary databases that Sema knows about, with the active one
+marked.
+
+```bash
+sema list
+```
+
+Output shows each database's path, pattern count, and status (active,
+read-only, missing).
 
 ### apply - Atomic Add/Remove
 
@@ -52,6 +113,10 @@ sema apply --remove <Handle>
 # Atomic add + remove (e.g., replacing a pattern)
 sema apply --add NewPattern.json --remove OldPattern
 ```
+
+**Note:** `apply` refuses to modify the bundled (pip-installed) vocabulary — it
+is read-only and gets overwritten on upgrade. Run `sema build` + `sema use`
+first to create a writable project database.
 
 **Validation:**
 - Patterns to remove must exist

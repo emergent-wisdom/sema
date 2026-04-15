@@ -11,6 +11,8 @@ allowed-tools: |
   mcp__sema__sema_handshake
   mcp__sema__sema_mint
   mcp__sema__sema_tree
+  mcp__sema__sema_stats
+  mcp__sema__sema_use
   mcp__sema__sema_verify_context
 ---
 
@@ -38,6 +40,26 @@ Call `sema_reset_session()` if your context was compressed or you need full resu
 2. **Resolve** — `sema_resolve({ reference: "TrustModel#7859" })` — read full definition, mechanism, invariants
 3. **Handshake** — `sema_handshake({ references: ["X#1234", "Y#5678"] })` — verify two agents share meaning
 4. **Mint** — `sema_mint({ handle, gloss, description, invariants })` — create a new pattern (rare!)
+
+## Switching and managing databases
+
+The CLI and MCP server are **separate processes with separate DB state**. `sema use` on the CLI does NOT affect the running MCP server. Always use the MCP tool for switching:
+
+- `sema_use()` — show current DB
+- `sema_use(db_path="/path/to/my.db")` — switch to a project DB
+- `sema_use(default=true)` — switch back to the bundled vocabulary
+
+If `sema_use` MCP tool is unavailable (older server version), the MCP server cannot be hot-swapped. Use CLI for search/resolve and accept the limitation — do not confuse CLI state with MCP state.
+
+## Before you can mint
+
+The bundled vocabulary is **read-only** — it gets overwritten on pip upgrades. To mint, you need your own project DB:
+
+1. Run in shell (bash): `sema build /tmp/my-project.db --preset full`
+2. Switch to it via MCP: `sema_use(db_path="/tmp/my-project.db")`
+3. Now `sema_mint` will work
+
+**Important:** `sema_mint` requires `SEMA_ALLOW_MINT=true` in the server environment. If the tool is not available, ask the user to enable it.
 
 ## When to mint vs reuse
 
