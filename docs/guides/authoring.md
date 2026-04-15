@@ -25,7 +25,7 @@ For the full rule set, see [Validation Rules](../specification/validation.md). F
 
 ## Workflow (CLI First)
 
-**The Database is the Source of Truth.** The `taxonomy.db` database is authoritative. Files in `data/vocabulary/` are **exports**, not sources.
+**The Database is the Source of Truth.** The `taxonomy.db` database is authoritative. Files in `data/vocabulary/` are **exports**, not sources. The bundled (pip-installed) DB is read-only; use `sema build` + `sema use` to create a writable project copy.
 
 **Never edit vocabulary files directly — use `sema apply` to make changes.**
 

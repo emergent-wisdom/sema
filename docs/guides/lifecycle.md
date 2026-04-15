@@ -72,6 +72,8 @@ sema apply --add NewVersion.json --remove OldHandle
 
 See [CLI Reference](../tools/cli.md) for the full command set.
 
+**Bundled DB guard:** The pip-installed vocabulary is read-only — `apply` will refuse to modify it. To work with a writable database, run `sema build my.db --preset full` then `sema use my.db`.
+
 ## 5. Export
 
 After applying changes, regenerate the vocabulary JSON files from the database:

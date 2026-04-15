@@ -6,17 +6,18 @@ different processes.
 ## Local vs canonical
 
 **Your own private vocabulary.** Anyone can build a registry from scratch
-without touching this repo. Two commands:
+without touching this repo:
 
 ```bash
-sema init ./mylib.db
-export SEMA_DB_PATH=$(pwd)/mylib.db
+sema build mylib.db --preset full   # or --preset empty, --preset standard
+sema use mylib.db
 sema apply --add path/to/MyPattern.json
 ```
 
-That's it. Subsequent `sema search`, `sema resolve`, and `sema mcp` calls
-will read from your private registry. No PR required, no review, no
-maintainer in the loop.
+`sema build` creates a writable copy of the vocabulary (or an empty DB).
+`sema use` switches all subsequent `sema` commands — `search`, `resolve`,
+`mcp`, etc. — to read from your project database. No PR required, no
+review, no maintainer in the loop.
 
 **The canonical vocabulary.** The bundled patterns that ship with
 `pip install semahash` live in `data/vocabulary/` in this repo.
