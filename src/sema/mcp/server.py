@@ -358,6 +358,79 @@ def sema_graph_skeleton() -> str:
 
 
 @mcp.tool()
+def sema_use(db_path: str = "", default: bool = False) -> str:
+    """Switch the active vocabulary database without restarting.
+
+    Args:
+        db_path: Path to the database to switch to. Omit to show current.
+        default: If True, switch back to the bundled vocabulary.
+
+    Returns:
+        JSON with the new vocabulary stats, or current status.
+    """
+    global REGISTRY_MGR, DEFAULT_DB_PATH
+    from pathlib import Path
+
+    from ..core.registry import get_bundled_db_path, is_bundled_db, register_db, set_active_db
+
+    if default:
+        bundled = get_bundled_db_path()
+        if not bundled:
+            return json.dumps({"error": "Bundled DB not found"})
+        DEFAULT_DB_PATH = bundled
+        REGISTRY_MGR = RegistryManager(db_path=bundled)
+        set_active_db(None)
+        _served_patterns.clear()
+        return json.dumps(
+            {
+                "success": True,
+                "db_path": bundled,
+                "total_patterns": len(REGISTRY_MGR.registry),
+                "message": f"Switched to default vocabulary ({len(REGISTRY_MGR.registry)} patterns)",
+            },
+            indent=2,
+        )
+
+    if not db_path:
+        return json.dumps(
+            {
+                "db_path": DEFAULT_DB_PATH,
+                "total_patterns": len(REGISTRY_MGR.registry),
+                "bundled": is_bundled_db(DEFAULT_DB_PATH),
+            },
+            indent=2,
+        )
+
+    resolved = Path(db_path).expanduser().resolve()
+    if not resolved.exists():
+        return json.dumps({"error": f"Database not found: {resolved}"})
+
+    if is_bundled_db(str(resolved)):
+        return json.dumps(
+            {
+                "error": "Cannot use the bundled DB — it gets overwritten on upgrade. "
+                "Run `sema build my.db --preset full` then `sema_use(db_path='my.db')` first."
+            }
+        )
+
+    DEFAULT_DB_PATH = str(resolved)
+    REGISTRY_MGR = RegistryManager(db_path=str(resolved))
+    set_active_db(str(resolved))
+    register_db(str(resolved))
+    _served_patterns.clear()
+
+    return json.dumps(
+        {
+            "success": True,
+            "db_path": str(resolved),
+            "total_patterns": len(REGISTRY_MGR.registry),
+            "message": f"Switched to {resolved} ({len(REGISTRY_MGR.registry)} patterns)",
+        },
+        indent=2,
+    )
+
+
+@mcp.tool()
 def sema_handshake(ref: str, your_hash: str | None = None) -> str:
     """Byte-level definition agreement check between two agents.
 
@@ -481,7 +554,19 @@ def _sema_mint(pattern_json: str) -> str:
         JSON with the minted pattern's sema_id, or validation errors.
     """
     from ..core.mint import mint_pattern
+    from ..core.registry import is_bundled_db
     from ..taxonomy_graph.graph_store import GraphStore
+
+    if is_bundled_db(DEFAULT_DB_PATH):
+        return json.dumps(
+            {
+                "success": False,
+                "errors": [
+                    "Cannot mint into the bundled vocabulary — it gets overwritten on upgrade. "
+                    "Run `sema build my.db --preset full` then `sema use my.db` to create your own vocabulary first."
+                ],
+            }
+        )
 
     try:
         pattern = json.loads(pattern_json)

@@ -11,6 +11,8 @@ allowed-tools: |
   mcp__sema__sema_handshake
   mcp__sema__sema_mint
   mcp__sema__sema_tree
+  mcp__sema__sema_stats
+  mcp__sema__sema_use
   mcp__sema__sema_verify_context
 ---
 

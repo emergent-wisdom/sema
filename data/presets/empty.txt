@@ -1,0 +1,2 @@
+# Empty preset — start with a blank vocabulary
+# Add patterns with: sema apply --add path/to/Pattern.json

@@ -1,11 +1,20 @@
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
 from ..client import get_default_client
-from ..core.dependencies import topological_sort
-from ..core.registry import RegistryManager, get_default_db_path
+from ..core.dependencies import get_dependencies_handles, topological_sort
+from ..core.registry import (
+    RegistryManager,
+    get_bundled_db_path,
+    get_default_db_path,
+    is_bundled_db,
+    list_dbs,
+    register_db,
+    set_active_db,
+)
 from ..core.utils import compact_dict
 from ..core.validator import validate_pattern
 
@@ -42,6 +51,10 @@ def apply_changes(
         return False
 
     db_path = get_default_db_path()
+    if is_bundled_db(db_path):
+        print("❌ Cannot modify the bundled vocabulary — it gets overwritten on upgrade.")
+        print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
+        return False
     store = GraphStore(db_path)
 
     # ============ PHASE 1: VALIDATION ============
@@ -442,6 +455,269 @@ def update_db():
         print(f"❌ Update failed: {e}")
 
 
+def use_db(path: str = None, default: bool = False):
+    """Switch the active DB or reset to default."""
+    if default:
+        set_active_db(None)
+        bundled = get_bundled_db_path()
+        print(f"✅ Switched to default vocabulary ({bundled})")
+        return True
+
+    if not path:
+        # Show current
+        db = get_default_db_path()
+        if is_bundled_db(db):
+            print(f"Using: default (bundled) — {db}")
+        else:
+            print(f"Using: {db}")
+        return True
+
+    resolved = Path(path).expanduser().resolve()
+    if not resolved.exists():
+        print(f"❌ Database not found: {resolved}")
+        return False
+
+    if is_bundled_db(str(resolved)):
+        print("❌ Cannot use the bundled DB as active — it gets overwritten on upgrade.")
+        print("   Run `sema build my.db --preset full` to create your own copy.")
+        return False
+
+    set_active_db(str(resolved))
+    register_db(str(resolved))
+    count = RegistryManager(db_path=str(resolved)).count()
+    print(f"✅ Switched to {resolved} ({count} patterns)")
+
+    if os.environ.get("SEMA_DB_PATH"):
+        print(f"⚠️  SEMA_DB_PATH is set to '{os.environ['SEMA_DB_PATH']}'")
+        print(
+            "   This env var takes priority. Run `unset SEMA_DB_PATH` for `sema use` to take effect."
+        )
+    return True
+
+
+def list_databases():
+    """List all known vocabulary databases."""
+    dbs = list_dbs()
+    if not dbs:
+        print("No databases found.")
+        return
+
+    for db in dbs:
+        marker = "→ " if db["active"] else "  "
+        status = ""
+        if not db["exists"]:
+            status = " (missing)"
+        elif db["bundled"]:
+            status = " (read-only)"
+
+        if db["exists"]:
+            import sqlite3
+
+            try:
+                conn = sqlite3.connect(db["path"])
+                count = conn.execute(
+                    "SELECT COUNT(*) FROM nodes WHERE node_type='PATTERN'"
+                ).fetchone()[0]
+                conn.close()
+                print(f"{marker}{db['name']}: {db['path']} ({count} patterns){status}")
+            except sqlite3.Error:
+                print(f"{marker}{db['name']}: {db['path']} (corrupted){status}")
+        else:
+            print(f"{marker}{db['name']}: {db['path']}{status}")
+
+
+def _get_presets_dir() -> Path:
+    """Find bundled presets directory."""
+    pkg = Path(__file__).parent.parent / "data" / "presets"
+    if pkg.exists():
+        return pkg
+    dev = Path(__file__).parent.parent.parent.parent / "data" / "presets"
+    if dev.exists():
+        return dev
+    return pkg
+
+
+def _read_patterns_file(path: Path) -> list[str]:
+    """Read handles from a patterns file (one per line, # comments)."""
+    return [
+        line.strip()
+        for line in path.read_text().splitlines()
+        if line.strip() and not line.strip().startswith("#")
+    ]
+
+
+def _create_empty_db(path: Path):
+    """Create DB with schema only, no data. Uses GraphStore to avoid schema drift."""
+    from ..taxonomy_graph.graph_store import GraphStore
+
+    store = GraphStore(str(path))
+    if hasattr(store, "conn"):
+        store.conn.close()
+
+
+def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db: str = None):
+    """Build a project DB from a preset or patterns file.
+
+    Copies validated nodes and edges directly from the bundled catalog —
+    no re-minting, no re-hashing. Transitive dependencies are
+    auto-resolved so the project DB is self-contained.
+    """
+    import shutil
+    import sqlite3
+
+    dest_path = Path(dest).expanduser().resolve()
+    if dest_path.exists():
+        print(f"❌ {dest_path} already exists. Remove it first to rebuild.")
+        return False
+
+    source_db_path = source_db or get_bundled_db_path()
+    if not source_db_path or not Path(source_db_path).exists():
+        print("❌ Source DB not found. Run `sema pull` first.")
+        return False
+
+    if preset:
+        if preset == "full":
+            dest_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source_db_path, dest_path)
+            count = RegistryManager(db_path=str(dest_path)).count()
+            print(f"✅ Built {dest_path} (full: {count} patterns)")
+            register_db(str(dest_path))
+            print(f"\nTo use: sema use {dest_path}")
+            return True
+
+        if preset == "empty":
+            dest_path.parent.mkdir(parents=True, exist_ok=True)
+            _create_empty_db(dest_path)
+            print(f"✅ Built {dest_path} (empty: 0 patterns)")
+            register_db(str(dest_path))
+            print(f"\nTo use: sema use {dest_path}")
+            return True
+
+        preset_file = _get_presets_dir() / f"{preset}.txt"
+        if not preset_file.exists():
+            available = [f.stem for f in _get_presets_dir().glob("*.txt")]
+            print(f"❌ Unknown preset '{preset}'. Available: {', '.join(available)}")
+            return False
+        requested = _read_patterns_file(preset_file)
+    elif patterns_file:
+        pf = Path(patterns_file)
+        if not pf.exists():
+            print(f"❌ File not found: {patterns_file}")
+            return False
+        requested = _read_patterns_file(pf)
+    else:
+        print("❌ Specify --preset or --from")
+        return False
+
+    if not requested:
+        dest_path.parent.mkdir(parents=True, exist_ok=True)
+        _create_empty_db(dest_path)
+        print(f"✅ Built {dest_path} (empty: 0 patterns)")
+        register_db(str(dest_path))
+        print(f"\nTo use: sema use {dest_path}")
+        return True
+
+    source = RegistryManager(db_path=source_db_path)
+
+    # Resolve transitive dependencies via BFS
+    resolved = set()
+    queue = list(requested)
+    missing = []
+
+    while queue:
+        handle = queue.pop(0)
+        if handle in resolved:
+            continue
+        if handle not in source.registry:
+            if handle in requested:
+                missing.append(handle)
+            continue
+        resolved.add(handle)
+        for dep_handle in get_dependencies_handles(source.registry[handle]):
+            if dep_handle not in resolved:
+                queue.append(dep_handle)
+
+    if missing:
+        print(f"⚠️  Not found in source: {', '.join(missing[:10])}")
+        if len(missing) > 10:
+            print(f"   ...and {len(missing) - 10} more")
+
+    if not resolved:
+        print("❌ No valid patterns to build")
+        return False
+
+    # Copy nodes and edges directly from source DB
+    src_conn = sqlite3.connect(source_db_path)
+    src_conn.row_factory = sqlite3.Row
+
+    pattern_node_ids = set()
+    all_node_ids = set()
+    cur = src_conn.cursor()
+
+    cur.execute("SELECT id, text FROM nodes WHERE node_type = 'PATTERN'")
+    for row in cur.fetchall():
+        if row["text"] in resolved:
+            pattern_node_ids.add(row["id"])
+            all_node_ids.add(row["id"])
+
+    if not pattern_node_ids:
+        src_conn.close()
+        print("❌ No matching patterns found in source DB")
+        return False
+
+    # Get all edges (filter in Python to avoid SQLite variable limits)
+    cur.execute("SELECT * FROM edges")
+    all_edges_raw = cur.fetchall()
+
+    for row in all_edges_raw:
+        if row["source_id"] in pattern_node_ids and row["edge_type"] in ("IN_LAYER", "IN_CATEGORY"):
+            all_node_ids.add(row["target_id"])
+
+    # CATEGORY -> LAYER edges
+    cat_ids = all_node_ids - pattern_node_ids
+    for row in all_edges_raw:
+        if row["source_id"] in cat_ids and row["edge_type"] == "IN_LAYER":
+            all_node_ids.add(row["target_id"])
+
+    # Fetch nodes and filter edges in Python (avoids SQLite variable limits)
+    cur.execute("SELECT * FROM nodes")
+    nodes = [dict(row) for row in cur.fetchall() if row["id"] in all_node_ids]
+
+    edges = [
+        dict(row)
+        for row in all_edges_raw
+        if row["source_id"] in all_node_ids and row["target_id"] in all_node_ids
+    ]
+    src_conn.close()
+
+    dest_path.parent.mkdir(parents=True, exist_ok=True)
+    _create_empty_db(dest_path)
+    dst_conn = sqlite3.connect(str(dest_path))
+
+    for node in nodes:
+        dst_conn.execute(
+            "INSERT INTO nodes (id, node_type, text, metadata, embedding) VALUES (?, ?, ?, ?, ?)",
+            (node["id"], node["node_type"], node["text"], node["metadata"], node["embedding"]),
+        )
+    for edge in edges:
+        dst_conn.execute(
+            "INSERT INTO edges (id, source_id, target_id, edge_type, metadata) VALUES (?, ?, ?, ?, ?)",
+            (edge["id"], edge["source_id"], edge["target_id"], edge["edge_type"], edge["metadata"]),
+        )
+
+    dst_conn.commit()
+    dst_conn.close()
+
+    dep_count = len(resolved) - len([h for h in requested if h in resolved])
+    print(
+        f"✅ Built {dest_path}: {len(resolved)} patterns "
+        f"({len(resolved) - dep_count} requested + {dep_count} dependencies)"
+    )
+    register_db(str(dest_path))
+    print(f"\nTo use: sema use {dest_path}")
+    return True
+
+
 def init_registry(path: str):
     """Create an empty taxonomy DB at <path>.
 
@@ -462,10 +738,11 @@ def init_registry(path: str):
     # GraphStore auto-creates schema on a fresh path
     GraphStore(str(target))
 
+    register_db(str(target))
     print(f"✅ Created empty registry at {target}")
     print("")
-    print("To use this registry in subsequent sema commands:")
-    print(f"  export SEMA_DB_PATH={target}")
+    print("To use this registry:")
+    print(f"  sema use {target}")
     print("")
     print("Then add patterns with:")
     print("  sema apply --add path/to/MyPattern.json")
@@ -592,6 +869,35 @@ def main():
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=3000)
 
+    # Build - create project DB from preset or patterns file
+    build_cmd = subparsers.add_parser(
+        "build",
+        help="Build a project DB from a preset (full, standard, empty) or patterns file",
+    )
+    build_cmd.add_argument("dest", help="Path for the new project DB")
+    build_group = build_cmd.add_mutually_exclusive_group(required=True)
+    build_group.add_argument(
+        "--preset", "-p", choices=["full", "standard", "empty"], help="Built-in preset"
+    )
+    build_group.add_argument(
+        "--from", dest="from_file", help="Path to patterns file (one handle per line)"
+    )
+    build_cmd.add_argument("--source", help="Source DB (default: bundled vocabulary)")
+
+    # Use - switch active DB
+    use_cmd = subparsers.add_parser(
+        "use",
+        help="Switch active vocabulary DB (or show current)",
+    )
+    use_cmd.add_argument("path", nargs="?", default=None, help="Path to DB (omit to show current)")
+    use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
+
+    # List - show known databases
+    subparsers.add_parser(
+        "list",
+        help="List all known vocabulary databases",
+    )
+
     # MCP
     subparsers.add_parser(
         "mcp",
@@ -614,6 +920,12 @@ def main():
         show_skeleton()
     elif args.command == "init":
         init_registry(args.path)
+    elif args.command == "build":
+        build_db(args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source)
+    elif args.command == "use":
+        use_db(path=args.path, default=args.default)
+    elif args.command == "list":
+        list_databases()
     elif args.command == "pull":
         update_db()
     elif args.command == "serve":
