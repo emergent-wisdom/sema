@@ -4,19 +4,14 @@
   "gloss": "Immutable rule set",
   "invariants": [
     "Clarity: Rules must be machine-verifiable.",
-    "Stability: Cannot be modified without a formal {{amend_laws}} process."
+    "Stability: Modifications require a formal out-of-band process, never runtime self-modification."
   ],
-  "sema_id": "sema:Constitution#mh:SHA-256:08ef9d378c3bc5c024f0ed9ad47c6cb39f633e0618b42af46dedc69d4f1353d8",
-  "sema_ref": "Constitution#08ef",
-  "sema_stub": "08ef",
   "_meta": {
     "layer": "Society",
     "category": "Governance",
     "ring": 0,
     "tier": 1
   },
-  "sema_layer": "Society",
-  "sema_category": "Governance",
   "data_schema": {
     "type": "object",
     "required": [
@@ -44,24 +39,15 @@
           "type": "string"
         },
         "description": "Guaranteed agent privileges"
-      },
-      "amendment_process": {
-        "type": "object",
-        "properties": {
-          "quorum_threshold": {
-            "type": "number"
-          },
-          "delay_period": {
-            "type": "string"
-          }
-        }
       }
     }
   },
+  "sema_id": "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9",
+  "sema_ref": "Constitution#863b",
+  "sema_stub": "863b",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "amend_laws": "sema:AmendLaws#mh:SHA-256:716b9e521e00524899bd0f2da57d7815d739f38fdc3d5d1b4644e5d91c84655c"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   }
 }

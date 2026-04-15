@@ -830,7 +830,12 @@ def main():
     # Search
     search = subparsers.add_parser("search", help="Search the registry")
     search.add_argument("query")
-    search.add_argument("--semantic", "-s", action="store_true", help="Enable semantic search")
+    search.add_argument(
+        "--keyword-only",
+        "-k",
+        action="store_true",
+        help="Disable semantic search (keyword/name matching only)",
+    )
     search.add_argument("--verbose", "-v", action="store_true", help="Show details")
     search.add_argument("--json", action="store_true", help="JSON output")
 
@@ -910,7 +915,7 @@ def main():
         apply_changes(remove_handles=args.remove, add_files=args.add, check_only=args.check)
     elif args.command == "search":
         search_patterns(
-            args.query, use_semantic=args.semantic, verbose=args.verbose, as_json=args.json
+            args.query, use_semantic=not args.keyword_only, verbose=args.verbose, as_json=args.json
         )
     elif args.command == "resolve":
         resolve_graph(args.handle)

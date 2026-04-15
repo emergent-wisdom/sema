@@ -1,6 +1,6 @@
 {
   "handle": "OsmoticFilter",
-  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates. It requires a {{costly_signal}} to penetrate the membrane, using {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
+  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates. It uses {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
   "gloss": "Spam prevention via pressure thresholds",
   "failure_modes": [
     "Starvation of low-stake but high-importance messages (mitigated by Whitelist).",
@@ -37,16 +37,13 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:73cff08a2f607adc184a600d9c90bf200b8d0639c24ff92f323ea5773f4a2ad5",
-  "sema_ref": "OsmoticFilter#73cf",
-  "sema_stub": "73cf",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:36b5f762c178f196095cc38a5183326ac9183a3fe351b4b3e9dfeb44a2fac587",
+  "sema_ref": "OsmoticFilter#36b5",
+  "sema_stub": "36b5",
   "dependencies": {
     "references": {
-      "costly_signal": "sema:CostlySignal#mh:SHA-256:8d9224acfbac324627894e043fc971712a7747625feb431d829423ba90ca0f36",
-      "canary": "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2",
-      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a"
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
+      "canary": "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2"
     }
   }
 }
