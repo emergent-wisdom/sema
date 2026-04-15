@@ -41,6 +41,16 @@ Call `sema_reset_session()` if your context was compressed or you need full resu
 3. **Handshake** — `sema_handshake({ references: ["X#1234", "Y#5678"] })` — verify two agents share meaning
 4. **Mint** — `sema_mint({ handle, gloss, description, invariants })` — create a new pattern (rare!)
 
+## Before you can mint
+
+The bundled vocabulary is **read-only** — it gets overwritten on pip upgrades. To mint, you need your own project DB:
+
+1. Run in shell: `sema build /path/to/my.db --preset full`
+2. Call `sema_use(db_path="/path/to/my.db")` to switch to it
+3. Now `sema_mint` will work
+
+You can check your current DB with `sema_use()` (no args) and list all known DBs with `sema list` in the shell.
+
 ## When to mint vs reuse
 
 **Always search first.** Minting is rare — only after searching three different glosses finds nothing, AND the concept has stable invariants.
