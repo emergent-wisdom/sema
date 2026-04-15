@@ -45,7 +45,7 @@ pip install "semahash[mcp]"
 To create new patterns, set `SEMA_ALLOW_MINT=true` in the environment before launching your client:
 
 ```bash
-SEMA_ALLOW_MINT=true claude --dangerously-skip-permissions
+SEMA_ALLOW_MINT=true claude
 ```
 
 ## Verify it works

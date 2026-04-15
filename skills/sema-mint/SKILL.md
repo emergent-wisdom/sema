@@ -21,11 +21,7 @@ Minting creates a new content-addressed pattern in the sema vocabulary. The defi
 
 **1. Check that minting is enabled.** If `sema_mint` is not in your available MCP tools, the server was started without `SEMA_ALLOW_MINT=true`. Tell the user:
 
-> "Minting isn't currently enabled. To turn it on, exit Claude Code and restart with:
-> ```
-> SEMA_ALLOW_MINT=true claude --dangerously-skip-permissions
-> ```
-> Then come back and we can mint."
+> "Minting isn't currently enabled. To turn it on, exit Claude Code and restart with `SEMA_ALLOW_MINT=true` set in your environment, then come back and we can mint."
 
 **2. Make sure the active DB is writable.** The bundled vocabulary is read-only — minting into it will be blocked with an error. If the user wants to mint, they need a project DB:
 
