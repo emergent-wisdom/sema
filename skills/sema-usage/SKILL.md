@@ -41,15 +41,23 @@ Call `sema_reset_session()` if your context was compressed or you need full resu
 3. **Handshake** — `sema_handshake({ references: ["X#1234", "Y#5678"] })` — verify two agents share meaning
 4. **Mint** — `sema_mint({ handle, gloss, description, invariants })` — create a new pattern (rare!)
 
+## Switching and managing databases
+
+The MCP tool `sema_use` handles all database switching — do NOT use the CLI for switching:
+
+- `sema_use()` — show current DB
+- `sema_use(db_path="/path/to/my.db")` — switch to a project DB
+- `sema_use(default=true)` — switch back to the bundled vocabulary
+
 ## Before you can mint
 
 The bundled vocabulary is **read-only** — it gets overwritten on pip upgrades. To mint, you need your own project DB:
 
-1. Run in shell: `sema build /path/to/my.db --preset full`
-2. Call `sema_use(db_path="/path/to/my.db")` to switch to it
+1. Run in shell (bash): `sema build /tmp/my-project.db --preset full`
+2. Switch to it via MCP: `sema_use(db_path="/tmp/my-project.db")`
 3. Now `sema_mint` will work
 
-You can check your current DB with `sema_use()` (no args) and list all known DBs with `sema list` in the shell.
+**Important:** `sema_mint` requires `SEMA_ALLOW_MINT=true` in the server environment. If the tool is not available, ask the user to enable it.
 
 ## When to mint vs reuse
 
