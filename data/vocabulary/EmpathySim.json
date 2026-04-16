@@ -42,9 +42,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:fe028527e04e436e6c488e837e5d8228318ae3d054178b6befc5e8f2390c0768",
-  "sema_ref": "EmpathySim#fe02",
-  "sema_stub": "fe02",
+  "sema_id": "sema:EmpathySim#mh:SHA-256:b442b201bc7df0f4ffeece0a0470a83853e97c2f586bba7ddddcf8e12dce5e87",
+  "sema_ref": "EmpathySim#b442",
+  "sema_stub": "b442",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",

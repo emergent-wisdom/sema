@@ -1195,6 +1195,9 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  HypothesisEngine:
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Falsification' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  HypothesisLadder:
@@ -1655,8 +1658,10 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  Reversibility:
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ReversibilityCheck:
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RigorousSolver:
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
@@ -1955,6 +1960,9 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Verification:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Vote:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?

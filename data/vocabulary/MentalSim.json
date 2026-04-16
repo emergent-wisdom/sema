@@ -40,9 +40,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:120a77c17329c4fb41d3abf110eca566e95833007c320a5dfb2bf8521e2d5bca",
-  "sema_ref": "MentalSim#120a",
-  "sema_stub": "120a",
+  "sema_id": "sema:MentalSim#mh:SHA-256:d0dde5eb2e702fb53b177320be21fbc9ada045419c27172b90203c4449d13203",
+  "sema_ref": "MentalSim#d0dd",
+  "sema_stub": "d0dd",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

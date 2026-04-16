@@ -2,15 +2,20 @@
   "handle": "InputGuard",
   "mechanism": "A validation filter that sanitizes inputs before they reach a sensitive component. It enforces schema compliance, type safety, and constraint satisfaction. Upon violation, it triggers a fail-closed behavior, rejecting the input and logging the attempt.",
   "gloss": "Input validation and sanitization",
+  "failure_modes": [
+    "Bypass via unexpected encoding or type coercion.",
+    "Overly permissive schema allows malformed input through."
+  ],
   "_meta": {
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Verification",
-    "ring": 0
+    "ring": 0,
+    "caution": "Validation boundary \u2014 bypass enables injection or unexpected state."
   },
-  "sema_ref": "InputGuard#0770",
-  "sema_id": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb",
-  "sema_stub": "0770",
+  "sema_ref": "InputGuard#7353",
+  "sema_id": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
+  "sema_stub": "7353",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification"
 }

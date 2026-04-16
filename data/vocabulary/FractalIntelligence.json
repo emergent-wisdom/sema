@@ -17,9 +17,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "FractalIntelligence#2eae",
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:2eaea3ae5c2fdc9b6ae2593253c220a867d70fd3fe95d02dc9eba3b9fced2394",
-  "sema_stub": "2eae",
+  "sema_ref": "FractalIntelligence#ccd8",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:ccd85cd2540eedaf46b81c602d35c1a471f5751ce67a295da3778985fad2dc5e",
+  "sema_stub": "ccd8",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

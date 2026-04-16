@@ -2,15 +2,19 @@
   "handle": "Verification",
   "mechanism": "The cognitive process of confirming that a claim or {{artifact}} adheres to its {{spec}} or reality. Unlike open-ended inquiry, Verification yields a binary Truth value regarding an existing assertion via a {{check}}.",
   "gloss": "Confirming alignment with truth or spec",
+  "failure_modes": [
+    "False positive: artifact accepted despite not meeting spec.",
+    "False negative: valid artifact rejected due to overly strict or misapplied criteria."
+  ],
   "_meta": {
     "layer": "Mind",
     "category": "Reasoning",
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Verification#9c1e",
-  "sema_id": "sema:Verification#mh:SHA-256:9c1ee918c6b8b8d7b787f5ef7ae908aa2ca37b1f9b5dace80fcf261a9c961001",
-  "sema_stub": "9c1e",
+  "sema_ref": "Verification#eb28",
+  "sema_id": "sema:Verification#mh:SHA-256:eb2838e42803a176654d6c11812568ed34b73f9e6d4a49d3e86e571354ec437c",
+  "sema_stub": "eb28",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

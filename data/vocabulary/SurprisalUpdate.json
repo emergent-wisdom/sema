@@ -42,9 +42,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca",
-  "sema_ref": "SurprisalUpdate#6ef1",
-  "sema_stub": "6ef1",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:8eb2004c635b92c95a5dad62bbc4375a5a6728f493345334dd46f8ec2b4c3714",
+  "sema_ref": "SurprisalUpdate#8eb2",
+  "sema_stub": "8eb2",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
