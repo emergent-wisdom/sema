@@ -18,9 +18,9 @@
     "tier": 2,
     "ring": 1
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:1f516b4ffd8be182e90dd740ba6b181ea858b28b87ae054d5e46dc2e3220c36b",
-  "sema_ref": "MarginalValueRule#1f51",
-  "sema_stub": "1f51",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:a46a39374cd046def6d2457b87ce2a426fe1e4b957494ff4a5b62d28665e159e",
+  "sema_ref": "MarginalValueRule#a46a",
+  "sema_stub": "a46a",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [

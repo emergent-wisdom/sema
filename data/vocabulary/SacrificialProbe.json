@@ -36,9 +36,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:c3883f39a0449e73943f7220650ca020e2b7accfd36c82675350d93c8bae54f2",
-  "sema_ref": "SacrificialProbe#c388",
-  "sema_stub": "c388",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:e235bde0b859ae1c6db86c1a89037765c45cdaae2bbcac7e3bae000063d65e99",
+  "sema_ref": "SacrificialProbe#e235",
+  "sema_stub": "e235",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

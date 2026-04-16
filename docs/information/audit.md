@@ -1097,7 +1097,6 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  Falsification:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  FeatureFlag:
-   • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Feedback:
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
@@ -1689,6 +1688,7 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  Sandbox:
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Vector' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Satisfice:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?

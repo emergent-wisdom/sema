@@ -15,9 +15,9 @@
     "ring": 1,
     "caution": "Verify rollback strategy exists before committing."
   },
-  "sema_ref": "Deploy#28c3",
-  "sema_id": "sema:Deploy#mh:SHA-256:28c37d9286aa6d4ac9864f9089f3ca3c80cf82622e5258bd97bbfaa74941ffe8",
-  "sema_stub": "28c3",
+  "sema_ref": "Deploy#41ac",
+  "sema_id": "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e",
+  "sema_stub": "41ac",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -58,9 +58,9 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Card#mh:SHA-256:300fb768b37d63c20e3a144431bbfba523d33d324d119f2a6b7cc2452bbfc47d",
-  "sema_ref": "Card#300f",
-  "sema_stub": "300f",
+  "sema_id": "sema:Card#mh:SHA-256:e307b9bce7530dd5d86a1e6e4cd2252765f4154b6e3e6c1f1f1ac3e544666495",
+  "sema_ref": "Card#e307",
+  "sema_stub": "e307",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

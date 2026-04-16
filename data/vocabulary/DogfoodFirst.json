@@ -38,9 +38,9 @@
     "category": "Economics",
     "ring": 0
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:b0d4914678cb3b25158729bd61cc32b873d5da9aae7fb8e6f63fb5a9ccaa4ada",
-  "sema_ref": "DogfoodFirst#b0d4",
-  "sema_stub": "b0d4",
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:3f2cc6a5a25c8127928db9d40defd1a022362de6f94ee44cbab9383134d4d9e3",
+  "sema_ref": "DogfoodFirst#3f2c",
+  "sema_stub": "3f2c",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

@@ -25,9 +25,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:c1755bc46158fae06c4b2890cc735f75ad3c1eea7e99a9621a0877901e712579",
-  "sema_ref": "NoiseInjection#c175",
-  "sema_stub": "c175",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:685ee3801da377f7760a3d28085a68bc01665c3ae0783e1de26ad1041096094d",
+  "sema_ref": "NoiseInjection#685e",
+  "sema_stub": "685e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -8,9 +8,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:FeatureFlag#mh:SHA-256:51dfd1ea32f037dcbe257b7c196d1bac1422ba75cdd6e3b747ea7761c3ad9143",
-  "sema_ref": "FeatureFlag#51df",
-  "sema_stub": "51df",
+  "sema_id": "sema:FeatureFlag#mh:SHA-256:6c5cf7fa3a6f169e38989b0342ed06e5f92bf4cf0749ad43c6cb0d012182664c",
+  "sema_ref": "FeatureFlag#6c5c",
+  "sema_stub": "6c5c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
@@ -19,7 +19,7 @@
     }
   },
   "failure_modes": [
-    "Flag left on in production after experiment ends.",
-    "Flag state inconsistent across distributed nodes."
+    "Flag outlives its purpose, accumulating unused conditional branches.",
+    "Flag state inconsistent across distributed evaluators."
   ]
 }

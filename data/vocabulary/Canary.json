@@ -26,9 +26,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Canary#mh:SHA-256:bb16e143b7b5861ec67cd23dee98fe553e171c5e3e07c202e12355329ec134c7",
-  "sema_ref": "Canary#bb16",
-  "sema_stub": "bb16",
+  "sema_id": "sema:Canary#mh:SHA-256:92d292bbdbb6aac871cdbff1b32a7878d1585750a76511870311159c39e0ee87",
+  "sema_ref": "Canary#92d2",
+  "sema_stub": "92d2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

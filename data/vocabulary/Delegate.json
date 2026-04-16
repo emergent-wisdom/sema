@@ -29,9 +29,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:2eb532444bce61b84d1561b9cf623424d154f89d9e4bbd27b7ab21c37f81142f",
-  "sema_ref": "Delegate#2eb5",
-  "sema_stub": "2eb5",
+  "sema_id": "sema:Delegate#mh:SHA-256:e557d8268697e26743dc5d2cf191741e47b7bef0d986e8dbff3d86e5e9d9486e",
+  "sema_ref": "Delegate#e557",
+  "sema_stub": "e557",
   "dependencies": {
     "composes_with": {
       "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",

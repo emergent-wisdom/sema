@@ -22,9 +22,9 @@
     "ring": 0,
     "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment."
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:699de0efa7b25d21de84b7bcc170717621fb8a28fb0ae6bb038360f8e0a3047a",
-  "sema_ref": "CommitmentDevice#699d",
-  "sema_stub": "699d",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:074b03c077f07b24dd1eb5427579069b4caaf6353759aa1c7affcdab79258ced",
+  "sema_ref": "CommitmentDevice#074b",
+  "sema_stub": "074b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {

@@ -23,9 +23,9 @@
     "category": "Primitives",
     "ring": 2
   },
-  "sema_ref": "Uncertain#1d0f",
-  "sema_id": "sema:Uncertain#mh:SHA-256:1d0f4d660d6dd9cbd610d915b3f3dd1426a079b94e8ca815dd071eb9629ee43d",
-  "sema_stub": "1d0f",
+  "sema_ref": "Uncertain#b159",
+  "sema_id": "sema:Uncertain#mh:SHA-256:b1596d0176ec07983b13fe811026335849400cab1b8dc090e3aeec726d5e0a54",
+  "sema_stub": "b159",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

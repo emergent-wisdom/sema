@@ -30,9 +30,9 @@
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_ref": "RealizationProtocol#db60",
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:db60dc319fd23eea0515eeef8b7009a827c98bb019d339436b0843ccf6bafc07",
-  "sema_stub": "db60",
+  "sema_ref": "RealizationProtocol#ce28",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:ce28411f10fd62c3204a3dd2bf7079f7cc07eb24cce02b414491284297172d34",
+  "sema_stub": "ce28",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
