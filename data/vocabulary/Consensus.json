@@ -31,9 +31,9 @@
       "Sync"
     ]
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:b862129bd2b8e4a8aa030b4a62a57343385ee7e3863a0639a3563c9800da75f7",
-  "sema_ref": "Consensus#b862",
-  "sema_stub": "b862",
+  "sema_id": "sema:Consensus#mh:SHA-256:7216e0e528262020ff05fa26124a8db9fcb14613fde05ddd0b2eb393958c4211",
+  "sema_ref": "Consensus#7216",
+  "sema_stub": "7216",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

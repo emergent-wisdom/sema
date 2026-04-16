@@ -55,5 +55,7 @@
       "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
       "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
 }

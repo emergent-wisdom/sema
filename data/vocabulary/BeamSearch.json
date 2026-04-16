@@ -20,9 +20,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:BeamSearch#mh:SHA-256:5a3460aa9dc10ab22ddf87f740cb0dc1166e96d7d07fd31bf312cf8b35b1e559",
-  "sema_ref": "BeamSearch#5a34",
-  "sema_stub": "5a34",
+  "sema_id": "sema:BeamSearch#mh:SHA-256:20cd422474b7bb111d0b7a83c8d72b00f42a606aaef7f695a626c628472d3625",
+  "sema_ref": "BeamSearch#20cd",
+  "sema_stub": "20cd",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

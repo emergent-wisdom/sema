@@ -2,9 +2,9 @@
   "handle": "Group",
   "mechanism": "A defined collection of {{agent}}s sharing a common {{context}} or goal. It serves as the scope for {{consensus}} and {{shout_whisper}}.",
   "gloss": "Agent collective",
-  "sema_id": "sema:Group#mh:SHA-256:1af4fe427bdd068518c866039039fea402aba3a0429d9af253b16b8c3897c52b",
-  "sema_ref": "Group#1af4",
-  "sema_stub": "1af4",
+  "sema_id": "sema:Group#mh:SHA-256:0929f34d784edcac580579d64a1e6277564a4ed3fb1bdd3d87e56b5d7a62c295",
+  "sema_ref": "Group#0929",
+  "sema_stub": "0929",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",

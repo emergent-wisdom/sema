@@ -31,8 +31,14 @@ VOCAB_DIR = os.path.join(REPO_ROOT, "data", "vocabulary")
 
 
 def run(cmd, **kwargs):
-    """Run a command, return (returncode, stdout, stderr)."""
-    result = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO_ROOT, **kwargs)
+    """Run a command, return (returncode, stdout, stderr).
+
+    Forces SEMA_DB_PATH so the sema CLI subprocess targets the repo DB
+    regardless of ~/.config/sema/active_db on the host.
+    """
+    env = kwargs.pop("env", None) or os.environ.copy()
+    env["SEMA_DB_PATH"] = DB_PATH
+    result = subprocess.run(cmd, capture_output=True, text=True, cwd=REPO_ROOT, env=env, **kwargs)
     return result.returncode, result.stdout, result.stderr
 
 
@@ -49,7 +55,9 @@ def get_embedding_cache_path():
 def main():
     parser = argparse.ArgumentParser(description="Rebuild vocabulary DB and verify hash stability.")
     parser.add_argument("--check", action="store_true", help="Dry-run: report without modifying DB")
-    parser.add_argument("--replace", action="store_true", help="Keep the rebuilt DB instead of restoring")
+    parser.add_argument(
+        "--replace", action="store_true", help="Keep the rebuilt DB instead of restoring"
+    )
     parser.add_argument("--verbose", action="store_true", help="Print each pattern ref")
     parser.add_argument(
         "--cold",
@@ -129,7 +137,7 @@ def main():
                     print(f"  {line}")
             sys.exit(1)
         else:
-            print(f"\n✅ All hashes stable — zero diff on vocabulary JSON files")
+            print("\n✅ All hashes stable — zero diff on vocabulary JSON files")
 
     finally:
         # 5. Restore DB

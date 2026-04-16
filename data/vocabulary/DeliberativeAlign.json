@@ -39,9 +39,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:b497c6ca668ab1c96d3efb07e257de8b3d41c82d08c08a32dbc82694841838e7",
-  "sema_ref": "DeliberativeAlign#b497",
-  "sema_stub": "b497",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:8ba23d93d396cd97abdfc7464d88f8e30d6bd4346e7614a7677bd500caa9cd05",
+  "sema_ref": "DeliberativeAlign#8ba2",
+  "sema_stub": "8ba2",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
@@ -55,5 +55,7 @@
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

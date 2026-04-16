@@ -22,9 +22,9 @@
       "LayeredCheck"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e",
-  "sema_ref": "OrchestrationLoop#f6f4",
-  "sema_stub": "f6f4",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:9346e283562c097d827fcf113a0f4aa511bd57e192cf0951afb0e68a96e36a82",
+  "sema_ref": "OrchestrationLoop#9346",
+  "sema_stub": "9346",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

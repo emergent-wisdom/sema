@@ -47,5 +47,7 @@
     "yields": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

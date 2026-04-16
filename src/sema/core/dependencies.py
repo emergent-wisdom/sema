@@ -42,6 +42,36 @@ def get_dependencies_handles(p: dict) -> set[str]:
     return deps
 
 
+# Buckets subject to layer-direction checking (Rule 7.6).
+# The paper (§5.2) treats layer direction as a style guide for the full
+# dependency set, but enforces it as a hard constraint on structural deps.
+# Cross-layer soft links belong in references or _meta.related (Soft-Linking).
+# - accepts: inputs the pattern reads — must be at or below its layer.
+# - composes_with: subroutines invoked — must be at or below its layer.
+# Excluded:
+# - yields: outputs produced. Emergence goes upward (Mind yields Society artifacts).
+# - references: soft citations/comparisons, not structural dependencies.
+_LAYER_CHECKED_BUCKETS = ("accepts", "composes_with")
+
+
+def get_layer_checked_handles(p: dict) -> set[str]:
+    """
+    Return handles from buckets subject to layer-direction checking.
+
+    Layer direction applies to consumption (accepts, composes_with), not
+    production (yields) or citation (references).
+    """
+    deps = set()
+    d = p.get("dependencies", {})
+    for cat in _LAYER_CHECKED_BUCKETS:
+        if cat in d and isinstance(d[cat], dict):
+            for val in d[cat].values():
+                h = clean_handle(val)
+                if h:
+                    deps.add(h)
+    return deps
+
+
 def find_cycle_path(adj: dict[str, set[str]], nodes: set[str]) -> list[str] | None:
     """
     Find one cycle path in the dependency graph restricted to 'nodes'.
@@ -161,7 +191,7 @@ def check_layer_direction(
             continue
 
         pattern_level = LAYER_ORDER[pattern_layer]
-        deps = get_dependencies_handles(pattern)
+        deps = get_layer_checked_handles(pattern)
 
         for dep_handle in deps:
             if dep_handle not in all_patterns:

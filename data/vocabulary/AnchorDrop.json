@@ -24,9 +24,9 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:AnchorDrop#mh:SHA-256:38786515e46deaaa0422906995589f847824b69ded3929b343939f8a8300554b",
-  "sema_ref": "AnchorDrop#3878",
-  "sema_stub": "3878",
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:bf63d7b42444f4b7d7f8c1efbf50574153743cc958b05dd96961f4d27ba799e8",
+  "sema_ref": "AnchorDrop#bf63",
+  "sema_stub": "bf63",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

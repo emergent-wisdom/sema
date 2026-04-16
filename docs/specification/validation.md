@@ -86,9 +86,12 @@ If a Pattern claims a `signature`, it MUST fulfill that contract entirely. Do no
 
 ### Rule G: The Dependency Direction Rule
 
-**The Fundamental Principle:** Dependencies always flow from specific to general. The more fundamental (more general, less specific) pattern is always upstream. Specific patterns depend on general patterns, never the reverse.
+**The Fundamental Principle:** Structural dependencies flow from specific to general. The more fundamental (more general, less specific) pattern is always upstream.
 
-**The Rule:** A pattern may only declare dependencies on patterns that are **more fundamental** than itself.
+**The Rule:** A pattern's **hard dependencies** (`accepts` and `composes_with`) must reference patterns at the same or more fundamental layer. Two buckets are exempt:
+
+- **`yields`** — outputs produced. Emergence flows upward (a Mind pattern can yield a Society artifact).
+- **`references`** — soft citations and comparisons, not structural dependencies. Cross-layer references belong here or in `_meta.related` (see paper §5.2, Soft-Linking strategy).
 
 | Pattern | Depends On | Rationale |
 | --- | --- | --- |
@@ -96,10 +99,15 @@ If a Pattern claims a `signature`, it MUST fulfill that contract entirely. Do no
 | `Car` | `Wheel` | Car is an assembly; Wheel is a component |
 | `Wheel` | `Circle` | Wheel is a physical object; Circle is a geometric primitive |
 
-**Violations:**
+**Violations (in `accepts` / `composes_with` only):**
 
-* **Bad:** `Car` depends on `Toyota`. (General cannot depend on specific)
-* **Bad:** `Physics` layer referencing `Society` layer. (Lower layers are more fundamental)
+* **Bad:** `Car` composes_with `Toyota`. (General cannot structurally depend on specific)
+* **Bad:** `Physics` pattern accepts `Society` input. (Lower layers are more fundamental)
+
+**Allowed cross-layer patterns:**
+
+* **OK:** `Mind` pattern yields `Society` artifact. (Emergence)
+* **OK:** `Infrastructure` pattern references `Society` concept. (Soft citation)
 
 ### Rule H: The Concept Suspicion Rule
 

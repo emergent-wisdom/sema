@@ -189,20 +189,20 @@ def apply_changes(
             return False
 
         # 2b2. Check layer direction (Rule 7.6)
-        # TODO: Temporarily disabled pending vocabulary layer fixes (65 violations)
-        # Rule 7.6: Layer direction validation
-        # try:
-        #     from ..taxonomy_graph.graph_store import NodeType
-        #
-        #     existing_patterns = {
-        #         data.get("handle", nid): data
-        #         for nid, data in store.get_nodes_by_type(NodeType.PATTERN)
-        #         if data.get("handle")
-        #     }
-        #     validate_layer_direction(patterns_dict, existing_patterns)
-        # except ValueError as e:
-        #     print(f"  ❌ {e}")
-        #     return False
+        # Applies only to hard dependency buckets (accepts, composes_with).
+        # yields and references are exempt — see dependencies._LAYER_CHECKED_BUCKETS.
+        try:
+            from ..core.dependencies import validate_layer_direction
+
+            existing_patterns = {
+                data.get("handle", nid): data
+                for nid, data in store.get_nodes_by_type(NodeType.PATTERN)
+                if data.get("handle")
+            }
+            validate_layer_direction(patterns_dict, existing_patterns)
+        except ValueError as e:
+            print(f"  ❌ {e}")
+            return False
 
         # Map back to full tuples
         pattern_map = {p[1]["handle"]: p for p in add_patterns}
