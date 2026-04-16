@@ -726,7 +726,12 @@ def update_db(
             try:
                 os.remove(backup_path)
             except OSError:
-                pass
+                # Antivirus / file indexer might briefly hold the 0-byte
+                # file. Tell the user explicitly — otherwise their next
+                # pull will see this file and falsely report "stranded
+                # backup from catastrophic rollback failure", a terrifying
+                # jump-scare for what was actually a transient lock.
+                print(f"⚠️  Note: Please manually delete the empty {backup_path} file.")
         return False
 
     added = []
@@ -810,12 +815,22 @@ def update_db(
                 bak_conn.backup(dst_conn)
             os.remove(backup_path)
             print("✅ Target DB restored from backup.")
-        except Exception as rollback_err:
+        except (Exception, KeyboardInterrupt) as rollback_err:
             # Critical: if rollback itself fails, the backup is the user's
             # only remaining copy of the pre-pull state. Do NOT delete it.
             # Next pull will detect the stranded .pull_bak and refuse to
             # proceed, prompting the user to recover manually.
-            print(f"🚨 CRITICAL: Automatic rollback failed ({rollback_err})")
+            #
+            # KeyboardInterrupt explicitly: a panicked user mashing Ctrl+C
+            # would otherwise hit the C-based sqlite backup() with a fresh
+            # interrupt, bypass this handler, and never see the manual
+            # recovery instructions — exactly when they need them most.
+            err_str = (
+                "user interrupted"
+                if isinstance(rollback_err, KeyboardInterrupt)
+                else str(rollback_err)
+            )
+            print(f"🚨 CRITICAL: Automatic rollback failed ({err_str})")
             print("   Your database may be in an inconsistent state.")
             print(f"   Your pre-pull backup is preserved at: {backup_path}")
             print("   To recover manually, restore from that file (sqlite3 backup API).")
