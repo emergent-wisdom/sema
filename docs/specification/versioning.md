@@ -67,9 +67,9 @@ Two things are true at once:
 ## 4. `sema_handshake` semantics across versions
 
 `sema_handshake` is strict by design: it verifies byte-level agreement
-on a specific definition. Agents that pin to `PropheticQuorum#21f7`
+on a specific definition. Agents that pin to `PropheticQuorum#192e`
 continue to resolve that exact definition forever, even if a newer
-`PropheticQuorum#b8ca` exists.
+`PropheticQuorum#192e` exists.
 
 Agents that want "the latest PropheticQuorum" query the bare handle,
 get back whichever hash is current, and *then* handshake against that
@@ -101,9 +101,9 @@ breaking lookups by hash.
 
 ## 6. Short stubs identify versions, not handles
 
-A 4-hex stub like `PropheticQuorum#21f7` identifies one specific
+A 4-hex stub like `PropheticQuorum#192e` identifies one specific
 version of a handle. When the handle is refined, the new version gets
-a different stub: `PropheticQuorum#b8ca`. Stubs are therefore
+a different stub: `PropheticQuorum#192e`. Stubs are therefore
 **version-identifying**, not handle-identifying.
 
 This is a feature, not a quirk. It lets prose distinguish

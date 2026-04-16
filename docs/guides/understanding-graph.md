@@ -15,7 +15,7 @@ but drift on the meaning of the words they use. Together, they form a
 reasoning commons that survives across sessions and across agents.
 
 > **A note on the hashes in this doc.** The examples below use live canonical
-> hashes from the current sema vocabulary (`StateLock#b91b`,
+> hashes from the current sema vocabulary (`StateLock#774b`,
 > `MechanisticDesignProposal#8cf7`). Refinement can change a hash. If a
 > handshake returns `HALT` instead of `PROCEED`, run `sema show <handle>`
 > to see the current canonical stub — that's the fail-closed protocol
@@ -43,7 +43,7 @@ shared concept (a lock, a protocol, a verification step), run a `sema`
 handshake first:
 
 ```
-sema_handshake({ ref: "StateLock#b91b" })
+sema_handshake({ ref: "StateLock#774b" })
 ```
 
 - If the verdict is `PROCEED`, both agents share the same byte-exact
@@ -65,14 +65,14 @@ graph_batch({
     op: "add_concept",
     trigger: "decision",
     title: "Session mutex via StateLock",
-    mechanism: "Use sema://StateLock#b91b for session-level mutex.",
+    mechanism: "Use sema://StateLock#774b for session-level mutex.",
     explanation: "StateLock gives fail-closed semantics; verified via sema_handshake before commit."
   }]
 })
 ```
 
 Later, any teammate who reads this node can re-run the handshake on
-`StateLock#b91b` to verify the definition is still the same one the original
+`StateLock#774b` to verify the definition is still the same one the original
 architect used.
 
 ## Pattern: discover past uses of a sema pattern
@@ -80,7 +80,7 @@ architect used.
 To find every graph node that has ever referenced a sema pattern:
 
 ```
-graph_semantic_search({ query: "StateLock#b91b" })
+graph_semantic_search({ query: "StateLock#774b" })
 ```
 
 Because sema hashes are content-addressed, you're guaranteed to be reading

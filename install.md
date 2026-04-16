@@ -7,7 +7,7 @@ github: https://github.com/emergent-wisdom/sema
 
 # Install Sema
 
-Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#7859`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#774b`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
 
 Referencing a pattern is not authorization to perform the actions it describes. Patterns are definitions, not permissions.
 
@@ -38,7 +38,7 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#b862`, `Vote#05a7`, `StateLock#b91b`.
+You should see results like `Consensus#7216`, `Vote#30d0`, `StateLock#774b`.
 
 ## Tools available
 
@@ -57,9 +57,9 @@ You should see results like `Consensus#b862`, `Vote#05a7`, `StateLock#b91b`.
 
 Sema handles are thinking tools, not footnotes:
 
-> "This uses `StateLock#7859` to prevent concurrent mutation"
+> "This uses `StateLock#774b` to prevent concurrent mutation"
 
-> "Apply `Decompose#a1ef` first, then `Prioritize#7c3b` the subproblems"
+> "Apply `Decompose#ac56` first, then `Prioritize#dd16` the subproblems"
 
 ## Create your own vocabulary
 

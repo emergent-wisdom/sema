@@ -144,7 +144,7 @@ result = json.loads(sema_handshake("StateLock"))
 print(result["canonical_stub"])  # b91b
 
 # Verify alignment
-result = json.loads(sema_handshake("StateLock#b91b"))
+result = json.loads(sema_handshake("StateLock#774b"))
 print(result["verdict"])  # PROCEED
 ```
 
@@ -165,8 +165,8 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Agent A: "Let's use StateLock#b91b"
-Agent B: sema_handshake("StateLock#b91b")
+Agent A: "Let's use StateLock#774b"
+Agent B: sema_handshake("StateLock#774b")
          -> PROCEED (hashes match) or HALT (drift detected)
 ```
 
@@ -190,7 +190,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | Tool | Description |
 |------|-------------|
 | `sema_search` | Search patterns by name, description, or meaning |
-| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#b91b`) |
+| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#774b`) |
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
@@ -252,7 +252,7 @@ claude mcp add ug   -- npx -y understanding-graph mcp
 
 With both installed, an agent can:
 
-1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#b91b`) so the meaning of the primitive can never drift.
+1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#774b`) so the meaning of the primitive can never drift.
 2. Use `graph_semantic_search` to find all past graph nodes that reference a given sema pattern — hash-stable history, not keyword matching.
 3. Call `sema_handshake` *before* writing a decision that depends on a shared concept; if it returns `HALT`, the agent writes a `tension` node instead and stops, preventing silent divergence.
 

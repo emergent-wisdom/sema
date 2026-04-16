@@ -65,6 +65,10 @@ jobs:
             exit 1
           fi
 
+      - name: Doc hash references are current
+        if: matrix.python-version == '3.12'
+        run: python scripts/update_doc_refs.py --check
+
   lint:
     runs-on: ubuntu-latest
     steps:
