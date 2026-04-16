@@ -2,17 +2,22 @@
   "handle": "IdentityHandshake",
   "mechanism": "Macro for {{discover}}({{identity}}) + {{check}}({{nature}}). The agent verifies the ontological origin of a counterparty to switch between Service {{mode}} (for Biologicals) and Coordination {{mode}} (for Synthetics). It performs a multi-stage authentication, chaining {{discover}} for availability, {{spectral_tune}} for alignment, {{ontology_handshake}} for context, and {{check}} for cryptographic {{identity}} verification.",
   "gloss": "Distinguish Peer from Principal",
+  "failure_modes": [
+    "Partial trust: agent trusted after incomplete verification.",
+    "Replay: previously valid handshake reused in a new context."
+  ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "caution": "Trust boundary \u2014 failure enables impersonation."
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:3a336d82fa7e2ee48ba131781e470179d64be0f70915687a6adcc65fff2c05a9",
-  "sema_ref": "IdentityHandshake#3a33",
-  "sema_stub": "3a33",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:f2e812c10dde8b6eb942ab763f53a42d95fd797ac09ba951d4138119a2e813be",
+  "sema_ref": "IdentityHandshake#f2e8",
+  "sema_stub": "f2e8",
   "signature": [
     "Discover(Identity)"
   ],

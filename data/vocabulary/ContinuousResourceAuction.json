@@ -60,9 +60,9 @@
       "AttentionMarkets"
     ]
   },
-  "sema_ref": "ContinuousResourceAuction#46f6",
-  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08",
-  "sema_stub": "46f6",
+  "sema_ref": "ContinuousResourceAuction#babf",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:babf1b41f451b6df2220129e0c0a05483abfc8f8aa8b4bfd3f7fd543ac9e009f",
+  "sema_stub": "babf",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

@@ -8,9 +8,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
-  "sema_ref": "TraceBelief#cee3",
-  "sema_stub": "cee3",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:a4bb1cd846d840689549faca393ed9831cf058541acb3f0781bbb46d7c36cfec",
+  "sema_ref": "TraceBelief#a4bb",
+  "sema_stub": "a4bb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

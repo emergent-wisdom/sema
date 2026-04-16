@@ -1452,6 +1452,8 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  PatternDiscovery:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Permission:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PermissionEscalate:
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PerspectiveEnsemble:
@@ -1791,6 +1793,10 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StateAudit:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StateLock:
+   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StateSnapshot:
    • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StateTransition:
@@ -1984,7 +1990,7 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 339 patterns.
+Scan complete. Found unlinked handle mentions in 341 patterns.
 ```
 
 ## Semantic similarity between patterns

@@ -27,9 +27,9 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48",
-  "sema_ref": "Disband#86c6",
-  "sema_stub": "86c6",
+  "sema_id": "sema:Disband#mh:SHA-256:7cb883dd99a51f2408f92e5d48d69d4c3f077db9d49e3754a1f99af92126b0cf",
+  "sema_ref": "Disband#7cb8",
+  "sema_stub": "7cb8",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
