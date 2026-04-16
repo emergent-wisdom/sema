@@ -42,5 +42,7 @@
       "ballot": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

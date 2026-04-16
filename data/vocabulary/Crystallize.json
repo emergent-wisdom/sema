@@ -57,5 +57,7 @@
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
       "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

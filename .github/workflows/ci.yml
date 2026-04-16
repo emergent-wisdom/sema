@@ -38,6 +38,62 @@ jobs:
           sema resolve StateLock > /dev/null
           sema skeleton > /dev/null
 
+      - name: Hash validity (blocking)
+        if: matrix.python-version == '3.12'
+        run: python scripts/audit/audit_hash_validity.py
+
+      - name: Vocabulary JSON hashes are stable
+        if: matrix.python-version == '3.12'
+        run: |
+          python scripts/rebuild_vocabulary.py || true
+          if ! git diff --exit-code -- data/vocabulary/; then
+            echo "::error::Vocabulary JSON hashes drift when rebuilt from source."
+            echo "Run 'python scripts/rebuild_vocabulary.py --replace' locally and commit the"
+            echo "updated JSON files + taxonomy.db."
+            exit 1
+          fi
+
+  update-generated-docs:
+    # Regenerate the vocabulary stats (Merkle root, counts) and the audit
+    # report, then commit both back to main whenever they drift. Runs only on
+    # push to main (post-merge), so PR authors never regenerate by hand.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Default GITHUB_TOKEN pushes don't re-trigger workflows, so no loop.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -e ".[mcp]"
+
+      - name: Regenerate vocabulary stats and Merkle root
+        run: python scripts/vocabulary_merkle_root.py
+
+      - name: Regenerate audit report
+        run: python scripts/audit/run_all_audits.py
+
+      - name: Commit if changed
+        run: |
+          generated=(docs/information/vocabulary_information.md docs/information/audit.md)
+          if git diff --quiet -- "${generated[@]}"; then
+            echo "Generated docs already up-to-date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${generated[@]}"
+          git commit -m "chore: auto-update vocabulary stats, Merkle root, audit report"
+          git push
+
   lint:
     runs-on: ubuntu-latest
     steps:

@@ -417,17 +417,22 @@ class TestDataSchema:
 
 
 class TestLayerDirection:
-    """Test layer direction validation (Rule 7.6)."""
+    """Test layer direction validation (Rule 7.6).
+
+    The rule applies only to the hard dependency buckets `accepts` and
+    `composes_with`. `yields` (production, emergence goes upward) and
+    `references` (soft citations) are exempt.
+    """
 
     def test_valid_direction_high_to_low(self):
-        """7.6: Society depending on Physics is valid (high -> low)."""
+        """7.6: Society composing with Physics is valid (high -> low)."""
         from sema.core.dependencies import check_layer_direction
 
         patterns = {
             "HighLevel": {
                 "handle": "HighLevel",
                 "_meta": {"layer": "Society"},
-                "dependencies": {"references": {"low": "sema:LowLevel#mh:SHA-256:" + "a" * 64}},
+                "dependencies": {"composes_with": {"low": "sema:LowLevel#mh:SHA-256:" + "a" * 64}},
             }
         }
         existing = {"LowLevel": {"handle": "LowLevel", "_meta": {"layer": "Physics"}}}
@@ -435,20 +440,67 @@ class TestLayerDirection:
         assert violations == []
 
     def test_invalid_direction_low_to_high(self):
-        """7.6: Physics depending on Society is invalid (low -> high)."""
+        """7.6: Physics composing with Society is invalid (low -> high)."""
         from sema.core.dependencies import check_layer_direction
 
         patterns = {
             "LowLevel": {
                 "handle": "LowLevel",
                 "_meta": {"layer": "Physics"},
-                "dependencies": {"references": {"high": "sema:HighLevel#mh:SHA-256:" + "a" * 64}},
+                "dependencies": {
+                    "composes_with": {"high": "sema:HighLevel#mh:SHA-256:" + "a" * 64}
+                },
             }
         }
         existing = {"HighLevel": {"handle": "HighLevel", "_meta": {"layer": "Society"}}}
         violations = check_layer_direction(patterns, existing)
         assert len(violations) == 1
         assert violations[0] == ("LowLevel", "Physics", "HighLevel", "Society")
+
+    def test_invalid_direction_in_accepts_bucket(self):
+        """7.6: Physics accepting a Society input is invalid."""
+        from sema.core.dependencies import check_layer_direction
+
+        patterns = {
+            "LowLevel": {
+                "handle": "LowLevel",
+                "_meta": {"layer": "Physics"},
+                "dependencies": {"accepts": {"high": "sema:HighLevel#mh:SHA-256:" + "a" * 64}},
+            }
+        }
+        existing = {"HighLevel": {"handle": "HighLevel", "_meta": {"layer": "Society"}}}
+        violations = check_layer_direction(patterns, existing)
+        assert len(violations) == 1
+
+    def test_yields_upward_is_allowed(self):
+        """7.6: yields is exempt — Mind yielding a Society artifact is fine (emergence)."""
+        from sema.core.dependencies import check_layer_direction
+
+        patterns = {
+            "Estimate": {
+                "handle": "Estimate",
+                "_meta": {"layer": "Mind"},
+                "dependencies": {"yields": {"bid": "sema:Bid#mh:SHA-256:" + "a" * 64}},
+            }
+        }
+        existing = {"Bid": {"handle": "Bid", "_meta": {"layer": "Society"}}}
+        violations = check_layer_direction(patterns, existing)
+        assert violations == []
+
+    def test_references_upward_is_allowed(self):
+        """7.6: references is exempt — soft citations across layers are fine."""
+        from sema.core.dependencies import check_layer_direction
+
+        patterns = {
+            "LowLevel": {
+                "handle": "LowLevel",
+                "_meta": {"layer": "Infrastructure"},
+                "dependencies": {"references": {"high": "sema:HighLevel#mh:SHA-256:" + "a" * 64}},
+            }
+        }
+        existing = {"HighLevel": {"handle": "HighLevel", "_meta": {"layer": "Society"}}}
+        violations = check_layer_direction(patterns, existing)
+        assert violations == []
 
     def test_same_layer_allowed(self):
         """7.6: Same layer dependencies are allowed."""
@@ -458,7 +510,7 @@ class TestLayerDirection:
             "PatternA": {
                 "handle": "PatternA",
                 "_meta": {"layer": "Mind"},
-                "dependencies": {"references": {"b": "sema:PatternB#mh:SHA-256:" + "a" * 64}},
+                "dependencies": {"composes_with": {"b": "sema:PatternB#mh:SHA-256:" + "a" * 64}},
             }
         }
         existing = {"PatternB": {"handle": "PatternB", "_meta": {"layer": "Mind"}}}
@@ -474,13 +526,35 @@ class TestLayerDirection:
                 "handle": "PhysicsPattern",
                 "_meta": {"layer": "Physics"},
                 "dependencies": {
-                    "references": {"soc": "sema:SocietyPattern#mh:SHA-256:" + "a" * 64}
+                    "composes_with": {"soc": "sema:SocietyPattern#mh:SHA-256:" + "a" * 64}
                 },
             }
         }
         existing = {"SocietyPattern": {"handle": "SocietyPattern", "_meta": {"layer": "Society"}}}
         with pytest.raises(ValueError, match="Layer direction violation"):
             validate_layer_direction(patterns, existing)
+
+    def test_vocabulary_is_clean(self):
+        """7.6: The shipped vocabulary must contain zero layer-direction violations."""
+        import json
+        import pathlib
+
+        from sema.core.dependencies import check_layer_direction
+
+        vocab_dir = pathlib.Path(__file__).resolve().parents[3].parent / "data" / "vocabulary"
+        if not vocab_dir.is_dir():
+            pytest.skip(f"vocabulary dir not found at {vocab_dir}")
+
+        patterns = {}
+        for f in sorted(vocab_dir.glob("*.json")):
+            d = json.loads(f.read_text())
+            patterns[d["handle"]] = d
+
+        violations = check_layer_direction(patterns, {})
+        assert violations == [], (
+            f"Vocabulary has {len(violations)} layer-direction violations: "
+            + "; ".join(f"{h}({pl}) -> {dh}({dl})" for h, pl, dh, dl in violations[:10])
+        )
 
 
 class TestNullValues:

@@ -33,12 +33,12 @@ The vocabulary is organized into four fundamental layers that mimic a civilizati
 
 | Layer | Domain | Function | The "Hardware" Analogy |
 | --- | --- | --- | --- |
-| **Physics** | **Immutable Laws** | The substrate of consistency, state, and time. These patterns cannot be "wished away." | **The Hardware.** (State, Entropy, Lock) |
-| **Mind** | **Cognition** | Reasoning, planning, and self-correction. Decomposable processes for transforming information. | **The Software.** (Think, Reason, Interpret) |
-| **Society** | **Interaction** | Multi-agent coordination, economics, and trust. Patterns that emerge between agents. | **The Network.** (Vote, Consensus, Protocol) |
-| **Infrastructure** | **Constraints** | Safety rails, resource limits, and operational boundaries. | **The Kernel.** (Budget, Sandbox, Gate) |
+| **Infrastructure** (Layer 0) | **Constraints** | Safety rails, resource limits, and operational boundaries. Most fundamental. | **The Kernel.** (Budget, Sandbox, Gate) |
+| **Physics** (Layer 1) | **Immutable Laws** | The substrate of consistency, state, and time. These patterns cannot be "wished away." | **The Hardware.** (State, Entropy, Lock) |
+| **Mind** (Layer 2) | **Cognition** | Reasoning, planning, and self-correction. Decomposable processes for transforming information. | **The Software.** (Think, Reason, Interpret) |
+| **Society** (Layer 3) | **Interaction** | Multi-agent coordination, economics, and trust. Patterns that emerge between agents. Most abstract. | **The Network.** (Vote, Consensus, Protocol) |
 
-**Dependency Invariant:** `Infrastructure` constrains `Physics`, which supports `Mind`, which enables `Society`.
+**Dependency Invariant:** `Infrastructure` constrains `Physics`, which supports `Mind`, which enables `Society`. Hard dependencies (`accepts`, `composes_with`) must flow from higher layers to lower. Soft citations (`references`) and outputs (`yields`) are exempt.
 
 **The Parametric Exception (Smart Infrastructure):**
 Fundamental layers (Infrastructure/Physics) may *wrap* High-Level patterns (Mind/Society) **only if** the High-Level pattern is treated as an opaque parameter (e.g., a `Condition` or `Metric`) that resolves to a strict value (Boolean/Scalar).

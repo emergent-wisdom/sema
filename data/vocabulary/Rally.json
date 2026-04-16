@@ -55,9 +55,9 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
-  "sema_ref": "Rally#c284",
-  "sema_stub": "c284",
+  "sema_id": "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
+  "sema_ref": "Rally#8d04",
+  "sema_stub": "8d04",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

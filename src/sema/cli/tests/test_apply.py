@@ -489,6 +489,125 @@ class TestCycleDetection(unittest.TestCase):
         self.assertTrue(result)
 
 
+class TestLayerDirectionInApply(unittest.TestCase):
+    """Rule 7.6 enforcement through the apply pipeline.
+
+    Verifies that apply_changes rejects additions that violate layer direction
+    on hard dependency buckets (accepts, composes_with), and accepts upward
+    linkage via yields/references.
+    """
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.db_path = os.path.join(self.temp_dir, "test_taxonomy.db")
+        self.patterns_dir = os.path.join(self.temp_dir, "patterns")
+        os.makedirs(self.patterns_dir)
+
+    def tearDown(self):
+        import shutil
+
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _create_pattern(
+        self,
+        handle: str,
+        layer: str,
+        category: str,
+        deps: dict = None,
+        mechanism: str = None,
+    ) -> Path:
+        pattern = {
+            "handle": handle,
+            "mechanism": mechanism or f"Mechanism for {handle}",
+            "gloss": f"Gloss for {handle}",
+            "_meta": {"layer": layer, "category": category, "ring": 1, "tier": 1},
+        }
+        if deps:
+            pattern["dependencies"] = deps
+        file_path = Path(self.patterns_dir) / f"{handle}.json"
+        with open(file_path, "w") as f:
+            json.dump(pattern, f)
+        return file_path
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_violation_in_composes_with_is_rejected(self, mock_db_path):
+        """7.6: apply rejects Infrastructure composes_with Society."""
+        mock_db_path.return_value = self.db_path
+
+        self._create_pattern("SocietyDep", layer="Society", category="Protocols")
+        self._create_pattern(
+            "InfraPattern",
+            layer="Infrastructure",
+            category="Primitives",
+            mechanism="Uses {{society_dep}}",
+            deps={"composes_with": {"society_dep": make_sema_id("SocietyDep")}},
+        )
+
+        result = apply_changes(add_files=[self.patterns_dir])
+        self.assertFalse(result)
+        self.assertFalse(self._pattern_in_db("InfraPattern"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_violation_in_accepts_is_rejected(self, mock_db_path):
+        """7.6: apply rejects Physics accepting a Society input."""
+        mock_db_path.return_value = self.db_path
+
+        self._create_pattern("SocietyInput", layer="Society", category="Protocols")
+        self._create_pattern(
+            "PhysicsPattern",
+            layer="Physics",
+            category="Primitives",
+            mechanism="Reads {{society_input}}",
+            deps={"accepts": {"society_input": make_sema_id("SocietyInput")}},
+        )
+
+        result = apply_changes(add_files=[self.patterns_dir])
+        self.assertFalse(result)
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_upward_yields_is_accepted(self, mock_db_path):
+        """7.6: apply accepts Mind yielding a Society artifact (emergence)."""
+        mock_db_path.return_value = self.db_path
+
+        self._create_pattern("SocietyArtifact", layer="Society", category="Economics")
+        self._create_pattern(
+            "MindProducer",
+            layer="Mind",
+            category="Reasoning",
+            mechanism="Produces {{society_artifact}}",
+            deps={"yields": {"society_artifact": make_sema_id("SocietyArtifact")}},
+        )
+
+        result = apply_changes(add_files=[self.patterns_dir])
+        self.assertTrue(result)
+        self.assertTrue(self._pattern_in_db("MindProducer"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_upward_references_is_accepted(self, mock_db_path):
+        """7.6: apply accepts Infrastructure referencing a Society pattern."""
+        mock_db_path.return_value = self.db_path
+
+        self._create_pattern("SocietyConcept", layer="Society", category="Governance")
+        self._create_pattern(
+            "InfraCitation",
+            layer="Infrastructure",
+            category="Primitives",
+            mechanism="Cites {{society_concept}}",
+            deps={"references": {"society_concept": make_sema_id("SocietyConcept")}},
+        )
+
+        result = apply_changes(add_files=[self.patterns_dir])
+        self.assertTrue(result)
+        self.assertTrue(self._pattern_in_db("InfraCitation"))
+
+    def _pattern_in_db(self, handle: str) -> bool:
+        fresh = GraphStore(self.db_path)
+        for _, data in fresh.get_nodes_by_type(NodeType.PATTERN):
+            if data["text"] == handle:
+                return True
+        return False
+
+
 class TestFullRoundTrip(unittest.TestCase):
     """Test full export → remove all → add all → verify identical state."""
 
@@ -723,20 +842,6 @@ class TestFullRoundTrip(unittest.TestCase):
         # Add back
         result = apply_changes(add_files=[self.patterns_dir])
         self.assertTrue(result)
-
-        # Verify ALL fields
-        restored = self._export_all_patterns()["FullPattern"]
-
-        self.assertEqual(restored.get("handle"), original.get("handle"))
-        self.assertEqual(restored.get("gloss"), original.get("gloss"))
-        self.assertEqual(restored.get("mechanism"), original.get("mechanism"))
-        self.assertEqual(restored.get("signature"), original.get("signature"))
-        self.assertEqual(restored.get("invariants"), original.get("invariants"))
-        self.assertEqual(restored.get("parameters"), original.get("parameters"))
-        self.assertEqual(restored.get("_meta"), original.get("_meta"))
-        self.assertEqual(restored.get("sema_id"), original.get("sema_id"))
-        self.assertEqual(restored.get("sema_ref"), original.get("sema_ref"))
-        self.assertEqual(restored.get("sema_stub"), original.get("sema_stub"))
 
         # Verify ALL fields
         restored = self._export_all_patterns()["FullPattern"]

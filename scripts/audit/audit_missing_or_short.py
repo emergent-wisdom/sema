@@ -11,26 +11,23 @@ import glob
 import json
 import os
 
-INVENTORY_DIR = "nextvocabulary"
+INVENTORY_DIR = "data/vocabulary"
 
-EXPECTED_FIELDS = [
-    "handle",
-    "gloss",
-    "mechanism"
-]
+EXPECTED_FIELDS = ["handle", "gloss", "mechanism"]
 
 # Thresholds for "Short" content
 MIN_GLOSS_LEN = 10
 MIN_MECH_LEN = 50
 
+
 def audit_patterns():
     files = glob.glob(os.path.join(INVENTORY_DIR, "*.json"))
     files.sort()
-    
+
     print(f"Auditing {len(files)} patterns in {INVENTORY_DIR}...")
-    
+
     issues_found = 0
-    
+
     for filepath in files:
         filename = os.path.basename(filepath)
         try:
@@ -44,11 +41,11 @@ def audit_patterns():
             print(f"❌ {filename}: Error reading file: {e}")
             issues_found += 1
             continue
-            
+
         handle = data.get("handle", filename.replace(".json", ""))
         missing = []
         short = []
-        
+
         # Check Expected Top-Level Fields
         for field in EXPECTED_FIELDS:
             if field not in data or data[field] is None:
@@ -64,16 +61,16 @@ def audit_patterns():
             for field in ["tier", "layer", "category"]:
                 if field not in meta or meta[field] is None:
                     missing.append(f"_meta.{field}")
-        
+
         # Check Short Content
         if "gloss" in data and isinstance(data["gloss"], str):
             if len(data["gloss"].strip()) < MIN_GLOSS_LEN:
                 short.append(f"gloss ({len(data['gloss'].strip())} chars)")
-        
+
         if "mechanism" in data and isinstance(data["mechanism"], str):
-             if len(data["mechanism"].strip()) < MIN_MECH_LEN:
+            if len(data["mechanism"].strip()) < MIN_MECH_LEN:
                 short.append(f"mechanism ({len(data['mechanism'].strip())} chars)")
-                
+
         # Report
         if missing or short:
             issues_found += 1
@@ -88,6 +85,7 @@ def audit_patterns():
         print("✅ No issues found.")
     else:
         print(f"Found issues in {issues_found} patterns.")
+
 
 if __name__ == "__main__":
     audit_patterns()

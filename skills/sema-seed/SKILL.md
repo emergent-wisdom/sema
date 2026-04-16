@@ -42,6 +42,8 @@ Generative loop for growing the vocabulary. Pull a random word, think about it o
 
 One word per run, unless the user explicitly asks for more. Most runs end with no mint — that's expected.
 
+**Never dismiss a word before reasoning through it.** Even words that look obviously trivial, overly abstract, or already covered must go through step 2 first. The reasoning itself is the test — you cannot know whether a word names a missing pattern until you have actually tried to compose existing handles around it. Skipping the thinking and jumping straight to "no, this isn't useful" defeats the purpose of the seed loop.
+
 ### 1. Pull a random word
 
 ```bash

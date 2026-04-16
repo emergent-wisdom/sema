@@ -2,9 +2,9 @@
 
 ## System Status
 
-- **Merkle Root**: `9b882acfa657dcbc1082aad30c784a07bf0bcd0cc1a0feaf7ddc04dc87620e3b`
-- **Pattern Count**: 453
-- **Last Verified**: 2026-04-08
+- **Merkle Root**: `f7de701d5fc86e87c84de72b008d92dd6c270f58f61768cec3d89338855af4b7`
+- **Pattern Count**: 427
+- **Last Verified**: 2026-04-16
 
 ## Usage
 
@@ -14,7 +14,7 @@ Agents use the Merkle root for fail-closed semantic verification:
 
 ```python
 # Agent A shares vocabulary root
-R_context_A = "9b882acfa657dcbc1082aad30c784a07bf0bcd0cc1a0feaf7ddc04dc87620e3b"
+R_context_A = "f7de701d5fc86e87c84de72b008d92dd6c270f58f61768cec3d89338855af4b7"
 
 # Agent B computes their vocabulary root
 R_context_B = compute_vocabulary_merkle_root()
@@ -36,29 +36,29 @@ Breakdown of patterns by Civilization Layer and Functional Category.
 | Primitives | 20 |
 | Time | 7 |
 
-### Mind (146)
+### Mind (139)
 
 | Category | Count |
 | :--- | :---: |
-| Strategy | 72 |
-| Reasoning | 45 |
+| Strategy | 66 |
+| Reasoning | 44 |
 | Inference | 18 |
 | Memory | 11 |
 
-### Society (166)
+### Society (149)
 
 | Category | Count |
 | :--- | :---: |
-| Protocols | 122 |
-| Economics | 23 |
-| Governance | 20 |
+| Protocols | 114 |
+| Governance | 17 |
+| Economics | 17 |
 | Coordination | 1 |
 
-### Infrastructure (114)
+### Infrastructure (112)
 
 | Category | Count |
 | :--- | :---: |
 | Data Structures | 80 |
-| Primitives | 24 |
-| Verification | 10 |
+| Primitives | 23 |
+| Verification | 9 |
 

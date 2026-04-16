@@ -28,5 +28,7 @@
     "references": {
       "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }
