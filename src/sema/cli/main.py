@@ -4,7 +4,6 @@ import os
 import sys
 from pathlib import Path
 
-from ..client import get_default_client
 from ..core.dependencies import get_dependencies_handles, topological_sort
 from ..core.registry import (
     RegistryManager,
@@ -446,13 +445,159 @@ def show_skeleton():
     print(manager.get_graph_skeleton())
 
 
-def update_db():
+def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
+    """Pull latest vocabulary: walk upstream DAG in topological order, update each.
+
+    For each upstream pattern (leaves first, roots last):
+      - If handle exists in target: update in place (add_pattern merges)
+      - If handle is new: add it
+    User-only patterns are left untouched. Hashes cascade correctly
+    because patterns are applied in dependency order.
+    """
+    from ..core.dependencies import topological_sort
+    from ..core.mint import mint_pattern
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    target_db = get_default_db_path()
+    if not target_db:
+        print("❌ No active database. Run `sema build` or `sema use` first.")
+        return False
+
+    if is_bundled_db(target_db):
+        print("❌ Cannot pull into bundled DB — it's read-only.")
+        print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
+        return False
+
+    source_db = source or get_bundled_db_path()
+    if not source_db:
+        print("❌ No source database found.")
+        return False
+
+    if source_db == target_db:
+        print("❌ Source and target are the same database.")
+        return False
+
+    print(f"Upstream: {source_db}")
+    print(f"Active:   {target_db}")
+
+    source_store = GraphStore(source_db)
+
+    upstream_patterns = {}
+    for _nid, data in source_store.get_nodes_by_type(NodeType.PATTERN):
+        h = data.get("text")
+        if not h:
+            continue
+        meta = data.get("metadata", {})
+        pattern = meta.get("pattern", {})
+        if pattern:
+            pattern["handle"] = h
+            edge_deps = source_store.get_dependencies_from_edges(h)
+            if edge_deps:
+                pattern["dependencies"] = edge_deps
+            upstream_patterns[h] = pattern
+
+    target_store = GraphStore(target_db)
+    target_handles = set()
+    for _nid, data in target_store.get_nodes_by_type(NodeType.PATTERN):
+        h = data.get("text")
+        if h:
+            target_handles.add(h)
+
+    new_count = len(upstream_patterns.keys() - target_handles)
+    update_count = len(upstream_patterns.keys() & target_handles)
+
+    print(f"\nUpstream: {len(upstream_patterns)} patterns")
+    print(f"Target:   {len(target_handles)} patterns")
+    print(f"  New: {new_count}, Update: {update_count}")
+
     try:
-        client = get_default_client()
-        client.download_db(force=True)
-        print("✅ Database updated successfully.")
-    except Exception as e:
-        print(f"❌ Update failed: {e}")
+        sorted_handles = topological_sort(upstream_patterns)
+    except ValueError as e:
+        print(f"❌ Dependency cycle in upstream: {e}")
+        return False
+
+    if dry_run:
+        print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
+        return True
+
+    added = []
+    updated = []
+    failed = []
+
+    for handle in sorted_handles:
+        pattern = upstream_patterns[handle]
+        existed = handle in target_handles
+        result = mint_pattern(pattern, target_store)
+        if result.success:
+            if existed:
+                updated.append(handle)
+            else:
+                added.append(handle)
+        else:
+            failed.append((handle, result.errors))
+
+    if added:
+        print(f"  + {len(added)} new")
+    if updated:
+        print(f"  ~ {len(updated)} updated")
+    if failed:
+        print(f"  ✗ {len(failed)} failed:")
+        for h, errs in failed[:5]:
+            print(f"    {h}: {'; '.join(errs)}")
+
+    if not failed:
+        print(f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated.")
+    else:
+        print(f"\n⚠️  Pull finished with {len(failed)} errors.")
+
+    if verify and not failed:
+        invalid = _verify_hashes(target_db)
+        if invalid:
+            print(f"\n❌ Hash validity check failed: {len(invalid)} invalid patterns")
+            for h in invalid[:5]:
+                print(f"    {h}")
+            return False
+        print("✓ Hash validity verified.")
+
+    return len(failed) == 0
+
+
+def _verify_hashes(db_path: str) -> list[str]:
+    """Verify stored sema_ids match recomputed hashes. Returns handles with mismatches."""
+    from ..core.hashing import generate_sema_hash
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    store = GraphStore(db_path)
+    patterns = {}
+    for _, data in store.get_nodes_by_type(NodeType.PATTERN):
+        h = data.get("text")
+        if not h:
+            continue
+        meta = data.get("metadata", {})
+        p = meta.get("pattern", {}) or {}
+        p["handle"] = h
+        deps = store.get_dependencies_from_edges(h)
+        if deps:
+            p["dependencies"] = deps
+        patterns[h] = p
+
+    stored = {}
+    for h, p in patterns.items():
+        sid = p.get("sema_id", "")
+        if "#mh:SHA-256:" in sid:
+            stored[h] = sid.split("#mh:SHA-256:")[1]
+
+    def lookup(h):
+        return stored.get(h)
+
+    mismatches = []
+    for h, p in patterns.items():
+        if h not in stored:
+            continue
+        computed = generate_sema_hash(p, lookup)["hash"]
+        if computed != stored[h]:
+            mismatches.append(h)
+    return mismatches
 
 
 def use_db(path: str = None, default: bool = False):
@@ -864,7 +1009,17 @@ def main():
     init_cmd.add_argument("path", help="Filesystem path for the new SQLite registry")
 
     # Pull
-    subparsers.add_parser("pull", help="Download latest DB")
+    pull_cmd = subparsers.add_parser(
+        "pull",
+        help="Sync patterns from source DB into active DB (topological DAG walk)",
+    )
+    pull_cmd.add_argument("--source", help="Source DB path (default: bundled vocabulary)")
+    pull_cmd.add_argument(
+        "--dry-run", action="store_true", help="Show what would change without applying"
+    )
+    pull_cmd.add_argument(
+        "--verify", action="store_true", help="Run hash validity check after pull"
+    )
 
     # Serve
     serve = subparsers.add_parser(
@@ -932,7 +1087,7 @@ def main():
     elif args.command == "list":
         list_databases()
     elif args.command == "pull":
-        update_db()
+        update_db(source=args.source, dry_run=args.dry_run, verify=args.verify)
     elif args.command == "serve":
         run_server(args.host, args.port)
     elif args.command == "mcp":
