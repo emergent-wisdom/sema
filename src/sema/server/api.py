@@ -23,11 +23,35 @@ app = FastAPI(
     redoc_url="/api/redoc",
 )
 
-# Enable CORS for Frontend
+# CORS: default to the known-safe set (semahash.org + local dev). Operators
+# can widen via SEMA_CORS_ORIGINS=comma,separated,list or SEMA_CORS_ORIGINS=*
+# when they've deliberately chosen to host a public API.
+_DEFAULT_CORS_ORIGINS = [
+    "https://semahash.org",
+    "https://www.semahash.org",
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5173",
+]
+_cors_env = os.environ.get("SEMA_CORS_ORIGINS", "").strip()
+if _cors_env == "*":
+    # Wildcard + credentials is invalid per the CORS spec (browsers ignore it).
+    # Drop credentials so the wildcard actually works for the operator who
+    # asked for it.
+    _cors_origins: list[str] = ["*"]
+    _cors_credentials = False
+elif _cors_env:
+    _cors_origins = [o.strip() for o in _cors_env.split(",") if o.strip()]
+    _cors_credentials = True
+else:
+    _cors_origins = _DEFAULT_CORS_ORIGINS
+    _cors_credentials = True
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, lock this down
-    allow_credentials=True,
+    allow_origins=_cors_origins,
+    allow_credentials=_cors_credentials,
     allow_methods=["*"],
     allow_headers=["*"],
 )
