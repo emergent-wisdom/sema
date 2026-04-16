@@ -447,6 +447,60 @@ def show_skeleton():
     print(manager.get_graph_skeleton())
 
 
+def _compute_active_vocabulary_root(db_path: str) -> tuple[str, int]:
+    """Return (root_hash, pattern_count) for the given DB path.
+
+    Hashes are collected in ascending-by-handle order so two DBs with the
+    same pattern set always produce the same root regardless of insertion
+    order.
+    """
+    from ..core.hashing import vocabulary_root
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    store = GraphStore(db_path)
+    rows = []
+    for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+        handle = data.get("text")
+        pattern = data.get("metadata", {}).get("pattern", {})
+        sema_id = pattern.get("sema_id", "")
+        if handle and "#mh:SHA-256:" in sema_id:
+            rows.append((handle, sema_id.split("#mh:SHA-256:")[1]))
+    rows.sort(key=lambda r: r[0])
+    hashes = [h for _, h in rows]
+    return vocabulary_root(hashes), len(hashes)
+
+
+def vocab_root(short: bool = False) -> bool:
+    """Compute and print the vocabulary-wide Merkle root for the active DB.
+
+    Same algorithm as `scripts/vocabulary_merkle_root.py` — SHA-256 over
+    the concatenation of every pattern's hash, sorted by handle.
+    """
+    from ..core.hashing import HASH_ALGO
+
+    db = get_default_db_path()
+    if not db:
+        print("❌ No active database.")
+        return False
+    if not Path(db).exists():
+        print(f"❌ Database does not exist: {db}")
+        return False
+
+    try:
+        root, count = _compute_active_vocabulary_root(db)
+    except Exception as e:
+        print(f"❌ Failed to compute vocabulary root: {e}")
+        return False
+
+    if short:
+        print(root[:16])
+    else:
+        print(f"sema:vocab#mh:{HASH_ALGO}:{root}")
+        print(f"patterns: {count}")
+        print(f"db: {db}")
+    return True
+
+
 def undo_pull() -> bool:
     """Restore the active DB from the pre-pull snapshot.
 
@@ -1354,6 +1408,13 @@ def main():
     )
     init_cmd.add_argument("path", help="Filesystem path for the new SQLite registry")
 
+    # Root - vocabulary-wide Merkle root
+    root_cmd = subparsers.add_parser(
+        "root",
+        help="Print the Merkle root of the active vocabulary",
+    )
+    root_cmd.add_argument("--short", "-s", action="store_true", help="Print the 16-char stub only")
+
     # Pull
     pull_cmd = subparsers.add_parser(
         "pull",
@@ -1445,6 +1506,8 @@ def main():
         show_skeleton()
     elif args.command == "init":
         ok = init_registry(args.path)
+    elif args.command == "root":
+        ok = vocab_root(short=args.short)
     elif args.command == "build":
         ok = build_db(
             args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source

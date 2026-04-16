@@ -432,6 +432,57 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
     )
 
 
+def _compute_vocabulary_root() -> tuple[str, int]:
+    """Compute the active vocabulary's Merkle root + pattern count.
+
+    Shares the algorithm with `scripts/vocabulary_merkle_root.py` and the
+    `sema root` CLI command — hashes collected in ascending-by-handle
+    order, SHA-256 over the concatenation.
+    """
+    from ..core.hashing import vocabulary_root
+
+    REGISTRY_MGR.refresh()
+    registry = REGISTRY_MGR.registry
+    rows = []
+    for handle, data in registry.items():
+        sema_id = data.get("sema_id", "")
+        if "#mh:SHA-256:" in sema_id:
+            rows.append((handle, sema_id.split("#mh:SHA-256:")[1]))
+    rows.sort(key=lambda r: r[0])
+    hashes = [h for _, h in rows]
+    return vocabulary_root(hashes), len(hashes)
+
+
+@mcp.tool()
+def sema_root() -> str:
+    """Get the Merkle root of the active vocabulary.
+
+    The root is a single SHA-256 digest over every pattern's hash in
+    ascending-by-handle order. Two agents with byte-identical vocabularies
+    produce the same root — enabling a one-shot "do we agree on the whole
+    vocab?" check without enumerating handles.
+
+    Pairs naturally with `sema_handshake(ref="vocab", your_hash=<root>)`
+    for fail-closed alignment before multi-agent coordination.
+
+    Returns:
+        JSON with the full sema_id, short stub, and pattern count.
+    """
+    from ..core.hashing import HASH_ALGO
+
+    root, count = _compute_vocabulary_root()
+    return json.dumps(
+        {
+            "full_sema_id": f"sema:vocab#mh:{HASH_ALGO}:{root}",
+            "stub": root[:16],
+            "hash": root,
+            "pattern_count": count,
+            "db_path": REGISTRY_MGR.db_path,
+        },
+        indent=2,
+    )
+
+
 @mcp.tool()
 def sema_handshake(ref: str, your_hash: str | None = None) -> str:
     """Byte-level definition agreement check between two agents.
@@ -447,19 +498,85 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
     coordinating on a pattern. It does not replace behavioral testing.
 
     Args:
-        ref: Pattern reference (e.g., "StateLock#774b" or "StateLock")
-        your_hash: Your local 4-char hash stub. If provided, verifies match.
-                   If omitted, returns the canonical hash for you to compare.
+        ref: Pattern reference (e.g., "StateLock#774b" or "StateLock"),
+             or the literal string "vocab" to handshake on the whole
+             vocabulary's Merkle root.
+        your_hash: Your local hash — the 4-char pattern stub, or the
+             16-char vocab root stub (or full 64-char root). If omitted,
+             returns the canonical hash for you to compare.
 
     Returns:
         JSON with verdict: PROCEED (hashes match), HALT (mismatch), or
         PROVIDE_HASH (canonical hash for your comparison)
 
-    Example workflow:
+    Example workflow (pattern):
         1. Agent A: sema_handshake("StateLock") -> gets canonical hash "2f3c"
         2. Agent A: sema_handshake("StateLock", "2f3c") -> PROCEED
         3. Agent B with drift: sema_handshake("StateLock", "9x7z") -> HALT
+
+    Example workflow (whole vocabulary):
+        1. Agent A: sema_handshake("vocab") -> gets 16-char vocab stub
+        2. Agent B: sema_handshake("vocab", "<that stub>") -> PROCEED / HALT
     """
+    # Vocabulary-wide handshake (ref="vocab")
+    if ref.strip().lower() == "vocab":
+        from ..core.hashing import HASH_ALGO
+
+        canonical_hash, count = _compute_vocabulary_root()
+        canonical_stub = canonical_hash[:16]
+        canonical_ref = f"sema:vocab#mh:{HASH_ALGO}:{canonical_hash}"
+
+        if your_hash is None:
+            return json.dumps(
+                {
+                    "verdict": "PROVIDE_HASH",
+                    "scope": "vocab",
+                    "canonical_stub": canonical_stub,
+                    "canonical_ref": canonical_ref,
+                    "full_sema_id": canonical_ref,
+                    "pattern_count": count,
+                    "action": (
+                        "Compare this vocabulary root with yours. Call again "
+                        "with your_hash (16-char stub or 64-char full hash) to verify."
+                    ),
+                },
+                indent=2,
+            )
+
+        # Accept either the 16-char stub or the full 64-char hash
+        normalized = your_hash.strip().lower()
+        matches = normalized == canonical_stub or normalized == canonical_hash
+        if matches:
+            return json.dumps(
+                {
+                    "verdict": "PROCEED",
+                    "scope": "vocab",
+                    "verified_ref": canonical_ref,
+                    "pattern_count": count,
+                    "message": "Vocabulary alignment confirmed. Safe to coordinate.",
+                },
+                indent=2,
+            )
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "scope": "vocab",
+                "your_hash": your_hash,
+                "canonical_stub": canonical_stub,
+                "reason": "VOCABULARY DRIFT DETECTED",
+                "action": (
+                    "DO NOT PROCEED. Your vocabulary root differs. At least one "
+                    "pattern's definition or the set of patterns itself differs "
+                    "between you. Run `sema pull` to converge, or use "
+                    "`sema_propose_context` on a shared subset instead."
+                ),
+                "canonical_ref": canonical_ref,
+                "pattern_count": count,
+            },
+            indent=2,
+        )
+
+    # Per-pattern handshake (original behavior)
     REGISTRY_MGR.refresh()
     registry = REGISTRY_MGR.registry
 

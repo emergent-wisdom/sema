@@ -15,14 +15,15 @@ import hashlib
 import json
 import os
 from collections import defaultdict
-from typing import Any, Dict, List
+from typing import Any
 
 DB_PATH = os.environ.get("SEMA_DB_PATH", "data/taxonomy.db")
 OUTPUT_FILE = "docs/information/vocabulary_information.md"
 
 
 def sha256(data: bytes) -> str:
-    """Compute SHA-256 hash."""
+    """Compute SHA-256 hash. Kept for backward compat; new code should
+    import `vocabulary_root` from sema.core.hashing."""
     return hashlib.sha256(data).hexdigest()
 
 
@@ -33,7 +34,7 @@ def extract_hash_from_sema_id(sema_id: str) -> str:
     return sema_id.split("#mh:SHA-256:")[1]
 
 
-def load_patterns() -> List[Dict[str, Any]]:
+def load_patterns() -> list[dict[str, Any]]:
     """Load all patterns from the database (source of truth)."""
     import sqlite3
 
@@ -68,22 +69,29 @@ def load_patterns() -> List[Dict[str, Any]]:
     return patterns
 
 
-def compute_merkle_root(patterns: List[Dict[str, Any]]) -> str:
-    """Compute Merkle root from pattern hashes."""
+def compute_merkle_root(patterns: list[dict[str, Any]]) -> str:
+    """Compute Merkle root from pattern hashes.
+
+    Delegates to `sema.core.hashing.vocabulary_root` for the canonical
+    algorithm. Patterns must be pre-sorted by handle (the SQL query does
+    this). Kept as a thin wrapper so the existing doc-generation pipeline
+    doesn't have to reimport.
+    """
+    import sys
+    from pathlib import Path as _Path
+
+    sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
+    from sema.core.hashing import vocabulary_root
+
     hashes = []
     for p in patterns:
-        sema_id = p.get("sema_id", "")
-        if sema_id:
-            h = extract_hash_from_sema_id(sema_id)
-            if h:
-                hashes.append(h)
-
-    # Concatenate all pattern hashes
-    concatenated = "".join(hashes)
-    return sha256(concatenated.encode("utf-8"))
+        h = extract_hash_from_sema_id(p.get("sema_id", ""))
+        if h:
+            hashes.append(h)
+    return vocabulary_root(hashes)
 
 
-def calculate_stats(patterns: List[Dict[str, Any]]) -> Dict[str, Dict[str, int]]:
+def calculate_stats(patterns: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
     """Calculate counts per Layer and Category."""
     stats = defaultdict(lambda: defaultdict(int))
 
@@ -97,7 +105,7 @@ def calculate_stats(patterns: List[Dict[str, Any]]) -> Dict[str, Dict[str, int]]
 
 
 def generate_markdown_content(
-    merkle_root: str, patterns: List[Dict[str, Any]], stats: Dict[str, Dict[str, int]]
+    merkle_root: str, patterns: list[dict[str, Any]], stats: dict[str, dict[str, int]]
 ) -> str:
     """Generate the content for vocabulary_information.md."""
     date_str = datetime.date.today().isoformat()
