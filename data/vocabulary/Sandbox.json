@@ -12,7 +12,7 @@
       "CircuitBreaker",
       "SafetyCartographer"
     ],
-    "caution": "Isolation failure exposes host environment."
+    "caution": "Escape vectors may exist in unaudited system call surfaces."
   },
   "sema_id": "sema:Sandbox#mh:SHA-256:3f5a8eb27287503e220ed41cbcabea5cae2b6bbf3da93db21584fff52faafc05",
   "sema_ref": "Sandbox#3f5a",
