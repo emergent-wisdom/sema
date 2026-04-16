@@ -246,3 +246,18 @@ def generate_sema_hash(pattern: dict[str, Any], hash_lookup: callable = None) ->
         "reference": f"{clean_handle}#{stub}",
         "hash": root_hash,
     }
+
+
+def vocabulary_root(pattern_hashes: list[str]) -> str:
+    """Compute the vocabulary-wide root hash over a list of pattern hashes.
+
+    SHA-256 over the concatenation of hashes in the order given. The caller
+    is responsible for sorting — convention is ascending-by-handle, so two
+    agents with the same set of patterns produce the same root regardless
+    of insertion order.
+
+    This is the single source of truth for "do two vocabularies agree?"
+    — used by `sema root`, `sema_root()` / `sema_handshake(ref="vocab")`,
+    and the `scripts/vocabulary_merkle_root.py` doc generator.
+    """
+    return _sha256("".join(pattern_hashes).encode("utf-8"))

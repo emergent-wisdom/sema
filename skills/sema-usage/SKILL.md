@@ -13,6 +13,7 @@ allowed-tools: |
   mcp__sema__sema_tree
   mcp__sema__sema_stats
   mcp__sema__sema_use
+  mcp__sema__sema_root
   mcp__sema__sema_verify_context
 ---
 
@@ -54,6 +55,20 @@ The CLI and MCP server are **separate processes with separate DB state**. `sema 
 - `sema_use(default=true)` — switch back to the bundled vocabulary
 
 If `sema_use` MCP tool is unavailable (older server version), the MCP server cannot be hot-swapped. Use CLI for search/resolve and accept the limitation — do not confuse CLI state with MCP state.
+
+## Vocabulary fingerprint — `sema_root`
+
+Every active DB has a single scalar identity: a SHA-256 digest over every pattern's hash, in handle-sorted order. It's the "git rev-parse HEAD" of the vocabulary.
+
+- `sema_root()` — returns `{ full_sema_id, stub, hash, pattern_count, db_path }`
+- CLI: `sema root` (full), `sema root --short` (16-char stub only)
+
+Use it when:
+- The user asks "which version of the vocabulary are we on?"
+- You need a one-shot check before a multi-step operation that depends on the vocab being stable
+- The user is comparing two DBs and wants a fast equality probe
+
+This is the same number that `scripts/vocabulary_merkle_root.py` writes into `docs/information/vocabulary_information.md` — so if the user references a root hash from the docs, you can verify alignment directly.
 
 ## Keeping the vocabulary fresh (`sema pull`)
 
@@ -132,11 +147,27 @@ Wrap handles in backticks for readability. When you encounter a handle you don't
 When two agents (or an agent and a human) need to agree on meaning:
 
 ```javascript
-sema_handshake({ references: ["X#1234", "Y#5678"] })
-// MISMATCH → halt and clarify. No silent misunderstandings.
+sema_handshake({ ref: "StateLock#774b" })
+// → canonical stub. Compare against your local value, then:
+sema_handshake({ ref: "StateLock", your_hash: "774b" })
+// PROCEED (match) or HALT (drift). No silent misunderstandings.
 ```
 
-Use `sema_verify_context` for bulk verification of a shared vocabulary set.
+For bulk verification of a specific shared set, use `sema_verify_context`.
+
+### Vocabulary-wide handshake
+
+When two agents need to confirm they have the *same entire vocabulary* — not just one pattern — pass `ref="vocab"`:
+
+```javascript
+sema_handshake({ ref: "vocab" })
+// → { verdict: "PROVIDE_HASH", canonical_stub: "d4e71259e4dd1565", pattern_count: 435 }
+
+sema_handshake({ ref: "vocab", your_hash: "d4e71259e4dd1565" })
+// → PROCEED if byte-identical, HALT if any pattern's hash differs
+```
+
+This is equivalent to comparing `sema_root()` outputs but returns a verdict instead of raw numbers. Use it as a cheap drift check before coordinating on anything complex — if vocabs diverge, `sema pull` converges them or `sema_propose_context` can scope agreement to a known-shared subset.
 
 ## Think with sema, don't just cite it
 
