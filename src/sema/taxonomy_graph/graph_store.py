@@ -4,6 +4,7 @@ import json
 import re
 import sqlite3
 import uuid
+from contextlib import contextmanager
 from enum import Enum
 from typing import Any
 
@@ -123,8 +124,13 @@ class GraphStore:
     def __init__(self, db_path: str = "taxonomy.db"):
         self.db_path = db_path
         self.embedding_service = EmbeddingService(db_path)
-        self.graph = nx.DiGraph()
+        # MultiDiGraph: a pattern can have multiple typed edges to the same
+        # target (e.g. `accepts: Task` AND `yields: Task`). DiGraph would
+        # silently collapse them to one edge.
+        self.graph = nx.MultiDiGraph()
+        self._active_conn: sqlite3.Connection | None = None
         self._init_tables()
+        self._migrate_schema()
         self._load_graph()
 
     def _init_tables(self):
@@ -153,6 +159,7 @@ class GraphStore:
                 source_id TEXT NOT NULL,
                 target_id TEXT NOT NULL,
                 edge_type TEXT NOT NULL,
+                alias TEXT,
                 metadata TEXT DEFAULT '{}',
                 FOREIGN KEY (source_id) REFERENCES nodes(id),
                 FOREIGN KEY (target_id) REFERENCES nodes(id)
@@ -179,6 +186,47 @@ class GraphStore:
         conn.commit()
         conn.close()
 
+    def _migrate_schema(self):
+        """Add columns to existing DBs that pre-date them. Idempotent."""
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute("PRAGMA table_info(edges)")
+        cols = {row[1] for row in cursor.fetchall()}
+        if "alias" not in cols:
+            cursor.execute("ALTER TABLE edges ADD COLUMN alias TEXT")
+        conn.commit()
+        conn.close()
+
+    @contextmanager
+    def transaction(self):
+        """Open a single connection in a SAVEPOINT-style transaction.
+
+        All store mutations performed inside the `with` block share one
+        connection and commit (or rollback on exception) atomically.
+        """
+        if self._active_conn is not None:
+            yield self._active_conn
+            return
+        conn = sqlite3.connect(self.db_path)
+        conn.execute("PRAGMA foreign_keys = ON")
+        self._active_conn = conn
+        try:
+            conn.execute("BEGIN")
+            yield conn
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            conn.close()
+            self._active_conn = None
+
+    def _conn(self):
+        """Return the active transaction connection, or open a new one."""
+        if self._active_conn is not None:
+            return self._active_conn, False  # do not close
+        return sqlite3.connect(self.db_path), True  # caller closes
+
     def _load_graph(self):
         """Load graph from database into memory."""
         conn = sqlite3.connect(self.db_path)
@@ -196,14 +244,16 @@ class GraphStore:
                 embedding=embedding,
             )
 
-        cursor.execute("SELECT id, source_id, target_id, edge_type, metadata FROM edges")
+        cursor.execute("SELECT id, source_id, target_id, edge_type, alias, metadata FROM edges")
         for row in cursor.fetchall():
-            edge_id, source_id, target_id, edge_type, metadata_json = row
+            edge_id, source_id, target_id, edge_type, alias, metadata_json = row
             self.graph.add_edge(
                 source_id,
                 target_id,
+                key=edge_id,
                 id=edge_id,
                 edge_type=EdgeType(edge_type),
+                alias=alias,
                 metadata=json.loads(metadata_json),
             )
 
@@ -250,26 +300,69 @@ class GraphStore:
         target_id: str,
         edge_type: EdgeType,
         metadata: dict[str, Any] | None = None,
+        alias: str | None = None,
     ) -> str:
-        """Create a new edge in the graph."""
+        """Create a new edge in the graph.
+
+        For dependency edges, `alias` preserves the original key from the
+        pattern's dependencies dict (e.g. "my_alias" → Target). Without it,
+        we'd have to regenerate keys from target handles, dropping author
+        intent and breaking patterns that use multiple aliases for one type.
+        """
         edge_id = str(uuid.uuid4())
         metadata = metadata or {}
 
-        conn = sqlite3.connect(self.db_path)
+        conn, should_close = self._conn()
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO edges (id, source_id, target_id, edge_type, metadata) "
-            "VALUES (?, ?, ?, ?, ?)",
-            (edge_id, source_id, target_id, edge_type.value, json.dumps(metadata)),
+            "INSERT INTO edges (id, source_id, target_id, edge_type, alias, metadata) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (edge_id, source_id, target_id, edge_type.value, alias, json.dumps(metadata)),
         )
-        conn.commit()
-        conn.close()
+        if should_close:
+            conn.commit()
+            conn.close()
 
         self.graph.add_edge(
-            source_id, target_id, id=edge_id, edge_type=edge_type, metadata=metadata
+            source_id,
+            target_id,
+            key=edge_id,
+            id=edge_id,
+            edge_type=edge_type,
+            alias=alias,
+            metadata=metadata,
         )
 
         return edge_id
+
+    # ── MultiDiGraph helpers ────────────────────────────────────────────────
+    # Multi-graphs allow many parallel edges between the same (src, tgt).
+    # NetworkX returns these as `{key: attrs}` from get_edge_data; these
+    # helpers wrap that so callers can filter by edge_type cleanly.
+
+    def _edges_between(self, src: str, tgt: str) -> list[dict]:
+        """All edge attribute dicts between src and tgt (empty if none)."""
+        edges = self.graph.get_edge_data(src, tgt) or {}
+        return list(edges.values())
+
+    def _edge_keys_between(self, src: str, tgt: str) -> list[tuple[str, dict]]:
+        """List of (key, attrs) for all parallel edges between src and tgt."""
+        edges = self.graph.get_edge_data(src, tgt) or {}
+        return list(edges.items())
+
+    def has_edge_of_type(self, src: str, tgt: str, edge_type: EdgeType) -> bool:
+        """True if at least one edge of given type exists between src and tgt."""
+        return any(e.get("edge_type") == edge_type for e in self._edges_between(src, tgt))
+
+    def remove_edges_of_type(self, src: str, tgt: str, edge_type: EdgeType) -> list[str]:
+        """Remove all parallel edges of `edge_type` between src and tgt.
+        Returns list of edge_ids removed (for DB cleanup by caller)."""
+        removed_ids = []
+        for key, attrs in self._edge_keys_between(src, tgt):
+            if attrs.get("edge_type") == edge_type:
+                removed_ids.append(attrs.get("id"))
+                self.graph.remove_edge(src, tgt, key=key)
+        return removed_ids
 
     def get_nodes_by_type(self, node_type: NodeType) -> list[tuple[str, dict]]:
         """Get all nodes of a specific type."""
@@ -376,7 +469,10 @@ class GraphStore:
     }
 
     def add_pattern(
-        self, solution: dict[str, Any], field_mappings: dict[str, str] | None = None
+        self,
+        solution: dict[str, Any],
+        field_mappings: dict[str, str] | None = None,
+        skip_cascade: bool = False,
     ) -> dict[str, Any]:
         """Add a pattern with strict enforcement that EVERY schema field is mapped.
 
@@ -555,20 +651,17 @@ class GraphStore:
         # Link Pattern -> Category (Idempotent: remove old if changed)
         # Note: We support moving categories by checking existing edges
         for succ in list(self.graph.successors(pattern_id)):
-            edge_data = self.graph.get_edge_data(pattern_id, succ)
-            if edge_data.get("edge_type") == EdgeType.IN_CATEGORY:
-                if succ != category_id:
-                    # Remove outdated category link
-                    conn = sqlite3.connect(self.db_path)
-                    conn.execute(
-                        "DELETE FROM edges WHERE source_id = ? AND target_id = ?",
-                        (pattern_id, succ),
-                    )
+            if succ == category_id:
+                continue
+            edge_ids = self.remove_edges_of_type(pattern_id, succ, EdgeType.IN_CATEGORY)
+            for eid in edge_ids:
+                conn, should_close = self._conn()
+                conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
+                if should_close:
                     conn.commit()
                     conn.close()
-                    self.graph.remove_edge(pattern_id, succ)
 
-        if not self.graph.has_edge(pattern_id, category_id):
+        if not self.has_edge_of_type(pattern_id, category_id, EdgeType.IN_CATEGORY):
             self.create_edge(pattern_id, category_id, EdgeType.IN_CATEGORY)
 
         # B. Dependencies (accepts, yields, composes_with, references)
@@ -594,11 +687,14 @@ class GraphStore:
             # fmt: on
 
             # 1. Calculate DESIRED edges from input_deps
-            desired_edges = set()  # (target_id, edge_type)
+            # Key: (target_id, edge_type, alias) — alias preserves the
+            # original dep key (e.g. "my_alias" → Target) so round-trips
+            # through get_dependencies_from_edges restore the same key.
+            desired_edges = set()
 
             for cat, edge_type in dep_map.items():
                 if cat in input_deps and isinstance(input_deps[cat], dict):
-                    for _, val in input_deps[cat].items():
+                    for alias, val in input_deps[cat].items():
                         # Handle parsing: "sema:Handle#hash" -> "Handle"
                         if not isinstance(val, str):
                             continue
@@ -612,40 +708,42 @@ class GraphStore:
 
                         target_id = all_patterns.get(target_handle)
                         if target_id:
-                            desired_edges.add((target_id, edge_type))
+                            desired_edges.add((target_id, edge_type, alias))
 
-            # 2. Identify EXISTING dependency edges
-            existing_dep_edges = []  # (target_id, edge_type, edge_id) (edge_id needed for deletion)
+            # 2. Identify EXISTING dependency edges (multi-edge aware)
+            existing_dep_edges = []  # (target_id, edge_type, alias, edge_id, key)
 
             for succ in self.graph.successors(pattern_id):
-                edge_data = self.graph.get_edge_data(pattern_id, succ)
-                e_type = edge_data.get("edge_type")
-                if e_type in edge_type_set:
-                    existing_dep_edges.append((succ, e_type, edge_data.get("id")))
+                for key, edge_data in self._edge_keys_between(pattern_id, succ):
+                    e_type = edge_data.get("edge_type")
+                    if e_type in edge_type_set:
+                        existing_dep_edges.append(
+                            (
+                                succ,
+                                e_type,
+                                edge_data.get("alias"),
+                                edge_data.get("id"),
+                                key,
+                            )
+                        )
 
-            # 3. Prune OBSOLETE edges
-            # Remove edges that are in existing but NOT in desired
-            # Note: We match on (target_id, edge_type)
-            for target_id, e_type, edge_id in existing_dep_edges:
-                if (target_id, e_type) not in desired_edges:
-                    # Remove from DB
-                    conn = sqlite3.connect(self.db_path)
+            existing_set = {(t, e, a) for t, e, a, _, _ in existing_dep_edges}
+
+            # 3. Prune OBSOLETE edges (target+type+alias not in desired)
+            for target_id, e_type, alias, edge_id, key in existing_dep_edges:
+                if (target_id, e_type, alias) not in desired_edges:
+                    conn, should_close = self._conn()
                     conn.execute("DELETE FROM edges WHERE id = ?", (edge_id,))
-                    conn.commit()
-                    conn.close()
-                    # Remove from Graph
-                    self.graph.remove_edge(pattern_id, target_id)
+                    if should_close:
+                        conn.commit()
+                        conn.close()
+                    self.graph.remove_edge(pattern_id, target_id, key=key)
 
-            # 4. Add NEW edges
-            # Add edges that are in desired but NOT in existing
-            # (Actually, just check existence before adding, simpler)
-            for target_id, edge_type in desired_edges:
-                if not self.graph.has_edge(pattern_id, target_id):
-                    self.create_edge(pattern_id, target_id, edge_type)
-                else:
-                    # Edge exists. If type matches, do nothing.
-                    # If type didn't match, it would have been deleted above.
-                    pass
+            # 4. Add NEW edges (multi-edge: same target may have multiple edges
+            # of different types or different aliases — all valid)
+            for target_id, edge_type, alias in desired_edges:
+                if (target_id, edge_type, alias) not in existing_set:
+                    self.create_edge(pattern_id, target_id, edge_type, alias=alias)
 
         # C. Signatures (Interfaces)
         signatures = solution.get("signature", [])
@@ -658,7 +756,9 @@ class GraphStore:
                 matches = re.findall(r"\w+", sig)
                 for m in matches:
                     target_id = all_patterns.get(m)
-                    if target_id and not self.graph.has_edge(pattern_id, target_id):
+                    if target_id and not self.has_edge_of_type(
+                        pattern_id, target_id, EdgeType.HAS_SIGNATURE
+                    ):
                         self.create_edge(pattern_id, target_id, EdgeType.HAS_SIGNATURE)
 
         # D. Related (Metadata links)
@@ -680,8 +780,9 @@ class GraphStore:
                 target_id = all_patterns.get(target_handle)
 
                 if target_id:
-                    # Check if edge exists. RELATED_TO is distinct from dependencies.
-                    if not self.graph.has_edge(pattern_id, target_id):
+                    # RELATED_TO is distinct from dependencies — only check for
+                    # an existing edge of this exact type.
+                    if not self.has_edge_of_type(pattern_id, target_id, EdgeType.RELATED_TO):
                         self.create_edge(pattern_id, target_id, EdgeType.RELATED_TO)
 
         created_nodes = {}
@@ -730,25 +831,11 @@ class GraphStore:
                         target_id = self.create_node(node_type, text_item)
                         created_nodes[field_name].append({"id": target_id, "text": text_item[:80]})
 
-                # Create the edge (Safe: create_edge allows multiple edges if needed,
-                # or we check existence?)
-                # NetworkX DiGraph allows 1 edge per pair. MultiDiGraph allows multiple.
-                # We are using DiGraph. So adding an edge that exists updates data.
-                # However, GraphStore.create_edge makes a new DB entry every time!
-                # We must check existence to avoid DB clutter.
-
-                if not self.graph.has_edge(pattern_id, target_id):
+                # MultiDiGraph supports multiple typed edges between the same
+                # (src, tgt). We only create a new edge of `edge_type` if no
+                # edge of that exact type already exists between this pair.
+                if not self.has_edge_of_type(pattern_id, target_id, edge_type):
                     self.create_edge(pattern_id, target_id, edge_type)
-                else:
-                    # Edge exists. Check if type matches.
-                    existing_data = self.graph.get_edge_data(pattern_id, target_id)
-                    if existing_data.get("edge_type") != edge_type:
-                        # Conflict? Or multi-typed relationship?
-                        # For now, just create it (will overwrite in NX, but duplicate in DB?)
-                        # GraphStore.create_edge creates a new UUID edge.
-                        # Ideally we don't spam edges.
-                        # Let's skip if edge of same type exists.
-                        pass  # It's linked.
 
         # Compute hash AFTER edges exist (dependencies derived from edges)
         hash_info = self.compute_pattern_hash(solution)
@@ -767,12 +854,17 @@ class GraphStore:
         # Update the stored pattern metadata (without dependencies)
         self._update_pattern_metadata(handle, stored_pattern)
 
-        # Trigger cascade: update hashes of all patterns that depend on this one
-        cascade_result = self._cascade_dependents(handle)
+        # Trigger cascade unless caller will run a single sweep at the end
+        # (e.g. sema pull, which walks the DAG topologically and would
+        # otherwise rewrite top-level patterns hundreds of times).
+        if skip_cascade:
+            cascade_result = {"updated": []}
+        else:
+            cascade_result = self._cascade_dependents(handle)
 
         return {
             "success": True,
-            "solution_id": pattern_id,  # Keep key name for backwards compatibility
+            "solution_id": pattern_id,
             "created": created_nodes,
             "linked": linked_nodes,
             "cascade": cascade_result,
@@ -1081,8 +1173,7 @@ class GraphStore:
             # Find children (nodes where THIS node is PARENT_OF child)
             children = []
             for successor in self.graph.successors(node_id):
-                edge_data = self.graph.get_edge_data(node_id, successor)
-                if edge_data.get("edge_type") == EdgeType.PARENT_OF:
+                if self.has_edge_of_type(node_id, successor, EdgeType.PARENT_OF):
                     children.append(successor)
 
             if children:
@@ -1097,8 +1188,7 @@ class GraphStore:
         for n in all_nodes:
             has_parent = False
             for pred in self.graph.predecessors(n):
-                edge = self.graph.get_edge_data(pred, n)
-                if edge.get("edge_type") == EdgeType.PARENT_OF:
+                if self.has_edge_of_type(pred, n, EdgeType.PARENT_OF):
                     has_parent = True
                     break
             if not has_parent:
@@ -1260,8 +1350,10 @@ class GraphStore:
         for pred in self.graph.predecessors(target_node_id):
             pred_data = self.graph.nodes[pred]
             if pred_data.get("node_type") in [NodeType.PATTERN, NodeType.SOLUTION]:
-                edge_data = self.graph.get_edge_data(pred, target_node_id)
-                if edge_data and edge_data.get("edge_type") in dep_edge_types:
+                if any(
+                    e.get("edge_type") in dep_edge_types
+                    for e in self._edges_between(pred, target_node_id)
+                ):
                     dependents.append(pred_data["text"])
 
         return dependents
@@ -1299,31 +1391,32 @@ class GraphStore:
 
         deps = {}
         for succ in self.graph.successors(node_id):
-            edge_data = self.graph.get_edge_data(node_id, succ)
-            edge_type = edge_data.get("edge_type")
+            for edge_data in self._edges_between(node_id, succ):
+                edge_type = edge_data.get("edge_type")
 
-            if edge_type in edge_to_dep:
+                if edge_type not in edge_to_dep:
+                    continue
+
                 dep_category = edge_to_dep[edge_type]
                 if dep_category not in deps:
                     deps[dep_category] = {}
 
-                # Get target pattern data
                 target_data = self.graph.nodes[succ]
                 target_handle = target_data.get("text", "")
-
-                # Get the full sema_id from the target pattern
-                # Full ID format: sema:Handle#mh:SHA-256:<64-char-hash>
-                # This is needed for Merkle DAG hashing (Rule C: Full IDs required)
                 target_meta = target_data.get("metadata", {})
                 target_pattern = target_meta.get("pattern", {})
                 target_ref = target_pattern.get(
                     "sema_id", target_pattern.get("sema_ref", target_handle)
                 )
 
-                # Use snake_case handle as key
-                s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", target_handle)
-                key = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
-                deps[dep_category][key] = target_ref
+                # Prefer the alias stored on the edge (preserves the
+                # original key the author used). Fall back to snake_case
+                # of the handle for legacy edges that pre-date alias storage.
+                alias = edge_data.get("alias")
+                if not alias:
+                    s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", target_handle)
+                    alias = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+                deps[dep_category][alias] = target_ref
 
         return deps
 

@@ -653,5 +653,206 @@ class TestPullRealVocabulary(unittest.TestCase):
         )
 
 
+class TestPullEdgeCases(unittest.TestCase):
+    """Tests for the design issues Gemini Deep Think flagged."""
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.upstream_db = os.path.join(self.temp_dir, "upstream.db")
+        self.user_db = os.path.join(self.temp_dir, "user.db")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _add(self, db, handle, mechanism="Test mechanism", **kwargs):
+        store = GraphStore(db)
+        pattern = {
+            "handle": handle,
+            "mechanism": mechanism,
+            "gloss": kwargs.get("gloss", f"Gloss for {handle}"),
+            "_meta": {
+                "layer": kwargs.get("layer", "Infrastructure"),
+                "category": kwargs.get("category", "Primitives"),
+                "ring": 0,
+                "tier": 1,
+                **kwargs.get("meta_extra", {}),
+            },
+        }
+        if "deps" in kwargs:
+            pattern["dependencies"] = kwargs["deps"]
+        store.add_pattern(pattern)
+
+    def _pattern(self, db, handle):
+        store = GraphStore(db)
+        for _, data in store.get_nodes_by_type(NodeType.PATTERN):
+            if data.get("text") == handle:
+                meta = data.get("metadata", {})
+                return meta.get("pattern", {}) or {}
+        return {}
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_alias_round_trip(self, mock_bundled_check, mock_bundled, mock_db):
+        """Custom aliases (not snake_case of handle) survive a pull round-trip.
+
+        Author writes `{"my_alias": "RefTarget"}` and references {{my_alias}}
+        in the mechanism. After pull, the alias must still be `my_alias`,
+        not regenerated as `ref_target`.
+        """
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "RefTarget")
+        self._add(
+            self.upstream_db,
+            "Source",
+            mechanism="Uses {{my_alias}}",
+            deps={"references": {"my_alias": "RefTarget"}},
+        )
+        GraphStore(self.user_db)
+
+        result = update_db()
+        self.assertTrue(result)
+
+        store = GraphStore(self.user_db)
+        deps = store.get_dependencies_from_edges("Source")
+        self.assertIn("my_alias", deps.get("references", {}))
+        self.assertNotIn("ref_target", deps.get("references", {}))
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_multi_edge_same_target(self, mock_bundled_check, mock_bundled, mock_db):
+        """Pattern with both `accepts` and `yields` of the same target preserves both edges.
+
+        DiGraph would silently collapse to one edge, breaking the pattern's
+        identity (Merkle hash). MultiDiGraph keeps both.
+        """
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Task")
+        self._add(
+            self.upstream_db,
+            "Transformer",
+            mechanism="Reads {{input}} and writes {{output}}",
+            deps={
+                "accepts": {"input": "Task"},
+                "yields": {"output": "Task"},
+            },
+        )
+        GraphStore(self.user_db)
+
+        result = update_db()
+        self.assertTrue(result)
+
+        store = GraphStore(self.user_db)
+        deps = store.get_dependencies_from_edges("Transformer")
+        self.assertIn("input", deps.get("accepts", {}))
+        self.assertIn("output", deps.get("yields", {}))
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_meta_overlay_preserved_on_update(self, mock_bundled_check, mock_bundled, mock_db):
+        """User's local _meta.caution survives an upstream content update.
+
+        Upstream changes the mechanism; user has set a local caution. After
+        pull, mechanism is updated AND the user's caution is intact.
+        """
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Foo", "v1 mechanism")
+        self._add(
+            self.user_db,
+            "Foo",
+            "v1 mechanism",
+            meta_extra={"caution": "user-set-warning"},
+        )
+
+        # Now upstream evolves
+        self._add(self.upstream_db, "Foo", "v2 UPDATED mechanism")
+
+        result = update_db()
+        self.assertTrue(result)
+
+        p = self._pattern(self.user_db, "Foo")
+        self.assertIn("UPDATED", p.get("mechanism", ""))
+        self.assertEqual(p.get("_meta", {}).get("caution"), "user-set-warning")
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_mid_pull_failure_rollback(self, mock_bundled_check, mock_bundled, mock_db):
+        """If a pattern fails mid-pull, target DB is restored from backup."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.upstream_db, "Beta")
+        self._add(self.user_db, "Original")
+
+        # Patch mint_pattern to fail on the second call
+        from sema.core.mint import MintResult
+
+        call_count = {"n": 0}
+        original_mint = __import__("sema.core.mint", fromlist=["mint_pattern"]).mint_pattern
+
+        def flaky_mint(pattern, store, **kwargs):
+            call_count["n"] += 1
+            if call_count["n"] >= 2:
+                return MintResult(
+                    success=False,
+                    handle=pattern.get("handle", ""),
+                    errors=["simulated failure"],
+                )
+            return original_mint(pattern, store, **kwargs)
+
+        with patch("sema.core.mint.mint_pattern", side_effect=flaky_mint):
+            result = update_db()
+
+        self.assertFalse(result, "Pull should fail")
+        # User DB should still contain its original pattern, no upstream patterns
+        handles = {
+            data["text"] for _, data in GraphStore(self.user_db).get_nodes_by_type(NodeType.PATTERN)
+        }
+        self.assertIn("Original", handles)
+        # Backup file should be cleaned up after restore
+        self.assertFalse(os.path.exists(self.user_db + ".pull_bak"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_fast_path_skip_when_unchanged(self, mock_bundled_check, mock_bundled, mock_db):
+        """When upstream sema_id matches target sema_id, no mint happens.
+
+        Trick: patch mint_pattern to fail. If pull skips correctly, mint
+        is never called and pull succeeds; if it doesn't skip, pull fails.
+        """
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Same")
+        # User has the identical pattern (same content => same hash)
+        self._add(self.user_db, "Same")
+
+        from sema.core.mint import MintResult
+
+        with patch(
+            "sema.core.mint.mint_pattern",
+            return_value=MintResult(success=False, handle="x", errors=["should not run"]),
+        ):
+            result = update_db()
+
+        self.assertTrue(result, "Pull should skip identical patterns via fast-path")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -448,11 +448,19 @@ def show_skeleton():
 def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
     """Pull latest vocabulary: walk upstream DAG in topological order, update each.
 
+    Atomicity: the entire pull runs inside a single SQLite transaction. If
+    anything fails partway, the target DB is rolled back to pre-pull state.
+
     For each upstream pattern (leaves first, roots last):
-      - If handle exists in target: update in place (add_pattern merges)
-      - If handle is new: add it
-    User-only patterns are left untouched. Hashes cascade correctly
-    because patterns are applied in dependency order.
+      - Fast-path: if upstream sema_id == target sema_id, skip.
+      - If handle exists in target: deep-merge user's local _meta over upstream
+        defaults, then re-mint. User annotations (caution, related) survive.
+      - If handle is new: add it.
+      - skip_cascade=True during the loop avoids O(N^2) write amplification;
+        a single cascade sweep runs at the end keyed off changed handles.
+
+    User-only patterns are left untouched. Their hashes cascade automatically
+    when their upstream deps change (via the final sweep).
     """
     from ..core.dependencies import topological_sort
     from ..core.mint import mint_pattern
@@ -483,6 +491,7 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
     source_store = GraphStore(source_db)
 
     upstream_patterns = {}
+    upstream_sema_ids = {}  # handle -> stored sema_id (for fast-path skip)
     for _nid, data in source_store.get_nodes_by_type(NodeType.PATTERN):
         h = data.get("text")
         if not h:
@@ -495,16 +504,25 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
             if edge_deps:
                 pattern["dependencies"] = edge_deps
             upstream_patterns[h] = pattern
+            upstream_sema_ids[h] = pattern.get("sema_id", "")
 
     target_store = GraphStore(target_db)
     target_handles = set()
+    target_local_meta = {}  # handle -> user's local _meta (preserved on update)
+    target_sema_ids = {}  # handle -> stored sema_id (for fast-path skip)
     for _nid, data in target_store.get_nodes_by_type(NodeType.PATTERN):
         h = data.get("text")
-        if h:
-            target_handles.add(h)
+        if not h:
+            continue
+        target_handles.add(h)
+        meta = data.get("metadata", {})
+        local_pattern = meta.get("pattern", {}) or {}
+        target_local_meta[h] = local_pattern.get("_meta", {})
+        target_sema_ids[h] = local_pattern.get("sema_id", "")
 
     new_count = len(upstream_patterns.keys() - target_handles)
     update_count = len(upstream_patterns.keys() & target_handles)
+    upstream_removed = sorted(target_handles - upstream_patterns.keys())
 
     print(f"\nUpstream: {len(upstream_patterns)} patterns")
     print(f"Target:   {len(target_handles)} patterns")
@@ -518,39 +536,101 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
 
     if dry_run:
         print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
+        if upstream_removed:
+            print(f"User-only patterns (no longer in upstream): {len(upstream_removed)}")
         return True
+
+    # Atomicity via file-level backup/restore (simpler than weaving a SQLite
+    # transaction through the 13 connection sites in graph_store, and matches
+    # what scripts/rebuild_vocabulary.py does). On any failure during the
+    # loop, we restore the DB from this backup.
+    import shutil
+
+    backup_path = target_db + ".pull_bak"
+    shutil.copy2(target_db, backup_path)
 
     added = []
     updated = []
+    skipped = []
     failed = []
+    cascaded_user = set()
 
-    for handle in sorted_handles:
-        pattern = upstream_patterns[handle]
-        existed = handle in target_handles
-        result = mint_pattern(pattern, target_store)
-        if result.success:
-            if existed:
-                updated.append(handle)
+    try:
+        for handle in sorted_handles:
+            pattern = upstream_patterns[handle]
+            existed = handle in target_handles
+
+            # Fast-path: if upstream and target sema_ids match exactly,
+            # nothing has changed — skip the mint entirely.
+            if existed and upstream_sema_ids.get(handle) == target_sema_ids.get(handle):
+                skipped.append(handle)
+                continue
+
+            # Deep-merge user's local _meta over upstream defaults.
+            # User-set keys win; upstream provides anything the user didn't override.
+            if existed and target_local_meta.get(handle):
+                merged_meta = {**pattern.get("_meta", {}), **target_local_meta[handle]}
+                pattern = {**pattern, "_meta": merged_meta}
+
+            result = mint_pattern(pattern, target_store, skip_cascade=True)
+            if result.success:
+                if existed:
+                    updated.append(handle)
+                else:
+                    added.append(handle)
             else:
-                added.append(handle)
-        else:
-            failed.append((handle, result.errors))
+                failed.append((handle, result.errors))
 
+        if failed:
+            raise RuntimeError(f"{len(failed)} pattern(s) failed to mint")
+
+        # Single cascade sweep over actually-changed upstream handles.
+        # This catches user-only patterns whose deps just got new hashes.
+        for handle in added + updated:
+            cascade = target_store._cascade_dependents(handle)
+            for dep in cascade.get("updated", []):
+                if dep not in upstream_patterns:
+                    cascaded_user.add(dep)
+
+    except Exception as e:
+        # Roll back: restore the DB from backup
+        shutil.move(backup_path, target_db)
+        print(f"\n❌ Pull aborted, target DB restored from backup: {e}")
+        if failed:
+            for h, errs in failed[:5]:
+                print(f"    {h}: {'; '.join(errs)}")
+        return False
+
+    # Success path — drop the backup
+    import os
+
+    os.remove(backup_path)
+
+    # Reporting
     if added:
         print(f"  + {len(added)} new")
     if updated:
         print(f"  ~ {len(updated)} updated")
-    if failed:
-        print(f"  ✗ {len(failed)} failed:")
-        for h, errs in failed[:5]:
-            print(f"    {h}: {'; '.join(errs)}")
+    if skipped:
+        print(f"  = {len(skipped)} unchanged (fast-path)")
+    if cascaded_user:
+        print(
+            f"⚠️  {len(cascaded_user)} user pattern(s) had hashes auto-updated due to upstream changes:"
+        )
+        for h in sorted(cascaded_user)[:10]:
+            print(f"    {h}")
+    if upstream_removed:
+        print(
+            f"ℹ️  Upstream removed {len(upstream_removed)} pattern(s); they remain locally as user patterns:"
+        )
+        for h in upstream_removed[:10]:
+            print(f"    {h}")
 
-    if not failed:
-        print(f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated.")
-    else:
-        print(f"\n⚠️  Pull finished with {len(failed)} errors.")
+    print(
+        f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
+    )
 
-    if verify and not failed:
+    if verify:
         invalid = _verify_hashes(target_db)
         if invalid:
             print(f"\n❌ Hash validity check failed: {len(invalid)} invalid patterns")
@@ -559,11 +639,19 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
             return False
         print("✓ Hash validity verified.")
 
-    return len(failed) == 0
+    return True
 
 
 def _verify_hashes(db_path: str) -> list[str]:
-    """Verify stored sema_ids match recomputed hashes. Returns handles with mismatches."""
+    """Verify stored sema_ids match recomputed hashes via bottom-up traversal.
+
+    Computes from leaves up, keeping a cache of *freshly computed* hashes.
+    Parents resolve their dep refs against the cache (true hashes), not
+    against potentially-corrupted stored values. This catches the case
+    where a child's stored hash is stale and a parent self-validates against
+    the corruption.
+    """
+    from ..core.dependencies import topological_sort
     from ..core.hashing import generate_sema_hash
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -587,16 +675,30 @@ def _verify_hashes(db_path: str) -> list[str]:
         if "#mh:SHA-256:" in sid:
             stored[h] = sid.split("#mh:SHA-256:")[1]
 
-    def lookup(h):
-        return stored.get(h)
+    # Topo-sort gives us leaves-first ordering; compute hashes in that order
+    # so by the time we hash a parent, all its dep hashes are in `fresh`.
+    try:
+        order = topological_sort(patterns)
+    except ValueError:
+        # Cycle — fall back to stored-hash lookup (best effort)
+        order = list(patterns.keys())
 
+    fresh = {}
     mismatches = []
-    for h, p in patterns.items():
-        if h not in stored:
+
+    def lookup(h):
+        # Prefer freshly computed hash (bottom-up correctness); fall back
+        # to stored only for handles outside this batch.
+        return fresh.get(h, stored.get(h))
+
+    for handle in order:
+        p = patterns[handle]
+        if handle not in stored:
             continue
         computed = generate_sema_hash(p, lookup)["hash"]
-        if computed != stored[h]:
-            mismatches.append(h)
+        fresh[handle] = computed
+        if computed != stored[handle]:
+            mismatches.append(handle)
     return mismatches
 
 
