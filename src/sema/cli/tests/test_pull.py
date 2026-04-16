@@ -973,5 +973,42 @@ class TestTaxonomyOverlay(unittest.TestCase):
         )
 
 
+class TestMergeNodesMultiEdge(unittest.TestCase):
+    """merge_nodes must dedupe by (edge_type, alias) not just edge_type.
+    Otherwise parallel edges with distinct aliases collapse to one."""
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.db_path = os.path.join(self.temp_dir, "merge.db")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def test_merge_preserves_parallel_aliases(self):
+        """Two ACCEPTS edges with different aliases survive a node merge."""
+        from sema.taxonomy_graph.graph_store import EdgeType
+
+        store = GraphStore(self.db_path)
+        src = store.create_node(NodeType.PATTERN, "Source")
+        tgt_keep = store.create_node(NodeType.PATTERN, "Keep")
+        tgt_remove = store.create_node(NodeType.PATTERN, "Remove")
+
+        # Two parallel ACCEPTS edges to the remove-node, different aliases
+        store.create_edge(src, tgt_remove, EdgeType.ACCEPTS, alias="task1")
+        store.create_edge(src, tgt_remove, EdgeType.ACCEPTS, alias="task2")
+
+        ok = store.merge_nodes(tgt_keep, tgt_remove)
+        self.assertTrue(ok)
+
+        # Both aliases must appear on the surviving edges
+        edges_kept = store._edges_between(src, tgt_keep)
+        aliases = {e.get("alias") for e in edges_kept if e.get("edge_type") == EdgeType.ACCEPTS}
+        self.assertEqual(
+            aliases,
+            {"task1", "task2"},
+            "merge_nodes must preserve distinct aliases on parallel edges",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

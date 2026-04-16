@@ -4,7 +4,6 @@ import json
 import re
 import sqlite3
 import uuid
-from contextlib import contextmanager
 from enum import Enum
 from typing import Any
 
@@ -128,7 +127,6 @@ class GraphStore:
         # target (e.g. `accepts: Task` AND `yields: Task`). DiGraph would
         # silently collapse them to one edge.
         self.graph = nx.MultiDiGraph()
-        self._active_conn: sqlite3.Connection | None = None
         self._init_tables()
         self._migrate_schema()
         self._load_graph()
@@ -196,36 +194,6 @@ class GraphStore:
             cursor.execute("ALTER TABLE edges ADD COLUMN alias TEXT")
         conn.commit()
         conn.close()
-
-    @contextmanager
-    def transaction(self):
-        """Open a single connection in a SAVEPOINT-style transaction.
-
-        All store mutations performed inside the `with` block share one
-        connection and commit (or rollback on exception) atomically.
-        """
-        if self._active_conn is not None:
-            yield self._active_conn
-            return
-        conn = sqlite3.connect(self.db_path)
-        conn.execute("PRAGMA foreign_keys = ON")
-        self._active_conn = conn
-        try:
-            conn.execute("BEGIN")
-            yield conn
-            conn.commit()
-        except Exception:
-            conn.rollback()
-            raise
-        finally:
-            conn.close()
-            self._active_conn = None
-
-    def _conn(self):
-        """Return the active transaction connection, or open a new one."""
-        if self._active_conn is not None:
-            return self._active_conn, False  # do not close
-        return sqlite3.connect(self.db_path), True  # caller closes
 
     def _load_graph(self):
         """Load graph from database into memory."""
@@ -312,16 +280,15 @@ class GraphStore:
         edge_id = str(uuid.uuid4())
         metadata = metadata or {}
 
-        conn, should_close = self._conn()
+        conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO edges (id, source_id, target_id, edge_type, alias, metadata) "
             "VALUES (?, ?, ?, ?, ?, ?)",
             (edge_id, source_id, target_id, edge_type.value, alias, json.dumps(metadata)),
         )
-        if should_close:
-            conn.commit()
-            conn.close()
+        conn.commit()
+        conn.close()
 
         self.graph.add_edge(
             source_id,
@@ -655,11 +622,10 @@ class GraphStore:
                 continue
             edge_ids = self.remove_edges_of_type(pattern_id, succ, EdgeType.IN_CATEGORY)
             for eid in edge_ids:
-                conn, should_close = self._conn()
+                conn = sqlite3.connect(self.db_path)
                 conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
-                if should_close:
-                    conn.commit()
-                    conn.close()
+                conn.commit()
+                conn.close()
 
         if not self.has_edge_of_type(pattern_id, category_id, EdgeType.IN_CATEGORY):
             self.create_edge(pattern_id, category_id, EdgeType.IN_CATEGORY)
@@ -732,11 +698,10 @@ class GraphStore:
             # 3. Prune OBSOLETE edges (target+type+alias not in desired)
             for target_id, e_type, alias, edge_id, key in existing_dep_edges:
                 if (target_id, e_type, alias) not in desired_edges:
-                    conn, should_close = self._conn()
+                    conn = sqlite3.connect(self.db_path)
                     conn.execute("DELETE FROM edges WHERE id = ?", (edge_id,))
-                    if should_close:
-                        conn.commit()
-                        conn.close()
+                    conn.commit()
+                    conn.close()
                     self.graph.remove_edge(pattern_id, target_id, key=key)
 
             # 4. Add NEW edges (multi-edge: same target may have multiple edges
@@ -1015,33 +980,44 @@ class GraphStore:
     def merge_nodes(self, node_id_keep: str, node_id_remove: str) -> bool:
         """Merge two nodes, redirecting all edges to the kept node.
 
-        Multi-edge aware: redirects every parallel edge type, not just one.
+        Multi-edge aware: dedupes by (edge_type, alias) tuple, not just by
+        edge_type. Otherwise multiple parallel edges of the same type but
+        with distinct aliases (e.g. accepts: {"task1": T, "task2": T})
+        would collapse to one — silent data loss on merge.
         """
         if node_id_keep not in self.graph or node_id_remove not in self.graph:
             return False
 
+        def _has_exact(src, tgt, e_type, alias):
+            return any(
+                e.get("edge_type") == e_type and e.get("alias") == alias
+                for e in self._edges_between(src, tgt)
+            )
+
         for pred in list(self.graph.predecessors(node_id_remove)):
             for edge_data in self._edges_between(pred, node_id_remove):
                 e_type = edge_data.get("edge_type")
-                if e_type and not self.has_edge_of_type(pred, node_id_keep, e_type):
+                alias = edge_data.get("alias")
+                if e_type and not _has_exact(pred, node_id_keep, e_type, alias):
                     self.create_edge(
                         pred,
                         node_id_keep,
                         e_type,
                         edge_data.get("metadata"),
-                        alias=edge_data.get("alias"),
+                        alias=alias,
                     )
 
         for succ in list(self.graph.successors(node_id_remove)):
             for edge_data in self._edges_between(node_id_remove, succ):
                 e_type = edge_data.get("edge_type")
-                if e_type and not self.has_edge_of_type(node_id_keep, succ, e_type):
+                alias = edge_data.get("alias")
+                if e_type and not _has_exact(node_id_keep, succ, e_type, alias):
                     self.create_edge(
                         node_id_keep,
                         succ,
                         e_type,
                         edge_data.get("metadata"),
-                        alias=edge_data.get("alias"),
+                        alias=alias,
                     )
 
         conn = sqlite3.connect(self.db_path)

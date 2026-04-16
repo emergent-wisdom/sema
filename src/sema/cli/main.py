@@ -543,15 +543,23 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
     # Atomicity via SQLite's native backup API. Unlike `shutil.copy2`, this
     # safely captures DB state regardless of WAL mode (the WAL file would
     # otherwise leave a torn snapshot that, when restored, would replay over
-    # the rolled-back DB and corrupt the Merkle DAG). On any failure during
-    # the loop, we restore by copying the backup back via the same API.
+    # the rolled-back DB and corrupt the Merkle DAG).
+    #
+    # NOTE: `with sqlite3.connect()` only manages the *transaction*, not the
+    # connection lifecycle — connections stay open after the block, holding
+    # locks. We use `contextlib.closing` to guarantee cleanup so the backup
+    # file can be deleted afterward (matters on Windows, leak on POSIX).
     import os
     import sqlite3 as _sqlite3
+    from contextlib import closing
 
     backup_path = target_db + ".pull_bak"
     if os.path.exists(backup_path):
         os.remove(backup_path)
-    with _sqlite3.connect(target_db) as src_conn, _sqlite3.connect(backup_path) as bak_conn:
+    with (
+        closing(_sqlite3.connect(target_db)) as src_conn,
+        closing(_sqlite3.connect(backup_path)) as bak_conn,
+    ):
         src_conn.backup(bak_conn)
 
     added = []
@@ -579,6 +587,10 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
                     merged_meta["caution"] = local["caution"]
                 if "related" in local and isinstance(local["related"], list):
                     upstream_related = merged_meta.get("related", []) or []
+                    # Defensive: if upstream data is malformed (e.g. a string
+                    # instead of a list), coerce before unioning.
+                    if isinstance(upstream_related, str):
+                        upstream_related = [upstream_related]
                     merged_meta["related"] = list(
                         dict.fromkeys(list(upstream_related) + list(local["related"]))
                     )
@@ -615,8 +627,12 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
 
     except Exception as e:
         # Roll back: restore the DB from backup via SQLite's backup API
-        # (safe with WAL mode, unlike shutil.move).
-        with _sqlite3.connect(backup_path) as bak_conn, _sqlite3.connect(target_db) as dst_conn:
+        # (safe with WAL mode, unlike shutil.move). Use closing() so the
+        # connections are fully closed before we try to remove the backup.
+        with (
+            closing(_sqlite3.connect(backup_path)) as bak_conn,
+            closing(_sqlite3.connect(target_db)) as dst_conn,
+        ):
             bak_conn.backup(dst_conn)
         os.remove(backup_path)
         print(f"\n❌ Pull aborted, target DB restored from backup: {e}")
