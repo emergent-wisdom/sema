@@ -1360,6 +1360,35 @@ class TestRecovery(unittest.TestCase):
 
         self.assertFalse(undo_pull())
 
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_stranded_backup_aborts_next_pull(self, mock_bundled_check, mock_bundled, mock_db):
+        """A stranded .pull_bak indicates a prior catastrophic rollback failure.
+        The next pull must NOT overwrite it (that would destroy the user's
+        only recoverable state). It must abort and warn."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.user_db, "OldPattern")
+
+        # Simulate a stranded backup from a prior catastrophic failure
+        backup_path = self.user_db + ".pull_bak"
+        shutil.copy2(self.user_db, backup_path)
+        self.assertTrue(os.path.exists(backup_path))
+        pre_size = os.path.getsize(backup_path)
+
+        result = update_db()
+
+        self.assertFalse(result, "Pull must refuse when a stranded backup exists")
+        # Stranded backup must be preserved untouched
+        self.assertTrue(os.path.exists(backup_path))
+        self.assertEqual(
+            os.path.getsize(backup_path), pre_size, "Stranded backup was modified — data loss risk"
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

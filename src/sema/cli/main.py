@@ -469,12 +469,17 @@ def undo_pull() -> bool:
         return False
 
     print(f"Restoring {target_db} from {previous_path}...")
-    with (
-        closing(_sqlite3.connect(previous_path)) as src_conn,
-        closing(_sqlite3.connect(target_db)) as dst_conn,
-    ):
-        src_conn.backup(dst_conn)
-    # Snapshot consumed — remove so a second --undo can't loop-restore
+    try:
+        with (
+            closing(_sqlite3.connect(previous_path)) as src_conn,
+            closing(_sqlite3.connect(target_db)) as dst_conn,
+        ):
+            src_conn.backup(dst_conn)
+    except _sqlite3.Error as e:
+        # Locked DB / permission issue: preserve the snapshot for retry.
+        print(f"❌ Failed to restore database (is it locked by another agent?): {e}")
+        return False
+    # Snapshot consumed only on successful restore
     os.remove(previous_path)
     print("✅ Restored database to pre-pull state.")
     return True
@@ -689,7 +694,16 @@ def update_db(
 
     backup_path = target_db + ".pull_bak"
     if os.path.exists(backup_path):
-        os.remove(backup_path)
+        # A stranded .pull_bak means a prior pull suffered a catastrophic
+        # rollback failure. Don't overwrite it — that would destroy the
+        # user's only recoverable state. Abort and ask them to intervene.
+        print(f"❌ Stranded backup found at {backup_path}")
+        print("   A previous pull crashed critically during rollback. The backup may")
+        print("   represent your only recoverable pre-pull state. To resolve:")
+        print(f"     1. If you know your DB is healthy, delete {backup_path}")
+        print("     2. If not, restore from it: sqlite3 backup API or manual inspection")
+        print("   Aborting to protect your data.")
+        return False
     with (
         closing(_sqlite3.connect(target_db)) as src_conn,
         closing(_sqlite3.connect(backup_path)) as bak_conn,
@@ -763,13 +777,25 @@ def update_db(
         # Roll back: restore the DB from backup via SQLite's backup API
         # (safe with WAL mode, unlike shutil.move). Use closing() so the
         # connections are fully closed before we try to remove the backup.
-        with (
-            closing(_sqlite3.connect(backup_path)) as bak_conn,
-            closing(_sqlite3.connect(target_db)) as dst_conn,
-        ):
-            bak_conn.backup(dst_conn)
-        os.remove(backup_path)
-        print(f"\n❌ Pull aborted, target DB restored from backup: {e}")
+        print(f"\n❌ Pull aborted: {e}")
+        print("   Attempting to restore target DB from backup...")
+        try:
+            with (
+                closing(_sqlite3.connect(backup_path)) as bak_conn,
+                closing(_sqlite3.connect(target_db)) as dst_conn,
+            ):
+                bak_conn.backup(dst_conn)
+            os.remove(backup_path)
+            print("✅ Target DB restored from backup.")
+        except Exception as rollback_err:
+            # Critical: if rollback itself fails, the backup is the user's
+            # only remaining copy of the pre-pull state. Do NOT delete it.
+            # Next pull will detect the stranded .pull_bak and refuse to
+            # proceed, prompting the user to recover manually.
+            print(f"🚨 CRITICAL: Automatic rollback failed ({rollback_err})")
+            print("   Your database may be in an inconsistent state.")
+            print(f"   Your pre-pull backup is preserved at: {backup_path}")
+            print("   To recover manually, restore from that file (sqlite3 backup API).")
         if failed:
             for h, errs in failed[:5]:
                 print(f"    {h}: {'; '.join(errs)}")
@@ -780,11 +806,18 @@ def update_db(
     # On a no-op pull (all fast-path skipped), discard this backup to keep
     # the older, genuinely-useful `.pull_previous` intact.
     has_changes = bool(added or updated or cascaded_user)
-    if has_changes:
-        previous_path = target_db + ".pull_previous"
-        os.replace(backup_path, previous_path)
-    else:
-        os.remove(backup_path)
+    try:
+        if has_changes:
+            previous_path = target_db + ".pull_previous"
+            os.replace(backup_path, previous_path)
+        else:
+            os.remove(backup_path)
+    except OSError as e:
+        # Another program (DB viewer, indexer) might have the file open on
+        # Windows, causing PermissionError. The pull itself succeeded —
+        # just warn about the stranded cleanup, don't fail.
+        print(f"\n⚠️  Could not finalize backup file: {e}")
+        print(f"   If {backup_path} lingers, close any program accessing it and delete manually.")
 
     # Reporting
     if added:
