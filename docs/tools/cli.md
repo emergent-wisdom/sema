@@ -168,13 +168,75 @@ Displays the graph skeleton (layers, categories, counts).
 sema skeleton
 ```
 
-### pull - Update Database
+### pull - Sync Vocabulary from Upstream
 
-Downloads the latest vocabulary database from the registry.
+Walks the upstream DAG in topological order and updates the active database
+in place. Custom patterns the user added locally are preserved. Hashes
+cascade automatically when their upstream deps change.
 
 ```bash
+# Basic pull (bundled DB → active DB)
 sema pull
+
+# Preview what would change without writing
+sema pull --dry-run
+
+# Pull from a specific source DB instead of the bundled vocabulary
+sema pull --source ./snapshots/2026-04-vocab.db
+
+# Verify all hashes after the pull (extra safety check)
+sema pull --verify
+
+# Skip a specific upstream pattern (repeatable)
+sema pull --exclude SomeHandle --exclude AnotherHandle
 ```
+
+**Behavior contract**
+
+- **User-only patterns are never deleted.** Anything in your active DB that
+  isn't in upstream stays put — pull only adds and updates.
+- **`_meta` is field-merged.** Upstream owns `layer`, `category`, `tier`,
+  `ring`, `supersedes` (taxonomy reorganizations propagate to you). User
+  owns `caution` and `related` (your local annotations survive).
+- **Hash cascade is automatic.** When an upstream pattern's hash changes,
+  your local patterns that depend on it get re-hashed too.
+- **Atomic.** The active DB is snapshotted via `sqlite3.Connection.backup()`
+  before the loop. Any failure during the pull restores the snapshot — no
+  half-applied state.
+- **Fast-path skip.** Patterns whose stored sema_id already matches upstream
+  are skipped without a write.
+
+**Persistent exclusions**
+
+For exclusions you want to keep across runs, write to
+`$XDG_CONFIG_HOME/sema/excluded` (defaults to `~/.config/sema/excluded`).
+One handle per line. `#` starts a comment. Blank lines are ignored.
+
+```text
+# patterns I don't want
+LegacyDoodad
+
+# pin local Foo against upstream changes (keep local copy AND exclude)
+Foo
+```
+
+CLI `--exclude` flags are unioned with the file.
+
+**Version pinning (emergent)**
+
+If you exclude a handle but keep your local copy, dependents resolve against
+your local (frozen) version. Useful when you've customized a pattern and
+want upstream changes to propagate everywhere except that one.
+
+**Dependency safety**
+
+If an upstream pattern depends on a handle that's excluded AND missing
+locally, that pattern is auto-skipped (no abort). The same machinery also
+shields you from malformed upstream graphs that ship with dangling refs.
+
+**Refuses to modify the bundled DB.** Run `sema build` + `sema use` to
+create a writable project DB first. See [lifecycle.md](../guides/lifecycle.md)
+for the full conceptual model.
 
 ### serve - Start API Server
 
