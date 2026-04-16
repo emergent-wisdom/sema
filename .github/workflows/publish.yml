@@ -28,7 +28,8 @@ jobs:
           cd web
           npm install
           npm run build
-          cp -r dist/* ../src/sema/server/static/
+          mkdir -p ../src/sema/server/static
+          cp -r build/client/* ../src/sema/server/static/
 
       - name: Install build tools
         run: pip install build
