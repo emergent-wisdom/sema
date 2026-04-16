@@ -479,8 +479,13 @@ def undo_pull() -> bool:
         # Locked DB / permission issue: preserve the snapshot for retry.
         print(f"❌ Failed to restore database (is it locked by another agent?): {e}")
         return False
-    # Snapshot consumed only on successful restore
-    os.remove(previous_path)
+    # Snapshot consumed only on successful restore. Tolerate Windows
+    # PermissionError (file indexer holding the snapshot) — the restore
+    # itself already succeeded, so this is just a cleanup hiccup.
+    try:
+        os.remove(previous_path)
+    except OSError as e:
+        print(f"⚠️  Database restored, but could not delete snapshot file: {e}")
     print("✅ Restored database to pre-pull state.")
     return True
 
@@ -704,11 +709,25 @@ def update_db(
         print("     2. If not, restore from it: sqlite3 backup API or manual inspection")
         print("   Aborting to protect your data.")
         return False
-    with (
-        closing(_sqlite3.connect(target_db)) as src_conn,
-        closing(_sqlite3.connect(backup_path)) as bak_conn,
-    ):
-        src_conn.backup(bak_conn)
+    # If the target DB is locked (e.g. another agent is mid-write), backup()
+    # raises sqlite3.OperationalError. Without this guard, the partial 0-byte
+    # `.pull_bak` file from the with-block would remain on disk and the next
+    # pull would mistake it for a stranded backup from a catastrophic
+    # rollback failure — terrifying false positive. Catch + cleanup.
+    try:
+        with (
+            closing(_sqlite3.connect(target_db)) as src_conn,
+            closing(_sqlite3.connect(backup_path)) as bak_conn,
+        ):
+            src_conn.backup(bak_conn)
+    except _sqlite3.Error as e:
+        print(f"❌ Could not create pre-pull backup (is the database locked?): {e}")
+        if os.path.exists(backup_path):
+            try:
+                os.remove(backup_path)
+            except OSError:
+                pass
+        return False
 
     added = []
     updated = []
@@ -773,11 +792,15 @@ def update_db(
                 if dep not in upstream_patterns:
                     cascaded_user.add(dep)
 
-    except Exception as e:
+    except (Exception, KeyboardInterrupt) as e:
         # Roll back: restore the DB from backup via SQLite's backup API
         # (safe with WAL mode, unlike shutil.move). Use closing() so the
         # connections are fully closed before we try to remove the backup.
-        print(f"\n❌ Pull aborted: {e}")
+        # KeyboardInterrupt inherits from BaseException, not Exception, so
+        # we catch it explicitly — otherwise Ctrl+C bypasses rollback and
+        # leaves a stranded `.pull_bak` that the next run refuses to clobber.
+        err_msg = "user interrupted (Ctrl+C)" if isinstance(e, KeyboardInterrupt) else str(e)
+        print(f"\n❌ Pull aborted: {err_msg}")
         print("   Attempting to restore target DB from backup...")
         try:
             with (

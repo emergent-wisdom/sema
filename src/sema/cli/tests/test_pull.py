@@ -1374,9 +1374,11 @@ class TestRecovery(unittest.TestCase):
         self._add(self.upstream_db, "Alpha")
         self._add(self.user_db, "OldPattern")
 
-        # Simulate a stranded backup from a prior catastrophic failure
+        # Simulate a stranded backup from a prior catastrophic failure.
+        # Touch an empty file — the abort check only inspects existence,
+        # so we don't need a real DB copy here.
         backup_path = self.user_db + ".pull_bak"
-        shutil.copy2(self.user_db, backup_path)
+        open(backup_path, "w").close()
         self.assertTrue(os.path.exists(backup_path))
         pre_size = os.path.getsize(backup_path)
 
@@ -1387,6 +1389,51 @@ class TestRecovery(unittest.TestCase):
         self.assertTrue(os.path.exists(backup_path))
         self.assertEqual(
             os.path.getsize(backup_path), pre_size, "Stranded backup was modified — data loss risk"
+        )
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_locked_db_does_not_strand_backup(self, mock_bundled_check, mock_bundled, mock_db):
+        """If the initial sqlite3.backup() fails (e.g. target DB locked by
+        another agent), the partial 0-byte .pull_bak file must be cleaned
+        up — otherwise the next pull will mistake it for a stranded backup
+        from a catastrophic rollback failure and refuse to proceed."""
+        import sqlite3 as _sqlite3
+
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.user_db, "OldPattern")
+
+        backup_path = self.user_db + ".pull_bak"
+        self.assertFalse(os.path.exists(backup_path))
+
+        # sqlite3.Connection is an immutable C type — can't monkeypatch
+        # `.backup` directly. Wrap _sqlite3.connect so the source-side
+        # connection raises on backup(), simulating a locked DB.
+        original_connect = _sqlite3.connect
+        target_db = self.user_db
+
+        class FailingBackupConn(_sqlite3.Connection):
+            def backup(self, *args, **kwargs):
+                raise _sqlite3.OperationalError("database is locked")
+
+        def fake_connect(path, *args, **kwargs):
+            if path == target_db and "factory" not in kwargs:
+                kwargs["factory"] = FailingBackupConn
+            return original_connect(path, *args, **kwargs)
+
+        with patch.object(_sqlite3, "connect", fake_connect):
+            result = update_db()
+
+        self.assertFalse(result, "Pull must fail when initial backup fails")
+        self.assertFalse(
+            os.path.exists(backup_path),
+            "Locked-DB error must clean up the 0-byte .pull_bak — otherwise next pull "
+            "false-positives as 'stranded backup from catastrophic rollback'",
         )
 
 
