@@ -36,6 +36,12 @@ def run_audit(script: str) -> tuple[int, str]:
     """Run one audit script and return (exit_code, combined_output)."""
     env = os.environ.copy()
     env["SEMA_DB_PATH"] = str(REPO_ROOT / "data" / "taxonomy.db")
+    # Prefer local source over any globally-installed sema. Keeps audits
+    # in sync with the repo state regardless of the developer's install.
+    src_path = str(REPO_ROOT / "src")
+    env["PYTHONPATH"] = (
+        src_path + os.pathsep + env["PYTHONPATH"] if env.get("PYTHONPATH") else src_path
+    )
     proc = subprocess.run(
         [sys.executable, str(AUDIT_DIR / script)],
         capture_output=True,

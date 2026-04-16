@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 ExportSema Vocabulary (Pinned)
-Exports patterns with Weak Links in content (for stable hashing) 
+Exports patterns with Weak Links in content (for stable hashing)
 and Strong Links in metadata (for precise resolution).
 """
 
@@ -50,12 +50,17 @@ def wipe_directory(path):
 
 
 def get_linked_text(store, node_id, edge_type):
-    """Helper to fetch text of all nodes connected by a specific edge type."""
+    """Helper to fetch text of all nodes connected by a specific edge type.
+
+    MultiDiGraph.get_edge_data returns {key: attrs}; we iterate values so
+    parallel edges between the same nodes are all examined.
+    """
     texts = []
     for succ in store.graph.successors(node_id):
-        edge_data = store.graph.get_edge_data(node_id, succ)
-        if edge_data.get("edge_type") == edge_type:
-            texts.append(store.graph.nodes[succ]["text"])
+        for edge_data in (store.graph.get_edge_data(node_id, succ) or {}).values():
+            if edge_data.get("edge_type") == edge_type:
+                texts.append(store.graph.nodes[succ]["text"])
+                break
     return sorted(texts)
 
 

@@ -97,6 +97,22 @@ sema use my.db
 sema list
 ```
 
+## Stay updated
+
+After upgrading the package (`pip install -U semahash`) or whenever a new
+vocabulary release ships, sync your active DB:
+
+```bash
+sema pull             # apply upstream changes to your active DB
+sema pull --dry-run   # preview without writing
+```
+
+`pull` is non-destructive — your custom patterns are preserved, your local
+`_meta.caution` and `_meta.related` annotations survive, and the whole
+operation is atomic (rolls back on failure). See
+[CLI reference](../tools/cli.md#pull---sync-vocabulary-from-upstream) for
+the exclusion list and version-pinning options.
+
 ## Tools available via MCP
 
 | Tool | What it does |

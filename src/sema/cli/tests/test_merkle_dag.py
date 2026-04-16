@@ -139,9 +139,9 @@ class TestDependenciesAsEdges(unittest.TestCase):
 
         self.assertIn("references", deps)
         self.assertIn("composes_with", deps)
-        # Keys are snake_case handles in the implementation
-        self.assertIn("ref_target", deps["references"])
-        self.assertIn("comp_target", deps["composes_with"])
+        # Aliases preserved verbatim from the author's dependencies dict.
+        self.assertIn("ref", deps["references"])
+        self.assertIn("comp", deps["composes_with"])
 
 
 class TestRegistryLoadsDependenciesFromEdges(unittest.TestCase):
@@ -593,7 +593,8 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         # Verify dependencies ARE stored as edges
         edge_deps = self.store.get_dependencies_from_edges("ParentNode")
         self.assertIn("references", edge_deps)
-        self.assertIn("leaf_node", edge_deps["references"])  # snake_case key from target handle
+        # Alias preserved verbatim ("child") — not regenerated from handle.
+        self.assertIn("child", edge_deps["references"])
 
 
 class TestCascadeHashing(unittest.TestCase):

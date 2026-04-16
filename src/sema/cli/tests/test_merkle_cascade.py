@@ -193,6 +193,125 @@ class TestMerkleCascade:
 
         print("✅ Recursive cascade works correctly")
 
+    def test_middle_update_cascades_up_not_sideways(self, temp_db):
+        """Updating a middle node cascades to dependents (up) but not siblings (sideways).
+
+        Structure:
+            Root depends on MidA, MidB, MidC
+            MidA depends on LeafA1, LeafA2, LeafA3
+            MidB depends on LeafB1, LeafB2, LeafB3
+            MidC depends on LeafC1, LeafC2, LeafC3
+
+        Update MidA. Expect:
+          - Root changes (depends on MidA)
+          - MidA changes (updated)
+          - MidB, MidC unchanged (siblings, no dep relationship)
+          - All leaves unchanged (MidA doesn't affect its children)
+        """
+        store = GraphStore(temp_db)
+
+        # Leaves (9 total)
+        for branch in ("A", "B", "C"):
+            for n in (1, 2, 3):
+                store.add_pattern(
+                    {
+                        "handle": f"Leaf{branch}{n}",
+                        "mechanism": f"Leaf {branch}{n}",
+                        "gloss": f"Leaf {branch}{n}",
+                        "_meta": {
+                            "layer": "Infrastructure",
+                            "category": "Primitives",
+                            "tier": 1,
+                        },
+                    }
+                )
+
+        # Middles
+        for branch in ("A", "B", "C"):
+            store.add_pattern(
+                {
+                    "handle": f"Mid{branch}",
+                    "mechanism": (
+                        f"Uses {{{{leaf_{branch.lower()}1}}}} and "
+                        f"{{{{leaf_{branch.lower()}2}}}} and "
+                        f"{{{{leaf_{branch.lower()}3}}}}"
+                    ),
+                    "gloss": f"Mid {branch}",
+                    "dependencies": {
+                        "references": {
+                            f"leaf_{branch.lower()}1": f"Leaf{branch}1",
+                            f"leaf_{branch.lower()}2": f"Leaf{branch}2",
+                            f"leaf_{branch.lower()}3": f"Leaf{branch}3",
+                        }
+                    },
+                    "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+                }
+            )
+
+        # Root
+        store.add_pattern(
+            {
+                "handle": "Root",
+                "mechanism": "Uses {{mid_a}} and {{mid_b}} and {{mid_c}}",
+                "gloss": "Root",
+                "dependencies": {"references": {"mid_a": "MidA", "mid_b": "MidB", "mid_c": "MidC"}},
+                "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            }
+        )
+
+        handles = [f"Leaf{b}{n}" for b in "ABC" for n in (1, 2, 3)] + [
+            "MidA",
+            "MidB",
+            "MidC",
+            "Root",
+        ]
+        before = {h: store.get_pattern_hash(h) for h in handles}
+
+        # Update MidA
+        result = store.add_pattern(
+            {
+                "handle": "MidA",
+                "mechanism": ("UPDATED middle — uses {{leaf_a1}} and {{leaf_a2}} and {{leaf_a3}}"),
+                "gloss": "Mid A",
+                "dependencies": {
+                    "references": {
+                        "leaf_a1": "LeafA1",
+                        "leaf_a2": "LeafA2",
+                        "leaf_a3": "LeafA3",
+                    }
+                },
+                "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            }
+        )
+
+        after = {h: store.get_pattern_hash(h) for h in handles}
+
+        # Changed
+        assert after["MidA"] != before["MidA"], "MidA updated"
+        assert after["Root"] != before["Root"], "Root depends on MidA, must cascade"
+
+        # Unchanged — siblings
+        assert after["MidB"] == before["MidB"], "MidB is a sibling, must NOT cascade"
+        assert after["MidC"] == before["MidC"], "MidC is a sibling, must NOT cascade"
+
+        # Unchanged — MidA's own children (leaves)
+        for n in (1, 2, 3):
+            h = f"LeafA{n}"
+            assert after[h] == before[h], f"{h} is a child of MidA, must NOT cascade"
+
+        # Unchanged — other branches' leaves
+        for b in ("B", "C"):
+            for n in (1, 2, 3):
+                h = f"Leaf{b}{n}"
+                assert after[h] == before[h], f"{h} is unrelated, must NOT cascade"
+
+        # Cascade report should contain only Root (and MidA itself)
+        cascaded = set(result.get("cascade", {}).get("updated", []))
+        assert "Root" in cascaded, "Root must be in cascade"
+        assert "MidB" not in cascaded, "MidB leaked into cascade"
+        assert "MidC" not in cascaded, "MidC leaked into cascade"
+        assert not any(h.startswith("Leaf") for h in cascaded), "No leaf should cascade"
+
     def test_validation_prevents_missing_deps(self, temp_db):
         """Adding pattern with missing dependency should fail."""
         store = GraphStore(temp_db)

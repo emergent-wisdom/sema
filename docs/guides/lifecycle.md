@@ -110,13 +110,48 @@ The vocabulary ships via two channels:
 
 ## 8. Pull
 
-Downstream users can update their local database to the latest published version:
+Downstream users sync their active database with the latest upstream vocabulary:
 
 ```bash
 sema pull
 ```
 
-This downloads the latest `taxonomy.db` from the registry, replacing the local copy.
+### What pull does
+
+`sema pull` walks the upstream DAG in topological order and upserts each
+pattern into the active DB. It does **not** wipe the target — it reconciles.
+
+- **User-only patterns are preserved.** If you've minted local patterns,
+  pull won't touch them.
+- **Hash cascade flows automatically.** When an upstream pattern's hash
+  changes, your local patterns that depend on it get re-hashed too. Their
+  identity stays mathematically consistent with the new upstream.
+- **Metadata is field-merged.** Upstream owns `_meta.layer`, `category`,
+  `tier`, `ring`, `supersedes` — taxonomy reorganizations propagate. You
+  own `_meta.caution` and `_meta.related` — your local annotations survive.
+
+### Exclusions and version pinning
+
+If a user wants to opt out of a particular upstream pattern, they can list
+the handle in `$XDG_CONFIG_HOME/sema/excluded` (defaults to
+`~/.config/sema/excluded`). One handle per line; `#` for comments.
+
+The exclusion mechanism has an emergent property: **if you exclude a handle
+but keep your local copy, dependents resolve against the local (frozen)
+version.** This acts as a per-pattern version pin against upstream changes.
+
+### Failure semantics
+
+The pull is atomic via SQLite's native backup API
+(`sqlite3.Connection.backup()`). The active DB is snapshotted before the
+loop; on any failure the snapshot is restored. There is no partial-apply
+state.
+
+A pre-flight pruning step skips upstream patterns whose dependencies are
+missing from both the target DB and the upstream batch. This prevents the
+common cascade-fail scenario where excluding one foundational pattern would
+otherwise abort the entire pull. The same safety net protects against
+upstream releases that ship with dangling dep refs.
 
 ## 9. Rebuild
 

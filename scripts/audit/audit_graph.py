@@ -107,15 +107,16 @@ def audit_graph():
         has_pre = False
         has_post = False
 
+        # MultiDiGraph.get_edge_data returns {key: attrs}; iterate values.
         for succ in store.graph.successors(sol_id):
-            edge_data = store.graph.get_edge_data(sol_id, succ)
-            edge_type = edge_data.get("edge_type")
-            if edge_type == EdgeType.HAS_INVARIANT:
-                has_inv = True
-            if edge_type == EdgeType.HAS_PRECONDITION:
-                has_pre = True
-            if edge_type == EdgeType.HAS_POSTCONDITION:
-                has_post = True
+            for edge_data in (store.graph.get_edge_data(sol_id, succ) or {}).values():
+                edge_type = edge_data.get("edge_type")
+                if edge_type == EdgeType.HAS_INVARIANT:
+                    has_inv = True
+                if edge_type == EdgeType.HAS_PRECONDITION:
+                    has_pre = True
+                if edge_type == EdgeType.HAS_POSTCONDITION:
+                    has_post = True
 
         if not (has_inv or has_pre or has_post):
             problems.append(

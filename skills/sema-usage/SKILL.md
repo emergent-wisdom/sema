@@ -55,6 +55,39 @@ The CLI and MCP server are **separate processes with separate DB state**. `sema 
 
 If `sema_use` MCP tool is unavailable (older server version), the MCP server cannot be hot-swapped. Use CLI for search/resolve and accept the limitation — do not confuse CLI state with MCP state.
 
+## Keeping the vocabulary fresh (`sema pull`)
+
+When upstream ships new patterns or fixes existing ones, sync the user's
+active DB:
+
+```bash
+sema pull             # apply upstream changes to active DB
+sema pull --dry-run   # preview without writing
+```
+
+**When to suggest pull unprompted:**
+- A `sema_handshake` returns HALT against a handle the user expected to know — the upstream definition may have evolved.
+- The user mentions they just upgraded the package (`pip install -U semahash`).
+- The user asks how to "update vocabulary", "sync", or "get latest patterns".
+
+**Important guarantees** (no need to over-explain to the user):
+- Custom local patterns are NEVER deleted.
+- User-set `_meta.caution` and `_meta.related` survive updates.
+- Failures roll back atomically — there's no half-applied state to recover from.
+- Each successful pull keeps ONE pre-pull snapshot. If the user says "oh that update broke things," suggest `sema pull --undo` to revert.
+
+**Excluding patterns the user doesn't want.** If a user wants to permanently opt out of a specific upstream handle (e.g. they consider it harmful, deprecated for their use case, or just want their custom version frozen):
+
+```bash
+sema pull --exclude SomeHandle    # ad-hoc, single run
+```
+
+For persistent exclusions, write to `~/.config/sema/excluded` (one handle per line, `#` starts a comment).
+
+**Version-pinning recipe:** keep a local copy of a pattern AND add it to the exclusion list. Dependents resolve against the local frozen version while upstream evolves around it.
+
+**Refuses to modify the bundled DB.** The same `sema build` + `sema use` setup required for minting also applies here — pull only operates on writable project DBs.
+
 ## Before you can mint
 
 The bundled vocabulary is **read-only** — it gets overwritten on pip upgrades. To mint, you need your own project DB:

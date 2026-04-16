@@ -4,7 +4,6 @@ import os
 import sys
 from pathlib import Path
 
-from ..client import get_default_client
 from ..core.dependencies import get_dependencies_handles, topological_sort
 from ..core.registry import (
     RegistryManager,
@@ -446,13 +445,514 @@ def show_skeleton():
     print(manager.get_graph_skeleton())
 
 
-def update_db():
+def undo_pull() -> bool:
+    """Restore the active DB from the pre-pull snapshot.
+
+    Uses `sqlite3.Connection.backup()` to safely overwrite the live DB
+    regardless of WAL state — a plain `cp` would leave an orphaned -wal
+    file that SQLite would replay over the restored content and corrupt
+    the Merkle DAG.
+    """
+    import os
+    import sqlite3 as _sqlite3
+    from contextlib import closing
+
+    target_db = get_default_db_path()
+    if not target_db:
+        print("❌ No active database.")
+        return False
+
+    previous_path = target_db + ".pull_previous"
+    if not os.path.exists(previous_path):
+        print(f"❌ No previous pull snapshot at {previous_path}.")
+        print("   (Snapshots are created after each successful pull that changed something.)")
+        return False
+
+    print(f"Restoring {target_db} from {previous_path}...")
     try:
-        client = get_default_client()
-        client.download_db(force=True)
-        print("✅ Database updated successfully.")
-    except Exception as e:
-        print(f"❌ Update failed: {e}")
+        with (
+            closing(_sqlite3.connect(previous_path)) as src_conn,
+            closing(_sqlite3.connect(target_db)) as dst_conn,
+        ):
+            src_conn.backup(dst_conn)
+    except _sqlite3.Error as e:
+        # Locked DB / permission issue: preserve the snapshot for retry.
+        print(f"❌ Failed to restore database (is it locked by another agent?): {e}")
+        return False
+    # Snapshot consumed only on successful restore. Tolerate Windows
+    # PermissionError (file indexer holding the snapshot) — the restore
+    # itself already succeeded, so this is just a cleanup hiccup.
+    try:
+        os.remove(previous_path)
+    except OSError as e:
+        print(f"⚠️  Database restored, but could not delete snapshot file: {e}")
+    print("✅ Restored database to pre-pull state.")
+    return True
+
+
+def _load_exclusions() -> set[str]:
+    """Read user's pull exclusion list.
+
+    Location: $XDG_CONFIG_HOME/sema/excluded if XDG_CONFIG_HOME is set,
+    else ~/.config/sema/excluded.
+
+    Format: one handle per line. Blank lines and lines starting with '#'
+    are ignored. Excluded handles are skipped during sema pull, so a user
+    can permanently opt out of an upstream pattern they previously deleted
+    (or pin a local-only version — see version-pinning behavior in pull).
+    """
+    xdg = os.environ.get("XDG_CONFIG_HOME")
+    config_dir = Path(xdg) / "sema" if xdg else Path.home() / ".config" / "sema"
+    excluded_file = config_dir / "excluded"
+    if not excluded_file.is_file():
+        return set()
+    handles = set()
+    for line in excluded_file.read_text().splitlines():
+        line = line.split("#", 1)[0].strip()
+        if line:
+            handles.add(line)
+    return handles
+
+
+def update_db(
+    source: str = None,
+    dry_run: bool = False,
+    verify: bool = False,
+    exclude: list[str] | None = None,
+):
+    """Pull latest vocabulary: walk upstream DAG in topological order, update each.
+
+    Atomicity: the entire pull runs inside a single SQLite transaction. If
+    anything fails partway, the target DB is rolled back to pre-pull state.
+
+    For each upstream pattern (leaves first, roots last):
+      - Fast-path: if upstream sema_id == target sema_id, skip.
+      - If handle exists in target: deep-merge user's local _meta over upstream
+        defaults, then re-mint. User annotations (caution, related) survive.
+      - If handle is new: add it.
+      - skip_cascade=True during the loop avoids O(N^2) write amplification;
+        a single cascade sweep runs at the end keyed off changed handles.
+
+    User-only patterns are left untouched. Their hashes cascade automatically
+    when their upstream deps change (via the final sweep).
+    """
+    from ..core.dependencies import topological_sort
+    from ..core.hashing import extract_handle_from_ref
+    from ..core.mint import mint_pattern
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    target_db = get_default_db_path()
+    if not target_db:
+        print("❌ No active database. Run `sema build` or `sema use` first.")
+        return False
+
+    if is_bundled_db(target_db):
+        print("❌ Cannot pull into bundled DB — it's read-only.")
+        print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
+        return False
+
+    source_db = source or get_bundled_db_path()
+    if not source_db:
+        print("❌ No source database found.")
+        return False
+
+    if source_db == target_db:
+        print("❌ Source and target are the same database.")
+        return False
+
+    print(f"Upstream: {source_db}")
+    print(f"Active:   {target_db}")
+
+    # Build exclusion set: file + CLI args. Pull will not touch excluded
+    # handles — this is the user's "I deleted this and meant it" knob.
+    excluded = _load_exclusions() | set(exclude or [])
+
+    source_store = GraphStore(source_db)
+
+    upstream_patterns = {}
+    upstream_sema_ids = {}  # handle -> stored sema_id (for fast-path skip)
+    # Capture FULL upstream handle set in the same iteration so excluded
+    # handles aren't falsely reported as "upstream removed" later.
+    upstream_all_handles = set()
+    for _nid, data in source_store.get_nodes_by_type(NodeType.PATTERN):
+        h = data.get("text")
+        if not h:
+            continue
+        upstream_all_handles.add(h)
+        if h in excluded:
+            continue
+        meta = data.get("metadata", {})
+        pattern = meta.get("pattern", {})
+        if pattern:
+            pattern["handle"] = h
+            edge_deps = source_store.get_dependencies_from_edges(h)
+            if edge_deps:
+                pattern["dependencies"] = edge_deps
+            upstream_patterns[h] = pattern
+            upstream_sema_ids[h] = pattern.get("sema_id", "")
+
+    target_store = GraphStore(target_db)
+    target_handles = set()
+    target_local_meta = {}  # handle -> user's local _meta (preserved on update)
+    target_sema_ids = {}  # handle -> stored sema_id (for fast-path skip)
+    for _nid, data in target_store.get_nodes_by_type(NodeType.PATTERN):
+        h = data.get("text")
+        if not h:
+            continue
+        target_handles.add(h)
+        meta = data.get("metadata", {})
+        local_pattern = meta.get("pattern", {}) or {}
+        target_local_meta[h] = local_pattern.get("_meta", {})
+        target_sema_ids[h] = local_pattern.get("sema_id", "")
+
+    # Pre-flight transitive pruning: an upstream pattern can't be minted if
+    # one of its deps doesn't exist in either the target DB or this batch.
+    # Without this, a single excluded foundational pattern (e.g. Task) would
+    # cascade-fail every dependent and abort the whole pull — forcing the
+    # user to add 150 entries to their exclusion file one at a time.
+    #
+    # Elegant property: we only prune when the dep is missing from BOTH
+    # sides. If the user excludes Foo BUT keeps a local copy in target,
+    # dependents resolve against their local Foo — so exclusion + local-keep
+    # acts as a "version pin" against upstream changes.
+    auto_skipped = set()
+    while True:
+        round_pruned = set()
+        for h, p in list(upstream_patterns.items()):
+            for items in p.get("dependencies", {}).values():
+                if not isinstance(items, dict):
+                    continue
+                for ref in items.values():
+                    if not isinstance(ref, str):
+                        continue
+                    target_handle = extract_handle_from_ref(ref)
+                    # Self-references are implicitly safe: h is still in
+                    # upstream_patterns at this point, so target_handle == h
+                    # passes the third check. We also leave the loop running
+                    # even when `excluded` is empty — it doubles as a
+                    # protector against malformed upstream graphs that ship
+                    # with dangling refs.
+                    if (
+                        target_handle not in target_handles
+                        and target_handle not in upstream_patterns
+                    ):
+                        round_pruned.add(h)
+                        break
+                if h in round_pruned:
+                    break
+        if not round_pruned:
+            break
+        for h in round_pruned:
+            auto_skipped.add(h)
+            del upstream_patterns[h]
+            upstream_sema_ids.pop(h, None)
+
+    new_count = len(upstream_patterns.keys() - target_handles)
+    update_count = len(upstream_patterns.keys() & target_handles)
+    # Use the unfiltered upstream set so excluded handles aren't falsely
+    # reported as "upstream removed".
+    upstream_removed = sorted(target_handles - upstream_all_handles)
+
+    print(f"\nUpstream: {len(upstream_patterns)} patterns")
+    print(f"Target:   {len(target_handles)} patterns")
+    print(f"  New: {new_count}, Update: {update_count}")
+    if excluded:
+        print(f"  Excluded: {len(excluded)} handle(s) skipped per user opt-out")
+        dormant = excluded - upstream_all_handles
+        if dormant:
+            print(
+                f"  ℹ️  {len(dormant)} dormant exclusion(s) (no longer present upstream): "
+                f"{', '.join(sorted(dormant)[:5])}"
+            )
+    if auto_skipped:
+        print(
+            f"⚠️  Auto-skipped {len(auto_skipped)} pattern(s) — their deps are excluded "
+            f"or absent locally:"
+        )
+        for h in sorted(auto_skipped)[:10]:
+            print(f"    {h}")
+
+    try:
+        sorted_handles = topological_sort(upstream_patterns)
+    except ValueError as e:
+        print(f"❌ Dependency cycle in upstream: {e}")
+        return False
+
+    if dry_run:
+        print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
+        if upstream_removed:
+            print(f"User-only patterns (no longer in upstream): {len(upstream_removed)}")
+        return True
+
+    # Atomicity via SQLite's native backup API. Unlike `shutil.copy2`, this
+    # safely captures DB state regardless of WAL mode (the WAL file would
+    # otherwise leave a torn snapshot that, when restored, would replay over
+    # the rolled-back DB and corrupt the Merkle DAG).
+    #
+    # NOTE: `with sqlite3.connect()` only manages the *transaction*, not the
+    # connection lifecycle — connections stay open after the block, holding
+    # locks. We use `contextlib.closing` to guarantee cleanup so the backup
+    # file can be deleted afterward (matters on Windows, leak on POSIX).
+    import os
+    import sqlite3 as _sqlite3
+    from contextlib import closing
+
+    backup_path = target_db + ".pull_bak"
+    if os.path.exists(backup_path):
+        # A stranded .pull_bak means a prior pull suffered a catastrophic
+        # rollback failure. Don't overwrite it — that would destroy the
+        # user's only recoverable state. Abort and ask them to intervene.
+        print(f"❌ Stranded backup found at {backup_path}")
+        print("   A previous pull crashed critically during rollback. The backup may")
+        print("   represent your only recoverable pre-pull state. To resolve:")
+        print(f"     1. If you know your DB is healthy, delete {backup_path}")
+        print("     2. If not, restore from it: sqlite3 backup API or manual inspection")
+        print("   Aborting to protect your data.")
+        return False
+    # If the target DB is locked (e.g. another agent is mid-write), backup()
+    # raises sqlite3.OperationalError. Without this guard, the partial 0-byte
+    # `.pull_bak` file from the with-block would remain on disk and the next
+    # pull would mistake it for a stranded backup from a catastrophic
+    # rollback failure — terrifying false positive. Catch + cleanup.
+    try:
+        with (
+            closing(_sqlite3.connect(target_db)) as src_conn,
+            closing(_sqlite3.connect(backup_path)) as bak_conn,
+        ):
+            src_conn.backup(bak_conn)
+    except _sqlite3.Error as e:
+        print(f"❌ Could not create pre-pull backup (is the database locked?): {e}")
+        if os.path.exists(backup_path):
+            try:
+                os.remove(backup_path)
+            except OSError:
+                # Antivirus / file indexer might briefly hold the 0-byte
+                # file. Tell the user explicitly — otherwise their next
+                # pull will see this file and falsely report "stranded
+                # backup from catastrophic rollback failure", a terrifying
+                # jump-scare for what was actually a transient lock.
+                print(f"⚠️  Note: Please manually delete the empty {backup_path} file.")
+        return False
+
+    added = []
+    updated = []
+    skipped = []
+    failed = []
+    cascaded_user = set()
+
+    try:
+        # Field-level merge policy for the unhashed _meta block:
+        # - User OWNS these keys: caution, related (their personal annotations)
+        # - Upstream OWNS everything else: layer, category, tier, ring, supersedes
+        #   (taxonomy reorganizations propagate to users — paper §3.2 "Mutable Overlay")
+
+        for handle in sorted_handles:
+            pattern = upstream_patterns[handle]
+            existed = handle in target_handles
+
+            # Build merged _meta: start with upstream, layer user-owned keys on top.
+            # `related` is a list — union, preserving order (upstream first).
+            merged_meta = dict(pattern.get("_meta", {}))
+            if existed and target_local_meta.get(handle):
+                local = target_local_meta[handle]
+                if "caution" in local:
+                    merged_meta["caution"] = local["caution"]
+                if "related" in local and isinstance(local["related"], list):
+                    upstream_related = merged_meta.get("related", []) or []
+                    # Defensive: if upstream data is malformed (e.g. a string
+                    # instead of a list), coerce before unioning.
+                    if isinstance(upstream_related, str):
+                        upstream_related = [upstream_related]
+                    merged_meta["related"] = list(
+                        dict.fromkeys(list(upstream_related) + list(local["related"]))
+                    )
+            pattern = {**pattern, "_meta": merged_meta}
+
+            # Fast-path: skip mint only if BOTH the semantic hash matches
+            # AND the merged _meta equals the stored _meta. This catches
+            # taxonomy-only changes (layer/category) — they don't change
+            # the sema_id but DO need to update the IN_CATEGORY edges.
+            if existed and upstream_sema_ids.get(handle) == target_sema_ids.get(handle):
+                if merged_meta == target_local_meta.get(handle, {}):
+                    skipped.append(handle)
+                    continue
+
+            result = mint_pattern(pattern, target_store, skip_cascade=True)
+            if result.success:
+                if existed:
+                    updated.append(handle)
+                else:
+                    added.append(handle)
+            else:
+                failed.append((handle, result.errors))
+
+        if failed:
+            raise RuntimeError(f"{len(failed)} pattern(s) failed to mint")
+
+        # Single cascade sweep over actually-changed upstream handles.
+        # This catches user-only patterns whose deps just got new hashes.
+        for handle in added + updated:
+            cascade = target_store._cascade_dependents(handle)
+            for dep in cascade.get("updated", []):
+                if dep not in upstream_patterns:
+                    cascaded_user.add(dep)
+
+    except (Exception, KeyboardInterrupt) as e:
+        # Roll back: restore the DB from backup via SQLite's backup API
+        # (safe with WAL mode, unlike shutil.move). Use closing() so the
+        # connections are fully closed before we try to remove the backup.
+        # KeyboardInterrupt inherits from BaseException, not Exception, so
+        # we catch it explicitly — otherwise Ctrl+C bypasses rollback and
+        # leaves a stranded `.pull_bak` that the next run refuses to clobber.
+        err_msg = "user interrupted (Ctrl+C)" if isinstance(e, KeyboardInterrupt) else str(e)
+        print(f"\n❌ Pull aborted: {err_msg}")
+        print("   Attempting to restore target DB from backup...")
+        try:
+            with (
+                closing(_sqlite3.connect(backup_path)) as bak_conn,
+                closing(_sqlite3.connect(target_db)) as dst_conn,
+            ):
+                bak_conn.backup(dst_conn)
+            os.remove(backup_path)
+            print("✅ Target DB restored from backup.")
+        except (Exception, KeyboardInterrupt) as rollback_err:
+            # Critical: if rollback itself fails, the backup is the user's
+            # only remaining copy of the pre-pull state. Do NOT delete it.
+            # Next pull will detect the stranded .pull_bak and refuse to
+            # proceed, prompting the user to recover manually.
+            #
+            # KeyboardInterrupt explicitly: a panicked user mashing Ctrl+C
+            # would otherwise hit the C-based sqlite backup() with a fresh
+            # interrupt, bypass this handler, and never see the manual
+            # recovery instructions — exactly when they need them most.
+            err_str = (
+                "user interrupted"
+                if isinstance(rollback_err, KeyboardInterrupt)
+                else str(rollback_err)
+            )
+            print(f"🚨 CRITICAL: Automatic rollback failed ({err_str})")
+            print("   Your database may be in an inconsistent state.")
+            print(f"   Your pre-pull backup is preserved at: {backup_path}")
+            print("   To recover manually, restore from that file (sqlite3 backup API).")
+        if failed:
+            for h, errs in failed[:5]:
+                print(f"    {h}: {'; '.join(errs)}")
+        return False
+
+    # Success path — promote the backup to `.pull_previous` if something
+    # actually changed, so the user can `sema pull --undo` to recover.
+    # On a no-op pull (all fast-path skipped), discard this backup to keep
+    # the older, genuinely-useful `.pull_previous` intact.
+    has_changes = bool(added or updated or cascaded_user)
+    try:
+        if has_changes:
+            previous_path = target_db + ".pull_previous"
+            os.replace(backup_path, previous_path)
+        else:
+            os.remove(backup_path)
+    except OSError as e:
+        # Another program (DB viewer, indexer) might have the file open on
+        # Windows, causing PermissionError. The pull itself succeeded —
+        # just warn about the stranded cleanup, don't fail.
+        print(f"\n⚠️  Could not finalize backup file: {e}")
+        print(f"   If {backup_path} lingers, close any program accessing it and delete manually.")
+
+    # Reporting
+    if added:
+        print(f"  + {len(added)} new")
+    if updated:
+        print(f"  ~ {len(updated)} updated")
+    if skipped:
+        print(f"  = {len(skipped)} unchanged (fast-path)")
+    if cascaded_user:
+        print(
+            f"⚠️  {len(cascaded_user)} user pattern(s) had hashes auto-updated due to upstream changes:"
+        )
+        for h in sorted(cascaded_user)[:10]:
+            print(f"    {h}")
+    if upstream_removed:
+        print(
+            f"ℹ️  Upstream removed {len(upstream_removed)} pattern(s); they remain locally as user patterns:"
+        )
+        for h in upstream_removed[:10]:
+            print(f"    {h}")
+
+    print(
+        f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
+    )
+    if has_changes:
+        print("ℹ️  Pre-pull snapshot saved. Run `sema pull --undo` to revert.")
+
+    if verify:
+        invalid = _verify_hashes(target_db)
+        if invalid:
+            print(f"\n❌ Hash validity check failed: {len(invalid)} invalid patterns")
+            for h in invalid[:5]:
+                print(f"    {h}")
+            return False
+        print("✓ Hash validity verified.")
+
+    return True
+
+
+def _verify_hashes(db_path: str) -> list[str]:
+    """Verify stored sema_ids match recomputed hashes via bottom-up traversal.
+
+    Computes from leaves up, keeping a cache of *freshly computed* hashes.
+    Parents resolve their dep refs against the cache (true hashes), not
+    against potentially-corrupted stored values. This catches the case
+    where a child's stored hash is stale and a parent self-validates against
+    the corruption.
+    """
+    from ..core.dependencies import topological_sort
+    from ..core.hashing import generate_sema_hash
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    store = GraphStore(db_path)
+    patterns = {}
+    for _, data in store.get_nodes_by_type(NodeType.PATTERN):
+        h = data.get("text")
+        if not h:
+            continue
+        meta = data.get("metadata", {})
+        p = meta.get("pattern", {}) or {}
+        p["handle"] = h
+        deps = store.get_dependencies_from_edges(h)
+        if deps:
+            p["dependencies"] = deps
+        patterns[h] = p
+
+    stored = {}
+    for h, p in patterns.items():
+        sid = p.get("sema_id", "")
+        if "#mh:SHA-256:" in sid:
+            stored[h] = sid.split("#mh:SHA-256:")[1]
+
+    # Topo-sort gives us leaves-first ordering; compute hashes in that order
+    # so by the time we hash a parent, all its dep hashes are in `fresh`.
+    try:
+        order = topological_sort(patterns)
+    except ValueError:
+        # Cycle — fall back to stored-hash lookup (best effort)
+        order = list(patterns.keys())
+
+    fresh = {}
+    mismatches = []
+
+    def lookup(h):
+        # Prefer freshly computed hash (bottom-up correctness); fall back
+        # to stored only for handles outside this batch.
+        return fresh.get(h, stored.get(h))
+
+    for handle in order:
+        p = patterns[handle]
+        if handle not in stored:
+            continue
+        computed = generate_sema_hash(p, lookup)["hash"]
+        fresh[handle] = computed
+        if computed != stored[handle]:
+            mismatches.append(handle)
+    return mismatches
 
 
 def use_db(path: str = None, default: bool = False):
@@ -864,7 +1364,31 @@ def main():
     init_cmd.add_argument("path", help="Filesystem path for the new SQLite registry")
 
     # Pull
-    subparsers.add_parser("pull", help="Download latest DB")
+    pull_cmd = subparsers.add_parser(
+        "pull",
+        help="Sync patterns from source DB into active DB (topological DAG walk)",
+    )
+    pull_cmd.add_argument("--source", help="Source DB path (default: bundled vocabulary)")
+    pull_cmd.add_argument(
+        "--dry-run", action="store_true", help="Show what would change without applying"
+    )
+    pull_cmd.add_argument(
+        "--verify", action="store_true", help="Run hash validity check after pull"
+    )
+    pull_cmd.add_argument(
+        "--exclude",
+        action="append",
+        metavar="HANDLE",
+        help=(
+            "Skip a specific upstream handle (repeatable). Persistent exclusions "
+            "go in ~/.config/sema/excluded (one handle per line, # for comments)."
+        ),
+    )
+    pull_cmd.add_argument(
+        "--undo",
+        action="store_true",
+        help="Restore the DB from the snapshot saved by the last successful pull.",
+    )
 
     # Serve
     serve = subparsers.add_parser(
@@ -932,7 +1456,15 @@ def main():
     elif args.command == "list":
         list_databases()
     elif args.command == "pull":
-        update_db()
+        if args.undo:
+            undo_pull()
+        else:
+            update_db(
+                source=args.source,
+                dry_run=args.dry_run,
+                verify=args.verify,
+                exclude=args.exclude,
+            )
     elif args.command == "serve":
         run_server(args.host, args.port)
     elif args.command == "mcp":

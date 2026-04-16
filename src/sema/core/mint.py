@@ -30,6 +30,7 @@ def mint_pattern(
     pattern: dict,
     store,
     known_handles: set[str] | None = None,
+    skip_cascade: bool = False,
 ) -> MintResult:
     """Validate and store a pattern. Hashing is delegated to the store.
 
@@ -37,6 +38,9 @@ def mint_pattern(
         pattern: In-memory pattern dict (must have handle + mechanism).
         store: A GraphStore instance with an ``add_pattern`` method.
         known_handles: Optional set of existing handles for reference validation.
+        skip_cascade: If True, do not trigger _cascade_dependents after store.
+            Caller is responsible for running one final sweep. Used by
+            sema pull to avoid O(N^2) write amplification.
 
     Returns:
         Structured MintResult – no printing, no file I/O.
@@ -49,7 +53,7 @@ def mint_pattern(
         return MintResult(success=False, handle=handle, errors=errors, warnings=warnings)
 
     # 2. Store (add_pattern computes hash from edges, promotes layer/category)
-    result = store.add_pattern(pattern)
+    result = store.add_pattern(pattern, skip_cascade=skip_cascade)
     if not result.get("success"):
         return MintResult(
             success=False,

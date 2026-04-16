@@ -157,7 +157,9 @@ class TestCascadeIntegrity:
         # Verify B references A via edge (dependencies stored as edges only)
         edge_deps = store.get_dependencies_from_edges("PatternB")
         assert "references" in edge_deps, "PatternB should have references edge"
-        patterna_ref = edge_deps["references"].get("pattern_a")
+        # Alias is preserved verbatim ("patterna") — was previously
+        # regenerated as snake_case-of-handle ("pattern_a"), which was a bug.
+        patterna_ref = edge_deps["references"].get("patterna")
         # Now returns full sema_id format per Rule C
         assert patterna_ref is not None and patterna_ref.startswith("sema:PatternA#"), (
             f"PatternB should reference PatternA with full sema_id. Got: {edge_deps}"
