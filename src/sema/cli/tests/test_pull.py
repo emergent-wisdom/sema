@@ -1010,5 +1010,123 @@ class TestMergeNodesMultiEdge(unittest.TestCase):
         )
 
 
+class TestExclusionList(unittest.TestCase):
+    """Pull respects ~/.config/sema/excluded and --exclude flag.
+
+    A user who deletes a pattern can opt-out of having pull re-add it
+    on the next sync, by listing the handle.
+    """
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.upstream_db = os.path.join(self.temp_dir, "upstream.db")
+        self.user_db = os.path.join(self.temp_dir, "user.db")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _add(self, db, handle, mechanism="Test"):
+        store = GraphStore(db)
+        store.add_pattern(
+            {
+                "handle": handle,
+                "mechanism": mechanism,
+                "gloss": handle,
+                "_meta": {
+                    "layer": "Infrastructure",
+                    "category": "Primitives",
+                    "ring": 0,
+                    "tier": 1,
+                },
+            }
+        )
+
+    def _handles(self, db):
+        return {
+            data["text"]
+            for _, data in GraphStore(db).get_nodes_by_type(NodeType.PATTERN)
+            if data.get("text")
+        }
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_exclude_arg_skips_handle(self, mock_bundled_check, mock_bundled, mock_db):
+        """An --exclude arg prevents pull from re-adding the handle."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.upstream_db, "Beta")
+        # User has only Beta locally (deleted Alpha or never had it)
+        self._add(self.user_db, "Beta")
+
+        result = update_db(exclude=["Alpha"])
+
+        self.assertTrue(result)
+        handles = self._handles(self.user_db)
+        self.assertNotIn("Alpha", handles, "Alpha was excluded; must not be re-added")
+        self.assertIn("Beta", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_exclusion_file_skips_handle(self, mock_bundled_check, mock_bundled, mock_db):
+        """A handle in ~/.config/sema/excluded is skipped."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.upstream_db, "Beta")
+        self._add(self.user_db, "Beta")
+
+        # Patch _load_exclusions to simulate the file
+        with patch("sema.cli.main._load_exclusions", return_value={"Alpha"}):
+            result = update_db()
+
+        self.assertTrue(result)
+        self.assertNotIn("Alpha", self._handles(self.user_db))
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_exclusion_file_and_arg_combine(self, mock_bundled_check, mock_bundled, mock_db):
+        """File exclusions and --exclude args are unioned."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        for h in ("Alpha", "Beta", "Gamma"):
+            self._add(self.upstream_db, h)
+        # Empty user DB
+
+        with patch("sema.cli.main._load_exclusions", return_value={"Alpha"}):
+            update_db(exclude=["Beta"])
+
+        handles = self._handles(self.user_db)
+        self.assertNotIn("Alpha", handles)
+        self.assertNotIn("Beta", handles)
+        self.assertIn("Gamma", handles)
+
+    def test_exclusion_file_format(self):
+        """_load_exclusions correctly parses comments and blank lines."""
+        from sema.cli.main import _load_exclusions
+
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg_dir = os.path.join(tmp, ".config", "sema")
+            os.makedirs(cfg_dir)
+            with open(os.path.join(cfg_dir, "excluded"), "w") as f:
+                f.write("# This is a comment\n")
+                f.write("\n")
+                f.write("Alpha\n")
+                f.write("Beta # inline comment\n")
+                f.write("   Gamma   \n")
+            with patch("pathlib.Path.home", return_value=__import__("pathlib").Path(tmp)):
+                result = _load_exclusions()
+            self.assertEqual(result, {"Alpha", "Beta", "Gamma"})
+
+
 if __name__ == "__main__":
     unittest.main()

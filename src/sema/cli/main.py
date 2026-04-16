@@ -445,7 +445,30 @@ def show_skeleton():
     print(manager.get_graph_skeleton())
 
 
-def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
+def _load_exclusions() -> set[str]:
+    """Read user's pull exclusion list from ~/.config/sema/excluded.
+
+    Format: one handle per line. Blank lines and lines starting with '#'
+    are ignored. Excluded handles are skipped during sema pull, so a user
+    can permanently opt out of an upstream pattern they previously deleted.
+    """
+    excluded_file = Path.home() / ".config" / "sema" / "excluded"
+    if not excluded_file.is_file():
+        return set()
+    handles = set()
+    for line in excluded_file.read_text().splitlines():
+        line = line.split("#", 1)[0].strip()
+        if line:
+            handles.add(line)
+    return handles
+
+
+def update_db(
+    source: str = None,
+    dry_run: bool = False,
+    verify: bool = False,
+    exclude: list[str] | None = None,
+):
     """Pull latest vocabulary: walk upstream DAG in topological order, update each.
 
     Atomicity: the entire pull runs inside a single SQLite transaction. If
@@ -488,13 +511,17 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
     print(f"Upstream: {source_db}")
     print(f"Active:   {target_db}")
 
+    # Build exclusion set: file + CLI args. Pull will not touch excluded
+    # handles — this is the user's "I deleted this and meant it" knob.
+    excluded = _load_exclusions() | set(exclude or [])
+
     source_store = GraphStore(source_db)
 
     upstream_patterns = {}
     upstream_sema_ids = {}  # handle -> stored sema_id (for fast-path skip)
     for _nid, data in source_store.get_nodes_by_type(NodeType.PATTERN):
         h = data.get("text")
-        if not h:
+        if not h or h in excluded:
             continue
         meta = data.get("metadata", {})
         pattern = meta.get("pattern", {})
@@ -527,6 +554,8 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
     print(f"\nUpstream: {len(upstream_patterns)} patterns")
     print(f"Target:   {len(target_handles)} patterns")
     print(f"  New: {new_count}, Update: {update_count}")
+    if excluded:
+        print(f"  Excluded: {len(excluded)} handle(s) skipped per user opt-out")
 
     try:
         sorted_handles = topological_sort(upstream_patterns)
@@ -1160,6 +1189,15 @@ def main():
     pull_cmd.add_argument(
         "--verify", action="store_true", help="Run hash validity check after pull"
     )
+    pull_cmd.add_argument(
+        "--exclude",
+        action="append",
+        metavar="HANDLE",
+        help=(
+            "Skip a specific upstream handle (repeatable). Persistent exclusions "
+            "go in ~/.config/sema/excluded (one handle per line, # for comments)."
+        ),
+    )
 
     # Serve
     serve = subparsers.add_parser(
@@ -1227,7 +1265,12 @@ def main():
     elif args.command == "list":
         list_databases()
     elif args.command == "pull":
-        update_db(source=args.source, dry_run=args.dry_run, verify=args.verify)
+        update_db(
+            source=args.source,
+            dry_run=args.dry_run,
+            verify=args.verify,
+            exclude=args.exclude,
+        )
     elif args.command == "serve":
         run_server(args.host, args.port)
     elif args.command == "mcp":
