@@ -1,7 +1,9 @@
 import argparse
 import json
 import os
+import sqlite3
 import sys
+from contextlib import closing
 from pathlib import Path
 
 from ..core.dependencies import get_dependencies_handles, topological_sort
@@ -453,10 +455,6 @@ def undo_pull() -> bool:
     file that SQLite would replay over the restored content and corrupt
     the Merkle DAG.
     """
-    import os
-    import sqlite3 as _sqlite3
-    from contextlib import closing
-
     target_db = get_default_db_path()
     if not target_db:
         print("❌ No active database.")
@@ -471,11 +469,11 @@ def undo_pull() -> bool:
     print(f"Restoring {target_db} from {previous_path}...")
     try:
         with (
-            closing(_sqlite3.connect(previous_path)) as src_conn,
-            closing(_sqlite3.connect(target_db)) as dst_conn,
+            closing(sqlite3.connect(previous_path)) as src_conn,
+            closing(sqlite3.connect(target_db)) as dst_conn,
         ):
             src_conn.backup(dst_conn)
-    except _sqlite3.Error as e:
+    except sqlite3.Error as e:
         # Locked DB / permission issue: preserve the snapshot for retry.
         print(f"❌ Failed to restore database (is it locked by another agent?): {e}")
         return False
@@ -693,10 +691,6 @@ def update_db(
     # connection lifecycle — connections stay open after the block, holding
     # locks. We use `contextlib.closing` to guarantee cleanup so the backup
     # file can be deleted afterward (matters on Windows, leak on POSIX).
-    import os
-    import sqlite3 as _sqlite3
-    from contextlib import closing
-
     backup_path = target_db + ".pull_bak"
     if os.path.exists(backup_path):
         # A stranded .pull_bak means a prior pull suffered a catastrophic
@@ -716,11 +710,11 @@ def update_db(
     # rollback failure — terrifying false positive. Catch + cleanup.
     try:
         with (
-            closing(_sqlite3.connect(target_db)) as src_conn,
-            closing(_sqlite3.connect(backup_path)) as bak_conn,
+            closing(sqlite3.connect(target_db)) as src_conn,
+            closing(sqlite3.connect(backup_path)) as bak_conn,
         ):
             src_conn.backup(bak_conn)
-    except _sqlite3.Error as e:
+    except sqlite3.Error as e:
         print(f"❌ Could not create pre-pull backup (is the database locked?): {e}")
         if os.path.exists(backup_path):
             try:
@@ -809,8 +803,8 @@ def update_db(
         print("   Attempting to restore target DB from backup...")
         try:
             with (
-                closing(_sqlite3.connect(backup_path)) as bak_conn,
-                closing(_sqlite3.connect(target_db)) as dst_conn,
+                closing(sqlite3.connect(backup_path)) as bak_conn,
+                closing(sqlite3.connect(target_db)) as dst_conn,
             ):
                 bak_conn.backup(dst_conn)
             os.remove(backup_path)
@@ -1011,8 +1005,6 @@ def list_databases():
             status = " (read-only)"
 
         if db["exists"]:
-            import sqlite3
-
             try:
                 conn = sqlite3.connect(db["path"])
                 count = conn.execute(
@@ -1063,7 +1055,6 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
     auto-resolved so the project DB is self-contained.
     """
     import shutil
-    import sqlite3
 
     dest_path = Path(dest).expanduser().resolve()
     if dest_path.exists():
@@ -1435,8 +1426,13 @@ def main():
 
     args = parser.parse_args()
 
+    # Mutating/stateful subcommands return a bool; propagate False as exit 1
+    # so CI pipelines and shell scripts can detect failure. Read-only commands
+    # (search, show, resolve, skeleton, list, serve, mcp) manage their own
+    # exit codes or don't need one.
+    ok: bool | None = None
     if args.command == "apply":
-        apply_changes(remove_handles=args.remove, add_files=args.add, check_only=args.check)
+        ok = apply_changes(remove_handles=args.remove, add_files=args.add, check_only=args.check)
     elif args.command == "search":
         search_patterns(
             args.query, use_semantic=not args.keyword_only, verbose=args.verbose, as_json=args.json
@@ -1448,18 +1444,20 @@ def main():
     elif args.command == "skeleton":
         show_skeleton()
     elif args.command == "init":
-        init_registry(args.path)
+        ok = init_registry(args.path)
     elif args.command == "build":
-        build_db(args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source)
+        ok = build_db(
+            args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source
+        )
     elif args.command == "use":
-        use_db(path=args.path, default=args.default)
+        ok = use_db(path=args.path, default=args.default)
     elif args.command == "list":
         list_databases()
     elif args.command == "pull":
         if args.undo:
-            undo_pull()
+            ok = undo_pull()
         else:
-            update_db(
+            ok = update_db(
                 source=args.source,
                 dry_run=args.dry_run,
                 verify=args.verify,
@@ -1471,6 +1469,9 @@ def main():
         run_mcp()
     else:
         parser.print_help()
+
+    if ok is False:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
