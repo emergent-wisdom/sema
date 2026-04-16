@@ -10,11 +10,12 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Verification",
-    "ring": 1
+    "ring": 1,
+    "caution": "Automated penalties \u2014 misconfigured rules cause cascading harm."
   },
-  "sema_ref": "OathBind#fe32",
-  "sema_id": "sema:OathBind#mh:SHA-256:fe321dda0ccc6b982e7cf8065bce7cd6d59f4e2cc3b0cd62f76153e47ebd1a37",
-  "sema_stub": "fe32",
+  "sema_ref": "OathBind#3a9b",
+  "sema_id": "sema:OathBind#mh:SHA-256:3a9bded3a6a4dafbeabd0ed4dea3c96ca9ed773d8fb2ce7eaf5972c6f62681b1",
+  "sema_stub": "3a9b",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
@@ -23,5 +24,9 @@
       "spot_audit": "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d",
       "rule_set": "sema:RuleSet#mh:SHA-256:e91d3830512ca5aa5a8cf7f50ad7d186de4b82aeced94c8cb106258a8663e482"
     }
-  }
+  },
+  "failure_modes": [
+    "Penalty disproportionate to deviation.",
+    "Rule set ambiguity triggers unintended penalty."
+  ]
 }

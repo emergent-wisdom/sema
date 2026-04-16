@@ -161,7 +161,7 @@ Source: `scripts/audit/audit_missing_links.py` (ok)
 🔍 Scanning data/vocabulary for missing links...
 Loaded 427 patterns.
 
-Found 299 potential missing links.
+Found 300 potential missing links.
 
 🔹 AcceptSpec
    ❓ Mentions 'Result' but not linked.
@@ -495,6 +495,8 @@ Found 299 potential missing links.
 🔹 RolloutWatch
    ❓ Mentions 'MonitorReport' but not linked.
    ❓ Mentions 'Rollout' but not linked.
+🔹 Sandbox
+   ❓ Mentions 'Resource' but not linked.
 🔹 ScopeFreeze
    ❓ Mentions 'Goal' but not linked.
    ❓ Mentions 'Lock' but not linked.
@@ -1094,6 +1096,9 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Falsification:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  FeatureFlag:
+   • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Feedback:
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
@@ -1676,6 +1681,9 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  SacrificialProbe:
    • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Sandbox:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Satisfice:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
@@ -1990,7 +1998,7 @@ Scanning 427 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 341 patterns.
+Scan complete. Found unlinked handle mentions in 343 patterns.
 ```
 
 ## Semantic similarity between patterns

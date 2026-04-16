@@ -35,9 +35,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Role#fc9f",
-  "sema_id": "sema:Role#mh:SHA-256:fc9f298f0755ca88460701865e0201dcfa628426f4a376cab0a2c55af9e849d1",
-  "sema_stub": "fc9f",
+  "sema_ref": "Role#456d",
+  "sema_id": "sema:Role#mh:SHA-256:456d385ea60f9f4df82bdefec9bfc215acedb1ae7acff5bdf6d79730bc15d12a",
+  "sema_stub": "456d",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

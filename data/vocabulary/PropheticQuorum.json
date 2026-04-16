@@ -38,9 +38,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:PropheticQuorum#mh:SHA-256:9126777c70c38b2b46da1e5b3c2dfe3e1f1550a7040e3613b06594abadc1ee56",
-  "sema_ref": "PropheticQuorum#9126",
-  "sema_stub": "9126",
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:56aaad1e5eac795fb2622c10721c02fb6174bbbbcf079f73997e52bf36be8edb",
+  "sema_ref": "PropheticQuorum#56aa",
+  "sema_stub": "56aa",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

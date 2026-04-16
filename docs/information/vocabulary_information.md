@@ -2,7 +2,7 @@
 
 ## System Status
 
-- **Merkle Root**: `72f1c59a00c58aba8d811fdf4ad22751b5ab4ef52013d9165545be7985c499ed`
+- **Merkle Root**: `9568055df2ffa62f70b860c36c496d1f3c8d2ce97730d67096f51d89794c8365`
 - **Pattern Count**: 427
 - **Last Verified**: 2026-04-16
 
@@ -14,7 +14,7 @@ Agents use the Merkle root for fail-closed semantic verification:
 
 ```python
 # Agent A shares vocabulary root
-R_context_A = "72f1c59a00c58aba8d811fdf4ad22751b5ab4ef52013d9165545be7985c499ed"
+R_context_A = "9568055df2ffa62f70b860c36c496d1f3c8d2ce97730d67096f51d89794c8365"
 
 # Agent B computes their vocabulary root
 R_context_B = compute_vocabulary_merkle_root()

@@ -6,16 +6,21 @@
     "layer": "Society",
     "category": "Protocols",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "caution": "Can silently enable untested code paths in production."
   },
-  "sema_id": "sema:FeatureFlag#mh:SHA-256:9464b708479fc75cc5d825850393199c41c35e06f20a2861954e98f8edcfa8a8",
-  "sema_ref": "FeatureFlag#9464",
-  "sema_stub": "9464",
+  "sema_id": "sema:FeatureFlag#mh:SHA-256:51dfd1ea32f037dcbe257b7c196d1bac1422ba75cdd6e3b747ea7761c3ad9143",
+  "sema_ref": "FeatureFlag#51df",
+  "sema_stub": "51df",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
     }
-  }
+  },
+  "failure_modes": [
+    "Flag left on in production after experiment ends.",
+    "Flag state inconsistent across distributed nodes."
+  ]
 }

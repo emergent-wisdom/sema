@@ -37,9 +37,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:36b5f762c178f196095cc38a5183326ac9183a3fe351b4b3e9dfeb44a2fac587",
-  "sema_ref": "OsmoticFilter#36b5",
-  "sema_stub": "36b5",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:98eddb42c793cea4064b132e27f06a65f837e1c52862ad352c9ad68be5c9e755",
+  "sema_ref": "OsmoticFilter#98ed",
+  "sema_stub": "98ed",
   "dependencies": {
     "references": {
       "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",

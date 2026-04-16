@@ -20,7 +20,8 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "caution": "Grants capabilities beyond normal operating scope."
   },
   "sema_id": "sema:PermissionEscalate#mh:SHA-256:744f4ce8439e69d9869b0fd5c260284e5f655861a97140d1487937165dc3deaa",
   "sema_ref": "PermissionEscalate#744f",

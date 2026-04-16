@@ -15,9 +15,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:ContextFirst#mh:SHA-256:24d61661da4fdd47439391c52464eeea2c403a84cf5fc4da86f06b932579946b",
-  "sema_ref": "ContextFirst#24d6",
-  "sema_stub": "24d6",
+  "sema_id": "sema:ContextFirst#mh:SHA-256:511d959d37b946d235fab0cbb4811db035840f86fb1bd7b1ea3e9e580fb9a616",
+  "sema_ref": "ContextFirst#511d",
+  "sema_stub": "511d",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [

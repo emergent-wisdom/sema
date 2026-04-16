@@ -24,9 +24,9 @@
     "ring": 1,
     "tier": 2
   },
-  "sema_ref": "CreativeBlend#cc91",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:cc9130dd92520118a4b6047b2544fa67126e7bf2c81285c792a2f9c6433c3e75",
-  "sema_stub": "cc91",
+  "sema_ref": "CreativeBlend#f04f",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:f04f41c0e6aa77a00e4f78edbcf018a38958d3133ada5b78394d438a9c506059",
+  "sema_stub": "f04f",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

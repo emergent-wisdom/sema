@@ -26,9 +26,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:WorkerMode#mh:SHA-256:cd5eaffa73c8d3efbc20526e60c7a871621f49d2ca129ca96768412960017555",
-  "sema_ref": "WorkerMode#cd5e",
-  "sema_stub": "cd5e",
+  "sema_id": "sema:WorkerMode#mh:SHA-256:707043009b102e64eb9d2ff3f5fbc1ce64af85765f344e2101eab2c263657806",
+  "sema_ref": "WorkerMode#7070",
+  "sema_stub": "7070",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

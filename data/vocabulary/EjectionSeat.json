@@ -14,7 +14,8 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "caution": "Irreversible swarm termination \u2014 no undo."
   },
   "sema_id": "sema:EjectionSeat#mh:SHA-256:6ff7358344beab6ce5a857d06a7a1fdb930613ef690886a5e467fd1bada8ab38",
   "sema_ref": "EjectionSeat#6ff7",
