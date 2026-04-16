@@ -1237,5 +1237,129 @@ class TestExclusionList(unittest.TestCase):
         self.fail("Alpha not found")
 
 
+class TestRecovery(unittest.TestCase):
+    """Pre-pull snapshot retention and --undo restore."""
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.upstream_db = os.path.join(self.temp_dir, "upstream.db")
+        self.user_db = os.path.join(self.temp_dir, "user.db")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _add(self, db, handle, mechanism="Test"):
+        store = GraphStore(db)
+        store.add_pattern(
+            {
+                "handle": handle,
+                "mechanism": mechanism,
+                "gloss": handle,
+                "_meta": {
+                    "layer": "Infrastructure",
+                    "category": "Primitives",
+                    "ring": 0,
+                    "tier": 1,
+                },
+            }
+        )
+
+    def _handles(self, db):
+        return {
+            data["text"]
+            for _, data in GraphStore(db).get_nodes_by_type(NodeType.PATTERN)
+            if data.get("text")
+        }
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_successful_pull_keeps_snapshot(self, mock_bundled_check, mock_bundled, mock_db):
+        """After a pull that changes something, .pull_previous exists."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.user_db, "OldPattern")  # ensure change: Alpha added
+
+        update_db()
+
+        self.assertTrue(os.path.exists(self.user_db + ".pull_previous"))
+        self.assertFalse(os.path.exists(self.user_db + ".pull_bak"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_noop_pull_does_not_overwrite_snapshot(self, mock_bundled_check, mock_bundled, mock_db):
+        """Critical: running pull twice must NOT erase the real safety net.
+        Second pull (all skipped via fast-path) must preserve the snapshot
+        created by the first pull."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.user_db, "Legacy")
+
+        # First pull: Alpha gets added, snapshot of (Legacy only) is saved
+        update_db()
+        first_snapshot = self.user_db + ".pull_previous"
+        self.assertTrue(os.path.exists(first_snapshot))
+        size_after_first = os.path.getsize(first_snapshot)
+
+        # Second pull: no changes. Must NOT overwrite.
+        update_db()
+        self.assertTrue(os.path.exists(first_snapshot), "Snapshot erased by no-op pull")
+        self.assertEqual(
+            os.path.getsize(first_snapshot),
+            size_after_first,
+            "Snapshot was overwritten by no-op pull",
+        )
+
+        # And verify the snapshot still represents the pre-first-pull state
+        # (only Legacy, no Alpha)
+        snap_handles = self._handles(first_snapshot)
+        self.assertEqual(snap_handles, {"Legacy"})
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_undo_restores_via_sqlite_backup(self, mock_bundled_check, mock_bundled, mock_db):
+        """--undo restores the active DB to the pre-pull snapshot."""
+        from sema.cli.main import undo_pull
+
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        self._add(self.user_db, "OnlyMine")
+
+        # Pre-pull state has only OnlyMine
+        update_db()
+        post_pull_handles = self._handles(self.user_db)
+        self.assertIn("Alpha", post_pull_handles)
+        self.assertIn("OnlyMine", post_pull_handles)
+
+        # Undo
+        self.assertTrue(undo_pull())
+
+        restored = self._handles(self.user_db)
+        self.assertEqual(restored, {"OnlyMine"}, "Undo must restore pre-pull state")
+        # Snapshot consumed
+        self.assertFalse(os.path.exists(self.user_db + ".pull_previous"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_undo_without_snapshot_fails_cleanly(self, mock_db):
+        """--undo with no snapshot reports clearly and returns False."""
+        from sema.cli.main import undo_pull
+
+        mock_db.return_value = self.user_db
+        GraphStore(self.user_db)  # create empty DB
+
+        self.assertFalse(undo_pull())
+
+
 if __name__ == "__main__":
     unittest.main()

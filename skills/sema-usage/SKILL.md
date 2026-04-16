@@ -74,6 +74,7 @@ sema pull --dry-run   # preview without writing
 - Custom local patterns are NEVER deleted.
 - User-set `_meta.caution` and `_meta.related` survive updates.
 - Failures roll back atomically — there's no half-applied state to recover from.
+- Each successful pull keeps ONE pre-pull snapshot. If the user says "oh that update broke things," suggest `sema pull --undo` to revert.
 
 **Excluding patterns the user doesn't want.** If a user wants to permanently opt out of a specific upstream handle (e.g. they consider it harmful, deprecated for their use case, or just want their custom version frozen):
 

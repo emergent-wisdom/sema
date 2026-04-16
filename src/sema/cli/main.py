@@ -445,6 +445,41 @@ def show_skeleton():
     print(manager.get_graph_skeleton())
 
 
+def undo_pull() -> bool:
+    """Restore the active DB from the pre-pull snapshot.
+
+    Uses `sqlite3.Connection.backup()` to safely overwrite the live DB
+    regardless of WAL state — a plain `cp` would leave an orphaned -wal
+    file that SQLite would replay over the restored content and corrupt
+    the Merkle DAG.
+    """
+    import os
+    import sqlite3 as _sqlite3
+    from contextlib import closing
+
+    target_db = get_default_db_path()
+    if not target_db:
+        print("❌ No active database.")
+        return False
+
+    previous_path = target_db + ".pull_previous"
+    if not os.path.exists(previous_path):
+        print(f"❌ No previous pull snapshot at {previous_path}.")
+        print("   (Snapshots are created after each successful pull that changed something.)")
+        return False
+
+    print(f"Restoring {target_db} from {previous_path}...")
+    with (
+        closing(_sqlite3.connect(previous_path)) as src_conn,
+        closing(_sqlite3.connect(target_db)) as dst_conn,
+    ):
+        src_conn.backup(dst_conn)
+    # Snapshot consumed — remove so a second --undo can't loop-restore
+    os.remove(previous_path)
+    print("✅ Restored database to pre-pull state.")
+    return True
+
+
 def _load_exclusions() -> set[str]:
     """Read user's pull exclusion list.
 
@@ -740,8 +775,16 @@ def update_db(
                 print(f"    {h}: {'; '.join(errs)}")
         return False
 
-    # Success path — drop the backup
-    os.remove(backup_path)
+    # Success path — promote the backup to `.pull_previous` if something
+    # actually changed, so the user can `sema pull --undo` to recover.
+    # On a no-op pull (all fast-path skipped), discard this backup to keep
+    # the older, genuinely-useful `.pull_previous` intact.
+    has_changes = bool(added or updated or cascaded_user)
+    if has_changes:
+        previous_path = target_db + ".pull_previous"
+        os.replace(backup_path, previous_path)
+    else:
+        os.remove(backup_path)
 
     # Reporting
     if added:
@@ -766,6 +809,8 @@ def update_db(
     print(
         f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
     )
+    if has_changes:
+        print("ℹ️  Pre-pull snapshot saved. Run `sema pull --undo` to revert.")
 
     if verify:
         invalid = _verify_hashes(target_db)
@@ -1268,6 +1313,11 @@ def main():
             "go in ~/.config/sema/excluded (one handle per line, # for comments)."
         ),
     )
+    pull_cmd.add_argument(
+        "--undo",
+        action="store_true",
+        help="Restore the DB from the snapshot saved by the last successful pull.",
+    )
 
     # Serve
     serve = subparsers.add_parser(
@@ -1335,12 +1385,15 @@ def main():
     elif args.command == "list":
         list_databases()
     elif args.command == "pull":
-        update_db(
-            source=args.source,
-            dry_run=args.dry_run,
-            verify=args.verify,
-            exclude=args.exclude,
-        )
+        if args.undo:
+            undo_pull()
+        else:
+            update_db(
+                source=args.source,
+                dry_run=args.dry_run,
+                verify=args.verify,
+                exclude=args.exclude,
+            )
     elif args.command == "serve":
         run_server(args.host, args.port)
     elif args.command == "mcp":

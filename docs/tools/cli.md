@@ -189,7 +189,18 @@ sema pull --verify
 
 # Skip a specific upstream pattern (repeatable)
 sema pull --exclude SomeHandle --exclude AnotherHandle
+
+# Revert to the state before the last successful pull
+sema pull --undo
 ```
+
+**Recovery.** Each successful pull that changes something saves a pre-pull
+snapshot as `<db>.pull_previous`. `sema pull --undo` restores from it using
+SQLite's backup API (safe with WAL mode — a plain `cp` would leave an
+orphaned -wal file that corrupts the DB on next open). The snapshot is
+consumed by `--undo`; only one snapshot is kept (each successful pull with
+changes replaces the previous). A no-op pull does NOT overwrite the
+snapshot, so running `sema pull` twice in a row is safe.
 
 **Behavior contract**
 
