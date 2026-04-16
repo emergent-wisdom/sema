@@ -127,6 +127,11 @@ class GraphStore:
         # target (e.g. `accepts: Task` AND `yields: Task`). DiGraph would
         # silently collapse them to one edge.
         self.graph = nx.MultiDiGraph()
+        # Handle → node_id cache for PATTERN nodes. Avoids O(N) scans of the
+        # whole graph on every pattern lookup (pull/cascade hit this
+        # hundreds of times per run). Maintained by create_node,
+        # delete_node_cascade, merge_nodes, and execute_transaction.
+        self._handle_to_id: dict[str, str] = {}
         self._init_tables()
         self._migrate_schema()
         self._load_graph()
@@ -204,13 +209,16 @@ class GraphStore:
         for row in cursor.fetchall():
             node_id, node_type, text, metadata_json, embedding_blob = row
             embedding = np.frombuffer(embedding_blob, dtype=np.float32) if embedding_blob else None
+            nt = NodeType(node_type)
             self.graph.add_node(
                 node_id,
-                node_type=NodeType(node_type),
+                node_type=nt,
                 text=text,
                 metadata=json.loads(metadata_json),
                 embedding=embedding,
             )
+            if nt == NodeType.PATTERN:
+                self._handle_to_id[text] = node_id
 
         cursor.execute("SELECT id, source_id, target_id, edge_type, alias, metadata FROM edges")
         for row in cursor.fetchall():
@@ -259,6 +267,8 @@ class GraphStore:
         self.graph.add_node(
             node_id, node_type=node_type, text=text, metadata=metadata, embedding=embedding
         )
+        if node_type == NodeType.PATTERN:
+            self._handle_to_id[text] = node_id
 
         return node_id
 
@@ -330,6 +340,15 @@ class GraphStore:
                 removed_ids.append(attrs.get("id"))
                 self.graph.remove_edge(src, tgt, key=key)
         return removed_ids
+
+    def _find_pattern_id(self, handle: str) -> str | None:
+        """O(1) handle → node_id lookup for PATTERN nodes.
+
+        Backed by self._handle_to_id, kept in sync by create_node,
+        delete_node_cascade, merge_nodes, and execute_transaction.
+        A missing entry means the handle does not exist.
+        """
+        return self._handle_to_id.get(handle)
 
     def get_nodes_by_type(self, node_type: NodeType) -> list[tuple[str, dict]]:
         """Get all nodes of a specific type."""
@@ -480,9 +499,7 @@ class GraphStore:
 
         # 3. Validate all dependency references exist before creating edges
         if isinstance(input_deps, dict):
-            existing_handles = {
-                data["text"] for _, data in self.get_nodes_by_type(NodeType.PATTERN)
-            }
+            existing_handles = set(self._handle_to_id)
             for _, items in input_deps.items():
                 if isinstance(items, dict):
                     for _, ref in items.items():
@@ -525,33 +542,30 @@ class GraphStore:
         stored_pattern = {k: v for k, v in solution.items() if k != "dependencies"}
 
         # Check for existing pattern with same handle
-        for nid, data in self.get_nodes_by_type(NodeType.PATTERN):
-            if data["text"] == handle:
-                pattern_id = nid
-                # Update metadata - store as 'pattern' (without dependencies)
-                if "metadata" in data:
-                    data["metadata"]["pattern"] = stored_pattern
+        existing_nid = self._find_pattern_id(handle)
+        if existing_nid is not None:
+            pattern_id = existing_nid
+            data = self.graph.nodes[existing_nid]
+            if "metadata" in data:
+                data["metadata"]["pattern"] = stored_pattern
 
-                    # Also promote layer/category to root metadata for easy access/indexing
-                    meta_block = solution.get("_meta", {})
-                    data["metadata"]["layer"] = (
-                        meta_block.get("layer") or solution.get("sema_layer") or "Unknown"
-                    )
-                    data["metadata"]["category"] = (
-                        meta_block.get("category")
-                        or solution.get("sema_category")
-                        or "Uncategorized"
-                    )
+                # Also promote layer/category to root metadata for easy access/indexing
+                meta_block = solution.get("_meta", {})
+                data["metadata"]["layer"] = (
+                    meta_block.get("layer") or solution.get("sema_layer") or "Unknown"
+                )
+                data["metadata"]["category"] = (
+                    meta_block.get("category") or solution.get("sema_category") or "Uncategorized"
+                )
 
-                    # Persist metadata update
-                    conn = sqlite3.connect(self.db_path)
-                    conn.execute(
-                        "UPDATE nodes SET metadata = ? WHERE id = ?",
-                        (json.dumps(data["metadata"]), nid),
-                    )
-                    conn.commit()
-                    conn.close()
-                break
+                # Persist metadata update
+                conn = sqlite3.connect(self.db_path)
+                conn.execute(
+                    "UPDATE nodes SET metadata = ? WHERE id = ?",
+                    (json.dumps(data["metadata"]), existing_nid),
+                )
+                conn.commit()
+                conn.close()
 
         if not pattern_id:
             # Construct rich text for embedding: "Handle: Gloss"
@@ -644,13 +658,8 @@ class GraphStore:
             # Map EdgeTypes back to dependency categories for reverse lookup if needed
             edge_type_set = set(dep_map.values())
 
-            # Pre-fetch all patterns to avoid N queries (Optimization)
-            # fmt: off
-            all_patterns = {
-                data["text"]: nid
-                for nid, data in self.get_nodes_by_type(NodeType.PATTERN)
-            }
-            # fmt: on
+            # Handle→id is already cached on self; no graph scan needed.
+            all_patterns = self._handle_to_id
 
             # 1. Calculate DESIRED edges from input_deps
             # Key: (target_id, edge_type, alias) — alias preserves the
@@ -713,14 +722,11 @@ class GraphStore:
         # C. Signatures (Interfaces)
         signatures = solution.get("signature", [])
         if signatures:
-            all_patterns = {
-                data["text"]: nid for nid, data in self.get_nodes_by_type(NodeType.PATTERN)
-            }
             for sig in signatures:
                 # "Deep(Research)" -> Link to 'Deep' and 'Research'
                 matches = re.findall(r"\w+", sig)
                 for m in matches:
-                    target_id = all_patterns.get(m)
+                    target_id = self._handle_to_id.get(m)
                     if target_id and not self.has_edge_of_type(
                         pattern_id, target_id, EdgeType.HAS_SIGNATURE
                     ):
@@ -729,20 +735,11 @@ class GraphStore:
         # D. Related (Metadata links)
         related = meta.get("related", [])
         if related:
-            # Re-use pre-fetched map if available, else fetch
-            if "all_patterns" not in locals():
-                # fmt: off
-                all_patterns = {
-                    data["text"]: nid
-                    for nid, data in self.get_nodes_by_type(NodeType.PATTERN)
-                }
-                # fmt: on
-
             for item in related:
                 if not isinstance(item, str):
                     continue
                 target_handle = item.split("#")[0]
-                target_id = all_patterns.get(target_handle)
+                target_id = self._handle_to_id.get(target_handle)
 
                 if target_id:
                     # RELATED_TO is distinct from dependencies — only check for
@@ -988,6 +985,13 @@ class GraphStore:
         if node_id_keep not in self.graph or node_id_remove not in self.graph:
             return False
 
+        # Snapshot the removed node's handle (if it's a PATTERN) so we can
+        # evict it from the index after the final graph.remove_node call.
+        removed_data = self.graph.nodes[node_id_remove]
+        removed_handle = (
+            removed_data.get("text") if removed_data.get("node_type") == NodeType.PATTERN else None
+        )
+
         def _has_exact(src, tgt, e_type, alias):
             return any(
                 e.get("edge_type") == e_type and e.get("alias") == alias
@@ -1031,6 +1035,8 @@ class GraphStore:
         conn.close()
 
         self.graph.remove_node(node_id_remove)
+        if removed_handle is not None and self._handle_to_id.get(removed_handle) == node_id_remove:
+            del self._handle_to_id[removed_handle]
 
         return True
 
@@ -1312,13 +1318,7 @@ class GraphStore:
 
         Returns list of dependent handles.
         """
-        # Find the node ID for this handle
-        target_node_id = None
-        for nid, data in self.get_nodes_by_type(NodeType.PATTERN):
-            if data["text"] == handle:
-                target_node_id = nid
-                break
-
+        target_node_id = self._find_pattern_id(handle)
         if not target_node_id:
             return []
 
@@ -1355,13 +1355,7 @@ class GraphStore:
                 ...
             }
         """
-        # Find the node ID for this handle
-        node_id = None
-        for nid, data in self.get_nodes_by_type(NodeType.PATTERN):
-            if data["text"] == handle:
-                node_id = nid
-                break
-
+        node_id = self._find_pattern_id(handle)
         if not node_id:
             return {}
 
@@ -1527,33 +1521,35 @@ class GraphStore:
         Returns:
             Pattern dict, optionally with dependencies reconstructed from edges
         """
-        for _, data in self.get_nodes_by_type(NodeType.PATTERN):
-            if data["text"] == handle:
-                content = data.get("metadata", {}).get("pattern", {}).copy()
-                if include_deps:
-                    # Reconstruct dependencies from edges for export
-                    edge_deps = self.get_dependencies_from_edges(handle)
-                    if edge_deps:
-                        content["dependencies"] = edge_deps
-                return content
-        return None
+        nid = self._find_pattern_id(handle)
+        if nid is None:
+            return None
+        data = self.graph.nodes[nid]
+        content = data.get("metadata", {}).get("pattern", {}).copy()
+        if include_deps:
+            # Reconstruct dependencies from edges for export
+            edge_deps = self.get_dependencies_from_edges(handle)
+            if edge_deps:
+                content["dependencies"] = edge_deps
+        return content
 
     def _update_pattern_metadata(self, handle: str, new_pattern: dict[str, Any]):
         """Update a pattern's metadata in both graph and DB."""
-        for nid, data in self.get_nodes_by_type(NodeType.PATTERN):
-            if data["text"] == handle:
-                # Update in-memory
-                data["metadata"]["pattern"] = new_pattern
+        nid = self._find_pattern_id(handle)
+        if nid is None:
+            return
+        data = self.graph.nodes[nid]
+        # Update in-memory
+        data["metadata"]["pattern"] = new_pattern
 
-                # Update in DB
-                conn = sqlite3.connect(self.db_path)
-                conn.execute(
-                    "UPDATE nodes SET metadata = ? WHERE id = ?",
-                    (json.dumps(data["metadata"]), nid),
-                )
-                conn.commit()
-                conn.close()
-                return
+        # Update in DB
+        conn = sqlite3.connect(self.db_path)
+        conn.execute(
+            "UPDATE nodes SET metadata = ? WHERE id = ?",
+            (json.dumps(data["metadata"]), nid),
+        )
+        conn.commit()
+        conn.close()
 
     def validate_dependency_refs(self, pattern: dict[str, Any]) -> list[str]:
         """Validate that all dependency references exist.
@@ -1568,7 +1564,7 @@ class GraphStore:
         if not isinstance(deps, dict):
             return missing
 
-        existing_handles = {data["text"] for _, data in self.get_nodes_by_type(NodeType.PATTERN)}
+        existing_handles = set(self._handle_to_id)
 
         for _, items in deps.items():
             if isinstance(items, dict):
@@ -1595,6 +1591,13 @@ class GraphStore:
         # Count edges being removed
         edges_removed = self.graph.in_degree(node_id) + self.graph.out_degree(node_id)
 
+        # Snapshot node attrs before removal so we can evict from the
+        # handle index after the in-memory graph has been mutated.
+        node_data = self.graph.nodes[node_id]
+        handle_to_evict = (
+            node_data.get("text") if node_data.get("node_type") == NodeType.PATTERN else None
+        )
+
         # Delete from DB - manually delete edges first (no CASCADE in schema)
         conn = sqlite3.connect(self.db_path)
         conn.execute("DELETE FROM edges WHERE source_id = ? OR target_id = ?", (node_id, node_id))
@@ -1604,6 +1607,8 @@ class GraphStore:
 
         # Remove from in-memory graph
         self.graph.remove_node(node_id)
+        if handle_to_evict is not None and self._handle_to_id.get(handle_to_evict) == node_id:
+            del self._handle_to_id[handle_to_evict]
 
         return {"success": True, "edges_removed": edges_removed}
 
@@ -1754,13 +1759,16 @@ class GraphStore:
                     # fmt: on
                     conn.close()
 
+                    nt = NodeType(op["type"])
                     self.graph.add_node(
                         real_id,
-                        node_type=NodeType(op["type"]),
+                        node_type=nt,
                         text=op["text"],
                         metadata=metadata,
                         embedding=embedding,
                     )
+                    if nt == NodeType.PATTERN:
+                        self._handle_to_id[op["text"]] = real_id
 
                 elif op["op"] == "LINK":
                     src = op.get("source_id") or temp_id_map.get(op.get("source_temp_id"))
