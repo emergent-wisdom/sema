@@ -627,292 +627,360 @@ Source: `scripts/audit/audit_unlinked_mentions.py` (ok)
 ```text
 Scanning 427 patterns for unlinked handle mentions...
 
-⚠️  SynergisticMode:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AnalogyBridge:
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  FrameSpec:
-   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Fermi:
-   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Loop:
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AntifragileInversion:
-   • Mentions 'Sign' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ValuePeg:
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Criteria:
-   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ChunkMerge:
-   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Spec:
-   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Yield:
-   • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  NegativeProof:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Datum' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Snapshot' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TimeWarpLog:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PermissionEscalate:
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Translate:
-   • Mentions 'Summarize' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Novelty:
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Workflow:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Handoff:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ProtoPack:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AbductiveLeap:
+   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  NormativeJudge:
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  StateTransition:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Parallelize:
-   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  StructuralCoaching:
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EvaluatorOptimizer:
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TaskLifecycle:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Trace:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Interpret' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Belief:
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PerspectiveEnsemble:
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DepthGovernor:
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EntropyPump:
-   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Invert:
+⚠️  AcceptSpec:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Compensate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EmpathySim:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Resonate:
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Act:
+   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Actor:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AdversarialProof:
+   • Mentions 'RedTeam' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  AdversarialSteel:
    • Mentions 'Compromise' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ToolInvoke:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Aesthetics:
+   • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AgentDiscover:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Monitor:
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Break:
-   • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AgentSandbox:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Aggregate:
+   • Mentions 'Compress' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AmbiguityResolution:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Award:
-   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AnalogyBridge:
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AnchorDrop:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AntifragileInversion:
+   • Mentions 'Sign' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Artifact:
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Assessment:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Reflexion' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Goal:
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ChainOfThought:
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Outcome:
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  UncertaintyMap:
-   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Plan:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OptimisticSolver:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AtomicBid:
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Bid' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Lock:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SacrificialProbe:
-   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Prioritize:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Constitution:
-   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Compromise:
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ProphetFanOut:
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Result:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Shard:
-   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PromptChain:
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Roadmap:
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OntologyAdapt:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SteelmanCheck:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AttentionMarkets:
+   • Mentions 'Bid' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  AuditTrail:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RetrievalAugment:
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Vector' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AgentSandbox:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Proprioception:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OutputGuard:
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EpistemicROI:
-   • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Role:
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LocalizedLearning:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Value:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Award:
+   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Axiom:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Backoff:
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  BackwardChain:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Ballot:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  BaseRateInclude:
    • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Canary:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ParetoFront:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  BayesUpdate:
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  BeamSearch:
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  BearerToken:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Delegate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Belief:
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  BeliefTracking:
+   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'TradeOff' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ContingencyPlan:
-   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Bid:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  BreadthGovernor:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HypothesisEngine:
+⚠️  Break:
+   • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Bubble:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Decompose:
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sandbox' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Snapshot' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Build:
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Prototype' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Canary:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CapacityPressure:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Compress' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Card:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Greet' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Category:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CausalBarrier:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Causation:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Chain:
+   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ChainOfThought:
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Check:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Yield' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HindsightBlock:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HeldRelease:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Oracle' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SolverRoot:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Reframe' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  WorkerMode:
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Scratchpad:
+⚠️  ChunkMerge:
+   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CircuitBreaker:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CiteBack:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CognitiveEcho:
+   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CognitiveSolver:
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CommitmentDevice:
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CompatibilityCheck:
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Compensate:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Compose:
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Compromise:
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ComputeBudget:
+   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ConceptAnchor:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Condition:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ConfidenceCalibrate:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ConfirmationBlock:
+   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ConfusedDeputy:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Prompt' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Consensus:
+   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ConsensusFinder:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Constitution:
+   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Constraint:
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Nature' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RootHashGossip:
+⚠️  ConstraintFirst:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SpotAudit:
+   • Mentions 'Creative' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ConstructOntology:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Context:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Stigmergy:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConfusedDeputy:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Prompt' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Rally:
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ContextFirst:
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ContextSwitch:
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'RuleSet' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ContingencyPlan:
+   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ContinuousResourceAuction:
+   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Cooldown:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Creative:
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Criteria:
+   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Critique:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Crystallize:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CurriculumReplay:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Cyclic:
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Dampen:
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DataMinimization:
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Decision:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Decompose:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Yield' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Deep:
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DeepResearch:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Synthesis' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Defer:
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Delegate:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Deploy:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DepthGovernor:
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DesignArchitect:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Dialectic:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Disband:
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
@@ -921,187 +989,33 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Reason:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ScoringFunction:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Dialectic:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  WhyClimb:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Hierarchy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Gate:
-   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SolverNode:
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Condition:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Discover:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OODA:
+⚠️  DissentSeek:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Robustness' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DogfoodFirst:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Observe' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Deploy:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LazyConsensus:
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LatentWander:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CausalBarrier:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ShoutWhisper:
-   • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  WorldTransparent:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Robustness:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  StateSnapshot:
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DeepResearch:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Synthesis' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Score:
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AnchorDrop:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  UptakeOverTimestamp:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Validate:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TreeOfThoughts:
-   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Solver:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RolloutWatch:
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SourceEvaluate:
-   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SolverTree:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Hierarchy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConsensusFinder:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Silence:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DesignArchitect:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SpectralTune:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resonate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Satisfice:
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RecursiveRootCause:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Actor:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LatticeCommit:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DriftWatch:
+   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EbbFlowSync:
+   • Mentions 'Dampen' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PUREBrainstorming:
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SemanticTabu:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SomaticMarker:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MonotonicCounter:
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Responsibility:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Monitor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Throttle:
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Axiom:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OrchestrationLoop:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Rollout' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Rollout:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Compensate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  BayesUpdate:
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EjectionSeat:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Elect:
    • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
@@ -1114,134 +1028,513 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Eliminate:
+   • Mentions 'Falsification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EmpathySim:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EntropyPump:
+   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EpistemicCalibrate:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EpistemicROI:
+   • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Estimate:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EvaluatorOptimizer:
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EventReact:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Exception:
+   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExecutionManifest:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Rollout' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Expansive:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExperienceSharding:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Experiment:
+   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExpiringToken:
+   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExploreExploit:
+   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExtendedThinking:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Think' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  FailClosed:
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RegimeSense:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AuditTrail:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  GracefulDegradation:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CompatibilityCheck:
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PURECheck:
-   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Act:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CapacityPressure:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Compress' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  UptakeAsGround:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Jester:
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AttentionMarkets:
-   • Mentions 'Bid' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Delegate:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LateralOptimization:
+⚠️  Falsification:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Feedback:
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  FeedbackSignal:
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Fermi:
+   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  FirstPrinciples:
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CommitmentDevice:
+⚠️  FractalIntelligence:
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  FrameSpec:
    • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OptimalStop:
-   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PromiseGraph:
-   • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Stream:
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Snapshot:
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AbductiveLeap:
-   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DataMinimization:
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SelfReminder:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Prompt' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  StateAudit:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Oracle:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Gardener:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Variable:
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Gate:
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Eliminate:
-   • Mentions 'Falsification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RecursionDive:
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Work:
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  GenealogicalTrace:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Generalize:
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Global:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Goal:
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  GracefulDegradation:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Greet:
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DriftWatch:
-   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Group:
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HackDetect:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Handoff:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HeldRelease:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Oracle' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HeuristicSnap:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HindsightBlock:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HolographicShard:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Shard' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HumanApprove:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Hypothesis:
    • Mentions 'Falsification' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TieredAccess:
+⚠️  HypothesisEngine:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  HypothesisLadder:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Hysteresis:
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  IdempotentWrite:
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Identity:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  IdentityHandshake:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  InputGuard:
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  IntentGap:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Interpret:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Translate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Invert:
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Jester:
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Kairos:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LatentAttachment:
+   • Mentions 'Card' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Vector' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LatentWander:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LateralOptimization:
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LatticeCommit:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LayeredCheck:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LazyConsensus:
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LeastToMost:
+   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Linear:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LivedProof:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  LocalizedLearning:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Lock:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Loop:
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MECE:
+   • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Overlap' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ManifestPlanning:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MarginalValueRule:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MechanisticDesignProposal:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Dialectic' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MentalSim:
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MetaCheck:
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MetaPrompt:
+   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Generalize' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Prompt' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Metric:
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MintWhenFriction:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Mode:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Monitor:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MonitorReport:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MonotonicCounter:
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Mutex:
+   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Yield' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  NegativeProof:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Datum' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Snapshot' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  NormativeJudge:
+   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Novelty:
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Nucleate:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Stigmergy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OODA:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Observe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OathBind:
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Observe:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OntologyAdapt:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OpportunityCost:
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OptimalStop:
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OptimisticSolver:
+   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Optimize:
+   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Option:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Oracle:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OrchestrationLoop:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Rollout' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OsmoticFilter:
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tension' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Outcome:
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  OutputGuard:
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Overlap:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Select' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PUREBrainstorming:
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PURECheck:
+   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PUREOptimization:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Realizable' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Synthesis' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Parallelize:
+   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ParetoFront:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'TradeOff' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PatternDiscovery:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PermissionEscalate:
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PerspectiveEnsemble:
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PhasedRefinement:
+   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Plan:
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PreMortem:
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Prioritize:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Probability:
+   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Probe:
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sandbox' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Generalize:
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Problem:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ProblemFramer:
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Reframe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ProblemSpace:
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PromiseGraph:
+   • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PromptChain:
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ProphetFanOut:
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PropheticQuorum:
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Proposal:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Proprioception:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ProtoPack:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Protocol:
+   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Prototype:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Queue:
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  QuorumPulse:
+   • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Rally:
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Rank:
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ReAct:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -1251,458 +1544,38 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SunkCostIgnore:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Hysteresis:
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LeastToMost:
-   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Check:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OsmoticFilter:
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tension' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  GenealogicalTrace:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Overlap:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Select' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  IdentityHandshake:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Aggregate:
-   • Mentions 'Compress' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Risk:
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Ballot:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RegretMinimization:
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Identity:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HeuristicSnap:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Chain:
-   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Falsification:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TraceBelief:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EventReact:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ExpiringToken:
-   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  IntentGap:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RedTeam:
-   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Reframe:
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Invert' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  QuorumPulse:
-   • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Compose:
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  FeedbackSignal:
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  UniversalSolverTree:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Card:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Greet' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  BackwardChain:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConfidenceCalibrate:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MECE:
-   • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Overlap' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Crystallize:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConstraintFirst:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Creative' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Observe:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Queue:
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ToolDiscovery:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Probe:
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sandbox' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OathBind:
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  FractalIntelligence:
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Category:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Uncertain:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Warmup:
-   • Mentions 'Cache' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Deep:
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SkeletonOfThought:
-   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ProblemSpace:
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EjectionSeat:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Option:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Resource:
-   • Mentions 'Mutex' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RigorousSolver:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Taper:
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PreMortem:
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PatternDiscovery:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Metric:
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RepresentationSwap:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ExecutionManifest:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Rollout' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SocraticLoop:
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Critique:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Defer:
-   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ExploreExploit:
-   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Sign:
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DissentSeek:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Robustness' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AmbiguityResolution:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Experiment:
-   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SolverManifest:
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MechanisticDesignProposal:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Dialectic' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Context:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Realizable:
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ProblemFramer:
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Reframe' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Nucleate:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Stigmergy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MetaCheck:
-   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HypothesisLadder:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Expansive:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Causation:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PhasedRefinement:
-   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Probability:
-   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConceptAnchor:
-   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Think:
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SurprisalUpdate:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Backoff:
-   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Skeleton:
-   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Creative:
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LayeredCheck:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Vote:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Rally' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  RequestFraming:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Aesthetics:
-   • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Protocol:
-   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Mode:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SteelmanFirst:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  StyleSpec:
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Bid:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SurvivorCorrect:
-   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LivedProof:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Global:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HolographicShard:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Shard' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Reversibility:
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Uncertain' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RealizationProtocol:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  IdempotentWrite:
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Decision:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ReversibilityCheck:
-   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ThreeLevelCollision:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Compensate:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Optimize:
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Verification:
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  BeamSearch:
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Specialize:
+⚠️  Reason:
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Understand' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  StepBack:
-   • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RecursionDive:
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Dampen:
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Rank:
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RecursiveRootCause:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RedTeam:
+   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Refine:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  FirstPrinciples:
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Bubble:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sandbox' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Snapshot' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  BearerToken:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Delegate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ContextFirst:
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ContinuousResourceAuction:
-   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ExperienceSharding:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Estimate:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Cyclic:
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Prototype:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Reflexion:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -1712,101 +1585,52 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PropheticQuorum:
-   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Group:
+⚠️  Reframe:
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Exception:
-   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Realizable:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Uncertain' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Cooldown:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SelfConsistency:
-   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CurriculumReplay:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ContextSwitch:
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'RuleSet' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CognitiveSolver:
-   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  InputGuard:
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Problem:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Linear:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HumanApprove:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EbbFlowSync:
-   • Mentions 'Dampen' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  DogfoodFirst:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Invert' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MintWhenFriction:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RegimeSense:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RegretMinimization:
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  LatentAttachment:
-   • Mentions 'Card' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RepresentationSwap:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RequestFraming:
+   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Resonate:
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Resource:
+   • Mentions 'Mutex' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Responsibility:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Monitor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Result:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RetrievalAugment:
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Vector' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Strategy:
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  SimulationTrace:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Scratchpad' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Topology:
-   • Mentions 'Cyclic' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Feedback:
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  UniqueHandle:
-   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Proposal:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Retry:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Backoff' (unlinked). Should it be '{{{ghost}}}'?
@@ -1821,168 +1645,344 @@ Scanning 427 patterns for unlinked handle mentions...
    • Mentions 'Stream' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TensionHold:
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Tension' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Interpret:
-   • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Translate' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  TranslationProxy:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MarginalValueRule:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AgentDiscover:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MetaPrompt:
-   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Generalize' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Prompt' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Mutex:
-   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Yield' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Consensus:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Reversibility:
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ReversibilityCheck:
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RigorousSolver:
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConstructOntology:
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MentalSim:
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Risk:
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Roadmap:
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Robustness:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Role:
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Rollout:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Compensate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RolloutWatch:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  RootHashGossip:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SacrificialProbe:
+   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Satisfice:
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ScopeFreeze:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  WorldReversible:
+⚠️  Score:
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ScoringFunction:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Scratchpad:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Select:
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SelfConsistency:
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SelfReminder:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Prompt' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SemanticTabu:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Shard:
+   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ShoutWhisper:
+   • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Switch' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Sign:
+   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Silence:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SimulationTrace:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Scratchpad' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Skeleton:
+   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SkeletonOfThought:
+   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Snapshot:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SocraticLoop:
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Solution:
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Solver:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ExtendedThinking:
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SolverManifest:
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SolverNode:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SolverRoot:
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Think' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Reframe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SolverTree:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hierarchy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SomaticMarker:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SourceEvaluate:
+   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Spec:
+   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Specialize:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Understand' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SpectralTune:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resonate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SpotAudit:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StateAudit:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StateSnapshot:
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StateTransition:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SteelmanCheck:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SteelmanFirst:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StepBack:
+   • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Stigmergy:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StrategicReading:
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ConfirmationBlock:
-   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  MonitorReport:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Strategy:
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Stream:
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StructuralCoaching:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StyleSpec:
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CiteBack:
+   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SunkCostIgnore:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SurprisalUpdate:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Build:
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Prototype' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  HackDetect:
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SurvivorCorrect:
+   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SynergisticMode:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CognitiveEcho:
-   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Simulation' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  EpistemicCalibrate:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ManifestPlanning:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AtomicBid:
-   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Bid' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Permission' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AdversarialProof:
-   • Mentions 'RedTeam' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Taper:
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Solution:
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Kairos:
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  AcceptSpec:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Compensate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  CircuitBreaker:
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TaskLifecycle:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  PUREOptimization:
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TensionHold:
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tension' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Think:
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ThreeLevelCollision:
+   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Throttle:
+   • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TieredAccess:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Realizable' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Synthesis' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  BeliefTracking:
-   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ComputeBudget:
-   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Select:
-   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TimeWarpLog:
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ToolDiscovery:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ToolInvoke:
+   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Artifact:
-   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  OpportunityCost:
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Topology:
+   • Mentions 'Cyclic' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Trace:
+   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Interpret' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TraceBelief:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Translate:
+   • Mentions 'Summarize' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TranslationProxy:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  TreeOfThoughts:
+   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Uncertain:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  UncertaintyMap:
+   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  UniqueHandle:
+   • Mentions 'Linear' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  UniversalSolverTree:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  UptakeAsGround:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Group' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  UptakeOverTimestamp:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Validate:
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Value:
+   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ValuePeg:
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Variable:
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Verification:
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Vote:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Rally' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Warmup:
+   • Mentions 'Cache' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  WhyClimb:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hierarchy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Work:
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  WorkerMode:
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Workflow:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  WorldReversible:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  WorldTransparent:
+   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Yield:
+   • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
 Scan complete. Found unlinked handle mentions in 339 patterns.
 ```

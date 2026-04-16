@@ -12,8 +12,7 @@ def load_patterns():
     patterns_map = {}
     content_map = {}
 
-    files = glob.glob(os.path.join(VOCAB_DIR, "*.json"))
-    # print(f"📂 Loading {len(files)} pattern files...")
+    files = sorted(glob.glob(os.path.join(VOCAB_DIR, "*.json")))
 
     for fpath in files:
         try:
