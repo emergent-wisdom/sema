@@ -344,14 +344,7 @@ def search_patterns(q: str, semantic: bool = True):
     if not semantic:
         return keyword_results
 
-    # 2. Semantic search (optional)
-    try:
-        # Import dynamically to avoid heavy dep requirement unless used
-        pass
-    except Exception:
-        pass
-
-    # 3. Merge results with name-match boosting
+    # Merge results with name-match boosting
     merged = {}
     query_lower = q.lower().strip()
 
@@ -481,9 +474,17 @@ def _get_doc_path(slug: str) -> Path | None:
         return None
 
     # Try docs/ first, then repo root (for integrations/ etc.)
+    # Resolve both sides and confirm containment so an attacker-controlled
+    # slug ("../../etc/hosts" etc.) can't escape the allowed base directory.
     for base in [root / "docs", root]:
-        path = base / f"{slug}.md"
-        if path.exists():
+        try:
+            base_resolved = base.resolve()
+        except OSError:
+            continue
+        path = (base / f"{slug}.md").resolve()
+        if not path.is_relative_to(base_resolved):
+            continue
+        if path.is_file():
             return path
 
     return None
@@ -682,12 +683,17 @@ if _static_dir.exists() and (_static_dir / "index.html").exists():
     if _assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(_assets_dir)), name="assets")
 
-    # SPA catch-all: any non-API path serves index.html
+    # SPA catch-all: any non-API path serves index.html.
+    # Guard against path traversal — the resolved candidate must live inside
+    # _static_dir before we serve it. Anything suspicious falls back to
+    # index.html (the SPA will handle client-side routing / 404 rendering).
+    _static_root = _static_dir.resolve()
+
     @app.get("/{path:path}")
     def serve_spa(path: str):
         if path.startswith("api/"):
             raise HTTPException(status_code=404)
-        file_path = _static_dir / path
-        if file_path.exists() and file_path.is_file():
-            return FileResponse(file_path)
+        candidate = (_static_dir / path).resolve()
+        if candidate.is_relative_to(_static_root) and candidate.is_file():
+            return FileResponse(candidate)
         return FileResponse(_static_dir / "index.html")
