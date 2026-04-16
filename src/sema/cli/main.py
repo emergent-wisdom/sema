@@ -526,9 +526,15 @@ def update_db(
 
     upstream_patterns = {}
     upstream_sema_ids = {}  # handle -> stored sema_id (for fast-path skip)
+    # Capture FULL upstream handle set in the same iteration so excluded
+    # handles aren't falsely reported as "upstream removed" later.
+    upstream_all_handles = set()
     for _nid, data in source_store.get_nodes_by_type(NodeType.PATTERN):
         h = data.get("text")
-        if not h or h in excluded:
+        if not h:
+            continue
+        upstream_all_handles.add(h)
+        if h in excluded:
             continue
         meta = data.get("metadata", {})
         pattern = meta.get("pattern", {})
@@ -554,15 +560,6 @@ def update_db(
         target_local_meta[h] = local_pattern.get("_meta", {})
         target_sema_ids[h] = local_pattern.get("sema_id", "")
 
-    # Capture the FULL upstream handle set BEFORE any filtering, so we can
-    # report true upstream removals (vs. user-excluded handles, which are
-    # not removals at all).
-    upstream_all_handles = {
-        data.get("text")
-        for _, data in source_store.get_nodes_by_type(NodeType.PATTERN)
-        if data.get("text")
-    }
-
     # Pre-flight transitive pruning: an upstream pattern can't be minted if
     # one of its deps doesn't exist in either the target DB or this batch.
     # Without this, a single excluded foundational pattern (e.g. Task) would
@@ -584,9 +581,14 @@ def update_db(
                     if not isinstance(ref, str):
                         continue
                     target_handle = extract_handle_from_ref(ref)
+                    # Self-references are implicitly safe: h is still in
+                    # upstream_patterns at this point, so target_handle == h
+                    # passes the third check. We also leave the loop running
+                    # even when `excluded` is empty — it doubles as a
+                    # protector against malformed upstream graphs that ship
+                    # with dangling refs.
                     if (
-                        target_handle != h
-                        and target_handle not in target_handles
+                        target_handle not in target_handles
                         and target_handle not in upstream_patterns
                     ):
                         round_pruned.add(h)
@@ -611,6 +613,12 @@ def update_db(
     print(f"  New: {new_count}, Update: {update_count}")
     if excluded:
         print(f"  Excluded: {len(excluded)} handle(s) skipped per user opt-out")
+        dormant = excluded - upstream_all_handles
+        if dormant:
+            print(
+                f"  ℹ️  {len(dormant)} dormant exclusion(s) (no longer present upstream): "
+                f"{', '.join(sorted(dormant)[:5])}"
+            )
     if auto_skipped:
         print(
             f"⚠️  Auto-skipped {len(auto_skipped)} pattern(s) — their deps are excluded "
