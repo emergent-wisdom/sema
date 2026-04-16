@@ -1124,8 +1124,117 @@ class TestExclusionList(unittest.TestCase):
                 f.write("Beta # inline comment\n")
                 f.write("   Gamma   \n")
             with patch("pathlib.Path.home", return_value=__import__("pathlib").Path(tmp)):
-                result = _load_exclusions()
+                # Ensure XDG_CONFIG_HOME isn't set (would override Path.home)
+                with patch.dict(os.environ, {}, clear=False) as _:
+                    os.environ.pop("XDG_CONFIG_HOME", None)
+                    result = _load_exclusions()
             self.assertEqual(result, {"Alpha", "Beta", "Gamma"})
+
+    def test_exclusion_file_xdg_config_home(self):
+        """Honor $XDG_CONFIG_HOME when set."""
+        from sema.cli.main import _load_exclusions
+
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg_dir = os.path.join(tmp, "sema")
+            os.makedirs(cfg_dir)
+            with open(os.path.join(cfg_dir, "excluded"), "w") as f:
+                f.write("XdgPattern\n")
+            with patch.dict(os.environ, {"XDG_CONFIG_HOME": tmp}):
+                result = _load_exclusions()
+            self.assertEqual(result, {"XdgPattern"})
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_transitive_exclusion_prevents_abort(self, mock_bundled_check, mock_bundled, mock_db):
+        """If Alpha is excluded AND missing locally, Beta (which depends on
+        Alpha) must be safely auto-skipped to prevent the whole pull from
+        aborting via transaction rollback."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Alpha")
+        # Beta depends on Alpha
+        store = GraphStore(self.upstream_db)
+        store.add_pattern(
+            {
+                "handle": "Beta",
+                "mechanism": "Uses {{a}}",
+                "gloss": "Beta",
+                "_meta": {
+                    "layer": "Infrastructure",
+                    "category": "Primitives",
+                    "ring": 0,
+                    "tier": 1,
+                },
+                "dependencies": {"references": {"a": "Alpha"}},
+            }
+        )
+        # Gamma is unrelated, should succeed
+        self._add(self.upstream_db, "Gamma")
+
+        # User has nothing locally
+        GraphStore(self.user_db)
+
+        result = update_db(exclude=["Alpha"])
+
+        self.assertTrue(result, "Pull must not abort when an excluded dep cascades")
+        handles = self._handles(self.user_db)
+        self.assertNotIn("Alpha", handles)
+        self.assertNotIn("Beta", handles, "Beta needs missing Alpha and must be auto-skipped")
+        self.assertIn("Gamma", handles, "Unrelated patterns still succeed")
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_exclusion_acts_as_version_pin(self, mock_bundled_check, mock_bundled, mock_db):
+        """Emergent feature: if Alpha is excluded BUT exists locally, dependents
+        link to the local frozen Alpha. Excluding without deleting = version pin."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        # Upstream has v2 of Alpha
+        self._add(self.upstream_db, "Alpha", "v2 upstream")
+        store = GraphStore(self.upstream_db)
+        store.add_pattern(
+            {
+                "handle": "Beta",
+                "mechanism": "Uses {{a}}",
+                "gloss": "Beta",
+                "_meta": {
+                    "layer": "Infrastructure",
+                    "category": "Primitives",
+                    "ring": 0,
+                    "tier": 1,
+                },
+                "dependencies": {"references": {"a": "Alpha"}},
+            }
+        )
+
+        # User has v1 of Alpha frozen locally
+        self._add(self.user_db, "Alpha", "v1 frozen")
+
+        result = update_db(exclude=["Alpha"])
+
+        self.assertTrue(result)
+        handles = self._handles(self.user_db)
+        self.assertIn("Alpha", handles)
+        self.assertIn("Beta", handles, "Beta links to local frozen Alpha")
+
+        # Verify Alpha was NOT overwritten — version pin worked
+        store = GraphStore(self.user_db)
+        for _, data in store.get_nodes_by_type(NodeType.PATTERN):
+            if data.get("text") == "Alpha":
+                p = data.get("metadata", {}).get("pattern", {})
+                self.assertEqual(
+                    p.get("mechanism"),
+                    "v1 frozen",
+                    "Local Alpha must not be overwritten by upstream v2",
+                )
+                return
+        self.fail("Alpha not found")
 
 
 if __name__ == "__main__":

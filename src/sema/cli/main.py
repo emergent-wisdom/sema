@@ -446,13 +446,19 @@ def show_skeleton():
 
 
 def _load_exclusions() -> set[str]:
-    """Read user's pull exclusion list from ~/.config/sema/excluded.
+    """Read user's pull exclusion list.
+
+    Location: $XDG_CONFIG_HOME/sema/excluded if XDG_CONFIG_HOME is set,
+    else ~/.config/sema/excluded.
 
     Format: one handle per line. Blank lines and lines starting with '#'
     are ignored. Excluded handles are skipped during sema pull, so a user
-    can permanently opt out of an upstream pattern they previously deleted.
+    can permanently opt out of an upstream pattern they previously deleted
+    (or pin a local-only version — see version-pinning behavior in pull).
     """
-    excluded_file = Path.home() / ".config" / "sema" / "excluded"
+    xdg = os.environ.get("XDG_CONFIG_HOME")
+    config_dir = Path(xdg) / "sema" if xdg else Path.home() / ".config" / "sema"
+    excluded_file = config_dir / "excluded"
     if not excluded_file.is_file():
         return set()
     handles = set()
@@ -486,6 +492,7 @@ def update_db(
     when their upstream deps change (via the final sweep).
     """
     from ..core.dependencies import topological_sort
+    from ..core.hashing import extract_handle_from_ref
     from ..core.mint import mint_pattern
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -547,15 +554,70 @@ def update_db(
         target_local_meta[h] = local_pattern.get("_meta", {})
         target_sema_ids[h] = local_pattern.get("sema_id", "")
 
+    # Capture the FULL upstream handle set BEFORE any filtering, so we can
+    # report true upstream removals (vs. user-excluded handles, which are
+    # not removals at all).
+    upstream_all_handles = {
+        data.get("text")
+        for _, data in source_store.get_nodes_by_type(NodeType.PATTERN)
+        if data.get("text")
+    }
+
+    # Pre-flight transitive pruning: an upstream pattern can't be minted if
+    # one of its deps doesn't exist in either the target DB or this batch.
+    # Without this, a single excluded foundational pattern (e.g. Task) would
+    # cascade-fail every dependent and abort the whole pull — forcing the
+    # user to add 150 entries to their exclusion file one at a time.
+    #
+    # Elegant property: we only prune when the dep is missing from BOTH
+    # sides. If the user excludes Foo BUT keeps a local copy in target,
+    # dependents resolve against their local Foo — so exclusion + local-keep
+    # acts as a "version pin" against upstream changes.
+    auto_skipped = set()
+    while True:
+        round_pruned = set()
+        for h, p in list(upstream_patterns.items()):
+            for items in p.get("dependencies", {}).values():
+                if not isinstance(items, dict):
+                    continue
+                for ref in items.values():
+                    if not isinstance(ref, str):
+                        continue
+                    target_handle = extract_handle_from_ref(ref)
+                    if (
+                        target_handle != h
+                        and target_handle not in target_handles
+                        and target_handle not in upstream_patterns
+                    ):
+                        round_pruned.add(h)
+                        break
+                if h in round_pruned:
+                    break
+        if not round_pruned:
+            break
+        for h in round_pruned:
+            auto_skipped.add(h)
+            del upstream_patterns[h]
+            upstream_sema_ids.pop(h, None)
+
     new_count = len(upstream_patterns.keys() - target_handles)
     update_count = len(upstream_patterns.keys() & target_handles)
-    upstream_removed = sorted(target_handles - upstream_patterns.keys())
+    # Use the unfiltered upstream set so excluded handles aren't falsely
+    # reported as "upstream removed".
+    upstream_removed = sorted(target_handles - upstream_all_handles)
 
     print(f"\nUpstream: {len(upstream_patterns)} patterns")
     print(f"Target:   {len(target_handles)} patterns")
     print(f"  New: {new_count}, Update: {update_count}")
     if excluded:
         print(f"  Excluded: {len(excluded)} handle(s) skipped per user opt-out")
+    if auto_skipped:
+        print(
+            f"⚠️  Auto-skipped {len(auto_skipped)} pattern(s) — their deps are excluded "
+            f"or absent locally:"
+        )
+        for h in sorted(auto_skipped)[:10]:
+            print(f"    {h}")
 
     try:
         sorted_handles = topological_sort(upstream_patterns)
