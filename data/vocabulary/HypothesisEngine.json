@@ -2,6 +2,10 @@
   "handle": "HypothesisEngine",
   "mechanism": "The Scientific Method as a cognitive cycle. 1. {{discover}}({{hypothesis}}): Generate a candidate {{hypothesis}} (Explanation). 2. {{trace}}({{simulation}}): Simulate implications and log the lineage. 3. {{check}}(Consistency): {{validate}} against invariants. 4. {{stigmergy}}(Result): Publish the findings to the shared context. It cycles through {{discover}}, {{trace}}, and {{check}} to formalize the scientific loop, publishing validated models via {{stigmergy}}.",
   "gloss": "Automated scientific method",
+  "failure_modes": [
+    "Confirmation bias: evidence selectively gathered to support preferred hypothesis.",
+    "Untestable hypothesis accepted into cycle without falsification criteria."
+  ],
   "_meta": {
     "tier": 3,
     "layer": "Mind",
@@ -10,9 +14,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:HypothesisEngine#mh:SHA-256:dec9b5fd325c2c8649b3447c1e927559b952451b1cea7a7429dd8f4b62366731",
-  "sema_ref": "HypothesisEngine#dec9",
-  "sema_stub": "dec9",
+  "sema_id": "sema:HypothesisEngine#mh:SHA-256:dc69956150dc53b0ecfa132dc3ab6a50008569ed82c9bd5de16ffecb9ea405d8",
+  "sema_ref": "HypothesisEngine#dc69",
+  "sema_stub": "dc69",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",

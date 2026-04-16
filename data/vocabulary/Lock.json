@@ -23,7 +23,8 @@
     "tier": 1,
     "layer": "Physics",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "caution": "Exclusive access \u2014 starvation enables denial of service."
   },
   "sema_ref": "Lock#051c",
   "sema_id": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",

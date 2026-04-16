@@ -37,9 +37,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:BeliefTracking#mh:SHA-256:65b5f43b911ac5cf11622c6e4c4fa89457541630ec72f1f387394d5ad8afff14",
-  "sema_ref": "BeliefTracking#65b5",
-  "sema_stub": "65b5",
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991",
+  "sema_ref": "BeliefTracking#e02e",
+  "sema_stub": "e02e",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {

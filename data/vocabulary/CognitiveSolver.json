@@ -20,9 +20,9 @@
       "RecursionDive"
     ]
   },
-  "sema_id": "sema:CognitiveSolver#mh:SHA-256:c6a72740ea71fb33da47f6d7e21504f2632bbc8130f6b81c82ae19e211ca4665",
-  "sema_ref": "CognitiveSolver#c6a7",
-  "sema_stub": "c6a7",
+  "sema_id": "sema:CognitiveSolver#mh:SHA-256:058767326d82df633c251cf80ac2cc91657687c8983ea2fb488df3babc47522c",
+  "sema_ref": "CognitiveSolver#0587",
+  "sema_stub": "0587",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

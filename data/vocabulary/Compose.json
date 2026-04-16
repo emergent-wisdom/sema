@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14",
-  "sema_ref": "Compose#4f8d",
-  "sema_stub": "4f8d",
+  "sema_id": "sema:Compose#mh:SHA-256:10b7e69d6548c3d79dcf5ccb356bb0196fe7535d273a885cbe6a2c20b9e73a11",
+  "sema_ref": "Compose#10b7",
+  "sema_stub": "10b7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

@@ -11,11 +11,16 @@
       "AgentSandbox",
       "CircuitBreaker",
       "SafetyCartographer"
-    ]
+    ],
+    "caution": "Escape vectors may exist in unaudited system call surfaces."
   },
-  "sema_id": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
-  "sema_ref": "Sandbox#2be7",
-  "sema_stub": "2be7",
+  "sema_id": "sema:Sandbox#mh:SHA-256:3f5a8eb27287503e220ed41cbcabea5cae2b6bbf3da93db21584fff52faafc05",
+  "sema_ref": "Sandbox#3f5a",
+  "sema_stub": "3f5a",
   "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  "sema_category": "Primitives",
+  "failure_modes": [
+    "Sandbox escape via unguarded system call or resource.",
+    "Resource exhaustion inside sandbox affects host."
+  ]
 }

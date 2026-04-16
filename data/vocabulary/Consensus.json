@@ -29,7 +29,8 @@
     "ring": 0,
     "related": [
       "Sync"
-    ]
+    ],
+    "caution": "Governance decisions susceptible to coordinated voting blocs."
   },
   "sema_id": "sema:Consensus#mh:SHA-256:7216e0e528262020ff05fa26124a8db9fcb14613fde05ddd0b2eb393958c4211",
   "sema_ref": "Consensus#7216",

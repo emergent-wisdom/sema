@@ -46,9 +46,9 @@
       }
     }
   },
-  "sema_ref": "SolverRoot#5358",
-  "sema_id": "sema:SolverRoot#mh:SHA-256:53586f98685cb166b0bed58a7e06f5aafe90f3f7d30cd9fcfd085503339fff75",
-  "sema_stub": "5358",
+  "sema_ref": "SolverRoot#19cd",
+  "sema_id": "sema:SolverRoot#mh:SHA-256:19cda5accb791e24b50b7f5a5728f1388cc42f410cd296d6b733f3af3219803b",
+  "sema_stub": "19cd",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

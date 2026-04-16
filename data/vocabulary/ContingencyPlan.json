@@ -22,9 +22,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:ContingencyPlan#mh:SHA-256:e01d0ff2e474a647a76dcae213bd0d47673f3bf3826372c4f62f313492868da4",
-  "sema_ref": "ContingencyPlan#e01d",
-  "sema_stub": "e01d",
+  "sema_id": "sema:ContingencyPlan#mh:SHA-256:61d396e94e514a1e01842936992d29b0402f1f4010b00fabd77373bf810497b5",
+  "sema_ref": "ContingencyPlan#61d3",
+  "sema_stub": "61d3",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -24,9 +24,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:b8cd4534d34515209818259fc96a079f2813f4673326b4b844d53780a3f5c4e1",
-  "sema_ref": "HypothesisLadder#b8cd",
-  "sema_stub": "b8cd",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:e739d24ffb9b7c57bf309404838cdd21a4c39d6aa48b72e6565c98a8767f9fa7",
+  "sema_ref": "HypothesisLadder#e739",
+  "sema_stub": "e739",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

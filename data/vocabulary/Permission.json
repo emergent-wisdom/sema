@@ -33,15 +33,20 @@
   },
   "mechanism": "An authorization grant allowing an {{agent}} to perform a specific {{act}} or access a {{artifact}}. The atomic unit of access control.",
   "gloss": "Authorization grant",
+  "failure_modes": [
+    "Privilege escalation: agent acquires permission beyond intended scope.",
+    "Stale grant: permission remains active after it should have expired."
+  ],
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action."
   },
-  "sema_ref": "Permission#4ee0",
-  "sema_id": "sema:Permission#mh:SHA-256:4ee0362513125ffdfa6589c4848eb078ac9906acf26057520e000fc070c8cf6d",
-  "sema_stub": "4ee0",
+  "sema_ref": "Permission#7f7d",
+  "sema_id": "sema:Permission#mh:SHA-256:7f7d69e56a0b6bd65577a7fd6e8602f5bb694a647b3493a55823de851a32676f",
+  "sema_stub": "7f7d",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

@@ -31,9 +31,9 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:05fec60033838c9772628aec8d9b3c94ff4a7ef1193b13bbc7c16a4ef8cd0a9b",
-  "sema_ref": "DepthGovernor#05fe",
-  "sema_stub": "05fe",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:e6cd4cb4f4af4a8d6ac36e685d0219f218fe1c6eb0d595432f46d9255a8bfbfb",
+  "sema_ref": "DepthGovernor#e6cd",
+  "sema_stub": "e6cd",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

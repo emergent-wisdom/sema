@@ -30,9 +30,9 @@
     ],
     "ring": 0
   },
-  "sema_ref": "Retry#07b7",
-  "sema_id": "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091",
-  "sema_stub": "07b7",
+  "sema_ref": "Retry#d53d",
+  "sema_id": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
+  "sema_stub": "d53d",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

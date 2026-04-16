@@ -12,11 +12,12 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "caution": "Verify rollback strategy exists before committing."
   },
-  "sema_ref": "Deploy#2adf",
-  "sema_id": "sema:Deploy#mh:SHA-256:2adf31981783f19de75dfdd1ebf2dab527b06adf703a61e649cdc28b99760815",
-  "sema_stub": "2adf",
+  "sema_ref": "Deploy#28c3",
+  "sema_id": "sema:Deploy#mh:SHA-256:28c37d9286aa6d4ac9864f9089f3ca3c80cf82622e5258bd97bbfaa74941ffe8",
+  "sema_stub": "28c3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

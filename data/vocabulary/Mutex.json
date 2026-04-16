@@ -24,7 +24,8 @@
     "tier": 2,
     "layer": "Physics",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "caution": "Exclusive access \u2014 starvation enables denial of service."
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",

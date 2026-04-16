@@ -36,9 +36,9 @@
     "category": "Protocols",
     "tier": 1
   },
-  "sema_ref": "Taper#c588",
-  "sema_id": "sema:Taper#mh:SHA-256:c58849efe92d44ef8e3b6b173326df1926ad87bbd467b919f64734e44f208607",
-  "sema_stub": "c588",
+  "sema_ref": "Taper#7a25",
+  "sema_id": "sema:Taper#mh:SHA-256:7a252081d8490c85cb2faab1255068a260e652319bab278b2d4d11e98bc9b1a4",
+  "sema_stub": "7a25",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

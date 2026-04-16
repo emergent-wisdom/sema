@@ -2,6 +2,9 @@
   "handle": "ReversibilityCheck",
   "mechanism": "A convenience wrapper for a {{check}} configured with the {{reversibility}} condition. Halts execution if the action is deemed irreversible (Type 1 decision) without proper authorization. It applies the {{check}} primitive to the {{reversibility}} condition, ensuring the {{world_reversible}} invariant holds, mandating {{human_approve}} if the action is irreversible.",
   "gloss": "Reversibility Audit (Alias for Check(Reversibility))",
+  "failure_modes": [
+    "False confidence: check reports reversible but undo path fails under load or changed state."
+  ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
@@ -10,9 +13,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:574b1afaee6cd675d04e2b9e3484ddfba1490b19121c881832865d3d31a8a2ee",
-  "sema_ref": "ReversibilityCheck#574b",
-  "sema_stub": "574b",
+  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:9cd69a4237e0e505309795a879387b04d42a0e21d43a4177d8552ec844ef6157",
+  "sema_ref": "ReversibilityCheck#9cd6",
+  "sema_stub": "9cd6",
   "signature": [
     "Check(Reversibility)"
   ],

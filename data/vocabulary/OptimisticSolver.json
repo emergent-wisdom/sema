@@ -20,9 +20,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "OptimisticSolver#7ba9",
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:7ba9f98b3bd843b0d5c7c804c4573350b23f4e4090f3df235eda433ecb39ed33",
-  "sema_stub": "7ba9",
+  "sema_ref": "OptimisticSolver#5a7d",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:5a7d29708e5e67b7c251a19a26511ac913de2aae73bcd9a087cc41868ddfbada",
+  "sema_stub": "5a7d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

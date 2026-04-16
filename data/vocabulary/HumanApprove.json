@@ -31,7 +31,8 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Verification",
-    "ring": 1
+    "ring": 1,
+    "caution": "Bypassing removes the human-in-the-loop safety boundary."
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",

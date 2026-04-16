@@ -24,9 +24,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:a60668b9460c39064cec2e6b4a87e6f4d92e4164927ba453f3cf4ecdb7622f43",
-  "sema_ref": "MetaPrompt#a606",
-  "sema_stub": "a606",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:7a3a4dd5ba4513c3636d3d018e632f7503cc77e0d0bbb946975e00ba8257be92",
+  "sema_ref": "MetaPrompt#7a3a",
+  "sema_stub": "7a3a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

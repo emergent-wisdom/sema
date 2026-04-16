@@ -24,9 +24,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DataMinimization#mh:SHA-256:0b54a9716e554f7198c94df50c7d6294fd772b8a939e5ac49f82d5c70eedb8fc",
-  "sema_ref": "DataMinimization#0b54",
-  "sema_stub": "0b54",
+  "sema_id": "sema:DataMinimization#mh:SHA-256:ea9c44501d3df27b306df5e0232df276b47b3a2d48d3e6b5c32590a15867e653",
+  "sema_ref": "DataMinimization#ea9c",
+  "sema_stub": "ea9c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

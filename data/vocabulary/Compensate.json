@@ -31,9 +31,9 @@
       "Retry"
     ]
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
-  "sema_ref": "Compensate#81a5",
-  "sema_stub": "81a5",
+  "sema_id": "sema:Compensate#mh:SHA-256:269dac24b3d83ede5ad2419fd9d78e0e0368090c677bbd272880b1b8e6921af3",
+  "sema_ref": "Compensate#269d",
+  "sema_stub": "269d",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

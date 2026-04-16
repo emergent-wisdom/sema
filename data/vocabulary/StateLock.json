@@ -2,18 +2,24 @@
   "handle": "StateLock",
   "mechanism": "A coordination pattern where two {{actor}}s temporarily 'fuse' a subset of their writable {{state}}. During the {{lock}}, changes require a cryptographic signature from both. Contention triggers {{backoff}} and {{cooldown}}.",
   "gloss": "Atomic coordination via temporary state fusion",
+  "failure_modes": [
+    "Deadlock: both parties wait for each other indefinitely.",
+    "Livelock: lock acquired and released rapidly, denying access to others.",
+    "Premature dissolution: state auto-dissolves while legitimate work is in progress."
+  ],
   "_meta": {
     "layer": "Physics",
     "category": "Time",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation."
   },
   "signature": [
     "Lock(State)"
   ],
-  "sema_ref": "StateLock#b91b",
-  "sema_id": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a",
-  "sema_stub": "b91b",
+  "sema_ref": "StateLock#774b",
+  "sema_id": "sema:StateLock#mh:SHA-256:774b674f80993c49b0a348c384397f80027af319faa3440813d9d53b3eaa6a14",
+  "sema_stub": "774b",
   "sema_layer": "Physics",
   "sema_category": "Time",
   "dependencies": {

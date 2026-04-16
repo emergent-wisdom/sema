@@ -25,9 +25,9 @@
     "category": "Economics",
     "ring": 2
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:ae2df3c960792c30d022bff87745721b39d9384ddc511993d610b68b6b526183",
-  "sema_ref": "LivedProof#ae2d",
-  "sema_stub": "ae2d",
+  "sema_id": "sema:LivedProof#mh:SHA-256:9d1be472d81d09832c2ed1a4ab1c6af67ec60186fbf3f14273376f8e1a49028f",
+  "sema_ref": "LivedProof#9d1b",
+  "sema_stub": "9d1b",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

@@ -42,9 +42,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
-  "sema_ref": "TimeWarpLog#c609",
-  "sema_stub": "c609",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:d9386c726ba1c96bfae61549b82b16d1137d59b1f2129a19a24568f3117a4720",
+  "sema_ref": "TimeWarpLog#d938",
+  "sema_stub": "d938",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

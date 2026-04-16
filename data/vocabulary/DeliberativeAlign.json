@@ -39,9 +39,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:8ba23d93d396cd97abdfc7464d88f8e30d6bd4346e7614a7677bd500caa9cd05",
-  "sema_ref": "DeliberativeAlign#8ba2",
-  "sema_stub": "8ba2",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:3742166237671a517aa4677a0372452aa488fa7536a10df57fec931090e9038b",
+  "sema_ref": "DeliberativeAlign#3742",
+  "sema_stub": "3742",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
