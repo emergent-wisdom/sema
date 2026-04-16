@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "semahash"
-version = "0.1.17"
+version = "0.1.18"
 description = "Content-addressed semantics for multi-agent coordination. When the hash is the word."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -57,6 +57,12 @@ Paper = "https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf"
 
 [project.scripts]
 sema = "sema.cli.main:main"
+
+[tool.hatch.build]
+artifacts = [
+  "src/sema/server/static/assets/**",
+  "src/sema/server/static/__spa-fallback.html",
+]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/sema"]
