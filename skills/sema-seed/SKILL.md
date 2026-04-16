@@ -68,7 +68,7 @@ Process:
 
    *"At first this looks like a `Loop#fb2e` of `Observe#xxxx` against `Decay#a1d4` — but the loop here doesn't restore state, it accumulates a `Trace#9057` that itself becomes the `Signal#f39d`. That's a different mechanism than `Heartbeat#7f88`, which just confirms presence..."*
 
-   *"The `Tension#dd06` here is between `Care#cdfa` (non-transactional maintenance) and `OpportunityCost#xxxx` (the work foregone). Most agents collapse this to one side. The word names the holding of both — a `TensionHold#xxxx`-like posture but applied to..."*
+   *"The `Tension#5493` here is between `Care#cdfa` (non-transactional maintenance) and `OpportunityCost#xxxx` (the work foregone). Most agents collapse this to one side. The word names the holding of both — a `TensionHold#xxxx`-like posture but applied to..."*
 
 4. Each paragraph should compose handles, compare mechanisms, surface tensions, identify what existing patterns get right and wrong about the concept.
 

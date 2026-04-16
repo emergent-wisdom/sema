@@ -157,7 +157,7 @@ read-path for "give me the definition behind this inline ref."
 
 ```bash
 sema show <Handle>
-sema show 'StateLock#b91b'
+sema show 'StateLock#774b'
 ```
 
 ### skeleton - Graph Overview
