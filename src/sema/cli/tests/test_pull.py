@@ -854,5 +854,124 @@ class TestPullEdgeCases(unittest.TestCase):
         self.assertTrue(result, "Pull should skip identical patterns via fast-path")
 
 
+class TestTaxonomyOverlay(unittest.TestCase):
+    """The paper's 'Mutable Overlay' semantics: upstream owns layer/category/tier/ring;
+    user owns caution/related. Pull must propagate upstream taxonomy reorganizations
+    even though they don't change the sema_id (since _meta is unhashed)."""
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.upstream_db = os.path.join(self.temp_dir, "upstream.db")
+        self.user_db = os.path.join(self.temp_dir, "user.db")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _add(self, db, handle, mechanism="Test", **kwargs):
+        store = GraphStore(db)
+        pattern = {
+            "handle": handle,
+            "mechanism": mechanism,
+            "gloss": kwargs.get("gloss", f"Gloss for {handle}"),
+            "_meta": {
+                "layer": kwargs.get("layer", "Infrastructure"),
+                "category": kwargs.get("category", "Primitives"),
+                "ring": kwargs.get("ring", 0),
+                "tier": kwargs.get("tier", 1),
+                **kwargs.get("meta_extra", {}),
+            },
+        }
+        store.add_pattern(pattern)
+
+    def _pattern_meta(self, db, handle):
+        store = GraphStore(db)
+        for _, data in store.get_nodes_by_type(NodeType.PATTERN):
+            if data.get("text") == handle:
+                meta = data.get("metadata", {})
+                p = meta.get("pattern", {}) or {}
+                return p.get("_meta", {})
+        return {}
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_upstream_taxonomy_change_propagates_despite_same_hash(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        """Upstream re-categorizes a pattern (Physics → Society). Same content,
+        same sema_id. Pull must NOT skip via fast-path — it must propagate
+        the new layer/category to the user's DB."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        # Both DBs start with Foo as Physics/Time
+        self._add(self.upstream_db, "Foo", layer="Physics", category="Time")
+        self._add(self.user_db, "Foo", layer="Physics", category="Time")
+
+        # Upstream re-categorizes to Society/Protocols (sema_id unchanged)
+        self._add(self.upstream_db, "Foo", layer="Society", category="Protocols")
+
+        result = update_db()
+        self.assertTrue(result)
+
+        meta = self._pattern_meta(self.user_db, "Foo")
+        self.assertEqual(
+            meta.get("layer"), "Society", "User's layer must reflect upstream re-categorization"
+        )
+        self.assertEqual(meta.get("category"), "Protocols")
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_user_caution_survives_upstream_taxonomy_update(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        """Combined: upstream changes layer; user has local caution. After pull:
+        - layer updated from upstream
+        - caution preserved from user
+        """
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Foo", layer="Mind", category="Strategy")
+        self._add(
+            self.user_db,
+            "Foo",
+            layer="Mind",
+            category="Strategy",
+            meta_extra={"caution": "user note"},
+        )
+        self._add(self.upstream_db, "Foo", layer="Society", category="Protocols")
+
+        update_db()
+
+        meta = self._pattern_meta(self.user_db, "Foo")
+        self.assertEqual(meta.get("layer"), "Society")
+        self.assertEqual(meta.get("caution"), "user note")
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_user_layer_override_loses_to_upstream(self, mock_bundled_check, mock_bundled, mock_db):
+        """If a user manually changed _meta.layer locally, pull replaces it
+        with upstream's value. Layer is upstream-owned; only caution/related
+        are user-owned. Documents the intentional behavior."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Foo", layer="Society", category="Protocols")
+        self._add(self.user_db, "Foo", layer="Mind", category="Strategy")  # user moved it
+
+        update_db()
+
+        meta = self._pattern_meta(self.user_db, "Foo")
+        self.assertEqual(
+            meta.get("layer"), "Society", "User's local layer override must be reverted to upstream"
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

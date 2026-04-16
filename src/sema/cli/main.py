@@ -540,14 +540,19 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
             print(f"User-only patterns (no longer in upstream): {len(upstream_removed)}")
         return True
 
-    # Atomicity via file-level backup/restore (simpler than weaving a SQLite
-    # transaction through the 13 connection sites in graph_store, and matches
-    # what scripts/rebuild_vocabulary.py does). On any failure during the
-    # loop, we restore the DB from this backup.
-    import shutil
+    # Atomicity via SQLite's native backup API. Unlike `shutil.copy2`, this
+    # safely captures DB state regardless of WAL mode (the WAL file would
+    # otherwise leave a torn snapshot that, when restored, would replay over
+    # the rolled-back DB and corrupt the Merkle DAG). On any failure during
+    # the loop, we restore by copying the backup back via the same API.
+    import os
+    import sqlite3 as _sqlite3
 
     backup_path = target_db + ".pull_bak"
-    shutil.copy2(target_db, backup_path)
+    if os.path.exists(backup_path):
+        os.remove(backup_path)
+    with _sqlite3.connect(target_db) as src_conn, _sqlite3.connect(backup_path) as bak_conn:
+        src_conn.backup(bak_conn)
 
     added = []
     updated = []
@@ -556,21 +561,37 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
     cascaded_user = set()
 
     try:
+        # Field-level merge policy for the unhashed _meta block:
+        # - User OWNS these keys: caution, related (their personal annotations)
+        # - Upstream OWNS everything else: layer, category, tier, ring, supersedes
+        #   (taxonomy reorganizations propagate to users — paper §3.2 "Mutable Overlay")
+
         for handle in sorted_handles:
             pattern = upstream_patterns[handle]
             existed = handle in target_handles
 
-            # Fast-path: if upstream and target sema_ids match exactly,
-            # nothing has changed — skip the mint entirely.
-            if existed and upstream_sema_ids.get(handle) == target_sema_ids.get(handle):
-                skipped.append(handle)
-                continue
-
-            # Deep-merge user's local _meta over upstream defaults.
-            # User-set keys win; upstream provides anything the user didn't override.
+            # Build merged _meta: start with upstream, layer user-owned keys on top.
+            # `related` is a list — union, preserving order (upstream first).
+            merged_meta = dict(pattern.get("_meta", {}))
             if existed and target_local_meta.get(handle):
-                merged_meta = {**pattern.get("_meta", {}), **target_local_meta[handle]}
-                pattern = {**pattern, "_meta": merged_meta}
+                local = target_local_meta[handle]
+                if "caution" in local:
+                    merged_meta["caution"] = local["caution"]
+                if "related" in local and isinstance(local["related"], list):
+                    upstream_related = merged_meta.get("related", []) or []
+                    merged_meta["related"] = list(
+                        dict.fromkeys(list(upstream_related) + list(local["related"]))
+                    )
+            pattern = {**pattern, "_meta": merged_meta}
+
+            # Fast-path: skip mint only if BOTH the semantic hash matches
+            # AND the merged _meta equals the stored _meta. This catches
+            # taxonomy-only changes (layer/category) — they don't change
+            # the sema_id but DO need to update the IN_CATEGORY edges.
+            if existed and upstream_sema_ids.get(handle) == target_sema_ids.get(handle):
+                if merged_meta == target_local_meta.get(handle, {}):
+                    skipped.append(handle)
+                    continue
 
             result = mint_pattern(pattern, target_store, skip_cascade=True)
             if result.success:
@@ -593,8 +614,11 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
                     cascaded_user.add(dep)
 
     except Exception as e:
-        # Roll back: restore the DB from backup
-        shutil.move(backup_path, target_db)
+        # Roll back: restore the DB from backup via SQLite's backup API
+        # (safe with WAL mode, unlike shutil.move).
+        with _sqlite3.connect(backup_path) as bak_conn, _sqlite3.connect(target_db) as dst_conn:
+            bak_conn.backup(dst_conn)
+        os.remove(backup_path)
         print(f"\n❌ Pull aborted, target DB restored from backup: {e}")
         if failed:
             for h, errs in failed[:5]:
@@ -602,8 +626,6 @@ def update_db(source: str = None, dry_run: bool = False, verify: bool = False):
         return False
 
     # Success path — drop the backup
-    import os
-
     os.remove(backup_path)
 
     # Reporting

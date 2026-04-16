@@ -1013,23 +1013,36 @@ class GraphStore:
         return result
 
     def merge_nodes(self, node_id_keep: str, node_id_remove: str) -> bool:
-        """Merge two nodes, redirecting all edges to the kept node."""
+        """Merge two nodes, redirecting all edges to the kept node.
+
+        Multi-edge aware: redirects every parallel edge type, not just one.
+        """
         if node_id_keep not in self.graph or node_id_remove not in self.graph:
             return False
 
         for pred in list(self.graph.predecessors(node_id_remove)):
-            edge_data = self.graph.edges[pred, node_id_remove]
-            if not self.graph.has_edge(pred, node_id_keep):
-                self.create_edge(
-                    pred, node_id_keep, edge_data["edge_type"], edge_data.get("metadata")
-                )
+            for edge_data in self._edges_between(pred, node_id_remove):
+                e_type = edge_data.get("edge_type")
+                if e_type and not self.has_edge_of_type(pred, node_id_keep, e_type):
+                    self.create_edge(
+                        pred,
+                        node_id_keep,
+                        e_type,
+                        edge_data.get("metadata"),
+                        alias=edge_data.get("alias"),
+                    )
 
         for succ in list(self.graph.successors(node_id_remove)):
-            edge_data = self.graph.edges[node_id_remove, succ]
-            if not self.graph.has_edge(node_id_keep, succ):
-                self.create_edge(
-                    node_id_keep, succ, edge_data["edge_type"], edge_data.get("metadata")
-                )
+            for edge_data in self._edges_between(node_id_remove, succ):
+                e_type = edge_data.get("edge_type")
+                if e_type and not self.has_edge_of_type(node_id_keep, succ, e_type):
+                    self.create_edge(
+                        node_id_keep,
+                        succ,
+                        e_type,
+                        edge_data.get("metadata"),
+                        alias=edge_data.get("alias"),
+                    )
 
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
@@ -1085,17 +1098,14 @@ class GraphStore:
         if child_type != parent_type:
             raise ValueError(f"Type mismatch: child is {child_type}, parent is {parent_type}")
 
-        # Remove existing parent edge if any
+        # Remove existing PARENT_OF edge(s) if any (multi-edge aware)
         for pred in list(self.graph.predecessors(child_id)):
-            edge_data = self.graph.edges.get((pred, child_id), {})
-            if edge_data.get("edge_type") == EdgeType.PARENT_OF:
+            removed_ids = self.remove_edges_of_type(pred, child_id, EdgeType.PARENT_OF)
+            for eid in removed_ids:
                 conn = sqlite3.connect(self.db_path)
-                conn.execute(
-                    "DELETE FROM edges WHERE source_id = ? AND target_id = ?", (pred, child_id)
-                )
+                conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
                 conn.commit()
                 conn.close()
-                self.graph.remove_edge(pred, child_id)
 
         # Create new parent -> child edge
         self.create_edge(parent_id, child_id, EdgeType.PARENT_OF)
@@ -1108,8 +1118,7 @@ class GraphStore:
 
         children = []
         for succ in self.graph.successors(node_id):
-            edge_data = self.graph.edges.get((node_id, succ), {})
-            if edge_data.get("edge_type") == EdgeType.PARENT_OF:
+            if self.has_edge_of_type(node_id, succ, EdgeType.PARENT_OF):
                 children.append((succ, self.graph.nodes[succ]))
         return children
 
@@ -1119,8 +1128,7 @@ class GraphStore:
             return None
 
         for pred in self.graph.predecessors(node_id):
-            edge_data = self.graph.edges.get((pred, node_id), {})
-            if edge_data.get("edge_type") == EdgeType.PARENT_OF:
+            if self.has_edge_of_type(pred, node_id, EdgeType.PARENT_OF):
                 return (pred, self.graph.nodes[pred])
         return None
 
