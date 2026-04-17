@@ -11,17 +11,25 @@ Entries prefixed with `~` are proposed moves (current placement differs).
 
 ---
 
-## Physics (9)  
+## Physics (17)  
 _Moves in: 0_
 
+- Attractor — state-space basin-of-attraction — substrate of dynamical systems
 - CausalBarrier — buffers until causal dependencies met — causal-cone physics
 - Causation — directed causal edge obtains regardless of any author — a relationship in reality
+- Conservation — invariant quantity under closed-system transformations — substrate law
 - Dampen — passive attenuation models a physical damping property
 - Decay — attenuation of untended value is a physical-law analogue
+- Distance — metric-axiom function d(x,y) — substrate for proximity in any space
 - Entropy — measure of disorder is a given property, not authored
+- Equilibrium — stationary state under own dynamics — substrate property
+- Gradient — directional rate of change of a scalar field — substrate for flow and climbing
 - Lock — mutual exclusion is a substrate atomicity primitive (kernel/hardware)
+- Measurement — substrate act of extracting info — in general perturbs the measured system
 - Mutex — specialised Lock — same substrate-atomicity floor
+- MutualInformation — substrate information measure of shared entropy between variables
 - Noise — irrelevant information exists whether or not anyone designs it
+- PhaseTransition — substrate threshold-triggered structural reorganization
 - Reversibility — condition on actions — substrate property, not authored
 
 ## Infrastructure (151)  

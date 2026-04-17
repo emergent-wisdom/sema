@@ -1,0 +1,26 @@
+{
+  "handle": "Attractor",
+  "mechanism": "A region of a dynamical system's state space that trajectories converge toward from a surrounding basin of initial conditions. Once a trajectory enters the basin of attraction, the system's dynamics pull it toward the attractor and confine it thereafter (absent external perturbation). Attractors may be point-like (fixed points \u2014 a stable {{equilibrium}}), periodic (limit cycles), or strange (chaotic \u2014 bounded but non-repeating). Substrate property: every dissipative dynamical system has attractors; the structure of attractors and their basins is what the system's dynamics is. Downstream patterns use attractor-and-basin reasoning to predict where coordination processes will settle and which initial conditions route to which outcome.",
+  "gloss": "A state-space region dynamics pull toward \u2014 fixed points, limit cycles, or chaotic attractors",
+  "invariants": [
+    "Convergence: trajectories starting in the basin of attraction approach the attractor in the limit.",
+    "Confinement: trajectories that enter the attractor remain within it absent external perturbation.",
+    "Basin: each attractor has an associated basin of attraction; disjoint attractors partition the set of initial conditions whose trajectories converge."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "equilibrium": "sema:Equilibrium#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "sema_id": "sema:Attractor#mh:SHA-256:487f2045fc607c43b7168549c6a8cf0eb02d269be82e5625beb6e5d5dc69169d",
+  "sema_ref": "Attractor#487f",
+  "sema_stub": "487f"
+}

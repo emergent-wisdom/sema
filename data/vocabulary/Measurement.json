@@ -1,0 +1,26 @@
+{
+  "handle": "Measurement",
+  "mechanism": "The substrate act of extracting information about a system's {{state}} \u2014 an operation that, in general, *changes the state being measured*. Distinct from the cognitive `Observe` primitive: Measurement is the substrate-level phenomenon, Observe is the agent-level process. In quantum systems, measurement collapses superposition. In distributed systems, observing a clock at node A introduces latency and ambiguity about the clock's value elsewhere. In classical measurement, even reading a variable in a concurrent system can race with writers. The substrate property is that observation is never free \u2014 it takes resources, it takes time, and it perturbs the measured system. The degree of perturbation is domain-dependent (negligible for a thermometer in a large water tank; total for a measurement on a qubit); the substrate fact of perturbation is universal.",
+  "gloss": "The substrate act of extracting information from a system \u2014 in general, changes the state being measured",
+  "invariants": [
+    "Perturbation: measurement, in general, changes the state of the measured system. The degree varies by domain; the fact does not.",
+    "Cost: measurement requires resources (time, energy, channel capacity) \u2014 there is no free observation.",
+    "Distinct from `Observe`: Measurement is the substrate phenomenon; `Observe` is the cognitive process an agent performs that may use Measurement beneath."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  },
+  "sema_id": "sema:Measurement#mh:SHA-256:bf4844cee68fef7e77a21adcd8219afd0bbfdfcfa25ffa756694e536b4501362",
+  "sema_ref": "Measurement#bf48",
+  "sema_stub": "bf48"
+}
