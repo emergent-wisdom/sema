@@ -24,7 +24,7 @@ _Moves in: 0_
 - Noise — irrelevant information exists whether or not anyone designs it
 - Reversibility — condition on actions — substrate property, not authored
 
-## Infrastructure (143)  
+## Infrastructure (145)  
 _Moves in: 19_
 
 - Act — root primitive for state modification; executed mechanically
@@ -103,6 +103,7 @@ _Moves in: 19_
 - MonitorReport — telemetry artifact
 - Nature — ontological origin classification — Trait
 - NegativeProof — cryptographic non-membership proof — primitive
+- OathBind — cryptographic self-binding to a ruleset — one agent commits; enforcement is code/substrate, not another agent
 - Observe — active state-perception primitive
 - Option — discrete actionable alternative — data
 - Outcome — realized state — data
@@ -119,6 +120,7 @@ _Moves in: 19_
 - Prompt — structured instruction — data
 - Proposal — suggested course-of-action — data
 - `~` **ProtoPack** *(was Society/Protocols)* — prototype verification artifact — data
+- Protocol — communication-standard spec — a rules+formats artifact; one agent can read without any counterparty
 - Prototype — testable early model — data
 - Queue — ordered container with discipline — data
 - Quorum — threshold-check primitive
@@ -354,8 +356,8 @@ _Moves in: 2_
 - WhyClimb — recursive problem abstraction
 - WorldReversible — single-agent design constraint for invertibility
 
-## Society (113)  
-_Moves in: 4_
+## Society (111)  
+_Moves in: 2_
 
 - AcceptSpec — contract between producer and verifier — ≥2 roles
 - AdversarialProof — adversarial search — multi-party threat model
@@ -416,7 +418,6 @@ _Moves in: 4_
 - ModestClaim — epistemic posture between speaker + audience
 - MonotonicCounter — distributed strictly-increasing value
 - Nucleate — emergent working groups from activity density
-- `~` **OathBind** *(was Infrastructure/Verification)* — cryptographic ruleset binding — actor + enforcer
 - OntologyHandshake — exchange definition hashes — two parties
 - OptimisticSolver — parallel-runtime solver via AtomicBid + Actor Model
 - Oracle — signed data source — signer + consumer
@@ -429,7 +430,6 @@ _Moves in: 4_
 - PromiseGraph — trust via recursive promise graph
 - PromptChain — sequential LLM calls with validation — between stages
 - PropheticQuorum — align predictions before votes — multi-agent
-- `~` **Protocol** *(was Infrastructure/Data Structures)* — communication standard between agents
 - QuorumPulse — density-triggered synchronization
 - Rally — ad-hoc multi-party coordination
 - RealizationProtocol — orchestrates request through multi-role pipeline

@@ -611,15 +611,18 @@ This adds PURE as the **twenty-first new pattern**: library count 427 − 4 reti
 
     **Infrastructure → Mind (1)**: `Budget` — the discipline of respecting a resource ceiling is cognitive; the arithmetic of tracking it is Infrastructure but the pattern names the discipline. *Borderline — flagged for Gemini review.*
 
-    **Infrastructure → Society (2)**: `Protocol` (communication standard *between* agents by definition); `OathBind` (actor + enforcer structurally required).
+    **Post-hoc reasoning corrections** (retractions on inspection):
+    - `TriGate`: initially flagged as Society on the basis that PURECheck uses it at "governance seams." Corrected: application context is not mechanism. TriGate is a three-state authored gate primitive (Red/Yellow/Green), mechanically a threshold classifier with N=1 — belongs in **Infrastructure/Primitives** alongside Gate.
+    - `Protocol`: initially flagged Infrastructure → Society because the gloss says "communication standard between agents." Retracted on inspection: the pattern is the *spec* (rules + formats), a Noun/data artifact. One agent can read a Protocol's spec without any counterparty. HTTP, TLS, OAuth, MCP, hardware bus protocols — the *spec* is general; *using* the protocol requires ≥2 agents but that's application, not mechanism. → **Stays Infrastructure/Data Structures**.
+    - `OathBind`: initially flagged Infrastructure → Society because I read "actor + enforcer." Retracted on inspection: the enforcement is code/substrate (cryptographic rule-set binding runs automatically once committed). One agent can oath-bind to a rule-set they themselves or the substrate enforces — Ulysses pact at protocol level. → **Stays Infrastructure/Verification**.
 
-    **Post-hoc reasoning correction — `TriGate`**: initially flagged as Society on the basis that PURECheck uses it at "governance seams." Corrected: application context is not mechanism. TriGate is a three-state authored gate primitive (Red/Yellow/Green), mechanically a threshold classifier with N=1 — belongs in **Infrastructure/Primitives** alongside Gate. Added as the 25th proposed move.
+    Both Protocol and OathBind are good examples of the drift-to-Society trap: "between agents" in a gloss often describes application context, not mechanism requirement.
 
-    **Projected distribution after applying all 25**:
+    **Projected distribution after applying the 23 remaining moves**:
     - Physics: 23 → **9** (substantial contraction; Physics becomes pure substrate)
-    - Infrastructure: 127 → **143** (+16)
+    - Infrastructure: 127 → **145** (+18)
     - Mind: 181 → **179** (net −2, as some Mind patterns are mechanical data)
-    - Society: 113 → **113** (net −0; Society gains StateLock/Stigmergy/Protocol/OathBind, loses FrameSpec/ProtoPack/ManifestPlanning/Budget contributors)
+    - Society: 113 → **111** (net −2; Society loses FrameSpec/ProtoPack/ManifestPlanning; gains StateLock/Stigmergy)
 
     These moves are staged for Round 7 review before application. The annotated layer-assignment.md is the diff-able artifact.
 
