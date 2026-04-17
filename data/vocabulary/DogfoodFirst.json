@@ -28,15 +28,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 0
   },
   "sema_id": "sema:DogfoodFirst#mh:SHA-256:25387b1cb9c36907f32775517ffb22e2370c126d85c8db8a82b611ebaed142b8",
   "sema_ref": "DogfoodFirst#2538",
   "sema_stub": "2538",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",

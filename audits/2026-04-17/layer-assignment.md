@@ -1,461 +1,473 @@
-# Layer assignment — 2026-04-17
+# Layer assignment — 2026-04-17 (annotated)
 
-Pattern handles grouped by current layer. Scan for misplacements: does each handle
-belong where it sits, per the tight definitions in `docs/core/philosophy.md §3.1`?
+Each pattern classified by the tight test in `docs/core/philosophy.md §3.1`.
+Entries prefixed with `~` are proposed moves (current placement differs).
 
-## Physics (23)
+**Tight test**:
+- *Physics*: obtains regardless of any author (substrate)
+- *Infrastructure*: authored, no cognition required to execute
+- *Mind*: cognition sufficient — single agent can execute
+- *Society*: mechanism structurally requires ≥2 independent parties
 
-Branch
-CausalBarrier
-Causation
-Compensate
-Compress
-Cooldown
-Dampen
-Decay
-Entropy
-EntropyPump
-Gate
-Heartbeat
-Hysteresis
-Lock
-Mutex
-Noise
-ReAttempt
-Reversibility
-Route
-Sign
-StateAudit
-StateLock
-Throttle
+---
 
-## Infrastructure (127)
+## Physics (9)  
+_Moves in: 0_
 
-Act
-Actor
-Aesthetics
-Aggregate
-Anomaly
-Artifact
-Assessment
-Assumption
-Audit
-AuditTrail
-Backoff
-Ballot
-Belief
-Boolean
-Break
-Budget
-Card
-Care
-Category
-Chain
-Check
-CircuitBreaker
-CognitiveBias
-Combine
-CompatibilityCheck
-ConceptAnchor
-Condition
-Constraint
-Context
-Contract
-Correlation
-Criteria
-Critique
-Cyclic
-DAG
-Datum
-Event
-Exception
-ExplainBeacon
-FailClosed
-FailureTrace
-Feedback
-FeedbackSignal
-Forest
-Goal
-Greet
-Hierarchy
-HumanApprove
-Hypothesis
-IdempotentWrite
-Identity
-Incongruity
-InputGuard
-Judge
-Ledger
-Loop
-MECE
-MechanisticDesignProposal
-Message
-Meta
-Metric
-Mode
-Monitor
-MonitorReport
-Nature
-NegativeProof
-OathBind
-Observe
-Option
-Outcome
-OutputGuard
-Overlap
-Parallel
-PerformanceSignal
-Permission
-Plan
-Probability
-Probe
-Problem
-ProblemSpace
-Prompt
-Proposal
-Protocol
-Prototype
-Queue
-Quorum
-Resource
-Result
-Risk
-RuleSet
-Sandbox
-Score
-ScoringFunction
-Search
-Select
-Sequence
-Shard
-Signal
-Skeleton
-Snapshot
-Solution
-Spec
-SpotAudit
-State
-StateSnapshot
-StateTransition
-Status
-Step
-Stream
-Subject
-Summary
-System
-Task
-TaskLifecycle
-Tension
-TimeWarpLog
-ToolInvoke
-Topology
-Trace
-Transition
-Tree
-Validate
-Value
-Variable
-Vector
-Warmup
-Work
+- CausalBarrier — buffers until causal dependencies met — causal-cone physics
+- Causation — directed causal edge obtains regardless of any author — a relationship in reality
+- Dampen — passive attenuation models a physical damping property
+- Decay — attenuation of untended value is a physical-law analogue
+- Entropy — measure of disorder is a given property, not authored
+- Lock — mutual exclusion is a substrate atomicity primitive (kernel/hardware)
+- Mutex — specialised Lock — same substrate-atomicity floor
+- Noise — irrelevant information exists whether or not anyone designs it
+- Reversibility — condition on actions — substrate property, not authored
 
-## Mind (178)
+## Infrastructure (142)  
+_Moves in: 18_
 
-Abduction
-AdversarialSteel
-Agent
-AnalogyBridge
-AntifragileInversion
-BackwardChain
-BaseRateInclude
-BayesUpdate
-BeamSearch
-BeliefTracking
-Bisect
-BreadthGovernor
-Bubble
-Build
-Cache
-CapacityPressure
-ChainOfThought
-ChunkMerge
-CiteBack
-CognitiveEcho
-CollaborativeWritingProtocol
-CommitmentDevice
-Compare
-Compose
-ComputeBudget
-ConceptBlend
-ConceptualDecomposition
-ConfidenceCalibrate
-ConfirmationBlock
-ConstraintFirst
-ConstructOntology
-ContextCompress
-ContextFirst
-ContingencyPlan
-Creative
-CreativeBlend
-Crystallize
-CurriculumReplay
-Decision
-Decompose
-DecompositionGate
-Deduction
-Deep
-DeepResearch
-Defer
-DepthGovernor
-DesignArchitect
-Dialectic
-DiscoveryProtocol
-Eliminate
-EmpiricalTest
-EpistemicCalibrate
-EpistemicROI
-Estimate
-EthicalReasoningProtocol
-EventReact
-Expansive
-ExperienceSharding
-Experiment
-ExploreExploit
-ExtendedThinking
-Falsification
-Fermi
-FirstPrinciples
-FractalIntelligence
-FrameError
-Generalize
-GraphOfThought
-HackDetect
-HeuristicSnap
-HindsightBlock
-HolographicShard
-HumanEmulatorProtocol
-HypothesisEngine
-HypothesisLadder
-Induction
-Interpret
-Invert
-Jester
-Kairos
-LatentAttachment
-LatentWander
-LateralOptimization
-LayeredCheck
-LeastToMost
-LivedProof
-LocalizedLearning
-MarginalValueRule
-MentalSim
-MetaCheck
-MetaPrompt
-MetaProtocols
-NoiseInjection
-NormCheck
-NormativeJudge
-Novelty
-OODA
-OntologyAdapt
-OpportunityCost
-OptimalStop
-Optimize
-PURE
-PUREBrainstorming
-PURECheck
-PUREOptimization
-Parallelize
-ParetoFront
-Parsimony
-PathwayMemory
-PatternDiscovery
-PerspectiveEnsemble
-PolymorphicSolver
-PreMortem
-Prioritize
-ProblemFramer
-ProphetFanOut
-Proprioception
-Rank
-ReAct
-Realizable
-Reason
-RecursionDive
-RecursiveRootCause
-RedTeam
-Refine
-Reflex
-Reflexion
-Reframe
-RegimeSense
-RegretMinimization
-RepresentationSwap
-RequestFraming
-RetrievalAugment
-Retry
-RigorousSolver
-Roadmap
-RootSolver
-SacrificialProbe
-Satisfice
-ScopeFreeze
-Scratchpad
-SelfConsistency
-SelfReminder
-SemanticTabu
-Silence
-Simulation
-SimulationTrace
-SkeletonOfThought
-SocraticLoop
-Solver
-Specialize
-SteelmanCheck
-SteelmanFirst
-StepBack
-Stigmergy
-StrategicReading
-Strategy
-Summarize
-SunkCostIgnore
-SurprisalUpdate
-SurvivorCorrect
-Synthesis
-TemporalEnsembleForecasting
-TensionHold
-ThinSlice
-Think
-TimeboxThink
-TraceBelief
-TradeOff
-Translate
-TreeOfThoughts
-TruthseekingProtocol
-Uncertain
-UncertaintyMap
-Understand
-Verification
-WhyClimb
-WorldReversible
+- Act — root primitive for state modification; executed mechanically
+- Actor — entity capable of executing Act; no cognition required
+- Aesthetics — metric for subjective preference — data
+- Aggregate — mathematical reduction — no cognition
+- Anomaly — datum deviating from expected baseline — data
+- Artifact — immutable data unit
+- Assessment — structured record of evaluation — data
+- Assumption — provisional-truth placeholder — data
+- Audit — structured record of a verification event — Noun artifact
+- AuditTrail — immutable append-only signed log
+- Backoff — exponential delay — mechanical primitive
+- Ballot — immutable vote container — data
+- Belief — structured claim + confidence — data
+- Boolean — primitive true/false type
+- `~` **Branch** *(was Physics/Time)* — conditional if-then-else — authored control flow
+- Break — failure-announcement signal — typed data
+- `~` **Cache** *(was Mind/Memory)* — keyed lookup storage
+- Card — capability advertisement artifact — data
+- Care — entropy-reducing work primitive
+- Category — grouping bin — data
+- Chain — sequential container — data topology
+- Check — non-blocking observational verification — yields Status
+- CircuitBreaker — state-machine wrapper for fallible operations
+- CognitiveBias — bias-category definition — data
+- Combine — binary merge operation
+- CompatibilityCheck — schema-hash comparison — mechanical
+- `~` **Compensate** *(was Physics/Primitives)* — execute logged inverses — mechanical rollback
+- `~` **Compress** *(was Physics/Primitives)* — authored reduction operation
+- ConceptAnchor — content-addressed reference — data primitive
+- Condition — Trait interface for predicates — data
+- Constraint — boundary condition — data
+- Context — execution-environment container — data
+- Contract — immutable record artifact (the artifact is Infra; agreement semantic is Society)
+- `~` **Cooldown** *(was Physics/Primitives)* — minimum-interval enforcement — authored delay
+- Correlation — co-movement relation — data relation
+- Criteria — judgment-standard collection — data
+- Critique — verbatim analysis against criteria — Verb primitive
+- Cyclic — cyclic topology — data
+- DAG — directed acyclic topology — data
+- Datum — raw unit of fact
+- `~` **Decision** *(was Mind/Reasoning)* — committed-choice artifact — data
+- `~` **EntropyPump** *(was Physics/Primitives)* — authored noise-injection primitive
+- Event — discrete temporal occurrence — data
+- Exception — runtime anomaly signal — data
+- ExplainBeacon — telemetry stream — mechanical
+- FailClosed — authored default-deny safety primitive
+- FailureTrace — structured proof artifact
+- Feedback — information returned for adjustment — primitive
+- FeedbackSignal — standardised learning-feedback packet
+- Forest — topology of multiple disjoint trees
+- `~` **FrameSpec** *(was Society/Protocols)* — structured problem-definition artifact
+- `~` **Gate** *(was Physics/Primitives)* — authored condition-filter primitive
+- Goal — desired-end-state spec — data
+- Greet — initial contact protocol — authored primitive
+- `~` **Heartbeat** *(was Physics/Time)* — periodic liveness-signal primitive
+- Hierarchy — rank-ordering data
+- HumanApprove — authored gate that pauses for external decision
+- Hypothesis — testable prediction — data
+- `~` **Hysteresis** *(was Physics/Primitives)* — authored asymmetric-threshold primitive
+- IdempotentWrite — dedup primitive via idempotency key
+- Identity — unique distinguishing handle — data
+- Incongruity — mismatch-signal primitive
+- InputGuard — validation filter — mechanical
+- Judge — scalar quality-evaluation primitive
+- Ledger — immutable transactional history — data
+- Loop — control-flow repetition
+- MECE — partitioning property — structural invariant
+- MechanisticDesignProposal — structured blueprint artifact
+- Message — structured signal container — data
+- Meta — higher-order modifier — Trait
+- Metric — quantifiable measurement — data
+- Mode — discrete configuration — data
+- Monitor — loop+observe mechanical primitive
+- MonitorReport — telemetry artifact
+- Nature — ontological origin classification — Trait
+- NegativeProof — cryptographic non-membership proof — primitive
+- Observe — active state-perception primitive
+- Option — discrete actionable alternative — data
+- Outcome — realized state — data
+- OutputGuard — post-generation content filter
+- Overlap — accept-set intersection data structure
+- Parallel — concurrent topology
+- PerformanceSignal — typed Feedback-surface output artifact
+- Permission — authorization grant — data
+- Plan — ordered step sequence — data
+- Probability — likelihood measure — data
+- Probe — active verification query — primitive
+- Problem — formal gap representation — data
+- ProblemSpace — bounded problem domain — data
+- Prompt — structured instruction — data
+- Proposal — suggested course-of-action — data
+- `~` **ProtoPack** *(was Society/Protocols)* — prototype verification artifact — data
+- Prototype — testable early model — data
+- Queue — ordered container with discipline — data
+- Quorum — threshold-check primitive
+- `~` **Rank** *(was Mind/Reasoning)* — deterministic sort primitive
+- `~` **ReAttempt** *(was Physics/Primitives)* — substrate-level retry primitive
+- Resource — finite allocatable entity — data
+- Result — canonical output artifact — data
+- Risk — quantified potential for negative outcome — data
+- `~` **Route** *(was Physics/Primitives)* — authored classify-and-dispatch primitive
+- RuleSet — constraint collection — data
+- Sandbox — isolated execution environment
+- Score — numerical evaluation result — data
+- ScoringFunction — deterministic valuation logic — callable artifact
+- Search — active retrieval primitive
+- Select — deterministic filter primitive
+- Sequence — sequential ordering — data topology
+- Shard — partitioning primitive
+- `~` **Sign** *(was Physics/Primitives)* — attach identity proof — cryptographic primitive
+- Signal — raw information emission — data
+- Skeleton — parallel outline-first topology
+- Snapshot — immutable state record — data
+- Solution — typed output artifact — data
+- Spec — rigorous requirement definition — data
+- SpotAudit — probabilistic sampling audit — mechanical
+- State — system condition at time T — data
+- `~` **StateAudit** *(was Physics/Time)* — verify state after write — mechanical check
+- StateSnapshot — durable persistence of volatile state
+- StateTransition — FSM governance primitive
+- Status — graded verification outcome enum
+- Step — atomic action with pre/post — data
+- Stream — continuous data flow — data
+- Subject — operation target — Trait
+- Summary — compressed artifact — data
+- System — complex whole of interacting parts — data
+- Task — atomic unit of intent — data
+- TaskLifecycle — formal state machine for tasks
+- Tension — reified conflict-state data
+- `~` **Throttle** *(was Physics/Primitives)* — rate-limiting primitive
+- TimeWarpLog — causal-cone append-only log
+- ToolInvoke — mechanical tool-call execution
+- Topology — interface for reasoning-structure shapes — data
+- Trace — lineage/provenance recording primitive
+- Transition — atomic state change — data
+- Tree — branching topology — data
+- Validate — syntactic schema verification — mechanical
+- Value — measure of utility — data
+- Variable — mutable value — data
+- Vector — semantic-position array — data
+- Warmup — gradual capacity ramp — authored primitive
+- Work — directed effort primitive — data
 
-## Society (116)
+## Mind (179)  
+_Moves in: 2_
 
-AcceptSpec
-AdversarialProof
-AgentDiscover
-AgentProtocol
-AgentSandbox
-AmbiguityResolution
-AnchorDrop
-AtomicBid
-AttentionMarkets
-Award
-Axiom
-BearerToken
-Bid
-BoundedTask
-Canary
-Compromise
-ConfusedDeputy
-Consensus
-ConsensusFinder
-Constitution
-ContextSwitch
-ContinuousResourceAuction
-CounterfactualAnchor
-DataMinimization
-Delegate
-DeliberativeAlign
-Deploy
-Disband
-Discover
-DissentSeek
-DocumentedOverride
-DogfoodFirst
-DriftWatch
-EbbFlowSync
-EjectionSeat
-Elect
-EmpathySim
-EvaluatorOptimizer
-ExchangeRate
-ExecutionManifest
-ExpiringToken
-FabricSharding
-FeatureFlag
-FrameSpec
-Gardener
-GenealogicalTrace
-GlacialVault
-Global
-GracefulDegradation
-Handoff
-HeldRelease
-IdentityHandshake
-IntentGap
-InternalConsistency
-InvariantFilter
-LatticeCommit
-LazyConsensus
-ManifestPlanning
-MemeticSeed
-MintWhenFriction
-ModestClaim
-MonotonicCounter
-Nucleate
-OntologyHandshake
-OptimisticSolver
-Oracle
-OrchestrationLoop
-OsmoticFilter
-PatternEmergence
-PatternSketch
-PermissionEscalate
-PhasedRefinement
-PromiseGraph
-PromptChain
-PropheticQuorum
-ProtoPack
-QuorumPulse
-Rally
-RealizationProtocol
-ReceptivityGate
-Resonate
-Responsibility
-ReversibilityCheck
-Robustness
-Role
-Rollout
-RolloutManifest
-RolloutWatch
-RootHashGossip
-ShoutWhisper
-SignalReflection
-SolverManifest
-SolverNode
-SolverTree
-SomaticMarker
-SourceEvaluate
-SpectralTune
-StructuralCoaching
-StyleSpec
-SynergisticMode
-Taper
-ThreeLevelCollision
-TieredAccess
-ToolDiscovery
-TranslationProxy
-TriGate
-UniqueHandle
-UniversalSolverTree
-UptakeAsGround
-UptakeOverTimestamp
-ValuePeg
-Vote
-WorkerMode
-Workflow
-WorldTransparent
-Yield
+- Abduction — inference to best explanation — judgment
+- AdversarialSteel — internal dual-advocate verdict generation
+- Agent — autonomous goal-directed entity — canonical cognitive bearer
+- AnalogyBridge — cross-domain structural mapping — cognitive
+- AntifragileInversion — inverting relationship with stressor — design cognition
+- BackwardChain — goal-driven reasoning
+- BaseRateInclude — prior-probability anchoring — inference discipline
+- BayesUpdate — belief revision via likelihood — cognitive
+- BeamSearch — heuristic search — strategic cognition
+- BeliefTracking — epistemic version control within one mind
+- Bisect — binary partition reasoning
+- BreadthGovernor — parallel-branch limit — cognitive budget
+- Bubble — sandboxed coordination trial — conceptual sandbox
+- `~` **Budget** *(was Infrastructure/Primitives)* — resource-allocation discipline within one agent
+- Build — low-cost prototype construction — cognitive act
+- CapacityPressure — self-imposed resource constraint
+- ChainOfThought — sequential reasoning macro
+- ChunkMerge — working-memory compression
+- CiteBack — single-agent citation discipline
+- CognitiveEcho — variance-based effort estimation via self-simulation
+- CollaborativeWritingProtocol — quality-constrained production decomposition — cognitive
+- CommitmentDevice — Ulysses-pact self-binding; multi-agent slashing is a specialization
+- Compare — relational evaluation
+- Compose — recursive assembly reasoning
+- ComputeBudget — cognitive governor of self-spend
+- ConceptBlend — fusion of unrelated concepts
+- ConceptualDecomposition — breaking concept into contract-bound sub-concepts
+- ConfidenceCalibrate — aligning confidence with frequency
+- ConfirmationBlock — disconfirmation-seek discipline
+- ConstraintFirst — cognitive ordering rule: bounds first
+- ConstructOntology — building conceptual framework from seeds
+- ContextCompress — memory-compression within one mind
+- ContextFirst — read-before-write cognitive mandate
+- ContingencyPlan — if-then preparation cognition
+- Creative — cognitive novelty-generation mode — Trait
+- CreativeBlend — creative pipeline — cognitive
+- Crystallize — explicit formalization of implicit resonance — cognitive phase
+- CurriculumReplay — self-distillation
+- Decompose — cognitive splitting of task
+- DecompositionGate — four-test gate — cognitive evaluation
+- Deduction — truth-preserving inference
+- Deep — vertical search axis — canonical Ring-0 Verb per FI paper
+- DeepResearch — autonomous research pipeline — cognitive
+- Defer — strategic postponement
+- DepthGovernor — entropy-bounded recursion
+- DesignArchitect — strategic architecting role — cognitive
+- Dialectic — internal thesis-antithesis-synthesis
+- DiscoveryProtocol — Generate+Reduce protocol — cognitive even with parallel solvers
+- DogfoodFirst — creator-as-user validation — self-validation is single-agent; N=1 per Gemini Round 6
+- Eliminate — deduction via falsification
+- EmpathySim — theory-of-mind simulation — one mind imagining another; N=1 per Gemini Round 6
+- EmpiricalTest — verifying via testable predictions
+- EpistemicCalibrate — confidence decay with horizon
+- EpistemicROI — value-of-information analysis
+- Estimate — predictive resource costing
+- EthicalReasoningProtocol — is-ought separation — cognitive discipline
+- EventReact — event-driven response discipline
+- Expansive — Judge(Value) of generalization potential
+- ExperienceSharding — agent bifurcation on saturation — cognitive
+- Experiment — structured causal discovery
+- ExploreExploit — adaptive allocation strategy
+- ExtendedThinking — inference-time reasoning scaling
+- Falsification — proving a hypothesis false
+- Fermi — estimation by decomposition
+- FirstPrinciples — axiomatic reconstruction
+- FractalIntelligence — conceptual-decomposition architecture — one-agent-many-solvers legitimate
+- FrameError — typed failure requiring reframing — cognitive signal
+- Generalize — inductive pattern extraction
+- GraphOfThought — Think(DAG) reasoning macro
+- HackDetect — self-detection of shortcut-taking
+- HeuristicSnap — rapid pattern matching
+- HindsightBlock — decision-time evaluation discipline
+- HolographicShard — context-preserving slice with global reference
+- HumanEmulatorProtocol — variable-depth empathy decomposition — cognitive
+- HypothesisEngine — automated scientific method — cognitive cycle
+- HypothesisLadder — Bayesian belief updating via falsification rungs
+- Induction — specific-to-general inference
+- Interpret — semantic extraction from signal
+- Invert — solution-by-negation reasoning
+- Jester — critique-via-incongruity communication discipline
+- Kairos — sensing the opportune moment — cognitive
+- LatentAttachment — symbolic-neural hybrid identity — cognitive primitive
+- LatentWander — offline embedding-space exploration
+- LateralOptimization — reframe→optimize→translate loop
+- LayeredCheck — hierarchical verification strategy
+- LeastToMost — easiest-first decomposition strategy
+- LivedProof — process-IS-evidence structure — single-agent epistemic
+- LocalizedLearning — partitioned feedback routing within one solver tree
+- `~` **ManifestPlanning** *(was Society/Protocols)* — architectural planning phase — cognitive
+- MarginalValueRule — ratio test for depth allocation — cognitive rule
+- MentalSim — System-2 simulation
+- MetaCheck — recursive self-verification
+- MetaPrompt — prompts that generate/refine prompts
+- MetaProtocols — solver tree self-regulation — one agent can observe its own tree
+- NoiseInjection — deliberate randomness to break loops
+- NormCheck — detection of value-laden facts
+- NormativeJudge — value-based state evaluation
+- Novelty — Judge(Value) of structural distinctness
+- OODA — rapid decision cycle
+- OntologyAdapt — category restructuring to fit data
+- OpportunityCost — comparative valuation
+- OptimalStop — resource-aware termination rule
+- Optimize — iterative objective-maximization
+- PURE — framework wiring four cognitive judges
+- PUREBrainstorming — PURE-filtered ideation
+- PURECheck — PURE triage — cognitive gate
+- PUREOptimization — optimization across PURE dimensions
+- Parallelize — run subtasks simultaneously — strategic orchestration
+- ParetoFront — explicit balancing of competing axes
+- Parsimony — Judge(Topology) — Occam's Razor ablation
+- PathwayMemory — cache of routing outcomes — single-agent memory
+- PatternDiscovery — vocabulary-hygiene search discipline
+- PerspectiveEnsemble — simulating diverse experts internally
+- PolymorphicSolver — Solver-contract implementer — cognitive; multi-agent variants are specializations
+- PreMortem — prospective hindsight — cognitive failure simulation
+- Prioritize — impact-effort ranking
+- ProblemFramer — specialist framing role — cognitive
+- ProphetFanOut — high-fanout causal simulation
+- Proprioception — self-location within task graph — self-model
+- ReAct — reasoning-action-observation loop
+- Realizable — Judge(Value) of feasibility
+- Reason — orchestrated multi-step cognition
+- RecursionDive — vertical traversal of solver tree
+- RecursiveRootCause — recursive root-cause analysis
+- RedTeam — adversarial stress-testing — can be done mentally
+- Refine — iterative improvement
+- Reflex — hardcoded fast-path — single-agent
+- Reflexion — self-critique after failure
+- Reframe — perspective transformation
+- RegimeSense — anomaly detector — cognitive
+- RegretMinimization — loss-avoidance decision rule
+- RepresentationSwap — transcoding to orthogonal modality
+- RequestFraming — clarify intent and constraints — cognitive
+- RetrievalAugment — look-up-before-answer — cognitive pipeline
+- Retry — classified re-attempt with backoff — strategic
+- RigorousSolver — high-reliability solver — cognitive Solver-contract implementer
+- Roadmap — strategic plan over time
+- RootSolver — apex triage node — one agent can dispatch its own sub-solvers
+- SacrificialProbe — learning via instructive failure
+- Satisfice — threshold-acceptance decision rule
+- ScopeFreeze — requirements-lock discipline
+- Scratchpad — working memory
+- SelfConsistency — multi-sample majority vote — internal ensemble
+- SelfReminder — constraint-reinforcement in context
+- SemanticTabu — forbidden-set novelty enforcement
+- Silence — active withholding — cognitive discipline
+- Simulation — sandboxed execution — cognitive
+- SimulationTrace — pre-execution mental model
+- SkeletonOfThought — Think(Skeleton) macro
+- SocraticLoop — clarification before generation
+- Solver — abstract five-surface contract — cognitive interface
+- SourceEvaluate — credibility assessment — one agent judges a source; N=1 per Gemini Round 6
+- Specialize — deductive application
+- SteelmanCheck — post-decision adversarial check
+- SteelmanFirst — ordering rule for steelmanning
+- StepBack — ascend abstraction for perspective
+- StrategicReading — non-linear info retrieval
+- Strategy — adaptive high-level planning
+- Summarize — lossy cognitive compression
+- SunkCostIgnore — fresh-slate evaluation discipline
+- SurprisalUpdate — weighted learning by prediction error
+- SurvivorCorrect — accounting for silent failures
+- Synthesis — combining elements into whole
+- TemporalEnsembleForecasting — temporal-checkpoint forecast ensemble — cognitive
+- TensionHold — maintaining contradictions without premature resolution
+- ThinSlice — high-confidence classification from minimal data
+- Think — atomic cognitive step
+- TimeboxThink — temporal bounding of exploration
+- TraceBelief — belief-history chronology — cognitive memory
+- TradeOff — cognitive act of accepting consequence for gain
+- Translate — convert-form-preserving-meaning
+- TreeOfThoughts — Think(Tree) macro
+- TruthseekingProtocol — layered epistemic verification — cognitive pipeline
+- Uncertain — epistemic-status flag — cognitive tag
+- UncertaintyMap — systematic ignorance categorization
+- Understand — deep semantic modeling
+- Verification — confirming alignment with truth/spec — cognitive confirmation
+- WhyClimb — recursive problem abstraction
+- WorldReversible — single-agent design constraint for invertibility
+
+## Society (114)  
+_Moves in: 4_
+
+- AcceptSpec — contract between producer and verifier — ≥2 roles
+- AdversarialProof — adversarial search — multi-party threat model
+- AgentDiscover — advertise capabilities to other agents
+- AgentProtocol — multi-agent coordination bundle
+- AgentSandbox — sandboxer ↔ sandboxed roles
+- AmbiguityResolution — social clearing of semantic noise
+- AnchorDrop — emergency checkpointing across consensus — multi-agent
+- AtomicBid — bid+act coordination between parties
+- AttentionMarkets — multi-agent market for priority
+- Award — bid acceptance — bidder + acceptor
+- Axiom — community-accepted starting premise
+- BearerToken — possession-based authorization — issuer + bearer
+- Bid — offer from solver to task-assigner
+- BoundedTask — economic-constraint Task — multi-agent economics
+- Canary — expendable agent tests path — multi-agent
+- Compromise — negotiation between agents adjusting preference intensity
+- ConfusedDeputy — agent + principal + attacker — 3 parties
+- Consensus — multi-party agreement — definitional
+- ConsensusFinder — locate existing consensus — ≥2 parties
+- Constitution — immutable rule set binding a group
+- ContextSwitch — explicit mode toggle between interacting agents
+- ContinuousResourceAuction — multi-agent market
+- CounterfactualAnchor — pre-observation expectation freeze in group context
+- DataMinimization — information hygiene between system and source
+- Delegate — work handoff — delegator + delegate
+- DeliberativeAlign — constitutional-AI between policy + agent
+- Deploy — release to production — producer + consumer environments
+- Disband — group dissolution
+- Discover — distributed query across network
+- DissentSeek — mitigate groupthink — requires other parties
+- DocumentedOverride — supervised bypass — auditor + actor
+- DriftWatch — reputation scoring across observer + subject
+- EbbFlowSync — cyclical connectivity modes — multi-agent sync
+- EjectionSeat — human kill switch — human + swarm
+- Elect — leader selection across group
+- EvaluatorOptimizer — generate-evaluate loop between roles
+- ExchangeRate — conversion between value systems — multi-party
+- ExecutionManifest — binds design + ops for multi-agent rollout
+- ExpiringToken — time-decaying auth — issuer + bearer
+- FabricSharding — state-shard coordination — multi-agent
+- FeatureFlag — runtime toggle between producer + consumer
+- Gardener — stigmergy-based stewardship — shared substrate with others
+- GenealogicalTrace — tracing lineage — requires historical/institutional others
+- GlacialVault — time-locked storage — depositor + future unlocker
+- Global — scope modifier — shared property across system
+- GracefulDegradation — fallback when verification between parties fails
+- Handoff — control transfer between agents
+- HeldRelease — escrow — payer + payee + condition
+- IdentityHandshake — peer-vs-principal distinguish — two parties
+- IntentGap — intent-outcome divergence — signals across parties
+- InternalConsistency — cross-component check across authored parts
+- InvariantFilter — message firewall between sender + receiver
+- LatticeCommit — geometric-neighbor consensus
+- LazyConsensus — optimistic commit assuming peers — multi-agent
+- MemeticSeed — broadcast to neighbors
+- MintWhenFriction — vocabulary growth across agents
+- ModestClaim — epistemic posture between speaker + audience
+- MonotonicCounter — distributed strictly-increasing value
+- Nucleate — emergent working groups from activity density
+- `~` **OathBind** *(was Infrastructure/Verification)* — cryptographic ruleset binding — actor + enforcer
+- OntologyHandshake — exchange definition hashes — two parties
+- OptimisticSolver — parallel-runtime solver via AtomicBid + Actor Model
+- Oracle — signed data source — signer + consumer
+- OrchestrationLoop — high-stakes multi-agent orchestration
+- OsmoticFilter — pressure-based spam filter — sender + membrane
+- PatternEmergence — recognizing implicit patterns across practitioners
+- PatternSketch — progressive formalization between minter + community
+- PermissionEscalate — elevation request — requester + grantor
+- PhasedRefinement — layered multi-pass improvement — multi-stage coordination
+- PromiseGraph — trust via recursive promise graph
+- PromptChain — sequential LLM calls with validation — between stages
+- PropheticQuorum — align predictions before votes — multi-agent
+- `~` **Protocol** *(was Infrastructure/Data Structures)* — communication standard between agents
+- QuorumPulse — density-triggered synchronization
+- Rally — ad-hoc multi-party coordination
+- RealizationProtocol — orchestrates request through multi-role pipeline
+- ReceptivityGate — guards feedback from external sender
+- Resonate — coordination via signal amplification — multi-agent
+- Responsibility — standing governance contract — actor + system
+- ReversibilityCheck — verifies reversibility at coordination seam
+- Robustness — system property across observers
+- Role — named permission/responsibility bundle — multi-agent
+- Rollout — safe reversible deployment — multi-agent
+- RolloutManifest — deployment execution log — multi-party record
+- RolloutWatch — continuous verification of deployed state
+- RootHashGossip — path-verified info spreading — multi-node
+- ShoutWhisper — dual-mode comm — broadcast + P2P
+- SignalReflection — proof of receipt — sender + receiver
+- SolverManifest — typed solver identity advertisement — cross-agent
+- SolverNode — runtime solver wrapper — network node
+- SolverTree — active command structure — multi-agent hierarchy
+- SomaticMarker — system-health gut-feeling — signals across system
+- SpectralTune — ontology alignment via tuning signal — two parties
+- `~` **StateLock** *(was Physics/Time)* — two-actor state fusion
+- `~` **Stigmergy** *(was Mind/Memory)* — indirect coordination via shared-environment traces — marker + reader
+- StructuralCoaching — guidance between coach + student
+- StyleSpec — aesthetic standards between producer + consumer
+- SynergisticMode — cognitive-mode signal to downstream solvers
+- Taper — multi-stage filter pipeline — coordination ritual
+- ThreeLevelCollision — threat-modeling primitive between parties
+- TieredAccess — cost-distance indexing — gravity among agents
+- ToolDiscovery — discover + invoke external tools — caller + tools
+- TranslationProxy — protocol adaptation — between two protocols
+- TriGate — three-state gate used at governance seams
+- UniqueHandle — transferable ownership — sender + receiver
+- UniversalSolverTree — aggregate across all agents
+- UptakeAsGround — meaning from successful coordination — multi-party
+- UptakeOverTimestamp — usage-determined canonical status — community
+- ValuePeg — numeraire agreement — multi-party
+- Vote — N-agent decision
+- WorkerMode — persona switch on task claim — cross-agent coordination
+- Workflow — directed multi-solver graph
+- WorldTransparent — universal observability — requires public observers
+- Yield — weighted-negotiation backoff
 
