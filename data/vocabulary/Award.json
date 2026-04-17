@@ -15,9 +15,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "Award#7c65",
-  "sema_id": "sema:Award#mh:SHA-256:7c657ed06a75673fdd76dbd44ff5b2973ee5bb9166ff720c2db0c556e1b1b709",
-  "sema_stub": "7c65",
+  "sema_ref": "Award#7025",
+  "sema_id": "sema:Award#mh:SHA-256:702548c8f1d164fc975380fb3a4ca81ac95cb1a5c8dd1d827f96eaf0a28b75cb",
+  "sema_stub": "7025",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

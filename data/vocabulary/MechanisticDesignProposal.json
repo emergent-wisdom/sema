@@ -66,9 +66,9 @@
       }
     }
   },
-  "sema_ref": "MechanisticDesignProposal#497e",
-  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:497e86893969548b87d441839a2aecd79437007ed1294ac1af1c145b8567282d",
-  "sema_stub": "497e",
+  "sema_ref": "MechanisticDesignProposal#add6",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:add6025e445129f3d83108d45b9deb8e4e1677de62747265e35beee5696cc5d9",
+  "sema_stub": "add6",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

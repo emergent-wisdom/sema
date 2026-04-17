@@ -35,9 +35,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:OptimalStop#mh:SHA-256:c2447936a2d4beb76817499e464cde69ca608ec7a2a9898d816951ed111f1222",
-  "sema_ref": "OptimalStop#c244",
-  "sema_stub": "c244",
+  "sema_id": "sema:OptimalStop#mh:SHA-256:96b6d5db435ff03483ffe6b48eaa9a0558bfedc840d0a6476ccc5248d957ea37",
+  "sema_ref": "OptimalStop#96b6",
+  "sema_stub": "96b6",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

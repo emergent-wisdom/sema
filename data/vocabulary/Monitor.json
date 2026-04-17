@@ -23,9 +23,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Monitor#feb3",
-  "sema_id": "sema:Monitor#mh:SHA-256:feb39520f1d3644230f2654b8f92e6034eefb30b8eb59904dade81d76a07a277",
-  "sema_stub": "feb3",
+  "sema_ref": "Monitor#3fc0",
+  "sema_id": "sema:Monitor#mh:SHA-256:3fc01ac62f90d7fc698768460f2801ad4e989a91bf64fe7827526b2869bca7c5",
+  "sema_stub": "3fc0",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

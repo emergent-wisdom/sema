@@ -28,9 +28,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:5252515f350d9f3df7d64a544570c8795048f17a56288c854ab42974ad2ddeec",
-  "sema_ref": "CognitiveEcho#5252",
-  "sema_stub": "5252",
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:67817651c67ca7eed3171ed6c64bcccd7582792f1017cf472142d3c3cd50c0f9",
+  "sema_ref": "CognitiveEcho#6781",
+  "sema_stub": "6781",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

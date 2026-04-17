@@ -22,7 +22,7 @@
       "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
     }
   },
-  "sema_id": "sema:ReAttempt#mh:SHA-256:0cd7af4c672a70c637eb4d03b01e161f7643f49ab6ef28cea85492e8ddb21578",
-  "sema_ref": "ReAttempt#0cd7",
-  "sema_stub": "0cd7"
+  "sema_id": "sema:ReAttempt#mh:SHA-256:bd003878756d11a5c88802eb84e4cbdc951eb9e3ead7d25f486170a026257782",
+  "sema_ref": "ReAttempt#bd00",
+  "sema_stub": "bd00"
 }

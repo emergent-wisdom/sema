@@ -6,9 +6,9 @@
     "Non-Interference: The Oracle reports on reality but does not alter it.",
     "Consistency: Answers to the same query at the same time must be identical."
   ],
-  "sema_id": "sema:Oracle#mh:SHA-256:779b70b97a21d0d9eebd1384866923ad13ec949d5abc88a20d2520e44197c603",
-  "sema_ref": "Oracle#779b",
-  "sema_stub": "779b",
+  "sema_id": "sema:Oracle#mh:SHA-256:285c59870f5952e8a8aabbc3bfbf7dcf94ffb87047acd716b6b20a756f450d25",
+  "sema_ref": "Oracle#285c",
+  "sema_stub": "285c",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",

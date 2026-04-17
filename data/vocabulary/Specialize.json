@@ -22,9 +22,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Specialize#mh:SHA-256:0ac50ab993507fd6b7d5959ba18bcaeaa388a35705fdb4ff9d423165a6fb6a9e",
-  "sema_ref": "Specialize#0ac5",
-  "sema_stub": "0ac5",
+  "sema_id": "sema:Specialize#mh:SHA-256:3e078f1ab826e6094286a07564e1fa3a08cb8fa53553bf9e8698ec7a0b4c6ec3",
+  "sema_ref": "Specialize#3e07",
+  "sema_stub": "3e07",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

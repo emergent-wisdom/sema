@@ -28,9 +28,9 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_ref": "Agent#35b9",
-  "sema_id": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681",
-  "sema_stub": "35b9",
+  "sema_ref": "Agent#bb9c",
+  "sema_id": "sema:Agent#mh:SHA-256:bb9cd14958756d4a09ab879260392e42578ee336f3f9adf535f0dba048bd3a6f",
+  "sema_stub": "bb9c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -30,9 +30,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:FailClosed#mh:SHA-256:e6a09747bc7485f877033e1e6d8baa52b8ae571094910c968f7321f0828cf88c",
-  "sema_ref": "FailClosed#e6a0",
-  "sema_stub": "e6a0",
+  "sema_id": "sema:FailClosed#mh:SHA-256:5d52cfbf4e95e8ea4bdf8c01d353939d1885ed5c1dc926648700c3d4d4764bda",
+  "sema_ref": "FailClosed#5d52",
+  "sema_stub": "5d52",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

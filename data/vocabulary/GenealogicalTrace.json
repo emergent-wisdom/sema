@@ -15,9 +15,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:9d439f03ba7c5fe5e994400b9ef2baf13053ac266aeba7c1e8aa1565d2c63607",
-  "sema_ref": "GenealogicalTrace#9d43",
-  "sema_stub": "9d43",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:3c1866d984108eba7bff09f43ae3df0c6a47669d0c1cebaaa03d4a976e05ee5a",
+  "sema_ref": "GenealogicalTrace#3c18",
+  "sema_stub": "3c18",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

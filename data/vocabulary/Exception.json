@@ -40,9 +40,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Exception#mh:SHA-256:66c0cd924c7793327b03caa75c8362e88765fac077ed1e331920be77fc66e8a6",
-  "sema_ref": "Exception#66c0",
-  "sema_stub": "66c0",
+  "sema_id": "sema:Exception#mh:SHA-256:95968e512c9ee9d73a168e419adde9909bf307504d6834aba89aeeed3b6ffb5c",
+  "sema_ref": "Exception#9596",
+  "sema_stub": "9596",
   "dependencies": {
     "references": {
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",

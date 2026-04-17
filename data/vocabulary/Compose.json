@@ -21,9 +21,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Compose#mh:SHA-256:76c1e7fb397feba35540c6efc14b56e60df485e39e0efdc3e9d60b273e1778ad",
-  "sema_ref": "Compose#76c1",
-  "sema_stub": "76c1",
+  "sema_id": "sema:Compose#mh:SHA-256:3e0c42620da403a77280e71b381d1f532048cc46b038817cc3903bdf7cc97bf3",
+  "sema_ref": "Compose#3e0c",
+  "sema_stub": "3e0c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [

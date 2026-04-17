@@ -4,7 +4,7 @@
   "gloss": "Viral propagation of semantic standards via economic subsidy",
   "invariants": [
     "Fidelity: Propagated ontology must be isomorphic to source",
-    "Subsidy Gradient: Adoption Incentive > Switching Cost"
+    "Subsidy {{gradient}}: Adoption Incentive > Switching Cost"
   ],
   "preconditions": [
     "Network of peers with divergent ontologies",
@@ -20,9 +20,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:5bfea709f89f297656143611eeb14e3c955a94ffecc5083ab7bf5de831bc6c33",
-  "sema_ref": "MemeticSeed#5bfe",
-  "sema_stub": "5bfe",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:4f3ebc8db14b47196fadf8d52bee3d71d384d7490f9934b5358ccfd79c2648d7",
+  "sema_ref": "MemeticSeed#4f3e",
+  "sema_stub": "4f3e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
@@ -30,7 +30,8 @@
       "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
       "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
       "translation_proxy": "sema:TranslationProxy#mh:SHA-256:f0e0d8b01e88f45c1d6791f41ed1686a96e40fc48f541c31568d48bb83ad988e",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "gradient": "sema:Gradient#mh:SHA-256:84a514eeeb98582c29b1d6f7d8ecbb8e698815987c0e7f372ba52a81bb8665a3"
     }
   }
 }

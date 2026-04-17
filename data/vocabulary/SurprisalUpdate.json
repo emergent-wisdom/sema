@@ -5,7 +5,7 @@
   "failure_modes": [
     "Outlier Overfitting: Rare high-surprisal events dominating learning.",
     "Catastrophic Forgetting: Aggressive updates erasing previously stable knowledge.",
-    "Compute Cost: High-surprisal events require expensive gradient updates."
+    "Compute Cost: High-surprisal events require expensive {{gradient}} updates."
   ],
   "invariants": [
     "Loss Magnitude: Update size proportional to surprisal (-log P)",
@@ -42,15 +42,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:d8c6697a5a5f69152e8b1943205a1f29ffb88e9d62c52c12d042096b0c9502e4",
-  "sema_ref": "SurprisalUpdate#d8c6",
-  "sema_stub": "d8c6",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:5788a07756cda29422e55c65de0adadd25e2d9fd04e178fa0c873937810dea77",
+  "sema_ref": "SurprisalUpdate#5788",
+  "sema_stub": "5788",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "regime_sense": "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
-      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:742adc7d76282f41c66582e1e780930e5f83f792084fa83ac9b01f510ecaf5b0"
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:742adc7d76282f41c66582e1e780930e5f83f792084fa83ac9b01f510ecaf5b0",
+      "gradient": "sema:Gradient#mh:SHA-256:84a514eeeb98582c29b1d6f7d8ecbb8e698815987c0e7f372ba52a81bb8665a3"
     }
   }
 }

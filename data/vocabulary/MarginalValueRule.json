@@ -18,9 +18,9 @@
     "tier": 2,
     "ring": 1
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e",
-  "sema_ref": "MarginalValueRule#32ce",
-  "sema_stub": "32ce",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:4dbd7ebe34a910056a238a649df1d12496b61a5ebe465b357754fd54c9b8430e",
+  "sema_ref": "MarginalValueRule#4dbd",
+  "sema_stub": "4dbd",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [

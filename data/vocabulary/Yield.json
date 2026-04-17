@@ -17,9 +17,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:Yield#mh:SHA-256:29310b83ae2e519cbdcd227452fc1598b926f7f18696f53142d33da365aae7b9",
-  "sema_ref": "Yield#2931",
-  "sema_stub": "2931",
+  "sema_id": "sema:Yield#mh:SHA-256:602ff5dcdab1fd5e507b158cb17813b7b1a7cf2448ec9d853b898bc2bdead6a3",
+  "sema_ref": "Yield#602f",
+  "sema_stub": "602f",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

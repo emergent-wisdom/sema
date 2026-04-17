@@ -24,7 +24,7 @@
       "d_a_g": "sema:DAG#mh:SHA-256:de3473cf4dd8bce4007d37ab2ad02c4c4f86737248e896e477e3a92396e86f27"
     }
   },
-  "sema_id": "sema:GraphOfThought#mh:SHA-256:8dfec59bcbcbc8b3a3809eadea4665f6039781b329c02f0151598008e3fea64d",
-  "sema_ref": "GraphOfThought#8dfe",
-  "sema_stub": "8dfe"
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:226a9c49b8878c7ef6edfe66ac6ad1e0686d62cf4c01fa749320b450f5fbce5a",
+  "sema_ref": "GraphOfThought#226a",
+  "sema_stub": "226a"
 }

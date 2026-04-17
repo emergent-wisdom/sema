@@ -32,9 +32,9 @@
     ],
     "caution": "Compensation must not erase the audit trail of what was rolled back \u2014 log both the forward action and the compensation."
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:283e67ca01279958ab5e2792263d71c7ea6a00f7f61d2560444ec1d77c9930f9",
-  "sema_ref": "Compensate#283e",
-  "sema_stub": "283e",
+  "sema_id": "sema:Compensate#mh:SHA-256:d541e707e06ad96804558a897386d9b6e9eb7ca4eb0436bfb2c531c278fb04c1",
+  "sema_ref": "Compensate#d541",
+  "sema_stub": "d541",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

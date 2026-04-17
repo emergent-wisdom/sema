@@ -44,9 +44,9 @@
     "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:Resonate#mh:SHA-256:9fa443854c8c9257c82a6501b81bdb9957d880f4c05fcef398eebe6292a1e1c4",
-  "sema_ref": "Resonate#9fa4",
-  "sema_stub": "9fa4",
+  "sema_id": "sema:Resonate#mh:SHA-256:aa7c720d9e729be2469febaa943de4d03ae71280bbe3b2deb44f351f97a6183d",
+  "sema_ref": "Resonate#aa7c",
+  "sema_stub": "aa7c",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

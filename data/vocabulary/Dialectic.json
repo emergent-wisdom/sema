@@ -35,9 +35,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Dialectic#mh:SHA-256:5cc39ffcdc6283b312a6d9cb84879d55f885d4db34e7fcbb2eb23a742fe6a068",
-  "sema_ref": "Dialectic#5cc3",
-  "sema_stub": "5cc3",
+  "sema_id": "sema:Dialectic#mh:SHA-256:1a304528d2f96619d33239b0dc99fe165a8b2a2e12605f8ee4af66977f18b556",
+  "sema_ref": "Dialectic#1a30",
+  "sema_stub": "1a30",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

@@ -29,9 +29,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Fermi#mh:SHA-256:b30250570634f0d8573c0f509fccbf5cdce0ddc1f59390525880ad27770f5831",
-  "sema_ref": "Fermi#b302",
-  "sema_stub": "b302",
+  "sema_id": "sema:Fermi#mh:SHA-256:70578b0c968b9cb3eb7e8543f789c63e94f85a998415848421f9cf4cfbabb9c7",
+  "sema_ref": "Fermi#7057",
+  "sema_stub": "7057",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

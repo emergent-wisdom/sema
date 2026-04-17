@@ -31,9 +31,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Elect#mh:SHA-256:253d0f3830c2802cfdc4024a1b340230a57a956f65185349c9b5ffeadb4c3237",
-  "sema_ref": "Elect#253d",
-  "sema_stub": "253d",
+  "sema_id": "sema:Elect#mh:SHA-256:a087bdc4d883d15424b8a676255535bfe5430537fabd221cfe4d29bdcb88f8dd",
+  "sema_ref": "Elect#a087",
+  "sema_stub": "a087",
   "dependencies": {
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

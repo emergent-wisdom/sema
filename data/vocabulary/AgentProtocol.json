@@ -11,9 +11,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:AgentProtocol#mh:SHA-256:abdabe66c2709c2fcb26b205294b4348f57ead60b8a2df5b14de1268a3c1cee3",
-  "sema_ref": "AgentProtocol#abda",
-  "sema_stub": "abda",
+  "sema_id": "sema:AgentProtocol#mh:SHA-256:d4bde19aa0a57cd1b531cb74c02a9b707a1e8612db30349c7b376eba8ac6ef40",
+  "sema_ref": "AgentProtocol#d4bd",
+  "sema_stub": "d4bd",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

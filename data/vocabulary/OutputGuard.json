@@ -46,9 +46,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
-  "sema_id": "sema:OutputGuard#mh:SHA-256:1f50ee469c636e44cf3917a31ab3e6295f2a02eb93bb9b8eb8e64398ec3a0c68",
-  "sema_ref": "OutputGuard#1f50",
-  "sema_stub": "1f50",
+  "sema_id": "sema:OutputGuard#mh:SHA-256:92de1a939ef00ebf70fe346baddf656321fa87bff4d1110db3bde5c5374d7e13",
+  "sema_ref": "OutputGuard#92de",
+  "sema_stub": "92de",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",

@@ -16,9 +16,9 @@
     "ring": 1,
     "caution": "Spawned advocates share the same model \u2014 collusion risk."
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:3b43d987edb6b393fcbc10420354225cb1101b705a7256f6e1a32a143e6d1dbe",
-  "sema_ref": "AdversarialSteel#3b43",
-  "sema_stub": "3b43",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:eef6c47b44c0610591075b0f1d64ffc527eb74d1a7c3e0cc64b4afb965293be9",
+  "sema_ref": "AdversarialSteel#eef6",
+  "sema_stub": "eef6",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

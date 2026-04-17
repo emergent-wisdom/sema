@@ -13,9 +13,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:3842af7607f84ffd709c0d95f6e36ec931466ad68e411de80dd277cece934389",
-  "sema_ref": "SkeletonOfThought#3842",
-  "sema_stub": "3842",
+  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:fc646cd4d68eb76e46d6bf4b5eb0b4ea5408ff5d2194d8f8f5f6397786bc2007",
+  "sema_ref": "SkeletonOfThought#fc64",
+  "sema_stub": "fc64",
   "signature": [
     "Think(Skeleton)"
   ],

@@ -60,9 +60,9 @@
       }
     }
   },
-  "sema_ref": "Resource#a578",
-  "sema_id": "sema:Resource#mh:SHA-256:a578cda067d1c6b52f96aab667c3f85a6e5233118774b55200a8acde35d62acf",
-  "sema_stub": "a578",
+  "sema_ref": "Resource#553a",
+  "sema_id": "sema:Resource#mh:SHA-256:553ab0cf44d99e80943d4190f2520897bdc3b2581fdf4c57582e61930943076b",
+  "sema_stub": "553a",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

@@ -24,9 +24,9 @@
     "category": "Coordination",
     "ring": 0
   },
-  "sema_ref": "LazyConsensus#515b",
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:515b93ba96f1b5f36d7a549ead1831ab14514ff43576314cd2f6192fe7d76d76",
-  "sema_stub": "515b",
+  "sema_ref": "LazyConsensus#6cc8",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:6cc879e6ef456bc0ee52109d76b3e7a6750fb190471496252e57d16a859356c6",
+  "sema_stub": "6cc8",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

@@ -22,9 +22,9 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:13d4d3af882c43d16e0e4a1b0efc4ea213bd39ccf9e9121d82e8a42c7bcc55c2",
-  "sema_ref": "CurriculumReplay#13d4",
-  "sema_stub": "13d4",
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:8e74eaa52a04e46c548268dc12a9081cde94d27d1352a8264a940c0217562d61",
+  "sema_ref": "CurriculumReplay#8e74",
+  "sema_stub": "8e74",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {

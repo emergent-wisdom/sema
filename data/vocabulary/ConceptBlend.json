@@ -3,7 +3,7 @@
   "mechanism": "Forcing the merger of two unrelated graph nodes to find a valid semantic path. Unlike analogy (A is like B), blending creates C (A + B). It extends {{analogy_bridge}} by not just mapping A to B, but fusing them to create C.",
   "gloss": "Atomic fusion of two unrelated concepts into a novel third",
   "invariants": [
-    "Orthogonality: Inputs must be semantically distant (> threshold distance)",
+    "Orthogonality: Inputs must be semantically distant (> threshold {{distance}})",
     "Validity: Output must pass a {{tri_gate}}({{realizable}}) check"
   ],
   "_meta": {
@@ -15,16 +15,17 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:126e802579f0301b1c71df4731146236a15095e1404d3e7358b87d2bd1f47e1a",
-  "sema_ref": "ConceptBlend#126e",
-  "sema_stub": "126e",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:027aa2a5363cc296a16c5ad23d44673f6e97942bfb85b9e23c38811aa0490367",
+  "sema_ref": "ConceptBlend#027a",
+  "sema_stub": "027a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "tri_gate": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
       "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
-      "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039"
+      "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
+      "distance": "sema:Distance#mh:SHA-256:3e1eb18a34bdf42f9f9554af0bd80f65121c05bb756b202068e6959c7cec0167"
     }
   }
 }

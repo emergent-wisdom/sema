@@ -24,9 +24,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:001365c9917fa3e9c04c463ec563edc019b6dfa5e9da61b243a2acadaa2bfd9e",
-  "sema_ref": "UptakeAsGround#0013",
-  "sema_stub": "0013",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:032fdd66e573e06fc1d0b9745f6af15b49cce320758cbb8b684a9593b28eb70a",
+  "sema_ref": "UptakeAsGround#032f",
+  "sema_stub": "032f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

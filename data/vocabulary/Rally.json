@@ -49,9 +49,9 @@
     "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:Rally#mh:SHA-256:f5655daa2c346e9c9f5026c64e3b0ea4c06547ecc9f598c48757716479aece39",
-  "sema_ref": "Rally#f565",
-  "sema_stub": "f565",
+  "sema_id": "sema:Rally#mh:SHA-256:11da20227524656c12f6cefbcf28c00990e88e4876d8c4597e02330b62b19122",
+  "sema_ref": "Rally#11da",
+  "sema_stub": "11da",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

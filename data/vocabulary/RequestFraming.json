@@ -33,9 +33,9 @@
       "Decompose"
     ]
   },
-  "sema_ref": "RequestFraming#3865",
-  "sema_id": "sema:RequestFraming#mh:SHA-256:386590380876d4439ffd7f6e279bb078f8c85323d6e950b9c685c57b94ee1af9",
-  "sema_stub": "3865",
+  "sema_ref": "RequestFraming#9604",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:96041243de5cd916c251e036dc94ed34b92c7b53cd5b0655ab2e70693315a85c",
+  "sema_stub": "9604",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

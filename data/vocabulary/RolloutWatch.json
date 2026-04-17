@@ -33,9 +33,9 @@
       "Reflexion"
     ]
   },
-  "sema_ref": "RolloutWatch#c298",
-  "sema_id": "sema:RolloutWatch#mh:SHA-256:c298179df77ba04d8153322f97cd3c4d52c7646dd84d47cc898b41d39fd8eac6",
-  "sema_stub": "c298",
+  "sema_ref": "RolloutWatch#958b",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:958b75aacb5b1dfddfb0cd2de9780d96b81c8c5e31a8246832ed9d4bd88e9291",
+  "sema_stub": "958b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

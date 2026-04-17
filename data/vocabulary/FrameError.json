@@ -26,7 +26,7 @@
       "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7"
     }
   },
-  "sema_id": "sema:FrameError#mh:SHA-256:168fcdc757dce95ceca470ad01c7f647d458640e71cff2ea1b2f45ed04d7ea0f",
-  "sema_ref": "FrameError#168f",
-  "sema_stub": "168f"
+  "sema_id": "sema:FrameError#mh:SHA-256:579f917ef69ebc8ad0d411b4fe27a2c928cfdcfa416a783ca099ee402fbec7d7",
+  "sema_ref": "FrameError#579f",
+  "sema_stub": "579f"
 }

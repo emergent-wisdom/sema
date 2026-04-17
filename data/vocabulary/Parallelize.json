@@ -26,9 +26,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:Parallelize#mh:SHA-256:574d12de2fbf7d56cfdbdba4a567bb89f29ada34327f332910bd6284ded19304",
-  "sema_ref": "Parallelize#574d",
-  "sema_stub": "574d",
+  "sema_id": "sema:Parallelize#mh:SHA-256:c915923219e5827fa901206886628b928a9d4e17e057597bf800736f038bab6a",
+  "sema_ref": "Parallelize#c915",
+  "sema_stub": "c915",
   "signature": [
     "Parallel(Task)",
     "Aggregate(Result)"

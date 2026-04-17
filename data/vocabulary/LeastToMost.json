@@ -29,9 +29,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:LeastToMost#mh:SHA-256:4c5eb5bf4040a26caccae95eb991a4930cb98dd471c82ae1904bfffdac2a3cf0",
-  "sema_ref": "LeastToMost#4c5e",
-  "sema_stub": "4c5e",
+  "sema_id": "sema:LeastToMost#mh:SHA-256:ff1d9031eb4f0e74cd027aa139a1e100f386c43b0126d1585746c08c9acaaaf5",
+  "sema_ref": "LeastToMost#ff1d",
+  "sema_stub": "ff1d",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"

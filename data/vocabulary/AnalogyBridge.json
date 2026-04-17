@@ -21,9 +21,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:ddb22c56410e1a3b64327940231213795520e9c0b1551e5c462bc8dd6c0fbabf",
-  "sema_ref": "AnalogyBridge#ddb2",
-  "sema_stub": "ddb2",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:67e27d01548344527acddce7a40492a0f207a8a6c3a4589ecd90a697b53b7b77",
+  "sema_ref": "AnalogyBridge#67e2",
+  "sema_stub": "67e2",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

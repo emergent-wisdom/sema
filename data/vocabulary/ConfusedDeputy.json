@@ -26,9 +26,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_ref": "ConfusedDeputy#b00c",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:b00c64e6812275ed4432df367b4c08c957ba8133c242b5314ce3f0dbd3e9a118",
-  "sema_stub": "b00c",
+  "sema_ref": "ConfusedDeputy#b471",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:b471418dc9ca748e6ba9a059b547dc932fbd8081a98e07dcfae708ece9e6f044",
+  "sema_stub": "b471",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

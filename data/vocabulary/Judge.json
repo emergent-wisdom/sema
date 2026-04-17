@@ -1,6 +1,6 @@
 {
   "handle": "Judge",
-  "mechanism": "Qualitative Evaluation. Evaluates the structural merit or quality of a {{subject}} on a continuous scale [0.0, 1.0]. Unlike {{check}} (which validates binary truth) or {{validate}} (which checks schema), Judge evaluates gradients of quality by applying a {{scoring_function}} that encodes the {{criteria}}, yielding a {{score}}.",
+  "mechanism": "Qualitative Evaluation. Evaluates the structural merit or quality of a {{subject}} on a continuous scale [0.0, 1.0]. Unlike {{check}} (which validates binary truth) or {{validate}} (which checks schema), Judge evaluates {{gradient}}s of quality by applying a {{scoring_function}} that encodes the {{criteria}}, yielding a {{score}}.",
   "gloss": "Scalar evaluation of merit",
   "failure_modes": [
     "Subjectivity Creep: {{criteria}} drift from objective to subjective without detection",
@@ -24,9 +24,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Judge#mh:SHA-256:95548f9fff8d0106242d8f96a1bdbf9cced2cf153f4a78bf0c8709fc1f82c428",
-  "sema_ref": "Judge#9554",
-  "sema_stub": "9554",
+  "sema_id": "sema:Judge#mh:SHA-256:a6456ad80d90504a70872787a8b1d51253699ada60ac102334ca3e45ecc4db65",
+  "sema_ref": "Judge#a645",
+  "sema_stub": "a645",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
@@ -37,7 +37,8 @@
       "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "validate": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619"
+      "validate": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619",
+      "gradient": "sema:Gradient#mh:SHA-256:84a514eeeb98582c29b1d6f7d8ecbb8e698815987c0e7f372ba52a81bb8665a3"
     },
     "accepts": {
       "subject": "sema:Subject#mh:SHA-256:788f7cb48e982144f15691fa0259a8b4f620e6eaf4447129c95f23d8e3008d1e",

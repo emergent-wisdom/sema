@@ -22,9 +22,9 @@
     "tier": 1,
     "ring": 1
   },
-  "sema_ref": "Estimate#d1a0",
-  "sema_id": "sema:Estimate#mh:SHA-256:d1a0ab03293b99bef71c3fe77d83d1ceb7b749ef1623dddabc07d368e0e16722",
-  "sema_stub": "d1a0",
+  "sema_ref": "Estimate#f7f2",
+  "sema_id": "sema:Estimate#mh:SHA-256:f7f20ce7a9eb3aaf205b40caf812575a921ed48584850a3d577e931aeb912bcd",
+  "sema_stub": "f7f2",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

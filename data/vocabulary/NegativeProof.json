@@ -25,9 +25,9 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_ref": "NegativeProof#b130",
-  "sema_id": "sema:NegativeProof#mh:SHA-256:b1309e57068aacefbcf7f15d993a147fae28d1ee83fddb83858bd0d8c789e161",
-  "sema_stub": "b130",
+  "sema_ref": "NegativeProof#144e",
+  "sema_id": "sema:NegativeProof#mh:SHA-256:144e656c95cf71dc477873753891623a8868d4c0b1db64567591d7b892590cad",
+  "sema_stub": "144e",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

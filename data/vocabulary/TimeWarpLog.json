@@ -43,9 +43,9 @@
     "ring": 0,
     "caution": "Causal cone is only as trustworthy as the identities signing events. Unsigned or weakly-authenticated events can rewrite perceived history."
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:a0ac168c3ecde98a3a649c490f6806a6f03085237d51ec9639250aa00c79d4cd",
-  "sema_ref": "TimeWarpLog#a0ac",
-  "sema_stub": "a0ac",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:40a1ab5c54cf94cd81b1c1781eec67459c20851d8c94f14698cbd667d0d0d851",
+  "sema_ref": "TimeWarpLog#40a1",
+  "sema_stub": "40a1",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

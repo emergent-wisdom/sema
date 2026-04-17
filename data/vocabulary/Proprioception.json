@@ -30,9 +30,9 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:e48696d927609b38ba32467846cc70a4ec8ddff101ec9b6728bfd99637df0e1d",
-  "sema_ref": "Proprioception#e486",
-  "sema_stub": "e486",
+  "sema_id": "sema:Proprioception#mh:SHA-256:1dae97659cb3865595377b111b96ae6f368b157ba9af6e120aa3e540a8b02469",
+  "sema_ref": "Proprioception#1dae",
+  "sema_stub": "1dae",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {

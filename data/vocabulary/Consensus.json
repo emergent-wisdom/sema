@@ -32,9 +32,9 @@
     ],
     "caution": "Governance decisions susceptible to coordinated voting blocs."
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:ffff8fe79630eb9df5d09f49aa1e34fbb20d98db198cbd07b29d4be368fd4c10",
-  "sema_ref": "Consensus#ffff",
-  "sema_stub": "ffff",
+  "sema_id": "sema:Consensus#mh:SHA-256:10bf74e88b0a09259132b02fbcb9bfa192d5fb53049051b3bf105505f4322ce7",
+  "sema_ref": "Consensus#10bf",
+  "sema_stub": "10bf",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

@@ -71,9 +71,9 @@
       }
     }
   },
-  "sema_id": "sema:AcceptSpec#mh:SHA-256:7caa4bc74694b725f3dbe825d67f0c6268a1213b32f9a19bf200c953de2eabae",
-  "sema_ref": "AcceptSpec#7caa",
-  "sema_stub": "7caa",
+  "sema_id": "sema:AcceptSpec#mh:SHA-256:5ab9f8babd2d00f0eaab83cbd46e8f5f01f3a6511b39a829d0be4fa78b54c57a",
+  "sema_ref": "AcceptSpec#5ab9",
+  "sema_stub": "5ab9",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

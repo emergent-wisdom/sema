@@ -33,9 +33,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:d08c89de83bce61b41b79f44211678c33cc8d37b923a92df92c363f8dbdfd34c",
-  "sema_ref": "PerspectiveEnsemble#d08c",
-  "sema_stub": "d08c",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:a83d25a40f700e4908dcad831f9c696ea4a06fd4f694f2cc564fd1d0c926d0aa",
+  "sema_ref": "PerspectiveEnsemble#a83d",
+  "sema_stub": "a83d",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -38,9 +38,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:9d39fb52b4ad05551788358eca746a469704a6b7b99043da23cb78bcbd6d0f19",
-  "sema_ref": "GracefulDegradation#9d39",
-  "sema_stub": "9d39",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:08aed00dcdbfe9a9621b93f82f790906bd196d0f6ceff78d8131b9d6bc18b35b",
+  "sema_ref": "GracefulDegradation#08ae",
+  "sema_stub": "08ae",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -41,9 +41,9 @@
     "category": "Memory",
     "ring": 0
   },
-  "sema_id": "sema:HolographicShard#mh:SHA-256:c137cf1fad9b9dc48b26b8cbf32ea744f91b69f5f5f7a7d3a7ad72b12ee48545",
-  "sema_ref": "HolographicShard#c137",
-  "sema_stub": "c137",
+  "sema_id": "sema:HolographicShard#mh:SHA-256:d330e337690b25f5d7752212ea8bf78c88ab12791d6ebe712ace570cbe00d533",
+  "sema_ref": "HolographicShard#d330",
+  "sema_stub": "d330",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {

@@ -21,9 +21,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:AntifragileInversion#mh:SHA-256:992022c17aa4c575dc33251481f83cc7cd018925f60469f913e173ba6e63ec2a",
-  "sema_ref": "AntifragileInversion#9920",
-  "sema_stub": "9920",
+  "sema_id": "sema:AntifragileInversion#mh:SHA-256:aed8bc91f417c78efea5f16b87674c88ed47f3b4c41f67884b17df79f196a860",
+  "sema_ref": "AntifragileInversion#aed8",
+  "sema_stub": "aed8",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

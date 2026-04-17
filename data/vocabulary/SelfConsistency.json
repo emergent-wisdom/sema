@@ -17,9 +17,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "SelfConsistency#ca0d",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:ca0daec71df9c74d6f6db1acf2e2565887c36feb44254186ab3b307b2d689931",
-  "sema_stub": "ca0d",
+  "sema_ref": "SelfConsistency#57cc",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:57cc0897623e070f57c5c8a9f628475b2369eb0b1ca4749f87d2552b7aa814a5",
+  "sema_stub": "57cc",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

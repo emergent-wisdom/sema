@@ -30,7 +30,7 @@
     }
   },
   "invariants": [
-    "Conservation: Allocated + Remaining = Total."
+    "{{conservation}}: Allocated + Remaining = Total."
   ],
   "preconditions": [
     "Total budget defined"
@@ -44,9 +44,14 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Budget#7270",
-  "sema_id": "sema:Budget#mh:SHA-256:72709a4878eefe66ed2d66994a1a7d2e22214d3ee3d64beafecc02387099360f",
-  "sema_stub": "7270",
+  "sema_ref": "Budget#0934",
+  "sema_id": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+  "sema_stub": "0934",
   "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
+    }
+  }
 }

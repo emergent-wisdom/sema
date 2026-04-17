@@ -40,7 +40,7 @@
       "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
     }
   },
-  "sema_id": "sema:Retry#mh:SHA-256:4cc646f6a317a5d12411f1f12df2d7212093229e82c2ca69c20fbaf29f1c1d59",
-  "sema_ref": "Retry#4cc6",
-  "sema_stub": "4cc6"
+  "sema_id": "sema:Retry#mh:SHA-256:743b42c45dc4d9e2766129f25583c58d70dc91f905bb4af4e5bd731538fdd3a5",
+  "sema_ref": "Retry#743b",
+  "sema_stub": "743b"
 }

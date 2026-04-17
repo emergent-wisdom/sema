@@ -44,9 +44,9 @@
     "tier": 1,
     "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action."
   },
-  "sema_ref": "Permission#354b",
-  "sema_id": "sema:Permission#mh:SHA-256:354bbc2a1ffe0abbf2da56daf3e803932aec5b3a1e88c2ade476a4fe8486204c",
-  "sema_stub": "354b",
+  "sema_ref": "Permission#c653",
+  "sema_id": "sema:Permission#mh:SHA-256:c653bd7e54b5b7cfafe9bb8635f3e1ed814008368cae31fd3c518818e76da6d0",
+  "sema_stub": "c653",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

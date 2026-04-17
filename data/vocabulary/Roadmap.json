@@ -8,9 +8,9 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Roadmap#mh:SHA-256:2e74475bfaffd9621c78487e66379ff44472070e70056aab9dcdfea4d16879ae",
-  "sema_ref": "Roadmap#2e74",
-  "sema_stub": "2e74",
+  "sema_id": "sema:Roadmap#mh:SHA-256:b0bb65c3e69fe7c90fbff48799ad1884408950b820e2fa977a5b233dad971a81",
+  "sema_ref": "Roadmap#b0bb",
+  "sema_stub": "b0bb",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

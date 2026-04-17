@@ -39,9 +39,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:SocraticLoop#mh:SHA-256:2913255a08d47a4bdc3583f6b8905bb92b5573f3e51cb66cc603b2688f37f2dc",
-  "sema_ref": "SocraticLoop#2913",
-  "sema_stub": "2913",
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:df78520911e57118d397e0e400cf5b4720d58461ca0ee0130a01f1caff81b70a",
+  "sema_ref": "SocraticLoop#df78",
+  "sema_stub": "df78",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

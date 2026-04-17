@@ -3,7 +3,7 @@
   "mechanism": "A mechanism that prevents system stagnation by injecting {{entropy}} (randomness/noise) into decision-making processes. It acts as a counterbalance to convergence, ensuring that the system explores the solution space rather than getting stuck in local optima. By adding {{noise}}, it forces re-evaluation of settled states.",
   "gloss": "Controlled randomization to escape convergence deadlocks",
   "failure_modes": [
-    "Over-injection destabilizing productive equilibria.",
+    "Over-injection destabilizing productive {{equilibrium}}.",
     "Insufficient injection failing to break persistent deadlocks."
   ],
   "_meta": {
@@ -12,15 +12,16 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:EntropyPump#mh:SHA-256:c313b5e344b36ab0e427d54d84e8fedb41ce69a74153d3980628c756b9f43fd6",
-  "sema_ref": "EntropyPump#c313",
-  "sema_stub": "c313",
+  "sema_id": "sema:EntropyPump#mh:SHA-256:4009135f0c832faa6a21bada63f9513d84219f3e36357f5a53c184323a41fcf4",
+  "sema_ref": "EntropyPump#4009",
+  "sema_stub": "4009",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212"
+      "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212",
+      "equilibrium": "sema:Equilibrium#mh:SHA-256:f7c5f4b45ee12a8b04b5543367092b5d91d4772bbb2b4f4891d1aa0e0e732ee3"
     }
   }
 }

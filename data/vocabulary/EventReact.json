@@ -22,9 +22,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:da85e84f43dca3c870edf9dd518e4602a63cf1be9efada545781de12db839103",
-  "sema_ref": "EventReact#da85",
-  "sema_stub": "da85",
+  "sema_id": "sema:EventReact#mh:SHA-256:443a3d4d4322e65a4e1f72ff3e271cc5f22fddd56c07d739392cd7a0cc068c60",
+  "sema_ref": "EventReact#443a",
+  "sema_stub": "443a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

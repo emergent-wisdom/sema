@@ -28,9 +28,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Bubble#mh:SHA-256:189dd3deb9833b76aa24662131557e799499d0cfbab0aae8070e3496f6c0e582",
-  "sema_ref": "Bubble#189d",
-  "sema_stub": "189d",
+  "sema_id": "sema:Bubble#mh:SHA-256:f2fe37d518db16660fb75a5fb5607353e387350e0760205b865cc55ac65cb5b4",
+  "sema_ref": "Bubble#f2fe",
+  "sema_stub": "f2fe",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

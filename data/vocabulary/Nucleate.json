@@ -8,7 +8,7 @@
     "Crystal fragmentation: participants leave in waves, causing repeated dissolve/reform cycles."
   ],
   "invariants": [
-    "Conservation of Mass: Nucleation cannot create agents; it only aggregates existing {{trace}} density.",
+    "{{conservation}} of Mass: Nucleation cannot create agents; it only aggregates existing {{trace}} density.",
     "Critical Mass: Process starts only when N > SeedThreshold",
     "Nucleation ONLY at supersaturated sites."
   ],
@@ -16,7 +16,7 @@
     "Field of agents/particles is present"
   ],
   "postconditions": [
-    "Phase transition complete (Liquid -> Solid)"
+    "{{phase_transition}} complete (Liquid \u2192 Solid)"
   ],
   "_meta": {
     "tier": 1,
@@ -24,9 +24,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Nucleate#mh:SHA-256:5f1555ae58386e4be9b89fa9c9de88d1453f38431a09ea3a56d0ebd0d5bb9116",
-  "sema_ref": "Nucleate#5f15",
-  "sema_stub": "5f15",
+  "sema_id": "sema:Nucleate#mh:SHA-256:d62bf471af1b9669eef43b395e16fbcc7f4277e974e5376ebab6b665b4173033",
+  "sema_ref": "Nucleate#d62b",
+  "sema_stub": "d62b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
@@ -34,7 +34,9 @@
       "crystallize": "sema:Crystallize#mh:SHA-256:32bccff954af661e8595adba2daaf5dc15bda30645dd1d397efd411272df00f8",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "rally": "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5"
+      "rally": "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
+      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688",
+      "phase_transition": "sema:PhaseTransition#mh:SHA-256:edf83fdf4afccce463a1afeb1c9562009edfc0414141ff15e5410024a5bd116a"
     }
   }
 }

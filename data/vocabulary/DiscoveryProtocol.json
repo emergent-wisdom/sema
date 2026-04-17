@@ -24,7 +24,7 @@
       "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
     }
   },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:bf29178f844591e77241b547f47963e06fc3119243dc2d7d4c2c45f24b843d43",
-  "sema_ref": "DiscoveryProtocol#bf29",
-  "sema_stub": "bf29"
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:3b4e4d31662924347eafe6cd3473abd5de73e67fb970fe69ec248e201f0cb4ec",
+  "sema_ref": "DiscoveryProtocol#3b4e",
+  "sema_stub": "3b4e"
 }

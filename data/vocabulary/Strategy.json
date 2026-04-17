@@ -11,9 +11,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:c4ba60dd3a1008c849d03f2cbebbd91ed92bf4a3bb496fbf08a86e152888f8a1",
-  "sema_ref": "Strategy#c4ba",
-  "sema_stub": "c4ba",
+  "sema_id": "sema:Strategy#mh:SHA-256:432b659b291dd489039ca166d4408d3fc68591d7bf7542ab0e39cd100abba9a9",
+  "sema_ref": "Strategy#432b",
+  "sema_stub": "432b",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

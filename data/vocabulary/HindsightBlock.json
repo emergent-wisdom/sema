@@ -32,9 +32,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:HindsightBlock#mh:SHA-256:4cc8834994870224daeb4d912c810b9cf50aea0cddfd3d2d774282a3abf516e0",
-  "sema_ref": "HindsightBlock#4cc8",
-  "sema_stub": "4cc8",
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:cc93d637d0ea2651f0897576ed91cab8c5345ee69571f05e499f1e4137e3547e",
+  "sema_ref": "HindsightBlock#cc93",
+  "sema_stub": "cc93",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

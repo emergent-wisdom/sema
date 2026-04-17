@@ -18,9 +18,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Result#mh:SHA-256:195b5acbf28190f1168318c8ddcd210da4e52365347497d86a2e4d154d17d9f3",
-  "sema_ref": "Result#195b",
-  "sema_stub": "195b",
+  "sema_id": "sema:Result#mh:SHA-256:ac811afc1da1534042bc7bc123135bbf8988efc8b0c43e9f2287cbcda0117377",
+  "sema_ref": "Result#ac81",
+  "sema_stub": "ac81",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {

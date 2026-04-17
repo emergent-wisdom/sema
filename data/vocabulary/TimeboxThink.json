@@ -36,9 +36,9 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:TimeboxThink#mh:SHA-256:043d1bce17ccfc84c9942fc1d4d6d374613aece1f5d21f07be766dad3ad6df74",
-  "sema_ref": "TimeboxThink#043d",
-  "sema_stub": "043d",
+  "sema_id": "sema:TimeboxThink#mh:SHA-256:4acae408dd54fb0908536fab8ae12e7b280b567a45c5e224bdd604b858945062",
+  "sema_ref": "TimeboxThink#4aca",
+  "sema_stub": "4aca",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

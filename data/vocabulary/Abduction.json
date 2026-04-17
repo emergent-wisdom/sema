@@ -43,7 +43,7 @@
       "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
     }
   },
-  "sema_id": "sema:Abduction#mh:SHA-256:a9dfc3350b4a0b9b8424cdfeaa9c6c90cb6a87123b310789f181ee9e67ca7941",
-  "sema_ref": "Abduction#a9df",
-  "sema_stub": "a9df"
+  "sema_id": "sema:Abduction#mh:SHA-256:d749bfbf4122c459fdc958fa4b2a685024c0496aa527d6403ef3b322061b818a",
+  "sema_ref": "Abduction#d749",
+  "sema_stub": "d749"
 }

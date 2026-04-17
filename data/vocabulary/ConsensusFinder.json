@@ -12,9 +12,9 @@
     "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:1c012e6f35c758a5cc63778e30124b372c2f5bb91ad0513056b8e2a6c1c5b4ca",
-  "sema_ref": "ConsensusFinder#1c01",
-  "sema_stub": "1c01",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:55bfb3a44630d009d6a8cb9f2e4002547009135bab39e76f365d4e66cb3cdb47",
+  "sema_ref": "ConsensusFinder#55bf",
+  "sema_stub": "55bf",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "signature": [

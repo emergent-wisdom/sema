@@ -61,7 +61,7 @@
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:7caa4bc74694b725f3dbe825d67f0c6268a1213b32f9a19bf200c953de2eabae"
     }
   },
-  "sema_id": "sema:FailureTrace#mh:SHA-256:9de1d968b51492278dee438d190924c197f8ac71135f58833cb2700d77c18af8",
-  "sema_ref": "FailureTrace#9de1",
-  "sema_stub": "9de1"
+  "sema_id": "sema:FailureTrace#mh:SHA-256:f80b4fd0035a3b542ad8c279ce345c9cebe377d70ac405e182bc795752845fe1",
+  "sema_ref": "FailureTrace#f80b",
+  "sema_stub": "f80b"
 }

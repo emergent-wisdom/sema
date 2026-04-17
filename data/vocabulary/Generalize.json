@@ -24,9 +24,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:6dea8c6d33fa265c8f0ca75ca5684a452b55892d38d9351440a2a1dad5fe8508",
-  "sema_ref": "Generalize#6dea",
-  "sema_stub": "6dea",
+  "sema_id": "sema:Generalize#mh:SHA-256:1bd3c56684a92f11757e91a8d90c27de4cc104f831a6020bb7091a89ad17e31b",
+  "sema_ref": "Generalize#1bd3",
+  "sema_stub": "1bd3",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

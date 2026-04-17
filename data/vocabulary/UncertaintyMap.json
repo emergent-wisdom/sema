@@ -14,9 +14,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:UncertaintyMap#mh:SHA-256:516d5d7d6a0d8a32aaa5ce16208f1e330fec2d7b6029ab985150b154408f8fa0",
-  "sema_ref": "UncertaintyMap#516d",
-  "sema_stub": "516d",
+  "sema_id": "sema:UncertaintyMap#mh:SHA-256:235e50628c22aba60f41bb17ffe83027106f1fa56550f5d19efa238df4922694",
+  "sema_ref": "UncertaintyMap#235e",
+  "sema_stub": "235e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

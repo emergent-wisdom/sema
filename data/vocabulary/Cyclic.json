@@ -12,9 +12,9 @@
     "Recurrence: At least one path exists from a node to itself.",
     "Termination Condition: Must have a defined exit state to prevent infinite loops."
   ],
-  "sema_ref": "Cyclic#5d28",
-  "sema_id": "sema:Cyclic#mh:SHA-256:5d28b07214cf38b9fb23ff6b2a29ff334ad6a63cca57771ee7ff828fce1047a8",
-  "sema_stub": "5d28",
+  "sema_ref": "Cyclic#298f",
+  "sema_id": "sema:Cyclic#mh:SHA-256:298fcc2033e2bf89cf41c68ca116da287ee1bd7417984bc5eb95e4346f3bb5c2",
+  "sema_stub": "298f",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

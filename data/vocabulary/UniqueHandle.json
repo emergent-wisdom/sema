@@ -17,9 +17,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:UniqueHandle#mh:SHA-256:d9a1b8d27c546ca3297cc2c8deaeb91300f52bf645e11b667b84d130b169c16d",
-  "sema_ref": "UniqueHandle#d9a1",
-  "sema_stub": "d9a1",
+  "sema_id": "sema:UniqueHandle#mh:SHA-256:b28783f92ddd2f3e36b69c915c02a31c445c6d4f759feea20026e1bf4d269ed7",
+  "sema_ref": "UniqueHandle#b287",
+  "sema_stub": "b287",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

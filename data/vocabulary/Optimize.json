@@ -1,6 +1,6 @@
 {
   "handle": "Optimize",
-  "mechanism": "The iterative process of adjusting parameters or structure to maximize (or minimize) a specific Objective Function defined by a {{metric}}. It involves generating candidate {{solution}}s, evaluating them against the metric, and selecting the best. It can be Local (Gradient Descent) or {{global}} (Evolutionary).",
+  "mechanism": "The iterative process of adjusting parameters or structure to maximize (or minimize) a specific Objective Function defined by a {{metric}}. It involves generating candidate {{solution}}s, evaluating them against the metric, and selecting the best. It can be Local ({{gradient}} Descent) or {{global}} (Evolutionary).",
   "gloss": "Maximize utility against a metric",
   "failure_modes": [
     "Overfitting: {{solution}} works perfectly on test data but fails in reality.",
@@ -32,9 +32,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:5b84e57715fe93b6d6b55f1d202e48e8d17b7965f61243e3b5f5f4a117775881",
-  "sema_ref": "Optimize#5b84",
-  "sema_stub": "5b84",
+  "sema_id": "sema:Optimize#mh:SHA-256:4d188b34b90b25247ab9b9f5b1ff004c5bf2d9e57aec66dbe8fb75754d77cfbd",
+  "sema_ref": "Optimize#4d18",
+  "sema_stub": "4d18",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -43,7 +43,8 @@
     },
     "references": {
       "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
+      "gradient": "sema:Gradient#mh:SHA-256:84a514eeeb98582c29b1d6f7d8ecbb8e698815987c0e7f372ba52a81bb8665a3"
     }
   }
 }

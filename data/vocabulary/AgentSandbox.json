@@ -28,9 +28,9 @@
       "Task"
     ]
   },
-  "sema_id": "sema:AgentSandbox#mh:SHA-256:fc413f8202770aa882512424ccacdc05ec5b74df2994b3d3ce7a325cc54eb50c",
-  "sema_ref": "AgentSandbox#fc41",
-  "sema_stub": "fc41",
+  "sema_id": "sema:AgentSandbox#mh:SHA-256:eeb70aaf6cf11f8221982044d731f82bea1069a837e9b708860a5b200401f649",
+  "sema_ref": "AgentSandbox#eeb7",
+  "sema_stub": "eeb7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

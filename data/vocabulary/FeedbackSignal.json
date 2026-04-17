@@ -6,9 +6,9 @@
     "Targeted",
     "Structured"
   ],
-  "sema_id": "sema:FeedbackSignal#mh:SHA-256:f174509d1cbc29c299a7a3e39a4c9246f9fb6cbe6bb9be0cd4bac6b88a2053a6",
-  "sema_ref": "FeedbackSignal#f174",
-  "sema_stub": "f174",
+  "sema_id": "sema:FeedbackSignal#mh:SHA-256:73023572db7852d405b5b665508633ea8c1cf751fa89c6341212338a315c19ee",
+  "sema_ref": "FeedbackSignal#7302",
+  "sema_stub": "7302",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Primitives",

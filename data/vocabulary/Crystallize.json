@@ -1,7 +1,7 @@
 {
   "handle": "Crystallize",
   "mechanism": "Formalize implicit resonance. {{agent}} A proposes crystallization based on history history_t. {{agent}} B validates perception. On consensus, implicit behaviors are codified into explicit obligations. It transforms soft {{resonate}} signals into hard {{constitution}} rules, contingent on low entropy conditions maintained by {{dampen}} and {{entropy_pump}}, preventing premature {{decay}}.",
-  "gloss": "Phase transition from implicit resonance to explicit contract",
+  "gloss": "{{phase_transition}} from implicit resonance to explicit contract",
   "failure_modes": [
     "Illusory Resonance: Agents misinterpreted random noise as synchronization.",
     "Premature Crystallization: Attempting to lock state while Entropy > Threshold.",
@@ -43,9 +43,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Crystallize#mh:SHA-256:b64bd975c1195d73e24369a3fe452a6ed0aecba1398437832b683f801da95e78",
-  "sema_ref": "Crystallize#b64b",
-  "sema_stub": "b64b",
+  "sema_id": "sema:Crystallize#mh:SHA-256:72ef777b1710feced661c38812e51d9b0cfa6fb68db328bae1e9a6a87a6c73cb",
+  "sema_ref": "Crystallize#72ef",
+  "sema_stub": "72ef",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
@@ -55,7 +55,8 @@
       "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
       "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
-      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
+      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
+      "phase_transition": "sema:PhaseTransition#mh:SHA-256:edf83fdf4afccce463a1afeb1c9562009edfc0414141ff15e5410024a5bd116a"
     }
   },
   "sema_layer": "Mind",

@@ -23,9 +23,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:QuorumPulse#mh:SHA-256:c4678f2efdc4ae24cba81e12ddb126c3edd11ccd9baebd6110783ef7959f2a1d",
-  "sema_ref": "QuorumPulse#c467",
-  "sema_stub": "c467",
+  "sema_id": "sema:QuorumPulse#mh:SHA-256:362dc00281c8e14c7ba2f4fdd0579ad28d5c40a49a5db996f8305d9926de1c8d",
+  "sema_ref": "QuorumPulse#362d",
+  "sema_stub": "362d",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

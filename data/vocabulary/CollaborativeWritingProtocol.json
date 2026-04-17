@@ -21,7 +21,7 @@
       "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
     }
   },
-  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:0588bcabfe6a70a924aebd2acca7e968211cd39612c23cad01a93ad8d2b6cb86",
-  "sema_ref": "CollaborativeWritingProtocol#0588",
-  "sema_stub": "0588"
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:bcb26645272040288e7eaf9ed650dfb42345c963b80c25fedc9ebc4da940cab2",
+  "sema_ref": "CollaborativeWritingProtocol#bcb2",
+  "sema_stub": "bcb2"
 }

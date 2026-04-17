@@ -21,9 +21,9 @@
     "category": "Governance",
     "ring": 2
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:a83d2b60890c1f561a04b717c221b345b8ac92a6761210f814c59533026a67e9",
-  "sema_ref": "WorldTransparent#a83d",
-  "sema_stub": "a83d",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:577993c8c5bfd77d4076aee49ccc8aa2579e51be55fbed4f89173b76538b9e74",
+  "sema_ref": "WorldTransparent#5779",
+  "sema_stub": "5779",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

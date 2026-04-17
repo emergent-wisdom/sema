@@ -32,9 +32,9 @@
       "SpotAudit"
     ]
   },
-  "sema_ref": "AuditTrail#c891",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:c89113de796b35d71144525b03f866e7f5503ff7e908828a3af9de1f4f880526",
-  "sema_stub": "c891",
+  "sema_ref": "AuditTrail#90ba",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:90bab33109d50ebadad8f883bd37240e908c43913b870db7fbd0e56d460519fe",
+  "sema_stub": "90ba",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {

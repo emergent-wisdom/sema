@@ -22,9 +22,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:ModestClaim#mh:SHA-256:ac19576f479e5ee5acca7a4d0f64d15c14dd6398c075f4b30a1d1a973717f53c",
-  "sema_ref": "ModestClaim#ac19",
-  "sema_stub": "ac19",
+  "sema_id": "sema:ModestClaim#mh:SHA-256:8539311293e397fa5d57bbac7ac0ddc33c21a5f6f40482bdb56f10a93f7614ee",
+  "sema_ref": "ModestClaim#8539",
+  "sema_stub": "8539",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

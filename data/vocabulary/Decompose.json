@@ -20,9 +20,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "Decompose#f900",
-  "sema_id": "sema:Decompose#mh:SHA-256:f900a7797aecd575ace5c083610f2b060c9ddc238c1b7ced781c5d2e5f20c283",
-  "sema_stub": "f900",
+  "sema_ref": "Decompose#7b62",
+  "sema_id": "sema:Decompose#mh:SHA-256:7b628bf72511a473f84fbfd8cae978700c0e5684e2b2b49ecbc931fdc0f2c6a6",
+  "sema_stub": "7b62",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

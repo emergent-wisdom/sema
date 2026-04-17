@@ -46,9 +46,9 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:a9ced589ce7984846cd86ebe6f937cd3b33f2435c5f56c60157e98b1aa868d71",
-  "sema_ref": "Belief#a9ce",
-  "sema_stub": "a9ce",
+  "sema_id": "sema:Belief#mh:SHA-256:48b4e2c708adc97b236c184a57e47697558b43c795a78ed100746857d092a323",
+  "sema_ref": "Belief#48b4",
+  "sema_stub": "48b4",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

@@ -6,7 +6,7 @@
     "{{category}} explosion (creating a new {{category}} for every {{noise}} point)."
   ],
   "invariants": [
-    "Conservation of Data: No anomaly is discarded during accommodation",
+    "{{conservation}} of Data: No anomaly is discarded during accommodation",
     "Fit Threshold: If ClassificationConfidence < 0.4, Trigger(Restructure)"
   ],
   "preconditions": [
@@ -21,9 +21,9 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:4c47e0f79019b4299cb3ee8f3df1fb16c94b96a0148d7809d771109ed67ef59f",
-  "sema_ref": "OntologyAdapt#4c47",
-  "sema_stub": "4c47",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:abc8945691180a6a49693e78f3d46a704099ea02442334d2f2ac5faca56b6e11",
+  "sema_ref": "OntologyAdapt#abc8",
+  "sema_stub": "abc8",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
@@ -32,7 +32,8 @@
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
       "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "anomaly": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893"
+      "anomaly": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893",
+      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
     }
   }
 }

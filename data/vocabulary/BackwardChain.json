@@ -23,9 +23,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:a231ada9216f6fef3fc3b7e307802b3e05cc3db778b8020e378dfb531137965f",
-  "sema_ref": "BackwardChain#a231",
-  "sema_stub": "a231",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:2e74faa8e456e299486e244ac48b24d0e480d4e11f7dfd4a2a31ffef4cde7849",
+  "sema_ref": "BackwardChain#2e74",
+  "sema_stub": "2e74",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

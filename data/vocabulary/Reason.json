@@ -30,9 +30,9 @@
       "TreeOfThoughts"
     ]
   },
-  "sema_id": "sema:Reason#mh:SHA-256:5f302cf59accb5b8546344b12f0aeaa0e2d3e78efcdf332b5f526b721bbe5d47",
-  "sema_ref": "Reason#5f30",
-  "sema_stub": "5f30",
+  "sema_id": "sema:Reason#mh:SHA-256:306e52e083f6fc9a1810f13fee2ee3cfdee4a00219d037fae628e0c7cb0da46f",
+  "sema_ref": "Reason#306e",
+  "sema_stub": "306e",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

@@ -42,9 +42,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Vote#mh:SHA-256:ab745929f7751f2ecb4c9c9a70ff048d565eb32d66cd072eceeb8a350ad52e60",
-  "sema_ref": "Vote#ab74",
-  "sema_stub": "ab74",
+  "sema_id": "sema:Vote#mh:SHA-256:0c9de28404dcc437b814684b20d28b37dbb2858c3ec7e197c76409b93cf92911",
+  "sema_ref": "Vote#0c9d",
+  "sema_stub": "0c9d",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

@@ -25,9 +25,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:d9905e91ea38f04c014d7e992f517f88129b891a49d749f288d4176da9734823",
-  "sema_ref": "ThreeLevelCollision#d990",
-  "sema_stub": "d990",
+  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:26bb7d1c62adf2f98b1884e9ba32914bd194e0ab32dc2225977c3c432758f2f2",
+  "sema_ref": "ThreeLevelCollision#26bb",
+  "sema_stub": "26bb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

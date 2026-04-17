@@ -41,9 +41,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:HeldRelease#mh:SHA-256:b55938fb06019b2ee8e63e2109eb3e35f578e8ecf02fed8c1b865cb6287e3e58",
-  "sema_ref": "HeldRelease#b559",
-  "sema_stub": "b559",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:0b5c36d337ac480e43e5a2e8a584fecd2671d7f7bb7f0308a9dff29ba37f1b19",
+  "sema_ref": "HeldRelease#0b5c",
+  "sema_stub": "0b5c",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",

@@ -22,9 +22,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:f2aea9db458ae12bed9650ef801f2f386ab9472b86d125bd2a9a2bdc684093db",
-  "sema_ref": "PatternSketch#f2ae",
-  "sema_stub": "f2ae",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:15b4008e81716c959e5b199fb0260adafdcb4277e10c8bc358ac0e9c5f1af9dd",
+  "sema_ref": "PatternSketch#15b4",
+  "sema_stub": "15b4",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

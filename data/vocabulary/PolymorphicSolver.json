@@ -45,7 +45,7 @@
     "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
   ],
   "derived_from": "sema:Solver#mh:SHA-256:10655bd6e90a5ceb9c03ccb1180ea280a7b2362f16411be9cde534de20c6a044",
-  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:9188a2aef75f006eb8d258c6cf1b0cec963d8a2bb6f52428c9647bf20487d351",
-  "sema_ref": "PolymorphicSolver#9188",
-  "sema_stub": "9188"
+  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:ab677d61a872169aec269649f0e103bca3c287caf263ff0bc0bc0378c7261128",
+  "sema_ref": "PolymorphicSolver#ab67",
+  "sema_stub": "ab67"
 }

@@ -38,9 +38,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:87f09510bdc6b22a48495ca89520be7645976237ec69906fa342e912d4867eff",
-  "sema_ref": "BreadthGovernor#87f0",
-  "sema_stub": "87f0",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:590cc506a8693013a4ea222c124209b6973d2257d83f6ff6217db089a15e0afe",
+  "sema_ref": "BreadthGovernor#590c",
+  "sema_stub": "590c",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

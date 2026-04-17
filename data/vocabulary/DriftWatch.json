@@ -1,6 +1,6 @@
 {
   "handle": "DriftWatch",
-  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if Distance(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
+  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if {{distance}}(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
   "gloss": "Reputation scoring via behavioral deviation from baseline (2-sigma alert)",
   "failure_modes": [
     "Witness collusion: Coordinated false drift reports.",
@@ -39,15 +39,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:191e2272f9b8f4a5f9ea5de3fa14f444d78bbc8c219e65253353096fe7fc9979",
-  "sema_ref": "DriftWatch#191e",
-  "sema_stub": "191e",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:415c7c8ca4c81f0716c5ccb0addf639e004ff4f2d996842a06fa5c03296ede72",
+  "sema_ref": "DriftWatch#415c",
+  "sema_stub": "415c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
+      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
+      "distance": "sema:Distance#mh:SHA-256:3e1eb18a34bdf42f9f9554af0bd80f65121c05bb756b202068e6959c7cec0167"
     }
   }
 }

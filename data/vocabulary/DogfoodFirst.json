@@ -32,9 +32,9 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:25387b1cb9c36907f32775517ffb22e2370c126d85c8db8a82b611ebaed142b8",
-  "sema_ref": "DogfoodFirst#2538",
-  "sema_stub": "2538",
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:b31a065284c4b1cda58be74d0da72e5173dd0fbb44ffacd2aad4deda9e3d5f41",
+  "sema_ref": "DogfoodFirst#b31a",
+  "sema_stub": "b31a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -17,9 +17,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Invert#mh:SHA-256:b0a8f903d3e95ab61fcce937631c354c5e7297e7971dfe1063ed581b84b56f83",
-  "sema_ref": "Invert#b0a8",
-  "sema_stub": "b0a8",
+  "sema_id": "sema:Invert#mh:SHA-256:f61528ded0a931963b5a203d9385a34f30513abdbe203da8c46f153acf11d3c7",
+  "sema_ref": "Invert#f615",
+  "sema_stub": "f615",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",

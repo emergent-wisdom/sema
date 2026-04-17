@@ -23,9 +23,9 @@
       "LateralOptimization"
     ]
   },
-  "sema_ref": "PUREOptimization#577c",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:577c180f9d5a8a6c8ce17e99a95491dee28688f35eaa465e97da4e22a27023f8",
-  "sema_stub": "577c",
+  "sema_ref": "PUREOptimization#2e88",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:2e885e3e2fd51263ca533804770f32ee395ff72364c9ee3bc7541180c811b362",
+  "sema_stub": "2e88",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

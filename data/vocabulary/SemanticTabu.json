@@ -21,9 +21,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:b511d0691bf169437533d1bcc074e7c350d68e0f3a1e760454eacc289e1ccd53",
-  "sema_ref": "SemanticTabu#b511",
-  "sema_stub": "b511",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:290d1702eea72d1e83492a16a8cf86aaed086757fb1b96817cdf0c4709e692e3",
+  "sema_ref": "SemanticTabu#290d",
+  "sema_stub": "290d",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

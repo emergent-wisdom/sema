@@ -28,9 +28,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:4c0687fddfad997ae87a753d9fc7d9a962e0c0b5a74153d8a3de7e246b659651",
-  "sema_ref": "LateralOptimization#4c06",
-  "sema_stub": "4c06",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:1598363a91c9e170b3b70e73a752f2ecf85d569365843b265cc402cc8b3f85fb",
+  "sema_ref": "LateralOptimization#1598",
+  "sema_stub": "1598",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [

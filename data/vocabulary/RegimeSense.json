@@ -39,9 +39,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:086e30af8ab3d7a71b8091dd6e8939558e08a9e12a3f7bf13c92fce74f1da89a",
-  "sema_ref": "RegimeSense#086e",
-  "sema_stub": "086e",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:83f3137f0db525bd4880cd01a717a19ba349e2294fc0cc4792a43f7eba66e10a",
+  "sema_ref": "RegimeSense#83f3",
+  "sema_stub": "83f3",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

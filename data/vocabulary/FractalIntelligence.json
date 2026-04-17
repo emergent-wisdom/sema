@@ -5,7 +5,7 @@
   "invariants": [
     "Fractal Self-Similarity: The process at the Root is identical to the process at the Leaf.",
     "Bounded Expansion: Recursion is limited by Economic constraints (Marginal Value).",
-    "Memory Conservation: Specialization must not result in the loss of global context."
+    "Memory {{conservation}}: Specialization must not result in the loss of global context."
   ],
   "signature": [
     "System(Reason)"
@@ -17,9 +17,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "FractalIntelligence#ab50",
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:ab502d23e39cad39392548bc97e251df2e2ecd494244f4fd069c0cd8732fb063",
-  "sema_stub": "ab50",
+  "sema_ref": "FractalIntelligence#0bec",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:0bec5a4bf69fd61c588c12f40e93e3a7f3d759a5ee82c1b90b074ce472c38c84",
+  "sema_stub": "0bec",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -30,7 +30,8 @@
       "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
       "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
       "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
-      "agent": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681"
+      "agent": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681",
+      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
     },
     "composes_with": {
       "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",

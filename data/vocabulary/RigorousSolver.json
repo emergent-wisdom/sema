@@ -13,9 +13,9 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:6c5af50fd041a3019e64e63aef35e70351e32a7ff8765d1d5f7c4b82f15a5141",
-  "sema_ref": "RigorousSolver#6c5a",
-  "sema_stub": "6c5a",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:7d7beca2eba929f28ea8523aea2c53015ea9357568f4ca6e95403d7055c4eea5",
+  "sema_ref": "RigorousSolver#7d7b",
+  "sema_stub": "7d7b",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
