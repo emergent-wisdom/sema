@@ -6,7 +6,10 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893"
+    ]
   },
   "data_schema": {
     "type": "object",

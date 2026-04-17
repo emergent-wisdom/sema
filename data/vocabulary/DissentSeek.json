@@ -21,11 +21,14 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:DissentSeek#mh:SHA-256:bd28d5bd7fa2253411b69c586231a1a80b835cc56569439dc8834540dcefaf54"
+    ]
   },
-  "sema_id": "sema:DissentSeek#mh:SHA-256:89c200b54eefbf13bbe87598c8d73cb00f93afb81d24168fc3b96ed5c06df07e",
-  "sema_ref": "DissentSeek#89c2",
-  "sema_stub": "89c2",
+  "sema_id": "sema:DissentSeek#mh:SHA-256:b2c90e6ef9d4813d1ef3043e907c0cbe795206b77d80d12cd05fdc9028396c69",
+  "sema_ref": "DissentSeek#b2c9",
+  "sema_stub": "b2c9",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
@@ -33,7 +36,7 @@
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
       "confirmation_block": "sema:ConfirmationBlock#mh:SHA-256:20db49e59b1e91b692635885522c55205d7889ddad978c36965d00a4fc985a5a",
       "understand": "sema:Understand#mh:SHA-256:c38c510b051d292e7c85629a389e2de521ad95fab03476acabf2fa94774425ac",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:dd78ffe0d335b88f5a9fa19e8c8c07ba85e87033a4d6687e13e085b456f8f718"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
     }
   }
 }

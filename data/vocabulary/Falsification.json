@@ -13,6 +13,9 @@
     "tier": 1,
     "related": [
       "sema:HypothesisLadder#mh:SHA-256:1e4cd70cfbf442861d0a8d486cc67a7d916354b29b20925cbee2606418c84701"
+    ],
+    "supersedes": [
+      "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929"
     ]
   },
   "sema_layer": "Mind",

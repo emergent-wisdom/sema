@@ -33,16 +33,19 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:OptimalStop#mh:SHA-256:74391a0813dfa1c767a2221d9fd50da3c1bd6714bd77a402f0178c707a8ad95f"
+    ]
   },
-  "sema_id": "sema:OptimalStop#mh:SHA-256:4deea2f266dbff3345db2878c8acfc0b75067a9aa1b38d9007dd82690a5979e5",
-  "sema_ref": "OptimalStop#4dee",
-  "sema_stub": "4dee",
+  "sema_id": "sema:OptimalStop#mh:SHA-256:e7ca1560a9735578b604728b9cad0aa0b894bbdc0ff7aae3859cbc5a8e9955f0",
+  "sema_ref": "OptimalStop#e7ca",
+  "sema_stub": "e7ca",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317"
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:ff07d8bf174ca020ec8e1e2cd9a7ea7575264d531256aba7a1dbc11eecec1f98"
     }
   }
 }

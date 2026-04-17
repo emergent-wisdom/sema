@@ -22,7 +22,10 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429"
+    ]
   },
   "sema_id": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b",
   "sema_ref": "Translate#edeb",

@@ -36,7 +36,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

@@ -37,19 +37,22 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0"
+    ]
   },
-  "sema_id": "sema:SocraticLoop#mh:SHA-256:bc73d4cecee28e54d9fecb9ea9e7088ed7a3f73274e2f5dbea9d59473da05091",
-  "sema_ref": "SocraticLoop#bc73",
-  "sema_stub": "bc73",
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:e9e57ec0359a06e25177a9a8074211eae0be2e582dcee00813bb7a9acf9c6f98",
+  "sema_ref": "SocraticLoop#e9e5",
+  "sema_stub": "e9e5",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca",
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
       "prompt": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
-      "dialectic": "sema:Dialectic#mh:SHA-256:2e3c31e1dea1334d4419087fc1ec14fbc9fab8692af785f5ecb5f204c439dc03"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4"
     }
   }
 }

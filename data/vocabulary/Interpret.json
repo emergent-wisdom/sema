@@ -13,7 +13,10 @@
     "tier": 0,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f"
+    ]
   },
   "sema_ref": "Interpret#8ee3",
   "sema_id": "sema:Interpret#mh:SHA-256:8ee3b4a80afed7f69b8a1ef9c81d89279e5620e781d000ad8a25f32456b72b24",

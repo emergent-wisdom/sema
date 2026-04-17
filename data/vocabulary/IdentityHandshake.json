@@ -11,13 +11,16 @@
     "layer": "Society",
     "category": "Coordination",
     "ring": 1,
-    "caution": "Trust boundary \u2014 failure enables impersonation."
+    "caution": "Trust boundary \u2014 failure enables impersonation.",
+    "supersedes": [
+      "sema:IdentityHandshake#mh:SHA-256:f2e812c10dde8b6eb942ab763f53a42d95fd797ac09ba951d4138119a2e813be"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Coordination",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:6c901e82514035eb5434a1f3971306786fa08e62092ca599b0debcb82c286a8f",
-  "sema_ref": "IdentityHandshake#6c90",
-  "sema_stub": "6c90",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:fb21d664e10594cf020ec4e1b52810b6e08a2bf632b8b49970610c2f980915fd",
+  "sema_ref": "IdentityHandshake#fb21",
+  "sema_stub": "fb21",
   "signature": [
     "Discover(Identity)"
   ],
@@ -25,10 +28,10 @@
     "references": {
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
       "nature": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b",
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
-      "mode": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e",
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
+      "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "discover": "sema:Discover#mh:SHA-256:aa709470f6d2f97f561d6d0a181ee8980688ce91c6b0ee2f6c8d2a33586f6dfd",
+      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
       "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
     }
   }

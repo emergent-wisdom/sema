@@ -34,11 +34,14 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:MetaCheck#mh:SHA-256:a228b1133c27b81db71a125234a13a0acac3464d6ac33fcc89d2e351b1bdb494"
+    ]
   },
-  "sema_id": "sema:MetaCheck#mh:SHA-256:c660a055a802bee10abbfb87cb9c97e8dd23eda0363834f49587041d45d2a27d",
-  "sema_ref": "MetaCheck#c660",
-  "sema_stub": "c660",
+  "sema_id": "sema:MetaCheck#mh:SHA-256:1914b94396caf3eed522feb1c8c72dece8ccde4cc412fc4d4a62a5ca61c4398f",
+  "sema_ref": "MetaCheck#1914",
+  "sema_stub": "1914",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
@@ -46,10 +49,10 @@
   ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
       "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
       "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
-      "reflexion": "sema:Reflexion#mh:SHA-256:3b52910b4b2f5413df0ac4ffa6b825cdc8c889157ec09e288643f78a0ddb662f"
+      "reflexion": "sema:Reflexion#mh:SHA-256:1458ddf10e51e9a5dbc4f63d328b8830c41fb24892ca9bef22179710acb4ebeb"
     }
   }
 }

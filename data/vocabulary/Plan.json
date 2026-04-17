@@ -54,17 +54,20 @@
     "tier": 0,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+    ]
   },
-  "sema_ref": "Plan#31a7",
-  "sema_id": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b",
-  "sema_stub": "31a7",
+  "sema_ref": "Plan#c009",
+  "sema_id": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3",
+  "sema_stub": "c009",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
-      "goal": "sema:Goal#mh:SHA-256:5f2705b0bb55d1543c9e2cea970a4add42f227ee67b57ffaa3e11233a98f0127",
+      "goal": "sema:Goal#mh:SHA-256:0948d036a4b39fc3950e582a6d68027d9b8e4e605bc9cb6190def4aedc839d37",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "risk": "sema:Risk#mh:SHA-256:198049488be8dcf811bfced0230ca10889fb531b03c6c7f66eb7dc131116be9d",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",

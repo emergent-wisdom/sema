@@ -10,7 +10,10 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63"
+    ]
   },
   "sema_id": "sema:EntropyPump#mh:SHA-256:ed3b97a2f0de4b0c3dac225aa578e266e9fce41cbb7c92d670d29a7366313818",
   "sema_ref": "EntropyPump#ed3b",

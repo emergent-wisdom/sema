@@ -22,16 +22,19 @@
     "related": [
       "sema:SteelmanCheck#mh:SHA-256:95fbecc2b836fd92b57f02a1c7cf25bd3e37a5f06e1847065598e37328290a7c"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:RedTeam#mh:SHA-256:7a8d8a9c68f25e1a8b23a1b57db4a3083709aec4b6904138a0e8d439d2781a5c"
+    ]
   },
-  "sema_id": "sema:RedTeam#mh:SHA-256:c72cc15f0c34cec80f78c90a059c6f6b305d8fcd9a8f788f8193d0369dc6877f",
-  "sema_ref": "RedTeam#c72c",
-  "sema_stub": "c72c",
+  "sema_id": "sema:RedTeam#mh:SHA-256:d22e0cd2aeb8dc4052f02ad287d5f500903fbb660e1694efb8a80e556bede4e3",
+  "sema_ref": "RedTeam#d22e",
+  "sema_stub": "d22e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:380c8ef1d2fdd4564ab1e91fb4caf7b13eb8b3d13fc243ed3bb4ff93a422dd14"
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:ded99445bc9bd5479bad257770ee426cce6ff91860bfd7c3b80fff712ec697eb"
     }
   }
 }

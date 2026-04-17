@@ -12,19 +12,22 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Verification",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530"
+    ]
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:9d6d4458df5002502fc645e29e7b5d60c0f981bd3957e55fb9aa6c75191fa141",
-  "sema_ref": "ExplainBeacon#9d6d",
-  "sema_stub": "9d6d",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:db99b93268bebbe8ad4275b280159a66e42fbc91689d230ecfd5e00454b9a4e1",
+  "sema_ref": "ExplainBeacon#db99",
+  "sema_stub": "db99",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
-      "greet": "sema:Greet#mh:SHA-256:ff7922e2f2c31a160124615bf9319b11b87f8dea4df015f5ec6c22699b67a9f4",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:8e3615550a11d28fdf434eedbb19eb51577a226aa3eea5e6221384f5bcfb6503"
+      "greet": "sema:Greet#mh:SHA-256:be4d3659a9eaa805c17a04d495d984d85e4ec1b118c824824b58985a17581fb7",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a"
     }
   }
 }

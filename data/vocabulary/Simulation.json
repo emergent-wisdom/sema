@@ -6,11 +6,14 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270"
+    ]
   },
-  "sema_id": "sema:Simulation#mh:SHA-256:398fb8a076fa02a90e2090899409644442669f6a16c3557d6e630a2872fcd707",
-  "sema_ref": "Simulation#398f",
-  "sema_stub": "398f",
+  "sema_id": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
+  "sema_ref": "Simulation#5e80",
+  "sema_stub": "5e80",
   "invariants": [
     "Isolation: Side effects in W' DO NOT leak to W."
   ],
@@ -18,7 +21,7 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "outcome": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b",
+      "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }

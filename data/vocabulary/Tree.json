@@ -46,7 +46,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415"
+    ]
   },
   "sema_ref": "Tree#a5a3",
   "sema_id": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65",

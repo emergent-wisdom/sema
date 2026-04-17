@@ -13,17 +13,20 @@
     "layer": "Society",
     "category": "Protocols",
     "ring": 1,
-    "caution": "Verify rollback strategy exists before committing."
+    "caution": "Verify rollback strategy exists before committing.",
+    "supersedes": [
+      "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e"
+    ]
   },
-  "sema_ref": "Deploy#742d",
-  "sema_id": "sema:Deploy#mh:SHA-256:742d3a6944e334ba70bacf08ae7acffe9347e20dba4ad0be41f4b42b198e5270",
-  "sema_stub": "742d",
+  "sema_ref": "Deploy#0643",
+  "sema_id": "sema:Deploy#mh:SHA-256:06439c27e298d332461d82e2995f8e9b746f406eb696f3b9eb2c192b0f7ca6ee",
+  "sema_stub": "0643",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "rollout": "sema:Rollout#mh:SHA-256:54750268d2da96defb669783bcbbe57bdcbe6e8f66251dcff0e82f51493df555"
+      "rollout": "sema:Rollout#mh:SHA-256:2ea35592e6b73d370d768d888a19d6a64a7d0644adc8502be2f93720e2f8a4d8"
     }
   }
 }

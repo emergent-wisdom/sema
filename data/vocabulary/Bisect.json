@@ -12,7 +12,10 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Bisect#mh:SHA-256:88b3085fd8a158f3fa253cbc18eb121c6ea858a1b0fd8045fd4452ae00a81901"
+    ]
   },
   "sema_id": "sema:Bisect#mh:SHA-256:30ea03cad159deceac2ed6c489873b74fecd989621b6b304a4b44666b8d08454",
   "sema_ref": "Bisect#30ea",

@@ -20,17 +20,20 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:PatternSketch#mh:SHA-256:f8fd94a51759adfbabbf38b704d132e010071b3aceb6b3e2378be9a0823336d2"
+    ]
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:c5d85d3c467e9521cf3a111ae75fbfb779eacf9e8ba9bdf96ac2b661c197bad8",
-  "sema_ref": "PatternSketch#c5d8",
-  "sema_stub": "c5d8",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:70ae82c8463235fa10a527eb785241b446f106bc75078525bf50228b12102ce2",
+  "sema_ref": "PatternSketch#70ae",
+  "sema_stub": "70ae",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
-      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:ab3e787f23cd67466a17c75d6dba6e21056265aaaee67fd8fca561580222a6ac"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:a855ab4395ee0d8daee947a94e70df5eb6c311df25b9839f6203753a81786ce0"
     }
   }
 }

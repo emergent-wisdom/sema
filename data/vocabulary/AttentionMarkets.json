@@ -25,7 +25,10 @@
     "tier": 1,
     "layer": "Society",
     "category": "Economics",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:AttentionMarkets#mh:SHA-256:923679ce8222a914dc75a55824b91d403220b0b3f8943cf0d0d9fc0512c0d20b"
+    ]
   },
   "sema_id": "sema:AttentionMarkets#mh:SHA-256:459cc3d717065f99e48d51011237f81d3f1ea6ea29e82db4494c5f7cd7b59fda",
   "sema_ref": "AttentionMarkets#459c",

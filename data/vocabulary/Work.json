@@ -43,16 +43,19 @@
     "related": [
       "EntropyPump"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Work#mh:SHA-256:f9fa297d02d2ac27d493a56c60000483035db4d07fa6cfa9c6f2b02fb07f1036",
-  "sema_ref": "Work#f9fa",
-  "sema_stub": "f9fa",
+  "sema_id": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b",
+  "sema_ref": "Work#35b6",
+  "sema_stub": "35b6",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     },
     "composes_with": {

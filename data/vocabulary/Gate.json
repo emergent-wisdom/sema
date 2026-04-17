@@ -21,7 +21,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d"
+    ]
   },
   "sema_id": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
   "sema_ref": "Gate#02f6",

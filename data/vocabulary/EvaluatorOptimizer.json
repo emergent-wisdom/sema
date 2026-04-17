@@ -23,11 +23,14 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2"
+    ]
   },
-  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:3058bc7e776d6a73fc16f1100cabb9e7a1a6527906dfc8a95375836684ecbebc",
-  "sema_ref": "EvaluatorOptimizer#3058",
-  "sema_stub": "3058",
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:e58e90e4e41715dd6bec748d54f0b241ed70ac5034a2e3ab661e436a1ba4b879",
+  "sema_ref": "EvaluatorOptimizer#e58e",
+  "sema_stub": "e58e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -35,11 +38,11 @@
   ],
   "dependencies": {
     "references": {
-      "optimize": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
+      "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
       "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca",
-      "meta_check": "sema:MetaCheck#mh:SHA-256:c660a055a802bee10abbfb87cb9c97e8dd23eda0363834f49587041d45d2a27d"
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
+      "meta_check": "sema:MetaCheck#mh:SHA-256:1914b94396caf3eed522feb1c8c72dece8ccde4cc412fc4d4a62a5ca61c4398f"
     }
   }
 }

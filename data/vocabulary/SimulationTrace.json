@@ -34,18 +34,21 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Memory",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SimulationTrace#mh:SHA-256:9da67f06f48d0416c35169ed3a5a825dd1a477f3966a175fd0a66280c93d49d0"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Memory",
-  "sema_id": "sema:SimulationTrace#mh:SHA-256:1b91cf6bf63e7b541719e7d1f05c35210bf26e012c80a4964f89d7f554b8f608",
-  "sema_ref": "SimulationTrace#1b91",
-  "sema_stub": "1b91",
+  "sema_id": "sema:SimulationTrace#mh:SHA-256:31d6537e1e627fbca06745873d4f4344990124a2a9b4502685ef75c2c9e26e30",
+  "sema_ref": "SimulationTrace#31d6",
+  "sema_stub": "31d6",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
-      "mental_sim": "sema:MentalSim#mh:SHA-256:b81797fef55020eda55aa383f5c0ae59c06272df0deb5e891aace630d75569d5",
-      "simulation": "sema:Simulation#mh:SHA-256:398fb8a076fa02a90e2090899409644442669f6a16c3557d6e630a2872fcd707"
+      "mental_sim": "sema:MentalSim#mh:SHA-256:2ec6e70048bee2d2fb14b28b4225006e6f1114fa621ee629a2bce47d552ca03a",
+      "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530"
     }
   }
 }

@@ -15,13 +15,13 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:9abb378f53cb903054ce383930efaf01c3fb5212240529679cd570770cb30bed",
-  "sema_ref": "HumanEmulatorProtocol#9abb",
-  "sema_stub": "9abb",
+  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:06e633b87fe168761d25177f53a99758b73e5a1d3c44f399aca1b4369f3d344b",
+  "sema_ref": "HumanEmulatorProtocol#06e6",
+  "sema_stub": "06e6",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:739bb7c08037f084b04c81466f61fa86545b406b93f3e944c3c3f3f73c58b835",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:86602ffacd78c14b36209d317ab0684fefd181cf0963a0c4f1abb6e3e83591c0"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa"
     }
   }
 }

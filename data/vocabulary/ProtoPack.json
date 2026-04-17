@@ -24,6 +24,9 @@
     "tier": 1,
     "related": [
       "Build"
+    ],
+    "supersedes": [
+      "sema:ProtoPack#mh:SHA-256:6597fa92b7426d373e1d05d6a7fd1f8c1416c00c78dfab8e35e5a6264c1453d6"
     ]
   },
   "sema_id": "sema:ProtoPack#mh:SHA-256:1cd18184514b33a7c7e32cad76c496885c5be7e8b63e3e46ba75d24d8bea57b8",

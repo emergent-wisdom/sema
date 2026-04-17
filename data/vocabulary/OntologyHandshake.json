@@ -24,7 +24,10 @@
     "tier": 2,
     "layer": "Society",
     "category": "Coordination",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Coordination",

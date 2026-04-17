@@ -17,7 +17,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

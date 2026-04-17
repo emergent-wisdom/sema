@@ -58,6 +58,9 @@
     "ring": 1,
     "related": [
       "AttentionMarkets"
+    ],
+    "supersedes": [
+      "sema:ContinuousResourceAuction#mh:SHA-256:babf1b41f451b6df2220129e0c0a05483abfc8f8aa8b4bfd3f7fd543ac9e009f"
     ]
   },
   "sema_ref": "ContinuousResourceAuction#0361",

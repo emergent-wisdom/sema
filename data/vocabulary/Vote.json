@@ -40,18 +40,21 @@
     "related": [
       "sema:Rank#mh:SHA-256:0fe86cb00461171be3c1415fe2f41d3d48fcbf317eb014280eb0ef26e5b9404e"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Vote#mh:SHA-256:30d0f73565ea6b9b3ec56cac26b7a54ae4533e9db9ea47b6a79691c5b9e69264"
+    ]
   },
-  "sema_id": "sema:Vote#mh:SHA-256:11f2dc64c5ce305279726d2bf49fa508eb8ec24a8cbe036c54a516bf3c6542ea",
-  "sema_ref": "Vote#11f2",
-  "sema_stub": "11f2",
+  "sema_id": "sema:Vote#mh:SHA-256:37f80069661e4c80fc47d051b967ac6fa103d950da07ab627cebc037a70c319f",
+  "sema_ref": "Vote#37f8",
+  "sema_stub": "37f8",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
-      "aggregate": "sema:Aggregate#mh:SHA-256:8c2ae987064dabf80b6ff9a6a2bcca7ae223ae9b6b2f6f3642fa754b004f45b5",
-      "elect": "sema:Elect#mh:SHA-256:0635df9ddda6928d4ecb80d5a9fd82aab8b17bae03880e5420c44b99cb5e7b93",
+      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
+      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
+      "elect": "sema:Elect#mh:SHA-256:4f89ea0f05e323ab337031d74493f564321700fa1a06cb567560e87729b62898",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     },
     "accepts": {

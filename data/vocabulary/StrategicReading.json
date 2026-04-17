@@ -37,20 +37,23 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:StrategicReading#mh:SHA-256:ef9282eb9e5d243105ed2f8016102f7653d1a9f3abc2215f08642695fa2a33bf"
+    ]
   },
-  "sema_ref": "StrategicReading#e058",
-  "sema_id": "sema:StrategicReading#mh:SHA-256:e0584ca5f61077a6f7c8d0011c60ddbaf88c7acbc36883a76bc241043c97b898",
-  "sema_stub": "e058",
+  "sema_ref": "StrategicReading#a1e9",
+  "sema_id": "sema:StrategicReading#mh:SHA-256:a1e94e937a57ec56c7c5862a812a362043d08b15d82e13d808e7b338fe460c9b",
+  "sema_stub": "a1e9",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:ff07d8bf174ca020ec8e1e2cd9a7ea7575264d531256aba7a1dbc11eecec1f98",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
       "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

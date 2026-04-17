@@ -14,35 +14,38 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:FractalIntelligence#mh:SHA-256:9c13919670cac402fbc76a2baf0c172a2d1097dec5a7957a8e80123272753ec3"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:74f8a9510d3c2d52e07d3405d3143271eb2ef86fb8fbef8a5a679f89720aee9e",
-  "sema_ref": "FractalIntelligence#74f8",
-  "sema_stub": "74f8",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:c9bc993c4275e181cf597ef9d481c2a9c2a462ea60d70c315e932fe26219dd0f",
+  "sema_ref": "FractalIntelligence#c9bc",
+  "sema_stub": "c9bc",
   "dependencies": {
     "references": {
-      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688",
-      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
+      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
+      "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:2c551bc0c0f026077f0edd124fbfdbf4908275b2438197406104505d047f7d55",
-      "specialize": "sema:Specialize#mh:SHA-256:3ad7bafd9ba2b8662d5affb01d92bf34d789f239a9427d932a2ecaed3b50ca8c",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:c5233490fe5067f8241c39135bdfb58032df02a30e34a1cebc91155369270cad",
+      "specialize": "sema:Specialize#mh:SHA-256:1a76cd0c846c2d7b5325919bad123748366b53ec096e0786a96ab2edbd5fb208",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:415806a13e3ba84483094912eb1d966e28595f56938bb00f7b3489f5ec58ebe3",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:1b5b67d8c6d94ebc1fa53e4f20c84f6cf1d470ab78dd34d38ef4b4dc3f60cc48",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     },
     "composes_with": {
       "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
       "state_snapshot": "sema:StateSnapshot#mh:SHA-256:5a11e42d46f259b1e618969b879bf1e1143349efee16bfe29af680d25db01d2d",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:86602ffacd78c14b36209d317ab0684fefd181cf0963a0c4f1abb6e3e83591c0",
-      "problem_framer": "sema:ProblemFramer#mh:SHA-256:a3fc034f9afc2797a089d13d4f267eea68626002da80f51c6fe70997c7b2cf6b",
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:739bb7c08037f084b04c81466f61fa86545b406b93f3e944c3c3f3f73c58b835",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:bbe4e13d44f051dd0cecd2ce4ea9a1dc2f9f16d13817a1fe13704e4cef3fcef7",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:eb5a8dec05991d7b8bc28ec2c06e27a77f02eb884646526303febcbac67004f8",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa",
+      "problem_framer": "sema:ProblemFramer#mh:SHA-256:5232182564bc0765b9ca38a207f1c3680f60b2bfa0628bd546ed558fbca34809",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:d1048d3e083414f5b7a80f2dad07db242bb03fc8107eca2663d86a7151166b73",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:53a7f5f86a370c0b6cb14bb1e0196c0e18ae32b2e637b4a870d7b91c1482933b",
       "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:c9eb4a8c8eb3f7b266fa063748b82777b480986a7619a45df41bdad69d1aa3e5",
-      "reason": "sema:Reason#mh:SHA-256:306711325c6e3366efe3e3ea371f89379311d36fbd1f64430ede33739601bca8"
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:038483584395139ff2a1766902d80a65edcab12a1ee39b57614fc93ce704e4ce",
+      "reason": "sema:Reason#mh:SHA-256:e9015c8660178539f862e6def248349a654f07571a2559bd8c47c13f9eb17f30"
     }
   }
 }

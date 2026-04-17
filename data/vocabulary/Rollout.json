@@ -26,11 +26,14 @@
     "ring": 1,
     "related": [
       "BlueGreen"
+    ],
+    "supersedes": [
+      "sema:Rollout#mh:SHA-256:42389087ff9ffd73d3de5c71f8509cf2cd974795babc71e862ec139c92ad5c78"
     ]
   },
-  "sema_id": "sema:Rollout#mh:SHA-256:54750268d2da96defb669783bcbbe57bdcbe6e8f66251dcff0e82f51493df555",
-  "sema_ref": "Rollout#5475",
-  "sema_stub": "5475",
+  "sema_id": "sema:Rollout#mh:SHA-256:2ea35592e6b73d370d768d888a19d6a64a7d0644adc8502be2f93720e2f8a4d8",
+  "sema_ref": "Rollout#2ea3",
+  "sema_stub": "2ea3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -45,19 +48,19 @@
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502"
     },
     "references": {
-      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b9adf897bad7746e76b4833754949a7176147a62dae927b38b3d281eb94cfb8d",
-      "build": "sema:Build#mh:SHA-256:8143240ba549ce730ef09c35198e11ea5cd9df8512b253de8958f16f5a098c0d",
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:d34a567ad3f296d2fe4d1b82be3b86923ad888e1206d0c1ed561a877dbb29752",
+      "build": "sema:Build#mh:SHA-256:8424bcb9915ad032c0b3cee2ffd24b8af14b65ed518048a220d286a447e15321",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "world_reversible": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "spec": "sema:Spec#mh:SHA-256:68b4a7de6903d953979547572fc95ddc63da8ba24b7e39b06e22d84daacefa1c"
+      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
     },
     "composes_with": {
-      "compensate": "sema:Compensate#mh:SHA-256:985ef5c13b644c687417409aef081d29994ef64a7a5cf8961e8fbd4e115a7b29",
-      "canary": "sema:Canary#mh:SHA-256:86d6889719d684744ebf19311b800f3b92aa7389a98d3950f342a3e8d7bf2ff3",
+      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631",
+      "canary": "sema:Canary#mh:SHA-256:9cba7bbaefd69639952bd931147b0976a1f62aac9bac4ea84bb103d5c955d0ba",
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:b71cbac714d333de39bd00c140ab214c1db4fa28db6562fbbbe75c160312ef30"
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:5e0d1d900fa6bb3f00b356fbaa1fdf13a4447c66cb36601256eb897b733bc96c"
     }
   }
 }

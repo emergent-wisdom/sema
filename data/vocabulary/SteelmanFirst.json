@@ -27,18 +27,21 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SteelmanFirst#mh:SHA-256:6069f5780eae1053b3d2a2bfb37be0df1340e1be9801d774697c57f16b26c62e"
+    ]
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:65165d1746590a58cc839da22e0c5536b6b9854472916dcb8e26b3efc074ffb1",
-  "sema_ref": "SteelmanFirst#6516",
-  "sema_stub": "6516",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:9d16f95ab732e139da1e9d7456b019e53035e7578aab05873a107c9d4b5b4366",
+  "sema_ref": "SteelmanFirst#9d16",
+  "sema_stub": "9d16",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:dd78ffe0d335b88f5a9fa19e8c8c07ba85e87033a4d6687e13e085b456f8f718",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9"
     }
   }

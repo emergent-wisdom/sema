@@ -28,11 +28,14 @@
       "SocraticLoop",
       "BoydCycle"
     ],
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:OODA#mh:SHA-256:f3bea02806503fe8a7c72a9fd3f3cdfccbae6c9519eb3bf8b25b35badc9545f7"
+    ]
   },
-  "sema_id": "sema:OODA#mh:SHA-256:a143b7d5df946d3d1c05847e30ccbfdbfe64b8fbb9a63f06406bae9bda7e78fc",
-  "sema_ref": "OODA#a143",
-  "sema_stub": "a143",
+  "sema_id": "sema:OODA#mh:SHA-256:fc39754c19d5bf107190c59973e9dfb0974ef079c79e3cb6bfe4d2bbaef5027f",
+  "sema_ref": "OODA#fc39",
+  "sema_stub": "fc39",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
@@ -41,14 +44,14 @@
   ],
   "dependencies": {
     "references": {
-      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
-      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca",
-      "context_first": "sema:ContextFirst#mh:SHA-256:dbb4decbd9e35f6e913ba9aa07c53facd707d0da2081ae20a9f117fd949a1a36",
+      "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada",
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
+      "context_first": "sema:ContextFirst#mh:SHA-256:3ed95df7c1428047ef2ab1f4df7752ab486650f5f1149b65d5cedcf8e090a9c6",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     },
     "composes_with": {
-      "belief": "sema:Belief#mh:SHA-256:cafbdbf0b6df5e9daae96a0fd2e9985415eb6ee79fd65708b7a16ea7c3f76959",
+      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
       "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e",
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",

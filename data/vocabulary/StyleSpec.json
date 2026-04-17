@@ -9,7 +9,10 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 2,
-    "tier": 2
+    "tier": 2,
+    "supersedes": [
+      "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -32,16 +35,16 @@
       }
     }
   },
-  "sema_ref": "StyleSpec#754e",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:754ed76d78d392f5ccba298808a23c6c505f83cbaed3ec6f9dc04b13f860437b",
-  "sema_stub": "754e",
+  "sema_ref": "StyleSpec#dac9",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:dac969ddcde8d834752b75146f356e5e702329bb38e4a9a4b65d13a3d41298a8",
+  "sema_stub": "dac9",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "spec": "sema:Spec#mh:SHA-256:68b4a7de6903d953979547572fc95ddc63da8ba24b7e39b06e22d84daacefa1c",
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:c912f414b11624e629406b19c5b4472e40678839f6a613f7d9e1c26c6ca655ed",
-      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:11afaa3e3784b6007ea101affd09ceb75c3f46882bedad0567766fb0900c085a"
+      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a",
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:7434862367defbfd8e582e0b18766c57aeee52557802f29334f4dabebf3873cb",
+      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4"
     }
   }
 }

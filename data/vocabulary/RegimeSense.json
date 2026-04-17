@@ -37,20 +37,23 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead"
+    ]
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:d8f093bdb5efb28c7c1a5ad8fecd5e420ed3a289382bfc3cf3c3ab7a6e19c2d3",
-  "sema_ref": "RegimeSense#d8f0",
-  "sema_stub": "d8f0",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d",
+  "sema_ref": "RegimeSense#1998",
+  "sema_stub": "1998",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
-      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:e42969c642c58242d050f5dc150fbfbae49fb4cffe192515cd20ce648f7b8ac8",
+      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
+      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:d3a4ea352b60623cfc7cc6584f2bca4bfac294028fd5463bdc6a60d85ceac0f5",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
-      "drift_watch": "sema:DriftWatch#mh:SHA-256:5baa1af8d0368a6e4a3df1a876e6407f7225933d354a5406cf9f0cb631f42f38",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "drift_watch": "sema:DriftWatch#mh:SHA-256:17c4d53d192ad7d6b902546c76c68007d10efc53610ac33514a39e3f6a9001f6",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e"
     }
   }

@@ -6,7 +6,10 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0,
-    "tier": 0
+    "tier": 0,
+    "supersedes": [
+      "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89"
+    ]
   },
   "data_schema": {
     "type": "object",

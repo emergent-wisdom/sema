@@ -18,26 +18,29 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:ManifestPlanning#mh:SHA-256:b9adf897bad7746e76b4833754949a7176147a62dae927b38b3d281eb94cfb8d",
-  "sema_ref": "ManifestPlanning#b9ad",
-  "sema_stub": "b9ad",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:d34a567ad3f296d2fe4d1b82be3b86923ad888e1206d0c1ed561a877dbb29752",
+  "sema_ref": "ManifestPlanning#d34a",
+  "sema_stub": "d34a",
   "dependencies": {
     "yields": {
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502"
     },
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
+      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3"
     },
     "composes_with": {
-      "optimize": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
+      "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
       "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
     },
     "accepts": {
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:edffd10df1ca5722b9d7f92a4efbe1a45e5ef172289ff6744a135978b1718ad2"
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:f63f8c8259dec4a322f899ec578ce3b0a9fc9cd8b0e3592499012cd8657aee28"
     }
   }
 }

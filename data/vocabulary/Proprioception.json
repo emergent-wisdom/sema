@@ -30,13 +30,16 @@
     "tier": 3,
     "layer": "Mind",
     "category": "Memory",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Proprioception#mh:SHA-256:2fbfba79d07478050b86020f08cb42f18c93e896052dccba0311db0168b549a0"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Memory",
-  "sema_id": "sema:Proprioception#mh:SHA-256:ec6c0681f6d5482fffd1cf6057c98c7b832f1445c9fd63a7107f2be8f57efc71",
-  "sema_ref": "Proprioception#ec6c",
-  "sema_stub": "ec6c",
+  "sema_id": "sema:Proprioception#mh:SHA-256:d45fa9af0b4110d49dbdf31635ebf242b613806455c1b0ff8505949b1e942e99",
+  "sema_ref": "Proprioception#d45f",
+  "sema_stub": "d45f",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
@@ -44,7 +47,7 @@
       "somatic_marker": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

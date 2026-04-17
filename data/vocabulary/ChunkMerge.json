@@ -17,17 +17,20 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Memory",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351"
+    ]
   },
-  "sema_id": "sema:ChunkMerge#mh:SHA-256:ac727e19b98b3c1043c437da0131bf23f38a7b34e994dfc3c138103f5286bac4",
-  "sema_ref": "ChunkMerge#ac72",
-  "sema_stub": "ac72",
+  "sema_id": "sema:ChunkMerge#mh:SHA-256:38ffe7a87ca3251bba48ee7dda9ba08d6ea95d7bb2178d606a04e8268dc05e24",
+  "sema_ref": "ChunkMerge#38ff",
+  "sema_stub": "38ff",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688",
-      "aggregate": "sema:Aggregate#mh:SHA-256:8c2ae987064dabf80b6ff9a6a2bcca7ae223ae9b6b2f6f3642fa754b004f45b5",
+      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
+      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
       "hierarchy": "sema:Hierarchy#mh:SHA-256:d5301ba0587b73443b7408885a85fd530d1609add96c1250138e062d18a565cb",
       "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621"

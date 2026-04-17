@@ -42,16 +42,19 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
+    ]
   },
-  "sema_ref": "Budget#0934",
-  "sema_id": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
-  "sema_stub": "0934",
+  "sema_ref": "Budget#4587",
+  "sema_id": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+  "sema_stub": "4587",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
+      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315"
     }
   }
 }

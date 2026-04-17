@@ -28,7 +28,10 @@
       "Belief",
       "Attention"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

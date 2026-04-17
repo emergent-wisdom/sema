@@ -25,20 +25,23 @@
     "related": [
       "RecursionDive"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:LeastToMost#mh:SHA-256:bd389eddb2f1b893221ab2a7479cb0293f1808057a52ef702b3ff6228509db26"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:LeastToMost#mh:SHA-256:f06af399de5e773e510798acc4f6a913d89949078f347bbff1de48f85d17379c",
-  "sema_ref": "LeastToMost#f06a",
-  "sema_stub": "f06a",
+  "sema_id": "sema:LeastToMost#mh:SHA-256:0ea345a1e93da2108dfceb24f875a3d5c08b0b7c62cac281cf28ddedfc01f809",
+  "sema_ref": "LeastToMost#0ea3",
+  "sema_stub": "0ea3",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
     "references": {
-      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7",
-      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
+      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
   }
 }

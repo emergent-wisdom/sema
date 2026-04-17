@@ -17,7 +17,10 @@
     "tier": 1,
     "layer": "Physics",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74"
+    ]
   },
   "sema_id": "sema:Reversibility#mh:SHA-256:bf796a25a0c91a127c9d336839033d52f198d75080d71e6ae084827f3ae158a7",
   "sema_ref": "Reversibility#bf79",

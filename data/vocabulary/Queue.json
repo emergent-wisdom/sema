@@ -9,7 +9,10 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",

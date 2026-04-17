@@ -35,27 +35,30 @@
     "category": "Primitives",
     "ring": 1,
     "tier": 1,
-    "related": []
+    "related": [],
+    "supersedes": [
+      "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda"
+    ]
   },
-  "sema_ref": "TaskLifecycle#fecc",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:feccada92c845fa22500b7cb4960113affe56f52be76e21b836bebc52c7d657a",
-  "sema_stub": "fecc",
+  "sema_ref": "TaskLifecycle#57c8",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:57c83d6d25fa9cf7f0427bf9ec72192eaad13cda46238d9d3a6837058e47fd5a",
+  "sema_stub": "57c8",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:8e3615550a11d28fdf434eedbb19eb51577a226aa3eea5e6221384f5bcfb6503",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a",
       "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
       "risk": "sema:Risk#mh:SHA-256:198049488be8dcf811bfced0230ca10889fb531b03c6c7f66eb7dc131116be9d",
-      "exception": "sema:Exception#mh:SHA-256:53bbe52ae45a1898ae6acf9099e12ce01f2a7fd34dea4e964cb45b0f0a7dc52a",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "exception": "sema:Exception#mh:SHA-256:0a4d1a4a0b35dcbe3f608782d39b4f915fcf7326baa2b767696c12608c6059c6",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     },
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:9e61cab1fbacfac92d739865d4505e9e9bb9ed024e0d51b670a00ccfeb801ec4"
     },
     "yields": {
-      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2"
+      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327"
     }
   }
 }

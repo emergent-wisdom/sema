@@ -23,25 +23,28 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Handoff#mh:SHA-256:38775e2344d8b78c6ff7385c47b247e0f94767c5dfb08aa6b9b7ef8ec1072d20"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:Handoff#mh:SHA-256:87aeb87ccc07421c903c4aa68e1aab40ebf5cbd1c9ce8534e3a888deadb4e4a2",
-  "sema_ref": "Handoff#87ae",
-  "sema_stub": "87ae",
+  "sema_id": "sema:Handoff#mh:SHA-256:a868e6aa2d4f6a28be539335dd38ba72938314b94483050578f533f0cc38bba2",
+  "sema_ref": "Handoff#a868",
+  "sema_stub": "a868",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "responsibility": "sema:Responsibility#mh:SHA-256:b3b1e537f4e49dc2bc607b1edbd2b5c54f0649ea0751ebdfb7df05a7ca5a983c"
+      "responsibility": "sema:Responsibility#mh:SHA-256:ea56467d7c7475a0546a0fcf7e77b869ce679bf563ca68b182150b4a28705f7e"
     },
     "composes_with": {
-      "delegate": "sema:Delegate#mh:SHA-256:60aa6cc18e942205d17401e1feafee733dac5ceffcae1fb9f9abffc51ff91afa"
+      "delegate": "sema:Delegate#mh:SHA-256:ba86128c57746d3716854e7f3126e81933d46a6fbc636038b8321758c769b8aa"
     },
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

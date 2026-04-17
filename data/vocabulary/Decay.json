@@ -29,7 +29,10 @@
     "related": [
       "StateTransition"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0"
+    ]
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",

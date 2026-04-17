@@ -29,7 +29,10 @@
       "ContextSwitch",
       "AnchorDrop"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    ]
   },
   "data_schema": {
     "type": "object",

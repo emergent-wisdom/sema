@@ -45,20 +45,23 @@
     "tier": 2,
     "layer": "Society",
     "category": "Coordination",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Coordination",
-  "sema_id": "sema:Rally#mh:SHA-256:15b169519920ab5fbae1023353dda80750cb3317545fa6c354fc3711c3cade41",
-  "sema_ref": "Rally#15b1",
-  "sema_stub": "15b1",
+  "sema_id": "sema:Rally#mh:SHA-256:0a1c42730dda47444d23b2beb92f0da483126d8494d54514951bef5511e58035",
+  "sema_ref": "Rally#0a1c",
+  "sema_stub": "0a1c",
   "dependencies": {
     "composes_with": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
     },
     "references": {
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
-      "elect": "sema:Elect#mh:SHA-256:0635df9ddda6928d4ecb80d5a9fd82aab8b17bae03880e5420c44b99cb5e7b93",
+      "elect": "sema:Elect#mh:SHA-256:4f89ea0f05e323ab337031d74493f564321700fa1a06cb567560e87729b62898",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"

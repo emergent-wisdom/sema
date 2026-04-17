@@ -10,16 +10,19 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:AmbiguityResolution#mh:SHA-256:aee6c8844ad85d09c8ce0fe0819c5359ba2b52e84bc56b23837c9b156b4fa0f1"
+    ]
   },
-  "sema_ref": "AmbiguityResolution#6cb8",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:6cb8f13d0b6ed8a75e42db359f5c6ab4ae471c8d1b56f0adad4601ba630c1d83",
-  "sema_stub": "6cb8",
+  "sema_ref": "AmbiguityResolution#6858",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:6858808fe7f817eefb51bac94a7afc62a2b29a1332bd3c7136e2537d41790eba",
+  "sema_stub": "6858",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "vote": "sema:Vote#mh:SHA-256:625c38775074a5eaf09c8fc54cf58b12f54d0cbb53681aae52c781e51c04fab4",
+      "vote": "sema:Vote#mh:SHA-256:37f80069661e4c80fc47d051b967ac6fa103d950da07ab627cebc037a70c319f",
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:ed3b97a2f0de4b0c3dac225aa578e266e9fce41cbb7c92d670d29a7366313818"
     }
   }

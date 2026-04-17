@@ -20,17 +20,20 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3"
+    ]
   },
-  "sema_id": "sema:Defer#mh:SHA-256:f84a61c97eab81487f9ebcae23dd3f651bfd1250d9640396289c64ee75209236",
-  "sema_ref": "Defer#f84a",
-  "sema_stub": "f84a",
+  "sema_id": "sema:Defer#mh:SHA-256:ccb6a7e9695bf506e5dcc02ef9650caaf58355948fd17ab27e940071f61cd429",
+  "sema_ref": "Defer#ccb6",
+  "sema_stub": "ccb6",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "prioritize": "sema:Prioritize#mh:SHA-256:420e04f6d680d32a9561c274f134dcc4f46a8417ba4398c10b23b0bd955f2def",
+      "prioritize": "sema:Prioritize#mh:SHA-256:274cda68266a9a8b986a22d2fa6f4702565fb879058e18035e64b212a850082c",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"

@@ -22,7 +22,10 @@
     "related": [
       "sema:UniqueHandle#mh:SHA-256:c3fb079be6908528bb340de26feb85f429a61fc13db10e728ea0ec3fffb19110"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:IdempotentWrite#mh:SHA-256:6c557713e21198238066f28ec889d6c877caab1f34d58c41baca371919e051af"
+    ]
   },
   "sema_id": "sema:IdempotentWrite#mh:SHA-256:102320da989eb7e2422d943ab8482cb0aa88481aa843794a7928fc531ef1acef",
   "sema_ref": "IdempotentWrite#1023",

@@ -26,18 +26,21 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Inference",
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:e454e65f7f5cb51ae4ca34181b14d2bb0d592dd05dc97673a08909b5d2e9a8ba",
-  "sema_ref": "ConfidenceCalibrate#e454",
-  "sema_stub": "e454",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:597b36a0dcd0af0c273bc1819ba4845829addb5ea49663f7574cd0936bb4abef",
+  "sema_ref": "ConfidenceCalibrate#597b",
+  "sema_stub": "597b",
   "dependencies": {
     "references": {
       "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:ee85444cb2388d0b73a897f719d6eb36dcea5c3bac76e1cf863132d57a6b4494"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1"
     }
   }
 }

@@ -19,16 +19,19 @@
     "related": [
       "Validate",
       "Judge"
+    ],
+    "supersedes": [
+      "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
     ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "sema_id": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
-  "sema_ref": "Check#410e",
-  "sema_stub": "410e",
+  "sema_id": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
+  "sema_ref": "Check#5f38",
+  "sema_stub": "5f38",
   "dependencies": {
     "yields": {
-      "status": "sema:Status#mh:SHA-256:1cf93b675b4c08b59123cb061984604d6cb3848818bb65ad87a12cb8e0503cee"
+      "status": "sema:Status#mh:SHA-256:7f5fb8391f994b56c06e54595ad72e9dc4f5672216cab74a9d061fb17bdd5e03"
     },
     "references": {
       "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",

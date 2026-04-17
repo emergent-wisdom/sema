@@ -37,20 +37,23 @@
     "layer": "Society",
     "category": "Protocols",
     "tier": 1,
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Workflow#mh:SHA-256:36b2e9b976f4c8995977ea44277a6c0d2d6fba5c61e8bac80b13d4f9695e1dd9"
+    ]
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:f23d05fb83f378a285a3853675e8309e98044a9aa0fadf5b5178261263d479b4",
-  "sema_ref": "Workflow#f23d",
-  "sema_stub": "f23d",
+  "sema_id": "sema:Workflow#mh:SHA-256:7975fc78a1a419744a496a8d10fff448ae347e41a10f0c5d528f7d9f46f162a8",
+  "sema_ref": "Workflow#7975",
+  "sema_stub": "7975",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
-      "role": "sema:Role#mh:SHA-256:dcb27d5c73551c3543a19343ee31cde4d98d7cd09ef9f6e07aa10f52ae8df12c",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
+      "role": "sema:Role#mh:SHA-256:80dff5a7dd9afaf02aeedfe83bf88eef0062d47b630f21b49c79ecac232363a4",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "solver": "sema:Solver#mh:SHA-256:4ed4703e641b4d38bc4179df117643b295206b9417a0c2f0d64a1e6a8e9a031f"
+      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02"
     }
   }
 }

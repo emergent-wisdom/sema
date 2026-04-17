@@ -6,7 +6,10 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
+    ]
   },
   "sema_id": "sema:Understand#mh:SHA-256:c38c510b051d292e7c85629a389e2de521ad95fab03476acabf2fa94774425ac",
   "sema_ref": "Understand#c38c",

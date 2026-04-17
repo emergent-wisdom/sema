@@ -27,14 +27,15 @@
     "tier": 1,
     "caution": "Best-guess inference \u2014 always provisional. Must be composed with a verification step in high-stakes domains.",
     "supersedes": [
-      "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d"
+      "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
+      "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b"
     ]
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Abduction#mh:SHA-256:f9eae03bb7d903b8ad05840b6ad212f448052a4d1f796db8bfecf99c1f732445",
-  "sema_ref": "Abduction#f9ea",
-  "sema_stub": "f9ea",
+  "sema_id": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
+  "sema_ref": "Abduction#68f6",
+  "sema_stub": "68f6",
   "dependencies": {
     "references": {
       "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
@@ -43,7 +44,7 @@
       "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
     },
     "composes_with": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f"
     }
   }
 }

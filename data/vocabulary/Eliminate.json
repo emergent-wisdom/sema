@@ -21,17 +21,20 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Eliminate#mh:SHA-256:43ea687e3560a55f221807138469697a6f331e687fa542c66ddf4d97f07174b0"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Eliminate#mh:SHA-256:ee96bd91d065e8a5000163b00a727c417dbc8231edd52fa3f824449ec98739bd",
-  "sema_ref": "Eliminate#ee96",
-  "sema_stub": "ee96",
+  "sema_id": "sema:Eliminate#mh:SHA-256:9ae4533e650b6d3eaeef74ea92724cc4bcdcaec7860c0de224a89865bb89d4ad",
+  "sema_ref": "Eliminate#9ae4",
+  "sema_stub": "9ae4",
   "dependencies": {
     "references": {
       "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
-      "prioritize": "sema:Prioritize#mh:SHA-256:420e04f6d680d32a9561c274f134dcc4f46a8417ba4398c10b23b0bd955f2def",
+      "prioritize": "sema:Prioritize#mh:SHA-256:274cda68266a9a8b986a22d2fa6f4702565fb879058e18035e64b212a850082c",
       "falsification": "sema:Falsification#mh:SHA-256:021560b40fc737a96a5b716a3bac434acea9b6a1e0debe6f010740bb915aa376",
       "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12"
     }

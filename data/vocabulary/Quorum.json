@@ -40,7 +40,10 @@
     "related": [
       "sema:LazyConsensus#mh:SHA-256:7bd765a60e8b663fb8f3bd3abb5ada96b0be7ceb21b21ea656724138456447b1"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

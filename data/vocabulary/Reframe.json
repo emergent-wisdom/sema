@@ -23,6 +23,9 @@
     "related": [
       "SolutionRoot",
       "SolutionTree"
+    ],
+    "supersedes": [
+      "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9"
     ]
   },
   "sema_layer": "Mind",

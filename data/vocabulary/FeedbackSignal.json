@@ -10,7 +10,10 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
@@ -45,14 +48,14 @@
       }
     }
   },
-  "sema_id": "sema:FeedbackSignal#mh:SHA-256:afacbe954e69fc922c467f83dc1624d9b2e8e5651a1923554aed161443e59108",
-  "sema_ref": "FeedbackSignal#afac",
-  "sema_stub": "afac",
+  "sema_id": "sema:FeedbackSignal#mh:SHA-256:3f6e56af17d685d119ecb7a2a4e51b19fb4bd21ae768d6f9e1cf64a89acab446",
+  "sema_ref": "FeedbackSignal#3f6e",
+  "sema_stub": "3f6e",
   "dependencies": {
     "references": {
-      "feedback": "sema:Feedback#mh:SHA-256:dc367877c9161b9d4ba77075cfe19157680bb190f8834f81c925a4a035d2fe43",
+      "feedback": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
   }
 }

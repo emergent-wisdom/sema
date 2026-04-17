@@ -36,16 +36,19 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Exception#mh:SHA-256:53bbe52ae45a1898ae6acf9099e12ce01f2a7fd34dea4e964cb45b0f0a7dc52a",
-  "sema_ref": "Exception#53bb",
-  "sema_stub": "53bb",
+  "sema_id": "sema:Exception#mh:SHA-256:0a4d1a4a0b35dcbe3f608782d39b4f915fcf7326baa2b767696c12608c6059c6",
+  "sema_ref": "Exception#0a4d",
+  "sema_stub": "0a4d",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:59d855305c8f8ac7493b0e6e5c078d9cf7a7a9d2e181b8fefd88f7151f4fb9b8",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:c7fed2adfa415c82a93ecff3cc6c41f3e60ef2c9891c365987761d01d6bcf70f",
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }

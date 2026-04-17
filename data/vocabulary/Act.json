@@ -31,7 +31,10 @@
       "ReAct",
       "AgentSandbox"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+    ]
   },
   "sema_id": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
   "sema_ref": "Act#dc2d",

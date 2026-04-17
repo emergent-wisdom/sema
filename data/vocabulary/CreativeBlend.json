@@ -22,23 +22,26 @@
     "layer": "Mind",
     "category": "Strategy",
     "ring": 1,
-    "tier": 2
+    "tier": 2,
+    "supersedes": [
+      "sema:CreativeBlend#mh:SHA-256:624687c31005bc40986fbd3ace62e3e42c931c01ab4c1b082abe319a54372515"
+    ]
   },
-  "sema_ref": "CreativeBlend#6f0b",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:6f0bb2e52fa2a76d3eaea90530ea5f42f4a048d6baad01e1ceaa807b6720ad46",
-  "sema_stub": "6f0b",
+  "sema_ref": "CreativeBlend#424e",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:424e93a0ff31a38b3343b4de41295c6833a13087860e24ca04f5560b1c00a6f4",
+  "sema_stub": "424e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "noise_injection": "sema:NoiseInjection#mh:SHA-256:2131a366290fec6ee5756ff5c6fe3466df4bfb96fd013b34d825d46d156c02c1",
+      "noise_injection": "sema:NoiseInjection#mh:SHA-256:5042e3f02fd0864b9ee468439978c165ae68139488e06c020bf49941f536f3a5",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "novelty": "sema:Novelty#mh:SHA-256:53a0735aae257b366e75eb95455674504363a24332c4e21327007fd359e2dc11",
-      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031"
+      "novelty": "sema:Novelty#mh:SHA-256:296b5ea7f3a5eba874fedb7bc53eefa3e9512b64cf04375d4d07c18e6aced988",
+      "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada"
     },
     "composes_with": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:289473f83c17f1f4938c68dd5dd07d3c4a96b1069897e58b40bb46cc3981f036",
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:29a95899288d5be174cdd01853f8badd77a0508749126d87247063c2357e090e",
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e"
     },
     "accepts": {
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"

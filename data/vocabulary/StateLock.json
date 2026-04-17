@@ -12,7 +12,10 @@
     "category": "Protocols",
     "ring": 0,
     "tier": 1,
-    "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation."
+    "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation.",
+    "supersedes": [
+      "sema:StateLock#mh:SHA-256:774b674f80993c49b0a348c384397f80027af319faa3440813d9d53b3eaa6a14"
+    ]
   },
   "signature": [
     "Lock(State)"

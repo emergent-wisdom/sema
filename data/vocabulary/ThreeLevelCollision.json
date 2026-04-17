@@ -23,16 +23,19 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ThreeLevelCollision#mh:SHA-256:5db438e5f38882afa181ea527d06b673f64139f42390b9e795cf2ecc9efa29af"
+    ]
   },
-  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:9e893b211139022decb998c0679fd54082fb4146fbbd94d28a58d2d519c0c3f4",
-  "sema_ref": "ThreeLevelCollision#9e89",
-  "sema_stub": "9e89",
+  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:b3c3160ae7995afcfbc43c47eaa5ee0b488b47f689bb6ffc4077eb80f1baec61",
+  "sema_ref": "ThreeLevelCollision#b3c3",
+  "sema_stub": "b3c3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:59d855305c8f8ac7493b0e6e5c078d9cf7a7a9d2e181b8fefd88f7151f4fb9b8",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:c7fed2adfa415c82a93ecff3cc6c41f3e60ef2c9891c365987761d01d6bcf70f",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     }
   }

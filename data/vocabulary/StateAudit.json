@@ -9,7 +9,10 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

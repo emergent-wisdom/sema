@@ -30,11 +30,14 @@
       "RegretMinimization",
       "ParetoFront"
     ],
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32"
+    ]
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
-  "sema_ref": "Optimize#b98b",
-  "sema_stub": "b98b",
+  "sema_id": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
+  "sema_ref": "Optimize#6226",
+  "sema_stub": "6226",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -44,7 +47,7 @@
       "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
     },
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
   }
 }

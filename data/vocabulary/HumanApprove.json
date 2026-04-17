@@ -32,7 +32,10 @@
     "layer": "Infrastructure",
     "category": "Verification",
     "ring": 1,
-    "caution": "Bypassing removes the human-in-the-loop safety boundary."
+    "caution": "Bypassing removes the human-in-the-loop safety boundary.",
+    "supersedes": [
+      "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",

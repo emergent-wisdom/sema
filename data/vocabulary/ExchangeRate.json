@@ -13,7 +13,10 @@
     "layer": "Society",
     "category": "Economics",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Economics",

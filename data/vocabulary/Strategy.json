@@ -9,16 +9,19 @@
     "related": [
       "OODA"
     ],
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4"
+    ]
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
-  "sema_ref": "Strategy#a0af",
-  "sema_stub": "a0af",
+  "sema_id": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada",
+  "sema_ref": "Strategy#cd1d",
+  "sema_stub": "cd1d",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
+      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3"
     }
   }
 }

@@ -43,6 +43,9 @@
     "ring": 1,
     "related": [
       "OntologyHandshake"
+    ],
+    "supersedes": [
+      "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7"
     ]
   },
   "sema_layer": "Society",

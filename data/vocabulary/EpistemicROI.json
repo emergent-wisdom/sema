@@ -21,24 +21,27 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:EpistemicROI#mh:SHA-256:82a2da9aee8241835a3b8f370816bdd2d1e4e019cd28b52b285244ffe306b7da"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:EpistemicROI#mh:SHA-256:9e4f16a3fbd1040bce8feddba74491615b1b721324b070846317f26a871491f2",
-  "sema_ref": "EpistemicROI#9e4f",
-  "sema_stub": "9e4f",
+  "sema_id": "sema:EpistemicROI#mh:SHA-256:07f9ede9b37881846f271d342862a03a5f607917798eaac4e875840d2d3114ae",
+  "sema_ref": "EpistemicROI#07f9",
+  "sema_stub": "07f9",
   "dependencies": {
     "references": {
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:ff07d8bf174ca020ec8e1e2cd9a7ea7575264d531256aba7a1dbc11eecec1f98",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2",
+      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "experiment": "sema:Experiment#mh:SHA-256:a816fe78b29e05515da63e5ae977e266fbfc265defd2ceb555c6ed0a4e45aafe",
+      "experiment": "sema:Experiment#mh:SHA-256:24aa765432c012d9dd25eafe872031e765843f751ae0d08bab2ab8b5d93cd59e",
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "outcome": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b"
+      "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154"
     }
   }
 }

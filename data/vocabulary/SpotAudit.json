@@ -19,7 +19,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Verification",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d"
+    ]
   },
   "sema_id": "sema:SpotAudit#mh:SHA-256:000ed33bc0676411521d703253810082f4a6a470818e194e833eca8605859ea8",
   "sema_ref": "SpotAudit#000e",

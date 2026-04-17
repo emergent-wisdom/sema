@@ -35,19 +35,22 @@
     "related": [
       "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991"
+    ]
   },
-  "sema_id": "sema:BeliefTracking#mh:SHA-256:5a146bb1fcc101d6283b32b2304637b5adc6fe976a8ddefab113845a6daec1e3",
-  "sema_ref": "BeliefTracking#5a14",
-  "sema_stub": "5a14",
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:3c59711efa02e8ad352030f7645c65d2379c63266b56da08a3e2eb15ee9b9ccd",
+  "sema_ref": "BeliefTracking#3c59",
+  "sema_stub": "3c59",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:9db262c4006d612677ef684ff294995aa1f5013e19c26b0e3f79b5bd01cb8e78",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "belief": "sema:Belief#mh:SHA-256:cafbdbf0b6df5e9daae96a0fd2e9985415eb6ee79fd65708b7a16ea7c3f76959",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

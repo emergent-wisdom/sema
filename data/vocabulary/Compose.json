@@ -23,21 +23,24 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Compose#mh:SHA-256:10b7e69d6548c3d79dcf5ccb356bb0196fe7535d273a885cbe6a2c20b9e73a11"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
     "Combine(PromptChain)"
   ],
-  "sema_id": "sema:Compose#mh:SHA-256:389f4d23861b1382b3d046c9193fcae322a33407ee7130564a9e971192de2bf4",
-  "sema_ref": "Compose#389f",
-  "sema_stub": "389f",
+  "sema_id": "sema:Compose#mh:SHA-256:7220c24cf97036e4ff5fe88f0e034f179141b3d6791f3d1a3b72d92cececc5da",
+  "sema_ref": "Compose#7220",
+  "sema_stub": "7220",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
       "combine": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:7f67f2925e5b99a4a3752cbf9bd736f5ebd2562f7ca6986b94cbe91d9ae73707"
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:5356ac5f1bd0c8d125e039a93c7f6a0b73a99586d38165494653dbed482a3472"
     }
   }
 }

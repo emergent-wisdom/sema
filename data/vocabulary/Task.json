@@ -17,7 +17,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+    ]
   },
   "sema_id": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
   "sema_ref": "Task#b290",

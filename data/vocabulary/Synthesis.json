@@ -6,7 +6,10 @@
     "layer": "Mind",
     "category": "Reasoning",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",

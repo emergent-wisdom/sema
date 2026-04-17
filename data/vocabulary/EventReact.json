@@ -20,17 +20,20 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:EventReact#mh:SHA-256:7db170eab2eaf5a1764ee61af391ab290db9e83835f6ca3107305d2a709554fe"
+    ]
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:6f083d07d58832607b6c81b68e78d6f6f46d62aee2875453cf3d11ef9eebcf24",
-  "sema_ref": "EventReact#6f08",
-  "sema_stub": "6f08",
+  "sema_id": "sema:EventReact#mh:SHA-256:d3c4315542c927bf9d499f7277a884e38386658e01867c27d6300f7b40cae114",
+  "sema_ref": "EventReact#d3c4",
+  "sema_stub": "d3c4",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "re_act": "sema:ReAct#mh:SHA-256:05f2853a62a134412f0ab43bf17f487094c9a206e0c23910a2c865d76d38c097",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "re_act": "sema:ReAct#mh:SHA-256:b4d0fb47a1426ca3ecf1ee70b05bd585628b07eaf93faa1a4c11f832640c8bab",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

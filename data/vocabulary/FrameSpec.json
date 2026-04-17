@@ -10,7 +10,10 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -46,9 +49,9 @@
   "signature": [
     "Artifact(Constraint)"
   ],
-  "sema_id": "sema:FrameSpec#mh:SHA-256:a31de23eee4cab0c3d900bdbb33d080c1b50ab8397c11e7d46baf2998f53778d",
-  "sema_ref": "FrameSpec#a31d",
-  "sema_stub": "a31d",
+  "sema_id": "sema:FrameSpec#mh:SHA-256:f63f8c8259dec4a322f899ec578ce3b0a9fc9cd8b0e3592499012cd8657aee28",
+  "sema_ref": "FrameSpec#f63f",
+  "sema_stub": "f63f",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
@@ -56,7 +59,7 @@
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "spec": "sema:Spec#mh:SHA-256:68b4a7de6903d953979547572fc95ddc63da8ba24b7e39b06e22d84daacefa1c"
+      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
     }
   }
 }

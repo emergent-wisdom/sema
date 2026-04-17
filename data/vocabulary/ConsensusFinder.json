@@ -10,11 +10,14 @@
     "tier": 2,
     "layer": "Society",
     "category": "Coordination",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa"
+    ]
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:299d1024dad094583f6af34160c81a3442d7523d9566c0af749f51746c98d063",
-  "sema_ref": "ConsensusFinder#299d",
-  "sema_stub": "299d",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:8c10ddd69cb4e8d06813558ff94bdbf80b000173fde14f65012fcd3ebaa37c86",
+  "sema_ref": "ConsensusFinder#8c10",
+  "sema_stub": "8c10",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "signature": [
@@ -22,10 +25,10 @@
   ],
   "dependencies": {
     "references": {
-      "resonate": "sema:Resonate#mh:SHA-256:155f6c11d3e0ea4d22870a496ced173a776b8b403a7a07b38527e403fc7ce011",
+      "resonate": "sema:Resonate#mh:SHA-256:00578726e84b21be66bef145b823bf2cbfefa2a30bdfb55d7b012db367e4730c",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
-      "discover": "sema:Discover#mh:SHA-256:aa709470f6d2f97f561d6d0a181ee8980688ce91c6b0ee2f6c8d2a33586f6dfd",
-      "consensus": "sema:Consensus#mh:SHA-256:cc1d5318fed3420ecaac8748bd2ebd935b9e7d48cd8f874fcfc731d8e87f1f11"
+      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
+      "consensus": "sema:Consensus#mh:SHA-256:376f5580e6df7d500aaea9020d26a976275a110e3f849d88871055e78b7c73fa"
     }
   }
 }

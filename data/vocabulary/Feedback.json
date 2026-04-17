@@ -16,11 +16,14 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "tier": 1,
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15"
+    ]
   },
-  "sema_id": "sema:Feedback#mh:SHA-256:dc367877c9161b9d4ba77075cfe19157680bb190f8834f81c925a4a035d2fe43",
-  "sema_ref": "Feedback#dc36",
-  "sema_stub": "dc36",
+  "sema_id": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
+  "sema_ref": "Feedback#6c7b",
+  "sema_stub": "6c7b",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "signature": [
@@ -32,7 +35,7 @@
     },
     "references": {
       "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
-      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2",
+      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327",
       "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
     }
   }

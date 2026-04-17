@@ -20,6 +20,9 @@
     "ring": 1,
     "related": [
       "UniversalSolverTree"
+    ],
+    "supersedes": [
+      "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def"
     ]
   },
   "data_schema": {
@@ -50,19 +53,19 @@
       }
     }
   },
-  "sema_ref": "SolverTree#03af",
-  "sema_id": "sema:SolverTree#mh:SHA-256:03af4b1e873ab24c1a0769e8fc34364febcfe326056aee08e3b4d1dbc4c8d675",
-  "sema_stub": "03af",
+  "sema_ref": "SolverTree#3c94",
+  "sema_id": "sema:SolverTree#mh:SHA-256:3c94f8fbb9c4d1a56881b1d84a3cbe7ea56185fa778c2533657fc34f86ae66a1",
+  "sema_stub": "3c94",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
       "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65",
-      "solver_node": "sema:SolverNode#mh:SHA-256:86bb3f560e1394d3f684b4811a6c42ede31eac8ba9738355f8c0c33097150cdb",
-      "root_solver": "sema:RootSolver#mh:SHA-256:05296ff1cd30a98016a32352ab1c55a401eecf926e11e4c95b328302163c2b37",
-      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:eb5a8dec05991d7b8bc28ec2c06e27a77f02eb884646526303febcbac67004f8"
+      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
+      "root_solver": "sema:RootSolver#mh:SHA-256:0eab25ce9d0813d98b179450701665a87b467ccbced30195d718515fb3fc5f6b",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:53a7f5f86a370c0b6cb14bb1e0196c0e18ae32b2e637b4a870d7b91c1482933b"
     },
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"

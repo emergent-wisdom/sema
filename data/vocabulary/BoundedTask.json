@@ -11,18 +11,21 @@
     "layer": "Society",
     "category": "Protocols",
     "ring": 2,
-    "tier": 2
+    "tier": 2,
+    "supersedes": [
+      "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:BoundedTask#mh:SHA-256:2bfd3c657cb1fb1757f78526a14980b0b98b37d77d27723c30379fb057a85458",
-  "sema_ref": "BoundedTask#2bfd",
-  "sema_stub": "2bfd",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:1063ec27ef357a8a410276f42e3c8f16b17d74593121e388d2407a739b8f2c1b",
+  "sema_ref": "BoundedTask#1063",
+  "sema_stub": "1063",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
-      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11"
     }
   }
 }

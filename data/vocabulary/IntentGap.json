@@ -22,17 +22,20 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:IntentGap#mh:SHA-256:5dc4af64c8178e975cb7d6c1325132b7af673a69e445a37f9dc1e4aa8565ef14"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_ref": "IntentGap#b049",
-  "sema_id": "sema:IntentGap#mh:SHA-256:b04973168f896cc6fedab491bc44f98fc3f700514f2a9d41f8bb70415d493b56",
-  "sema_stub": "b049",
+  "sema_ref": "IntentGap#f7bb",
+  "sema_id": "sema:IntentGap#mh:SHA-256:f7bb020075b23ce5fcc6ab2c898dcf23f5a916df0b818b333dbecb43bc608069",
+  "sema_stub": "f7bb",
   "dependencies": {
     "references": {
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "outcome": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b"
+      "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154"
     }
   }
 }

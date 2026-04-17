@@ -36,21 +36,24 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169"
+    ]
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:d0217ed8bdde21c38d9dd237c43b7c74912d7b9fd16a2879b21343178e32b481",
-  "sema_ref": "BreadthGovernor#d021",
-  "sema_stub": "d021",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:e924663e0589e01869b6403b59fc721b69a0250190a6019fa6130a225360080e",
+  "sema_ref": "BreadthGovernor#e924",
+  "sema_stub": "e924",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:c8d0f17a0bf8be9fd40e9e69ef88d54f23216b2860d0602a1f88b29f64418709",
-      "parsimony": "sema:Parsimony#mh:SHA-256:6d67429f03b5de8222068f834b6214aa5f5e660ea203e8a2123368e25c4fa108",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
+      "parsimony": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7",
+      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
       "parallel": "sema:Parallel#mh:SHA-256:318115c507a765d08bb292f74162bb6427f0756b031b2f516b089f6dbf61a753"
     }
   }

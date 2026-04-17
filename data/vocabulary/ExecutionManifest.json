@@ -15,6 +15,9 @@
       "Plan",
       "Build",
       "Rollout"
+    ],
+    "supersedes": [
+      "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
     ]
   },
   "sema_id": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502",

@@ -22,7 +22,10 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ExtendedThinking#mh:SHA-256:ca3c54e46218935876ca5c993974742069fe61871fae7af38a2fef745753dc98"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",

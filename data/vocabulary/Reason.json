@@ -28,17 +28,20 @@
     "related": [
       "ChainOfThought",
       "TreeOfThoughts"
+    ],
+    "supersedes": [
+      "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846"
     ]
   },
-  "sema_id": "sema:Reason#mh:SHA-256:629c0c3a953aadf46bc9f61cb204f7241e848f6f7ee03ab2a6cc8397b306d711",
-  "sema_ref": "Reason#629c",
-  "sema_stub": "629c",
+  "sema_id": "sema:Reason#mh:SHA-256:e9015c8660178539f862e6def248349a654f07571a2559bd8c47c13f9eb17f30",
+  "sema_ref": "Reason#e901",
+  "sema_stub": "e901",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:ff07d8bf174ca020ec8e1e2cd9a7ea7575264d531256aba7a1dbc11eecec1f98",
       "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
       "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     },

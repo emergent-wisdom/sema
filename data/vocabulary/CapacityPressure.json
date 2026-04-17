@@ -38,21 +38,24 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:86419e0ac86fe335ef22bf056ffd0b2c6d89651f872f9bec2543b15d92a70f29",
-  "sema_ref": "CapacityPressure#8641",
-  "sema_stub": "8641",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:b3634240995739a6a63e3af53d108ce2921bead06593758ffa75f3724b492980",
+  "sema_ref": "CapacityPressure#b363",
+  "sema_stub": "b363",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:289473f83c17f1f4938c68dd5dd07d3c4a96b1069897e58b40bb46cc3981f036",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:29a95899288d5be174cdd01853f8badd77a0508749126d87247063c2357e090e",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
       "context_compress": "sema:ContextCompress#mh:SHA-256:4845cff7c2a6371afdb2d199ed427a5e5d8d8c5f6a2d24a3b6b8278eb8dff0ee",
-      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
-      "generalize": "sema:Generalize#mh:SHA-256:96848e5d61a66064f3bab37da24d0c8dbb6056b72964d1f4e0691a6c188fc154",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "generalize": "sema:Generalize#mh:SHA-256:ad9e81a92a651c1081fd09857e243dc804e603dc977be22f86a0051bd642596f",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

@@ -50,17 +50,20 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Card#mh:SHA-256:e307b9bce7530dd5d86a1e6e4cd2252765f4154b6e3e6c1f1f1ac3e544666495"
+    ]
   },
-  "sema_id": "sema:Card#mh:SHA-256:f63d05a3e64ce7dd98121e23b559334726c6664a4d0579acd48f88871980d108",
-  "sema_ref": "Card#f63d",
-  "sema_stub": "f63d",
+  "sema_id": "sema:Card#mh:SHA-256:68487a949d1a26f464e0abd5fb8b8a86c5e6a338b112634c858a7ce59631c216",
+  "sema_ref": "Card#6848",
+  "sema_stub": "6848",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602"
     },
     "composes_with": {

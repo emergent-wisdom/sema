@@ -44,7 +44,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

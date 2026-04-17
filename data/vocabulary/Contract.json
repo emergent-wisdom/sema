@@ -53,19 +53,22 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Contract#mh:SHA-256:06241d8925a848e07b8b7afab2c37767b126c3f2363faba11bcc455ebb6a4d04"
+    ]
   },
-  "sema_id": "sema:Contract#mh:SHA-256:c2bed505fae8413f38524aa362a8194d5eb42795b56fcd73ae88f1100734e742",
-  "sema_ref": "Contract#c2be",
-  "sema_stub": "c2be",
+  "sema_id": "sema:Contract#mh:SHA-256:442e457b869006b480cc44f756f2d110dd28de31a9f480bbccb4e9aaf97837d8",
+  "sema_ref": "Contract#442e",
+  "sema_stub": "442e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "sign": "sema:Sign#mh:SHA-256:d60d27217d8d1f219460f69a9971b9f73c1e279c5fddbb7db51a87c8015e34e8",
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:3aeb7bb718ebf906d99e71ddf4008b773fed718ac07d14443961abec0ad06602",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:bde9269c325f26585d6a69bb2fc4d1a8adb0092f55a4e02296cc3d2aa2630e84",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "judge": "sema:Judge#mh:SHA-256:b8d60cf6d7f4c087b09f576533d1eb077bce121fafc6ea8905c60539a663a7d1",
+      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     },
     "accepts": {

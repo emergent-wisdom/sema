@@ -10,11 +10,14 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5"
+    ]
   },
-  "sema_id": "sema:Tension#mh:SHA-256:92e31e8f2daa129400d7270a856f016095f9c5879a7a21d93cfe8322b3277d01",
-  "sema_ref": "Tension#92e3",
-  "sema_stub": "92e3",
+  "sema_id": "sema:Tension#mh:SHA-256:fc30a85f6d7da54e882a8f2cb095f646a5719976b5b9df30958edd556c7e1966",
+  "sema_ref": "Tension#fc30",
+  "sema_stub": "fc30",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -54,8 +57,8 @@
   },
   "dependencies": {
     "references": {
-      "yield": "sema:Yield#mh:SHA-256:0de85f1f0d25974e6aa1b306009a0abfd06fa875b467a8c1ba02936af3aa9a26",
-      "dialectic": "sema:Dialectic#mh:SHA-256:2e3c31e1dea1334d4419087fc1ec14fbc9fab8692af785f5ecb5f204c439dc03"
+      "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9",
+      "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4"
     }
   }
 }

@@ -20,17 +20,20 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SunkCostIgnore#mh:SHA-256:4dc35c44a5267415e5ddb5e07a802229242be890db74b697881178da91ccad8f"
+    ]
   },
-  "sema_id": "sema:SunkCostIgnore#mh:SHA-256:9dec2a21e106ee25043c8a1289c09967e579ce927ee7a0d92e896d736889d04b",
-  "sema_ref": "SunkCostIgnore#9dec",
-  "sema_stub": "9dec",
+  "sema_id": "sema:SunkCostIgnore#mh:SHA-256:12a74afeba0c2d525de3077bef2e7dce82459bf05c517f9c35855ea42caf6d49",
+  "sema_ref": "SunkCostIgnore#12a7",
+  "sema_stub": "12a7",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca",
-      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:6b5f9f3742a34add470e56df30ff462bfdf6c8830705a371aa43a73afcee8585",
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
+      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:04c64b50814976909ace1dd671b6b49d9b18e540e1b709c266fc48a1125e6466",
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }
   }

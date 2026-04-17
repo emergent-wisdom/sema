@@ -13,20 +13,23 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Verification",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619"
+    ]
   },
-  "sema_id": "sema:Validate#mh:SHA-256:aebfb015224719006acab6ffc4eed37a94ecb262ac59b0af4c2c43b58c2f1ca7",
-  "sema_ref": "Validate#aebf",
-  "sema_stub": "aebf",
+  "sema_id": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add",
+  "sema_ref": "Validate#7b5b",
+  "sema_stub": "7b5b",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26"
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
     },
     "yields": {
-      "boolean": "sema:Boolean#mh:SHA-256:2e6b2b2f8b0ae5c6060b15cd6cb6cb3bf21d40a4effbc18aff354559195f9217"
+      "boolean": "sema:Boolean#mh:SHA-256:199e20c989a12c8b9837ec40155e521d6b4ba259090b4bcce2f8a7fb7f1b3a10"
     }
   }
 }

@@ -19,20 +19,23 @@
     "related": [
       "ThinSlice"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329"
+    ]
   },
-  "sema_id": "sema:HeuristicSnap#mh:SHA-256:f15ccef72bb0044b92ef26aba87f49751e4b08718121acbe4a1ee79a6e81efa0",
-  "sema_ref": "HeuristicSnap#f15c",
-  "sema_stub": "f15c",
+  "sema_id": "sema:HeuristicSnap#mh:SHA-256:abd50b29ef814f8ffbfa4900fd596131960f601008427126ca833e2fc3fd3d6d",
+  "sema_ref": "HeuristicSnap#abd5",
+  "sema_stub": "abd5",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f"
     }
   }
 }

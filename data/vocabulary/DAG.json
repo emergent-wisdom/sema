@@ -28,7 +28,10 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 2,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f"
+    ]
   },
   "invariants": [
     "Acyclicity: No path exists from Node(A) to itself.",
@@ -36,13 +39,13 @@
   ],
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:DAG#mh:SHA-256:b3f5e8128c54a9b4e1a0de8b407ed313d8a8a1e32165687af9862e3566fef7d3",
-  "sema_ref": "DAG#b3f5",
-  "sema_stub": "b3f5",
+  "sema_id": "sema:DAG#mh:SHA-256:29cbb4f9958812e156589d79977e38031186c31d10a7dd1c5c539b06dd418cc2",
+  "sema_ref": "DAG#29cb",
+  "sema_stub": "29cb",
   "dependencies": {
     "references": {
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "parallelize": "sema:Parallelize#mh:SHA-256:b9430cfb73cdaeef11b79f3619c8dcdf4c1f418e6986d1fb1e249b92dd1efae8"
+      "parallelize": "sema:Parallelize#mh:SHA-256:37ad00e823e2263528b3d17396d9270e506c586f107a8e26eb4937b6383833b8"
     }
   }
 }

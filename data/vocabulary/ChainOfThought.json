@@ -14,11 +14,14 @@
       "ProgramOfThought",
       "ReAct"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+    ]
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b",
-  "sema_ref": "ChainOfThought#380a",
-  "sema_stub": "380a",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f",
+  "sema_ref": "ChainOfThought#dd97",
+  "sema_stub": "dd97",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -32,7 +35,7 @@
     },
     "composes_with": {
       "step_back": "sema:StepBack#mh:SHA-256:35ad31171daed52a64436fc24ac0f61729ca54bb9b5425d341e4763e30a968c9",
-      "reflexion": "sema:Reflexion#mh:SHA-256:3b52910b4b2f5413df0ac4ffa6b825cdc8c889157ec09e288643f78a0ddb662f"
+      "reflexion": "sema:Reflexion#mh:SHA-256:1458ddf10e51e9a5dbc4f63d328b8830c41fb24892ca9bef22179710acb4ebeb"
     }
   }
 }

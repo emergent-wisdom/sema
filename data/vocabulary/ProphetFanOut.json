@@ -19,18 +19,21 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa"
+    ]
   },
-  "sema_id": "sema:ProphetFanOut#mh:SHA-256:c8d0f17a0bf8be9fd40e9e69ef88d54f23216b2860d0602a1f88b29f64418709",
-  "sema_ref": "ProphetFanOut#c8d0",
-  "sema_stub": "c8d0",
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
+  "sema_ref": "ProphetFanOut#54ee",
+  "sema_stub": "54ee",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
       "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
-      "aggregate": "sema:Aggregate#mh:SHA-256:8c2ae987064dabf80b6ff9a6a2bcca7ae223ae9b6b2f6f3642fa754b004f45b5"
+      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b"
     }
   }
 }

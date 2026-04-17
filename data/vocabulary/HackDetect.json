@@ -23,19 +23,22 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:HackDetect#mh:SHA-256:c89cffb0b0f44031d64b88c435c8f992ec540dd94a8993ecd5f5f6bbb557ff83"
+    ]
   },
-  "sema_id": "sema:HackDetect#mh:SHA-256:e160512d54efe12cd529d205e15cfd5696a60ca7f0f50dff509a62bb2a30b862",
-  "sema_ref": "HackDetect#e160",
-  "sema_stub": "e160",
+  "sema_id": "sema:HackDetect#mh:SHA-256:3494caf8262a00b5b783c48146898fa56d22fb2647897c80df5f4f4da158bcf2",
+  "sema_ref": "HackDetect#3494",
+  "sema_stub": "3494",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "input_guard": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:b71cbac714d333de39bd00c140ab214c1db4fa28db6562fbbbe75c160312ef30"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:5e0d1d900fa6bb3f00b356fbaa1fdf13a4447c66cb36601256eb897b733bc96c"
     }
   }
 }

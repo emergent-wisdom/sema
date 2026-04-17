@@ -29,22 +29,25 @@
     "layer": "Physics",
     "category": "Primitives",
     "ring": 0,
-    "caution": "Exclusive access \u2014 starvation enables denial of service."
+    "caution": "Exclusive access \u2014 starvation enables denial of service.",
+    "supersedes": [
+      "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7"
+    ]
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "derived_from": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-  "sema_id": "sema:Mutex#mh:SHA-256:1334485e8f4235f91fec5fedc9b391b636101ab50948e25e3cffea26adfecc68",
-  "sema_ref": "Mutex#1334",
-  "sema_stub": "1334",
+  "sema_id": "sema:Mutex#mh:SHA-256:4f92f538e7cac17a005087ef874e42d6d35f44dbf8ec3ceb863501d77450cc43",
+  "sema_ref": "Mutex#4f92",
+  "sema_stub": "4f92",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
     "references": {
-      "resource": "sema:Resource#mh:SHA-256:553ab0cf44d99e80943d4190f2520897bdc3b2581fdf4c57582e61930943076b",
+      "resource": "sema:Resource#mh:SHA-256:3a2f2f0b7b22059fa22c61184defbbe2cbefc8b8b98cef39a6bc38a24f47c1ac",
       "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
+      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315"
     }
   }
 }

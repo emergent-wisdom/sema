@@ -14,7 +14,10 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SynergisticMode#mh:SHA-256:e7d9822f9bb0e4199bdafb21e4be993bbe3a0f04bba680804068c0b2bfe2306b"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -44,19 +47,19 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:fa9f9c350f4b30263a89276c00ae4ed39170666ede1ced92daa88a2ceedcae52",
-  "sema_ref": "SynergisticMode#fa9f",
-  "sema_stub": "fa9f",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:90b6858833893edf730124e87d9a8a94185b5dac1a487d4cf744b6b3059e3ded",
+  "sema_ref": "SynergisticMode#90b6",
+  "sema_stub": "90b6",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "compose": "sema:Compose#mh:SHA-256:389f4d23861b1382b3d046c9193fcae322a33407ee7130564a9e971192de2bf4",
+      "compose": "sema:Compose#mh:SHA-256:7220c24cf97036e4ff5fe88f0e034f179141b3d6791f3d1a3b72d92cececc5da",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
-      "mode": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
+      "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }

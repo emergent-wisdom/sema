@@ -31,16 +31,19 @@
       "SpotAudit",
       "DriftWatch",
       "Reflexion"
+    ],
+    "supersedes": [
+      "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1"
     ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:RolloutWatch#mh:SHA-256:20b55fcd88cf88b6036edd5b974cd57018e5268d3b54c91747b1214113a6c83d",
-  "sema_ref": "RolloutWatch#20b5",
-  "sema_stub": "20b5",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:a5a9617a45b93172652e05ab0a7367cb4e4b5e13284bd17e000be2ce240b72ee",
+  "sema_ref": "RolloutWatch#a5a9",
+  "sema_stub": "a5a9",
   "dependencies": {
     "composes_with": {
-      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca",
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
       "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e"
     },
     "yields": {
@@ -48,8 +51,8 @@
     },
     "references": {
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "monitor": "sema:Monitor#mh:SHA-256:6773980f55c9a9be28d6ff45fe338e020b7bf585367b52a9ac28156b85ec9752",
-      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d",
+      "monitor": "sema:Monitor#mh:SHA-256:c6316ed3fbded6b388d1751bb6662cb1dc10f236d031d4ac360b2a3a8b1fc272",
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     },
     "accepts": {

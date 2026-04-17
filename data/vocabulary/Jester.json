@@ -6,16 +6,19 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Jester#mh:SHA-256:bc5045fce9b9265838e8e9e8df40d00bab11be85752235307be0dc403ee5abae"
+    ]
   },
-  "sema_id": "sema:Jester#mh:SHA-256:9bbe675454c8b3ca630c09cd2514230592998416834877ad224b9aaae128d61c",
-  "sema_ref": "Jester#9bbe",
-  "sema_stub": "9bbe",
+  "sema_id": "sema:Jester#mh:SHA-256:89e4837cef25026abcca4ff8115cf029e1c5ecb176f1297692f511815c200d4a",
+  "sema_ref": "Jester#89e4",
+  "sema_stub": "89e4",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
+      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
       "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
       "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01"
     }

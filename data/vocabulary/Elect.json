@@ -29,20 +29,23 @@
     "related": [
       "Vote"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3"
+    ]
   },
-  "sema_id": "sema:Elect#mh:SHA-256:0635df9ddda6928d4ecb80d5a9fd82aab8b17bae03880e5420c44b99cb5e7b93",
-  "sema_ref": "Elect#0635",
-  "sema_stub": "0635",
+  "sema_id": "sema:Elect#mh:SHA-256:4f89ea0f05e323ab337031d74493f564321700fa1a06cb567560e87729b62898",
+  "sema_ref": "Elect#4f89",
+  "sema_stub": "4f89",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
       "ballot": "sema:Ballot#mh:SHA-256:1934bd52e662c4df304637cc1c05f78635643dcacf49b4b0fe37e84900446be9"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
   }
 }

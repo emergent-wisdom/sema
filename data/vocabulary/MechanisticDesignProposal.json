@@ -12,7 +12,10 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -66,9 +69,9 @@
       }
     }
   },
-  "sema_ref": "MechanisticDesignProposal#5a9c",
-  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:5a9c27449f981884c60f6b9b86d37af5ce60aed2ffa5eed9669276d45914b32b",
-  "sema_stub": "5a9c",
+  "sema_ref": "MechanisticDesignProposal#7e62",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:7e62181f83372a476d3834df559a7585e40c02f0b044d192b595ef257ee9a829",
+  "sema_stub": "7e62",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
@@ -80,7 +83,7 @@
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
   }
 }

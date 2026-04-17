@@ -15,13 +15,13 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:5c5131b0199f3ab495d531cfd246fb8218d1b677a22d1e28d59193704e23ebfa",
-  "sema_ref": "CollaborativeWritingProtocol#5c51",
-  "sema_stub": "5c51",
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:9a3f5fc95c4ce992952d4bff871067d337e7f0ca34eccdf12e957d0c1f308798",
+  "sema_ref": "CollaborativeWritingProtocol#9a3f",
+  "sema_stub": "9a3f",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:739bb7c08037f084b04c81466f61fa86545b406b93f3e944c3c3f3f73c58b835",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:86602ffacd78c14b36209d317ab0684fefd181cf0963a0c4f1abb6e3e83591c0"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa"
     }
   }
 }

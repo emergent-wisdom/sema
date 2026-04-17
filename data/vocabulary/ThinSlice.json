@@ -11,7 +11,10 @@
     "tier": 3,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ThinSlice#mh:SHA-256:debb731893208ce6514504b1212e5d07cf60f1477f3c485b752a694822c3fb30"
+    ]
   },
   "sema_id": "sema:ThinSlice#mh:SHA-256:4d20430d32e74e1b582292d3a365a410a9f36243e169436e208d42774efa9636",
   "sema_ref": "ThinSlice#4d20",

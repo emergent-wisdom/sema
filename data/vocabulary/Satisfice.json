@@ -22,16 +22,19 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:Satisfice#mh:SHA-256:64ac7b839b043d6ffb4649cef58b6298c9edffb215f0eff8d4108fa25b32279c",
-  "sema_ref": "Satisfice#64ac",
-  "sema_stub": "64ac",
+  "sema_id": "sema:Satisfice#mh:SHA-256:0874ef403078cce0c8c51fc3504ee0b50196737dbb9148b4eeddea66d4dce8ad",
+  "sema_ref": "Satisfice#0874",
+  "sema_stub": "0874",
   "dependencies": {
     "references": {
-      "optimal_stop": "sema:OptimalStop#mh:SHA-256:4deea2f266dbff3345db2878c8acfc0b75067a9aa1b38d9007dd82690a5979e5",
+      "optimal_stop": "sema:OptimalStop#mh:SHA-256:e7ca1560a9735578b604728b9cad0aa0b894bbdc0ff7aae3859cbc5a8e9955f0",
       "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }

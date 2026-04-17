@@ -6,7 +6,10 @@
     "layer": "Physics",
     "category": "Primitives",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d"
+    ]
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",

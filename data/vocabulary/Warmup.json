@@ -40,18 +40,21 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "sema_id": "sema:Warmup#mh:SHA-256:c9e476dea8a55fbc1c8f608fd42f84409d7d0ba5230a5f394398d2a52a0ebaa1",
-  "sema_ref": "Warmup#c9e4",
-  "sema_stub": "c9e4",
+  "sema_id": "sema:Warmup#mh:SHA-256:44be1ffb85b85ca350669220b7a66245968faafde2470475025869434443e76b",
+  "sema_ref": "Warmup#44be",
+  "sema_stub": "44be",
   "dependencies": {
     "references": {
       "throttle": "sema:Throttle#mh:SHA-256:4d479e4b025f72c347424f50b7ac6a3503a9447bd3f085f6e032c326936e56cc",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "greet": "sema:Greet#mh:SHA-256:ff7922e2f2c31a160124615bf9319b11b87f8dea4df015f5ec6c22699b67a9f4"
+      "greet": "sema:Greet#mh:SHA-256:be4d3659a9eaa805c17a04d495d984d85e4ec1b118c824824b58985a17581fb7"
     }
   }
 }

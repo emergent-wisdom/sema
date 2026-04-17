@@ -36,22 +36,25 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ScopeFreeze#mh:SHA-256:d8c15a8a91ccbfcdb54d00cb1c4a386969867716b402ae638e5822742cd1d2d4"
+    ]
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:7abbb1c81b0b97b80efcb1c9c053b336aeea7863f2a98e35b9c97a3f3fe1f3fa",
-  "sema_ref": "ScopeFreeze#7abb",
-  "sema_stub": "7abb",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:d9d28ec596fd07bb092f8aa7dca5468e3fd681072e7250053d2e6e631f396d87",
+  "sema_ref": "ScopeFreeze#d9d2",
+  "sema_stub": "d9d2",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "satisfice": "sema:Satisfice#mh:SHA-256:64ac7b839b043d6ffb4649cef58b6298c9edffb215f0eff8d4108fa25b32279c",
+      "satisfice": "sema:Satisfice#mh:SHA-256:0874ef403078cce0c8c51fc3504ee0b50196737dbb9148b4eeddea66d4dce8ad",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
       "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
-      "timebox_think": "sema:TimeboxThink#mh:SHA-256:9e1b4a5f760daa82a8c535a45e74d4808c6854e2b8dc9b2471d7d7d35ef28282",
-      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "timebox_think": "sema:TimeboxThink#mh:SHA-256:514b88976c0c3423900ee8a7a762a40dbe26dfd0c47b1a5ae3beb1c92462c6ae",
+      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

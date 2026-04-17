@@ -56,12 +56,12 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:FailureTrace#mh:SHA-256:b1f03ef9518526636f228deaa449d1ee9c345714c10d12721f111fe2ccd0c4c2",
-  "sema_ref": "FailureTrace#b1f0",
-  "sema_stub": "b1f0",
+  "sema_id": "sema:FailureTrace#mh:SHA-256:96df1345b3421dd9a30339cc325fed27bd0bf7ff1e83b9ea35bfd20bbf02296b",
+  "sema_ref": "FailureTrace#96df",
+  "sema_stub": "96df",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
     }
   }
 }

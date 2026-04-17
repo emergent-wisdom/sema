@@ -10,7 +10,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
+    ]
   },
   "signature": [
     "Act(Identity)"

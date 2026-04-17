@@ -6,15 +6,18 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 2,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Cyclic#mh:SHA-256:ac1335676817eaedd894da4a2d11671dec5a20dba76a8f5d55d1a6eed20e2051"
+    ]
   },
   "invariants": [
     "Recurrence: At least one path exists from a node to itself.",
     "Termination Condition: Must have a defined exit state to prevent infinite loops."
   ],
-  "sema_ref": "Cyclic#e187",
-  "sema_id": "sema:Cyclic#mh:SHA-256:e187ac5a01c82a2e06556ae52dcf5c2715ef317f9a1850e0e7b4322a2c1a6c3c",
-  "sema_stub": "e187",
+  "sema_ref": "Cyclic#5e79",
+  "sema_id": "sema:Cyclic#mh:SHA-256:5e796c9c1c541d7021b9062da279e7d57017781e2ecfc207cc696d9a0501401b",
+  "sema_stub": "5e79",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -34,7 +37,7 @@
   "dependencies": {
     "references": {
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca"
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b"
     }
   }
 }

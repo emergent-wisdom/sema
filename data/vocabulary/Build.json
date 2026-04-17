@@ -26,11 +26,14 @@
       "DogfoodFirst",
       "SacrificialProbe"
     ],
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Build#mh:SHA-256:00f3e2cc017af17d5de5a121ddd38017635736aa54c5ef23ee43c84abe5ddab6"
+    ]
   },
-  "sema_id": "sema:Build#mh:SHA-256:8143240ba549ce730ef09c35198e11ea5cd9df8512b253de8958f16f5a098c0d",
-  "sema_ref": "Build#8143",
-  "sema_stub": "8143",
+  "sema_id": "sema:Build#mh:SHA-256:8424bcb9915ad032c0b3cee2ffd24b8af14b65ed518048a220d286a447e15321",
+  "sema_ref": "Build#8424",
+  "sema_stub": "8424",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
@@ -38,10 +41,10 @@
   ],
   "dependencies": {
     "accepts": {
-      "spec": "sema:Spec#mh:SHA-256:68b4a7de6903d953979547572fc95ddc63da8ba24b7e39b06e22d84daacefa1c"
+      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
     },
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b",
+      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
       "prototype": "sema:Prototype#mh:SHA-256:ff187305136dd60765caedabd5eefbc62c94b20909c4886f4baef3c9523e83c7"

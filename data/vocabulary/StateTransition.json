@@ -9,7 +9,10 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

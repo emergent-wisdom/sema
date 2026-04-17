@@ -42,17 +42,20 @@
     "category": "Data Structures",
     "ring": 1,
     "tier": 1,
-    "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action."
+    "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action.",
+    "supersedes": [
+      "sema:Permission#mh:SHA-256:7f7d69e56a0b6bd65577a7fd6e8602f5bb694a647b3493a55823de851a32676f"
+    ]
   },
-  "sema_ref": "Permission#d981",
-  "sema_id": "sema:Permission#mh:SHA-256:d981e3410909de3ac0c4fa4b8203ad1db8b024de78fb4f3f2b64a645fe98c198",
-  "sema_stub": "d981",
+  "sema_ref": "Permission#c645",
+  "sema_id": "sema:Permission#mh:SHA-256:c6450780831c9125b22468b89de1c143edb74dc76bf9417abdac82250e74fd83",
+  "sema_stub": "c645",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     }
   }

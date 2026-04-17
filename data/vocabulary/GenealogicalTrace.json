@@ -13,19 +13,22 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:GenealogicalTrace#mh:SHA-256:0e89c456c9e33d0e5e018d64df4e347c76a5d08a6cced893ec3d1a84e28d877a"
+    ]
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:ca433cac70b66a0442fa4b4d2230ca55c6efc91c685dc82576dd3de085b6ae0c",
-  "sema_ref": "GenealogicalTrace#ca43",
-  "sema_stub": "ca43",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:18d29d4d1898afb04c0fc5f55d6bd587bbca8138cbd675cc51a39f6d303b791d",
+  "sema_ref": "GenealogicalTrace#18d2",
+  "sema_stub": "18d2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
-      "cite_back": "sema:CiteBack#mh:SHA-256:0a0874ee3139b8e10f66c607f4d6e00f56dda53491b92d3225eb74a70e2fc1c9",
-      "trace_belief": "sema:TraceBelief#mh:SHA-256:3902408bf0eb4f57be0b17bdb00b227be02ba1e5c513009d71f4346af2aa782a"
+      "cite_back": "sema:CiteBack#mh:SHA-256:69ec3a2443ee38ae07bc31e79e75f46e75cec2509baeca2ea29a8c57aac429b2",
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:22cc5726b2c3fa125ca0bcb8afd0e4cad2db544ae8289b33dbf5cd3a048193ea"
     }
   }
 }

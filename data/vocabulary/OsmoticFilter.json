@@ -28,16 +28,19 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:OsmoticFilter#mh:SHA-256:5cf61dc7a3adf65d0ff6dab7a022402fd79095fe4e1cb420c0fbad1401b84f52"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:6d82bdbb7cbf0733c756ae35875db76ea3d6c8d11e3006cb6709c161fdd66e69",
-  "sema_ref": "OsmoticFilter#6d82",
-  "sema_stub": "6d82",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:029a6a42e5b15acc3477c4c0c550597679a475abd00ea9d618aff539fff5f377",
+  "sema_ref": "OsmoticFilter#029a",
+  "sema_stub": "029a",
   "dependencies": {
     "references": {
-      "canary": "sema:Canary#mh:SHA-256:86d6889719d684744ebf19311b800f3b92aa7389a98d3950f342a3e8d7bf2ff3",
+      "canary": "sema:Canary#mh:SHA-256:9cba7bbaefd69639952bd931147b0976a1f62aac9bac4ea84bb103d5c955d0ba",
       "hysteresis": "sema:Hysteresis#mh:SHA-256:addbf14e04e773a9a6b2313b0b300392bb2c33d79aace9d3b9d9a2ea600c42cb"
     },
     "accepts": {

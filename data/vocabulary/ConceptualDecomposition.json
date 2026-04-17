@@ -21,17 +21,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:ConceptualDecomposition#mh:SHA-256:74a8373b70451b3953f7d372bd2abe5f5b16abc1cd13f082f812b46560e2c187",
-  "sema_ref": "ConceptualDecomposition#74a8",
-  "sema_stub": "74a8",
+  "sema_id": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+  "sema_ref": "ConceptualDecomposition#75bc",
+  "sema_stub": "75bc",
   "dependencies": {
     "composes_with": {
       "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
-      "decomposition_gate": "sema:DecompositionGate#mh:SHA-256:570403353e0547e54cdf752598dc418f070fcff1ba429bcdd2c49004a94656cb"
+      "decomposition_gate": "sema:DecompositionGate#mh:SHA-256:b0f6f3df3848c501bfe8f20049593befd722a0a49b91d505f8b7ece0b21ad657"
     },
     "references": {
-      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7",
-      "solver": "sema:Solver#mh:SHA-256:4ed4703e641b4d38bc4179df117643b295206b9417a0c2f0d64a1e6a8e9a031f"
+      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
+      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02"
     }
   }
 }

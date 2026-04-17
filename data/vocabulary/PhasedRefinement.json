@@ -19,18 +19,21 @@
     "layer": "Society",
     "category": "Protocols",
     "ring": 2,
-    "tier": 2
+    "tier": 2,
+    "supersedes": [
+      "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab"
+    ]
   },
-  "sema_ref": "PhasedRefinement#11af",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:11afaa3e3784b6007ea101affd09ceb75c3f46882bedad0567766fb0900c085a",
-  "sema_stub": "11af",
+  "sema_ref": "PhasedRefinement#e4d0",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4",
+  "sema_stub": "e4d0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:824a3098be26a7e5c1e62cc6f37052416d2f03d0d3bd1d395288ef12b8c27270",
-      "reason": "sema:Reason#mh:SHA-256:306711325c6e3366efe3e3ea371f89379311d36fbd1f64430ede33739601bca8",
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:c912f414b11624e629406b19c5b4472e40678839f6a613f7d9e1c26c6ca655ed",
+      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:5c50eb61513015591c09c95d1b5f623bd3ef356447e11a5fd10591d79d832003",
+      "reason": "sema:Reason#mh:SHA-256:e9015c8660178539f862e6def248349a654f07571a2559bd8c47c13f9eb17f30",
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:7434862367defbfd8e582e0b18766c57aeee52557802f29334f4dabebf3873cb",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
     },
     "composes_with": {

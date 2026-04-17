@@ -43,17 +43,20 @@
     "related": [
       "FabricSharding"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Memory",
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:415806a13e3ba84483094912eb1d966e28595f56938bb00f7b3489f5ec58ebe3",
-  "sema_ref": "ExperienceSharding#4158",
-  "sema_stub": "4158",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:1b5b67d8c6d94ebc1fa53e4f20c84f6cf1d470ab78dd34d38ef4b4dc3f60cc48",
+  "sema_ref": "ExperienceSharding#1b5b",
+  "sema_stub": "1b5b",
   "dependencies": {
     "references": {
       "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:ac727e19b98b3c1043c437da0131bf23f38a7b34e994dfc3c138103f5286bac4"
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:38ffe7a87ca3251bba48ee7dda9ba08d6ea95d7bb2178d606a04e8268dc05e24"
     }
   }
 }

@@ -20,6 +20,9 @@
     "ring": 0,
     "related": [
       "AgentSandbox"
+    ],
+    "supersedes": [
+      "sema:ToolInvoke#mh:SHA-256:643c8651a44f1d33cb98580b8b456c5ec1cdb3b94f3d6ae30e3465fc0e6d45b2"
     ]
   },
   "sema_ref": "ToolInvoke#bd2b",

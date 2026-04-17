@@ -30,16 +30,19 @@
     "related": [
       "Sync"
     ],
-    "caution": "Governance decisions susceptible to coordinated voting blocs."
+    "caution": "Governance decisions susceptible to coordinated voting blocs.",
+    "supersedes": [
+      "sema:Consensus#mh:SHA-256:7216e0e528262020ff05fa26124a8db9fcb14613fde05ddd0b2eb393958c4211"
+    ]
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:cc1d5318fed3420ecaac8748bd2ebd935b9e7d48cd8f874fcfc731d8e87f1f11",
-  "sema_ref": "Consensus#cc1d",
-  "sema_stub": "cc1d",
+  "sema_id": "sema:Consensus#mh:SHA-256:376f5580e6df7d500aaea9020d26a976275a110e3f849d88871055e78b7c73fa",
+  "sema_ref": "Consensus#376f",
+  "sema_stub": "376f",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "composes_with": {
-      "vote": "sema:Vote#mh:SHA-256:625c38775074a5eaf09c8fc54cf58b12f54d0cbb53681aae52c781e51c04fab4",
+      "vote": "sema:Vote#mh:SHA-256:37f80069661e4c80fc47d051b967ac6fa103d950da07ab627cebc037a70c319f",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
     },
     "accepts": {

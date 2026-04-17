@@ -32,7 +32,10 @@
     "tier": 2,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",

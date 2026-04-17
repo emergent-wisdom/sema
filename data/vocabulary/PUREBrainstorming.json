@@ -10,23 +10,26 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:PUREBrainstorming#mh:SHA-256:5dada311c0b8343b4b7848a7a07a98f0369c8bb6e6701b1d0aef69655a51d412"
+    ]
   },
-  "sema_ref": "PUREBrainstorming#d632",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:d632371983c65d0ee02d84e9466073e4e63ba1fab91394bd8c5625b1eb243df9",
-  "sema_stub": "d632",
+  "sema_ref": "PUREBrainstorming#b9c8",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:b9c8652d7f78244738f83251bd45b741cbecbdeeb3735f1da9addf091af251c7",
+  "sema_stub": "b9c8",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "yields": {
-      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:c3ed15925af85be4141a1c93824187b38e765fba5622b9683159341a8ad72d8f"
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:7e62181f83372a476d3834df559a7585e40c02f0b044d192b595ef257ee9a829"
     },
     "composes_with": {
-      "pure_check": "sema:PURECheck#mh:SHA-256:21dc65c05c76d2496a4627961aa447b2f2af33302f3ac7b5e31a3daf59c04ad2",
-      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:e44f694e0f5b2e503822747bafcda8eebaf770594a07991961c235b24ac34701"
+      "pure_check": "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
+      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:f429958c55992dff7d4f3cdd557c24faa860c9df540b2b3c00cfbbc332a4cea8"
     },
     "references": {
-      "p_u_r_e": "sema:PURE#mh:SHA-256:9f3f6c4e6d7d631238b154db544ca97441debc2263883dca86afc20eebbeae30"
+      "p_u_r_e": "sema:PURE#mh:SHA-256:a5776a4bf504ba6c9a8d9874af1c0b6efa9f08a63b694696a760e9097db8ba23"
     }
   }
 }

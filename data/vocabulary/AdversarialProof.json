@@ -22,17 +22,20 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:AdversarialProof#mh:SHA-256:2a0f68fabd8276b169195d0f4d502049e0690343fbb6d7dd1e3d6b6f487581e9"
+    ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:AdversarialProof#mh:SHA-256:4d5b39b980ce32e09afc2c9baf0ed441c620f31e82c3dee1b79782a4ea87d4ca",
-  "sema_ref": "AdversarialProof#4d5b",
-  "sema_stub": "4d5b",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:d7643b3b78b2505f442820be48ddc8a34258f2c32f30331a747aa8f9809fdfe7",
+  "sema_ref": "AdversarialProof#d764",
+  "sema_stub": "d764",
   "dependencies": {
     "composes_with": {
-      "negative_proof": "sema:NegativeProof#mh:SHA-256:14eea706b599283b9597da8ab87d4f4a41cbdf1597c31fc0dd96c96db29bad51",
-      "red_team": "sema:RedTeam#mh:SHA-256:c72cc15f0c34cec80f78c90a059c6f6b305d8fcd9a8f788f8193d0369dc6877f"
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:9fc0bf3e41b80feb8b6342a88741d99caebbb0c83bc2fd90503fde34930280a6",
+      "red_team": "sema:RedTeam#mh:SHA-256:d22e0cd2aeb8dc4052f02ad287d5f500903fbb660e1694efb8a80e556bede4e3"
     },
     "references": {
       "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c"

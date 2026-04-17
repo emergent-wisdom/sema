@@ -29,7 +29,10 @@
       "sema:OpportunityCost#mh:SHA-256:f0a3f074464fb30b60adac59167d2d34aeadf8fdd47de6c433f278c0036223fb",
       "sema:Satisfice#mh:SHA-256:fa75c44d4d400749a16f521c8c2793207877c783154cc00a93390beae85d2e0d"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822"
+    ]
   },
   "sema_id": "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be",
   "sema_ref": "ParetoFront#c1fb",

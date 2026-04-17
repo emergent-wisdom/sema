@@ -10,7 +10,10 @@
     "layer": "Society",
     "category": "Governance",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -42,14 +45,14 @@
       }
     }
   },
-  "sema_id": "sema:Constitution#mh:SHA-256:d2e5ca2eb2c651927da977d2df49fa52bf0875c3ac2040a350a5d21511f625de",
-  "sema_ref": "Constitution#d2e5",
-  "sema_stub": "d2e5",
+  "sema_id": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
+  "sema_ref": "Constitution#eb62",
+  "sema_stub": "eb62",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

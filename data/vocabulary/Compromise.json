@@ -6,17 +6,20 @@
     "tier": 2,
     "layer": "Society",
     "category": "Coordination",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Compromise#mh:SHA-256:39cc701b1389e8827a263f5180a40cea2993edf2ef94c9906553d48e9507c59f"
+    ]
   },
-  "sema_ref": "Compromise#f646",
-  "sema_id": "sema:Compromise#mh:SHA-256:f6466240787604b0fc101e13935a2bc7a4859c9eadb4285734125f9932b76880",
-  "sema_stub": "f646",
+  "sema_ref": "Compromise#3476",
+  "sema_id": "sema:Compromise#mh:SHA-256:3476091dd1f8eb70c57fc9661151cb1066f8604751fe92a75fa4f30f35679f82",
+  "sema_stub": "3476",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "yield": "sema:Yield#mh:SHA-256:0de85f1f0d25974e6aa1b306009a0abfd06fa875b467a8c1ba02936af3aa9a26",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     },
     "composes_with": {

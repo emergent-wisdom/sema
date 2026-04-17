@@ -22,17 +22,20 @@
     "tier": 2,
     "layer": "Society",
     "category": "Coordination",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:LazyConsensus#mh:SHA-256:4fc707a3608b99da4f2f0aa78d8662d3ea7056beb69e92a72be26e6085ecbfd9"
+    ]
   },
-  "sema_ref": "LazyConsensus#acd2",
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:acd2b0872f088cf7bc1001d9073a84641f82197f2d5882cd96a5ce9d7028194f",
-  "sema_stub": "acd2",
+  "sema_ref": "LazyConsensus#8a57",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:8a573c3272068dc276ae65d661840fe44a84c80ee70901eca780a8f2b4dad16c",
+  "sema_stub": "8a57",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "references": {
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:87517c40ac4eed4b0ac6a1a3077a0781715ae4644cf018a32226e116e4eb1b34"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608"
     }
   }
 }

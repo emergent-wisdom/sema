@@ -24,18 +24,21 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ConfusedDeputy#mh:SHA-256:31db289ffbcd442a10cddc5c1d3460132fd073a680d436e364684e89c37a39c2"
+    ]
   },
-  "sema_ref": "ConfusedDeputy#0cfe",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:0cfec9ab5d9db48a523e1d1da75876897dbf7c1e56a58bd962789f52f4df5e82",
-  "sema_stub": "0cfe",
+  "sema_ref": "ConfusedDeputy#611f",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:611f80b86d587cbe31b79eb4f2b4277fb773870b1feae81533608ade7a4fc2b4",
+  "sema_stub": "611f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "permission": "sema:Permission#mh:SHA-256:d981e3410909de3ac0c4fa4b8203ad1db8b024de78fb4f3f2b64a645fe98c198",
+      "permission": "sema:Permission#mh:SHA-256:c6450780831c9125b22468b89de1c143edb74dc76bf9417abdac82250e74fd83",
       "actor": "sema:Actor#mh:SHA-256:57f6b9dbc9b8fc596a5238327f29fc24e27d4e0228bfed7352d41f0bfacd4ea4",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
   }
 }

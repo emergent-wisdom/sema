@@ -14,7 +14,10 @@
     "related": [
       "sema:Proprioception#mh:SHA-256:7077e82ffba5764e9f936de5cb95b3e13cf121c79c403ec91eac8cab727ed6fd"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62"
+    ]
   },
   "sema_id": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f",
   "sema_ref": "SomaticMarker#7250",

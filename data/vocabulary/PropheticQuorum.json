@@ -36,22 +36,25 @@
       "sema:SimulationTrace#mh:SHA-256:e778ab4f3e22ce60d3f822aeb249ae83007ad8cc505e476b01b4356f984aebd3",
       "RegimeSense"
     ],
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:PropheticQuorum#mh:SHA-256:192eabb9f8aa32fddb88760964cb4266afa565c1ab94e1091395712764293741"
+    ]
   },
-  "sema_id": "sema:PropheticQuorum#mh:SHA-256:68fca44e2a52b8e347ccdaaf2ded707c9f40bccb996cc63a4a0d0a92dbe8ba8f",
-  "sema_ref": "PropheticQuorum#68fc",
-  "sema_stub": "68fc",
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:4eff46d82bb51dd54883fed64823b92bc7313193e28c21bb455da79acef487b4",
+  "sema_ref": "PropheticQuorum#4eff",
+  "sema_stub": "4eff",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:1b91cf6bf63e7b541719e7d1f05c35210bf26e012c80a4964f89d7f554b8f608",
+      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:31d6537e1e627fbca06745873d4f4344990124a2a9b4502685ef75c2c9e26e30",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "simulation": "sema:Simulation#mh:SHA-256:398fb8a076fa02a90e2090899409644442669f6a16c3557d6e630a2872fcd707",
-      "vote": "sema:Vote#mh:SHA-256:625c38775074a5eaf09c8fc54cf58b12f54d0cbb53681aae52c781e51c04fab4",
-      "normative_judge": "sema:NormativeJudge#mh:SHA-256:19007a150e1bd0c5f36ccc33b3afe710b09006a8379b182cbf2a9d1875c8665f"
+      "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
+      "vote": "sema:Vote#mh:SHA-256:37f80069661e4c80fc47d051b967ac6fa103d950da07ab627cebc037a70c319f",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:0323c76fdb780f34f5cbe22d598a13e3c4ca422363677141feee1d2c6c49e3cd"
     }
   }
 }

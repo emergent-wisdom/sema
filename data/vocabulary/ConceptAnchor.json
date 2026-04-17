@@ -32,7 +32,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:ConceptAnchor#mh:SHA-256:91873000b379e08c41bc3fe3fea23f1f0870600871f89cca46ecbc87cc1d69d0"
+    ]
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",

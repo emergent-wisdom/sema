@@ -9,7 +9,10 @@
     "layer": "Mind",
     "category": "Memory",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817"
+    ]
   },
   "sema_layer": "Mind",
   "sema_category": "Memory",

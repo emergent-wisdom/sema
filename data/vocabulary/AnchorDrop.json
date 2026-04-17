@@ -22,18 +22,21 @@
     "related": [
       "ConceptAnchor"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:AnchorDrop#mh:SHA-256:bf63d7b42444f4b7d7f8c1efbf50574153743cc958b05dd96961f4d27ba799e8"
+    ]
   },
-  "sema_id": "sema:AnchorDrop#mh:SHA-256:ad75980e19412c138b06045391e31b3f351b47a4a8e368dc902d2f98fe522c31",
-  "sema_ref": "AnchorDrop#ad75",
-  "sema_stub": "ad75",
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:680ee52a3bd95b5abf8ac257c4f3cf371228111cdf45fcaa0eaa36ea8868e601",
+  "sema_ref": "AnchorDrop#680e",
+  "sema_stub": "680e",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "consensus": "sema:Consensus#mh:SHA-256:cc1d5318fed3420ecaac8748bd2ebd935b9e7d48cd8f874fcfc731d8e87f1f11"
+      "consensus": "sema:Consensus#mh:SHA-256:376f5580e6df7d500aaea9020d26a976275a110e3f849d88871055e78b7c73fa"
     }
   }
 }

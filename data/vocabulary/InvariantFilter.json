@@ -32,21 +32,24 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:InvariantFilter#mh:SHA-256:a541049098acbba01ebe35ee9c23ebbdaf9d34e252b1b69f97daa87b3e96eea2"
+    ]
   },
-  "sema_id": "sema:InvariantFilter#mh:SHA-256:0b7cfb40a7410861ee9ab5a6193f513e6abb22b7f8ca59144163909465069fd2",
-  "sema_ref": "InvariantFilter#0b7c",
-  "sema_stub": "0b7c",
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:94c3dccddfbf2087bfbfe781c3d2dcd739c0c7ac0dd90315472c4cc99271a2ce",
+  "sema_ref": "InvariantFilter#94c3",
+  "sema_stub": "94c3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "accepts": {
-      "predicates": "sema:RuleSet#mh:SHA-256:ac408521af277bb770e0ccbadaeebf2dd2630036f0adf8c3a2873836d95a799a",
+      "predicates": "sema:RuleSet#mh:SHA-256:a07c37237b1d416367ddecca975480c3b115916d551185028fb5799b3ddb3d14",
       "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
     },
     "references": {
       "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
-      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9"
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e"
     }
   }
 }

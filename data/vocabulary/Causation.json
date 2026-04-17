@@ -6,7 +6,10 @@
     "layer": "Physics",
     "category": "Primitives",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc"
+    ]
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",

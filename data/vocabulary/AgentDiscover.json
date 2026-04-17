@@ -22,11 +22,14 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:AgentDiscover#mh:SHA-256:34b6d87b981ecbdcbd082e7316de5a8b5b98899eb35dff4747a48bdaadbe5424"
+    ]
   },
-  "sema_id": "sema:AgentDiscover#mh:SHA-256:5a6c5a923cda1549edce5e43954b7663e297aba09656a256c80e8b84f9c4b08b",
-  "sema_ref": "AgentDiscover#5a6c",
-  "sema_stub": "5a6c",
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:42ca1b2de30e52cc20bdba6aa5534244cbcc937c5329f89661f51abe56ee2f18",
+  "sema_ref": "AgentDiscover#42ca",
+  "sema_stub": "42ca",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -34,9 +37,9 @@
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
-      "discover": "sema:Discover#mh:SHA-256:aa709470f6d2f97f561d6d0a181ee8980688ce91c6b0ee2f6c8d2a33586f6dfd",
-      "card": "sema:Card#mh:SHA-256:f63d05a3e64ce7dd98121e23b559334726c6664a4d0579acd48f88871980d108"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
+      "card": "sema:Card#mh:SHA-256:68487a949d1a26f464e0abd5fb8b8a86c5e6a338b112634c858a7ce59631c216"
     }
   }
 }

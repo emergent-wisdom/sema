@@ -14,11 +14,14 @@
     "layer": "Mind",
     "category": "Strategy",
     "ring": 1,
-    "caution": "Spawned advocates share the same model \u2014 collusion risk."
+    "caution": "Spawned advocates share the same model \u2014 collusion risk.",
+    "supersedes": [
+      "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234"
+    ]
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:42089b9a0a7ec7256103fdce9a9f4b7daed98c5c5062ede0f6607f9a1953a77b",
-  "sema_ref": "AdversarialSteel#4208",
-  "sema_stub": "4208",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:ded99445bc9bd5479bad257770ee426cce6ff91860bfd7c3b80fff712ec697eb",
+  "sema_ref": "AdversarialSteel#ded9",
+  "sema_stub": "ded9",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -27,11 +30,11 @@
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "judge": "sema:Judge#mh:SHA-256:b8d60cf6d7f4c087b09f576533d1eb077bce121fafc6ea8905c60539a663a7d1",
-      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     },
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:dd78ffe0d335b88f5a9fa19e8c8c07ba85e87033a4d6687e13e085b456f8f718"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
     }
   }
 }
