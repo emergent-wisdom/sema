@@ -23,16 +23,16 @@
     "ring": 1,
     "caution": "Grants capabilities beyond normal operating scope."
   },
-  "sema_id": "sema:PermissionEscalate#mh:SHA-256:c1dcf453f86951f77fb23922f7521edc3e7fe8e75dd727c3ffe98b3c2c64cde0",
-  "sema_ref": "PermissionEscalate#c1dc",
-  "sema_stub": "c1dc",
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:e2d8d33afd8644ddad1b450e1d48f1eb46242c1de805c69a1ae533313ac79660",
+  "sema_ref": "PermissionEscalate#e2d8",
+  "sema_stub": "e2d8",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "human_approve": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
-      "tiered_access": "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "tiered_access": "sema:TieredAccess#mh:SHA-256:672204bbe348969d6d06ce2170e45f4c58f43e697ee2f68a67c9899f6c79229e",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:64349d0a8daadf838541313b0ad126768854b279d8cdafa70ac06fd59b997b15"
     }
   }
 }

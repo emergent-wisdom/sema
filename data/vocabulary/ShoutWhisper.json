@@ -31,8 +31,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
     }
   }
 }

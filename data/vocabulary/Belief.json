@@ -46,18 +46,18 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:48b4e2c708adc97b236c184a57e47697558b43c795a78ed100746857d092a323",
-  "sema_ref": "Belief#48b4",
-  "sema_stub": "48b4",
+  "sema_id": "sema:Belief#mh:SHA-256:cafbdbf0b6df5e9daae96a0fd2e9985415eb6ee79fd65708b7a16ea7c3f76959",
+  "sema_ref": "Belief#cafb",
+  "sema_stub": "cafb",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
-    "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
-    },
     "accepts": {
-      "evidence": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+      "evidence": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

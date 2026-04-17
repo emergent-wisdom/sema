@@ -58,7 +58,7 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "sandbox": "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0"
+      "sandbox": "sema:Sandbox#mh:SHA-256:e00f4eca5e3c4e369bc8109db17aa66835b86e5a65ee16fb07b2f431db3b8638"
     }
   }
 }

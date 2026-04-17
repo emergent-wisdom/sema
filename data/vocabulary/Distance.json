@@ -16,8 +16,7 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "dependencies": {},
-  "sema_id": "sema:Distance#mh:SHA-256:3e1eb18a34bdf42f9f9554af0bd80f65121c05bb756b202068e6959c7cec0167",
-  "sema_ref": "Distance#3e1e",
-  "sema_stub": "3e1e"
+  "sema_id": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff",
+  "sema_ref": "Distance#1376",
+  "sema_stub": "1376"
 }

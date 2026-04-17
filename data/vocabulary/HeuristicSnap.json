@@ -21,18 +21,18 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:HeuristicSnap#mh:SHA-256:89e6dd53b38e61e803e1db80a06969a8c573c2076e07e2d2faa315923b0d47aa",
-  "sema_ref": "HeuristicSnap#89e6",
-  "sema_stub": "89e6",
+  "sema_id": "sema:HeuristicSnap#mh:SHA-256:f15ccef72bb0044b92ef26aba87f49751e4b08718121acbe4a1ee79a6e81efa0",
+  "sema_ref": "HeuristicSnap#f15c",
+  "sema_stub": "f15c",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
-      "cache": "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073"
+      "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b"
     }
   }
 }

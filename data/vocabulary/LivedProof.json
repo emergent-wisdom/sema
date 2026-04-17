@@ -25,17 +25,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:66893b7d96bcee3cdfcfcb45cd7b640e37e3981b1b8f473baa428dacafcd6a0a",
-  "sema_ref": "LivedProof#6689",
-  "sema_stub": "6689",
+  "sema_id": "sema:LivedProof#mh:SHA-256:9876cab516deabc169d1ebe818b9c4816fcad6bfbf1c9b1840c6c4473467224b",
+  "sema_ref": "LivedProof#9876",
+  "sema_stub": "9876",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:fb58131dec88f464ae501ce7db7d8973366afa8d415d9616fbd7e17c9adc1aa4",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }
 }

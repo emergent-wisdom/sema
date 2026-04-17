@@ -41,15 +41,15 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:75435932d16862f9711eb11b804e0c44d409788c6f02604a0a8c9b218ced93e0",
-  "sema_ref": "MintWhenFriction#7543",
-  "sema_stub": "7543",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:4e338a8ce80bc1463a72368440045ba8385dd7edee03e30e935bfeb24c490dff",
+  "sema_ref": "MintWhenFriction#4e33",
+  "sema_stub": "4e33",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea",
-      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:99dd1615c53e7355c584a40cc77cba223f4c4617224a6274ed370031c3b49da4",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:d5a06d700bbb9da7605d83238881b6039556b1ddc25be343e0eb228d868980c6"
     }
   }
 }

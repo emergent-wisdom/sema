@@ -11,21 +11,21 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:9d7a6639ce794d9e42a0fb093492455a1cc46a1f3543ae92bf6f476b066d15dc",
-  "sema_ref": "PURECheck#9d7a",
-  "sema_stub": "9d7a",
+  "sema_id": "sema:PURECheck#mh:SHA-256:86959a14bbd53f7faa9b40df363a8e4ce57990024561aafd5f60316517746a69",
+  "sema_ref": "PURECheck#8695",
+  "sema_stub": "8695",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
-      "tri_gate": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
-      "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
-      "layered_check": "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0",
-      "expansive": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
-      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
-      "p_u_r_e": "sema:PURE#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+      "layered_check": "sema:LayeredCheck#mh:SHA-256:0dbcfa9017555acf30aa68099113de2e509e7223c25e780effd785f57a74206d",
+      "parsimony": "sema:Parsimony#mh:SHA-256:6d67429f03b5de8222068f834b6214aa5f5e660ea203e8a2123368e25c4fa108",
+      "realizable": "sema:Realizable#mh:SHA-256:613eaaf6e2e01185adf55ad296d3ad34c8d00d18fb8a29dccd88904f1fc2d798",
+      "tri_gate": "sema:TriGate#mh:SHA-256:66aa3ca5cbe8da66ba689e906a9b9b7ed99191386f116e597e8aba12ec0fdf60",
+      "expansive": "sema:Expansive#mh:SHA-256:bfaa526704a9c66a9cfe0453f2c1a911cc54e7620bf71c70d3aed0bbb17f053f",
+      "novelty": "sema:Novelty#mh:SHA-256:53a0735aae257b366e75eb95455674504363a24332c4e21327007fd359e2dc11",
+      "p_u_r_e": "sema:PURE#mh:SHA-256:9f3f6c4e6d7d631238b154db544ca97441debc2263883dca86afc20eebbeae30",
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     },
     "composes_with": {
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"

@@ -15,17 +15,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:da25ce3c1ce3694b98a6ff8c6b775494d7f0ff7548977d6238c941c3550eda78",
-  "sema_ref": "GenealogicalTrace#da25",
-  "sema_stub": "da25",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:ca433cac70b66a0442fa4b4d2230ca55c6efc91c685dc82576dd3de085b6ae0c",
+  "sema_ref": "GenealogicalTrace#ca43",
+  "sema_stub": "ca43",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "cite_back": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
-      "trace_belief": "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
-      "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
+      "cite_back": "sema:CiteBack#mh:SHA-256:0a0874ee3139b8e10f66c607f4d6e00f56dda53491b92d3225eb74a70e2fc1c9",
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:3902408bf0eb4f57be0b17bdb00b227be02ba1e5c513009d71f4346af2aa782a"
     }
   }
 }

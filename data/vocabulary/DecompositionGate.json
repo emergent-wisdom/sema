@@ -18,15 +18,15 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:570403353e0547e54cdf752598dc418f070fcff1ba429bcdd2c49004a94656cb",
+  "sema_ref": "DecompositionGate#5704",
+  "sema_stub": "5704",
   "dependencies": {
-    "yields": {
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
-    },
     "references": {
-      "frame_error": "sema:FrameError#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+      "frame_error": "sema:FrameError#mh:SHA-256:edf5e1f2d169520949a7b8eb7d3beeee581186922d3fb665430c7ca1711186ac"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }
-  },
-  "sema_id": "sema:DecompositionGate#mh:SHA-256:7fbd0bfbe28789cb7ee105b60fa54398d94e52a6abe9a618878d5b7597dfa48e",
-  "sema_ref": "DecompositionGate#7fbd",
-  "sema_stub": "7fbd"
+  }
 }

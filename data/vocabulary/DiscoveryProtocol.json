@@ -15,16 +15,16 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:b8aa614c35ac5d1ff90dacde609548d606f049ecb65f4ace17fcb23d15e99a44",
+  "sema_ref": "DiscoveryProtocol#b8aa",
+  "sema_stub": "b8aa",
   "dependencies": {
-    "references": {
-      "discover": "sema:Discover#mh:SHA-256:7dbcd27e108d0f286876b906339f3db7ab55b48ce68f058cd2c47bbfb3f2bc2b"
-    },
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:739bb7c08037f084b04c81466f61fa86545b406b93f3e944c3c3f3f73c58b835"
+    },
+    "references": {
+      "discover": "sema:Discover#mh:SHA-256:aa709470f6d2f97f561d6d0a181ee8980688ce91c6b0ee2f6c8d2a33586f6dfd"
     }
-  },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:2cd0f636acb6068f25bba79cd8bd5ae286c33e53bf8557e88c107f08ebd578d9",
-  "sema_ref": "DiscoveryProtocol#2cd0",
-  "sema_stub": "2cd0"
+  }
 }

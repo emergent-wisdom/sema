@@ -24,15 +24,15 @@
     "category": "Coordination",
     "ring": 0
   },
-  "sema_ref": "LazyConsensus#6cc8",
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:6cc879e6ef456bc0ee52109d76b3e7a6750fb190471496252e57d16a859356c6",
-  "sema_stub": "6cc8",
+  "sema_ref": "LazyConsensus#acd2",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:acd2b0872f088cf7bc1001d9073a84641f82197f2d5882cd96a5ce9d7028194f",
+  "sema_stub": "acd2",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
-      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:87517c40ac4eed4b0ac6a1a3077a0781715ae4644cf018a32226e116e4eb1b34"
     }
   }
 }

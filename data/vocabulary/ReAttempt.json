@@ -16,13 +16,13 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
+  "sema_id": "sema:ReAttempt#mh:SHA-256:8f4881fc81cc8467e762c7b14381e95007953d358e107427a9eb14a1539141fe",
+  "sema_ref": "ReAttempt#8f48",
+  "sema_stub": "8f48",
   "dependencies": {
     "references": {
-      "retry": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
-      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
+      "retry": "sema:Retry#mh:SHA-256:cb3a4a6bfdea3e5b580c343e8f9eccd8c39eee535edf1823b6a31e3bcb358ccc"
     }
-  },
-  "sema_id": "sema:ReAttempt#mh:SHA-256:bd003878756d11a5c88802eb84e4cbdc951eb9e3ead7d25f486170a026257782",
-  "sema_ref": "ReAttempt#bd00",
-  "sema_stub": "bd00"
+  }
 }

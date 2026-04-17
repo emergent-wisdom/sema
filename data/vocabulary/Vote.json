@@ -42,23 +42,23 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Vote#mh:SHA-256:0c9de28404dcc437b814684b20d28b37dbb2858c3ec7e197c76409b93cf92911",
-  "sema_ref": "Vote#0c9d",
-  "sema_stub": "0c9d",
+  "sema_id": "sema:Vote#mh:SHA-256:11f2dc64c5ce305279726d2bf49fa508eb8ec24a8cbe036c54a516bf3c6542ea",
+  "sema_ref": "Vote#11f2",
+  "sema_stub": "11f2",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "elect": "sema:Elect#mh:SHA-256:fe172e2804d566d70e13201034804789a37db8deb9dd33600fafa274f70aba59",
-      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
-      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
-    },
-    "composes_with": {
-      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
+      "aggregate": "sema:Aggregate#mh:SHA-256:8c2ae987064dabf80b6ff9a6a2bcca7ae223ae9b6b2f6f3642fa754b004f45b5",
+      "elect": "sema:Elect#mh:SHA-256:0635df9ddda6928d4ecb80d5a9fd82aab8b17bae03880e5420c44b99cb5e7b93",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     },
     "accepts": {
-      "ballot": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb"
+      "ballot": "sema:Ballot#mh:SHA-256:1934bd52e662c4df304637cc1c05f78635643dcacf49b4b0fe37e84900446be9"
+    },
+    "composes_with": {
+      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
     }
   }
 }

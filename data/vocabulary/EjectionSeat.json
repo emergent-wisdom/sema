@@ -16,14 +16,14 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:EjectionSeat#mh:SHA-256:1b095b6502705b28c03a2b9aea154f64020bfbee76bcb72d4c2748832f046927",
-  "sema_ref": "EjectionSeat#1b09",
-  "sema_stub": "1b09",
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:b71cbac714d333de39bd00c140ab214c1db4fa28db6562fbbbe75c160312ef30",
+  "sema_ref": "EjectionSeat#b71c",
+  "sema_stub": "b71c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
+      "compensate": "sema:Compensate#mh:SHA-256:985ef5c13b644c687417409aef081d29994ef64a7a5cf8961e8fbd4e115a7b29",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }

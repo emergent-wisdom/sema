@@ -3,7 +3,9 @@
   "mechanism": "Freezes a prediction BEFORE observation. 1. Instantiate immutable Anchor (Expectation). 2. {{observe}} Reality. 3. Learning {{signal}} = Delta(Anchor, Reality). Prevents Hindsight {{cognitive_bias}} by forcing updates based on genuine surprise. It creates the static reference point against which {{surprisal_update}} measures the magnitude of the learning delta.",
   "gloss": "Freezing expectation to measure true surprise",
   "failure_modes": [
-    "Hindsight Leakage: {{agent}} unconsciously adjusts the Anchor as data comes in Vague Anchor: Prediction is too broad to be falsified (e.g., 'Something will happen') Anchor Abandonment: {{agent}} ignores the Anchor when the delta is too large (denial)"
+    "Hindsight Leakage: {{agent}} unconsciously adjusts the Anchor as data comes in.",
+    "Vague Anchor: Prediction is too broad to be falsified (e.g., 'Something will happen').",
+    "Anchor Abandonment: {{agent}} ignores the Anchor when the delta is too large (denial)."
   ],
   "invariants": [
     "Anchor Immutability: The Anchor cannot be modified once the Observation phase begins",
@@ -40,15 +42,15 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:42f364d84f40122f9ab6937a85f95088d4f2b5ce3406ccd2862a74ca3b0e7f1c",
-  "sema_ref": "CounterfactualAnchor#42f3",
-  "sema_stub": "42f3",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:c56d31792fc767614c6638ee89224c3ad240969823ebff82f174946137524ae7",
+  "sema_ref": "CounterfactualAnchor#c56d",
+  "sema_stub": "c56d",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca",
-      "observe": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:9db262c4006d612677ef684ff294995aa1f5013e19c26b0e3f79b5bd01cb8e78",
+      "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }

@@ -21,17 +21,17 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:67e27d01548344527acddce7a40492a0f207a8a6c3a4589ecd90a697b53b7b77",
-  "sema_ref": "AnalogyBridge#67e2",
-  "sema_stub": "67e2",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:8b52456853af974b4820395247f8375091a9dd8b7785a1571f4ff1dfd8e71ac6",
+  "sema_ref": "AnalogyBridge#8b52",
+  "sema_stub": "8b52",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4"
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860"
     }
   }
 }

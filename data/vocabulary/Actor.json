@@ -51,18 +51,18 @@
       }
     }
   },
-  "sema_ref": "Actor#6926",
-  "sema_id": "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89",
-  "sema_stub": "6926",
+  "sema_ref": "Actor#57f6",
+  "sema_id": "sema:Actor#mh:SHA-256:57f6b9dbc9b8fc596a5238327f29fc24e27d4e0228bfed7352d41f0bfacd4ea4",
+  "sema_stub": "57f6",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "references": {
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "nature": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b"
-    },
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
+    },
+    "references": {
+      "nature": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     }
   }
 }

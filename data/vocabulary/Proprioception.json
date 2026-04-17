@@ -3,7 +3,9 @@
   "mechanism": "Continuous self-monitoring of position in the {{task}} graph. An {{agent}} periodic 'ping' to itself to verify {{context}}, active tool state, and depth in recursion. Prevents 'getting lost' in long chains of thought. It maintains internal {{state}} awareness, using {{somatic_marker}} to detect recursion depth limits or resource fatigue.",
   "gloss": "Self-location awareness within the task graph",
   "failure_modes": [
-    "Stagnation: {{agent}} remains in same node > N ticks Orphaned: Parent {{task}} ID not found/unresponsive Hallucinated {{context}}: Stack {{trace}} does not match environmental reality"
+    "Stagnation: {{agent}} remains in same node > N ticks.",
+    "Orphaned: Parent {{task}} ID not found or unresponsive.",
+    "Hallucinated {{context}}: Stack {{trace}} does not match environmental reality."
   ],
   "invariants": [
     "{{context}} Continuity: {{agent}} knows its parent {{task}} ID",
@@ -30,19 +32,19 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:1dae97659cb3865595377b111b96ae6f368b157ba9af6e120aa3e540a8b02469",
-  "sema_ref": "Proprioception#1dae",
-  "sema_stub": "1dae",
   "sema_layer": "Mind",
   "sema_category": "Memory",
+  "sema_id": "sema:Proprioception#mh:SHA-256:ec6c0681f6d5482fffd1cf6057c98c7b832f1445c9fd63a7107f2be8f57efc71",
+  "sema_ref": "Proprioception#ec6c",
+  "sema_stub": "ec6c",
   "dependencies": {
     "references": {
-      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

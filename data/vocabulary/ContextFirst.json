@@ -15,9 +15,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:ContextFirst#mh:SHA-256:9b3c52b230e82c87e21f049876b8c9f34e31f059a20a2f24393f4441e6d389e2",
-  "sema_ref": "ContextFirst#9b3c",
-  "sema_stub": "9b3c",
+  "sema_id": "sema:ContextFirst#mh:SHA-256:dbb4decbd9e35f6e913ba9aa07c53facd707d0da2081ae20a9f117fd949a1a36",
+  "sema_ref": "ContextFirst#dbb4",
+  "sema_stub": "dbb4",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
@@ -25,12 +25,12 @@
   ],
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "warmup": "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
-      "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
+      "solver_node": "sema:SolverNode#mh:SHA-256:86bb3f560e1394d3f684b4811a6c42ede31eac8ba9738355f8c0c33097150cdb",
+      "prioritize": "sema:Prioritize#mh:SHA-256:420e04f6d680d32a9561c274f134dcc4f46a8417ba4398c10b23b0bd955f2def",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "warmup": "sema:Warmup#mh:SHA-256:c9e476dea8a55fbc1c8f608fd42f84409d7d0ba5230a5f394398d2a52a0ebaa1"
     }
   }
 }

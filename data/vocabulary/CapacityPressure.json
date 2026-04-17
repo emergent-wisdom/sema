@@ -3,7 +3,9 @@
   "mechanism": "A regularization pattern that forces abstraction by artificially constraining resources (bandwidth, memory, parameter count, or time). By creating a bottleneck where Capacity < Information, the agent is compelled to compress the signal, discarding noise and memorized details in favor of high-level concepts and generalizations. It artificially tightens the {{budget}}, forcing the agent to employ {{generalize}}, {{concept_blend}}, and {{context_compress}} to fit the signal within the bottleneck.",
   "gloss": "Forcing abstraction via resource starvation",
   "failure_modes": [
-    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting) Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint) False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget"
+    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting).",
+    "Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint).",
+    "False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget."
   ],
   "invariants": [
     "Bottleneck Existence: Available Capacity must be strictly less than Input Information Content",
@@ -40,17 +42,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:673316dba5e0ac125e640cc054a2f88d561e172241d50462b9202f4cd21e3cf6",
-  "sema_ref": "CapacityPressure#6733",
-  "sema_stub": "6733",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:86419e0ac86fe335ef22bf056ffd0b2c6d89651f872f9bec2543b15d92a70f29",
+  "sema_ref": "CapacityPressure#8641",
+  "sema_stub": "8641",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "context_compress": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:289473f83c17f1f4938c68dd5dd07d3c4a96b1069897e58b40bb46cc3981f036",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "generalize": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
+      "context_compress": "sema:ContextCompress#mh:SHA-256:4845cff7c2a6371afdb2d199ed427a5e5d8d8c5f6a2d24a3b6b8278eb8dff0ee",
+      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+      "generalize": "sema:Generalize#mh:SHA-256:96848e5d61a66064f3bab37da24d0c8dbb6056b72964d1f4e0691a6c188fc154",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

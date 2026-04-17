@@ -22,15 +22,15 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:PURE#mh:SHA-256:eee61348f15a4ca153c9a478f5fc36807bc972b8ba550557a3e340a2db3ebeae",
+  "sema_ref": "PURE#eee6",
+  "sema_stub": "eee6",
   "dependencies": {
     "composes_with": {
-      "parsimony": "sema:Parsimony#mh:SHA-256:3208274cb02e5edd1dad33105b2522c53eddab0004702aac30dda070f49d5872",
-      "novelty": "sema:Novelty#mh:SHA-256:358af3aee67014fc4102ec313ee3e6a73f13d8dfc4af93eaaf3822af1e84c08c",
-      "realizable": "sema:Realizable#mh:SHA-256:34dc63f1f2afae4d452367c424fe829334581d36ab83a10452f9975878dd4530",
-      "expansive": "sema:Expansive#mh:SHA-256:f4c6864e3261232f8981f3b9f93e68ca60b59c7f2ed26e3bc89136b14d59276f"
+      "expansive": "sema:Expansive#mh:SHA-256:bfaa526704a9c66a9cfe0453f2c1a911cc54e7620bf71c70d3aed0bbb17f053f",
+      "realizable": "sema:Realizable#mh:SHA-256:613eaaf6e2e01185adf55ad296d3ad34c8d00d18fb8a29dccd88904f1fc2d798",
+      "parsimony": "sema:Parsimony#mh:SHA-256:6d67429f03b5de8222068f834b6214aa5f5e660ea203e8a2123368e25c4fa108",
+      "novelty": "sema:Novelty#mh:SHA-256:53a0735aae257b366e75eb95455674504363a24332c4e21327007fd359e2dc11"
     }
-  },
-  "sema_id": "sema:PURE#mh:SHA-256:87eab47cb68ed473f7f78fef5ab10fac82a4fe71c2a632c7c74096467bf37855",
-  "sema_ref": "PURE#87ea",
-  "sema_stub": "87ea"
+  }
 }

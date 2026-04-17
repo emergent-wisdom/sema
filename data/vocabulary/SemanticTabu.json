@@ -3,7 +3,7 @@
   "mechanism": "An ideation protocol where the agent explicitly lists existing mechanisms as 'Tabu' (forbidden). It must then solve the problem without using any mechanism on the list. This forces the activation of latent, low-probability pathways in the semantic network. It broadcasts the forbidden list via {{trace}} to ensure the entire swarm respects the constraint.",
   "gloss": "Constraint-based novelty enforcement",
   "failure_modes": [
-    "paralysis (if the Tabu list covers all possible physics)."
+    "Paralysis: if the Tabu list covers all possible physics."
   ],
   "invariants": [
     "{{constraint}} Satisfaction: Output \u2229 TabuList == \u00d8",
@@ -21,16 +21,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:290d1702eea72d1e83492a16a8cf86aaed086757fb1b96817cdf0c4709e692e3",
-  "sema_ref": "SemanticTabu#290d",
-  "sema_stub": "290d",
   "sema_layer": "Mind",
   "sema_category": "Inference",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:d1ebb04c973e6f2c0e3a4dbe07f9feeb88707f7cbb0ee210713041de2bef90de",
+  "sema_ref": "SemanticTabu#d1eb",
+  "sema_stub": "d1eb",
   "dependencies": {
     "references": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

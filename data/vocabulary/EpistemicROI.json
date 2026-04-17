@@ -25,20 +25,20 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:EpistemicROI#mh:SHA-256:1b52351e5a3aacb8de86c6c4d52845d9217f1f25085c6d59761051a8754246e0",
-  "sema_ref": "EpistemicROI#1b52",
-  "sema_stub": "1b52",
+  "sema_id": "sema:EpistemicROI#mh:SHA-256:9e4f16a3fbd1040bce8feddba74491615b1b721324b070846317f26a871491f2",
+  "sema_ref": "EpistemicROI#9e4f",
+  "sema_stub": "9e4f",
   "dependencies": {
     "references": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
-      "experiment": "sema:Experiment#mh:SHA-256:40e5e923ead8721b039cd6afa4e49c864a5022483e1c3ff58a12d57fe9a87499",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a"
+      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "experiment": "sema:Experiment#mh:SHA-256:a816fe78b29e05515da63e5ae977e266fbfc265defd2ceb555c6ed0a4e45aafe",
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
+      "outcome": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b"
     }
   }
 }

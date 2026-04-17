@@ -32,16 +32,16 @@
     ],
     "caution": "Compensation must not erase the audit trail of what was rolled back \u2014 log both the forward action and the compensation."
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:d541e707e06ad96804558a897386d9b6e9eb7ca4eb0436bfb2c531c278fb04c1",
-  "sema_ref": "Compensate#d541",
-  "sema_stub": "d541",
+  "sema_id": "sema:Compensate#mh:SHA-256:985ef5c13b644c687417409aef081d29994ef64a7a5cf8961e8fbd4e115a7b29",
+  "sema_ref": "Compensate#985e",
+  "sema_stub": "985e",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
+      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:87517c40ac4eed4b0ac6a1a3077a0781715ae4644cf018a32226e116e4eb1b34",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
   }
 }

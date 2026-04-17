@@ -32,26 +32,26 @@
       "AgentDiscover"
     ]
   },
-  "sema_ref": "ToolDiscovery#0e1d",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:0e1df14507b666fd92038d5fdec2814f9d38baf50a49458c5c7a31c98b400bac",
-  "sema_stub": "0e1d",
+  "sema_ref": "ToolDiscovery#61fb",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:61fbd23f9b7eaf220570075e3688e60fb40cf12822701fb4e486de6ed7e2f9e8",
+  "sema_stub": "61fb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "references": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
-      "card": "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626",
-      "context_first": "sema:ContextFirst#mh:SHA-256:2878bfc9402ba18d174040bc9614113e01c7a6f2bb775fe22fdccba6aca3dbe1"
-    },
     "composes_with": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416",
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554"
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:59d855305c8f8ac7493b0e6e5c078d9cf7a7a9d2e181b8fefd88f7151f4fb9b8",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:bd2b35e0886f79fde129e2a1185845ecb644c14c4b89b90ec5dc8eb54c51ba10"
+    },
+    "references": {
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "card": "sema:Card#mh:SHA-256:f63d05a3e64ce7dd98121e23b559334726c6664a4d0579acd48f88871980d108",
+      "discover": "sema:Discover#mh:SHA-256:aa709470f6d2f97f561d6d0a181ee8980688ce91c6b0ee2f6c8d2a33586f6dfd",
+      "context_first": "sema:ContextFirst#mh:SHA-256:dbb4decbd9e35f6e913ba9aa07c53facd707d0da2081ae20a9f117fd949a1a36",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     },
     "yields": {
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
+      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2"
     }
   }
 }

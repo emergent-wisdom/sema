@@ -14,9 +14,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:SourceEvaluate#mh:SHA-256:31a0f494686548c32740ee85a70292587930f849514473d272b346fdce35d104",
-  "sema_ref": "SourceEvaluate#31a0",
-  "sema_stub": "31a0",
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:3488f8766ed315587ca2de4b0e6560358f2affb79e14a9cb0e484cd0d6143628",
+  "sema_ref": "SourceEvaluate#3488",
+  "sema_stub": "3488",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
@@ -24,9 +24,9 @@
   ],
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "cite_back": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3"
+      "cite_back": "sema:CiteBack#mh:SHA-256:0a0874ee3139b8e10f66c607f4d6e00f56dda53491b92d3225eb74a70e2fc1c9",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "judge": "sema:Judge#mh:SHA-256:b8d60cf6d7f4c087b09f576533d1eb077bce121fafc6ea8905c60539a663a7d1"
     }
   }
 }

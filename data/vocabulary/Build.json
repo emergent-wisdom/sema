@@ -28,23 +28,23 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Build#mh:SHA-256:e5aae10f00cc5457ea48db67649227bc8537e1462c5d6e0b2206ee2289018208",
-  "sema_ref": "Build#e5aa",
-  "sema_stub": "e5aa",
+  "sema_id": "sema:Build#mh:SHA-256:8143240ba549ce730ef09c35198e11ea5cd9df8512b253de8958f16f5a098c0d",
+  "sema_ref": "Build#8143",
+  "sema_stub": "8143",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
     "Act(Artifact)"
   ],
   "dependencies": {
-    "references": {
-      "prototype": "sema:Prototype#mh:SHA-256:ff187305136dd60765caedabd5eefbc62c94b20909c4886f4baef3c9523e83c7",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
-    },
     "accepts": {
-      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5"
+      "spec": "sema:Spec#mh:SHA-256:68b4a7de6903d953979547572fc95ddc63da8ba24b7e39b06e22d84daacefa1c"
+    },
+    "references": {
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
+      "prototype": "sema:Prototype#mh:SHA-256:ff187305136dd60765caedabd5eefbc62c94b20909c4886f4baef3c9523e83c7"
     },
     "yields": {
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"

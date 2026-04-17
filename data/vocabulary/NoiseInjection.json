@@ -25,19 +25,19 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:13f405ea7a94920ab05b270648a5b4babf9e8e30e59af1e47082abb4953f6aef",
-  "sema_ref": "NoiseInjection#13f4",
-  "sema_stub": "13f4",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:2131a366290fec6ee5756ff5c6fe3466df4bfb96fd013b34d825d46d156c02c1",
+  "sema_ref": "NoiseInjection#2131",
+  "sema_stub": "2131",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "card": "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626"
+      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
+      "card": "sema:Card#mh:SHA-256:f63d05a3e64ce7dd98121e23b559334726c6664a4d0579acd48f88871980d108",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }
 }

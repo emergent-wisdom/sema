@@ -6,7 +6,7 @@
     "Over-correction: {{agent}} becomes under-confident to avoid being wrong, refusing to act on strong signals."
   ],
   "invariants": [
-    "Calibration curve must be monotonic."
+    "Post-calibration monotonicity: the adjusted confidence\u2192frequency mapping must be monotonic non-decreasing (higher stated confidence implies higher or equal actual frequency). The observed pre-calibration curve may be non-monotonic; the pattern's job is to produce a monotonic output."
   ],
   "parameters": [
     {
@@ -28,16 +28,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:8a00f5d86bccb2700a646dc4e1ad3865508fee32087cb0577dd4ac0507137121",
-  "sema_ref": "ConfidenceCalibrate#8a00",
-  "sema_stub": "8a00",
   "sema_layer": "Mind",
   "sema_category": "Inference",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:e454e65f7f5cb51ae4ca34181b14d2bb0d592dd05dc97673a08909b5d2e9a8ba",
+  "sema_ref": "ConfidenceCalibrate#e454",
+  "sema_stub": "e454",
   "dependencies": {
     "references": {
       "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:ee85444cb2388d0b73a897f719d6eb36dcea5c3bac76e1cf863132d57a6b4494"
     }
   }
 }

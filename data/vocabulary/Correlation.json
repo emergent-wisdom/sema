@@ -47,8 +47,8 @@
   "sema_stub": "148d",
   "dependencies": {
     "references": {
-      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
-      "causation": "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc"
+      "causation": "sema:Causation#mh:SHA-256:d3603cfbd4bfed0dc29051fe70c256f8962b96d530a7ec200f42359678e4929c",
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c"
     }
   }
 }

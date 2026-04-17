@@ -25,21 +25,21 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:dc5ea49ebb14aabe5b0bdb5b52e91f007228293da82e758c57e498f29b5d5f79",
-  "sema_ref": "PatternEmergence#dc5e",
-  "sema_stub": "dc5e",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:77c51abd834594d88f4b9fdd95391a42228c7777507f8bbf7133bf5f53d78391",
+  "sema_ref": "PatternEmergence#77c5",
+  "sema_stub": "77c5",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:99dd1615c53e7355c584a40cc77cba223f4c4617224a6274ed370031c3b49da4",
+      "mint_when_friction": "sema:MintWhenFriction#mh:SHA-256:4e338a8ce80bc1463a72368440045ba8385dd7edee03e30e935bfeb24c490dff",
+      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "mint_when_friction": "sema:MintWhenFriction#mh:SHA-256:d48d58e14fdd17707bd90aaeab196fc13189a2d39b37aaa8b086c4e03356ff57",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
-      "generalize": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea"
+      "generalize": "sema:Generalize#mh:SHA-256:96848e5d61a66064f3bab37da24d0c8dbb6056b72964d1f4e0691a6c188fc154",
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:c5cbf1f2f52a90ba2648a826ff8421d334e5b32bf892d9b5578f7ec013616a69",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }
 }

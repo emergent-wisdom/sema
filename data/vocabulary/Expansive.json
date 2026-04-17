@@ -14,15 +14,15 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:68397862caab2bcf2141f0ee3507f3ef44502c2149a94c1a93a1ff4c72dc117e",
-  "sema_ref": "Expansive#6839",
-  "sema_stub": "6839",
+  "sema_id": "sema:Expansive#mh:SHA-256:bfaa526704a9c66a9cfe0453f2c1a911cc54e7620bf71c70d3aed0bbb17f053f",
+  "sema_ref": "Expansive#bfaa",
+  "sema_stub": "bfaa",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "judge": "sema:Judge#mh:SHA-256:b8d60cf6d7f4c087b09f576533d1eb077bce121fafc6ea8905c60539a663a7d1"
     }
   }
 }

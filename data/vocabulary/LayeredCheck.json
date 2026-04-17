@@ -18,21 +18,21 @@
       "PURECheck"
     ]
   },
-  "sema_ref": "LayeredCheck#052a",
-  "sema_id": "sema:LayeredCheck#mh:SHA-256:052af60e2981599a5caf0af423ad521cb1f3110ed3d408e4cd22a584f0eca4bf",
-  "sema_stub": "052a",
+  "sema_ref": "LayeredCheck#bece",
+  "sema_id": "sema:LayeredCheck#mh:SHA-256:becec9e46c38613c07335f322b360dbc7eb8829f9b838f894a54e5d420be6f12",
+  "sema_stub": "bece",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "hierarchy": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
-      "understand": "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b",
-      "validate": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619"
+      "understand": "sema:Understand#mh:SHA-256:c38c510b051d292e7c85629a389e2de521ad95fab03476acabf2fa94774425ac",
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:d5301ba0587b73443b7408885a85fd530d1609add96c1250138e062d18a565cb",
+      "validate": "sema:Validate#mh:SHA-256:aebfb015224719006acab6ffc4eed37a94ecb262ac59b0af4c2c43b58c2f1ca7"
     },
     "composes_with": {
-      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
       "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+      "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9"
     }
   }
 }

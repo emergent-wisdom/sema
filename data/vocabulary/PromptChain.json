@@ -32,21 +32,21 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:PromptChain#mh:SHA-256:3a2a97af22b327ac35c915f969ed5e0ebb1a2ba506b34b17789d3c0fe0f2bf52",
-  "sema_ref": "PromptChain#3a2a",
-  "sema_stub": "3a2a",
+  "sema_id": "sema:PromptChain#mh:SHA-256:7f67f2925e5b99a4a3752cbf9bd736f5ebd2562f7ca6986b94cbe91d9ae73707",
+  "sema_ref": "PromptChain#7f67",
+  "sema_stub": "7f67",
   "dependencies": {
     "references": {
-      "retry": "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091",
-      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
-      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:cf0ae58828cde9f495b09af3e4519c3f05162066991d34d5f2505d13c32ba416",
-      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+      "input_guard": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
+      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:bd2b35e0886f79fde129e2a1185845ecb644c14c4b89b90ec5dc8eb54c51ba10",
+      "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
+      "retry": "sema:Retry#mh:SHA-256:cb3a4a6bfdea3e5b580c343e8f9eccd8c39eee535edf1823b6a31e3bcb358ccc",
+      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f"
     },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
   }
 }

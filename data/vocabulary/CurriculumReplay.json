@@ -22,16 +22,16 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:8e74eaa52a04e46c548268dc12a9081cde94d27d1352a8264a940c0217562d61",
-  "sema_ref": "CurriculumReplay#8e74",
-  "sema_stub": "8e74",
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:ea4813af7f49a5dc9ca8ef4080f13d87373e2e728c511298abed92c2dcf92613",
+  "sema_ref": "CurriculumReplay#ea48",
+  "sema_stub": "ea48",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:415806a13e3ba84483094912eb1d966e28595f56938bb00f7b3489f5ec58ebe3",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
     }
   }
 }

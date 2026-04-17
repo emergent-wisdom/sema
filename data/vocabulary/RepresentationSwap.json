@@ -15,14 +15,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:5a21b2bca69f00bd819fba433487205e4d19d2a0b8aa557af8d7ce1605d1d173",
-  "sema_ref": "RepresentationSwap#5a21",
-  "sema_stub": "5a21",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:17873eb0620df825d30ce77bb60440f64d7124741c5038c63009bcac481417cd",
+  "sema_ref": "RepresentationSwap#1787",
+  "sema_stub": "1787",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:289473f83c17f1f4938c68dd5dd07d3c4a96b1069897e58b40bb46cc3981f036"
     }
   }
 }

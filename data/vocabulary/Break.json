@@ -82,18 +82,18 @@
       "Retry"
     ]
   },
-  "sema_id": "sema:Break#mh:SHA-256:7b6f21b950eec795229be081ba4b3c7bb006b2bf8c0686a93b5a75c685c7c678",
-  "sema_ref": "Break#7b6f",
-  "sema_stub": "7b6f",
+  "sema_id": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
+  "sema_ref": "Break#0bb3",
+  "sema_stub": "0bb3",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

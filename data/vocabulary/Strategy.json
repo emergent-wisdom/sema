@@ -11,14 +11,14 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:432b659b291dd489039ca166d4408d3fc68591d7bf7542ab0e39cd100abba9a9",
-  "sema_ref": "Strategy#432b",
-  "sema_stub": "432b",
+  "sema_id": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
+  "sema_ref": "Strategy#a0af",
+  "sema_stub": "a0af",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
     }
   }
 }

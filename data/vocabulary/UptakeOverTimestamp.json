@@ -24,15 +24,15 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:60331ea4399771e2a0b1f7be11afce8ca7fe19011ed0a4e10d068e31a571300e",
-  "sema_ref": "UptakeOverTimestamp#6033",
-  "sema_stub": "6033",
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:d3dd545439e2903c5f4e0bfb056bc94bb18b2ef75a2137ade6a3d6d56dd4a346",
+  "sema_ref": "UptakeOverTimestamp#d3dd",
+  "sema_stub": "d3dd",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:c5cbf1f2f52a90ba2648a826ff8421d334e5b32bf892d9b5578f7ec013616a69",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     }
   }
 }

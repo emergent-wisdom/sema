@@ -25,9 +25,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:7cf605ff8dd56ea682583038c18ba84929ba32b9c44f557daaa804d907b0fa47",
-  "sema_ref": "DeepResearch#7cf6",
-  "sema_stub": "7cf6",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:d937f26b6ab3add7be9ca610e6864801b4cdb076572a7961b2d6de9ee390330f",
+  "sema_ref": "DeepResearch#d937",
+  "sema_stub": "d937",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -35,11 +35,11 @@
   ],
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
-      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
-      "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:f401dbfd92b4775ec02091329df7626ef81a2edbd9264fcbde9b148e79a14b8b",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9"
+      "discover": "sema:Discover#mh:SHA-256:aa709470f6d2f97f561d6d0a181ee8980688ce91c6b0ee2f6c8d2a33586f6dfd"
     }
   }
 }

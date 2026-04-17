@@ -22,18 +22,18 @@
       "AgentSandbox"
     ]
   },
-  "sema_ref": "ToolInvoke#4694",
-  "sema_id": "sema:ToolInvoke#mh:SHA-256:4694e7bcf0e0b712584fc927ea81942e0202a394f80cbc149592c9fdd41013d6",
-  "sema_stub": "4694",
+  "sema_ref": "ToolInvoke#bd2b",
+  "sema_id": "sema:ToolInvoke#mh:SHA-256:bd2b35e0886f79fde129e2a1185845ecb644c14c4b89b90ec5dc8eb54c51ba10",
+  "sema_stub": "bd2b",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
     "composes_with": {
-      "input_guard": "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+      "input_guard": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533"
     }
   }
 }

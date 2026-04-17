@@ -26,9 +26,9 @@
     "category": "Reasoning",
     "ring": 1
   },
-  "sema_id": "sema:StepBack#mh:SHA-256:b16f465c8085bd6e6c962bee774538fd7252e79b43c44bc7fecf4f41df15e66b",
-  "sema_ref": "StepBack#b16f",
-  "sema_stub": "b16f",
+  "sema_id": "sema:StepBack#mh:SHA-256:35ad31171daed52a64436fc24ac0f61729ca54bb9b5425d341e4763e30a968c9",
+  "sema_ref": "StepBack#35ad",
+  "sema_stub": "35ad",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -36,9 +36,9 @@
   ],
   "dependencies": {
     "references": {
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
-      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
+      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     }
   }
 }

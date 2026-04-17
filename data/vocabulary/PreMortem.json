@@ -6,10 +6,8 @@
     "Performative Doomerism: Listing generic catastrophes (e.g., Asteroid Strike) instead of specific, endogenous failure modes."
   ],
   "invariants": [
-    "Future Perspective: Analysis must assume failure has ALREADY happened",
-    "Perspective Shift: Analysis assumes failure has ALREADY occurred (Probability=1.0)",
-    "Specific Cause: Failure reasons must be actionable, not generic bad luck",
-    "Specificity: Failure causes must be actionable"
+    "Future Perspective: Analysis must assume failure has ALREADY happened (Probability=1.0).",
+    "Specific Cause: Failure reasons must be actionable and endogenous, not generic bad luck."
   ],
   "preconditions": [
     "{{plan}} is fully specified"
@@ -39,17 +37,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:PreMortem#mh:SHA-256:99f1e5005c0e0dbc3ba6bb7e670b6b1c9c7d5b8c5bc17a168ce186ab38882818",
-  "sema_ref": "PreMortem#99f1",
-  "sema_stub": "99f1",
+  "sema_id": "sema:PreMortem#mh:SHA-256:8ca0f6838ca171fc8aea06174357c6d867b4217299e11dfb136a98c7993a32c7",
+  "sema_ref": "PreMortem#8ca0",
+  "sema_stub": "8ca0",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
     "references": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:7074d06ab2b317d810e688866049a24f8b303099548f033d6edab2d0d16710b9",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:dd78ffe0d335b88f5a9fa19e8c8c07ba85e87033a4d6687e13e085b456f8f718",
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
     }
   }
 }

@@ -12,16 +12,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Verification#1d4f",
-  "sema_id": "sema:Verification#mh:SHA-256:1d4f43cb481565b05e4dd0c34354ace96a81fe121947dd00eedb211325c428b5",
-  "sema_stub": "1d4f",
+  "sema_ref": "Verification#9f0c",
+  "sema_id": "sema:Verification#mh:SHA-256:9f0ca43164b59291b52fa0dedcdbe22ec1394bc91792dffe1d648a53016cd44d",
+  "sema_stub": "9f0c",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "spec": "sema:Spec#mh:SHA-256:68b4a7de6903d953979547572fc95ddc63da8ba24b7e39b06e22d84daacefa1c"
     }
   }
 }

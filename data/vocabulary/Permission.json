@@ -44,16 +44,16 @@
     "tier": 1,
     "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action."
   },
-  "sema_ref": "Permission#c653",
-  "sema_id": "sema:Permission#mh:SHA-256:c653bd7e54b5b7cfafe9bb8635f3e1ed814008368cae31fd3c518818e76da6d0",
-  "sema_stub": "c653",
+  "sema_ref": "Permission#d981",
+  "sema_id": "sema:Permission#mh:SHA-256:d981e3410909de3ac0c4fa4b8203ad1db8b024de78fb4f3f2b64a645fe98c198",
+  "sema_stub": "d981",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     }
   }
 }

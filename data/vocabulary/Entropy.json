@@ -8,18 +8,18 @@
     "ring": 0,
     "tier": 1,
     "related": [
-      "EntropyPump#961c"
+      "sema:EntropyPump#mh:SHA-256:4009135f0c832faa6a21bada63f9513d84219f3e36357f5a53c184323a41fcf4"
     ]
   },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
   "sema_id": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212",
   "sema_ref": "Entropy#a265",
   "sema_stub": "a265",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
   }
 }

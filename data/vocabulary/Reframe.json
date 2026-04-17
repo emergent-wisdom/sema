@@ -7,7 +7,7 @@
   ],
   "invariants": [
     "{{problem}} semantics preserved",
-    "perspective shifted"
+    "Perspective shifted."
   ],
   "preconditions": [
     "Stuck problem state"
@@ -25,14 +25,14 @@
       "SolutionTree"
     ]
   },
-  "sema_id": "sema:Reframe#mh:SHA-256:0b02c55ef29a90499bf98668a0ef1f20ca89c3453a49878cb1a9f59f693fbe7c",
-  "sema_ref": "Reframe#0b02",
-  "sema_stub": "0b02",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
+  "sema_ref": "Reframe#44c5",
+  "sema_stub": "44c5",
   "dependencies": {
     "references": {
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     }
   }
 }

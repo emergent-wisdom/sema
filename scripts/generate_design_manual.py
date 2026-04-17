@@ -35,6 +35,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 VOCAB_DIR = REPO_ROOT / "data" / "vocabulary"
+STAGING_DIR = REPO_ROOT / "data" / "staging"
 SIDECAR = REPO_ROOT / "data" / "design_critique.json"
 OUTPUT = REPO_ROOT / "docs" / "manuals" / "vocabulary-design.md"
 
@@ -114,7 +115,14 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 # ──────────────────────────────────────────────────────────────────────────
 
 
-def load_patterns(vocab_dir: Path) -> dict[str, dict]:
+def load_patterns(vocab_dir: Path, staging_dir: Path | None = None) -> dict[str, dict]:
+    """Load pattern specs, preferring staging/<Handle>.json when present.
+
+    Staging contains in-progress edits not yet applied to taxonomy.db /
+    data/vocabulary/. The manual reflects current work-in-progress by
+    preferring staging entries over vocabulary for any handle that has both.
+    """
+    staged_count = 0
     out: dict[str, dict] = {}
     for fp in sorted(vocab_dir.glob("*.json")):
         try:
@@ -123,7 +131,25 @@ def load_patterns(vocab_dir: Path) -> dict[str, dict]:
             print(f"warning: failed to parse {fp.name}: {e}", file=sys.stderr)
             continue
         handle = pat.get("handle") or fp.stem
+        # If staging has a copy, prefer it.
+        if staging_dir and staging_dir.exists():
+            staged_fp = staging_dir / f"{handle}.json"
+            if staged_fp.exists():
+                try:
+                    staged_pat = json.loads(staged_fp.read_text(encoding="utf-8"))
+                    # Preserve the vocabulary's sema_id/ref/stub if staging lacks them
+                    for k in ("sema_id", "sema_ref", "sema_stub"):
+                        if k not in staged_pat and k in pat:
+                            staged_pat[k] = pat[k]
+                    pat = staged_pat
+                    staged_count += 1
+                except Exception as e:  # noqa: BLE001
+                    print(
+                        f"warning: failed to parse staging {staged_fp.name}: {e}", file=sys.stderr
+                    )
         out[handle] = pat
+    if staged_count:
+        print(f"info: rendering {staged_count} staged pattern(s) (prefer staging over vocabulary)")
     return out
 
 
@@ -388,7 +414,7 @@ def main() -> int:
     if not VOCAB_DIR.exists():
         print(f"error: {VOCAB_DIR} not found", file=sys.stderr)
         return 1
-    patterns = load_patterns(VOCAB_DIR)
+    patterns = load_patterns(VOCAB_DIR, STAGING_DIR)
     sidecar = load_sidecar(SIDECAR)
 
     content = render_manual(patterns, sidecar)

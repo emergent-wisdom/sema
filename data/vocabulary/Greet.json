@@ -16,18 +16,18 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:Greet#mh:SHA-256:3cc87b97439bc5824e1c82de7ddcb0944b047b5e078a576122a60725dd3ef438",
-  "sema_ref": "Greet#3cc8",
-  "sema_stub": "3cc8",
+  "sema_id": "sema:Greet#mh:SHA-256:ff7922e2f2c31a160124615bf9319b11b87f8dea4df015f5ec6c22699b67a9f4",
+  "sema_ref": "Greet#ff79",
+  "sema_stub": "ff79",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
-    },
     "composes_with": {
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     }
   }
 }

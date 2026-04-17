@@ -8,19 +8,19 @@
     "category": "Coordination",
     "ring": 1
   },
-  "sema_ref": "Compromise#9656",
-  "sema_id": "sema:Compromise#mh:SHA-256:96563aef47ce699e5c5a04847494113ff5221aa137539c988c988b0fd548d3f5",
-  "sema_stub": "9656",
+  "sema_ref": "Compromise#f646",
+  "sema_id": "sema:Compromise#mh:SHA-256:f6466240787604b0fc101e13935a2bc7a4859c9eadb4285734125f9932b76880",
+  "sema_stub": "f646",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "yield": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0"
+      "yield": "sema:Yield#mh:SHA-256:0de85f1f0d25974e6aa1b306009a0abfd06fa875b467a8c1ba02936af3aa9a26",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     },
     "composes_with": {
-      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
+      "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3"
     }
   }
 }

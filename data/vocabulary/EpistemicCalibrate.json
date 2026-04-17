@@ -24,14 +24,14 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437",
-  "sema_ref": "EpistemicCalibrate#6069",
-  "sema_stub": "6069",
+  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:3e32459cf46f6d4492af69d5c6be854e9ea96d4a87c6f699d54422b9a1a7be52",
+  "sema_ref": "EpistemicCalibrate#3e32",
+  "sema_stub": "3e32",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0"
+      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
     }
   }
 }

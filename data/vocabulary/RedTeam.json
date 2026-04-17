@@ -24,14 +24,14 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:RedTeam#mh:SHA-256:341f70e77833dbafb7d5f86e89687272b9aeb6208f349a78277f7a332348fbda",
-  "sema_ref": "RedTeam#341f",
-  "sema_stub": "341f",
+  "sema_id": "sema:RedTeam#mh:SHA-256:c72cc15f0c34cec80f78c90a059c6f6b305d8fcd9a8f788f8193d0369dc6877f",
+  "sema_ref": "RedTeam#c72c",
+  "sema_stub": "c72c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234"
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:380c8ef1d2fdd4564ab1e91fb4caf7b13eb8b3d13fc243ed3bb4ff93a422dd14"
     }
   }
 }

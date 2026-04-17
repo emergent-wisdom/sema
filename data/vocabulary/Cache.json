@@ -28,12 +28,6 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "dependencies": {
-    "references": {
-      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
-    }
-  },
   "data_schema": {
     "type": "object",
     "description": "Keyed-value storage with lookup semantics.",
@@ -49,6 +43,12 @@
         "type": "boolean",
         "description": "Whether the key was found on lookup"
       }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

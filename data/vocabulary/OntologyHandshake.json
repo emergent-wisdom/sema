@@ -11,10 +11,14 @@
     "Term Consistency, Mapping Bijectivity"
   ],
   "preconditions": [
-    "Both agents have ontologies. Communication channel open. Ontology serializable."
+    "Both agents have ontologies.",
+    "Communication channel open.",
+    "Ontology serializable."
   ],
   "postconditions": [
-    "Shared terms mapped. Unmappable terms flagged. Communication can proceed with known precision."
+    "Shared terms mapped.",
+    "Unmappable terms flagged.",
+    "Communication can proceed with known precision."
   ],
   "_meta": {
     "tier": 2,
@@ -22,18 +26,18 @@
     "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:OntologyHandshake#mh:SHA-256:46dc068136c292dfe8982d3e1c56e6e8c33307962360b9c96e9e7c6e2bd205ed",
-  "sema_ref": "OntologyHandshake#46dc",
-  "sema_stub": "46dc",
   "sema_layer": "Society",
   "sema_category": "Coordination",
+  "sema_id": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
+  "sema_ref": "OntologyHandshake#8443",
+  "sema_stub": "8443",
   "dependencies": {
-    "references": {
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
-    },
     "composes_with": {
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554"
+    },
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
     }
   }
 }

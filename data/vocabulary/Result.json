@@ -18,9 +18,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Result#mh:SHA-256:ac811afc1da1534042bc7bc123135bbf8988efc8b0c43e9f2287cbcda0117377",
-  "sema_ref": "Result#ac81",
-  "sema_stub": "ac81",
+  "sema_id": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2",
+  "sema_ref": "Result#f29e",
+  "sema_stub": "f29e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -74,8 +74,8 @@
   },
   "dependencies": {
     "references": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d",
+      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
     }
   }
 }

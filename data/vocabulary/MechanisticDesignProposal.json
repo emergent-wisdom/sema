@@ -66,21 +66,21 @@
       }
     }
   },
-  "sema_ref": "MechanisticDesignProposal#add6",
-  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:add6025e445129f3d83108d45b9deb8e4e1677de62747265e35beee5696cc5d9",
-  "sema_stub": "add6",
+  "sema_ref": "MechanisticDesignProposal#5a9c",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:5a9c27449f981884c60f6b9b86d37af5ce60aed2ffa5eed9669276d45914b32b",
+  "sema_stub": "5a9c",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
+    "references": {
+      "risk": "sema:Risk#mh:SHA-256:198049488be8dcf811bfced0230ca10889fb531b03c6c7f66eb7dc131116be9d"
+    },
     "accepts": {
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
-    },
-    "references": {
-      "risk": "sema:Risk#mh:SHA-256:37748bbbeb3ee23c5a258a49faee4d04a16064136fdfd8721a365d3764c73fb8"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

@@ -35,14 +35,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:OptimalStop#mh:SHA-256:b3c8d7473a477e5d31e82e1cdbc4db56a4ae54cb967f37187176203a9242dad6",
-  "sema_ref": "OptimalStop#b3c8",
-  "sema_stub": "b3c8",
+  "sema_id": "sema:OptimalStop#mh:SHA-256:4deea2f266dbff3345db2878c8acfc0b75067a9aa1b38d9007dd82690a5979e5",
+  "sema_ref": "OptimalStop#4dee",
+  "sema_stub": "4dee",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317"
     }
   }
 }

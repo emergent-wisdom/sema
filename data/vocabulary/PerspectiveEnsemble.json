@@ -33,20 +33,20 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:19080ddde9de17ed93c7ed23fe657922479f53f6e0a603be904bb7a42bc1ecd7",
-  "sema_ref": "PerspectiveEnsemble#1908",
-  "sema_stub": "1908",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:9a315bcd3c01134b8a1faba64bd167043c15315ec0aecb560ac423b757720774",
+  "sema_ref": "PerspectiveEnsemble#9a31",
+  "sema_stub": "9a31",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
-      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7"
+      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+      "aggregate": "sema:Aggregate#mh:SHA-256:8c2ae987064dabf80b6ff9a6a2bcca7ae223ae9b6b2f6f3642fa754b004f45b5",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:dd78ffe0d335b88f5a9fa19e8c8c07ba85e87033a4d6687e13e085b456f8f718",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

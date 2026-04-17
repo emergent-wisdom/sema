@@ -55,18 +55,18 @@
     "category": "Data Structures",
     "ring": 1
   },
-  "sema_id": "sema:Contract#mh:SHA-256:40c20610647f903ade2958f3cfc1695e641a368238b5aa7ec4b5d27de4edfa73",
-  "sema_ref": "Contract#40c2",
-  "sema_stub": "40c2",
+  "sema_id": "sema:Contract#mh:SHA-256:c2bed505fae8413f38524aa362a8194d5eb42795b56fcd73ae88f1100734e742",
+  "sema_ref": "Contract#c2be",
+  "sema_stub": "c2be",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
-      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba",
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:074b03c077f07b24dd1eb5427579069b4caaf6353759aa1c7affcdab79258ced"
+      "sign": "sema:Sign#mh:SHA-256:d60d27217d8d1f219460f69a9971b9f73c1e279c5fddbb7db51a87c8015e34e8",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:3aeb7bb718ebf906d99e71ddf4008b773fed718ac07d14443961abec0ad06602",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "judge": "sema:Judge#mh:SHA-256:b8d60cf6d7f4c087b09f576533d1eb077bce121fafc6ea8905c60539a663a7d1",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     },
     "accepts": {
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"

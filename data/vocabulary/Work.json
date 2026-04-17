@@ -47,16 +47,16 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Work#mh:SHA-256:925c4ac24f2365785b2a6bba5d9ac325af0dee47fbfb20bd1d2b8b72042ffbe8",
-  "sema_ref": "Work#925c",
-  "sema_stub": "925c",
+  "sema_id": "sema:Work#mh:SHA-256:f9fa297d02d2ac27d493a56c60000483035db4d07fa6cfa9c6f2b02fb07f1036",
+  "sema_ref": "Work#f9fa",
+  "sema_stub": "f9fa",
   "dependencies": {
     "references": {
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
+      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431",
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     },
     "composes_with": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
   }
 }

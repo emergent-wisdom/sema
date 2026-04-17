@@ -16,9 +16,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:dd743deaaee61e40f9736d7f845e0086f55ca8164faf6fb19bf0f786e013da9a",
-  "sema_ref": "ChainOfThought#dd74",
-  "sema_stub": "dd74",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b",
+  "sema_ref": "ChainOfThought#380a",
+  "sema_stub": "380a",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -26,13 +26,13 @@
   ],
   "dependencies": {
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
+      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b",
+      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358"
     },
     "composes_with": {
-      "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
-      "step_back": "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a"
+      "step_back": "sema:StepBack#mh:SHA-256:35ad31171daed52a64436fc24ac0f61729ca54bb9b5425d341e4763e30a968c9",
+      "reflexion": "sema:Reflexion#mh:SHA-256:3b52910b4b2f5413df0ac4ffa6b825cdc8c889157ec09e288643f78a0ddb662f"
     }
   }
 }

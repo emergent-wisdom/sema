@@ -38,18 +38,18 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "sema_id": "sema:Heartbeat#mh:SHA-256:17d837d4767aa37d1d31d6178d01b119505e77e6e2e3e47d19429722a32db399",
-  "sema_ref": "Heartbeat#17d8",
-  "sema_stub": "17d8",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:8e3615550a11d28fdf434eedbb19eb51577a226aa3eea5e6221384f5bcfb6503",
+  "sema_ref": "Heartbeat#8e36",
+  "sema_stub": "8e36",
   "dependencies": {
     "references": {
-      "monitor": "sema:Monitor#mh:SHA-256:9a8f8879765fe55f9ab79786671b7e4cf0aa0e61730e20897214b22fb6fa08bb"
-    },
-    "composes_with": {
-      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+      "monitor": "sema:Monitor#mh:SHA-256:6773980f55c9a9be28d6ff45fe338e020b7bf585367b52a9ac28156b85ec9752"
     },
     "accepts": {
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    },
+    "composes_with": {
+      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
     }
   }
 }

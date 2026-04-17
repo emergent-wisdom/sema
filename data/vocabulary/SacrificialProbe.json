@@ -3,7 +3,8 @@
   "mechanism": "A Generalized Pattern where an {{agent}} sends a low-cost 'probe' into a {{system}} expecting it to fail, but designs the failure to be instructive. The probe must be cheap relative to the main payload, and the failure {{mode}} must update the {{strategy}} for the main payload. Common in startups (landing pages), immunology (dendritic cells), and warfare (reconnaissance). It wraps the concept of a staked probe in a higher-order strategy where the probe's destruction is the intended {{signal}}.",
   "gloss": "Learning via cheap, instructive failure",
   "failure_modes": [
-    "{{probe}} is too expensive; {{probe}} failure is silent."
+    "Probe too expensive: breaks the Cost Asymmetry invariant, making the sacrifice unaffordable.",
+    "Silent probe failure: {{probe}} fails but produces no observable signal, destroying the Instructive Failure property."
   ],
   "invariants": [
     "Cost Asymmetry: Cost({{probe}}) << Cost(MainPayload)",
@@ -30,19 +31,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:88b771630ee9d100296a45085a9f12402bac40dd10180cc0972a0e8c19abad30",
-  "sema_ref": "SacrificialProbe#88b7",
-  "sema_stub": "88b7",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:d2d446fef99984ac5c3abcc28b133834293714329910109f083214d4a1da37b4",
+  "sema_ref": "SacrificialProbe#d2d4",
+  "sema_stub": "d2d4",
   "dependencies": {
     "references": {
-      "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "mode": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e",
+      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602"
     }
   }
 }

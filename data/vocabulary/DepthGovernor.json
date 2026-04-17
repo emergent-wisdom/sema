@@ -31,20 +31,20 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:d35ade2e478e175e94c7f3f2832f291832e49d527fd80ecff44aad6b80ead2d5",
-  "sema_ref": "DepthGovernor#d35a",
-  "sema_stub": "d35a",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:8f068793431f9eb8c95bc54382e6d43012a027c4fda009a5621b0c74ed121eae",
+  "sema_ref": "DepthGovernor#8f06",
+  "sema_stub": "8f06",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
-      "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:c9eb4a8c8eb3f7b266fa063748b82777b480986a7619a45df41bdad69d1aa3e5",
+      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca",
+      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

@@ -15,15 +15,15 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:EmpiricalTest#mh:SHA-256:b1bdda0d8973c5e5346688145f728e34a1daf0f86bf1acb0fb010af8e9192b76",
-  "sema_ref": "EmpiricalTest#b1bd",
-  "sema_stub": "b1bd",
+  "sema_id": "sema:EmpiricalTest#mh:SHA-256:9ef5dbf1d5ccc9ae742c53f93d0e2509191966a70b412ecd54b4e9a97f470ef8",
+  "sema_ref": "EmpiricalTest#9ef5",
+  "sema_stub": "9ef5",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "validate": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619",
-      "falsification": "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929"
+      "falsification": "sema:Falsification#mh:SHA-256:021560b40fc737a96a5b716a3bac434acea9b6a1e0debe6f010740bb915aa376",
+      "validate": "sema:Validate#mh:SHA-256:aebfb015224719006acab6ffc4eed37a94ecb262ac59b0af4c2c43b58c2f1ca7"
     }
   }
 }

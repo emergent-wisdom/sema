@@ -163,7 +163,8 @@
       "critique": [
         "'Search space fully covered' is the invariant, but any non-trivial space resists exhaustive coverage; the pattern quietly relies on heuristics to declare coverage.",
         "Sympathetic attacker is the dominant failure mode in LLM contexts and the pattern offers no structural mitigation — it requires genuinely independent adversaries, which the library can't supply on its own.",
-        "Over-claims certainty — 'high-confidence proof of absence' is a rhetorical upgrade; the underlying logic is still inductive and probabilistic."
+        "Over-claims certainty — 'high-confidence proof of absence' is a rhetorical upgrade; the underlying logic is still inductive and probabilistic.",
+        "`derived_from` fixed: previously bare handle name `NegativeProof` without sema: prefix or hash; now full sema_id."
       ]
     },
     "family_discussion": "Sits between the verification family (NegativeProof, Witness, Probe) and the adversarial family (RedTeam, AdversarialSteel, SteelmanCheck). Uses RedTeam as its engine and NegativeProof as its output form. Contrasts with SteelmanCheck, which strengthens the opposing case to test one's own; AdversarialProof strengthens the search to test an absence claim."
@@ -1332,9 +1333,10 @@
         "Gives up: flexibility. BoundedTask picks two specific bound types; tasks that need different bounds (time-bounded, adversarially-bounded, resource-bounded) have to use other patterns."
       ],
       "critique": [
-        "Very thin — the whole mechanism is 'Task plus two wrappers.' The pattern's value is mostly in the naming, which is fine, but tests or enforcement of the invariants (Budget Enclosure, Quality Gate) aren't part of the mechanism.",
-        "Budget enclosure and quality gate are listed as invariants without operational definition; what does it mean to 'enclose' a budget?",
-        "Pairs Budget and AcceptSpec as if they're symmetric — they're not. Budget is an input constraint; AcceptSpec is an output criterion. The bundle flattens this asymmetry."
+        "Very thin — the mechanism is a one-sentence specialization of Task. Invariants now state the specific claims (previously they were bare labels — 'Budget Enclosure' and 'Quality Gate' with no statement — which rendered as noise in the manual).",
+        "Pairs Budget and AcceptSpec as if they're symmetric — they're not. Budget is an input constraint; AcceptSpec is an output criterion. The bundle flattens this asymmetry.",
+        "No handling for budget overrun / spec failure interaction — does overrun halt the AcceptSpec check, or does the check still run on a partial result?",
+        "`derived_from` updated from stale Task sema_id (aa452d4a...) to current (b32808db...)."
       ]
     },
     "family_discussion": "A specialization of Task, with Budget and AcceptSpec as companions. Sits alongside other specialized tasks like Investigation (epistemic work) or MicroTask (minimum unit) in the task family. Consumed by the solver family (PolymorphicSolver, RootSolver) which expects bounded tasks by default. Compare with SelfContainedTask — same family, different specialization axis."
@@ -1633,7 +1635,7 @@
       "critique": [
         "Adversarial Encoding is the hardest failure mode and the pattern has no structural defense — preventing 'zip instead of abstract' requires measuring the compressed representation's generalization, which is exactly what the bottleneck was supposed to force.",
         "False Abstraction (hallucinating patterns to satisfy the bottleneck) is the second-hardest failure mode, and similarly unprevented by the mechanism alone.",
-        "Bottleneck sizing is an art; the pattern offers no principle for choosing it beyond 'Capacity < Information Content,' which is too coarse to be actionable."
+        "Bottleneck sizing is an art; the pattern offers no principle for choosing it beyond 'Capacity < Information Content,' which is too coarse to be actionable. Failure modes were previously jammed into one list entry (Collapse + Adversarial Encoding + False Abstraction run together); now split into three distinct entries."
       ]
     },
     "family_discussion": "Information-theoretic sibling of Compress (explicit reduction), Abstraction (the output), and Parsimony (the goal). Compare with EntropyPump — both manipulate information content to drive cognition; EntropyPump injects, CapacityPressure constrains. Sits in the rare corner of the library devoted to representation engineering."
@@ -2433,7 +2435,7 @@
       "critique": [
         "Link rot is listed as a failure mode without mitigation — storage is the caller's problem, and when the caller fails, every anchor breaks.",
         "'Resolution to valid schema or content' is an invariant, but invalid content can still pass the hash check (bad data, malformed schema).",
-        "The pattern says terms are referenced, not defined inline, but offers no semantics for when an agent legitimately needs to redefine or refine."
+        "The pattern says terms are referenced, not defined inline, but offers no semantics for when an agent legitimately needs to redefine or refine. Cleanup: the prior bare-label invariant 'Immutable Reference' (no statement) was redundant with the Immutability invariant above it and has been removed."
       ]
     },
     "family_discussion": "Architectural substrate of the sema library itself — every pattern in the vocabulary is content-addressed, and ConceptAnchor names the pattern behind that design. Pairs with Artifact (the general immutable-by-hash primitive), Resolve (the verb for looking up anchors), and Drop (the event that finalizes a new anchor). Compare with Dictionary or Registry — ConceptAnchor is specifically the content-addressed flavor."
@@ -2558,7 +2560,7 @@
     },
     "design": {
       "tensions": [
-        "Monotonicity (invariant) vs real-world non-monotonic calibration — a miscalibrated agent may be overconfident at 70% and underconfident at 90%; the invariant enforces a shape that may not match reality.",
+        "Pre-calibration non-monotonicity vs post-calibration monotonic guarantee — the pattern now explicitly separates the two; callers need to understand the invariant applies to the output, not the input.",
         "Over-correction (the named failure) — swinging from overconfident to under-confident is common; the loop needs damping that the pattern doesn't specify.",
         "Sample size for calibration — with few predictions, calibration estimates are noisy; with many, the prediction-production rate drags the calibration behind."
       ],
@@ -2567,7 +2569,7 @@
         "Gives up: decisiveness — calibrating loops make agents more humble, which sometimes means less action. Over-correction is the specific danger."
       ],
       "critique": [
-        "The monotonicity invariant is wrong for calibration curves that are genuinely non-monotonic; enforcing it smooths out real miscalibration structure.",
+        "Clarifying the monotonicity invariant as post-calibration (output) rather than pre-calibration (observed) resolves the ambiguity, but still requires callers to choose a calibration method (isotonic, Platt, Bayesian) that preserves the guarantee.",
         "Over-correction is the named failure but the mitigation (damping, moving averages) isn't part of the pattern.",
         "Requires a track record the agent can reference; in practice most agents don't maintain one, and the pattern doesn't provide infrastructure."
       ]
@@ -3208,7 +3210,7 @@
       "critique": [
         "Hindsight Leakage is the most important failure and the pattern has no structural defense — memory updates are opaque, and the anchor can be rationalized without being modified.",
         "Vague Anchor failure mode is addressed by nothing in the invariants — 'anchor must be specific enough to be falsified' would help but isn't there.",
-        "Anchor Abandonment (ignoring large deltas as too uncomfortable) is a psychological failure the pattern names but can't prevent."
+        "Anchor Abandonment (ignoring large deltas as too uncomfortable) is a psychological failure the pattern names but can't prevent. Failure modes were previously jammed into one list entry (Hindsight Leakage + Vague Anchor + Anchor Abandonment run together); now split into three distinct entries."
       ]
     },
     "family_discussion": "Calibration primitive paired with ConfidenceCalibrate (the aggregate update loop), BayesUpdate (the probabilistic substrate), and Prediction as the input. Compare with CommitmentDevice — CounterfactualAnchor is commitment of a prediction; CommitmentDevice is commitment of an action plan. Both use immutability to resist later revision."
@@ -3374,8 +3376,8 @@
       ],
       "critique": [
         "Illusory resonance is the most dangerous failure mode — agents perceive the same soft signal differently, crystallize, then discover the perception mismatch. The pattern surfaces this by failing, which is the honest move, but too late to avoid the process cost.",
-        "Entropy threshold is unspecified — what counts as 'entropy' of a coordination context is itself a judgment.",
-        "'Atomic transition Fluid -> Solid' is elegant but forces discretization of a process that may legitimately be gradual; the pattern's shape doesn't accommodate intermediate states."
+        "Entropy threshold is unspecified — what counts as \"entropy\" of a coordination context is itself a judgment.",
+        "Gloss fixed: previously rendered as literal \"{{phase_transition}}\" due to un-interpolated template token; now plain text. Orphan phase_transition dependency (declared but no longer used in any field after the gloss fix) was removed."
       ]
     },
     "family_discussion": "Norm-formation primitive paired with Resonate (the soft signal substrate), Constitution (the hard-rule output), and Consensus (the validation step). Compare with PhaseTransition — Crystallize is the social/epistemic phase transition (norms formalizing); PhaseTransition is the general physics-inspired primitive."
@@ -3605,9 +3607,9 @@
         "Zero threshold triggers state change buys discrete semantics at the cost of a non-smooth transition at the boundary."
       ],
       "critique": [
-        "Only one invariant, one failure mode. Missing: Monotonicity Without Reinforcement (value strictly decreases without input), Half-Life Definedness (rate parameter must be positive).",
-        "Premature Expiry is real but the pattern has no detection or protection — miscalibration is the caller's problem.",
-        "The 'reinforcement resets or boosts' is an OR — which is it? The mechanism permits both, but they are operationally different. A reset-semantic Decay differs from a boost-semantic one."
+        "Premature Expiry is the named failure — half-life miscalibration is endemic.",
+        "The pattern has only one invariant ({{value}} never negative); richer invariants about monotonicity, reinforcement semantics, and threshold behavior would help.",
+        "Gloss fixed: previously rendered literal '{{state}}' token; now plain text 'Automatic expiration of stale state'."
       ]
     },
     "family_discussion": "Substrate pattern for time-attenuation. Paired with `Dampen` (magnitude attenuation independent of time) and `Hysteresis` (threshold-crossing with gap). Invoked by attention-allocation, memory, aging-based relevance patterns across the library."
@@ -4308,7 +4310,7 @@
       "critique": [
         "Witness collusion is the named sophisticated attack; mitigation (random selection, meta-drift analysis on witnesses) is a best-effort defense, not a guarantee.",
         "Cold start (new agents have no baseline) is a structural gap — during the establishment window, DriftWatch is silent, which is exactly when a fresh subversion attempt is easiest.",
-        "Threshold is 2σ by default, which means ~5% false-positive rate on normal variance — in a busy system that's a lot of alerts; the pattern doesn't address alert fatigue."
+        "Threshold is 2σ by default, which means ~5% false-positive rate on normal variance — in a busy system that's a lot of alerts; the pattern doesn't address alert fatigue. Failure-mode list restructured: mitigations are now inline with their parent failures (was: alternating failure/mitigation entries at the same list level)."
       ]
     },
     "family_discussion": "Reputation-monitoring primitive paired with Reputation (the stored history), Witness (the peer-report substrate), and MetaDrift (detecting drift in the watchers themselves). Compare with Anomaly — DriftWatch is specifically behavioral baseline violation over time; Anomaly is single-point baseline deviation."
@@ -4439,8 +4441,8 @@
       ],
       "critique": [
         "Premature Exclusion is the dominant failure — faulty tests kill the true answer, leaving an empty set, and the pattern has no recovery mechanism.",
-        "Exhaustive-at-start is rarely achievable for real problems; 'all possible answers' is an idealization.",
-        "Cost ordering depends on knowing test costs upfront, which is itself work the pattern doesn't account for."
+        "Exhaustive-at-start is rarely achievable for real problems; \"all possible answers\" is an idealization.",
+        "Restructured: preconditions were jammed into one string (now split to three), and the original \"invariant\" was a miscategorized precondition (now replaced with real execution invariants — Monotonic Reduction and Evidence-Required Exclusion — that describe what the pattern maintains during operation)."
       ]
     },
     "family_discussion": "Reasoning-strategy primitive paired with Falsification (the test primitive), Bisect (the binary-partition variant), and ExploreExploit (exploration-of-option-space). Compare with AdversarialProof — Eliminate systematically rules out candidates; AdversarialProof exhaustively searches for prohibited content. Both are eliminative, on different scopes."
@@ -4540,7 +4542,8 @@
       "critique": [
         "Zero invariants listed. For a concept with this much load-bearing use, at minimum: Non-Negativity (Entropy ≥ 0), Maximality (bounded by the system's state-space cardinality), Monotonicity-Without-Intervention (in a closed system, entropy is non-decreasing).",
         "Zero failure modes. A pattern with this many dependents should at least name the Ambiguous Domain failure (callers mean Shannon when the spec suggests thermodynamic).",
-        "The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion."
+        "The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion.",
+        "`_meta.related` reference updated from legacy stub format (`EntropyPump#961c`) to full sema_id."
       ]
     },
     "family_discussion": "Substrate concept underlying `EntropyPump`, `Crystallize`'s threshold check, `Reversibility`'s Entropy constraint, and `Noise`. Paired with `Measurement` (the act of observing), `Conservation` (what doesn't increase), and `Attractor` (where dynamics land)."
@@ -5036,7 +5039,8 @@
       "critique": [
         "Very thin — the mechanism says 'use Control and Treatment,' which is correct and under-specified. Real experiments have blinding, randomization, sample size, power calculations; the pattern mentions none.",
         "No failure modes listed — experiments have many (confounders, selection bias, over-fitting to treatment) and the pattern doesn't catalogue them.",
-        "Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time."
+        "Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time.",
+        "`_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id."
       ]
     },
     "family_discussion": "Causal-discovery primitive paired with Verification (confirmation), Experiment-specific patterns (A/B, RCT), and Hypothesis (the pre-registered claim being tested). Compare with Probe — Experiment is structured causal, Probe is single-shot observational. Both gather information, at different rigor levels."
@@ -5303,7 +5307,8 @@
       "critique": [
         "Duhem-Quine thesis is the classical problem — any observation technically falsifies a conjunction, not a single hypothesis. The pattern assumes clean falsification.",
         "The 'If Prediction implies Observation, and not-Observation, then not-Hypothesis' invariant is valid logic; the practical problem is that real hypotheses rarely imply crisp observations.",
-        "Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes."
+        "Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes.",
+        "`_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id."
       ]
     },
     "family_discussion": "Epistemic primitive paired with Verify (affirmative counterpart), Hypothesis (the subject), and Prediction (the falsifiable statement). Compare with NegativeProof — Falsification proves a claim false; NegativeProof proves a claim about absence. Both are eliminative, at different targets."
@@ -5400,9 +5405,9 @@
         "Gives up: flexibility. FeedbackSignal requires structure that ad-hoc feedback avoids."
       ],
       "critique": [
-        "Almost a stub — 'structured, targeted' invariants without operational content.",
-        "No schema specified — what fields, what encoding, what size limits? All deferred to the consumer.",
-        "The pattern's value is essentially the naming; the Feedback pattern could carry its own unit without a separate FeedbackSignal."
+        "Very thin — the invariants were previously bare adjective labels (\"Targeted\", \"Structured\") without subject or claim. Now stated as full invariants tied to the data_schema.",
+        "No schema-evolution story — the data_schema is fixed; downstream versions would need to be new patterns.",
+        "The Feedback pattern could carry its own unit without a separate FeedbackSignal — the primary value here is typing for downstream consumers (Reflexion, CurriculumReplay)."
       ]
     },
     "family_discussion": "Substrate unit for the Feedback pattern. Paired with Solution (the evaluated artifact), Task (the context), and Outcome (the evaluation). Compare with Anomaly — FeedbackSignal is attributed post-action; Anomaly is unattributed observation. Both carry structured evaluation."
@@ -5537,7 +5542,8 @@
       "critique": [
         "Three invariants, zero failure modes. Critical omissions: Contract Violation (a sub-concept fails to expose the Solver interface — breaks the fractal); Unbounded Loop (decomposition loops back on itself — the DAG-shape invariant of UniversalSolverTree handles this, but FractalIntelligence itself doesn't state it); Context Loss (the Memory Conservation invariant is violated in practice with no detection).",
         "'Expansion of cognitive capability through conceptual decomposition' is the thesis but the mechanism doesn't say how expansion is measured — what counts as expanded capability?",
-        "The relationship to PolymorphicSolver is implicit — FI is the architecture, PolymorphicSolver is the node type. The pattern could say this more directly."
+        "The relationship to PolymorphicSolver is implicit — FI is the architecture, PolymorphicSolver is the node type. The pattern could say this more directly.",
+        "`derived_from` removed: previously pointed at `RecursiveIntelligence` which no longer exists in the vocabulary (the name was retired; this pattern is the successor, not a descendant)."
       ]
     },
     "family_discussion": "The architectural umbrella under which the solver family, UniversalSolverTree, and PathwayMemory organize. Composed with `ConceptualDecomposition` (the recursive move), `RootSolver` (apex), `UniversalSolverTree` (topology), `MarginalValueRule` (bounding), `PathwayMemory` (learning). The library's central cognitive architecture pattern."
@@ -6400,8 +6406,8 @@
       ],
       "critique": [
         "Clinging to low-probability priors is named as a failure and the pattern has no culling mechanism — low-probability hypotheses accumulate forever.",
-        "Ascension Rule is strict; in real use, moving up a rung is often done on weaker evidence than the rule requires, and the pattern has no enforcement.",
-        "Exclusivity and Falsifiability invariants are strong; many legitimate hypotheses overlap or resist crisp falsification, and the pattern excludes them."
+        "The invariants are now deduplicated (was: two Falsifiability lines + Ascension/Evidence redundant). Exclusivity is retained as mathematically required for the Bayesian probability framework.",
+        "Exclusivity is correct for the Bayesian math but excludes real hypothesis sets with overlapping support (e.g., cold vs flu both cause fever). Users with overlapping hypotheses need a different pattern."
       ]
     },
     "family_discussion": "Hypothesis-tracking primitive paired with Hypothesis (the unit), BayesUpdate (the revision substrate), and BeliefTracking (the audit trail). Compare with BeliefTracking — HypothesisLadder is specifically multi-hypothesis; BeliefTracking is general belief version control."
@@ -7362,7 +7368,8 @@
       "critique": [
         "Hallucinated Resources is the canonical LLM failure mode; the pattern names it without providing a resource catalog to check against.",
         "Fragile Chain (named failure) — single-step failure collapses the plan — is structural and unmitigated.",
-        "No replanning story — the pattern produces a manifest and doesn't specify what to do when execution reveals the manifest is wrong."
+        "No replanning story — the pattern produces a manifest and doesn't specify what to do when execution reveals the manifest is wrong.",
+        "`derived_from` fixed: previously legacy stub `sema:Plan` without hash; now full sema_id."
       ]
     },
     "family_discussion": "Planning phase primitive paired with FrameSpec (input), ExecutionManifest (output), and Plan (the general primitive). Compare with Design — ManifestPlanning produces an executable; Design produces an artifact proposal. Different output types."
@@ -7968,8 +7975,8 @@
       ],
       "critique": [
         "The invariants list has only one item ('Uniqueness, conservation of the fencing totem'). For a pattern this operational, richer invariants are warranted: Monotonic Sequence, Single-Holder, Release-Ownership (only the current holder can release), Token Validity.",
-        "Failure modes are mixed with mitigations — the list tells you how to solve the problems rather than cleanly stating them. A cleaner separation would help callers reason about which mitigations they inherit and which they need to add.",
-        "The 'critical section' concept is named but not specified — callers must already know what a critical section is. A minimal spec of 'the protected region is the code path between acquire and release' would ground the term."
+        "The 'critical section' concept is named but not specified — callers must already know what a critical section is. A minimal spec of 'the protected region is the code path between acquire and release' would ground the term.",
+        "Failure modes restructured — the previous list contained a nested \"Failure modes:\" sub-list header with numbered items spread across separate entries. Now rendered as atomic items with inline mitigations."
       ]
     },
     "family_discussion": "`derived_from Lock` — the K=1 specialization with fencing and token mechanics. Sibling to `Semaphore` (K>1 counting), `ReadWriteLock` (shared/exclusive), `DistributedLock` (lease-based). Paired with `Backoff` and `Cooldown` at the contention-behavior layer."
@@ -8536,7 +8543,8 @@
       "critique": [
         "Over-Eager Execution is a named failure mode but the pattern offers no mitigation — the spec explicitly chooses velocity over guardrails. That is defensible, but callers should be made aware that the pattern is opinionated rather than neutral.",
         "The AtomicBid coupling is stated as a requirement but the pattern does not say what happens if the runtime lacks AtomicBid support — degradation path is unspecified.",
-        "'MANDATES that the agent plan and execute in a single turn' is a prescription on the implementer, but the pattern has no way to enforce it — a two-turn implementer could claim to be OptimisticSolver and pass surface checks."
+        "'MANDATES that the agent plan and execute in a single turn' is a prescription on the implementer, but the pattern has no way to enforce it — a two-turn implementer could claim to be OptimisticSolver and pass surface checks.",
+        "`derived_from` updated from stale Solver sema_id (10655bd6...) to current (b00a16af...)."
       ]
     },
     "family_discussion": "The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery."
@@ -8701,7 +8709,7 @@
       "critique": [
         "Starvation is endemic; Whitelist mitigation is mentioned but external.",
         "Snapback (if Queue drops) adds oscillation risk.",
-        "The biological metaphor is evocative; operational tuning is under-specified."
+        "The biological metaphor is evocative; operational tuning is under-specified. Deduplicated failure modes (was listed twice)."
       ]
     },
     "family_discussion": "Attention primitive paired with AttentionMarkets (pricing-based), InputGuard (predicate-based), and Throttle. Compare with AttentionMarkets — OsmoticFilter is pressure; AttentionMarkets is auction."
@@ -9467,7 +9475,8 @@
       "critique": [
         "Two invariants are thin for the load-bearing pattern at the center of the FI architecture. Missing: Five-Surface Declaration (each implementer must statically declare which surfaces it honors); Feedback Integrity (Feedback surface, when present, must emit either a PerformanceSignal or a FrameError — not both, not neither).",
         "Two failure modes; both are detection-only. No mitigation guidance: what does the runtime do on Non-Compliance? The pattern implies rejection, does not specify.",
-        "The mechanism mentions `{{card}}` for Manifest and `{{validate}}` for Verify but not what backs Execute, Consult, and Feedback — the surfaces without named pattern anchors are structurally weaker."
+        "The mechanism mentions `{{card}}` for Manifest and `{{validate}}` for Verify but not what backs Execute, Consult, and Feedback — the surfaces without named pattern anchors are structurally weaker.",
+        "`derived_from` updated from stale Solver sema_id (10655bd6...) to current (b00a16af...)."
       ]
     },
     "family_discussion": "The concrete implementer of the `Solver` abstract interface. Parent (via `derived_from`) to `OptimisticSolver`, `RigorousSolver`, `RootSolver`, and by convention the `[Descriptor]Solver` naming pattern. Composed with `Card` (Manifest), `Validate` (Verify), `SocraticLoop` (Consult), and `PerformanceSignal` (Feedback)."
@@ -9498,8 +9507,8 @@
         "Gives up: optimism. PreMortem is disproportionately useful and disproportionately psychologically uncomfortable."
       ],
       "critique": [
-        "Performative Doomerism is endemic; specific failures require domain knowledge the pattern doesn't provide.",
-        "The 'assume failure already occurred' device is powerful and can tip into catastrophic thinking that paralyzes.",
+        "Performative Doomerism is endemic; specific failures require domain knowledge the pattern doesn\"t provide.",
+        "Invariants are now deduplicated (was: four invariants forming two duplicate pairs — Future Perspective/Perspective Shift, Specific Cause/Specificity).",
         "No specified mitigation link — PreMortem generates failure scenarios, and the follow-through (what to do about each) lives outside."
       ]
     },
@@ -9929,7 +9938,7 @@
       "critique": [
         "Orphaned (named failure) — parent task unresponsive — is real and the pattern doesn't specify recovery.",
         "Hallucinated Context is the hardest failure; detecting mismatch requires comparing internal state to environmental reality, which the pattern assumes is possible.",
-        "Stagnation threshold N is caller-set with no default rule."
+        "Stagnation threshold N is caller-set with no default rule. Failure modes were previously jammed into one list entry (Stagnation + Orphaned + Hallucinated Context run together); now split into three distinct entries."
       ]
     },
     "family_discussion": "Self-monitoring primitive paired with Heartbeat (general liveness), ContextFirst (refresh discipline), and AuditTrail (the log substrate). Compare with Monitor — Proprioception is self-directed; Monitor is target-directed. Both are observation patterns, directed inward vs outward."
@@ -10162,9 +10171,9 @@
         "Deadline enforcement buys termination at the cost of cutting off late-but-legitimate enlists."
       ],
       "critique": [
-        "Two invariants, two failure modes. Missing: Diversity Metric (Echo Chamber detection requires measuring diversity, which the pattern doesn't specify), Flaking Mitigation (named failure 'ENLIST tentatively but fail to show' but no commitment-strengthening mechanism).",
-        "'Select K from M responders' is mentioned but selection rule not specified — best-fit, random, reputation-scored? The pattern is neutral.",
-        "Binding via ContextID doesn't ensure shared context — two agents with the same ContextID might have different context contents."
+        "Deduplicated failure modes (was: 8 entries with 2 duplicate pairs — Flaking/ghost-at-MUSTER, Rally Spam/RALLY spam floods network).",
+        "Echo Chamber and Flaking remain; both are social-coordination risks the pattern can't structurally prevent.",
+        "Initiator power is mitigated by transparent selection_criteria but still concentrated — the pattern is monarchical by default."
       ]
     },
     "family_discussion": "The dynamic-team-formation protocol in Society. Composes with `AcceptSpec` (requirements), `Quorum` (minimum size), `Select` (from responders). Sibling to `Delegate` (principal-to-agent assignment) — Rally is broadcast-and-assemble, Delegate is directed handoff."
@@ -10329,7 +10338,8 @@
       "critique": [
         "Artifact Rejection (named failure) at seams triggers restart; cascading rejections are a real failure.",
         "Loop Stalling (named failure) — stuck in ManifestPlanning — when non-compensatory gates reject repeatedly.",
-        "The Abstract-to-Concrete framing is the paper's, and commits to it as the universal lifecycle."
+        "The Abstract-to-Concrete framing is the paper's, and commits to it as the universal lifecycle.",
+        "`derived_from` removed: previously pointed at `CreationProtocol` which no longer exists (retired name; this is the successor)."
       ]
     },
     "family_discussion": "Lifecycle-protocol primitive paired with PolymorphicSolver (the consumer), FrameSpec/ExecutionManifest (the seam artifacts), and OrchestrationLoop (which uses it). Compare with AgentProtocol — RealizationProtocol is execution lifecycle; AgentProtocol is interop bundle."
@@ -10429,7 +10439,8 @@
       "critique": [
         "No failure modes listed; RecursionDive has some (unbounded recursion without governor, cycle in solver graph treated as tree).",
         "Very thin — one-line mechanism.",
-        "The pattern assumes decomposition always applies; some nodes may need different strategies."
+        "The pattern assumes decomposition always applies; some nodes may need different strategies.",
+        "`_meta.related` reference fixed: pointed at renamed-away `SolutionNode#2b4a` (pattern no longer exists); now points at the successor `SolverNode` in full sema_id format."
       ]
     },
     "family_discussion": "Solver-tree traversal paired with Decompose (the strategy), SolverTree (the structure), and DepthGovernor/MarginalValueRule (the governors). Compare with Ascend — RecursionDive goes down; Ascend (or compose) goes up."
@@ -10764,7 +10775,8 @@
       "critique": [
         "Misinterpretation is endemic — framers clarify what they assume is ambiguous, which often misses the real ambiguity.",
         "Over-constraint is the eager-framer failure; the pattern doesn't bound how much to constrain.",
-        "Premature Optimization happens when framers slide into solving; the pattern's 'no resources committed' invariant is the discipline."
+        "Premature Optimization happens when framers slide into solving; the pattern's 'no resources committed' invariant is the discipline.",
+        "`derived_from` fixed: previously legacy stub `sema:Interpret` without hash; now full sema_id."
       ]
     },
     "family_discussion": "Interpretation primitive paired with Interpret (the verb), FrameSpec (the output), and ProblemFramer (the role). Compare with ManifestPlanning — RequestFraming is 'understand the ask'; ManifestPlanning is 'plan the solution.'"
@@ -10797,7 +10809,7 @@
       "critique": [
         "False Resonance is endemic — the pattern has no distinguisher between real alignment and noise.",
         "Echo Chamber is structural — any feedback loop can amplify errors; the pattern has no built-in correction.",
-        "Spoofing is the adversarial failure mode and the pattern's invariants don't defend against it."
+        "Spoofing is the adversarial failure mode and the pattern's invariants don't defend against it. Deduplicated failure modes (was: 9 entries with duplicate False Resonance, duplicate Spoofing, and overlapping Precise/High-stakes entries)."
       ]
     },
     "family_discussion": "Stigmergic-coordination primitive paired with Stigmergy (trace-based communication), Amplify (reinforcement), Dampen (reduction), and Crystallize (the hardening move). Compare with Consensus — Resonate is implicit alignment; Consensus is explicit agreement."
@@ -11063,7 +11075,8 @@
       "critique": [
         "No failure modes listed at all. For a rigor-focused pattern, this is surprising. At minimum: Verification Tautology (the Verify step uses the same logic as Execute, making it trivially pass); Gate Lockup (a strict gate rejects everything the solver can produce).",
         "The mechanism couples Probe and SocraticLoop as mandatory; if the deployment lacks either, RigorousSolver is unusable. A configurable-strictness version could degrade more gracefully.",
-        "'Trades speed for assurance' is stated in the mechanism but the caller has no way to express how much assurance they need. The pattern is maximal rather than dialed."
+        "'Trades speed for assurance' is stated in the mechanism but the caller has no way to express how much assurance they need. The pattern is maximal rather than dialed.",
+        "`derived_from` fixed: previously had an all-zeros placeholder hash for PolymorphicSolver (never filled in); now the current sema_id."
       ]
     },
     "family_discussion": "The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer."
@@ -11294,7 +11307,8 @@
       "critique": [
         "Silent Failure is the scariest failure — metrics pass, users are unhappy; the pattern can't detect it without user-side metrics.",
         "Alert Fatigue is endemic; the pattern names it without giving a reduction mechanism.",
-        "Lagging Indicators are inherent; the pattern can trigger after-the-fact and not prevent."
+        "Lagging Indicators are inherent; the pattern can trigger after-the-fact and not prevent.",
+        "`derived_from` fixed: previously legacy stub `sema:Monitor` without hash; now full sema_id."
       ]
     },
     "family_discussion": "Post-deploy monitoring paired with Monitor (the substrate), Observe (the sensing), and AcceptSpec (the Definition of Done reference). Compare with DriftWatch — RolloutWatch watches deployed solution; DriftWatch watches agent behavior."
@@ -11461,7 +11475,7 @@
       "critique": [
         "Silent probe failure defeats the purpose; the pattern requires observable failure.",
         "Cost Asymmetry is caller-tuned.",
-        "Designing instructive failure is itself work the pattern defers."
+        "Designing instructive failure is itself work the pattern defers. Failure modes were previously jammed (probe-too-expensive AND silent-failure combined in one entry); now split into two atomic entries."
       ]
     },
     "family_discussion": "Reconnaissance primitive paired with Canary (similar expendable-agent probe), Probe (active query), and SafeFailure (graceful). Compare with Probe — SacrificialProbe expects failure; Probe expects answer."
@@ -12220,7 +12234,8 @@
       "critique": [
         "All three named failure modes are real and unmitigated by the pattern.",
         "Very thin mechanism — one sentence, no invariants.",
-        "No restore semantics specified."
+        "No restore semantics specified.",
+        "`_meta.related` reference updated from legacy stub format (`StateSnapshot#940f`) to full sema_id."
       ]
     },
     "family_discussion": "State primitive paired with Restore (the recovery), AuditTrail (continuous counterpart), and Versioning. Compare with Cache — Snapshot is full state at time; Cache is keyed storage."
@@ -13783,9 +13798,9 @@
         "Separate limits per action type buys flexibility at the cost of complexity in the limit-configuration surface."
       ],
       "critique": [
-        "Only one failure mode; a rate-limiting primitive should name at least: Clock Skew (distributed enforcers disagree on window boundaries), Burst Accumulation (long quiet followed by allowed burst overwhelms downstream), Measurement Lag (rate-count lags actual rate).",
-        "The invariants are redundant — 'Rate Limit' and 'Rate never exceeds limit within any window' say the same thing. Invariants should be orthogonal.",
-        "The pattern uses Backoff (in composes_with) but does not say when Backoff fires — on rejection? on queue-full? The integration point is underspecified."
+        "The consolidated Rate Limit invariant now covers any-window semantics in one line; the previous redundant pair (per-second + any-window) is gone.",
+        "Legitimate Denial is the dominant real issue — attack/burst distinguishability requires classifiers the pattern offloads.",
+        "No priority story — all throttled requests are treated equally; priority-aware throttling needs a different pattern."
       ]
     },
     "family_discussion": "Completes the rate-control family: `Backoff` (per-retry exponential delay), `Cooldown` (per-action minimum gap), `Throttle` (rate cap per window). The three compose: a retry loop can use Backoff for delay, Cooldown for action-gap, and Throttle for global rate."
@@ -13818,7 +13833,7 @@
       "critique": [
         "Metric divergence is structural.",
         "Low-resource exclusion is a real concern.",
-        "No specified distance metric."
+        "No specified distance metric default; deduplicated failure-mode list (was: the same inaccessibility point stated twice in formal and informal wording)."
       ]
     },
     "family_discussion": "Access-pricing primitive paired with ContinuousResourceAuction, AttentionMarkets, and Permission."
@@ -14515,7 +14530,7 @@
       "critique": [
         "Echo Chamber is the philosophical limit — shared delusion can look like shared meaning.",
         "Empty Formalism is the opposite failure.",
-        "'Meaning is use' is contested philosophy."
+        "The invariant now consolidates the two prior statements (operational \"Validation\" + aphoristic \"Wittgenstein\"s Razor\") into one form that carries both registers."
       ]
     },
     "family_discussion": "Epistemic-philosophical primitive paired with ModestClaim, ConceptAnchor, and UptakeOverTimestamp."
@@ -14714,7 +14729,8 @@
       "critique": [
         "Very thin.",
         "The 'semantic space' framing is model-dependent.",
-        "No failure modes."
+        "No failure modes.",
+        "`_meta.related` reference updated from legacy stub format (`LatentAttachment#15a6`) to full sema_id."
       ]
     },
     "family_discussion": "Foundational numeric primitive paired with LatentAttachment, Embedding, and Distance. Compare with Scalar — Vector is multi-dim; Scalar is single-dim."

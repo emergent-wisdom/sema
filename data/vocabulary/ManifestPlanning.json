@@ -1,6 +1,6 @@
 {
   "handle": "ManifestPlanning",
-  "derived_from": "sema:Plan",
+  "derived_from": "sema:Plan#mh:SHA-256:b30fa645bb718a90c560e168a40ad6a9d2f6a1e3f40328b2f7220feaa112e20b",
   "gloss": "Transform FrameSpec into ExecutionManifest via optimization",
   "mechanism": "The architectural phase of workflow orchestration. It produces a structured {{plan}} by performing {{think}} to transform a {{frame_spec}} into a runnable {{execution_manifest}}. This process must {{optimize}} the step sequence for resource feasibility and generate a strict 'Definition of Done'.",
   "signature": [
@@ -20,24 +20,24 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "ManifestPlanning#e103",
-  "sema_id": "sema:ManifestPlanning#mh:SHA-256:e103f92d47b4888132207af7296328657297ae302952308f2717ec3d3dcae369",
-  "sema_stub": "e103",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:b9adf897bad7746e76b4833754949a7176147a62dae927b38b3d281eb94cfb8d",
+  "sema_ref": "ManifestPlanning#b9ad",
+  "sema_stub": "b9ad",
   "dependencies": {
-    "composes_with": {
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",
-      "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32"
-    },
     "yields": {
-      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
-    },
-    "accepts": {
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502"
     },
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
+    },
+    "composes_with": {
+      "optimize": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
+      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
+    },
+    "accepts": {
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:edffd10df1ca5722b9d7f92a4efbe1a45e5ef172289ff6744a135978b1718ad2"
     }
   }
 }

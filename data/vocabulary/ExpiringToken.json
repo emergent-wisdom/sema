@@ -16,14 +16,14 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:ExpiringToken#mh:SHA-256:4e3cc3cee0de56a4eef0676629811cb4afa3383bc80bde227924d66a6af16f6e",
-  "sema_ref": "ExpiringToken#4e3c",
-  "sema_stub": "4e3c",
+  "sema_id": "sema:ExpiringToken#mh:SHA-256:8bc1a75bca402bc51d11342914b50bfbb511875f537dcd5913e30f79b4c8e79e",
+  "sema_ref": "ExpiringToken#8bc1",
+  "sema_stub": "8bc1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
+      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924",
       "bearer_token": "sema:BearerToken#mh:SHA-256:2fe9926ab156fd1df414f52e9a4d430f75c7c3311d217cd685f514253f4b1f9d"
     }
   }

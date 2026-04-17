@@ -32,18 +32,18 @@
     ],
     "caution": "Governance decisions susceptible to coordinated voting blocs."
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:10bf74e88b0a09259132b02fbcb9bfa192d5fb53049051b3bf105505f4322ce7",
-  "sema_ref": "Consensus#10bf",
-  "sema_stub": "10bf",
+  "sema_id": "sema:Consensus#mh:SHA-256:cc1d5318fed3420ecaac8748bd2ebd935b9e7d48cd8f874fcfc731d8e87f1f11",
+  "sema_ref": "Consensus#cc1d",
+  "sema_stub": "cc1d",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {
-    "accepts": {
-      "proposal": "sema:Proposal#mh:SHA-256:48400f03d012e37914685f66064ccd4c3875efb0bb4dff24d88c8f1ca9aa247d"
-    },
     "composes_with": {
-      "vote": "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
-      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+      "vote": "sema:Vote#mh:SHA-256:625c38775074a5eaf09c8fc54cf58b12f54d0cbb53681aae52c781e51c04fab4",
+      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
+    },
+    "accepts": {
+      "proposal": "sema:Proposal#mh:SHA-256:ab244c2a0c2715df0b7c48b200d94c62c207ff9f7510f7df4d45b6d5a698eae0"
     },
     "yields": {
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"

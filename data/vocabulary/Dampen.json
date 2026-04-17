@@ -8,16 +8,16 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Dampen#e55e",
-  "sema_id": "sema:Dampen#mh:SHA-256:e55e05a34ca81a8edee4863311fd058210c785bfd5c0ac23bb9a189c4430da2a",
-  "sema_stub": "e55e",
+  "sema_ref": "Dampen#3f0c",
+  "sema_id": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
+  "sema_stub": "3f0c",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e"
     }
   }
 }

@@ -23,14 +23,14 @@
       }
     }
   },
-  "sema_ref": "RuleSet#c242",
-  "sema_id": "sema:RuleSet#mh:SHA-256:c2428e20e772d1b3e4cec9186e1143875faac083af80a37e0f72626f127d96a3",
-  "sema_stub": "c242",
+  "sema_ref": "RuleSet#ac40",
+  "sema_id": "sema:RuleSet#mh:SHA-256:ac408521af277bb770e0ccbadaeebf2dd2630036f0adf8c3a2873836d95a799a",
+  "sema_stub": "ac40",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "constitution": "sema:Constitution#mh:SHA-256:08ef9d378c3bc5c024f0ed9ad47c6cb39f633e0618b42af46dedc69d4f1353d8",
+      "constitution": "sema:Constitution#mh:SHA-256:d2e5ca2eb2c651927da977d2df49fa52bf0875c3ac2040a350a5d21511f625de",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
     }
   }

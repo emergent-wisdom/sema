@@ -42,14 +42,14 @@
       }
     }
   },
-  "sema_id": "sema:Constitution#mh:SHA-256:47783bc604cc93bdf569b457a67bc369a68dd1268db26ee151c2e9867695226d",
-  "sema_ref": "Constitution#4778",
-  "sema_stub": "4778",
+  "sema_id": "sema:Constitution#mh:SHA-256:d2e5ca2eb2c651927da977d2df49fa52bf0875c3ac2040a350a5d21511f625de",
+  "sema_ref": "Constitution#d2e5",
+  "sema_stub": "d2e5",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
-  },
-  "sema_layer": "Society",
-  "sema_category": "Governance"
+  }
 }

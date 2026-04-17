@@ -36,14 +36,14 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Cooldown#mh:SHA-256:b4c2f95200e8c87085fb9301754bdc55610b9c8d3dcd3a37f003d49a3fdc23f2",
-  "sema_ref": "Cooldown#b4c2",
-  "sema_stub": "b4c2",
+  "sema_id": "sema:Cooldown#mh:SHA-256:6eb28c0493afc961191d1b5585d358ee6df332758229c56f75829c0e6b777b52",
+  "sema_ref": "Cooldown#6eb2",
+  "sema_stub": "6eb2",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "throttle": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af"
+      "throttle": "sema:Throttle#mh:SHA-256:4d479e4b025f72c347424f50b7ac6a3503a9447bd3f085f6e032c326936e56cc"
     }
   }
 }

@@ -35,16 +35,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Role#a206",
-  "sema_id": "sema:Role#mh:SHA-256:a20606d89bc5944d3b7089bad2926fb414f95d8e86acd7e105861a501fa810b5",
-  "sema_stub": "a206",
+  "sema_ref": "Role#dcb2",
+  "sema_id": "sema:Role#mh:SHA-256:dcb27d5c73551c3543a19343ee31cde4d98d7cd09ef9f6e07aa10f52ae8df12c",
+  "sema_stub": "dcb2",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "responsibility": "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31",
-      "permission": "sema:Permission#mh:SHA-256:4ee0362513125ffdfa6589c4848eb078ac9906acf26057520e000fc070c8cf6d"
+      "permission": "sema:Permission#mh:SHA-256:d981e3410909de3ac0c4fa4b8203ad1db8b024de78fb4f3f2b64a645fe98c198",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "responsibility": "sema:Responsibility#mh:SHA-256:b3b1e537f4e49dc2bc607b1edbd2b5c54f0649ea0751ebdfb7df05a7ca5a983c"
     }
   }
 }

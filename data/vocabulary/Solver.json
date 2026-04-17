@@ -11,22 +11,22 @@
     "category": "Strategy",
     "tier": 0
   },
-  "sema_id": "sema:Solver#mh:SHA-256:b00a16afef5a9d3293955f36b44fe6fc0e0c4ce0fc118de4a7459f77fe7d98d7",
-  "sema_ref": "Solver#b00a",
-  "sema_stub": "b00a",
+  "sema_id": "sema:Solver#mh:SHA-256:4ed4703e641b4d38bc4179df117643b295206b9417a0c2f0d64a1e6a8e9a031f",
+  "sema_ref": "Solver#4ed4",
+  "sema_stub": "4ed4",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
+    "references": {
+      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:d211b4c6b870013d8b5cc8ae3066caf738409799932557309e8b3aa741890417",
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
+    },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
-    },
-    "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "agent": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681",
-      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:d96f75b1618e762562ef6f0bc52586e095e50ea6b9f184d0a7d349374269627f"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

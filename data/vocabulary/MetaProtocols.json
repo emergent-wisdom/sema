@@ -15,16 +15,16 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:MetaProtocols#mh:SHA-256:e1f5dc5dfd1b360706933d318ac8210e7069ce696891b774fa85bc367f0fc767",
+  "sema_ref": "MetaProtocols#e1f5",
+  "sema_stub": "e1f5",
   "dependencies": {
     "references": {
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:0799234ac2992646e119585288ccf5e96685c35bd5c55ee0fb1e26ce74bdfdd4",
-      "reframe": "sema:Reframe#mh:SHA-256:0b02c55ef29a90499bf98668a0ef1f20ca89c3453a49878cb1a9f59f693fbe7c"
+      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
     },
     "composes_with": {
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:86602ffacd78c14b36209d317ab0684fefd181cf0963a0c4f1abb6e3e83591c0"
     }
-  },
-  "sema_id": "sema:MetaProtocols#mh:SHA-256:27dcca80f57c11209f1257488819a4ad114a1caa4ce04799c08ac80cd15259f6",
-  "sema_ref": "MetaProtocols#27dc",
-  "sema_stub": "27dc"
+  }
 }

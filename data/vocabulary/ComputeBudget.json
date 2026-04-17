@@ -52,17 +52,17 @@
       "TimeboxThink"
     ]
   },
-  "sema_ref": "ComputeBudget#ba8c",
-  "sema_id": "sema:ComputeBudget#mh:SHA-256:ba8c07c424b368b977f446a50f45bfeabbdd9acb603737151597ef3b9d91abc1",
-  "sema_stub": "ba8c",
+  "sema_ref": "ComputeBudget#8a42",
+  "sema_id": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317",
+  "sema_stub": "8a42",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431"
     }
   }
 }

@@ -12,16 +12,16 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Care#mh:SHA-256:2d97a5ced1cc5741d9a79a5f813007e7863045b394274cc041f7e3953d154147",
-  "sema_ref": "Care#2d97",
-  "sema_stub": "2d97",
+  "sema_id": "sema:Care#mh:SHA-256:b01cd396a009eed74ea4e11f288b8e686c02ba85411f1d14038076e66bbd3ee6",
+  "sema_ref": "Care#b01c",
+  "sema_stub": "b01c",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
-      "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "work": "sema:Work#mh:SHA-256:bc56cced064291f9c994564930993c5f601a4311d33aeeb0e32511ea154e82a3",
+      "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212"
     }
   }
 }

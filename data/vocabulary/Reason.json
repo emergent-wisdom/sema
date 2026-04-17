@@ -30,23 +30,23 @@
       "TreeOfThoughts"
     ]
   },
-  "sema_id": "sema:Reason#mh:SHA-256:6e3f65134dc258f0412570ae8c5a7aacc4f785d76c5b6d28b8e02c65d6dc78e8",
-  "sema_ref": "Reason#6e3f",
-  "sema_stub": "6e3f",
+  "sema_id": "sema:Reason#mh:SHA-256:629c0c3a953aadf46bc9f61cb204f7241e848f6f7ee03ab2a6cc8397b306d711",
+  "sema_ref": "Reason#629c",
+  "sema_stub": "629c",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
-    },
-    "composes_with": {
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:8a428848cb249cd1f79c8b83f1eba3afc4ca6efab3067ffd9fc080691c915317",
+      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+      "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     },
     "accepts": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+    },
+    "composes_with": {
+      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
     }
   }
 }

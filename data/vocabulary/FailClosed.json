@@ -30,16 +30,16 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:FailClosed#mh:SHA-256:5d52cfbf4e95e8ea4bdf8c01d353939d1885ed5c1dc926648700c3d4d4764bda",
-  "sema_ref": "FailClosed#5d52",
-  "sema_stub": "5d52",
+  "sema_id": "sema:FailClosed#mh:SHA-256:59d855305c8f8ac7493b0e6e5c078d9cf7a7a9d2e181b8fefd88f7151f4fb9b8",
+  "sema_ref": "FailClosed#59d8",
+  "sema_stub": "59d8",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
+      "output_guard": "sema:OutputGuard#mh:SHA-256:1c0983452e0c7f55fd7862c360d7edf6be3043338d0844fdefd72ef6ddc41383",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "output_guard": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0"
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912"
     }
   }
 }

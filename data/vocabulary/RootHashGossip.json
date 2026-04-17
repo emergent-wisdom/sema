@@ -21,14 +21,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:a5911cfbf1f073d0cc25d2c3f04103cd21a35dc82c0e8583f27319f08ac7d7df",
-  "sema_ref": "RootHashGossip#a591",
-  "sema_stub": "a591",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:2bac6fbf3454dff8cf83206aae939a4b79595d0e72a4576ecfc720f43d1ffdbe",
+  "sema_ref": "RootHashGossip#2bac",
+  "sema_stub": "2bac",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"
+      "loop": "sema:Loop#mh:SHA-256:a316611f7d6278db4f0fa1f06bcdbd49eb47fd0c084f1b1956c9f688b922e2ca"
     }
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  }
 }

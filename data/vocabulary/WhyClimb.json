@@ -21,9 +21,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:WhyClimb#mh:SHA-256:946cd6c9eed81438d3660051118640b21f4484c104025d7f18146f8bad590f26",
-  "sema_ref": "WhyClimb#946c",
-  "sema_stub": "946c",
+  "sema_id": "sema:WhyClimb#mh:SHA-256:ea4ab0ff6f1d7205d7f5ba2ef620f611b195f051f9931c436c850012e6bf2279",
+  "sema_ref": "WhyClimb#ea4a",
+  "sema_stub": "ea4a",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -31,11 +31,11 @@
   ],
   "dependencies": {
     "references": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
-      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9"
+      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:7074d06ab2b317d810e688866049a24f8b303099548f033d6edab2d0d16710b9",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

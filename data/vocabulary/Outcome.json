@@ -35,12 +35,12 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Outcome#mh:SHA-256:c06850586a2e0ab80b792eaf4f088bf6ef4d438698127a794bc1a86cb95c436a",
-  "sema_ref": "Outcome#c068",
-  "sema_stub": "c068",
+  "sema_id": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b",
+  "sema_ref": "Outcome#9bf0",
+  "sema_stub": "9bf0",
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
     }
   }
 }

@@ -25,9 +25,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:6cc5b0ad0c736000a9e9effb5b80e99930fcd06f09627cb618eaa0de64dd82ac",
-  "sema_ref": "TreeOfThoughts#6cc5",
-  "sema_stub": "6cc5",
+  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:fc589ab7ea91c0f2672b3e00ab58971df07a67ac61bbdcfc9961412ac276c752",
+  "sema_ref": "TreeOfThoughts#fc58",
+  "sema_stub": "fc58",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
@@ -35,9 +35,9 @@
   ],
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
+      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b",
+      "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     }
   }
 }

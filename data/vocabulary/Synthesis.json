@@ -15,7 +15,7 @@
   "sema_stub": "26b9",
   "dependencies": {
     "references": {
-      "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8"
+      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01"
     }
   }
 }

@@ -17,17 +17,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Invert#mh:SHA-256:f61528ded0a931963b5a203d9385a34f30513abdbe203da8c46f153acf11d3c7",
-  "sema_ref": "Invert#f615",
-  "sema_stub": "f615",
+  "sema_id": "sema:Invert#mh:SHA-256:d39f3691c8c9dc55e50c11b808b5e9480a8522f291341acb499b979fa31a07ba",
+  "sema_ref": "Invert#d39f",
+  "sema_stub": "d39f",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     },
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

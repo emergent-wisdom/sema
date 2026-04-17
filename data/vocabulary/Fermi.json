@@ -29,15 +29,15 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Fermi#mh:SHA-256:7e0ec7910b7f03b211301ad5912d2152244c74147d65a88d026930d658fea1bc",
-  "sema_ref": "Fermi#7e0e",
-  "sema_stub": "7e0e",
+  "sema_id": "sema:Fermi#mh:SHA-256:63972ccb8ebe94dd6104eeea6155f2f3f326808564546ed238715dbabad1bd09",
+  "sema_ref": "Fermi#6397",
+  "sema_stub": "6397",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "composes_with": {
-      "estimate": "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449",
-      "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4"
+      "estimate": "sema:Estimate#mh:SHA-256:e07eb10e9887f605c68cffac1e3c68e9df7b2bbb020f934d4d820cfb1a5b8e0c",
+      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7"
     }
   }
 }

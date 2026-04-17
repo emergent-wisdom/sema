@@ -6,26 +6,26 @@
     "Lifecycle Completeness: Must complete all 5 stages including Verification.",
     "Mandatory Verification: Cannot skip Probe step."
   ],
-  "derived_from": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000",
+  "derived_from": "sema:PolymorphicSolver#mh:SHA-256:c28aa4f6deac2ac3a19630154520e9ba0a6dcd41d16a55c6bd0edc393140ca34",
   "_meta": {
     "layer": "Mind",
     "category": "Strategy",
     "ring": 2,
     "tier": 2
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:ae8c53ec052662e568f30b5ebcc268967dc522120add5aea54c74686f25e8266",
-  "sema_ref": "RigorousSolver#ae8c",
-  "sema_stub": "ae8c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:483bc3ca7455aaab502322ea889798acde0ce1dd0af8a46b6a181a33ee7f0573",
+  "sema_ref": "RigorousSolver#483b",
+  "sema_stub": "483b",
   "dependencies": {
-    "references": {
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
-    },
     "composes_with": {
-      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
-      "feedback": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15"
+      "feedback": "sema:Feedback#mh:SHA-256:dc367877c9161b9d4ba77075cfe19157680bb190f8834f81c925a4a035d2fe43",
+      "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602"
+    },
+    "references": {
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:bbe4e13d44f051dd0cecd2ce4ea9a1dc2f9f16d13817a1fe13704e4cef3fcef7",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:bc73d4cecee28e54d9fecb9ea9e7088ed7a3f73274e2f5dbea9d59473da05091"
     }
   }
 }

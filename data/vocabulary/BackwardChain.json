@@ -11,11 +11,14 @@
     "Leaf nodes must be actionable or known-true."
   ],
   "preconditions": [
-    "Goal is clearly defined",
-    "Goal state clearly defined. Domain has prerequisite structure. Knowledge base queryable."
+    "Goal state clearly defined.",
+    "Domain has prerequisite structure.",
+    "Knowledge base queryable."
   ],
   "postconditions": [
-    "Execution plan produced OR goal proven unachievable. {{plan}} steps in executable order. All prerequisites satisfied."
+    "Execution plan produced OR goal proven unachievable.",
+    "{{plan}} steps in executable order.",
+    "All prerequisites satisfied."
   ],
   "_meta": {
     "tier": 1,
@@ -23,16 +26,16 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:2e74faa8e456e299486e244ac48b24d0e480d4e11f7dfd4a2a31ffef4cde7849",
-  "sema_ref": "BackwardChain#2e74",
-  "sema_stub": "2e74",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:e6ea717895d0c9dcf85627d0fc8bf3eca4201962fe4f0cfab8712e3764f65e6d",
+  "sema_ref": "BackwardChain#e6ea",
+  "sema_stub": "e6ea",
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b",
+      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b",
       "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12"
     }
   }

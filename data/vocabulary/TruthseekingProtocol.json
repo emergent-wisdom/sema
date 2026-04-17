@@ -15,16 +15,16 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Inference",
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:fcad8e83d5980bf36c70d2861905d8fa1d0c9137ecc1db159b55cdc64784e022",
+  "sema_ref": "TruthseekingProtocol#fcad",
+  "sema_stub": "fcad",
   "dependencies": {
-    "references": {
-      "validate": "sema:Validate#mh:SHA-256:ebe1118928513083360bcfc973a9fc6c6b2c50ea1d45dc0639b390bc9e20cfc9"
-    },
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:739bb7c08037f084b04c81466f61fa86545b406b93f3e944c3c3f3f73c58b835",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:86602ffacd78c14b36209d317ab0684fefd181cf0963a0c4f1abb6e3e83591c0"
+    },
+    "references": {
+      "validate": "sema:Validate#mh:SHA-256:aebfb015224719006acab6ffc4eed37a94ecb262ac59b0af4c2c43b58c2f1ca7"
     }
-  },
-  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:cf2b0329692dae85ece5833b6d5b7c4b22afd9dd688f3140c48256b761f26929",
-  "sema_ref": "TruthseekingProtocol#cf2b",
-  "sema_stub": "cf2b"
+  }
 }

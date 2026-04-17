@@ -12,21 +12,21 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "DesignArchitect#3b2e",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:3b2e3b1d0aa46c3b6902542a6f532685a16f63351eb1106ab4d5bbbc85dc5fed",
-  "sema_stub": "3b2e",
+  "sema_ref": "DesignArchitect#1613",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:16137ca2e38512f89eb270435556f8959b160eb5743ad3a84756984459a368d5",
+  "sema_stub": "1613",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "yields": {
-      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06"
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:c3ed15925af85be4141a1c93824187b38e765fba5622b9683159341a8ad72d8f"
     },
     "composes_with": {
-      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-      "pre_mortem": "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
-      "summarize": "sema:Summarize#mh:SHA-256:6a000fd570638ecd8dd239be23317cf6b004e2f5ed784822f41f6658ee669c2c",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
-      "translate": "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429"
+      "translate": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b",
+      "pre_mortem": "sema:PreMortem#mh:SHA-256:8ca0f6838ca171fc8aea06174357c6d867b4217299e11dfb136a98c7993a32c7",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:dd78ffe0d335b88f5a9fa19e8c8c07ba85e87033a4d6687e13e085b456f8f718",
+      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
+      "summarize": "sema:Summarize#mh:SHA-256:d9db027acbfceb679cdf599cdf0475e48cccf3cfdbe1d30b15e4c048ce87ed0c"
     }
   }
 }

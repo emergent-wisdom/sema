@@ -38,19 +38,19 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:943abe22f751e8a0bfe18089bf938f0ec22b8b1429306fecbc614f38aceb108a",
-  "sema_ref": "PatternDiscovery#943a",
-  "sema_stub": "943a",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:99dd1615c53e7355c584a40cc77cba223f4c4617224a6274ed370031c3b49da4",
+  "sema_ref": "PatternDiscovery#99dd",
+  "sema_stub": "99dd",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
-      "search": "sema:Search#mh:SHA-256:d6083dea6898b63d14ccb2542fcfa05561a1f6326000c8d9c190599afd99b123",
+      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:d5a06d700bbb9da7605d83238881b6039556b1ddc25be343e0eb228d868980c6",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860",
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "search": "sema:Search#mh:SHA-256:82c8512d7ffa16d03cffacbc84a2f27a2f68965b21d495f489325ea87dc84db7",
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

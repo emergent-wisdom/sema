@@ -15,8 +15,7 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "dependencies": {},
-  "sema_id": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688",
-  "sema_ref": "Conservation#d63a",
-  "sema_stub": "d63a"
+  "sema_id": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
+  "sema_ref": "Conservation#ba2e",
+  "sema_stub": "ba2e"
 }

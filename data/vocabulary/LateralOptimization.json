@@ -28,9 +28,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:708eb4bda640281a3c8a5e8242e774424dc7164ed7fe53a51c1df5a985bc9d22",
-  "sema_ref": "LateralOptimization#708e",
-  "sema_stub": "708e",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:61e2ab651546dcb1b62465c39dcd0f32bcf2a82fecb2b60ffd06c1a2a2638ff7",
+  "sema_ref": "LateralOptimization#61e2",
+  "sema_stub": "61e2",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
@@ -39,16 +39,16 @@
   ],
   "dependencies": {
     "references": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
+      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b",
       "creative": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
-      "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81"
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d",
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
     },
     "composes_with": {
-      "reframe": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
-      "translate": "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429",
-      "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32"
+      "translate": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b",
+      "optimize": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
+      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88"
     }
   }
 }

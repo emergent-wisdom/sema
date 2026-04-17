@@ -14,16 +14,16 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:6266ee304639d74a22f9296319b2391993df5c943454819d80dea7d5b528deef",
-  "sema_ref": "FirstPrinciples#6266",
-  "sema_stub": "6266",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:1a7e7661605fc85fd4fb2d23b6b0d9945746df6f8b71b8fed70ec7db5536812d",
+  "sema_ref": "FirstPrinciples#1a7e",
+  "sema_stub": "1a7e",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
+      "axiom": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded",
       "assumption": "sema:Assumption#mh:SHA-256:efb5be2691c91cb98b493543154f2a9d7d492911088e3bf1cbc048f5ac317978",
-      "axiom": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b"
     }
   }
 }

@@ -19,9 +19,9 @@
     "category": "Memory",
     "ring": 1
   },
-  "sema_id": "sema:LocalizedLearning#mh:SHA-256:a4bf34ab75800f48d267d67084ad850871ac6aab4ad0678bc21ff9280f1aa088",
-  "sema_ref": "LocalizedLearning#a4bf",
-  "sema_stub": "a4bf",
+  "sema_id": "sema:LocalizedLearning#mh:SHA-256:eb5a8dec05991d7b8bc28ec2c06e27a77f02eb884646526303febcbac67004f8",
+  "sema_ref": "LocalizedLearning#eb5a",
+  "sema_stub": "eb5a",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "signature": [
@@ -29,11 +29,11 @@
   ],
   "dependencies": {
     "accepts": {
-      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c"
+      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:afacbe954e69fc922c467f83dc1624d9b2e8e5651a1923554aed161443e59108"
     },
     "references": {
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:11ea36aad4d25c3997cfb46d5d84a2522c3de92484202850091c598871fdd727",
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     }
   }
 }

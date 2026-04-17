@@ -1,6 +1,5 @@
 {
   "handle": "RealizationProtocol",
-  "derived_from": "sema:CreationProtocol#mh:SHA-256:d289d0a26fec0c23993fedbe5593f5da302696271a454c714a0e91abaecfd8e2",
   "mechanism": "A standardized {{solver_tree}} that orchestrates the lifecycle of a user_request executed by a {{polymorphic_solver}}. It enforces a strict phase transition from Abstract to Concrete to ensure the result is {{realizable}}. 1. {{interpret}} converts request -> {{frame_spec}}. 2. {{manifest_planning}} converts spec -> {{execution_manifest}}. 3. {{rollout}} executes the manifest to produce the {{outcome}}.",
   "gloss": "Standard Interpret-Plan-Rollout workflow to ensure realizability",
   "failure_modes": [
@@ -30,26 +29,26 @@
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_ref": "RealizationProtocol#329b",
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:329b82d1c05dbdb902e6fc4d6a928f8cafd3fe044be87b1278c49ac3cf17dad5",
-  "sema_stub": "329b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:8c19456a357e89a16e2da763e14b958d03cfe93bbfb8dfb24c635dae3a236b55",
+  "sema_ref": "RealizationProtocol#8c19",
+  "sema_stub": "8c19",
   "dependencies": {
-    "composes_with": {
-      "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
-      "rollout": "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb",
-      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d"
-    },
     "references": {
-      "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81",
-      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:bbe4e13d44f051dd0cecd2ce4ea9a1dc2f9f16d13817a1fe13704e4cef3fcef7",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:65f2ab7b6cbd34eccfa1de9908566b186c5ab6937b547752a43ea5833d22898a",
+      "realizable": "sema:Realizable#mh:SHA-256:613eaaf6e2e01185adf55ad296d3ad34c8d00d18fb8a29dccd88904f1fc2d798",
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502",
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:edffd10df1ca5722b9d7f92a4efbe1a45e5ef172289ff6744a135978b1718ad2"
+    },
+    "composes_with": {
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b9adf897bad7746e76b4833754949a7176147a62dae927b38b3d281eb94cfb8d",
+      "interpret": "sema:Interpret#mh:SHA-256:8ee3b4a80afed7f69b8a1ef9c81d89279e5620e781d000ad8a25f32456b72b24",
+      "rollout": "sema:Rollout#mh:SHA-256:54750268d2da96defb669783bcbbe57bdcbe6e8f66251dcff0e82f51493df555"
     },
     "yields": {
-      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a"
+      "outcome": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b"
     }
   }
 }

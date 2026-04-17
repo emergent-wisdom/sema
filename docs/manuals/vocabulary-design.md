@@ -5,7 +5,7 @@
      in `data/vocabulary/*.json` and design commentary in
      `data/design_critique.json`. -->
 
-_Generated: 2026-04-17_  
+_Generated: 2026-04-18_  
 _Patterns covered: 452 (from `data/vocabulary/`)_  
 _Commentary entries in sidecar: 452 (from `data/design_critique.json`)_
 
@@ -177,7 +177,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Conservation#d63a
+### Conservation#ba2e
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -219,7 +219,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Dampen#e55e
+### Dampen#3f0c
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -267,11 +267,11 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Decay#a1d4
+### Decay#1e8b
 
 `Physics` · `Primitives` · R0 · T2
 
-**Gloss.** Automatic expiration of stale {{state}}
+**Gloss.** Automatic expiration of stale state
 
 **Mechanism.**
 
@@ -314,15 +314,15 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 - Zero threshold triggers state change buys discrete semantics at the cost of a non-smooth transition at the boundary.
 
 **Critique.**
-- Only one invariant, one failure mode. Missing: Monotonicity Without Reinforcement (value strictly decreases without input), Half-Life Definedness (rate parameter must be positive).
-- Premature Expiry is real but the pattern has no detection or protection — miscalibration is the caller's problem.
-- The 'reinforcement resets or boosts' is an OR — which is it? The mechanism permits both, but they are operationally different. A reset-semantic Decay differs from a boost-semantic one.
+- Premature Expiry is the named failure — half-life miscalibration is endemic.
+- The pattern has only one invariant ({{value}} never negative); richer invariants about monotonicity, reinforcement semantics, and threshold behavior would help.
+- Gloss fixed: previously rendered literal '{{state}}' token; now plain text 'Automatic expiration of stale state'.
 
 **In the family.** Substrate pattern for time-attenuation. Paired with `Dampen` (magnitude attenuation independent of time) and `Hysteresis` (threshold-crossing with gap). Invoked by attention-allocation, memory, aging-based relevance patterns across the library.
 
 ---
 
-### Distance#3e1e
+### Distance#1376
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -409,6 +409,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 - Zero invariants listed. For a concept with this much load-bearing use, at minimum: Non-Negativity (Entropy ≥ 0), Maximality (bounded by the system's state-space cardinality), Monotonicity-Without-Intervention (in a closed system, entropy is non-decreasing).
 - Zero failure modes. A pattern with this many dependents should at least name the Ambiguous Domain failure (callers mean Shannon when the spec suggests thermodynamic).
 - The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion.
+- `_meta.related` reference updated from legacy stub format (`EntropyPump#961c`) to full sema_id.
 
 **In the family.** Substrate concept underlying `EntropyPump`, `Crystallize`'s threshold check, `Reversibility`'s Entropy constraint, and `Noise`. Paired with `Measurement` (the act of observing), `Conservation` (what doesn't increase), and `Attractor` (where dynamics land).
 
@@ -606,7 +607,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Mutex#f52f
+### Mutex#1334
 
 `Physics` · `Primitives` · R0 · T2
 
@@ -620,19 +621,23 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 - Uniqueness, {{conservation}} of the fencing totem
 
 **Preconditions.**
-- Resource exists and is lockable. At least 2 agents contending. Agents can communicate.
+- Resource exists and is lockable.
+- At least 2 agents contending.
+- Agents can communicate.
 
 **Postconditions.**
-- Exactly one agent holds lock. Other agents blocked or notified. {{lock}} state consistent across all observers.
+- Exactly one agent holds lock.
+- Other agents blocked or notified.
+- {{lock}} state consistent across all observers.
 
 **Failure modes.**
 - Totem loss (requires regeneration protocol).
-- Failure modes: (1) Holder crash - token orphaned, mitigated by expires_at + heartbeat.
-- (2) Token corruption - mitigated by REGENERATE protocol.
-- (3) Deadlock - mitigated by wait-for graph detection + ordered acquisition.
-- (4) Starvation - mitigated by aging + anti-starvation rule (no consecutive preemption).
-- (5) Byzantine holder - mitigated by forcible REVOKE + fencing.
-- (6) Split brain - mitigated by fencing tokens that invalidate on revocation.
+- Holder crash: token orphaned (mitigated by expires_at + heartbeat).
+- Token corruption (mitigated by REGENERATE protocol).
+- Deadlock (mitigated by wait-for graph detection + ordered acquisition).
+- Starvation (mitigated by aging + anti-starvation rule — no consecutive preemption).
+- Byzantine holder (mitigated by forcible REVOKE + fencing).
+- Split brain (mitigated by fencing tokens that invalidate on revocation).
 
 #### Design
 
@@ -668,8 +673,8 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 **Critique.**
 - The invariants list has only one item ('Uniqueness, conservation of the fencing totem'). For a pattern this operational, richer invariants are warranted: Monotonic Sequence, Single-Holder, Release-Ownership (only the current holder can release), Token Validity.
-- Failure modes are mixed with mitigations — the list tells you how to solve the problems rather than cleanly stating them. A cleaner separation would help callers reason about which mitigations they inherit and which they need to add.
 - The 'critical section' concept is named but not specified — callers must already know what a critical section is. A minimal spec of 'the protected region is the code path between acquire and release' would ground the term.
+- Failure modes restructured — the previous list contained a nested "Failure modes:" sub-list header with numbered items spread across separate entries. Now rendered as atomic items with inline mitigations.
 
 **In the family.** `derived_from Lock` — the K=1 specialization with fencing and token mechanics. Sibling to `Semaphore` (K>1 counting), `ReadWriteLock` (shared/exclusive), `DistributedLock` (lease-based). Paired with `Backoff` and `Cooldown` at the contention-behavior layer.
 
@@ -720,7 +725,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ---
 
-### Noise#d631
+### Noise#3d9a
 
 `Physics` · `Primitives` · R1 · T1
 
@@ -864,7 +869,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ### Physics/Time (1)
 
-### CausalBarrier#e121
+### CausalBarrier#cb43
 
 `Physics` · `Time` · R0 · T1
 
@@ -924,7 +929,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ### Infrastructure/Data Structures (93)
 
-### AcceptSpec#5ab9
+### AcceptSpec#762e
 
 `Infrastructure` · `Data Structures` · R0 · T2
 
@@ -981,7 +986,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ---
 
-### Aesthetics#0332
+### Aesthetics#c912
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1300,7 +1305,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Ballot#2a0a
+### Ballot#1934
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1357,7 +1362,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Belief#48b4
+### Belief#cafb
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -1406,7 +1411,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Boolean#2e6b
+### Boolean#199e
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -1447,7 +1452,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Break#7b6f
+### Break#0bb3
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1577,7 +1582,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Card#6609
+### Card#f63d
 
 `Infrastructure` · `Data Structures` · R0 · T2
 
@@ -1791,7 +1796,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 
 ---
 
-### ConceptAnchor#9187
+### ConceptAnchor#828b
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -1802,9 +1807,8 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 > Agents do not define terms inline; they reference immutable, content-addressed 'Concept Anchors' stored globally. 'I want [hash:Apple]', not 'I want an apple'. It is established via an external drop event that finalizes the definition hash.
 
 **Invariants.**
-- Immutability: The definition pointed to by the Anchor Hash cannot change
-- Immutable Reference
-- Resolution: The Anchor must resolve to a valid schema or content
+- Immutability: The definition pointed to by the Anchor Hash cannot change.
+- Resolution: The Anchor must resolve to a valid schema or content.
 
 **Failure modes.**
 - Link rot (if anchors disappear).
@@ -1841,7 +1845,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 **Critique.**
 - Link rot is listed as a failure mode without mitigation — storage is the caller's problem, and when the caller fails, every anchor breaks.
 - 'Resolution to valid schema or content' is an invariant, but invalid content can still pass the hash check (bad data, malformed schema).
-- The pattern says terms are referenced, not defined inline, but offers no semantics for when an agent legitimately needs to redefine or refine.
+- The pattern says terms are referenced, not defined inline, but offers no semantics for when an agent legitimately needs to redefine or refine. Cleanup: the prior bare-label invariant 'Immutable Reference' (no statement) was redundant with the Immutability invariant above it and has been removed.
 
 **In the family.** Architectural substrate of the sema library itself — every pattern in the vocabulary is content-addressed, and ConceptAnchor names the pattern behind that design. Pairs with Artifact (the general immutable-by-hash primitive), Resolve (the verb for looking up anchors), and Drop (the event that finalizes a new anchor). Compare with Dictionary or Registry — ConceptAnchor is specifically the content-addressed flavor.
 
@@ -1962,7 +1966,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 ---
 
-### Context#510a
+### Context#e88a
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1982,7 +1986,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 - Schema is defined
 
 **Postconditions.**
-- agent has a valid environment to Execute
+- Agent has a valid environment to execute.
 
 **Failure modes.**
 - Context Contamination/Leak: Private data from one context leaking into another (e.g., across tenant boundaries).
@@ -2029,7 +2033,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 ---
 
-### Contract#40c2
+### Contract#c2be
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2186,7 +2190,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 ---
 
-### Cyclic#298f
+### Cyclic#e187
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -2238,7 +2242,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 ---
 
-### DAG#9d28
+### DAG#b3f5
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -2441,7 +2445,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Exception#9596
+### Exception#53bb
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2541,7 +2545,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### FailureTrace#f80b
+### FailureTrace#b1f0
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2630,7 +2634,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### FrameSpec#aa61
+### FrameSpec#a31d
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2684,7 +2688,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Goal#6cab
+### Goal#5f27
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2885,7 +2889,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Ledger#2421
+### Ledger#6fc4
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2994,7 +2998,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### MechanisticDesignProposal#add6
+### MechanisticDesignProposal#5a9c
 
 `Infrastructure` · `Data Structures` · R1 · T2
 
@@ -3192,7 +3196,7 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 
 ---
 
-### Mode#d123
+### Mode#3df1
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3346,7 +3350,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Outcome#c068
+### Outcome#9bf0
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3507,7 +3511,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### PerformanceSignal#6308
+### PerformanceSignal#d211
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3555,7 +3559,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Permission#c653
+### Permission#d981
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3607,7 +3611,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Plan#b30f
+### Plan#31a7
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -3714,7 +3718,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Problem#4576
+### Problem#64d0
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3762,7 +3766,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### ProblemSpace#81f3
+### ProblemSpace#6e74
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3862,7 +3866,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Proposal#4840
+### Proposal#ab24
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -4067,7 +4071,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Queue#65e4
+### Queue#7ca9
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4167,7 +4171,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Result#ac81
+### Result#f29e
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4336,7 +4340,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### RuleSet#c242
+### RuleSet#ac40
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4736,12 +4740,13 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - All three named failure modes are real and unmitigated by the pattern.
 - Very thin mechanism — one sentence, no invariants.
 - No restore semantics specified.
+- `_meta.related` reference updated from legacy stub format (`StateSnapshot#940f`) to full sema_id.
 
 **In the family.** State primitive paired with Restore (the recovery), AuditTrail (continuous counterpart), and Versioning. Compare with Cache — Snapshot is full state at time; Cache is keyed storage.
 
 ---
 
-### Solution#8db4
+### Solution#eeb7
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4806,7 +4811,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### SolverManifest#bc05
+### SolverManifest#11ea
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4866,7 +4871,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Spec#0926
+### Spec#68b4
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4970,7 +4975,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Status#1cf9
+### Status#7f5f
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -5123,7 +5128,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### StyleSpec#d7cb
+### StyleSpec#754e
 
 `Infrastructure` · `Data Structures` · R2 · T2
 
@@ -5173,7 +5178,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Subject#788f
+### Subject#9a60
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -5311,7 +5316,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 ---
 
-### Task#b328
+### Task#b290
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5371,7 +5376,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 ---
 
-### Tension#94a9
+### Tension#92e3
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -5711,12 +5716,13 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Very thin.
 - The 'semantic space' framing is model-dependent.
 - No failure modes.
+- `_meta.related` reference updated from legacy stub format (`LatentAttachment#15a6`) to full sema_id.
 
 **In the family.** Foundational numeric primitive paired with LatentAttachment, Embedding, and Distance. Compare with Scalar — Vector is multi-dim; Scalar is single-dim.
 
 ---
 
-### Work#925c
+### Work#f9fa
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5775,7 +5781,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 ### Infrastructure/Primitives (49)
 
-### Act#5d55
+### Act#dc2d
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -5845,7 +5851,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Actor#6926
+### Actor#57f6
 
 `Infrastructure` · `Primitives` · R0 · T0
 
@@ -5894,7 +5900,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Aggregate#8239
+### Aggregate#8c2a
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -5958,7 +5964,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Backoff#315a
+### Backoff#c6d1
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -5969,7 +5975,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 > Exponential Delay: On failure, wait delay D before retry. On repeated failure, D *= multiplier (typically 2). Add jitter to prevent thundering herd. Cap at maximum delay. Reset on success.
 
 **Invariants.**
-- retry budget must be finite (max_attempts set before first attempt).
+- Retry budget must be finite (max_attempts set before first attempt).
 
 **Failure modes.**
 - Starvation: Unlucky agents keep backing off while others succeed, never getting a slot.
@@ -6120,7 +6126,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Care#2d97
+### Care#b01c
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6230,7 +6236,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### CircuitBreaker#4162
+### CircuitBreaker#0577
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -6401,7 +6407,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Compensate#d541
+### Compensate#985e
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6521,7 +6527,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Cooldown#b4c2
+### Cooldown#6eb2
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6584,7 +6590,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### EntropyPump#4009
+### EntropyPump#ed3b
 
 `Infrastructure` · `Primitives` · R1 · T2
 
@@ -6636,7 +6642,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### FailClosed#5d52
+### FailClosed#59d8
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6700,7 +6706,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Feedback#b786
+### Feedback#dc36
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6760,7 +6766,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### FeedbackSignal#7302
+### FeedbackSignal#afac
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6771,8 +6777,8 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 > A structured packet containing the evaluation of a specific {{solution}} for a {{task}}. Carries outcome and details to the {{feedback}} mechanism.
 
 **Invariants.**
-- Targeted
-- Structured
+- Targeted: each signal cites the specific {{solution}} and {{task}} it evaluates.
+- Structured: payload conforms to the defined data_schema (solution_ref, task_ref, outcome ∈ {success, failure, partial}).
 
 #### Design
 
@@ -6804,9 +6810,9 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gives up: flexibility. FeedbackSignal requires structure that ad-hoc feedback avoids.
 
 **Critique.**
-- Almost a stub — 'structured, targeted' invariants without operational content.
-- No schema specified — what fields, what encoding, what size limits? All deferred to the consumer.
-- The pattern's value is essentially the naming; the Feedback pattern could carry its own unit without a separate FeedbackSignal.
+- Very thin — the invariants were previously bare adjective labels ("Targeted", "Structured") without subject or claim. Now stated as full invariants tied to the data_schema.
+- No schema-evolution story — the data_schema is fixed; downstream versions would need to be new patterns.
+- The Feedback pattern could carry its own unit without a separate FeedbackSignal — the primary value here is typing for downstream consumers (Reflexion, CurriculumReplay).
 
 **In the family.** Substrate unit for the Feedback pattern. Paired with Solution (the evaluated artifact), Task (the context), and Outcome (the evaluation). Compare with Anomaly — FeedbackSignal is attributed post-action; Anomaly is unattributed observation. Both carry structured evaluation.
 
@@ -6868,7 +6874,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Greet#3cc8
+### Greet#ff79
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -6924,7 +6930,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Heartbeat#17d8
+### Heartbeat#8e36
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6986,7 +6992,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Hysteresis#e21c
+### Hysteresis#addb
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -7041,7 +7047,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### IdempotentWrite#f35b
+### IdempotentWrite#1023
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7150,7 +7156,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Judge#8238
+### Judge#b8d6
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7207,7 +7213,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Loop#281c
+### Loop#a316
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7259,7 +7265,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Monitor#3fc0
+### Monitor#4741
 
 `Infrastructure` · `Primitives` · R0 · T0
 
@@ -7361,7 +7367,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### NegativeProof#144e
+### NegativeProof#14ee
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -7426,7 +7432,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Observe#39f0
+### Observe#abc0
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7563,7 +7569,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Quorum#858e
+### Quorum#a295
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7577,7 +7583,9 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - K cannot decrease mid-vote.
 
 **Preconditions.**
-- N agents in voting set. K threshold defined where K ≤ N. Proposal formulated.
+- N agents in voting set.
+- K threshold defined where K ≤ N.
+- Proposal formulated.
 
 **Postconditions.**
 - Result selected (approve/reject/timeout)
@@ -7683,7 +7691,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### ReAttempt#bd00
+### ReAttempt#8f48
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7724,7 +7732,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Route#b972
+### Route#34c7
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7960,7 +7968,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Sign#1fb9
+### Sign#d60d
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -8062,7 +8070,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### StateSnapshot#c86b
+### StateSnapshot#5a11
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8171,7 +8179,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### TaskLifecycle#83eb
+### TaskLifecycle#fecc
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -8238,7 +8246,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Throttle#2175
+### Throttle#4d47
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8249,9 +8257,8 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 > Rate Limiting: Maximum N {{task}}s per time window W. Excess requests rejected, queued, or delayed. Window can be sliding or fixed. Separate limits per action type or global. Utilizes {{backoff}}.
 
 **Invariants.**
-- Queue Bounding: Dropped requests > 0 if InputRate >> MaxRate
-- Rate Limit: Output events per second <= MaxRate
-- Rate never exceeds limit within any window.
+- Rate Limit: Output rate ≤ MaxRate within any window (sliding or fixed).
+- Queue Bounding: Dropped requests > 0 if InputRate >> MaxRate.
 
 **Preconditions.**
 - Token bucket or Leaky bucket state initialized
@@ -8290,15 +8297,15 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Separate limits per action type buys flexibility at the cost of complexity in the limit-configuration surface.
 
 **Critique.**
-- Only one failure mode; a rate-limiting primitive should name at least: Clock Skew (distributed enforcers disagree on window boundaries), Burst Accumulation (long quiet followed by allowed burst overwhelms downstream), Measurement Lag (rate-count lags actual rate).
-- The invariants are redundant — 'Rate Limit' and 'Rate never exceeds limit within any window' say the same thing. Invariants should be orthogonal.
-- The pattern uses Backoff (in composes_with) but does not say when Backoff fires — on rejection? on queue-full? The integration point is underspecified.
+- The consolidated Rate Limit invariant now covers any-window semantics in one line; the previous redundant pair (per-second + any-window) is gone.
+- Legitimate Denial is the dominant real issue — attack/burst distinguishability requires classifiers the pattern offloads.
+- No priority story — all throttled requests are treated equally; priority-aware throttling needs a different pattern.
 
 **In the family.** Completes the rate-control family: `Backoff` (per-retry exponential delay), `Cooldown` (per-action minimum gap), `Throttle` (rate cap per window). The three compose: a retry loop can use Backoff for delay, Cooldown for action-gap, and Throttle for global rate.
 
 ---
 
-### TimeWarpLog#40a1
+### TimeWarpLog#a2ba
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8360,7 +8367,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### ToolInvoke#4694
+### ToolInvoke#bd2b
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -8421,7 +8428,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### Trace#9057
+### Trace#2836
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8481,7 +8488,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### TriGate#f97b
+### TriGate#b5c7
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8535,7 +8542,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### Warmup#c36c
+### Warmup#c9e4
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8557,8 +8564,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Failure modes.**
 - Premature Load: Traffic arrives before warmup completes.
-- False Warmth: Timer completes but internal state (e.g.
-- cache) is still cold.
+- False Warmth: Timer completes but internal state (e.g. cache) is still cold.
 
 #### Design
 
@@ -8600,7 +8606,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ### Infrastructure/Verification (9)
 
-### AuditTrail#90ba
+### AuditTrail#3c71
 
 `Infrastructure` · `Verification` · R1 · T1
 
@@ -8721,7 +8727,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### ExplainBeacon#6900
+### ExplainBeacon#9d6d
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -8775,7 +8781,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### HumanApprove#2b91
+### HumanApprove#6434
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -8886,7 +8892,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### OathBind#b318
+### OathBind#af30
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -8942,7 +8948,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### OutputGuard#92de
+### OutputGuard#ded5
 
 `Infrastructure` · `Verification` · R0 · T2
 
@@ -9067,7 +9073,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### Validate#f747
+### Validate#aebf
 
 `Infrastructure` · `Verification` · R1 · T1
 
@@ -9189,7 +9195,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### BayesUpdate#38aa
+### BayesUpdate#ee85
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9203,10 +9209,14 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Posterior ∈ (0,1): never update to absolute certainty.
 
 **Preconditions.**
-- Prior probability defined in (0,1). New evidence observed. Likelihood computable.
+- Prior probability defined in (0,1)
+- New evidence observed.
+- Likelihood computable.
 
 **Postconditions.**
-- Posterior probability in (0,1). {{belief}} updated proportional to evidence strength. Prior recoverable given likelihood.
+- Posterior probability in (0,1)
+- {{belief}} updated proportional to evidence strength.
+- Prior recoverable given likelihood.
 
 **Failure modes.**
 - Prior Dogmatism: Setting a prior of 1.0 or 0.0 prevents any future updating, regardless of evidence.
@@ -9249,7 +9259,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### BreadthGovernor#c993
+### BreadthGovernor#d021
 
 `Mind` · `Inference` · R2 · T2
 
@@ -9313,7 +9323,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### ConfidenceCalibrate#8a00
+### ConfidenceCalibrate#e454
 
 `Mind` · `Inference` · R2 · T2
 
@@ -9324,7 +9334,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 > Track Record Alignment: For claims rated 70% confident, ~70% should be true. Track predictions vs outcomes. If 90% claims are right only 60% of time, you are overconfident—widen uncertainty. If 90% claims are right 99% of time, you are underconfident—tighten. It adjusts the internal probability model using {{bayes_update}} on historical accuracy data, ensuring {{base_rate_include}} is respected.
 
 **Invariants.**
-- Calibration curve must be monotonic.
+- Post-calibration monotonicity: the adjusted confidence→frequency mapping must be monotonic non-decreasing (higher stated confidence implies higher or equal actual frequency). The observed pre-calibration curve may be non-monotonic; the pattern's job is to produce a monotonic output.
 
 **Failure modes.**
 - Over-correction: {{agent}} becomes under-confident to avoid being wrong, refusing to act on strong signals.
@@ -9350,7 +9360,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **Extension shape.** `IsotonicConfidenceCalibrate`, `BayesianConfidenceCalibrate`, `RollingWindowCalibrate`.
 
 **Design tensions.**
-- Monotonicity (invariant) vs real-world non-monotonic calibration — a miscalibrated agent may be overconfident at 70% and underconfident at 90%; the invariant enforces a shape that may not match reality.
+- Pre-calibration non-monotonicity vs post-calibration monotonic guarantee — the pattern now explicitly separates the two; callers need to understand the invariant applies to the output, not the input.
 - Over-correction (the named failure) — swinging from overconfident to under-confident is common; the loop needs damping that the pattern doesn't specify.
 - Sample size for calibration — with few predictions, calibration estimates are noisy; with many, the prediction-production rate drags the calibration behind.
 
@@ -9359,7 +9369,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gives up: decisiveness — calibrating loops make agents more humble, which sometimes means less action. Over-correction is the specific danger.
 
 **Critique.**
-- The monotonicity invariant is wrong for calibration curves that are genuinely non-monotonic; enforcing it smooths out real miscalibration structure.
+- Clarifying the monotonicity invariant as post-calibration (output) rather than pre-calibration (observed) resolves the ambiguity, but still requires callers to choose a calibration method (isotonic, Platt, Bayesian) that preserves the guarantee.
 - Over-correction is the named failure but the mitigation (damping, moving averages) isn't part of the pattern.
 - Requires a track record the agent can reference; in practice most agents don't maintain one, and the pattern doesn't provide infrastructure.
 
@@ -9423,7 +9433,7 @@ _Note: §3.1 rename validates — the old name literally said the opposite of th
 
 ---
 
-### ContextFirst#9b3c
+### ContextFirst#dbb4
 
 `Mind` · `Inference` · R0 · T1
 
@@ -9482,7 +9492,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### EpistemicCalibrate#6069
+### EpistemicCalibrate#3e32
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9543,7 +9553,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### HackDetect#f1e6
+### HackDetect#e160
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9608,7 +9618,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### HindsightBlock#9e7f
+### HindsightBlock#54f4
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9666,7 +9676,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### LayeredCheck#052a
+### LayeredCheck#bece
 
 `Mind` · `Inference` · R2 · T2
 
@@ -9720,7 +9730,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### NormCheck#c8df
+### NormCheck#ae05
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9783,7 +9793,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### NormativeJudge#4fdc
+### NormativeJudge#1900
 
 `Mind` · `Inference` · R0 · T1
 
@@ -9847,7 +9857,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### OntologyAdapt#abc8
+### OntologyAdapt#e429
 
 `Mind` · `Inference` · R1 · T1
 
@@ -9908,7 +9918,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ProphetFanOut#9bf0
+### ProphetFanOut#c8d0
 
 `Mind` · `Inference` · R1 · T1
 
@@ -9969,7 +9979,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### RegimeSense#83f3
+### RegimeSense#d8f0
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10034,7 +10044,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ScopeFreeze#5846
+### ScopeFreeze#7abb
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10098,7 +10108,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SemanticTabu#290d
+### SemanticTabu#d1eb
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10119,7 +10129,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - {{solution}} is structurally distinct from Clichés
 
 **Failure modes.**
-- paralysis (if the Tabu list covers all possible physics).
+- Paralysis: if the Tabu list covers all possible physics.
 
 #### Design
 
@@ -10159,7 +10169,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SourceEvaluate#31a0
+### SourceEvaluate#3488
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10215,7 +10225,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SurprisalUpdate#8997
+### SurprisalUpdate#9db2
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10341,7 +10351,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TemporalEnsembleForecasting#9e5f
+### TemporalEnsembleForecasting#8010
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10382,7 +10392,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TruthseekingProtocol#cf2b
+### TruthseekingProtocol#fcad
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10425,7 +10435,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ### Mind/Memory (15)
 
-### BeliefTracking#3b98
+### BeliefTracking#5a14
 
 `Mind` · `Memory` · R2 · T2
 
@@ -10491,7 +10501,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ChunkMerge#94f9
+### ChunkMerge#ac72
 
 `Mind` · `Memory` · R2 · T1
 
@@ -10598,7 +10608,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### CurriculumReplay#8e74
+### CurriculumReplay#ea48
 
 `Mind` · `Memory` · R2 · T1
 
@@ -10660,7 +10670,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ExperienceSharding#66cd
+### ExperienceSharding#4158
 
 `Mind` · `Memory` · R0 · T1
 
@@ -10682,7 +10692,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Distributed knowledge base
 
 **Failure modes.**
-- coordination overhead between the shards increases.
+- Coordination Overhead: Overhead between shards increases as shard count grows.
 
 #### Design
 
@@ -10722,7 +10732,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### HolographicShard#d330
+### HolographicShard#34d0
 
 `Mind` · `Memory` · R0 · T1
 
@@ -10783,7 +10793,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### LatentAttachment#ab68
+### LatentAttachment#640e
 
 `Mind` · `Memory` · R0 · T1
 
@@ -10844,7 +10854,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### LocalizedLearning#a4bf
+### LocalizedLearning#eb5a
 
 `Mind` · `Memory` · R1 · T2
 
@@ -10951,7 +10961,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### Proprioception#1dae
+### Proprioception#ec6c
 
 `Mind` · `Memory` · R2 · T3
 
@@ -10967,7 +10977,9 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - {{state}} Recovery: Can reconstruct stack {{trace}} from logs
 
 **Failure modes.**
-- Stagnation: {{agent}} remains in same node > N ticks Orphaned: Parent {{task}} ID not found/unresponsive Hallucinated {{context}}: Stack {{trace}} does not match environmental reality
+- Stagnation: {{agent}} remains in same node > N ticks.
+- Orphaned: Parent {{task}} ID not found or unresponsive.
+- Hallucinated {{context}}: Stack {{trace}} does not match environmental reality.
 
 #### Design
 
@@ -11001,13 +11013,13 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **Critique.**
 - Orphaned (named failure) — parent task unresponsive — is real and the pattern doesn't specify recovery.
 - Hallucinated Context is the hardest failure; detecting mismatch requires comparing internal state to environmental reality, which the pattern assumes is possible.
-- Stagnation threshold N is caller-set with no default rule.
+- Stagnation threshold N is caller-set with no default rule. Failure modes were previously jammed into one list entry (Stagnation + Orphaned + Hallucinated Context run together); now split into three distinct entries.
 
 **In the family.** Self-monitoring primitive paired with Heartbeat (general liveness), ContextFirst (refresh discipline), and AuditTrail (the log substrate). Compare with Monitor — Proprioception is self-directed; Monitor is target-directed. Both are observation patterns, directed inward vs outward.
 
 ---
 
-### RetrievalAugment#e8e9
+### RetrievalAugment#f401
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11121,7 +11133,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SelfReminder#c896
+### SelfReminder#cd98
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11179,7 +11191,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SimulationTrace#ccbc
+### SimulationTrace#1b91
 
 `Mind` · `Memory` · R2 · T1
 
@@ -11241,7 +11253,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TraceBelief#8056
+### TraceBelief#735b
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11293,7 +11305,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ### Mind/Reasoning (60)
 
-### Abduction#d749
+### Abduction#f9ea
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -11362,7 +11374,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### BackwardChain#2e74
+### BackwardChain#e6ea
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -11378,11 +11390,14 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Leaf nodes must be actionable or known-true.
 
 **Preconditions.**
-- Goal is clearly defined
-- Goal state clearly defined. Domain has prerequisite structure. Knowledge base queryable.
+- Goal state clearly defined.
+- Domain has prerequisite structure.
+- Knowledge base queryable.
 
 **Postconditions.**
-- Execution plan produced OR goal proven unachievable. {{plan}} steps in executable order. All prerequisites satisfied.
+- Execution plan produced OR goal proven unachievable.
+- {{plan}} steps in executable order.
+- All prerequisites satisfied.
 
 **Failure modes.**
 - Infinite Regression: The precondition chain never terminates because base facts are missing.
@@ -11425,7 +11440,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### Bisect#88b3
+### Bisect#30ea
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -11479,7 +11494,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ChainOfThought#dd74
+### ChainOfThought#380a
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -11534,7 +11549,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### CiteBack#f842
+### CiteBack#0a08
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -11596,7 +11611,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### CognitiveEcho#6781
+### CognitiveEcho#ffb5
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -11661,7 +11676,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### CollaborativeWritingProtocol#7400
+### CollaborativeWritingProtocol#5c51
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -11702,7 +11717,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ConceptualDecomposition#e06a
+### ConceptualDecomposition#74a8
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -11750,7 +11765,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ConstructOntology#be33
+### ConstructOntology#d5a0
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -11868,7 +11883,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### Decompose#7b62
+### Decompose#5471
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -11882,10 +11897,14 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Subproblems must be independent.
 
 **Preconditions.**
-- {{problem}} too large to solve directly. Decomposition axis identifiable. Subproblems can be independent.
+- {{problem}} too large to solve directly.
+- Decomposition axis identifiable.
+- Subproblems can be independent.
 
 **Postconditions.**
-- Set of independent subproblems. Combined {{solution}} equals original. No subproblem depends on sibling.
+- Set of independent subproblems.
+- Combined {{solution}} equals original.
+- No subproblem depends on sibling.
 
 **Failure modes.**
 - Coupling Leakage: Subproblems are not truly independent; solving one breaks another.
@@ -11928,7 +11947,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### DecompositionGate#7fbd
+### DecompositionGate#5704
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12030,7 +12049,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### DeepResearch#7cf6
+### DeepResearch#d937
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12099,7 +12118,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Dialectic#42d8
+### Dialectic#2e3c
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12161,7 +12180,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Eliminate#a89d
+### Eliminate#ee96
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12172,10 +12191,13 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 > Systematic Exclusion (Sherlock Holmes): Enumerate all possible answers. For each, find a test that could falsify it. Apply tests in order of cost (cheapest first). Remove falsified options. Continue until one remains or no tests left. Remaining options are candidates. Combines {{deduction}} (ruling out what's impossible) with {{falsification}} (empirical testing of each hypothesis). It uses {{prioritize}} to order falsification tests by cost/efficiency before executing them.
 
 **Invariants.**
-- {{option}} set must be exhaustive at start.
+- Monotonic Reduction: {{option}} set size strictly decreases or stays the same across iterations — options are only eliminated, never added back.
+- Evidence-Required Exclusion: Each eliminated option must have falsifying evidence; exclusion without evidence is not permitted.
 
 **Preconditions.**
-- {{option}} set exhaustive. Falsification tests available. At least one option must survive.
+- {{option}} set exhaustive at start.
+- Falsification tests available.
+- At least one option must survive.
 
 **Postconditions.**
 - Remaining options equally valid. Eliminated options have falsifying evidence. Search space reduced.
@@ -12214,14 +12236,14 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Critique.**
 - Premature Exclusion is the dominant failure — faulty tests kill the true answer, leaving an empty set, and the pattern has no recovery mechanism.
-- Exhaustive-at-start is rarely achievable for real problems; 'all possible answers' is an idealization.
-- Cost ordering depends on knowing test costs upfront, which is itself work the pattern doesn't account for.
+- Exhaustive-at-start is rarely achievable for real problems; "all possible answers" is an idealization.
+- Restructured: preconditions were jammed into one string (now split to three), and the original "invariant" was a miscategorized precondition (now replaced with real execution invariants — Monotonic Reduction and Evidence-Required Exclusion — that describe what the pattern maintains during operation).
 
 **In the family.** Reasoning-strategy primitive paired with Falsification (the test primitive), Bisect (the binary-partition variant), and ExploreExploit (exploration-of-option-space). Compare with AdversarialProof — Eliminate systematically rules out candidates; AdversarialProof exhaustively searches for prohibited content. Both are eliminative, on different scopes.
 
 ---
 
-### Estimate#403b
+### Estimate#e07e
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12282,7 +12304,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### EthicalReasoningProtocol#0287
+### EthicalReasoningProtocol#8947
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -12323,7 +12345,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Expansive#6839
+### Expansive#bfaa
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12376,7 +12398,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### ExtendedThinking#a49a
+### ExtendedThinking#f9eb
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12440,7 +12462,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Fermi#7e0e
+### Fermi#6397
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12495,7 +12517,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### FirstPrinciples#6266
+### FirstPrinciples#1a7e
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12549,7 +12571,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### FrameError#579f
+### FrameError#edf5
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12595,7 +12617,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Generalize#1bd3
+### Generalize#9684
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12656,7 +12678,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### GraphOfThought#226a
+### GraphOfThought#32b1
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12699,7 +12721,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### HeuristicSnap#89e6
+### HeuristicSnap#f15c
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12757,7 +12779,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### HumanEmulatorProtocol#307c
+### HumanEmulatorProtocol#9abb
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12850,7 +12872,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Interpret#c9ee
+### Interpret#8ee3
 
 `Mind` · `Reasoning` · R0 · T0
 
@@ -12904,7 +12926,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Invert#f615
+### Invert#d39f
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12959,7 +12981,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### LeastToMost#ff1d
+### LeastToMost#f06a
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13023,7 +13045,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### LivedProof#6689
+### LivedProof#9876
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13088,7 +13110,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### MetaPrompt#34d2
+### MetaPrompt#62de
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13154,7 +13176,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Parsimony#a31b
+### Parsimony#6d67
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13207,7 +13229,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### PatternDiscovery#943a
+### PatternDiscovery#99dd
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13273,7 +13295,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### ReAct#bcd5
+### ReAct#05f2
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13337,7 +13359,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### Realizable#3fa9
+### Realizable#613e
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13395,7 +13417,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### Reason#6e3f
+### Reason#629c
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13461,7 +13483,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### RecursionDive#9a6e
+### RecursionDive#c9eb
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13504,12 +13526,13 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - No failure modes listed; RecursionDive has some (unbounded recursion without governor, cycle in solver graph treated as tree).
 - Very thin — one-line mechanism.
 - The pattern assumes decomposition always applies; some nodes may need different strategies.
+- `_meta.related` reference fixed: pointed at renamed-away `SolutionNode#2b4a` (pattern no longer exists); now points at the successor `SolverNode` in full sema_id format.
 
 **In the family.** Solver-tree traversal paired with Decompose (the strategy), SolverTree (the structure), and DepthGovernor/MarginalValueRule (the governors). Compare with Ascend — RecursionDive goes down; Ascend (or compose) goes up.
 
 ---
 
-### RecursiveRootCause#6dc1
+### RecursiveRootCause#7074
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13565,7 +13588,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### Refine#aa34
+### Refine#78b7
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13613,7 +13636,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### Reflexion#496d
+### Reflexion#1a1f
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13678,7 +13701,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### Reframe#0b02
+### Reframe#44c5
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13690,7 +13713,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Invariants.**
 - {{problem}} semantics preserved
-- perspective shifted
+- Perspective shifted.
 
 **Preconditions.**
 - Stuck problem state
@@ -13741,7 +13764,7 @@ _Note: `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate 
 
 ---
 
-### RequestFraming#dc73
+### RequestFraming#b776
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -13805,6 +13828,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Misinterpretation is endemic — framers clarify what they assume is ambiguous, which often misses the real ambiguity.
 - Over-constraint is the eager-framer failure; the pattern doesn't bound how much to constrain.
 - Premature Optimization happens when framers slide into solving; the pattern's 'no resources committed' invariant is the discipline.
+- `derived_from` fixed: previously legacy stub `sema:Interpret` without hash; now full sema_id.
 
 **In the family.** Interpretation primitive paired with Interpret (the verb), FrameSpec (the output), and ProblemFramer (the role). Compare with ManifestPlanning — RequestFraming is 'understand the ask'; ManifestPlanning is 'plan the solution.'
 
@@ -13812,7 +13836,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### SelfConsistency#57cc
+### SelfConsistency#2068
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13869,7 +13893,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### SkeletonOfThought#fc64
+### SkeletonOfThought#ab3e
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13922,7 +13946,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### SocraticLoop#b2ce
+### SocraticLoop#bc73
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13987,7 +14011,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### Specialize#7a33
+### Specialize#3ad7
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14049,7 +14073,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### SteelmanCheck#c486
+### SteelmanCheck#dd78
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -14117,7 +14141,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### StepBack#b16f
+### StepBack#35ad
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14185,7 +14209,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### StrategicReading#ca28
+### StrategicReading#e058
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14250,7 +14274,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 ---
 
-### Summarize#db2a
+### Summarize#d9db
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14353,7 +14377,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Think#e1bd
+### Think#0bb4
 
 `Mind` · `Reasoning` · R0 · T0
 
@@ -14415,7 +14439,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Translate#a8ed
+### Translate#edeb
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14479,7 +14503,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### TreeOfThoughts#6cc5
+### TreeOfThoughts#fc58
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14529,7 +14553,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Uncertain#5891
+### Uncertain#fed9
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14592,7 +14616,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Understand#96d4
+### Understand#c38c
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14642,7 +14666,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Verification#1d4f
+### Verification#9f0c
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14694,7 +14718,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### WhyClimb#946c
+### WhyClimb#ea4a
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14760,7 +14784,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ### Mind/Strategy (81)
 
-### AdversarialSteel#0a83
+### AdversarialSteel#4208
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -14816,7 +14840,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Agent#bb9c
+### Agent#d183
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -14887,7 +14911,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### AnalogyBridge#67e2
+### AnalogyBridge#8b52
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -14948,7 +14972,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### AntifragileInversion#aed8
+### AntifragileInversion#b9d8
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -15009,7 +15033,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### BeamSearch#f5e4
+### BeamSearch#cb0e
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -15061,7 +15085,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### Bubble#f2fe
+### Bubble#6d71
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -15129,7 +15153,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### Build#e5aa
+### Build#8143
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -15194,7 +15218,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### CapacityPressure#6733
+### CapacityPressure#8641
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -15218,7 +15242,9 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Loss of fine-grained detail/noise
 
 **Failure modes.**
-- Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting) Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint) False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget
+- Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting).
+- Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint).
+- False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget.
 
 #### Design
 
@@ -15252,13 +15278,13 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **Critique.**
 - Adversarial Encoding is the hardest failure mode and the pattern has no structural defense — preventing 'zip instead of abstract' requires measuring the compressed representation's generalization, which is exactly what the bottleneck was supposed to force.
 - False Abstraction (hallucinating patterns to satisfy the bottleneck) is the second-hardest failure mode, and similarly unprevented by the mechanism alone.
-- Bottleneck sizing is an art; the pattern offers no principle for choosing it beyond 'Capacity < Information Content,' which is too coarse to be actionable.
+- Bottleneck sizing is an art; the pattern offers no principle for choosing it beyond 'Capacity < Information Content,' which is too coarse to be actionable. Failure modes were previously jammed into one list entry (Collapse + Adversarial Encoding + False Abstraction run together); now split into three distinct entries.
 
 **In the family.** Information-theoretic sibling of Compress (explicit reduction), Abstraction (the output), and Parsimony (the goal). Compare with EntropyPump — both manipulate information content to drive cognition; EntropyPump injects, CapacityPressure constrains. Sits in the rare corner of the library devoted to representation engineering.
 
 ---
 
-### CommitmentDevice#52ef
+### CommitmentDevice#3aeb
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -15317,7 +15343,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### Compose#d2e6
+### Compose#389f
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -15334,10 +15360,14 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Acyclicity: Composition graph must be a DAG.
 
 **Preconditions.**
-- Subproblem solutions available. Interface contracts defined. Composition order known if order-dependent.
+- Subproblem solutions available.
+- Interface contracts defined.
+- Composition order known if order-dependent.
 
 **Postconditions.**
-- Combined solution satisfies original problem. No interface violations. Emergent interactions handled.
+- Combined solution satisfies original problem.
+- No interface violations.
+- Emergent interactions handled.
 
 **Failure modes.**
 - Interface Mismatch: Component outputs do not match expected inputs of downstream components.
@@ -15380,7 +15410,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### ComputeBudget#ba8c
+### ComputeBudget#8a42
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -15448,7 +15478,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### ConceptBlend#6bb5
+### ConceptBlend#f35e
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -15555,7 +15585,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### ContingencyPlan#e411
+### ContingencyPlan#2a5b
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -15667,7 +15697,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### CreativeBlend#c9d6
+### CreativeBlend#6f0b
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -15723,11 +15753,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### Crystallize#72ef
+### Crystallize#f680
 
 `Mind` · `Strategy` · R1 · T2
 
-**Gloss.** {{phase_transition}} from implicit resonance to explicit contract
+**Gloss.** Phase transition from implicit resonance to explicit contract
 
 **Mechanism.**
 
@@ -15785,8 +15815,8 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Critique.**
 - Illusory resonance is the most dangerous failure mode — agents perceive the same soft signal differently, crystallize, then discover the perception mismatch. The pattern surfaces this by failing, which is the honest move, but too late to avoid the process cost.
-- Entropy threshold is unspecified — what counts as 'entropy' of a coordination context is itself a judgment.
-- 'Atomic transition Fluid -> Solid' is elegant but forces discretization of a process that may legitimately be gradual; the pattern's shape doesn't accommodate intermediate states.
+- Entropy threshold is unspecified — what counts as "entropy" of a coordination context is itself a judgment.
+- Gloss fixed: previously rendered as literal "{{phase_transition}}" due to un-interpolated template token; now plain text. Orphan phase_transition dependency (declared but no longer used in any field after the gloss fix) was removed.
 
 **In the family.** Norm-formation primitive paired with Resonate (the soft signal substrate), Constitution (the hard-rule output), and Consensus (the validation step). Compare with PhaseTransition — Crystallize is the social/epistemic phase transition (norms formalizing); PhaseTransition is the general physics-inspired primitive.
 
@@ -15843,7 +15873,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### Defer#bb32
+### Defer#f84a
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -15905,7 +15935,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DepthGovernor#d35a
+### DepthGovernor#8f06
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -15962,7 +15992,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DesignArchitect#3b2e
+### DesignArchitect#1613
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -16014,7 +16044,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DiscoveryProtocol#2cd0
+### DiscoveryProtocol#b8aa
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16055,7 +16085,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DogfoodFirst#60b9
+### DogfoodFirst#fb58
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -16119,7 +16149,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### EmpathySim#7731
+### EmpathySim#57cb
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16184,7 +16214,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### EmpiricalTest#b1bd
+### EmpiricalTest#9ef5
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -16239,7 +16269,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### EpistemicROI#1b52
+### EpistemicROI#9e4f
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16302,7 +16332,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### EventReact#443a
+### EventReact#6f08
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16364,7 +16394,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### Experiment#26bc
+### Experiment#a816
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16407,12 +16437,13 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Very thin — the mechanism says 'use Control and Treatment,' which is correct and under-specified. Real experiments have blinding, randomization, sample size, power calculations; the pattern mentions none.
 - No failure modes listed — experiments have many (confounders, selection bias, over-fitting to treatment) and the pattern doesn't catalogue them.
 - Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time.
+- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id.
 
 **In the family.** Causal-discovery primitive paired with Verification (confirmation), Experiment-specific patterns (A/B, RCT), and Hypothesis (the pre-registered claim being tested). Compare with Probe — Experiment is structured causal, Probe is single-shot observational. Both gather information, at different rigor levels.
 
 ---
 
-### ExploreExploit#397e
+### ExploreExploit#c937
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16466,7 +16497,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### Falsification#4e23
+### Falsification#0215
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -16513,12 +16544,13 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Duhem-Quine thesis is the classical problem — any observation technically falsifies a conjunction, not a single hypothesis. The pattern assumes clean falsification.
 - The 'If Prediction implies Observation, and not-Observation, then not-Hypothesis' invariant is valid logic; the practical problem is that real hypotheses rarely imply crisp observations.
 - Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes.
+- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id.
 
 **In the family.** Epistemic primitive paired with Verify (affirmative counterpart), Hypothesis (the subject), and Prediction (the falsifiable statement). Compare with NegativeProof — Falsification proves a claim false; NegativeProof proves a claim about absence. Both are eliminative, at different targets.
 
 ---
 
-### FractalIntelligence#901e
+### FractalIntelligence#74f8
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -16569,14 +16601,13 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Three invariants, zero failure modes. Critical omissions: Contract Violation (a sub-concept fails to expose the Solver interface — breaks the fractal); Unbounded Loop (decomposition loops back on itself — the DAG-shape invariant of UniversalSolverTree handles this, but FractalIntelligence itself doesn't state it); Context Loss (the Memory Conservation invariant is violated in practice with no detection).
 - 'Expansion of cognitive capability through conceptual decomposition' is the thesis but the mechanism doesn't say how expansion is measured — what counts as expanded capability?
 - The relationship to PolymorphicSolver is implicit — FI is the architecture, PolymorphicSolver is the node type. The pattern could say this more directly.
+- `derived_from` removed: previously pointed at `RecursiveIntelligence` which no longer exists in the vocabulary (the name was retired; this pattern is the successor, not a descendant).
 
 **In the family.** The architectural umbrella under which the solver family, UniversalSolverTree, and PathwayMemory organize. Composed with `ConceptualDecomposition` (the recursive move), `RootSolver` (apex), `UniversalSolverTree` (topology), `MarginalValueRule` (bounding), `PathwayMemory` (learning). The library's central cognitive architecture pattern.
 
-**Derived from.** `RecursiveIntelligence`
-
 ---
 
-### HypothesisEngine#3392
+### HypothesisEngine#8dec
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -16628,7 +16659,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### HypothesisLadder#1e4c
+### HypothesisLadder#71cc
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16639,11 +16670,9 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 > The agent explicitly lists its current hypotheses about the world state and assigns probabilities. As new data arrives, it updates these probabilities using {{bayes_update}}. It acts on the highest-probability {{hypothesis}} but keeps others alive. It structures {{abduction}} into falsifiable rungs, climbing to higher certainty only when an {{experiment}} validates the current level.
 
 **Invariants.**
-- Ascension Rule: Cannot move to {{hypothesis}}(N+1) until {{hypothesis}}(N) is validated
-- Evidence required to advance.
-- Exclusivity: Hypotheses at same rung should be mutually exclusive
-- Falsifiability: Each rung must have a testable disprove condition
-- Falsifiability: Every rung must have a disproof condition
+- Ascension Rule: Cannot move to {{hypothesis}}(N+1) until {{hypothesis}}(N) is validated by evidence.
+- Exclusivity: Hypotheses at the same rung must be mutually exclusive (required for Bayesian probability assignment).
+- Falsifiability: Each rung must have a testable disprove condition.
 
 **Preconditions.**
 - Data is valid
@@ -16685,14 +16714,14 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Critique.**
 - Clinging to low-probability priors is named as a failure and the pattern has no culling mechanism — low-probability hypotheses accumulate forever.
-- Ascension Rule is strict; in real use, moving up a rung is often done on weaker evidence than the rule requires, and the pattern has no enforcement.
-- Exclusivity and Falsifiability invariants are strong; many legitimate hypotheses overlap or resist crisp falsification, and the pattern excludes them.
+- The invariants are now deduplicated (was: two Falsifiability lines + Ascension/Evidence redundant). Exclusivity is retained as mathematically required for the Bayesian probability framework.
+- Exclusivity is correct for the Bayesian math but excludes real hypothesis sets with overlapping support (e.g., cold vs flu both cause fever). Users with overlapping hypotheses need a different pattern.
 
 **In the family.** Hypothesis-tracking primitive paired with Hypothesis (the unit), BayesUpdate (the revision substrate), and BeliefTracking (the audit trail). Compare with BeliefTracking — HypothesisLadder is specifically multi-hypothesis; BeliefTracking is general belief version control.
 
 ---
 
-### Jester#b1b9
+### Jester#9bbe
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16792,7 +16821,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### LatentWander#8470
+### LatentWander#53fb
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -16844,7 +16873,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### LateralOptimization#708e
+### LateralOptimization#61e2
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -16915,7 +16944,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### ManifestPlanning#e103
+### ManifestPlanning#b9ad
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -16968,6 +16997,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Hallucinated Resources is the canonical LLM failure mode; the pattern names it without providing a resource catalog to check against.
 - Fragile Chain (named failure) — single-step failure collapses the plan — is structural and unmitigated.
 - No replanning story — the pattern produces a manifest and doesn't specify what to do when execution reveals the manifest is wrong.
+- `derived_from` fixed: previously legacy stub `sema:Plan` without hash; now full sema_id.
 
 **In the family.** Planning phase primitive paired with FrameSpec (input), ExecutionManifest (output), and Plan (the general primitive). Compare with Design — ManifestPlanning produces an executable; Design produces an artifact proposal. Different output types.
 
@@ -16975,7 +17005,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### MarginalValueRule#05cb
+### MarginalValueRule#8660
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17037,7 +17067,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### MentalSim#736b
+### MentalSim#b817
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17100,7 +17130,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### MetaCheck#576e
+### MetaCheck#c660
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17165,7 +17195,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### MetaProtocols#27dc
+### MetaProtocols#e1f5
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17206,7 +17236,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### NoiseInjection#13f4
+### NoiseInjection#2131
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17268,7 +17298,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Novelty#6acf
+### Novelty#53a0
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -17321,7 +17351,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### OODA#75ed
+### OODA#a143
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17455,7 +17485,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### OptimalStop#b3c8
+### OptimalStop#4dee
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17510,7 +17540,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Optimize#b2b7
+### Optimize#b98b
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17577,7 +17607,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PURE#87ea
+### PURE#eee6
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17625,7 +17655,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREBrainstorming#b368
+### PUREBrainstorming#d632
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17677,7 +17707,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PURECheck#9d7a
+### PURECheck#8695
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17727,7 +17757,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREOptimization#3016
+### PUREOptimization#e44f
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17785,7 +17815,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Parallelize#c915
+### Parallelize#b943
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -17910,7 +17940,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PerspectiveEnsemble#1908
+### PerspectiveEnsemble#9a31
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17969,7 +17999,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PolymorphicSolver#c28a
+### PolymorphicSolver#b172
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18009,6 +18039,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Two invariants are thin for the load-bearing pattern at the center of the FI architecture. Missing: Five-Surface Declaration (each implementer must statically declare which surfaces it honors); Feedback Integrity (Feedback surface, when present, must emit either a PerformanceSignal or a FrameError — not both, not neither).
 - Two failure modes; both are detection-only. No mitigation guidance: what does the runtime do on Non-Compliance? The pattern implies rejection, does not specify.
 - The mechanism mentions `{{card}}` for Manifest and `{{validate}}` for Verify but not what backs Execute, Consult, and Feedback — the surfaces without named pattern anchors are structurally weaker.
+- `derived_from` updated from stale Solver sema_id (10655bd6...) to current (b00a16af...).
 
 **In the family.** The concrete implementer of the `Solver` abstract interface. Parent (via `derived_from`) to `OptimisticSolver`, `RigorousSolver`, `RootSolver`, and by convention the `[Descriptor]Solver` naming pattern. Composed with `Card` (Manifest), `Validate` (Verify), `SocraticLoop` (Consult), and `PerformanceSignal` (Feedback).
 
@@ -18019,7 +18050,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PreMortem#99f1
+### PreMortem#8ca0
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18030,10 +18061,8 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 > Prospective Hindsight: Before executing {{task}} ({{plan}}), assume it has failed catastrophically. Ask: "What went wrong?" Generate failure scenarios without defensiveness. For each plausible failure, add mitigation to plan or reconsider approach entirely. It invokes {{recursive_root_cause}} on a hypothetical failure state, often employing {{steelman_check}} to ensure the disaster scenario is plausible.
 
 **Invariants.**
-- Future Perspective: Analysis must assume failure has ALREADY happened
-- Perspective Shift: Analysis assumes failure has ALREADY occurred (Probability=1.0)
-- Specific Cause: Failure reasons must be actionable, not generic bad luck
-- Specificity: Failure causes must be actionable
+- Future Perspective: Analysis must assume failure has ALREADY happened (Probability=1.0).
+- Specific Cause: Failure reasons must be actionable and endogenous, not generic bad luck.
 
 **Preconditions.**
 - {{plan}} is fully specified
@@ -18074,15 +18103,15 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gives up: optimism. PreMortem is disproportionately useful and disproportionately psychologically uncomfortable.
 
 **Critique.**
-- Performative Doomerism is endemic; specific failures require domain knowledge the pattern doesn't provide.
-- The 'assume failure already occurred' device is powerful and can tip into catastrophic thinking that paralyzes.
+- Performative Doomerism is endemic; specific failures require domain knowledge the pattern doesn"t provide.
+- Invariants are now deduplicated (was: four invariants forming two duplicate pairs — Future Perspective/Perspective Shift, Specific Cause/Specificity).
 - No specified mitigation link — PreMortem generates failure scenarios, and the follow-through (what to do about each) lives outside.
 
 **In the family.** Risk-analysis primitive paired with Steelman (the positive counterpart), MechanisticDesignProposal (which requires PreMortem for dialectic balance), and DesignArchitect (which wields it). Compare with Falsification — PreMortem anticipates failure; Falsification tests current claims.
 
 ---
 
-### Prioritize#2321
+### Prioritize#bb57
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18143,7 +18172,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ProblemFramer#2bd1
+### ProblemFramer#a3fc
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18199,7 +18228,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### RedTeam#341f
+### RedTeam#c72c
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18366,7 +18395,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### RepresentationSwap#5a21
+### RepresentationSwap#1787
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18421,7 +18450,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Retry#743b
+### Retry#cb3a
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18488,7 +18517,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### RigorousSolver#ae8c
+### RigorousSolver#483b
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18536,6 +18565,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - No failure modes listed at all. For a rigor-focused pattern, this is surprising. At minimum: Verification Tautology (the Verify step uses the same logic as Execute, making it trivially pass); Gate Lockup (a strict gate rejects everything the solver can produce).
 - The mechanism couples Probe and SocraticLoop as mandatory; if the deployment lacks either, RigorousSolver is unusable. A configurable-strictness version could degrade more gracefully.
 - 'Trades speed for assurance' is stated in the mechanism but the caller has no way to express how much assurance they need. The pattern is maximal rather than dialed.
+- `derived_from` fixed: previously had an all-zeros placeholder hash for PolymorphicSolver (never filled in); now the current sema_id.
 
 **In the family.** The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer.
 
@@ -18543,7 +18573,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Roadmap#b0bb
+### Roadmap#b236
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18591,7 +18621,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### RootSolver#13e8
+### RootSolver#0529
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18643,7 +18673,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### SacrificialProbe#88b7
+### SacrificialProbe#d2d4
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18665,7 +18695,8 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - {{strategy}} updated
 
 **Failure modes.**
-- {{probe}} is too expensive; {{probe}} failure is silent.
+- Probe too expensive: breaks the Cost Asymmetry invariant, making the sacrifice unaffordable.
+- Silent probe failure: {{probe}} fails but produces no observable signal, destroying the Instructive Failure property.
 
 #### Design
 
@@ -18699,13 +18730,13 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **Critique.**
 - Silent probe failure defeats the purpose; the pattern requires observable failure.
 - Cost Asymmetry is caller-tuned.
-- Designing instructive failure is itself work the pattern defers.
+- Designing instructive failure is itself work the pattern defers. Failure modes were previously jammed (probe-too-expensive AND silent-failure combined in one entry); now split into two atomic entries.
 
 **In the family.** Reconnaissance primitive paired with Canary (similar expendable-agent probe), Probe (active query), and SafeFailure (graceful). Compare with Probe — SacrificialProbe expects failure; Probe expects answer.
 
 ---
 
-### Satisfice#e054
+### Satisfice#64ac
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18719,10 +18750,14 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Threshold cannot change mid-search.
 
 **Preconditions.**
-- {{option}} space enumerable. Acceptance threshold defined. Evaluation function exists.
+- {{option}} space enumerable.
+- Acceptance threshold defined.
+- Evaluation function exists.
 
 **Postconditions.**
-- {{option}} meeting threshold found OR space exhausted. No backtracking occurred. {{decision}} final.
+- {{option}} meeting threshold found OR space exhausted.
+- No backtracking occurred.
+- {{decision}} final.
 
 **Failure modes.**
 - Threshold Drift: Unconsciously lowering standards during the search to force a match.
@@ -18816,7 +18851,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Simulation#908a
+### Simulation#398f
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -18867,7 +18902,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Solver#b00a
+### Solver#4ed4
 
 `Mind` · `Strategy` · R0 · T0
 
@@ -18918,7 +18953,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### SteelmanFirst#03fa
+### SteelmanFirst#6516
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18979,7 +19014,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Strategy#432b
+### Strategy#a0af
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19027,7 +19062,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### SunkCostIgnore#2cbd
+### SunkCostIgnore#9dec
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -19089,7 +19124,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### TensionHold#c55a
+### TensionHold#ec3b
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19155,7 +19190,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ThinSlice#bc19
+### ThinSlice#4d20
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -19208,7 +19243,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### TimeboxThink#4aca
+### TimeboxThink#9e1b
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -19322,7 +19357,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### UncertaintyMap#235e
+### UncertaintyMap#9a55
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19441,7 +19476,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ### Society/Coordination (12)
 
-### Compromise#9656
+### Compromise#f646
 
 `Society` · `Coordination` · R1 · T2
 
@@ -19489,7 +19524,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Consensus#10bf
+### Consensus#cc1d
 
 `Society` · `Coordination` · R0 · T1
 
@@ -19558,7 +19593,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ConsensusFinder#2e11
+### ConsensusFinder#299d
 
 `Society` · `Coordination` · R1 · T2
 
@@ -19612,7 +19647,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Delegate#7573
+### Delegate#60aa
 
 `Society` · `Coordination` · R1 · T2
 
@@ -19626,10 +19661,14 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Delegation is REQUEST not command (acceptance protocol unless pre-waived at RALLY). Refused tasks must be handled (reassign or escalate, not silently dropped). Progress must be trackable (delegatee reports status updates). Failure propagates (delegated task failure triggers {{break}} to delegator). Dependencies enforced (task blocked until dependencies complete). One owner per task (no ambiguous responsibility).
 
 **Preconditions.**
-- Principal has authority. Delegate capable. Scope of delegation defined.
+- Principal has authority.
+- Delegate capable.
+- Scope of delegation defined.
 
 **Postconditions.**
-- Delegate acts within scope. Principal notified of actions. Revocation possible.
+- Delegate acts within scope.
+- Principal notified of actions.
+- Revocation possible.
 
 **Failure modes.**
 - No one accepts (all refuse or auction has no takers—task orphaned).
@@ -19678,7 +19717,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Disband#1cbb
+### Disband#70eb
 
 `Society` · `Coordination` · R1 · T1
 
@@ -19745,7 +19784,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Elect#a087
+### Elect#0635
 
 `Society` · `Coordination` · R2 · T1
 
@@ -19813,7 +19852,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### IdentityHandshake#2236
+### IdentityHandshake#6c90
 
 `Society` · `Coordination` · R1 · T2
 
@@ -19867,7 +19906,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### LazyConsensus#6cc8
+### LazyConsensus#acd2
 
 `Society` · `Coordination` · R0 · T2
 
@@ -19931,7 +19970,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### OntologyHandshake#46dc
+### OntologyHandshake#8443
 
 `Society` · `Coordination` · R1 · T2
 
@@ -19945,10 +19984,14 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Term Consistency, Mapping Bijectivity
 
 **Preconditions.**
-- Both agents have ontologies. Communication channel open. Ontology serializable.
+- Both agents have ontologies.
+- Communication channel open.
+- Ontology serializable.
 
 **Postconditions.**
-- Shared terms mapped. Unmappable terms flagged. Communication can proceed with known precision.
+- Shared terms mapped.
+- Unmappable terms flagged.
+- Communication can proceed with known precision.
 
 **Failure modes.**
 - Failure to converge on a mapping.
@@ -19993,7 +20036,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Rally#11da
+### Rally#15b1
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20021,8 +20064,6 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Not enough ENLISTs by deadline (group fails to form).
 - Too many ENLISTs makes selection political/contentious.
 - Initiator has too much power over selection (mitigated by transparent selection_criteria).
-- RALLY spam floods network.
-- Agents ENLIST tentatively then ghost at MUSTER.
 
 #### Design
 
@@ -20055,15 +20096,15 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Deadline enforcement buys termination at the cost of cutting off late-but-legitimate enlists.
 
 **Critique.**
-- Two invariants, two failure modes. Missing: Diversity Metric (Echo Chamber detection requires measuring diversity, which the pattern doesn't specify), Flaking Mitigation (named failure 'ENLIST tentatively but fail to show' but no commitment-strengthening mechanism).
-- 'Select K from M responders' is mentioned but selection rule not specified — best-fit, random, reputation-scored? The pattern is neutral.
-- Binding via ContextID doesn't ensure shared context — two agents with the same ContextID might have different context contents.
+- Deduplicated failure modes (was: 8 entries with 2 duplicate pairs — Flaking/ghost-at-MUSTER, Rally Spam/RALLY spam floods network).
+- Echo Chamber and Flaking remain; both are social-coordination risks the pattern can't structurally prevent.
+- Initiator power is mitigated by transparent selection_criteria but still concentrated — the pattern is monarchical by default.
 
 **In the family.** The dynamic-team-formation protocol in Society. Composes with `AcceptSpec` (requirements), `Quorum` (minimum size), `Select` (from responders). Sibling to `Delegate` (principal-to-agent assignment) — Rally is broadcast-and-assemble, Delegate is directed handoff.
 
 ---
 
-### Resonate#aa7c
+### Resonate#155f
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20088,11 +20129,8 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - False Resonance: Apparent alignment that is actually random {{noise}}.
 - Echo Chamber: Feedback {{loop}} amplifies error instead of {{signal}}.
 - Spoofing: Adversarial agents emit fake intent tags (Cheap Talk).
-- Precise coordination required (RESONATE only achieves approximate alignment).
-- High-stakes actions where approximate isn't good enough.
-- Adversarial agents exploit {{signal}}s (fake intent tags).
+- Precise-coordination mismatch: RESONATE only achieves approximate alignment; high-stakes actions requiring precision need a different coordination primitive.
 - {{signal}} {{noise}} drowns real patterns.
-- False resonance (apparent alignment that isn't real).
 - Oscillation between conflicting patterns.
 
 #### Design
@@ -20127,13 +20165,13 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **Critique.**
 - False Resonance is endemic — the pattern has no distinguisher between real alignment and noise.
 - Echo Chamber is structural — any feedback loop can amplify errors; the pattern has no built-in correction.
-- Spoofing is the adversarial failure mode and the pattern's invariants don't defend against it.
+- Spoofing is the adversarial failure mode and the pattern's invariants don't defend against it. Deduplicated failure modes (was: 9 entries with duplicate False Resonance, duplicate Spoofing, and overlapping Precise/High-stakes entries).
 
 **In the family.** Stigmergic-coordination primitive paired with Stigmergy (trace-based communication), Amplify (reinforcement), Dampen (reduction), and Crystallize (the hardening move). Compare with Consensus — Resonate is implicit alignment; Consensus is explicit agreement.
 
 ---
 
-### Vote#0c9d
+### Vote#11f2
 
 `Society` · `Coordination` · R2 · T2
 
@@ -20195,7 +20233,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ### Society/Economics (10)
 
-### AtomicBid#524a
+### AtomicBid#003a
 
 `Society` · `Economics` · R1 · T2
 
@@ -20252,7 +20290,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### AttentionMarkets#d34a
+### AttentionMarkets#459c
 
 `Society` · `Economics` · R1 · T1
 
@@ -20319,7 +20357,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Award#45a4
+### Award#7dfc
 
 `Society` · `Economics` · R1 · T1
 
@@ -20373,7 +20411,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Bid#cd08
+### Bid#cffa
 
 `Society` · `Economics` · R1 · T1
 
@@ -20434,7 +20472,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ContinuousResourceAuction#404e
+### ContinuousResourceAuction#0361
 
 `Society` · `Economics` · R1 · T1
 
@@ -20545,7 +20583,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Gardener#f8c6
+### Gardener#6ccb
 
 `Society` · `Economics` · R2 · T2
 
@@ -20599,7 +20637,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### MintWhenFriction#7543
+### MintWhenFriction#4e33
 
 `Society` · `Economics` · R2 · T2
 
@@ -20664,7 +20702,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ValuePeg#9ade
+### ValuePeg#ab74
 
 `Society` · `Economics` · R1 · T1
 
@@ -20718,7 +20756,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Yield#56ab
+### Yield#0de8
 
 `Society` · `Economics` · R1 · T2
 
@@ -20777,7 +20815,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ### Society/Governance (8)
 
-### AnchorDrop#04e5
+### AnchorDrop#ad75
 
 `Society` · `Governance` · R0 · T1
 
@@ -20840,7 +20878,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Constitution#4778
+### Constitution#d2e5
 
 `Society` · `Governance` · R0 · T1
 
@@ -20893,7 +20931,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### DocumentedOverride#c0fb
+### DocumentedOverride#4356
 
 `Society` · `Governance` · R1 · T2
 
@@ -20940,7 +20978,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Responsibility#a47d
+### Responsibility#b3b1
 
 `Society` · `Governance` · R1 · T1
 
@@ -21006,7 +21044,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Role#a206
+### Role#dcb2
 
 `Society` · `Governance` · R1 · T1
 
@@ -21054,7 +21092,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### SolverTree#a9d5
+### SolverTree#03af
 
 `Society` · `Governance` · R1 · T1
 
@@ -21113,7 +21151,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### UniversalSolverTree#9740
+### UniversalSolverTree#b841
 
 `Society` · `Governance` · R1 · T1
 
@@ -21172,7 +21210,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### WorldTransparent#5779
+### WorldTransparent#dc1c
 
 `Society` · `Governance` · R2 · T1
 
@@ -21235,7 +21273,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ### Society/Protocols (76)
 
-### AdversarialProof#3327
+### AdversarialProof#4d5b
 
 `Society` · `Protocols` · R2 · T2
 
@@ -21293,6 +21331,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - 'Search space fully covered' is the invariant, but any non-trivial space resists exhaustive coverage; the pattern quietly relies on heuristics to declare coverage.
 - Sympathetic attacker is the dominant failure mode in LLM contexts and the pattern offers no structural mitigation — it requires genuinely independent adversaries, which the library can't supply on its own.
 - Over-claims certainty — 'high-confidence proof of absence' is a rhetorical upgrade; the underlying logic is still inductive and probabilistic.
+- `derived_from` fixed: previously bare handle name `NegativeProof` without sema: prefix or hash; now full sema_id.
 
 **In the family.** Sits between the verification family (NegativeProof, Witness, Probe) and the adversarial family (RedTeam, AdversarialSteel, SteelmanCheck). Uses RedTeam as its engine and NegativeProof as its output form. Contrasts with SteelmanCheck, which strengthens the opposing case to test one's own; AdversarialProof strengthens the search to test an absence claim.
 
@@ -21300,7 +21339,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### AgentDiscover#7ed0
+### AgentDiscover#5a6c
 
 `Society` · `Protocols` · R1 · T2
 
@@ -21366,7 +21405,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### AgentProtocol#d4bd
+### AgentProtocol#1350
 
 `Society` · `Protocols` · R1 · T2
 
@@ -21419,7 +21458,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### AgentSandbox#eeb7
+### AgentSandbox#1838
 
 `Society` · `Protocols` · R0 · T1
 
@@ -21485,7 +21524,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### AmbiguityResolution#a111
+### AmbiguityResolution#6cb8
 
 `Society` · `Protocols` · R1 · T2
 
@@ -21651,7 +21690,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### BoundedTask#eaf4
+### BoundedTask#2bfd
 
 `Society` · `Protocols` · R2 · T2
 
@@ -21662,8 +21701,8 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 > A specialized {{task}} enforcing {{budget}} and {{accept_spec}} to ensure economic and quality boundaries.
 
 **Invariants.**
-- Budget Enclosure
-- Quality Gate
+- Budget Enclosure: total cost across all child tasks, retries, and recursions must stay within the declared {{budget}}.
+- Quality Gate: output must pass the declared {{accept_spec}} before the task is marked complete.
 
 #### Design
 
@@ -21695,9 +21734,10 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gives up: flexibility. BoundedTask picks two specific bound types; tasks that need different bounds (time-bounded, adversarially-bounded, resource-bounded) have to use other patterns.
 
 **Critique.**
-- Very thin — the whole mechanism is 'Task plus two wrappers.' The pattern's value is mostly in the naming, which is fine, but tests or enforcement of the invariants (Budget Enclosure, Quality Gate) aren't part of the mechanism.
-- Budget enclosure and quality gate are listed as invariants without operational definition; what does it mean to 'enclose' a budget?
+- Very thin — the mechanism is a one-sentence specialization of Task. Invariants now state the specific claims (previously they were bare labels — 'Budget Enclosure' and 'Quality Gate' with no statement — which rendered as noise in the manual).
 - Pairs Budget and AcceptSpec as if they're symmetric — they're not. Budget is an input constraint; AcceptSpec is an output criterion. The bundle flattens this asymmetry.
+- No handling for budget overrun / spec failure interaction — does overrun halt the AcceptSpec check, or does the check still run on a partial result?
+- `derived_from` updated from stale Task sema_id (aa452d4a...) to current (b32808db...).
 
 **In the family.** A specialization of Task, with Budget and AcceptSpec as companions. Sits alongside other specialized tasks like Investigation (epistemic work) or MicroTask (minimum unit) in the task family. Consumed by the solver family (PolymorphicSolver, RootSolver) which expects bounded tasks by default. Compare with SelfContainedTask — same family, different specialization axis.
 
@@ -21705,7 +21745,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Canary#4133
+### Canary#c838
 
 `Society` · `Protocols` · R1 · T1
 
@@ -21771,7 +21811,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### ConfusedDeputy#b471
+### ConfusedDeputy#0cfe
 
 `Society` · `Protocols` · R2 · T1
 
@@ -21837,7 +21877,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### ContextSwitch#0199
+### ContextSwitch#3a3c
 
 `Society` · `Protocols` · R0 · T1
 
@@ -21885,7 +21925,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### CounterfactualAnchor#42f3
+### CounterfactualAnchor#c56d
 
 `Society` · `Protocols` · R1 · T2
 
@@ -21909,7 +21949,9 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Internal model weights/beliefs updated based on delta
 
 **Failure modes.**
-- Hindsight Leakage: {{agent}} unconsciously adjusts the Anchor as data comes in Vague Anchor: Prediction is too broad to be falsified (e.g., 'Something will happen') Anchor Abandonment: {{agent}} ignores the Anchor when the delta is too large (denial)
+- Hindsight Leakage: {{agent}} unconsciously adjusts the Anchor as data comes in.
+- Vague Anchor: Prediction is too broad to be falsified (e.g., 'Something will happen').
+- Anchor Abandonment: {{agent}} ignores the Anchor when the delta is too large (denial).
 
 #### Design
 
@@ -21943,13 +21985,13 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **Critique.**
 - Hindsight Leakage is the most important failure and the pattern has no structural defense — memory updates are opaque, and the anchor can be rationalized without being modified.
 - Vague Anchor failure mode is addressed by nothing in the invariants — 'anchor must be specific enough to be falsified' would help but isn't there.
-- Anchor Abandonment (ignoring large deltas as too uncomfortable) is a psychological failure the pattern names but can't prevent.
+- Anchor Abandonment (ignoring large deltas as too uncomfortable) is a psychological failure the pattern names but can't prevent. Failure modes were previously jammed into one list entry (Hindsight Leakage + Vague Anchor + Anchor Abandonment run together); now split into three distinct entries.
 
 **In the family.** Calibration primitive paired with ConfidenceCalibrate (the aggregate update loop), BayesUpdate (the probabilistic substrate), and Prediction as the input. Compare with CommitmentDevice — CounterfactualAnchor is commitment of a prediction; CommitmentDevice is commitment of an action plan. Both use immutability to resist later revision.
 
 ---
 
-### DataMinimization#11f5
+### DataMinimization#9e2c
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22013,7 +22055,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### DeliberativeAlign#a389
+### DeliberativeAlign#4a26
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22078,7 +22120,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Deploy#5251
+### Deploy#742d
 
 `Society` · `Protocols` · R1 · T1
 
@@ -22179,7 +22221,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### DissentSeek#4636
+### DissentSeek#89c2
 
 `Society` · `Protocols` · R2 · T1
 
@@ -22242,7 +22284,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### DriftWatch#415c
+### DriftWatch#5baa
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22260,14 +22302,10 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Baseline state is established
 
 **Failure modes.**
-- Witness collusion: Coordinated false drift reports.
-- Mitigated by random witness selection and meta-drift analysis on witness behavior.
-- False reports: Single malicious witness.
-- Mitigated by N-of-M threshold requirement.
-- Cold start: New agents have no baseline.
-- Mitigated by probationary period with higher friction, initial baseline borrowed from similar-role agents.
-- Baseline gaming: {{agent}} varies early to establish wide baseline.
-- Mitigated by crystallization window limits and anomaly detection during bootstrap.
+- Witness collusion: Coordinated false drift reports (mitigated by random witness selection and meta-drift analysis on witness behavior).
+- False reports: Single malicious witness (mitigated by N-of-M threshold requirement).
+- Cold start: New agents have no baseline (mitigated by probationary period with higher friction, initial baseline borrowed from similar-role agents).
+- Baseline gaming: {{agent}} varies early to establish wide baseline (mitigated by crystallization window limits and anomaly detection during bootstrap).
 
 #### Design
 
@@ -22301,13 +22339,13 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **Critique.**
 - Witness collusion is the named sophisticated attack; mitigation (random selection, meta-drift analysis on witnesses) is a best-effort defense, not a guarantee.
 - Cold start (new agents have no baseline) is a structural gap — during the establishment window, DriftWatch is silent, which is exactly when a fresh subversion attempt is easiest.
-- Threshold is 2σ by default, which means ~5% false-positive rate on normal variance — in a busy system that's a lot of alerts; the pattern doesn't address alert fatigue.
+- Threshold is 2σ by default, which means ~5% false-positive rate on normal variance — in a busy system that's a lot of alerts; the pattern doesn't address alert fatigue. Failure-mode list restructured: mitigations are now inline with their parent failures (was: alternating failure/mitigation entries at the same list level).
 
 **In the family.** Reputation-monitoring primitive paired with Reputation (the stored history), Witness (the peer-report substrate), and MetaDrift (detecting drift in the watchers themselves). Compare with Anomaly — DriftWatch is specifically behavioral baseline violation over time; Anomaly is single-point baseline deviation.
 
 ---
 
-### EbbFlowSync#b4aa
+### EbbFlowSync#2af4
 
 `Society` · `Protocols` · R2 · T1
 
@@ -22368,7 +22406,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### EjectionSeat#1b09
+### EjectionSeat#b71c
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22424,7 +22462,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### EvaluatorOptimizer#448b
+### EvaluatorOptimizer#3058
 
 `Society` · `Protocols` · R2 · T1
 
@@ -22491,7 +22529,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### ExpiringToken#4e3c
+### ExpiringToken#8bc1
 
 `Society` · `Protocols` · R2 · T1
 
@@ -22547,7 +22585,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### FabricSharding#9543
+### FabricSharding#3946
 
 `Society` · `Protocols` · R0 · T2
 
@@ -22653,7 +22691,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### GenealogicalTrace#da25
+### GenealogicalTrace#ca43
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22708,7 +22746,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### GlacialVault#f521
+### GlacialVault#0a81
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22810,7 +22848,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### GracefulDegradation#08ae
+### GracefulDegradation#3edc
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22874,7 +22912,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### Handoff#d860
+### Handoff#87ae
 
 `Society` · `Protocols` · R1 · T1
 
@@ -22940,7 +22978,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### HeldRelease#0b5c
+### HeldRelease#33cb
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22999,7 +23037,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### IntentGap#afde
+### IntentGap#b049
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23063,7 +23101,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### InternalConsistency#5ecf
+### InternalConsistency#d572
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23117,7 +23155,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### InvariantFilter#9233
+### InvariantFilter#0b7c
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23183,7 +23221,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### LatticeCommit#814c
+### LatticeCommit#1eed
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23243,7 +23281,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### MemeticSeed#f28b
+### MemeticSeed#909b
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23305,7 +23343,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### ModestClaim#8539
+### ModestClaim#481e
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23367,7 +23405,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### MonotonicCounter#cf62
+### MonotonicCounter#c7ab
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23428,7 +23466,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### Nucleate#d62b
+### Nucleate#e094
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23492,7 +23530,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### OptimisticSolver#e499
+### OptimisticSolver#2698
 
 `Society` · `Protocols` · R1 · T2
 
@@ -23550,6 +23588,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Over-Eager Execution is a named failure mode but the pattern offers no mitigation — the spec explicitly chooses velocity over guardrails. That is defensible, but callers should be made aware that the pattern is opinionated rather than neutral.
 - The AtomicBid coupling is stated as a requirement but the pattern does not say what happens if the runtime lacks AtomicBid support — degradation path is unspecified.
 - 'MANDATES that the agent plan and execute in a single turn' is a prescription on the implementer, but the pattern has no way to enforce it — a two-turn implementer could claim to be OptimisticSolver and pass surface checks.
+- `derived_from` updated from stale Solver sema_id (10655bd6...) to current (b00a16af...).
 
 **In the family.** The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery.
 
@@ -23557,7 +23596,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### Oracle#285c
+### Oracle#6b9f
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23609,7 +23648,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### OrchestrationLoop#80d9
+### OrchestrationLoop#c836
 
 `Society` · `Protocols` · R1 · T2
 
@@ -23670,7 +23709,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### OsmoticFilter#5f8f
+### OsmoticFilter#6d82
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23687,7 +23726,6 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Failure modes.**
 - Starvation of low-stake but high-importance messages (mitigated by Whitelist).
-- Starvation of low-stake but high-importance messages.
 
 #### Design
 
@@ -23721,13 +23759,13 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **Critique.**
 - Starvation is endemic; Whitelist mitigation is mentioned but external.
 - Snapback (if Queue drops) adds oscillation risk.
-- The biological metaphor is evocative; operational tuning is under-specified.
+- The biological metaphor is evocative; operational tuning is under-specified. Deduplicated failure modes (was listed twice).
 
 **In the family.** Attention primitive paired with AttentionMarkets (pricing-based), InputGuard (predicate-based), and Throttle. Compare with AttentionMarkets — OsmoticFilter is pressure; AttentionMarkets is auction.
 
 ---
 
-### PatternEmergence#dc5e
+### PatternEmergence#77c5
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23792,7 +23830,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PatternSketch#15b4
+### PatternSketch#c5d8
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23854,7 +23892,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PermissionEscalate#c1dc
+### PermissionEscalate#e2d8
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23916,7 +23954,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PhasedRefinement#d686
+### PhasedRefinement#11af
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23976,7 +24014,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PromiseGraph#c689
+### PromiseGraph#b839
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24032,7 +24070,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PromptChain#3a2a
+### PromptChain#7f67
 
 `Society` · `Protocols` · R0 · T2
 
@@ -24088,7 +24126,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PropheticQuorum#244c
+### PropheticQuorum#68fc
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24147,7 +24185,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### QuorumPulse#362d
+### QuorumPulse#0ece
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24210,7 +24248,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### RealizationProtocol#329b
+### RealizationProtocol#8c19
 
 `Society` · `Protocols` · R1 · T2
 
@@ -24273,14 +24311,13 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Artifact Rejection (named failure) at seams triggers restart; cascading rejections are a real failure.
 - Loop Stalling (named failure) — stuck in ManifestPlanning — when non-compensatory gates reject repeatedly.
 - The Abstract-to-Concrete framing is the paper's, and commits to it as the universal lifecycle.
+- `derived_from` removed: previously pointed at `CreationProtocol` which no longer exists (retired name; this is the successor).
 
 **In the family.** Lifecycle-protocol primitive paired with PolymorphicSolver (the consumer), FrameSpec/ExecutionManifest (the seam artifacts), and OrchestrationLoop (which uses it). Compare with AgentProtocol — RealizationProtocol is execution lifecycle; AgentProtocol is interop bundle.
 
-**Derived from.** `CreationProtocol`
-
 ---
 
-### ReceptivityGate#9f9c
+### ReceptivityGate#38a6
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24330,7 +24367,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### ReversibilityCheck#32ed
+### ReversibilityCheck#f055
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24438,7 +24475,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### Rollout#d8cc
+### Rollout#5475
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24505,7 +24542,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### RolloutWatch#42a2
+### RolloutWatch#20b5
 
 `Society` · `Protocols` · R1 · T2
 
@@ -24566,6 +24603,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Silent Failure is the scariest failure — metrics pass, users are unhappy; the pattern can't detect it without user-side metrics.
 - Alert Fatigue is endemic; the pattern names it without giving a reduction mechanism.
 - Lagging Indicators are inherent; the pattern can trigger after-the-fact and not prevent.
+- `derived_from` fixed: previously legacy stub `sema:Monitor` without hash; now full sema_id.
 
 **In the family.** Post-deploy monitoring paired with Monitor (the substrate), Observe (the sensing), and AcceptSpec (the Definition of Done reference). Compare with DriftWatch — RolloutWatch watches deployed solution; DriftWatch watches agent behavior.
 
@@ -24573,7 +24611,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### RootHashGossip#a591
+### RootHashGossip#2bac
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24695,7 +24733,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### SignalReflection#5237
+### SignalReflection#9f56
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24756,7 +24794,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### SolverNode#d95d
+### SolverNode#2017
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24810,7 +24848,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### SomaticMarker#53bb
+### SomaticMarker#7250
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24927,7 +24965,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### StateLock#8183
+### StateLock#5602
 
 `Society` · `Protocols` · R0 · T1
 
@@ -24983,7 +25021,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### Stigmergy#f624
+### Stigmergy#53d4
 
 `Society` · `Protocols` · R0 · T1
 
@@ -25036,7 +25074,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### StructuralCoaching#8f9e
+### StructuralCoaching#824a
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25097,7 +25135,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### SynergisticMode#ec37
+### SynergisticMode#fa9f
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25153,7 +25191,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### Taper#cb9f
+### Taper#4ce4
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25208,7 +25246,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### ThreeLevelCollision#26bb
+### ThreeLevelCollision#9e89
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25273,7 +25311,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### TieredAccess#1abb
+### TieredAccess#6722
 
 `Society` · `Protocols` · R0 · T1
 
@@ -25296,7 +25334,6 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **Failure modes.**
 - Metric Divergence: Agents disagree on distance calculation, causing payment rejection.
 - Center becomes economically inaccessible to low-resource agents.
-- Center becomes inaccessible to the poor.
 
 #### Design
 
@@ -25330,13 +25367,13 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **Critique.**
 - Metric divergence is structural.
 - Low-resource exclusion is a real concern.
-- No specified distance metric.
+- No specified distance metric default; deduplicated failure-mode list (was: the same inaccessibility point stated twice in formal and informal wording).
 
 **In the family.** Access-pricing primitive paired with ContinuousResourceAuction, AttentionMarkets, and Permission.
 
 ---
 
-### ToolDiscovery#0e1d
+### ToolDiscovery#61fb
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25404,7 +25441,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### TranslationProxy#895a
+### TranslationProxy#3422
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25468,7 +25505,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### UniqueHandle#b287
+### UniqueHandle#9b3c
 
 `Society` · `Protocols` · R0 · T1
 
@@ -25525,7 +25562,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### UptakeAsGround#032f
+### UptakeAsGround#c5cb
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25536,8 +25573,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 > Pragmatic Verification. The validity of a pattern is defined as a function of its `Coordination_Success_Rate`. If Agents A and B use Pattern P and successfully complete a {{task}}, P gains 'Semantic Mass'. If usage is zero or results in failure, P is effectively meaningless. Utilizes {{modest_claim}}.
 
 **Invariants.**
-- Validation: Successful {{task}} completion is the only proof of shared meaning.
-- Wittgenstein's Razor: Meaning is Use. No Use = No Meaning.
+- Pragmatic Validation (Wittgenstein's Razor): Successful {{task}} completion is the only proof of shared meaning — meaning is use. A pattern with zero successful coordination has no semantic mass.
 
 **Preconditions.**
 - Pattern minted
@@ -25583,13 +25619,13 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **Critique.**
 - Echo Chamber is the philosophical limit — shared delusion can look like shared meaning.
 - Empty Formalism is the opposite failure.
-- 'Meaning is use' is contested philosophy.
+- The invariant now consolidates the two prior statements (operational "Validation" + aphoristic "Wittgenstein"s Razor") into one form that carries both registers.
 
 **In the family.** Epistemic-philosophical primitive paired with ModestClaim, ConceptAnchor, and UptakeOverTimestamp.
 
 ---
 
-### UptakeOverTimestamp#6033
+### UptakeOverTimestamp#d3dd
 
 `Society` · `Protocols` · R1 · T2
 
@@ -25653,7 +25689,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### WorkerMode#f032
+### WorkerMode#7212
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25719,7 +25755,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### Workflow#5567
+### Workflow#f23d
 
 `Society` · `Protocols` · R0 · T1
 

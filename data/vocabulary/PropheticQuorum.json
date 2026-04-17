@@ -38,20 +38,20 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:PropheticQuorum#mh:SHA-256:244c403116740d11f317e52f54e0a5922ddf51b78062ae68f79e47ca2ed8fb17",
-  "sema_ref": "PropheticQuorum#244c",
-  "sema_stub": "244c",
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:68fca44e2a52b8e347ccdaaf2ded707c9f40bccb996cc63a4a0d0a92dbe8ba8f",
+  "sema_ref": "PropheticQuorum#68fc",
+  "sema_stub": "68fc",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:096eee69576638b38a5595613c41f79ae093e1036bdb70cd852edf65c42eead3",
-      "vote": "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
-      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:1b91cf6bf63e7b541719e7d1f05c35210bf26e012c80a4964f89d7f554b8f608",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "normative_judge": "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a"
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "simulation": "sema:Simulation#mh:SHA-256:398fb8a076fa02a90e2090899409644442669f6a16c3557d6e630a2872fcd707",
+      "vote": "sema:Vote#mh:SHA-256:625c38775074a5eaf09c8fc54cf58b12f54d0cbb53681aae52c781e51c04fab4",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:19007a150e1bd0c5f36ccc33b3afe710b09006a8379b182cbf2a9d1875c8665f"
     }
   }
 }

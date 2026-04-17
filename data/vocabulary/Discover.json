@@ -15,10 +15,10 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "search": "sema:Search#mh:SHA-256:82c8512d7ffa16d03cffacbc84a2f27a2f68965b21d495f489325ea87dc84db7",
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
       "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "search": "sema:Search#mh:SHA-256:d6083dea6898b63d14ccb2542fcfa05561a1f6326000c8d9c190599afd99b123",
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }
 }

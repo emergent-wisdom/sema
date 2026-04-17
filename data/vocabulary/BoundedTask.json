@@ -3,13 +3,10 @@
   "mechanism": "A specialized {{task}} enforcing {{budget}} and {{accept_spec}} to ensure economic and quality boundaries.",
   "gloss": "Economically constrained task",
   "invariants": [
-    "Budget Enclosure",
-    "Quality Gate"
+    "Budget Enclosure: total cost across all child tasks, retries, and recursions must stay within the declared {{budget}}.",
+    "Quality Gate: output must pass the declared {{accept_spec}} before the task is marked complete."
   ],
-  "derived_from": "sema:Task#mh:SHA-256:aa452d4a85efe37eed426f6529f3f2e1ee359999ff5ce3dd822f986f1513b4e7",
-  "sema_id": "sema:BoundedTask#mh:SHA-256:eaf46e7b90ef373dab8fdb21e103f742962e5d0e56edc41b14a0afc56274d659",
-  "sema_ref": "BoundedTask#eaf4",
-  "sema_stub": "eaf4",
+  "derived_from": "sema:Task#mh:SHA-256:b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -18,11 +15,14 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:2bfd3c657cb1fb1757f78526a14980b0b98b37d77d27723c30379fb057a85458",
+  "sema_ref": "BoundedTask#2bfd",
+  "sema_stub": "2bfd",
   "dependencies": {
     "references": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
+      "budget": "sema:Budget#mh:SHA-256:09342288ae2b22b04b2e8eed72b5871e0cd1ad096cc795a5cbfbe7923f038431"
     }
   }
 }

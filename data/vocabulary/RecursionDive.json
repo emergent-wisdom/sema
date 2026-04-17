@@ -8,21 +8,21 @@
     "category": "Reasoning",
     "ring": 2,
     "related": [
-      "SolutionNode#2b4a"
+      "sema:SolverNode#mh:SHA-256:d95df25d55378a330e546ae0929a37764c7a3e78f985256faf60d4739af18807"
     ]
   },
-  "sema_id": "sema:RecursionDive#mh:SHA-256:9a6e79325415de3544a26d6c92de84b6594a5eb735cda525cd7acf210315b289",
-  "sema_ref": "RecursionDive#9a6e",
-  "sema_stub": "9a6e",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:RecursionDive#mh:SHA-256:c9eb4a8c8eb3f7b266fa063748b82777b480986a7619a45df41bdad69d1aa3e5",
+  "sema_ref": "RecursionDive#c9eb",
+  "sema_stub": "c9eb",
   "dependencies": {
-    "composes_with": {
-      "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4"
-    },
     "references": {
-      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81"
+      "solver_node": "sema:SolverNode#mh:SHA-256:86bb3f560e1394d3f684b4811a6c42ede31eac8ba9738355f8c0c33097150cdb",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:65f2ab7b6cbd34eccfa1de9908566b186c5ab6937b547752a43ea5833d22898a"
+    },
+    "composes_with": {
+      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7"
     }
   }
 }

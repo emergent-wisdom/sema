@@ -38,16 +38,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:08aed00dcdbfe9a9621b93f82f790906bd196d0f6ceff78d8131b9d6bc18b35b",
-  "sema_ref": "GracefulDegradation#08ae",
-  "sema_stub": "08ae",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:3edced0496e5fdb43f3aaaa4c2e32c3e2a3ccdd39723c842d6e774303b87b708",
+  "sema_ref": "GracefulDegradation#3edc",
+  "sema_stub": "3edc",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1"
+      "fail_closed": "sema:FailClosed#mh:SHA-256:59d855305c8f8ac7493b0e6e5c078d9cf7a7a9d2e181b8fefd88f7151f4fb9b8",
+      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031",
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
     }
   }
 }

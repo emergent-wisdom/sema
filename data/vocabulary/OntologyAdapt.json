@@ -21,19 +21,19 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:abc8945691180a6a49693e78f3d46a704099ea02442334d2f2ac5faca56b6e11",
-  "sema_ref": "OntologyAdapt#abc8",
-  "sema_stub": "abc8",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:e42969c642c58242d050f5dc150fbfbae49fb4cffe192515cd20ce648f7b8ac8",
+  "sema_ref": "OntologyAdapt#e429",
+  "sema_stub": "e429",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
+      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
       "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "anomaly": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893",
-      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
+      "anomaly": "sema:Anomaly#mh:SHA-256:fac884f940feb1f3cac089ab3165cb71f514f5d6e54e43506ed6e52942ed7730",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e"
     }
   }
 }

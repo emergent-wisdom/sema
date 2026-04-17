@@ -34,19 +34,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_ref": "TensionHold#c55a",
-  "sema_id": "sema:TensionHold#mh:SHA-256:c55a55130eedae854efe3fd8c37b4039e6459b21de6a7f66c923f880e5c28343",
-  "sema_stub": "c55a",
+  "sema_ref": "TensionHold#ec3b",
+  "sema_id": "sema:TensionHold#mh:SHA-256:ec3b5dcf8b3d366184d42b04654f2a33f28645582259d335c4f39b8da10ed220",
+  "sema_stub": "ec3b",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "dialectic": "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242",
-      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "dialectic": "sema:Dialectic#mh:SHA-256:2e3c31e1dea1334d4419087fc1ec14fbc9fab8692af785f5ecb5f204c439dc03",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
     },
     "yields": {
-      "tension": "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5"
+      "tension": "sema:Tension#mh:SHA-256:92e31e8f2daa129400d7270a856f016095f9c5879a7a21d93cfe8322b3277d01"
     }
   }
 }

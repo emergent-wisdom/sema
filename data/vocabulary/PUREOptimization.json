@@ -23,29 +23,29 @@
       "LateralOptimization"
     ]
   },
-  "sema_ref": "PUREOptimization#3016",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:3016264ff839a632f4ed87e9289e2969bdbec5d0ba869c2a60b21d8527941984",
-  "sema_stub": "3016",
+  "sema_ref": "PUREOptimization#e44f",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:e44f694e0f5b2e503822747bafcda8eebaf770594a07991961c235b24ac34701",
+  "sema_stub": "e44f",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "composes_with": {
-      "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
-      "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
-      "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
-    },
     "references": {
-      "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
-      "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
-      "pure_check": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
-      "pareto_front": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
-      "expansive": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
-      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
-      "p_u_r_e": "sema:PURE#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+      "pure_check": "sema:PURECheck#mh:SHA-256:21dc65c05c76d2496a4627961aa447b2f2af33302f3ac7b5e31a3daf59c04ad2",
+      "parsimony": "sema:Parsimony#mh:SHA-256:6d67429f03b5de8222068f834b6214aa5f5e660ea203e8a2123368e25c4fa108",
+      "realizable": "sema:Realizable#mh:SHA-256:613eaaf6e2e01185adf55ad296d3ad34c8d00d18fb8a29dccd88904f1fc2d798",
+      "expansive": "sema:Expansive#mh:SHA-256:bfaa526704a9c66a9cfe0453f2c1a911cc54e7620bf71c70d3aed0bbb17f053f",
+      "novelty": "sema:Novelty#mh:SHA-256:53a0735aae257b366e75eb95455674504363a24332c4e21327007fd359e2dc11",
+      "p_u_r_e": "sema:PURE#mh:SHA-256:9f3f6c4e6d7d631238b154db544ca97441debc2263883dca86afc20eebbeae30",
+      "pareto_front": "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be"
+    },
+    "composes_with": {
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
+      "optimize": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
+      "decompose": "sema:Decompose#mh:SHA-256:5471aed0463cb78290a3f65e42b1eb80aad555734355477500cd91a392b60cc7",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:bbe4e13d44f051dd0cecd2ce4ea9a1dc2f9f16d13817a1fe13704e4cef3fcef7"
     },
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

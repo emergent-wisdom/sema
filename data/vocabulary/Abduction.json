@@ -32,18 +32,18 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:Abduction#mh:SHA-256:f9eae03bb7d903b8ad05840b6ad212f448052a4d1f796db8bfecf99c1f732445",
+  "sema_ref": "Abduction#f9ea",
+  "sema_stub": "f9ea",
   "dependencies": {
     "references": {
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
-      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
       "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
-      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54"
+      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
+      "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
     },
     "composes_with": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:380a1995038f9976d8feb4d1f6d9dd8efafdaed3e75ac4fe0963b63c2f9dd98b"
     }
-  },
-  "sema_id": "sema:Abduction#mh:SHA-256:d749bfbf4122c459fdc958fa4b2a685024c0496aa527d6403ef3b322061b818a",
-  "sema_ref": "Abduction#d749",
-  "sema_stub": "d749"
+  }
 }

@@ -22,9 +22,9 @@
     "ring": 0,
     "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment."
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:52ef94dd84a2a8946bd9d1fe026e429159db4dc02bb00ce309c3b6c22b390261",
-  "sema_ref": "CommitmentDevice#52ef",
-  "sema_stub": "52ef",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:3aeb7bb718ebf906d99e71ddf4008b773fed718ac07d14443961abec0ad06602",
+  "sema_ref": "CommitmentDevice#3aeb",
+  "sema_stub": "3aeb",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "data_schema": {
@@ -50,8 +50,8 @@
   },
   "dependencies": {
     "references": {
-      "oath_bind": "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "oath_bind": "sema:OathBind#mh:SHA-256:af30b46c08a384e82ae9080eec339d644c59f02530469ad43c30b441a5c54645",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81"
     }
   }
 }

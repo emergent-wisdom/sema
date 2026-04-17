@@ -6,11 +6,9 @@
     "Clinging to low-probability priors."
   ],
   "invariants": [
-    "Ascension Rule: Cannot move to {{hypothesis}}(N+1) until {{hypothesis}}(N) is validated",
-    "Evidence required to advance.",
-    "Exclusivity: Hypotheses at same rung should be mutually exclusive",
-    "Falsifiability: Each rung must have a testable disprove condition",
-    "Falsifiability: Every rung must have a disproof condition"
+    "Ascension Rule: Cannot move to {{hypothesis}}(N+1) until {{hypothesis}}(N) is validated by evidence.",
+    "Exclusivity: Hypotheses at the same rung must be mutually exclusive (required for Bayesian probability assignment).",
+    "Falsifiability: Each rung must have a testable disprove condition."
   ],
   "preconditions": [
     "Data is valid"
@@ -24,19 +22,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:1e4cd70cfbf442861d0a8d486cc67a7d916354b29b20925cbee2606418c84701",
-  "sema_ref": "HypothesisLadder#1e4c",
-  "sema_stub": "1e4c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:71cca12525a69cf20fc8258dd019369788c2077988629e0b2b39e7539b20eb02",
+  "sema_ref": "HypothesisLadder#71cc",
+  "sema_stub": "71cc",
   "dependencies": {
     "references": {
-      "abduction": "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487"
+      "abduction": "sema:Abduction#mh:SHA-256:f9eae03bb7d903b8ad05840b6ad212f448052a4d1f796db8bfecf99c1f732445",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:ee85444cb2388d0b73a897f719d6eb36dcea5c3bac76e1cf863132d57a6b4494"
     },
     "composes_with": {
-      "experiment": "sema:Experiment#mh:SHA-256:40e5e923ead8721b039cd6afa4e49c864a5022483e1c3ff58a12d57fe9a87499"
+      "experiment": "sema:Experiment#mh:SHA-256:a816fe78b29e05515da63e5ae977e266fbfc265defd2ceb555c6ed0a4e45aafe"
     }
   }
 }

@@ -8,15 +8,15 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Roadmap#mh:SHA-256:b0bb65c3e69fe7c90fbff48799ad1884408950b820e2fa977a5b233dad971a81",
-  "sema_ref": "Roadmap#b0bb",
-  "sema_stub": "b0bb",
+  "sema_id": "sema:Roadmap#mh:SHA-256:b236b2faa4925583008ee6d464c09e9425ce1faf600763be945591c849f7c94d",
+  "sema_ref": "Roadmap#b236",
+  "sema_stub": "b236",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "goal": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "goal": "sema:Goal#mh:SHA-256:5f2705b0bb55d1543c9e2cea970a4add42f227ee67b57ffaa3e11233a98f0127",
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b"
     }
   }
 }

@@ -32,15 +32,15 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:Retry#mh:SHA-256:cb3a4a6bfdea3e5b580c343e8f9eccd8c39eee535edf1823b6a31e3bcb358ccc",
+  "sema_ref": "Retry#cb3a",
+  "sema_stub": "cb3a",
   "dependencies": {
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
-      "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
-      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
+      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
+      "compensate": "sema:Compensate#mh:SHA-256:985ef5c13b644c687417409aef081d29994ef64a7a5cf8961e8fbd4e115a7b29",
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912",
+      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd"
     }
-  },
-  "sema_id": "sema:Retry#mh:SHA-256:743b42c45dc4d9e2766129f25583c58d70dc91f905bb4af4e5bd731538fdd3a5",
-  "sema_ref": "Retry#743b",
-  "sema_stub": "743b"
+  }
 }

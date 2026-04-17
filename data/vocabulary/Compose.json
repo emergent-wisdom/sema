@@ -10,10 +10,14 @@
     "Acyclicity: Composition graph must be a DAG."
   ],
   "preconditions": [
-    "Subproblem solutions available. Interface contracts defined. Composition order known if order-dependent."
+    "Subproblem solutions available.",
+    "Interface contracts defined.",
+    "Composition order known if order-dependent."
   ],
   "postconditions": [
-    "Combined solution satisfies original problem. No interface violations. Emergent interactions handled."
+    "Combined solution satisfies original problem.",
+    "No interface violations.",
+    "Emergent interactions handled."
   ],
   "_meta": {
     "tier": 2,
@@ -21,19 +25,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Compose#mh:SHA-256:d2e68f95da869df6639b0c02dbcbecbf38820382198f84c3db04a16e758f6536",
-  "sema_ref": "Compose#d2e6",
-  "sema_stub": "d2e6",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
     "Combine(PromptChain)"
   ],
+  "sema_id": "sema:Compose#mh:SHA-256:389f4d23861b1382b3d046c9193fcae322a33407ee7130564a9e971192de2bf4",
+  "sema_ref": "Compose#389f",
+  "sema_stub": "389f",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008",
-      "combine": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6"
+      "check": "sema:Check#mh:SHA-256:410e2942d6d61487cc7e0ee04291a96ba2e37771f24928577f63b21f376de4a9",
+      "combine": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:7f67f2925e5b99a4a3752cbf9bd736f5ebd2562f7ca6986b94cbe91d9ae73707"
     }
   }
 }

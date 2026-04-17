@@ -22,14 +22,14 @@
     "category": "Reasoning",
     "ring": 1
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:f84205b9b0a2c8ee4b58cc40d099635396447f86b764005c4fed99fa538d5c3b",
-  "sema_ref": "CiteBack#f842",
-  "sema_stub": "f842",
+  "sema_id": "sema:CiteBack#mh:SHA-256:0a0874ee3139b8e10f66c607f4d6e00f56dda53491b92d3225eb74a70e2fc1c9",
+  "sema_ref": "CiteBack#0a08",
+  "sema_stub": "0a08",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241"
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:f401dbfd92b4775ec02091329df7626ef81a2edbd9264fcbde9b148e79a14b8b"
     }
   }
 }

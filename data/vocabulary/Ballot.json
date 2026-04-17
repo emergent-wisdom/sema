@@ -52,15 +52,15 @@
       }
     }
   },
-  "sema_ref": "Ballot#2a0a",
-  "sema_id": "sema:Ballot#mh:SHA-256:2a0a8f2f1e8ca0098edca2107bb8cf2ea129dc09f44162faa284a5d18a021db1",
-  "sema_stub": "2a0a",
+  "sema_ref": "Ballot#1934",
+  "sema_id": "sema:Ballot#mh:SHA-256:1934bd52e662c4df304637cc1c05f78635643dcacf49b4b0fe37e84900446be9",
+  "sema_stub": "1934",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235"
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:c7ab5a704cf6435c4e976029c884f170c39d2dfdfa3d22d8b819cf63cbdc9f0c"
     }
   }
 }

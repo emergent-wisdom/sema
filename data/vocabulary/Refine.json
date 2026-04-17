@@ -11,20 +11,20 @@
       "PhasedRefinement"
     ]
   },
-  "sema_id": "sema:Refine#mh:SHA-256:aa34fbf94760e25dfce8df3e307a1556d1215e7005bd7cf1a9e94ad87864671c",
-  "sema_ref": "Refine#aa34",
-  "sema_stub": "aa34",
+  "sema_id": "sema:Refine#mh:SHA-256:78b79a62b1ecf8a4a00537a19db4a71e06039fb5bd2792a497b9ccf16fbe8cee",
+  "sema_ref": "Refine#78b7",
+  "sema_stub": "78b7",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "composes_with": {
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd"
-    },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
-      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9"
+      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
+      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+    },
+    "composes_with": {
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     }
   }
 }

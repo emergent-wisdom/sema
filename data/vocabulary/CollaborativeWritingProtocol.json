@@ -15,13 +15,13 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:5c5131b0199f3ab495d531cfd246fb8218d1b677a22d1e28d59193704e23ebfa",
+  "sema_ref": "CollaborativeWritingProtocol#5c51",
+  "sema_stub": "5c51",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:739bb7c08037f084b04c81466f61fa86545b406b93f3e944c3c3f3f73c58b835",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:86602ffacd78c14b36209d317ab0684fefd181cf0963a0c4f1abb6e3e83591c0"
     }
-  },
-  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:740064bbb95858877a95b36d63cfcfb8d2871ffa7cd65ef1b45536c101bde310",
-  "sema_ref": "CollaborativeWritingProtocol#7400",
-  "sema_stub": "7400"
+  }
 }

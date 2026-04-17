@@ -21,22 +21,22 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "PhasedRefinement#d686",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:d6860da7cb01e0ffca24d4d482af3e28913c3a22900c56bd33a7bdc255a41055",
-  "sema_stub": "d686",
+  "sema_ref": "PhasedRefinement#11af",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:11afaa3e3784b6007ea101affd09ceb75c3f46882bedad0567766fb0900c085a",
+  "sema_stub": "11af",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4",
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
-      "reason": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846"
+      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:824a3098be26a7e5c1e62cc6f37052416d2f03d0d3bd1d395288ef12b8c27270",
+      "reason": "sema:Reason#mh:SHA-256:306711325c6e3366efe3e3ea371f89379311d36fbd1f64430ede33739601bca8",
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:c912f414b11624e629406b19c5b4472e40678839f6a613f7d9e1c26c6ca655ed",
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
     },
     "composes_with": {
-      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
       "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
-      "refine": "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d"
+      "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
+      "refine": "sema:Refine#mh:SHA-256:78b79a62b1ecf8a4a00537a19db4a71e06039fb5bd2792a497b9ccf16fbe8cee"
     }
   }
 }

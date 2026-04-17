@@ -25,9 +25,8 @@
     "Link rot (if anchors disappear)."
   ],
   "invariants": [
-    "Immutability: The definition pointed to by the Anchor Hash cannot change",
-    "Immutable Reference",
-    "Resolution: The Anchor must resolve to a valid schema or content"
+    "Immutability: The definition pointed to by the Anchor Hash cannot change.",
+    "Resolution: The Anchor must resolve to a valid schema or content."
   ],
   "_meta": {
     "tier": 1,
@@ -35,9 +34,9 @@
     "category": "Data Structures",
     "ring": 2
   },
-  "sema_id": "sema:ConceptAnchor#mh:SHA-256:91873000b379e08c41bc3fe3fea23f1f0870600871f89cca46ecbc87cc1d69d0",
-  "sema_ref": "ConceptAnchor#9187",
-  "sema_stub": "9187",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "sema_id": "sema:ConceptAnchor#mh:SHA-256:828bd82b36e985b1cd6b115ad27c44c7f5b34d463fa8bbebb101968f9226a46f",
+  "sema_ref": "ConceptAnchor#828b",
+  "sema_stub": "828b"
 }

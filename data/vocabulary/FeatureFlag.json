@@ -13,13 +13,13 @@
   "sema_stub": "6c5c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
+  "failure_modes": [
+    "Flag outlives its purpose, accumulating unused conditional branches.",
+    "Flag state inconsistent across distributed evaluators."
+  ],
   "dependencies": {
     "references": {
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
     }
-  },
-  "failure_modes": [
-    "Flag outlives its purpose, accumulating unused conditional branches.",
-    "Flag state inconsistent across distributed evaluators."
-  ]
+  }
 }

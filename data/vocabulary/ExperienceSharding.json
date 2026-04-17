@@ -3,7 +3,7 @@
   "mechanism": "Applies the {{shard}} primitive to agent memory. When context fills, the agent splits into two specialized agents (active vs archival) rather than forgetting. It segments history into discrete blocks via {{chunk_merge}} before distributing them across the agent cluster.",
   "gloss": "Agent bifurcation on context saturation: active vs archival specialists",
   "failure_modes": [
-    "coordination overhead between the shards increases."
+    "Coordination Overhead: Overhead between shards increases as shard count grows."
   ],
   "invariants": [
     "Recombination reconstructs global pattern",
@@ -45,15 +45,15 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:66cd068a2a827789bf6629ee4a82fb53e26bcb8e45e7e9ab73eb8628d4368d16",
-  "sema_ref": "ExperienceSharding#66cd",
-  "sema_stub": "66cd",
   "sema_layer": "Mind",
   "sema_category": "Memory",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:415806a13e3ba84483094912eb1d966e28595f56938bb00f7b3489f5ec58ebe3",
+  "sema_ref": "ExperienceSharding#4158",
+  "sema_stub": "4158",
   "dependencies": {
     "references": {
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351",
-      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b"
+      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:ac727e19b98b3c1043c437da0131bf23f38a7b34e994dfc3c138103f5286bac4"
     }
   }
 }

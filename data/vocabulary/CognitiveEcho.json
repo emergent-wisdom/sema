@@ -28,16 +28,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:67817651c67ca7eed3171ed6c64bcccd7582792f1017cf472142d3c3cd50c0f9",
-  "sema_ref": "CognitiveEcho#6781",
-  "sema_stub": "6781",
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:ffb5d06faa726230d8522156450b15fb7640cdedaeb0698b7df2bf6898aba43c",
+  "sema_ref": "CognitiveEcho#ffb5",
+  "sema_stub": "ffb5",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "simulation": "sema:Simulation#mh:SHA-256:398fb8a076fa02a90e2090899409644442669f6a16c3557d6e630a2872fcd707"
     }
   }
 }

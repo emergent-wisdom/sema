@@ -48,16 +48,16 @@
       "SynergisticMode"
     ]
   },
-  "sema_id": "sema:Mode#mh:SHA-256:d123b8c54209370957ce022c9a2ab7e2bfeebe977e850ff0de98bf27a720d7a6",
-  "sema_ref": "Mode#d123",
-  "sema_stub": "d123",
+  "sema_id": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e",
+  "sema_ref": "Mode#3df1",
+  "sema_stub": "3df1",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

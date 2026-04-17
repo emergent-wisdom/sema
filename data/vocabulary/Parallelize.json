@@ -26,26 +26,26 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:Parallelize#mh:SHA-256:c915923219e5827fa901206886628b928a9d4e17e057597bf800736f038bab6a",
-  "sema_ref": "Parallelize#c915",
-  "sema_stub": "c915",
+  "sema_id": "sema:Parallelize#mh:SHA-256:b9430cfb73cdaeef11b79f3619c8dcdf4c1f418e6986d1fb1e249b92dd1efae8",
+  "sema_ref": "Parallelize#b943",
+  "sema_stub": "b943",
   "signature": [
     "Parallel(Task)",
     "Aggregate(Result)"
   ],
   "dependencies": {
-    "references": {
-      "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
-      "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
-      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9"
-    },
     "composes_with": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
+      "aggregate": "sema:Aggregate#mh:SHA-256:8c2ae987064dabf80b6ff9a6a2bcca7ae223ae9b6b2f6f3642fa754b004f45b5"
+    },
+    "references": {
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2",
+      "parallel": "sema:Parallel#mh:SHA-256:318115c507a765d08bb292f74162bb6427f0756b031b2f516b089f6dbf61a753",
+      "mode": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e",
+      "strategy": "sema:Strategy#mh:SHA-256:a0af3319c722d77ab549566285da23d1eed95a4f26a3c32859ca3877bd3c1031"
     },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
   }
 }

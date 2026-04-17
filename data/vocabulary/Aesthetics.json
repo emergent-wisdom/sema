@@ -8,18 +8,11 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:0332ca11d957e10515fab89ffd9261b37dcb037e24e00f3cd54b3ca0d23ec74c",
-  "sema_ref": "Aesthetics#0332",
-  "sema_stub": "0332",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:c912f414b11624e629406b19c5b4472e40678839f6a613f7d9e1c26c6ca655ed",
+  "sema_ref": "Aesthetics#c912",
+  "sema_stub": "c912",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "dependencies": {
-    "references": {
-      "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
-      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
-    }
-  },
   "data_schema": {
     "type": "object",
     "description": "An aesthetic assessment \u2014 a metric-shaped artifact capturing perceived beauty/quality on a defined scale.",
@@ -43,6 +36,13 @@
           }
         }
       }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
+      "parsimony": "sema:Parsimony#mh:SHA-256:6d67429f03b5de8222068f834b6214aa5f5e660ea203e8a2123368e25c4fa108",
+      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
     }
   }
 }

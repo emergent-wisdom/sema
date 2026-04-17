@@ -22,18 +22,18 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Defer#mh:SHA-256:bb32d1171b0deca2d73d0423e68ed4d4776af0d92a8e193e203d9beb6ac74718",
-  "sema_ref": "Defer#bb32",
-  "sema_stub": "bb32",
+  "sema_id": "sema:Defer#mh:SHA-256:f84a61c97eab81487f9ebcae23dd3f651bfd1250d9640396289c64ee75209236",
+  "sema_ref": "Defer#f84a",
+  "sema_stub": "f84a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "prioritize": "sema:Prioritize#mh:SHA-256:420e04f6d680d32a9561c274f134dcc4f46a8417ba4398c10b23b0bd955f2def",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }
   }
 }

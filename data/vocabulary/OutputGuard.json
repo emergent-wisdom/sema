@@ -46,16 +46,16 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
-  "sema_id": "sema:OutputGuard#mh:SHA-256:92de1a939ef00ebf70fe346baddf656321fa87bff4d1110db3bde5c5374d7e13",
-  "sema_ref": "OutputGuard#92de",
-  "sema_stub": "92de",
+  "sema_id": "sema:OutputGuard#mh:SHA-256:ded58139b1e4bd9ba62a4885d6f03afa9c1cf4aaabd9a36c37325538869cdadd",
+  "sema_ref": "OutputGuard#ded5",
+  "sema_stub": "ded5",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     },
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

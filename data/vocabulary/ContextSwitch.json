@@ -10,16 +10,16 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:3a3c77415835f1560105a1b2d9dc0ddf0a6c08add99612b95ef03da04773aa15",
+  "sema_ref": "ContextSwitch#3a3c",
+  "sema_stub": "3a3c",
   "dependencies": {
-    "references": {
-      "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
-    },
     "accepts": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "mode": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e"
     }
-  },
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:0199c08af740270db3bd3f1e324e3cc228d9e43edb8d7a069d9ef8db0cd81c3f",
-  "sema_ref": "ContextSwitch#0199",
-  "sema_stub": "0199"
+  }
 }

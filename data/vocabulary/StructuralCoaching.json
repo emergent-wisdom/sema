@@ -21,17 +21,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:StructuralCoaching#mh:SHA-256:8f9e2e0fe2a68cdc7e107ff14c253b00eb9168dcfa01e9168696881b2d71f018",
-  "sema_ref": "StructuralCoaching#8f9e",
-  "sema_stub": "8f9e",
+  "sema_id": "sema:StructuralCoaching#mh:SHA-256:824a3098be26a7e5c1e62cc6f37052416d2f03d0d3bd1d395288ef12b8c27270",
+  "sema_ref": "StructuralCoaching#824a",
+  "sema_stub": "824a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "feedback": "sema:Feedback#mh:SHA-256:dc367877c9161b9d4ba77075cfe19157680bb190f8834f81c925a4a035d2fe43",
       "creative": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
-      "feedback": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15",
-      "invert": "sema:Invert#mh:SHA-256:d1b9169d5b598e4f7f3d4d58bc2feea0f45c7830b32445fa6ab2666db271fa42",
-      "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8"
+      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
+      "invert": "sema:Invert#mh:SHA-256:d39f3691c8c9dc55e50c11b808b5e9480a8522f291341acb499b979fa31a07ba"
     }
   }
 }

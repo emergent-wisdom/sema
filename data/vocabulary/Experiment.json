@@ -8,21 +8,21 @@
     "category": "Strategy",
     "ring": 2,
     "related": [
-      "HypothesisLadder#f88b"
+      "sema:HypothesisLadder#mh:SHA-256:1e4cd70cfbf442861d0a8d486cc67a7d916354b29b20925cbee2606418c84701"
     ]
   },
-  "sema_ref": "Experiment#26bc",
-  "sema_id": "sema:Experiment#mh:SHA-256:26bc062c1dfa8013de457ebf26e7a575fd842be1401fc652b957e843382cadc7",
-  "sema_stub": "26bc",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
+  "sema_id": "sema:Experiment#mh:SHA-256:a816fe78b29e05515da63e5ae977e266fbfc265defd2ceb555c6ed0a4e45aafe",
+  "sema_ref": "Experiment#a816",
+  "sema_stub": "a816",
   "dependencies": {
     "references": {
-      "verification": "sema:Verification#mh:SHA-256:9c1ee918c6b8b8d7b787f5ef7ae908aa2ca37b1f9b5dace80fcf261a9c961001",
+      "verification": "sema:Verification#mh:SHA-256:9f0ca43164b59291b52fa0dedcdbe22ec1394bc91792dffe1d648a53016cd44d",
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

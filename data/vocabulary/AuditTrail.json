@@ -32,20 +32,20 @@
       "SpotAudit"
     ]
   },
-  "sema_ref": "AuditTrail#90ba",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:90bab33109d50ebadad8f883bd37240e908c43913b870db7fbd0e56d460519fe",
-  "sema_stub": "90ba",
+  "sema_ref": "AuditTrail#3c71",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:3c71c3459eb16bd99cc1d004f08b70d1b8ba5bcc606c1e3430b1ca8e7136969f",
+  "sema_stub": "3c71",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
     "references": {
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:c7ab5a704cf6435c4e976029c884f170c39d2dfdfa3d22d8b819cf63cbdc9f0c",
+      "sign": "sema:Sign#mh:SHA-256:d60d27217d8d1f219460f69a9971b9f73c1e279c5fddbb7db51a87c8015e34e8",
+      "ledger": "sema:Ledger#mh:SHA-256:6fc40493b9af3dd60fe8b329339359a411fb14c117e71e6dbbef78543a48f59c",
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "ledger": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
-      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba",
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235"
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae"
     },
     "composes_with": {
       "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"

@@ -32,19 +32,19 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:b2b77a7b2a4ac4576048e70c11c86c2db101885fbaab7f62d799a37fe74ac0f6",
-  "sema_ref": "Optimize#b2b7",
-  "sema_stub": "b2b7",
+  "sema_id": "sema:Optimize#mh:SHA-256:b98b1c33709a1fdc9ba8ab845c951614766081a0a83821acf0f102eb55f85327",
+  "sema_ref": "Optimize#b98b",
+  "sema_stub": "b98b",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
-    },
     "references": {
-      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
       "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
-      "gradient": "sema:Gradient#mh:SHA-256:84a514eeeb98582c29b1d6f7d8ecbb8e698815987c0e7f372ba52a81bb8665a3"
+      "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
+      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
+    },
+    "accepts": {
+      "solution": "sema:Solution#mh:SHA-256:445c7e7ec6df43cc59d06ea718632979b7fb9045f4157a6ef74dfc611e4ff51d"
     }
   }
 }

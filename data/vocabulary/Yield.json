@@ -17,17 +17,17 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:Yield#mh:SHA-256:56ab0a00d8f26c328d9d5410ffbd578c8694905f001b43b2ce80a49b247d78f3",
-  "sema_ref": "Yield#56ab",
-  "sema_stub": "56ab",
+  "sema_id": "sema:Yield#mh:SHA-256:0de85f1f0d25974e6aa1b306009a0abfd06fa875b467a8c1ba02936af3aa9a26",
+  "sema_ref": "Yield#0de8",
+  "sema_stub": "0de8",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
+      "defer": "sema:Defer#mh:SHA-256:25009267741451774e6343fa3d6fa335f8cb19758f87ded652f42653c9b6a45d",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "overlap": "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
-      "defer": "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3"
+      "overlap": "sema:Overlap#mh:SHA-256:b462648204bcf1076f89ccda750a6ed2427ab85c74602d24fcbf30aadf5c6e36"
     }
   }
 }

@@ -3,8 +3,7 @@
   "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates per the {{accepted_solvents}} criteria. It uses {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
   "gloss": "Spam prevention via pressure thresholds",
   "failure_modes": [
-    "Starvation of low-stake but high-importance messages (mitigated by Whitelist).",
-    "Starvation of low-stake but high-importance messages."
+    "Starvation of low-stake but high-importance messages (mitigated by Whitelist)."
   ],
   "invariants": [
     "Normalized Pressure: Sum(Weighted_Solvents) > Membrane.tension",
@@ -31,18 +30,18 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:5f8fdb2edf74e459ce3de93b0ee5cbcca345558b4d30b48126615d70e256f008",
-  "sema_ref": "OsmoticFilter#5f8f",
-  "sema_stub": "5f8f",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:6d82bdbb7cbf0733c756ae35875db76ea3d6c8d11e3006cb6709c161fdd66e69",
+  "sema_ref": "OsmoticFilter#6d82",
+  "sema_stub": "6d82",
   "dependencies": {
     "references": {
-      "hysteresis": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
-      "canary": "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2"
+      "canary": "sema:Canary#mh:SHA-256:86d6889719d684744ebf19311b800f3b92aa7389a98d3950f342a3e8d7bf2ff3",
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:addbf14e04e773a9a6b2313b0b300392bb2c33d79aace9d3b9d9a2ea600c42cb"
     },
     "accepts": {
       "accepted_solvents": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
     }
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  }
 }

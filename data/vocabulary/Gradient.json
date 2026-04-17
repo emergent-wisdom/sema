@@ -15,12 +15,12 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
+  "sema_id": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
+  "sema_ref": "Gradient#480b",
+  "sema_stub": "480b",
   "dependencies": {
     "references": {
       "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212"
     }
-  },
-  "sema_id": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
-  "sema_ref": "Gradient#480b",
-  "sema_stub": "480b"
+  }
 }

@@ -29,19 +29,19 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Reflexion#mh:SHA-256:496de3720a16ef38f63656223011269ea81b601d356d5d0d69384a3c9c04cb94",
-  "sema_ref": "Reflexion#496d",
-  "sema_stub": "496d",
+  "sema_id": "sema:Reflexion#mh:SHA-256:1a1f08f7a214a822771c56d94fbff81a19f93a587f1bd24e339cb47fd6190fbc",
+  "sema_ref": "Reflexion#1a1f",
+  "sema_stub": "1a1f",
   "dependencies": {
     "references": {
-      "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
-      "goal": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
-      "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",
-      "scratchpad": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e"
+      "plan": "sema:Plan#mh:SHA-256:31a7c18c6584ec1f0966abe53dfcfc0e6c759573a8ba1d768ddb9a45dc2ae23b",
+      "goal": "sema:Goal#mh:SHA-256:5f2705b0bb55d1543c9e2cea970a4add42f227ee67b57ffaa3e11233a98f0127",
+      "scratchpad": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e",
+      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
+      "outcome": "sema:Outcome#mh:SHA-256:9bf0d5ecb1486ba1f14eac8c1bb50be650d6fcb725c8cb0a3087b137e1428e6b"
     },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
   }
 }

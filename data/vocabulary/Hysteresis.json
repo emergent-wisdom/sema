@@ -28,15 +28,15 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Hysteresis#mh:SHA-256:e21ca376c9f43aedf1fb1580946969bf12979e5c70312895a2c5b7a4cb634aed",
-  "sema_ref": "Hysteresis#e21c",
-  "sema_stub": "e21c",
+  "sema_id": "sema:Hysteresis#mh:SHA-256:addbf14e04e773a9a6b2313b0b300392bb2c33d79aace9d3b9d9a2ea600c42cb",
+  "sema_ref": "Hysteresis#addb",
+  "sema_stub": "addb",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
+      "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

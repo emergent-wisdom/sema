@@ -18,9 +18,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Feedback#mh:SHA-256:b786aa7ba3de322fd2c8cf7095f7e52b53c2b66ce9c1261d98ed822a77098a9f",
-  "sema_ref": "Feedback#b786",
-  "sema_stub": "b786",
+  "sema_id": "sema:Feedback#mh:SHA-256:dc367877c9161b9d4ba77075cfe19157680bb190f8834f81c925a4a035d2fe43",
+  "sema_ref": "Feedback#dc36",
+  "sema_stub": "dc36",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "signature": [
@@ -32,8 +32,8 @@
     },
     "references": {
       "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
-      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
+      "result": "sema:Result#mh:SHA-256:f29e7289b78b2ec608db42892fad4c1db47c5ad215231685ad4786935baa8da2",
+      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
     }
   }
 }

@@ -19,14 +19,14 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:FrameError#mh:SHA-256:edf5e1f2d169520949a7b8eb7d3beeee581186922d3fb665430c7ca1711186ac",
+  "sema_ref": "FrameError#edf5",
+  "sema_stub": "edf5",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
-      "retry": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
-      "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7"
+      "retry": "sema:Retry#mh:SHA-256:cb3a4a6bfdea3e5b580c343e8f9eccd8c39eee535edf1823b6a31e3bcb358ccc",
+      "compensate": "sema:Compensate#mh:SHA-256:985ef5c13b644c687417409aef081d29994ef64a7a5cf8961e8fbd4e115a7b29",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26"
     }
-  },
-  "sema_id": "sema:FrameError#mh:SHA-256:579f917ef69ebc8ad0d411b4fe27a2c928cfdcfa416a783ca099ee402fbec7d7",
-  "sema_ref": "FrameError#579f",
-  "sema_stub": "579f"
+  }
 }

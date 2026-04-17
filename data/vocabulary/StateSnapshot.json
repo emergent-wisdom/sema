@@ -22,17 +22,17 @@
   "signature": [
     "State(Snapshot)"
   ],
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:c86b7e118ded573ed0dd2c4b2ced4928d1c9d4c7644ebc2d0f99a9281cece4b2",
-  "sema_ref": "StateSnapshot#c86b",
-  "sema_stub": "c86b",
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:5a11e42d46f259b1e618969b879bf1e1143349efee16bfe29af680d25db01d2d",
+  "sema_ref": "StateSnapshot#5a11",
+  "sema_stub": "5a11",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:9b95e06ae2e4eec89639328bae9c7988f4b5873ff676a1a5f040bf73373e7857",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
+      "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:102320da989eb7e2422d943ab8482cb0aa88481aa843794a7928fc531ef1acef",
+      "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  }
 }

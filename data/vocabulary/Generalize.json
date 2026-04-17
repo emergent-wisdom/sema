@@ -24,16 +24,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:1bd3c56684a92f11757e91a8d90c27de4cc104f831a6020bb7091a89ad17e31b",
-  "sema_ref": "Generalize#1bd3",
-  "sema_stub": "1bd3",
+  "sema_id": "sema:Generalize#mh:SHA-256:96848e5d61a66064f3bab37da24d0c8dbb6056b72964d1f4e0691a6c188fc154",
+  "sema_ref": "Generalize#9684",
+  "sema_stub": "9684",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:8b52456853af974b4820395247f8375091a9dd8b7785a1571f4ff1dfd8e71ac6",
+      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

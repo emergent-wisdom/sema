@@ -44,20 +44,20 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:ec37f3a8a8593e387c2f0e038e705e78a57baf4b4ff3a27828741911a84b75ec",
-  "sema_ref": "SynergisticMode#ec37",
-  "sema_stub": "ec37",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:fa9f9c350f4b30263a89276c00ae4ed39170666ede1ced92daa88a2ceedcae52",
+  "sema_ref": "SynergisticMode#fa9f",
+  "sema_stub": "fa9f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
+      "compose": "sema:Compose#mh:SHA-256:389f4d23861b1382b3d046c9193fcae322a33407ee7130564a9e971192de2bf4",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
-      "compose": "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:762e284648ca2f4d9898526f902e00f31399e5586120720650a0a0dec0cd1a26",
+      "mode": "sema:Mode#mh:SHA-256:3df185d5794eb12f71d2606b7b16e309f58f75b52264e94de1448fec11d7a12e",
+      "agent": "sema:Agent#mh:SHA-256:d1831f418150b85822228d2dadc230f6296058f5db48f0874f9b3736d5a33f81",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }
 }

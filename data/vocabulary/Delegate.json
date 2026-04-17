@@ -15,10 +15,14 @@
     "Delegation is REQUEST not command (acceptance protocol unless pre-waived at RALLY). Refused tasks must be handled (reassign or escalate, not silently dropped). Progress must be trackable (delegatee reports status updates). Failure propagates (delegated task failure triggers {{break}} to delegator). Dependencies enforced (task blocked until dependencies complete). One owner per task (no ambiguous responsibility)."
   ],
   "preconditions": [
-    "Principal has authority. Delegate capable. Scope of delegation defined."
+    "Principal has authority.",
+    "Delegate capable.",
+    "Scope of delegation defined."
   ],
   "postconditions": [
-    "Delegate acts within scope. Principal notified of actions. Revocation possible."
+    "Delegate acts within scope.",
+    "Principal notified of actions.",
+    "Revocation possible."
   ],
   "_meta": {
     "tier": 2,
@@ -29,25 +33,25 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:757364a32ef63168157b9a7ff32281e9246ee0a488bfeb4e13c4ab0f57478823",
-  "sema_ref": "Delegate#7573",
-  "sema_stub": "7573",
+  "sema_layer": "Society",
+  "sema_category": "Coordination",
+  "sema_id": "sema:Delegate#mh:SHA-256:60aa6cc18e942205d17401e1feafee733dac5ceffcae1fb9f9abffc51ff91afa",
+  "sema_ref": "Delegate#60aa",
+  "sema_stub": "60aa",
   "dependencies": {
-    "composes_with": {
-      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2"
-    },
     "references": {
-      "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95",
-      "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
-    },
-    "accepts": {
-      "holographic_shard": "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f"
+      "break": "sema:Break#mh:SHA-256:0bb3432f8b2bbd83c52323f16912e59d9f68248e42db0eb84916435f7680b9dd",
+      "work": "sema:Work#mh:SHA-256:bc56cced064291f9c994564930993c5f601a4311d33aeeb0e32511ea154e82a3"
     },
     "yields": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "accepts": {
+      "holographic_shard": "sema:HolographicShard#mh:SHA-256:34d0f881cdafeafc666f65821f0d2832f9fd044189745d414bae885fafcd1b0f"
+    },
+    "composes_with": {
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:8e3615550a11d28fdf434eedbb19eb51577a226aa3eea5e6221384f5bcfb6503",
+      "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602"
     }
-  },
-  "sema_layer": "Society",
-  "sema_category": "Coordination"
+  }
 }
