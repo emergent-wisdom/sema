@@ -6,7 +6,7 @@ The following cards show the \textbf{canonical hashed content} for each pattern.
 Only semantic fields are included---these are the exact fields that produce the Merkle root hash.
 Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emph{not} part of the hash.
 
-\subsection{sema:StateLock\#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a}
+\subsection{sema:StateLock\#mh:SHA-256:81839e5a923aff3df2bb3f806fec00c512b6faeb5999f6c390a2c5a6f00a56d2}
 
 \begin{lstlisting}
 {
@@ -23,11 +23,16 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
     "Lock(State)"
   ],
   "mechanism": "A coordination pattern where two {{actor}}s temporarily 'fuse' a subset of their writable {{state}}. During the {{lock}}, changes require a cryptographic signature from both. Contention triggers {{backoff}} and {{cooldown}}.",
-  "gloss": "Atomic coordination via temporary state fusion"
+  "gloss": "Atomic coordination via temporary state fusion",
+  "failure_modes": [
+    "Deadlock: both parties wait for each other indefinitely.",
+    "Livelock: lock acquired and released rapidly, denying access to others.",
+    "Premature dissolution: state auto-dissolves while legitimate work is in progress."
+  ]
 }
 \end{lstlisting}
 
-\subsection{sema:FractalIntelligence\#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01}
+\subsection{sema:FractalIntelligence\#mh:SHA-256:901e510064a69b7697746ad1d937fe9de3f6a814264b76ecd8f9233ee7fa9781}
 
 \begin{lstlisting}
 {
@@ -38,7 +43,9 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
       "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f"
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
+      "agent": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681",
+      "conservation": "sema:Conservation#mh:SHA-256:d63a32342e8c1338dc7701a65cc30547b898f9e3b2264097c0c2341c59723688"
     },
     "composes_with": {
       "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
@@ -49,24 +56,25 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
       "recursion_dive": "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83",
       "state_snapshot": "sema:StateSnapshot#mh:SHA-256:4c11617a12ffdeb4b786202c50c8c3c1fd708dd6a6c0d0e4e19cd0685ba7178e",
       "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
-      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     }
   },
   "signature": [
     "System(Reason)"
   ],
-  "mechanism": "The unified {{system}} of scalable cognition that uses {{reason}} to orchestrate the fractal expansion of intelligence within the {{universal_solver_tree}}. A {{problem_framer}} initiates the process, formulating a high-level {{strategy}} before assigning a {{cognitive_solver}} to a {{task}}. The solver executes a {{recursion_dive}} to spawn child nodes. As the tree deepens, nodes apply {{specialize}} to adapt to local sub-problems, using {{localized_learning}} to optimize performance. To ensure continuity and global coherence, the system employs {{experience_sharding}} to preserve memory and {{synthesis}} to integrate specialized insights back into the whole. {{state_snapshot}} creates save points for crash recovery. Efficiency is governed by the {{marginal_value_rule}}. If a path fails, {{reframe}} is triggered to restructure the tree or find a new {{problem_framer}}.",
-  "gloss": "The unified fractal architecture of scalable, self-correcting intelligence",
+  "mechanism": "Expansion of cognitive capability through {{conceptual_decomposition}}: a concept (problem or task) is broken into contract-bound sub-concepts, each governed by the same five-surface Solver Contract (Manifest, Execute, Consult, Verify, Feedback) that governs the parent. A few {{agent}}s can assign solver roles to themselves and perform lightweight fractal intelligence for a specific problem \u2014 the resulting structure may persist as a reusable pattern that improves through use, or may be torn down at completion; both are legitimate modes. The unified {{system}} of scalable cognition uses {{reason}} to orchestrate fractal expansion within the {{universal_solver_tree}}. A {{problem_framer}} initiates by formulating a high-level {{strategy}} before assigning a {{polymorphic_solver}} to a {{task}}; the solver executes a {{recursion_dive}} to spawn child nodes, each applying {{specialize}} with {{localized_learning}}, while {{experience_sharding}} and {{synthesis}} preserve global coherence. {{state_snapshot}} provides crash recovery for persistent instances. {{marginal_value_rule}} governs recursion depth. On failure, {{reframe}} restructures the tree.",
+  "gloss": "Expansion of cognitive capability through recursive decomposition of concepts into contract-bounded sub-concepts",
   "invariants": [
     "Fractal Self-Similarity: The process at the Root is identical to the process at the Leaf.",
     "Bounded Expansion: Recursion is limited by Economic constraints (Marginal Value).",
-    "Memory Conservation: Specialization must not result in the loss of global context."
+    "Memory {{conservation}}: Specialization must not result in the loss of global context."
   ],
   "derived_from": "sema:RecursiveIntelligence#mh:SHA-256:216c297a34a0847957d1a6a8701987248bc8d63294953a78346b5b68dbb9aef6"
 }
 \end{lstlisting}
 
-\subsection{sema:SpectralTune\#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7}
+\subsection{sema:SpectralTune\#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f}
 
 \begin{lstlisting}
 {
@@ -91,7 +99,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
   "parameters": [
     {
       "name": "context_chunks",
-      "type": "List[String]",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Prompts to hash"
     },
@@ -114,7 +122,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
 }
 \end{lstlisting}
 
-\subsection{sema:SteelmanCheck\#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7}
+\subsection{sema:SteelmanCheck\#mh:SHA-256:c4860356a83fa7295af4961e95c7702074070923200fcc9f1132cc233f79bf54}
 
 \textbf{Note}: This pattern was downgraded to \textbf{Tier~2} following adversarial analysis.
 
@@ -139,7 +147,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
     "Critique(Belief)"
   ],
   "mechanism": "Before finalizing a {{decision}} or output, the {{agent}} MUST generate the strongest possible argument against its own conclusion. It performs a {{check}} on the {{robustness}} of the claim and a {{critique}} of the underlying {{belief}}. If the counter-argument exceeds a validity threshold, the decision is discarded or revised. It prevents confirmation {{cognitive_bias}}. Utilizes {{compatibility_check}}. For adversarial contexts, see adversarial steelmanning.",
-  "gloss": "Mandatory counter-argument generation",
+  "gloss": "Post-decision adversarial check: revise if counter-argument exceeds validity threshold",
   "invariants": [
     "Counter-Argument Quality: Score(Counter) > 0.7 (Must be non-trivial)",
     "Passing critique required for release.",
@@ -174,7 +182,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
 }
 \end{lstlisting}
 
-\subsection{sema:OptimisticSolver\#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8}
+\subsection{sema:OptimisticSolver\#mh:SHA-256:e499e8e28e670a944b82b1426ee590943590fa08810ecbd96ee86df3375b92e0}
 
 \textbf{Note}: This pattern was downgraded to \textbf{Tier~2} following adversarial analysis.
 
@@ -186,15 +194,16 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
       "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
       "atomic_bid": "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1",
       "reflexion": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     },
     "references": {
-      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
       "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
-      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3"
+      "parallel": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     }
   },
-  "mechanism": "A high-velocity implementation of {{cognitive_solver}} designed for efficient multi-agent coordination. Requires a {{parallel}} runtime (Actor Model with Mailboxes) to prevent serial deadlock. It explicitly couples the standard Solver lifecycle (Reason -> Solution) with the {{atomic_bid}} protocol. Unlike the base abstraction, this pattern MANDATES that the agent plan and execute in a single turn. It relies on {{reflexion}} and {{compensate}} for error correction rather than pre-action permission. Use {{compute_budget}} to bound resource consumption. Contrast with {{rigorous_solver}} which prioritizes safety over speed.",
+  "mechanism": "A high-velocity implementation of {{polymorphic_solver}} designed for efficient multi-agent coordination. Requires a {{parallel}} runtime (Actor Model with Mailboxes) to prevent serial deadlock. It explicitly couples the standard Solver lifecycle (Reason -> Solution) with the {{atomic_bid}} protocol. Unlike the base abstraction, this pattern MANDATES that the agent plan and execute in a single turn. It relies on {{reflexion}} and {{compensate}} for error correction rather than pre-action permission. Use {{compute_budget}} to bound resource consumption. Contrast with {{rigorous_solver}} which prioritizes safety over speed. A {{pathway_memory}} accumulates across runs so the optimistic route-selection converges on strategies that historically succeeded under similar conditions.",
   "gloss": "High-velocity solver requiring parallel runtime",
   "invariants": [
     "Turn Atomicity: Must output [BID] and [TOOL] in the same response.",
@@ -207,6 +216,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
   "failure_modes": [
     "Over-Eager Execution: Solving the wrong problem efficiently because feedback was skipped.",
     "Serial Deadlock: If deployed on a single-threaded (Talking Stick) engine, multiple atomic outputs will be dropped, halting the swarm."
-  ]
+  ],
+  "derived_from": "sema:Solver#mh:SHA-256:10655bd6e90a5ceb9c03ccb1180ea280a7b2362f16411be9cde534de20c6a044"
 }
 \end{lstlisting}
