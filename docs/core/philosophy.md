@@ -29,7 +29,7 @@ The compiler treats this as a hard mathematical operation:
 
 ## 3. The Civilization Stack (Layers)
 
-The vocabulary is organized into four fundamental layers that mimic a civilization stack. Dependencies must strictly flow from **High-Level  Fundamental** (Gravity Rule).
+The vocabulary is organized into four fundamental layers that mimic a civilization stack. Dependencies must strictly flow from **High-Level → Fundamental** (Gravity Rule).
 
 | Layer | Domain | Function | The "Hardware" Analogy |
 | --- | --- | --- | --- |
@@ -39,6 +39,35 @@ The vocabulary is organized into four fundamental layers that mimic a civilizati
 | **Society** (Layer 3) | **Interaction** | Multi-agent coordination, economics, and trust. Patterns that emerge between agents. Most abstract. | **The Network.** (Vote, Consensus, Protocol) |
 
 **Dependency Invariant:** `Infrastructure` constrains `Physics`, which supports `Mind`, which enables `Society`. Hard dependencies (`accepts`, `composes_with`) must flow from higher layers to lower. Soft citations (`references`) and outputs (`yields`) are exempt.
+
+### 3.1 Tight Layer Definitions (the mechanism-sufficiency test)
+
+The four-layer table names the layers; these definitions give the *test* that decides where a pattern belongs. The axis is **what the pattern's mechanism structurally requires to execute** — not what it is typically used for, and not what it conceptually operates on. Application context is deployment metadata; mechanism is the pattern.
+
+| Layer | Tight definition | Test question |
+|---|---|---|
+| **Physics** | Substrate primitives that *obtain regardless of any author*. The given conditions on which cognition runs. Cannot be designed. | *Does this exist whether or not anyone thinks about it?* |
+| **Infrastructure** | Authored structures and operations that *do not require cognition to execute*. Data types, computational primitives, control flow, schema validation. Mechanical. | *Can a program execute this without making any judgment?* |
+| **Mind** | Operations that *require cognition* — judgment, reasoning, inference, strategy. Single party is sufficient. Cognition alone executes the mechanism. | *Does this require a knower to make a call that cannot be reduced to schema-matching? Can a single isolated agent execute it?* |
+| **Society** | Operations that *structurally require ≥2 independent parties* — parties with separate state and potentially divergent interests. Cognition alone is insufficient; external parties are part of the mechanism. | *Does the mechanism structurally require another party whose state is outside this agent's control?* |
+
+**Distinguishing axes**:
+- *Physics vs. Infrastructure*: substrate (given) vs. authored (designed).
+- *Infrastructure vs. Mind*: mechanical (no cognition) vs. cognitive (requires judgment).
+- *Mind vs. Society*: single-party (cognition sufficient) vs. multi-party (external parties required by the mechanism).
+
+**The mechanism-vs-deployment distinction** (critical for Mind vs. Society):
+- A pattern whose mechanism is a single-agent rule but is *vulnerable to* adversarial inputs in multi-agent deployments is still **Mind**. The vulnerability is compositional: wrap it with Society-layer guards (ReceptivityGate, signed consultation, FailureTrace) to harden.
+- A pattern whose mechanism *structurally assumes* ≥2 parties with divergent interests is **Society**. Consensus, Vote, Contract, ConfusedDeputy: these are incoherent with a single isolated agent.
+
+**Worked examples**:
+- `MarginalValueRule`: the mechanism is an arithmetic ratio test. A single isolated agent can apply it on its own Pathway Memory. Vulnerable to false estimates in adversarial deployment, but that is compositional hardening. → **Mind**.
+- `ChainOfThought`: sequential cognitive derivation. No external party required. → **Mind**.
+- `Consensus`: "multiple parties agree on a value" — incoherent with one party. → **Society**.
+- `Lock`: atomicity of mutual exclusion is a substrate property (kernel/hardware level), not authored cognition. → **Physics**.
+- `Validate`: matches an artifact against a schema — no judgment. → **Infrastructure**.
+- `Judge`: produces a quality rating — cognitive judgment required. → **Mind**.
+- `ConfusedDeputy`: the threat model *is* a 3-party interaction (agent + principal + attacker). → **Society**.
 
 **The Parametric Exception (Smart Infrastructure):**
 Fundamental layers (Infrastructure/Physics) may *wrap* High-Level patterns (Mind/Society) **only if** the High-Level pattern is treated as an opaque parameter (e.g., a `Condition` or `Metric`) that resolves to a strict value (Boolean/Scalar).
