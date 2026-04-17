@@ -630,6 +630,37 @@ This adds PURE as the **twenty-first new pattern**: library count 427 − 4 reti
 
     These moves are staged for Round 7 review before application. The annotated layer-assignment.md is the diff-able artifact.
 
+13. *Principle re-sharpened back to strict substrate after Gemini R7 pushback + rule refinement; 8 Physics primitives minted.* Gemini's Round 7 review challenged the Physics-as-Nouns softening of §3.21.10. Its argument: "Physics" should carry ontological weight — the substrate that obtains regardless of author, the non-negotiable. Putting engineered primitives (`Gate`, `Branch`, `Heartbeat`) in Physics conflates what's *given* with what's *designed*. `Infrastructure/Primitives` is exactly the home for authored foundational building blocks.
+
+    Restoring the strict rule. `docs/core/philosophy.md §3.1` now reads: Physics = substrate that obtains regardless of author. The seven authored Physics-Nouns (Branch, Gate, Route, Heartbeat, Cooldown, Throttle, Hysteresis) are back in the proposed-move list → Infrastructure.
+
+    **Minting criterion refined to two independently-sufficient tests** (captured in the spec):
+
+    1. **Protocol consistency** — agents must coordinate on exact semantics. `Lock`, `CausalBarrier`, `Mutex`, `Reversibility` pass this test strongly.
+    2. **Structured thinking** — specifying a mechanism forces precision about a concept that English uses loosely. Writing `Noise#<hash>` with an invariant-bearing mechanism makes the author confront what they mean in a way "there's noise in the signal" does not. `Decay`, `Dampen`, `Noise`, `Entropy`, `Causation` pass this test — they are semantic anchors that sharpen thinking wherever other patterns invoke them.
+
+    Either test alone suffices. A pattern should be minted if either binds; English suffices when neither does.
+
+    **Eight new Physics primitives minted under criterion (2)**:
+    - `Gradient` (directional rate of change of a scalar field)
+    - `Equilibrium` (stationary state of a dynamical system under its own dynamics)
+    - `Conservation` (invariant quantity under closed-system transformations)
+    - `Distance` (metric-axiom function)
+    - `PhaseTransition` (threshold-triggered qualitative reorganization)
+    - `Attractor` (basin + convergence + confinement in state space)
+    - `MutualInformation` (substrate info-theoretic shared-entropy measure)
+    - `Measurement` (observer-effect primitive; distinct from cognitive `Observe`)
+
+    Each has tight mathematical or physical invariants that do not evolve — which is exactly what justifies pinning them under the structured-thinking test. Zero incoming edges at mint; downstream patterns will reference these as concrete friction emerges. The reverse isn't true: without the pattern, downstream patterns invoking "the attention gradient" or "the system reached equilibrium" in prose would each import their own vague notion, missing the discipline the pinned mechanism imposes.
+
+    **Projected distribution after applying the 29 remaining moves**:
+    - Physics: 31 current (23 old + 8 new) → **17** (9 substrate survivors + 8 new)
+    - Infrastructure: 127 → **151** (receives 13 from Physics + 4 from Mind + 7 from Society + 1 Critique revert... net +24)
+    - Mind: 181 → **178** (−4 to Infra + 1 Critique back + 1 ManifestPlanning in)
+    - Society: 113 → **106** (−7 to Infra via Spec/Manifest cascade + 1 to Mind + 1 to Society via StateLock in + 1 Stigmergy in)
+
+    The 8 new mints are sent to Gemini for Round 8 review (structured-thinking-bar check); the 29 moves are pre-cleared from Round 7 and ready to apply on Gemini's R8 sign-off.
+
 **Schema tightening (data_schema additions).**
 - `Belief.confidence` — the §3.10 schema pass covered Score/Summary/Probability but not Belief. Broad-use (#2) notes `Belief.confidence` is principled `[0, 1]` Probability — should be declared as such in Belief's data_schema, not just in prose. Add `confidence: {type: "number", minimum: 0, maximum: 1}` to Belief's schema.
 
