@@ -24,8 +24,8 @@ _Moves in: 0_
 - Noise — irrelevant information exists whether or not anyone designs it
 - Reversibility — condition on actions — substrate property, not authored
 
-## Infrastructure (142)  
-_Moves in: 18_
+## Infrastructure (143)  
+_Moves in: 19_
 
 - Act — root primitive for state modification; executed mechanically
 - Actor — entity capable of executing Act; no cognition required
@@ -163,6 +163,7 @@ _Moves in: 18_
 - Trace — lineage/provenance recording primitive
 - Transition — atomic state change — data
 - Tree — branching topology — data
+- `~` **TriGate** *(was Society/Governance)* — three-state authored gate primitive — mechanical Red/Yellow/Green classification; one agent can gate its own decisions via traffic-light logic
 - Validate — syntactic schema verification — mechanical
 - Value — measure of utility — data
 - Variable — mutable value — data
@@ -353,7 +354,7 @@ _Moves in: 2_
 - WhyClimb — recursive problem abstraction
 - WorldReversible — single-agent design constraint for invertibility
 
-## Society (114)  
+## Society (113)  
 _Moves in: 4_
 
 - AcceptSpec — contract between producer and verifier — ≥2 roles
@@ -459,7 +460,6 @@ _Moves in: 4_
 - TieredAccess — cost-distance indexing — gravity among agents
 - ToolDiscovery — discover + invoke external tools — caller + tools
 - TranslationProxy — protocol adaptation — between two protocols
-- TriGate — three-state gate used at governance seams
 - UniqueHandle — transferable ownership — sender + receiver
 - UniversalSolverTree — aggregate across all agents
 - UptakeAsGround — meaning from successful coordination — multi-party
