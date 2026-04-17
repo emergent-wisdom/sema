@@ -26,7 +26,7 @@
       "frame_error": "sema:FrameError#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     }
   },
-  "sema_id": "sema:DecompositionGate#mh:SHA-256:628cfa3092230ac004bf1bc3843e2ed662a4523a6b3cbe7ea6b668d88c288f79",
-  "sema_ref": "DecompositionGate#628c",
-  "sema_stub": "628c"
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:7fbd0bfbe28789cb7ee105b60fa54398d94e52a6abe9a618878d5b7597dfa48e",
+  "sema_ref": "DecompositionGate#7fbd",
+  "sema_stub": "7fbd"
 }

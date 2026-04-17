@@ -24,7 +24,7 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0,
     "related": [
@@ -35,7 +35,7 @@
   "sema_id": "sema:Compensate#mh:SHA-256:d541e707e06ad96804558a897386d9b6e9eb7ca4eb0436bfb2c531c278fb04c1",
   "sema_ref": "Compensate#d541",
   "sema_stub": "d541",
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {

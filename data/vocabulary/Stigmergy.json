@@ -8,8 +8,8 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Memory",
+    "layer": "Society",
+    "category": "Protocols",
     "related": [
       "sema:GhostTrail#mh:SHA-256:ec5b2ca0ee009f2aec90a8fb2cec9ee5feb29a1d98f20a7211d973b26a629e6a",
       "sema:Signal#mh:SHA-256:30401098f53ba595e7f0c0e12b7b233d27cf170436a98f9f153016b7e5db9aa6"
@@ -19,8 +19,8 @@
   "sema_id": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
   "sema_ref": "Stigmergy#f624",
   "sema_stub": "f624",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",

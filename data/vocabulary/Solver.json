@@ -11,9 +11,9 @@
     "category": "Strategy",
     "tier": 0
   },
-  "sema_id": "sema:Solver#mh:SHA-256:ccd42e9d8a2e905f5e37695c263c5dc1fe8f3770bc85066779de755c802102d1",
-  "sema_ref": "Solver#ccd4",
-  "sema_stub": "ccd4",
+  "sema_id": "sema:Solver#mh:SHA-256:b00a16afef5a9d3293955f36b44fe6fc0e0c4ce0fc118de4a7459f77fe7d98d7",
+  "sema_ref": "Solver#b00a",
+  "sema_stub": "b00a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

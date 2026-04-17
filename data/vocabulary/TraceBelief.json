@@ -8,9 +8,9 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:8406d48b8f18f80325027530ed96b21f7b04e36fd33373e5cdaf401b89e2eefe",
-  "sema_ref": "TraceBelief#8406",
-  "sema_stub": "8406",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:805600dd9624735a6d0fadc0f7318790361994d87ba2ea95dc4610a5cb4667ef",
+  "sema_ref": "TraceBelief#8056",
+  "sema_stub": "8056",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "signature": [

@@ -35,11 +35,11 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0
   },
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "sema_id": "sema:Throttle#mh:SHA-256:2175da478929fd107d442e1f7ead06551c81108924e7e5b675fb397866879f7a",
   "sema_ref": "Throttle#2175",

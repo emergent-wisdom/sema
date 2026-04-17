@@ -52,9 +52,9 @@
       "TimeboxThink"
     ]
   },
-  "sema_ref": "ComputeBudget#7c24",
-  "sema_id": "sema:ComputeBudget#mh:SHA-256:7c243b92cc9a2b4b0fca1a9cb07b4a667ea869c0a584428a1345c0e9cf87c351",
-  "sema_stub": "7c24",
+  "sema_ref": "ComputeBudget#ba8c",
+  "sema_id": "sema:ComputeBudget#mh:SHA-256:ba8c07c424b368b977f446a50f45bfeabbdd9acb603737151597ef3b9d91abc1",
+  "sema_stub": "ba8c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

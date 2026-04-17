@@ -22,9 +22,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Defer#mh:SHA-256:f915d58fbbb984b712b93b29399a02e390f347bcb5c74fcf0ee5379a9938c7f9",
-  "sema_ref": "Defer#f915",
-  "sema_stub": "f915",
+  "sema_id": "sema:Defer#mh:SHA-256:bb32d1171b0deca2d73d0423e68ed4d4776af0d92a8e193e203d9beb6ac74718",
+  "sema_ref": "Defer#bb32",
+  "sema_stub": "bb32",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

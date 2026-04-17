@@ -16,9 +16,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_ref": "ProblemFramer#c40a",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:c40a489d3cd312e338102cdd7b05ae7f237d53a17402e36ed5f06ba65818e2e8",
-  "sema_stub": "c40a",
+  "sema_ref": "ProblemFramer#2bd1",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:2bd11339dd86735a361263f7cf1da2b9d71653e1deb5bfa58ac03f2803c74877",
+  "sema_stub": "2bd1",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

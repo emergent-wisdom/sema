@@ -34,9 +34,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:InvariantFilter#mh:SHA-256:dee1911b7ef091af2708e7049009d5ba4a286b247e45e36a373a085e1c9edaf2",
-  "sema_ref": "InvariantFilter#dee1",
-  "sema_stub": "dee1",
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:9233ef8c378c57f7fff4a36168d368c1527d310ba0b6112771eddccc03afa76e",
+  "sema_ref": "InvariantFilter#9233",
+  "sema_stub": "9233",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

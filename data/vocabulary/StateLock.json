@@ -8,8 +8,8 @@
     "Premature dissolution: state auto-dissolves while legitimate work is in progress."
   ],
   "_meta": {
-    "layer": "Physics",
-    "category": "Time",
+    "layer": "Society",
+    "category": "Protocols",
     "ring": 0,
     "tier": 1,
     "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation."
@@ -20,8 +20,8 @@
   "sema_ref": "StateLock#8183",
   "sema_id": "sema:StateLock#mh:SHA-256:81839e5a923aff3df2bb3f806fec00c512b6faeb5999f6c390a2c5a6f00a56d2",
   "sema_stub": "8183",
-  "sema_layer": "Physics",
-  "sema_category": "Time",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",

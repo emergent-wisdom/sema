@@ -24,20 +24,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Hysteresis#mh:SHA-256:d0f8e3e90c03f4306ca42f5d69c6a41f3f89334ccfc450873771944f2a5aec46",
-  "sema_ref": "Hysteresis#d0f8",
-  "sema_stub": "d0f8",
-  "sema_layer": "Physics",
+  "sema_id": "sema:Hysteresis#mh:SHA-256:e21ca376c9f43aedf1fb1580946969bf12979e5c70312895a2c5b7a4cb634aed",
+  "sema_ref": "Hysteresis#e21c",
+  "sema_stub": "e21c",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
-    },
-    "composes_with": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
     }
   }

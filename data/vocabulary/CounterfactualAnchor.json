@@ -40,9 +40,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:6d6a476364e95bdb37cad6805511588f1d198bdb996cfc8ed2bbb1cd74d6045f",
-  "sema_ref": "CounterfactualAnchor#6d6a",
-  "sema_stub": "6d6a",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:42f364d84f40122f9ab6937a85f95088d4f2b5ce3406ccd2862a74ca3b0e7f1c",
+  "sema_ref": "CounterfactualAnchor#42f3",
+  "sema_stub": "42f3",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",

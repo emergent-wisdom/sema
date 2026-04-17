@@ -21,9 +21,9 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "PhasedRefinement#446b",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:446bfa0465fc6656a2a794a72f745ad3f2ca23cd1346217c08c91a36052354e5",
-  "sema_stub": "446b",
+  "sema_ref": "PhasedRefinement#d686",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:d6860da7cb01e0ffca24d4d482af3e28913c3a22900c56bd33a7bdc255a41055",
+  "sema_stub": "d686",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

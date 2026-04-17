@@ -15,9 +15,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Coordination",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:fc1a9a7b51cfd10fdbbd4a9dacb8599081a9c2e70afa74215b8cb90f6afc8050",
-  "sema_ref": "IdentityHandshake#fc1a",
-  "sema_stub": "fc1a",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:2236f449e1d7349e115074dd1820e48186cc361a823c97b69b58d107a541ec44",
+  "sema_ref": "IdentityHandshake#2236",
+  "sema_stub": "2236",
   "signature": [
     "Discover(Identity)"
   ],

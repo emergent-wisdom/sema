@@ -34,9 +34,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_ref": "TensionHold#e340",
-  "sema_id": "sema:TensionHold#mh:SHA-256:e3401d693a139fb259855af338948a0e22217769c5ab7dc80b07a26a9a8f0a8f",
-  "sema_stub": "e340",
+  "sema_ref": "TensionHold#c55a",
+  "sema_id": "sema:TensionHold#mh:SHA-256:c55a55130eedae854efe3fd8c37b4039e6459b21de6a7f66c923f880e5c28343",
+  "sema_stub": "c55a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

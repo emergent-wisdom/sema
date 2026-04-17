@@ -37,9 +37,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:d640774e8d760a05fb1c358edf93623712eaba7091d937da2e2b86109053a141",
-  "sema_ref": "ConstructOntology#d640",
-  "sema_stub": "d640",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:be33bbb51468ea81560c427513f2d376de4e71ad3abf6a4b8a25c36a6d67931e",
+  "sema_ref": "ConstructOntology#be33",
+  "sema_stub": "be33",
   "dependencies": {
     "references": {
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",

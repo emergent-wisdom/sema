@@ -25,9 +25,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:08eac5a7ddbe7d58febe839a243b08b67069e8d919bd2a7522a3343daeb6ea78",
-  "sema_ref": "LivedProof#08ea",
-  "sema_stub": "08ea",
+  "sema_id": "sema:LivedProof#mh:SHA-256:66893b7d96bcee3cdfcfcb45cd7b640e37e3981b1b8f473baa428dacafcd6a0a",
+  "sema_ref": "LivedProof#6689",
+  "sema_stub": "6689",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

@@ -35,9 +35,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:07ccc293c7135e6549ae546e8b2f6c681499843df33977f349684d1ef68b63e7",
-  "sema_ref": "NormCheck#07cc",
-  "sema_stub": "07cc",
+  "sema_id": "sema:NormCheck#mh:SHA-256:c8df9f5924554037b0971124715027d5ce582c20fc816a7054ed9fb811524129",
+  "sema_ref": "NormCheck#c8df",
+  "sema_stub": "c8df",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [

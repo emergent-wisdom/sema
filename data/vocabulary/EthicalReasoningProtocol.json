@@ -24,7 +24,7 @@
       "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd"
     }
   },
-  "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:e3c017194e2c3480256611bce41cedb7bf5005dc4720966cac532855fe8a9311",
-  "sema_ref": "EthicalReasoningProtocol#e3c0",
-  "sema_stub": "e3c0"
+  "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:02871d7f0795460e7662dd2caad68d1a0e1e7d6bcc3c2b27dab706464afc3cbb",
+  "sema_ref": "EthicalReasoningProtocol#0287",
+  "sema_stub": "0287"
 }

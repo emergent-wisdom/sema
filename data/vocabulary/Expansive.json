@@ -14,9 +14,9 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:1ad621b8201a818eed88d15386d967315570ea531a80fbea3c052c5dcf953ad4",
-  "sema_ref": "Expansive#1ad6",
-  "sema_stub": "1ad6",
+  "sema_id": "sema:Expansive#mh:SHA-256:68397862caab2bcf2141f0ee3507f3ef44502c2149a94c1a93a1ff4c72dc117e",
+  "sema_ref": "Expansive#6839",
+  "sema_stub": "6839",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

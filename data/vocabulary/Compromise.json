@@ -8,9 +8,9 @@
     "category": "Coordination",
     "ring": 1
   },
-  "sema_ref": "Compromise#da6e",
-  "sema_id": "sema:Compromise#mh:SHA-256:da6e3fcee9c1c1809069feef644f6a21437ba03331a49d4b06cd730dcb25bcb8",
-  "sema_stub": "da6e",
+  "sema_ref": "Compromise#9656",
+  "sema_id": "sema:Compromise#mh:SHA-256:96563aef47ce699e5c5a04847494113ff5221aa137539c988c988b0fd548d3f5",
+  "sema_stub": "9656",
   "sema_layer": "Society",
   "sema_category": "Coordination",
   "dependencies": {

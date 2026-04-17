@@ -14,9 +14,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:TradeOff#mh:SHA-256:769c61729ff84c1f887e3e075f3a94948094da3ecde8bd9ca9f5034717b1e0d0",
-  "sema_ref": "TradeOff#769c",
-  "sema_stub": "769c",
+  "sema_id": "sema:TradeOff#mh:SHA-256:18382c0953f988f4640c73c0f333d15a8cf5f29c884b3dda8342420d4c8c8e76",
+  "sema_ref": "TradeOff#1838",
+  "sema_stub": "1838",
   "dependencies": {
     "references": {
       "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"

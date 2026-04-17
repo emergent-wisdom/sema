@@ -41,9 +41,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:EbbFlowSync#mh:SHA-256:454252acf44e0eee68eb591bad72e3c2854174286751a29ed172c66cc335716c",
-  "sema_ref": "EbbFlowSync#4542",
-  "sema_stub": "4542",
+  "sema_id": "sema:EbbFlowSync#mh:SHA-256:b4aa1f46a08ac917171d44f645f0b3a677f2a8bd369d6ce59a8e93e91f93f825",
+  "sema_ref": "EbbFlowSync#b4aa",
+  "sema_stub": "b4aa",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

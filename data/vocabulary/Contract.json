@@ -55,9 +55,9 @@
     "category": "Data Structures",
     "ring": 1
   },
-  "sema_id": "sema:Contract#mh:SHA-256:554335274ada4ee2aee29144c57ab2227e12b7bd43efa811b21f57a0606da978",
-  "sema_ref": "Contract#5543",
-  "sema_stub": "5543",
+  "sema_id": "sema:Contract#mh:SHA-256:40c20610647f903ade2958f3cfc1695e641a368238b5aa7ec4b5d27de4edfa73",
+  "sema_ref": "Contract#40c2",
+  "sema_stub": "40c2",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

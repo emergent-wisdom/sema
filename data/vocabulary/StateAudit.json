@@ -6,13 +6,13 @@
   "sema_ref": "StateAudit#8195",
   "sema_stub": "8195",
   "_meta": {
-    "layer": "Physics",
-    "category": "Time",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0,
     "tier": 1
   },
-  "sema_layer": "Physics",
-  "sema_category": "Time",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57",

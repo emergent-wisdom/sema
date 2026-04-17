@@ -42,9 +42,9 @@
       "AdversarialSteel"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:26c05d8d24781d28024d853f1f7b35f405da915cf80da377fae26d7062afc362",
-  "sema_ref": "SteelmanCheck#26c0",
-  "sema_stub": "26c0",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:c4860356a83fa7295af4961e95c7702074070923200fcc9f1132cc233f79bf54",
+  "sema_ref": "SteelmanCheck#c486",
+  "sema_stub": "c486",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [

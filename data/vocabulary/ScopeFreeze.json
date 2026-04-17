@@ -38,9 +38,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:bfa46665f1ce3ba5919887c483f6b1b7d0599e134078b3faa5c7d65c0ff1be8f",
-  "sema_ref": "ScopeFreeze#bfa4",
-  "sema_stub": "bfa4",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:58462cc8ee43abe8518edd98724703806fb106b5b971b2836cf02b28f7613a5b",
+  "sema_ref": "ScopeFreeze#5846",
+  "sema_stub": "5846",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

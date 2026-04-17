@@ -7,13 +7,18 @@
     "Success Definition: Must define unambiguous success criteria."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Data Structures",
     "ring": 0,
     "tier": 1
   },
   "data_schema": {
     "type": "object",
+    "description": "Structured problem definition.",
+    "required": [
+      "problem_statement",
+      "constraints"
+    ],
     "properties": {
       "problem_statement": {
         "type": "string"
@@ -29,22 +34,23 @@
         "items": {
           "type": "string"
         }
+      },
+      "hidden_assumptions": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
-    },
-    "required": [
-      "problem_statement",
-      "constraints",
-      "success_criteria"
-    ]
+    }
   },
   "signature": [
     "Artifact(Constraint)"
   ],
-  "sema_id": "sema:FrameSpec#mh:SHA-256:a1fed6fe19c4c76d939be7114b9ea1fc6199b42dac6c812a887cf9a23eb89e2d",
-  "sema_ref": "FrameSpec#a1fe",
-  "sema_stub": "a1fe",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:FrameSpec#mh:SHA-256:aa61f6adf3aed9957fb8b7f6b5bf5a5431593b470da1736575427225609f251f",
+  "sema_ref": "FrameSpec#aa61",
+  "sema_stub": "aa61",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",

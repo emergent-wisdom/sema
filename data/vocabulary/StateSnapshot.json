@@ -22,9 +22,9 @@
   "signature": [
     "State(Snapshot)"
   ],
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:b9b8faad3a629ff61fccc07d6f56e44b6f685b29e6c51080b38dd22438334419",
-  "sema_ref": "StateSnapshot#b9b8",
-  "sema_stub": "b9b8",
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:c86b7e118ded573ed0dd2c4b2ced4928d1c9d4c7644ebc2d0f99a9281cece4b2",
+  "sema_ref": "StateSnapshot#c86b",
+  "sema_stub": "c86b",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",

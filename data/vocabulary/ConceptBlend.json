@@ -15,9 +15,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:027aa2a5363cc296a16c5ad23d44673f6e97942bfb85b9e23c38811aa0490367",
-  "sema_ref": "ConceptBlend#027a",
-  "sema_stub": "027a",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:6bb540b28f856c0882f55de3db741d4536a06fd1e50a993b87c9678a692bf5fb",
+  "sema_ref": "ConceptBlend#6bb5",
+  "sema_stub": "6bb5",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

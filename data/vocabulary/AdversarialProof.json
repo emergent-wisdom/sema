@@ -26,9 +26,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_ref": "AdversarialProof#2174",
-  "sema_id": "sema:AdversarialProof#mh:SHA-256:21749c39e592b41e56fa5980cb0ed73b2eea43e31b9523867c87e4dcba9bebcf",
-  "sema_stub": "2174",
+  "sema_ref": "AdversarialProof#3327",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:332753a790a551b3f694a3b6bbcfb161cd5e78ddfcf9b6f9baef1574b58c4168",
+  "sema_stub": "3327",
   "dependencies": {
     "composes_with": {
       "red_team": "sema:RedTeam#mh:SHA-256:7a8d8a9c68f25e1a8b23a1b57db4a3083709aec4b6904138a0e8d439d2781a5c",

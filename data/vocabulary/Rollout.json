@@ -28,9 +28,9 @@
       "BlueGreen"
     ]
   },
-  "sema_id": "sema:Rollout#mh:SHA-256:31ca56816c9c98adeab94fb1d36839fce4e3b2d8ad15a100f39bf6347455febc",
-  "sema_ref": "Rollout#31ca",
-  "sema_stub": "31ca",
+  "sema_id": "sema:Rollout#mh:SHA-256:d8ccf98a1bca010b3070cbc8b06ff8e2962ee508a06f424729ef23e62fedb0d8",
+  "sema_ref": "Rollout#d8cc",
+  "sema_stub": "d8cc",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

@@ -8,7 +8,7 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 1
   },
@@ -18,7 +18,7 @@
   "sema_id": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba",
   "sema_ref": "Sign#1fb9",
   "sema_stub": "1fb9",
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {

@@ -15,9 +15,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:RegretMinimization#mh:SHA-256:09542e7011f8772cdebdbb681b853fc804de2fdd034b63f4487557b091bd2191",
-  "sema_ref": "RegretMinimization#0954",
-  "sema_stub": "0954",
+  "sema_id": "sema:RegretMinimization#mh:SHA-256:a15fcbca53a62214a5c6906166ccfbc900722d517d970f63d0773d5b87d832f4",
+  "sema_ref": "RegretMinimization#a15f",
+  "sema_stub": "a15f",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -26,8 +26,8 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Data Structures",
     "ring": 0
   },
   "data_schema": {
@@ -74,8 +74,8 @@
   "sema_id": "sema:AcceptSpec#mh:SHA-256:5ab9f8babd2d00f0eaab83cbd46e8f5f01f3a6511b39a829d0be4fa78b54c57a",
   "sema_ref": "AcceptSpec#5ab9",
   "sema_stub": "5ab9",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",

@@ -32,14 +32,14 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0
   },
   "sema_id": "sema:Cooldown#mh:SHA-256:b4c2f95200e8c87085fb9301754bdc55610b9c8d3dcd3a37f003d49a3fdc23f2",
   "sema_ref": "Cooldown#b4c2",
   "sema_stub": "b4c2",
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {

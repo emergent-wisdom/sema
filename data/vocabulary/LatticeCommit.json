@@ -22,9 +22,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:180b477f5c2415a5aaab69e5369562a500f75c30b4df83d9a4cb0c46659776c3",
-  "sema_ref": "LatticeCommit#180b",
-  "sema_stub": "180b",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:814c6e6bb08020fffc127b753413c4b8d797cad9a01c11c9d471731a98599245",
+  "sema_ref": "LatticeCommit#814c",
+  "sema_stub": "814c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

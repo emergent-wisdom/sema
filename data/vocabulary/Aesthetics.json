@@ -8,9 +8,9 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:22d3609ea2245513115501277f15c6e84dd03c2ab24a2a068f0fb64298db78c9",
-  "sema_ref": "Aesthetics#22d3",
-  "sema_stub": "22d3",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:0332ca11d957e10515fab89ffd9261b37dcb037e24e00f3cd54b3ca0d23ec74c",
+  "sema_ref": "Aesthetics#0332",
+  "sema_stub": "0332",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

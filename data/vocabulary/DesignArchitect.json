@@ -12,9 +12,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "DesignArchitect#d000",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:d00060d898f2264b7b266e4e0c655ff64cda7abaa3d773fa8aaede9fbd2ab926",
-  "sema_stub": "d000",
+  "sema_ref": "DesignArchitect#3b2e",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:3b2e3b1d0aa46c3b6902542a6f532685a16f63351eb1106ab4d5bbbc85dc5fed",
+  "sema_stub": "3b2e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

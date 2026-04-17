@@ -39,9 +39,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:PreMortem#mh:SHA-256:548812f9ca35d7a3165b51f5f820accf0d04e5309f86292eab6321c17063e58b",
-  "sema_ref": "PreMortem#5488",
-  "sema_stub": "5488",
+  "sema_id": "sema:PreMortem#mh:SHA-256:99f1e5005c0e0dbc3ba6bb7e670b6b1c9c7d5b8c5bc17a168ce186ab38882818",
+  "sema_ref": "PreMortem#99f1",
+  "sema_stub": "99f1",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"

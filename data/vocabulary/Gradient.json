@@ -1,9 +1,9 @@
 {
   "handle": "Gradient",
-  "mechanism": "The directional rate of change of a scalar field across a metric space. For any sufficiently smooth field f over a metric space, the gradient \u2207f at a point is the vector whose direction is the one of steepest ascent of f and whose magnitude is the rate of increase in that direction. Substrate property: gradients exist wherever fields exist, whether or not anyone measures them. Specific cases include {{entropy}} gradients (the direction of maximum disorder increase), attention gradients, credibility gradients, information-density gradients. Higher patterns use gradients for hill-climbing search, attention allocation, credit assignment, and flow routing.",
+  "mechanism": "The directional rate of change of a scalar field across a differentiable space. For any sufficiently smooth field f over a differentiable space, the gradient \u2207f at a point is the vector whose direction is the one of steepest ascent of f and whose magnitude is the rate of increase in that direction. Substrate property: gradients exist wherever fields exist, whether or not anyone measures them. Specific cases include {{entropy}} gradients (the direction of maximum disorder increase), attention gradients, credibility gradients, information-density gradients. Higher patterns use gradients for hill-climbing search, attention allocation, credit assignment, and flow routing.",
   "gloss": "The directional rate of change of a scalar field \u2014 substrate for hill-climbing, attention flow, and credit assignment",
   "invariants": [
-    "Existence: every sufficiently smooth field on a metric space has a gradient defined at every interior point.",
+    "Existence: every sufficiently smooth field on a differentiable space has a gradient defined at every interior point.",
     "Direction: \u2207f points in the direction of steepest ascent of f.",
     "Magnitude: |\u2207f| is the rate of change in the direction of steepest ascent."
   ],
@@ -20,7 +20,7 @@
       "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212"
     }
   },
-  "sema_id": "sema:Gradient#mh:SHA-256:84a514eeeb98582c29b1d6f7d8ecbb8e698815987c0e7f372ba52a81bb8665a3",
-  "sema_ref": "Gradient#84a5",
-  "sema_stub": "84a5"
+  "sema_id": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
+  "sema_ref": "Gradient#480b",
+  "sema_stub": "480b"
 }

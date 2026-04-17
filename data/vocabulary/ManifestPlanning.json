@@ -16,15 +16,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "ManifestPlanning#157b",
-  "sema_id": "sema:ManifestPlanning#mh:SHA-256:157bb6bd28928c4ecd18fdb41098c2cc7509ce7c4f30b136ff8e10d475e90414",
-  "sema_stub": "157b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_ref": "ManifestPlanning#e103",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:e103f92d47b4888132207af7296328657297ae302952308f2717ec3d3dcae369",
+  "sema_stub": "e103",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "think": "sema:Think#mh:SHA-256:e1bd11a90f512c09e3befc43359a01e827f20e278d7032ee962c81f883087d81",

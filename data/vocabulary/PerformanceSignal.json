@@ -62,7 +62,7 @@
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:0799234ac2992646e119585288ccf5e96685c35bd5c55ee0fb1e26ce74bdfdd4"
     }
   },
-  "sema_id": "sema:PerformanceSignal#mh:SHA-256:1ebcff5e383088e7be8c1c45207d98ecd9999fb8ae0b9e18dbe7eea2b8e3e926",
-  "sema_ref": "PerformanceSignal#1ebc",
-  "sema_stub": "1ebc"
+  "sema_id": "sema:PerformanceSignal#mh:SHA-256:630890824927139b1f3bc86834c2945d94fde1b9579d4260adad95cd53f9fa5a",
+  "sema_ref": "PerformanceSignal#6308",
+  "sema_stub": "6308"
 }

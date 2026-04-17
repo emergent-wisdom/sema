@@ -62,9 +62,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_ref": "Bid#cb12",
-  "sema_id": "sema:Bid#mh:SHA-256:cb126977b8304615a04bd89bfbec2003e4731194ed6003fac019ec58ce7bb802",
-  "sema_stub": "cb12",
+  "sema_ref": "Bid#cd08",
+  "sema_id": "sema:Bid#mh:SHA-256:cd08d4cfba8e1b6e545834f82d531384da98f0f254df83b4e4b5ce950884e256",
+  "sema_stub": "cd08",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

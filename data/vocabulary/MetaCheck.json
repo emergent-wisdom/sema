@@ -36,9 +36,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:MetaCheck#mh:SHA-256:f8348e51799ef5ceefeaf0736f9b8eae371f6711daf7e0e54ab7eddc5eec6357",
-  "sema_ref": "MetaCheck#f834",
-  "sema_stub": "f834",
+  "sema_id": "sema:MetaCheck#mh:SHA-256:576e2320614d351fd25d5b5093156103d8ddf798f83d8c72107e7b5a7590c44d",
+  "sema_ref": "MetaCheck#576e",
+  "sema_stub": "576e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [

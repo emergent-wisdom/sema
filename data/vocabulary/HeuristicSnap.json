@@ -21,9 +21,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:HeuristicSnap#mh:SHA-256:24963fae409d8159e022485b80046f1aac04df4a28e43a1f0df70fa3e9bd4bcf",
-  "sema_ref": "HeuristicSnap#2496",
-  "sema_stub": "2496",
+  "sema_id": "sema:HeuristicSnap#mh:SHA-256:89e6dd53b38e61e803e1db80a06969a8c573c2076e07e2d2faa315923b0d47aa",
+  "sema_ref": "HeuristicSnap#89e6",
+  "sema_stub": "89e6",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

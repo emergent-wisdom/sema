@@ -15,9 +15,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:EmpiricalTest#mh:SHA-256:75d24f11ba870a73ccffa6972bdc08ffb214ebc27804bd3adba52e1551007eff",
-  "sema_ref": "EmpiricalTest#75d2",
-  "sema_stub": "75d2",
+  "sema_id": "sema:EmpiricalTest#mh:SHA-256:b1bdda0d8973c5e5346688145f728e34a1daf0f86bf1acb0fb010af8e9192b76",
+  "sema_ref": "EmpiricalTest#b1bd",
+  "sema_stub": "b1bd",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

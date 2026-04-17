@@ -16,30 +16,24 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:SolverManifest#mh:SHA-256:2ef285e9013e83b01e208ba0e0979aba862cdcc197d3ee97f452d6d91b1916f9",
-  "sema_ref": "SolverManifest#2ef2",
-  "sema_stub": "2ef2",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:SolverManifest#mh:SHA-256:bc0579b33162eaa025f8549ffe04c1ab1aa018d7f8213096ca66a0278a2e5159",
+  "sema_ref": "SolverManifest#bc05",
+  "sema_stub": "bc05",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
+    "description": "Typed solver identity + capabilities.",
     "required": [
       "solver_id",
-      "input_schema",
-      "output_schema"
+      "capabilities"
     ],
     "properties": {
       "solver_id": {
-        "type": "string"
-      },
-      "version": {
-        "type": "string"
-      },
-      "description": {
         "type": "string"
       },
       "capabilities": {
@@ -48,27 +42,17 @@
           "type": "string"
         }
       },
-      "cost_model": {
-        "type": "object",
-        "properties": {
-          "base_cost": {
-            "type": "number"
-          },
-          "per_token_cost": {
-            "type": "number"
-          },
-          "currency": {
-            "type": "string"
-          }
+      "input_types": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
       },
-      "input_schema": {
-        "type": "object",
-        "description": "JSON Schema for valid inputs"
-      },
-      "output_schema": {
-        "type": "object",
-        "description": "JSON Schema for guaranteed outputs"
+      "output_types": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     }
   },

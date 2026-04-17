@@ -16,12 +16,12 @@
   "sema_stub": "4e43",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 1
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "data_schema": {
     "type": "object",
     "required": [

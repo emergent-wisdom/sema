@@ -24,9 +24,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:RedTeam#mh:SHA-256:9f9fab691c289b2a602eb43a746c8f86e0dbddc1df675188a3f83266aa950d8e",
-  "sema_ref": "RedTeam#9f9f",
-  "sema_stub": "9f9f",
+  "sema_id": "sema:RedTeam#mh:SHA-256:341f70e77833dbafb7d5f86e89687272b9aeb6208f349a78277f7a332348fbda",
+  "sema_ref": "RedTeam#341f",
+  "sema_stub": "341f",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

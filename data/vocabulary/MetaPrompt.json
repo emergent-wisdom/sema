@@ -24,9 +24,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:4d50a93c4f4fdea0f8cc4d2eb26e158e89732b09cfae78ade289aec8debf595a",
-  "sema_ref": "MetaPrompt#4d50",
-  "sema_stub": "4d50",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:34d260eeef4192c6edc4fb6024a22fd97a921e75f1e6ac1496c352fe0696668e",
+  "sema_ref": "MetaPrompt#34d2",
+  "sema_stub": "34d2",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [

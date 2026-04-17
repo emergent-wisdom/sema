@@ -38,9 +38,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:570e4df328942541f716c5b592e010a92f6ebc40ccdecadb0bfb965101511907",
-  "sema_ref": "PatternDiscovery#570e",
-  "sema_stub": "570e",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:943abe22f751e8a0bfe18089bf938f0ec22b8b1429306fecbc614f38aceb108a",
+  "sema_ref": "PatternDiscovery#943a",
+  "sema_stub": "943a",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

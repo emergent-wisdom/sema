@@ -21,9 +21,9 @@
     "ring": 1,
     "caution": "Executes without pre-action verification. Ensure irreversible actions have compensation or sandboxing, or use RigorousSolver at those boundaries."
   },
-  "sema_ref": "OptimisticSolver#c5d1",
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:c5d14779fa903669149fcde53c2ed65612ed736c2ac797ddab2ca93634b43c3a",
-  "sema_stub": "c5d1",
+  "sema_ref": "OptimisticSolver#e499",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:e499e8e28e670a944b82b1426ee590943590fa08810ecbd96ee86df3375b92e0",
+  "sema_stub": "e499",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

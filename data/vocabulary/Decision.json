@@ -7,47 +7,36 @@
     "Irrevocability: Once made, the decision cannot be unmade without a new Decision process."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
+    "layer": "Infrastructure",
+    "category": "Data Structures",
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
-  "sema_ref": "Decision#acfb",
-  "sema_stub": "acfb",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
+  "sema_id": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
+  "sema_ref": "Decision#934e",
+  "sema_stub": "934e",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
+    "description": "A committed choice \u2014 artifact recording which option was selected.",
     "required": [
-      "decision_id",
-      "selected_option_id",
-      "rationale"
+      "option",
+      "committed_at"
     ],
     "properties": {
-      "decision_id": {
+      "option": {
         "type": "string"
       },
-      "context_id": {
-        "type": "string"
-      },
-      "options_considered": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "description": "List of Option IDs rejected"
-      },
-      "selected_option_id": {
-        "type": "string"
-      },
-      "rationale": {
-        "type": "string",
-        "description": "Reasoning trace for the selection"
-      },
-      "timestamp": {
+      "committed_at": {
         "type": "string",
         "format": "date-time"
+      },
+      "rationale": {
+        "type": "string"
+      },
+      "reviewer": {
+        "type": "string"
       }
     }
   },

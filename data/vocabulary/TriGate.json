@@ -10,16 +10,16 @@
     "Gate(Judge)"
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Governance",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0,
     "tier": 1
   },
-  "sema_ref": "TriGate#d80c",
-  "sema_id": "sema:TriGate#mh:SHA-256:d80c3f2d70babd00d4c175c93538223c761a4adb2f30e9b6d5c3a9c167f416fc",
-  "sema_stub": "d80c",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_ref": "TriGate#f97b",
+  "sema_id": "sema:TriGate#mh:SHA-256:f97b28cb53e5ee07f4bc16e523ad5ceb40394ced996b8bdf99ba5d779482806e",
+  "sema_stub": "f97b",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",

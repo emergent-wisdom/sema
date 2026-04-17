@@ -41,9 +41,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:850bb113b4aff8900575f5ba48b977d7fe318341909626c29aa5dcd55e8ad5e6",
-  "sema_ref": "MintWhenFriction#850b",
-  "sema_stub": "850b",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:75435932d16862f9711eb11b804e0c44d409788c6f02604a0a8c9b218ced93e0",
+  "sema_ref": "MintWhenFriction#7543",
+  "sema_stub": "7543",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",

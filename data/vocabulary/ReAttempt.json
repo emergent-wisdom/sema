@@ -9,12 +9,12 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 0,
     "caution": "Requires an explicit retry budget; uncapped ReAttempt can amplify transient failures into DoS against downstream resources."
   },
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {

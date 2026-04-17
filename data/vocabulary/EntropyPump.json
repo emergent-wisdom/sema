@@ -8,14 +8,14 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "ring": 1
   },
   "sema_id": "sema:EntropyPump#mh:SHA-256:4009135f0c832faa6a21bada63f9513d84219f3e36357f5a53c184323a41fcf4",
   "sema_ref": "EntropyPump#4009",
   "sema_stub": "4009",
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {

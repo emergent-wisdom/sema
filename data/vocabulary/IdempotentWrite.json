@@ -24,9 +24,9 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:IdempotentWrite#mh:SHA-256:b959337ab4dbfbae132acbbd966f3ba68e9069ea099e9939dfca6b6bd34353d3",
-  "sema_ref": "IdempotentWrite#b959",
-  "sema_stub": "b959",
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:f35b189aba1e812a149d772b5b28c8bcf1e556c9e61c6d1115181ee22559b9d0",
+  "sema_ref": "IdempotentWrite#f35b",
+  "sema_stub": "f35b",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

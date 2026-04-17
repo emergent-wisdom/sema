@@ -29,9 +29,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:e44a1cb6915ea7a421c0ee8059a4c901705fbff569559419256d303ce77f64ce",
-  "sema_ref": "SteelmanFirst#e44a",
-  "sema_stub": "e44a",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:03fad4e91f932655a93e9f7cb5a7080773166c2efae7d12680439e6f03dc82ce",
+  "sema_ref": "SteelmanFirst#03fa",
+  "sema_stub": "03fa",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

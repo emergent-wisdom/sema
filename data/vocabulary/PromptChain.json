@@ -32,9 +32,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:PromptChain#mh:SHA-256:883214fd600ded9d541eb74cbf999119f6da49a1e439460c841eda31316126d9",
-  "sema_ref": "PromptChain#8832",
-  "sema_stub": "8832",
+  "sema_id": "sema:PromptChain#mh:SHA-256:3a2a97af22b327ac35c915f969ed5e0ebb1a2ba506b34b17789d3c0fe0f2bf52",
+  "sema_ref": "PromptChain#3a2a",
+  "sema_stub": "3a2a",
   "dependencies": {
     "references": {
       "retry": "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091",

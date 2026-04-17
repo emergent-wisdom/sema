@@ -40,9 +40,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:a0d52142728dfd73cd8c5a248b2bf5fd48c0ae2a2d208ecf29d6279f700636a8",
-  "sema_ref": "CapacityPressure#a0d5",
-  "sema_stub": "a0d5",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:673316dba5e0ac125e640cc054a2f88d561e172241d50462b9202f4cd21e3cf6",
+  "sema_ref": "CapacityPressure#6733",
+  "sema_stub": "6733",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",

@@ -20,9 +20,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:d9bd6a1c05db9a2e191038825d78585bd10bbaa0a39d098526c43c5f12ca9f1e",
-  "sema_ref": "RetrievalAugment#d9bd",
-  "sema_stub": "d9bd",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:e8e96645f583d1efbb2bc5c6c9a3c1a20de5fcecfd4fe63b93e3385852a3d364",
+  "sema_ref": "RetrievalAugment#e8e9",
+  "sema_stub": "e8e9",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {

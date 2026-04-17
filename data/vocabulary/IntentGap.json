@@ -26,9 +26,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_ref": "IntentGap#6770",
-  "sema_id": "sema:IntentGap#mh:SHA-256:6770f51511ad48afacdbcc83b6922be19aac5d5c2c404b4dc1bf4215fc9b1f9b",
-  "sema_stub": "6770",
+  "sema_ref": "IntentGap#afde",
+  "sema_id": "sema:IntentGap#mh:SHA-256:afde0af6a92edabcc6e98eb557076c0581eb4d6ab885393f1bf7ffe267c38b66",
+  "sema_stub": "afde",
   "dependencies": {
     "references": {
       "outcome": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",

@@ -32,12 +32,12 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Time",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0
   },
-  "sema_layer": "Physics",
-  "sema_category": "Time",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "sema_id": "sema:Heartbeat#mh:SHA-256:17d837d4767aa37d1d31d6178d01b119505e77e6e2e3e47d19429722a32db399",
   "sema_ref": "Heartbeat#17d8",
   "sema_stub": "17d8",

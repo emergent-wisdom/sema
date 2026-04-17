@@ -20,7 +20,7 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
+    "layer": "Infrastructure",
     "category": "Primitives",
     "related": [
       "sema:Select#mh:SHA-256:b37174cf130148f0e486f85d892b6fd42d27a35d8493ff826602c0bbdc2fbde5"
@@ -33,7 +33,7 @@
   "sema_ref": "Route#b972",
   "sema_id": "sema:Route#mh:SHA-256:b972ff15973013019d24f13ead5662a21255a6ec0ea0f85a5ae425b07b6d0762",
   "sema_stub": "b972",
-  "sema_layer": "Physics",
+  "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "accepts": {

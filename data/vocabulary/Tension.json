@@ -12,9 +12,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:Tension#mh:SHA-256:5d006454d491e778c64db39284b4cfb93abbfcf9713b7e7b014338dc8029e244",
-  "sema_ref": "Tension#5d00",
-  "sema_stub": "5d00",
+  "sema_id": "sema:Tension#mh:SHA-256:94a99daef7b414055e54288ad6b12a325a7ba11867605524d546bbd9ebf73185",
+  "sema_ref": "Tension#94a9",
+  "sema_stub": "94a9",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {

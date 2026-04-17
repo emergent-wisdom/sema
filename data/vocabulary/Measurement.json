@@ -5,7 +5,7 @@
   "invariants": [
     "Perturbation: measurement, in general, changes the state of the measured system. The degree varies by domain; the fact does not.",
     "Cost: measurement requires resources (time, energy, channel capacity) \u2014 there is no free observation.",
-    "Distinct from `Observe`: Measurement is the substrate phenomenon; `Observe` is the cognitive process an agent performs that may use Measurement beneath."
+    "Irreversibility: once a measurement has extracted information, the prior state is not recoverable merely by unobserving \u2014 collapse of superposition in quantum systems, record of observation in classical systems."
   ],
   "_meta": {
     "tier": 1,
@@ -20,7 +20,7 @@
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   },
-  "sema_id": "sema:Measurement#mh:SHA-256:bf4844cee68fef7e77a21adcd8219afd0bbfdfcfa25ffa756694e536b4501362",
-  "sema_ref": "Measurement#bf48",
-  "sema_stub": "bf48"
+  "sema_id": "sema:Measurement#mh:SHA-256:5da6ed7d2127c41bdeb1cfaa0d737425ec5c0d762eb6288601e0f781aa18a9e0",
+  "sema_ref": "Measurement#5da6",
+  "sema_stub": "5da6"
 }

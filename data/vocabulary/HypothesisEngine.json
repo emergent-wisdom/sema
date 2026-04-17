@@ -14,9 +14,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:HypothesisEngine#mh:SHA-256:4038c39048992ac96fc0d81e8aa6f8517e1e8a05336f647c182a808095f1d52b",
-  "sema_ref": "HypothesisEngine#4038",
-  "sema_stub": "4038",
+  "sema_id": "sema:HypothesisEngine#mh:SHA-256:33925bbca0065f9a0d95efefa4b5435cde0e8c1e65ff868cc0446a2839ddb563",
+  "sema_ref": "HypothesisEngine#3392",
+  "sema_stub": "3392",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",

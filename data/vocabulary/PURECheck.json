@@ -11,9 +11,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:e8175c33c852fb21aaf8ea9c0e80c4e9d316a6717ccce97ade31a84a1d85e48c",
-  "sema_ref": "PURECheck#e817",
-  "sema_stub": "e817",
+  "sema_id": "sema:PURECheck#mh:SHA-256:9d7a6639ce794d9e42a0fb093492455a1cc46a1f3543ae92bf6f476b066d15dc",
+  "sema_ref": "PURECheck#9d7a",
+  "sema_stub": "9d7a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
