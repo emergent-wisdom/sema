@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4",
-  "sema_ref": "StructuralCoaching#3da9",
-  "sema_stub": "3da9",
+  "sema_id": "sema:StructuralCoaching#mh:SHA-256:5b44ab38c6cd0b23a9b192347563545145c4ec71ce1648723b678fd3684962a3",
+  "sema_ref": "StructuralCoaching#5b44",
+  "sema_stub": "5b44",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

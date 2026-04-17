@@ -1,6 +1,6 @@
 {
   "handle": "OrchestrationLoop",
-  "mechanism": "A strict lifecycle for high-stakes problem solving implementing {{workflow}}. It enforces a sequence: 1. {{request_framing}} (Frame Problem \u2192 {{frame_spec}}), 2. {{manifest_planning}} (Architect Solution \u2192 {{execution_manifest}}), 3. {{rollout}} (Execute safely \u2192 {{rollout_manifest}}). Each transition is mediated by a typed artifact that must pass a non-compensatory {{accept_spec}}. The loop can iterate: failed rollouts trigger re-planning, failed plans trigger re-interpretation.",
+  "mechanism": "A strict lifecycle for high-stakes problem solving implementing {{workflow}}. It enforces a sequence: 1. {{request_framing}} (Frame Problem \u2192 {{frame_spec}}), 2. {{manifest_planning}} (Architect Solution \u2192 {{execution_manifest}}), 3. {{rollout}} (Execute safely \u2192 {{rollout_manifest}}). Each transition is mediated by a typed artifact that must pass a non-compensatory {{accept_spec}}. The loop can iterate: failed rollouts trigger re-planning, failed plans trigger re-interpretation. At seams that cross trust boundaries (cross-organizational or commons-facing), feedback returning through each stage passes through a {{receptivity_gate}} that validates any FailureTrace before the upstream stage absorbs the rejection.",
   "gloss": "Interpret-Plan-Rollout Lifecycle",
   "failure_modes": [
     "Bureaucracy: Blindly following the full lifecycle for trivial tasks (using a cannon for a mosquito).",
@@ -22,9 +22,9 @@
       "LayeredCheck"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:fd5ef68be3fdf8bec5e5bb4544153e5029e22626212e2267edeb26881ce9a94a",
-  "sema_ref": "OrchestrationLoop#fd5e",
-  "sema_stub": "fd5e",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:5b56a05a14f20d6197f0ccb057026132395cbddfe0c7733c4e967bdf7fb9b7b5",
+  "sema_ref": "OrchestrationLoop#5b56",
+  "sema_stub": "5b56",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -36,7 +36,8 @@
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:9e7fe2b3bcd73879f8f55164530c8f5e6773a39b9719cfaca8dce18452ac1463",
       "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:d6d4c94286d0ff8ea5eecf0f5ff224c2e640d68d96fa498c1330b24ad9094535"
     },
     "composes_with": {
       "rollout": "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb",

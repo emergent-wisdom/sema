@@ -30,11 +30,11 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:HindsightBlock#mh:SHA-256:bdb602218783e07b6eb5e68e900635bcd80e7b6d2ff32ac26ec03e383837f363",
-  "sema_ref": "HindsightBlock#bdb6",
-  "sema_stub": "bdb6",
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:4cc8834994870224daeb4d912c810b9cf50aea0cddfd3d2d774282a3abf516e0",
+  "sema_ref": "HindsightBlock#4cc8",
+  "sema_stub": "4cc8",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

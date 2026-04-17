@@ -29,9 +29,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
-  "sema_ref": "Reflexion#51b9",
-  "sema_stub": "51b9",
+  "sema_id": "sema:Reflexion#mh:SHA-256:eed982425602ec2038b52e9918aca8cf3f0c695caf514f6a7d71d049cf771836",
+  "sema_ref": "Reflexion#eed9",
+  "sema_stub": "eed9",
   "dependencies": {
     "references": {
       "critique": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",

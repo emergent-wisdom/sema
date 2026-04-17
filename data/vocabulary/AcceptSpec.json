@@ -1,7 +1,7 @@
 {
   "handle": "AcceptSpec",
-  "mechanism": "A strict, typed {{spec}} defining non-compensatory {{criteria}} at solver boundaries. Unlike soft prompts, an AcceptSpec specifies hard {{constraint}}s (e.g., Must be < 100/ton, Must violate no laws of physics). If ANY criterion fails, the artifact is rejected entirely. High quality in one dimension cannot compensate for failure in another.",
-  "gloss": "Non-compensatory failure boundaries",
+  "mechanism": "A strict, typed {{spec}} defining non-compensatory {{criteria}} and {{constraint}}s at solver boundaries. Each criterion is declared individually and carries a reframing hint for the FrameError emitted if it rejects. AcceptSpec is a Noun \u2014 it describes the contract. The active Verify surface of a Solver consumes the AcceptSpec, evaluates it against a Result, and yields either a Solution (on non-compensatory success) or a FrameError (on failure, carrying the specific rejecting gate and its reframing hint). A single AcceptSpec may be evaluated by multiple Verify surfaces. High quality in one dimension cannot compensate for failure in another.",
+  "gloss": "Non-compensatory acceptance contract; consumer Verify yields Solution or FrameError",
   "failure_modes": [
     "Over-constraining: Setting specs so tight that no solution can pass (Deadlock).",
     "Spec Drift: The spec does not accurately reflect the true goal."
@@ -71,9 +71,9 @@
       }
     }
   },
-  "sema_id": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
-  "sema_ref": "AcceptSpec#70dd",
-  "sema_stub": "70dd",
+  "sema_id": "sema:AcceptSpec#mh:SHA-256:7caa4bc74694b725f3dbe825d67f0c6268a1213b32f9a19bf200c953de2eabae",
+  "sema_ref": "AcceptSpec#7caa",
+  "sema_stub": "7caa",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

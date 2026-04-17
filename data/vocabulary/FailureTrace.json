@@ -1,0 +1,67 @@
+{
+  "handle": "FailureTrace",
+  "mechanism": "A structured, verifiable proof that a downstream consumer's rejection of an artifact is grounded in a specific clause of the {{accept_spec}} it was measured against. When a consumer returns a rejection through a Solver's Feedback surface, the rejection must carry a FailureTrace naming the violated clause, citing the evidence, and identifying the evaluator. The upstream Solver uses this trace to distinguish genuine structural feedback from fabricated penalties or hallucinated critique. Trace invalidity (a cited clause that does not exist, evidence that does not match the artifact, or a forged evaluator identity) causes the feedback to be dropped rather than absorbed.",
+  "gloss": "Structured proof of which AcceptSpec clause a rejected artifact violated \u2014 the evidence the Receptivity Gate verifies",
+  "invariants": [
+    "Clause-specific: the trace names exactly one {{accept_spec}} clause per violation, not a generic 'doesn't meet bar'.",
+    "Evidence-bound: the violation claim is paired with citeable evidence from the artifact.",
+    "Signed: the trace carries the evaluator's cryptographic identity so fabricated traces are detectable."
+  ],
+  "failure_modes": [
+    "Ghost clauses: the trace cites an AcceptSpec clause that does not exist (easy to detect via schema lookup).",
+    "Evidence fabrication: the trace cites evidence the artifact does not contain (detectable via content hash).",
+    "Identity spoofing: the evaluator signature is invalid (detectable via standard signature verification).",
+    "Clause-dancing: the consumer rejects for clause A but the real objection is to clause B they did not invoke \u2014 structural honesty failure that no trace schema can catch by itself."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "accept_spec_ref",
+      "violated_clause",
+      "evidence",
+      "evaluator_ref"
+    ],
+    "properties": {
+      "accept_spec_ref": {
+        "type": "string",
+        "description": "sema_id of the AcceptSpec the artifact was measured against"
+      },
+      "violated_clause": {
+        "type": "string",
+        "description": "Identifier of the specific clause claimed violated"
+      },
+      "evidence": {
+        "type": "object",
+        "description": "Citeable evidence from the artifact supporting the violation claim"
+      },
+      "evaluator_ref": {
+        "type": "string",
+        "description": "Signed identity of the evaluator asserting the violation"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "blocking",
+          "advisory"
+        ],
+        "description": "Whether the violation halts progress or is informational"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:7caa4bc74694b725f3dbe825d67f0c6268a1213b32f9a19bf200c953de2eabae"
+    }
+  },
+  "sema_id": "sema:FailureTrace#mh:SHA-256:9de1d968b51492278dee438d190924c197f8ac71135f58833cb2700d77c18af8",
+  "sema_ref": "FailureTrace#9de1",
+  "sema_stub": "9de1"
+}

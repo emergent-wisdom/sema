@@ -24,9 +24,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:ShoutWhisper#mh:SHA-256:35ddf298feb20dc16aeaa1294566eddb2dda1928744d7d25e747ae9a697d0d78",
-  "sema_ref": "ShoutWhisper#35dd",
-  "sema_stub": "35dd",
+  "sema_id": "sema:ShoutWhisper#mh:SHA-256:40f74fa1781c38b641efe1a972d73d813ad280767dd73555c32e780b2231c603",
+  "sema_ref": "ShoutWhisper#40f7",
+  "sema_stub": "40f7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -21,7 +21,7 @@
     "agent has a valid environment to Execute"
   ],
   "_meta": {
-    "tier": 3,
+    "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
     "related": [

@@ -1,7 +1,7 @@
 {
   "handle": "Prompt",
-  "mechanism": "The input text or instruction provided to a generative model.",
-  "gloss": "Model input instruction",
+  "mechanism": "Structured input-instruction submitted to a generative model. May carry a role tag (system, user, assistant) and optional tool-declaration attachments that shape how the model generates. Distinct from a Message (agent-to-agent communication with sender/recipient metadata) and from a raw Signal (no envelope).",
+  "gloss": "Structured instruction to a generative model, optionally role-tagged",
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
@@ -22,9 +22,9 @@
       "text"
     ]
   },
-  "sema_id": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
-  "sema_ref": "Prompt#5ded",
-  "sema_stub": "5ded",
+  "sema_id": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1",
+  "sema_ref": "Prompt#b18a",
+  "sema_stub": "b18a",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

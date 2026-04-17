@@ -18,9 +18,9 @@
       "PURECheck"
     ]
   },
-  "sema_ref": "LayeredCheck#3fad",
-  "sema_id": "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0",
-  "sema_stub": "3fad",
+  "sema_ref": "LayeredCheck#76d6",
+  "sema_id": "sema:LayeredCheck#mh:SHA-256:76d62f3bf0821dca24f45fddde8e892eb2bc29c2182d91cfb5308a3defe01d60",
+  "sema_stub": "76d6",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

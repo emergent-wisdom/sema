@@ -26,7 +26,7 @@
     }
   },
   "mechanism": "The actual result that occurs in reality. It may differ from the {{plan}} due to external factors, noise, or execution error.",
-  "gloss": "Actual result",
+  "gloss": "Realized state after an action, captured for Plan-vs-reality comparison",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -35,9 +35,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",
-  "sema_ref": "Outcome#38e0",
-  "sema_stub": "38e0",
+  "sema_id": "sema:Outcome#mh:SHA-256:144c45a1a8eb6709b80025867c72c8430f0b3d0dab600c571f2a12a9280d0dc2",
+  "sema_ref": "Outcome#144c",
+  "sema_stub": "144c",
   "dependencies": {
     "references": {
       "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"

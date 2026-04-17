@@ -22,9 +22,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:TranslationProxy#mh:SHA-256:f0e0d8b01e88f45c1d6791f41ed1686a96e40fc48f541c31568d48bb83ad988e",
-  "sema_ref": "TranslationProxy#f0e0",
-  "sema_stub": "f0e0",
+  "sema_id": "sema:TranslationProxy#mh:SHA-256:895a31b33e5c6add265a78d63e1669ca02b4d99798b4cc0d272b0f459cbe69b0",
+  "sema_ref": "TranslationProxy#895a",
+  "sema_stub": "895a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [

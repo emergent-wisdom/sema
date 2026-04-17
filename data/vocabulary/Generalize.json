@@ -1,6 +1,6 @@
 {
   "handle": "Generalize",
-  "mechanism": "Pattern Extraction: Given multiple instances, identify shared structure. Replace specific values with variables. {{state}} the invariant that holds across all instances. Test: does pattern predict behavior of new instances? Refine until predictive. It employs {{analogy_bridge}} to map specific instances to abstract schemata, validating the invariant across the set.",
+  "mechanism": "Pattern Extraction: Given multiple instances, identify shared structure. Replace specific values with variables. {{state}} the invariant that holds across all instances. Test: does pattern predict behavior of new instances? Refine until predictive. The canonical form of {{induction}} in sema's reasoning taxonomy \u2014 probable conclusions from specific observations. It employs {{analogy_bridge}} to map specific instances to abstract schemata, validating the invariant across the set.",
   "gloss": "Inductive pattern extraction",
   "failure_modes": [
     "Overfitting: extracting a pattern that includes noise/coincidence."
@@ -24,15 +24,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
-  "sema_ref": "Generalize#17c9",
-  "sema_stub": "17c9",
+  "sema_id": "sema:Generalize#mh:SHA-256:6dea8c6d33fa265c8f0ca75ca5684a452b55892d38d9351440a2a1dad5fe8508",
+  "sema_ref": "Generalize#6dea",
+  "sema_stub": "6dea",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54"
     }
   }
 }

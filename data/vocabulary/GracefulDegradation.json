@@ -21,7 +21,7 @@
   "parameters": [
     {
       "name": "max_def_size",
-      "type": "ByteSize",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Default: 100KB"
     },
@@ -38,9 +38,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485",
-  "sema_ref": "GracefulDegradation#f6d7",
-  "sema_stub": "f6d7",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:9d39fb52b4ad05551788358eca746a469704a6b7b99043da23cb78bcbd6d0f19",
+  "sema_ref": "GracefulDegradation#9d39",
+  "sema_stub": "9d39",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -28,15 +28,17 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
-  "sema_ref": "Hysteresis#78b0",
-  "sema_stub": "78b0",
+  "sema_id": "sema:Hysteresis#mh:SHA-256:d0f8e3e90c03f4306ca42f5d69c6a41f3f89334ccfc450873771944f2a5aec46",
+  "sema_ref": "Hysteresis#d0f8",
+  "sema_stub": "d0f8",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    },
+    "composes_with": {
+      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
     }
   }
 }

@@ -39,15 +39,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
-  "sema_ref": "Warmup#28c4",
-  "sema_stub": "28c4",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:Warmup#mh:SHA-256:92b2edac4a9801604e76f19b1a8d22b954fa2394f1e0d4285d1686221558ca5e",
+  "sema_ref": "Warmup#92b2",
+  "sema_stub": "92b2",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "greet": "sema:Greet#mh:SHA-256:7ad2382d29cb28ed605b0505374488c7e6dcd1ff8098b63686e83ab7098e2cf6",

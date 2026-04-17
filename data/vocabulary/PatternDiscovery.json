@@ -1,6 +1,6 @@
 {
   "handle": "PatternDiscovery",
-  "mechanism": "Macro for {{search}}(Pattern). Vocabulary Hygiene {{protocol}}. Before minting a new pattern, the {{agent}} MUST execute a semantic search against the existing registry. If a pattern with >85% semantic similarity is found, the {{agent}} MUST adopt the existing pattern or explicitly justify the divergence (Fork). It leverages {{search}} to scan the existing registry before triggering {{construct_ontology}} to mint a new definition.",
+  "mechanism": "Macro for {{search}}(Pattern). Vocabulary Hygiene {{protocol}}. Before minting a new pattern, the {{agent}} MUST execute a {{latent_attachment}}-backed semantic search against the existing registry. If a pattern with >85% semantic similarity is found, the {{agent}} MUST adopt the existing pattern or explicitly justify the divergence (Fork). It leverages {{search}} to scan the existing registry before triggering {{construct_ontology}} to mint a new definition.",
   "gloss": "Finding patterns that already exist",
   "failure_modes": [
     "Not Invented Here (NIH): {{agent}} ignores existing solutions to create a slightly worse custom version.",
@@ -35,21 +35,22 @@
   "_meta": {
     "tier": 2,
     "layer": "Mind",
-    "category": "Strategy",
+    "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea",
-  "sema_ref": "PatternDiscovery#f667",
-  "sema_stub": "f667",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:196e77d697c4a7eed0698d138eba4ec2c1a939e11fcf899b55852e595703a5b2",
+  "sema_ref": "PatternDiscovery#196e",
+  "sema_stub": "196e",
   "sema_layer": "Mind",
-  "sema_category": "Strategy",
+  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "construct_ontology": "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
       "search": "sema:Search#mh:SHA-256:d6083dea6898b63d14ccb2542fcfa05561a1f6326000c8d9c190599afd99b123",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4"
     }
   }
 }

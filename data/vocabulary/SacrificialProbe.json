@@ -22,12 +22,6 @@
       "type": "Float",
       "range": "[0.0, 0.1]",
       "description": "Probe cost relative to payload"
-    },
-    {
-      "name": "failure_mode",
-      "type": "Enum",
-      "range": "unspecified",
-      "description": "Silent, Loud, Byzantine"
     }
   ],
   "_meta": {
@@ -36,9 +30,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:e235bde0b859ae1c6db86c1a89037765c45cdaae2bbcac7e3bae000063d65e99",
-  "sema_ref": "SacrificialProbe#e235",
-  "sema_stub": "e235",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:0d39580d657811563df7c3b0254cad62ce4e3c9379bacc0be204b0dd977eba18",
+  "sema_ref": "SacrificialProbe#0d39",
+  "sema_stub": "0d39",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

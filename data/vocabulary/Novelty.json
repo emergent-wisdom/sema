@@ -1,6 +1,6 @@
 {
   "handle": "Novelty",
-  "mechanism": "Acts as a {{judge}} to evaluate structural distinctness and {{value}} against the incumbent knowledge base. Classifies candidates into three qualitative states: (1) Derivative: Pure relabeling of an existing concept. (2) Marginal: Incremental variation; distinctness is unproven. (3) Distinct: Introduces a new orthogonal mechanism or predicts a divergent outcome.",
+  "mechanism": "A {{judge}} of structural distinctness: does this artifact introduce a genuinely new mechanism relative to a reference knowledge base, or is it a rename or incremental variation of something already there? Applies wherever originality needs to be separated from surface variety \u2014 scientific contribution, design proposals, creative work, trademark/patent review, pattern minting. The essential move is a structural comparison against the incumbent set rather than a similarity score on surface tokens. Specific rating semantics (binary, traffic-light, continuous distance) belong on descendants or on the composing protocol. The signature Judge({{value}}) places the result on a {{value}}-scale (how novel is this, on a measurable axis) rather than returning a binary yes/no.",
   "invariants": [
     "Orthogonality: High novelty requires low embedding similarity to nearest neighbor."
   ],
@@ -14,9 +14,9 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
-  "sema_ref": "Novelty#51b5",
-  "sema_stub": "51b5",
+  "sema_id": "sema:Novelty#mh:SHA-256:856823d77a20df0cb24874f13730910bac2fdf206d205b09a3201cd1b24f6810",
+  "sema_ref": "Novelty#8568",
+  "sema_stub": "8568",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

@@ -1,7 +1,7 @@
 {
   "handle": "PUREOptimization",
   "gloss": "Deeply optimizing a solution across PURE dimensions",
-  "mechanism": "A multi-agent {{optimize}} strategy. It accepts a candidate {{solution}} that has already passed the {{pure_check}}. It {{decompose}}s the solution into four parallel streams, assigning a specialized {{cognitive_solver}} to maximize each PURE metric: {{parsimony}} (Efficiency), {{novelty}} (Uniqueness), {{realizable}} (Feasibility), and {{expansive}} (Impact). The results are re-integrated via {{synthesis}} to find the {{pareto_front}} among competing improvements.",
+  "mechanism": "The PURE optimization specialization of the {{p_u_r_e}} framework: a multi-agent {{optimize}} strategy. It accepts a candidate {{solution}} that has already passed the {{pure_check}}. It {{decompose}}s the solution into four parallel streams, assigning a specialized {{polymorphic_solver}} to maximize each PURE metric: {{parsimony}} (Efficiency), {{novelty}} (Uniqueness), {{realizable}} (Feasibility), and {{expansive}} (Impact). The results are re-integrated via {{synthesis}} to find the {{pareto_front}} among competing improvements.",
   "signature": [
     "Optimize(Solution)"
   ],
@@ -23,9 +23,9 @@
       "LateralOptimization"
     ]
   },
-  "sema_ref": "PUREOptimization#279a",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:279a3b75f9066f61d293acc44f18107c8d566a18ac1ad32c39439e71127b2e95",
-  "sema_stub": "279a",
+  "sema_ref": "PUREOptimization#577c",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:577c180f9d5a8a6c8ce17e99a95491dee28688f35eaa465e97da4e22a27023f8",
+  "sema_stub": "577c",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -33,7 +33,7 @@
       "decompose": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
       "synthesis": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
       "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
-      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     },
     "references": {
       "realizable": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
@@ -41,7 +41,8 @@
       "pure_check": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
       "pareto_front": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
       "expansive": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
-      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e"
+      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
+      "p_u_r_e": "sema:PURE#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     },
     "accepts": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"

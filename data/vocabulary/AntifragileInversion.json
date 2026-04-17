@@ -19,11 +19,11 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c",
-  "sema_ref": "AntifragileInversion#6b0e",
-  "sema_stub": "6b0e",
+  "sema_id": "sema:AntifragileInversion#mh:SHA-256:992022c17aa4c575dc33251481f83cc7cd018925f60469f913e173ba6e63ec2a",
+  "sema_ref": "AntifragileInversion#9920",
+  "sema_stub": "9920",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

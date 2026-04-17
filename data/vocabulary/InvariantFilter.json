@@ -1,6 +1,6 @@
 {
   "handle": "InvariantFilter",
-  "mechanism": "A strict communication firewall that intercepts {{message}}s (incoming or outgoing) and evaluates them against a set of explicit logical predicates (Invariants). If a {{message}} satisfies all invariants, it is permitted to pass. If it fails even one, it is blocked, dropped, or flagged for review. This enforces 'Contractual Safety' on the communication channel. It inspects every {{message}} via a rigorous {{check}} against defined predicates before allowing transit.",
+  "mechanism": "A strict communication firewall that intercepts {{message}}s (incoming or outgoing) and evaluates them against an explicit set of {{predicates}} (Invariants). If a {{message}} satisfies all predicates, it is permitted to pass. If it fails even one, it is blocked, dropped, or flagged for review. This enforces 'Contractual Safety' on the communication channel. It inspects every {{message}} via a rigorous {{check}} against defined predicates before allowing transit.",
   "gloss": "Rule-based message filtering",
   "failure_modes": [
     "Incomplete Invariants: If the filter does not catch a specific edge case, bad data leaks through.",
@@ -22,12 +22,6 @@
   ],
   "parameters": [
     {
-      "name": "predicates",
-      "type": "List[Expression]",
-      "range": "unspecified",
-      "description": "Boolean expressions that messages must satisfy to pass"
-    },
-    {
       "name": "action_on_fail",
       "type": "Enum",
       "range": "[DROP, REJECT, FLAG]",
@@ -40,9 +34,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:InvariantFilter#mh:SHA-256:a541049098acbba01ebe35ee9c23ebbdaf9d34e252b1b69f97daa87b3e96eea2",
-  "sema_ref": "InvariantFilter#a541",
-  "sema_stub": "a541",
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:82d48248f0048f3ec1c54cd07b409181c936824029e830ce9ed6469c83f8b5eb",
+  "sema_ref": "InvariantFilter#82d4",
+  "sema_stub": "82d4",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
@@ -51,7 +45,8 @@
       "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
     },
     "accepts": {
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "predicates": "sema:RuleSet#mh:SHA-256:8d85afc9e1f879dc43aaf8c92bd280aa8f1c81ece7dd1bd6f36c6ab47ddc0ecf"
     }
   }
 }

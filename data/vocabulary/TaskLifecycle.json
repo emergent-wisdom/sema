@@ -1,6 +1,6 @@
 {
   "handle": "TaskLifecycle",
-  "mechanism": "Explicit {{state_transition}} machine governing {{task}} progression through five states: PENDING (created, awaiting assignment), ASSIGNED (claimed by an {{agent}}), RUNNING (actively executing, emitting {{heartbeat}}), COMPLETED (successfully finished, {{result}} attached), FAILED (terminated with {{exception}}, retry decision required). Each transition requires a typed {{event}}: assign, start, complete, fail, cancel. Invalid transitions are rejected. RUNNING state requires periodic {{heartbeat}}; timeout triggers automatic FAILED transition. Follows the Agent-to-Agent protocol task management model.",
+  "mechanism": "Explicit {{state_transition}} machine governing {{task}} progression through five states: PENDING (created, awaiting assignment), ASSIGNED (claimed by an {{agent}}), RUNNING (actively executing, emitting {{heartbeat}}), COMPLETED (successfully finished, {{result}} attached), FAILED (terminated with {{exception}}, retry decision required). Each transition requires a typed {{event}}: assign, start, complete, fail, cancel. Invalid transitions are rejected. RUNNING state requires periodic {{heartbeat}}; timeout triggers automatic FAILED transition. The attached {{risk}} profile informs retry and escalation policy on failure.",
   "gloss": "Formal state machine governing task progression",
   "invariants": [
     "Forward-Only: Tasks must not regress (no COMPLETED to RUNNING via {{state_transition}})",
@@ -37,9 +37,9 @@
     "tier": 1,
     "related": []
   },
-  "sema_ref": "TaskLifecycle#ecd8",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda",
-  "sema_stub": "ecd8",
+  "sema_ref": "TaskLifecycle#8c7f",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:8c7f7470a37f4207e7509eed63e2689285631f62516a3943def1cf15ffb7c852",
+  "sema_stub": "8c7f",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
@@ -48,7 +48,8 @@
       "exception": "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6",
       "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2"
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
+      "risk": "sema:Risk#mh:SHA-256:37748bbbeb3ee23c5a258a49faee4d04a16064136fdfd8721a365d3764c73fb8"
     },
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57"

@@ -26,7 +26,7 @@
     }
   },
   "mechanism": "Before stating positions, each agent declares their ACCEPT-SET: all outcomes they can live with. Sets are hash-committed before reveal (commit-reveal protocol). Compute intersection. If non-empty, select from intersection. If empty, both agents EXPAND accept-sets by one step and recompute. Repeat until overlap found or expansion-limit hit. It employs {{mece}} partitioning to cleanly identify the intersection of distinct accept-sets.",
-  "gloss": "Transform negotiations from position-based battles to interest-based discovery of shared ground",
+  "gloss": "Accept-set intersection protocol with commit-reveal for interest-based negotiation",
   "failure_modes": [
     "Strategic minimal accept-sets (mitigated but not eliminated by commit-reveal).",
     "Expansion limit hit with no overlap.",
@@ -49,9 +49,9 @@
     "category": "Data Structures",
     "ring": 1
   },
-  "sema_id": "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
-  "sema_ref": "Overlap#bcfa",
-  "sema_stub": "bcfa",
+  "sema_id": "sema:Overlap#mh:SHA-256:b462648204bcf1076f89ccda750a6ed2427ab85c74602d24fcbf30aadf5c6e36",
+  "sema_ref": "Overlap#b462",
+  "sema_stub": "b462",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

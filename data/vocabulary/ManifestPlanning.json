@@ -20,9 +20,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "ManifestPlanning#8f61",
-  "sema_id": "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d",
-  "sema_stub": "8f61",
+  "sema_ref": "ManifestPlanning#ece0",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:ece0c1655db344cd569af1aa0575665ea4d1246d13a34f74ff1af9cf9ffc5b6e",
+  "sema_stub": "ece0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

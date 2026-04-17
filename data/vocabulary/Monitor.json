@@ -15,25 +15,19 @@
       "type": "Duration",
       "range": "unspecified",
       "description": "Time between observation cycles"
-    },
-    {
-      "name": "threshold",
-      "type": "Float",
-      "range": "unspecified",
-      "description": "Alert threshold for the monitored metric"
     }
   ],
   "_meta": {
     "tier": 0,
-    "layer": "Mind",
-    "category": "Strategy",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Monitor#9a8f",
-  "sema_id": "sema:Monitor#mh:SHA-256:9a8f8879765fe55f9ab79786671b7e4cf0aa0e61730e20897214b22fb6fa08bb",
-  "sema_stub": "9a8f",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
+  "sema_ref": "Monitor#feb3",
+  "sema_id": "sema:Monitor#mh:SHA-256:feb39520f1d3644230f2654b8f92e6034eefb30b8eb59904dade81d76a07a277",
+  "sema_stub": "feb3",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",

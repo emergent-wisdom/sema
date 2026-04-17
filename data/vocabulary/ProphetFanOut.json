@@ -21,9 +21,9 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa",
-  "sema_ref": "ProphetFanOut#2d81",
-  "sema_stub": "2d81",
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:85a962e679be621083e2f1f7e4797462353f411f4c96a0dba630f674b199007b",
+  "sema_ref": "ProphetFanOut#85a9",
+  "sema_stub": "85a9",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

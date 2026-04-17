@@ -1,6 +1,6 @@
 {
   "handle": "Taper",
-  "gloss": "Progressive ambiguity collapse from noisy input to certain output. Examples: Sema Discovery, Hiring pipelines, Compiler passes.",
+  "gloss": "Multi-stage filter of increasing strictness: wide high-entropy input to narrow certain output",
   "mechanism": "A multi-stage {{sequence}} process that accepts wide-aperture, high-entropy inputs and progressively filters them through {{gate}}s or {{tri_gate}}s of increasing strictness. Each stage: (1) Applies a stage-specific acceptance threshold, acting as a functional {{depth_governor}}; (2) Reduces the candidate set to {{compress}} the search space; (3) Increases certainty. Final stage outputs zero-entropy signal (deterministic, unambiguous). Failure modes are stage-appropriate: Early stages optimize for recall (don't lose valid signals), Late stages optimize for precision (don't pass garbage).",
   "signature": [
     "Sequence(Gate)"
@@ -36,9 +36,9 @@
     "category": "Protocols",
     "tier": 1
   },
-  "sema_ref": "Taper#9687",
-  "sema_id": "sema:Taper#mh:SHA-256:9687795b14b6e66574aebb5255ef84529bf7095b350513470085285e3d90a260",
-  "sema_stub": "9687",
+  "sema_ref": "Taper#690e",
+  "sema_id": "sema:Taper#mh:SHA-256:690ee0aa07768b21cc8b3c0347b5b8383666d1ea9e4ff163fd87a67fa3dfe5e0",
+  "sema_stub": "690e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

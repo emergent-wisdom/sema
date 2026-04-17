@@ -48,9 +48,9 @@
       "SynergisticMode"
     ]
   },
-  "sema_id": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
-  "sema_ref": "Mode#53e0",
-  "sema_stub": "53e0",
+  "sema_id": "sema:Mode#mh:SHA-256:0e74d67e79d305d801347b14b889ae026212597df93baefbef789c173db395c5",
+  "sema_ref": "Mode#0e74",
+  "sema_stub": "0e74",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

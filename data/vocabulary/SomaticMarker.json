@@ -16,9 +16,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",
-  "sema_ref": "SomaticMarker#84e4",
-  "sema_stub": "84e4",
+  "sema_id": "sema:SomaticMarker#mh:SHA-256:53bb336530fd94daf434f10a69c6cc91447b412e126f57f60d67b87ff28e7f7a",
+  "sema_ref": "SomaticMarker#53bb",
+  "sema_stub": "53bb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

@@ -5,7 +5,7 @@
   "parameters": [
     {
       "name": "breadth",
-      "type": "Integer",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Maximum parallel reasoning branches per node"
     },
@@ -25,9 +25,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:581a1251e9eb48d2d2d5871c6c94ea26094c4ec99c2aea33ab22d30d0a351ded",
-  "sema_ref": "TreeOfThoughts#581a",
-  "sema_stub": "581a",
+  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:422f0e25e23054a4a06d03bf1b8d74b76eddc8c661053cacc7d29063d5a03888",
+  "sema_ref": "TreeOfThoughts#422f",
+  "sema_stub": "422f",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [

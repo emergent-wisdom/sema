@@ -34,9 +34,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b",
-  "sema_ref": "FabricSharding#7399",
-  "sema_stub": "7399",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:880bad265cb435bf732935c3d0c962ef635cef919a82d29b4bd306c251f3d7dd",
+  "sema_ref": "FabricSharding#880b",
+  "sema_stub": "880b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

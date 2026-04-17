@@ -16,7 +16,7 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Memory",
-    "ring": 0
+    "ring": 2
   },
   "sema_id": "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832",
   "sema_ref": "SelfReminder#c896",

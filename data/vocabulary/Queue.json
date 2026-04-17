@@ -1,10 +1,10 @@
 {
   "handle": "Queue",
-  "mechanism": "A linear data structure for ordering {{task}}s or {{message}}s. It enforces First-In-First-Out (FIFO) or Priority ordering.",
-  "gloss": "Ordered task buffer",
-  "sema_id": "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
-  "sema_ref": "Queue#2ec3",
-  "sema_stub": "2ec3",
+  "mechanism": "A linear container holding {{task}}s or {{message}}s under an explicit ordering discipline (FIFO, LIFO, or Priority). Consumers dequeue one element at a time; producers enqueue at the discipline-dictated position. Distinct from a {{stream}} (continuous, unbounded, with no single consumer) and from a plain list (no consumer semantics).",
+  "gloss": "Ordered container with FIFO/LIFO/priority discipline and explicit dequeue semantics",
+  "sema_id": "sema:Queue#mh:SHA-256:65e4154da8cc51144e2f4697060224336e017f0debc205c5abfff3770e35f5ad",
+  "sema_ref": "Queue#65e4",
+  "sema_stub": "65e4",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -59,7 +59,8 @@
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
+      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
     }
   }
 }

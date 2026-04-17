@@ -1,7 +1,7 @@
 {
   "handle": "Retry",
   "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
-  "gloss": "Transform retry from blind re-attempt to intelligent, failure-informed recovery strategy",
+  "gloss": "Classified re-attempt with backoff conditioned on failure type",
   "failure_modes": [
     "Misclassifying persistent failure as transient (wastes retry budget).",
     "Misclassifying transient as persistent (gives up too soon).",
@@ -23,18 +23,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
+    "layer": "Mind",
+    "category": "Strategy",
     "related": [
       "sema:Backoff#mh:SHA-256:14b48b9a05b8b47aea8484dbd426cc39dcff0c2c293010415a233ce23fccab9c"
     ],
-    "ring": 0
+    "ring": 1
   },
-  "sema_ref": "Retry#d53d",
-  "sema_id": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
-  "sema_stub": "d53d",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
@@ -42,5 +39,8 @@
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",
       "break": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
     }
-  }
+  },
+  "sema_id": "sema:Retry#mh:SHA-256:4cc646f6a317a5d12411f1f12df2d7212093229e82c2ca69c20fbaf29f1c1d59",
+  "sema_ref": "Retry#4cc6",
+  "sema_stub": "4cc6"
 }

@@ -21,18 +21,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "related": [
       "SignalReflection"
     ],
     "ring": 2
   },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758",
-  "sema_ref": "CognitiveEcho#4a95",
-  "sema_stub": "4a95",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:5252515f350d9f3df7d64a544570c8795048f17a56288c854ab42974ad2ddeec",
+  "sema_ref": "CognitiveEcho#5252",
+  "sema_stub": "5252",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",

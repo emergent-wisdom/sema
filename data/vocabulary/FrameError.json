@@ -1,0 +1,32 @@
+{
+  "handle": "FrameError",
+  "mechanism": "A typed failure signaling that an acceptance gate rejection requires lateral reframing of the problem rather than retry. Produced by an {{accept_spec}} when a non-compensatory gate fails, the FrameError carries the specific gate that rejected and a reframing hint pointing the upstream planner toward a different frame. Distinct from transient failures (which warrant {{retry}}) and from compensable failures (which warrant {{compensate}}): a FrameError asserts that the current frame is wrong, not that execution went wrong.",
+  "gloss": "Typed failure signaling that lateral reframing, not retry, is required",
+  "invariants": [
+    "A FrameError from a child forces the parent to restructure its approach, not re-execute.",
+    "Must carry identification of the rejecting gate and a reframing hint \u2014 a bare FrameError without context is actionable only as 'halt'."
+  ],
+  "failure_modes": [
+    "Receiving Solver treats FrameError as a generic failure and retries, wasting budget on the wrong frame.",
+    "Missing reframing hint leaves the parent Solver unable to select a new approach \u2014 degenerates to halt.",
+    "Cascaded FrameErrors without dampening cause thrash between frames."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
+      "retry": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
+      "compensate": "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7"
+    }
+  },
+  "sema_id": "sema:FrameError#mh:SHA-256:168fcdc757dce95ceca470ad01c7f647d458640e71cff2ea1b2f45ed04d7ea0f",
+  "sema_ref": "FrameError#168f",
+  "sema_stub": "168f"
+}

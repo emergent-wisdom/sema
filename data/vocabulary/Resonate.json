@@ -41,14 +41,14 @@
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
+    "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4",
-  "sema_ref": "Resonate#99d9",
-  "sema_stub": "99d9",
+  "sema_id": "sema:Resonate#mh:SHA-256:9fa443854c8c9257c82a6501b81bdb9957d880f4c05fcef398eebe6292a1e1c4",
+  "sema_ref": "Resonate#9fa4",
+  "sema_stub": "9fa4",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Coordination",
   "dependencies": {
     "references": {
       "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",

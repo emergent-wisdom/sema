@@ -1,31 +1,5 @@
 {
   "handle": "Observe",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "observation_id",
-      "source",
-      "data"
-    ],
-    "properties": {
-      "observation_id": {
-        "type": "string",
-        "description": "Unique identifier for this observation"
-      },
-      "source": {
-        "type": "string",
-        "description": "Where the observation came from"
-      },
-      "data": {
-        "description": "The raw observed information"
-      },
-      "timestamp": {
-        "type": "string",
-        "format": "date-time",
-        "description": "When observation occurred"
-      }
-    }
-  },
   "mechanism": "The process of gathering information from the environment. It involves sensing raw data, filtering it for relevance (Attention), and integrating it into the internal {{context}} and state. Unlike passive reception, Observe is often an active query (e.g., polling an API, reading a file).",
   "gloss": "Active State Perception",
   "failure_modes": [
@@ -49,7 +23,7 @@
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
-    "category": "Data Structures",
+    "category": "Primitives",
     "related": [
       "Belief",
       "Attention"
@@ -57,10 +31,10 @@
     "ring": 0
   },
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
-  "sema_id": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
-  "sema_ref": "Observe#8ebd",
-  "sema_stub": "8ebd",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Observe#mh:SHA-256:39f0bf3256475676557978ed275548604d9c1f247a6a49c242dc69646ddab20c",
+  "sema_ref": "Observe#39f0",
+  "sema_stub": "39f0",
   "dependencies": {
     "yields": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"

@@ -14,9 +14,9 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
-  "sema_ref": "ExplainBeacon#6ced",
-  "sema_stub": "6ced",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:ab3fda0493d137c8d5254513b4df5143869042a2db3f4970682b6de823bfb215",
+  "sema_ref": "ExplainBeacon#ab3f",
+  "sema_stub": "ab3f",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {

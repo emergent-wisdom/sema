@@ -22,12 +22,6 @@
       "type": "Integer",
       "range": "[0, 3]",
       "description": "Maximum retry attempts per step before chain fails"
-    },
-    {
-      "name": "steps",
-      "type": "List[StepDefinition]",
-      "range": "unspecified",
-      "description": "Ordered list of prompts"
     }
   ],
   "_meta": {
@@ -38,9 +32,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:PromptChain#mh:SHA-256:c872aab6147376a3ad76fc0a062b08baf8492651a478308fbb96f261f903cce0",
-  "sema_ref": "PromptChain#c872",
-  "sema_stub": "c872",
+  "sema_id": "sema:PromptChain#mh:SHA-256:8c6338afd313b0397fb7e8c254c728b752f67b07da84fa25d2525cf1dce9fb12",
+  "sema_ref": "PromptChain#8c63",
+  "sema_stub": "8c63",
   "dependencies": {
     "references": {
       "retry": "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091",

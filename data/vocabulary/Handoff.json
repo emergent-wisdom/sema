@@ -27,9 +27,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:Handoff#mh:SHA-256:38775e2344d8b78c6ff7385c47b247e0f94767c5dfb08aa6b9b7ef8ec1072d20",
-  "sema_ref": "Handoff#3877",
-  "sema_stub": "3877",
+  "sema_id": "sema:Handoff#mh:SHA-256:5a393ce27a9bfa7940c2e48559bb01bdbe8d1829aa9d6b09ec0c9f733f95f5fb",
+  "sema_ref": "Handoff#5a39",
+  "sema_stub": "5a39",
   "dependencies": {
     "accepts": {
       "responsibility": "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31",

@@ -6,19 +6,15 @@
     "Over-injection destabilizing productive equilibria.",
     "Insufficient injection failing to break persistent deadlocks."
   ],
-  "invariants": [
-    "Clarity: Ambiguity must decrease over time",
-    "Forced Resolution: Conflicts cannot persist indefinitely"
-  ],
   "_meta": {
     "tier": 2,
     "layer": "Physics",
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
-  "sema_ref": "EntropyPump#b9ae",
-  "sema_stub": "b9ae",
+  "sema_id": "sema:EntropyPump#mh:SHA-256:c313b5e344b36ab0e427d54d84e8fedb41ce69a74153d3980628c756b9f43fd6",
+  "sema_ref": "EntropyPump#c313",
+  "sema_stub": "c313",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

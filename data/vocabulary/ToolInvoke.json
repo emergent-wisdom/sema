@@ -16,46 +16,17 @@
   "_meta": {
     "tier": 2,
     "layer": "Infrastructure",
-    "category": "Data Structures",
+    "category": "Primitives",
     "ring": 0,
     "related": [
       "AgentSandbox"
     ]
   },
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "function_name",
-      "arguments"
-    ],
-    "properties": {
-      "function_name": {
-        "type": "string",
-        "description": "Name of the tool to invoke"
-      },
-      "arguments": {
-        "type": "object",
-        "description": "Parameters for the tool call"
-      },
-      "observation": {
-        "description": "Result returned from tool execution"
-      },
-      "status": {
-        "type": "string",
-        "enum": [
-          "pending",
-          "success",
-          "error"
-        ],
-        "description": "Invocation status"
-      }
-    }
-  },
-  "sema_ref": "ToolInvoke#643c",
-  "sema_id": "sema:ToolInvoke#mh:SHA-256:643c8651a44f1d33cb98580b8b456c5ec1cdb3b94f3d6ae30e3465fc0e6d45b2",
-  "sema_stub": "643c",
+  "sema_ref": "ToolInvoke#4694",
+  "sema_id": "sema:ToolInvoke#mh:SHA-256:4694e7bcf0e0b712584fc927ea81942e0202a394f80cbc149592c9fdd41013d6",
+  "sema_stub": "4694",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",

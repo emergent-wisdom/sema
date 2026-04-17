@@ -13,9 +13,9 @@
     "ring": 1,
     "caution": "Automated penalties \u2014 misconfigured rules cause cascading harm."
   },
-  "sema_ref": "OathBind#fc9c",
-  "sema_id": "sema:OathBind#mh:SHA-256:fc9cec2803eb8062d0f7ea99212c62c8a19bb3455b7dd176a7df8c0a78c80036",
-  "sema_stub": "fc9c",
+  "sema_ref": "OathBind#a708",
+  "sema_id": "sema:OathBind#mh:SHA-256:a7082358e67b331a94538ee2f9c99c8fa4690ca7d529c33bae199457f8a5a7da",
+  "sema_stub": "a708",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {

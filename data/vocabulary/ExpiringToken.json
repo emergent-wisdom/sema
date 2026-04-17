@@ -14,7 +14,7 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
   "sema_id": "sema:ExpiringToken#mh:SHA-256:4e3cc3cee0de56a4eef0676629811cb4afa3383bc80bde227924d66a6af16f6e",
   "sema_ref": "ExpiringToken#4e3c",

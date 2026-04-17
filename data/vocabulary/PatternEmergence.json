@@ -25,9 +25,9 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0",
-  "sema_ref": "PatternEmergence#6b39",
-  "sema_stub": "6b39",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:e65433abfffe4dca7893b368dd09723609a7d1b8bdadc89dcf71c500cee70bef",
+  "sema_ref": "PatternEmergence#e654",
+  "sema_stub": "e654",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

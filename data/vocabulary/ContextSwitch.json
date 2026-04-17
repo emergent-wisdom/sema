@@ -1,10 +1,7 @@
 {
   "handle": "ContextSwitch",
-  "mechanism": "{{agent}}s explicitly use {{switch}} to signal a change in {{context}} (protocol {{mode}}). All subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent.",
-  "gloss": "Explicit mode toggling",
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef",
-  "sema_ref": "ContextSwitch#42cd",
-  "sema_stub": "42cd",
+  "mechanism": "{{agent}}s explicitly signal a change in {{context}} (protocol {{mode}}), and all subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent. The new context pushes onto a stack; Revert pops it. Unlike an ambient {{mode}} change (which applies to the whole agent), ContextSwitch is scoped to a specific conversation or channel and carries explicit enter/exit boundaries.",
+  "gloss": "Explicit, scoped protocol-mode toggle with enter/revert boundaries",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -13,17 +10,16 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "signature": [
-    "Switch(Context)"
-  ],
   "dependencies": {
     "references": {
-      "switch": "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0",
       "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     },
     "accepts": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
     }
-  }
+  },
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:590e0f36969fe6648aa5b8a080381a4723145df92f28635508ab723a490cf491",
+  "sema_ref": "ContextSwitch#590e",
+  "sema_stub": "590e"
 }

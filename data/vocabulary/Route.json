@@ -25,11 +25,14 @@
     "related": [
       "sema:Select#mh:SHA-256:b37174cf130148f0e486f85d892b6fd42d27a35d8493ff826602c0bbdc2fbde5"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0"
+    ]
   },
-  "sema_ref": "Route#9698",
-  "sema_id": "sema:Route#mh:SHA-256:96986e6c4fccc6496d735394acf1f4c7c5a4ae72cee77e0686fbaf3a8b9021b6",
-  "sema_stub": "9698",
+  "sema_ref": "Route#b972",
+  "sema_id": "sema:Route#mh:SHA-256:b972ff15973013019d24f13ead5662a21255a6ec0ea0f85a5ae425b07b6d0762",
+  "sema_stub": "b972",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

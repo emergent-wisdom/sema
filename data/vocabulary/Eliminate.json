@@ -1,6 +1,6 @@
 {
   "handle": "Eliminate",
-  "mechanism": "Systematic Exclusion: Enumerate all possible answers. For each, find a test that could falsify it. Apply tests in order of cost (cheapest first). Remove falsified options. Continue until one remains or no tests left. Remaining options are candidates. It uses {{prioritize}} to order falsification tests by cost/efficiency before executing them.",
+  "mechanism": "Systematic Exclusion (Sherlock Holmes): Enumerate all possible answers. For each, find a test that could falsify it. Apply tests in order of cost (cheapest first). Remove falsified options. Continue until one remains or no tests left. Remaining options are candidates. Combines {{deduction}} (ruling out what's impossible) with {{falsification}} (empirical testing of each hypothesis). It uses {{prioritize}} to order falsification tests by cost/efficiency before executing them.",
   "gloss": "Sherlock Holmes deduction via falsification",
   "failure_modes": [
     "Premature Exclusion: Eliminating the true cause because of a faulty test, leaving an empty set."
@@ -20,15 +20,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "Eliminate#43ea",
-  "sema_id": "sema:Eliminate#mh:SHA-256:43ea687e3560a55f221807138469697a6f331e687fa542c66ddf4d97f07174b0",
-  "sema_stub": "43ea",
+  "sema_ref": "Eliminate#ee72",
+  "sema_id": "sema:Eliminate#mh:SHA-256:ee7225dbf53ea3a8eec85f01afdd21dc4f90a14965935578bcf8ca8c5b6fedfd",
+  "sema_stub": "ee72",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
-      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13"
+      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
+      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
+      "falsification": "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929"
     }
   }
 }

@@ -36,11 +36,11 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169",
-  "sema_ref": "BreadthGovernor#d220",
-  "sema_stub": "d220",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:87f09510bdc6b22a48495ca89520be7645976237ec69906fa342e912d4867eff",
+  "sema_ref": "BreadthGovernor#87f0",
+  "sema_stub": "87f0",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

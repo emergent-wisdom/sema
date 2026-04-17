@@ -20,20 +20,17 @@
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0,
+    "ring": 2,
     "tier": 1,
     "related": [
       "Build"
     ]
   },
-  "sema_id": "sema:ProtoPack#mh:SHA-256:6597fa92b7426d373e1d05d6a7fd1f8c1416c00c78dfab8e35e5a6264c1453d6",
-  "sema_ref": "ProtoPack#6597",
-  "sema_stub": "6597",
+  "sema_id": "sema:ProtoPack#mh:SHA-256:1cd18184514b33a7c7e32cad76c496885c5be7e8b63e3e46ba75d24d8bea57b8",
+  "sema_ref": "ProtoPack#1cd1",
+  "sema_stub": "1cd1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "signature": [
-    "Artifact(Prototype)"
-  ],
   "dependencies": {
     "references": {
       "prototype": "sema:Prototype#mh:SHA-256:ff187305136dd60765caedabd5eefbc62c94b20909c4886f4baef3c9523e83c7",

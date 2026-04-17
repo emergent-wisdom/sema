@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:SignalReflection#mh:SHA-256:aac2c4b3fbc861b911c232b754116f4a56085e25dfd61c7ff6bb193b359578d0",
-  "sema_ref": "SignalReflection#aac2",
-  "sema_stub": "aac2",
+  "sema_id": "sema:SignalReflection#mh:SHA-256:a6131e3d0ab768f1246008e7ce1551e3022ddd2bf765b63faec34f82f4ab4a07",
+  "sema_ref": "SignalReflection#a613",
+  "sema_stub": "a613",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

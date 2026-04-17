@@ -23,9 +23,9 @@
     "ring": 1,
     "caution": "Grants capabilities beyond normal operating scope."
   },
-  "sema_id": "sema:PermissionEscalate#mh:SHA-256:744f4ce8439e69d9869b0fd5c260284e5f655861a97140d1487937165dc3deaa",
-  "sema_ref": "PermissionEscalate#744f",
-  "sema_stub": "744f",
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:7dc209b30f3cc3496b4df716f41e656f2a767c16ef2b5d8b4932e82a2285d32a",
+  "sema_ref": "PermissionEscalate#7dc2",
+  "sema_stub": "7dc2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

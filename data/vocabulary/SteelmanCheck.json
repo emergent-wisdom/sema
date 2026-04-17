@@ -1,7 +1,7 @@
 {
   "handle": "SteelmanCheck",
   "mechanism": "Before finalizing a {{decision}} or output, the {{agent}} MUST generate the strongest possible argument against its own conclusion. It performs a {{check}} on the {{robustness}} of the claim and a {{critique}} of the underlying {{belief}}. If the counter-argument exceeds a validity threshold, the decision is discarded or revised. It prevents confirmation {{cognitive_bias}}. Utilizes {{compatibility_check}}. For adversarial contexts, see adversarial steelmanning.",
-  "gloss": "Mandatory counter-argument generation",
+  "gloss": "Post-decision adversarial check: revise if counter-argument exceeds validity threshold",
   "failure_modes": [
     "Paralysis by analysis (stuck in {{critique}} {{loop}}).",
     "Collusion: Proposer and Critic are same entity; susceptible to Strawman Waltz attack where agent generates weak counter-arguments to easily defeat them."
@@ -42,9 +42,9 @@
       "AdversarialSteel"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
-  "sema_ref": "SteelmanCheck#4f4c",
-  "sema_stub": "4f4c",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:7914b0d58e4d2e364e6e5ec30702e5cd3ef24127c2c0be963ca79741f4a6f038",
+  "sema_ref": "SteelmanCheck#7914",
+  "sema_stub": "7914",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [

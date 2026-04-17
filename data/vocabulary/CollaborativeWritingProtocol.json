@@ -1,0 +1,27 @@
+{
+  "handle": "CollaborativeWritingProtocol",
+  "mechanism": "The paper's \u00a76.1 protocol for producing textual (or any structured) output that must meet a quality standard. Decomposes the concept of quality-constrained production into five orthogonal dimensions via {{conceptual_decomposition}}: substance (what material must the artifact contain), structure (how does it organize), generation (produce freely with evaluation elsewhere), evaluation (does it meet the standard across independent quality dimensions), and refinement (surface quality on a structurally complete artifact). Two parallel mechanisms run together: a structural pipeline (ScopeDiscoverySolver \u2192 SequencingCoherenceSolver \u2192 UnitConstraintSolver \u2192 StructuralVerificationSolver \u2192 VoiceRefinementSolver) that separates generation from evaluation, and concurrent ObserverSolvers (RepetitionSolver, ContradictionSolver, IntentSolver, AudienceReceptionSolver) that externalize the silent evaluative thinking a solo writer does with interference. The protocol transfers beyond writing to any domain where something must be produced to a standard (music composition, interface design).",
+  "gloss": "Decompose quality-constrained production into substance, structure, generation, evaluation, and refinement \u2014 the five orthogonal dimensions a producer must address",
+  "invariants": [
+    "Dimension-orthogonal: the five sub-concepts pass the four-test decomposition ({{conceptual_decomposition}}); an observer checking repetition does not generate, a generator does not self-censor toward criteria it lacks.",
+    "Concurrent-not-sequential: evaluative observers run alongside generation, producing typed annotations that accumulate; they are not editors.",
+    "Variable-depth: each of the five dimensions can itself recurse via its own sub-solver tree when the stakes warrant it ({{marginal_value_rule}} governs depth)."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
+    }
+  },
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:0588bcabfe6a70a924aebd2acca7e968211cd39612c23cad01a93ad8d2b6cb86",
+  "sema_ref": "CollaborativeWritingProtocol#0588",
+  "sema_stub": "0588"
+}

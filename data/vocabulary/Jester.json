@@ -8,9 +8,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Jester#mh:SHA-256:bc5045fce9b9265838e8e9e8df40d00bab11be85752235307be0dc403ee5abae",
-  "sema_ref": "Jester#bc50",
-  "sema_stub": "bc50",
+  "sema_id": "sema:Jester#mh:SHA-256:e48900a1ac83d9ec477fad9b92e8723286325c25b7dd14c06a8d885a22e705b8",
+  "sema_ref": "Jester#e489",
+  "sema_stub": "e489",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

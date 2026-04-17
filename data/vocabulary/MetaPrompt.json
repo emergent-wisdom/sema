@@ -20,15 +20,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:7a3a4dd5ba4513c3636d3d018e632f7503cc77e0d0bbb946975e00ba8257be92",
-  "sema_ref": "MetaPrompt#7a3a",
-  "sema_stub": "7a3a",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:0ffe5ca9c9f64da9ffda1aff9940f0fd3c8ce3a4156b54ae029a645074e3d7ba",
+  "sema_ref": "MetaPrompt#0ffe",
+  "sema_stub": "0ffe",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "signature": [
     "Meta(Prompt)"
   ],

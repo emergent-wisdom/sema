@@ -6,9 +6,9 @@
     "Bijectivity: Rate(A->B) must equal 1 / Rate(B->A).",
     "Time-Bound: Must include a timestamp or validity window."
   ],
-  "sema_id": "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6",
-  "sema_ref": "ExchangeRate#be29",
-  "sema_stub": "be29",
+  "sema_id": "sema:ExchangeRate#mh:SHA-256:1c213c4c784c00f1c44c33b48cd87f8fbff4e9c0de154e849aaff776d2e53a17",
+  "sema_ref": "ExchangeRate#1c21",
+  "sema_stub": "1c21",
   "_meta": {
     "layer": "Society",
     "category": "Economics",

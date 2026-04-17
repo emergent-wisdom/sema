@@ -17,9 +17,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
-  "sema_ref": "Goal#456a",
-  "sema_stub": "456a",
+  "sema_id": "sema:Goal#mh:SHA-256:009e138976905d1547fed802752f06e07deab5ab7aec6a3795c4017f4c706848",
+  "sema_ref": "Goal#009e",
+  "sema_stub": "009e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {

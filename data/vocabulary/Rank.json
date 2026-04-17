@@ -1,6 +1,6 @@
 {
   "handle": "Rank",
-  "mechanism": "Deterministic Sort. Applies a scoring function to every element in the input Set. Returns a List ordered by Score, using {{select}} to truncate to Top-K.",
+  "mechanism": "Deterministic Sort. Applies a caller-supplied {{scoring_function}} to every element in the input Set and returns a List ordered by Score. Uses {{select}} to truncate to Top-K when requested.",
   "gloss": "Order items by score",
   "failure_modes": [
     "Score Indeterminacy: Multiple items have identical scores.",
@@ -10,9 +10,9 @@
     "Conservation: Output set is a subset of Input set.",
     "Monotonicity: For all i, Score(Output[i]) >= Score(Output[i+1])."
   ],
-  "sema_id": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
-  "sema_ref": "Rank#cb98",
-  "sema_stub": "cb98",
+  "sema_id": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11",
+  "sema_ref": "Rank#7a76",
+  "sema_stub": "7a76",
   "_meta": {
     "tier": 1,
     "layer": "Mind",
@@ -24,6 +24,9 @@
   "dependencies": {
     "composes_with": {
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
+    },
+    "accepts": {
+      "scoring_function": "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d"
     }
   }
 }

@@ -8,9 +8,9 @@
     "layer": "Society",
     "ring": 2
   },
-  "sema_id": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
-  "sema_ref": "Discover#afa1",
-  "sema_stub": "afa1",
+  "sema_id": "sema:Discover#mh:SHA-256:7dbcd27e108d0f286876b906339f3db7ab55b48ce68f058cd2c47bbfb3f2bc2b",
+  "sema_ref": "Discover#7dbc",
+  "sema_stub": "7dbc",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

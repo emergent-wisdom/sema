@@ -13,7 +13,7 @@
   "parameters": [
     {
       "name": "max_recursion_depth",
-      "type": "Int",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Default: 10"
     },
@@ -26,15 +26,15 @@
   ],
   "_meta": {
     "tier": 3,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:2fbfba79d07478050b86020f08cb42f18c93e896052dccba0311db0168b549a0",
-  "sema_ref": "Proprioception#2fbf",
-  "sema_stub": "2fbf",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:Proprioception#mh:SHA-256:e48696d927609b38ba32467846cc70a4ec8ddff101ec9b6728bfd99637df0e1d",
+  "sema_ref": "Proprioception#e486",
+  "sema_stub": "e486",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
   "dependencies": {
     "references": {
       "somatic_marker": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",

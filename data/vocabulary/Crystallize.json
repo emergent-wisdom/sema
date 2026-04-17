@@ -43,9 +43,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede",
-  "sema_ref": "Crystallize#af68",
-  "sema_stub": "af68",
+  "sema_id": "sema:Crystallize#mh:SHA-256:b64bd975c1195d73e24369a3fe452a6ed0aecba1398437832b683f801da95e78",
+  "sema_ref": "Crystallize#b64b",
+  "sema_stub": "b64b",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",

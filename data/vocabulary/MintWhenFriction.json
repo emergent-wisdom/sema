@@ -22,8 +22,8 @@
   "parameters": [
     {
       "name": "min_compression",
-      "type": "Float",
-      "range": "unspecified",
+      "type": "Ratio",
+      "range": "[0.0, 1.0]",
       "description": "Default: 0.3"
     },
     {
@@ -41,9 +41,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Economics",
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:d48d58e14fdd17707bd90aaeab196fc13189a2d39b37aaa8b086c4e03356ff57",
-  "sema_ref": "MintWhenFriction#d48d",
-  "sema_stub": "d48d",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:7e7f945b22f24a32020c31d6635ab11bab4a8f9aa9d15db161034e3411134cd5",
+  "sema_ref": "MintWhenFriction#7e7f",
+  "sema_stub": "7e7f",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",

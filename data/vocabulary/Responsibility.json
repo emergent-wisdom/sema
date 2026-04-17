@@ -26,12 +26,6 @@
       "type": "Duration",
       "range": "[1s, 1h]",
       "description": "Frequency of invariant verification"
-    },
-    {
-      "name": "escalation_path",
-      "type": "String",
-      "range": "unspecified",
-      "description": "Who to notify on violation"
     }
   ],
   "_meta": {
@@ -40,9 +34,9 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Responsibility#mh:SHA-256:4148bdd8ae994620d37dbc788d066a307725d43bc5a88de4134dadf88ca1dff6",
-  "sema_ref": "Responsibility#4148",
-  "sema_stub": "4148",
+  "sema_id": "sema:Responsibility#mh:SHA-256:ac592af47056faeaa22245287f7612fdf312b1f02fb00562e76da40c5ee5ac26",
+  "sema_ref": "Responsibility#ac59",
+  "sema_stub": "ac59",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

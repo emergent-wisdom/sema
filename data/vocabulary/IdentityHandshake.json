@@ -9,15 +9,15 @@
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Protocols",
+    "category": "Coordination",
     "ring": 1,
     "caution": "Trust boundary \u2014 failure enables impersonation."
   },
   "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:f2e812c10dde8b6eb942ab763f53a42d95fd797ac09ba951d4138119a2e813be",
-  "sema_ref": "IdentityHandshake#f2e8",
-  "sema_stub": "f2e8",
+  "sema_category": "Coordination",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:b72662772bfc200a47d5d40a7e4e835669e277c3ec185a507db0f787eab6ac0d",
+  "sema_ref": "IdentityHandshake#b726",
+  "sema_stub": "b726",
   "signature": [
     "Discover(Identity)"
   ],

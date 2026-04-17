@@ -1,0 +1,28 @@
+{
+  "handle": "ReAttempt",
+  "mechanism": "The substrate-level primitive of 'try the same call again after a delay.' ReAttempt is the atomic physical-substrate operation: same arguments, same target, after a pause. Distinct from {{retry}}, which is the strategic Mind-layer pattern that classifies failures, consults failure history, computes adaptive {{backoff}}, and decides whether conditions have changed enough to warrant another attempt. Descendants build classification and budget on top of ReAttempt; the primitive imposes no ceiling.",
+  "gloss": "Substrate-level re-attempt: same call, after a delay",
+  "failure_modes": [
+    "Uncapped ReAttempt loops amplify transient failures into DoS against rate-limited downstream resources.",
+    "Missing jitter causes thundering herd when many agents ReAttempt simultaneously.",
+    "Descendants forget to budget ReAttempt and inherit the primitive's open-ended retry behavior."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0,
+    "caution": "Requires an explicit retry budget; uncapped ReAttempt can amplify transient failures into DoS against downstream resources."
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "retry": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
+      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+    }
+  },
+  "sema_id": "sema:ReAttempt#mh:SHA-256:0cd7af4c672a70c637eb4d03b01e161f7643f49ab6ef28cea85492e8ddb21578",
+  "sema_ref": "ReAttempt#0cd7",
+  "sema_stub": "0cd7"
+}

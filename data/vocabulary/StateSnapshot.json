@@ -15,16 +15,16 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0
   },
   "signature": [
     "State(Snapshot)"
   ],
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:9ffc9d057109f26717249d3a4c46dfaa52a944d10a363034bca187b83305f39f",
-  "sema_ref": "StateSnapshot#9ffc",
-  "sema_stub": "9ffc",
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:b9b8faad3a629ff61fccc07d6f56e44b6f685b29e6c51080b38dd22438334419",
+  "sema_ref": "StateSnapshot#b9b8",
+  "sema_stub": "b9b8",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
@@ -33,6 +33,6 @@
       "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
     }
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

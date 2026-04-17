@@ -2,7 +2,7 @@
   "handle": "RequestFraming",
   "derived_from": "sema:Interpret",
   "gloss": "Clarify intent and constraints before planning",
-  "mechanism": "The initial state of workflow orchestration. It performs the act of {{interpret}} by accepting a {{message}} and using {{think}} to {{understand}} the 'real ask' within the given {{context}} before committing resources. It clarifies constraints, success criteria, and hidden assumptions, producing a {{frame_spec}} artifact. It acts as a semantic firewall against vague or dangerous instructions.",
+  "mechanism": "The initial state of workflow orchestration. It performs the act of {{interpret}} by accepting a {{message}} and using {{think}} to {{understand}} the 'real ask' within the given {{context}} before committing resources. The pattern enforces {{context_first}}: no resource commitment is permitted until the frame is resolved. It clarifies constraints, success criteria, and hidden assumptions, producing a {{frame_spec}} artifact. It acts as a semantic firewall against vague or dangerous instructions.",
   "signature": [
     "Think(FrameSpec)"
   ],
@@ -25,19 +25,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 1,
     "related": [
       "Reframe",
       "Decompose"
     ]
   },
-  "sema_ref": "RequestFraming#0695",
-  "sema_id": "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e",
-  "sema_stub": "0695",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_ref": "RequestFraming#3865",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:386590380876d4439ffd7f6e279bb078f8c85323d6e950b9c685c57b94ee1af9",
+  "sema_stub": "3865",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "yields": {
       "frame_spec": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
@@ -48,7 +48,8 @@
     },
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f"
+      "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
+      "context_first": "sema:ContextFirst#mh:SHA-256:2878bfc9402ba18d174040bc9614113e01c7a6f2bb775fe22fdccba6aca3dbe1"
     },
     "accepts": {
       "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"

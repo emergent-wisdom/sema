@@ -12,9 +12,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Search#d608",
-  "sema_id": "sema:Search#mh:SHA-256:d6083dea6898b63d14ccb2542fcfa05561a1f6326000c8d9c190599afd99b123",
-  "sema_stub": "d608",
+  "sema_ref": "Search#c5f4",
+  "sema_id": "sema:Search#mh:SHA-256:c5f4bfa7dd8234b80ba9f565d49a882a2c2c5ea7016ed276d65587cfa7e523d5",
+  "sema_stub": "c5f4",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

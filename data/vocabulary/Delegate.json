@@ -1,7 +1,7 @@
 {
   "handle": "Delegate",
   "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
-  "gloss": "Enable structured work distribution with accountability",
+  "gloss": "Work handoff: delegate \u2192 accept/refuse \u2192 heartbeat \u2192 result-or-failure",
   "failure_modes": [
     "No one accepts (all refuse or auction has no takers\u2014task orphaned).",
     "Capability mismatch (assigned to incapable agent\u2014fails late).",
@@ -23,15 +23,15 @@
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Governance",
+    "category": "Coordination",
     "related": [
       "Handoff"
     ],
     "ring": 1
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:e557d8268697e26743dc5d2cf191741e47b7bef0d986e8dbff3d86e5e9d9486e",
-  "sema_ref": "Delegate#e557",
-  "sema_stub": "e557",
+  "sema_id": "sema:Delegate#mh:SHA-256:a55127efdb0c80f0ee1fde9ecc83ed5f64cdbb992e30e53384ef9e66f4f1a153",
+  "sema_ref": "Delegate#a551",
+  "sema_stub": "a551",
   "dependencies": {
     "composes_with": {
       "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
@@ -49,5 +49,5 @@
     }
   },
   "sema_layer": "Society",
-  "sema_category": "Governance"
+  "sema_category": "Coordination"
 }

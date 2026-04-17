@@ -1,7 +1,7 @@
 {
   "handle": "CreativeBlend",
   "derived_from": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
-  "gloss": "Generating novelty via combinatorial blending and noise",
+  "gloss": "Full creative pipeline: ConceptBlend + NoiseInjection with novelty/value gates",
   "signature": [
     "Strategy(Artifact)"
   ],
@@ -24,9 +24,9 @@
     "ring": 1,
     "tier": 2
   },
-  "sema_ref": "CreativeBlend#6246",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:624687c31005bc40986fbd3ace62e3e42c931c01ab4c1b082abe319a54372515",
-  "sema_stub": "6246",
+  "sema_ref": "CreativeBlend#82d7",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:82d7642bee7ab08f0f93028151462a47e35e1ceb52e047fb3b3733386cfc647a",
+  "sema_stub": "82d7",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

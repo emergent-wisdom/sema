@@ -21,15 +21,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
-  "sema_ref": "DeepResearch#cbe3",
-  "sema_stub": "cbe3",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:2a05c141377ae0ee86a31cf03d41c91d64e4d4278e6a40e2d96707169aa702ba",
+  "sema_ref": "DeepResearch#2a05",
+  "sema_stub": "2a05",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "signature": [
     "Deep(Discover)"
   ],

@@ -26,15 +26,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",
-  "sema_ref": "FailClosed#ae79",
-  "sema_stub": "ae79",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:FailClosed#mh:SHA-256:e6a09747bc7485f877033e1e6d8baa52b8ae571094910c968f7321f0828cf88c",
+  "sema_ref": "FailClosed#e6a0",
+  "sema_stub": "e6a0",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:41621375faf5609423cb05060fbdccf92c6d8f856607a2ae4bf35a76c90cbaec",

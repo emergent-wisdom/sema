@@ -42,9 +42,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "sema_id": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
-  "sema_ref": "Quorum#29b4",
-  "sema_stub": "29b4",
+  "sema_id": "sema:Quorum#mh:SHA-256:858ec7b79a5e07103ead4d441239c570dcd8dc8de462ab4d73c9501b99f4687b",
+  "sema_ref": "Quorum#858e",
+  "sema_stub": "858e",
   "dependencies": {
     "accepts": {
       "ballot": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb"

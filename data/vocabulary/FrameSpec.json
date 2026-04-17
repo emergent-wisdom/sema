@@ -40,9 +40,9 @@
   "signature": [
     "Artifact(Constraint)"
   ],
-  "sema_id": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
-  "sema_ref": "FrameSpec#d5b8",
-  "sema_stub": "d5b8",
+  "sema_id": "sema:FrameSpec#mh:SHA-256:555820fae75d6951775b18621b1e96b50271567d1c11e1348ad725050bfe5faa",
+  "sema_ref": "FrameSpec#5558",
+  "sema_stub": "5558",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

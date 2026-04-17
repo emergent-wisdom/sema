@@ -30,7 +30,6 @@
     }
   },
   "invariants": [
-    "Non-Negative: Remaining budget cannot be < 0.",
     "Conservation: Allocated + Remaining = Total."
   ],
   "preconditions": [
@@ -45,9 +44,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Budget#a763",
-  "sema_id": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-  "sema_stub": "a763",
+  "sema_ref": "Budget#7270",
+  "sema_id": "sema:Budget#mh:SHA-256:72709a4878eefe66ed2d66994a1a7d2e22214d3ee3d64beafecc02387099360f",
+  "sema_stub": "7270",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

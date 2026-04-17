@@ -22,9 +22,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "OpportunityCost#1c66",
-  "sema_id": "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e",
-  "sema_stub": "1c66",
+  "sema_ref": "OpportunityCost#b9f4",
+  "sema_id": "sema:OpportunityCost#mh:SHA-256:b9f42928008a1766723b0d44e3140f3a6bb5d0655b53c5c3a71d4f768141e6fb",
+  "sema_stub": "b9f4",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

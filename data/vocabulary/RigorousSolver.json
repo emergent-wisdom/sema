@@ -1,27 +1,27 @@
 {
   "handle": "RigorousSolver",
-  "mechanism": "A high-reliability, high-latency implementation of {{cognitive_solver}}. Unlike the base interface which allows best-effort resolution, RigorousSolver MANDATES strict verification: it must execute {{probe}} to verify reality alignment and engage in {{socratic_loop}} to disambiguate intent before action. It incorporates {{feedback}} to improve future reliability. It trades speed for assurance (System 2).",
+  "mechanism": "A high-reliability, high-latency implementation of {{polymorphic_solver}} that mandates the full five-surface Solver Contract (Manifest, Execute, Consult, Verify, Feedback) with non-compensatory acceptance gates \u2014 every declared invariant must pass before a Result becomes a Solution; partial success is not permitted to propagate. Uses {{probe}} to verify reality alignment and {{socratic_loop}} to disambiguate intent before action. Incorporates {{feedback}} to improve future reliability. Trades speed for assurance (System 2).",
   "gloss": "High-reliability, high-latency System 2 solver",
   "invariants": [
     "Lifecycle Completeness: Must complete all 5 stages including Verification.",
     "Mandatory Verification: Cannot skip Probe step."
   ],
-  "derived_from": "sema:CognitiveSolver#mh:SHA-256:ae5ca9a47f9753157ff7177a76ed3b32e4bbecb67fd5207fb4b9a72acc6a6d20",
+  "derived_from": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000",
   "_meta": {
     "layer": "Mind",
     "category": "Strategy",
     "ring": 2,
     "tier": 2
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:169f46575554787f8f6be182014bd4f008264153fb30c33ddfd03da1c5dea507",
-  "sema_ref": "RigorousSolver#169f",
-  "sema_stub": "169f",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:6c5af50fd041a3019e64e63aef35e70351e32a7ff8765d1d5f7c4b82f15a5141",
+  "sema_ref": "RigorousSolver#6c5a",
+  "sema_stub": "6c5a",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "cognitive_solver": "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0"
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     },
     "composes_with": {
       "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",

@@ -41,9 +41,9 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
-  "sema_ref": "Throttle#3b43",
-  "sema_stub": "3b43",
+  "sema_id": "sema:Throttle#mh:SHA-256:2175da478929fd107d442e1f7ead06551c81108924e7e5b675fb397866879f7a",
+  "sema_ref": "Throttle#2175",
+  "sema_stub": "2175",
   "dependencies": {
     "composes_with": {
       "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"

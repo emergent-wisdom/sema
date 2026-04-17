@@ -1,0 +1,45 @@
+{
+  "handle": "Forest",
+  "mechanism": "A topology consisting of two or more independently-rooted {{tree}}s with no shared apex. Each constituent tree can be traversed standalone; the Forest is the named collection. Distinct from a single tree with many branches: a Forest has *no shared root*, so removing any one tree does not affect the others. Found in random-forest ensembles (ML), disjoint-set forests (union-find CS), process forests (OS sessions), multi-repo organizations (git), federated solver trees across organizations (FI \u00a77.2 Knowledge Sharing), and biological forests (where cross-tree links exist but do not create a shared apex). Variation across descendants concerns whether the trees are strictly disjoint or share substrate (mycorrhizal biology, content-addressed commons) and whether merge/split operations are supported (union-find).",
+  "gloss": "Topology of N independently-rooted trees with no shared apex",
+  "invariants": [
+    "Multiplicity: a Forest contains at least two {{tree}}s; a single tree is not a forest.",
+    "Apex-disjoint: no node is an ancestor of any node in a different constituent tree.",
+    "Tree-wellformedness: each constituent is itself a valid Tree (rooted, acyclic)."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "trees"
+    ],
+    "properties": {
+      "trees": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Refs to the constituent Tree instances"
+      },
+      "cross_links": {
+        "type": "array",
+        "description": "Optional non-apex edges between trees (e.g., mycorrhizal / federated references)"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {
+    "references": {
+      "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
+    }
+  },
+  "sema_id": "sema:Forest#mh:SHA-256:5edadf227842037c92d42f320a62bd2393f7020ab92ca54e82566bdb8ba9b9bd",
+  "sema_ref": "Forest#5eda",
+  "sema_stub": "5eda"
+}

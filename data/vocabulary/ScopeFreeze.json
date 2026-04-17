@@ -36,11 +36,11 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:d8c15a8a91ccbfcdb54d00cb1c4a386969867716b402ae638e5822742cd1d2d4",
-  "sema_ref": "ScopeFreeze#d8c1",
-  "sema_stub": "d8c1",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:7d238819523d5bb7181d7f0ae7461d7902ddd78862e4eca80ecdc75ce88a8b11",
+  "sema_ref": "ScopeFreeze#7d23",
+  "sema_stub": "7d23",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

@@ -20,11 +20,11 @@
     "related": [
       "sema:RootHashGossip#mh:SHA-256:145cec2ca1c4d328da0256b0a245eadda7da63a6a77083405220c432d2210438"
     ],
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0",
-  "sema_ref": "LatticeCommit#3c5d",
-  "sema_stub": "3c5d",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:180b477f5c2415a5aaab69e5369562a500f75c30b4df83d9a4cb0c46659776c3",
+  "sema_ref": "LatticeCommit#180b",
+  "sema_stub": "180b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

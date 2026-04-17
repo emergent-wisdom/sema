@@ -1,0 +1,26 @@
+{
+  "handle": "TemporalEnsembleForecasting",
+  "mechanism": "The paper's \u00a76.5 protocol for forecasting via ensembles of models frozen at different points in history (Temporal Checkpoint Ensemble). Decomposes prediction via {{conceptual_decomposition}} along two axes simultaneously: temporal diversity (each checkpoint reasons from a different knowledge horizon \u2014 the 2020 checkpoint knows nothing of COVID's economic aftermath; the 2022 checkpoint has internalized it) and causal-lens diversity (each forecast is run through the Forecasting Pentagon: structural, economic, political, base-rate, temporal \u2014 five non-substitutable angles that suppress each other if entangled in a single pass). A ReduceSolver composes the matrix of forecasts, not by averaging but by preserving causal reasoning from each horizon and identifying where independent knowledge states converge on the same structural driver. When three checkpoints spanning different knowledge states independently identify the same causal mechanism, that mechanism has survived a temporal adversarial test no single-model forecast can replicate.",
+  "gloss": "Forecast by ensemble of model-checkpoints from different history horizons, each run through five non-substitutable causal lenses \u2014 convergence across time is the signal",
+  "invariants": [
+    "Temporal diversity source: the checkpoints differ by training-data cutoff, not by prompting \u2014 history itself is the diversity generator.",
+    "Five-angle Forecasting Pentagon: each checkpoint's forecast is decomposed across structural, economic, political, base-rate, and temporal dimensions (the pentagon passes the four-test decomposition).",
+    "Convergence-not-averaging: the reduction gate accepts convergence of structural drivers across horizons, not arithmetic average of point predictions."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd"
+    }
+  },
+  "sema_id": "sema:TemporalEnsembleForecasting#mh:SHA-256:21af04e2b09d31b5e676e8717d01407299e552cf6a1442fccc072b1a4032494a",
+  "sema_ref": "TemporalEnsembleForecasting#21af",
+  "sema_stub": "21af"
+}

@@ -21,12 +21,6 @@
   ],
   "parameters": [
     {
-      "name": "constitution_ref",
-      "type": "SemaRef",
-      "range": "unspecified",
-      "description": "Pointer to Constitution"
-    },
-    {
       "name": "strictness",
       "type": "Enum",
       "range": "{Strict, Permissive}",
@@ -37,23 +31,23 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:9b46ad02161136e6861e6f42f6c1f2edbaac4801032b652bfc82192a24e0bd1c",
-  "sema_ref": "DeliberativeAlign#9b46",
-  "sema_stub": "9b46",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:e6cb1f5828b5aa15465af8fa15dbbeddff3a338a455492ddfe58b9ca488a6ae6",
+  "sema_ref": "DeliberativeAlign#e6cb",
+  "sema_stub": "e6cb",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-      "constitution": "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9",
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
       "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d"
     },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "constitution": "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9"
     }
   },
   "sema_layer": "Society",

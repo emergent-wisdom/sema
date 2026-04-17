@@ -17,16 +17,16 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 0,
     "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment."
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:074b03c077f07b24dd1eb5427579069b4caaf6353759aa1c7affcdab79258ced",
-  "sema_ref": "CommitmentDevice#074b",
-  "sema_stub": "074b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:6c210108ca98eee9093d7ac7176ec08cd2b6198df985d0df957756e4fb33e993",
+  "sema_ref": "CommitmentDevice#6c21",
+  "sema_stub": "6c21",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "data_schema": {
     "type": "object",
     "required": [

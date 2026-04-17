@@ -1,7 +1,7 @@
 {
   "handle": "DriftWatch",
   "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if Distance(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
-  "gloss": "Reputation becomes pattern-fidelity measurement - trustworthiness equals predictability. Agents are trusted not for peak performance but for behavioral consistency. Gaming reputation through occasional spectacular actions becomes impossible.",
+  "gloss": "Reputation scoring via behavioral deviation from baseline (2-sigma alert)",
   "failure_modes": [
     "Witness collusion: Coordinated false drift reports.",
     "Mitigated by random witness selection and meta-drift analysis on witness behavior.",
@@ -39,9 +39,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
-  "sema_ref": "DriftWatch#a20d",
-  "sema_stub": "a20d",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:191e2272f9b8f4a5f9ea5de3fa14f444d78bbc8c219e65253353096fe7fc9979",
+  "sema_ref": "DriftWatch#191e",
+  "sema_stub": "191e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

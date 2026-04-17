@@ -1,0 +1,27 @@
+{
+  "handle": "HumanEmulatorProtocol",
+  "mechanism": "The paper's \u00a76.2 protocol for responding to a person with variable depth: 'How should I respond to this person?' Decomposes via {{conceptual_decomposition}} into five sub-questions that suppress each other when entangled in a single context: situation (what is the context), emotion (what do they feel), intent (what do they actually need, distinct from what they say), response (what should I say), and boundary (what must I not do). Each sub-question is handled by its own Solver with its own typed outputs \u2014 SituationSolver reconstructs relational dynamics, EmotionSolver produces a structured emotional model rather than a sentiment label, IntentSolver distinguishes stated from latent need, a CalibrationSolver fits tone and register, a BoundarySolver enforces ethical constraints as a hard acceptance gate. These faculties are co-variant state monitors (not a relay race): an emotional spike changes the intent distribution; a resolved intent reframes the emotional reading. Depth scales with the stakes under {{marginal_value_rule}} \u2014 a trivial greeting resolves in one pass; a crisis triggers deep recursion into competing emotional hypotheses and latent-intent analysis.",
+  "gloss": "Decompose empathetic understanding into situation, emotion, intent, response, and boundary \u2014 variable-depth recursion tracks the stakes of the interaction",
+  "invariants": [
+    "Five-faculty orthogonal: the sub-concepts pass the four-test decomposition; entangling them in one context causes mutual interference.",
+    "Variable-depth: mundane interactions stay shallow; ambiguous or high-stakes ones recurse into sub-solvers without changing the protocol.",
+    "Boundary-gate: the BoundarySolver's output is a non-compensatory gate; no response passes if an ethical constraint is violated, regardless of other faculties' signals."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
+    }
+  },
+  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:498a8b232e4360c803db49d769b152576b65a5b6fea37f018aa540d0fae16517",
+  "sema_ref": "HumanEmulatorProtocol#498a",
+  "sema_stub": "498a"
+}

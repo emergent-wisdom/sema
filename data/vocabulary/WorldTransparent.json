@@ -19,11 +19,11 @@
     "tier": 1,
     "layer": "Society",
     "category": "Governance",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977",
-  "sema_ref": "WorldTransparent#0212",
-  "sema_stub": "0212",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:a83d2b60890c1f561a04b717c221b345b8ac92a6761210f814c59533026a67e9",
+  "sema_ref": "WorldTransparent#a83d",
+  "sema_stub": "a83d",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

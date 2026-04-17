@@ -8,9 +8,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Dampen#ff89",
-  "sema_id": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
-  "sema_stub": "ff89",
+  "sema_ref": "Dampen#e55e",
+  "sema_id": "sema:Dampen#mh:SHA-256:e55e05a34ca81a8edee4863311fd058210c785bfd5c0ac23bb9a189c4430da2a",
+  "sema_stub": "e55e",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

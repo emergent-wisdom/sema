@@ -1,0 +1,32 @@
+{
+  "handle": "DecompositionGate",
+  "mechanism": "The four-test decomposition suite applied as a Gate over candidate decompositions. The tests: Necessity (removing any sub-concept collapses the parent), Independence (sub-concepts vary orthogonally), Universality (every instance of the parent contains every sub-concept), Completeness (addressing all sub-concepts reconstructs a functioning parent). A decomposition passes only if all four tests pass \u2014 non-compensatory. Yields a {{decision}}: on failure, the Decision carries a {{frame_error}} instructing the upstream planner to reframe rather than iterate within the current decomposition.",
+  "gloss": "Four-test gate for candidate decompositions: Necessity, Independence, Universality, Completeness",
+  "invariants": [
+    "Non-compensatory: a decomposition passes only if ALL four tests pass independently.",
+    "Universality is strict: prototype-shaped concepts failing universality are rejected by design (intentional crucible, per paper \u00a72)."
+  ],
+  "failure_modes": [
+    "Strict universality rejects legitimate prototype-shaped concepts that would succeed with family-resemblance semantics.",
+    "Completeness test falsely rejects decompositions where reconstruction is possible but not fully characterized in the candidate."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
+    },
+    "references": {
+      "frame_error": "sema:FrameError#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:7acd40ea02f33b168109eddbe579f31c3c601a243149f6eb5ce9d0973e757c97",
+  "sema_ref": "DecompositionGate#7acd",
+  "sema_stub": "7acd"
+}

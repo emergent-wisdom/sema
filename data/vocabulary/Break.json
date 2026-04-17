@@ -32,7 +32,7 @@
     }
   },
   "mechanism": "{{protocol}} for announcing coordination failure. Failing {{agent}} broadcasts BREAK: {severity, reason, recoverable}. Partners must ACK. Coordination terminates or pauses based on severity. Unacknowledged BREAK escalates to FAILED. It coordinates with retry logic to distinguish transient from permanent failures, optionally triggering ejection seat in catastrophic scenarios.",
-  "gloss": "Enable graceful degradation and coordinated recovery when coordination fails mid-stream",
+  "gloss": "Failure-announcement signal {severity, reason, recoverable}, ACK-required",
   "failure_modes": [
     "BREAK {{message}} itself fails to deliver ({{meta}}-failure).",
     "Partners disagree on recovery action.",
@@ -82,9 +82,9 @@
       "Retry"
     ]
   },
-  "sema_id": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95",
-  "sema_ref": "Break#1a63",
-  "sema_stub": "1a63",
+  "sema_id": "sema:Break#mh:SHA-256:177fbff7700762a276d46156ed96359955d7f1614857f2b4f13285473c7f782f",
+  "sema_ref": "Break#177f",
+  "sema_stub": "177f",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

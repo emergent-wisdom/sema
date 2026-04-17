@@ -17,9 +17,9 @@
   "signature": [
     "Lock(State)"
   ],
-  "sema_ref": "StateLock#774b",
-  "sema_id": "sema:StateLock#mh:SHA-256:774b674f80993c49b0a348c384397f80027af319faa3440813d9d53b3eaa6a14",
-  "sema_stub": "774b",
+  "sema_ref": "StateLock#8183",
+  "sema_id": "sema:StateLock#mh:SHA-256:81839e5a923aff3df2bb3f806fec00c512b6faeb5999f6c390a2c5a6f00a56d2",
+  "sema_stub": "8183",
   "sema_layer": "Physics",
   "sema_category": "Time",
   "dependencies": {

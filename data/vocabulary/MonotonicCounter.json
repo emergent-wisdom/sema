@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235",
-  "sema_ref": "MonotonicCounter#f5a3",
-  "sema_stub": "f5a3",
+  "sema_id": "sema:MonotonicCounter#mh:SHA-256:cf623caafbde064b0a7d233c95046305617dc54ff61b16552668523f7b76441b",
+  "sema_ref": "MonotonicCounter#cf62",
+  "sema_stub": "cf62",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

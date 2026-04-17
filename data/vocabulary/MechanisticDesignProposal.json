@@ -1,6 +1,6 @@
 {
   "handle": "MechanisticDesignProposal",
-  "mechanism": "A structured blueprint for a systemic {{solution}} that addresses a {{problem}} in a {{system}}. It goes beyond a standard proposal by requiring the definition of a core mechanism\u2014the specific leverage point and causal chain used to alter system behavior. The proposal integrates the 'Why it Works' (defense) and 'Why it Fails' (attack) dialectic, along with medium-term implementation and long-term vision projections.",
+  "mechanism": "A structured blueprint for a systemic {{solution}} that addresses a {{problem}} in a {{system}}. It goes beyond a standard proposal by requiring the definition of a core mechanism\u2014the specific leverage point and causal chain used to alter system behavior. The proposal integrates the 'Why it Works' (defense) and 'Why it Fails' (attack) dialectic, assessing attached {{risk}}s, along with medium-term implementation and long-term vision projections.",
   "gloss": "Dialectic blueprint of a system mechanism with temporal projections",
   "invariants": [
     "Dialectic Balance: 'why_it_fails' must be as detailed as 'why_it_works'.",
@@ -66,9 +66,9 @@
       }
     }
   },
-  "sema_ref": "MechanisticDesignProposal#8cf7",
-  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06",
-  "sema_stub": "8cf7",
+  "sema_ref": "MechanisticDesignProposal#497e",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:497e86893969548b87d441839a2aecd79437007ed1294ac1af1c145b8567282d",
+  "sema_stub": "497e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
@@ -78,6 +78,9 @@
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+    },
+    "references": {
+      "risk": "sema:Risk#mh:SHA-256:37748bbbeb3ee23c5a258a49faee4d04a16064136fdfd8721a365d3764c73fb8"
     }
   }
 }

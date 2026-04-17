@@ -24,12 +24,6 @@
       "type": "Probability",
       "range": "[0.0, 1.0]",
       "description": "Self-assessed reliability"
-    },
-    {
-      "name": "cost_incurred",
-      "type": "TokenAmount",
-      "range": "unspecified",
-      "description": "Total compute cost"
     }
   ],
   "_meta": {
@@ -86,9 +80,9 @@
       }
     }
   },
-  "sema_id": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-  "sema_ref": "Solution#7186",
-  "sema_stub": "7186",
+  "sema_id": "sema:Solution#mh:SHA-256:fcea1ece4a23322f69d4a17664ba17d2f54f2cec47d2526d874a0766d84f635e",
+  "sema_ref": "Solution#fcea",
+  "sema_stub": "fcea",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

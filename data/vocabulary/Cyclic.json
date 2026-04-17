@@ -3,8 +3,8 @@
   "mechanism": "A {{topology}} that permits feedback {{loop}}s, allowing a process to revisit previous states or refine outputs iteratively. Essential for self-correcting systems and recursive optimization.",
   "gloss": "Recursive or iterative topology",
   "_meta": {
-    "layer": "Physics",
-    "category": "Time",
+    "layer": "Infrastructure",
+    "category": "Data Structures",
     "ring": 2,
     "tier": 1
   },
@@ -12,15 +12,29 @@
     "Recurrence: At least one path exists from a node to itself.",
     "Termination Condition: Must have a defined exit state to prevent infinite loops."
   ],
-  "sema_ref": "Cyclic#ac13",
-  "sema_id": "sema:Cyclic#mh:SHA-256:ac1335676817eaedd894da4a2d11671dec5a20dba76a8f5d55d1a6eed20e2051",
-  "sema_stub": "ac13",
-  "sema_layer": "Physics",
-  "sema_category": "Time",
+  "sema_ref": "Cyclic#5d28",
+  "sema_id": "sema:Cyclic#mh:SHA-256:5d28b07214cf38b9fb23ff6b2a29ff334ad6a63cca57771ee7ff828fce1047a8",
+  "sema_stub": "5d28",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
       "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"
+    }
+  },
+  "data_schema": {
+    "type": "object",
+    "description": "A cyclic topology \u2014 nodes connected in a closed loop where traversal returns to origin.",
+    "properties": {
+      "nodes": {
+        "type": "array",
+        "description": "Ordered node identifiers traversed in the cycle"
+      },
+      "period": {
+        "type": "integer",
+        "description": "Cycle length"
+      }
     }
   }
 }

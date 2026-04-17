@@ -21,14 +21,14 @@
   "parameters": [
     {
       "name": "granularity",
-      "type": "String",
+      "type": "Duration",
       "range": "unspecified",
       "description": "Temporal resolution for counterfactual comparison (e.g., hour, day, week)"
     },
     {
       "name": "retention_policy",
-      "type": "Duration",
-      "range": "unspecified",
+      "type": "Enum",
+      "range": "{Snapshot, Rolling, Permanent}",
       "description": "How long to keep counterfactual baselines before expiry"
     }
   ],
@@ -40,9 +40,9 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:f5845fee4dbe585ede4203b84b7eb46ae4e6ceb7a2a0edaae53471fad17d0ae5",
-  "sema_ref": "CounterfactualAnchor#f584",
-  "sema_stub": "f584",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:5b2cd5660ee0970560201f2c9f71ee12f994bfd6fcadeec492dc29e87374d554",
+  "sema_ref": "CounterfactualAnchor#5b2c",
+  "sema_stub": "5b2c",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",

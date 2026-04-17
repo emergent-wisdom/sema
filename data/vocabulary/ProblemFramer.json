@@ -1,6 +1,6 @@
 {
   "handle": "ProblemFramer",
-  "mechanism": "A specialized solver role that {{interpret}}s an initial request via {{request_framing}}, constructs the formal {{accept_spec}} (Definition of Done), and anchors the resulting {{solver_root}} to the {{universal_solver_tree}}. Unlike a general Solver (which executes), the Framer's sole output is a well-formed Problem Node ready for decomposition, or a {{reframe}} request if invalid.",
+  "mechanism": "A specialized solver role that {{interpret}}s an initial request via {{request_framing}}, constructs the formal {{accept_spec}} (Definition of Done), and anchors the resulting {{root_solver}} to the {{universal_solver_tree}}. Unlike a general Solver (which executes), the Framer's sole output is a well-formed Problem Node ready for decomposition, or a {{reframe}} request if invalid.",
   "gloss": "The active strategist that frames the problem",
   "failure_modes": [
     "Bad Frame: The problem is framed incorrectly, making it unsolvable.",
@@ -12,15 +12,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 2
   },
-  "sema_ref": "ProblemFramer#8b24",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:8b24c9d8bfa06e9baeef615ed22ab7c74163a021b365f0f010581bdf7e78a9f7",
-  "sema_stub": "8b24",
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
+  "sema_ref": "ProblemFramer#f504",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:f504a75f523cb56db17636e0d9b88bf023e6581745734b0bc72491195ea8b1a5",
+  "sema_stub": "f504",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "interpret": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
@@ -32,7 +32,7 @@
     },
     "references": {
       "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
-      "solver_root": "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1"
+      "root_solver": "sema:RootSolver#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     }
   }
 }

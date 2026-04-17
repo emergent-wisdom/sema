@@ -25,8 +25,8 @@
       }
     }
   },
-  "mechanism": "A tentative explanation or prediction that is subject to verification or falsification.",
-  "gloss": "A tentative explanation",
+  "mechanism": "A testable prediction staged for falsification attempts. Distinct from a Claim (asserted as true), an Assumption (held provisionally to make progress), and an Axiom (accepted without proof): a Hypothesis carries an explicit commitment to be checked against evidence and updated or discarded accordingly.",
+  "gloss": "Testable prediction staged for falsification attempts \u2014 provisional, not asserted",
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
@@ -35,7 +35,7 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
-  "sema_ref": "Hypothesis#e95b",
-  "sema_stub": "e95b"
+  "sema_id": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
+  "sema_ref": "Hypothesis#ffa7",
+  "sema_stub": "ffa7"
 }

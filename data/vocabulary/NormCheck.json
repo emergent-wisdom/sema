@@ -33,11 +33,11 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:82223036f2aa91c261189aa21bb0a61a98d10cfb6f613eaf760e8635af2e30e7",
-  "sema_ref": "NormCheck#8222",
-  "sema_stub": "8222",
+  "sema_id": "sema:NormCheck#mh:SHA-256:9bdd458491fbb7b55409c023d3a8d0c8b45125dda7dc2901efb68dc7c76f9c3c",
+  "sema_ref": "NormCheck#9bdd",
+  "sema_stub": "9bdd",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [

@@ -1,6 +1,6 @@
 {
   "handle": "UniversalSolverTree",
-  "mechanism": "The theoretical aggregation of all possible valid {{solver_tree}}s across all agents in the system. It represents the total epistemological state of {{problem}}-solving knowledge\u2014the collective wisdom of self and others. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within this Universal {{tree}}. It enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The Universal Tree is the ground truth against which {{localized_learning}} updates are integrated.",
+  "mechanism": "The theoretical aggregation of all valid {{solver_tree}}s across all agents in the system. Represents the total epistemological state of {{problem}}-solving knowledge \u2014 the collective wisdom. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within the Universal {{tree}}. At decomposition time the structure is tree-like (problems decompose top-down), but at execution time fan-in, deduplication, and cycles are permitted \u2014 the actual runtime graph is a DAG. Enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The ground truth against which {{localized_learning}} updates integrate.",
   "gloss": "Collective knowledge graph of all problem-solving",
   "failure_modes": [
     "Fragmentation: Parts of the universal tree become inaccessible across agent boundaries.",
@@ -9,7 +9,8 @@
   ],
   "invariants": [
     "Singularity: There is logically only one Universal {{tree}} containing all knowledge.",
-    "Coherence: Contradictions must eventually be resolved via synthesis or rejection."
+    "Coherence: Contradictions must eventually be resolved via synthesis or rejection.",
+    "Runtime shape is a DAG: fan-in and deduplication are permitted at execution even though decomposition is tree-like."
   ],
   "_meta": {
     "tier": 1,
@@ -39,9 +40,9 @@
       }
     }
   },
-  "sema_ref": "UniversalSolverTree#2340",
-  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:2340e9a8e2dd2a7e65fac41f070eba571fd0bc5d835223913b1b94f67789e9d1",
-  "sema_stub": "2340",
+  "sema_ref": "UniversalSolverTree#b805",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:b8053e5bd184dbeeee2a22fdfaa307276ab23bce66653f2d9c980a9172917c68",
+  "sema_stub": "b805",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

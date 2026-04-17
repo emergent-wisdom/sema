@@ -9,13 +9,13 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:9cd69a4237e0e505309795a879387b04d42a0e21d43a4177d8552ec844ef6157",
-  "sema_ref": "ReversibilityCheck#9cd6",
-  "sema_stub": "9cd6",
+  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:794803012daa2446ebf76e387940cd7fe244a28d26e341337c4b94f7901b05b8",
+  "sema_ref": "ReversibilityCheck#7948",
+  "sema_stub": "7948",
   "signature": [
     "Check(Reversibility)"
   ],

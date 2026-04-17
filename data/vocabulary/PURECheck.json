@@ -1,6 +1,6 @@
 {
   "handle": "PURECheck",
-  "mechanism": "The canonical Exploration {{protocol}}. It is a {{layered_check}} that orchestrates a sequential triage using four instances of {{tri_gate}}: (1) {{tri_gate}}({{parsimony}}) (2) {{tri_gate}}({{novelty}}) (3) {{tri_gate}}({{realizable}}) (4) {{tri_gate}}({{expansive}}). Enforces the conjunctive rule: 'Explore iff NO gate is Red'. Yellow outputs accumulate as Technical Debt (Smallest Lift tasks) in the final {{solution}}.",
+  "mechanism": "The PURE triage specialization of the {{p_u_r_e}} framework: the canonical Exploration {{protocol}}. It is a {{layered_check}} that orchestrates a sequential triage using four instances of {{tri_gate}}: (1) {{tri_gate}}({{parsimony}}) (2) {{tri_gate}}({{novelty}}) (3) {{tri_gate}}({{realizable}}) (4) {{tri_gate}}({{expansive}}). Enforces the conjunctive rule: 'Explore iff NO gate is Red'. Yellow outputs accumulate as Technical Debt (Smallest Lift tasks) in the final {{solution}}.",
   "gloss": "The PURE Triage Protocol (Parsimonious, Unique/Novel, Realizable, Expansive)",
   "signature": [
     "Protocol(Solution)"
@@ -11,9 +11,9 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
-  "sema_ref": "PURECheck#3ebb",
-  "sema_stub": "3ebb",
+  "sema_id": "sema:PURECheck#mh:SHA-256:f2f05f36cb3de262df67a736d7bb2072b93443cd0ca44efefa657296127e3f87",
+  "sema_ref": "PURECheck#f2f0",
+  "sema_stub": "f2f0",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -24,7 +24,8 @@
       "parsimony": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
       "layered_check": "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0",
       "expansive": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
-      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e"
+      "novelty": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
+      "p_u_r_e": "sema:PURE#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     },
     "composes_with": {
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"

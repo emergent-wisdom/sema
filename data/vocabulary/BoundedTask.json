@@ -7,9 +7,9 @@
     "Quality Gate"
   ],
   "derived_from": "sema:Task#mh:SHA-256:aa452d4a85efe37eed426f6529f3f2e1ee359999ff5ce3dd822f986f1513b4e7",
-  "sema_id": "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543",
-  "sema_ref": "BoundedTask#06a6",
-  "sema_stub": "06a6",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:ea969229fff39ed6484e7e795f3a10eb94b098739c82679832020e661e772f6f",
+  "sema_ref": "BoundedTask#ea96",
+  "sema_stub": "ea96",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",

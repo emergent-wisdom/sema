@@ -18,23 +18,18 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
-  "sema_ref": "Result#8ed9",
-  "sema_stub": "8ed9",
+  "sema_id": "sema:Result#mh:SHA-256:195b5acbf28190f1168318c8ddcd210da4e52365347497d86a2e4d154d17d9f3",
+  "sema_ref": "Result#195b",
+  "sema_stub": "195b",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
-      "task_id",
-      "output",
-      "status"
+      "status",
+      "stop_reason"
     ],
     "properties": {
-      "task_id": {
-        "type": "string",
-        "description": "The task this result satisfies"
-      },
       "status": {
         "type": "string",
         "enum": [
@@ -43,8 +38,23 @@
           "Failure"
         ]
       },
-      "output": {
-        "description": "The actual artifact or data produced"
+      "stop_reason": {
+        "type": "string",
+        "enum": [
+          "Completed",
+          "Budget",
+          "Quality",
+          "Error",
+          "Timeout"
+        ],
+        "description": "Why execution terminated"
+      },
+      "outputs": {
+        "description": "Produced artifacts \u2014 optional; a failed Result may yield none"
+      },
+      "task_ref": {
+        "type": "string",
+        "description": "The task this result satisfies"
       },
       "confidence_score": {
         "type": "number",
@@ -55,12 +65,10 @@
         "type": "array",
         "items": {
           "type": "string"
-        },
-        "description": "List of step IDs that generated this result"
+        }
       },
       "metrics": {
-        "type": "object",
-        "description": "Performance metrics (latency, cost)"
+        "type": "object"
       }
     }
   },

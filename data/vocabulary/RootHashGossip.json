@@ -21,9 +21,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a",
-  "sema_ref": "RootHashGossip#ba35",
-  "sema_stub": "ba35",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:e84b7af3e0f4b3f863dc1c9205a022c51f3f134880949614e5c8d5b2fabd5092",
+  "sema_ref": "RootHashGossip#e84b",
+  "sema_stub": "e84b",
   "dependencies": {
     "references": {
       "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"

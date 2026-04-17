@@ -1,7 +1,7 @@
 {
   "handle": "Yield",
   "mechanism": "Negotiation {{backoff}}. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.",
-  "gloss": "Enable fair resolution of genuine disagreements without defaulting to power dynamics or eternal deadlock",
+  "gloss": "Weighted negotiation backoff with deferred debt ledger",
   "failure_modes": [
     "Weight inflation (mitigated by historical consistency tracking).",
     "Gaming ledger with trivial yields.",
@@ -17,9 +17,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
-  "sema_ref": "Yield#7eaf",
-  "sema_stub": "7eaf",
+  "sema_id": "sema:Yield#mh:SHA-256:29310b83ae2e519cbdcd227452fc1598b926f7f18696f53142d33da365aae7b9",
+  "sema_ref": "Yield#2931",
+  "sema_stub": "2931",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

@@ -16,9 +16,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-  "sema_ref": "ChainOfThought#6201",
-  "sema_stub": "6201",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:c3cd00ab11984f75ecb20bdcace9a0837fad01c828b7858bc1323a795fc43202",
+  "sema_ref": "ChainOfThought#c3cd",
+  "sema_stub": "c3cd",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [

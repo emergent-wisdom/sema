@@ -1,6 +1,6 @@
 {
   "handle": "Gate",
-  "mechanism": "Evaluates the truth-value of the target {{condition}}. If the result is FALSE, the Gate DROPS the current payload/message but allows the system to continue processing other items (Fail-Safe/Filter). If TRUE, the payload passes through.",
+  "mechanism": "Evaluates the truth-value of the target {{condition}} and yields a {{decision}}: proceed if the condition holds, halt if not, or debt (proceed with obligation recorded) when configured. Unlike a silent filter, a Gate produces a first-class Decision artifact that downstream systems can route on. If halted, the specific item stops while the broader system continues processing others (Fail-Safe/Filter).",
   "gloss": "Filter payload if the target condition is not met",
   "failure_modes": [
     "Silent Loss: Important data dropped without alerting the operator."
@@ -23,14 +23,17 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
-  "sema_ref": "Gate#206d",
-  "sema_stub": "206d",
+  "sema_id": "sema:Gate#mh:SHA-256:89fdb7df388ddb1e1c81350b391fc6c9a2ad967de069c7d09b591c7d13379264",
+  "sema_ref": "Gate#89fd",
+  "sema_stub": "89fd",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
     }
   }
 }

@@ -35,9 +35,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
-  "sema_ref": "Prioritize#dd16",
-  "sema_stub": "dd16",
+  "sema_id": "sema:Prioritize#mh:SHA-256:68f88575d8aba5a9b640efb0f061d05597c730ab4de53c4702ea8d39944b865c",
+  "sema_ref": "Prioritize#68f8",
+  "sema_stub": "68f8",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

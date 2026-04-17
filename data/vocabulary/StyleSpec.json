@@ -29,9 +29,9 @@
       }
     }
   },
-  "sema_ref": "StyleSpec#ec7b",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
-  "sema_stub": "ec7b",
+  "sema_ref": "StyleSpec#95c3",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:95c306b461ae5688657a92db9720cb7cc48735bce0e4700d6ba5dd071553303b",
+  "sema_stub": "95c3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

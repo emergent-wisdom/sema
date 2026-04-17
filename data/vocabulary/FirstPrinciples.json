@@ -14,9 +14,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:c379f7e5629befb5ccbee33b6fccbc3c4f5ec181b2704c4f82064d5cdc810f61",
-  "sema_ref": "FirstPrinciples#c379",
-  "sema_stub": "c379",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:634e4087a278cc53ab306b4510ad0dfba3786f33cebb2ad61807d1e91ff503fb",
+  "sema_ref": "FirstPrinciples#634e",
+  "sema_stub": "634e",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

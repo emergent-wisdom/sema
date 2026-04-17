@@ -14,9 +14,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:ValuePeg#mh:SHA-256:073fde121fc20973de3aaa17aab1af3f37f50370df31a0030cdef095095a4e5c",
-  "sema_ref": "ValuePeg#073f",
-  "sema_stub": "073f",
+  "sema_id": "sema:ValuePeg#mh:SHA-256:3ea2183b204a88702d40b9a5bc15de6512f835bfb49746c245992dc86cce7cef",
+  "sema_ref": "ValuePeg#3ea2",
+  "sema_stub": "3ea2",
   "dependencies": {
     "references": {
       "optimize": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",

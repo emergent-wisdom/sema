@@ -1,7 +1,7 @@
 {
   "handle": "Canary",
   "mechanism": "Expendable {{agent}} tests full coordination path before committing real resources. Spawn CANARY with: limited resources (bounded blast radius), defined scope, telemetry hooks. Canary executes FULL coordination path ({{greet}}\u2192{{probe}}\u2192negotiate\u2192partial-execute). Reports TELEMETRY: {path_viable, latency_profile, error_events, partner_behavior_observations, recommendation: proceed|caution|abort}. Lifecycle options: DESTROY (discard after test), RECYCLE (reset for another test), PROMOTE (canary becomes real {{agent}}, continues {{work}}), ABSORB (real {{agent}} inherits canary's progress). In adversarial environments, canary can run in STEALTH {{mode}} (indistinguishable from real {{agent}}) to prevent partners gaming the test. It extends the logic of a single {{probe}} into a full-lifecycle agent deployment with bounded blast radius.",
-  "gloss": "Transform path selection from 'hope it works' to 'tested it works' without risking real resources",
+  "gloss": "Expendable agent tests the full coordination path before real commit",
   "failure_modes": [
     "Canary treated differently than real agent would be (gaming).",
     "Test conditions don't match production conditions.",
@@ -26,9 +26,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Canary#mh:SHA-256:92d292bbdbb6aac871cdbff1b32a7878d1585750a76511870311159c39e0ee87",
-  "sema_ref": "Canary#92d2",
-  "sema_stub": "92d2",
+  "sema_id": "sema:Canary#mh:SHA-256:adb0997c330b357523997403b64b94dd219458cb27cb38be8cf83fcec9483a1b",
+  "sema_ref": "Canary#adb0",
+  "sema_stub": "adb0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

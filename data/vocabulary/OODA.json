@@ -1,6 +1,6 @@
 {
   "handle": "OODA",
-  "mechanism": "The OODA {{loop}} ({{observe}}-Orient-Decide-{{act}}) is a high-speed decision cycle favoring {{agent}} agility over raw power. \n1. OBSERVE: Gather raw data via {{observe}}.\n2. ORIENT: Update context and beliefs via {{context}} and {{belief}}. This is the most critical step, filtering data through culture and genetics (or training).\n3. DECIDE: {{select}} a hypothesis or {{strategy}} via {{think}} and {{select}}.\n4. ACT: Execute via {{act}} and change the environment.\nSuccess depends on traversing this loop faster than the adversary (or environment changes).",
+  "mechanism": "The OODA {{loop}} ({{observe}}-Orient-Decide-{{act}}) is a high-speed decision cycle favoring {{agent}} agility over raw power, embodying {{context_first}} at the substrate level: Observe and Orient both complete before any Decide-Act sequence fires.\n1. OBSERVE: Gather raw data via {{observe}}.\n2. ORIENT: Update context and beliefs via {{context}} and {{belief}}. This is the most critical step, filtering data through culture and genetics (or training).\n3. DECIDE: {{select}} a hypothesis or {{strategy}} via {{think}} and {{select}}.\n4. ACT: Execute via {{act}} and change the environment.\nSuccess depends on traversing this loop faster than the adversary (or environment changes).",
   "gloss": "Rapid decision cycle: Observe, Orient, Decide, Act",
   "failure_modes": [
     "Disorientation: Getting stuck in 'Orient' due to contradictory data.",
@@ -30,9 +30,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:OODA#mh:SHA-256:f3bea02806503fe8a7c72a9fd3f3cdfccbae6c9519eb3bf8b25b35badc9545f7",
-  "sema_ref": "OODA#f3be",
-  "sema_stub": "f3be",
+  "sema_id": "sema:OODA#mh:SHA-256:eaf147fcb52a46f836a3fbfbae912ce01c00572c9c47ee81515bcba935883527",
+  "sema_ref": "OODA#eaf1",
+  "sema_stub": "eaf1",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "signature": [
@@ -52,7 +52,8 @@
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "strategy": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593"
+      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
+      "context_first": "sema:ContextFirst#mh:SHA-256:2878bfc9402ba18d174040bc9614113e01c7a6f2bb775fe22fdccba6aca3dbe1"
     }
   }
 }

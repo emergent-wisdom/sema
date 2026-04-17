@@ -10,9 +10,9 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-  "sema_ref": "Noise#c4b4",
-  "sema_stub": "c4b4",
+  "sema_id": "sema:Noise#mh:SHA-256:d631b83224591fce5292eafc1172a13574cb3cc80b42aee104eec39a65871f8b",
+  "sema_ref": "Noise#d631",
+  "sema_stub": "d631",
   "dependencies": {
     "references": {
       "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b",

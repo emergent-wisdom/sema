@@ -1,7 +1,7 @@
 {
   "handle": "Realizable",
   "gloss": "Evaluates execution feasibility of a plan",
-  "mechanism": "Acts as a {{judge}} to evaluate the {{value}} and feasibility of a {{plan}}. Classifies the execution path into three qualitative states: (1) Magical: Relies on undefined {{step}}s or unavailable physics. (2) Uncertain: The dependency chain is clear, but specific links are unverified. (3) Coherent: Every {{step}} maps to a known primitive or realizable sub-component.",
+  "mechanism": "A {{judge}} of execution feasibility: can the declared artifact actually be built or enacted in the world it targets, given its stated inputs, {{step}}s, and constraints? Applies wherever a {{plan}} or design must be checked against physical, computational, or institutional reality \u2014 engineering feasibility, policy implementation, software design, research program scoping. The essential move is grounding every {{step}} in a primitive or sub-component that is itself realizable, recursively. Specific rating semantics belong on descendants or on the composing protocol. The signature Judge({{value}}) captures that the question yields a {{value}}-rating of feasibility, not a binary verdict \u2014 'mostly realizable with two unverified links' is a legitimate output.",
   "signature": [
     "Judge(Value)"
   ],
@@ -15,21 +15,21 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "Realizable#cf00",
-  "sema_id": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
-  "sema_stub": "cf00",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_ref": "Realizable#8d81",
+  "sema_id": "sema:Realizable#mh:SHA-256:8d81bed9f201197e0250330028c9d94142338f9a5e69ea83cf8abd417abce01b",
+  "sema_stub": "8d81",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
       "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }

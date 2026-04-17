@@ -25,18 +25,18 @@
   "_meta": {
     "tier": 1,
     "layer": "Society",
-    "category": "Governance",
+    "category": "Coordination",
     "ring": 0,
     "related": [
       "Sync"
     ],
     "caution": "Governance decisions susceptible to coordinated voting blocs."
   },
-  "sema_id": "sema:Consensus#mh:SHA-256:7216e0e528262020ff05fa26124a8db9fcb14613fde05ddd0b2eb393958c4211",
-  "sema_ref": "Consensus#7216",
-  "sema_stub": "7216",
+  "sema_id": "sema:Consensus#mh:SHA-256:ffff8fe79630eb9df5d09f49aa1e34fbb20d98db198cbd07b29d4be368fd4c10",
+  "sema_ref": "Consensus#ffff",
+  "sema_stub": "ffff",
   "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_category": "Coordination",
   "dependencies": {
     "accepts": {
       "proposal": "sema:Proposal#mh:SHA-256:48400f03d012e37914685f66064ccd4c3875efb0bb4dff24d88c8f1ca9aa247d"

@@ -1,6 +1,6 @@
 {
   "handle": "Ballot",
-  "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast\u2014amendments require a new Ballot.",
+  "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast \u2014 amendments require a new Ballot carrying a fresh {{monotonic_counter}} sequence, so revocation and amendment are surfaced as distinct subsequent decisions rather than retroactive edits.",
   "gloss": "Immutable container for collective decision inputs",
   "failure_modes": [
     "Spoiled ballot: ambiguous or invalid {{select}} format.",
@@ -11,7 +11,7 @@
     "Immutability: Once created, a Ballot cannot be modified"
   ],
   "_meta": {
-    "tier": 3,
+    "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 0
@@ -52,14 +52,15 @@
       }
     }
   },
-  "sema_ref": "Ballot#f1d7",
-  "sema_id": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
-  "sema_stub": "f1d7",
+  "sema_ref": "Ballot#2a0a",
+  "sema_id": "sema:Ballot#mh:SHA-256:2a0a8f2f1e8ca0098edca2107bb8cf2ea129dc09f44162faa284a5d18a021db1",
+  "sema_stub": "2a0a",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235"
     }
   }
 }

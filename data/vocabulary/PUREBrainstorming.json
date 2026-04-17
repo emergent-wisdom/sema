@@ -1,6 +1,6 @@
 {
   "handle": "PUREBrainstorming",
-  "mechanism": "A rigorous ideation protocol. Unlike standard brainstorming (which prioritizes quantity), PUREBrainstorming enforces immediate quality filtering. It generates candidate concepts and subjects them to {{pure_check}}. Surviving concepts undergo {{pure_optimization}} to maximize their scores. The process converges only when a concept can be fully articulated as a {{mechanistic_design_proposal}}, ensuring that every idea is backed by a causal mechanism.",
+  "mechanism": "The PURE-filtered ideation specialization of the {{p_u_r_e}} framework: a rigorous ideation protocol. Unlike standard brainstorming (which prioritizes quantity), PUREBrainstorming enforces immediate quality filtering. It generates candidate concepts and subjects them to {{pure_check}}. Surviving concepts undergo {{pure_optimization}} to maximize their scores. The process converges only when a concept can be fully articulated as a {{mechanistic_design_proposal}}, ensuring that every idea is backed by a causal mechanism.",
   "gloss": "Generate -> Check -> Optimize -> Propose",
   "invariants": [
     "Filter-First: No concept moves to the Proposal stage without passing PURECheck.",
@@ -12,9 +12,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "PUREBrainstorming#5dad",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:5dada311c0b8343b4b7848a7a07a98f0369c8bb6e6701b1d0aef69655a51d412",
-  "sema_stub": "5dad",
+  "sema_ref": "PUREBrainstorming#ea83",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:ea835f545ce858f10d700dd7e643475cf4d7cf58be1aecb0b39e53d6a7996dab",
+  "sema_stub": "ea83",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -24,6 +24,9 @@
     "composes_with": {
       "pure_optimization": "sema:PUREOptimization#mh:SHA-256:d1f9eeafbaac69e359c689410fc44f7802f7c1320427f49ea27ccbdaed06cf4d",
       "pure_check": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f"
+    },
+    "references": {
+      "p_u_r_e": "sema:PURE#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
     }
   }
 }

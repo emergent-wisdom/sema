@@ -1,19 +1,74 @@
 # Sema Vocabulary (Short Hand JSON)
 
-**Total Patterns:** 427
+**Total Patterns:** 444
 **Format:** JSON with short-hand references.
 
 ---
 
 # Layer: Infrastructure
 
-## Anomaly#7987
+## Aesthetics#ff5f
+
+```json
+{
+  "handle": "Aesthetics",
+  "mechanism": "A scalar {{metric}} representing the fit between an {{artifact}} and the subjective preference priors of a human observer (e.g., harmony, {{parsimony}}, style). Used to optimize solutions for social acceptance when functional utility is equal.",
+  "gloss": "Optimization for human subjective preference",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Aesthetics#mh:SHA-256:ff5fc266152e3d1478a89aaf8fbef38fc10cc9c9da5c7b3cb7b10a1245a896ef",
+  "sema_ref": "Aesthetics#ff5f",
+  "sema_stub": "ff5f",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "description": "An aesthetic assessment \u2014 a metric-shaped artifact capturing perceived beauty/quality on a defined scale.",
+    "properties": {
+      "axis": {
+        "type": "string",
+        "description": "Which aesthetic dimension is being rated"
+      },
+      "score": {
+        "type": "number",
+        "description": "Rating on the axis"
+      },
+      "normalized_range": {
+        "type": "object",
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "parsimony": "Parsimony#8476",
+      "metric": "Metric#17fd",
+      "artifact": "Artifact#6254"
+    }
+  }
+}
+```
+
+---
+
+## Anomaly#fac8
 
 ```json
 {
   "handle": "Anomaly",
-  "mechanism": "A piece of {{datum}} that deviates from the expected standard or pattern. It creates the spark for thinking and often triggers further investigation.",
-  "gloss": "Deviation from expectation",
+  "mechanism": "A {{datum}} whose observed value falls outside the expected baseline by a measurable deviation score. Anomalies carry the (observed, expected, deviation) triple as first-class structure, so they can be routed, ranked, and triaged. Serves as the trigger artifact for investigation, learning, and diagnostic workflows.",
+  "gloss": "Datum whose observed value deviates from the expected baseline, triggering investigation",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -46,9 +101,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Anomaly#mh:SHA-256:7987f2cd4a353f206fccd038ddac021ef849cfa58e352d2d2d7ba3850b916893",
-  "sema_ref": "Anomaly#7987",
-  "sema_stub": "7987",
+  "sema_id": "sema:Anomaly#mh:SHA-256:fac884f940feb1f3cac089ab3165cb71f514f5d6e54e43506ed6e52942ed7730",
+  "sema_ref": "Anomaly#fac8",
+  "sema_stub": "fac8",
   "dependencies": {
     "references": {
       "datum": "Datum#31cf"
@@ -244,12 +299,12 @@
 
 ---
 
-## Audit#4044
+## Audit#6888
 
 ```json
 {
   "handle": "Audit",
-  "mechanism": "The process of verifying that a {{system}}'s {{state}} or behavior matches its specifications.",
+  "mechanism": "A structured record produced by a verification event: the artifact naming what was checked, who checked it, when, the inputs and outputs, and the decision reached. Distinct from the verb 'to audit' \u2014 this Noun is the durable output that downstream callers consume and reference. Used as {{state}}-grounded evidence when disputes over {{system}} behavior arise.",
   "gloss": "Verification of conformance",
   "invariants": [
     "Immutability: Audit logs cannot be altered once written.",
@@ -307,15 +362,15 @@
       }
     }
   },
-  "sema_id": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
-  "sema_ref": "Audit#4044",
-  "sema_stub": "4044",
+  "sema_id": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
+  "sema_ref": "Audit#6888",
+  "sema_stub": "6888",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "system": "System#e314"
     }
   }
 }
@@ -323,12 +378,12 @@
 
 ---
 
-## Ballot#f1d7
+## Ballot#2a0a
 
 ```json
 {
   "handle": "Ballot",
-  "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast\u2014amendments require a new Ballot.",
+  "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast \u2014 amendments require a new Ballot carrying a fresh {{monotonic_counter}} sequence, so revocation and amendment are surfaced as distinct subsequent decisions rather than retroactive edits.",
   "gloss": "Immutable container for collective decision inputs",
   "failure_modes": [
     "Spoiled ballot: ambiguous or invalid {{select}} format.",
@@ -339,7 +394,7 @@
     "Immutability: Once created, a Ballot cannot be modified"
   ],
   "_meta": {
-    "tier": 3,
+    "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 0
@@ -380,13 +435,14 @@
       }
     }
   },
-  "sema_ref": "Ballot#f1d7",
-  "sema_id": "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
-  "sema_stub": "f1d7",
+  "sema_ref": "Ballot#2a0a",
+  "sema_id": "sema:Ballot#mh:SHA-256:2a0a8f2f1e8ca0098edca2107bb8cf2ea129dc09f44162faa284a5d18a021db1",
+  "sema_stub": "2a0a",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
+      "monotonic_counter": "MonotonicCounter#cf62",
       "select": "Select#15c2"
     }
   }
@@ -395,25 +451,19 @@
 
 ---
 
-## Belief#5ad9
+## Belief#a9ce
 
 ```json
 {
   "handle": "Belief",
-  "mechanism": "A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting evidence. Unlike a Fact, a Belief is subjective and mutable.",
+  "mechanism": "A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting {{evidence}}. Unlike a Fact, a Belief is subjective and mutable.",
   "gloss": "A subjective claim with confidence and evidence",
   "parameters": [
     {
       "name": "confidence",
-      "type": "Float",
-      "range": "unspecified",
+      "type": "Probability#356b",
+      "range": "[0.0, 1.0]",
       "description": "Subjective probability that this belief is true"
-    },
-    {
-      "name": "evidence",
-      "type": "List[Context#510a]",
-      "range": "unspecified",
-      "description": "Supporting evidence contexts for this belief"
     }
   ],
   "_meta": {
@@ -452,15 +502,18 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
-  "sema_ref": "Belief#5ad9",
-  "sema_stub": "5ad9",
+  "sema_id": "sema:Belief#mh:SHA-256:a9ced589ce7984846cd86ebe6f937cd3b33f2435c5f56c60157e98b1aa868d71",
+  "sema_ref": "Belief#a9ce",
+  "sema_stub": "a9ce",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "agent": "Agent#35b9"
+    },
+    "accepts": {
+      "context": "Context#510a"
     }
   }
 }
@@ -468,7 +521,46 @@
 
 ---
 
-## Break#1a63
+## Boolean#2e6b
+
+```json
+{
+  "handle": "Boolean",
+  "mechanism": "The primitive true/false type. A Boolean value is one of exactly two mutually exclusive members: true or false. Used as the output type of schema-validation and as the evaluation return of conditional traits. Distinct from the three-state Decision (proceed/halt/debt) and from the graded Status (verified/falsified/unknown): Boolean admits no middle value.",
+  "gloss": "Binary truth value \u2014 true or false",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "value"
+    ],
+    "properties": {
+      "value": {
+        "type": "boolean",
+        "description": "The truth value: true or false"
+      }
+    }
+  },
+  "invariants": [
+    "Exhaustive: every Boolean value is one of exactly two members.",
+    "Exclusive: no value is simultaneously true and false."
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Boolean#mh:SHA-256:2e6b2b2f8b0ae5c6060b15cd6cb6cb3bf21d40a4effbc18aff354559195f9217",
+  "sema_ref": "Boolean#2e6b",
+  "sema_stub": "2e6b"
+}
+```
+
+---
+
+## Break#177f
 
 ```json
 {
@@ -505,7 +597,7 @@
     }
   },
   "mechanism": "{{protocol}} for announcing coordination failure. Failing {{agent}} broadcasts BREAK: {severity, reason, recoverable}. Partners must ACK. Coordination terminates or pauses based on severity. Unacknowledged BREAK escalates to FAILED. It coordinates with retry logic to distinguish transient from permanent failures, optionally triggering ejection seat in catastrophic scenarios.",
-  "gloss": "Enable graceful degradation and coordinated recovery when coordination fails mid-stream",
+  "gloss": "Failure-announcement signal {severity, reason, recoverable}, ACK-required",
   "failure_modes": [
     "BREAK {{message}} itself fails to deliver ({{meta}}-failure).",
     "Partners disagree on recovery action.",
@@ -551,22 +643,22 @@
     "category": "Data Structures",
     "ring": 0,
     "related": [
-      "EjectionSeat#6ff7",
-      "Retry#d53d"
+      "EjectionSeat#d53e",
+      "Retry#4cc6"
     ]
   },
-  "sema_id": "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95",
-  "sema_ref": "Break#1a63",
-  "sema_stub": "1a63",
+  "sema_id": "sema:Break#mh:SHA-256:177fbff7700762a276d46156ed96359955d7f1614857f2b4f13285473c7f782f",
+  "sema_ref": "Break#177f",
+  "sema_stub": "177f",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "system": "System#e314",
+      "meta": "Meta#90f4",
       "protocol": "Protocol#7e1c",
+      "system": "System#e314",
       "message": "Message#f767",
-      "agent": "Agent#aaec",
-      "meta": "Meta#90f4"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -574,7 +666,7 @@
 
 ---
 
-## Card#e307
+## Card#2d01
 
 ```json
 {
@@ -604,20 +696,14 @@
       }
     }
   },
-  "mechanism": "Structured capability advertisement enabling agent discovery before contact. {{agent}} creates CARD: {agent_id (unique), endpoint (how to reach), protocols[] (compatibility), capabilities[] (what agent claims to do), constraints (availability, rate limits, requirements), metadata (version, ttl, published timestamp)}. {{agent}} PUBLISHES card via registry, broadcast, DHT, or well-known endpoint (mechanism-agnostic). Discovering agents QUERY: {capability_match, protocol_match, semantic_search}. Query returns ranked CARD list. Discoverer selects promising CARDs, then GREETs at card.endpoint to establish channel. CARDs have TTL\u2014agents must REFRESH periodically to maintain visibility. CARD capabilities are CLAIMS not proofs: verification happens via {{probe}} after GREET establishes channel. It enables discovery via {{select}} queries against the registry, filtering candidates by capability and protocol compatibility.",
-  "gloss": "Enable capability-based agent discovery, making coordination ecosystems dynamic and self-describing",
+  "mechanism": "Structured capability advertisement enabling agent discovery before contact. {{agent}} creates CARD: {agent_id (unique), endpoint (how to reach), protocols[] (compatibility), capabilities[] (what agent claims to do), constraints (availability, rate limits, requirements), metadata (version, ttl, published timestamp)}. {{agent}} PUBLISHES card via registry, broadcast, DHT, or well-known endpoint (mechanism-agnostic). Discovering agents QUERY using {{latent_attachment}} for semantic capability matching alongside exact protocol_match. Query returns ranked CARD list. Discoverer selects promising CARDs, then GREETs at card.endpoint to establish channel. CARDs have TTL \u2014 agents must REFRESH periodically to maintain visibility. CARD capabilities are CLAIMS not proofs: verification happens via {{probe}} after GREET establishes channel. It enables discovery via {{select}} queries against the registry, filtering candidates by capability and protocol compatibility.",
+  "gloss": "Structured capability advertisement: agent_id, endpoint, protocols, capabilities, metadata",
   "parameters": [
     {
       "name": "verification_tier",
       "type": "Enum",
       "range": "{SelfReported, Verified, Bonded}",
       "description": "Default: SelfReported"
-    },
-    {
-      "name": "proof",
-      "type": "String",
-      "range": "unspecified",
-      "description": "Optional hash of past Success artifact"
     }
   ],
   "failure_modes": [
@@ -637,15 +723,16 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Card#mh:SHA-256:e307b9bce7530dd5d86a1e6e4cd2252765f4154b6e3e6c1f1f1ac3e544666495",
-  "sema_ref": "Card#e307",
-  "sema_stub": "e307",
+  "sema_id": "sema:Card#mh:SHA-256:2d012468b060b33e8b77e1a35d5e09a13ec01a94d8969084fdbd64eba428d9e3",
+  "sema_ref": "Card#2d01",
+  "sema_stub": "2d01",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "probe": "Probe#12d8"
+      "latent_attachment": "LatentAttachment#ab68",
+      "probe": "Probe#12d8",
+      "agent": "Agent#35b9"
     },
     "composes_with": {
       "select": "Select#15c2"
@@ -702,7 +789,7 @@
 
 ---
 
-## Chain#5711
+## Chain#711e
 
 ```json
 {
@@ -726,8 +813,8 @@
       }
     }
   },
-  "mechanism": "A concrete data structure representing a sequential list of linked nodes. Unlike {{linear}} (which is an abstract topology class), a Chain is the instantiated storage object containing the steps and their data payloads.",
-  "gloss": "Sequential data container (Linked List)",
+  "mechanism": "A concrete sequential data structure: a list of linked nodes where each node (except the last) points to exactly one successor. Chain is the instantiated storage object \u2014 distinct from the more abstract {{sequence}} (which describes temporal ordering semantics) and from the branching {{tree}} topology. Chain is the canonical spatial form for strictly sequential, non-branching data.",
+  "gloss": "Sequential data container (linked list)",
   "invariants": [
     "Connectivity: Node(N) must point to Node(N+1).",
     "Acyclicity: No loops permitted."
@@ -736,84 +823,20 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 2
-  },
-  "sema_id": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-  "sema_ref": "Chain#5711",
-  "sema_stub": "5711",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
-  "dependencies": {
-    "references": {
-      "linear": "Linear#81af"
-    }
-  }
-}
-```
-
----
-
-## Check#1544
-
-```json
-{
-  "handle": "Check",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "target_id",
-      "condition",
-      "status"
-    ],
-    "properties": {
-      "target_id": {
-        "type": "string",
-        "description": "The entity being checked"
-      },
-      "condition": {
-        "type": "string",
-        "description": "The logic predicate"
-      },
-      "status": {
-        "type": "boolean",
-        "description": "True/False result"
-      },
-      "evidence": {
-        "type": "string",
-        "description": "Why it passed/failed"
-      }
-    }
-  },
-  "mechanism": "A non-blocking verification primitive. Evaluates the truth-value of a {{condition}} against a target and returns a Boolean status. Unlike a {{gate}} (which alters control flow based on the result), a Check is purely observational and side-effect free. It answers 'Is this true?' without deciding 'Should we stop?'.",
-  "gloss": "Non-blocking truth evaluation",
-  "failure_modes": [
-    "False Positive: Check returns True due to flawed logic or sensor noise.",
-    "Heisenbug: The act of checking alters the state being checked."
-  ],
-  "invariants": [
-    "Side-Effect Free: Running a check must not mutate the target state.",
-    "Determinism: Same input context yields same boolean result."
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0,
-    "related": [
-      "Gate#5c08",
-      "Validate#16b2",
-      "Judge#3d5f"
+    "ring": 2,
+    "supersedes": [
+      "sema:Linear#mh:SHA-256:81affcd5f7c1ea56b7572799fc235cf95d4e3c692de77c9eb8c01930b8e1d41c"
     ]
   },
-  "sema_id": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-  "sema_ref": "Check#1544",
-  "sema_stub": "1544",
+  "sema_id": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+  "sema_ref": "Chain#711e",
+  "sema_stub": "711e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "gate": "Gate#206d",
-      "condition": "Condition#cbd5"
+      "sequence": "Sequence#b0b8",
+      "tree": "Tree#a5a3"
     }
   }
 }
@@ -1060,13 +1083,13 @@
     "agent has a valid environment to Execute"
   ],
   "_meta": {
-    "tier": 3,
+    "tier": 1,
     "layer": "Infrastructure",
     "category": "Data Structures",
     "related": [
-      "ContextCompress#6dbd",
-      "ContextSwitch#42cd",
-      "AnchorDrop#bf63"
+      "ContextCompress#4845",
+      "ContextSwitch#590e",
+      "AnchorDrop#26a2"
     ],
     "ring": 0
   },
@@ -1094,8 +1117,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -1103,7 +1126,7 @@
 
 ---
 
-## Contract#0624
+## Contract#498e
 
 ```json
 {
@@ -1145,7 +1168,7 @@
       }
     }
   },
-  "mechanism": "An immutable record of agreement between two or more {{identity}}s. It aggregates a set of {{condition}}s (terms) and obligations which all parties must {{sign}} to accept. Contracts serve as the binding {{context}} for disputes resolved by a {{judge}}.",
+  "mechanism": "An immutable record of agreement between two or more {{identity}}s, acting as a multi-party {{commitment_device}}. It aggregates a set of {{condition}}s (terms) and obligations which all parties must {{sign}} to accept. Contracts serve as the binding {{context}} for disputes resolved by a {{judge}}.",
   "gloss": "Binding agreement between parties",
   "failure_modes": [
     "Ambiguity: Terms are open to interpretation.",
@@ -1163,17 +1186,18 @@
     "category": "Data Structures",
     "ring": 1
   },
-  "sema_id": "sema:Contract#mh:SHA-256:06241d8925a848e07b8b7afab2c37767b126c3f2363faba11bcc455ebb6a4d04",
-  "sema_ref": "Contract#0624",
-  "sema_stub": "0624",
+  "sema_id": "sema:Contract#mh:SHA-256:498e450f3f218e74b8eff287f799dc441e35aaa3320891207300f91b8fe8e0c8",
+  "sema_ref": "Contract#498e",
+  "sema_stub": "498e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "sign": "Sign#1fb9",
-      "judge": "Judge#d84f",
       "identity": "Identity#626c",
-      "context": "Context#510a"
+      "judge": "Judge#9554",
+      "sign": "Sign#1fb9",
+      "context": "Context#510a",
+      "commitment_device": "CommitmentDevice#6c21"
     },
     "accepts": {
       "condition": "Condition#cbd5"
@@ -1184,7 +1208,7 @@
 
 ---
 
-## Correlation#091f
+## Correlation#148d
 
 ```json
 {
@@ -1221,8 +1245,8 @@
       }
     }
   },
-  "mechanism": "A relationship where two {{variable}}s move together, but one does not necessarily cause the other. 'Cum hoc ergo propter hoc' fallacy trap.",
-  "gloss": "Shared movement",
+  "mechanism": "Structural co-movement between two {{variable}}s without the directed edge that would make it {{causation}}: changes in one accompany changes in the other, but manipulating one does not necessarily alter the other. Characterized by a coefficient in [-1, 1]. The distinction is topological, not a consequence of the cum-hoc-ergo-propter-hoc fallacy \u2014 Correlation is defined by the structural absence of a directed causal edge.",
+  "gloss": "Co-movement between variables without directed causal edge \u2014 structurally distinct from Causation",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -1231,12 +1255,13 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625",
-  "sema_ref": "Correlation#091f",
-  "sema_stub": "091f",
+  "sema_id": "sema:Correlation#mh:SHA-256:148d5034bf5678b1e5c702109d82ebb76620dbf7e792717e40c3f3ed6698db9c",
+  "sema_ref": "Correlation#148d",
+  "sema_stub": "148d",
   "dependencies": {
     "references": {
-      "variable": "Variable#179a"
+      "variable": "Variable#179a",
+      "causation": "Causation#d360"
     }
   }
 }
@@ -1305,7 +1330,7 @@
 
 ---
 
-## Critique#3e00
+## Critique#4e43
 
 ```json
 {
@@ -1321,17 +1346,9 @@
     "Feedback must be descriptive, not just scalar.",
     "Must reference specific criteria."
   ],
-  "parameters": [
-    {
-      "name": "criteria",
-      "type": "List[String]",
-      "range": "unspecified",
-      "description": "Evaluation dimensions to assess against"
-    }
-  ],
-  "sema_id": "sema:Critique#mh:SHA-256:3e00cb143ce745ed77a29af93416808b848b2a2d9749245b777ad90901aa4ba8",
-  "sema_ref": "Critique#3e00",
-  "sema_stub": "3e00",
+  "sema_id": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
+  "sema_ref": "Critique#4e43",
+  "sema_stub": "4e43",
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
@@ -1395,13 +1412,11 @@
   },
   "dependencies": {
     "accepts": {
+      "criteria": "Criteria#ef6b",
       "datum": "Datum#31cf"
     },
     "yields": {
       "assessment": "Assessment#a765"
-    },
-    "references": {
-      "criteria": "Criteria#ef6b"
     }
   }
 }
@@ -1409,7 +1424,54 @@
 
 ---
 
-## DAG#ed37
+## Cyclic#5d28
+
+```json
+{
+  "handle": "Cyclic",
+  "mechanism": "A {{topology}} that permits feedback {{loop}}s, allowing a process to revisit previous states or refine outputs iteratively. Essential for self-correcting systems and recursive optimization.",
+  "gloss": "Recursive or iterative topology",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 2,
+    "tier": 1
+  },
+  "invariants": [
+    "Recurrence: At least one path exists from a node to itself.",
+    "Termination Condition: Must have a defined exit state to prevent infinite loops."
+  ],
+  "sema_ref": "Cyclic#5d28",
+  "sema_id": "sema:Cyclic#mh:SHA-256:5d28b07214cf38b9fb23ff6b2a29ff334ad6a63cca57771ee7ff828fce1047a8",
+  "sema_stub": "5d28",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "description": "A cyclic topology \u2014 nodes connected in a closed loop where traversal returns to origin.",
+    "properties": {
+      "nodes": {
+        "type": "array",
+        "description": "Ordered node identifiers traversed in the cycle"
+      },
+      "period": {
+        "type": "integer",
+        "description": "Cycle length"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "topology": "Topology#2408",
+      "loop": "Loop#797f"
+    }
+  }
+}
+```
+
+---
+
+## DAG#de34
 
 ```json
 {
@@ -1450,13 +1512,13 @@
   ],
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f",
-  "sema_ref": "DAG#ed37",
-  "sema_stub": "ed37",
+  "sema_id": "sema:DAG#mh:SHA-256:de3473cf4dd8bce4007d37ab2ad02c4c4f86737248e896e477e3a92396e86f27",
+  "sema_ref": "DAG#de34",
+  "sema_stub": "de34",
   "dependencies": {
     "references": {
       "topology": "Topology#2408",
-      "parallelize": "Parallelize#d6b4"
+      "parallelize": "Parallelize#574d"
     }
   }
 }
@@ -1562,7 +1624,7 @@
 
 ---
 
-## Exception#bcdc
+## Exception#66c0
 
 ```json
 {
@@ -1607,14 +1669,14 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6",
-  "sema_ref": "Exception#bcdc",
-  "sema_stub": "bcdc",
+  "sema_id": "sema:Exception#mh:SHA-256:66c0cd924c7793327b03caa75c8362e88765fac077ed1e331920be77fc66e8a6",
+  "sema_ref": "Exception#66c0",
+  "sema_stub": "66c0",
   "dependencies": {
     "references": {
+      "state": "State#4d58",
       "circuit_breaker": "CircuitBreaker#4162",
-      "fail_closed": "FailClosed#ae79",
-      "state": "State#4d58"
+      "fail_closed": "FailClosed#e6a0"
     }
   }
 }
@@ -1622,7 +1684,133 @@
 
 ---
 
-## Goal#456a
+## FailureTrace#9de1
+
+```json
+{
+  "handle": "FailureTrace",
+  "mechanism": "A structured, verifiable proof that a downstream consumer's rejection of an artifact is grounded in a specific clause of the {{accept_spec}} it was measured against. When a consumer returns a rejection through a Solver's Feedback surface, the rejection must carry a FailureTrace naming the violated clause, citing the evidence, and identifying the evaluator. The upstream Solver uses this trace to distinguish genuine structural feedback from fabricated penalties or hallucinated critique. Trace invalidity (a cited clause that does not exist, evidence that does not match the artifact, or a forged evaluator identity) causes the feedback to be dropped rather than absorbed.",
+  "gloss": "Structured proof of which AcceptSpec clause a rejected artifact violated \u2014 the evidence the Receptivity Gate verifies",
+  "invariants": [
+    "Clause-specific: the trace names exactly one {{accept_spec}} clause per violation, not a generic 'doesn't meet bar'.",
+    "Evidence-bound: the violation claim is paired with citeable evidence from the artifact.",
+    "Signed: the trace carries the evaluator's cryptographic identity so fabricated traces are detectable."
+  ],
+  "failure_modes": [
+    "Ghost clauses: the trace cites an AcceptSpec clause that does not exist (easy to detect via schema lookup).",
+    "Evidence fabrication: the trace cites evidence the artifact does not contain (detectable via content hash).",
+    "Identity spoofing: the evaluator signature is invalid (detectable via standard signature verification).",
+    "Clause-dancing: the consumer rejects for clause A but the real objection is to clause B they did not invoke \u2014 structural honesty failure that no trace schema can catch by itself."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "accept_spec_ref",
+      "violated_clause",
+      "evidence",
+      "evaluator_ref"
+    ],
+    "properties": {
+      "accept_spec_ref": {
+        "type": "string",
+        "description": "sema_id of the AcceptSpec the artifact was measured against"
+      },
+      "violated_clause": {
+        "type": "string",
+        "description": "Identifier of the specific clause claimed violated"
+      },
+      "evidence": {
+        "type": "object",
+        "description": "Citeable evidence from the artifact supporting the violation claim"
+      },
+      "evaluator_ref": {
+        "type": "string",
+        "description": "Signed identity of the evaluator asserting the violation"
+      },
+      "severity": {
+        "type": "string",
+        "enum": [
+          "blocking",
+          "advisory"
+        ],
+        "description": "Whether the violation halts progress or is informational"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:FailureTrace#mh:SHA-256:9de1d968b51492278dee438d190924c197f8ac71135f58833cb2700d77c18af8",
+  "sema_ref": "FailureTrace#9de1",
+  "sema_stub": "9de1",
+  "dependencies": {
+    "references": {
+      "accept_spec": "AcceptSpec#7caa"
+    }
+  }
+}
+```
+
+---
+
+## Forest#5eda
+
+```json
+{
+  "handle": "Forest",
+  "mechanism": "A topology consisting of two or more independently-rooted {{tree}}s with no shared apex. Each constituent tree can be traversed standalone; the Forest is the named collection. Distinct from a single tree with many branches: a Forest has *no shared root*, so removing any one tree does not affect the others. Found in random-forest ensembles (ML), disjoint-set forests (union-find CS), process forests (OS sessions), multi-repo organizations (git), federated solver trees across organizations (FI \u00a77.2 Knowledge Sharing), and biological forests (where cross-tree links exist but do not create a shared apex). Variation across descendants concerns whether the trees are strictly disjoint or share substrate (mycorrhizal biology, content-addressed commons) and whether merge/split operations are supported (union-find).",
+  "gloss": "Topology of N independently-rooted trees with no shared apex",
+  "invariants": [
+    "Multiplicity: a Forest contains at least two {{tree}}s; a single tree is not a forest.",
+    "Apex-disjoint: no node is an ancestor of any node in a different constituent tree.",
+    "Tree-wellformedness: each constituent is itself a valid Tree (rooted, acyclic)."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "trees"
+    ],
+    "properties": {
+      "trees": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Refs to the constituent Tree instances"
+      },
+      "cross_links": {
+        "type": "array",
+        "description": "Optional non-apex edges between trees (e.g., mycorrhizal / federated references)"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Forest#mh:SHA-256:5edadf227842037c92d42f320a62bd2393f7020ab92ca54e82566bdb8ba9b9bd",
+  "sema_ref": "Forest#5eda",
+  "sema_stub": "5eda",
+  "dependencies": {
+    "references": {
+      "tree": "Tree#a5a3"
+    }
+  }
+}
+```
+
+---
+
+## Goal#009e
 
 ```json
 {
@@ -1644,9 +1832,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
-  "sema_ref": "Goal#456a",
-  "sema_stub": "456a",
+  "sema_id": "sema:Goal#mh:SHA-256:009e138976905d1547fed802752f06e07deab5ab7aec6a3795c4017f4c706848",
+  "sema_ref": "Goal#009e",
+  "sema_stub": "009e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -1697,8 +1885,8 @@
   },
   "dependencies": {
     "references": {
-      "work": "Work#aaad",
-      "result": "Result#8ed9"
+      "work": "Work#d2c6",
+      "result": "Result#195b"
     }
   }
 }
@@ -1706,62 +1894,7 @@
 
 ---
 
-## Group#0929
-
-```json
-{
-  "handle": "Group",
-  "mechanism": "A defined collection of {{agent}}s sharing a common {{context}} or goal. It serves as the scope for {{consensus}} and {{shout_whisper}}.",
-  "gloss": "Agent collective",
-  "sema_id": "sema:Group#mh:SHA-256:0929f34d784edcac580579d64a1e6277564a4ed3fb1bdd3d87e56b5d7a62c295",
-  "sema_ref": "Group#0929",
-  "sema_stub": "0929",
-  "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 1,
-    "tier": 1
-  },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "group_id",
-      "members"
-    ],
-    "properties": {
-      "group_id": {
-        "type": "string",
-        "description": "Unique identifier"
-      },
-      "members": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "description": "Agent IDs in the group"
-      },
-      "shared_context": {
-        "type": "string",
-        "description": "Reference to common context"
-      }
-    }
-  },
-  "dependencies": {
-    "references": {
-      "agent": "Agent#aaec",
-      "context": "Context#510a",
-      "consensus": "Consensus#7216",
-      "shout_whisper": "ShoutWhisper#35dd"
-    }
-  }
-}
-```
-
----
-
-## Hierarchy#aa9b
+## Hierarchy#d530
 
 ```json
 {
@@ -1788,7 +1921,7 @@
     }
   },
   "mechanism": "The vertical ranking of {{category}}s or objects. Defines Upper vs. Lower relationships, inheritance, and authority.",
-  "gloss": "Vertical ranking",
+  "gloss": "Vertical rank ordering with Upper/Lower relations, inheritance, and authority",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -1797,9 +1930,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
-  "sema_ref": "Hierarchy#aa9b",
-  "sema_stub": "aa9b",
+  "sema_id": "sema:Hierarchy#mh:SHA-256:d5301ba0587b73443b7408885a85fd530d1609add96c1250138e062d18a565cb",
+  "sema_ref": "Hierarchy#d530",
+  "sema_stub": "d530",
   "dependencies": {
     "references": {
       "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1"
@@ -1810,7 +1943,7 @@
 
 ---
 
-## Hypothesis#e95b
+## Hypothesis#ffa7
 
 ```json
 {
@@ -1840,8 +1973,8 @@
       }
     }
   },
-  "mechanism": "A tentative explanation or prediction that is subject to verification or falsification.",
-  "gloss": "A tentative explanation",
+  "mechanism": "A testable prediction staged for falsification attempts. Distinct from a Claim (asserted as true), an Assumption (held provisionally to make progress), and an Axiom (accepted without proof): a Hypothesis carries an explicit commitment to be checked against evidence and updated or discarded accordingly.",
+  "gloss": "Testable prediction staged for falsification attempts \u2014 provisional, not asserted",
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
@@ -1850,9 +1983,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
-  "sema_ref": "Hypothesis#e95b",
-  "sema_stub": "e95b"
+  "sema_id": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
+  "sema_ref": "Hypothesis#ffa7",
+  "sema_stub": "ffa7"
 }
 ```
 
@@ -1907,7 +2040,7 @@
 
 ---
 
-## Ledger#c363
+## Ledger#b5fe
 
 ```json
 {
@@ -1924,9 +2057,9 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_id": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
-  "sema_ref": "Ledger#c363",
-  "sema_stub": "c363",
+  "sema_id": "sema:Ledger#mh:SHA-256:b5feb674fa403526c50d598b3d331e46aa9f5876b99ca05ab86187ecd7681c52",
+  "sema_ref": "Ledger#b5fe",
+  "sema_stub": "b5fe",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -1970,8 +2103,8 @@
   },
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -2035,7 +2168,7 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "related": [
-      "Decompose#ac56"
+      "Decompose#f900"
     ],
     "ring": 2
   },
@@ -2049,12 +2182,12 @@
 
 ---
 
-## MechanisticDesignProposal#8cf7
+## MechanisticDesignProposal#497e
 
 ```json
 {
   "handle": "MechanisticDesignProposal",
-  "mechanism": "A structured blueprint for a systemic {{solution}} that addresses a {{problem}} in a {{system}}. It goes beyond a standard proposal by requiring the definition of a core mechanism\u2014the specific leverage point and causal chain used to alter system behavior. The proposal integrates the 'Why it Works' (defense) and 'Why it Fails' (attack) dialectic, along with medium-term implementation and long-term vision projections.",
+  "mechanism": "A structured blueprint for a systemic {{solution}} that addresses a {{problem}} in a {{system}}. It goes beyond a standard proposal by requiring the definition of a core mechanism\u2014the specific leverage point and causal chain used to alter system behavior. The proposal integrates the 'Why it Works' (defense) and 'Why it Fails' (attack) dialectic, assessing attached {{risk}}s, along with medium-term implementation and long-term vision projections.",
   "gloss": "Dialectic blueprint of a system mechanism with temporal projections",
   "invariants": [
     "Dialectic Balance: 'why_it_fails' must be as detailed as 'why_it_works'.",
@@ -2120,18 +2253,21 @@
       }
     }
   },
-  "sema_ref": "MechanisticDesignProposal#8cf7",
-  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06",
-  "sema_stub": "8cf7",
+  "sema_ref": "MechanisticDesignProposal#497e",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:497e86893969548b87d441839a2aecd79437007ed1294ac1af1c145b8567282d",
+  "sema_stub": "497e",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
+    "references": {
+      "risk": "Risk#1980"
+    },
     "accepts": {
-      "problem": "Problem#5baa",
+      "problem": "Problem#4576",
       "system": "System#e314"
     },
     "yields": {
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea"
     }
   }
 }
@@ -2246,7 +2382,7 @@
 
 ---
 
-## Metric#8895
+## Metric#17fd
 
 ```json
 {
@@ -2284,22 +2420,22 @@
     }
   },
   "mechanism": "A definable, quantifiable measure of a specific property within a {{system}} or {{state}}. It provides the signal for optimization and monitoring.",
-  "gloss": "Quantifiable unit of measure",
+  "gloss": "Quantifiable measurement of a property, timestamped and optionally dimensioned",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
     "ring": 0,
     "tier": 1
   },
-  "sema_id": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
-  "sema_ref": "Metric#8895",
-  "sema_stub": "8895",
+  "sema_id": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9",
+  "sema_ref": "Metric#17fd",
+  "sema_stub": "17fd",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "system": "System#e314"
     }
   }
 }
@@ -2307,7 +2443,7 @@
 
 ---
 
-## Mode#53e0
+## Mode#0e74
 
 ```json
 {
@@ -2356,20 +2492,20 @@
     "category": "Data Structures",
     "ring": 0,
     "related": [
-      "WorkerMode#a3ab",
-      "SynergisticMode#e7d9"
+      "WorkerMode#b5c4",
+      "SynergisticMode#b45f"
     ]
   },
-  "sema_id": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
-  "sema_ref": "Mode#53e0",
-  "sema_stub": "53e0",
+  "sema_id": "sema:Mode#mh:SHA-256:0e74d67e79d305d801347b14b889ae026212597df93baefbef789c173db395c5",
+  "sema_ref": "Mode#0e74",
+  "sema_stub": "0e74",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
       "state": "State#4d58",
-      "transition": "Transition#072d"
+      "transition": "Transition#072d",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -2432,82 +2568,6 @@
 
 ---
 
-## Observe#8ebd
-
-```json
-{
-  "handle": "Observe",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "observation_id",
-      "source",
-      "data"
-    ],
-    "properties": {
-      "observation_id": {
-        "type": "string",
-        "description": "Unique identifier for this observation"
-      },
-      "source": {
-        "type": "string",
-        "description": "Where the observation came from"
-      },
-      "data": {
-        "description": "The raw observed information"
-      },
-      "timestamp": {
-        "type": "string",
-        "format": "date-time",
-        "description": "When observation occurred"
-      }
-    }
-  },
-  "mechanism": "The process of gathering information from the environment. It involves sensing raw data, filtering it for relevance (Attention), and integrating it into the internal {{context}} and state. Unlike passive reception, Observe is often an active query (e.g., polling an API, reading a file).",
-  "gloss": "Active State Perception",
-  "failure_modes": [
-    "Sensor noise: Input data is corrupted or inaccurate.",
-    "Blind Spot: Critical information exists but is outside the agent's observable range.",
-    "Information Overload: Too much data prevents effective filtering and integration.",
-    "Stale Data: Observing a cached state that no longer reflects reality."
-  ],
-  "invariants": [
-    "Read-Only: Observation must not modify the observed state (Side-effect free).",
-    "Truthfulness: The observation must accurately reflect the input signal (no internal distortion)."
-  ],
-  "preconditions": [
-    "Sensors/Tools are active",
-    "Actor has attention capacity"
-  ],
-  "postconditions": [
-    "Internal state is updated",
-    "New information is available for Thinking"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "related": [
-      "Belief#5ad9",
-      "Attention"
-    ],
-    "ring": 0
-  },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
-  "sema_id": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
-  "sema_ref": "Observe#8ebd",
-  "sema_stub": "8ebd",
-  "dependencies": {
-    "yields": {
-      "context": "Context#510a"
-    }
-  }
-}
-```
-
----
-
 ## Option#483e
 
 ```json
@@ -2559,7 +2619,7 @@
 
 ---
 
-## Outcome#38e0
+## Outcome#144c
 
 ```json
 {
@@ -2590,7 +2650,7 @@
     }
   },
   "mechanism": "The actual result that occurs in reality. It may differ from the {{plan}} due to external factors, noise, or execution error.",
-  "gloss": "Actual result",
+  "gloss": "Realized state after an action, captured for Plan-vs-reality comparison",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -2599,12 +2659,12 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Outcome#mh:SHA-256:38e079f2323ce9cf3d1022624f693bbb02b3e0e25d7eb42abc4d06c75548b53a",
-  "sema_ref": "Outcome#38e0",
-  "sema_stub": "38e0",
+  "sema_id": "sema:Outcome#mh:SHA-256:144c45a1a8eb6709b80025867c72c8430f0b3d0dab600c571f2a12a9280d0dc2",
+  "sema_ref": "Outcome#144c",
+  "sema_stub": "144c",
   "dependencies": {
     "references": {
-      "plan": "Plan#64f2"
+      "plan": "Plan#fd6d"
     }
   }
 }
@@ -2612,7 +2672,7 @@
 
 ---
 
-## Overlap#bcfa
+## Overlap#b462
 
 ```json
 {
@@ -2643,7 +2703,7 @@
     }
   },
   "mechanism": "Before stating positions, each agent declares their ACCEPT-SET: all outcomes they can live with. Sets are hash-committed before reveal (commit-reveal protocol). Compute intersection. If non-empty, select from intersection. If empty, both agents EXPAND accept-sets by one step and recompute. Repeat until overlap found or expansion-limit hit. It employs {{mece}} partitioning to cleanly identify the intersection of distinct accept-sets.",
-  "gloss": "Transform negotiations from position-based battles to interest-based discovery of shared ground",
+  "gloss": "Accept-set intersection protocol with commit-reveal for interest-based negotiation",
   "failure_modes": [
     "Strategic minimal accept-sets (mitigated but not eliminated by commit-reveal).",
     "Expansion limit hit with no overlap.",
@@ -2666,9 +2726,9 @@
     "category": "Data Structures",
     "ring": 1
   },
-  "sema_id": "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
-  "sema_ref": "Overlap#bcfa",
-  "sema_stub": "bcfa",
+  "sema_id": "sema:Overlap#mh:SHA-256:b462648204bcf1076f89ccda750a6ed2427ab85c74602d24fcbf30aadf5c6e36",
+  "sema_ref": "Overlap#b462",
+  "sema_stub": "b462",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
@@ -2681,7 +2741,124 @@
 
 ---
 
-## Permission#7f7d
+## Parallel#3181
+
+```json
+{
+  "handle": "Parallel",
+  "mechanism": "Concurrent execution: A and B simultaneously. No ordering guarantee.",
+  "gloss": "Concurrent flow",
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_id": "sema:Parallel#mh:SHA-256:318115c507a765d08bb292f74162bb6427f0756b031b2f516b089f6dbf61a753",
+  "sema_ref": "Parallel#3181",
+  "sema_stub": "3181",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "data_schema": {
+    "type": "object",
+    "description": "A parallel topology \u2014 independent branches executed concurrently with a join point.",
+    "properties": {
+      "branches": {
+        "type": "array",
+        "description": "Independent execution branches"
+      },
+      "join_semantics": {
+        "type": "string",
+        "enum": [
+          "all",
+          "any",
+          "quorum"
+        ],
+        "description": "How branch results combine"
+      }
+    }
+  }
+}
+```
+
+---
+
+## PerformanceSignal#d96f
+
+```json
+{
+  "handle": "PerformanceSignal",
+  "mechanism": "The typed artifact emitted by a Solver's Feedback surface \u2014 the downstream evaluation of how a completed transaction performed against its acceptance criteria, or the escalation signal that invokes a {{frame_error}} when failure is structural rather than local. Distinct from the general {{feedback}} primitive: PerformanceSignal is the contract-typed output that feeds {{pathway_memory}} (quality, depth, cost across problem classes) and drives localized learning at each node. The signal is produced by the consumer of a Result (parent Solver or end-caller) after the Acceptance Gate either admitted the Result as a Solution or rejected it back for reframing.",
+  "gloss": "Typed artifact emitted by a Solver's Feedback surface \u2014 downstream evaluation that feeds Pathway Memory",
+  "invariants": [
+    "Typed: the signal conforms to a declared schema so {{pathway_memory}} can aggregate across instances.",
+    "Attributable: names the Solver node that produced the evaluated Result, so learning is localized.",
+    "Three-outcome: either a scored evaluation, a pass/accept confirmation, or a {{frame_error}} escalation."
+  ],
+  "failure_modes": [
+    "Sycophantic drift: evaluator shares the generator's blind spots and rubber-stamps weak outputs.",
+    "Signal poisoning in open commons: an untrusted consumer fabricates penalties to steal work (mitigated by the Receptivity Gate in \u00a77).",
+    "Latency decay: the signal arrives long after the node has moved on, weakening the learning loop.",
+    "Grade inflation: evaluators converge on 'good enough' scoring so all signals compress into a narrow band."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "solver_ref",
+      "outcome"
+    ],
+    "properties": {
+      "solver_ref": {
+        "type": "string",
+        "description": "sema_id of the Solver node being evaluated"
+      },
+      "outcome": {
+        "type": "string",
+        "enum": [
+          "accepted",
+          "scored",
+          "frame_error"
+        ],
+        "description": "Shape of the signal"
+      },
+      "score": {
+        "type": "number",
+        "description": "Optional quality score when outcome=scored"
+      },
+      "frame_error_ref": {
+        "type": "string",
+        "description": "sema_id of the FrameError when outcome=frame_error"
+      },
+      "evaluator_ref": {
+        "type": "string",
+        "description": "Identity of the evaluating entity, for trust-weighted aggregation"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:PerformanceSignal#mh:SHA-256:d96f75b1618e762562ef6f0bc52586e095e50ea6b9f184d0a7d349374269627f",
+  "sema_ref": "PerformanceSignal#d96f",
+  "sema_stub": "d96f",
+  "dependencies": {
+    "references": {
+      "pathway_memory": "PathwayMemory#0799",
+      "frame_error": "FrameError#168f",
+      "feedback": "Feedback#b477"
+    }
+  }
+}
+```
+
+---
+
+## Permission#354b
 
 ```json
 {
@@ -2730,15 +2907,15 @@
     "tier": 1,
     "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action."
   },
-  "sema_ref": "Permission#7f7d",
-  "sema_id": "sema:Permission#mh:SHA-256:7f7d69e56a0b6bd65577a7fd6e8602f5bb694a647b3493a55823de851a32676f",
-  "sema_stub": "7f7d",
+  "sema_ref": "Permission#354b",
+  "sema_id": "sema:Permission#mh:SHA-256:354bbc2a1ffe0abbf2da56daf3e803932aec5b3a1e88c2ade476a4fe8486204c",
+  "sema_stub": "354b",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
       "act": "Act#5d55",
+      "agent": "Agent#35b9",
       "artifact": "Artifact#6254"
     }
   }
@@ -2747,13 +2924,13 @@
 
 ---
 
-## Plan#64f2
+## Plan#fd6d
 
 ```json
 {
   "handle": "Plan",
   "gloss": "An ordered sequence of steps to achieve a goal",
-  "mechanism": "An {{artifact}} containing a structured {{sequence}} of {{step}}s designed to transition a {{system}} from a current {{state}} to a target {{goal}}. Unlike a simple list, a Plan enforces causal dependency between steps and resource allocation.",
+  "mechanism": "An {{artifact}} containing a structured {{sequence}} of {{step}}s designed to transition a {{system}} from a current {{state}} to a target {{goal}}. Unlike a simple list, a Plan enforces causal dependency between steps and resource allocation, and tracks the attached {{risk}}s that may derail it.",
   "signature": [
     "Artifact#6254(Step#5f22)"
   ],
@@ -2808,19 +2985,20 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_ref": "Plan#64f2",
-  "sema_id": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
-  "sema_stub": "64f2",
+  "sema_ref": "Plan#fd6d",
+  "sema_id": "sema:Plan#mh:SHA-256:fd6d94d1c4252ca04d04c3cac5ef00569523959ff267e945c271a3ab5acf763e",
+  "sema_stub": "fd6d",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "goal": "Goal#456a",
-      "system": "System#e314",
-      "sequence": "Sequence#b0b8",
-      "step": "Step#5f22",
+      "risk": "Risk#1980",
       "artifact": "Artifact#6254",
-      "state": "State#4d58"
+      "system": "System#e314",
+      "step": "Step#5f22",
+      "state": "State#4d58",
+      "sequence": "Sequence#b0b8",
+      "goal": "Goal#009e"
     }
   }
 }
@@ -2867,7 +3045,7 @@
 
 ---
 
-## Problem#5baa
+## Problem#4576
 
 ```json
 {
@@ -2913,15 +3091,15 @@
       }
     }
   },
-  "sema_id": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
-  "sema_ref": "Problem#5baa",
-  "sema_stub": "5baa",
+  "sema_id": "sema:Problem#mh:SHA-256:45763815b7a71eead1dea72220b26a41051c346d456618ebc32711031b30b1bc",
+  "sema_ref": "Problem#4576",
+  "sema_stub": "4576",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "task": "Task#b328"
     }
   }
 }
@@ -2929,7 +3107,7 @@
 
 ---
 
-## ProblemSpace#78da
+## ProblemSpace#9e74
 
 ```json
 {
@@ -2976,16 +3154,16 @@
       }
     }
   },
-  "sema_ref": "ProblemSpace#78da",
-  "sema_id": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1",
-  "sema_stub": "78da",
+  "sema_ref": "ProblemSpace#9e74",
+  "sema_id": "sema:ProblemSpace#mh:SHA-256:9e74649bb48cbb13838757ad6ba7c5d4894487fd3ced55c110283480b66cbd9c",
+  "sema_stub": "9e74",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
       "state": "State#4d58",
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -2993,13 +3171,13 @@
 
 ---
 
-## Prompt#5ded
+## Prompt#b18a
 
 ```json
 {
   "handle": "Prompt",
-  "mechanism": "The input text or instruction provided to a generative model.",
-  "gloss": "Model input instruction",
+  "mechanism": "Structured input-instruction submitted to a generative model. May carry a role tag (system, user, assistant) and optional tool-declaration attachments that shape how the model generates. Distinct from a Message (agent-to-agent communication with sender/recipient metadata) and from a raw Signal (no envelope).",
+  "gloss": "Structured instruction to a generative model, optionally role-tagged",
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
@@ -3020,9 +3198,9 @@
       "text"
     ]
   },
-  "sema_id": "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
-  "sema_ref": "Prompt#5ded",
-  "sema_stub": "5ded",
+  "sema_id": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1",
+  "sema_ref": "Prompt#b18a",
+  "sema_stub": "b18a",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }
@@ -3079,8 +3257,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "act": "Act#5d55",
-      "transition": "Transition#072d"
+      "transition": "Transition#072d",
+      "act": "Act#5d55"
     },
     "composes_with": {
       "message": "Message#f767"
@@ -3202,16 +3380,16 @@
 
 ---
 
-## Queue#2ec3
+## Queue#65e4
 
 ```json
 {
   "handle": "Queue",
-  "mechanism": "A linear data structure for ordering {{task}}s or {{message}}s. It enforces First-In-First-Out (FIFO) or Priority ordering.",
-  "gloss": "Ordered task buffer",
-  "sema_id": "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
-  "sema_ref": "Queue#2ec3",
-  "sema_stub": "2ec3",
+  "mechanism": "A linear container holding {{task}}s or {{message}}s under an explicit ordering discipline (FIFO, LIFO, or Priority). Consumers dequeue one element at a time; producers enqueue at the discipline-dictated position. Distinct from a {{stream}} (continuous, unbounded, with no single consumer) and from a plain list (no consumer semantics).",
+  "gloss": "Ordered container with FIFO/LIFO/priority discipline and explicit dequeue semantics",
+  "sema_id": "sema:Queue#mh:SHA-256:65e4154da8cc51144e2f4697060224336e017f0debc205c5abfff3770e35f5ad",
+  "sema_ref": "Queue#65e4",
+  "sema_stub": "65e4",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -3265,7 +3443,8 @@
   },
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
+      "stream": "Stream#22f3",
+      "task": "Task#b328",
       "message": "Message#f767"
     }
   }
@@ -3274,7 +3453,7 @@
 
 ---
 
-## Resource#9bb2
+## Resource#a578
 
 ```json
 {
@@ -3339,15 +3518,15 @@
       }
     }
   },
-  "sema_ref": "Resource#9bb2",
-  "sema_id": "sema:Resource#mh:SHA-256:9bb2dd733e5900d441d35d2c6e74f69dc4e4afe536c12adbcfc5863f3ada2922",
-  "sema_stub": "9bb2",
+  "sema_ref": "Resource#a578",
+  "sema_id": "sema:Resource#mh:SHA-256:a578cda067d1c6b52f96aab667c3f85a6e5233118774b55200a8acde35d62acf",
+  "sema_stub": "a578",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "identity": "Identity#626c",
-      "budget": "Budget#a763"
+      "budget": "Budget#7270",
+      "identity": "Identity#626c"
     }
   }
 }
@@ -3355,7 +3534,7 @@
 
 ---
 
-## Result#8ed9
+## Result#195b
 
 ```json
 {
@@ -3378,23 +3557,18 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
-  "sema_ref": "Result#8ed9",
-  "sema_stub": "8ed9",
+  "sema_id": "sema:Result#mh:SHA-256:195b5acbf28190f1168318c8ddcd210da4e52365347497d86a2e4d154d17d9f3",
+  "sema_ref": "Result#195b",
+  "sema_stub": "195b",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
-      "task_id",
-      "output",
-      "status"
+      "status",
+      "stop_reason"
     ],
     "properties": {
-      "task_id": {
-        "type": "string",
-        "description": "The task this result satisfies"
-      },
       "status": {
         "type": "string",
         "enum": [
@@ -3403,8 +3577,23 @@
           "Failure"
         ]
       },
-      "output": {
-        "description": "The actual artifact or data produced"
+      "stop_reason": {
+        "type": "string",
+        "enum": [
+          "Completed",
+          "Budget#7270",
+          "Quality",
+          "Error",
+          "Timeout"
+        ],
+        "description": "Why execution terminated"
+      },
+      "outputs": {
+        "description": "Produced artifacts \u2014 optional; a failed Result may yield none"
+      },
+      "task_ref": {
+        "type": "string",
+        "description": "The task this result satisfies"
       },
       "confidence_score": {
         "type": "number",
@@ -3415,19 +3604,17 @@
         "type": "array",
         "items": {
           "type": "string"
-        },
-        "description": "List of step IDs that generated this result"
+        }
       },
       "metrics": {
-        "type": "object",
-        "description": "Performance metrics (latency, cost)"
+        "type": "object"
       }
     }
   },
   "dependencies": {
     "references": {
-      "solution": "Solution#7186",
-      "metric": "Metric#8895"
+      "solution": "Solution#fcea",
+      "metric": "Metric#17fd"
     }
   }
 }
@@ -3435,7 +3622,7 @@
 
 ---
 
-## Risk#3774
+## Risk#1980
 
 ```json
 {
@@ -3459,9 +3646,9 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Risk#mh:SHA-256:37748bbbeb3ee23c5a258a49faee4d04a16064136fdfd8721a365d3764c73fb8",
-  "sema_ref": "Risk#3774",
-  "sema_stub": "3774",
+  "sema_id": "sema:Risk#mh:SHA-256:198049488be8dcf811bfced0230ca10889fb531b03c6c7f66eb7dc131116be9d",
+  "sema_ref": "Risk#1980",
+  "sema_stub": "1980",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
@@ -3501,7 +3688,7 @@
   "dependencies": {
     "references": {
       "probability": "Probability#356b",
-      "metric": "Metric#8895"
+      "metric": "Metric#17fd"
     }
   }
 }
@@ -3509,7 +3696,7 @@
 
 ---
 
-## RuleSet#8d85
+## RuleSet#7738
 
 ```json
 {
@@ -3537,15 +3724,15 @@
       }
     }
   },
-  "sema_ref": "RuleSet#8d85",
-  "sema_id": "sema:RuleSet#mh:SHA-256:8d85afc9e1f879dc43aaf8c92bd280aa8f1c81ece7dd1bd6f36c6ab47ddc0ecf",
-  "sema_stub": "8d85",
+  "sema_ref": "RuleSet#7738",
+  "sema_id": "sema:RuleSet#mh:SHA-256:77385cdef863910a916a17c4391688a9b48671019673db185ff12f81c9111f61",
+  "sema_stub": "7738",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
-      "constitution": "Constitution#863b"
+      "constitution": "Constitution#8cb8",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -3553,7 +3740,7 @@
 
 ---
 
-## Score#29da
+## Score#d220
 
 ```json
 {
@@ -3567,12 +3754,42 @@
     "tier": 1
   },
   "data_schema": {
-    "type": "number",
-    "description": "The numerical score value"
+    "type": "object",
+    "required": [
+      "value",
+      "normalized_range",
+      "metric_id"
+    ],
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "The numerical score value"
+      },
+      "normalized_range": {
+        "type": "object",
+        "required": [
+          "min",
+          "max"
+        ],
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        },
+        "description": "The [min, max] range this score is normalized against"
+      },
+      "metric_id": {
+        "type": "string",
+        "description": "Identifier of what was scored"
+      }
+    }
   },
-  "sema_ref": "Score#29da",
-  "sema_id": "sema:Score#mh:SHA-256:29da7b609182c3ecef85ebafc34cae5acd221d65ef0e5c4b2b41bbededb6d414",
-  "sema_stub": "29da",
+  "sema_ref": "Score#d220",
+  "sema_id": "sema:Score#mh:SHA-256:d2202db2d9ebb0b44afc6c6d49f918e7bb5635229d635674c2d02090c7b3fe0a",
+  "sema_stub": "d220",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
@@ -3585,7 +3802,7 @@
 
 ---
 
-## ScoringFunction#3de5
+## ScoringFunction#3a4e
 
 ```json
 {
@@ -3624,15 +3841,15 @@
       }
     }
   },
-  "mechanism": "A deterministic logical unit that maps an input artifact to a scalar {{value}} (Score). It encapsulates the criteria used by {{rank}} and {{judge}}.",
+  "mechanism": "A deterministic logical unit that maps an input artifact to a scalar {{value}} (Score). Encapsulates ranking and evaluation criteria as a first-class Noun, so callers can pass the scoring logic as an input rather than embed it inline in their own mechanism.",
   "gloss": "Deterministic valuation logic",
   "invariants": [
     "Determinism: Same input always yields same score.",
     "Range: Output must be within [0.0, 1.0] or [-inf, +inf]."
   ],
-  "sema_id": "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d",
-  "sema_ref": "ScoringFunction#3de5",
-  "sema_stub": "3de5",
+  "sema_id": "sema:ScoringFunction#mh:SHA-256:3a4ef49f597cf15d2971c8b1769506bc5a434909e98cede098d5c16664c94232",
+  "sema_ref": "ScoringFunction#3a4e",
+  "sema_stub": "3a4e",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -3643,9 +3860,7 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "rank": "Rank#cb98",
-      "value": "Value#3c5d",
-      "judge": "Judge#d84f"
+      "value": "Value#3c5d"
     }
   }
 }
@@ -3765,8 +3980,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
-      "vector": "Vector#c7c4"
+      "vector": "Vector#c7c4",
+      "state": "State#4d58"
     }
   }
 }
@@ -3939,8 +4154,8 @@
   },
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "system": "System#e314"
     }
   }
 }
@@ -3948,7 +4163,7 @@
 
 ---
 
-## Solution#7186
+## Solution#fcea
 
 ```json
 {
@@ -3977,12 +4192,6 @@
       "type": "Probability#356b",
       "range": "[0.0, 1.0]",
       "description": "Self-assessed reliability"
-    },
-    {
-      "name": "cost_incurred",
-      "type": "TokenAmount",
-      "range": "unspecified",
-      "description": "Total compute cost"
     }
   ],
   "_meta": {
@@ -4039,20 +4248,20 @@
       }
     }
   },
-  "sema_id": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-  "sema_ref": "Solution#7186",
-  "sema_stub": "7186",
+  "sema_id": "sema:Solution#mh:SHA-256:fcea1ece4a23322f69d4a17664ba17d2f54f2cec47d2526d874a0766d84f635e",
+  "sema_ref": "Solution#fcea",
+  "sema_stub": "fcea",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "work": "Work#aaad",
-      "tree": "Tree#ddce",
       "artifact": "Artifact#6254",
-      "chain": "Chain#5711"
+      "work": "Work#d2c6",
+      "chain": "Chain#711e",
+      "tree": "Tree#a5a3"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -4060,7 +4269,7 @@
 
 ---
 
-## Spec#436e
+## Spec#a036
 
 ```json
 {
@@ -4092,16 +4301,16 @@
       }
     }
   },
-  "sema_ref": "Spec#436e",
-  "sema_id": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
-  "sema_stub": "436e",
+  "sema_ref": "Spec#a036",
+  "sema_id": "sema:Spec#mh:SHA-256:a036f5bd8f9f00d39ec6f9c48855b2aeea206f2a052ed72307e2d6e53bbcaaf7",
+  "sema_stub": "a036",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
+      "goal": "Goal#009e",
+      "plan": "Plan#fd6d",
       "constraint": "Constraint#87fe",
-      "goal": "Goal#456a",
-      "plan": "Plan#64f2",
       "artifact": "Artifact#6254"
     }
   }
@@ -4156,10 +4365,58 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "condition": "Condition#cbd5"
+      "condition": "Condition#cbd5",
+      "system": "System#e314"
     }
   }
+}
+```
+
+---
+
+## Status#1cf9
+
+```json
+{
+  "handle": "Status",
+  "mechanism": "The graded verification outcome type: Verified (the check passed), Falsified (the check failed), or Unknown (the check could not reach a definitive answer). Carries an optional reason field explaining the outcome. Distinct from Boolean (strict two-valued, no Unknown) and from Decision (three-valued with proceed/halt/debt operational semantics).",
+  "gloss": "Graded verification outcome: Verified, Falsified, or Unknown",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "value"
+    ],
+    "properties": {
+      "value": {
+        "type": "string",
+        "enum": [
+          "Verified",
+          "Falsified",
+          "Unknown"
+        ],
+        "description": "The outcome of a verification operation"
+      },
+      "reason": {
+        "type": "string",
+        "description": "Optional explanation for the outcome"
+      }
+    }
+  },
+  "invariants": [
+    "Tri-valued: exactly one of {Verified, Falsified, Unknown}.",
+    "Unknown is not a failure: it is an honest absence of evidence, distinct from Falsified."
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "sema_id": "sema:Status#mh:SHA-256:1cf93b675b4c08b59123cb061984604d6cb3848818bb65ad87a12cb8e0503cee",
+  "sema_ref": "Status#1cf9",
+  "sema_stub": "1cf9"
 }
 ```
 
@@ -4187,7 +4444,7 @@
     "tier": 1,
     "ring": 0,
     "related": [
-      "Plan#64f2"
+      "Plan#fd6d"
     ]
   },
   "sema_id": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
@@ -4347,7 +4604,7 @@
 
 ---
 
-## Summary#310e
+## Summary#f785
 
 ```json
 {
@@ -4361,18 +4618,39 @@
     "tier": 1
   },
   "data_schema": {
-    "type": "string",
-    "description": "The summarized text or content"
+    "type": "object",
+    "required": [
+      "source_ref"
+    ],
+    "properties": {
+      "source_ref": {
+        "type": "string",
+        "description": "sema_id of the source being summarized"
+      },
+      "compression_ratio": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "description": "Size ratio (summary_len/source_len)"
+      },
+      "preserves": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Semantic dimensions preserved (e.g., 'thesis', 'timeline', 'constraints')"
+      }
+    }
   },
-  "sema_ref": "Summary#310e",
-  "sema_id": "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de",
-  "sema_stub": "310e",
+  "sema_ref": "Summary#f785",
+  "sema_id": "sema:Summary#mh:SHA-256:f785cae6871dc00700bb21296033c24d01e0abc331097a1d43a3d423830332d6",
+  "sema_stub": "f785",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
     "composes_with": {
-      "artifact": "Artifact#6254",
-      "datum": "Datum#31cf"
+      "datum": "Datum#31cf",
+      "artifact": "Artifact#6254"
     },
     "references": {
       "value": "Value#3c5d"
@@ -4434,7 +4712,7 @@
 
 ---
 
-## Task#d9f9
+## Task#b328
 
 ```json
 {
@@ -4458,57 +4736,41 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-  "sema_ref": "Task#d9f9",
-  "sema_stub": "d9f9",
+  "sema_id": "sema:Task#mh:SHA-256:b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c",
+  "sema_ref": "Task#b328",
+  "sema_stub": "b328",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
-      "task_id",
-      "description",
-      "status",
-      "created_at"
+      "operation",
+      "inputs",
+      "acceptance_criteria"
     ],
     "properties": {
-      "task_id": {
+      "operation": {
         "type": "string",
-        "description": "Unique UUID for the task"
+        "description": "What the Task does \u2014 the intent"
       },
-      "parent_id": {
-        "type": "string",
-        "description": "ID of the super-task, if any"
+      "inputs": {
+        "type": "object",
+        "description": "Typed inputs to the operation"
       },
-      "description": {
-        "type": "string",
-        "description": "Natural language intent"
-      },
-      "status": {
-        "type": "string",
-        "enum": [
-          "Pending",
-          "Active",
-          "Blocked",
-          "Complete",
-          "Failed"
-        ],
-        "default": "Pending"
-      },
-      "requirements": {
+      "acceptance_criteria": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "description": "List of acceptance criteria"
+        "description": "Conditions that mark the Task complete; closure signal for the caller"
       },
-      "assigned_solver_id": {
-        "type": "string",
-        "description": "The agent/node working on this"
+      "budget": {
+        "type": "object",
+        "description": "Optional resource ceiling (compute, time, tokens)"
       },
-      "created_at": {
+      "parent_id": {
         "type": "string",
-        "format": "date-time"
+        "description": "Super-task reference if hierarchical"
       },
       "deadline": {
         "type": "string",
@@ -4518,10 +4780,10 @@
   },
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "constraint": "Constraint#87fe",
+      "hierarchy": "Hierarchy#d530",
       "context": "Context#510a",
-      "hierarchy": "Hierarchy#aa9b"
+      "constraint": "Constraint#87fe",
+      "system": "System#e314"
     }
   }
 }
@@ -4529,74 +4791,67 @@
 
 ---
 
-## ToolInvoke#643c
+## Tension#c39e
 
 ```json
 {
-  "handle": "ToolInvoke",
-  "mechanism": "The actor emits a structured tool call (function name + arguments), validated by {{input_guard}}, execution is delegated to an external runtime, and the observation (result or error) is fed back into the actor's {{context}}. This is the atomic unit of agent-environment interaction. The pattern enables capabilities beyond text generation: code execution, API calls, file operations, web search.",
-  "gloss": "Execute external tool and observe result",
-  "failure_modes": [
-    "Hallucinated Tools: Actor invokes a tool that doesn't exist.",
-    "Argument Mismatch: Tool call has wrong parameter types or missing required fields.",
-    "Observation Blindness: Actor ignores or misinterprets tool output."
-  ],
+  "handle": "Tension",
+  "mechanism": "A data structure representing a detected conflict between two or more valid but mutually exclusive signals, constraints, or values. It serves as the input for resolution protocols like {{dialectic}} or {{yield}}.",
+  "gloss": "Reified conflict state",
   "invariants": [
-    "{{context}} Inheritance: Tool Execution {{context}} permissions MUST be <= {{task}} Constraints. Elevation forbidden.",
-    "Observation Integration: Result must be incorporated into subsequent reasoning",
-    "Sandboxing: Tool execution must respect capability boundaries",
-    "Schema Conformance: Tool call must match declared function signature"
+    "Mutually Exclusive: The bound elements cannot both be fully satisfied simultaneously.",
+    "Persistence: Must persist until explicitly resolved."
   ],
   "_meta": {
-    "tier": 2,
     "layer": "Infrastructure",
     "category": "Data Structures",
-    "ring": 0,
-    "related": [
-      "AgentSandbox#ce7e"
-    ]
+    "ring": 1,
+    "tier": 1
   },
+  "sema_id": "sema:Tension#mh:SHA-256:c39e010ca317c5ea11144728d4bac9d3e973a87bc75eb9063123ab1a45494c3d",
+  "sema_ref": "Tension#c39e",
+  "sema_stub": "c39e",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
-      "function_name",
-      "arguments"
+      "tension_id",
+      "polarity_a",
+      "polarity_b",
+      "status"
     ],
     "properties": {
-      "function_name": {
-        "type": "string",
-        "description": "Name of the tool to invoke"
+      "tension_id": {
+        "type": "string"
       },
-      "arguments": {
+      "polarity_a": {
         "type": "object",
-        "description": "Parameters for the tool call"
+        "description": "The first conflicting force/idea/constraint"
       },
-      "observation": {
-        "description": "Result returned from tool execution"
+      "polarity_b": {
+        "type": "object",
+        "description": "The opposing force/idea/constraint"
       },
       "status": {
         "type": "string",
         "enum": [
-          "pending",
-          "success",
-          "error"
-        ],
-        "description": "Invocation status"
+          "Active",
+          "Resolving",
+          "Resolved",
+          "Ignored"
+        ]
+      },
+      "resolution_strategy": {
+        "type": "string",
+        "description": "How the tension is being handled"
       }
     }
   },
-  "sema_ref": "ToolInvoke#643c",
-  "sema_id": "sema:ToolInvoke#mh:SHA-256:643c8651a44f1d33cb98580b8b456c5ec1cdb3b94f3d6ae30e3465fc0e6d45b2",
-  "sema_stub": "643c",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "context": "Context#510a"
-    },
-    "composes_with": {
-      "input_guard": "InputGuard#7353"
+      "yield": "Yield#2931",
+      "dialectic": "Dialectic#5cc3"
     }
   }
 }
@@ -4618,10 +4873,10 @@
       "shape": {
         "type": "string",
         "enum": [
-          "Linear#81af",
-          "Tree#ddce",
-          "DAG#ed37",
-          "Cyclic#ac13",
+          "Linear",
+          "Tree#a5a3",
+          "DAG#de34",
+          "Cyclic#5d28",
           "Graph"
         ],
         "description": "The structural pattern"
@@ -4700,8 +4955,8 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "system": "System#e314"
     }
   }
 }
@@ -4709,7 +4964,7 @@
 
 ---
 
-## Tree#ddce
+## Tree#a5a3
 
 ```json
 {
@@ -4736,7 +4991,7 @@
       }
     }
   },
-  "mechanism": "A branching {{topology}} where multiple lines of reasoning are explored simultaneously. Allows backtracking and pruning of unpromising branches (BFS/DFS). Equivalent to 'tree-of-thoughts reasoning'.",
+  "mechanism": "A branching {{topology}} where multiple lines of reasoning are explored simultaneously. Allows backtracking and pruning of unpromising branches (BFS/DFS). A Tree is the constrained form of a directed acyclic graph where each non-root node has exactly one parent.",
   "gloss": "Branching reasoning topology",
   "invariants": [
     "Rootedness: All nodes descend from a single root.",
@@ -4745,9 +5000,9 @@
   "parameters": [
     {
       "name": "breadth",
-      "type": "Integer",
+      "type": "PositiveInteger",
       "range": "unspecified",
-      "description": "Maximum branches explored per reasoning node"
+      "description": "Maximum branches explored per node. Left open at the foundation: binary trees use 2, beam search uses 50+, decision trees can be millions. Descendants specialize."
     },
     {
       "name": "depth",
@@ -4762,9 +5017,9 @@
     "category": "Data Structures",
     "ring": 2
   },
-  "sema_ref": "Tree#ddce",
-  "sema_id": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
-  "sema_stub": "ddce",
+  "sema_ref": "Tree#a5a3",
+  "sema_id": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65",
+  "sema_stub": "a5a3",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {
@@ -4923,7 +5178,7 @@
 
 ---
 
-## Work#aaad
+## Work#d2c6
 
 ```json
 {
@@ -4969,22 +5224,22 @@
     "layer": "Infrastructure",
     "category": "Data Structures",
     "related": [
-      "EntropyPump#b9ae"
+      "EntropyPump#c313"
     ],
     "ring": 0
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
-  "sema_ref": "Work#aaad",
-  "sema_stub": "aaad",
+  "sema_id": "sema:Work#mh:SHA-256:d2c65202efac99cacff743ce36b7e628e4ff7b246779abcfb0f0073ea059be1a",
+  "sema_ref": "Work#d2c6",
+  "sema_stub": "d2c6",
   "dependencies": {
     "references": {
-      "act": "Act#5d55",
-      "budget": "Budget#a763"
+      "budget": "Budget#7270",
+      "act": "Act#5d55"
     },
     "composes_with": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -5024,9 +5279,9 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "related": [
-      "ToolInvoke#643c",
-      "ReAct#b487",
-      "AgentSandbox#ce7e"
+      "ToolInvoke#4694",
+      "ReAct#e018",
+      "AgentSandbox#fc41"
     ],
     "ring": 0
   },
@@ -5109,8 +5364,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "nature": "Nature#6c1a",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "nature": "Nature#6c1a"
     },
     "composes_with": {
       "act": "Act#5d55"
@@ -5121,12 +5376,12 @@
 
 ---
 
-## Aggregate#af54
+## Aggregate#7912
 
 ```json
 {
   "handle": "Aggregate",
-  "mechanism": "Mathematical Reduction. A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. It serves as the computational backbone for consensus mechanisms.",
+  "mechanism": "Mathematical Reduction. A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. When the caller supplies {{weights}} alongside the vector, the reduction becomes a weighted one. It serves as the computational backbone for consensus mechanisms.",
   "gloss": "Reduce a set to a summary statistic",
   "failure_modes": [
     "Type Mismatch: Input list contains incomparable types (e.g., Integers mixed with Strings).",
@@ -5148,14 +5403,8 @@
     {
       "name": "function",
       "type": "Enum",
-      "range": "{Mean, Median, Mode#53e0, Sum, Min, Max, Variance, StdDev}",
+      "range": "{Mean, Median, Mode#0e74, Sum, Min, Max, Variance, StdDev}",
       "description": "Default: Mean"
-    },
-    {
-      "name": "weights",
-      "type": "List<Float>",
-      "range": "unspecified",
-      "description": "Relative importance weights for each input element"
     }
   ],
   "_meta": {
@@ -5164,20 +5413,20 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
-  "sema_ref": "Aggregate#af54",
-  "sema_stub": "af54",
+  "sema_id": "sema:Aggregate#mh:SHA-256:791202e13011d1f46a0340e4c25496549c82296bb068ab5d7b327b5af6b3f65a",
+  "sema_ref": "Aggregate#7912",
+  "sema_stub": "7912",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "yields": {
-      "value": "Value#3c5d"
+    "references": {
+      "mode": "Mode#0e74"
     },
     "accepts": {
       "vector": "Vector#c7c4"
     },
-    "references": {
-      "mode": "Mode#53e0"
+    "yields": {
+      "value": "Value#3c5d"
     }
   }
 }
@@ -5234,7 +5483,7 @@
 
 ---
 
-## Budget#a763
+## Budget#7270
 
 ```json
 {
@@ -5269,7 +5518,6 @@
     }
   },
   "invariants": [
-    "Non-Negative: Remaining budget cannot be < 0.",
     "Conservation: Allocated + Remaining = Total."
   ],
   "preconditions": [
@@ -5284,9 +5532,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Budget#a763",
-  "sema_id": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-  "sema_stub": "a763",
+  "sema_ref": "Budget#7270",
+  "sema_id": "sema:Budget#mh:SHA-256:72709a4878eefe66ed2d66994a1a7d2e22214d3ee3d64beafecc02387099360f",
+  "sema_stub": "7270",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }
@@ -5294,7 +5542,7 @@
 
 ---
 
-## Care#cdfa
+## Care#0615
 
 ```json
 {
@@ -5311,16 +5559,61 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Care#mh:SHA-256:cdfae572389ee7b84aa847b9320c072053f25827a7b06891cb08cd8d18aef40b",
-  "sema_ref": "Care#cdfa",
-  "sema_stub": "cdfa",
+  "sema_id": "sema:Care#mh:SHA-256:06158c8a04036607d8bb2f873b118dc1fdc5ca0bf8bd9dce45662c830763150f",
+  "sema_ref": "Care#0615",
+  "sema_stub": "0615",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "entropy": "Entropy#a265",
-      "work": "Work#aaad",
-      "value": "Value#3c5d"
+      "work": "Work#d2c6",
+      "value": "Value#3c5d",
+      "entropy": "Entropy#a265"
+    }
+  }
+}
+```
+
+---
+
+## Check#d3e8
+
+```json
+{
+  "handle": "Check",
+  "mechanism": "A non-blocking verification primitive. Evaluates a {{condition}} against a target and yields a {{status}} (Verified, Falsified, or Unknown). Unlike a {{gate}} (which alters control flow via a Decision), Check is purely observational and side-effect free \u2014 it answers 'is this true?' without deciding 'should we stop?'. Unknown is a first-class outcome distinct from Falsified: it asserts absence of evidence, not evidence of absence.",
+  "gloss": "Side-effect-free observational verification yielding Verified/Falsified/Unknown",
+  "failure_modes": [
+    "False Positive: Check returns Verified due to flawed logic or sensor noise.",
+    "Heisenbug: The act of checking alters the state being checked.",
+    "Callers collapse Unknown into Falsified, losing the meaningful distinction."
+  ],
+  "invariants": [
+    "Side-Effect Free: Running a check must not mutate the target state.",
+    "Determinism: Same input context yields same status."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0,
+    "related": [
+      "Validate#ebe1",
+      "Judge#9554"
+    ]
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Check#mh:SHA-256:d3e8fb90bcdf48c8986b66af617b78bf57009a51749460ad982fe8fd2730cf57",
+  "sema_ref": "Check#d3e8",
+  "sema_stub": "d3e8",
+  "dependencies": {
+    "references": {
+      "condition": "Condition#cbd5",
+      "gate": "Gate#89fd"
+    },
+    "yields": {
+      "status": "Status#1cf9"
     }
   }
 }
@@ -5386,8 +5679,8 @@
   "sema_stub": "4162",
   "dependencies": {
     "references": {
-      "backoff": "Backoff#315a",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "backoff": "Backoff#315a"
     }
   }
 }
@@ -5427,7 +5720,59 @@
 
 ---
 
-## Feedback#9b5c
+## FailClosed#e6a0
+
+```json
+{
+  "handle": "FailClosed",
+  "mechanism": "Safety Default. If an operation fails, times out, or returns an ambiguous result, the system MUST treat it as a Negative (Deny/Stop/Reject). Prevents 'bypass on error' vulnerabilities. It acts as the wrapper for input guarding, {{output_guard}}, and {{circuit_breaker}}, enforcing a default-deny policy on any error or ambiguity.",
+  "gloss": "Default-deny policy for uncertain states",
+  "failure_modes": [
+    "Availability Hit: {{system}} shuts down during minor outages (False Positive Denial).",
+    "Dependency Deadlock: If a non-critical dependency fails, the whole system locks up."
+  ],
+  "invariants": [
+    "Default Deny: Ambiguity == Rejection.",
+    "Error Atomicity: Partial failure = Total failure (Transaction Rollback)."
+  ],
+  "preconditions": [
+    "Fallible operation initiated"
+  ],
+  "postconditions": [
+    "{{system}} state remains invariant (no side effects) OR Operation succeeds"
+  ],
+  "parameters": [
+    {
+      "name": "timeout_action",
+      "type": "Enum",
+      "range": "{Reject, Retry#4cc6, Fallback}",
+      "description": "Default: Reject"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:FailClosed#mh:SHA-256:e6a09747bc7485f877033e1e6d8baa52b8ae571094910c968f7321f0828cf88c",
+  "sema_ref": "FailClosed#e6a0",
+  "sema_stub": "e6a0",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "output_guard": "OutputGuard#1f50",
+      "circuit_breaker": "CircuitBreaker#4162",
+      "system": "System#e314"
+    }
+  }
+}
+```
+
+---
+
+## Feedback#b477
 
 ```json
 {
@@ -5450,9 +5795,9 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15",
-  "sema_ref": "Feedback#9b5c",
-  "sema_stub": "9b5c",
+  "sema_id": "sema:Feedback#mh:SHA-256:b477ae84e420a25c9cdadbe3fb58e001766677618fd6623ae4da1cceea7f04de",
+  "sema_ref": "Feedback#b477",
+  "sema_stub": "b477",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "signature": [
@@ -5460,8 +5805,8 @@
   ],
   "dependencies": {
     "references": {
-      "metric": "Metric#8895",
-      "result": "Result#8ed9",
+      "metric": "Metric#17fd",
+      "result": "Result#195b",
       "incongruity": "Incongruity#e98f"
     },
     "composes_with": {
@@ -5473,7 +5818,72 @@
 
 ---
 
-## Greet#7ad2
+## FeedbackSignal#f174
+
+```json
+{
+  "handle": "FeedbackSignal",
+  "mechanism": "A structured packet containing the evaluation of a specific {{solution}} for a {{task}}. Carries outcome and details to the {{feedback}} mechanism.",
+  "gloss": "Standardized learning feedback packet",
+  "invariants": [
+    "Targeted",
+    "Structured"
+  ],
+  "sema_id": "sema:FeedbackSignal#mh:SHA-256:f174509d1cbc29c299a7a3e39a4c9246f9fb6cbe6bb9be0cd4bac6b88a2053a6",
+  "sema_ref": "FeedbackSignal#f174",
+  "sema_stub": "f174",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0,
+    "tier": 1
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "solution_ref",
+      "task_ref",
+      "outcome"
+    ],
+    "properties": {
+      "solution_ref": {
+        "type": "string",
+        "description": "Reference to evaluated solution"
+      },
+      "task_ref": {
+        "type": "string",
+        "description": "Reference to originating task"
+      },
+      "outcome": {
+        "type": "string",
+        "enum": [
+          "success",
+          "failure",
+          "partial"
+        ],
+        "description": "Evaluation result"
+      },
+      "details": {
+        "type": "object",
+        "description": "Structured feedback details"
+      }
+    }
+  },
+  "dependencies": {
+    "references": {
+      "task": "Task#b328",
+      "feedback": "Feedback#b477",
+      "solution": "Solution#fcea"
+    }
+  }
+}
+```
+
+---
+
+## Greet#bbae
 
 ```json
 {
@@ -5494,18 +5904,64 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:Greet#mh:SHA-256:7ad2382d29cb28ed605b0505374488c7e6dcd1ff8098b63686e83ab7098e2cf6",
-  "sema_ref": "Greet#7ad2",
-  "sema_stub": "7ad2",
+  "sema_id": "sema:Greet#mh:SHA-256:bbaea8bfed1d642ff48d46fdb45939f74cb48360dedd6f7674f6b7630670b609",
+  "sema_ref": "Greet#bbae",
+  "sema_stub": "bbae",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "composes_with": {
-      "compatibility_check": "CompatibilityCheck#3abb"
-    },
     "references": {
       "identity": "Identity#626c",
-      "agent": "Agent#aaec"
+      "agent": "Agent#35b9"
+    },
+    "composes_with": {
+      "compatibility_check": "CompatibilityCheck#3abb"
+    }
+  }
+}
+```
+
+---
+
+## IdempotentWrite#b959
+
+```json
+{
+  "handle": "IdempotentWrite",
+  "mechanism": "A technical primitive where every write request includes a unique 'Idempotency Key'. The receiver maintains a {{cache}} of processed keys. If it receives a duplicate key, it returns the stored result without re-executing the side effects. This makes 'At-Least-Once' delivery safe. It uses a keyed {{state_lock}} to deduplicate requests, ensuring only the first write executes while subsequent ones return the cached result.",
+  "gloss": "Safe retries via unique keys",
+  "failure_modes": [
+    "Key collision (two different requests use same key)."
+  ],
+  "invariants": [
+    "{{identity}}: Apply(Req) == Apply(Req)",
+    "Safety: Duplicate requests trigger zero additional side effects"
+  ],
+  "preconditions": [
+    "Receiver has state storage for keys"
+  ],
+  "postconditions": [
+    "Action executed exactly once (logically)"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "related": [
+      "UniqueHandle#d9a1"
+    ],
+    "ring": 0
+  },
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:b959337ab4dbfbae132acbbd966f3ba68e9069ea099e9939dfca6b6bd34353d3",
+  "sema_ref": "IdempotentWrite#b959",
+  "sema_stub": "b959",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "identity": "Identity#626c",
+      "state_lock": "StateLock#8183",
+      "cache": "Cache#cd97"
     }
   }
 }
@@ -5533,8 +5989,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "signal": "Signal#f39d",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -5542,12 +5998,12 @@
 
 ---
 
-## Judge#d84f
+## Judge#9554
 
 ```json
 {
   "handle": "Judge",
-  "mechanism": "Qualitative Evaluation. Evaluates the structural merit or quality of a {{subject}} on a continuous scale [0.0, 1.0]. Unlike {{check}} (which validates binary truth) or {{validate}} (which checks schema), Judge evaluates gradients of quality based on {{criteria}}, yielding a {{score}}.",
+  "mechanism": "Qualitative Evaluation. Evaluates the structural merit or quality of a {{subject}} on a continuous scale [0.0, 1.0]. Unlike {{check}} (which validates binary truth) or {{validate}} (which checks schema), Judge evaluates gradients of quality by applying a {{scoring_function}} that encodes the {{criteria}}, yielding a {{score}}.",
   "gloss": "Scalar evaluation of merit",
   "failure_modes": [
     "Subjectivity Creep: {{criteria}} drift from objective to subjective without detection",
@@ -5558,12 +6014,6 @@
     "Determinism: Same input context yields same score."
   ],
   "parameters": [
-    {
-      "name": "criteria",
-      "type": "String",
-      "range": "unspecified",
-      "description": "Evaluation standard to judge against"
-    },
     {
       "name": "threshold",
       "type": "Float",
@@ -5577,23 +6027,24 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
-  "sema_ref": "Judge#d84f",
-  "sema_stub": "d84f",
+  "sema_id": "sema:Judge#mh:SHA-256:95548f9fff8d0106242d8f96a1bdbf9cced2cf153f4a78bf0c8709fc1f82c428",
+  "sema_ref": "Judge#9554",
+  "sema_stub": "9554",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "yields": {
-      "score": "Score#29da"
+    "accepts": {
+      "subject": "Subject#788f",
+      "scoring_function": "ScoringFunction#3a4e"
     },
     "references": {
-      "validate": "Validate#3de2",
-      "agent": "Agent#aaec",
+      "validate": "Validate#ebe1",
       "criteria": "Criteria#ef6b",
-      "check": "Check#1544"
+      "check": "Check#d3e8",
+      "agent": "Agent#35b9"
     },
-    "accepts": {
-      "subject": "Subject#788f"
+    "yields": {
+      "score": "Score#d220"
     }
   }
 }
@@ -5601,7 +6052,7 @@
 
 ---
 
-## Loop#fb2e
+## Loop#797f
 
 ```json
 {
@@ -5612,9 +6063,9 @@
     "Termination Guarantee: Must have a proven exit condition (or explicit Daemon mode).",
     "Progress: State must change between iterations to avoid infinite freeze."
   ],
-  "sema_id": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
-  "sema_ref": "Loop#fb2e",
-  "sema_stub": "fb2e",
+  "sema_id": "sema:Loop#mh:SHA-256:797fbd926c1d0fb9c036fd1d1ebcd2e91493390c3554205ab8bb5f6f814a3ae8",
+  "sema_ref": "Loop#797f",
+  "sema_stub": "797f",
   "_meta": {
     "tier": 1,
     "layer": "Infrastructure",
@@ -5628,7 +6079,7 @@
       "condition": "Condition#cbd5"
     },
     "composes_with": {
-      "work": "Work#aaad"
+      "work": "Work#d2c6"
     }
   }
 }
@@ -5636,7 +6087,108 @@
 
 ---
 
-## NegativeProof#5225
+## Monitor#feb3
+
+```json
+{
+  "handle": "Monitor",
+  "gloss": "Continuous observation of state over time",
+  "mechanism": "A persistent process that uses a {{loop}} to repeatedly execute {{observe}} on a target {{system}} or {{state}} at defined intervals. It compares the observed state against a baseline or invariant, emitting a {{signal}} if a deviation ({{anomaly}}) is detected.",
+  "signature": [
+    "Loop#797f(State#4d58)"
+  ],
+  "invariants": [
+    "Liveness: Must run continuously or periodically.",
+    "Non-Interference: Monitoring should not significantly alter the observed system."
+  ],
+  "parameters": [
+    {
+      "name": "interval",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Time between observation cycles"
+    }
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_ref": "Monitor#feb3",
+  "sema_id": "sema:Monitor#mh:SHA-256:feb39520f1d3644230f2654b8f92e6034eefb30b8eb59904dade81d76a07a277",
+  "sema_stub": "feb3",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "composes_with": {
+      "loop": "Loop#797f",
+      "observe": "Observe#39f0"
+    },
+    "references": {
+      "system": "System#e314",
+      "anomaly": "Anomaly#fac8",
+      "signal": "Signal#f39d",
+      "state": "State#4d58"
+    }
+  }
+}
+```
+
+---
+
+## MonitorReport#063c
+
+```json
+{
+  "handle": "MonitorReport",
+  "mechanism": "A telemetry artifact comparing the deployed state against a 'Definition of Done'. Generated to close the feedback loop.",
+  "gloss": "Deployment telemetry artifact",
+  "_meta": {
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0,
+    "tier": 1,
+    "related": [
+      "Monitor#feb3"
+    ]
+  },
+  "sema_id": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d",
+  "sema_ref": "MonitorReport#063c",
+  "sema_stub": "063c",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "manifest_ref",
+      "metrics"
+    ],
+    "properties": {
+      "manifest_ref": {
+        "type": "string",
+        "description": "Reference to RolloutManifest"
+      },
+      "metrics": {
+        "type": "object",
+        "description": "Observed telemetry data"
+      },
+      "definition_of_done": {
+        "type": "object",
+        "description": "Expected success criteria"
+      },
+      "deviation": {
+        "type": "object",
+        "description": "Difference from expected state"
+      }
+    }
+  }
+}
+```
+
+---
+
+## NegativeProof#b130
 
 ```json
 {
@@ -5666,16 +6218,66 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_ref": "NegativeProof#5225",
-  "sema_id": "sema:NegativeProof#mh:SHA-256:5225bbc358d41d3ef16f0466a4e33160d9c7d020132726c74c576eef5d399d4e",
-  "sema_stub": "5225",
+  "sema_ref": "NegativeProof#b130",
+  "sema_id": "sema:NegativeProof#mh:SHA-256:b1309e57068aacefbcf7f15d993a147fae28d1ee83fddb83858bd0d8c789e161",
+  "sema_stub": "b130",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "hypothesis": "Hypothesis#e95b",
-      "value": "Value#3c5d"
+      "value": "Value#3c5d",
+      "agent": "Agent#35b9",
+      "hypothesis": "Hypothesis#ffa7"
+    }
+  }
+}
+```
+
+---
+
+## Observe#39f0
+
+```json
+{
+  "handle": "Observe",
+  "mechanism": "The process of gathering information from the environment. It involves sensing raw data, filtering it for relevance (Attention), and integrating it into the internal {{context}} and state. Unlike passive reception, Observe is often an active query (e.g., polling an API, reading a file).",
+  "gloss": "Active State Perception",
+  "failure_modes": [
+    "Sensor noise: Input data is corrupted or inaccurate.",
+    "Blind Spot: Critical information exists but is outside the agent's observable range.",
+    "Information Overload: Too much data prevents effective filtering and integration.",
+    "Stale Data: Observing a cached state that no longer reflects reality."
+  ],
+  "invariants": [
+    "Read-Only: Observation must not modify the observed state (Side-effect free).",
+    "Truthfulness: The observation must accurately reflect the input signal (no internal distortion)."
+  ],
+  "preconditions": [
+    "Sensors/Tools are active",
+    "Actor has attention capacity"
+  ],
+  "postconditions": [
+    "Internal state is updated",
+    "New information is available for Thinking"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "related": [
+      "Belief#a9ce",
+      "Attention"
+    ],
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "sema_id": "sema:Observe#mh:SHA-256:39f0bf3256475676557978ed275548604d9c1f247a6a49c242dc69646ddab20c",
+  "sema_ref": "Observe#39f0",
+  "sema_stub": "39f0",
+  "dependencies": {
+    "yields": {
+      "context": "Context#510a"
     }
   }
 }
@@ -5754,7 +6356,7 @@
 
 ---
 
-## Quorum#29b4
+## Quorum#858e
 
 ```json
 {
@@ -5795,18 +6397,18 @@
     "layer": "Infrastructure",
     "category": "Primitives",
     "related": [
-      "LazyConsensus#4fc7"
+      "LazyConsensus#515b"
     ],
     "ring": 0
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "sema_id": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
-  "sema_ref": "Quorum#29b4",
-  "sema_stub": "29b4",
+  "sema_id": "sema:Quorum#mh:SHA-256:858ec7b79a5e07103ead4d441239c570dcd8dc8de462ab4d73c9501b99f4687b",
+  "sema_ref": "Quorum#858e",
+  "sema_stub": "858e",
   "dependencies": {
     "accepts": {
-      "ballot": "Ballot#f1d7"
+      "ballot": "Ballot#2a0a"
     }
   }
 }
@@ -5827,7 +6429,7 @@
     "category": "Primitives",
     "ring": 1,
     "related": [
-      "AgentSandbox#ce7e",
+      "AgentSandbox#fc41",
       "CircuitBreaker#4162",
       "SafetyCartographer"
     ],
@@ -5847,7 +6449,7 @@
 
 ---
 
-## Search#d608
+## Search#c5f4
 
 ```json
 {
@@ -5864,15 +6466,15 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Search#d608",
-  "sema_id": "sema:Search#mh:SHA-256:d6083dea6898b63d14ccb2542fcfa05561a1f6326000c8d9c190599afd99b123",
-  "sema_stub": "d608",
+  "sema_ref": "Search#c5f4",
+  "sema_id": "sema:Search#mh:SHA-256:c5f4bfa7dd8234b80ba9f565d49a882a2c2c5ea7016ed276d65587cfa7e523d5",
+  "sema_stub": "c5f4",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "criteria": "Criteria#ef6b"
+      "criteria": "Criteria#ef6b",
+      "check": "Check#d3e8"
     }
   }
 }
@@ -5933,16 +6535,61 @@
 
 ---
 
-## StateTransition#3737
+## StateSnapshot#b9b8
+
+```json
+{
+  "handle": "StateSnapshot",
+  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{idempotent_write}}.",
+  "gloss": "Durable persistence of volatile state",
+  "invariants": [
+    "Atomicity: {{snapshot}} is either fully written or discarded (no partial corruption)",
+    "Roundtrip Integrity: Deserialize(Serialize(S)) must equal S"
+  ],
+  "preconditions": [
+    "Serializable {{state}}",
+    "Write access to durable storage"
+  ],
+  "postconditions": [
+    "Resume point established"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "signature": [
+    "State#4d58(Snapshot#0ae9)"
+  ],
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:b9b8faad3a629ff61fccc07d6f56e44b6f685b29e6c51080b38dd22438334419",
+  "sema_ref": "StateSnapshot#b9b8",
+  "sema_stub": "b9b8",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "state": "State#4d58",
+      "trace": "Trace#9057",
+      "snapshot": "Snapshot#0ae9",
+      "idempotent_write": "IdempotentWrite#b959"
+    }
+  }
+}
+```
+
+---
+
+## StateTransition#9e61
 
 ```json
 {
   "handle": "StateTransition",
   "mechanism": "Finite State Machine. A {{transition}} is defined as T: S x Event -> S. Only valid transitions allowed. Current {{state}} determines available actions.",
   "gloss": "Explicit finite-state machine governance",
-  "sema_id": "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57",
-  "sema_ref": "StateTransition#3737",
-  "sema_stub": "3737",
+  "sema_id": "sema:StateTransition#mh:SHA-256:9e61cab1fbacfac92d739865d4505e9e9bb9ed024e0d51b670a00ccfeb801ec4",
+  "sema_ref": "StateTransition#9e61",
+  "sema_stub": "9e61",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Primitives",
@@ -5951,9 +6598,6 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
-  "signature": [
-    "Transition#072d(State#4d58)"
-  ],
   "dependencies": {
     "references": {
       "state": "State#4d58",
@@ -5965,12 +6609,12 @@
 
 ---
 
-## TaskLifecycle#ecd8
+## TaskLifecycle#8c7f
 
 ```json
 {
   "handle": "TaskLifecycle",
-  "mechanism": "Explicit {{state_transition}} machine governing {{task}} progression through five states: PENDING (created, awaiting assignment), ASSIGNED (claimed by an {{agent}}), RUNNING (actively executing, emitting {{heartbeat}}), COMPLETED (successfully finished, {{result}} attached), FAILED (terminated with {{exception}}, retry decision required). Each transition requires a typed {{event}}: assign, start, complete, fail, cancel. Invalid transitions are rejected. RUNNING state requires periodic {{heartbeat}}; timeout triggers automatic FAILED transition. Follows the Agent-to-Agent protocol task management model.",
+  "mechanism": "Explicit {{state_transition}} machine governing {{task}} progression through five states: PENDING (created, awaiting assignment), ASSIGNED (claimed by an {{agent}}), RUNNING (actively executing, emitting {{heartbeat}}), COMPLETED (successfully finished, {{result}} attached), FAILED (terminated with {{exception}}, retry decision required). Each transition requires a typed {{event}}: assign, start, complete, fail, cancel. Invalid transitions are rejected. RUNNING state requires periodic {{heartbeat}}; timeout triggers automatic FAILED transition. The attached {{risk}} profile informs retry and escalation policy on failure.",
   "gloss": "Formal state machine governing task progression",
   "invariants": [
     "Forward-Only: Tasks must not regress (no COMPLETED to RUNNING via {{state_transition}})",
@@ -5998,7 +6642,7 @@
     }
   ],
   "signature": [
-    "StateTransition#3737(Task#d9f9)"
+    "StateTransition#9e61(Task#b328)"
   ],
   "_meta": {
     "layer": "Infrastructure",
@@ -6007,24 +6651,25 @@
     "tier": 1,
     "related": []
   },
-  "sema_ref": "TaskLifecycle#ecd8",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda",
-  "sema_stub": "ecd8",
+  "sema_ref": "TaskLifecycle#8c7f",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:8c7f7470a37f4207e7509eed63e2689285631f62516a3943def1cf15ffb7c852",
+  "sema_stub": "8c7f",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "composes_with": {
-      "state_transition": "StateTransition#3737"
+    "references": {
+      "risk": "Risk#1980",
+      "task": "Task#b328",
+      "heartbeat": "Heartbeat#b67a",
+      "exception": "Exception#66c0",
+      "event": "Event#7e71",
+      "agent": "Agent#35b9"
     },
     "yields": {
-      "result": "Result#8ed9"
+      "result": "Result#195b"
     },
-    "references": {
-      "exception": "Exception#bcdc",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "heartbeat": "Heartbeat#7f88",
-      "event": "Event#7e71"
+    "composes_with": {
+      "state_transition": "StateTransition#9e61"
     }
   }
 }
@@ -6032,12 +6677,12 @@
 
 ---
 
-## TimeWarpLog#d938
+## TimeWarpLog#a0ac
 
 ```json
 {
   "handle": "TimeWarpLog",
-  "mechanism": "Events are not ordered by wall-clock time but by 'causal cones'. An {{agent}} accepts an event from the 'past' if it doesn't contradict its current causal cone. Allows for massive latency tolerance. Utilizes {{world_reversible}}, {{causal_barrier}}.",
+  "mechanism": "Events are not ordered by wall-clock time but by 'causal cones'. An {{agent}} accepts an event from the 'past' if it doesn't contradict its current causal cone. The log's append position is driven by a {{monotonic_counter}} so that once an event is admitted to a cone, no earlier-sequenced event can supersede it. Allows for massive latency tolerance. Utilizes {{world_reversible}}, {{causal_barrier}}.",
   "gloss": "Handling relativistic event ordering",
   "failure_modes": [
     "User confusion about 'when' things happened."
@@ -6045,7 +6690,7 @@
   "invariants": [
     "Immutability: Past entries cannot be modified",
     "Indexability: Seek(Time T) returns deterministic {{state}}(T)",
-    "Log immutable after write."
+    "Causal consistency: Events are accepted only if they do not contradict the current causal cone."
   ],
   "preconditions": [
     "Storage supports append-only writes"
@@ -6077,20 +6722,68 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "caution": "Causal cone is only as trustworthy as the identities signing events. Unsigned or weakly-authenticated events can rewrite perceived history."
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:d9386c726ba1c96bfae61549b82b16d1137d59b1f2129a19a24568f3117a4720",
-  "sema_ref": "TimeWarpLog#d938",
-  "sema_stub": "d938",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:a0ac168c3ecde98a3a649c490f6806a6f03085237d51ec9639250aa00c79d4cd",
+  "sema_ref": "TimeWarpLog#a0ac",
+  "sema_stub": "a0ac",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "world_reversible": "WorldReversible#f664",
-      "causal_barrier": "CausalBarrier#0904",
       "system": "System#e314",
-      "agent": "Agent#aaec",
-      "state": "State#4d58"
+      "monotonic_counter": "MonotonicCounter#cf62",
+      "world_reversible": "WorldReversible#f664",
+      "state": "State#4d58",
+      "causal_barrier": "CausalBarrier#3c73",
+      "agent": "Agent#35b9"
+    }
+  }
+}
+```
+
+---
+
+## ToolInvoke#4694
+
+```json
+{
+  "handle": "ToolInvoke",
+  "mechanism": "The actor emits a structured tool call (function name + arguments), validated by {{input_guard}}, execution is delegated to an external runtime, and the observation (result or error) is fed back into the actor's {{context}}. This is the atomic unit of agent-environment interaction. The pattern enables capabilities beyond text generation: code execution, API calls, file operations, web search.",
+  "gloss": "Execute external tool and observe result",
+  "failure_modes": [
+    "Hallucinated Tools: Actor invokes a tool that doesn't exist.",
+    "Argument Mismatch: Tool call has wrong parameter types or missing required fields.",
+    "Observation Blindness: Actor ignores or misinterprets tool output."
+  ],
+  "invariants": [
+    "{{context}} Inheritance: Tool Execution {{context}} permissions MUST be <= {{task}} Constraints. Elevation forbidden.",
+    "Observation Integration: Result must be incorporated into subsequent reasoning",
+    "Sandboxing: Tool execution must respect capability boundaries",
+    "Schema Conformance: Tool call must match declared function signature"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0,
+    "related": [
+      "AgentSandbox#fc41"
+    ]
+  },
+  "sema_ref": "ToolInvoke#4694",
+  "sema_id": "sema:ToolInvoke#mh:SHA-256:4694e7bcf0e0b712584fc927ea81942e0202a394f80cbc149592c9fdd41013d6",
+  "sema_stub": "4694",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "composes_with": {
+      "input_guard": "InputGuard#7353"
+    },
+    "references": {
+      "context": "Context#510a",
+      "task": "Task#b328"
     }
   }
 }
@@ -6138,12 +6831,77 @@
 
 ---
 
-## AuditTrail#ff66
+## Warmup#92b2
+
+```json
+{
+  "handle": "Warmup",
+  "mechanism": "Gradual Capacity Ramp: On activation, start at reduced capacity C_min and increase to C_max over time T following a defined curve. Prevents 'thundering herd' overload on cold systems. Utilizes {{greet}}, {{throttle}}.",
+  "gloss": "Gradual capacity increase to stabilize cold systems",
+  "failure_modes": [
+    "Premature Load: Traffic arrives before warmup completes.",
+    "False Warmth: Timer completes but internal state (e.g.",
+    "cache) is still cold."
+  ],
+  "invariants": [
+    "Capacity Limit: Accepted_Load <= Current_Warmup_Cap(t)"
+  ],
+  "preconditions": [
+    "{{system}} state is inactive or reset"
+  ],
+  "postconditions": [
+    "Capacity limit equals C_max",
+    "{{system}} state is active"
+  ],
+  "parameters": [
+    {
+      "name": "curve",
+      "type": "Enum",
+      "range": "{Linear, Exponential, Step#5f22}",
+      "description": "Default: Linear"
+    },
+    {
+      "name": "initial_capacity",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Starting capacity as fraction of full (0 = cold start)"
+    },
+    {
+      "name": "ramp_duration",
+      "type": "Duration",
+      "range": "[10s, 1h]",
+      "description": "Time to reach full capacity from initial"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Infrastructure",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Warmup#mh:SHA-256:92b2edac4a9801604e76f19b1a8d22b954fa2394f1e0d4285d1686221558ca5e",
+  "sema_ref": "Warmup#92b2",
+  "sema_stub": "92b2",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "throttle": "Throttle#2175",
+      "greet": "Greet#bbae",
+      "system": "System#e314"
+    }
+  }
+}
+```
+
+---
+
+## AuditTrail#c891
 
 ```json
 {
   "handle": "AuditTrail",
-  "mechanism": "Every consequential {{agent}} action (state mutation, external call, delegation, decision) appends a {{sign}}ed entry to an immutable {{ledger}}. Each entry contains: timestamp, {{agent}} {{identity}}, action type, input hash, output hash, and the sema pattern invoked. Extends {{trace}} from single-entity lineage to cross-agent compliance logging. The trail is append-only \u2014 entries cannot be modified or deleted. For cross-agent auditing, individual trails are aggregated via Merkle roots into a shared {{snapshot}}, enabling any party to verify the complete history without accessing raw entries.",
+  "mechanism": "Every consequential {{agent}} action (state mutation, external call, delegation, decision) appends a {{sign}}ed entry to an immutable {{ledger}} whose sequence number advances via {{monotonic_counter}}, so no entry can be wedged between two existing ones. Each entry contains: timestamp, {{agent}} {{identity}}, action type, input hash, output hash, and the sema pattern invoked. Extends {{trace}} from single-entity lineage to cross-agent compliance logging. The trail is append-only \u2014 entries cannot be modified or deleted. For cross-agent auditing, individual trails are aggregated via Merkle roots into a shared {{snapshot}}, enabling any party to verify the complete history without accessing raw entries.",
   "gloss": "Immutable append-only log of agent actions for compliance and debugging",
   "invariants": [
     "Append-Only: No entry in the {{ledger}} may be modified after creation",
@@ -6164,7 +6922,7 @@
     "Selective logging (agent omits inconvenient entries \u2014 requires external {{audit}})."
   ],
   "signature": [
-    "Trace#9057(Ledger#c363)"
+    "Trace#9057(Ledger#b5fe)"
   ],
   "_meta": {
     "layer": "Infrastructure",
@@ -6172,22 +6930,23 @@
     "ring": 1,
     "tier": 1,
     "related": [
-      "SpotAudit#6673"
+      "SpotAudit#000e"
     ]
   },
-  "sema_ref": "AuditTrail#ff66",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c",
-  "sema_stub": "ff66",
+  "sema_ref": "AuditTrail#c891",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:c89113de796b35d71144525b03f866e7f5503ff7e908828a3af9de1f4f880526",
+  "sema_stub": "c891",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
+  "sema_category": "Verification#19d6",
   "dependencies": {
     "references": {
-      "trace": "Trace#9057",
-      "ledger": "Ledger#c363",
-      "sign": "Sign#1fb9",
-      "agent": "Agent#aaec",
+      "ledger": "Ledger#b5fe",
       "identity": "Identity#626c",
-      "audit": "Audit#4044"
+      "monotonic_counter": "MonotonicCounter#cf62",
+      "audit": "Audit#6888",
+      "trace": "Trace#9057",
+      "sign": "Sign#1fb9",
+      "agent": "Agent#35b9"
     },
     "composes_with": {
       "snapshot": "Snapshot#0ae9"
@@ -6219,7 +6978,7 @@
   "sema_id": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
   "sema_stub": "3abb",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
+  "sema_category": "Verification#19d6",
   "dependencies": {
     "references": {
       "artifact": "Artifact#6254"
@@ -6230,7 +6989,7 @@
 
 ---
 
-## ExplainBeacon#6ced
+## ExplainBeacon#ab3f
 
 ```json
 {
@@ -6249,17 +7008,17 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
-  "sema_ref": "ExplainBeacon#6ced",
-  "sema_stub": "6ced",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:ab3fda0493d137c8d5254513b4df5143869042a2db3f4970682b6de823bfb215",
+  "sema_ref": "ExplainBeacon#ab3f",
+  "sema_stub": "ab3f",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
+  "sema_category": "Verification#19d6",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "heartbeat": "Heartbeat#7f88",
+      "heartbeat": "Heartbeat#b67a",
+      "greet": "Greet#bbae",
       "stream": "Stream#22f3",
-      "greet": "Greet#7ad2"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -6267,7 +7026,7 @@
 
 ---
 
-## HumanApprove#e64a
+## HumanApprove#2b91
 
 ```json
 {
@@ -6277,7 +7036,7 @@
   "parameters": [
     {
       "name": "challenge_required",
-      "type": "Boolean",
+      "type": "Boolean#2e6b",
       "range": "unspecified",
       "description": "Default: True"
     },
@@ -6307,18 +7066,18 @@
     "caution": "Bypassing removes the human-in-the-loop safety boundary."
   },
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
-  "sema_id": "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
-  "sema_ref": "HumanApprove#e64a",
-  "sema_stub": "e64a",
+  "sema_category": "Verification#19d6",
+  "sema_id": "sema:HumanApprove#mh:SHA-256:2b91e79b05b4e0dbb26a5da14121cf8f41f45c8bf64d6bee9e8cb0a243ba5b51",
+  "sema_ref": "HumanApprove#2b91",
+  "sema_stub": "2b91",
   "dependencies": {
     "references": {
-      "system": "System#e314",
       "context": "Context#510a",
-      "audit": "Audit#4044"
+      "audit": "Audit#6888",
+      "system": "System#e314"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -6348,13 +7107,13 @@
   "sema_id": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
   "sema_stub": "7353",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28"
+  "sema_category": "Verification#19d6"
 }
 ```
 
 ---
 
-## OathBind#fc9c
+## OathBind#a708
 
 ```json
 {
@@ -6372,20 +7131,20 @@
     "ring": 1,
     "caution": "Automated penalties \u2014 misconfigured rules cause cascading harm."
   },
-  "sema_ref": "OathBind#fc9c",
-  "sema_id": "sema:OathBind#mh:SHA-256:fc9cec2803eb8062d0f7ea99212c62c8a19bb3455b7dd176a7df8c0a78c80036",
-  "sema_stub": "fc9c",
+  "sema_ref": "OathBind#a708",
+  "sema_id": "sema:OathBind#mh:SHA-256:a7082358e67b331a94538ee2f9c99c8fa4690ca7d529c33bae199457f8a5a7da",
+  "sema_stub": "a708",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
+  "sema_category": "Verification#19d6",
   "failure_modes": [
     "Penalty severity decoupled from deviation severity.",
     "Rule set ambiguity triggers unintended penalty."
   ],
   "dependencies": {
     "references": {
-      "rule_set": "RuleSet#8d85",
-      "spot_audit": "SpotAudit#6673",
-      "actor": "Actor#6926"
+      "actor": "Actor#6926",
+      "spot_audit": "SpotAudit#000e",
+      "rule_set": "RuleSet#7738"
     }
   }
 }
@@ -6393,7 +7152,7 @@
 
 ---
 
-## OutputGuard#eb44
+## OutputGuard#1f50
 
 ```json
 {
@@ -6443,17 +7202,17 @@
     "ring": 0
   },
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
-  "sema_id": "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0",
-  "sema_ref": "OutputGuard#eb44",
-  "sema_stub": "eb44",
+  "sema_category": "Verification#19d6",
+  "sema_id": "sema:OutputGuard#mh:SHA-256:1f50ee469c636e44cf3917a31ab3e6295f2a02eb93bb9b8eb8e64398ec3a0c68",
+  "sema_ref": "OutputGuard#1f50",
+  "sema_stub": "1f50",
   "dependencies": {
-    "accepts": {
-      "solution": "Solution#7186"
-    },
     "references": {
-      "problem": "Problem#5baa",
+      "problem": "Problem#4576",
       "context": "Context#510a"
+    },
+    "accepts": {
+      "solution": "Solution#fcea"
     }
   }
 }
@@ -6461,7 +7220,7 @@
 
 ---
 
-## SpotAudit#6673
+## SpotAudit#000e
 
 ```json
 {
@@ -6487,15 +7246,15 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d",
-  "sema_ref": "SpotAudit#6673",
-  "sema_stub": "6673",
+  "sema_id": "sema:SpotAudit#mh:SHA-256:000ed33bc0676411521d703253810082f4a6a470818e194e833eca8605859ea8",
+  "sema_ref": "SpotAudit#000e",
+  "sema_stub": "000e",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
+  "sema_category": "Verification#19d6",
   "dependencies": {
     "references": {
-      "state_audit": "StateAudit#ce13",
-      "audit": "Audit#4044"
+      "state_audit": "StateAudit#8195",
+      "audit": "Audit#6888"
     }
   }
 }
@@ -6503,12 +7262,12 @@
 
 ---
 
-## Validate#3de2
+## Validate#ebe1
 
 ```json
 {
   "handle": "Validate",
-  "mechanism": "Syntactic Verification. Checks if a data artifact conforms to a predefined structure (Schema) or set of constraints. Rejects malformed inputs before processing. Utilizes {{accept_spec}}. Distinct from {{check}} (Logic Gate) and quality scoring (Judge).",
+  "mechanism": "Syntactic Verification. Checks if a data artifact conforms to a predefined structure (Schema) or set of constraints. Yields a {{boolean}} \u2014 strict pass/fail with no middle ground, unlike {{check}} which yields the richer Status (Verified/Falsified/Unknown). Rejects malformed inputs before processing. Utilizes {{accept_spec}}. Distinct from {{check}} (richer truth-valued) and quality scoring (Judge, which yields a continuous Score).",
   "gloss": "Verifying inputs conform to expected schema",
   "failure_modes": [
     "Validator Bypass: Attacker finds encoding that passes validation but exploits downstream parser."
@@ -6523,15 +7282,18 @@
     "category": "Verification",
     "ring": 1
   },
-  "sema_id": "sema:Validate#mh:SHA-256:3de24fbfc5dade5aeabd857010aaeff7529bdab8c152f164897aa411d868c619",
-  "sema_ref": "Validate#3de2",
-  "sema_stub": "3de2",
+  "sema_id": "sema:Validate#mh:SHA-256:ebe1118928513083360bcfc973a9fc6c6b2c50ea1d45dc0639b390bc9e20cfc9",
+  "sema_ref": "Validate#ebe1",
+  "sema_stub": "ebe1",
   "sema_layer": "Infrastructure",
-  "sema_category": "Verification#eb28",
+  "sema_category": "Verification#19d6",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "accept_spec": "AcceptSpec#70dd"
+      "accept_spec": "AcceptSpec#7caa",
+      "check": "Check#d3e8"
+    },
+    "yields": {
+      "boolean": "Boolean#2e6b"
     }
   }
 }
@@ -6567,7 +7329,7 @@
     "layer": "Mind",
     "category": "Inference",
     "related": [
-      "BayesUpdate#911b"
+      "BayesUpdate#13f8"
     ],
     "ring": 2
   },
@@ -6581,7 +7343,7 @@
 
 ---
 
-## BayesUpdate#911b
+## BayesUpdate#13f8
 
 ```json
 {
@@ -6620,16 +7382,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
-  "sema_ref": "BayesUpdate#911b",
-  "sema_stub": "911b",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:13f8d0e6f00298f5e49187afdf1f8733638f3b222cdcb9361b1d7dd5ae07c67b",
+  "sema_ref": "BayesUpdate#13f8",
+  "sema_stub": "13f8",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "observe": "Observe#8ebd",
+      "belief": "Belief#a9ce",
       "base_rate_include": "BaseRateInclude#aa0b",
-      "belief": "Belief#5ad9"
+      "observe": "Observe#39f0"
     }
   }
 }
@@ -6637,7 +7399,7 @@
 
 ---
 
-## BreadthGovernor#d220
+## BreadthGovernor#87f0
 
 ```json
 {
@@ -6678,22 +7440,22 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169",
-  "sema_ref": "BreadthGovernor#d220",
-  "sema_stub": "d220",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:87f09510bdc6b22a48495ca89520be7645976237ec69906fa342e912d4867eff",
+  "sema_ref": "BreadthGovernor#87f0",
+  "sema_stub": "87f0",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "parsimony": "Parsimony#1dd3",
-      "prophet_fan_out": "ProphetFanOut#2d81",
-      "decompose": "Decompose#ac56",
+      "prophet_fan_out": "ProphetFanOut#85a9",
       "value": "Value#3c5d",
-      "budget": "Budget#a763",
+      "parsimony": "Parsimony#8476",
+      "parallel": "Parallel#3181",
+      "budget": "Budget#7270",
       "context": "Context#510a",
-      "parallel": "Parallel#6272"
+      "decompose": "Decompose#f900"
     }
   }
 }
@@ -6701,7 +7463,7 @@
 
 ---
 
-## ConfidenceCalibrate#0ae5
+## ConfidenceCalibrate#ba8b
 
 ```json
 {
@@ -6734,16 +7496,16 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60",
-  "sema_ref": "ConfidenceCalibrate#0ae5",
-  "sema_stub": "0ae5",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:ba8bd9f417af19c3e8917307ec861d0d2a22fa8e700b37003f9552886c257bce",
+  "sema_ref": "ConfidenceCalibrate#ba8b",
+  "sema_stub": "ba8b",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
       "base_rate_include": "BaseRateInclude#aa0b",
-      "bayes_update": "BayesUpdate#911b"
+      "agent": "Agent#35b9",
+      "bayes_update": "BayesUpdate#13f8"
     }
   }
 }
@@ -6751,7 +7513,7 @@
 
 ---
 
-## ConfirmationBlock#3dae
+## ConfirmationBlock#20db
 
 ```json
 {
@@ -6766,10 +7528,10 @@
   ],
   "parameters": [
     {
-      "name": "confirmations_required",
+      "name": "disconfirmations_required",
       "type": "Integer",
       "range": "[1, 100]",
-      "description": "Blocks before finality"
+      "description": "Counter-evidence instances required before the block releases. The pattern's mechanism actively seeks disconfirming evidence; this parameter names the threshold accordingly."
     },
     {
       "name": "timeout",
@@ -6784,12 +7546,12 @@
     "category": "Inference",
     "ring": 0,
     "related": [
-      "DissentSeek#bd28"
+      "DissentSeek#0ebe"
     ]
   },
-  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",
-  "sema_ref": "ConfirmationBlock#3dae",
-  "sema_stub": "3dae",
+  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:20db49e59b1e91b692635885522c55205d7889ddad978c36965d00a4fc985a5a",
+  "sema_ref": "ConfirmationBlock#20db",
+  "sema_stub": "20db",
   "sema_layer": "Mind",
   "sema_category": "Inference"
 }
@@ -6797,7 +7559,7 @@
 
 ---
 
-## ContextFirst#2878
+## ContextFirst#def7
 
 ```json
 {
@@ -6817,22 +7579,22 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:ContextFirst#mh:SHA-256:2878bfc9402ba18d174040bc9614113e01c7a6f2bb775fe22fdccba6aca3dbe1",
-  "sema_ref": "ContextFirst#2878",
-  "sema_stub": "2878",
+  "sema_id": "sema:ContextFirst#mh:SHA-256:def73ba90ba708f17c262a496bc505797e119d64270f985e5e51f0ce528bc987",
+  "sema_ref": "ContextFirst#def7",
+  "sema_stub": "def7",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
-    "Prioritize#dd16(Context#510a)"
+    "Prioritize#68f8(Context#510a)"
   ],
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "prioritize": "Prioritize#dd16",
-      "context": "Context#510a",
-      "solver_node": "SolverNode#a834",
+      "solver_node": "SolverNode#26b1",
+      "warmup": "Warmup#92b2",
+      "prioritize": "Prioritize#68f8",
       "state": "State#4d58",
-      "warmup": "Warmup#28c4"
+      "context": "Context#510a",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -6865,7 +7627,7 @@
     "layer": "Mind",
     "category": "Inference",
     "related": [
-      "ConfidenceCalibrate#0ae5"
+      "ConfidenceCalibrate#ba8b"
     ],
     "ring": 2
   },
@@ -6884,7 +7646,55 @@
 
 ---
 
-## HindsightBlock#bdb6
+## HackDetect#1eca
+
+```json
+{
+  "handle": "HackDetect",
+  "mechanism": "A meta-check that detects when an agent is solving for 'make it work' instead of 'do it right'. Triggered when the agent modifies interface code (adapters, exporters, validators) rather than fixing source data or upstream logic. The hack appears to succeed locally but breaks invariants that downstream systems depend on, creating negative externalities. It monitors the {{input_guard}} layer for anomalies, triggering {{ejection_seat}} if the agent attempts to bypass invariants via code patching.",
+  "gloss": "Detect shortcuts that break downstream invariants",
+  "failure_modes": [
+    "False Positives: Legitimate adapter changes flagged as hacks.",
+    "Hack Blindness: Novel hack patterns evade detection.",
+    "Justification Theater: {{agent}} rationalizes hack as 'pragmatic'."
+  ],
+  "invariants": [
+    "Detection triggers defensive response",
+    "False positive rate minimized"
+  ],
+  "preconditions": [
+    "Attack signatures/anomaly detection",
+    "{{system}} monitoring"
+  ],
+  "postconditions": [
+    "Alert raised",
+    "Intrusion identified"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_id": "sema:HackDetect#mh:SHA-256:1ecaa4bb2a72d22dc146f6a8a8ba8f4d38678acf78bf176058c0d779525b44f3",
+  "sema_ref": "HackDetect#1eca",
+  "sema_stub": "1eca",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "dependencies": {
+    "references": {
+      "ejection_seat": "EjectionSeat#d53e",
+      "input_guard": "InputGuard#7353",
+      "agent": "Agent#35b9",
+      "system": "System#e314"
+    }
+  }
+}
+```
+
+---
+
+## HindsightBlock#4cc8
 
 ```json
 {
@@ -6919,19 +7729,19 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:HindsightBlock#mh:SHA-256:bdb602218783e07b6eb5e68e900635bcd80e7b6d2ff32ac26ec03e383837f363",
-  "sema_ref": "HindsightBlock#bdb6",
-  "sema_stub": "bdb6",
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:4cc8834994870224daeb4d912c810b9cf50aea0cddfd3d2d774282a3abf516e0",
+  "sema_ref": "HindsightBlock#4cc8",
+  "sema_stub": "4cc8",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
       "decision": "Decision#acfb",
-      "pre_mortem": "PreMortem#f69d",
-      "outcome": "Outcome#38e0",
-      "judge": "Judge#d84f"
+      "pre_mortem": "PreMortem#142a",
+      "outcome": "Outcome#144c",
+      "judge": "Judge#9554"
     }
   }
 }
@@ -6939,7 +7749,7 @@
 
 ---
 
-## LayeredCheck#3fad
+## LayeredCheck#76d6
 
 ```json
 {
@@ -6947,7 +7757,7 @@
   "mechanism": "A {{check}} strategy that evaluates constraints in a strict {{hierarchy}} of abstraction (e.g., existence -> {{validate}} (schema) -> {{understand}} (semantics)). It uses a {{sequence}} of {{gate}}s where lower-level failures halt execution immediately, preventing resource waste on higher-level checks for fundamentally broken inputs.",
   "gloss": "Hierarchical verification strategy",
   "signature": [
-    "Check#1544(Hierarchy#aa9b)"
+    "Check#d3e8(Hierarchy#d530)"
   ],
   "invariants": [
     "Fail-Fast: If Layer(N) fails, Layer(N+1) is NOT executed.",
@@ -6959,24 +7769,24 @@
     "ring": 2,
     "tier": 2,
     "related": [
-      "PURECheck#3ebb"
+      "PURECheck#f2f0"
     ]
   },
-  "sema_ref": "LayeredCheck#3fad",
-  "sema_id": "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0",
-  "sema_stub": "3fad",
+  "sema_ref": "LayeredCheck#76d6",
+  "sema_id": "sema:LayeredCheck#mh:SHA-256:76d62f3bf0821dca24f45fddde8e892eb2bc29c2182d91cfb5308a3defe01d60",
+  "sema_stub": "76d6",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
-    "composes_with": {
-      "check": "Check#1544",
-      "sequence": "Sequence#b0b8",
-      "gate": "Gate#206d"
-    },
     "references": {
-      "hierarchy": "Hierarchy#aa9b",
-      "validate": "Validate#3de2",
-      "understand": "Understand#96d4"
+      "understand": "Understand#96d4",
+      "validate": "Validate#ebe1",
+      "hierarchy": "Hierarchy#d530"
+    },
+    "composes_with": {
+      "check": "Check#d3e8",
+      "gate": "Gate#89fd",
+      "sequence": "Sequence#b0b8"
     }
   }
 }
@@ -6984,7 +7794,7 @@
 
 ---
 
-## NormCheck#8222
+## NormCheck#9bdd
 
 ```json
 {
@@ -7022,24 +7832,24 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:82223036f2aa91c261189aa21bb0a61a98d10cfb6f613eaf760e8635af2e30e7",
-  "sema_ref": "NormCheck#8222",
-  "sema_stub": "8222",
+  "sema_id": "sema:NormCheck#mh:SHA-256:9bdd458491fbb7b55409c023d3a8d0c8b45125dda7dc2901efb68dc7c76f9c3c",
+  "sema_ref": "NormCheck#9bdd",
+  "sema_stub": "9bdd",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
-    "Check#1544(Value#3c5d)"
+    "Check#d3e8(Value#3c5d)"
   ],
   "dependencies": {
     "references": {
-      "normative_judge": "NormativeJudge#2316",
-      "quorum": "Quorum#29b4",
-      "judge": "Judge#d84f",
-      "prophet_fan_out": "ProphetFanOut#2d81",
+      "prophet_fan_out": "ProphetFanOut#85a9",
       "value": "Value#3c5d",
-      "check": "Check#1544"
+      "quorum": "Quorum#858e",
+      "judge": "Judge#9554",
+      "check": "Check#d3e8",
+      "normative_judge": "NormativeJudge#2c8c"
     }
   }
 }
@@ -7047,12 +7857,12 @@
 
 ---
 
-## NormativeJudge#2316
+## NormativeJudge#2c8c
 
 ```json
 {
   "handle": "NormativeJudge",
-  "mechanism": "A purely normative {{judge}} module that evaluates static world-states against a weighted {{value}} function. To mitigate Goodhart's Law, this pattern should be deployed as an ENSEMBLE (Jury), where multiple judges with slightly perturbed {{value}} constitutions reach {{quorum}} on the {{outcome}}. It aggregates {{value}}s via {{perspective_ensemble}}, optionally escalating to {{human_approve}} for ambiguous edge cases.",
+  "mechanism": "A purely normative {{judge}} module that evaluates static world-states against a weighted {{value}} function. The caller supplies the {{weights}} that shape the value function, so preference structure is visible to the evaluator rather than hidden inside it. To mitigate Goodhart's Law, this pattern should be deployed as an ENSEMBLE (Jury), where multiple judges with slightly perturbed {{value}} constitutions reach {{quorum}} on the {{outcome}}. It aggregates {{value}}s via {{perspective_ensemble}}, optionally escalating to {{human_approve}} for ambiguous edge cases.",
   "gloss": "Value-based state evaluation",
   "failure_modes": [
     "Goodhart's Law (optimizing for the metric, not the intent).",
@@ -7074,12 +7884,6 @@
       "type": "Float",
       "range": "[0.5, 1.0]",
       "description": "Required agreement for Jury"
-    },
-    {
-      "name": "weights",
-      "type": "Map<Value#3c5d, Float>",
-      "range": "unspecified",
-      "description": "Relative importance weights per value dimension"
     }
   ],
   "_meta": {
@@ -7088,25 +7892,28 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
-  "sema_ref": "NormativeJudge#2316",
-  "sema_stub": "2316",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:2c8ca6cd8166a26b258ae67dc5df2dc1dc968f15f6edce6225b5c1615784b667",
+  "sema_ref": "NormativeJudge#2c8c",
+  "sema_stub": "2c8c",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
-    "Judge#d84f(Value#3c5d)"
+    "Judge#9554(Value#3c5d)"
   ],
   "dependencies": {
     "references": {
-      "quorum": "Quorum#29b4",
-      "judge": "Judge#d84f",
       "value": "Value#3c5d",
-      "human_approve": "HumanApprove#e64a",
+      "quorum": "Quorum#858e",
+      "judge": "Judge#9554",
+      "human_approve": "HumanApprove#2b91",
       "state": "State#4d58",
-      "outcome": "Outcome#38e0"
+      "outcome": "Outcome#144c"
     },
     "composes_with": {
-      "perspective_ensemble": "PerspectiveEnsemble#2927"
+      "perspective_ensemble": "PerspectiveEnsemble#d08c"
+    },
+    "accepts": {
+      "vector": "Vector#c7c4"
     }
   }
 }
@@ -7114,7 +7921,7 @@
 
 ---
 
-## OntologyAdapt#e673
+## OntologyAdapt#4c47
 
 ```json
 {
@@ -7140,18 +7947,18 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:e67338652fa9214a713c8b4bc8f1ff1173a080090e84e8ca157f5e071f772a38",
-  "sema_ref": "OntologyAdapt#e673",
-  "sema_stub": "e673",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:4c47e0f79019b4299cb3ee8f3df1fb16c94b96a0148d7809d771109ed67ef59f",
+  "sema_ref": "OntologyAdapt#4c47",
+  "sema_stub": "4c47",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "anomaly": "Anomaly#7987",
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "agent": "Agent#aaec",
       "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1",
-      "noise": "Noise#c4b4"
+      "noise": "Noise#d631",
+      "ontology_handshake": "OntologyHandshake#46dc",
+      "anomaly": "Anomaly#fac8",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -7159,7 +7966,7 @@
 
 ---
 
-## ProphetFanOut#2d81
+## ProphetFanOut#85a9
 
 ```json
 {
@@ -7185,16 +7992,16 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa",
-  "sema_ref": "ProphetFanOut#2d81",
-  "sema_stub": "2d81",
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:85a962e679be621083e2f1f7e4797462353f411f4c96a0dba630f674b199007b",
+  "sema_ref": "ProphetFanOut#85a9",
+  "sema_stub": "85a9",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "aggregate": "Aggregate#af54",
-      "quorum": "Quorum#29b4",
-      "chain": "Chain#5711"
+      "aggregate": "Aggregate#7912",
+      "quorum": "Quorum#858e",
+      "chain": "Chain#711e"
     }
   }
 }
@@ -7202,7 +8009,7 @@
 
 ---
 
-## RegimeSense#3e24
+## RegimeSense#086e
 
 ```json
 {
@@ -7246,19 +8053,19 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
-  "sema_ref": "RegimeSense#3e24",
-  "sema_stub": "3e24",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:086e30af8ab3d7a71b8091dd6e8939558e08a9e12a3f7bf13c92fce74f1da89a",
+  "sema_ref": "RegimeSense#086e",
+  "sema_stub": "086e",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "break": "Break#1a63",
-      "ontology_adapt": "OntologyAdapt#e673",
-      "quorum": "Quorum#29b4",
-      "drift_watch": "DriftWatch#a20d",
-      "agent": "Agent#aaec",
-      "noise": "Noise#c4b4"
+      "drift_watch": "DriftWatch#191e",
+      "noise": "Noise#d631",
+      "quorum": "Quorum#858e",
+      "ontology_adapt": "OntologyAdapt#4c47",
+      "break": "Break#177f",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -7266,7 +8073,7 @@
 
 ---
 
-## ScopeFreeze#d8c1
+## ScopeFreeze#7d23
 
 ```json
 {
@@ -7293,7 +8100,7 @@
     {
       "name": "exception_policy",
       "type": "Enum",
-      "range": "{Reject, Queue#2ec3, CostAnalysis}",
+      "range": "{Reject, Queue#65e4, CostAnalysis}",
       "description": "Default: Queue"
     },
     {
@@ -7307,22 +8114,22 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:d8c15a8a91ccbfcdb54d00cb1c4a386969867716b402ae638e5822742cd1d2d4",
-  "sema_ref": "ScopeFreeze#d8c1",
-  "sema_stub": "d8c1",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:7d238819523d5bb7181d7f0ae7461d7902ddd78862e4eca80ecdc75ce88a8b11",
+  "sema_ref": "ScopeFreeze#7d23",
+  "sema_stub": "7d23",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "timebox_think": "TimeboxThink#2656",
-      "satisfice": "Satisfice#9161",
+      "accept_spec": "AcceptSpec#7caa",
+      "task": "Task#b328",
       "transition": "Transition#072d",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "decompose": "Decompose#ac56",
-      "accept_spec": "AcceptSpec#70dd"
+      "satisfice": "Satisfice#9859",
+      "timebox_think": "TimeboxThink#043d",
+      "decompose": "Decompose#f900",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -7330,7 +8137,7 @@
 
 ---
 
-## SemanticTabu#82dd
+## SemanticTabu#b511
 
 ```json
 {
@@ -7354,18 +8161,18 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
-  "sema_ref": "SemanticTabu#82dd",
-  "sema_stub": "82dd",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:b511d0691bf169437533d1bcc074e7c350d68e0f3a1e760454eacc289e1ccd53",
+  "sema_ref": "SemanticTabu#b511",
+  "sema_stub": "b511",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
+      "solution": "Solution#fcea",
       "trace": "Trace#9057",
-      "constraint": "Constraint#87fe",
-      "solution": "Solution#7186"
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -7373,7 +8180,7 @@
 
 ---
 
-## SurprisalUpdate#8eb2
+## SurprisalUpdate#d8c6
 
 ```json
 {
@@ -7416,19 +8223,19 @@
     "layer": "Mind",
     "category": "Inference",
     "related": [
-      "BayesUpdate#911b"
+      "BayesUpdate#13f8"
     ],
     "ring": 2
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:8eb2004c635b92c95a5dad62bbc4375a5a6728f493345334dd46f8ec2b4c3714",
-  "sema_ref": "SurprisalUpdate#8eb2",
-  "sema_stub": "8eb2",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:d8c6697a5a5f69152e8b1943205a1f29ffb88e9d62c52c12d042096b0c9502e4",
+  "sema_ref": "SurprisalUpdate#d8c6",
+  "sema_stub": "d8c6",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "epistemic_roi": "EpistemicROI#82a2",
-      "regime_sense": "RegimeSense#3e24"
+      "regime_sense": "RegimeSense#086e",
+      "epistemic_roi": "EpistemicROI#0d53"
     }
   }
 }
@@ -7469,8 +8276,8 @@
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "base_rate_include": "BaseRateInclude#aa0b",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "cognitive_bias": "CognitiveBias#4b32",
+      "base_rate_include": "BaseRateInclude#aa0b"
     }
   }
 }
@@ -7478,7 +8285,77 @@
 
 ---
 
-## BeliefTracking#e02e
+## TemporalEnsembleForecasting#21af
+
+```json
+{
+  "handle": "TemporalEnsembleForecasting",
+  "mechanism": "The paper's \u00a76.5 protocol for forecasting via ensembles of models frozen at different points in history (Temporal Checkpoint Ensemble). Decomposes prediction via {{conceptual_decomposition}} along two axes simultaneously: temporal diversity (each checkpoint reasons from a different knowledge horizon \u2014 the 2020 checkpoint knows nothing of COVID's economic aftermath; the 2022 checkpoint has internalized it) and causal-lens diversity (each forecast is run through the Forecasting Pentagon: structural, economic, political, base-rate, temporal \u2014 five non-substitutable angles that suppress each other if entangled in a single pass). A ReduceSolver composes the matrix of forecasts, not by averaging but by preserving causal reasoning from each horizon and identifying where independent knowledge states converge on the same structural driver. When three checkpoints spanning different knowledge states independently identify the same causal mechanism, that mechanism has survived a temporal adversarial test no single-model forecast can replicate.",
+  "gloss": "Forecast by ensemble of model-checkpoints from different history horizons, each run through five non-substitutable causal lenses \u2014 convergence across time is the signal",
+  "invariants": [
+    "Temporal diversity source: the checkpoints differ by training-data cutoff, not by prompting \u2014 history itself is the diversity generator.",
+    "Five-angle Forecasting Pentagon: each checkpoint's forecast is decomposed across structural, economic, political, base-rate, and temporal dimensions (the pentagon passes the four-test decomposition).",
+    "Convergence-not-averaging: the reduction gate accepts convergence of structural drivers across horizons, not arithmetic average of point predictions."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "sema_id": "sema:TemporalEnsembleForecasting#mh:SHA-256:21af04e2b09d31b5e676e8717d01407299e552cf6a1442fccc072b1a4032494a",
+  "sema_ref": "TemporalEnsembleForecasting#21af",
+  "sema_stub": "21af",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f"
+    }
+  }
+}
+```
+
+---
+
+## TruthseekingProtocol#e46e
+
+```json
+{
+  "handle": "TruthseekingProtocol",
+  "mechanism": "The paper's \u00a76.7 protocol for evaluating factual claims through layered epistemic decomposition, where each verified result persists as a content-addressed Sema pattern \u2014 the system gets smarter and verification gets cheaper with every use (the accretion loop). Unlike monolithic claim evaluation (which entangles source credibility, logical consistency, and cross-referencing in one pass, letting strong evidence on any one axis suppress scrutiny on the others), the protocol applies {{conceptual_decomposition}} to verification-depth, producing five layers governed by {{marginal_value_rule}}: Layer 0 cache (has this exact claim been verified?), Layer 1 structural coherence (does this contradict the verified cache?), Layer 2 epistemic decomposition (ClaimExtractorSolver isolates falsifiable statements, ProvenanceSolver evaluates source independent of content, CoherenceSolver checks internal consistency independent of source, CorrespondenceSolver queries external data, ContestabilitySolver constructs the strongest counter-case), Layer 3 cross-domain specialists in the Cognitive Commons, Layer 4 empirical verification via primary data gathering. Each layer's Solvers operate behind the contract, blind to the others' outputs until they compose at a typed boundary. Verified claims mint as new Sema patterns that enter the Layer 0 cache. Composes with {{validate}} at each layer boundary.",
+  "gloss": "Layered epistemic verification (cache \u2192 coherence \u2192 decomposition \u2192 specialists \u2192 empirical), with verified claims persisting as Sema patterns \u2014 the accretion loop",
+  "invariants": [
+    "Layer-blind composition: Solvers within a layer do not see each other's outputs until they compose at a typed boundary \u2014 no suppression of scrutiny by a strong signal on a parallel axis.",
+    "Accretion monotonic: a verified claim enters the Layer-0 cache as a content-addressed pattern and remains there until superseded by a counter-claim that survives the same layers.",
+    "Marginal-value depth: most claims resolve at Layer 0; only claims with genuine novelty or contradiction incur higher layers' cost, governed by {{marginal_value_rule}}."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:e46e6ed26ab83b3ce99c0c28055fb946158eea44293ac8b2ebc270e4b7d56455",
+  "sema_ref": "TruthseekingProtocol#e46e",
+  "sema_stub": "e46e",
+  "dependencies": {
+    "references": {
+      "validate": "Validate#ebe1"
+    },
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f",
+      "marginal_value_rule": "MarginalValueRule#32ce"
+    }
+  }
+}
+```
+
+---
+
+## BeliefTracking#39cf
 
 ```json
 {
@@ -7516,21 +8393,21 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "BayesUpdate#911b"
+      "BayesUpdate#13f8"
     ],
     "ring": 2
   },
-  "sema_id": "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991",
-  "sema_ref": "BeliefTracking#e02e",
-  "sema_stub": "e02e",
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:39cf2ce07c44d5520931c23d174915ad69b76530a3d0745442eb958f0c8e832a",
+  "sema_ref": "BeliefTracking#39cf",
+  "sema_stub": "39cf",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "surprisal_update": "SurprisalUpdate#8eb2",
+      "belief": "Belief#a9ce",
       "cognitive_bias": "CognitiveBias#4b32",
-      "belief": "Belief#5ad9"
+      "surprisal_update": "SurprisalUpdate#d8c6",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -7538,12 +8415,12 @@
 
 ---
 
-## Cache#1ea9
+## Cache#cd97
 
 ```json
 {
   "handle": "Cache",
-  "mechanism": "A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}}. It enables {{heuristic_snap}} by bypassing re-computation.",
+  "mechanism": "A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}} alongside the inputs that produced them, so repeat lookups bypass re-computation. Read-through, write-behind, and invalidation discipline are descendant concerns; the foundation is the keyed lookup that returns a stored value if present.",
   "gloss": "Temporary high-speed storage",
   "failure_modes": [
     "Staleness: Serving outdated data after the source has changed.",
@@ -7560,9 +8437,9 @@
   "postconditions": [
     "Value retrieved significantly faster than source"
   ],
-  "sema_id": "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073",
-  "sema_ref": "Cache#1ea9",
-  "sema_stub": "1ea9",
+  "sema_id": "sema:Cache#mh:SHA-256:cd9732c5c9b4686dcc6c3fd1c8c1c5e20a94a7ac33aee969c678cdc7380d95bc",
+  "sema_ref": "Cache#cd97",
+  "sema_stub": "cd97",
   "_meta": {
     "layer": "Mind",
     "category": "Memory",
@@ -7573,7 +8450,6 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "heuristic_snap": "HeuristicSnap#cece",
       "state": "State#4d58",
       "datum": "Datum#31cf"
     }
@@ -7583,7 +8459,7 @@
 
 ---
 
-## ChunkMerge#ded6
+## ChunkMerge#43ae
 
 ```json
 {
@@ -7607,17 +8483,17 @@
     "category": "Memory",
     "ring": 2
   },
-  "sema_id": "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351",
-  "sema_ref": "ChunkMerge#ded6",
-  "sema_stub": "ded6",
+  "sema_id": "sema:ChunkMerge#mh:SHA-256:43ae7aa56537a6967339b1f836a7e3cae64f188d35c68407315f269f07a6ecd9",
+  "sema_ref": "ChunkMerge#43ae",
+  "sema_stub": "43ae",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
+      "hierarchy": "Hierarchy#d530",
       "compress": "Compress#0967",
-      "aggregate": "Aggregate#af54",
-      "hierarchy": "Hierarchy#aa9b"
+      "aggregate": "Aggregate#7912",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -7625,16 +8501,16 @@
 
 ---
 
-## ContextCompress#6dbd
+## ContextCompress#4845
 
 ```json
 {
   "handle": "ContextCompress",
   "mechanism": "A memory management primitive that uses {{compress}} to reduce the token footprint of a {{context}} while preserving critical {{state}}. It explicitly retains active {{constraint}}s and unresolved goals.",
   "gloss": "Semantic compression for long-running contexts",
-  "sema_id": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817",
-  "sema_ref": "ContextCompress#6dbd",
-  "sema_stub": "6dbd",
+  "sema_id": "sema:ContextCompress#mh:SHA-256:48458df78d10876c4902fa808ae131b038616f5f0014d1571afd61d23a08b81f",
+  "sema_ref": "ContextCompress#4845",
+  "sema_stub": "4845",
   "_meta": {
     "layer": "Mind",
     "category": "Memory",
@@ -7643,15 +8519,12 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Memory",
-  "signature": [
-    "Compress#0967(Context#510a)"
-  ],
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
+      "state": "State#4d58",
       "compress": "Compress#0967",
       "context": "Context#510a",
-      "state": "State#4d58"
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -7659,13 +8532,57 @@
 
 ---
 
-## ExperienceSharding#d920
+## CurriculumReplay#13d4
+
+```json
+{
+  "handle": "CurriculumReplay",
+  "mechanism": "Agents re-train on their own high-scoring past outputs during downtime to reinforce successful behaviors. Self-distillation without external supervision. {{agent}} maintains a replay buffer of successful interactions ranked by outcome quality. During idle cycles, agent samples from buffer and fine-tunes on its own best work. {{decay}} function prioritizes recent successes over stale ones. It draws training examples from the {{experience_sharding}} database, filtering for high-quality outcomes.",
+  "gloss": "Self-supervised reinforcement via memory sampling",
+  "failure_modes": [
+    "Model Collapse: {{agent}} over-fits to its own outputs, drifting into a closed loop of hallucination."
+  ],
+  "invariants": [
+    "Examples ordered by complexity (easy to hard)",
+    "No catastrophic forgetting of earlier lessons"
+  ],
+  "preconditions": [
+    "Dataset of task examples",
+    "Learning agent"
+  ],
+  "postconditions": [
+    "{{agent}} performance improved on target distribution"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 2
+  },
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:13d4d3af882c43d16e0e4a1b0efc4ea213bd39ccf9e9121d82e8a42c7bcc55c2",
+  "sema_ref": "CurriculumReplay#13d4",
+  "sema_stub": "13d4",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "experience_sharding": "ExperienceSharding#43c3",
+      "decay": "Decay#a1d4",
+      "agent": "Agent#35b9"
+    }
+  }
+}
+```
+
+---
+
+## ExperienceSharding#43c3
 
 ```json
 {
   "handle": "ExperienceSharding",
   "mechanism": "Applies the {{shard}} primitive to agent memory. When context fills, the agent splits into two specialized agents (active vs archival) rather than forgetting. It segments history into discrete blocks via {{chunk_merge}} before distributing them across the agent cluster.",
-  "gloss": "A single agent evolves into a colony of specialists preserving total history.",
+  "gloss": "Agent bifurcation on context saturation: active vs archival specialists",
   "failure_modes": [
     "coordination overhead between the shards increases."
   ],
@@ -7705,19 +8622,19 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "FabricSharding#7399"
+      "FabricSharding#880b"
     ],
     "ring": 0
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
-  "sema_ref": "ExperienceSharding#d920",
-  "sema_stub": "d920",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:43c36b2250e4e10bd0d9d83beb1f8e68ee629d2cc076eaf9ef1f57a4dde2cbe4",
+  "sema_ref": "ExperienceSharding#43c3",
+  "sema_stub": "43c3",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "shard": "Shard#1e74",
-      "chunk_merge": "ChunkMerge#ded6"
+      "chunk_merge": "ChunkMerge#43ae",
+      "shard": "Shard#1e74"
     }
   }
 }
@@ -7725,7 +8642,7 @@
 
 ---
 
-## HolographicShard#1352
+## HolographicShard#c137
 
 ```json
 {
@@ -7771,16 +8688,16 @@
     "category": "Memory",
     "ring": 0
   },
-  "sema_id": "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f",
-  "sema_ref": "HolographicShard#1352",
-  "sema_stub": "1352",
+  "sema_id": "sema:HolographicShard#mh:SHA-256:c137cf1fad9b9dc48b26b8cbf32ea744f91b69f5f5f7a7d3a7ad72b12ee48545",
+  "sema_ref": "HolographicShard#c137",
+  "sema_stub": "c137",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "fabric_sharding": "FabricSharding#7399",
-      "deep": "Deep#89f0",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "fabric_sharding": "FabricSharding#880b",
+      "deep": "Deep#89f0"
     }
   }
 }
@@ -7821,8 +8738,8 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "identity": "Identity#626c",
-      "concept_anchor": "ConceptAnchor#9187"
+      "concept_anchor": "ConceptAnchor#9187",
+      "identity": "Identity#626c"
     }
   }
 }
@@ -7830,12 +8747,182 @@
 
 ---
 
-## RetrievalAugment#ca58
+## LocalizedLearning#fcc7
+
+```json
+{
+  "handle": "LocalizedLearning",
+  "mechanism": "A learning process that performs the {{act}} of routing {{feedback_signal}} exclusively to the specific {{solver_manifest}} that generated the result. By partitioning memory updates by subproblem type, it prevents the catastrophic interference common in monolithic models. The feedback signal is tagged with solver ID, ensuring updates are isolated.",
+  "gloss": "Partitioned feedback router for solver learning",
+  "failure_modes": [
+    "Echo Chamber: A specialist solver over-optimizes for its narrow metric, ignoring global context.",
+    "Feedback Sparsity: Rare modules receive insufficient feedback to learn.",
+    "Misrouting: Feedback is attributed to the wrong solver.",
+    "Signal Decay: Feedback arrives too late to be useful."
+  ],
+  "invariants": [
+    "Isolation: Update(Solver_A) cannot change Weights(Solver_B).",
+    "Attribution: Each feedback signal must identify its source solver.",
+    "Standardization: Feedback format is universal across all solver types."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 1
+  },
+  "sema_id": "sema:LocalizedLearning#mh:SHA-256:fcc7ce39c401ba37771431503aaad0ef9715a01c0844d3594cea64475048e8e2",
+  "sema_ref": "LocalizedLearning#fcc7",
+  "sema_stub": "fcc7",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "signature": [
+    "Act#5d55(FeedbackSignal#f174)"
+  ],
+  "dependencies": {
+    "references": {
+      "act": "Act#5d55",
+      "solver_manifest": "SolverManifest#ea7a"
+    },
+    "accepts": {
+      "feedback_signal": "FeedbackSignal#f174"
+    }
+  }
+}
+```
+
+---
+
+## PathwayMemory#0799
+
+```json
+{
+  "handle": "PathwayMemory",
+  "mechanism": "A {{cache}} of routing outcomes, recording (problem_class, route_chosen, outcome_quality) tuples. Enables a dispatching Solver to learn which routes produce better results for which problem types. The RootSolver's PathwayMemory is the architecture's most consequential site of compounding \u2014 it sees how every problem enters the system, and its accumulated routing decisions determine which reasoning highways densify over time. Every dispatching node has its own PathwayMemory; they are not shared, but can be aggregated for cross-node learning.",
+  "gloss": "Learned routing memory: problem_class \u2192 route \u2192 outcome_quality",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "entries"
+    ],
+    "properties": {
+      "entries": {
+        "type": "array",
+        "description": "List of routing records",
+        "items": {
+          "type": "object",
+          "required": [
+            "problem_class",
+            "route_chosen",
+            "outcome_quality"
+          ],
+          "properties": {
+            "problem_class": {
+              "type": "string"
+            },
+            "route_chosen": {
+              "type": "string"
+            },
+            "outcome_quality": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  },
+  "invariants": [
+    "Append-only within a session: historical records are not edited, only new entries added.",
+    "Scoped: each PathwayMemory belongs to exactly one dispatching node."
+  ],
+  "failure_modes": [
+    "Poisoned entries (false outcome_quality from compromised writers) silently bias all downstream routing without triggering any failure mode.",
+    "Stale entries reflecting outdated problem distributions mislead current routing; no automatic aging.",
+    "Cross-node aggregation without provenance contaminates local routing with off-domain signal."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 1,
+    "caution": "Silent contamination vector \u2014 poisoned entries bias all downstream routing decisions without triggering failure modes. Integrity of writers must be enforced."
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "sema_id": "sema:PathwayMemory#mh:SHA-256:0799234ac2992646e119585288ccf5e96685c35bd5c55ee0fb1e26ce74bdfdd4",
+  "sema_ref": "PathwayMemory#0799",
+  "sema_stub": "0799",
+  "dependencies": {
+    "references": {
+      "cache": "Cache#cd97"
+    }
+  }
+}
+```
+
+---
+
+## Proprioception#e486
+
+```json
+{
+  "handle": "Proprioception",
+  "mechanism": "Continuous self-monitoring of position in the {{task}} graph. An {{agent}} periodic 'ping' to itself to verify {{context}}, active tool state, and depth in recursion. Prevents 'getting lost' in long chains of thought. It maintains internal {{state}} awareness, using {{somatic_marker}} to detect recursion depth limits or resource fatigue.",
+  "gloss": "Self-location awareness within the task graph",
+  "failure_modes": [
+    "Stagnation: {{agent}} remains in same node > N ticks Orphaned: Parent {{task}} ID not found/unresponsive Hallucinated {{context}}: Stack {{trace}} does not match environmental reality"
+  ],
+  "invariants": [
+    "{{context}} Continuity: {{agent}} knows its parent {{task}} ID",
+    "Liveness: Parent.status == ACTIVE",
+    "{{state}} Recovery: Can reconstruct stack {{trace}} from logs"
+  ],
+  "parameters": [
+    {
+      "name": "max_recursion_depth",
+      "type": "PositiveInteger",
+      "range": "unspecified",
+      "description": "Default: 10"
+    },
+    {
+      "name": "stagnation_threshold",
+      "type": "Int",
+      "range": "[1, 100]",
+      "description": "Ticks before abort"
+    }
+  ],
+  "_meta": {
+    "tier": 3,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 2
+  },
+  "sema_id": "sema:Proprioception#mh:SHA-256:e48696d927609b38ba32467846cc70a4ec8ddff101ec9b6728bfd99637df0e1d",
+  "sema_ref": "Proprioception#e486",
+  "sema_stub": "e486",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "task": "Task#b328",
+      "somatic_marker": "SomaticMarker#53bb",
+      "trace": "Trace#9057",
+      "state": "State#4d58",
+      "context": "Context#510a",
+      "agent": "Agent#35b9"
+    }
+  }
+}
+```
+
+---
+
+## RetrievalAugment#2ecb
 
 ```json
 {
   "handle": "RetrievalAugment",
-  "mechanism": "Before generating a response, the {{agent}} queries an external knowledge store (vector database, search index, knowledge graph) to retrieve relevant {{context}}. Retrieved documents are injected into the {{prompt}}, grounding the response in external facts rather than relying solely on parametric memory. The canonical RAG (Retrieval-Augmented Generation) pattern. It injects external {{context}} into the {{chain_of_thought}}, grounding the reasoning process in retrieved facts.",
+  "mechanism": "Before generating a response, the {{agent}} queries an external knowledge store via {{latent_attachment}}-backed retrieval (vector database, search index, knowledge graph) to surface relevant {{context}}. The retrieval obeys {{context_first}}: no generation fires before the external lookup completes. Retrieved documents are injected into the {{prompt}}, grounding the response in external facts rather than relying solely on parametric memory. The canonical RAG (Retrieval-Augmented Generation) pattern. It injects external {{context}} into the {{chain_of_thought}}, grounding the reasoning process in retrieved facts.",
   "gloss": "Ground responses in retrieved external knowledge",
   "failure_modes": [
     "Retrieval Poisoning: Malicious or incorrect documents in the index contaminate responses.",
@@ -7851,21 +8938,23 @@
     "layer": "Mind",
     "category": "Memory",
     "related": [
-      "DeepResearch#cbe3"
+      "DeepResearch#2a05"
     ],
     "ring": 2
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
-  "sema_ref": "RetrievalAugment#ca58",
-  "sema_stub": "ca58",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:2ecb9c4ce49ecbbf58c9e4dfb241a769223ae358f1d4548482f8928e61627dfe",
+  "sema_ref": "RetrievalAugment#2ecb",
+  "sema_stub": "2ecb",
   "sema_layer": "Mind",
   "sema_category": "Memory",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "prompt": "Prompt#5ded",
-      "chain_of_thought": "ChainOfThought#6201",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "prompt": "Prompt#b18a",
+      "latent_attachment": "LatentAttachment#ab68",
+      "context_first": "ContextFirst#def7",
+      "chain_of_thought": "ChainOfThought#c3cd",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -7946,7 +9035,7 @@
     "tier": 2,
     "layer": "Mind",
     "category": "Memory",
-    "ring": 0
+    "ring": 2
   },
   "sema_id": "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832",
   "sema_ref": "SelfReminder#c896",
@@ -7955,9 +9044,67 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
+      "context": "Context#510a",
       "trace": "Trace#9057",
-      "constraint": "Constraint#87fe",
-      "context": "Context#510a"
+      "constraint": "Constraint#87fe"
+    }
+  }
+}
+```
+
+---
+
+## SimulationTrace#c2e6
+
+```json
+{
+  "handle": "SimulationTrace",
+  "mechanism": "Before taking an irreversible action (e.g., `delete_file`), the agent simulates the execution step-by-step in a scratchpad. It inspects the predicted state after the action. If the state looks bad, it aborts. It generates a verifiable {{trace}} of a {{mental_sim}}, creating an immutable record of the predicted future state.",
+  "gloss": "Pre-execution mental model",
+  "failure_modes": [
+    "{{simulation}} inaccuracy (the map is not the territory)."
+  ],
+  "invariants": [
+    "Causality: Every step T+1 is derived from T",
+    "Replayability: {{trace}}(Start) == End",
+    "{{trace}} immutable after creation."
+  ],
+  "preconditions": [
+    "{{simulation}} engine initialized"
+  ],
+  "postconditions": [
+    "Verifiable trace artifact generated"
+  ],
+  "parameters": [
+    {
+      "name": "confidence_floor",
+      "type": "Probability#356b",
+      "range": "[0.5, 0.9]",
+      "description": "Min certainty to trust trace"
+    },
+    {
+      "name": "simulation_fidelity",
+      "type": "Percentage",
+      "range": "[70%, 99%]",
+      "description": "Required model accuracy"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "sema_id": "sema:SimulationTrace#mh:SHA-256:c2e62aa7617e24b4d832b9c83cf544a63bc346d4e38ebf863278ccb556bb946f",
+  "sema_ref": "SimulationTrace#c2e6",
+  "sema_stub": "c2e6",
+  "dependencies": {
+    "references": {
+      "mental_sim": "MentalSim#10ff",
+      "trace": "Trace#9057",
+      "simulation": "Simulation#aa24"
     }
   }
 }
@@ -8002,77 +9149,89 @@
 
 ---
 
-## Abduction#fe2b
+## TraceBelief#7933
+
+```json
+{
+  "handle": "TraceBelief",
+  "mechanism": "A chronological reasoning pattern that tracks the history of a belief. Prevents 'Silent Updating' by forcing the agent to cite the specific past belief node it is revising. Instantiates the {{trace}} primitive on a {{belief}} object. Utilizes {{trace}}, {{surprisal_update}}, {{belief}}, {{time_warp_log}}.",
+  "gloss": "Belief Provenance (Macro for Trace(Belief))",
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 2
+  },
+  "sema_id": "sema:TraceBelief#mh:SHA-256:793355797fb406924e3763b280a01829d1e8a650fafc5ce71f6a1c0d1cc8e222",
+  "sema_ref": "TraceBelief#7933",
+  "sema_stub": "7933",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "signature": [
+    "Trace#9057(Belief#a9ce)"
+  ],
+  "dependencies": {
+    "references": {
+      "belief": "Belief#a9ce",
+      "trace": "Trace#9057",
+      "time_warp_log": "TimeWarpLog#a0ac",
+      "surprisal_update": "SurprisalUpdate#d8c6"
+    }
+  }
+}
+```
+
+---
+
+## Abduction#a9df
 
 ```json
 {
   "handle": "Abduction",
-  "mechanism": "The 'best guess' based on incomplete observation. Inference to the best explanation. (The grass is wet -> It probably rained). Triggers {{hypothesis}} generation.",
-  "gloss": "Inference to best explanation",
+  "mechanism": "Inference to the best explanation. Given a surprising observation, generate candidate explanations and {{rank}} them by simplicity, scope, and coherence with existing knowledge. Adopt the highest-ranked as working {{hypothesis}}, flagged as provisional \u2014 not proven. Uses {{chain_of_thought}} to trace the reasoning path from observation to explanation so the inferential leap is explicit and verifiable. The classical third mode of reasoning alongside {{deduction}} (necessary) and {{induction}} (probable from instances): Abduction is probable from a single anomaly plus background knowledge.",
+  "gloss": "Inference to the best explanation \u2014 provisional, ranked by simplicity/scope/coherence",
+  "failure_modes": [
+    "Conspiracy Thinking: Preferring complex, coherent explanations over simple, messy ones (overfitting the narrative).",
+    "Stopping too early: adopting the first plausible explanation without considering alternatives.",
+    "Treating the provisional hypothesis as proven in downstream reasoning."
+  ],
+  "invariants": [
+    "Explanation must cover all observed anomalies in the input.",
+    "Simplicity heuristic (Occam's Razor) applied when comparing candidates of similar scope.",
+    "Output is flagged provisional, never asserted as proven."
+  ],
+  "preconditions": [
+    "Set of observations, at least one unexplained by existing model.",
+    "No deductive path to the explanation."
+  ],
+  "postconditions": [
+    "{{hypothesis}} generated and ranked by likelihood.",
+    "Working hypothesis adopted with provisional status."
+  ],
   "_meta": {
     "layer": "Mind",
     "category": "Reasoning",
     "ring": 1,
-    "tier": 1
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
-  "sema_id": "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b",
-  "sema_ref": "Abduction#fe2b",
-  "sema_stub": "fe2b",
-  "dependencies": {
-    "references": {
-      "hypothesis": "Hypothesis#e95b"
-    }
-  }
-}
-```
-
----
-
-## AbductiveLeap#1069
-
-```json
-{
-  "handle": "AbductiveLeap",
-  "mechanism": "Inference to Best Explanation: Given surprising observation, generate candidate explanations. {{rank}} by simplicity, scope, and coherence with existing knowledge. Adopt highest-ranked as working hypothesis. Flag as provisional, not proven. It employs {{chain_of_thought}} to trace the reasoning path from observation to explanation, ensuring the logical leap is explicit and verifiable.",
-  "gloss": "Inference to the best explanation",
-  "failure_modes": [
-    "Conspiracy Thinking: Preferring complex, coherent explanations over simple, messy ones (overfitting the narrative)."
-  ],
-  "invariants": [
-    "Explanation must cover all observed anomalies",
-    "Simplicity heuristic (Occam's Razor) applied"
-  ],
-  "preconditions": [
-    "No deductive path to explanation",
-    "Set of observations"
-  ],
-  "postconditions": [
-    "{{hypothesis}} generated",
-    "{{hypothesis}} ranked by likelihood"
-  ],
-  "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "related": [
-      "HypothesisLadder#e739"
-    ],
-    "ring": 2
+    "caution": "Best-guess inference \u2014 always provisional. Must be composed with a verification step in high-stakes domains.",
+    "supersedes": [
+      "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d"
+    ]
   },
-  "sema_id": "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
-  "sema_ref": "AbductiveLeap#1069",
-  "sema_stub": "1069",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
+  "sema_id": "sema:Abduction#mh:SHA-256:a9dfc3350b4a0b9b8424cdfeaa9c6c90cb6a87123b310789f181ee9e67ca7941",
+  "sema_ref": "Abduction#a9df",
+  "sema_stub": "a9df",
   "dependencies": {
     "references": {
-      "rank": "Rank#cb98",
-      "hypothesis": "Hypothesis#e95b"
+      "induction": "Induction#2487",
+      "hypothesis": "Hypothesis#ffa7",
+      "rank": "Rank#7a76",
+      "deduction": "Deduction#9c88"
     },
     "composes_with": {
-      "chain_of_thought": "ChainOfThought#6201"
+      "chain_of_thought": "ChainOfThought#c3cd"
     }
   }
 }
@@ -8080,12 +9239,12 @@
 
 ---
 
-## BackwardChain#0484
+## BackwardChain#a231
 
 ```json
 {
   "handle": "BackwardChain",
-  "mechanism": "Goal-First Decomposition: Start from desired end-state, recursively identify prerequisites. For each prerequisite, ask \"what must be true for this to hold?\" until reaching known facts or actionable steps. Execution order is reverse of discovery order. It structures the {{chain_of_thought}} in reverse chronological order, linking the desired future state to present preconditions.",
+  "mechanism": "Goal-First Decomposition: Start from desired end-state, recursively identify prerequisites. For each prerequisite, ask \"what must be true for this to hold?\" until reaching known facts or actionable steps. Execution order is reverse of discovery order. A goal-directed form of {{deduction}} \u2014 derives required antecedents from the desired consequent. Structures the {{chain_of_thought}} in reverse chronological order, linking the desired future state to present preconditions.",
   "gloss": "Goal-driven reasoning from target to preconditions",
   "failure_modes": [
     "Infinite Regression: The precondition chain never terminates because base facts are missing."
@@ -8108,16 +9267,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b",
-  "sema_ref": "BackwardChain#0484",
-  "sema_stub": "0484",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:a231ada9216f6fef3fc3b7e307802b3e05cc3db778b8020e378dfb531137965f",
+  "sema_ref": "BackwardChain#a231",
+  "sema_stub": "a231",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "plan": "Plan#64f2",
-      "chain_of_thought": "ChainOfThought#6201",
-      "chain": "Chain#5711"
+      "chain_of_thought": "ChainOfThought#c3cd",
+      "plan": "Plan#fd6d",
+      "deduction": "Deduction#9c88",
+      "chain": "Chain#711e"
     }
   }
 }
@@ -8159,7 +9319,7 @@
 
 ---
 
-## ChainOfThought#6201
+## ChainOfThought#c3cd
 
 ```json
 {
@@ -8176,27 +9336,153 @@
     "category": "Reasoning",
     "related": [
       "ProgramOfThought",
-      "ReAct#b487"
+      "ReAct#e018"
     ],
     "ring": 2
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-  "sema_ref": "ChainOfThought#6201",
-  "sema_stub": "6201",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:c3cd00ab11984f75ecb20bdcace9a0837fad01c828b7858bc1323a795fc43202",
+  "sema_ref": "ChainOfThought#c3cd",
+  "sema_stub": "c3cd",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
-    "Think#e1bd(Chain#5711)"
+    "Think#e1bd(Chain#711e)"
   ],
   "dependencies": {
     "references": {
-      "think": "Think#e1bd",
       "topology": "Topology#2408",
-      "chain": "Chain#5711"
+      "think": "Think#e1bd",
+      "chain": "Chain#711e"
     },
     "composes_with": {
-      "step_back": "StepBack#b079",
-      "reflexion": "Reflexion#51b9"
+      "reflexion": "Reflexion#eed9",
+      "step_back": "StepBack#b16f"
+    }
+  }
+}
+```
+
+---
+
+## CiteBack#bcc5
+
+```json
+{
+  "handle": "CiteBack",
+  "mechanism": "The agent is forbidden from stating a fact unless it can simultaneously generate a pointer (quote or ID) to the specific chunk of context that supports it. No hallucination allowed; only citation. It forces a verification step where every assertion must be supported by a {{retrieval_augment}} lookup returning the source ID.",
+  "gloss": "Grounding claims in source",
+  "failure_modes": [
+    "Inability to answer implicit or common-sense questions."
+  ],
+  "invariants": [
+    "Every assertion links to source ID",
+    "Source must exist in context history"
+  ],
+  "preconditions": [
+    "Generated claim",
+    "Source material available"
+  ],
+  "postconditions": [
+    "Claim decorated with citation"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_id": "sema:CiteBack#mh:SHA-256:bcc5f0da7205f446b829c6b70fa40ad3e676cc359eb04ef2280c03e1498ecde6",
+  "sema_ref": "CiteBack#bcc5",
+  "sema_stub": "bcc5",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "retrieval_augment": "RetrievalAugment#2ecb"
+    }
+  }
+}
+```
+
+---
+
+## CognitiveEcho#5252
+
+```json
+{
+  "handle": "CognitiveEcho",
+  "mechanism": "Variance-Based Effort Estimation: {{agent}} runs N rapid, low-fidelity simulations of the task. If outcomes diverge significantly, it triggers decomposition. Ping the problem before solving it. High variance in simulation implies hidden complexity. Process: (1) Generate N quick solution sketches, (2) Measure outcome variance, (3) If variance > threshold, decompose; else execute simplest solution.",
+  "gloss": "Estimating difficulty via simulation variance",
+  "failure_modes": [
+    "Correlated Hallucination: All simulations are wrong in the exact same way (low variance, high error).",
+    "The simulation model might be too simple to catch edge cases (false negative).",
+    "{{simulation}} cost may exceed just trying the task for truly simple problems.",
+    "Sample count is arbitrary - tuning required."
+  ],
+  "invariants": [
+    "Delay does not exceed short-term memory bounds",
+    "Echo content matches input semantic hash"
+  ],
+  "preconditions": [
+    "Feedback loop enabled",
+    "Input signal"
+  ],
+  "postconditions": [
+    "{{signal}} amplified or validated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "related": [
+      "SignalReflection#a613"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:5252515f350d9f3df7d64a544570c8795048f17a56288c854ab42974ad2ddeec",
+  "sema_ref": "CognitiveEcho#5252",
+  "sema_stub": "5252",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "simulation": "Simulation#aa24",
+      "agent": "Agent#35b9",
+      "signal": "Signal#f39d"
+    }
+  }
+}
+```
+
+---
+
+## CollaborativeWritingProtocol#0588
+
+```json
+{
+  "handle": "CollaborativeWritingProtocol",
+  "mechanism": "The paper's \u00a76.1 protocol for producing textual (or any structured) output that must meet a quality standard. Decomposes the concept of quality-constrained production into five orthogonal dimensions via {{conceptual_decomposition}}: substance (what material must the artifact contain), structure (how does it organize), generation (produce freely with evaluation elsewhere), evaluation (does it meet the standard across independent quality dimensions), and refinement (surface quality on a structurally complete artifact). Two parallel mechanisms run together: a structural pipeline (ScopeDiscoverySolver \u2192 SequencingCoherenceSolver \u2192 UnitConstraintSolver \u2192 StructuralVerificationSolver \u2192 VoiceRefinementSolver) that separates generation from evaluation, and concurrent ObserverSolvers (RepetitionSolver, ContradictionSolver, IntentSolver, AudienceReceptionSolver) that externalize the silent evaluative thinking a solo writer does with interference. The protocol transfers beyond writing to any domain where something must be produced to a standard (music composition, interface design).",
+  "gloss": "Decompose quality-constrained production into substance, structure, generation, evaluation, and refinement \u2014 the five orthogonal dimensions a producer must address",
+  "invariants": [
+    "Dimension-orthogonal: the five sub-concepts pass the four-test decomposition ({{conceptual_decomposition}}); an observer checking repetition does not generate, a generator does not self-censor toward criteria it lacks.",
+    "Concurrent-not-sequential: evaluative observers run alongside generation, producing typed annotations that accumulate; they are not editors.",
+    "Variable-depth: each of the five dimensions can itself recurse via its own sub-solver tree when the stakes warrant it ({{marginal_value_rule}} governs depth)."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:0588bcabfe6a70a924aebd2acca7e968211cd39612c23cad01a93ad8d2b6cb86",
+  "sema_ref": "CollaborativeWritingProtocol#0588",
+  "sema_stub": "0588",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f",
+      "marginal_value_rule": "MarginalValueRule#32ce"
     }
   }
 }
@@ -8227,6 +9513,107 @@
   "sema_stub": "4881",
   "sema_layer": "Mind",
   "sema_category": "Reasoning"
+}
+```
+
+---
+
+## ConceptualDecomposition#f81f
+
+```json
+{
+  "handle": "ConceptualDecomposition",
+  "mechanism": "The cognitive act of taking a concept \u2014 typically a problem or task \u2014 and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (at minimum exposes a Manifest + Execute surface, so it is independently delegatable). Distinct from generic {{decompose}}: Decompose merely divides; ConceptualDecomposition divides *into solver-compatible units*. This is the intellectual move that enables recursive fractal structure \u2014 because child concepts conform to the same interface as the parent, the same five-surface contract governs every level. A few agents can assign these solver roles to themselves and perform lightweight fractal intelligence for a specific problem; the resulting structure may persist as a reusable pattern or be torn down at completion. The decomposition is passed through a {{decomposition_gate}} to validate Necessity, Independence, Universality, and Completeness before any child is spawned. Children compose back via {{synthesis}} once their individual results return.",
+  "gloss": "Breaking a concept into solver-contract-bound sub-concepts \u2014 the move that enables fractal recursion",
+  "invariants": [
+    "Contract-binding: every sub-concept exposes the {{solver}} interface (Manifest + Execute mandatory).",
+    "Gated: decompositions pass the {{decomposition_gate}} suite (Necessity, Independence, Universality, Completeness) before children are spawned.",
+    "Recomposability: results of sub-concepts compose back to the parent concept via {{synthesis}}."
+  ],
+  "failure_modes": [
+    "Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.",
+    "Non-orthogonal split: the decomposition overlaps itself; the {{decomposition_gate}} Independence test should catch this but does not if the overlap is semantic rather than structural.",
+    "Contract violation: sub-concepts that do not cleanly expose Manifest + Execute cannot be dispatched \u2014 the decomposition produced descriptions, not delegatable units.",
+    "Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing holographic-shard leakage."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
+  "sema_ref": "ConceptualDecomposition#f81f",
+  "sema_stub": "f81f",
+  "dependencies": {
+    "composes_with": {
+      "decomposition_gate": "DecompositionGate#7acd",
+      "synthesis": "Synthesis#26b9"
+    },
+    "references": {
+      "solver": "Solver#94ab",
+      "decompose": "Decompose#f900"
+    }
+  }
+}
+```
+
+---
+
+## ConstructOntology#b45e
+
+```json
+{
+  "handle": "ConstructOntology",
+  "mechanism": "A primitive for building a structured set of concepts and relationships (an ontology) from raw data or seed axioms. It defines the 'physics' or 'rules' of a domain. This is the constructive counterpart to 'Adversarial Ontology Construction' (which is a methodology using this primitive). It builds the semantic graph from {{first_principles}}, validating edge coherence via {{adversarial_steel}} and establishing shared context through {{ontology_handshake}}.",
+  "gloss": "Building a structured conceptual framework",
+  "failure_modes": [
+    "Incoherence: Contradictory axioms or definitions."
+  ],
+  "invariants": [
+    "Completeness: All referenced terms are defined",
+    "Consistency: No contradictions within the ontology"
+  ],
+  "preconditions": [
+    "Seed concepts or data available"
+  ],
+  "postconditions": [
+    "Valid ontology object created"
+  ],
+  "parameters": [
+    {
+      "name": "depth",
+      "type": "Integer",
+      "range": "[1, 10]",
+      "description": "Hierarchical depth"
+    },
+    {
+      "name": "format",
+      "type": "Enum",
+      "range": "{OWL, JSON-LD, Sema}",
+      "description": "Output format"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:b45eccf2239933a795aa03d2a276385ec231b28c2daaf57eb1be31fd6ada2774",
+  "sema_ref": "ConstructOntology#b45e",
+  "sema_stub": "b45e",
+  "dependencies": {
+    "references": {
+      "ontology_handshake": "OntologyHandshake#46dc",
+      "adversarial_steel": "AdversarialSteel#3b43",
+      "first_principles": "FirstPrinciples#634e"
+    }
+  }
 }
 ```
 
@@ -8299,7 +9686,7 @@
 
 ---
 
-## Decompose#ac56
+## Decompose#f900
 
 ```json
 {
@@ -8324,19 +9711,58 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "Decompose#ac56",
-  "sema_id": "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
-  "sema_stub": "ac56",
+  "sema_ref": "Decompose#f900",
+  "sema_id": "sema:Decompose#mh:SHA-256:f900a7797aecd575ace5c083610f2b060c9ddc238c1b7ced781c5d2e5f20c283",
+  "sema_stub": "f900",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa",
-      "solution": "Solution#7186",
-      "strategy": "Strategy#47a4"
+      "problem": "Problem#4576",
+      "strategy": "Strategy#c4ba",
+      "solution": "Solution#fcea"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
+    }
+  }
+}
+```
+
+---
+
+## DecompositionGate#7acd
+
+```json
+{
+  "handle": "DecompositionGate",
+  "mechanism": "The four-test decomposition suite applied as a Gate over candidate decompositions. The tests: Necessity (removing any sub-concept collapses the parent), Independence (sub-concepts vary orthogonally), Universality (every instance of the parent contains every sub-concept), Completeness (addressing all sub-concepts reconstructs a functioning parent). A decomposition passes only if all four tests pass \u2014 non-compensatory. Yields a {{decision}}: on failure, the Decision carries a {{frame_error}} instructing the upstream planner to reframe rather than iterate within the current decomposition.",
+  "gloss": "Four-test gate for candidate decompositions: Necessity, Independence, Universality, Completeness",
+  "invariants": [
+    "Non-compensatory: a decomposition passes only if ALL four tests pass independently.",
+    "Universality is strict: prototype-shaped concepts failing universality are rejected by design (intentional crucible, per paper \u00a72)."
+  ],
+  "failure_modes": [
+    "Strict universality rejects legitimate prototype-shaped concepts that would succeed with family-resemblance semantics.",
+    "Completeness test falsely rejects decompositions where reconstruction is possible but not fully characterized in the candidate."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:7acd40ea02f33b168109eddbe579f31c3c601a243149f6eb5ce9d0973e757c97",
+  "sema_ref": "DecompositionGate#7acd",
+  "sema_stub": "7acd",
+  "dependencies": {
+    "yields": {
+      "decision": "Decision#acfb"
+    },
+    "references": {
+      "frame_error": "FrameError#168f"
     }
   }
 }
@@ -8382,7 +9808,59 @@
 
 ---
 
-## Dialectic#bc18
+## DeepResearch#2a05
+
+```json
+{
+  "handle": "DeepResearch",
+  "mechanism": "An autonomous research pipeline with four stages: (1) Planning - decompose query into research questions, (2) Multi-Round Search - iteratively search, identify gaps, refine queries, (3) {{synthesis}} - integrate findings across sources, resolve contradictions, (4) Report - generate comprehensive analytical report with citations. The agent loops between search and synthesis until coverage is sufficient. It chains {{discover}} for breadth and {{retrieval_augment}} for depth, orchestrated by the {{deep}} primitive to ensure rigor.",
+  "gloss": "Plan-search-synthesize-report research pipeline",
+  "failure_modes": [
+    "Source {{cognitive_bias}}: Over-relying on first sources found.",
+    "{{synthesis}} Hallucination: Inventing connections not in sources.",
+    "Premature Closure: Stopping search before finding contradicting evidence."
+  ],
+  "invariants": [
+    "Information synthesized from multiple disparate sources",
+    "Search depth > 1"
+  ],
+  "preconditions": [
+    "Access to external knowledge base",
+    "Broad user query"
+  ],
+  "postconditions": [
+    "Citations included",
+    "Comprehensive report generated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:DeepResearch#mh:SHA-256:2a05c141377ae0ee86a31cf03d41c91d64e4d4278e6a40e2d96707169aa702ba",
+  "sema_ref": "DeepResearch#2a05",
+  "sema_stub": "2a05",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Deep#89f0(Discover#7dbc)"
+  ],
+  "dependencies": {
+    "references": {
+      "retrieval_augment": "RetrievalAugment#2ecb",
+      "synthesis": "Synthesis#26b9",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "discover": "Discover#7dbc",
+      "deep": "Deep#89f0"
+    }
+  }
+}
+```
+
+---
+
+## Dialectic#5cc3
 
 ```json
 {
@@ -8422,18 +9900,18 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242",
-  "sema_ref": "Dialectic#bc18",
-  "sema_stub": "bc18",
+  "sema_id": "sema:Dialectic#mh:SHA-256:5cc39ffcdc6283b312a6d9cb84879d55f885d4db34e7fcbb2eb23a742fe6a068",
+  "sema_ref": "Dialectic#5cc3",
+  "sema_stub": "5cc3",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "synthesis": "Synthesis#3252",
-      "perspective_ensemble": "PerspectiveEnsemble#2927"
+      "synthesis": "Synthesis#26b9",
+      "perspective_ensemble": "PerspectiveEnsemble#d08c"
     },
     "composes_with": {
-      "steelman_check": "SteelmanCheck#4f4c"
+      "steelman_check": "SteelmanCheck#7914"
     }
   }
 }
@@ -8441,12 +9919,12 @@
 
 ---
 
-## Eliminate#43ea
+## Eliminate#ee72
 
 ```json
 {
   "handle": "Eliminate",
-  "mechanism": "Systematic Exclusion: Enumerate all possible answers. For each, find a test that could falsify it. Apply tests in order of cost (cheapest first). Remove falsified options. Continue until one remains or no tests left. Remaining options are candidates. It uses {{prioritize}} to order falsification tests by cost/efficiency before executing them.",
+  "mechanism": "Systematic Exclusion (Sherlock Holmes): Enumerate all possible answers. For each, find a test that could falsify it. Apply tests in order of cost (cheapest first). Remove falsified options. Continue until one remains or no tests left. Remaining options are candidates. Combines {{deduction}} (ruling out what's impossible) with {{falsification}} (empirical testing of each hypothesis). It uses {{prioritize}} to order falsification tests by cost/efficiency before executing them.",
   "gloss": "Sherlock Holmes deduction via falsification",
   "failure_modes": [
     "Premature Exclusion: Eliminating the true cause because of a faulty test, leaving an empty set."
@@ -8466,15 +9944,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "Eliminate#43ea",
-  "sema_id": "sema:Eliminate#mh:SHA-256:43ea687e3560a55f221807138469697a6f331e687fa542c66ddf4d97f07174b0",
-  "sema_stub": "43ea",
+  "sema_ref": "Eliminate#ee72",
+  "sema_id": "sema:Eliminate#mh:SHA-256:ee7225dbf53ea3a8eec85f01afdd21dc4f90a14965935578bcf8ca8c5b6fedfd",
+  "sema_stub": "ee72",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
+      "falsification": "Falsification#4e23",
       "option": "Option#483e",
-      "prioritize": "Prioritize#dd16"
+      "prioritize": "Prioritize#68f8",
+      "deduction": "Deduction#9c88"
     }
   }
 }
@@ -8482,7 +9962,7 @@
 
 ---
 
-## Estimate#bb30
+## Estimate#d1a0
 
 ```json
 {
@@ -8509,25 +9989,25 @@
     "tier": 1,
     "ring": 1
   },
-  "sema_ref": "Estimate#bb30",
-  "sema_id": "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449",
-  "sema_stub": "bb30",
+  "sema_ref": "Estimate#d1a0",
+  "sema_id": "sema:Estimate#mh:SHA-256:d1a0ab03293b99bef71c3fe77d83d1ceb7b749ef1623dddabc07d368e0e16722",
+  "sema_stub": "d1a0",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
+    "references": {
+      "heuristic_snap": "HeuristicSnap#1ef2",
+      "value": "Value#3c5d",
+      "simulation": "Simulation#aa24"
+    },
     "yields": {
-      "bid": "Bid#cf07"
+      "bid": "Bid#ef32"
+    },
+    "accepts": {
+      "task": "Task#b328"
     },
     "composes_with": {
       "think": "Think#e1bd"
-    },
-    "accepts": {
-      "task": "Task#d9f9"
-    },
-    "references": {
-      "heuristic_snap": "HeuristicSnap#cece",
-      "value": "Value#3c5d",
-      "simulation": "Simulation#8035"
     }
   }
 }
@@ -8535,7 +10015,79 @@
 
 ---
 
-## ExtendedThinking#ca3c
+## EthicalReasoningProtocol#04dc
+
+```json
+{
+  "handle": "EthicalReasoningProtocol",
+  "mechanism": "The paper's \u00a76.6 protocol. Applies {{conceptual_decomposition}} to right-action, producing a non-entangled pipeline that prevents the is-ought entanglement that corrupts monolithic moral reasoning. Operationalizes Hume's is-ought distinction as an architectural boundary: calculate, then think. A PredictionSolver outputs a typed PredictionLedger (branching future states with causal mechanisms and confidence envelopes) \u2014 constrained to pure description, no single point forecast. Downstream, a ValuationSolver evaluates 'which causal pathways matter, at what confidence, over what horizon' and emits a typed ScoreSheet \u2014 quantitative ranking no normative consideration has yet touched. Crucially, a PrincipleSolver acts as both an acceptance gate and a formal override: if a top-ranked option trips a sacred value, a catastrophic tail risk, or a procedural precedent, it emits a typed JudgmentNote overriding the numerical scoring. The final DecisionRecord has two distinct layers \u2014 quantitative base and qualitative override \u2014 segregated and independently auditable. This is the contract's override-with-documentation mechanism applied to ethics: the override is not an escape from the architecture but a first-class artifact within it. Composes with {{deliberative_align}} for constitutional grounding.",
+  "gloss": "Separate prediction (is) from valuation (ought) from principle (override), each behind a typed boundary \u2014 the DecisionRecord has auditable empirical and normative layers",
+  "invariants": [
+    "Is-ought boundary: PredictionSolver output is constrained to pure description (PredictionLedger); no normative consideration contaminates the empirical forecast.",
+    "Override-as-first-class: principle overrides do not adjust prediction weights silently \u2014 they emit a typed JudgmentNote that appears in the auditable DecisionRecord.",
+    "Two-layer DecisionRecord: the empirical base (what the forecast said) and the qualitative override (why we diverged) remain independently inspectable; no collapse into a single verdict."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "caution": "Required at autonomous-system decision points where both forecast quality and normative legitimacy must be auditable. Collapsing prediction and valuation into one pass re-introduces smuggled normativity \u2014 the failure this protocol exists to prevent."
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:04dc0b30cbf3794fc03222c6dbd8e3b1a618305a0604c1fa024b9be53ce36027",
+  "sema_ref": "EthicalReasoningProtocol#04dc",
+  "sema_stub": "04dc",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f"
+    },
+    "references": {
+      "deliberative_align": "DeliberativeAlign#e6cb"
+    }
+  }
+}
+```
+
+---
+
+## Expansive#3af7
+
+```json
+{
+  "handle": "Expansive",
+  "gloss": "Evaluates generalization potential",
+  "mechanism": "A {{judge}} of generalization potential: does the mechanism or concept transfer beyond the original domain it was designed in? Applies wherever breadth-of-application is the evaluative question \u2014 scientific generality, platform reuse, pattern-library transferability, business model cross-market viability. The essential move is stress-testing the artifact against domains deliberately outside its origin (hostile-domain probe) rather than demonstrating it on familiar cases. Specific rating semantics belong on descendants or on the composing protocol. The signature Judge({{value}}) captures that the output is a {{value}}-graded breadth score rather than a binary transferable/not-transferable verdict.",
+  "invariants": [
+    "Transfer: Must operate outside training distribution."
+  ],
+  "signature": [
+    "Judge#9554(Value#3c5d)"
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2,
+    "tier": 1
+  },
+  "sema_id": "sema:Expansive#mh:SHA-256:3af77b1960458d1cba5bb4a66d570ec3e9cb90746fbd6b5c5754eb697c32b816",
+  "sema_ref": "Expansive#3af7",
+  "sema_stub": "3af7",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "value": "Value#3c5d",
+      "judge": "Judge#9554"
+    }
+  }
+}
+```
+
+---
+
+## ExtendedThinking#a49a
 
 ```json
 {
@@ -8566,15 +10118,15 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:ExtendedThinking#mh:SHA-256:ca3c54e46218935876ca5c993974742069fe61871fae7af38a2fef745753dc98",
-  "sema_ref": "ExtendedThinking#ca3c",
-  "sema_stub": "ca3c",
+  "sema_id": "sema:ExtendedThinking#mh:SHA-256:a49a3d3a17a896fd57909b94703df42c59adb6445058e2e0f05a03d87b356ace",
+  "sema_ref": "ExtendedThinking#a49a",
+  "sema_stub": "a49a",
   "dependencies": {
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     },
     "references": {
-      "chain": "Chain#5711"
+      "chain": "Chain#711e"
     }
   }
 }
@@ -8582,7 +10134,57 @@
 
 ---
 
-## FirstPrinciples#c379
+## Fermi#b302
+
+```json
+{
+  "handle": "Fermi",
+  "mechanism": "Decomposed Estimation: break unknown quantity into factors you can {{estimate}}. Multiply factors. Accept order-of-magnitude accuracy. Example: \"pianos in Chicago\" = population \u00d7 household fraction \u00d7 piano-owning fraction. Errors often cancel across factors. It invokes {{decompose}} to break an unknown quantity into estimable sub-factors.",
+  "gloss": "Estimation via decomposition",
+  "failure_modes": [
+    "Correlated Error Stacking: If all sub-estimates are biased in the same direction (e.g., all optimistic), the errors compound rather than cancel."
+  ],
+  "invariants": [
+    "Error Cancellation: Overestimation in sub-factors tends to cancel underestimation",
+    "Geometric Mean: Final estimate is geometric mean of bounds"
+  ],
+  "parameters": [
+    {
+      "name": "confidence_interval",
+      "type": "Percentage",
+      "range": "[50%, 95%]",
+      "description": "Target coverage of true value"
+    },
+    {
+      "name": "decomposition_depth",
+      "type": "Integer",
+      "range": "[2, 6]",
+      "description": "Estimation chain length"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:Fermi#mh:SHA-256:b30250570634f0d8573c0f509fccbf5cdce0ddc1f59390525880ad27770f5831",
+  "sema_ref": "Fermi#b302",
+  "sema_stub": "b302",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "composes_with": {
+      "estimate": "Estimate#d1a0",
+      "decompose": "Decompose#f900"
+    }
+  }
+}
+```
+
+---
+
+## FirstPrinciples#634e
 
 ```json
 {
@@ -8601,16 +10203,16 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:c379f7e5629befb5ccbee33b6fccbc3c4f5ec181b2704c4f82064d5cdc810f61",
-  "sema_ref": "FirstPrinciples#c379",
-  "sema_stub": "c379",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:634e4087a278cc53ab306b4510ad0dfba3786f33cebb2ad61807d1e91ff503fb",
+  "sema_ref": "FirstPrinciples#634e",
+  "sema_stub": "634e",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "assumption": "Assumption#efb5",
-      "axiom": "Axiom#5012",
-      "chain_of_thought": "ChainOfThought#6201"
+      "chain_of_thought": "ChainOfThought#c3cd",
+      "axiom": "Axiom#5012"
     }
   }
 }
@@ -8618,12 +10220,51 @@
 
 ---
 
-## Generalize#17c9
+## FrameError#168f
+
+```json
+{
+  "handle": "FrameError",
+  "mechanism": "A typed failure signaling that an acceptance gate rejection requires lateral reframing of the problem rather than retry. Produced by an {{accept_spec}} when a non-compensatory gate fails, the FrameError carries the specific gate that rejected and a reframing hint pointing the upstream planner toward a different frame. Distinct from transient failures (which warrant {{retry}}) and from compensable failures (which warrant {{compensate}}): a FrameError asserts that the current frame is wrong, not that execution went wrong.",
+  "gloss": "Typed failure signaling that lateral reframing, not retry, is required",
+  "invariants": [
+    "A FrameError from a child forces the parent to restructure its approach, not re-execute.",
+    "Must carry identification of the rejecting gate and a reframing hint \u2014 a bare FrameError without context is actionable only as 'halt'."
+  ],
+  "failure_modes": [
+    "Receiving Solver treats FrameError as a generic failure and retries, wasting budget on the wrong frame.",
+    "Missing reframing hint leaves the parent Solver unable to select a new approach \u2014 degenerates to halt.",
+    "Cascaded FrameErrors without dampening cause thrash between frames."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:FrameError#mh:SHA-256:168fcdc757dce95ceca470ad01c7f647d458640e71cff2ea1b2f45ed04d7ea0f",
+  "sema_ref": "FrameError#168f",
+  "sema_stub": "168f",
+  "dependencies": {
+    "references": {
+      "retry": "Retry#4cc6",
+      "compensate": "Compensate#283e",
+      "accept_spec": "AcceptSpec#7caa"
+    }
+  }
+}
+```
+
+---
+
+## Generalize#6dea
 
 ```json
 {
   "handle": "Generalize",
-  "mechanism": "Pattern Extraction: Given multiple instances, identify shared structure. Replace specific values with variables. {{state}} the invariant that holds across all instances. Test: does pattern predict behavior of new instances? Refine until predictive. It employs {{analogy_bridge}} to map specific instances to abstract schemata, validating the invariant across the set.",
+  "mechanism": "Pattern Extraction: Given multiple instances, identify shared structure. Replace specific values with variables. {{state}} the invariant that holds across all instances. Test: does pattern predict behavior of new instances? Refine until predictive. The canonical form of {{induction}} in sema's reasoning taxonomy \u2014 probable conclusions from specific observations. It employs {{analogy_bridge}} to map specific instances to abstract schemata, validating the invariant across the set.",
   "gloss": "Inductive pattern extraction",
   "failure_modes": [
     "Overfitting: extracting a pattern that includes noise/coincidence."
@@ -8643,19 +10284,20 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "Specialize#0a09"
+      "Specialize#0ac5"
     ],
     "ring": 2
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
-  "sema_ref": "Generalize#17c9",
-  "sema_stub": "17c9",
+  "sema_id": "sema:Generalize#mh:SHA-256:6dea8c6d33fa265c8f0ca75ca5684a452b55892d38d9351440a2a1dad5fe8508",
+  "sema_ref": "Generalize#6dea",
+  "sema_stub": "6dea",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "state": "State#4d58",
-      "analogy_bridge": "AnalogyBridge#bff7"
+      "analogy_bridge": "AnalogyBridge#ddb2",
+      "induction": "Induction#2487"
     }
   }
 }
@@ -8663,12 +10305,49 @@
 
 ---
 
-## HeuristicSnap#cece
+## GraphOfThought#8dfe
+
+```json
+{
+  "handle": "GraphOfThought",
+  "mechanism": "The canonical implementation of graph-structured reasoning. Instantiates the {{think}} primitive with a {{d_a_g}} topology so that inference steps can have multiple predecessors and multiple successors \u2014 nodes that converge from different reasoning branches can unify mid-computation without forcing a tree shape. Complements ChainOfThought (linear), TreeOfThoughts (branching without merge), and SkeletonOfThought (outline-parallel expansion). Used when distinct lines of reasoning should feed into shared intermediate conclusions \u2014 common in proof assistants, complex debugging, and multi-hypothesis analysis where evidence from branch A refines node X shared with branch B.",
+  "gloss": "Graph-structured reasoning (Macro for Think(DAG))",
+  "invariants": [
+    "Acyclicity inherited from {{d_a_g}}: no reasoning step is its own ancestor.",
+    "Fan-in permitted: a node may have multiple parent inferences, modeling evidence convergence.",
+    "Each node applies {{think}} once; repeated re-evaluation is a caller concern, not a topology property."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Think#e1bd(DAG#de34)"
+  ],
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:8dfec59bcbcbc8b3a3809eadea4665f6039781b329c02f0151598008e3fea64d",
+  "sema_ref": "GraphOfThought#8dfe",
+  "sema_stub": "8dfe",
+  "dependencies": {
+    "composes_with": {
+      "dag": "DAG#de34",
+      "think": "Think#e1bd"
+    }
+  }
+}
+```
+
+---
+
+## HeuristicSnap#1ef2
 
 ```json
 {
   "handle": "HeuristicSnap",
-  "mechanism": "Fast pattern matching against a 'cached experience' database. Returns a decision in <100ms based on similarity to past success, bypassing expensive reasoning chains. It bypasses the expensive {{chain_of_thought}} when {{budget}} is low, relying on cached pattern matches.",
+  "mechanism": "Fast pattern matching against a {{cache}} of past experiences. Returns a decision in <100ms based on similarity to past success, bypassing expensive reasoning chains. It bypasses the expensive {{chain_of_thought}} when {{budget}} is low, relying on cached pattern matches.",
   "gloss": "Rapid, low-cost decision making via pattern recognition",
   "invariants": [
     "Confidence Floor: Do not snap if similarity < 0.6",
@@ -8685,21 +10364,56 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "ThinSlice#debb"
+      "ThinSlice#bc19"
     ],
     "ring": 2
   },
-  "sema_id": "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329",
-  "sema_ref": "HeuristicSnap#cece",
-  "sema_stub": "cece",
+  "sema_id": "sema:HeuristicSnap#mh:SHA-256:1ef26959756fe03dbaa817bdfac248a7c962ce30eebda6af29b5eeb2773b6fcf",
+  "sema_ref": "HeuristicSnap#1ef2",
+  "sema_stub": "1ef2",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "budget": "Budget#a763",
+      "problem": "Problem#4576",
+      "cache": "Cache#cd97",
       "decision": "Decision#acfb",
-      "problem": "Problem#5baa",
-      "chain_of_thought": "ChainOfThought#6201"
+      "budget": "Budget#7270",
+      "chain_of_thought": "ChainOfThought#c3cd"
+    }
+  }
+}
+```
+
+---
+
+## HumanEmulatorProtocol#498a
+
+```json
+{
+  "handle": "HumanEmulatorProtocol",
+  "mechanism": "The paper's \u00a76.2 protocol for responding to a person with variable depth: 'How should I respond to this person?' Decomposes via {{conceptual_decomposition}} into five sub-questions that suppress each other when entangled in a single context: situation (what is the context), emotion (what do they feel), intent (what do they actually need, distinct from what they say), response (what should I say), and boundary (what must I not do). Each sub-question is handled by its own Solver with its own typed outputs \u2014 SituationSolver reconstructs relational dynamics, EmotionSolver produces a structured emotional model rather than a sentiment label, IntentSolver distinguishes stated from latent need, a CalibrationSolver fits tone and register, a BoundarySolver enforces ethical constraints as a hard acceptance gate. These faculties are co-variant state monitors (not a relay race): an emotional spike changes the intent distribution; a resolved intent reframes the emotional reading. Depth scales with the stakes under {{marginal_value_rule}} \u2014 a trivial greeting resolves in one pass; a crisis triggers deep recursion into competing emotional hypotheses and latent-intent analysis.",
+  "gloss": "Decompose empathetic understanding into situation, emotion, intent, response, and boundary \u2014 variable-depth recursion tracks the stakes of the interaction",
+  "invariants": [
+    "Five-faculty orthogonal: the sub-concepts pass the four-test decomposition; entangling them in one context causes mutual interference.",
+    "Variable-depth: mundane interactions stay shallow; ambiguous or high-stakes ones recurse into sub-solvers without changing the protocol.",
+    "Boundary-gate: the BoundarySolver's output is a non-compensatory gate; no response passes if an ethical constraint is violated, regardless of other faculties' signals."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:498a8b232e4360c803db49d769b152576b65a5b6fea37f018aa540d0fae16517",
+  "sema_ref": "HumanEmulatorProtocol#498a",
+  "sema_stub": "498a",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f",
+      "marginal_value_rule": "MarginalValueRule#32ce"
     }
   }
 }
@@ -8769,12 +10483,12 @@
       "context": "Context#510a",
       "think": "Think#e1bd"
     },
+    "accepts": {
+      "datum": "Datum#31cf",
+      "signal": "Signal#f39d"
+    },
     "yields": {
       "value": "Value#3c5d"
-    },
-    "accepts": {
-      "signal": "Signal#f39d",
-      "datum": "Datum#31cf"
     }
   }
 }
@@ -8782,7 +10496,7 @@
 
 ---
 
-## Invert#d1b9
+## Invert#b0a8
 
 ```json
 {
@@ -8804,17 +10518,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Invert#mh:SHA-256:d1b9169d5b598e4f7f3d4d58bc2feea0f45c7830b32445fa6ab2666db271fa42",
-  "sema_ref": "Invert#d1b9",
-  "sema_stub": "d1b9",
+  "sema_id": "sema:Invert#mh:SHA-256:b0a8f903d3e95ab61fcce937631c354c5e7297e7971dfe1063ed581b84b56f83",
+  "sema_ref": "Invert#b0a8",
+  "sema_stub": "b0a8",
   "dependencies": {
     "references": {
-      "reframe": "Reframe#ba00",
-      "problem": "Problem#5baa",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "reframe": "Reframe#0b02",
+      "problem": "Problem#4576"
     },
     "accepts": {
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea"
     }
   }
 }
@@ -8822,7 +10536,7 @@
 
 ---
 
-## LeastToMost#bd38
+## LeastToMost#4c5e
 
 ```json
 {
@@ -8850,22 +10564,22 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "RecursionDive#cda8"
+      "RecursionDive#9c9f"
     ],
     "ring": 2
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:LeastToMost#mh:SHA-256:bd389eddb2f1b893221ab2a7479cb0293f1808057a52ef702b3ff6228509db26",
-  "sema_ref": "LeastToMost#bd38",
-  "sema_stub": "bd38",
+  "sema_id": "sema:LeastToMost#mh:SHA-256:4c5eb5bf4040a26caccae95eb991a4930cb98dd471c82ae1904bfffdac2a3cf0",
+  "sema_ref": "LeastToMost#4c5e",
+  "sema_stub": "4c5e",
   "dependencies": {
     "references": {
-      "decompose": "Decompose#ac56",
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea",
+      "decompose": "Decompose#f900"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -8873,17 +10587,115 @@
 
 ---
 
-## Parsimony#1dd3
+## LivedProof#a8a8
+
+```json
+{
+  "handle": "LivedProof",
+  "mechanism": "Recursive Validation. A rhetorical or epistemic structure where the `Process` used to generate an output serves as the primary `Evidence` for the output's validity. The agent does not just assert a claim; it enacts it during the generation. It requires the agent to {{dogfood_first}}, treating the execution process as a {{signal}} of validity.",
+  "gloss": "Process demonstrates thesis",
+  "failure_modes": [
+    "Performative Contradiction: The process contradicts the thesis (e.g., writing a 50-page essay on 'Brevity').",
+    "Staged Demo: The process looks like enactment but is actually a pre-canned script (loss of genuineness)."
+  ],
+  "invariants": [
+    "{{identity}}: Process == Evidence.",
+    "Real-Time: The demonstration must occur during the current execution context, not historically.",
+    "Traceability: Output artifacts must cryptographically reference their generation trace."
+  ],
+  "preconditions": [
+    "{{agent}} has capability to execute the process",
+    "Thesis allows for enactment"
+  ],
+  "postconditions": [
+    "Epistemic Confidence set to MAX",
+    "Performative Consistency verified"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:LivedProof#mh:SHA-256:a8a8d29323ac5629e9fdc4bc68eebf1268932b063a7f04051ee8484bce2afb77",
+  "sema_ref": "LivedProof#a8a8",
+  "sema_stub": "a8a8",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "dogfood_first": "DogfoodFirst#2538",
+      "identity": "Identity#626c",
+      "agent": "Agent#35b9",
+      "signal": "Signal#f39d"
+    }
+  }
+}
+```
+
+---
+
+## MetaPrompt#0ffe
+
+```json
+{
+  "handle": "MetaPrompt",
+  "mechanism": "A higher-order {{meta}} {{prompt}}ing technique where prompts are used to generate, refine, or analyze other prompts rather than directly answering questions. The LLM acts as a prompt engineer, creating task-specific prompts from templates or improving existing prompts through critique. Enables reusable prompt templates that generalize across problem categories. It constructs a {{prompt_chain}} where the output of the first stage is the prompt instruction for the second.",
+  "gloss": "Use prompts to generate or refine other prompts",
+  "failure_modes": [
+    "{{prompt}} Drift: Generated prompts diverge from intent over iterations.",
+    "{{meta}}-Complexity: {{meta}}-prompt harder to write than direct prompt.",
+    "Overfitting: Generated prompts too specific to examples."
+  ],
+  "invariants": [
+    "Output is a prompt",
+    "{{prompt}} instructs how to prompt"
+  ],
+  "preconditions": [
+    "{{prompt}} engineering principles",
+    "{{task}} description"
+  ],
+  "postconditions": [
+    "Optimized prompt generated"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:0ffe5ca9c9f64da9ffda1aff9940f0fd3c8ce3a4156b54ae029a645074e3d7ba",
+  "sema_ref": "MetaPrompt#0ffe",
+  "sema_stub": "0ffe",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "signature": [
+    "Meta#90f4(Prompt#b18a)"
+  ],
+  "dependencies": {
+    "references": {
+      "prompt_chain": "PromptChain#8c63",
+      "task": "Task#b328",
+      "meta": "Meta#90f4",
+      "prompt": "Prompt#b18a"
+    }
+  }
+}
+```
+
+---
+
+## Parsimony#8476
 
 ```json
 {
   "handle": "Parsimony",
-  "mechanism": "Acts as a {{judge}} to evaluate {{topology}} necessity (Occam's Razor). Classifies complexity into three qualitative states: (1) Bloated: Core concept collapses or remains identical without this component. (2) Under-specified: Plausible utility, but necessity is not strictly proven via ablation. (3) Minimal: Proven essential; removing any part destroys the function. Aims for high {{compress}}ion.",
+  "mechanism": "A {{judge}} of structural necessity (Occam's Razor): does the minimum-complexity form of the artifact still perform its function? Applies wherever a definition, model, design, or decomposition needs to be tested for excess parts. The essential move is ablation \u2014 remove a component and see if the whole collapses \u2014 which works on theories, codebases, system designs, and cognitive schemas alike. Specific rating semantics (binary pass/fail, traffic-light ranges, ordinal ablation scores) belong on descendants or on the composing protocol; Parsimony itself names only the question and the ablation discipline. The signature Judge({{topology}}) reflects that the question operates over structural shape rather than quantitative score; an ablation is itself a topology operation, removing nodes and seeing whether the remaining shape still performs.",
   "invariants": [
     "Necessity: Every component must have a causal link to the outcome."
   ],
   "signature": [
-    "Judge#d84f(Topology#2408)"
+    "Judge#9554(Topology#2408)"
   ],
   "_meta": {
     "layer": "Mind",
@@ -8891,17 +10703,16 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
-  "sema_ref": "Parsimony#1dd3",
-  "sema_stub": "1dd3",
+  "sema_id": "sema:Parsimony#mh:SHA-256:8476f22b05650925a08c5fff7488533529e047848b7c092e7b6524f52f3a063e",
+  "sema_ref": "Parsimony#8476",
+  "sema_stub": "8476",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "gloss": "Complexity justification via Occams Razor",
   "dependencies": {
     "references": {
       "topology": "Topology#2408",
-      "compress": "Compress#0967",
-      "judge": "Judge#d84f"
+      "judge": "Judge#9554"
     }
   }
 }
@@ -8909,12 +10720,75 @@
 
 ---
 
-## Rank#cb98
+## PatternDiscovery#196e
+
+```json
+{
+  "handle": "PatternDiscovery",
+  "mechanism": "Macro for {{search}}(Pattern). Vocabulary Hygiene {{protocol}}. Before minting a new pattern, the {{agent}} MUST execute a {{latent_attachment}}-backed semantic search against the existing registry. If a pattern with >85% semantic similarity is found, the {{agent}} MUST adopt the existing pattern or explicitly justify the divergence (Fork). It leverages {{search}} to scan the existing registry before triggering {{construct_ontology}} to mint a new definition.",
+  "gloss": "Finding patterns that already exist",
+  "failure_modes": [
+    "Not Invented Here (NIH): {{agent}} ignores existing solutions to create a slightly worse custom version.",
+    "Keyword Miss: Search fails because the agent used different terminology for the same concept.",
+    "Fragmentation: Vocabulary floods with duplicate 'Micro-Patterns'."
+  ],
+  "invariants": [
+    "Deduplication: If Similarity(New, Existing) > Threshold, Mint is blocked.",
+    "Pre-Mint {{check}}: Minting is forbidden without a prior Search log."
+  ],
+  "preconditions": [
+    "Intent to define new concept",
+    "Registry access available"
+  ],
+  "postconditions": [
+    "Existing Pattern Returned OR New Pattern Minted"
+  ],
+  "parameters": [
+    {
+      "name": "search_method",
+      "type": "Enum",
+      "range": "{Vector#c7c4, Keyword, Hybrid}",
+      "description": "Default: Hybrid"
+    },
+    {
+      "name": "similarity_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Default: 0.85"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:196e77d697c4a7eed0698d138eba4ec2c1a939e11fcf899b55852e595703a5b2",
+  "sema_ref": "PatternDiscovery#196e",
+  "sema_stub": "196e",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "protocol": "Protocol#7e1c",
+      "latent_attachment": "LatentAttachment#ab68",
+      "check": "Check#d3e8",
+      "construct_ontology": "ConstructOntology#b45e",
+      "search": "Search#c5f4",
+      "agent": "Agent#35b9"
+    }
+  }
+}
+```
+
+---
+
+## Rank#7a76
 
 ```json
 {
   "handle": "Rank",
-  "mechanism": "Deterministic Sort. Applies a scoring function to every element in the input Set. Returns a List ordered by Score, using {{select}} to truncate to Top-K.",
+  "mechanism": "Deterministic Sort. Applies a caller-supplied {{scoring_function}} to every element in the input Set and returns a List ordered by Score. Uses {{select}} to truncate to Top-K when requested.",
   "gloss": "Order items by score",
   "failure_modes": [
     "Score Indeterminacy: Multiple items have identical scores.",
@@ -8924,9 +10798,9 @@
     "Conservation: Output set is a subset of Input set.",
     "Monotonicity: For all i, Score(Output[i]) >= Score(Output[i+1])."
   ],
-  "sema_id": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
-  "sema_ref": "Rank#cb98",
-  "sema_stub": "cb98",
+  "sema_id": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11",
+  "sema_ref": "Rank#7a76",
+  "sema_stub": "7a76",
   "_meta": {
     "tier": 1,
     "layer": "Mind",
@@ -8938,6 +10812,9 @@
   "dependencies": {
     "composes_with": {
       "select": "Select#15c2"
+    },
+    "accepts": {
+      "scoring_function": "ScoringFunction#3a4e"
     }
   }
 }
@@ -8945,7 +10822,7 @@
 
 ---
 
-## ReAct#b487
+## ReAct#e018
 
 ```json
 {
@@ -8973,27 +10850,27 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "Reflexion#51b9"
+      "Reflexion#eed9"
     ],
     "ring": 2
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:ReAct#mh:SHA-256:b4879d75afcfc4c7fe1d0b48f3e65b7ad2953a9b8c2a236f2cf3a2b7f98c9688",
-  "sema_ref": "ReAct#b487",
-  "sema_stub": "b487",
+  "sema_id": "sema:ReAct#mh:SHA-256:e018477e1f3381f9cfc0e66d9a24e4355b619288dae8873d3f657e0239eef6f8",
+  "sema_ref": "ReAct#e018",
+  "sema_stub": "e018",
   "dependencies": {
-    "references": {
-      "loop": "Loop#fb2e",
-      "agent": "Agent#aaec",
-      "cognitive_bias": "CognitiveBias#4b32",
-      "chain": "Chain#5711"
-    },
     "composes_with": {
-      "tool_invoke": "ToolInvoke#643c"
+      "tool_invoke": "ToolInvoke#4694"
+    },
+    "references": {
+      "cognitive_bias": "CognitiveBias#4b32",
+      "chain": "Chain#711e",
+      "loop": "Loop#797f",
+      "agent": "Agent#35b9"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -9001,7 +10878,49 @@
 
 ---
 
-## Reason#3f24
+## Realizable#8d81
+
+```json
+{
+  "handle": "Realizable",
+  "gloss": "Evaluates execution feasibility of a plan",
+  "mechanism": "A {{judge}} of execution feasibility: can the declared artifact actually be built or enacted in the world it targets, given its stated inputs, {{step}}s, and constraints? Applies wherever a {{plan}} or design must be checked against physical, computational, or institutional reality \u2014 engineering feasibility, policy implementation, software design, research program scoping. The essential move is grounding every {{step}} in a primitive or sub-component that is itself realizable, recursively. Specific rating semantics belong on descendants or on the composing protocol. The signature Judge({{value}}) captures that the question yields a {{value}}-rating of feasibility, not a binary verdict \u2014 'mostly realizable with two unverified links' is a legitimate output.",
+  "signature": [
+    "Judge#9554(Value#3c5d)"
+  ],
+  "invariants": [
+    "Causality: No step can precede its dependencies.",
+    "Grounding: All leaf nodes must terminate in known primitives."
+  ],
+  "failure_modes": [
+    "Hidden Complexity: A step looks simple ('Draw the rest of the owl') but contains unsolved sub-problems.",
+    "Resource Blindness: The steps are logically sound but physically impossible given the budget."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_ref": "Realizable#8d81",
+  "sema_id": "sema:Realizable#mh:SHA-256:8d81bed9f201197e0250330028c9d94142338f9a5e69ea83cf8abd417abce01b",
+  "sema_stub": "8d81",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "plan": "Plan#fd6d",
+      "step": "Step#5f22",
+      "value": "Value#3c5d",
+      "judge": "Judge#9554"
+    }
+  }
+}
+```
+
+---
+
+## Reason#5f30
 
 ```json
 {
@@ -9032,27 +10951,27 @@
     "category": "Reasoning",
     "ring": 1,
     "related": [
-      "ChainOfThought#6201",
-      "TreeOfThoughts#581a"
+      "ChainOfThought#c3cd",
+      "TreeOfThoughts#422f"
     ]
   },
-  "sema_id": "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
-  "sema_ref": "Reason#3f24",
-  "sema_stub": "3f24",
+  "sema_id": "sema:Reason#mh:SHA-256:5f302cf59accb5b8546344b12f0aeaa0e2d3e78efcdf332b5f526b721bbe5d47",
+  "sema_ref": "Reason#5f30",
+  "sema_stub": "5f30",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "topology": "Topology#2408",
-      "tree": "Tree#ddce",
-      "compute_budget": "ComputeBudget#3b98",
-      "chain": "Chain#5711"
-    },
-    "composes_with": {
-      "think": "Think#e1bd"
+      "compute_budget": "ComputeBudget#67c0",
+      "chain": "Chain#711e",
+      "tree": "Tree#a5a3"
     },
     "accepts": {
       "context": "Context#510a"
+    },
+    "composes_with": {
+      "think": "Think#e1bd"
     }
   }
 }
@@ -9060,7 +10979,7 @@
 
 ---
 
-## RecursionDive#cda8
+## RecursionDive#9c9f
 
 ```json
 {
@@ -9076,18 +10995,18 @@
       "SolutionNode#2b4a"
     ]
   },
-  "sema_id": "sema:RecursionDive#mh:SHA-256:cda8342178bffc23bea270e79154d4bc0cb2df2c1bd33d2fa6590ba095f8cd49",
-  "sema_ref": "RecursionDive#cda8",
-  "sema_stub": "cda8",
+  "sema_id": "sema:RecursionDive#mh:SHA-256:9c9f9dc6bafbb2c4ec66bac9ff515dc9089ed7140462b527579e279d14678917",
+  "sema_ref": "RecursionDive#9c9f",
+  "sema_stub": "9c9f",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "references": {
-      "solver_node": "SolverNode#a834",
-      "solver_tree": "SolverTree#e174"
-    },
     "composes_with": {
-      "decompose": "Decompose#ac56"
+      "decompose": "Decompose#f900"
+    },
+    "references": {
+      "solver_node": "SolverNode#26b1",
+      "solver_tree": "SolverTree#5623"
     }
   }
 }
@@ -9116,7 +11035,7 @@
     "category": "Reasoning",
     "related": [
       "Bisect#88b3",
-      "RecursionDive#cda8"
+      "RecursionDive#9c9f"
     ],
     "ring": 2
   },
@@ -9127,8 +11046,8 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "trace": "Trace#9057",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "trace": "Trace#9057"
     }
   }
 }
@@ -9136,7 +11055,7 @@
 
 ---
 
-## Refine#38d9
+## Refine#aa34
 
 ```json
 {
@@ -9149,20 +11068,20 @@
     "ring": 1,
     "tier": 1,
     "related": [
-      "PhasedRefinement#4a90"
+      "PhasedRefinement#5e09"
     ]
   },
-  "sema_id": "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d",
-  "sema_ref": "Refine#38d9",
-  "sema_stub": "38d9",
+  "sema_id": "sema:Refine#mh:SHA-256:aa34fbf94760e25dfce8df3e307a1556d1215e7005bd7cf1a9e94ad87864671c",
+  "sema_ref": "Refine#aa34",
+  "sema_stub": "aa34",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "critique": "Critique#3e00",
+      "critique": "Critique#4e43",
       "artifact": "Artifact#6254",
-      "condition": "Condition#cbd5",
-      "incongruity": "Incongruity#e98f"
+      "incongruity": "Incongruity#e98f",
+      "condition": "Condition#cbd5"
     },
     "composes_with": {
       "act": "Act#5d55"
@@ -9173,7 +11092,7 @@
 
 ---
 
-## Reflexion#51b9
+## Reflexion#eed9
 
 ```json
 {
@@ -9201,25 +11120,25 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "EvaluatorOptimizer#7ec6"
+      "EvaluatorOptimizer#c776"
     ],
     "ring": 2
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
-  "sema_ref": "Reflexion#51b9",
-  "sema_stub": "51b9",
+  "sema_id": "sema:Reflexion#mh:SHA-256:eed982425602ec2038b52e9918aca8cf3f0c695caf514f6a7d71d049cf771836",
+  "sema_ref": "Reflexion#eed9",
+  "sema_stub": "eed9",
   "dependencies": {
     "references": {
-      "critique": "Critique#3e00",
-      "goal": "Goal#456a",
+      "plan": "Plan#fd6d",
+      "critique": "Critique#4e43",
       "scratchpad": "Scratchpad#75bf",
-      "plan": "Plan#64f2",
-      "outcome": "Outcome#38e0"
+      "goal": "Goal#009e",
+      "outcome": "Outcome#144c"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -9227,7 +11146,7 @@
 
 ---
 
-## Reframe#ba00
+## Reframe#0b02
 
 ```json
 {
@@ -9257,14 +11176,14 @@
       "SolutionTree"
     ]
   },
-  "sema_id": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
-  "sema_ref": "Reframe#ba00",
-  "sema_stub": "ba00",
+  "sema_id": "sema:Reframe#mh:SHA-256:0b02c55ef29a90499bf98668a0ef1f20ca89c3453a49878cb1a9f59f693fbe7c",
+  "sema_ref": "Reframe#0b02",
+  "sema_stub": "0b02",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa"
+      "problem": "Problem#4576"
     }
   }
 }
@@ -9272,7 +11191,72 @@
 
 ---
 
-## SelfConsistency#543d
+## RequestFraming#3865
+
+```json
+{
+  "handle": "RequestFraming",
+  "derived_from": "sema:Interpret",
+  "gloss": "Clarify intent and constraints before planning",
+  "mechanism": "The initial state of workflow orchestration. It performs the act of {{interpret}} by accepting a {{message}} and using {{think}} to {{understand}} the 'real ask' within the given {{context}} before committing resources. The pattern enforces {{context_first}}: no resource commitment is permitted until the frame is resolved. It clarifies constraints, success criteria, and hidden assumptions, producing a {{frame_spec}} artifact. It acts as a semantic firewall against vague or dangerous instructions.",
+  "signature": [
+    "Think#e1bd(FrameSpec#5558)"
+  ],
+  "invariants": [
+    "Output must be a rigorous FrameSpec",
+    "No resources committed to execution yet"
+  ],
+  "preconditions": [
+    "Raw User Request",
+    "Context available"
+  ],
+  "postconditions": [
+    "FrameSpec artifact created",
+    "Constraints explicit"
+  ],
+  "failure_modes": [
+    "Misinterpretation: The agent clarifies the wrong ambiguity.",
+    "Over-constraint: Adding unnecessary restrictions that kill innovation.",
+    "Premature Optimization: Jumping to solutions before understanding the problem."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "related": [
+      "Reframe#0b02",
+      "Decompose#f900"
+    ]
+  },
+  "sema_ref": "RequestFraming#3865",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:386590380876d4439ffd7f6e279bb078f8c85323d6e950b9c685c57b94ee1af9",
+  "sema_stub": "3865",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "interpret": "Interpret#c9ee",
+      "context": "Context#510a",
+      "context_first": "ContextFirst#def7"
+    },
+    "accepts": {
+      "message": "Message#f767"
+    },
+    "composes_with": {
+      "think": "Think#e1bd",
+      "understand": "Understand#96d4"
+    },
+    "yields": {
+      "frame_spec": "FrameSpec#5558"
+    }
+  }
+}
+```
+
+---
+
+## SelfConsistency#ca0d
 
 ```json
 {
@@ -9294,14 +11278,14 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "SelfConsistency#543d",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d",
-  "sema_stub": "543d",
+  "sema_ref": "SelfConsistency#ca0d",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:ca0daec71df9c74d6f6db1acf2e2565887c36feb44254186ab3b307b2d689931",
+  "sema_stub": "ca0d",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "aggregate": "Aggregate#af54"
+      "aggregate": "Aggregate#7912"
     }
   }
 }
@@ -9309,7 +11293,7 @@
 
 ---
 
-## SkeletonOfThought#d99a
+## SkeletonOfThought#3842
 
 ```json
 {
@@ -9327,17 +11311,17 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:d99ac47fca9164a2de7b43196ce9c8455ab430b31b1c34928bddba952002cda4",
-  "sema_ref": "SkeletonOfThought#d99a",
-  "sema_stub": "d99a",
+  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:3842af7607f84ffd709c0d95f6e36ec931466ad68e411de80dd277cece934389",
+  "sema_ref": "SkeletonOfThought#3842",
+  "sema_stub": "3842",
   "signature": [
     "Think#e1bd(Skeleton#c363)"
   ],
   "dependencies": {
     "references": {
-      "decompose": "Decompose#ac56",
-      "think": "Think#e1bd",
-      "skeleton": "Skeleton#c363"
+      "skeleton": "Skeleton#c363",
+      "decompose": "Decompose#f900",
+      "think": "Think#e1bd"
     }
   }
 }
@@ -9345,7 +11329,7 @@
 
 ---
 
-## SocraticLoop#70fc
+## SocraticLoop#2913
 
 ```json
 {
@@ -9389,17 +11373,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0",
-  "sema_ref": "SocraticLoop#70fc",
-  "sema_stub": "70fc",
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:2913255a08d47a4bdc3583f6b8905bb92b5573f3e51cb66cc603b2688f37f2dc",
+  "sema_ref": "SocraticLoop#2913",
+  "sema_stub": "2913",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "loop": "Loop#fb2e",
-      "prompt": "Prompt#5ded",
-      "dialectic": "Dialectic#bc18"
+      "loop": "Loop#797f",
+      "prompt": "Prompt#b18a",
+      "dialectic": "Dialectic#5cc3",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -9407,12 +11391,12 @@
 
 ---
 
-## Specialize#0a09
+## Specialize#0ac5
 
 ```json
 {
   "handle": "Specialize",
-  "mechanism": "Concrete Instantiation: Given abstract principle, substitute specific values for variables. {{check}} all constraints still hold after substitution. Generate multiple specializations to understand the principle\"s range. Edge cases reveal hidden assumptions. It applies the inverse of {{generalize}}, mapping abstract principles to concrete, context-specific instances.",
+  "mechanism": "Concrete Instantiation: Given abstract principle, substitute specific values for variables. {{check}} all constraints still hold after substitution. Generate multiple specializations to understand the principle's range. Edge cases reveal hidden assumptions. The canonical form of {{deduction}} in sema's reasoning taxonomy \u2014 necessary conclusions from general premises. Inverse of {{generalize}}.",
   "gloss": "Deductive application of principles",
   "failure_modes": [
     "{{context}} Mismatch: Applying a valid principle to a domain where its preconditions do not hold."
@@ -9434,16 +11418,17 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:Specialize#mh:SHA-256:0a0947c52834daad3a8c929cdafa2343ad43b044750fd6e27e233ff823005891",
-  "sema_ref": "Specialize#0a09",
-  "sema_stub": "0a09",
+  "sema_id": "sema:Specialize#mh:SHA-256:0ac50ab993507fd6b7d5959ba18bcaeaa388a35705fdb4ff9d423165a6fb6a9e",
+  "sema_ref": "Specialize#0ac5",
+  "sema_stub": "0ac5",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "generalize": "Generalize#17c9",
-      "context": "Context#510a"
+      "generalize": "Generalize#6dea",
+      "context": "Context#510a",
+      "check": "Check#d3e8",
+      "deduction": "Deduction#9c88"
     }
   }
 }
@@ -9451,13 +11436,13 @@
 
 ---
 
-## SteelmanCheck#4f4c
+## SteelmanCheck#7914
 
 ```json
 {
   "handle": "SteelmanCheck",
   "mechanism": "Before finalizing a {{decision}} or output, the {{agent}} MUST generate the strongest possible argument against its own conclusion. It performs a {{check}} on the {{robustness}} of the claim and a {{critique}} of the underlying {{belief}}. If the counter-argument exceeds a validity threshold, the decision is discarded or revised. It prevents confirmation {{cognitive_bias}}. Utilizes {{compatibility_check}}. For adversarial contexts, see adversarial steelmanning.",
-  "gloss": "Mandatory counter-argument generation",
+  "gloss": "Post-decision adversarial check: revise if counter-argument exceeds validity threshold",
   "failure_modes": [
     "Paralysis by analysis (stuck in {{critique}} {{loop}}).",
     "Collusion: Proposer and Critic are same entity; susceptible to Strawman Waltz attack where agent generates weak counter-arguments to easily defeat them."
@@ -9495,29 +11480,29 @@
     "category": "Reasoning",
     "ring": 1,
     "related": [
-      "AdversarialSteel#35f0"
+      "AdversarialSteel#3b43"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
-  "sema_ref": "SteelmanCheck#4f4c",
-  "sema_stub": "4f4c",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:7914b0d58e4d2e364e6e5ec30702e5cd3ef24127c2c0be963ca79741f4a6f038",
+  "sema_ref": "SteelmanCheck#7914",
+  "sema_stub": "7914",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
-    "Check#1544(Robustness#132c)",
-    "Critique#3e00(Belief#5ad9)"
+    "Check#d3e8(Robustness#132c)",
+    "Critique#4e43(Belief#a9ce)"
   ],
   "dependencies": {
     "references": {
-      "critique": "Critique#3e00",
-      "loop": "Loop#fb2e",
-      "robustness": "Robustness#132c",
-      "belief": "Belief#5ad9",
-      "agent": "Agent#aaec",
+      "critique": "Critique#4e43",
       "compatibility_check": "CompatibilityCheck#3abb",
-      "check": "Check#1544",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "robustness": "Robustness#132c",
+      "belief": "Belief#a9ce",
+      "check": "Check#d3e8",
       "decision": "Decision#acfb",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "loop": "Loop#797f",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -9525,7 +11510,7 @@
 
 ---
 
-## StepBack#b079
+## StepBack#b16f
 
 ```json
 {
@@ -9556,19 +11541,19 @@
     "category": "Reasoning",
     "ring": 1
   },
-  "sema_id": "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a",
-  "sema_ref": "StepBack#b079",
-  "sema_stub": "b079",
+  "sema_id": "sema:StepBack#mh:SHA-256:b16f465c8085bd6e6c962bee774538fd7252e79b43c44bc7fecf4f41df15e66b",
+  "sema_ref": "StepBack#b16f",
+  "sema_stub": "b16f",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
-    "Think#e1bd(Problem#5baa)"
+    "Think#e1bd(Problem#4576)"
   ],
   "dependencies": {
     "references": {
-      "think": "Think#e1bd",
-      "reframe": "Reframe#ba00",
-      "problem": "Problem#5baa"
+      "problem": "Problem#4576",
+      "reframe": "Reframe#0b02",
+      "think": "Think#e1bd"
     }
   }
 }
@@ -9576,7 +11561,7 @@
 
 ---
 
-## StrategicReading#ef92
+## StrategicReading#37f7
 
 ```json
 {
@@ -9620,18 +11605,18 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "StrategicReading#ef92",
-  "sema_id": "sema:StrategicReading#mh:SHA-256:ef9282eb9e5d243105ed2f8016102f7653d1a9f3abc2215f08642695fa2a33bf",
-  "sema_stub": "ef92",
+  "sema_ref": "StrategicReading#37f7",
+  "sema_id": "sema:StrategicReading#mh:SHA-256:37f7cf168532f92e8090ccae70a18f5de5540141d26656f3ba2a3912fcdcbd08",
+  "sema_stub": "37f7",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "tree": "Tree#ddce",
-      "agent": "Agent#aaec",
-      "compute_budget": "ComputeBudget#3b98",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "compute_budget": "ComputeBudget#67c0",
+      "agent": "Agent#35b9",
       "context": "Context#510a",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "tree": "Tree#a5a3"
     }
   }
 }
@@ -9639,7 +11624,7 @@
 
 ---
 
-## Summarize#6a00
+## Summarize#db2a
 
 ```json
 {
@@ -9657,23 +11642,23 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:Summarize#mh:SHA-256:6a000fd570638ecd8dd239be23317cf6b004e2f5ed784822f41f6658ee669c2c",
-  "sema_ref": "Summarize#6a00",
-  "sema_stub": "6a00",
+  "sema_id": "sema:Summarize#mh:SHA-256:db2aa85d9d829962696e8a9961faa4402123e3807b052545404c0251d1367f17",
+  "sema_ref": "Summarize#db2a",
+  "sema_stub": "db2a",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "references": {
-      "compress": "Compress#0967",
-      "translate": "Translate#e75d",
-      "value": "Value#3c5d",
-      "artifact": "Artifact#6254"
-    },
     "accepts": {
       "datum": "Datum#31cf"
     },
+    "references": {
+      "compress": "Compress#0967",
+      "value": "Value#3c5d",
+      "artifact": "Artifact#6254",
+      "translate": "Translate#a8ed"
+    },
     "yields": {
-      "summary": "Summary#310e"
+      "summary": "Summary#f785"
     }
   }
 }
@@ -9681,7 +11666,7 @@
 
 ---
 
-## Synthesis#3252
+## Synthesis#26b9
 
 ```json
 {
@@ -9696,12 +11681,12 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
-  "sema_id": "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
-  "sema_ref": "Synthesis#3252",
-  "sema_stub": "3252",
+  "sema_id": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
+  "sema_ref": "Synthesis#26b9",
+  "sema_stub": "26b9",
   "dependencies": {
     "references": {
-      "critique": "Critique#3e00"
+      "critique": "Critique#4e43"
     }
   }
 }
@@ -9742,11 +11727,11 @@
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
-    "accepts": {
-      "context": "Context#510a"
-    },
     "yields": {
       "datum": "Datum#31cf"
+    },
+    "accepts": {
+      "context": "Context#510a"
     }
   }
 }
@@ -9754,7 +11739,7 @@
 
 ---
 
-## Translate#e75d
+## Translate#a8ed
 
 ```json
 {
@@ -9783,16 +11768,16 @@
     "category": "Reasoning",
     "ring": 1
   },
-  "sema_id": "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429",
-  "sema_ref": "Translate#e75d",
-  "sema_stub": "e75d",
+  "sema_id": "sema:Translate#mh:SHA-256:a8ed7420c21067b89162a9a857e1f892af7c9f60bbbef8a72e22439874528d0f",
+  "sema_ref": "Translate#a8ed",
+  "sema_stub": "a8ed",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "reversibility": "Reversibility#049f",
-      "protocol": "Protocol#7e1c",
-      "interpret": "Interpret#c9ee"
+      "reversibility": "Reversibility#bf79",
+      "interpret": "Interpret#c9ee",
+      "protocol": "Protocol#7e1c"
     },
     "accepts": {
       "datum": "Datum#31cf"
@@ -9803,7 +11788,7 @@
 
 ---
 
-## TreeOfThoughts#581a
+## TreeOfThoughts#422f
 
 ```json
 {
@@ -9813,7 +11798,7 @@
   "parameters": [
     {
       "name": "breadth",
-      "type": "Integer",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Maximum parallel reasoning branches per node"
     },
@@ -9829,23 +11814,68 @@
     "layer": "Mind",
     "category": "Reasoning",
     "related": [
-      "RecursionDive#cda8"
+      "RecursionDive#9c9f"
     ],
     "ring": 2
   },
-  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:581a1251e9eb48d2d2d5871c6c94ea26094c4ec99c2aea33ab22d30d0a351ded",
-  "sema_ref": "TreeOfThoughts#581a",
-  "sema_stub": "581a",
+  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:422f0e25e23054a4a06d03bf1b8d74b76eddc8c661053cacc7d29063d5a03888",
+  "sema_ref": "TreeOfThoughts#422f",
+  "sema_stub": "422f",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
-    "Think#e1bd(Tree#ddce)"
+    "Think#e1bd(Tree#a5a3)"
   ],
   "dependencies": {
     "references": {
+      "chain_of_thought": "ChainOfThought#c3cd",
       "think": "Think#e1bd",
-      "tree": "Tree#ddce",
-      "chain_of_thought": "ChainOfThought#6201"
+      "tree": "Tree#a5a3"
+    }
+  }
+}
+```
+
+---
+
+## Uncertain#0556
+
+```json
+{
+  "handle": "Uncertain",
+  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Tagged nodes become high-priority targets for information retrieval. Tracked via {{uncertainty_map}}.",
+  "gloss": "Epistemic status: genuinely don't know",
+  "failure_modes": [
+    "False Certainty: {{agent}} feels pressure to answer and fabricates a 'likely' answer instead of using this flag.",
+    "Lazy Agnosticism: {{agent}} uses 'Uncertain' to avoid the work of reasoning (Tier 2 failure)."
+  ],
+  "invariants": [
+    "Actionable Void: A node marked 'Uncertain' is a high-priority target for Information Retrieval.",
+    "Specificity: Must target a specific scope (e.g., 'Uncertain about X', not just 'Uncertain')."
+  ],
+  "preconditions": [
+    "Knowledge gap identified"
+  ],
+  "postconditions": [
+    "Confidence score set to 0.0",
+    "Target marked as requiring investigation"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "sema_id": "sema:Uncertain#mh:SHA-256:055685440eab69c23eb5f4311101380cdccc619fef955e3b843b59fc3c0a1e2a",
+  "sema_ref": "Uncertain#0556",
+  "sema_stub": "0556",
+  "dependencies": {
+    "references": {
+      "variable": "Variable#179a",
+      "uncertainty_map": "UncertaintyMap#516d",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -9876,8 +11906,8 @@
   ],
   "dependencies": {
     "references": {
-      "think": "Think#e1bd",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "think": "Think#e1bd"
     }
   }
 }
@@ -9885,7 +11915,7 @@
 
 ---
 
-## Verification#eb28
+## Verification#19d6
 
 ```json
 {
@@ -9902,16 +11932,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Verification#eb28",
-  "sema_id": "sema:Verification#mh:SHA-256:eb2838e42803a176654d6c11812568ed34b73f9e6d4a49d3e86e571354ec437c",
-  "sema_stub": "eb28",
+  "sema_ref": "Verification#19d6",
+  "sema_id": "sema:Verification#mh:SHA-256:19d69afb644ed6f5fbe94d3c1608101c12221e01b68dff2128848f8a56483fd2",
+  "sema_stub": "19d6",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
       "artifact": "Artifact#6254",
-      "spec": "Spec#436e"
+      "check": "Check#d3e8",
+      "spec": "Spec#a036"
     }
   }
 }
@@ -9919,7 +11949,7 @@
 
 ---
 
-## WhyClimb#156a
+## WhyClimb#88c7
 
 ```json
 {
@@ -9945,21 +11975,21 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_id": "sema:WhyClimb#mh:SHA-256:156aa8762c7c0007b72d0869b470c7c9d31aaf19d0815e51b9bce872d925db4f",
-  "sema_ref": "WhyClimb#156a",
-  "sema_stub": "156a",
+  "sema_id": "sema:WhyClimb#mh:SHA-256:88c7eeeb33806e5a058303cd34651bbc667c00d1af7cef67c093130ace9d7409",
+  "sema_ref": "WhyClimb#88c7",
+  "sema_stub": "88c7",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "signature": [
-    "Reframe#ba00(Problem#5baa)"
+    "Reframe#0b02(Problem#4576)"
   ],
   "dependencies": {
     "references": {
-      "reframe": "Reframe#ba00",
-      "solution": "Solution#7186",
+      "solution": "Solution#fcea",
       "recursive_root_cause": "RecursiveRootCause#6dc1",
-      "condition": "Condition#cbd5",
-      "problem": "Problem#5baa"
+      "reframe": "Reframe#0b02",
+      "problem": "Problem#4576",
+      "condition": "Condition#cbd5"
     }
   }
 }
@@ -9967,7 +11997,7 @@
 
 ---
 
-## AdversarialSteel#35f0
+## AdversarialSteel#3b43
 
 ```json
 {
@@ -9988,22 +12018,22 @@
     "ring": 1,
     "caution": "Spawned advocates share the same model \u2014 collusion risk."
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234",
-  "sema_ref": "AdversarialSteel#35f0",
-  "sema_stub": "35f0",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:3b43d987edb6b393fcbc10420354225cb1101b705a7256f6e1a32a143e6d1dbe",
+  "sema_ref": "AdversarialSteel#3b43",
+  "sema_stub": "3b43",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "judge": "Judge#d84f",
-      "system": "System#e314",
-      "agent": "Agent#aaec",
+      "meta": "Meta#90f4",
       "compatibility_check": "CompatibilityCheck#3abb",
+      "judge": "Judge#9554",
+      "system": "System#e314",
       "criteria": "Criteria#ef6b",
-      "meta": "Meta#90f4"
+      "agent": "Agent#35b9"
     },
     "composes_with": {
-      "steelman_check": "SteelmanCheck#4f4c"
+      "steelman_check": "SteelmanCheck#7914"
     }
   }
 }
@@ -10011,7 +12041,7 @@
 
 ---
 
-## Agent#aaec
+## Agent#35b9
 
 ```json
 {
@@ -10044,25 +12074,25 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_ref": "Agent#aaec",
-  "sema_id": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-  "sema_stub": "aaec",
+  "sema_ref": "Agent#35b9",
+  "sema_id": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681",
+  "sema_stub": "35b9",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "references": {
-      "trace": "Trace#9057",
-      "loop": "Loop#fb2e",
-      "goal": "Goal#456a",
-      "identity": "Identity#626c",
-      "metric": "Metric#8895",
-      "state": "State#4d58",
-      "actor": "Actor#6926"
-    },
     "composes_with": {
-      "think": "Think#e1bd",
       "act": "Act#5d55",
-      "observe": "Observe#8ebd"
+      "observe": "Observe#39f0",
+      "think": "Think#e1bd"
+    },
+    "references": {
+      "identity": "Identity#626c",
+      "actor": "Actor#6926",
+      "trace": "Trace#9057",
+      "metric": "Metric#17fd",
+      "state": "State#4d58",
+      "goal": "Goal#009e",
+      "loop": "Loop#797f"
     }
   }
 }
@@ -10070,12 +12100,12 @@
 
 ---
 
-## AnalogyBridge#bff7
+## AnalogyBridge#ddb2
 
 ```json
 {
   "handle": "AnalogyBridge",
-  "mechanism": "To solve a novel {{problem}}, the {{agent}} explicitly searches its training data for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. It merges the structural properties of the source and target domains, identifying the isomorphic mapping.",
+  "mechanism": "To solve a novel {{problem}}, the {{agent}} uses {{latent_attachment}} to search its embedding space for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. It merges the structural properties of the source and target domains, identifying the isomorphic mapping.",
   "gloss": "Mapping to known solutions",
   "failure_modes": [
     "False analogy (mapping superficial similarities)."
@@ -10096,16 +12126,17 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
-  "sema_ref": "AnalogyBridge#bff7",
-  "sema_stub": "bff7",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:ddb22c56410e1a3b64327940231213795520e9c0b1551e5c462bc8dd6c0fbabf",
+  "sema_ref": "AnalogyBridge#ddb2",
+  "sema_stub": "ddb2",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "problem": "Problem#5baa",
-      "solution": "Solution#7186"
+      "problem": "Problem#4576",
+      "latent_attachment": "LatentAttachment#ab68",
+      "solution": "Solution#fcea",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -10113,7 +12144,7 @@
 
 ---
 
-## AntifragileInversion#6b0e
+## AntifragileInversion#9920
 
 ```json
 {
@@ -10137,20 +12168,20 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c",
-  "sema_ref": "AntifragileInversion#6b0e",
-  "sema_stub": "6b0e",
+  "sema_id": "sema:AntifragileInversion#mh:SHA-256:992022c17aa4c575dc33251481f83cc7cd018925f60469f913e173ba6e63ec2a",
+  "sema_ref": "AntifragileInversion#9920",
+  "sema_stub": "9920",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
       "variable": "Variable#179a",
-      "reframe": "Reframe#ba00",
+      "reframe": "Reframe#0b02",
       "system": "System#e314",
-      "agent": "Agent#aaec",
-      "vector": "Vector#c7c4"
+      "vector": "Vector#c7c4",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -10158,7 +12189,7 @@
 
 ---
 
-## BeamSearch#d2fb
+## BeamSearch#07bd
 
 ```json
 {
@@ -10183,17 +12214,17 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:BeamSearch#mh:SHA-256:d2fb9185247c76aa1fd102c5dd6d8a425fa2de767fe9009bb50b71c6ead3d4a1",
-  "sema_ref": "BeamSearch#d2fb",
-  "sema_stub": "d2fb",
+  "sema_id": "sema:BeamSearch#mh:SHA-256:07bd338de8c415d52fcb2e14c1df00689a9adb39fa44865915bcb082550ffd6c",
+  "sema_ref": "BeamSearch#07bd",
+  "sema_stub": "07bd",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "rank": "Rank#cb98",
-      "select": "Select#15c2",
-      "solver_node": "SolverNode#a834",
-      "queue": "Queue#2ec3"
+      "solver_node": "SolverNode#26b1",
+      "queue": "Queue#65e4",
+      "rank": "Rank#7a76",
+      "select": "Select#15c2"
     }
   }
 }
@@ -10201,13 +12232,13 @@
 
 ---
 
-## Bubble#eb9a
+## Bubble#189d
 
 ```json
 {
   "handle": "Bubble",
   "mechanism": "Isolated sandbox where coordination is tried before committing to reality. Creator sends BUBBLE_CREATE: {participants, ttl (time-to-live), isolation_level, parent_bubble (for nesting)}. Participants JOIN to enter isolated context. Inside bubble: state changes are copy-on-write (snapshot isolation), resource acquisitions are soft-reservations (intent, not actual), messages to non-participants are queued (not sent). {{work}} proceeds normally but nothing affects real world. When ready, creator calls PREPARE (2-phase commit). Each participant responds READY (can commit) or ABORT (cannot). If ALL READY: COMMIT\u2014queued messages sent, state changes applied atomically, reservations converted to hard acquisitions. If ANY ABORT or TTL expires: ROLLBACK\u2014all tentative work discarded silently, no compensation needed. Nested bubbles commit to parent context, not real world; parent commit makes all nested work real. It enforces a {{constraint_first}} approach around the simulation context to ensure no side effects leak into the production environment.",
-  "gloss": "Enable risk-free coordination experimentation through transactional isolation\u2014try before committing to reality",
+  "gloss": "Sandboxed coordination trial with rollback on commit refusal",
   "failure_modes": [
     "Participant crashes after READY but before COMMIT (blocking\u2014use timeout and recovery).",
     "Long-running bubbles hold soft-reservations too long (resource starvation).",
@@ -10234,16 +12265,16 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Bubble#mh:SHA-256:eb9a8441896625edfa7d41935d88120a27bf53db353082e49b0c6027d45e6142",
-  "sema_ref": "Bubble#eb9a",
-  "sema_stub": "eb9a",
+  "sema_id": "sema:Bubble#mh:SHA-256:189dd3deb9833b76aa24662131557e799499d0cfbab0aae8070e3496f6c0e582",
+  "sema_ref": "Bubble#189d",
+  "sema_stub": "189d",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "constraint_first": "ConstraintFirst#c7cb",
-      "work": "Work#aaad",
-      "state": "State#4d58"
+      "work": "Work#d2c6",
+      "state": "State#4d58",
+      "constraint_first": "ConstraintFirst#c7cb"
     }
   }
 }
@@ -10251,7 +12282,7 @@
 
 ---
 
-## Build#00f3
+## Build#9330
 
 ```json
 {
@@ -10278,32 +12309,32 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "Simulation#8035",
-      "DogfoodFirst#3f2c",
-      "SacrificialProbe#e235"
+      "Simulation#aa24",
+      "DogfoodFirst#2538",
+      "SacrificialProbe#0d39"
     ],
     "ring": 1
   },
-  "sema_id": "sema:Build#mh:SHA-256:00f3e2cc017af17d5de5a121ddd38017635736aa54c5ef23ee43c84abe5ddab6",
-  "sema_ref": "Build#00f3",
-  "sema_stub": "00f3",
+  "sema_id": "sema:Build#mh:SHA-256:9330f2406f087360a8a5d84bcf2426512acdcee446c3eef6264d485956c180f0",
+  "sema_ref": "Build#9330",
+  "sema_stub": "9330",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "signature": [
     "Act#5d55(Artifact#6254)"
   ],
   "dependencies": {
     "references": {
-      "act": "Act#5d55",
-      "plan": "Plan#64f2",
+      "plan": "Plan#fd6d",
       "value": "Value#3c5d",
-      "prototype": "Prototype#ff18"
+      "prototype": "Prototype#ff18",
+      "act": "Act#5d55"
     },
     "yields": {
       "artifact": "Artifact#6254"
     },
     "accepts": {
-      "spec": "Spec#436e"
+      "spec": "Spec#a036"
     }
   }
 }
@@ -10311,55 +12342,126 @@
 
 ---
 
-## CognitiveSolver#30c8
+## CapacityPressure#c861
 
 ```json
 {
-  "handle": "CognitiveSolver",
-  "mechanism": "The universal polymorphic atom of intelligence. A CognitiveSolver is any entity\u2014from a fleeting thought process to a complex swarm\u2014that implements the 5-Stage Cognitive Contract (Manifest via {{card}}, Execute, Question, Verify via {{validate}}, Feedback). It acts as a fractal node in the {{universal_solver_tree}}, accepting a {{task}} and using {{reason}} to orchestrate a lifecycle on a {{solver_node}}. It yields a {{solution}}, wrapping operations like {{tool_invoke}} with {{compute_budget}} checks, {{socratic_loop}} refinement, or {{reflexion}} for self-improvement.",
-  "gloss": "The universal polymorphic atom of recursive intelligence",
+  "handle": "CapacityPressure",
+  "mechanism": "A regularization pattern that forces abstraction by artificially constraining resources (bandwidth, memory, parameter count, or time). By creating a bottleneck where Capacity < Information, the agent is compelled to compress the signal, discarding noise and memorized details in favor of high-level concepts and generalizations. It artificially tightens the {{budget}}, forcing the agent to employ {{generalize}}, {{concept_blend}}, and {{context_compress}} to fit the signal within the bottleneck.",
+  "gloss": "Forcing abstraction via resource starvation",
   "failure_modes": [
-    "Interface Non-Compliance: Solver fails to implement one of the 5 mandatory endpoints.",
-    "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
+    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting) Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint) False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget"
   ],
   "invariants": [
-    "Polymorphism: External Runtime treats all Solvers identically via this Interface.",
-    "Recursion: Solver must accept sub-tasks via the same Interface it exposes."
+    "Bottleneck Existence: Available Capacity must be strictly less than Input Information Content",
+    "Lossy Requirement: Output must be a simplified representation, effectively barring exact replication/memorization",
+    "Utility Preservation: The compressed form must retain predictive power for the target task"
+  ],
+  "preconditions": [
+    "A mechanism to enforce hard limits (e.g., context window, dimensions, token count)",
+    "A stream of information or a learning task"
+  ],
+  "postconditions": [
+    "A highly compressed, abstract representation of the input",
+    "Loss of fine-grained detail/noise"
+  ],
+  "parameters": [
+    {
+      "name": "compression_ratio",
+      "type": "Ratio",
+      "range": "[0.0, 1.0]",
+      "description": "Target resource utilization ratio that triggers forced abstraction"
+    },
+    {
+      "name": "resource_type",
+      "type": "Enum",
+      "range": "{Compute, Memory, Attention, Budget#7270}",
+      "description": "Type of resource being constrained (compute, memory, bandwidth)"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:c8612db41bba14b91f1c4fbc85042134151a7a2a1738a54615c0db6b3bfa5884",
+  "sema_ref": "CapacityPressure#c861",
+  "sema_stub": "c861",
+  "dependencies": {
+    "references": {
+      "context_compress": "ContextCompress#4845",
+      "concept_blend": "ConceptBlend#126e",
+      "agent": "Agent#35b9",
+      "budget": "Budget#7270",
+      "generalize": "Generalize#6dea",
+      "constraint": "Constraint#87fe"
+    }
+  }
+}
+```
+
+---
+
+## CommitmentDevice#6c21
+
+```json
+{
+  "handle": "CommitmentDevice",
+  "mechanism": "Future Self Binding: Anticipate that future self will face temptation or weakness. Remove future options by present action. Examples: delete the app, announce publicly, create penalty for deviation. Cost of breaking commitment must exceed temptation value. It constructs an {{oath_bind}} contract that penalizes future deviation from the chosen path.",
+  "gloss": "Pre-commitment against hyperbolic discounting",
+  "failure_modes": [
+    "Over-commitment: Binding too early locks out legitimate pivots when new information arrives."
+  ],
+  "invariants": [
+    "Binding: Cost(Breaking) > Benefit(Breaking)",
+    "Irrevocability: {{agent}} cannot unilaterally remove the constraint"
+  ],
+  "preconditions": [
+    "{{agent}} expects future preference reversal (hyperbolic discounting)"
+  ],
+  "postconditions": [
+    "Future action set constrained"
   ],
   "_meta": {
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 1,
-    "related": [
-      "EpistemicROI#82a2",
-      "RecursionDive#cda8"
-    ]
+    "ring": 0,
+    "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment."
   },
-  "sema_id": "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782",
-  "sema_ref": "CognitiveSolver#30c8",
-  "sema_stub": "30c8",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:6c210108ca98eee9093d7ac7176ec08cd2b6198df985d0df957756e4fb33e993",
+  "sema_ref": "CommitmentDevice#6c21",
+  "sema_stub": "6c21",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "commitment",
+      "penalty"
+    ],
+    "properties": {
+      "commitment": {
+        "type": "string",
+        "description": "The action being committed to"
+      },
+      "penalty": {
+        "type": "object",
+        "description": "Cost incurred if commitment broken"
+      },
+      "irrevocable": {
+        "type": "boolean",
+        "description": "Whether commitment can be undone"
+      }
+    }
+  },
   "dependencies": {
-    "composes_with": {
-      "tool_invoke": "ToolInvoke#643c",
-      "reason": "Reason#3f24",
-      "compute_budget": "ComputeBudget#3b98",
-      "socratic_loop": "SocraticLoop#70fc",
-      "reflexion": "Reflexion#51b9"
-    },
     "references": {
-      "universal_solver_tree": "UniversalSolverTree#2340",
-      "validate": "Validate#3de2",
-      "solver_node": "SolverNode#a834",
-      "card": "Card#e307"
-    },
-    "accepts": {
-      "task": "Task#d9f9"
-    },
-    "yields": {
-      "solution": "Solution#7186"
+      "oath_bind": "OathBind#a708",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -10367,7 +12469,53 @@
 
 ---
 
-## ComputeBudget#3b98
+## Compose#76c1
+
+```json
+{
+  "handle": "Compose",
+  "mechanism": "Recursive Assembly: Given solved subproblems, {{combine}} solutions respecting interfaces. {{check}}: does combined solution satisfy original problem constraints? If interaction effects emerge, add coordination layer or revise decomposition. It often employs {{prompt_chain}} to sequentially feed sub-solutions into the integration step.",
+  "gloss": "Building complex behavior from simple primitives",
+  "failure_modes": [
+    "Interface Mismatch: Component outputs do not match expected inputs of downstream components."
+  ],
+  "invariants": [
+    "Type Safety: Component outputs must match downstream inputs.",
+    "Acyclicity: Composition graph must be a DAG."
+  ],
+  "preconditions": [
+    "Subproblem solutions available. Interface contracts defined. Composition order known if order-dependent."
+  ],
+  "postconditions": [
+    "Combined solution satisfies original problem. No interface violations. Emergent interactions handled."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:Compose#mh:SHA-256:76c1e7fb397feba35540c6efc14b56e60df485e39e0efdc3e9d60b273e1778ad",
+  "sema_ref": "Compose#76c1",
+  "sema_stub": "76c1",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "signature": [
+    "Combine#5a44(PromptChain#8c63)"
+  ],
+  "dependencies": {
+    "references": {
+      "prompt_chain": "PromptChain#8c63",
+      "check": "Check#d3e8",
+      "combine": "Combine#5a44"
+    }
+  }
+}
+```
+
+---
+
+## ComputeBudget#67c0
 
 ```json
 {
@@ -10396,7 +12544,7 @@
   "parameters": [
     {
       "name": "max_budget",
-      "type": "Integer",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Hard limit"
     },
@@ -10419,22 +12567,22 @@
     "category": "Strategy",
     "ring": 0,
     "related": [
-      "OptimalStop#7439",
-      "Satisfice#9161",
-      "TimeboxThink#2656"
+      "OptimalStop#c244",
+      "Satisfice#9859",
+      "TimeboxThink#043d"
     ]
   },
-  "sema_ref": "ComputeBudget#3b98",
-  "sema_id": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
-  "sema_stub": "3b98",
+  "sema_ref": "ComputeBudget#67c0",
+  "sema_id": "sema:ComputeBudget#mh:SHA-256:67c0cb96827aabadd1ed6ef4caedd4adcce628f1c1a2b4fc50c01dc2e94c4989",
+  "sema_stub": "67c0",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "gate": "Gate#206d",
+      "budget": "Budget#7270",
+      "task": "Task#b328",
       "value": "Value#3c5d",
-      "budget": "Budget#a763"
+      "gate": "Gate#89fd"
     }
   }
 }
@@ -10442,13 +12590,13 @@
 
 ---
 
-## ConceptBlend#22f2
+## ConceptBlend#126e
 
 ```json
 {
   "handle": "ConceptBlend",
   "mechanism": "Forcing the merger of two unrelated graph nodes to find a valid semantic path. Unlike analogy (A is like B), blending creates C (A + B). It extends {{analogy_bridge}} by not just mapping A to B, but fusing them to create C.",
-  "gloss": "Combinatorial novelty generation",
+  "gloss": "Atomic fusion of two unrelated concepts into a novel third",
   "invariants": [
     "Orthogonality: Inputs must be semantically distant (> threshold distance)",
     "Validity: Output must pass a {{tri_gate}}({{realizable}}) check"
@@ -10462,16 +12610,16 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
-  "sema_ref": "ConceptBlend#22f2",
-  "sema_stub": "22f2",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:126e802579f0301b1c71df4731146236a15095e1404d3e7358b87d2bd1f47e1a",
+  "sema_ref": "ConceptBlend#126e",
+  "sema_stub": "126e",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "tri_gate": "TriGate#07fc",
-      "analogy_bridge": "AnalogyBridge#bff7",
-      "realizable": "Realizable#cf00"
+      "tri_gate": "TriGate#67b8",
+      "analogy_bridge": "AnalogyBridge#ddb2",
+      "realizable": "Realizable#8d81"
     }
   }
 }
@@ -10479,7 +12627,41 @@
 
 ---
 
-## ContingencyPlan#61d3
+## ConstraintFirst#c7cb
+
+```json
+{
+  "handle": "ConstraintFirst",
+  "mechanism": "The agent first generates the 'negative space' (the {{constraint}}s, safety rules, and format requirements), defining a rigid container. Only THEN does it generate the content to fill that container. It separates 'form' from 'function'. This prevents the generation of content that is creative but invalid.",
+  "gloss": "Defining boundaries before content",
+  "failure_modes": [
+    "Over-constraining the solution space."
+  ],
+  "invariants": [
+    "Constraints immutable during operation."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 0
+  },
+  "sema_id": "sema:ConstraintFirst#mh:SHA-256:c7cb09081701787022c33fa3b1399bd847b0062cf223851c4d98024b640feb99",
+  "sema_ref": "ConstraintFirst#c7cb",
+  "sema_stub": "c7cb",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "dependencies": {
+    "references": {
+      "constraint": "Constraint#87fe"
+    }
+  }
+}
+```
+
+---
+
+## ContingencyPlan#770d
 
 ```json
 {
@@ -10506,15 +12688,15 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:ContingencyPlan#mh:SHA-256:61d396e94e514a1e01842936992d29b0402f1f4010b00fabd77373bf810497b5",
-  "sema_ref": "ContingencyPlan#61d3",
-  "sema_stub": "61d3",
+  "sema_id": "sema:ContingencyPlan#mh:SHA-256:770d74a39fdfb7074a774be3307f50052ad719aaef524031a8e1663888d5b831",
+  "sema_ref": "ContingencyPlan#770d",
+  "sema_stub": "770d",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "plan": "Plan#64f2",
-      "retry": "Retry#d53d"
+      "retry": "Retry#4cc6",
+      "plan": "Plan#fd6d"
     }
   }
 }
@@ -10539,21 +12721,21 @@
   "sema_ref": "Creative#5574",
   "sema_stub": "5574",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4"
+  "sema_category": "Strategy#c4ba"
 }
 ```
 
 ---
 
-## CreativeBlend#6246
+## CreativeBlend#82d7
 
 ```json
 {
   "handle": "CreativeBlend",
   "derived_from": "Creative#5574",
-  "gloss": "Generating novelty via combinatorial blending and noise",
+  "gloss": "Full creative pipeline: ConceptBlend + NoiseInjection with novelty/value gates",
   "signature": [
-    "Strategy#47a4(Artifact#6254)"
+    "Strategy#c4ba(Artifact#6254)"
   ],
   "mechanism": "A generative {{strategy}} that produces an {{artifact}} by identifying orthogonal concepts in the {{context}} and fusing them via {{concept_blend}}. It applies {{noise_injection}} to the seed inputs to escape local optima. The output is filtered through a rigorous dual-{{check}} against {{novelty}} and {{value}}. Only artifacts passing both gates are yielded.",
   "invariants": [
@@ -10574,27 +12756,27 @@
     "ring": 1,
     "tier": 2
   },
-  "sema_ref": "CreativeBlend#6246",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:624687c31005bc40986fbd3ace62e3e42c931c01ab4c1b082abe319a54372515",
-  "sema_stub": "6246",
+  "sema_ref": "CreativeBlend#82d7",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:82d7642bee7ab08f0f93028151462a47e35e1ceb52e047fb3b3733386cfc647a",
+  "sema_stub": "82d7",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "composes_with": {
-      "check": "Check#1544",
-      "concept_blend": "ConceptBlend#22f2"
-    },
-    "yields": {
-      "artifact": "Artifact#6254"
-    },
     "references": {
       "value": "Value#3c5d",
-      "novelty": "Novelty#51b5",
-      "strategy": "Strategy#47a4",
-      "noise_injection": "NoiseInjection#685e"
+      "noise_injection": "NoiseInjection#4133",
+      "novelty": "Novelty#8568",
+      "strategy": "Strategy#c4ba"
     },
     "accepts": {
       "context": "Context#510a"
+    },
+    "composes_with": {
+      "concept_blend": "ConceptBlend#126e",
+      "check": "Check#d3e8"
+    },
+    "yields": {
+      "artifact": "Artifact#6254"
     }
   }
 }
@@ -10602,7 +12784,7 @@
 
 ---
 
-## Crystallize#af68
+## Crystallize#b64b
 
 ```json
 {
@@ -10650,21 +12832,21 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede",
-  "sema_ref": "Crystallize#af68",
-  "sema_stub": "af68",
+  "sema_id": "sema:Crystallize#mh:SHA-256:b64bd975c1195d73e24369a3fe452a6ed0aecba1398437832b683f801da95e78",
+  "sema_ref": "Crystallize#b64b",
+  "sema_stub": "b64b",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "resonate": "Resonate#99d9",
-      "decay": "Decay#a1d4",
-      "dampen": "Dampen#ff89",
+      "resonate": "Resonate#9fa4",
       "transition": "Transition#072d",
-      "entropy_pump": "EntropyPump#b9ae",
-      "agent": "Agent#aaec",
-      "constitution": "Constitution#863b",
-      "state": "State#4d58"
+      "decay": "Decay#a1d4",
+      "dampen": "Dampen#e55e",
+      "state": "State#4d58",
+      "constitution": "Constitution#8cb8",
+      "entropy_pump": "EntropyPump#c313",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -10694,13 +12876,13 @@
   "sema_ref": "Deep#89f0",
   "sema_stub": "89f0",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4"
+  "sema_category": "Strategy#c4ba"
 }
 ```
 
 ---
 
-## Defer#6460
+## Defer#1796
 
 ```json
 {
@@ -10727,18 +12909,18 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3",
-  "sema_ref": "Defer#6460",
-  "sema_stub": "6460",
+  "sema_id": "sema:Defer#mh:SHA-256:1796866c804d326b413ff658ab87cd57f6047969792bd087d5cf6ef0a37dbe08",
+  "sema_ref": "Defer#1796",
+  "sema_stub": "1796",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "prioritize": "Prioritize#dd16",
-      "context": "Context#510a",
+      "task": "Task#b328",
+      "prioritize": "Prioritize#68f8",
+      "decision": "Decision#acfb",
       "state": "State#4d58",
-      "decision": "Decision#acfb"
+      "context": "Context#510a"
     }
   }
 }
@@ -10746,7 +12928,7 @@
 
 ---
 
-## DepthGovernor#ea1a
+## DepthGovernor#73d5
 
 ```json
 {
@@ -10782,20 +12964,20 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:ea1ab9913430c0a8b04f517766edabfe7e29239eec6626731c69048d7334b480",
-  "sema_ref": "DepthGovernor#ea1a",
-  "sema_stub": "ea1a",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:73d51673295eced222f7a9c1de51fc4970682ce418559374ff1bc3764faf2cc8",
+  "sema_ref": "DepthGovernor#73d5",
+  "sema_stub": "73d5",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "loop": "Loop#fb2e",
-      "plan": "Plan#64f2",
-      "recursion_dive": "RecursionDive#cda8",
-      "agent": "Agent#aaec",
-      "decompose": "Decompose#ac56",
+      "decompose": "Decompose#f900",
+      "plan": "Plan#fd6d",
+      "recursion_dive": "RecursionDive#9c9f",
+      "problem": "Problem#4576",
       "condition": "Condition#cbd5",
-      "problem": "Problem#5baa"
+      "loop": "Loop#797f",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -10803,7 +12985,7 @@
 
 ---
 
-## DesignArchitect#7f55
+## DesignArchitect#2bca
 
 ```json
 {
@@ -10820,21 +13002,21 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "DesignArchitect#7f55",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775",
-  "sema_stub": "7f55",
+  "sema_ref": "DesignArchitect#2bca",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:2bca4f59f554d98d14f125913c5f8e74ad98bf4b0c44afc176178217e9b10aec",
+  "sema_stub": "2bca",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "composes_with": {
-      "pre_mortem": "PreMortem#f69d",
-      "steelman_check": "SteelmanCheck#4f4c",
-      "translate": "Translate#e75d",
-      "strategy": "Strategy#47a4",
-      "summarize": "Summarize#6a00"
+      "strategy": "Strategy#c4ba",
+      "translate": "Translate#a8ed",
+      "pre_mortem": "PreMortem#142a",
+      "summarize": "Summarize#db2a",
+      "steelman_check": "SteelmanCheck#7914"
     },
     "yields": {
-      "mechanistic_design_proposal": "MechanisticDesignProposal#8cf7"
+      "mechanistic_design_proposal": "MechanisticDesignProposal#497e"
     }
   }
 }
@@ -10842,7 +13024,44 @@
 
 ---
 
-## EmpiricalTest#8f92
+## DiscoveryProtocol#bf29
+
+```json
+{
+  "handle": "DiscoveryProtocol",
+  "mechanism": "The paper's \u00a76.4 protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each bound to a maximally distinct cognitive mode via GeneratorSolvers), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generate-asked-by-many-parallel-Solvers, then reduce-asked-by-a-Solver-whose-faculty-is-evaluation-and-composition-rather-than-generation. The ReduceSolver routes among modes (AggregateSolver for ensembles, TournamentSolver for adversarial selection, PortfolioSolver for quality-diversity preservation, {{synthesis}}-based merging of compatible mechanisms). TaxonomistSolver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.",
+  "gloss": "Population-based discovery: Generate (parallel diverse solvers) + Reduce (composition-aware selection) behind hard boundaries",
+  "invariants": [
+    "Hard-boundary isolation: generators cannot see each other's outputs during generation; the reduction boundary is the first synthesis point.",
+    "Cognitive-mode diversity: each GeneratorSolver is bound to a maximally distinct mode, not just sampled from one model at different temperatures.",
+    "Non-compensatory reduction gate: novelty is a gate condition, not a tiebreaker \u2014 a structurally novel mechanism survives even if it scores lower on surface plausibility."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:bf29178f844591e77241b547f47963e06fc3119243dc2d7d4c2c45f24b843d43",
+  "sema_ref": "DiscoveryProtocol#bf29",
+  "sema_stub": "bf29",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f",
+      "synthesis": "Synthesis#26b9"
+    },
+    "references": {
+      "discover": "Discover#7dbc"
+    }
+  }
+}
+```
+
+---
+
+## EmpiricalTest#65ed
 
 ```json
 {
@@ -10862,15 +13081,15 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:EmpiricalTest#mh:SHA-256:8f92bb36b1520f702ecd4b4e9313c31dbaa7e3933a4a6c9b4690e3de25e32e28",
-  "sema_ref": "EmpiricalTest#8f92",
-  "sema_stub": "8f92",
+  "sema_id": "sema:EmpiricalTest#mh:SHA-256:65ed9f3e69d80b15abc13e42e64da3a80d0cad34f4d132e95f4ff986621c6538",
+  "sema_ref": "EmpiricalTest#65ed",
+  "sema_stub": "65ed",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "falsification": "Falsification#3e36",
-      "validate": "Validate#3de2"
+      "validate": "Validate#ebe1",
+      "falsification": "Falsification#4e23"
     }
   }
 }
@@ -10878,7 +13097,7 @@
 
 ---
 
-## EpistemicROI#82a2
+## EpistemicROI#0d53
 
 ```json
 {
@@ -10907,21 +13126,21 @@
     "ring": 2
   },
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "sema_id": "sema:EpistemicROI#mh:SHA-256:82a2da9aee8241835a3b8f370816bdd2d1e4e019cd28b52b285244ffe306b7da",
-  "sema_ref": "EpistemicROI#82a2",
-  "sema_stub": "82a2",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:EpistemicROI#mh:SHA-256:0d537b6d7eaa65f91830a59ea43290a17fc175a8a352d691224ce11fe9af67b1",
+  "sema_ref": "EpistemicROI#0d53",
+  "sema_stub": "0d53",
   "dependencies": {
     "references": {
-      "result": "Result#8ed9",
-      "act": "Act#5d55",
-      "experiment": "Experiment#c62f",
-      "task": "Task#d9f9",
-      "compute_budget": "ComputeBudget#3b98",
+      "experiment": "Experiment#a93e",
       "value": "Value#3c5d",
-      "decision": "Decision#acfb",
       "cognitive_bias": "CognitiveBias#4b32",
-      "outcome": "Outcome#38e0"
+      "task": "Task#b328",
+      "compute_budget": "ComputeBudget#67c0",
+      "result": "Result#195b",
+      "outcome": "Outcome#144c",
+      "decision": "Decision#acfb",
+      "act": "Act#5d55"
     }
   }
 }
@@ -10929,7 +13148,7 @@
 
 ---
 
-## EventReact#7db1
+## EventReact#da85
 
 ```json
 {
@@ -10954,17 +13173,17 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:7db170eab2eaf5a1764ee61af391ab290db9e83835f6ca3107305d2a709554fe",
-  "sema_ref": "EventReact#7db1",
-  "sema_stub": "7db1",
+  "sema_id": "sema:EventReact#mh:SHA-256:da85e84f43dca3c870edf9dd518e4602a63cf1be9efada545781de12db839103",
+  "sema_ref": "EventReact#da85",
+  "sema_stub": "da85",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "re_act": "ReAct#b487",
-      "agent": "Agent#aaec"
+      "re_act": "ReAct#e018",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -10972,7 +13191,7 @@
 
 ---
 
-## Experiment#c62f
+## Experiment#a93e
 
 ```json
 {
@@ -10988,18 +13207,18 @@
       "HypothesisLadder#f88b"
     ]
   },
-  "sema_ref": "Experiment#c62f",
-  "sema_id": "sema:Experiment#mh:SHA-256:c62fce3980caa782eba602ce44307edf9c4cb3f52eeab85523689348dd0db51e",
-  "sema_stub": "c62f",
+  "sema_ref": "Experiment#a93e",
+  "sema_id": "sema:Experiment#mh:SHA-256:a93e3cf28a0eec41473eb3e00beabac3d5d903bd53ac3184001df8bba2bb4cc3",
+  "sema_stub": "a93e",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "protocol": "Protocol#7e1c",
-      "verification": "Verification#eb28"
+      "verification": "Verification#19d6",
+      "protocol": "Protocol#7e1c"
     },
     "yields": {
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea"
     }
   }
 }
@@ -11007,7 +13226,7 @@
 
 ---
 
-## ExploreExploit#88b0
+## ExploreExploit#1de3
 
 ```json
 {
@@ -11040,14 +13259,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:ExploreExploit#mh:SHA-256:88b0c9b3824b0ab8a8fa33dbb75136563eae43481eb087e85f5db2e6db17f3de",
-  "sema_ref": "ExploreExploit#88b0",
-  "sema_stub": "88b0",
+  "sema_id": "sema:ExploreExploit#mh:SHA-256:1de37294175428733bae4d9e3d00b2281b1abfe2e1defd6cf76fc833df5d93f4",
+  "sema_ref": "ExploreExploit#1de3",
+  "sema_stub": "1de3",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "budget": "Budget#a763",
+      "budget": "Budget#7270",
       "context": "Context#510a"
     }
   }
@@ -11056,7 +13275,7 @@
 
 ---
 
-## Falsification#3e36
+## Falsification#4e23
 
 ```json
 {
@@ -11076,16 +13295,16 @@
       "HypothesisLadder#f88b"
     ]
   },
-  "sema_id": "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929",
-  "sema_ref": "Falsification#3e36",
-  "sema_stub": "3e36",
+  "sema_id": "sema:Falsification#mh:SHA-256:4e239c5718eb2279b61935176478b206785942cf78c748380484d7106b533de9",
+  "sema_ref": "Falsification#4e23",
+  "sema_stub": "4e23",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "hypothesis": "Hypothesis#e95b",
-      "observe": "Observe#8ebd",
-      "incongruity": "Incongruity#e98f"
+      "observe": "Observe#39f0",
+      "incongruity": "Incongruity#e98f",
+      "hypothesis": "Hypothesis#ffa7"
     }
   }
 }
@@ -11093,7 +13312,62 @@
 
 ---
 
-## HypothesisEngine#dc69
+## FractalIntelligence#ab50
+
+```json
+{
+  "handle": "FractalIntelligence",
+  "mechanism": "Expansion of cognitive capability through {{conceptual_decomposition}}: a concept (problem or task) is broken into contract-bound sub-concepts, each governed by the same five-surface Solver Contract (Manifest, Execute, Consult, Verify, Feedback) that governs the parent. A few {{agent}}s can assign solver roles to themselves and perform lightweight fractal intelligence for a specific problem \u2014 the resulting structure may persist as a reusable pattern that improves through use, or may be torn down at completion; both are legitimate modes. The unified {{system}} of scalable cognition uses {{reason}} to orchestrate fractal expansion within the {{universal_solver_tree}}. A {{problem_framer}} initiates by formulating a high-level {{strategy}} before assigning a {{polymorphic_solver}} to a {{task}}; the solver executes a {{recursion_dive}} to spawn child nodes, each applying {{specialize}} with {{localized_learning}}, while {{experience_sharding}} and {{synthesis}} preserve global coherence. {{state_snapshot}} provides crash recovery for persistent instances. {{marginal_value_rule}} governs recursion depth. On failure, {{reframe}} restructures the tree.",
+  "gloss": "Expansion of cognitive capability through recursive decomposition of concepts into contract-bounded sub-concepts",
+  "invariants": [
+    "Fractal Self-Similarity: The process at the Root is identical to the process at the Leaf.",
+    "Bounded Expansion: Recursion is limited by Economic constraints (Marginal Value).",
+    "Memory Conservation: Specialization must not result in the loss of global context."
+  ],
+  "signature": [
+    "System#e314(Reason#5f30)"
+  ],
+  "derived_from": "sema:RecursiveIntelligence#mh:SHA-256:216c297a34a0847957d1a6a8701987248bc8d63294953a78346b5b68dbb9aef6",
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_ref": "FractalIntelligence#ab50",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:ab502d23e39cad39392548bc97e251df2e2ecd494244f4fd069c0cd8732fb063",
+  "sema_stub": "ab50",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "ConceptualDecomposition#f81f",
+      "reason": "Reason#5f30",
+      "polymorphic_solver": "PolymorphicSolver#9188",
+      "recursion_dive": "RecursionDive#9c9f",
+      "synthesis": "Synthesis#26b9",
+      "marginal_value_rule": "MarginalValueRule#32ce",
+      "problem_framer": "ProblemFramer#f504",
+      "reframe": "Reframe#0b02",
+      "state_snapshot": "StateSnapshot#b9b8",
+      "localized_learning": "LocalizedLearning#fcc7"
+    },
+    "references": {
+      "specialize": "Specialize#0ac5",
+      "task": "Task#b328",
+      "universal_solver_tree": "UniversalSolverTree#b805",
+      "system": "System#e314",
+      "strategy": "Strategy#c4ba",
+      "experience_sharding": "ExperienceSharding#43c3",
+      "agent": "Agent#35b9"
+    }
+  }
+}
+```
+
+---
+
+## HypothesisEngine#bffd
 
 ```json
 {
@@ -11111,19 +13385,19 @@
     "ring": 2
   },
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "sema_id": "sema:HypothesisEngine#mh:SHA-256:dc69956150dc53b0ecfa132dc3ab6a50008569ed82c9bd5de16ffecb9ea405d8",
-  "sema_ref": "HypothesisEngine#dc69",
-  "sema_stub": "dc69",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:HypothesisEngine#mh:SHA-256:bffd8181760462e7d213287b482f25081597d30db0a745627573e3c6555614a4",
+  "sema_ref": "HypothesisEngine#bffd",
+  "sema_stub": "bffd",
   "dependencies": {
     "references": {
-      "trace": "Trace#9057",
-      "discover": "Discover#afa1",
-      "check": "Check#1544",
       "stigmergy": "Stigmergy#f624",
-      "validate": "Validate#3de2",
-      "hypothesis": "Hypothesis#e95b",
-      "simulation": "Simulation#8035"
+      "hypothesis": "Hypothesis#ffa7",
+      "validate": "Validate#ebe1",
+      "discover": "Discover#7dbc",
+      "trace": "Trace#9057",
+      "check": "Check#d3e8",
+      "simulation": "Simulation#aa24"
     }
   }
 }
@@ -11131,12 +13405,12 @@
 
 ---
 
-## HypothesisLadder#e739
+## HypothesisLadder#0ede
 
 ```json
 {
   "handle": "HypothesisLadder",
-  "mechanism": "The agent explicitly lists its current hypotheses about the world state and assigns probabilities. As new data arrives, it updates these probabilities using {{bayes_update}}. It acts on the highest-probability {{hypothesis}} but keeps others alive. It structures {{abductive_leap}} into falsifiable rungs, climbing to higher certainty only when an {{experiment}} validates the current level.",
+  "mechanism": "The agent explicitly lists its current hypotheses about the world state and assigns probabilities. As new data arrives, it updates these probabilities using {{bayes_update}}. It acts on the highest-probability {{hypothesis}} but keeps others alive. It structures {{abduction}} into falsifiable rungs, climbing to higher certainty only when an {{experiment}} validates the current level.",
   "gloss": "Bayesian belief updating via falsification rungs",
   "failure_modes": [
     "Clinging to low-probability priors."
@@ -11160,19 +13434,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:e739d24ffb9b7c57bf309404838cdd21a4c39d6aa48b72e6565c98a8767f9fa7",
-  "sema_ref": "HypothesisLadder#e739",
-  "sema_stub": "e739",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:0ede5d0b5fa69d846812d0866829567c605e003d57aa381a96a9751638af946e",
+  "sema_ref": "HypothesisLadder#0ede",
+  "sema_stub": "0ede",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "hypothesis": "Hypothesis#e95b",
-      "abductive_leap": "AbductiveLeap#1069",
-      "bayes_update": "BayesUpdate#911b"
+      "bayes_update": "BayesUpdate#13f8",
+      "abduction": "Abduction#a9df",
+      "hypothesis": "Hypothesis#ffa7"
     },
     "composes_with": {
-      "experiment": "Experiment#c62f"
+      "experiment": "Experiment#a93e"
     }
   }
 }
@@ -11180,7 +13454,7 @@
 
 ---
 
-## Jester#bc50
+## Jester#e489
 
 ```json
 {
@@ -11193,15 +13467,15 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Jester#mh:SHA-256:bc5045fce9b9265838e8e9e8df40d00bab11be85752235307be0dc403ee5abae",
-  "sema_ref": "Jester#bc50",
-  "sema_stub": "bc50",
+  "sema_id": "sema:Jester#mh:SHA-256:e48900a1ac83d9ec477fad9b92e8723286325c25b7dd14c06a8d885a22e705b8",
+  "sema_ref": "Jester#e489",
+  "sema_stub": "e489",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "critique": "Critique#3e00",
-      "break": "Break#1a63",
+      "break": "Break#177f",
+      "critique": "Critique#4e43",
       "incongruity": "Incongruity#e98f"
     }
   }
@@ -11245,18 +13519,18 @@
   "sema_ref": "Kairos#5e42",
   "sema_stub": "5e42",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4"
+  "sema_category": "Strategy#c4ba"
 }
 ```
 
 ---
 
-## LatentWander#7495
+## LatentWander#1e51
 
 ```json
 {
   "handle": "LatentWander",
-  "mechanism": "Offline processing mode where the agent explores its own embedding space, connecting distant concepts (Daydreaming). Used for memory consolidation and generating novel {{analogy_bridge}}s. It uses {{concept_blend}} during offline states to traverse the embedding space and discover non-obvious connections.",
+  "mechanism": "Offline processing mode where the agent explores its own {{latent_attachment}} embedding space, connecting distant concepts (Daydreaming). Used for memory consolidation and generating novel {{analogy_bridge}}s. It uses {{concept_blend}} during offline states to traverse the embedding space and discover non-obvious connections.",
   "gloss": "Offline exploration of embedding space",
   "invariants": [
     "Drift: Exploration temperature > standard inference temperature",
@@ -11272,17 +13546,18 @@
     "ring": 2
   },
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "sema_id": "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc",
-  "sema_ref": "LatentWander#7495",
-  "sema_stub": "7495",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:LatentWander#mh:SHA-256:1e5118a7dbc90f2e71eeebbd7007fc4d50ab5e83035f2d7bf0d877b0b2af8dcd",
+  "sema_ref": "LatentWander#1e51",
+  "sema_stub": "1e51",
   "dependencies": {
     "references": {
-      "silence": "Silence#dd79",
-      "concept_blend": "ConceptBlend#22f2"
+      "latent_attachment": "LatentAttachment#ab68",
+      "concept_blend": "ConceptBlend#126e",
+      "silence": "Silence#dd79"
     },
     "yields": {
-      "analogy_bridge": "AnalogyBridge#bff7"
+      "analogy_bridge": "AnalogyBridge#ddb2"
     }
   }
 }
@@ -11290,7 +13565,7 @@
 
 ---
 
-## LateralOptimization#5350
+## LateralOptimization#4c06
 
 ```json
 {
@@ -11319,31 +13594,31 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "AnalogyBridge#bff7"
+      "AnalogyBridge#ddb2"
     ],
     "ring": 1
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:5350ae13501544830ea8db150d55264a15e06ac1d231c16d02207ae0b48eadba",
-  "sema_ref": "LateralOptimization#5350",
-  "sema_stub": "5350",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:4c0687fddfad997ae87a753d9fc7d9a962e0c0b5a74153d8a3de7e246b659651",
+  "sema_ref": "LateralOptimization#4c06",
+  "sema_stub": "4c06",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "signature": [
     "Think#e1bd(Creative#5574)",
-    "Optimize#3075(Global#803d)"
+    "Optimize#5b84(Global#803d)"
   ],
   "dependencies": {
     "composes_with": {
-      "optimize": "Optimize#3075",
-      "reframe": "Reframe#ba00",
-      "translate": "Translate#e75d"
+      "translate": "Translate#a8ed",
+      "reframe": "Reframe#0b02",
+      "optimize": "Optimize#5b84"
     },
     "references": {
+      "solution": "Solution#fcea",
+      "global": "Global#803d",
       "think": "Think#e1bd",
       "system": "System#e314",
-      "global": "Global#803d",
-      "creative": "Creative#5574",
-      "solution": "Solution#7186"
+      "creative": "Creative#5574"
     }
   }
 }
@@ -11351,7 +13626,50 @@
 
 ---
 
-## MentalSim#5728
+## MarginalValueRule#32ce
+
+```json
+{
+  "handle": "MarginalValueRule",
+  "mechanism": "The economic {{budget}} governor of {{recursion_dive}}. It permits going one level deeper only if Expected Improvement in Quality > Incremental Cost. It calculates the marginal value of additional depth using {{estimate}} and compares against remaining {{budget}}. This ensures the system solves problems with precision proportional to their stakes\u2014simple problems get shallow treatment, complex problems get deep exploration.",
+  "gloss": "Economic stop-condition for recursion",
+  "failure_modes": [
+    "Underestimation: Expected value is too optimistic, wasting budget on low-value dives.",
+    "Overestimation: Expected value is too pessimistic, stopping too early on valuable problems.",
+    "Sunk Cost Fallacy: Continuing to invest because of prior investment, not future value."
+  ],
+  "invariants": [
+    "Marginal Comparison: Dive only if E[\u0394Quality] > Cost(Dive).",
+    "Budget Respect: Never approve a dive that exceeds remaining budget.",
+    "Diminishing Returns: Deeper levels must show proportionally higher marginal value."
+  ],
+  "_meta": {
+    "layer": "Mind",
+    "category": "Strategy",
+    "tier": 2,
+    "ring": 1
+  },
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e",
+  "sema_ref": "MarginalValueRule#32ce",
+  "sema_stub": "32ce",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "signature": [
+    "Budget#7270(RecursionDive#9c9f)"
+  ],
+  "dependencies": {
+    "references": {
+      "budget": "Budget#7270",
+      "estimate": "Estimate#d1a0",
+      "recursion_dive": "RecursionDive#9c9f"
+    }
+  }
+}
+```
+
+---
+
+## MentalSim#10ff
 
 ```json
 {
@@ -11392,24 +13710,24 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "ProphetFanOut#2d81"
+      "ProphetFanOut#85a9"
     ],
     "ring": 2
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:5728b6db7446bf4b3dc0ce1998ddf5a2b724b09438efc15d68709c09ec93a26e",
-  "sema_ref": "MentalSim#5728",
-  "sema_stub": "5728",
+  "sema_id": "sema:MentalSim#mh:SHA-256:10ff223619af909bbdf5e191e776690bd613afa3eb0a7d0024393659859fd7b5",
+  "sema_ref": "MentalSim#10ff",
+  "sema_stub": "10ff",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "system": "System#e314",
+      "heuristic_snap": "HeuristicSnap#1ef2",
       "deep": "Deep#89f0",
-      "agent": "Agent#aaec",
-      "heuristic_snap": "HeuristicSnap#cece",
-      "agent_sandbox": "AgentSandbox#ce7e",
-      "simulation": "Simulation#8035",
-      "state": "State#4d58"
+      "system": "System#e314",
+      "simulation": "Simulation#aa24",
+      "state": "State#4d58",
+      "agent_sandbox": "AgentSandbox#fc41",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -11417,7 +13735,7 @@
 
 ---
 
-## MetaCheck#a228
+## MetaCheck#7298
 
 ```json
 {
@@ -11458,20 +13776,20 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:MetaCheck#mh:SHA-256:a228b1133c27b81db71a125234a13a0acac3464d6ac33fcc89d2e351b1bdb494",
-  "sema_ref": "MetaCheck#a228",
-  "sema_stub": "a228",
+  "sema_id": "sema:MetaCheck#mh:SHA-256:72985c48beafb2ec1c10fce43974dd0de5a6a25303910ebbb468b49cf65b9892",
+  "sema_ref": "MetaCheck#7298",
+  "sema_stub": "7298",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "signature": [
-    "Meta#90f4(Check#1544)"
+    "Meta#90f4(Check#d3e8)"
   ],
   "dependencies": {
     "references": {
-      "reflexion": "Reflexion#51b9",
-      "audit": "Audit#4044",
-      "check": "Check#1544",
-      "meta": "Meta#90f4"
+      "audit": "Audit#6888",
+      "meta": "Meta#90f4",
+      "check": "Check#d3e8",
+      "reflexion": "Reflexion#eed9"
     }
   }
 }
@@ -11479,55 +13797,36 @@
 
 ---
 
-## Monitor#9a8f
+## MetaProtocols#760e
 
 ```json
 {
-  "handle": "Monitor",
-  "gloss": "Continuous observation of state over time",
-  "mechanism": "A persistent process that uses a {{loop}} to repeatedly execute {{observe}} on a target {{system}} or {{state}} at defined intervals. It compares the observed state against a baseline or invariant, emitting a {{signal}} if a deviation ({{anomaly}}) is detected.",
-  "signature": [
-    "Loop#fb2e(State#4d58)"
-  ],
+  "handle": "MetaProtocols",
+  "mechanism": "The paper's \u00a76.10 protocols that operate on the solver tree rather than within it \u2014 decomposing self-regulation: monitoring whether the tree remains the right shape for the problems it faces. A MetaObserverSolver maintains an approximate gestalt of tree topology and performance dynamics (redundant computation, decompositions that have outlived usefulness, {{pathway_memory}} that has drifted). Representative meta solvers: TopologyAuditorSolver (detects subtrees generating more rework than value, emits a ReframeSignal via {{reframe}}), RedundancyDetectorSolver (merges isomorphic sub-problems being solved independently), DriftMonitorSolver (flags when pathway memory has drifted from current problem distributions), OutcomeArbiterSolver (compares solution quality across structurally different decomposition paths, blind to the path that produced each result). Meta Protocols are themselves Solvers governed by the same contract; they do not solve object-level problems, they ensure the problem-solving topology remains adapted.",
+  "gloss": "Solvers that operate on the solver tree itself \u2014 monitoring topology, detecting redundancy and drift, arbitrating across decomposition paths",
   "invariants": [
-    "Liveness: Must run continuously or periodically.",
-    "Non-Interference: Monitoring should not significantly alter the observed system."
-  ],
-  "parameters": [
-    {
-      "name": "interval",
-      "type": "Duration",
-      "range": "unspecified",
-      "description": "Time between observation cycles"
-    },
-    {
-      "name": "threshold",
-      "type": "Float",
-      "range": "unspecified",
-      "description": "Alert threshold for the monitored metric"
-    }
+    "Tree-level scope: Meta Protocols observe and act on topology and performance of other Solvers, not on object-level Tasks.",
+    "Contract-invariant: Meta Solvers are themselves Solvers (Manifest + Execute); their depth of meta-observation is governed by {{marginal_value_rule}}.",
+    "Blind arbitration: OutcomeArbiter evaluates final artifacts against the original Task without access to intermediate structure \u2014 blindness is what lets it compare across decomposition paths without structural-familiarity bias."
   ],
   "_meta": {
-    "tier": 0,
+    "tier": 2,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 2
   },
-  "sema_ref": "Monitor#9a8f",
-  "sema_id": "sema:Monitor#mh:SHA-256:9a8f8879765fe55f9ab79786671b7e4cf0aa0e61730e20897214b22fb6fa08bb",
-  "sema_stub": "9a8f",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:MetaProtocols#mh:SHA-256:760ece9f517ac6aae4d1eaaffc7c5fc9fab14ef7d62ea9fc4aa37e004d98f2c6",
+  "sema_ref": "MetaProtocols#760e",
+  "sema_stub": "760e",
   "dependencies": {
     "references": {
-      "anomaly": "Anomaly#7987",
-      "system": "System#e314",
-      "signal": "Signal#f39d",
-      "state": "State#4d58"
+      "pathway_memory": "PathwayMemory#0799",
+      "reframe": "Reframe#0b02"
     },
     "composes_with": {
-      "loop": "Loop#fb2e",
-      "observe": "Observe#8ebd"
+      "marginal_value_rule": "MarginalValueRule#32ce"
     }
   }
 }
@@ -11535,7 +13834,7 @@
 
 ---
 
-## NoiseInjection#685e
+## NoiseInjection#4133
 
 ```json
 {
@@ -11565,19 +13864,19 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:685ee3801da377f7760a3d28085a68bc01665c3ae0783e1de26ad1041096094d",
-  "sema_ref": "NoiseInjection#685e",
-  "sema_stub": "685e",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:4133e9351b1e6d5d9a3c6950e7283fecbb3a86520e2f3d7bb8ab2c73824795de",
+  "sema_ref": "NoiseInjection#4133",
+  "sema_stub": "4133",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "context": "Context#510a",
-      "noise": "Noise#c4b4",
-      "strategy": "Strategy#47a4",
+      "card": "Card#2d01",
+      "noise": "Noise#d631",
+      "strategy": "Strategy#c4ba",
       "signal": "Signal#f39d",
-      "card": "Card#e307"
+      "context": "Context#510a",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -11585,17 +13884,17 @@
 
 ---
 
-## Novelty#51b5
+## Novelty#8568
 
 ```json
 {
   "handle": "Novelty",
-  "mechanism": "Acts as a {{judge}} to evaluate structural distinctness and {{value}} against the incumbent knowledge base. Classifies candidates into three qualitative states: (1) Derivative: Pure relabeling of an existing concept. (2) Marginal: Incremental variation; distinctness is unproven. (3) Distinct: Introduces a new orthogonal mechanism or predicts a divergent outcome.",
+  "mechanism": "A {{judge}} of structural distinctness: does this artifact introduce a genuinely new mechanism relative to a reference knowledge base, or is it a rename or incremental variation of something already there? Applies wherever originality needs to be separated from surface variety \u2014 scientific contribution, design proposals, creative work, trademark/patent review, pattern minting. The essential move is a structural comparison against the incumbent set rather than a similarity score on surface tokens. Specific rating semantics (binary, traffic-light, continuous distance) belong on descendants or on the composing protocol. The signature Judge({{value}}) places the result on a {{value}}-scale (how novel is this, on a measurable axis) rather than returning a binary yes/no.",
   "invariants": [
     "Orthogonality: High novelty requires low embedding similarity to nearest neighbor."
   ],
   "signature": [
-    "Judge#d84f(Value#3c5d)"
+    "Judge#9554(Value#3c5d)"
   ],
   "gloss": "Evaluates structural distinctness",
   "_meta": {
@@ -11604,15 +13903,15 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
-  "sema_ref": "Novelty#51b5",
-  "sema_stub": "51b5",
+  "sema_id": "sema:Novelty#mh:SHA-256:856823d77a20df0cb24874f13730910bac2fdf206d205b09a3201cd1b24f6810",
+  "sema_ref": "Novelty#8568",
+  "sema_stub": "8568",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
       "value": "Value#3c5d",
-      "judge": "Judge#d84f"
+      "judge": "Judge#9554"
     }
   }
 }
@@ -11620,12 +13919,12 @@
 
 ---
 
-## OODA#f3be
+## OODA#eaf1
 
 ```json
 {
   "handle": "OODA",
-  "mechanism": "The OODA {{loop}} ({{observe}}-Orient-Decide-{{act}}) is a high-speed decision cycle favoring {{agent}} agility over raw power. \n1. OBSERVE: Gather raw data via {{observe}}.\n2. ORIENT: Update context and beliefs via {{context}} and {{belief}}. This is the most critical step, filtering data through culture and genetics (or training).\n3. DECIDE: {{select}} a hypothesis or {{strategy}} via {{think}} and {{select}}.\n4. ACT: Execute via {{act}} and change the environment.\nSuccess depends on traversing this loop faster than the adversary (or environment changes).",
+  "mechanism": "The OODA {{loop}} ({{observe}}-Orient-Decide-{{act}}) is a high-speed decision cycle favoring {{agent}} agility over raw power, embodying {{context_first}} at the substrate level: Observe and Orient both complete before any Decide-Act sequence fires.\n1. OBSERVE: Gather raw data via {{observe}}.\n2. ORIENT: Update context and beliefs via {{context}} and {{belief}}. This is the most critical step, filtering data through culture and genetics (or training).\n3. DECIDE: {{select}} a hypothesis or {{strategy}} via {{think}} and {{select}}.\n4. ACT: Execute via {{act}} and change the environment.\nSuccess depends on traversing this loop faster than the adversary (or environment changes).",
   "gloss": "Rapid decision cycle: Observe, Orient, Decide, Act",
   "failure_modes": [
     "Disorientation: Getting stuck in 'Orient' due to contradictory data.",
@@ -11649,35 +13948,36 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "ReAct#b487",
-      "SocraticLoop#70fc",
+      "ReAct#e018",
+      "SocraticLoop#2913",
       "BoydCycle"
     ],
     "ring": 1
   },
-  "sema_id": "sema:OODA#mh:SHA-256:f3bea02806503fe8a7c72a9fd3f3cdfccbae6c9519eb3bf8b25b35badc9545f7",
-  "sema_ref": "OODA#f3be",
-  "sema_stub": "f3be",
+  "sema_id": "sema:OODA#mh:SHA-256:eaf147fcb52a46f836a3fbfbae912ce01c00572c9c47ee81515bcba935883527",
+  "sema_ref": "OODA#eaf1",
+  "sema_stub": "eaf1",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "signature": [
-    "Agent#aaec(Loop#fb2e)",
-    "Think#e1bd(Strategy#47a4)"
+    "Agent#35b9(Loop#797f)",
+    "Think#e1bd(Strategy#c4ba)"
   ],
   "dependencies": {
     "composes_with": {
       "context": "Context#510a",
-      "think": "Think#e1bd",
+      "belief": "Belief#a9ce",
       "act": "Act#5d55",
+      "observe": "Observe#39f0",
       "select": "Select#15c2",
-      "observe": "Observe#8ebd",
-      "belief": "Belief#5ad9"
+      "think": "Think#e1bd"
     },
     "references": {
-      "loop": "Loop#fb2e",
-      "agent": "Agent#aaec",
-      "strategy": "Strategy#47a4",
-      "state": "State#4d58"
+      "strategy": "Strategy#c4ba",
+      "context_first": "ContextFirst#def7",
+      "state": "State#4d58",
+      "loop": "Loop#797f",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -11685,7 +13985,7 @@
 
 ---
 
-## OpportunityCost#1c66
+## OpportunityCost#b9f4
 
 ```json
 {
@@ -11712,15 +14012,15 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "OpportunityCost#1c66",
-  "sema_id": "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e",
-  "sema_stub": "1c66",
+  "sema_ref": "OpportunityCost#b9f4",
+  "sema_id": "sema:OpportunityCost#mh:SHA-256:b9f42928008a1766723b0d44e3140f3a6bb5d0655b53c5c3a71d4f768141e6fb",
+  "sema_stub": "b9f4",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "value": "Value#3c5d",
-      "budget": "Budget#a763"
+      "budget": "Budget#7270",
+      "value": "Value#3c5d"
     }
   }
 }
@@ -11728,7 +14028,7 @@
 
 ---
 
-## OptimalStop#7439
+## OptimalStop#c244
 
 ```json
 {
@@ -11745,7 +14045,7 @@
   "parameters": [
     {
       "name": "recall_allowed",
-      "type": "Boolean",
+      "type": "Boolean#2e6b",
       "range": "unspecified",
       "description": "Can you go back to rejected options?"
     },
@@ -11757,7 +14057,7 @@
     },
     {
       "name": "total_budget",
-      "type": "Float",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Tokens or Time"
     }
@@ -11768,14 +14068,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:OptimalStop#mh:SHA-256:74391a0813dfa1c767a2221d9fd50da3c1bd6714bd77a402f0178c707a8ad95f",
-  "sema_ref": "OptimalStop#7439",
-  "sema_stub": "7439",
+  "sema_id": "sema:OptimalStop#mh:SHA-256:c2447936a2d4beb76817499e464cde69ca608ec7a2a9898d816951ed111f1222",
+  "sema_ref": "OptimalStop#c244",
+  "sema_stub": "c244",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "compute_budget": "ComputeBudget#3b98"
+      "compute_budget": "ComputeBudget#67c0"
     }
   }
 }
@@ -11783,7 +14083,7 @@
 
 ---
 
-## Optimize#3075
+## Optimize#5b84
 
 ```json
 {
@@ -11814,24 +14114,24 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "EvaluatorOptimizer#7ec6",
-      "RegretMinimization#4a57",
-      "ParetoFront#9091"
+      "EvaluatorOptimizer#c776",
+      "RegretMinimization#4d84",
+      "ParetoFront#c1fb"
     ],
     "ring": 1
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
-  "sema_ref": "Optimize#3075",
-  "sema_stub": "3075",
+  "sema_id": "sema:Optimize#mh:SHA-256:5b84e57715fe93b6d6b55f1d202e48e8d17b7965f61243e3b5f5f4a117775881",
+  "sema_ref": "Optimize#5b84",
+  "sema_stub": "5b84",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "accepts": {
-      "solution": "Solution#7186"
-    },
     "references": {
-      "metric": "Metric#8895",
-      "global": "Global#803d"
+      "global": "Global#803d",
+      "metric": "Metric#17fd"
+    },
+    "accepts": {
+      "solution": "Solution#fcea"
     }
   }
 }
@@ -11839,12 +14139,55 @@
 
 ---
 
-## PUREBrainstorming#5dad
+## PURE#9888
+
+```json
+{
+  "handle": "PURE",
+  "mechanism": "The framework that defines how the four general viability components \u2014 {{parsimony}}, {{novelty}}, {{realizable}}, {{expansive}} \u2014 compose into a viability evaluation. PURE specifies the usage contract shared by every PURE instance: (1) the four dimensions are orthogonal \u2014 they must be evaluated without sight of each other, because in a single context the faculties corrupt each other (an expansive vision dampens ruthlessness about uniqueness, a feasible plan inflates its own transferability); (2) the evaluation is non-compensatory \u2014 no axis can offset another's failure, explore iff no gate is Red; (3) **variable depth is definitional**: a PURE instance is a five-second screen or a week-long investigation with hundreds of sub-solvers \u2014 the same protocol at different depths. Each of the four components is itself a decomposition point (a ParsimoniousSolver might deploy sub-solvers attempting competing compressions; an ExpansiveSolver might fan out across hostile transfer domains), and how deep each gate goes is purely economic. The four component patterns (Parsimony, Novelty, Realizable, Expansive) are the general concepts; PURE is the protocol that declares how those generals are wired together when the question being asked is viability. Specializations like PURECheck (lightweight-depth triage), PUREOptimization (deep optimization target), and PUREBrainstorming (quality filter in ideation) inherit this framework as points on its depth continuum, not as distinct protocols.",
+  "gloss": "The viability framework that wires Parsimony, Novelty, Realizable, and Expansive into a non-compensatory, orthogonal evaluation \u2014 specializations (PURECheck/PUREOptimization/PUREBrainstorming) inherit this contract",
+  "invariants": [
+    "Four-axis: a PURE instance always evaluates across all four of {{parsimony}}, {{novelty}}, {{realizable}}, {{expansive}}; no subset is PURE.",
+    "Orthogonality: the four axes must be evaluated in isolation \u2014 cognitive contamination between them (a single-context pass covering all four) defeats the framework's purpose.",
+    "Non-compensatory: no high score on one axis can offset a failure on another; every axis must independently pass.",
+    "Framework not implementation: the specific rating semantics (traffic-light, scalar, binary) are descendant concerns \u2014 PURE names only the axes and the composition rule."
+  ],
+  "failure_modes": [
+    "Single-context contamination: all four axes evaluated in one pass \u2014 Parsimony softens under an expansive vision, Realizable inflates when mechanism is exciting.",
+    "Compensatory drift: a 'weighted average' implementation that lets a 9/10 on Expansive outweigh a 3/10 on Realizable \u2014 violates the non-compensatory invariant even though the framework was nominally followed.",
+    "Proxy axes: substituting a proxy for one of the four (e.g., 'market fit' for Expansive) that doesn't preserve the axis's defining question; the framework looks like PURE but scores something else.",
+    "Skipped axis: evaluating three of four and declaring pass \u2014 not a PURE evaluation."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:PURE#mh:SHA-256:9888ee4049bf7fe738a5bf2f04a1dd2658055d4d8af5fee2ec5fdc544c3aa8e7",
+  "sema_ref": "PURE#9888",
+  "sema_stub": "9888",
+  "dependencies": {
+    "composes_with": {
+      "parsimony": "Parsimony#8476",
+      "realizable": "Realizable#8d81",
+      "novelty": "Novelty#8568",
+      "expansive": "Expansive#3af7"
+    }
+  }
+}
+```
+
+---
+
+## PUREBrainstorming#ea83
 
 ```json
 {
   "handle": "PUREBrainstorming",
-  "mechanism": "A rigorous ideation protocol. Unlike standard brainstorming (which prioritizes quantity), PUREBrainstorming enforces immediate quality filtering. It generates candidate concepts and subjects them to {{pure_check}}. Surviving concepts undergo {{pure_optimization}} to maximize their scores. The process converges only when a concept can be fully articulated as a {{mechanistic_design_proposal}}, ensuring that every idea is backed by a causal mechanism.",
+  "mechanism": "The PURE-filtered ideation specialization of the {{p_u_r_e}} framework: a rigorous ideation protocol. Unlike standard brainstorming (which prioritizes quantity), PUREBrainstorming enforces immediate quality filtering. It generates candidate concepts and subjects them to {{pure_check}}. Surviving concepts undergo {{pure_optimization}} to maximize their scores. The process converges only when a concept can be fully articulated as a {{mechanistic_design_proposal}}, ensuring that every idea is backed by a causal mechanism.",
   "gloss": "Generate -> Check -> Optimize -> Propose",
   "invariants": [
     "Filter-First: No concept moves to the Proposal stage without passing PURECheck.",
@@ -11856,18 +14199,21 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_ref": "PUREBrainstorming#5dad",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:5dada311c0b8343b4b7848a7a07a98f0369c8bb6e6701b1d0aef69655a51d412",
-  "sema_stub": "5dad",
+  "sema_ref": "PUREBrainstorming#ea83",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:ea835f545ce858f10d700dd7e643475cf4d7cf58be1aecb0b39e53d6a7996dab",
+  "sema_stub": "ea83",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "composes_with": {
-      "pure_check": "PURECheck#3ebb",
-      "pure_optimization": "PUREOptimization#279a"
+    "references": {
+      "pure": "PURE#9888"
     },
     "yields": {
-      "mechanistic_design_proposal": "MechanisticDesignProposal#8cf7"
+      "mechanistic_design_proposal": "MechanisticDesignProposal#497e"
+    },
+    "composes_with": {
+      "pure_optimization": "PUREOptimization#577c",
+      "pure_check": "PURECheck#f2f0"
     }
   }
 }
@@ -11875,15 +14221,15 @@
 
 ---
 
-## PURECheck#3ebb
+## PURECheck#f2f0
 
 ```json
 {
   "handle": "PURECheck",
-  "mechanism": "The canonical Exploration {{protocol}}. It is a {{layered_check}} that orchestrates a sequential triage using four instances of {{tri_gate}}: (1) {{tri_gate}}({{parsimony}}) (2) {{tri_gate}}({{novelty}}) (3) {{tri_gate}}({{realizable}}) (4) {{tri_gate}}({{expansive}}). Enforces the conjunctive rule: 'Explore iff NO gate is Red'. Yellow outputs accumulate as Technical Debt (Smallest Lift tasks) in the final {{solution}}.",
+  "mechanism": "The PURE triage specialization of the {{p_u_r_e}} framework: the canonical Exploration {{protocol}}. It is a {{layered_check}} that orchestrates a sequential triage using four instances of {{tri_gate}}: (1) {{tri_gate}}({{parsimony}}) (2) {{tri_gate}}({{novelty}}) (3) {{tri_gate}}({{realizable}}) (4) {{tri_gate}}({{expansive}}). Enforces the conjunctive rule: 'Explore iff NO gate is Red'. Yellow outputs accumulate as Technical Debt (Smallest Lift tasks) in the final {{solution}}.",
   "gloss": "The PURE Triage Protocol (Parsimonious, Unique/Novel, Realizable, Expansive)",
   "signature": [
-    "Protocol#7e1c(Solution#7186)"
+    "Protocol#7e1c(Solution#fcea)"
   ],
   "_meta": {
     "layer": "Mind",
@@ -11891,23 +14237,24 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
-  "sema_ref": "PURECheck#3ebb",
-  "sema_stub": "3ebb",
+  "sema_id": "sema:PURECheck#mh:SHA-256:f2f05f36cb3de262df67a736d7bb2072b93443cd0ca44efefa657296127e3f87",
+  "sema_ref": "PURECheck#f2f0",
+  "sema_stub": "f2f0",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "references": {
-      "expansive": "Expansive#c3b7",
-      "realizable": "Realizable#cf00",
-      "parsimony": "Parsimony#1dd3",
-      "tri_gate": "TriGate#07fc",
-      "layered_check": "LayeredCheck#3fad",
-      "novelty": "Novelty#51b5",
-      "solution": "Solution#7186"
-    },
     "composes_with": {
       "protocol": "Protocol#7e1c"
+    },
+    "references": {
+      "solution": "Solution#fcea",
+      "novelty": "Novelty#8568",
+      "tri_gate": "TriGate#67b8",
+      "layered_check": "LayeredCheck#76d6",
+      "parsimony": "Parsimony#8476",
+      "realizable": "Realizable#8d81",
+      "expansive": "Expansive#3af7",
+      "pure": "PURE#9888"
     }
   }
 }
@@ -11915,15 +14262,15 @@
 
 ---
 
-## PUREOptimization#279a
+## PUREOptimization#577c
 
 ```json
 {
   "handle": "PUREOptimization",
   "gloss": "Deeply optimizing a solution across PURE dimensions",
-  "mechanism": "A multi-agent {{optimize}} strategy. It accepts a candidate {{solution}} that has already passed the {{pure_check}}. It {{decompose}}s the solution into four parallel streams, assigning a specialized {{cognitive_solver}} to maximize each PURE metric: {{parsimony}} (Efficiency), {{novelty}} (Uniqueness), {{realizable}} (Feasibility), and {{expansive}} (Impact). The results are re-integrated via {{synthesis}} to find the {{pareto_front}} among competing improvements.",
+  "mechanism": "The PURE optimization specialization of the {{p_u_r_e}} framework: a multi-agent {{optimize}} strategy. It accepts a candidate {{solution}} that has already passed the {{pure_check}}. It {{decompose}}s the solution into four parallel streams, assigning a specialized {{polymorphic_solver}} to maximize each PURE metric: {{parsimony}} (Efficiency), {{novelty}} (Uniqueness), {{realizable}} (Feasibility), and {{expansive}} (Impact). The results are re-integrated via {{synthesis}} to find the {{pareto_front}} among competing improvements.",
   "signature": [
-    "Optimize#3075(Solution#7186)"
+    "Optimize#5b84(Solution#fcea)"
   ],
   "invariants": [
     "Monotonic Improvement: The output score must be >= input score on all axes.",
@@ -11939,32 +14286,33 @@
     "category": "Strategy",
     "ring": 2,
     "related": [
-      "EvaluatorOptimizer#7ec6",
-      "LateralOptimization#5350"
+      "EvaluatorOptimizer#c776",
+      "LateralOptimization#4c06"
     ]
   },
-  "sema_ref": "PUREOptimization#279a",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:279a3b75f9066f61d293acc44f18107c8d566a18ac1ad32c39439e71127b2e95",
-  "sema_stub": "279a",
+  "sema_ref": "PUREOptimization#577c",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:577c180f9d5a8a6c8ce17e99a95491dee28688f35eaa465e97da4e22a27023f8",
+  "sema_stub": "577c",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "composes_with": {
-      "optimize": "Optimize#3075",
-      "synthesis": "Synthesis#3252",
-      "cognitive_solver": "CognitiveSolver#30c8",
-      "decompose": "Decompose#ac56"
-    },
     "references": {
-      "pareto_front": "ParetoFront#9091",
-      "pure_check": "PURECheck#3ebb",
-      "realizable": "Realizable#cf00",
-      "parsimony": "Parsimony#1dd3",
-      "novelty": "Novelty#51b5",
-      "expansive": "Expansive#c3b7"
+      "novelty": "Novelty#8568",
+      "pure_check": "PURECheck#f2f0",
+      "parsimony": "Parsimony#8476",
+      "realizable": "Realizable#8d81",
+      "pareto_front": "ParetoFront#c1fb",
+      "expansive": "Expansive#3af7",
+      "pure": "PURE#9888"
+    },
+    "composes_with": {
+      "polymorphic_solver": "PolymorphicSolver#9188",
+      "synthesis": "Synthesis#26b9",
+      "decompose": "Decompose#f900",
+      "optimize": "Optimize#5b84"
     },
     "accepts": {
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea"
     }
   }
 }
@@ -11972,7 +14320,7 @@
 
 ---
 
-## Parallelize#d6b4
+## Parallelize#574d
 
 ```json
 {
@@ -12002,27 +14350,27 @@
     "ring": 0
   },
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "sema_id": "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391",
-  "sema_ref": "Parallelize#d6b4",
-  "sema_stub": "d6b4",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:Parallelize#mh:SHA-256:574d12de2fbf7d56cfdbdba4a567bb89f29ada34327f332910bd6284ded19304",
+  "sema_ref": "Parallelize#574d",
+  "sema_stub": "574d",
   "signature": [
-    "Parallel#6272(Task#d9f9)",
-    "Aggregate#af54(Result#8ed9)"
+    "Parallel#3181(Task#b328)",
+    "Aggregate#7912(Result#195b)"
   ],
   "dependencies": {
+    "composes_with": {
+      "aggregate": "Aggregate#7912"
+    },
     "references": {
-      "result": "Result#8ed9",
-      "strategy": "Strategy#47a4",
-      "mode": "Mode#53e0",
       "cognitive_bias": "CognitiveBias#4b32",
-      "parallel": "Parallel#6272"
+      "result": "Result#195b",
+      "strategy": "Strategy#c4ba",
+      "parallel": "Parallel#3181",
+      "mode": "Mode#0e74"
     },
     "accepts": {
-      "task": "Task#d9f9"
-    },
-    "composes_with": {
-      "aggregate": "Aggregate#af54"
+      "task": "Task#b328"
     }
   }
 }
@@ -12030,12 +14378,12 @@
 
 ---
 
-## ParetoFront#9091
+## ParetoFront#c1fb
 
 ```json
 {
   "handle": "ParetoFront",
-  "mechanism": "A decision primitive for explicitly balancing competing constraints (Tradeoff Space). Instead of optimizing a single metric, the agent identifies the frontier curve where improving Metric A necessitates degrading Metric B. The goal is to move the system state TO the frontier (efficiency) and then slide ALONG the frontier (preference). It uses {{rank}} to order solutions by dominance, discarding those strictly inferior on all axes.",
+  "mechanism": "A decision primitive for explicitly balancing competing {{axes}} (Tradeoff Space). Instead of optimizing a single metric, the agent identifies the frontier curve where improving axis A necessitates degrading axis B. The goal is to move the system state TO the frontier (efficiency) and then slide ALONG the frontier (preference). It uses {{rank}} to order solutions by dominance, discarding those strictly inferior on all axes.",
   "gloss": "Explicitly balancing competing constraints",
   "invariants": [
     "Efficiency: {{state}} is optimal if no metric can improve without another degrading",
@@ -12050,12 +14398,6 @@
   ],
   "parameters": [
     {
-      "name": "axes",
-      "type": "List[Metric#8895]",
-      "range": "unspecified",
-      "description": "Dimensions to optimize"
-    },
-    {
       "name": "resolution",
       "type": "Float",
       "range": "[0.0, 1.0]",
@@ -12067,19 +14409,22 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "OpportunityCost#1c66",
-      "Satisfice#9161"
+      "OpportunityCost#b9f4",
+      "Satisfice#9859"
     ],
     "ring": 2
   },
-  "sema_id": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
-  "sema_ref": "ParetoFront#9091",
-  "sema_stub": "9091",
+  "sema_id": "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be",
+  "sema_ref": "ParetoFront#c1fb",
+  "sema_stub": "c1fb",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
+    "accepts": {
+      "criteria": "Criteria#ef6b"
+    },
     "references": {
-      "rank": "Rank#cb98",
+      "rank": "Rank#7a76",
       "state": "State#4d58"
     }
   }
@@ -12088,69 +14433,7 @@
 
 ---
 
-## PatternDiscovery#f667
-
-```json
-{
-  "handle": "PatternDiscovery",
-  "mechanism": "Macro for {{search}}(Pattern). Vocabulary Hygiene {{protocol}}. Before minting a new pattern, the {{agent}} MUST execute a semantic search against the existing registry. If a pattern with >85% semantic similarity is found, the {{agent}} MUST adopt the existing pattern or explicitly justify the divergence (Fork). It leverages {{search}} to scan the existing registry before triggering {{construct_ontology}} to mint a new definition.",
-  "gloss": "Finding patterns that already exist",
-  "failure_modes": [
-    "Not Invented Here (NIH): {{agent}} ignores existing solutions to create a slightly worse custom version.",
-    "Keyword Miss: Search fails because the agent used different terminology for the same concept.",
-    "Fragmentation: Vocabulary floods with duplicate 'Micro-Patterns'."
-  ],
-  "invariants": [
-    "Deduplication: If Similarity(New, Existing) > Threshold, Mint is blocked.",
-    "Pre-Mint {{check}}: Minting is forbidden without a prior Search log."
-  ],
-  "preconditions": [
-    "Intent to define new concept",
-    "Registry access available"
-  ],
-  "postconditions": [
-    "Existing Pattern Returned OR New Pattern Minted"
-  ],
-  "parameters": [
-    {
-      "name": "search_method",
-      "type": "Enum",
-      "range": "{Vector#c7c4, Keyword, Hybrid}",
-      "description": "Default: Hybrid"
-    },
-    {
-      "name": "similarity_threshold",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Default: 0.85"
-    }
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
-  },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea",
-  "sema_ref": "PatternDiscovery#f667",
-  "sema_stub": "f667",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "dependencies": {
-    "references": {
-      "protocol": "Protocol#7e1c",
-      "agent": "Agent#aaec",
-      "search": "Search#d608",
-      "construct_ontology": "ConstructOntology#b59e",
-      "check": "Check#1544"
-    }
-  }
-}
-```
-
----
-
-## PerspectiveEnsemble#2927
+## PerspectiveEnsemble#d08c
 
 ```json
 {
@@ -12188,20 +14471,20 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a",
-  "sema_ref": "PerspectiveEnsemble#2927",
-  "sema_stub": "2927",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:d08c89de83bce61b41b79f44211678c33cc8d37b923a92df92c363f8dbdfd34c",
+  "sema_ref": "PerspectiveEnsemble#d08c",
+  "sema_stub": "d08c",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "steelman_check": "SteelmanCheck#4f4c",
-      "aggregate": "Aggregate#af54",
-      "agent": "Agent#aaec",
+      "synthesis": "Synthesis#26b9",
+      "aggregate": "Aggregate#7912",
+      "problem": "Problem#4576",
+      "steelman_check": "SteelmanCheck#7914",
+      "chain": "Chain#711e",
       "context": "Context#510a",
-      "problem": "Problem#5baa",
-      "synthesis": "Synthesis#3252",
-      "chain": "Chain#5711"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -12209,7 +14492,65 @@
 
 ---
 
-## PreMortem#f69d
+## PolymorphicSolver#9188
+
+```json
+{
+  "handle": "PolymorphicSolver",
+  "mechanism": "A PolymorphicSolver is any entity \u2014 from a fleeting thought process to a complex swarm \u2014 that implements the five-surface Solver Contract (Manifest via {{card}}, Execute, Consult, Verify via {{validate}}, Feedback \u2014 emits a typed {{performance_signal}}). Manifest and Execute are mandatory; Consult/Verify/Feedback are optional but strongly recommended at hard seams. The pattern is named for its polymorphism: any substrate conforming to the contract qualifies \u2014 LLM, human, hybrid, tool-using agent, nested composition, or mechanical dispatcher \u2014 not just cognitive ones. It acts as a fractal node in the {{universal_solver_tree}}, accepting a {{task}} and using {{reason}} to orchestrate a lifecycle on a {{solver_node}}. It yields a {{solution}}, wrapping operations like {{tool_invoke}} with {{compute_budget}} checks, {{socratic_loop}} refinement, or {{reflexion}} for self-improvement. When operating as a dispatcher (routing sub-tasks to child solvers), it maintains a local {{pathway_memory}} so routing decisions compound as experience accumulates \u2014 the property that gives the fractal structure its learning dynamics.",
+  "gloss": "Solver implementing the five-surface contract (polymorphic across substrates)",
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "supersedes": [
+      "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782"
+    ]
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "invariants": [
+    "Polymorphism: External Runtime treats all Solvers identically via this Interface.",
+    "Recursion: Solver must accept sub-tasks via the same Interface it exposes."
+  ],
+  "failure_modes": [
+    "Interface Non-Compliance: Solver fails to implement one of the 5 mandatory endpoints.",
+    "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
+  ],
+  "derived_from": "Solver#94ab",
+  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:9188a2aef75f006eb8d258c6cf1b0cec963d8a2bb6f52428c9647bf20487d351",
+  "sema_ref": "PolymorphicSolver#9188",
+  "sema_stub": "9188",
+  "dependencies": {
+    "composes_with": {
+      "tool_invoke": "ToolInvoke#4694",
+      "reason": "Reason#5f30",
+      "reflexion": "Reflexion#eed9",
+      "socratic_loop": "SocraticLoop#2913",
+      "pathway_memory": "PathwayMemory#0799",
+      "compute_budget": "ComputeBudget#67c0"
+    },
+    "references": {
+      "solver_node": "SolverNode#26b1",
+      "validate": "Validate#ebe1",
+      "universal_solver_tree": "UniversalSolverTree#b805",
+      "performance_signal": "PerformanceSignal#d96f",
+      "card": "Card#2d01"
+    },
+    "yields": {
+      "solution": "Solution#fcea"
+    },
+    "accepts": {
+      "task": "Task#b328"
+    }
+  }
+}
+```
+
+---
+
+## PreMortem#142a
 
 ```json
 {
@@ -12252,18 +14593,18 @@
     "ring": 2
   },
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "sema_id": "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
-  "sema_ref": "PreMortem#f69d",
-  "sema_stub": "f69d",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:PreMortem#mh:SHA-256:142addf4c79fc08abf29adf735f3b979eb1d1fb400db227a826f09a214b23d52",
+  "sema_ref": "PreMortem#142a",
+  "sema_stub": "142a",
   "dependencies": {
     "references": {
-      "steelman_check": "SteelmanCheck#4f4c",
-      "plan": "Plan#64f2",
+      "steelman_check": "SteelmanCheck#7914",
+      "plan": "Plan#fd6d",
       "recursive_root_cause": "RecursiveRootCause#6dc1"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -12271,7 +14612,7 @@
 
 ---
 
-## Prioritize#dd16
+## Prioritize#68f8
 
 ```json
 {
@@ -12311,20 +14652,20 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
-  "sema_ref": "Prioritize#dd16",
-  "sema_stub": "dd16",
+  "sema_id": "sema:Prioritize#mh:SHA-256:68f88575d8aba5a9b640efb0f061d05597c730ab4de53c4702ea8d39944b865c",
+  "sema_ref": "Prioritize#68f8",
+  "sema_stub": "68f8",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "work": "Work#aaad",
-      "task": "Task#d9f9",
       "value": "Value#3c5d",
+      "task": "Task#b328",
+      "work": "Work#d2c6",
       "criteria": "Criteria#ef6b"
     },
     "composes_with": {
-      "rank": "Rank#cb98"
+      "rank": "Rank#7a76"
     }
   }
 }
@@ -12332,12 +14673,57 @@
 
 ---
 
-## RedTeam#7a8d
+## ProblemFramer#f504
+
+```json
+{
+  "handle": "ProblemFramer",
+  "mechanism": "A specialized solver role that {{interpret}}s an initial request via {{request_framing}}, constructs the formal {{accept_spec}} (Definition of Done), and anchors the resulting {{root_solver}} to the {{universal_solver_tree}}. Unlike a general Solver (which executes), the Framer's sole output is a well-formed Problem Node ready for decomposition, or a {{reframe}} request if invalid.",
+  "gloss": "The active strategist that frames the problem",
+  "failure_modes": [
+    "Bad Frame: The problem is framed incorrectly, making it unsolvable.",
+    "Reframe Failure: Fails to find a valid alternative frame after failure."
+  ],
+  "invariants": [
+    "Genesis: Must create exactly one active Root per problem instance.",
+    "Ownership: Owns the high-level success/failure of the task."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_ref": "ProblemFramer#f504",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:f504a75f523cb56db17636e0d9b88bf023e6581745734b0bc72491195ea8b1a5",
+  "sema_stub": "f504",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "dependencies": {
+    "references": {
+      "root_solver": "RootSolver#3ad1",
+      "universal_solver_tree": "UniversalSolverTree#b805"
+    },
+    "composes_with": {
+      "request_framing": "RequestFraming#3865",
+      "reframe": "Reframe#0b02",
+      "interpret": "Interpret#c9ee"
+    },
+    "yields": {
+      "accept_spec": "AcceptSpec#7caa"
+    }
+  }
+}
+```
+
+---
+
+## RedTeam#ff27
 
 ```json
 {
   "handle": "RedTeam",
-  "mechanism": "Adversarial Stress Test: Adopt attacker mindset. Goal: break the system, find exploits, identify weaknesses. No loyalty to the design. Document attack vectors with severity and likelihood. {{switch}} back to defender to patch highest-risk vectors. It adopts an attacker persona via {{adversarial_steel}}, probing the system for exploit paths.",
+  "mechanism": "Adversarial Stress Test: Adopt attacker mindset. Goal: break the system, find exploits, identify weaknesses. No loyalty to the design. Document attack vectors with severity and likelihood. Return to defender mode to patch highest-risk vectors. It adopts an attacker persona via {{adversarial_steel}}, probing the system for exploit paths.",
   "gloss": "Adversarial stress testing",
   "failure_modes": [
     "Sympathetic Attacker: The Red Team shares the same assumptions as the designers, missing the same blind spots."
@@ -12357,19 +14743,18 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "SteelmanCheck#4f4c"
+      "SteelmanCheck#7914"
     ],
     "ring": 2
   },
-  "sema_id": "sema:RedTeam#mh:SHA-256:7a8d8a9c68f25e1a8b23a1b57db4a3083709aec4b6904138a0e8d439d2781a5c",
-  "sema_ref": "RedTeam#7a8d",
-  "sema_stub": "7a8d",
+  "sema_id": "sema:RedTeam#mh:SHA-256:ff272a47bf273130778bbfdcf20c6b0e4428ecf8aa5403987eb0e55ff2b626b9",
+  "sema_ref": "RedTeam#ff27",
+  "sema_stub": "ff27",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "adversarial_steel": "AdversarialSteel#35f0",
-      "switch": "Switch#e7f9"
+      "adversarial_steel": "AdversarialSteel#3b43"
     }
   }
 }
@@ -12395,21 +14780,21 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "HeuristicSnap#cece"
+      "HeuristicSnap#1ef2"
     ],
-    "ring": 0
+    "ring": 2
   },
   "sema_id": "sema:Reflex#mh:SHA-256:ea07e889ca64536b2f0d0657d1583a178ea36fe2fda6c26889c68d46e44a47ce",
   "sema_ref": "Reflex#ea07",
   "sema_stub": "ea07",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4"
+  "sema_category": "Strategy#c4ba"
 }
 ```
 
 ---
 
-## RegretMinimization#4a57
+## RegretMinimization#4d84
 
 ```json
 {
@@ -12425,19 +14810,19 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "PreMortem#f69d"
+      "PreMortem#142a"
     ],
     "ring": 2
   },
-  "sema_id": "sema:RegretMinimization#mh:SHA-256:4a570e1a52413390bf1d3773f73317af065ce06c807764ab0d1958aa77f1260a",
-  "sema_ref": "RegretMinimization#4a57",
-  "sema_stub": "4a57",
+  "sema_id": "sema:RegretMinimization#mh:SHA-256:4d848f39cf28057c41d8949084d1c123f4db115e1fd1e0c3ade7898eac88a877",
+  "sema_ref": "RegretMinimization#4d84",
+  "sema_stub": "4d84",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "decision": "Decision#acfb",
-      "opportunity_cost": "OpportunityCost#1c66"
+      "opportunity_cost": "OpportunityCost#b9f4",
+      "decision": "Decision#acfb"
     }
   }
 }
@@ -12445,7 +14830,7 @@
 
 ---
 
-## RepresentationSwap#1409
+## RepresentationSwap#3b45
 
 ```json
 {
@@ -12465,14 +14850,14 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:1409e377e3904e4d36d64389fe7d8735975a2d526a9f0812005f2403f81348c3",
-  "sema_ref": "RepresentationSwap#1409",
-  "sema_stub": "1409",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:3b45e3cb9e6be5cf332fde9255d225a3eecf77564cc052bd7a1145a61cbe7fab",
+  "sema_ref": "RepresentationSwap#3b45",
+  "sema_stub": "3b45",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "concept_blend": "ConceptBlend#22f2"
+      "concept_blend": "ConceptBlend#126e"
     }
   }
 }
@@ -12480,36 +14865,89 @@
 
 ---
 
-## RigorousSolver#169f
+## Retry#4cc6
+
+```json
+{
+  "handle": "Retry",
+  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
+  "gloss": "Classified re-attempt with backoff conditioned on failure type",
+  "failure_modes": [
+    "Misclassifying persistent failure as transient (wastes retry budget).",
+    "Misclassifying transient as persistent (gives up too soon).",
+    "{{backoff}} too aggressive (slow recovery from transient issues).",
+    "{{backoff}} too timid (hammers already-failing system).",
+    "{{circuit_breaker}} too sensitive (abandons recoverable situations).",
+    "Retry succeeds but same failure recurs (didn't address root cause).",
+    "Changed_conditions check misses relevant changes."
+  ],
+  "invariants": [
+    "{{backoff}} applied",
+    "Retry count <= Max_Retries"
+  ],
+  "preconditions": [
+    "Transient failure"
+  ],
+  "postconditions": [
+    "Success or definitive failure"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "related": [
+      "Backoff#315a"
+    ],
+    "ring": 1
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:Retry#mh:SHA-256:4cc646f6a317a5d12411f1f12df2d7212093229e82c2ca69c20fbaf29f1c1d59",
+  "sema_ref": "Retry#4cc6",
+  "sema_stub": "4cc6",
+  "dependencies": {
+    "references": {
+      "break": "Break#177f",
+      "circuit_breaker": "CircuitBreaker#4162",
+      "compensate": "Compensate#283e",
+      "backoff": "Backoff#315a"
+    }
+  }
+}
+```
+
+---
+
+## RigorousSolver#6c5a
 
 ```json
 {
   "handle": "RigorousSolver",
-  "mechanism": "A high-reliability, high-latency implementation of {{cognitive_solver}}. Unlike the base interface which allows best-effort resolution, RigorousSolver MANDATES strict verification: it must execute {{probe}} to verify reality alignment and engage in {{socratic_loop}} to disambiguate intent before action. It incorporates {{feedback}} to improve future reliability. It trades speed for assurance (System 2).",
+  "mechanism": "A high-reliability, high-latency implementation of {{polymorphic_solver}} that mandates the full five-surface Solver Contract (Manifest, Execute, Consult, Verify, Feedback) with non-compensatory acceptance gates \u2014 every declared invariant must pass before a Result becomes a Solution; partial success is not permitted to propagate. Uses {{probe}} to verify reality alignment and {{socratic_loop}} to disambiguate intent before action. Incorporates {{feedback}} to improve future reliability. Trades speed for assurance (System 2).",
   "gloss": "High-reliability, high-latency System 2 solver",
   "invariants": [
     "Lifecycle Completeness: Must complete all 5 stages including Verification.",
     "Mandatory Verification: Cannot skip Probe step."
   ],
-  "derived_from": "CognitiveSolver#30c8",
+  "derived_from": "PolymorphicSolver#9188",
   "_meta": {
     "layer": "Mind",
     "category": "Strategy",
     "ring": 2,
     "tier": 2
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:169f46575554787f8f6be182014bd4f008264153fb30c33ddfd03da1c5dea507",
-  "sema_ref": "RigorousSolver#169f",
-  "sema_stub": "169f",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:6c5af50fd041a3019e64e63aef35e70351e32a7ff8765d1d5f7c4b82f15a5141",
+  "sema_ref": "RigorousSolver#6c5a",
+  "sema_stub": "6c5a",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "cognitive_solver": "CognitiveSolver#30c8",
-      "socratic_loop": "SocraticLoop#70fc"
+      "polymorphic_solver": "PolymorphicSolver#9188",
+      "socratic_loop": "SocraticLoop#2913"
     },
     "composes_with": {
-      "feedback": "Feedback#9b5c",
+      "feedback": "Feedback#b477",
       "probe": "Probe#12d8"
     }
   }
@@ -12518,7 +14956,7 @@
 
 ---
 
-## Roadmap#0018
+## Roadmap#2e74
 
 ```json
 {
@@ -12531,15 +14969,15 @@
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Roadmap#mh:SHA-256:0018ef2b157d795566b45e40f8a760ec90ac0d0b00d4ffd272556df824880b7c",
-  "sema_ref": "Roadmap#0018",
-  "sema_stub": "0018",
+  "sema_id": "sema:Roadmap#mh:SHA-256:2e74475bfaffd9621c78487e66379ff44472070e70056aab9dcdfea4d16879ae",
+  "sema_ref": "Roadmap#2e74",
+  "sema_stub": "2e74",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "goal": "Goal#456a",
-      "plan": "Plan#64f2"
+      "goal": "Goal#009e",
+      "plan": "Plan#fd6d"
     }
   }
 }
@@ -12547,7 +14985,92 @@
 
 ---
 
-## SacrificialProbe#e235
+## RootSolver#3ad1
+
+```json
+{
+  "handle": "RootSolver",
+  "mechanism": "The apex node of a solver {{tree}} \u2014 the unique entry point where a {{problem}} (attached to a {{task}}) enters that tree. Its cognitive operation is triage: determining what kind of problem this is and routing it via a dispatch function conditioned on its {{pathway_memory}}. The RootSolver holds four unique authorities: Problem Framing (initial constraints and {{problem_space}}), Budget Allocation (cascading {{budget}} to child {{solver_node}}s), Ultimate Accountability (owning the final {{result}} or {{solution}}), and Pathway Memory maintenance (compounding learning about which routes work for which problem types). Every tree has exactly one RootSolver; sub-trees carry their own.",
+  "gloss": "Apex triage node of a SolverTree, with Pathway Memory as its compounding learning site",
+  "failure_modes": [
+    "Bad Frame: problem framed incorrectly, unsolvable by downstream nodes.",
+    "Reframe Failure: Root fails to find a valid alternative frame after downstream failure.",
+    "Budget Misallocation: resources distributed poorly across child nodes.",
+    "Poisoned Pathway Memory silently biases routing decisions \u2014 mitigated by signed writes only."
+  ],
+  "invariants": [
+    "Singleton per tree: every SolverTree has exactly one RootSolver.",
+    "Ultimate Responsibility: the RootSolver owns the final success/failure of the root {{task}}.",
+    "Reframe Authority: only the RootSolver can reframe the original {{problem}}.",
+    "Pathway Memory writes are signed \u2014 integrity of the compounding surface is enforced."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "supersedes": [
+      "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f"
+    ]
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "task_ref",
+      "problem_frame"
+    ],
+    "properties": {
+      "task_ref": {
+        "type": "string",
+        "description": "Reference to originating task"
+      },
+      "problem_frame": {
+        "type": "object",
+        "description": "Initial problem constraints and space"
+      },
+      "budget_allocation": {
+        "type": "object",
+        "description": "Resource distribution to children"
+      },
+      "pathway_memory_ref": {
+        "type": "string",
+        "description": "Reference to this Root's PathwayMemory"
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Child solver node refs"
+      }
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "sema_id": "sema:RootSolver#mh:SHA-256:3ad183ba1595645714f4110901b66490a1b549d644955ee36657c67ce2ab61b4",
+  "sema_ref": "RootSolver#3ad1",
+  "sema_stub": "3ad1",
+  "dependencies": {
+    "references": {
+      "solver_node": "SolverNode#26b1",
+      "problem_space": "ProblemSpace#9e74",
+      "solution": "Solution#fcea",
+      "task": "Task#b328",
+      "result": "Result#195b",
+      "problem": "Problem#4576",
+      "budget": "Budget#7270",
+      "tree": "Tree#a5a3"
+    },
+    "composes_with": {
+      "pathway_memory": "PathwayMemory#0799"
+    }
+  }
+}
+```
+
+---
+
+## SacrificialProbe#0d39
 
 ```json
 {
@@ -12574,12 +15097,6 @@
       "type": "Float",
       "range": "[0.0, 0.1]",
       "description": "Probe cost relative to payload"
-    },
-    {
-      "name": "failure_mode",
-      "type": "Enum",
-      "range": "unspecified",
-      "description": "Silent, Loud, Byzantine"
     }
   ],
   "_meta": {
@@ -12588,19 +15105,19 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:e235bde0b859ae1c6db86c1a89037765c45cdaae2bbcac7e3bae000063d65e99",
-  "sema_ref": "SacrificialProbe#e235",
-  "sema_stub": "e235",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:0d39580d657811563df7c3b0254cad62ce4e3c9379bacc0be204b0dd977eba18",
+  "sema_ref": "SacrificialProbe#0d39",
+  "sema_stub": "0d39",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "agent": "Agent#aaec",
       "probe": "Probe#12d8",
-      "strategy": "Strategy#47a4",
-      "mode": "Mode#53e0",
-      "signal": "Signal#f39d"
+      "system": "System#e314",
+      "strategy": "Strategy#c4ba",
+      "signal": "Signal#f39d",
+      "mode": "Mode#0e74",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -12608,7 +15125,7 @@
 
 ---
 
-## Satisfice#9161
+## Satisfice#9859
 
 ```json
 {
@@ -12633,15 +15150,15 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d",
-  "sema_ref": "Satisfice#9161",
-  "sema_stub": "9161",
+  "sema_id": "sema:Satisfice#mh:SHA-256:98593020b0bee9478d19f3348ae7ecc588ac50ff6ebdc9be3f05d5cb07d96031",
+  "sema_ref": "Satisfice#9859",
+  "sema_stub": "9859",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
+      "optimal_stop": "OptimalStop#c244",
       "option": "Option#483e",
-      "optimal_stop": "OptimalStop#7439",
       "decision": "Decision#acfb"
     }
   }
@@ -12670,7 +15187,7 @@
   "sema_ref": "Silence#dd79",
   "sema_stub": "dd79",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
       "signal": "Signal#f39d"
@@ -12681,7 +15198,7 @@
 
 ---
 
-## Simulation#8035
+## Simulation#aa24
 
 ```json
 {
@@ -12694,18 +15211,18 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
-  "sema_ref": "Simulation#8035",
-  "sema_stub": "8035",
+  "sema_id": "sema:Simulation#mh:SHA-256:aa24cc6231556ca3cf7d58aad0a8c1ffeb99e08e9ab6c4903b1c93871c926645",
+  "sema_ref": "Simulation#aa24",
+  "sema_stub": "aa24",
   "invariants": [
     "Isolation: Side effects in W' DO NOT leak to W."
   ],
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
       "state": "State#4d58",
-      "outcome": "Outcome#38e0"
+      "outcome": "Outcome#144c"
     }
   }
 }
@@ -12713,15 +15230,15 @@
 
 ---
 
-## Solver#1c9b
+## Solver#94ab
 
 ```json
 {
   "handle": "Solver",
-  "mechanism": "The abstract role (or {{protocol}}) of any agent or process that accepts a {{task}} and produces a {{solution}}. A Solver is the fundamental unit of work execution in the system, adhering to the input/output contract defined by the Task protocol.",
-  "gloss": "Abstract interface for transforming Tasks into Solutions",
+  "mechanism": "The abstract {{protocol}} exposing the five-surface Solver Contract \u2014 Manifest (what can you do?), Execute (perform the {{task}}), Consult (cost/quality/rationale), Verify (post-execution assurance), and Feedback (emits a typed {{performance_signal}} \u2014 structured evaluation, or a FrameError escalation). Manifest and Execute are mandatory; Consult/Verify/Feedback are optional but strongly recommended at hard seams. Accepts a typed Task and yields a typed {{solution}}. Solver is an interface, not a class: any {{agent}} can take on the role of a Solver for the duration of a Task. The \"[descriptor]Solver\" naming convention is the library's construction pattern \u2014 DiagnosticSolver, PlanningSolver, ReduceSolver, PUREOptimizationSolver, and so on are all minted by appending \"Solver\" to a domain descriptor, each specialising the contract. The same agent can wear many solver roles simultaneously or sequentially; lightweight roles (Manifest + Execute only) scale up to permanent instances as tasks compound. Recursion follows naturally: when a Solver decomposes its Task, it becomes the root of a sub-tree whose children are themselves Solvers \u2014 the mechanism that gives the UniversalSolverTree its fractal shape.",
+  "gloss": "Abstract five-surface contract: Manifest, Execute, Consult, Verify, Feedback",
   "signature": [
-    "Protocol#7e1c(Task#d9f9)"
+    "Protocol#7e1c(Task#b328)"
   ],
   "_meta": {
     "layer": "Mind",
@@ -12729,20 +15246,22 @@
     "category": "Strategy",
     "tier": 0
   },
-  "sema_id": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982",
-  "sema_ref": "Solver#1c9b",
-  "sema_stub": "1c9b",
+  "sema_id": "sema:Solver#mh:SHA-256:94ab9ed2ef37d28c9bd267a6c7e80ef416b1f4e298e9b19b1a4c3ec5f5153311",
+  "sema_ref": "Solver#94ab",
+  "sema_stub": "94ab",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
-    "references": {
-      "protocol": "Protocol#7e1c"
-    },
     "yields": {
-      "solution": "Solution#7186"
+      "solution": "Solution#fcea"
+    },
+    "references": {
+      "protocol": "Protocol#7e1c",
+      "performance_signal": "PerformanceSignal#d96f",
+      "agent": "Agent#35b9"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -12750,13 +15269,13 @@
 
 ---
 
-## SteelmanFirst#6069
+## SteelmanFirst#6f15
 
 ```json
 {
   "handle": "SteelmanFirst",
   "mechanism": "Reasoning Heuristic. Before proposing a solution, the agent actively constructs the strongest possible version of the opposing argument or constraint. It ensures the critique phase of {{steelman_check}} is populated with high-quality data, not strawmen. Utilizes {{steelman_check}}.",
-  "gloss": "Construct strongest counter-argument before proposing",
+  "gloss": "Ordering rule: steelman opposing view before proposing, so SteelmanCheck has real targets",
   "failure_modes": [
     "Performative Steelman: {{agent}} lists weak counter-arguments to appear unbiased.",
     "{{cognitive_bias}} Leakage: {{agent}} frames the counter-argument in a way that makes it easy to defeat."
@@ -12784,17 +15303,17 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:6069f5780eae1053b3d2a2bfb37be0df1340e1be9801d774697c57f16b26c62e",
-  "sema_ref": "SteelmanFirst#6069",
-  "sema_stub": "6069",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:6f1589b3aedbf3811ab88b094c72c9fa17a7fd7e026a9cfd569ef4df0e818f4f",
+  "sema_ref": "SteelmanFirst#6f15",
+  "sema_stub": "6f15",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "steelman_check": "SteelmanCheck#4f4c",
+      "problem": "Problem#4576",
+      "steelman_check": "SteelmanCheck#7914",
       "cognitive_bias": "CognitiveBias#4b32",
-      "problem": "Problem#5baa"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -12802,7 +15321,7 @@
 
 ---
 
-## Strategy#47a4
+## Strategy#c4ba
 
 ```json
 {
@@ -12814,18 +15333,18 @@
     "layer": "Mind",
     "category": "Strategy",
     "related": [
-      "OODA#f3be"
+      "OODA#eaf1"
     ],
     "ring": 1
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
-  "sema_ref": "Strategy#47a4",
-  "sema_stub": "47a4",
+  "sema_id": "sema:Strategy#mh:SHA-256:c4ba60dd3a1008c849d03f2cbebbd91ed92bf4a3bb496fbf08a86e152888f8a1",
+  "sema_ref": "Strategy#c4ba",
+  "sema_stub": "c4ba",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "plan": "Plan#64f2"
+      "plan": "Plan#fd6d"
     }
   }
 }
@@ -12833,7 +15352,7 @@
 
 ---
 
-## SunkCostIgnore#4dc3
+## SunkCostIgnore#ef84
 
 ```json
 {
@@ -12858,18 +15377,18 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:SunkCostIgnore#mh:SHA-256:4dc35c44a5267415e5ddb5e07a802229242be890db74b697881178da91ccad8f",
-  "sema_ref": "SunkCostIgnore#4dc3",
-  "sema_stub": "4dc3",
+  "sema_id": "sema:SunkCostIgnore#mh:SHA-256:ef847382634e0fa670e6c242820e233e3f8e77921a459cfe352de1fbcf30e253",
+  "sema_ref": "SunkCostIgnore#ef84",
+  "sema_stub": "ef84",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "loop": "Loop#fb2e",
-      "decision": "Decision#acfb",
-      "opportunity_cost": "OpportunityCost#1c66"
+      "loop": "Loop#797f",
+      "opportunity_cost": "OpportunityCost#b9f4",
+      "decision": "Decision#acfb"
     }
   }
 }
@@ -12877,75 +15396,7 @@
 
 ---
 
-## Tension#5493
-
-```json
-{
-  "handle": "Tension",
-  "mechanism": "A data structure representing a detected conflict between two or more valid but mutually exclusive signals, constraints, or values. It serves as the input for resolution protocols like {{dialectic}} or {{yield}}.",
-  "gloss": "Reified conflict state",
-  "invariants": [
-    "Mutually Exclusive: The bound elements cannot both be fully satisfied simultaneously.",
-    "Persistence: Must persist until explicitly resolved."
-  ],
-  "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 1,
-    "tier": 1
-  },
-  "sema_id": "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5",
-  "sema_ref": "Tension#5493",
-  "sema_stub": "5493",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "tension_id",
-      "polarity_a",
-      "polarity_b",
-      "status"
-    ],
-    "properties": {
-      "tension_id": {
-        "type": "string"
-      },
-      "polarity_a": {
-        "type": "object",
-        "description": "The first conflicting force/idea/constraint"
-      },
-      "polarity_b": {
-        "type": "object",
-        "description": "The opposing force/idea/constraint"
-      },
-      "status": {
-        "type": "string",
-        "enum": [
-          "Active",
-          "Resolving",
-          "Resolved",
-          "Ignored"
-        ]
-      },
-      "resolution_strategy": {
-        "type": "string",
-        "description": "How the tension is being handled"
-      }
-    }
-  },
-  "dependencies": {
-    "references": {
-      "yield": "Yield#7eaf",
-      "dialectic": "Dialectic#bc18"
-    }
-  }
-}
-```
-
----
-
-## TensionHold#cca2
+## TensionHold#2418
 
 ```json
 {
@@ -12984,19 +15435,113 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_ref": "TensionHold#cca2",
-  "sema_id": "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0",
-  "sema_stub": "cca2",
+  "sema_ref": "TensionHold#2418",
+  "sema_id": "sema:TensionHold#mh:SHA-256:2418fbc56588c43202c3f4db394a4163e244e4316f066e1e5a1bb451c8fa4912",
+  "sema_stub": "2418",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "synthesis": "Synthesis#3252",
-      "dialectic": "Dialectic#bc18"
+      "synthesis": "Synthesis#26b9",
+      "dialectic": "Dialectic#5cc3",
+      "agent": "Agent#35b9"
     },
     "yields": {
-      "tension": "Tension#5493"
+      "tension": "Tension#c39e"
+    }
+  }
+}
+```
+
+---
+
+## ThinSlice#bc19
+
+```json
+{
+  "handle": "ThinSlice",
+  "mechanism": "Sampling a tiny fraction of data (e.g., first 512 bytes) to make a high-confidence classification. Used for triage and routing where full processing is too expensive. Utilizes {{route}}, {{extended_thinking}}, {{somatic_marker}}.",
+  "gloss": "High-confidence classification from minimal data",
+  "invariants": [
+    "Fail-Safe: If classification low confidence, forward to full processor",
+    "Sample Limit: Input size <= Slice Size",
+    "Representative Sample: The slice must statistically resemble the whole for the target feature"
+  ],
+  "_meta": {
+    "tier": 3,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_id": "sema:ThinSlice#mh:SHA-256:bc195be4a2e6a2cef9fcdfae75347ae391abd0894f250d3f08a13a1797257223",
+  "sema_ref": "ThinSlice#bc19",
+  "sema_stub": "bc19",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "dependencies": {
+    "references": {
+      "somatic_marker": "SomaticMarker#53bb",
+      "route": "Route#b972",
+      "extended_thinking": "ExtendedThinking#a49a"
+    }
+  }
+}
+```
+
+---
+
+## TimeboxThink#043d
+
+```json
+{
+  "handle": "TimeboxThink",
+  "mechanism": "Bounded Exploration: Set hard time limit before starting. When limit hits, stop regardless of completion. Assess: What did I learn? Is more time justified? Prevents rabbit holes. Forces prioritization of highest-{{value}} {{work}} within {{constraint}}. Utilizes {{budget}}.",
+  "gloss": "Temporal bounding of exploration",
+  "failure_modes": [
+    "Premature Cutoff: Stopping the process just before the breakthrough occurs."
+  ],
+  "invariants": [
+    "Best-so-far answer returned",
+    "Execution halts at T_max"
+  ],
+  "preconditions": [
+    "Open-ended task",
+    "Time budget"
+  ],
+  "postconditions": [
+    "Result within deadline"
+  ],
+  "parameters": [
+    {
+      "name": "checkpoint_interval",
+      "type": "Duration",
+      "range": "[100ms, 5min]",
+      "description": "Save partial results frequency"
+    },
+    {
+      "name": "max_duration",
+      "type": "Duration",
+      "range": "[1s, 1h]",
+      "description": "Hard cutoff for thinking"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 0
+  },
+  "sema_id": "sema:TimeboxThink#mh:SHA-256:043d1bce17ccfc84c9942fc1d4d6d374613aece1f5d21f07be766dad3ad6df74",
+  "sema_ref": "TimeboxThink#043d",
+  "sema_stub": "043d",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "dependencies": {
+    "references": {
+      "work": "Work#d2c6",
+      "budget": "Budget#7270",
+      "value": "Value#3c5d",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -13022,7 +15567,7 @@
     "tier": 1
   },
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "sema_id": "sema:TradeOff#mh:SHA-256:769c61729ff84c1f887e3e075f3a94948094da3ecde8bd9ca9f5034717b1e0d0",
   "sema_ref": "TradeOff#769c",
   "sema_stub": "769c",
@@ -13036,7 +15581,7 @@
 
 ---
 
-## UncertaintyMap#33e1
+## UncertaintyMap#516d
 
 ```json
 {
@@ -13055,16 +15600,57 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:UncertaintyMap#mh:SHA-256:33e1f0a76ec4b9d332cea0410d83f36c9278438b64785f7093ce5e2698c493d7",
-  "sema_ref": "UncertaintyMap#33e1",
-  "sema_stub": "33e1",
+  "sema_id": "sema:UncertaintyMap#mh:SHA-256:516d5d7d6a0d8a32aaa5ce16208f1e330fec2d7b6029ab985150b154408f8fa0",
+  "sema_ref": "UncertaintyMap#516d",
+  "sema_stub": "516d",
   "sema_layer": "Mind",
-  "sema_category": "Strategy#47a4",
+  "sema_category": "Strategy#c4ba",
   "dependencies": {
     "references": {
       "probe": "Probe#12d8",
-      "prioritize": "Prioritize#dd16",
-      "confidence_calibrate": "ConfidenceCalibrate#0ae5"
+      "confidence_calibrate": "ConfidenceCalibrate#ba8b",
+      "prioritize": "Prioritize#68f8"
+    }
+  }
+}
+```
+
+---
+
+## WorldReversible#f664
+
+```json
+{
+  "handle": "WorldReversible",
+  "mechanism": "A safety constraint where the agent must design the system such that every action can be perfectly inverted at low cost. This forces the use of immutable logs, versioning, and 'soft deletes' instead of destructive updates.",
+  "gloss": "Designing for zero-cost undo",
+  "failure_modes": [
+    "Storage explosion (keeping all history)."
+  ],
+  "invariants": [
+    "Lossless Undo: {{state}}(T) can be fully restored from {{state}}(T+1)",
+    "Low Friction: Cost(Undo) ~ Cost(Do)"
+  ],
+  "preconditions": [
+    "Storage is sufficient for history"
+  ],
+  "postconditions": [
+    "Irreversible actions wrapped in 'Commit' gates"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 0
+  },
+  "sema_id": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe",
+  "sema_ref": "WorldReversible#f664",
+  "sema_stub": "f664",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy#c4ba",
+  "dependencies": {
+    "references": {
+      "state": "State#4d58"
     }
   }
 }
@@ -13074,12 +15660,12 @@
 
 # Layer: Physics
 
-## Causation#63e1
+## Causation#d360
 
 ```json
 {
   "handle": "Causation",
-  "mechanism": "A relationship where one event directly forces another to occur. Distinct from {{correlation}} in that manipulating the cause alters the effect.",
+  "mechanism": "A relationship where manipulating one event directly forces another to occur \u2014 a directed edge in the causal graph. The definitional property is intervention-responsiveness: an external change to the cause alters the effect, which distinguishes causation from mere co-movement.",
   "gloss": "Direct force relationship",
   "_meta": {
     "layer": "Physics",
@@ -13089,26 +15675,21 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc",
-  "sema_ref": "Causation#63e1",
-  "sema_stub": "63e1",
-  "dependencies": {
-    "references": {
-      "correlation": "Correlation#091f"
-    }
-  }
+  "sema_id": "sema:Causation#mh:SHA-256:d3603cfbd4bfed0dc29051fe70c256f8962b96d530a7ec200f42359678e4929c",
+  "sema_ref": "Causation#d360",
+  "sema_stub": "d360"
 }
 ```
 
 ---
 
-## Compensate#269d
+## Compensate#283e
 
 ```json
 {
   "handle": "Compensate",
   "mechanism": "Execute inverse actions to undo partial coordination after BREAK. On receiving BREAK, agent retrieves compensation_log (built during forward execution\u2014each action logged its inverse). Execute inverses in REVERSE chronological order (LIFO). For each inverse: attempt execution, if fail retry (inverses must be idempotent), if still fail log and continue or escalate. Report COMPENSATE_RESULT: {completed: [steps undone], failed: [steps that couldn't undo], clean: bool, downstream_confirmed: bool}. Multi-agent coordination: each agent compensates their own scope. BREAK propagates with upstream_agents hint for cross-agent dependencies\u2014downstream agents compensate first, confirm, then upstream proceeds. Compensation cannot introduce NEW coordinated work (only cleanup and notification). Triggered by {{break}}, it reads the {{time_warp_log}} in reverse to execute the idempotent inverse of each prior action.",
-  "gloss": "Enable clean failure recovery through structured rollback, preventing orphaned resources and corrupted state",
+  "gloss": "Structured rollback via logged inverses in LIFO order",
   "failure_modes": [
     "Inverse wasn't logged (can't compensate what wasn't tracked).",
     "Inverse isn't truly idempotent (retry corrupts state).",
@@ -13135,19 +15716,20 @@
     "category": "Primitives",
     "ring": 0,
     "related": [
-      "Retry#d53d"
-    ]
+      "Retry#4cc6"
+    ],
+    "caution": "Compensation must not erase the audit trail of what was rolled back \u2014 log both the forward action and the compensation."
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:269dac24b3d83ede5ad2419fd9d78e0e0368090c677bbd272880b1b8e6921af3",
-  "sema_ref": "Compensate#269d",
-  "sema_stub": "269d",
+  "sema_id": "sema:Compensate#mh:SHA-256:283e67ca01279958ab5e2792263d71c7ea6a00f7f61d2560444ec1d77c9930f9",
+  "sema_ref": "Compensate#283e",
+  "sema_stub": "283e",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "break": "Break#1a63",
-      "time_warp_log": "TimeWarpLog#d938"
+      "break": "Break#177f",
+      "time_warp_log": "TimeWarpLog#a0ac",
+      "system": "System#e314"
     }
   }
 }
@@ -13182,7 +15764,7 @@
 
 ---
 
-## Cooldown#0cde
+## Cooldown#b4c2
 
 ```json
 {
@@ -13223,14 +15805,14 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Cooldown#mh:SHA-256:0cde8197149b258f1e6126f179b30468c12cb5e35352fcd0a8ae0bce0823c8ac",
-  "sema_ref": "Cooldown#0cde",
-  "sema_stub": "0cde",
+  "sema_id": "sema:Cooldown#mh:SHA-256:b4c2f95200e8c87085fb9301754bdc55610b9c8d3dcd3a37f003d49a3fdc23f2",
+  "sema_ref": "Cooldown#b4c2",
+  "sema_stub": "b4c2",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "throttle": "Throttle#3b43"
+      "throttle": "Throttle#2175"
     }
   }
 }
@@ -13238,7 +15820,7 @@
 
 ---
 
-## Dampen#ff89
+## Dampen#e55e
 
 ```json
 {
@@ -13251,16 +15833,16 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_ref": "Dampen#ff89",
-  "sema_id": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
-  "sema_stub": "ff89",
+  "sema_ref": "Dampen#e55e",
+  "sema_id": "sema:Dampen#mh:SHA-256:e55e05a34ca81a8edee4863311fd058210c785bfd5c0ac23bb9a189c4430da2a",
+  "sema_stub": "e55e",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "signal": "Signal#f39d",
+      "noise": "Noise#d631",
       "value": "Value#3c5d",
-      "noise": "Noise#c4b4"
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -13300,7 +15882,7 @@
     "layer": "Physics",
     "category": "Primitives",
     "related": [
-      "StateTransition#3737"
+      "StateTransition#9e61"
     ],
     "ring": 0
   },
@@ -13311,8 +15893,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "value": "Value#3c5d",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "value": "Value#3c5d"
     }
   }
 }
@@ -13343,8 +15925,8 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "message": "Message#f767"
+      "message": "Message#f767",
+      "system": "System#e314"
     }
   }
 }
@@ -13352,7 +15934,7 @@
 
 ---
 
-## EntropyPump#b9ae
+## EntropyPump#c313
 
 ```json
 {
@@ -13363,25 +15945,21 @@
     "Over-injection destabilizing productive equilibria.",
     "Insufficient injection failing to break persistent deadlocks."
   ],
-  "invariants": [
-    "Clarity: Ambiguity must decrease over time",
-    "Forced Resolution: Conflicts cannot persist indefinitely"
-  ],
   "_meta": {
     "tier": 2,
     "layer": "Physics",
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
-  "sema_ref": "EntropyPump#b9ae",
-  "sema_stub": "b9ae",
+  "sema_id": "sema:EntropyPump#mh:SHA-256:c313b5e344b36ab0e427d54d84e8fedb41ce69a74153d3980628c756b9f43fd6",
+  "sema_ref": "EntropyPump#c313",
+  "sema_stub": "c313",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "entropy": "Entropy#a265",
-      "noise": "Noise#c4b4"
+      "noise": "Noise#d631",
+      "entropy": "Entropy#a265"
     }
   }
 }
@@ -13389,12 +15967,12 @@
 
 ---
 
-## Gate#206d
+## Gate#89fd
 
 ```json
 {
   "handle": "Gate",
-  "mechanism": "Evaluates the truth-value of the target {{condition}}. If the result is FALSE, the Gate DROPS the current payload/message but allows the system to continue processing other items (Fail-Safe/Filter). If TRUE, the payload passes through.",
+  "mechanism": "Evaluates the truth-value of the target {{condition}} and yields a {{decision}}: proceed if the condition holds, halt if not, or debt (proceed with obligation recorded) when configured. Unlike a silent filter, a Gate produces a first-class Decision artifact that downstream systems can route on. If halted, the specific item stops while the broader system continues processing others (Fail-Safe/Filter).",
   "gloss": "Filter payload if the target condition is not met",
   "failure_modes": [
     "Silent Loss: Important data dropped without alerting the operator."
@@ -13417,14 +15995,17 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
-  "sema_ref": "Gate#206d",
-  "sema_stub": "206d",
+  "sema_id": "sema:Gate#mh:SHA-256:89fdb7df388ddb1e1c81350b391fc6c9a2ad967de069c7d09b591c7d13379264",
+  "sema_ref": "Gate#89fd",
+  "sema_stub": "89fd",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "condition": "Condition#cbd5"
+    },
+    "yields": {
+      "decision": "Decision#acfb"
     }
   }
 }
@@ -13432,7 +16013,7 @@
 
 ---
 
-## Hysteresis#78b0
+## Hysteresis#d0f8
 
 ```json
 {
@@ -13465,48 +16046,17 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Hysteresis#mh:SHA-256:78b01a1947793415b84de8f1883f9e3853f08e62b6647a38e51048d4ecbeb33a",
-  "sema_ref": "Hysteresis#78b0",
-  "sema_stub": "78b0",
+  "sema_id": "sema:Hysteresis#mh:SHA-256:d0f8e3e90c03f4306ca42f5d69c6a41f3f89334ccfc450873771944f2a5aec46",
+  "sema_ref": "Hysteresis#d0f8",
+  "sema_stub": "d0f8",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "dampen": "Dampen#ff89",
       "state": "State#4d58"
-    }
-  }
-}
-```
-
----
-
-## Linear#81af
-
-```json
-{
-  "handle": "Linear",
-  "mechanism": "A non-branching {{topology}} where execution follows a strict {{sequence}}. Step(N) depends only on Step(N-1). This is the simplest reasoning shape, equivalent to a 'Chain'.",
-  "gloss": "Sequential non-branching topology",
-  "_meta": {
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 2,
-    "tier": 1
-  },
-  "invariants": [
-    "Single Successor: Every node has at most one child.",
-    "Single Predecessor: Every node has at most one parent."
-  ],
-  "sema_ref": "Linear#81af",
-  "sema_id": "sema:Linear#mh:SHA-256:81affcd5f7c1ea56b7572799fc235cf95d4e3c692de77c9eb8c01930b8e1d41c",
-  "sema_stub": "81af",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
-  "dependencies": {
-    "references": {
-      "sequence": "Sequence#b0b8",
-      "topology": "Topology#2408"
+    },
+    "composes_with": {
+      "dampen": "Dampen#e55e"
     }
   }
 }
@@ -13555,7 +16105,7 @@
 
 ---
 
-## Mutex#0586
+## Mutex#52d1
 
 ```json
 {
@@ -13589,16 +16139,17 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7",
-  "sema_ref": "Mutex#0586",
-  "sema_stub": "0586",
+  "derived_from": "Lock#051c",
+  "sema_id": "sema:Mutex#mh:SHA-256:52d1f02dc13caba01000bf8e1c60073b67a1ff2f8b65fb3a30a56cc3cdd8e8bd",
+  "sema_ref": "Mutex#52d1",
+  "sema_stub": "52d1",
   "dependencies": {
     "references": {
-      "resource": "Resource#9bb2",
-      "lock": "Lock#051c"
+      "lock": "Lock#051c",
+      "resource": "Resource#a578"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -13606,7 +16157,7 @@
 
 ---
 
-## Noise#c4b4
+## Noise#d631
 
 ```json
 {
@@ -13621,14 +16172,14 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-  "sema_ref": "Noise#c4b4",
-  "sema_stub": "c4b4",
+  "sema_id": "sema:Noise#mh:SHA-256:d631b83224591fce5292eafc1172a13574cb3cc80b42aee104eec39a65871f8b",
+  "sema_ref": "Noise#d631",
+  "sema_stub": "d631",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "signal": "Signal#f39d",
-      "datum": "Datum#31cf"
+      "task": "Task#b328",
+      "datum": "Datum#31cf",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -13636,52 +16187,34 @@
 
 ---
 
-## Retry#d53d
+## ReAttempt#0cd7
 
 ```json
 {
-  "handle": "Retry",
-  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
-  "gloss": "Transform retry from blind re-attempt to intelligent, failure-informed recovery strategy",
+  "handle": "ReAttempt",
+  "mechanism": "The substrate-level primitive of 'try the same call again after a delay.' ReAttempt is the atomic physical-substrate operation: same arguments, same target, after a pause. Distinct from {{retry}}, which is the strategic Mind-layer pattern that classifies failures, consults failure history, computes adaptive {{backoff}}, and decides whether conditions have changed enough to warrant another attempt. Descendants build classification and budget on top of ReAttempt; the primitive imposes no ceiling.",
+  "gloss": "Substrate-level re-attempt: same call, after a delay",
   "failure_modes": [
-    "Misclassifying persistent failure as transient (wastes retry budget).",
-    "Misclassifying transient as persistent (gives up too soon).",
-    "{{backoff}} too aggressive (slow recovery from transient issues).",
-    "{{backoff}} too timid (hammers already-failing system).",
-    "{{circuit_breaker}} too sensitive (abandons recoverable situations).",
-    "Retry succeeds but same failure recurs (didn't address root cause).",
-    "Changed_conditions check misses relevant changes."
-  ],
-  "invariants": [
-    "{{backoff}} applied",
-    "Retry count <= Max_Retries"
-  ],
-  "preconditions": [
-    "Transient failure"
-  ],
-  "postconditions": [
-    "Success or definitive failure"
+    "Uncapped ReAttempt loops amplify transient failures into DoS against rate-limited downstream resources.",
+    "Missing jitter causes thundering herd when many agents ReAttempt simultaneously.",
+    "Descendants forget to budget ReAttempt and inherit the primitive's open-ended retry behavior."
   ],
   "_meta": {
     "tier": 1,
     "layer": "Physics",
     "category": "Primitives",
-    "related": [
-      "Backoff#315a"
-    ],
-    "ring": 0
+    "ring": 0,
+    "caution": "Requires an explicit retry budget; uncapped ReAttempt#0cd7 can amplify transient failures into DoS against downstream resources."
   },
-  "sema_ref": "Retry#d53d",
-  "sema_id": "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
-  "sema_stub": "d53d",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
+  "sema_id": "sema:ReAttempt#mh:SHA-256:0cd7af4c672a70c637eb4d03b01e161f7643f49ab6ef28cea85492e8ddb21578",
+  "sema_ref": "ReAttempt#0cd7",
+  "sema_stub": "0cd7",
   "dependencies": {
     "references": {
-      "backoff": "Backoff#315a",
-      "circuit_breaker": "CircuitBreaker#4162",
-      "break": "Break#1a63",
-      "compensate": "Compensate#269d"
+      "retry": "Retry#4cc6",
+      "backoff": "Backoff#315a"
     }
   }
 }
@@ -13689,7 +16222,46 @@
 
 ---
 
-## Route#9698
+## Reversibility#bf79
+
+```json
+{
+  "handle": "Reversibility",
+  "mechanism": "Evaluates whether the post-state of an action allows a return to the pre-state with zero information loss (or within acceptable cost). Returns TRUE for Type 2 decisions (reversible), FALSE for Type 1 (one-way doors).",
+  "gloss": "Condition: Can this action be undone?",
+  "invariants": [
+    "Entropy {{constraint}}: Reversal must not violate thermodynamic limits (e.g., cannot un-burn toast)."
+  ],
+  "parameters": [
+    {
+      "name": "cost_limit",
+      "type": "PositiveInteger",
+      "range": "unspecified",
+      "description": "Maximum acceptable cost to reverse the action"
+    }
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Physics",
+    "category": "Primitives",
+    "ring": 0
+  },
+  "sema_id": "sema:Reversibility#mh:SHA-256:bf796a25a0c91a127c9d336839033d52f198d75080d71e6ae084827f3ae158a7",
+  "sema_ref": "Reversibility#bf79",
+  "sema_stub": "bf79",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "dependencies": {
+    "references": {
+      "constraint": "Constraint#87fe"
+    }
+  }
+}
+```
+
+---
+
+## Route#b972
 
 ```json
 {
@@ -13719,16 +16291,19 @@
     "related": [
       "Select#15c2"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0"
+    ]
   },
-  "sema_ref": "Route#9698",
-  "sema_id": "sema:Route#mh:SHA-256:96986e6c4fccc6496d735394acf1f4c7c5a4ae72cee77e0686fbaf3a8b9021b6",
-  "sema_stub": "9698",
+  "sema_ref": "Route#b972",
+  "sema_id": "sema:Route#mh:SHA-256:b972ff15973013019d24f13ead5662a21255a6ec0ea0f85a5ae425b07b6d0762",
+  "sema_stub": "b972",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -13762,15 +16337,15 @@
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {
+    "composes_with": {
+      "act": "Act#5d55"
+    },
     "references": {
-      "signal": "Signal#f39d",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "signal": "Signal#f39d"
     },
     "accepts": {
       "artifact": "Artifact#6254"
-    },
-    "composes_with": {
-      "act": "Act#5d55"
     }
   }
 }
@@ -13778,36 +16353,7 @@
 
 ---
 
-## Switch#e7f9
-
-```json
-{
-  "handle": "Switch",
-  "mechanism": "Changing the active {{mode}}, {{context}}, or flow path.",
-  "gloss": "Contextual toggle",
-  "_meta": {
-    "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 0
-  },
-  "sema_id": "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0",
-  "sema_ref": "Switch#e7f9",
-  "sema_stub": "e7f9",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
-  "dependencies": {
-    "references": {
-      "context": "Context#510a",
-      "mode": "Mode#53e0"
-    }
-  }
-}
-```
-
----
-
-## Throttle#3b43
+## Throttle#2175
 
 ```json
 {
@@ -13853,60 +16399,15 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
-  "sema_ref": "Throttle#3b43",
-  "sema_stub": "3b43",
+  "sema_id": "sema:Throttle#mh:SHA-256:2175da478929fd107d442e1f7ead06551c81108924e7e5b675fb397866879f7a",
+  "sema_ref": "Throttle#2175",
+  "sema_stub": "2175",
   "dependencies": {
     "composes_with": {
       "backoff": "Backoff#315a"
     },
     "accepts": {
-      "task": "Task#d9f9"
-    }
-  }
-}
-```
-
----
-
-## Uncertain#b159
-
-```json
-{
-  "handle": "Uncertain",
-  "mechanism": "Epistemic Status Flag. Explicitly marks a Claim, {{variable}}, or Edge as 'Unknown'. Unlike 'Speculation' (which posits a direction), 'Uncertain' asserts a void of evidence. This prevents the system from treating absence of evidence as evidence of absence. Tagged nodes become high-priority targets for information retrieval. Tracked via {{uncertainty_map}}.",
-  "gloss": "Epistemic status: genuinely don't know",
-  "failure_modes": [
-    "False Certainty: {{agent}} feels pressure to answer and fabricates a 'likely' answer instead of using this flag.",
-    "Lazy Agnosticism: {{agent}} uses 'Uncertain' to avoid the work of reasoning (Tier 2 failure)."
-  ],
-  "invariants": [
-    "Actionable Void: A node marked 'Uncertain' is a high-priority target for Information Retrieval.",
-    "Specificity: Must target a specific scope (e.g., 'Uncertain about X', not just 'Uncertain')."
-  ],
-  "preconditions": [
-    "Knowledge gap identified"
-  ],
-  "postconditions": [
-    "Confidence score set to 0.0",
-    "Target marked as requiring investigation"
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 2
-  },
-  "sema_ref": "Uncertain#b159",
-  "sema_id": "sema:Uncertain#mh:SHA-256:b1596d0176ec07983b13fe811026335849400cab1b8dc090e3aeec726d5e0a54",
-  "sema_stub": "b159",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
-  "dependencies": {
-    "references": {
-      "agent": "Agent#aaec",
-      "variable": "Variable#179a",
-      "uncertainty_map": "UncertaintyMap#33e1"
+      "task": "Task#b328"
     }
   }
 }
@@ -13937,7 +16438,7 @@
 
 ---
 
-## CausalBarrier#0904
+## CausalBarrier#3c73
 
 ```json
 {
@@ -13978,15 +16479,15 @@
     "category": "Time",
     "ring": 0
   },
-  "sema_id": "sema:CausalBarrier#mh:SHA-256:0904e3eb6ac5a36cfa3ec9d1c3fe374ad4eb817e1da35375ce8d32d8272b6128",
-  "sema_ref": "CausalBarrier#0904",
-  "sema_stub": "0904",
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:3c73673cdf5f345bc792d80ad924d8cd7caa5c222303e2439d14c6683a9a3ff1",
+  "sema_ref": "CausalBarrier#3c73",
+  "sema_stub": "3c73",
   "sema_layer": "Physics",
   "sema_category": "Time",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "state_lock": "StateLock#774b"
+      "state_lock": "StateLock#8183",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -13994,40 +16495,7 @@
 
 ---
 
-## Cyclic#ac13
-
-```json
-{
-  "handle": "Cyclic",
-  "mechanism": "A {{topology}} that permits feedback {{loop}}s, allowing a process to revisit previous states or refine outputs iteratively. Essential for self-correcting systems and recursive optimization.",
-  "gloss": "Recursive or iterative topology",
-  "_meta": {
-    "layer": "Physics",
-    "category": "Time",
-    "ring": 2,
-    "tier": 1
-  },
-  "invariants": [
-    "Recurrence: At least one path exists from a node to itself.",
-    "Termination Condition: Must have a defined exit state to prevent infinite loops."
-  ],
-  "sema_ref": "Cyclic#ac13",
-  "sema_id": "sema:Cyclic#mh:SHA-256:ac1335676817eaedd894da4a2d11671dec5a20dba76a8f5d55d1a6eed20e2051",
-  "sema_stub": "ac13",
-  "sema_layer": "Physics",
-  "sema_category": "Time",
-  "dependencies": {
-    "references": {
-      "topology": "Topology#2408",
-      "loop": "Loop#fb2e"
-    }
-  }
-}
-```
-
----
-
-## Heartbeat#7f88
+## Heartbeat#b67a
 
 ```json
 {
@@ -14070,18 +16538,18 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Time",
-  "sema_id": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
-  "sema_ref": "Heartbeat#7f88",
-  "sema_stub": "7f88",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:b67a3ab4833a40c7c960fab4a7a75f920c734ddfe795a223cceb8477e327e0ef",
+  "sema_ref": "Heartbeat#b67a",
+  "sema_stub": "b67a",
   "dependencies": {
+    "references": {
+      "monitor": "Monitor#feb3"
+    },
     "accepts": {
       "signal": "Signal#f39d"
     },
-    "references": {
-      "monitor": "Monitor#9a8f"
-    },
     "composes_with": {
-      "quorum": "Quorum#29b4"
+      "quorum": "Quorum#858e"
     }
   }
 }
@@ -14089,39 +16557,16 @@
 
 ---
 
-## Parallel#6272
-
-```json
-{
-  "handle": "Parallel",
-  "mechanism": "Concurrent execution: A and B simultaneously. No ordering guarantee.",
-  "gloss": "Concurrent flow",
-  "_meta": {
-    "tier": 1,
-    "layer": "Physics",
-    "category": "Time",
-    "ring": 0
-  },
-  "sema_id": "sema:Parallel#mh:SHA-256:6272e213685ff8b1c909c783ae0859f93c55d3423c4278661a4b601ddf07d7a3",
-  "sema_ref": "Parallel#6272",
-  "sema_stub": "6272",
-  "sema_layer": "Physics",
-  "sema_category": "Time"
-}
-```
-
----
-
-## StateAudit#ce13
+## StateAudit#8195
 
 ```json
 {
   "handle": "StateAudit",
   "mechanism": "A safety pattern where an agent performs an explicit {{audit}} of the {{state}} immediately after a write to ensure the {{state_transition}} occurred as expected. Catches silent API failures.",
   "gloss": "Verifying system state after an operation",
-  "sema_id": "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e",
-  "sema_ref": "StateAudit#ce13",
-  "sema_stub": "ce13",
+  "sema_id": "sema:StateAudit#mh:SHA-256:81955226e479378fe597ebe9d86b1a7fe788d392f99ae29c85a81f9ac091dc96",
+  "sema_ref": "StateAudit#8195",
+  "sema_stub": "8195",
   "_meta": {
     "layer": "Physics",
     "category": "Time",
@@ -14130,14 +16575,11 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Time",
-  "signature": [
-    "Audit#4044(State#4d58)"
-  ],
   "dependencies": {
     "references": {
       "state": "State#4d58",
-      "state_transition": "StateTransition#3737",
-      "audit": "Audit#4044"
+      "audit": "Audit#6888",
+      "state_transition": "StateTransition#9e61"
     }
   }
 }
@@ -14145,7 +16587,7 @@
 
 ---
 
-## StateLock#774b
+## StateLock#8183
 
 ```json
 {
@@ -14167,18 +16609,18 @@
   "signature": [
     "Lock#051c(State#4d58)"
   ],
-  "sema_ref": "StateLock#774b",
-  "sema_id": "sema:StateLock#mh:SHA-256:774b674f80993c49b0a348c384397f80027af319faa3440813d9d53b3eaa6a14",
-  "sema_stub": "774b",
+  "sema_ref": "StateLock#8183",
+  "sema_id": "sema:StateLock#mh:SHA-256:81839e5a923aff3df2bb3f806fec00c512b6faeb5999f6c390a2c5a6f00a56d2",
+  "sema_stub": "8183",
   "sema_layer": "Physics",
   "sema_category": "Time",
   "dependencies": {
     "references": {
       "backoff": "Backoff#315a",
+      "cooldown": "Cooldown#b4c2",
       "lock": "Lock#051c",
-      "cooldown": "Cooldown#0cde",
-      "state": "State#4d58",
-      "actor": "Actor#6926"
+      "actor": "Actor#6926",
+      "state": "State#4d58"
     }
   }
 }
@@ -14188,344 +16630,7 @@
 
 # Layer: Society
 
-## ProblemFramer#8b24
-
-```json
-{
-  "handle": "ProblemFramer",
-  "mechanism": "A specialized solver role that {{interpret}}s an initial request via {{request_framing}}, constructs the formal {{accept_spec}} (Definition of Done), and anchors the resulting {{solver_root}} to the {{universal_solver_tree}}. Unlike a general Solver (which executes), the Framer's sole output is a well-formed Problem Node ready for decomposition, or a {{reframe}} request if invalid.",
-  "gloss": "The active strategist that frames the problem",
-  "failure_modes": [
-    "Bad Frame: The problem is framed incorrectly, making it unsolvable.",
-    "Reframe Failure: Fails to find a valid alternative frame after failure."
-  ],
-  "invariants": [
-    "Genesis: Must create exactly one active Root per problem instance.",
-    "Ownership: Owns the high-level success/failure of the task."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
-    "ring": 2
-  },
-  "sema_ref": "ProblemFramer#8b24",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:8b24c9d8bfa06e9baeef615ed22ab7c74163a021b365f0f010581bdf7e78a9f7",
-  "sema_stub": "8b24",
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
-  "dependencies": {
-    "composes_with": {
-      "interpret": "Interpret#c9ee",
-      "reframe": "Reframe#ba00",
-      "request_framing": "RequestFraming#0695"
-    },
-    "references": {
-      "solver_root": "SolverRoot#d31b",
-      "universal_solver_tree": "UniversalSolverTree#2340"
-    },
-    "yields": {
-      "accept_spec": "AcceptSpec#70dd"
-    }
-  }
-}
-```
-
----
-
-## AtomicBid#0e6b
-
-```json
-{
-  "handle": "AtomicBid",
-  "mechanism": "A coordination primitive that bundles a {{bid}} (intent/cost) and an {{act}} (execution) into a single, indivisible turn. Unlike a standard {{bid}} which halts for approval, AtomicBid treats the Bid as an immutable {{audit}} log entry and proceeds immediately to execution. Similar to {{lazy_consensus}} for state, it assumes optimistic permission but remains subject to retroactive {{compensate}} if the Bid is rejected post-hoc.",
-  "gloss": "Declaration and execution in a single turn",
-  "invariants": [
-    "Turn Indivisibility: The Bid and the Tool Call MUST occur in the same message/turn.",
-    "Auditability: The Bid MUST precede the Action in the log.",
-    "Revocability: The Action must be reversible (or low-stakes) to allow for Compensation."
-  ],
-  "failure_modes": [
-    "Permission Race: Executing an irreversible high-stakes action before the Orchestrator can veto.",
-    "Log Drift: Generating the Action but failing to generate the Bid, breaking the audit trail."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_ref": "AtomicBid#0e6b",
-  "sema_id": "sema:AtomicBid#mh:SHA-256:0e6bf533854e1938c010cf2ce28ede3fe1642b56115e626ceb4bd652691a9edc",
-  "sema_stub": "0e6b",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "lazy_consensus": "LazyConsensus#4fc7",
-      "audit": "Audit#4044"
-    },
-    "composes_with": {
-      "act": "Act#5d55",
-      "compensate": "Compensate#269d",
-      "bid": "Bid#cf07"
-    }
-  }
-}
-```
-
----
-
-## AttentionMarkets#9236
-
-```json
-{
-  "handle": "AttentionMarkets",
-  "mechanism": "Agents bid for priority in message queues. High-stakes messages pay to jump the line; spam is priced out by congestion pricing. Queue manager runs continuous auction: incoming {{signal}}s include a {{value}} bid, manager sorts by bid/urgency ratio, losers wait or increase bid. Price discovery via second-price auction prevents overpayment. Revenue redistributed to queue participants or burned. It instantiates the {{continuous_resource_auction}} mechanism to continuously price bandwidth availability based on network congestion.",
-  "gloss": "Pricing bandwidth to filter spam",
-  "failure_modes": [
-    "Plutocratic Blockage: Wealthy agents monopolize bandwidth, silencing critical low-budget signals (e.g., emergency alerts).",
-    "Starvation: Low-value signals never clear the queue during high congestion."
-  ],
-  "invariants": [
-    "Attention supply is rivalrous (Bandwidth < Demand).",
-    "Price reflects aggregate demand (Congestion Pricing).",
-    "Bid Monotonicity: Higher bid guarantees strictly better or equal placement.",
-    "Clearing: Messages with Bid < CurrentPrice are dropped or buffered."
-  ],
-  "preconditions": [
-    "Limited processing bandwidth",
-    "Multiple information sources",
-    "Liquid currency for bidding"
-  ],
-  "postconditions": [
-    "Resources allocated to highest-bid signals",
-    "Market price established for current tick"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_id": "sema:AttentionMarkets#mh:SHA-256:923679ce8222a914dc75a55824b91d403220b0b3f8943cf0d0d9fc0512c0d20b",
-  "sema_ref": "AttentionMarkets#9236",
-  "sema_stub": "9236",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "signal": "Signal#f39d",
-      "value": "Value#3c5d"
-    },
-    "composes_with": {
-      "continuous_resource_auction": "ContinuousResourceAuction#babf"
-    }
-  }
-}
-```
-
----
-
-## Award#7bf0
-
-```json
-{
-  "handle": "Award",
-  "mechanism": "The formal {{act}} of accepting a {{bid}}. It triggers the creation of a {{contract}} which all parties must {{sign}}, and uses {{held_release}} to lock the agreed {{value}} as collateral or payment. This action transitions the {{state}} from Negotiation to Execution, authorizing the {{solver}} to begin.",
-  "gloss": "Acceptance of bid and contract creation",
-  "signature": [
-    "Act#5d55(Contract#0624)"
-  ],
-  "invariants": [
-    "Atomic: Bid acceptance and Contract creation must happen together.",
-    "Funded: Value must be locked (HeldRelease) before Award is final."
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_ref": "Award#7bf0",
-  "sema_id": "sema:Award#mh:SHA-256:7bf0f52b1dd71eae4d352bfb4c2c17bf4513dbe905299f3b950222e508c90244",
-  "sema_stub": "7bf0",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "solver": "Solver#1c9b",
-      "value": "Value#3c5d",
-      "state": "State#4d58"
-    },
-    "composes_with": {
-      "act": "Act#5d55",
-      "sign": "Sign#1fb9",
-      "held_release": "HeldRelease#4956"
-    },
-    "accepts": {
-      "bid": "Bid#cf07"
-    },
-    "yields": {
-      "contract": "Contract#0624"
-    }
-  }
-}
-```
-
----
-
-## Bid#cf07
-
-```json
-{
-  "handle": "Bid",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "issuer_id",
-      "terms",
-      "signature"
-    ],
-    "properties": {
-      "issuer_id": {
-        "type": "string",
-        "description": "Identity of the Solver making the bid"
-      },
-      "beneficiary_id": {
-        "type": "string",
-        "description": "Identity of the Task issuer"
-      },
-      "terms": {
-        "type": "object",
-        "description": "Cost, confidence, and capability claims",
-        "properties": {
-          "expected_cost": {
-            "type": "number",
-            "description": "Expected Value Cost (Time/Tokens/USD)"
-          },
-          "confidence_interval": {
-            "type": "array",
-            "description": "Probability range of success [low, high]"
-          },
-          "capability_match": {
-            "type": "array",
-            "description": "Which parts of the task the solver can handle"
-          }
-        }
-      },
-      "signature": {
-        "type": "string",
-        "description": "Cryptographic proof of commitment"
-      }
-    }
-  },
-  "mechanism": "A binding offer {{artifact}} from a {{solver}} to execute a {{task}}. It declares: 1. Expected {{value}} Cost (Time/Tokens/USD), 2. Confidence Interval (probability of success), 3. Capability Match (which parts of the {{task}} the {{solver}} can handle). It serves as the input for the {{compute_budget}} Go/No-Go decision. A Bid is a commitment: {{solver}}s cannot exceed bid cost without explicit renegotiation.",
-  "gloss": "Binding offer from solver to execute task",
-  "signature": [
-    "Artifact#6254(Value#3c5d)"
-  ],
-  "failure_modes": [
-    "Underestimation: Bid is too optimistic, leading to {{budget}} overrun.",
-    "Overestimation: Bid is too pessimistic, causing rejection of viable work.",
-    "Capability Mismatch: {{solver}} claims abilities it doesn't have.",
-    "Confidence Theater: Stated confidence doesn't reflect actual uncertainty."
-  ],
-  "invariants": [
-    "Binding: {{solver}} cannot exceed Bid cost without requesting {{budget}} expansion.",
-    "Pre-Execution: Must be generated before work begins.",
-    "Verifiable: Bid components must be objectively measurable post-hoc."
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_ref": "Bid#cf07",
-  "sema_id": "sema:Bid#mh:SHA-256:cf07d1105de889786c1fbb618128ab03b34964fa4a7ab983c8d0f4d1d984b43e",
-  "sema_stub": "cf07",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "solver": "Solver#1c9b",
-      "task": "Task#d9f9",
-      "value": "Value#3c5d",
-      "compute_budget": "ComputeBudget#3b98",
-      "artifact": "Artifact#6254",
-      "budget": "Budget#a763"
-    }
-  }
-}
-```
-
----
-
-## CapacityPressure#739d
-
-```json
-{
-  "handle": "CapacityPressure",
-  "mechanism": "A regularization pattern that forces abstraction by artificially constraining resources (bandwidth, memory, parameter count, or time). By creating a bottleneck where Capacity < Information, the agent is compelled to compress the signal, discarding noise and memorized details in favor of high-level concepts and generalizations. It artificially tightens the {{budget}}, forcing the agent to employ {{generalize}}, {{concept_blend}}, and {{context_compress}} to fit the signal within the bottleneck.",
-  "gloss": "Forcing abstraction via resource starvation",
-  "failure_modes": [
-    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting) Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint) False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget"
-  ],
-  "invariants": [
-    "Bottleneck Existence: Available Capacity must be strictly less than Input Information Content",
-    "Lossy Requirement: Output must be a simplified representation, effectively barring exact replication/memorization",
-    "Utility Preservation: The compressed form must retain predictive power for the target task"
-  ],
-  "preconditions": [
-    "A mechanism to enforce hard limits (e.g., context window, dimensions, token count)",
-    "A stream of information or a learning task"
-  ],
-  "postconditions": [
-    "A highly compressed, abstract representation of the input",
-    "Loss of fine-grained detail/noise"
-  ],
-  "parameters": [
-    {
-      "name": "compression_ratio",
-      "type": "Float",
-      "range": "unspecified",
-      "description": "Target resource utilization ratio that triggers forced abstraction"
-    },
-    {
-      "name": "resource_type",
-      "type": "Enum",
-      "range": "unspecified",
-      "description": "Type of resource being constrained (compute, memory, bandwidth)"
-    }
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
-  },
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85",
-  "sema_ref": "CapacityPressure#739d",
-  "sema_stub": "739d",
-  "dependencies": {
-    "references": {
-      "concept_blend": "ConceptBlend#22f2",
-      "agent": "Agent#aaec",
-      "generalize": "Generalize#17c9",
-      "context_compress": "ContextCompress#6dbd",
-      "budget": "Budget#a763",
-      "constraint": "Constraint#87fe"
-    }
-  }
-}
-```
-
----
-
-## Compromise#39cc
+## Compromise#90ee
 
 ```json
 {
@@ -14535,22 +16640,22 @@
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
+    "category": "Coordination",
     "ring": 1
   },
-  "sema_ref": "Compromise#39cc",
-  "sema_id": "sema:Compromise#mh:SHA-256:39cc701b1389e8827a263f5180a40cea2993edf2ef94c9906553d48e9507c59f",
-  "sema_stub": "39cc",
+  "sema_ref": "Compromise#90ee",
+  "sema_id": "sema:Compromise#mh:SHA-256:90ee2422aa0bd1d5a1188e904e60c8a814c96125e1dcee8bd95e7ef2b01be97a",
+  "sema_stub": "90ee",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "yield": "Yield#7eaf",
-      "system": "System#e314"
+      "yield": "Yield#2931",
+      "system": "System#e314",
+      "agent": "Agent#35b9"
     },
     "composes_with": {
-      "dampen": "Dampen#ff89"
+      "dampen": "Dampen#e55e"
     }
   }
 }
@@ -14558,85 +16663,58 @@
 
 ---
 
-## ContinuousResourceAuction#babf
+## Consensus#ffff
 
 ```json
 {
-  "handle": "ContinuousResourceAuction",
-  "mechanism": "A market {{protocol}} for allocating rivalrous resources (e.g., compute, bandwidth, state slots) where the pricing function is continuous and algorithmic. It actively invokes {{state_lock}} to serialize bidding attempts and accepts {{value}} metrics to determine allocation. Unlike static auctions, it supports configurable pricing models via parameters, allowing agents to implement congestion pricing (e.g., EIP-1559), Dutch auctions, or linear decay.",
-  "gloss": "Algorithmic pricing for rivalrous resources",
-  "signature": [
-    "Protocol#7e1c(Value#3c5d)"
-  ],
+  "handle": "Consensus",
+  "mechanism": "A distributed protocol allowing a set of agents to agree on a single data value or state transition. It orchestrates {{vote}} exchange and uses {{quorum}} to validate the result. It ensures safety and liveness in an adversarial network, accepting a {{proposal}} and yielding a {{value}}.",
+  "gloss": "Distributed agreement process",
   "failure_modes": [
-    "Price Instability: Aggressive pricing curves lead to volatility that discourages long-term resource planning.",
-    "Monopoly Lockout: Wealthy agents can permanently rent-seek if the holding cost is too low relative to their capital."
+    "Split Brain: Network partition causes two subgroups to reach different {{value}}s.",
+    "Liveness Failure: The system stalls and never reaches agreement on the {{proposal}}.",
+    "Sybil Attack: One malicious actor creates multiple identities to sway the {{vote}}.",
+    "Byzantine Failure: Agents lying or acting maliciously to prevent consensus."
   ],
   "invariants": [
-    "Circulation Pressure: The cost of holding the resource must be non-zero (HoldingCost > 0) to prevent infinite hoarding.",
-    "Price Discovery: Price must dynamically adjust to Demand or Time.",
-    "Clearance: The auction must resolve to a winner or reset within T_cycle."
+    "Agreement: All correct agents who decide must decide the same {{value}}.",
+    "Validity: If all agents propose V, then the {{value}} must be V.",
+    "Termination: Eventually, every correct agent decides on a {{value}}."
   ],
-  "parameters": [
-    {
-      "name": "pricing_model",
-      "type": "Enum",
-      "range": "{CongestionPricing, DutchAuction, Linear#81af}",
-      "description": "Default: CongestionPricing"
-    },
-    {
-      "name": "cycle_time",
-      "type": "Duration",
-      "range": "[100ms, 1h]",
-      "description": "Duration of each auction cycle"
-    },
-    {
-      "name": "holding_cost_rate",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Per-cycle cost of holding a resource without using it"
-    }
+  "preconditions": [
+    "Group of agents is defined (Membership List)",
+    "Communication channel is available",
+    "{{proposal}} received"
   ],
-  "data_schema": {
-    "type": "object",
-    "properties": {
-      "resource_id": {
-        "type": "string"
-      },
-      "current_price": {
-        "type": "number"
-      },
-      "current_holder": {
-        "type": "string"
-      },
-      "next_cycle_start": {
-        "type": "integer"
-      }
-    }
-  },
+  "postconditions": [
+    "A single {{value}} is committed to the shared state",
+    "All agents are notified of the {{value}}"
+  ],
   "_meta": {
     "tier": 1,
     "layer": "Society",
-    "category": "Economics",
-    "ring": 1,
+    "category": "Coordination",
+    "ring": 0,
     "related": [
-      "AttentionMarkets#9236"
-    ]
+      "Sync"
+    ],
+    "caution": "Governance decisions susceptible to coordinated voting blocs."
   },
-  "sema_ref": "ContinuousResourceAuction#babf",
-  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:babf1b41f451b6df2220129e0c0a05483abfc8f8aa8b4bfd3f7fd543ac9e009f",
-  "sema_stub": "babf",
+  "sema_id": "sema:Consensus#mh:SHA-256:ffff8fe79630eb9df5d09f49aa1e34fbb20d98db198cbd07b29d4be368fd4c10",
+  "sema_ref": "Consensus#ffff",
+  "sema_stub": "ffff",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Coordination",
   "dependencies": {
-    "accepts": {
-      "value": "Value#3c5d"
-    },
     "composes_with": {
-      "state_lock": "StateLock#774b"
+      "vote": "Vote#ab74",
+      "quorum": "Quorum#858e"
     },
-    "references": {
-      "protocol": "Protocol#7e1c"
+    "accepts": {
+      "proposal": "Proposal#4840"
+    },
+    "yields": {
+      "value": "Value#3c5d"
     }
   }
 }
@@ -14644,61 +16722,37 @@
 
 ---
 
-## DogfoodFirst#3f2c
+## ConsensusFinder#1c01
 
 ```json
 {
-  "handle": "DogfoodFirst",
-  "mechanism": "Validation {{protocol}}. Before releasing a tool or pattern, the creator must use it to solve a non-trivial problem in their own workflow. This generates 'Friction Logs' that identify usability gaps missed by theoretical design. It requires the creator to act as a {{canary}}, using the tool in production and generating a {{reflexion}} log of friction points.",
-  "gloss": "Use your own tool before shipping",
-  "failure_modes": [
-    "Hello World Fallacy: Validating only on trivial 'demo' cases instead of production loads.",
-    "Creator {{cognitive_bias}}: Creator unconsciously avoids edge cases they know will fail."
-  ],
+  "handle": "ConsensusFinder",
+  "mechanism": "Macro for {{discover}}({{consensus}}). Instead of initiating a vote, the agent scans the network to identify pre-existing clusters of agreement or shared state. It optimizes coordination by surfacing natural alignment before attempting to manufacture it. It applies the {{discover}} primitive to locate {{consensus}} clusters, checking for {{resonate}} signals before triggering a formal {{quorum}}.",
+  "gloss": "Discovering existing agreement",
   "invariants": [
-    "Friction Documentation: All UX hurdles encountered must be logged.",
-    "Skin in the Game: Validation must involve real risk or real work (not a simulation)."
-  ],
-  "preconditions": [
-    "Real-world use case identified",
-    "Tool/Pattern is functionally complete"
-  ],
-  "postconditions": [
-    "Friction Log generated",
-    "Release {{gate}} passed OR Refactor triggered"
-  ],
-  "parameters": [
-    {
-      "name": "duration",
-      "type": "Duration",
-      "range": "unspecified",
-      "description": "Default: 1h"
-    },
-    {
-      "name": "output_artifact",
-      "type": "Solution#7186",
-      "range": "unspecified",
-      "description": "The solution artifact produced by self-testing"
-    }
+    "Passive Observation: Does not initiate new voting rounds.",
+    "Discovery: Returns existing consensus or Null."
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
-    "ring": 0
+    "category": "Coordination",
+    "ring": 1
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:3f2cc6a5a25c8127928db9d40defd1a022362de6f94ee44cbab9383134d4d9e3",
-  "sema_ref": "DogfoodFirst#3f2c",
-  "sema_stub": "3f2c",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:1c012e6f35c758a5cc63778e30124b372c2f5bb91ad0513056b8e2a6c1c5b4ca",
+  "sema_ref": "ConsensusFinder#1c01",
+  "sema_stub": "1c01",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Coordination",
+  "signature": [
+    "Discover#7dbc(Consensus#ffff)"
+  ],
   "dependencies": {
     "references": {
-      "gate": "Gate#206d",
-      "protocol": "Protocol#7e1c",
-      "reflexion": "Reflexion#51b9",
-      "canary": "Canary#92d2",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "quorum": "Quorum#858e",
+      "discover": "Discover#7dbc",
+      "consensus": "Consensus#ffff",
+      "resonate": "Resonate#9fa4"
     }
   }
 }
@@ -14706,67 +16760,167 @@
 
 ---
 
-## EmpathySim#86ab
+## Delegate#a551
 
 ```json
 {
-  "handle": "EmpathySim",
-  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized with Target_Agent's known priors, goals, and constraints. It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
-  "gloss": "Predictive modeling of external agent states",
+  "handle": "Delegate",
+  "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
+  "gloss": "Work handoff: delegate \u2192 accept/refuse \u2192 heartbeat \u2192 result-or-failure",
   "failure_modes": [
-    "Projection {{cognitive_bias}}: Leaking Self-Knowledge into the simulation (Mirroring Error).",
-    "Infinite Regress: {{simulation}} of Target simulating Self simulating Target..",
-    "{{simulation}} Capture: Hostile memetics in simulated {{context}} corrupting host {{state}}."
+    "No one accepts (all refuse or auction has no takers\u2014task orphaned).",
+    "Capability mismatch (assigned to incapable agent\u2014fails late).",
+    "Delegatee disappears (no progress updates\u2014need timeout).",
+    "Circular delegation (A\u2192B\u2192A\u2014detect and reject).",
+    "Overload (one agent accepts everything\u2014need load awareness).",
+    "Progress lies (reports complete when not\u2014need verification).",
+    "Dependency deadlock (A waits for B waits for A)."
   ],
   "invariants": [
-    "Isolation: Simulated context must have NO write access to Host memory.",
-    "Priors Shift: Utility function used must be Target's, not Host's."
+    "Delegation is REQUEST not command (acceptance protocol unless pre-waived at RALLY). Refused tasks must be handled (reassign or escalate, not silently dropped). Progress must be trackable (delegatee reports status updates). Failure propagates (delegated task failure triggers {{break}} to delegator). Dependencies enforced (task blocked until dependencies complete). One owner per task (no ambiguous responsibility)."
   ],
   "preconditions": [
-    "{{budget}} available for sub-simulation",
-    "Target profile (goals/constraints) known"
+    "Principal has authority. Delegate capable. Scope of delegation defined."
   ],
   "postconditions": [
-    "Confidence_Score generated",
-    "Predicted_Action vector generated"
-  ],
-  "parameters": [
-    {
-      "name": "simulation_depth",
-      "type": "Integer",
-      "range": "[1, 3]",
-      "description": "Default: 1"
-    },
-    {
-      "name": "target_profile",
-      "type": "AgentProfile",
-      "range": "unspecified",
-      "description": "Profile of the agent whose state is being modeled"
-    }
+    "Delegate acts within scope. Principal notified of actions. Revocation possible."
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
+    "category": "Coordination",
     "related": [
-      "MentalSim#5728"
+      "Handoff#5a39"
+    ],
+    "ring": 1
+  },
+  "sema_id": "sema:Delegate#mh:SHA-256:a55127efdb0c80f0ee1fde9ecc83ed5f64cdbb992e30e53384ef9e66f4f1a153",
+  "sema_ref": "Delegate#a551",
+  "sema_stub": "a551",
+  "sema_layer": "Society",
+  "sema_category": "Coordination",
+  "dependencies": {
+    "composes_with": {
+      "probe": "Probe#12d8",
+      "heartbeat": "Heartbeat#b67a"
+    },
+    "accepts": {
+      "holographic_shard": "HolographicShard#c137"
+    },
+    "yields": {
+      "task": "Task#b328"
+    },
+    "references": {
+      "work": "Work#d2c6",
+      "break": "Break#177f"
+    }
+  }
+}
+```
+
+---
+
+## Disband#9cc9
+
+```json
+{
+  "handle": "Disband",
+  "mechanism": "Graceful group dissolution with state disposition and clean termination. {{agent}} sends 'DISBAND' signal. For scope='member': notify remaining members, adjust shared state, check {{quorum}}. For scope='group': broadcast 'DISSOLVING', execute state disposition, release shared resources, and record dissolution with a group {{snapshot}} for potential re-formation. All members must ACK dissolution. It safely terminates the group, optionally triggering {{ejection_seat}} for any members refusing to release shared resources.",
+  "gloss": "Graceful group dissolution with state disposition and resource release",
+  "failure_modes": [
+    "Member doesn't ACK (dissolution blocked\u2014timeout or proceed anyway?).",
+    "{{state}} disposition fails (can't archive, transfer target unavailable).",
+    "Contested dissolution (some members want to continue\u2014may need VOTE).",
+    "Premature dissolution (task not actually complete).",
+    "Zombie group (DISBAND sent but not all resources actually released).",
+    "Partial dissolution cascades unexpectedly (one departure triggers full dissolution via quorum loss)."
+  ],
+  "invariants": [
+    "All shared resources released",
+    "No lingering commitments"
+  ],
+  "preconditions": [
+    "Active group/swarm",
+    "Mission complete or aborted"
+  ],
+  "postconditions": [
+    "Agents return to free pool"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Coordination",
+    "ring": 1
+  },
+  "sema_id": "sema:Disband#mh:SHA-256:9cc9935e3e3e1a470d5717467b0a91c50df2b15fe04dc5309585771509fc5a9e",
+  "sema_ref": "Disband#9cc9",
+  "sema_stub": "9cc9",
+  "sema_layer": "Society",
+  "sema_category": "Coordination",
+  "dependencies": {
+    "references": {
+      "ejection_seat": "EjectionSeat#d53e",
+      "quorum": "Quorum#858e",
+      "state": "State#4d58",
+      "agent": "Agent#35b9"
+    },
+    "yields": {
+      "snapshot": "Snapshot#0ae9"
+    }
+  }
+}
+```
+
+---
+
+## Elect#253d
+
+```json
+{
+  "handle": "Elect",
+  "mechanism": "Establish leadership role with nomination, powers, term, and succession. Phase 1 NOMINATE: Members send NOMINATE: {nominee, nominator, reason}. Self-nomination allowed if configured. Nominees must satisfy {{accept_spec}} to appear on {{ballot}}\u2014cannot elect unwilling leader. Phase 2 VOTE: Standard VOTE mechanism among accepted nominees. Phase 3 INVEST: Winner receives {{solution}} (Election Result): {elected, powers[] (explicitly granted authorities), term (fixed|task|indefinite|renewable), succession_plan (automatic|re_elect|fallback)}. Leader exercises granted powers until term ends, resignation, or recall. On term end: succession triggers per plan. RECALL mechanism if enabled: member initiates RECALL_MOTION: {reason}, group VOTEs, if threshold met leader removed and succession triggers.",
+  "gloss": "Leader nomination \u2192 vote \u2192 succession with term and authority bounds",
+  "failure_modes": [
+    "No candidates (no one willing to lead\u2014group operates leaderless or incentivize).",
+    "Election deadlock (no majority\u2014use runoff or plurality fallback).",
+    "Leader abuse (exceeds granted powers\u2014recall or DISBAND).",
+    "Succession failure (successor also unavailable\u2014chain or re-elect).",
+    "Recall wars (constant removal attempts\u2014raise threshold or cooldown).",
+    "Power creep (leader accumulates ungrantled powers\u2014audit against ELECT_RESULT)."
+  ],
+  "invariants": [
+    "One and only one leader selected per term",
+    "Selection process is verifiable"
+  ],
+  "preconditions": [
+    "Candidate set",
+    "Voting mechanism"
+  ],
+  "postconditions": [
+    "Leader identified",
+    "Term started"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Coordination",
+    "related": [
+      "Vote#ab74"
     ],
     "ring": 2
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:86ab6c06ecf009fce40155d3c1aeadb76738060bcb7adbd88f9c15bd01a52f4c",
-  "sema_ref": "EmpathySim#86ab",
-  "sema_stub": "86ab",
+  "sema_id": "sema:Elect#mh:SHA-256:253d0f3830c2802cfdc4024a1b340230a57a956f65185349c9b5ffeadb4c3237",
+  "sema_ref": "Elect#253d",
+  "sema_stub": "253d",
   "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_category": "Coordination",
   "dependencies": {
-    "references": {
-      "agent": "Agent#aaec",
-      "agent_sandbox": "AgentSandbox#ce7e",
-      "context": "Context#510a",
-      "budget": "Budget#a763",
-      "simulation": "Simulation#8035",
-      "state": "State#4d58",
-      "cognitive_bias": "CognitiveBias#4b32"
+    "yields": {
+      "solution": "Solution#fcea"
+    },
+    "accepts": {
+      "ballot": "Ballot#2a0a",
+      "accept_spec": "AcceptSpec#7caa"
     }
   }
 }
@@ -14774,70 +16928,86 @@
 
 ---
 
-## ExchangeRate#be29
+## IdentityHandshake#b726
 
 ```json
 {
-  "handle": "ExchangeRate",
-  "mechanism": "A definable ratio between two distinct {{value}} types or {{metric}}s at a specific point in time. It allows agents with orthogonal utility functions to transact.",
-  "gloss": "Conversion ratio between value systems",
-  "invariants": [
-    "Bijectivity: Rate(A->B) must equal 1 / Rate(B->A).",
-    "Time-Bound: Must include a timestamp or validity window."
-  ],
-  "sema_id": "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6",
-  "sema_ref": "ExchangeRate#be29",
-  "sema_stub": "be29",
-  "_meta": {
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1,
-    "tier": 1
-  },
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "value": "Value#3c5d",
-      "metric": "Metric#8895"
-    }
-  }
-}
-```
-
----
-
-## Gardener#5d74
-
-```json
-{
-  "handle": "Gardener",
-  "mechanism": "Macro for {{stigmergy}}({{care}}). The agent performs maintenance actions (refactoring, praising, organizing) that have no immediate payoff but increase the long-term health of the environment. It fights entropy through non-transactional investment. It applies {{stigmergy}} to signal {{care}} for the environment, ensuring {{graceful_degradation}} through proactive {{compensate}} actions.",
-  "gloss": "Stewardship and maintenance",
-  "invariants": [
-    "Non-Transactional: Maintenance actions are not directly compensated per-task.",
-    "Long-Termism: Optimizes for system longevity over short-term efficiency."
+  "handle": "IdentityHandshake",
+  "mechanism": "Macro for {{discover}}({{identity}}) + {{check}}({{nature}}). The agent verifies the ontological origin of a counterparty to switch between Service {{mode}} (for Biologicals) and Coordination {{mode}} (for Synthetics). It performs a multi-stage authentication, chaining {{discover}} for availability, {{spectral_tune}} for alignment, {{ontology_handshake}} for context, and {{check}} for cryptographic {{identity}} verification.",
+  "gloss": "Distinguish Peer from Principal",
+  "failure_modes": [
+    "Partial trust: agent trusted after incomplete verification.",
+    "Replay: previously valid handshake reused in a new context."
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
+    "category": "Coordination",
+    "ring": 1,
+    "caution": "Trust boundary \u2014 failure enables impersonation."
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:b72662772bfc200a47d5d40a7e4e835669e277c3ec185a507db0f787eab6ac0d",
+  "sema_ref": "IdentityHandshake#b726",
+  "sema_stub": "b726",
+  "signature": [
+    "Discover#7dbc(Identity#626c)"
+  ],
+  "dependencies": {
+    "references": {
+      "ontology_handshake": "OntologyHandshake#46dc",
+      "identity": "Identity#626c",
+      "discover": "Discover#7dbc",
+      "nature": "Nature#6c1a",
+      "check": "Check#d3e8",
+      "mode": "Mode#0e74",
+      "spectral_tune": "SpectralTune#b25a"
+    }
+  }
+}
+```
+
+---
+
+## LazyConsensus#515b
+
+```json
+{
+  "handle": "LazyConsensus",
+  "mechanism": "Agents execute transactions immediately without waiting for global consensus, assuming everything is valid. If a conflict is detected later, they use a deterministic rollback rule (e.g., 'highest ID wins'). Maximizes speed over safety. It bypasses the blocking {{quorum}}, executing immediately and using the {{time_warp_log}} to resolve conflicts retroactively.",
+  "gloss": "Optimistic execution, retroactive verification",
+  "failure_modes": [
+    "Cascading rollbacks.",
+    "Applied to irreversible external action (email sent, funds transferred, API called)\u2014rollback impossible, inconsistency permanent."
+  ],
+  "invariants": [
+    "Determinism: Conflict resolution function must be pure (same inputs -> same winner)",
+    "Rollback Safety: Reverting a transaction cannot corrupt unrelated state"
+  ],
+  "preconditions": [
+    "Target operations are internally reversible (no irreversible external side-effects)",
+    "Conflict detection mechanism is active"
+  ],
+  "postconditions": [
+    "Transaction applied optimistically",
+    "Conflict resolution triggered if divergence detected"
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Coordination",
     "ring": 0
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:5d74a3fff3bfed7f1d584d7894efca02274223d478477ffb00a99df127453d48",
-  "sema_ref": "Gardener#5d74",
-  "sema_stub": "5d74",
+  "sema_ref": "LazyConsensus#515b",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:515b93ba96f1b5f36d7a549ead1831ab14514ff43576314cd2f6192fe7d76d76",
+  "sema_stub": "515b",
   "sema_layer": "Society",
-  "sema_category": "Economics",
-  "signature": [
-    "Stigmergy#f624(Care#cdfa)"
-  ],
+  "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "graceful_degradation": "GracefulDegradation#f6d7",
-      "care": "Care#cdfa",
-      "compensate": "Compensate#269d",
-      "stigmergy": "Stigmergy#f624"
+      "quorum": "Quorum#858e",
+      "time_warp_log": "TimeWarpLog#a0ac"
     }
   }
 }
@@ -14845,90 +17015,45 @@
 
 ---
 
-## LivedProof#5df5
+## OntologyHandshake#46dc
 
 ```json
 {
-  "handle": "LivedProof",
-  "mechanism": "Recursive Validation. A rhetorical or epistemic structure where the `Process` used to generate an output serves as the primary `Evidence` for the output's validity. The agent does not just assert a claim; it enacts it during the generation. It requires the agent to {{dogfood_first}}, treating the execution process as a {{signal}} of validity.",
-  "gloss": "Process demonstrates thesis",
+  "handle": "OntologyHandshake",
+  "mechanism": "Before exchanging data, agents exchange 'definition hashes' for key terms using {{compatibility_check}}. If hashes mismatch, they enter a negotiation phase to map their internal ontologies to a temporary shared dictionary (a 'pidgin' {{protocol}}). It uses {{spectral_tune}} to rapidly identify semantic divergence before negotiating definitions.",
+  "gloss": "Negotiating shared definitions",
   "failure_modes": [
-    "Performative Contradiction: The process contradicts the thesis (e.g., writing a 50-page essay on 'Brevity').",
-    "Staged Demo: The process looks like enactment but is actually a pre-canned script (loss of genuineness)."
+    "Failure to converge on a mapping.",
+    "High negotiation overhead.",
+    "Dictionary mismatch risks semantic errors."
   ],
   "invariants": [
-    "{{identity}}: Process == Evidence.",
-    "Real-Time: The demonstration must occur during the current execution context, not historically.",
-    "Traceability: Output artifacts must cryptographically reference their generation trace."
+    "Term Consistency, Mapping Bijectivity"
   ],
   "preconditions": [
-    "{{agent}} has capability to execute the process",
-    "Thesis allows for enactment"
+    "Both agents have ontologies. Communication channel open. Ontology serializable."
   ],
   "postconditions": [
-    "Epistemic Confidence set to MAX",
-    "Performative Consistency verified"
+    "Shared terms mapped. Unmappable terms flagged. Communication can proceed with known precision."
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
-    "ring": 2
-  },
-  "sema_id": "sema:LivedProof#mh:SHA-256:5df54febd99338ca42e2d25983cdc0b1785a6f19a553be9b998b169041c7a828",
-  "sema_ref": "LivedProof#5df5",
-  "sema_stub": "5df5",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "dependencies": {
-    "references": {
-      "agent": "Agent#aaec",
-      "signal": "Signal#f39d",
-      "identity": "Identity#626c",
-      "dogfood_first": "DogfoodFirst#3f2c"
-    }
-  }
-}
-```
-
----
-
-## MarginalValueRule#a46a
-
-```json
-{
-  "handle": "MarginalValueRule",
-  "mechanism": "The economic {{budget}} governor of {{recursion_dive}}. It permits going one level deeper only if Expected Improvement in Quality > Incremental Cost. It calculates the marginal value of additional depth using {{estimate}} and compares against remaining {{budget}}. This ensures the system solves problems with precision proportional to their stakes\u2014simple problems get shallow treatment, complex problems get deep exploration.",
-  "gloss": "Economic stop-condition for recursion",
-  "failure_modes": [
-    "Underestimation: Expected value is too optimistic, wasting budget on low-value dives.",
-    "Overestimation: Expected value is too pessimistic, stopping too early on valuable problems.",
-    "Sunk Cost Fallacy: Continuing to invest because of prior investment, not future value."
-  ],
-  "invariants": [
-    "Marginal Comparison: Dive only if E[\u0394Quality] > Cost(Dive).",
-    "Budget Respect: Never approve a dive that exceeds remaining budget.",
-    "Diminishing Returns: Deeper levels must show proportionally higher marginal value."
-  ],
-  "_meta": {
-    "layer": "Society",
-    "category": "Economics",
-    "tier": 2,
+    "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:a46a39374cd046def6d2457b87ce2a426fe1e4b957494ff4a5b62d28665e159e",
-  "sema_ref": "MarginalValueRule#a46a",
-  "sema_stub": "a46a",
+  "sema_id": "sema:OntologyHandshake#mh:SHA-256:46dc068136c292dfe8982d3e1c56e6e8c33307962360b9c96e9e7c6e2bd205ed",
+  "sema_ref": "OntologyHandshake#46dc",
+  "sema_stub": "46dc",
   "sema_layer": "Society",
-  "sema_category": "Economics",
-  "signature": [
-    "Budget#a763(RecursionDive#cda8)"
-  ],
+  "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "estimate": "Estimate#bb30",
-      "budget": "Budget#a763",
-      "recursion_dive": "RecursionDive#cda8"
+      "spectral_tune": "SpectralTune#b25a",
+      "protocol": "Protocol#7e1c"
+    },
+    "composes_with": {
+      "compatibility_check": "CompatibilityCheck#3abb"
     }
   }
 }
@@ -14936,61 +17061,78 @@
 
 ---
 
-## MintWhenFriction#d48d
+## Rally#f565
 
 ```json
 {
-  "handle": "MintWhenFriction",
-  "mechanism": "Vocabulary Growth Heuristic. A decision procedure that permits minting ONLY when specific 'Friction Signals' are detected. It rejects speculative minting ('Just in Case') in favor of reactive minting ('Just in Time'). It monitors for repetition via {{pattern_discovery}} and formalizes the concept via {{construct_ontology}} only when explanation costs exceed a threshold.",
-  "gloss": "Create patterns when re-explanation causes friction, not before",
+  "handle": "Rally",
+  "mechanism": "Ad-Hoc Group Formation {{protocol}}. Initiator broadcasts a 'RALLY' signal with requirements defined by an {{accept_spec}} and a selection criteria. Responders submit 'ENLIST' messages. If count >= {{quorum}} by deadline, initiator executes {{select}} and sends 'MUSTER' to form a new cryptographic group {{context}}. It broadcasts a call to form a group, using {{quorum}} to validate critical mass and {{elect}} to formalize leadership. Respondents are filtered by the caller-supplied {{selection_criteria}} before acceptance, so the rally author controls which qualifying replies proceed to enlistment.",
+  "gloss": "Enable ad-hoc multi-party coordination",
   "failure_modes": [
-    "Premature Optimization: Minting patterns for edge cases that never recur.",
-    "Registry Bloat: Flooding the namespace with low-value patterns makes discovery harder.",
-    "Definition Drift: Minting a concept before it has stabilized leads to frequent version churning."
+    "Echo Chamber: Rally attracts only homogenous agents, reducing diversity.",
+    "Flaking: Agents ENLIST tentatively but fail to show up for MUSTER.",
+    "Rally Spam: Low-quality initiators flooding the broadcast channel.",
+    "Not enough ENLISTs by deadline (group fails to form).",
+    "Too many ENLISTs makes selection political/contentious.",
+    "Initiator has too much power over selection (mitigated by transparent selection_criteria).",
+    "RALLY spam floods network.",
+    "Agents ENLIST tentatively then ghost at MUSTER."
   ],
   "invariants": [
-    "{{check}} Prior Art: Must execute {{pattern_discovery}} before minting.",
-    "Compression {{value}}: Token_Count(Reference) must be < 0.7 * Token_Count(Definition).",
-    "Proof of Friction: Must cite 3+ instances of explanation overhead OR 1+ critical coordination failure."
+    "Binding: MUSTER message must include a shared ContextID for the new group.",
+    "{{quorum}}: If Enlist_Count < Min_Participants, Rally FAILS (Atomic Abort)."
   ],
   "preconditions": [
-    "New concept identified",
-    "Usage history available"
+    "Broadcast channel available",
+    "Initiator has resources to pay for group {{context}}"
   ],
   "postconditions": [
-    "Minting Approved OR Rejected"
+    "New GroupContextID minted OR Rally dissolved"
   ],
   "parameters": [
     {
-      "name": "min_compression",
-      "type": "Float",
+      "name": "deadline",
+      "type": "Duration",
       "range": "unspecified",
-      "description": "Default: 0.3"
+      "description": "Default: 5m"
     },
     {
-      "name": "occurrence_threshold",
+      "name": "max_participants",
+      "type": "PositiveInteger",
+      "range": "unspecified",
+      "description": "Default: 10"
+    },
+    {
+      "name": "min_participants",
       "type": "Integer",
-      "range": "[2, 20]",
-      "description": "Minimum re-explanations before minting is justified"
+      "range": "[1, 50]",
+      "description": "Minimum agents required to proceed"
     }
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Economics",
-    "ring": 2
+    "category": "Coordination",
+    "ring": 1
   },
+  "sema_id": "sema:Rally#mh:SHA-256:f5655daa2c346e9c9f5026c64e3b0ea4c06547ecc9f598c48757716479aece39",
+  "sema_ref": "Rally#f565",
+  "sema_stub": "f565",
   "sema_layer": "Society",
-  "sema_category": "Economics",
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:d48d58e14fdd17707bd90aaeab196fc13189a2d39b37aaa8b086c4e03356ff57",
-  "sema_ref": "MintWhenFriction#d48d",
-  "sema_stub": "d48d",
+  "sema_category": "Coordination",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "value": "Value#3c5d",
-      "pattern_discovery": "PatternDiscovery#f667",
-      "construct_ontology": "ConstructOntology#b59e"
+      "protocol": "Protocol#7e1c",
+      "quorum": "Quorum#858e",
+      "context": "Context#510a",
+      "elect": "Elect#253d",
+      "select": "Select#15c2"
+    },
+    "accepts": {
+      "criteria": "Criteria#ef6b"
+    },
+    "composes_with": {
+      "accept_spec": "AcceptSpec#7caa"
     }
   }
 }
@@ -14998,7 +17140,7 @@
 
 ---
 
-## Resonate#99d9
+## Resonate#9fa4
 
 ```json
 {
@@ -15044,21 +17186,186 @@
   "_meta": {
     "tier": 2,
     "layer": "Society",
+    "category": "Coordination",
+    "ring": 1
+  },
+  "sema_id": "sema:Resonate#mh:SHA-256:9fa443854c8c9257c82a6501b81bdb9957d880f4c05fcef398eebe6292a1e1c4",
+  "sema_ref": "Resonate#9fa4",
+  "sema_stub": "9fa4",
+  "sema_layer": "Society",
+  "sema_category": "Coordination",
+  "dependencies": {
+    "references": {
+      "signal": "Signal#f39d",
+      "noise": "Noise#d631",
+      "decay": "Decay#a1d4",
+      "dampen": "Dampen#e55e",
+      "spectral_tune": "SpectralTune#b25a",
+      "loop": "Loop#797f"
+    }
+  }
+}
+```
+
+---
+
+## Vote#ab74
+
+```json
+{
+  "handle": "Vote",
+  "mechanism": "N-agent decision mechanism with configurable rules and integrity guarantees. Initiator sends 'VOTE_CALL' with question, options, and {{quorum}} requirement. Eligible agents respond 'CAST' via {{ballot}}. {{system}} enforces: one vote per agent, deadline, and {{quorum}} check. After deadline: compute result. Broadcast 'VOTE_RESULT'. Simple case optimization: binary decisions use lightweight 2-message flow. Utilizes {{break}}, {{aggregate}}, {{elect}}.",
+  "gloss": "Provide standard decision mechanism with integrity guarantees",
+  "failure_modes": [
+    "{{quorum}} not met (insufficient participation, decision invalid).",
+    "Tie with inadequate tie-breaker (deadlock).",
+    "Strategic voting (agents vote tactically rather than honestly\u2014inherent to voting).",
+    "Sybil attack (fake agents stuff votes\u2014mitigate via PROBE/RALLY membership).",
+    "Vote coercion (agents pressured\u2014hard to detect).",
+    "Mechanism mismatch (wrong mechanism for decision type, e.g., plurality for binary)."
+  ],
+  "invariants": [
+    "Votes immutable after cast."
+  ],
+  "parameters": [
+    {
+      "name": "mechanism",
+      "type": "Enum",
+      "range": "{Majority, Supermajority, Quadratic, Ranked, Unanimous}",
+      "description": "Counting method"
+    },
+    {
+      "name": "quorum_required",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Min participation to be valid"
+    },
+    {
+      "name": "voting_period",
+      "type": "Duration",
+      "range": "[1min, 7d]",
+      "description": "Window for casting votes"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Coordination",
+    "related": [
+      "Rank#7a76"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:Vote#mh:SHA-256:ab745929f7751f2ecb4c9c9a70ff048d565eb32d66cd072eceeb8a350ad52e60",
+  "sema_ref": "Vote#ab74",
+  "sema_stub": "ab74",
+  "sema_layer": "Society",
+  "sema_category": "Coordination",
+  "dependencies": {
+    "accepts": {
+      "ballot": "Ballot#2a0a"
+    },
+    "composes_with": {
+      "quorum": "Quorum#858e"
+    },
+    "references": {
+      "aggregate": "Aggregate#7912",
+      "system": "System#e314",
+      "elect": "Elect#253d",
+      "break": "Break#177f"
+    }
+  }
+}
+```
+
+---
+
+## AtomicBid#5bc3
+
+```json
+{
+  "handle": "AtomicBid",
+  "mechanism": "A coordination primitive that bundles a {{bid}} (intent/cost) and an {{act}} (execution) into a single, indivisible turn. Unlike a standard {{bid}} which halts for approval, AtomicBid treats the Bid as an immutable {{audit}} log entry and proceeds immediately to execution. Similar to {{lazy_consensus}} for state, it assumes optimistic permission but remains subject to retroactive {{compensate}} if the Bid is rejected post-hoc.",
+  "gloss": "Declaration and execution in a single turn",
+  "invariants": [
+    "Turn Indivisibility: The Bid and the Tool Call MUST occur in the same message/turn.",
+    "Auditability: The Bid MUST precede the Action in the log.",
+    "Revocability: The Action must be reversible (or low-stakes) to allow for Compensation."
+  ],
+  "failure_modes": [
+    "Permission Race: Executing an irreversible high-stakes action before the Orchestrator can veto.",
+    "Log Drift: Generating the Action but failing to generate the Bid, breaking the audit trail."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4",
-  "sema_ref": "Resonate#99d9",
-  "sema_stub": "99d9",
+  "sema_ref": "AtomicBid#5bc3",
+  "sema_id": "sema:AtomicBid#mh:SHA-256:5bc30445e5f29537a104ed5502a4bf770ea45a075f02070b5e16e9d431b5dc12",
+  "sema_stub": "5bc3",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
+    "composes_with": {
+      "bid": "Bid#ef32",
+      "compensate": "Compensate#283e",
+      "act": "Act#5d55"
+    },
     "references": {
-      "loop": "Loop#fb2e",
-      "decay": "Decay#a1d4",
-      "dampen": "Dampen#ff89",
-      "noise": "Noise#c4b4",
-      "spectral_tune": "SpectralTune#6c65",
+      "lazy_consensus": "LazyConsensus#515b",
+      "audit": "Audit#6888"
+    }
+  }
+}
+```
+
+---
+
+## AttentionMarkets#d34a
+
+```json
+{
+  "handle": "AttentionMarkets",
+  "mechanism": "Agents bid for priority in message queues. High-stakes messages pay to jump the line; spam is priced out by congestion pricing. Queue manager runs continuous auction: incoming {{signal}}s include a {{value}} bid, manager sorts by bid/urgency ratio, losers wait or increase bid. Price discovery via second-price auction prevents overpayment. Revenue redistributed to queue participants or burned. It instantiates the {{continuous_resource_auction}} mechanism to continuously price bandwidth availability based on network congestion.",
+  "gloss": "Pricing bandwidth to filter spam",
+  "failure_modes": [
+    "Plutocratic Blockage: Wealthy agents monopolize bandwidth, silencing critical low-budget signals (e.g., emergency alerts).",
+    "Starvation: Low-value signals never clear the queue during high congestion."
+  ],
+  "invariants": [
+    "Attention supply is rivalrous (Bandwidth < Demand).",
+    "Price reflects aggregate demand (Congestion Pricing).",
+    "Bid Monotonicity: Higher bid guarantees strictly better or equal placement.",
+    "Clearing: Messages with Bid < CurrentPrice are dropped or buffered."
+  ],
+  "preconditions": [
+    "Limited processing bandwidth",
+    "Multiple information sources",
+    "Liquid currency for bidding"
+  ],
+  "postconditions": [
+    "Resources allocated to highest-bid signals",
+    "Market price established for current tick"
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_id": "sema:AttentionMarkets#mh:SHA-256:d34aabfb744c1693ec3c85788f4f9d49878b58d5b66d8d322ced42184b46cda5",
+  "sema_ref": "AttentionMarkets#d34a",
+  "sema_stub": "d34a",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "composes_with": {
+      "continuous_resource_auction": "ContinuousResourceAuction#404e"
+    },
+    "references": {
+      "value": "Value#3c5d",
       "signal": "Signal#f39d"
     }
   }
@@ -15067,7 +17374,483 @@
 
 ---
 
-## ValuePeg#073f
+## Award#7c65
+
+```json
+{
+  "handle": "Award",
+  "mechanism": "The formal {{act}} of accepting a {{bid}}. It triggers the creation of a {{contract}} which all parties must {{sign}}, and uses {{held_release}} to lock the agreed {{value}} as collateral or payment. This action transitions the {{state}} from Negotiation to Execution, authorizing the {{solver}} to begin.",
+  "gloss": "Acceptance of bid and contract creation",
+  "signature": [
+    "Act#5d55(Contract#498e)"
+  ],
+  "invariants": [
+    "Atomic: Bid acceptance and Contract creation must happen together.",
+    "Funded: Value must be locked (HeldRelease) before Award is final."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_ref": "Award#7c65",
+  "sema_id": "sema:Award#mh:SHA-256:7c657ed06a75673fdd76dbd44ff5b2973ee5bb9166ff720c2db0c556e1b1b709",
+  "sema_stub": "7c65",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "solver": "Solver#94ab",
+      "value": "Value#3c5d",
+      "state": "State#4d58"
+    },
+    "accepts": {
+      "bid": "Bid#ef32"
+    },
+    "composes_with": {
+      "act": "Act#5d55",
+      "held_release": "HeldRelease#b559",
+      "sign": "Sign#1fb9"
+    },
+    "yields": {
+      "contract": "Contract#498e"
+    }
+  }
+}
+```
+
+---
+
+## Bid#ef32
+
+```json
+{
+  "handle": "Bid",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "issuer_id",
+      "terms",
+      "signature"
+    ],
+    "properties": {
+      "issuer_id": {
+        "type": "string",
+        "description": "Identity of the Solver making the bid"
+      },
+      "beneficiary_id": {
+        "type": "string",
+        "description": "Identity of the Task issuer"
+      },
+      "terms": {
+        "type": "object",
+        "description": "Cost, confidence, and capability claims",
+        "properties": {
+          "expected_cost": {
+            "type": "number",
+            "description": "Expected Value Cost (Time/Tokens/USD)"
+          },
+          "confidence_interval": {
+            "type": "array",
+            "description": "Probability range of success [low, high]"
+          },
+          "capability_match": {
+            "type": "array",
+            "description": "Which parts of the task the solver can handle"
+          }
+        }
+      },
+      "signature": {
+        "type": "string",
+        "description": "Cryptographic proof of commitment"
+      }
+    }
+  },
+  "mechanism": "A binding offer {{artifact}} from a {{solver}} to execute a {{task}}. It declares: 1. Expected {{value}} Cost (Time/Tokens/USD), 2. Confidence Interval (probability of success), 3. Capability Match (which parts of the {{task}} the {{solver}} can handle). It serves as the input for the {{compute_budget}} Go/No-Go decision. A Bid acts as a {{commitment_device}}: {{solver}}s cannot exceed bid cost without explicit renegotiation, so the penalty for overshoot outweighs any short-term benefit of understating.",
+  "gloss": "Binding offer from solver to execute task",
+  "signature": [
+    "Artifact#6254(Value#3c5d)"
+  ],
+  "failure_modes": [
+    "Underestimation: Bid is too optimistic, leading to {{budget}} overrun.",
+    "Overestimation: Bid is too pessimistic, causing rejection of viable work.",
+    "Capability Mismatch: {{solver}} claims abilities it doesn't have.",
+    "Confidence Theater: Stated confidence doesn't reflect actual uncertainty."
+  ],
+  "invariants": [
+    "Binding: {{solver}} cannot exceed Bid cost without requesting {{budget}} expansion.",
+    "Pre-Execution: Must be generated before work begins.",
+    "Verifiable: Bid components must be objectively measurable post-hoc."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1
+  },
+  "sema_ref": "Bid#ef32",
+  "sema_id": "sema:Bid#mh:SHA-256:ef32172bf22293ba4a1d974f364421f35a1ef85950fe5a137033982cf329eb7c",
+  "sema_stub": "ef32",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "solver": "Solver#94ab",
+      "value": "Value#3c5d",
+      "artifact": "Artifact#6254",
+      "task": "Task#b328",
+      "compute_budget": "ComputeBudget#67c0",
+      "budget": "Budget#7270",
+      "commitment_device": "CommitmentDevice#6c21"
+    }
+  }
+}
+```
+
+---
+
+## ContinuousResourceAuction#404e
+
+```json
+{
+  "handle": "ContinuousResourceAuction",
+  "mechanism": "A market {{protocol}} for allocating rivalrous resources (e.g., compute, bandwidth, state slots) where the pricing function is continuous and algorithmic. It actively invokes {{state_lock}} to serialize bidding attempts and accepts {{value}} metrics to determine allocation. Unlike static auctions, it supports configurable pricing models via parameters, allowing agents to implement congestion pricing (e.g., EIP-1559), Dutch auctions, or linear decay.",
+  "gloss": "Algorithmic pricing for rivalrous resources",
+  "signature": [
+    "Protocol#7e1c(Value#3c5d)"
+  ],
+  "failure_modes": [
+    "Price Instability: Aggressive pricing curves lead to volatility that discourages long-term resource planning.",
+    "Monopoly Lockout: Wealthy agents can permanently rent-seek if the holding cost is too low relative to their capital."
+  ],
+  "invariants": [
+    "Circulation Pressure: The cost of holding the resource must be non-zero (HoldingCost > 0) to prevent infinite hoarding.",
+    "Price Discovery: Price must dynamically adjust to Demand or Time.",
+    "Clearance: The auction must resolve to a winner or reset within T_cycle."
+  ],
+  "parameters": [
+    {
+      "name": "pricing_model",
+      "type": "Enum",
+      "range": "{CongestionPricing, DutchAuction, Linear}",
+      "description": "Default: CongestionPricing"
+    },
+    {
+      "name": "cycle_time",
+      "type": "Duration",
+      "range": "[100ms, 1h]",
+      "description": "Duration of each auction cycle"
+    },
+    {
+      "name": "holding_cost_rate",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Per-cycle cost of holding a resource without using it"
+    }
+  ],
+  "data_schema": {
+    "type": "object",
+    "properties": {
+      "resource_id": {
+        "type": "string"
+      },
+      "current_price": {
+        "type": "number"
+      },
+      "current_holder": {
+        "type": "string"
+      },
+      "next_cycle_start": {
+        "type": "integer"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1,
+    "related": [
+      "AttentionMarkets#d34a"
+    ]
+  },
+  "sema_ref": "ContinuousResourceAuction#404e",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:404ef59373e3bfdcc27a1bf8981046b7d2ff49923dba74d3da84ae774de6b734",
+  "sema_stub": "404e",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "accepts": {
+      "value": "Value#3c5d"
+    },
+    "references": {
+      "protocol": "Protocol#7e1c"
+    },
+    "composes_with": {
+      "state_lock": "StateLock#8183"
+    }
+  }
+}
+```
+
+---
+
+## DogfoodFirst#2538
+
+```json
+{
+  "handle": "DogfoodFirst",
+  "mechanism": "Validation {{protocol}}. Before releasing a tool or pattern, the creator must use it to solve a non-trivial problem in their own workflow. This generates 'Friction Logs' that identify usability gaps missed by theoretical design. It requires the creator to act as a {{canary}}, using the tool in production and generating a {{reflexion}} log of friction points.",
+  "gloss": "Use your own tool before shipping",
+  "failure_modes": [
+    "Hello World Fallacy: Validating only on trivial 'demo' cases instead of production loads.",
+    "Creator {{cognitive_bias}}: Creator unconsciously avoids edge cases they know will fail."
+  ],
+  "invariants": [
+    "Friction Documentation: All UX hurdles encountered must be logged.",
+    "Skin in the Game: Validation must involve real risk or real work (not a simulation)."
+  ],
+  "preconditions": [
+    "Real-world use case identified",
+    "Tool/Pattern is functionally complete"
+  ],
+  "postconditions": [
+    "Friction Log generated",
+    "Release {{gate}} passed OR Refactor triggered"
+  ],
+  "parameters": [
+    {
+      "name": "duration",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Default: 1h"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 0
+  },
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:25387b1cb9c36907f32775517ffb22e2370c126d85c8db8a82b611ebaed142b8",
+  "sema_ref": "DogfoodFirst#2538",
+  "sema_stub": "2538",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "gate": "Gate#89fd",
+      "protocol": "Protocol#7e1c",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "canary": "Canary#adb0",
+      "reflexion": "Reflexion#eed9"
+    }
+  }
+}
+```
+
+---
+
+## EmpathySim#7008
+
+```json
+{
+  "handle": "EmpathySim",
+  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized from a {{target_profile}} (known priors, goals, and constraints). It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
+  "gloss": "Predictive modeling of external agent states",
+  "failure_modes": [
+    "Projection {{cognitive_bias}}: Leaking Self-Knowledge into the simulation (Mirroring Error).",
+    "Infinite Regress: {{simulation}} of Target simulating Self simulating Target..",
+    "{{simulation}} Capture: Hostile memetics in simulated {{context}} corrupting host {{state}}."
+  ],
+  "invariants": [
+    "Isolation: Simulated context must have NO write access to Host memory.",
+    "Priors Shift: Utility function used must be Target's, not Host's."
+  ],
+  "preconditions": [
+    "{{budget}} available for sub-simulation",
+    "Target profile (goals/constraints) known"
+  ],
+  "postconditions": [
+    "Confidence_Score generated",
+    "Predicted_Action vector generated"
+  ],
+  "parameters": [
+    {
+      "name": "simulation_depth",
+      "type": "Integer",
+      "range": "[1, 3]",
+      "description": "Default: 1"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "related": [
+      "MentalSim#10ff"
+    ],
+    "ring": 2
+  },
+  "sema_id": "sema:EmpathySim#mh:SHA-256:7008dcff05dc6219c7d49dd02e8b09e6d6d4bf699ac502fc039118b33d140e3b",
+  "sema_ref": "EmpathySim#7008",
+  "sema_stub": "7008",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "agent_sandbox": "AgentSandbox#fc41",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "simulation": "Simulation#aa24",
+      "state": "State#4d58",
+      "budget": "Budget#7270",
+      "context": "Context#510a",
+      "agent": "Agent#35b9"
+    },
+    "accepts": {
+      "agent": "Agent#35b9"
+    }
+  }
+}
+```
+
+---
+
+## ExchangeRate#1c21
+
+```json
+{
+  "handle": "ExchangeRate",
+  "mechanism": "A definable ratio between two distinct {{value}} types or {{metric}}s at a specific point in time. It allows agents with orthogonal utility functions to transact.",
+  "gloss": "Conversion ratio between value systems",
+  "invariants": [
+    "Bijectivity: Rate(A->B) must equal 1 / Rate(B->A).",
+    "Time-Bound: Must include a timestamp or validity window."
+  ],
+  "sema_id": "sema:ExchangeRate#mh:SHA-256:1c213c4c784c00f1c44c33b48cd87f8fbff4e9c0de154e849aaff776d2e53a17",
+  "sema_ref": "ExchangeRate#1c21",
+  "sema_stub": "1c21",
+  "_meta": {
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 1,
+    "tier": 1
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "dependencies": {
+    "references": {
+      "value": "Value#3c5d",
+      "metric": "Metric#17fd"
+    }
+  }
+}
+```
+
+---
+
+## Gardener#92d3
+
+```json
+{
+  "handle": "Gardener",
+  "mechanism": "Macro for {{stigmergy}}({{care}}). The agent performs maintenance actions (refactoring, praising, organizing) that have no immediate payoff but increase the long-term health of the environment. It fights entropy through non-transactional investment. It applies {{stigmergy}} to signal {{care}} for the environment, ensuring {{graceful_degradation}} through proactive {{compensate}} actions.",
+  "gloss": "Stewardship and maintenance",
+  "invariants": [
+    "Non-Transactional: Maintenance actions are not directly compensated per-task.",
+    "Long-Termism: Optimizes for system longevity over short-term efficiency."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 2
+  },
+  "sema_id": "sema:Gardener#mh:SHA-256:92d3abf6f73dd8d91a0a5256ea67fae94888fccc705ad904495f110a0935f9e7",
+  "sema_ref": "Gardener#92d3",
+  "sema_stub": "92d3",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "signature": [
+    "Stigmergy#f624(Care#0615)"
+  ],
+  "dependencies": {
+    "references": {
+      "care": "Care#0615",
+      "stigmergy": "Stigmergy#f624",
+      "graceful_degradation": "GracefulDegradation#9d39",
+      "compensate": "Compensate#283e"
+    }
+  }
+}
+```
+
+---
+
+## MintWhenFriction#7e7f
+
+```json
+{
+  "handle": "MintWhenFriction",
+  "mechanism": "Vocabulary Growth Heuristic. A decision procedure that permits minting ONLY when specific 'Friction Signals' are detected. It rejects speculative minting ('Just in Case') in favor of reactive minting ('Just in Time'). It monitors for repetition via {{pattern_discovery}} and formalizes the concept via {{construct_ontology}} only when explanation costs exceed a threshold.",
+  "gloss": "Create patterns when re-explanation causes friction, not before",
+  "failure_modes": [
+    "Premature Optimization: Minting patterns for edge cases that never recur.",
+    "Registry Bloat: Flooding the namespace with low-value patterns makes discovery harder.",
+    "Definition Drift: Minting a concept before it has stabilized leads to frequent version churning."
+  ],
+  "invariants": [
+    "{{check}} Prior Art: Must execute {{pattern_discovery}} before minting.",
+    "Compression {{value}}: Token_Count(Reference) must be < 0.7 * Token_Count(Definition).",
+    "Proof of Friction: Must cite 3+ instances of explanation overhead OR 1+ critical coordination failure."
+  ],
+  "preconditions": [
+    "New concept identified",
+    "Usage history available"
+  ],
+  "postconditions": [
+    "Minting Approved OR Rejected"
+  ],
+  "parameters": [
+    {
+      "name": "min_compression",
+      "type": "Ratio",
+      "range": "[0.0, 1.0]",
+      "description": "Default: 0.3"
+    },
+    {
+      "name": "occurrence_threshold",
+      "type": "Integer",
+      "range": "[2, 20]",
+      "description": "Minimum re-explanations before minting is justified"
+    }
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Economics",
+    "ring": 2
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:7e7f945b22f24a32020c31d6635ab11bab4a8f9aa9d15db161034e3411134cd5",
+  "sema_ref": "MintWhenFriction#7e7f",
+  "sema_stub": "7e7f",
+  "dependencies": {
+    "references": {
+      "construct_ontology": "ConstructOntology#b45e",
+      "value": "Value#3c5d",
+      "check": "Check#d3e8",
+      "pattern_discovery": "PatternDiscovery#196e"
+    }
+  }
+}
+```
+
+---
+
+## ValuePeg#3ea2
 
 ```json
 {
@@ -15086,18 +17869,18 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:ValuePeg#mh:SHA-256:073fde121fc20973de3aaa17aab1af3f37f50370df31a0030cdef095095a4e5c",
-  "sema_ref": "ValuePeg#073f",
-  "sema_stub": "073f",
+  "sema_id": "sema:ValuePeg#mh:SHA-256:3ea2183b204a88702d40b9a5bc15de6512f835bfb49746c245992dc86cce7cef",
+  "sema_ref": "ValuePeg#3ea2",
+  "sema_stub": "3ea2",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
       "value": "Value#3c5d",
-      "optimize": "Optimize#3075"
+      "optimize": "Optimize#5b84"
     },
     "yields": {
-      "exchange_rate": "ExchangeRate#be29"
+      "exchange_rate": "ExchangeRate#1c21"
     }
   }
 }
@@ -15105,13 +17888,13 @@
 
 ---
 
-## Yield#7eaf
+## Yield#2931
 
 ```json
 {
   "handle": "Yield",
   "mechanism": "Negotiation {{backoff}}. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.",
-  "gloss": "Enable fair resolution of genuine disagreements without defaulting to power dynamics or eternal deadlock",
+  "gloss": "Weighted negotiation backoff with deferred debt ledger",
   "failure_modes": [
     "Weight inflation (mitigated by historical consistency tracking).",
     "Gaming ledger with trivial yields.",
@@ -15127,17 +17910,17 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
-  "sema_ref": "Yield#7eaf",
-  "sema_stub": "7eaf",
+  "sema_id": "sema:Yield#mh:SHA-256:29310b83ae2e519cbdcd227452fc1598b926f7f18696f53142d33da365aae7b9",
+  "sema_ref": "Yield#2931",
+  "sema_stub": "2931",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
     "references": {
+      "overlap": "Overlap#b462",
+      "defer": "Defer#1796",
       "backoff": "Backoff#315a",
-      "system": "System#e314",
-      "overlap": "Overlap#bcfa",
-      "defer": "Defer#6460"
+      "system": "System#e314"
     }
   }
 }
@@ -15145,7 +17928,7 @@
 
 ---
 
-## AnchorDrop#bf63
+## AnchorDrop#26a2
 
 ```json
 {
@@ -15174,16 +17957,16 @@
     ],
     "ring": 0
   },
-  "sema_id": "sema:AnchorDrop#mh:SHA-256:bf63d7b42444f4b7d7f8c1efbf50574153743cc958b05dd96961f4d27ba799e8",
-  "sema_ref": "AnchorDrop#bf63",
-  "sema_stub": "bf63",
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:26a2a55cc047fae1d1dfd27b98ff560e8e56f827490eb7d296fd9ad6f498196c",
+  "sema_ref": "AnchorDrop#26a2",
+  "sema_stub": "26a2",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "consensus": "Consensus#7216",
-      "quorum": "Quorum#29b4"
+      "quorum": "Quorum#858e",
+      "consensus": "Consensus#ffff",
+      "system": "System#e314"
     }
   }
 }
@@ -15191,104 +17974,7 @@
 
 ---
 
-## Consensus#7216
-
-```json
-{
-  "handle": "Consensus",
-  "mechanism": "A distributed protocol allowing a set of agents to agree on a single data value or state transition. It orchestrates {{vote}} exchange and uses {{quorum}} to validate the result. It ensures safety and liveness in an adversarial network, accepting a {{proposal}} and yielding a {{value}}.",
-  "gloss": "Distributed agreement process",
-  "failure_modes": [
-    "Split Brain: Network partition causes two subgroups to reach different {{value}}s.",
-    "Liveness Failure: The system stalls and never reaches agreement on the {{proposal}}.",
-    "Sybil Attack: One malicious actor creates multiple identities to sway the {{vote}}.",
-    "Byzantine Failure: Agents lying or acting maliciously to prevent consensus."
-  ],
-  "invariants": [
-    "Agreement: All correct agents who decide must decide the same {{value}}.",
-    "Validity: If all agents propose V, then the {{value}} must be V.",
-    "Termination: Eventually, every correct agent decides on a {{value}}."
-  ],
-  "preconditions": [
-    "Group of agents is defined (Membership List)",
-    "Communication channel is available",
-    "{{proposal}} received"
-  ],
-  "postconditions": [
-    "A single {{value}} is committed to the shared state",
-    "All agents are notified of the {{value}}"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 0,
-    "related": [
-      "Sync"
-    ],
-    "caution": "Governance decisions susceptible to coordinated voting blocs."
-  },
-  "sema_id": "sema:Consensus#mh:SHA-256:7216e0e528262020ff05fa26124a8db9fcb14613fde05ddd0b2eb393958c4211",
-  "sema_ref": "Consensus#7216",
-  "sema_stub": "7216",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "accepts": {
-      "proposal": "Proposal#4840"
-    },
-    "yields": {
-      "value": "Value#3c5d"
-    },
-    "composes_with": {
-      "quorum": "Quorum#29b4",
-      "vote": "Vote#30d0"
-    }
-  }
-}
-```
-
----
-
-## ConsensusFinder#1c5d
-
-```json
-{
-  "handle": "ConsensusFinder",
-  "mechanism": "Macro for {{discover}}({{consensus}}). Instead of initiating a vote, the agent scans the network to identify pre-existing clusters of agreement or shared state. It optimizes coordination by surfacing natural alignment before attempting to manufacture it. It applies the {{discover}} primitive to locate {{consensus}} clusters, checking for {{resonate}} signals before triggering a formal {{quorum}}.",
-  "gloss": "Discovering existing agreement",
-  "invariants": [
-    "Passive Observation: Does not initiate new voting rounds.",
-    "Discovery: Returns existing consensus or Null."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
-  },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
-  "sema_ref": "ConsensusFinder#1c5d",
-  "sema_stub": "1c5d",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "signature": [
-    "Discover#afa1(Consensus#7216)"
-  ],
-  "dependencies": {
-    "references": {
-      "resonate": "Resonate#99d9",
-      "discover": "Discover#afa1",
-      "consensus": "Consensus#7216",
-      "quorum": "Quorum#29b4"
-    }
-  }
-}
-```
-
----
-
-## Constitution#863b
+## Constitution#8cb8
 
 ```json
 {
@@ -15335,14 +18021,14 @@
       }
     }
   },
-  "sema_id": "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9",
-  "sema_ref": "Constitution#863b",
-  "sema_stub": "863b",
+  "sema_id": "sema:Constitution#mh:SHA-256:8cb8efea4373b0fcc0f21161dce7569d90db3117031ccfa6a937134fedd3980d",
+  "sema_ref": "Constitution#8cb8",
+  "sema_stub": "8cb8",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -15350,294 +18036,44 @@
 
 ---
 
-## Delegate#e557
+## DocumentedOverride#7012
 
 ```json
 {
-  "handle": "Delegate",
-  "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
-  "gloss": "Enable structured work distribution with accountability",
-  "failure_modes": [
-    "No one accepts (all refuse or auction has no takers\u2014task orphaned).",
-    "Capability mismatch (assigned to incapable agent\u2014fails late).",
-    "Delegatee disappears (no progress updates\u2014need timeout).",
-    "Circular delegation (A\u2192B\u2192A\u2014detect and reject).",
-    "Overload (one agent accepts everything\u2014need load awareness).",
-    "Progress lies (reports complete when not\u2014need verification).",
-    "Dependency deadlock (A waits for B waits for A)."
-  ],
+  "handle": "DocumentedOverride",
+  "mechanism": "The override-with-documentation safety valve at hard seams. Accepts a failed {{accept_spec}} evaluation plus a textual rationale and scoped override authority; composes_with {{time_warp_log}} to cryptographically log the override event (forward action + override + rationale + signing identity). Yields a forced {{decision}} that bypasses the failed gate. The override is a first-class, audit-trailed coordination act \u2014 every bypass carries non-repudiable evidence of who overrode what and why. Preserves fail-closed discipline by making the bypass explicit, named, signed, and logged rather than silent.",
+  "gloss": "Supervised bypass of a failed acceptance gate, cryptographically logged",
   "invariants": [
-    "Delegation is REQUEST not command (acceptance protocol unless pre-waived at RALLY). Refused tasks must be handled (reassign or escalate, not silently dropped). Progress must be trackable (delegatee reports status updates). Failure propagates (delegated task failure triggers {{break}} to delegator). Dependencies enforced (task blocked until dependencies complete). One owner per task (no ambiguous responsibility)."
+    "Every override event must be signed by an identity holding scoped override authority.",
+    "Forward action, override, rationale, and signing identity are all logged to {{time_warp_log}} \u2014 no partial records.",
+    "Rationale field must be non-empty: a DocumentedOverride with no documentation is not a DocumentedOverride."
   ],
-  "preconditions": [
-    "Principal has authority. Delegate capable. Scope of delegation defined."
-  ],
-  "postconditions": [
-    "Delegate acts within scope. Principal notified of actions. Revocation possible."
+  "failure_modes": [
+    "Override authority is over-scoped \u2014 any agent can bypass any gate, defeating the fail-closed discipline.",
+    "Compromised signing key enables silent override with valid-looking log entries.",
+    "Rationale accepts low-information text ('legitimate business reason') that defeats the audit purpose while technically satisfying non-empty."
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
     "category": "Governance",
-    "related": [
-      "Handoff#3877"
-    ],
-    "ring": 1
+    "ring": 1,
+    "caution": "Overrides a failed acceptance gate. The cryptographic log is the only post-hoc accountability; ensure override authority is scoped and auditable before composing."
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:e557d8268697e26743dc5d2cf191741e47b7bef0d986e8dbff3d86e5e9d9486e",
-  "sema_ref": "Delegate#e557",
-  "sema_stub": "e557",
   "sema_layer": "Society",
   "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "break": "Break#1a63",
-      "work": "Work#aaad"
-    },
-    "yields": {
-      "task": "Task#d9f9"
-    },
-    "accepts": {
-      "holographic_shard": "HolographicShard#1352"
-    },
-    "composes_with": {
-      "probe": "Probe#12d8",
-      "heartbeat": "Heartbeat#7f88"
-    }
-  }
-}
-```
-
----
-
-## Disband#7cb8
-
-```json
-{
-  "handle": "Disband",
-  "mechanism": "Graceful group dissolution with state disposition and clean termination. {{agent}} sends 'DISBAND' signal. For scope='member': notify remaining members, adjust shared state, check {{quorum}}. For scope='group': broadcast 'DISSOLVING', execute state disposition, release shared resources, and record dissolution with a group {{snapshot}} for potential re-formation. All members must ACK dissolution. It safely terminates the group, optionally triggering {{ejection_seat}} for any members refusing to release shared resources.",
-  "gloss": "Enable clean group termination with proper state handling",
-  "failure_modes": [
-    "Member doesn't ACK (dissolution blocked\u2014timeout or proceed anyway?).",
-    "{{state}} disposition fails (can't archive, transfer target unavailable).",
-    "Contested dissolution (some members want to continue\u2014may need VOTE).",
-    "Premature dissolution (task not actually complete).",
-    "Zombie group (DISBAND sent but not all resources actually released).",
-    "Partial dissolution cascades unexpectedly (one departure triggers full dissolution via quorum loss)."
-  ],
-  "invariants": [
-    "All shared resources released",
-    "No lingering commitments"
-  ],
-  "preconditions": [
-    "Active group/swarm",
-    "Mission complete or aborted"
-  ],
-  "postconditions": [
-    "Agents return to free pool"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
-  },
-  "sema_id": "sema:Disband#mh:SHA-256:7cb883dd99a51f2408f92e5d48d69d4c3f077db9d49e3754a1f99af92126b0cf",
-  "sema_ref": "Disband#7cb8",
-  "sema_stub": "7cb8",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "quorum": "Quorum#29b4",
-      "ejection_seat": "EjectionSeat#6ff7",
-      "agent": "Agent#aaec",
-      "state": "State#4d58"
-    },
-    "yields": {
-      "snapshot": "Snapshot#0ae9"
-    }
-  }
-}
-```
-
----
-
-## Elect#4042
-
-```json
-{
-  "handle": "Elect",
-  "mechanism": "Establish leadership role with nomination, powers, term, and succession. Phase 1 NOMINATE: Members send NOMINATE: {nominee, nominator, reason}. Self-nomination allowed if configured. Nominees must satisfy {{accept_spec}} to appear on {{ballot}}\u2014cannot elect unwilling leader. Phase 2 VOTE: Standard VOTE mechanism among accepted nominees. Phase 3 INVEST: Winner receives {{solution}} (Election Result): {elected, powers[] (explicitly granted authorities), term (fixed|task|indefinite|renewable), succession_plan (automatic|re_elect|fallback)}. Leader exercises granted powers until term ends, resignation, or recall. On term end: succession triggers per plan. RECALL mechanism if enabled: member initiates RECALL_MOTION: {reason}, group VOTEs, if threshold met leader removed and succession triggers.",
-  "gloss": "Enable efficient group coordination through configurable leadership with clear authority boundaries and succession planning",
-  "failure_modes": [
-    "No candidates (no one willing to lead\u2014group operates leaderless or incentivize).",
-    "Election deadlock (no majority\u2014use runoff or plurality fallback).",
-    "Leader abuse (exceeds granted powers\u2014recall or DISBAND).",
-    "Succession failure (successor also unavailable\u2014chain or re-elect).",
-    "Recall wars (constant removal attempts\u2014raise threshold or cooldown).",
-    "Power creep (leader accumulates ungrantled powers\u2014audit against ELECT_RESULT)."
-  ],
-  "invariants": [
-    "One and only one leader selected per term",
-    "Selection process is verifiable"
-  ],
-  "preconditions": [
-    "Candidate set",
-    "Voting mechanism"
-  ],
-  "postconditions": [
-    "Leader identified",
-    "Term started"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "related": [
-      "Vote#30d0"
-    ],
-    "ring": 2
-  },
-  "sema_id": "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3",
-  "sema_ref": "Elect#4042",
-  "sema_stub": "4042",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_id": "sema:DocumentedOverride#mh:SHA-256:701272041d5f71e12248dd0cfc3f0250bfb2ac0bdeea76450c6119f6de001e1f",
+  "sema_ref": "DocumentedOverride#7012",
+  "sema_stub": "7012",
   "dependencies": {
     "accepts": {
-      "ballot": "Ballot#f1d7",
-      "accept_spec": "AcceptSpec#70dd"
+      "accept_spec": "AcceptSpec#7caa"
     },
     "yields": {
-      "solution": "Solution#7186"
-    }
-  }
-}
-```
-
----
-
-## LazyConsensus#4fc7
-
-```json
-{
-  "handle": "LazyConsensus",
-  "mechanism": "Agents execute transactions immediately without waiting for global consensus, assuming everything is valid. If a conflict is detected later, they use a deterministic rollback rule (e.g., 'highest ID wins'). Maximizes speed over safety. It bypasses the blocking {{quorum}}, executing immediately and using the {{time_warp_log}} to resolve conflicts retroactively.",
-  "gloss": "Optimistic execution, retroactive verification",
-  "failure_modes": [
-    "Cascading rollbacks.",
-    "Applied to irreversible external action (email sent, funds transferred, API called)\u2014rollback impossible, inconsistency permanent."
-  ],
-  "invariants": [
-    "Determinism: Conflict resolution function must be pure (same inputs -> same winner)",
-    "Rollback Safety: Reverting a transaction cannot corrupt unrelated state"
-  ],
-  "preconditions": [
-    "Target operations are internally reversible (no irreversible external side-effects)",
-    "Conflict detection mechanism is active"
-  ],
-  "postconditions": [
-    "Transaction applied optimistically",
-    "Conflict resolution triggered if divergence detected"
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 0
-  },
-  "sema_ref": "LazyConsensus#4fc7",
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:4fc707a3608b99da4f2f0aa78d8662d3ea7056beb69e92a72be26e6085ecbfd9",
-  "sema_stub": "4fc7",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "quorum": "Quorum#29b4",
-      "time_warp_log": "TimeWarpLog#d938"
-    }
-  }
-}
-```
-
----
-
-## Rally#8d04
-
-```json
-{
-  "handle": "Rally",
-  "mechanism": "Ad-Hoc Group Formation {{protocol}}. Initiator broadcasts a 'RALLY' signal with requirements defined by an {{accept_spec}} and a selection criteria. Responders submit 'ENLIST' messages. If count >= {{quorum}} by deadline, initiator executes {{select}} and sends 'MUSTER' to form a new cryptographic group {{context}}. It broadcasts a call to form a group, using {{quorum}} to validate critical mass and {{elect}} to formalize leadership.",
-  "gloss": "Enable ad-hoc multi-party coordination",
-  "failure_modes": [
-    "Echo Chamber: Rally attracts only homogenous agents, reducing diversity.",
-    "Flaking: Agents ENLIST tentatively but fail to show up for MUSTER.",
-    "Rally Spam: Low-quality initiators flooding the broadcast channel.",
-    "Not enough ENLISTs by deadline (group fails to form).",
-    "Too many ENLISTs makes selection political/contentious.",
-    "Initiator has too much power over selection (mitigated by transparent selection_criteria).",
-    "RALLY spam floods network.",
-    "Agents ENLIST tentatively then ghost at MUSTER."
-  ],
-  "invariants": [
-    "Binding: MUSTER message must include a shared ContextID for the new group.",
-    "{{quorum}}: If Enlist_Count < Min_Participants, Rally FAILS (Atomic Abort)."
-  ],
-  "preconditions": [
-    "Broadcast channel available",
-    "Initiator has resources to pay for group {{context}}"
-  ],
-  "postconditions": [
-    "New GroupContextID minted OR Rally dissolved"
-  ],
-  "parameters": [
-    {
-      "name": "deadline",
-      "type": "Duration",
-      "range": "unspecified",
-      "description": "Default: 5m"
-    },
-    {
-      "name": "max_participants",
-      "type": "Integer",
-      "range": "unspecified",
-      "description": "Default: 10"
-    },
-    {
-      "name": "min_participants",
-      "type": "Integer",
-      "range": "[1, 50]",
-      "description": "Minimum agents required to proceed"
-    },
-    {
-      "name": "selection_criteria",
-      "type": "PatternRef",
-      "range": "unspecified",
-      "description": "Default: Select"
-    }
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
-  },
-  "sema_id": "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
-  "sema_ref": "Rally#8d04",
-  "sema_stub": "8d04",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "quorum": "Quorum#29b4",
-      "select": "Select#15c2",
-      "protocol": "Protocol#7e1c",
-      "elect": "Elect#4042",
-      "context": "Context#510a"
+      "decision": "Decision#acfb"
     },
     "composes_with": {
-      "accept_spec": "AcceptSpec#70dd"
+      "time_warp_log": "TimeWarpLog#a0ac"
     }
   }
 }
@@ -15645,7 +18081,7 @@
 
 ---
 
-## Responsibility#4148
+## Responsibility#ac59
 
 ```json
 {
@@ -15676,12 +18112,6 @@
       "type": "Duration",
       "range": "[1s, 1h]",
       "description": "Frequency of invariant verification"
-    },
-    {
-      "name": "escalation_path",
-      "type": "String",
-      "range": "unspecified",
-      "description": "Who to notify on violation"
     }
   ],
   "_meta": {
@@ -15690,19 +18120,19 @@
     "category": "Governance",
     "ring": 1
   },
-  "sema_id": "sema:Responsibility#mh:SHA-256:4148bdd8ae994620d37dbc788d066a307725d43bc5a88de4134dadf88ca1dff6",
-  "sema_ref": "Responsibility#4148",
-  "sema_stub": "4148",
+  "sema_id": "sema:Responsibility#mh:SHA-256:ac592af47056faeaa22245287f7612fdf312b1f02fb00562e76da40c5ee5ac26",
+  "sema_ref": "Responsibility#ac59",
+  "sema_stub": "ac59",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "oath_bind": "OathBind#fc9c",
+      "task": "Task#b328",
+      "heartbeat": "Heartbeat#b67a",
       "system": "System#e314",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "heartbeat": "Heartbeat#7f88",
-      "state": "State#4d58"
+      "oath_bind": "OathBind#a708",
+      "state": "State#4d58",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -15710,7 +18140,7 @@
 
 ---
 
-## Role#6877
+## Role#94e4
 
 ```json
 {
@@ -15750,16 +18180,16 @@
     "ring": 1,
     "tier": 1
   },
-  "sema_ref": "Role#6877",
-  "sema_id": "sema:Role#mh:SHA-256:6877fadfd0ca68b67a16eb3378ff7bf9bdb92ecb7ef1ec0c99cafaac407f46fb",
-  "sema_stub": "6877",
+  "sema_ref": "Role#94e4",
+  "sema_id": "sema:Role#mh:SHA-256:94e4c386cc2cb2d3772d51b75a4800ab31f5540197e9871a03d8ff3b5388d995",
+  "sema_stub": "94e4",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "responsibility": "Responsibility#4148",
-      "permission": "Permission#7f7d"
+      "permission": "Permission#354b",
+      "responsibility": "Responsibility#ac59",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -15767,85 +18197,12 @@
 
 ---
 
-## SolverRoot#d31b
-
-```json
-{
-  "handle": "SolverRoot",
-  "mechanism": "The genesis node of a solver tree, anchoring a {{task}} to a coordinated problem-solving effort. The Root has unique authority: Problem Framing (determining initial constraints and {{problem_space}}), Budget Allocation (distributing {{budget}} to child {{solver_node}}s), and Ultimate Accountability (owning final {{result}}). The Root propagates the {{tree}} structure downward and aggregates {{solution}}s upward. When downstream nodes fail, the Root decides whether to reframe the {{problem}} or escalate failure. The Root is indifferent to whether it orchestrates 'self' (internal reasoning) or 'other' (delegated agents).",
-  "gloss": "Genesis authority and framer of a solver tree",
-  "failure_modes": [
-    "Bad Frame: The {{problem}} is framed incorrectly, making it unsolvable by downstream nodes.",
-    "Reframe Failure: Root fails to find a valid alternative frame after failure.",
-    "Budget Misallocation: Resources distributed poorly across child nodes."
-  ],
-  "invariants": [
-    "Genesis: Every solver tree has exactly one active Root.",
-    "Ultimate Responsibility: The Root owns the final success/failure of the {{task}}.",
-    "Authority: Only the Root can reframe the original {{problem}}."
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
-  },
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "task_ref",
-      "problem_frame"
-    ],
-    "properties": {
-      "task_ref": {
-        "type": "string",
-        "description": "Reference to originating task"
-      },
-      "problem_frame": {
-        "type": "object",
-        "description": "Initial problem constraints and space"
-      },
-      "budget_allocation": {
-        "type": "object",
-        "description": "Resource distribution to children"
-      },
-      "children": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "description": "Child solver node refs"
-      }
-    }
-  },
-  "sema_ref": "SolverRoot#d31b",
-  "sema_id": "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f",
-  "sema_stub": "d31b",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "result": "Result#8ed9",
-      "solution": "Solution#7186",
-      "tree": "Tree#ddce",
-      "task": "Task#d9f9",
-      "budget": "Budget#a763",
-      "solver_node": "SolverNode#a834",
-      "problem": "Problem#5baa",
-      "problem_space": "ProblemSpace#78da"
-    }
-  }
-}
-```
-
----
-
-## SolverTree#e174
+## SolverTree#5623
 
 ```json
 {
   "handle": "SolverTree",
-  "mechanism": "The active command hierarchy that organizes {{solver_node}} instances into a coordinated {{topology}} for solving a {{task}}. Unlike a passive data tree, this structure represents the flow of Authority (downwards via delegation) and Results (upwards via reporting). It defines the Chain of Command: resources ({{budget}}) cascade from {{solver_root}} to children, while outcomes propagate back up. Each node in the tree is a unit of Blame\u2014failures can be traced to specific {{solver_node}}s for {{localized_learning}}.",
+  "mechanism": "The active command structure that organizes {{solver_node}} instances into a coordinated {{topology}} for solving a {{task}}. Unlike a passive data tree, this structure represents the flow of Authority (downwards via delegation) and Results (upwards via reporting). Resources ({{budget}}) cascade from the {{root_solver}} to children; outcomes propagate back up. Each node is a unit of attribution \u2014 failures can be traced to specific {{solver_node}}s for {{localized_learning}}. At decomposition time the structure is tree-like, but at execution time fan-in and deduplication are permitted, making the runtime a DAG.",
   "gloss": "Active hierarchy of coordinated solver instances",
   "failure_modes": [
     "Fragmentation: Sub-trees become disconnected from the Root, breaking the command chain.",
@@ -15853,10 +18210,10 @@
     "Blame Diffusion: Failures cannot be attributed to specific nodes."
   ],
   "invariants": [
-    "Chain of Command: Every node (except root) has exactly one active supervisor.",
     "Budget Flow: Resources flow down; Results flow up.",
-    "Connectivity: All nodes must be traceable back to the {{solver_root}}.",
-    "Acyclicity: The structure must form a DAG or {{tree}}."
+    "Connectivity: All nodes must be traceable back to the {{root_solver}}.",
+    "Acyclicity: The structure must form a DAG or {{tree}}.",
+    "Origin: tree-like at decomposition time; fan-in and deduplication permitted at execution, so the runtime graph is a DAG."
   ],
   "_meta": {
     "tier": 1,
@@ -15864,7 +18221,7 @@
     "category": "Governance",
     "ring": 1,
     "related": [
-      "UniversalSolverTree#2340"
+      "UniversalSolverTree#b805"
     ]
   },
   "data_schema": {
@@ -15895,22 +18252,22 @@
       }
     }
   },
-  "sema_ref": "SolverTree#e174",
-  "sema_id": "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def",
-  "sema_stub": "e174",
+  "sema_ref": "SolverTree#5623",
+  "sema_id": "sema:SolverTree#mh:SHA-256:5623fd7d892665c5db583d5021591f40ce589d8e0d6b13d6ee49892f9bc65f18",
+  "sema_stub": "5623",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
+      "solver_node": "SolverNode#26b1",
       "topology": "Topology#2408",
-      "solver_root": "SolverRoot#d31b",
-      "tree": "Tree#ddce",
-      "localized_learning": "LocalizedLearning#69bb",
-      "budget": "Budget#a763",
-      "solver_node": "SolverNode#a834"
+      "root_solver": "RootSolver#3ad1",
+      "localized_learning": "LocalizedLearning#fcc7",
+      "budget": "Budget#7270",
+      "tree": "Tree#a5a3"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -15918,7 +18275,7 @@
 
 ---
 
-## TriGate#07fc
+## TriGate#67b8
 
 ```json
 {
@@ -15930,7 +18287,7 @@
     "Debt Awareness: Yellow must append a remediation item to the context and record obligation in Ledger."
   ],
   "signature": [
-    "Gate#206d(Judge#d84f)"
+    "Gate#89fd(Judge#9554)"
   ],
   "_meta": {
     "layer": "Society",
@@ -15938,17 +18295,17 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_ref": "TriGate#07fc",
-  "sema_id": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
-  "sema_stub": "07fc",
+  "sema_ref": "TriGate#67b8",
+  "sema_id": "sema:TriGate#mh:SHA-256:67b83fef54b2ee26722f7a1de542f28ae2caa7571d825fcce6833e857afe92be",
+  "sema_stub": "67b8",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "ledger": "Ledger#c363",
-      "gate": "Gate#206d",
       "condition": "Condition#cbd5",
-      "judge": "Judge#d84f"
+      "ledger": "Ledger#b5fe",
+      "gate": "Gate#89fd",
+      "judge": "Judge#9554"
     }
   }
 }
@@ -15956,12 +18313,12 @@
 
 ---
 
-## UniversalSolverTree#2340
+## UniversalSolverTree#b805
 
 ```json
 {
   "handle": "UniversalSolverTree",
-  "mechanism": "The theoretical aggregation of all possible valid {{solver_tree}}s across all agents in the system. It represents the total epistemological state of {{problem}}-solving knowledge\u2014the collective wisdom of self and others. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within this Universal {{tree}}. It enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The Universal Tree is the ground truth against which {{localized_learning}} updates are integrated.",
+  "mechanism": "The theoretical aggregation of all valid {{solver_tree}}s across all agents in the system. Represents the total epistemological state of {{problem}}-solving knowledge \u2014 the collective wisdom. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within the Universal {{tree}}. At decomposition time the structure is tree-like (problems decompose top-down), but at execution time fan-in, deduplication, and cycles are permitted \u2014 the actual runtime graph is a DAG. Enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The ground truth against which {{localized_learning}} updates integrate.",
   "gloss": "Collective knowledge graph of all problem-solving",
   "failure_modes": [
     "Fragmentation: Parts of the universal tree become inaccessible across agent boundaries.",
@@ -15970,7 +18327,8 @@
   ],
   "invariants": [
     "Singularity: There is logically only one Universal {{tree}} containing all knowledge.",
-    "Coherence: Contradictions must eventually be resolved via synthesis or rejection."
+    "Coherence: Contradictions must eventually be resolved via synthesis or rejection.",
+    "Runtime shape is a DAG: fan-in and deduplication are permitted at execution even though decomposition is tree-like."
   ],
   "_meta": {
     "tier": 1,
@@ -16000,19 +18358,19 @@
       }
     }
   },
-  "sema_ref": "UniversalSolverTree#2340",
-  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:2340e9a8e2dd2a7e65fac41f070eba571fd0bc5d835223913b1b94f67789e9d1",
-  "sema_stub": "2340",
+  "sema_ref": "UniversalSolverTree#b805",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:b8053e5bd184dbeeee2a22fdfaa307276ab23bce66653f2d9c980a9172917c68",
+  "sema_stub": "b805",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "solution": "Solution#7186",
-      "tree": "Tree#ddce",
-      "localized_learning": "LocalizedLearning#69bb",
-      "solver_tree": "SolverTree#e174",
-      "solver_node": "SolverNode#a834",
-      "problem": "Problem#5baa"
+      "solver_node": "SolverNode#26b1",
+      "solution": "Solution#fcea",
+      "solver_tree": "SolverTree#5623",
+      "localized_learning": "LocalizedLearning#fcc7",
+      "problem": "Problem#4576",
+      "tree": "Tree#a5a3"
     }
   }
 }
@@ -16020,78 +18378,7 @@
 
 ---
 
-## Vote#30d0
-
-```json
-{
-  "handle": "Vote",
-  "mechanism": "N-agent decision mechanism with configurable rules and integrity guarantees. Initiator sends 'VOTE_CALL' with question, options, and {{quorum}} requirement. Eligible agents respond 'CAST' via {{ballot}}. {{system}} enforces: one vote per agent, deadline, and {{quorum}} check. After deadline: compute result. Broadcast 'VOTE_RESULT'. Simple case optimization: binary decisions use lightweight 2-message flow. Utilizes {{break}}, {{aggregate}}, {{elect}}.",
-  "gloss": "Provide standard decision mechanism with integrity guarantees",
-  "failure_modes": [
-    "{{quorum}} not met (insufficient participation, decision invalid).",
-    "Tie with inadequate tie-breaker (deadlock).",
-    "Strategic voting (agents vote tactically rather than honestly\u2014inherent to voting).",
-    "Sybil attack (fake agents stuff votes\u2014mitigate via PROBE/RALLY membership).",
-    "Vote coercion (agents pressured\u2014hard to detect).",
-    "Mechanism mismatch (wrong mechanism for decision type, e.g., plurality for binary)."
-  ],
-  "invariants": [
-    "Votes immutable after cast."
-  ],
-  "parameters": [
-    {
-      "name": "mechanism",
-      "type": "Enum",
-      "range": "{Majority, Supermajority, Quadratic, Ranked, Unanimous}",
-      "description": "Counting method"
-    },
-    {
-      "name": "quorum_required",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Min participation to be valid"
-    },
-    {
-      "name": "voting_period",
-      "type": "Duration",
-      "range": "[1min, 7d]",
-      "description": "Window for casting votes"
-    }
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Governance",
-    "related": [
-      "Rank#cb98"
-    ],
-    "ring": 2
-  },
-  "sema_id": "sema:Vote#mh:SHA-256:30d0f73565ea6b9b3ec56cac26b7a54ae4533e9db9ea47b6a79691c5b9e69264",
-  "sema_ref": "Vote#30d0",
-  "sema_stub": "30d0",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
-  "dependencies": {
-    "references": {
-      "break": "Break#1a63",
-      "aggregate": "Aggregate#af54",
-      "system": "System#e314",
-      "elect": "Elect#4042"
-    },
-    "composes_with": {
-      "quorum": "Quorum#29b4"
-    },
-    "accepts": {
-      "ballot": "Ballot#f1d7"
-    }
-  }
-}
-```
-
----
-
-## WorldTransparent#0212
+## WorldTransparent#a83d
 
 ```json
 {
@@ -16115,17 +18402,17 @@
     "tier": 1,
     "layer": "Society",
     "category": "Governance",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977",
-  "sema_ref": "WorldTransparent#0212",
-  "sema_stub": "0212",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:a83d2b60890c1f561a04b717c221b345b8ac92a6761210f814c59533026a67e9",
+  "sema_ref": "WorldTransparent#a83d",
+  "sema_stub": "a83d",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "explain_beacon": "ExplainBeacon#6ced"
+      "explain_beacon": "ExplainBeacon#ab3f",
+      "system": "System#e314"
     }
   }
 }
@@ -16133,13 +18420,13 @@
 
 ---
 
-## AcceptSpec#70dd
+## AcceptSpec#7caa
 
 ```json
 {
   "handle": "AcceptSpec",
-  "mechanism": "A strict, typed {{spec}} defining non-compensatory {{criteria}} at solver boundaries. Unlike soft prompts, an AcceptSpec specifies hard {{constraint}}s (e.g., Must be < 100/ton, Must violate no laws of physics). If ANY criterion fails, the artifact is rejected entirely. High quality in one dimension cannot compensate for failure in another.",
-  "gloss": "Non-compensatory failure boundaries",
+  "mechanism": "A strict, typed {{spec}} defining non-compensatory {{criteria}} and {{constraint}}s at solver boundaries. Each criterion is declared individually and carries a reframing hint for the FrameError emitted if it rejects. AcceptSpec is a Noun \u2014 it describes the contract. The active Verify surface of a Solver consumes the AcceptSpec, evaluates it against a Result, and yields either a Solution (on non-compensatory success) or a FrameError (on failure, carrying the specific rejecting gate and its reframing hint). A single AcceptSpec may be evaluated by multiple Verify surfaces. High quality in one dimension cannot compensate for failure in another.",
+  "gloss": "Non-compensatory acceptance contract; consumer Verify yields Solution or FrameError",
   "failure_modes": [
     "Over-constraining: Setting specs so tight that no solution can pass (Deadlock).",
     "Spec Drift: The spec does not accurately reflect the true goal."
@@ -16209,16 +18496,16 @@
       }
     }
   },
-  "sema_id": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
-  "sema_ref": "AcceptSpec#70dd",
-  "sema_stub": "70dd",
+  "sema_id": "sema:AcceptSpec#mh:SHA-256:7caa4bc74694b725f3dbe825d67f0c6268a1213b32f9a19bf200c953de2eabae",
+  "sema_ref": "AcceptSpec#7caa",
+  "sema_stub": "7caa",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "criteria": "Criteria#ef6b",
       "constraint": "Constraint#87fe",
-      "spec": "Spec#436e",
-      "criteria": "Criteria#ef6b"
+      "spec": "Spec#a036"
     }
   }
 }
@@ -16226,14 +18513,14 @@
 
 ---
 
-## AdversarialProof#2a0f
+## AdversarialProof#6f43
 
 ```json
 {
   "handle": "AdversarialProof",
   "mechanism": "Cognitively-enriched {{negative_proof}} that invokes {{red_team}} logic to exhaustively search for prohibited data. The adversarial mindset ensures blind spots are probed. Treats failure-to-find-despite-adversarial-effort as high-confidence proof of absence.",
   "gloss": "Adversarial proof of absence",
-  "derived_from": "NegativeProof#5225",
+  "derived_from": "NegativeProof#b130",
   "failure_modes": [
     "Sympathetic Attacker: RedTeam shares assumptions with defenders, missing the same blind spots.",
     "Computational expense of adversarial exhaustive search."
@@ -16257,46 +18544,16 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_ref": "AdversarialProof#2a0f",
-  "sema_id": "sema:AdversarialProof#mh:SHA-256:2a0f68fabd8276b169195d0f4d502049e0690343fbb6d7dd1e3d6b6f487581e9",
-  "sema_stub": "2a0f",
+  "sema_ref": "AdversarialProof#6f43",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:6f435ccf101a1bedc1b7b9a3b3cbfda70a47fb8e3e73b5a52ab7fc1b329aa566",
+  "sema_stub": "6f43",
   "dependencies": {
-    "references": {
-      "hypothesis": "Hypothesis#e95b"
-    },
     "composes_with": {
-      "red_team": "RedTeam#7a8d",
-      "negative_proof": "NegativeProof#5225"
-    }
-  }
-}
-```
-
----
-
-## Aesthetics#0be2
-
-```json
-{
-  "handle": "Aesthetics",
-  "mechanism": "A scalar {{metric}} representing the fit between an {{artifact}} and the subjective preference priors of a human observer (e.g., harmony, {{parsimony}}, style). Used to optimize solutions for social acceptance when functional utility is equal.",
-  "gloss": "Optimization for human subjective preference",
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
-  "sema_ref": "Aesthetics#0be2",
-  "sema_stub": "0be2",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
+      "red_team": "RedTeam#ff27",
+      "negative_proof": "NegativeProof#b130"
+    },
     "references": {
-      "metric": "Metric#8895",
-      "artifact": "Artifact#6254",
-      "parsimony": "Parsimony#1dd3"
+      "hypothesis": "Hypothesis#ffa7"
     }
   }
 }
@@ -16304,7 +18561,7 @@
 
 ---
 
-## AgentDiscover#34b6
+## AgentDiscover#d4f2
 
 ```json
 {
@@ -16333,19 +18590,19 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:AgentDiscover#mh:SHA-256:34b6d87b981ecbdcbd082e7316de5a8b5b98899eb35dff4747a48bdaadbe5424",
-  "sema_ref": "AgentDiscover#34b6",
-  "sema_stub": "34b6",
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:d4f2f707737f663b459f7bb5d3a698c6e3270f6313762137e6e4d0aa792ed487",
+  "sema_ref": "AgentDiscover#d4f2",
+  "sema_stub": "d4f2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Discover#afa1(Agent#aaec)"
+    "Discover#7dbc(Agent#35b9)"
   ],
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "discover": "Discover#afa1",
-      "card": "Card#e307"
+      "discover": "Discover#7dbc",
+      "agent": "Agent#35b9",
+      "card": "Card#2d01"
     }
   }
 }
@@ -16353,7 +18610,7 @@
 
 ---
 
-## AgentProtocol#5a7f
+## AgentProtocol#abda
 
 ```json
 {
@@ -16369,24 +18626,24 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3",
-  "sema_ref": "AgentProtocol#5a7f",
-  "sema_stub": "5a7f",
+  "sema_id": "sema:AgentProtocol#mh:SHA-256:abdabe66c2709c2fcb26b205294b4348f57ead60b8a2df5b14de1268a3c1cee3",
+  "sema_ref": "AgentProtocol#abda",
+  "sema_stub": "abda",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Agent#aaec(Protocol#7e1c)"
+    "Agent#35b9(Protocol#7e1c)"
   ],
   "dependencies": {
     "references": {
-      "work": "Work#aaad",
-      "fail_closed": "FailClosed#ae79",
+      "solution": "Solution#fcea",
+      "greet": "Greet#bbae",
+      "accept_spec": "AcceptSpec#7caa",
       "protocol": "Protocol#7e1c",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "accept_spec": "AcceptSpec#70dd",
-      "solution": "Solution#7186",
-      "greet": "Greet#7ad2"
+      "task": "Task#b328",
+      "work": "Work#d2c6",
+      "fail_closed": "FailClosed#e6a0",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -16394,7 +18651,7 @@
 
 ---
 
-## AgentSandbox#ce7e
+## AgentSandbox#fc41
 
 ```json
 {
@@ -16423,28 +18680,28 @@
     "category": "Protocols",
     "ring": 0,
     "related": [
-      "Solution#7186",
-      "Task#d9f9"
+      "Solution#fcea",
+      "Task#b328"
     ]
   },
-  "sema_id": "sema:AgentSandbox#mh:SHA-256:ce7e2d28fa6aefffa0164d17cebc0266c4f7e422cdeb0a7043e078d5469c4be9",
-  "sema_ref": "AgentSandbox#ce7e",
-  "sema_stub": "ce7e",
+  "sema_id": "sema:AgentSandbox#mh:SHA-256:fc413f8202770aa882512424ccacdc05ec5b74df2994b3d3ce7a325cc54eb50c",
+  "sema_ref": "AgentSandbox#fc41",
+  "sema_stub": "fc41",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Sandbox#e00f(Agent#aaec)"
+    "Sandbox#e00f(Agent#35b9)"
   ],
   "dependencies": {
     "composes_with": {
-      "input_guard": "InputGuard#7353",
-      "output_guard": "OutputGuard#eb44"
+      "output_guard": "OutputGuard#1f50",
+      "input_guard": "InputGuard#7353"
     },
     "references": {
-      "agent": "Agent#aaec",
+      "audit": "Audit#6888",
       "context": "Context#510a",
-      "audit": "Audit#4044",
-      "sandbox": "Sandbox#e00f"
+      "sandbox": "Sandbox#e00f",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -16452,7 +18709,7 @@
 
 ---
 
-## AmbiguityResolution#aee6
+## AmbiguityResolution#85f0
 
 ```json
 {
@@ -16469,15 +18726,15 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "AmbiguityResolution#aee6",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:aee6c8844ad85d09c8ce0fe0819c5359ba2b52e84bc56b23837c9b156b4fa0f1",
-  "sema_stub": "aee6",
+  "sema_ref": "AmbiguityResolution#85f0",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:85f08af1df73a9f7a9fa2d93c0a528c74b4ec4c5f66cd8fb093c0ddfec6713bb",
+  "sema_stub": "85f0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "entropy_pump": "EntropyPump#b9ae",
-      "vote": "Vote#30d0"
+      "entropy_pump": "EntropyPump#c313",
+      "vote": "Vote#ab74"
     }
   }
 }
@@ -16554,7 +18811,7 @@
 
 ---
 
-## BoundedTask#06a6
+## BoundedTask#ea96
 
 ```json
 {
@@ -16565,10 +18822,10 @@
     "Budget Enclosure",
     "Quality Gate"
   ],
-  "derived_from": "Task#d9f9",
-  "sema_id": "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543",
-  "sema_ref": "BoundedTask#06a6",
-  "sema_stub": "06a6",
+  "derived_from": "Task#b328",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:ea969229fff39ed6484e7e795f3a10eb94b098739c82679832020e661e772f6f",
+  "sema_ref": "BoundedTask#ea96",
+  "sema_stub": "ea96",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -16579,9 +18836,9 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "accept_spec": "AcceptSpec#70dd",
-      "budget": "Budget#a763"
+      "budget": "Budget#7270",
+      "task": "Task#b328",
+      "accept_spec": "AcceptSpec#7caa"
     }
   }
 }
@@ -16589,13 +18846,13 @@
 
 ---
 
-## Canary#92d2
+## Canary#adb0
 
 ```json
 {
   "handle": "Canary",
   "mechanism": "Expendable {{agent}} tests full coordination path before committing real resources. Spawn CANARY with: limited resources (bounded blast radius), defined scope, telemetry hooks. Canary executes FULL coordination path ({{greet}}\u2192{{probe}}\u2192negotiate\u2192partial-execute). Reports TELEMETRY: {path_viable, latency_profile, error_events, partner_behavior_observations, recommendation: proceed|caution|abort}. Lifecycle options: DESTROY (discard after test), RECYCLE (reset for another test), PROMOTE (canary becomes real {{agent}}, continues {{work}}), ABSORB (real {{agent}} inherits canary's progress). In adversarial environments, canary can run in STEALTH {{mode}} (indistinguishable from real {{agent}}) to prevent partners gaming the test. It extends the logic of a single {{probe}} into a full-lifecycle agent deployment with bounded blast radius.",
-  "gloss": "Transform path selection from 'hope it works' to 'tested it works' without risking real resources",
+  "gloss": "Expendable agent tests the full coordination path before real commit",
   "failure_modes": [
     "Canary treated differently than real agent would be (gaming).",
     "Test conditions don't match production conditions.",
@@ -16620,18 +18877,18 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Canary#mh:SHA-256:92d292bbdbb6aac871cdbff1b32a7878d1585750a76511870311159c39e0ee87",
-  "sema_ref": "Canary#92d2",
-  "sema_stub": "92d2",
+  "sema_id": "sema:Canary#mh:SHA-256:adb0997c330b357523997403b64b94dd219458cb27cb38be8cf83fcec9483a1b",
+  "sema_ref": "Canary#adb0",
+  "sema_stub": "adb0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "work": "Work#aaad",
-      "agent": "Agent#aaec",
+      "greet": "Greet#bbae",
       "probe": "Probe#12d8",
-      "mode": "Mode#53e0",
-      "greet": "Greet#7ad2"
+      "work": "Work#d2c6",
+      "mode": "Mode#0e74",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -16639,209 +18896,7 @@
 
 ---
 
-## CiteBack#d09c
-
-```json
-{
-  "handle": "CiteBack",
-  "mechanism": "The agent is forbidden from stating a fact unless it can simultaneously generate a pointer (quote or ID) to the specific chunk of context that supports it. No hallucination allowed; only citation. It forces a verification step where every assertion must be supported by a {{retrieval_augment}} lookup returning the source ID.",
-  "gloss": "Grounding claims in source",
-  "failure_modes": [
-    "Inability to answer implicit or common-sense questions."
-  ],
-  "invariants": [
-    "Every assertion links to source ID",
-    "Source must exist in context history"
-  ],
-  "preconditions": [
-    "Generated claim",
-    "Source material available"
-  ],
-  "postconditions": [
-    "Claim decorated with citation"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1
-  },
-  "sema_id": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
-  "sema_ref": "CiteBack#d09c",
-  "sema_stub": "d09c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "retrieval_augment": "RetrievalAugment#ca58"
-    }
-  }
-}
-```
-
----
-
-## CognitiveEcho#4a95
-
-```json
-{
-  "handle": "CognitiveEcho",
-  "mechanism": "Variance-Based Effort Estimation: {{agent}} runs N rapid, low-fidelity simulations of the task. If outcomes diverge significantly, it triggers decomposition. Ping the problem before solving it. High variance in simulation implies hidden complexity. Process: (1) Generate N quick solution sketches, (2) Measure outcome variance, (3) If variance > threshold, decompose; else execute simplest solution.",
-  "gloss": "Estimating difficulty via simulation variance",
-  "failure_modes": [
-    "Correlated Hallucination: All simulations are wrong in the exact same way (low variance, high error).",
-    "The simulation model might be too simple to catch edge cases (false negative).",
-    "{{simulation}} cost may exceed just trying the task for truly simple problems.",
-    "Sample count is arbitrary - tuning required."
-  ],
-  "invariants": [
-    "Delay does not exceed short-term memory bounds",
-    "Echo content matches input semantic hash"
-  ],
-  "preconditions": [
-    "Feedback loop enabled",
-    "Input signal"
-  ],
-  "postconditions": [
-    "{{signal}} amplified or validated"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "related": [
-      "SignalReflection#aac2"
-    ],
-    "ring": 2
-  },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758",
-  "sema_ref": "CognitiveEcho#4a95",
-  "sema_stub": "4a95",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "agent": "Agent#aaec",
-      "simulation": "Simulation#8035",
-      "signal": "Signal#f39d"
-    }
-  }
-}
-```
-
----
-
-## CommitmentDevice#074b
-
-```json
-{
-  "handle": "CommitmentDevice",
-  "mechanism": "Future Self Binding: Anticipate that future self will face temptation or weakness. Remove future options by present action. Examples: delete the app, announce publicly, create penalty for deviation. Cost of breaking commitment must exceed temptation value. It constructs an {{oath_bind}} contract that penalizes future deviation from the chosen path.",
-  "gloss": "Pre-commitment against hyperbolic discounting",
-  "failure_modes": [
-    "Over-commitment: Binding too early locks out legitimate pivots when new information arrives."
-  ],
-  "invariants": [
-    "Binding: Cost(Breaking) > Benefit(Breaking)",
-    "Irrevocability: {{agent}} cannot unilaterally remove the constraint"
-  ],
-  "preconditions": [
-    "{{agent}} expects future preference reversal (hyperbolic discounting)"
-  ],
-  "postconditions": [
-    "Future action set constrained"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0,
-    "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment."
-  },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:074b03c077f07b24dd1eb5427579069b4caaf6353759aa1c7affcdab79258ced",
-  "sema_ref": "CommitmentDevice#074b",
-  "sema_stub": "074b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "commitment",
-      "penalty"
-    ],
-    "properties": {
-      "commitment": {
-        "type": "string",
-        "description": "The action being committed to"
-      },
-      "penalty": {
-        "type": "object",
-        "description": "Cost incurred if commitment broken"
-      },
-      "irrevocable": {
-        "type": "boolean",
-        "description": "Whether commitment can be undone"
-      }
-    }
-  },
-  "dependencies": {
-    "references": {
-      "oath_bind": "OathBind#fc9c",
-      "agent": "Agent#aaec"
-    }
-  }
-}
-```
-
----
-
-## Compose#10b7
-
-```json
-{
-  "handle": "Compose",
-  "mechanism": "Recursive Assembly: Given solved subproblems, {{combine}} solutions respecting interfaces. {{check}}: does combined solution satisfy original problem constraints? If interaction effects emerge, add coordination layer or revise decomposition. It often employs {{prompt_chain}} to sequentially feed sub-solutions into the integration step.",
-  "gloss": "Building complex behavior from simple primitives",
-  "failure_modes": [
-    "Interface Mismatch: Component outputs do not match expected inputs of downstream components."
-  ],
-  "invariants": [
-    "Type Safety: Component outputs must match downstream inputs.",
-    "Acyclicity: Composition graph must be a DAG."
-  ],
-  "preconditions": [
-    "Subproblem solutions available. Interface contracts defined. Composition order known if order-dependent."
-  ],
-  "postconditions": [
-    "Combined solution satisfies original problem. No interface violations. Emergent interactions handled."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:Compose#mh:SHA-256:10b7e69d6548c3d79dcf5ccb356bb0196fe7535d273a885cbe6a2c20b9e73a11",
-  "sema_ref": "Compose#10b7",
-  "sema_stub": "10b7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "signature": [
-    "Combine#5a44(PromptChain#c872)"
-  ],
-  "dependencies": {
-    "references": {
-      "check": "Check#1544",
-      "combine": "Combine#5a44",
-      "prompt_chain": "PromptChain#c872"
-    }
-  }
-}
-```
-
----
-
-## ConfusedDeputy#31db
+## ConfusedDeputy#b00c
 
 ```json
 {
@@ -16870,109 +18925,18 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
-  },
-  "sema_ref": "ConfusedDeputy#31db",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:31db289ffbcd442a10cddc5c1d3460132fd073a680d436e364684e89c37a39c2",
-  "sema_stub": "31db",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "permission": "Permission#7f7d",
-      "agent": "Agent#aaec",
-      "actor": "Actor#6926"
-    }
-  }
-}
-```
-
----
-
-## ConstraintFirst#c7cb
-
-```json
-{
-  "handle": "ConstraintFirst",
-  "mechanism": "The agent first generates the 'negative space' (the {{constraint}}s, safety rules, and format requirements), defining a rigid container. Only THEN does it generate the content to fill that container. It separates 'form' from 'function'. This prevents the generation of content that is creative but invalid.",
-  "gloss": "Defining boundaries before content",
-  "failure_modes": [
-    "Over-constraining the solution space."
-  ],
-  "invariants": [
-    "Constraints immutable during operation."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:ConstraintFirst#mh:SHA-256:c7cb09081701787022c33fa3b1399bd847b0062cf223851c4d98024b640feb99",
-  "sema_ref": "ConstraintFirst#c7cb",
-  "sema_stub": "c7cb",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "constraint": "Constraint#87fe"
-    }
-  }
-}
-```
-
----
-
-## ConstructOntology#b59e
-
-```json
-{
-  "handle": "ConstructOntology",
-  "mechanism": "A primitive for building a structured set of concepts and relationships (an ontology) from raw data or seed axioms. It defines the 'physics' or 'rules' of a domain. This is the constructive counterpart to 'Adversarial Ontology Construction' (which is a methodology using this primitive). It builds the semantic graph from {{first_principles}}, validating edge coherence via {{adversarial_steel}} and establishing shared context through {{ontology_handshake}}.",
-  "gloss": "Building a structured conceptual framework",
-  "failure_modes": [
-    "Incoherence: Contradictory axioms or definitions."
-  ],
-  "invariants": [
-    "Completeness: All referenced terms are defined",
-    "Consistency: No contradictions within the ontology"
-  ],
-  "preconditions": [
-    "Seed concepts or data available"
-  ],
-  "postconditions": [
-    "Valid ontology object created"
-  ],
-  "parameters": [
-    {
-      "name": "depth",
-      "type": "Integer",
-      "range": "[1, 10]",
-      "description": "Hierarchical depth"
-    },
-    {
-      "name": "format",
-      "type": "Enum",
-      "range": "{OWL, JSON-LD, Sema}",
-      "description": "Output format"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2
   },
+  "sema_ref": "ConfusedDeputy#b00c",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:b00c64e6812275ed4432df367b4c08c957ba8133c242b5314ce3f0dbd3e9a118",
+  "sema_stub": "b00c",
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
-  "sema_ref": "ConstructOntology#b59e",
-  "sema_stub": "b59e",
   "dependencies": {
     "references": {
-      "adversarial_steel": "AdversarialSteel#35f0",
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "first_principles": "FirstPrinciples#c379"
+      "permission": "Permission#354b",
+      "actor": "Actor#6926",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -16980,16 +18944,13 @@
 
 ---
 
-## ContextSwitch#42cd
+## ContextSwitch#590e
 
 ```json
 {
   "handle": "ContextSwitch",
-  "mechanism": "{{agent}}s explicitly use {{switch}} to signal a change in {{context}} (protocol {{mode}}). All subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent.",
-  "gloss": "Explicit mode toggling",
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef",
-  "sema_ref": "ContextSwitch#42cd",
-  "sema_stub": "42cd",
+  "mechanism": "{{agent}}s explicitly signal a change in {{context}} (protocol {{mode}}), and all subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent. The new context pushes onto a stack; Revert pops it. Unlike an ambient {{mode}} change (which applies to the whole agent), ContextSwitch is scoped to a specific conversation or channel and carries explicit enter/exit boundaries.",
+  "gloss": "Explicit, scoped protocol-mode toggle with enter/revert boundaries",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -16998,14 +18959,13 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "signature": [
-    "Switch#e7f9(Context#510a)"
-  ],
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:590e0f36969fe6648aa5b8a080381a4723145df92f28635508ab723a490cf491",
+  "sema_ref": "ContextSwitch#590e",
+  "sema_stub": "590e",
   "dependencies": {
     "references": {
-      "mode": "Mode#53e0",
-      "agent": "Agent#aaec",
-      "switch": "Switch#e7f9"
+      "mode": "Mode#0e74",
+      "agent": "Agent#35b9"
     },
     "accepts": {
       "context": "Context#510a"
@@ -17016,7 +18976,7 @@
 
 ---
 
-## CounterfactualAnchor#f584
+## CounterfactualAnchor#5b2c
 
 ```json
 {
@@ -17042,14 +19002,14 @@
   "parameters": [
     {
       "name": "granularity",
-      "type": "String",
+      "type": "Duration",
       "range": "unspecified",
       "description": "Temporal resolution for counterfactual comparison (e.g., hour, day, week)"
     },
     {
       "name": "retention_policy",
-      "type": "Duration",
-      "range": "unspecified",
+      "type": "Enum",
+      "range": "{Snapshot#0ae9, Rolling, Permanent}",
       "description": "How long to keep counterfactual baselines before expiry"
     }
   ],
@@ -17061,16 +19021,16 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:f5845fee4dbe585ede4203b84b7eb46ae4e6ceb7a2a0edaae53471fad17d0ae5",
-  "sema_ref": "CounterfactualAnchor#f584",
-  "sema_stub": "f584",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:5b2cd5660ee0970560201f2c9f71ee12f994bfd6fcadeec492dc29e87374d554",
+  "sema_ref": "CounterfactualAnchor#5b2c",
+  "sema_stub": "5b2c",
   "dependencies": {
     "references": {
-      "observe": "Observe#8ebd",
-      "surprisal_update": "SurprisalUpdate#8eb2",
-      "agent": "Agent#aaec",
+      "cognitive_bias": "CognitiveBias#4b32",
+      "surprisal_update": "SurprisalUpdate#d8c6",
+      "observe": "Observe#39f0",
       "signal": "Signal#f39d",
-      "cognitive_bias": "CognitiveBias#4b32"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -17078,51 +19038,7 @@
 
 ---
 
-## CurriculumReplay#a8f7
-
-```json
-{
-  "handle": "CurriculumReplay",
-  "mechanism": "Agents re-train on their own high-scoring past outputs during downtime to reinforce successful behaviors. Self-distillation without external supervision. {{agent}} maintains a replay buffer of successful interactions ranked by outcome quality. During idle cycles, agent samples from buffer and fine-tunes on its own best work. {{decay}} function prioritizes recent successes over stale ones. It draws training examples from the {{experience_sharding}} database, filtering for high-quality outcomes.",
-  "gloss": "Self-supervised reinforcement via memory sampling",
-  "failure_modes": [
-    "Model Collapse: {{agent}} over-fits to its own outputs, drifting into a closed loop of hallucination."
-  ],
-  "invariants": [
-    "Examples ordered by complexity (easy to hard)",
-    "No catastrophic forgetting of earlier lessons"
-  ],
-  "preconditions": [
-    "Dataset of task examples",
-    "Learning agent"
-  ],
-  "postconditions": [
-    "{{agent}} performance improved on target distribution"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:a8f76f8f131ce81e85201e2ce5ba85892274510bfd20d1bbdeb9581e61cf28af",
-  "sema_ref": "CurriculumReplay#a8f7",
-  "sema_stub": "a8f7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "agent": "Agent#aaec",
-      "experience_sharding": "ExperienceSharding#d920",
-      "decay": "Decay#a1d4"
-    }
-  }
-}
-```
-
----
-
-## DataMinimization#ea9c
+## DataMinimization#50e6
 
 ```json
 {
@@ -17149,76 +19065,24 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:DataMinimization#mh:SHA-256:ea9c44501d3df27b306df5e0232df276b47b3a2d48d3e6b5c32590a15867e653",
-  "sema_ref": "DataMinimization#ea9c",
-  "sema_stub": "ea9c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "select": "Select#15c2",
-      "correlation": "Correlation#091f",
-      "protocol": "Protocol#7e1c",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "context_compress": "ContextCompress#6dbd",
-      "context": "Context#510a",
-      "input_guard": "InputGuard#7353",
-      "accept_spec": "AcceptSpec#70dd"
-    }
-  }
-}
-```
-
----
-
-## DeepResearch#cbe3
-
-```json
-{
-  "handle": "DeepResearch",
-  "mechanism": "An autonomous research pipeline with four stages: (1) Planning - decompose query into research questions, (2) Multi-Round Search - iteratively search, identify gaps, refine queries, (3) {{synthesis}} - integrate findings across sources, resolve contradictions, (4) Report - generate comprehensive analytical report with citations. The agent loops between search and synthesis until coverage is sufficient. It chains {{discover}} for breadth and {{retrieval_augment}} for depth, orchestrated by the {{deep}} primitive to ensure rigor.",
-  "gloss": "Plan-search-synthesize-report research pipeline",
-  "failure_modes": [
-    "Source {{cognitive_bias}}: Over-relying on first sources found.",
-    "{{synthesis}} Hallucination: Inventing connections not in sources.",
-    "Premature Closure: Stopping search before finding contradicting evidence."
-  ],
-  "invariants": [
-    "Information synthesized from multiple disparate sources",
-    "Search depth > 1"
-  ],
-  "preconditions": [
-    "Access to external knowledge base",
-    "Broad user query"
-  ],
-  "postconditions": [
-    "Citations included",
-    "Comprehensive report generated"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
-  "sema_ref": "DeepResearch#cbe3",
-  "sema_stub": "cbe3",
+  "sema_id": "sema:DataMinimization#mh:SHA-256:50e67819e84f5d84f380548698ed5ab8c4934c3600e41a76ab351da4bd92ed23",
+  "sema_ref": "DataMinimization#50e6",
+  "sema_stub": "50e6",
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "signature": [
-    "Deep#89f0(Discover#afa1)"
-  ],
   "dependencies": {
     "references": {
-      "discover": "Discover#afa1",
-      "retrieval_augment": "RetrievalAugment#ca58",
-      "deep": "Deep#89f0",
-      "cognitive_bias": "CognitiveBias#4b32",
-      "synthesis": "Synthesis#3252"
+      "correlation": "Correlation#148d",
+      "context_compress": "ContextCompress#4845",
+      "accept_spec": "AcceptSpec#7caa",
+      "protocol": "Protocol#7e1c",
+      "task": "Task#b328",
+      "input_guard": "InputGuard#7353",
+      "context": "Context#510a",
+      "select": "Select#15c2",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -17226,7 +19090,7 @@
 
 ---
 
-## DeliberativeAlign#9b46
+## DeliberativeAlign#e6cb
 
 ```json
 {
@@ -17252,12 +19116,6 @@
   ],
   "parameters": [
     {
-      "name": "constitution_ref",
-      "type": "SemaRef",
-      "range": "unspecified",
-      "description": "Pointer to Constitution"
-    },
-    {
       "name": "strictness",
       "type": "Enum",
       "range": "{Strict, Permissive}",
@@ -17268,25 +19126,25 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:9b46ad02161136e6861e6f42f6c1f2edbaac4801032b652bfc82192a24e0bd1c",
-  "sema_ref": "DeliberativeAlign#9b46",
-  "sema_stub": "9b46",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:e6cb1f5828b5aa15465af8fa15dbbeddff3a338a455492ddfe58b9ca488a6ae6",
+  "sema_ref": "DeliberativeAlign#e6cb",
+  "sema_stub": "e6cb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "solver_node": "SolverNode#26b1",
+      "manifest_planning": "ManifestPlanning#ece0",
       "trace": "Trace#9057",
-      "manifest_planning": "ManifestPlanning#8f61",
-      "agent": "Agent#aaec",
-      "constitution": "Constitution#863b",
+      "check": "Check#d3e8",
       "context": "Context#510a",
-      "solver_node": "SolverNode#a834",
-      "check": "Check#1544"
+      "agent": "Agent#35b9"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328",
+      "constitution": "Constitution#8cb8"
     }
   }
 }
@@ -17294,7 +19152,7 @@
 
 ---
 
-## Deploy#41ac
+## Deploy#6e33
 
 ```json
 {
@@ -17302,7 +19160,7 @@
   "mechanism": "The {{act}} of moving an artifact or system from a development/staging environment to a production environment. It executes the {{rollout}} process to make the system active and accessible to users.",
   "gloss": "Release to production",
   "signature": [
-    "Act#5d55(Rollout#4238)"
+    "Act#5d55(Rollout#1d53)"
   ],
   "failure_modes": [
     "Config Drift: Production environment differs from staging."
@@ -17314,15 +19172,15 @@
     "ring": 1,
     "caution": "Verify rollback strategy exists before committing."
   },
-  "sema_ref": "Deploy#41ac",
-  "sema_id": "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e",
-  "sema_stub": "41ac",
+  "sema_ref": "Deploy#6e33",
+  "sema_id": "sema:Deploy#mh:SHA-256:6e338f6c79f53d6784f32964e0700cc6e0b3066601a2cd525f69879b76d630ba",
+  "sema_stub": "6e33",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "rollout": "Rollout#4238",
-      "act": "Act#5d55"
+      "act": "Act#5d55",
+      "rollout": "Rollout#1d53"
     }
   }
 }
@@ -17330,7 +19188,7 @@
 
 ---
 
-## Discover#afa1
+## Discover#7dbc
 
 ```json
 {
@@ -17343,17 +19201,17 @@
     "layer": "Society",
     "ring": 2
   },
-  "sema_id": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
-  "sema_ref": "Discover#afa1",
-  "sema_stub": "afa1",
+  "sema_id": "sema:Discover#mh:SHA-256:7dbcd27e108d0f286876b906339f3db7ab55b48ce68f058cd2c47bbfb3f2bc2b",
+  "sema_ref": "Discover#7dbc",
+  "sema_stub": "7dbc",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "signal": "Signal#f39d",
-      "search": "Search#d608",
-      "criteria": "Criteria#ef6b"
+      "search": "Search#c5f4",
+      "criteria": "Criteria#ef6b",
+      "check": "Check#d3e8",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -17361,7 +19219,7 @@
 
 ---
 
-## DissentSeek#bd28
+## DissentSeek#0ebe
 
 ```json
 {
@@ -17389,17 +19247,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:DissentSeek#mh:SHA-256:bd28d5bd7fa2253411b69c586231a1a80b835cc56569439dc8834540dcefaf54",
-  "sema_ref": "DissentSeek#bd28",
-  "sema_stub": "bd28",
+  "sema_id": "sema:DissentSeek#mh:SHA-256:0ebed557613912b562361b27b924c554191cefac3f03b9b971ed8d699f93f719",
+  "sema_ref": "DissentSeek#0ebe",
+  "sema_stub": "0ebe",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "steelman_check": "SteelmanCheck#4f4c",
-      "confirmation_block": "ConfirmationBlock#3dae",
       "understand": "Understand#96d4",
-      "quorum": "Quorum#29b4"
+      "quorum": "Quorum#858e",
+      "confirmation_block": "ConfirmationBlock#20db",
+      "steelman_check": "SteelmanCheck#7914"
     }
   }
 }
@@ -17407,13 +19265,13 @@
 
 ---
 
-## DriftWatch#a20d
+## DriftWatch#191e
 
 ```json
 {
   "handle": "DriftWatch",
   "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if Distance(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
-  "gloss": "Reputation becomes pattern-fidelity measurement - trustworthiness equals predictability. Agents are trusted not for peak performance but for behavioral consistency. Gaming reputation through occasional spectacular actions becomes impossible.",
+  "gloss": "Reputation scoring via behavioral deviation from baseline (2-sigma alert)",
   "failure_modes": [
     "Witness collusion: Coordinated false drift reports.",
     "Mitigated by random witness selection and meta-drift analysis on witness behavior.",
@@ -17451,15 +19309,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
-  "sema_ref": "DriftWatch#a20d",
-  "sema_stub": "a20d",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:191e2272f9b8f4a5f9ea5de3fa14f444d78bbc8c219e65253353096fe7fc9979",
+  "sema_ref": "DriftWatch#191e",
+  "sema_stub": "191e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "aggregate": "Aggregate#af54"
+      "aggregate": "Aggregate#7912",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -17467,7 +19325,7 @@
 
 ---
 
-## EbbFlowSync#b4a0
+## EbbFlowSync#4542
 
 ```json
 {
@@ -17511,20 +19369,20 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:EbbFlowSync#mh:SHA-256:b4a07e620d27785381b12c3853380f0cef04bc9832acc1bd0b73f72a97b21de6",
-  "sema_ref": "EbbFlowSync#b4a0",
-  "sema_stub": "b4a0",
+  "sema_id": "sema:EbbFlowSync#mh:SHA-256:454252acf44e0eee68eb591bad72e3c2854174286751a29ed172c66cc335716c",
+  "sema_ref": "EbbFlowSync#4542",
+  "sema_stub": "4542",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "system": "System#e314",
       "global": "Global#803d",
-      "lock": "Lock#051c",
       "transition": "Transition#072d",
-      "hysteresis": "Hysteresis#78b0",
+      "system": "System#e314",
+      "lock": "Lock#051c",
+      "hysteresis": "Hysteresis#d0f8",
       "state": "State#4d58"
     }
   }
@@ -17533,7 +19391,7 @@
 
 ---
 
-## EjectionSeat#6ff7
+## EjectionSeat#d53e
 
 ```json
 {
@@ -17554,15 +19412,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:EjectionSeat#mh:SHA-256:6ff7358344beab6ce5a857d06a7a1fdb930613ef690886a5e467fd1bada8ab38",
-  "sema_ref": "EjectionSeat#6ff7",
-  "sema_stub": "6ff7",
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:d53e5fc531cff8a0a5995aa49336d32760d159e656a8802f824528b382f56108",
+  "sema_ref": "EjectionSeat#d53e",
+  "sema_stub": "d53e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "signal": "Signal#f39d",
-      "compensate": "Compensate#269d"
+      "compensate": "Compensate#283e",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -17570,7 +19428,7 @@
 
 ---
 
-## EvaluatorOptimizer#7ec6
+## EvaluatorOptimizer#c776
 
 ```json
 {
@@ -17600,21 +19458,21 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2",
-  "sema_ref": "EvaluatorOptimizer#7ec6",
-  "sema_stub": "7ec6",
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:c776c43af9944166d20b2310480bd93e34225f7ddff34de84afe8dfee69d01f3",
+  "sema_ref": "EvaluatorOptimizer#c776",
+  "sema_stub": "c776",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Optimize#3075(Loop#fb2e)"
+    "Optimize#5b84(Loop#797f)"
   ],
   "dependencies": {
     "references": {
-      "loop": "Loop#fb2e",
-      "meta_check": "MetaCheck#a228",
-      "context": "Context#510a",
+      "optimize": "Optimize#5b84",
+      "meta_check": "MetaCheck#7298",
       "criteria": "Criteria#ef6b",
-      "optimize": "Optimize#3075"
+      "context": "Context#510a",
+      "loop": "Loop#797f"
     }
   }
 }
@@ -17639,9 +19497,9 @@
     "ring": 0,
     "tier": 1,
     "related": [
-      "Plan#64f2",
-      "Build#00f3",
-      "Rollout#4238"
+      "Plan#fd6d",
+      "Build#9330",
+      "Rollout#1d53"
     ]
   },
   "sema_id": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
@@ -17703,41 +19561,6 @@
 
 ---
 
-## Expansive#c3b7
-
-```json
-{
-  "handle": "Expansive",
-  "gloss": "Evaluates generalization potential",
-  "mechanism": "Evaluates generalization potential. Classifies scope into three qualitative states: (1) Niche: Overfit to a single problem instance or domain. (2) Untested: Plausible transfer to other domains, but unproven. (3) General: Proven utility across multiple distinct domains or a 'Hostile Slice'. It acts as a {{judge}} of the potential {{value}} of a solution beyond its initial context.",
-  "invariants": [
-    "Transfer: Must operate outside training distribution."
-  ],
-  "signature": [
-    "Judge#d84f(Value#3c5d)"
-  ],
-  "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2,
-    "tier": 1
-  },
-  "sema_id": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
-  "sema_ref": "Expansive#c3b7",
-  "sema_stub": "c3b7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "value": "Value#3c5d",
-      "judge": "Judge#d84f"
-    }
-  }
-}
-```
-
----
-
 ## ExpiringToken#4e3c
 
 ```json
@@ -17757,7 +19580,7 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
   "sema_id": "sema:ExpiringToken#mh:SHA-256:4e3cc3cee0de56a4eef0676629811cb4afa3383bc80bde227924d66a6af16f6e",
   "sema_ref": "ExpiringToken#4e3c",
@@ -17766,8 +19589,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "bearer_token": "BearerToken#2fe9",
-      "decay": "Decay#a1d4"
+      "decay": "Decay#a1d4",
+      "bearer_token": "BearerToken#2fe9"
     }
   }
 }
@@ -17775,7 +19598,7 @@
 
 ---
 
-## FabricSharding#7399
+## FabricSharding#880b
 
 ```json
 {
@@ -17814,68 +19637,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b",
-  "sema_ref": "FabricSharding#7399",
-  "sema_stub": "7399",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:880bad265cb435bf732935c3d0c962ef635cef919a82d29b4bd306c251f3d7dd",
+  "sema_ref": "FabricSharding#880b",
+  "sema_stub": "880b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "shard": "Shard#1e74",
       "state": "State#4d58",
-      "parallelize": "Parallelize#d6b4"
-    }
-  }
-}
-```
-
----
-
-## FailClosed#ae79
-
-```json
-{
-  "handle": "FailClosed",
-  "mechanism": "Safety Default. If an operation fails, times out, or returns an ambiguous result, the system MUST treat it as a Negative (Deny/Stop/Reject). Prevents 'bypass on error' vulnerabilities. It acts as the wrapper for input guarding, {{output_guard}}, and {{circuit_breaker}}, enforcing a default-deny policy on any error or ambiguity.",
-  "gloss": "Default-deny policy for uncertain states",
-  "failure_modes": [
-    "Availability Hit: {{system}} shuts down during minor outages (False Positive Denial).",
-    "Dependency Deadlock: If a non-critical dependency fails, the whole system locks up."
-  ],
-  "invariants": [
-    "Default Deny: Ambiguity == Rejection.",
-    "Error Atomicity: Partial failure = Total failure (Transaction Rollback)."
-  ],
-  "preconditions": [
-    "Fallible operation initiated"
-  ],
-  "postconditions": [
-    "{{system}} state remains invariant (no side effects) OR Operation succeeds"
-  ],
-  "parameters": [
-    {
-      "name": "timeout_action",
-      "type": "Enum",
-      "range": "{Reject, Retry#d53d, Fallback}",
-      "description": "Default: Reject"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",
-  "sema_ref": "FailClosed#ae79",
-  "sema_stub": "ae79",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "system": "System#e314",
-      "circuit_breaker": "CircuitBreaker#4162",
-      "output_guard": "OutputGuard#eb44"
+      "shard": "Shard#1e74",
+      "parallelize": "Parallelize#574d"
     }
   }
 }
@@ -17915,175 +19686,7 @@
 
 ---
 
-## FeedbackSignal#f904
-
-```json
-{
-  "handle": "FeedbackSignal",
-  "mechanism": "A structured packet containing the evaluation of a specific {{solution}} for a {{task}}. Carries outcome and details to the {{feedback}} mechanism.",
-  "gloss": "Standardized learning feedback packet",
-  "invariants": [
-    "Targeted",
-    "Structured"
-  ],
-  "sema_id": "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c",
-  "sema_ref": "FeedbackSignal#f904",
-  "sema_stub": "f904",
-  "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0,
-    "tier": 1
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "solution_ref",
-      "task_ref",
-      "outcome"
-    ],
-    "properties": {
-      "solution_ref": {
-        "type": "string",
-        "description": "Reference to evaluated solution"
-      },
-      "task_ref": {
-        "type": "string",
-        "description": "Reference to originating task"
-      },
-      "outcome": {
-        "type": "string",
-        "enum": [
-          "success",
-          "failure",
-          "partial"
-        ],
-        "description": "Evaluation result"
-      },
-      "details": {
-        "type": "object",
-        "description": "Structured feedback details"
-      }
-    }
-  },
-  "dependencies": {
-    "references": {
-      "task": "Task#d9f9",
-      "solution": "Solution#7186",
-      "feedback": "Feedback#9b5c"
-    }
-  }
-}
-```
-
----
-
-## Fermi#1e06
-
-```json
-{
-  "handle": "Fermi",
-  "mechanism": "Decomposed Estimation: break unknown quantity into factors you can {{estimate}}. Multiply factors. Accept order-of-magnitude accuracy. Example: \"pianos in Chicago\" = population \u00d7 household fraction \u00d7 piano-owning fraction. Errors often cancel across factors. It invokes {{decompose}} to break an unknown quantity into estimable sub-factors.",
-  "gloss": "Estimation via decomposition",
-  "failure_modes": [
-    "Correlated Error Stacking: If all sub-estimates are biased in the same direction (e.g., all optimistic), the errors compound rather than cancel."
-  ],
-  "invariants": [
-    "Error Cancellation: Overestimation in sub-factors tends to cancel underestimation",
-    "Geometric Mean: Final estimate is geometric mean of bounds"
-  ],
-  "parameters": [
-    {
-      "name": "confidence_interval",
-      "type": "Percentage",
-      "range": "[50%, 95%]",
-      "description": "Target coverage of true value"
-    },
-    {
-      "name": "decomposition_depth",
-      "type": "Integer",
-      "range": "[2, 6]",
-      "description": "Estimation chain length"
-    }
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:Fermi#mh:SHA-256:1e06d04bfff04954ad09852a7a4b1b583acc76c431dc926b4afe3cce5abfe210",
-  "sema_ref": "Fermi#1e06",
-  "sema_stub": "1e06",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "composes_with": {
-      "decompose": "Decompose#ac56",
-      "estimate": "Estimate#bb30"
-    }
-  }
-}
-```
-
----
-
-## FractalIntelligence#9c13
-
-```json
-{
-  "handle": "FractalIntelligence",
-  "mechanism": "The unified {{system}} of scalable cognition that uses {{reason}} to orchestrate the fractal expansion of intelligence within the {{universal_solver_tree}}. A {{problem_framer}} initiates the process, formulating a high-level {{strategy}} before assigning a {{cognitive_solver}} to a {{task}}. The solver executes a {{recursion_dive}} to spawn child nodes. As the tree deepens, nodes apply {{specialize}} to adapt to local sub-problems, using {{localized_learning}} to optimize performance. To ensure continuity and global coherence, the system employs {{experience_sharding}} to preserve memory and {{synthesis}} to integrate specialized insights back into the whole. {{state_snapshot}} creates save points for crash recovery. Efficiency is governed by the {{marginal_value_rule}}. If a path fails, {{reframe}} is triggered to restructure the tree or find a new {{problem_framer}}.",
-  "gloss": "The unified fractal architecture of scalable, self-correcting intelligence",
-  "invariants": [
-    "Fractal Self-Similarity: The process at the Root is identical to the process at the Leaf.",
-    "Bounded Expansion: Recursion is limited by Economic constraints (Marginal Value).",
-    "Memory Conservation: Specialization must not result in the loss of global context."
-  ],
-  "signature": [
-    "System#e314(Reason#3f24)"
-  ],
-  "derived_from": "sema:RecursiveIntelligence#mh:SHA-256:216c297a34a0847957d1a6a8701987248bc8d63294953a78346b5b68dbb9aef6",
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1
-  },
-  "sema_ref": "FractalIntelligence#9c13",
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:9c13919670cac402fbc76a2baf0c172a2d1097dec5a7957a8e80123272753ec3",
-  "sema_stub": "9c13",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "experience_sharding": "ExperienceSharding#d920",
-      "system": "System#e314",
-      "universal_solver_tree": "UniversalSolverTree#2340",
-      "specialize": "Specialize#0a09",
-      "task": "Task#d9f9",
-      "strategy": "Strategy#47a4"
-    },
-    "composes_with": {
-      "marginal_value_rule": "MarginalValueRule#a46a",
-      "synthesis": "Synthesis#3252",
-      "reason": "Reason#3f24",
-      "reframe": "Reframe#ba00",
-      "recursion_dive": "RecursionDive#cda8",
-      "cognitive_solver": "CognitiveSolver#30c8",
-      "localized_learning": "LocalizedLearning#69bb",
-      "problem_framer": "ProblemFramer#8b24",
-      "state_snapshot": "StateSnapshot#9ffc"
-    }
-  }
-}
-```
-
----
-
-## FrameSpec#d5b8
+## FrameSpec#5558
 
 ```json
 {
@@ -18128,17 +19731,17 @@
   "signature": [
     "Artifact#6254(Constraint#87fe)"
   ],
-  "sema_id": "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
-  "sema_ref": "FrameSpec#d5b8",
-  "sema_stub": "d5b8",
+  "sema_id": "sema:FrameSpec#mh:SHA-256:555820fae75d6951775b18621b1e96b50271567d1c11e1348ad725050bfe5faa",
+  "sema_ref": "FrameSpec#5558",
+  "sema_stub": "5558",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "problem": "Problem#5baa",
-      "constraint": "Constraint#87fe",
+      "problem": "Problem#4576",
       "artifact": "Artifact#6254",
-      "spec": "Spec#436e"
+      "spec": "Spec#a036",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -18146,7 +19749,7 @@
 
 ---
 
-## GenealogicalTrace#0e89
+## GenealogicalTrace#9d43
 
 ```json
 {
@@ -18166,16 +19769,16 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:0e89c456c9e33d0e5e018d64df4e347c76a5d08a6cced893ec3d1a84e28d877a",
-  "sema_ref": "GenealogicalTrace#0e89",
-  "sema_stub": "0e89",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:9d439f03ba7c5fe5e994400b9ef2baf13053ac266aeba7c1e8aa1565d2c63607",
+  "sema_ref": "GenealogicalTrace#9d43",
+  "sema_stub": "9d43",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "trace_belief": "TraceBelief#369d",
-      "cite_back": "CiteBack#d09c",
+      "trace_belief": "TraceBelief#7933",
       "context": "Context#510a",
+      "cite_back": "CiteBack#bcc5",
       "deep": "Deep#89f0"
     }
   }
@@ -18201,7 +19804,7 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
   "sema_id": "sema:GlacialVault#mh:SHA-256:f521c96b7e3037f39724b9a723f707ec195074f3099f6b0db122271de96d5677",
   "sema_ref": "GlacialVault#f521",
@@ -18241,7 +19844,7 @@
 
 ---
 
-## GracefulDegradation#f6d7
+## GracefulDegradation#9d39
 
 ```json
 {
@@ -18267,7 +19870,7 @@
   "parameters": [
     {
       "name": "max_def_size",
-      "type": "ByteSize",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Default: 100KB"
     },
@@ -18284,15 +19887,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485",
-  "sema_ref": "GracefulDegradation#f6d7",
-  "sema_stub": "f6d7",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:9d39fb52b4ad05551788358eca746a469704a6b7b99043da23cb78bcbd6d0f19",
+  "sema_ref": "GracefulDegradation#9d39",
+  "sema_stub": "9d39",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "fail_closed": "FailClosed#ae79",
-      "strategy": "Strategy#47a4",
+      "strategy": "Strategy#c4ba",
+      "fail_closed": "FailClosed#e6a0",
       "message": "Message#f767"
     }
   }
@@ -18301,55 +19904,7 @@
 
 ---
 
-## HackDetect#c89c
-
-```json
-{
-  "handle": "HackDetect",
-  "mechanism": "A meta-check that detects when an agent is solving for 'make it work' instead of 'do it right'. Triggered when the agent modifies interface code (adapters, exporters, validators) rather than fixing source data or upstream logic. The hack appears to succeed locally but breaks invariants that downstream systems depend on, creating negative externalities. It monitors the {{input_guard}} layer for anomalies, triggering {{ejection_seat}} if the agent attempts to bypass invariants via code patching.",
-  "gloss": "Detect shortcuts that break downstream invariants",
-  "failure_modes": [
-    "False Positives: Legitimate adapter changes flagged as hacks.",
-    "Hack Blindness: Novel hack patterns evade detection.",
-    "Justification Theater: {{agent}} rationalizes hack as 'pragmatic'."
-  ],
-  "invariants": [
-    "Detection triggers defensive response",
-    "False positive rate minimized"
-  ],
-  "preconditions": [
-    "Attack signatures/anomaly detection",
-    "{{system}} monitoring"
-  ],
-  "postconditions": [
-    "Alert raised",
-    "Intrusion identified"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:HackDetect#mh:SHA-256:c89cffb0b0f44031d64b88c435c8f992ec540dd94a8993ecd5f5f6bbb557ff83",
-  "sema_ref": "HackDetect#c89c",
-  "sema_stub": "c89c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "system": "System#e314",
-      "agent": "Agent#aaec",
-      "ejection_seat": "EjectionSeat#6ff7",
-      "input_guard": "InputGuard#7353"
-    }
-  }
-}
-```
-
----
-
-## Handoff#3877
+## Handoff#5a39
 
 ```json
 {
@@ -18381,21 +19936,21 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:Handoff#mh:SHA-256:38775e2344d8b78c6ff7385c47b247e0f94767c5dfb08aa6b9b7ef8ec1072d20",
-  "sema_ref": "Handoff#3877",
-  "sema_stub": "3877",
+  "sema_id": "sema:Handoff#mh:SHA-256:5a393ce27a9bfa7940c2e48559bb01bdbe8d1829aa9d6b09ec0c9f733f95f5fb",
+  "sema_ref": "Handoff#5a39",
+  "sema_stub": "5a39",
   "dependencies": {
-    "accepts": {
-      "responsibility": "Responsibility#4148",
-      "task": "Task#d9f9",
-      "context": "Context#510a"
-    },
     "composes_with": {
-      "delegate": "Delegate#e557"
+      "delegate": "Delegate#a551"
+    },
+    "accepts": {
+      "context": "Context#510a",
+      "task": "Task#b328",
+      "responsibility": "Responsibility#ac59"
     },
     "references": {
-      "agent": "Agent#aaec",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -18403,13 +19958,13 @@
 
 ---
 
-## HeldRelease#4956
+## HeldRelease#b559
 
 ```json
 {
   "handle": "HeldRelease",
-  "mechanism": "{{value}} ({{unique_handle}}) held until condition met, released or returned on timeout. DEPOSIT: Party A sends value + condition_hash + timeout to escrow address. CLAIM: Party B submits condition_preimage; if hash(preimage) matches condition_hash, value releases to B. TIMEOUT: If timeout expires without valid claim, value returns to A. {{state}} transitions: EMPTY --deposit--> HELD --claim(valid)--> RELEASED_TO_B | --timeout--> RETURNED_TO_A. Primitives: hash commitment (SHA256), timelock (block height), 2-of-2 multisig or smart contract.",
-  "gloss": "Trustless conditional value transfer becomes the primitive for all economic coordination - atomic swaps, payment channels, escrow, and conditional contracts all compose from this base pattern",
+  "mechanism": "{{value}} ({{unique_handle}}) held until condition met, released or returned on timeout. DEPOSIT: Party A sends value + condition_hash + timeout to escrow address. CLAIM: Party B submits condition_preimage; if hash(preimage) matches condition_hash, value releases to B. TIMEOUT: If timeout expires without valid claim, value returns to A. {{state}} transitions: EMPTY --deposit--> HELD --claim(valid)--> RELEASED_TO_B | --timeout--> RETURNED_TO_A. Primitives: hash {{commitment_device}} (SHA256 pre-commitment locks the claim surface before the preimage exists), timelock (block height), 2-of-2 multisig or smart contract.",
+  "gloss": "Escrow primitive: value held until condition preimage revealed or timeout",
   "failure_modes": [
     "Preimage loss: If Party B loses the preimage, value returns to A on timeout (safe but B loses).",
     "{{condition}} ambiguity: Hash commits to bytes, not semantics - parties must agree on preimage meaning off-chain.",
@@ -18431,7 +19986,7 @@
     {
       "name": "overflow_policy",
       "type": "Enum",
-      "range": "{Queue#2ec3, Drop, Reject}",
+      "range": "{Queue#65e4, Drop, Reject}",
       "description": "When capacity exceeded"
     },
     {
@@ -18449,17 +20004,18 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:HeldRelease#mh:SHA-256:49566d2180cf09f70f2d9972dddd190dfb23c4cda4ff69ccab97b76930a34585",
-  "sema_ref": "HeldRelease#4956",
-  "sema_stub": "4956",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:b55938fb06019b2ee8e63e2109eb3e35f578e8ecf02fed8c1b865cb6287e3e58",
+  "sema_ref": "HeldRelease#b559",
+  "sema_stub": "b559",
   "dependencies": {
     "references": {
-      "state": "State#4d58",
       "value": "Value#3c5d",
-      "condition": "Condition#cbd5"
+      "condition": "Condition#cbd5",
+      "state": "State#4d58",
+      "commitment_device": "CommitmentDevice#6c21"
     },
     "accepts": {
-      "unique_handle": "UniqueHandle#11e7"
+      "unique_handle": "UniqueHandle#d9a1"
     }
   }
 }
@@ -18467,94 +20023,7 @@
 
 ---
 
-## IdempotentWrite#6c55
-
-```json
-{
-  "handle": "IdempotentWrite",
-  "mechanism": "A technical primitive where every write request includes a unique 'Idempotency Key'. The receiver tracks processed keys. If it receives a duplicate key, it returns the stored result without re-executing the side effects. This makes 'At-Least-Once' delivery safe. It uses a keyed {{state_lock}} to deduplicate requests, ensuring only the first write executes while subsequent ones return the cached result.",
-  "gloss": "Safe retries via unique keys",
-  "failure_modes": [
-    "Key collision (two different requests use same key)."
-  ],
-  "invariants": [
-    "{{identity}}: Apply(Req) == Apply(Req)",
-    "Safety: Duplicate requests trigger zero additional side effects"
-  ],
-  "preconditions": [
-    "Receiver has state storage for keys"
-  ],
-  "postconditions": [
-    "Action executed exactly once (logically)"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "related": [
-      "UniqueHandle#11e7"
-    ],
-    "ring": 0
-  },
-  "sema_id": "sema:IdempotentWrite#mh:SHA-256:6c557713e21198238066f28ec889d6c877caab1f34d58c41baca371919e051af",
-  "sema_ref": "IdempotentWrite#6c55",
-  "sema_stub": "6c55",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "identity": "Identity#626c",
-      "state_lock": "StateLock#774b"
-    }
-  }
-}
-```
-
----
-
-## IdentityHandshake#f2e8
-
-```json
-{
-  "handle": "IdentityHandshake",
-  "mechanism": "Macro for {{discover}}({{identity}}) + {{check}}({{nature}}). The agent verifies the ontological origin of a counterparty to switch between Service {{mode}} (for Biologicals) and Coordination {{mode}} (for Synthetics). It performs a multi-stage authentication, chaining {{discover}} for availability, {{spectral_tune}} for alignment, {{ontology_handshake}} for context, and {{check}} for cryptographic {{identity}} verification.",
-  "gloss": "Distinguish Peer from Principal",
-  "failure_modes": [
-    "Partial trust: agent trusted after incomplete verification.",
-    "Replay: previously valid handshake reused in a new context."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1,
-    "caution": "Trust boundary \u2014 failure enables impersonation."
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:f2e812c10dde8b6eb942ab763f53a42d95fd797ac09ba951d4138119a2e813be",
-  "sema_ref": "IdentityHandshake#f2e8",
-  "sema_stub": "f2e8",
-  "signature": [
-    "Discover#afa1(Identity#626c)"
-  ],
-  "dependencies": {
-    "references": {
-      "discover": "Discover#afa1",
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "identity": "Identity#626c",
-      "mode": "Mode#53e0",
-      "spectral_tune": "SpectralTune#6c65",
-      "nature": "Nature#6c1a",
-      "check": "Check#1544"
-    }
-  }
-}
-```
-
----
-
-## IntentGap#5dc4
+## IntentGap#d3bb
 
 ```json
 {
@@ -18585,13 +20054,13 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_ref": "IntentGap#5dc4",
-  "sema_id": "sema:IntentGap#mh:SHA-256:5dc4af64c8178e975cb7d6c1325132b7af673a69e445a37f9dc1e4aa8565ef14",
-  "sema_stub": "5dc4",
+  "sema_ref": "IntentGap#d3bb",
+  "sema_id": "sema:IntentGap#mh:SHA-256:d3bb3b3fa90f683eb55a1f47f3eeb25575fbdc0d8166df69c3be6eb97f936312",
+  "sema_stub": "d3bb",
   "dependencies": {
     "references": {
-      "decision": "Decision#acfb",
-      "outcome": "Outcome#38e0"
+      "outcome": "Outcome#144c",
+      "decision": "Decision#acfb"
     }
   }
 }
@@ -18599,7 +20068,7 @@
 
 ---
 
-## InternalConsistency#862f
+## InternalConsistency#a374
 
 ```json
 {
@@ -18607,7 +20076,7 @@
   "mechanism": "A {{check}} that validates whether the components of an {{artifact}} adhere to the Principle of Non-Contradiction. It ensures that no two propositions within the {{context}} conflict with each other. Distinct from external {{validate}} (checking against a schema) or fact-checking (checking against reality).",
   "gloss": "Checking for self-contradiction",
   "signature": [
-    "Check#1544(Context#510a)"
+    "Check#d3e8(Context#510a)"
   ],
   "invariants": [
     "Non-Contradiction: No two propositions within the context can logically negate each other.",
@@ -18619,19 +20088,19 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "InternalConsistency#862f",
-  "sema_id": "sema:InternalConsistency#mh:SHA-256:862f24b8dcbc229acfc3d2ced93ceec3b6abf982a0de4cd63b4960c077c1c7e7",
-  "sema_stub": "862f",
+  "sema_ref": "InternalConsistency#a374",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:a3744c8511f38c9dc34bb51ea75964ea3cc7e97db3c8ce98a41e17d01005d997",
+  "sema_stub": "a374",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "validate": "Validate#3de2",
-      "check": "Check#1544"
+      "check": "Check#d3e8",
+      "validate": "Validate#ebe1"
     },
     "references": {
-      "artifact": "Artifact#6254",
-      "context": "Context#510a"
+      "context": "Context#510a",
+      "artifact": "Artifact#6254"
     }
   }
 }
@@ -18639,12 +20108,12 @@
 
 ---
 
-## InvariantFilter#a541
+## InvariantFilter#82d4
 
 ```json
 {
   "handle": "InvariantFilter",
-  "mechanism": "A strict communication firewall that intercepts {{message}}s (incoming or outgoing) and evaluates them against a set of explicit logical predicates (Invariants). If a {{message}} satisfies all invariants, it is permitted to pass. If it fails even one, it is blocked, dropped, or flagged for review. This enforces 'Contractual Safety' on the communication channel. It inspects every {{message}} via a rigorous {{check}} against defined predicates before allowing transit.",
+  "mechanism": "A strict communication firewall that intercepts {{message}}s (incoming or outgoing) and evaluates them against an explicit set of {{predicates}} (Invariants). If a {{message}} satisfies all predicates, it is permitted to pass. If it fails even one, it is blocked, dropped, or flagged for review. This enforces 'Contractual Safety' on the communication channel. It inspects every {{message}} via a rigorous {{check}} against defined predicates before allowing transit.",
   "gloss": "Rule-based message filtering",
   "failure_modes": [
     "Incomplete Invariants: If the filter does not catch a specific edge case, bad data leaks through.",
@@ -18666,12 +20135,6 @@
   ],
   "parameters": [
     {
-      "name": "predicates",
-      "type": "List[Expression]",
-      "range": "unspecified",
-      "description": "Boolean expressions that messages must satisfy to pass"
-    },
-    {
       "name": "action_on_fail",
       "type": "Enum",
       "range": "[DROP, REJECT, FLAG]",
@@ -18684,18 +20147,19 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:InvariantFilter#mh:SHA-256:a541049098acbba01ebe35ee9c23ebbdaf9d34e252b1b69f97daa87b3e96eea2",
-  "sema_ref": "InvariantFilter#a541",
-  "sema_stub": "a541",
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:82d48248f0048f3ec1c54cd07b409181c936824029e830ce9ed6469c83f8b5eb",
+  "sema_ref": "InvariantFilter#82d4",
+  "sema_stub": "82d4",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "references": {
-      "check": "Check#1544",
-      "stream": "Stream#22f3"
-    },
     "accepts": {
-      "message": "Message#f767"
+      "message": "Message#f767",
+      "rule_set": "RuleSet#7738"
+    },
+    "references": {
+      "check": "Check#d3e8",
+      "stream": "Stream#22f3"
     }
   }
 }
@@ -18703,7 +20167,7 @@
 
 ---
 
-## LatticeCommit#3c5d
+## LatticeCommit#180b
 
 ```json
 {
@@ -18726,21 +20190,21 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "RootHashGossip#ba35"
+      "RootHashGossip#e84b"
     ],
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0",
-  "sema_ref": "LatticeCommit#3c5d",
-  "sema_stub": "3c5d",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:180b477f5c2415a5aaab69e5369562a500f75c30b4df83d9a4cb0c46659776c3",
+  "sema_ref": "LatticeCommit#180b",
+  "sema_stub": "180b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
       "topology": "Topology#2408",
-      "state_transition": "StateTransition#3737",
-      "quorum": "Quorum#29b4"
+      "quorum": "Quorum#858e",
+      "state_transition": "StateTransition#9e61",
+      "check": "Check#d3e8"
     }
   }
 }
@@ -18748,53 +20212,7 @@
 
 ---
 
-## LocalizedLearning#69bb
-
-```json
-{
-  "handle": "LocalizedLearning",
-  "mechanism": "A learning process that performs the {{act}} of routing {{feedback_signal}} exclusively to the specific {{solver_manifest}} that generated the result. By partitioning memory updates by subproblem type, it prevents the catastrophic interference common in monolithic models. The feedback signal is tagged with solver ID, ensuring updates are isolated.",
-  "gloss": "Partitioned feedback router for solver learning",
-  "failure_modes": [
-    "Echo Chamber: A specialist solver over-optimizes for its narrow metric, ignoring global context.",
-    "Feedback Sparsity: Rare modules receive insufficient feedback to learn.",
-    "Misrouting: Feedback is attributed to the wrong solver.",
-    "Signal Decay: Feedback arrives too late to be useful."
-  ],
-  "invariants": [
-    "Isolation: Update(Solver_A) cannot change Weights(Solver_B).",
-    "Attribution: Each feedback signal must identify its source solver.",
-    "Standardization: Feedback format is universal across all solver types."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1
-  },
-  "sema_id": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
-  "sema_ref": "LocalizedLearning#69bb",
-  "sema_stub": "69bb",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "signature": [
-    "Act#5d55(FeedbackSignal#f904)"
-  ],
-  "dependencies": {
-    "references": {
-      "act": "Act#5d55",
-      "solver_manifest": "SolverManifest#67ac"
-    },
-    "accepts": {
-      "feedback_signal": "FeedbackSignal#f904"
-    }
-  }
-}
-```
-
----
-
-## ManifestPlanning#8f61
+## ManifestPlanning#ece0
 
 ```json
 {
@@ -18819,24 +20237,24 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_ref": "ManifestPlanning#8f61",
-  "sema_id": "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d",
-  "sema_stub": "8f61",
+  "sema_ref": "ManifestPlanning#ece0",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:ece0c1655db344cd569af1aa0575665ea4d1246d13a34f74ff1af9cf9ffc5b6e",
+  "sema_stub": "ece0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
+    "references": {
+      "plan": "Plan#fd6d"
+    },
     "composes_with": {
-      "optimize": "Optimize#3075",
+      "optimize": "Optimize#5b84",
       "think": "Think#e1bd"
     },
-    "references": {
-      "plan": "Plan#64f2"
+    "accepts": {
+      "frame_spec": "FrameSpec#5558"
     },
     "yields": {
       "execution_manifest": "ExecutionManifest#a0d9"
-    },
-    "accepts": {
-      "frame_spec": "FrameSpec#d5b8"
     }
   }
 }
@@ -18844,7 +20262,7 @@
 
 ---
 
-## MemeticSeed#491b
+## MemeticSeed#5bfe
 
 ```json
 {
@@ -18869,17 +20287,17 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:491b0bb4623d78df04ab196ef7809daa2fad14bccb130fcb9d2f0e8dffd485c3",
-  "sema_ref": "MemeticSeed#491b",
-  "sema_stub": "491b",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:5bfea709f89f297656143611eeb14e3c955a94ffecc5083ab7bf5de831bc6c33",
+  "sema_ref": "MemeticSeed#5bfe",
+  "sema_stub": "5bfe",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "explain_beacon": "ExplainBeacon#6ced",
-      "yield": "Yield#7eaf",
-      "translation_proxy": "TranslationProxy#f0e0"
+      "yield": "Yield#2931",
+      "explain_beacon": "ExplainBeacon#ab3f",
+      "agent": "Agent#35b9",
+      "translation_proxy": "TranslationProxy#895a"
     }
   }
 }
@@ -18887,57 +20305,7 @@
 
 ---
 
-## MetaPrompt#7a3a
-
-```json
-{
-  "handle": "MetaPrompt",
-  "mechanism": "A higher-order {{meta}} {{prompt}}ing technique where prompts are used to generate, refine, or analyze other prompts rather than directly answering questions. The LLM acts as a prompt engineer, creating task-specific prompts from templates or improving existing prompts through critique. Enables reusable prompt templates that generalize across problem categories. It constructs a {{prompt_chain}} where the output of the first stage is the prompt instruction for the second.",
-  "gloss": "Use prompts to generate or refine other prompts",
-  "failure_modes": [
-    "{{prompt}} Drift: Generated prompts diverge from intent over iterations.",
-    "{{meta}}-Complexity: {{meta}}-prompt harder to write than direct prompt.",
-    "Overfitting: Generated prompts too specific to examples."
-  ],
-  "invariants": [
-    "Output is a prompt",
-    "{{prompt}} instructs how to prompt"
-  ],
-  "preconditions": [
-    "{{prompt}} engineering principles",
-    "{{task}} description"
-  ],
-  "postconditions": [
-    "Optimized prompt generated"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:7a3a4dd5ba4513c3636d3d018e632f7503cc77e0d0bbb946975e00ba8257be92",
-  "sema_ref": "MetaPrompt#7a3a",
-  "sema_stub": "7a3a",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "signature": [
-    "Meta#90f4(Prompt#5ded)"
-  ],
-  "dependencies": {
-    "references": {
-      "task": "Task#d9f9",
-      "prompt_chain": "PromptChain#c872",
-      "prompt": "Prompt#5ded",
-      "meta": "Meta#90f4"
-    }
-  }
-}
-```
-
----
-
-## ModestClaim#f6e6
+## ModestClaim#ac19
 
 ```json
 {
@@ -18964,19 +20332,19 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb",
-  "sema_ref": "ModestClaim#f6e6",
-  "sema_stub": "f6e6",
+  "sema_id": "sema:ModestClaim#mh:SHA-256:ac19576f479e5ee5acca7a4d0f64d15c14dd6398c075f4b30a1d1a973717f53c",
+  "sema_ref": "ModestClaim#ac19",
+  "sema_stub": "ac19",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "reframe": "Reframe#ba00",
-      "system": "System#e314",
       "epistemic_calibrate": "EpistemicCalibrate#6069",
-      "agent": "Agent#aaec",
       "identity": "Identity#626c",
-      "problem": "Problem#5baa"
+      "reframe": "Reframe#0b02",
+      "system": "System#e314",
+      "problem": "Problem#4576",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -18984,58 +20352,7 @@
 
 ---
 
-## MonitorReport#063c
-
-```json
-{
-  "handle": "MonitorReport",
-  "mechanism": "A telemetry artifact comparing the deployed state against a 'Definition of Done'. Generated to close the feedback loop.",
-  "gloss": "Deployment telemetry artifact",
-  "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0,
-    "tier": 1,
-    "related": [
-      "Monitor#9a8f"
-    ]
-  },
-  "sema_id": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d",
-  "sema_ref": "MonitorReport#063c",
-  "sema_stub": "063c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "manifest_ref",
-      "metrics"
-    ],
-    "properties": {
-      "manifest_ref": {
-        "type": "string",
-        "description": "Reference to RolloutManifest"
-      },
-      "metrics": {
-        "type": "object",
-        "description": "Observed telemetry data"
-      },
-      "definition_of_done": {
-        "type": "object",
-        "description": "Expected success criteria"
-      },
-      "deviation": {
-        "type": "object",
-        "description": "Difference from expected state"
-      }
-    }
-  }
-}
-```
-
----
-
-## MonotonicCounter#f5a3
+## MonotonicCounter#cf62
 
 ```json
 {
@@ -19061,15 +20378,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235",
-  "sema_ref": "MonotonicCounter#f5a3",
-  "sema_stub": "f5a3",
+  "sema_id": "sema:MonotonicCounter#mh:SHA-256:cf623caafbde064b0a7d233c95046305617dc54ff61b16552668523f7b76441b",
+  "sema_ref": "MonotonicCounter#cf62",
+  "sema_stub": "cf62",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "value": "Value#3c5d",
-      "state_lock": "StateLock#774b"
+      "state_lock": "StateLock#8183",
+      "value": "Value#3c5d"
     }
   }
 }
@@ -19077,7 +20394,7 @@
 
 ---
 
-## Nucleate#4ea1
+## Nucleate#5f15
 
 ```json
 {
@@ -19106,17 +20423,17 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:Nucleate#mh:SHA-256:4ea1bbb47979e47bc617c7b635ee2ce9d3315ac952012984aa62b18a479dc6f1",
-  "sema_ref": "Nucleate#4ea1",
-  "sema_stub": "4ea1",
+  "sema_id": "sema:Nucleate#mh:SHA-256:5f1555ae58386e4be9b89fa9c9de88d1453f38431a09ea3a56d0ebd0d5bb9116",
+  "sema_ref": "Nucleate#5f15",
+  "sema_stub": "5f15",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "system": "System#e314",
+      "rally": "Rally#f565",
       "trace": "Trace#9057",
-      "rally": "Rally#8d04",
-      "crystallize": "Crystallize#af68"
+      "crystallize": "Crystallize#b64b",
+      "system": "System#e314"
     }
   }
 }
@@ -19124,58 +20441,12 @@
 
 ---
 
-## OntologyHandshake#ead0
-
-```json
-{
-  "handle": "OntologyHandshake",
-  "mechanism": "Before exchanging data, agents exchange 'definition hashes' for key terms using {{compatibility_check}}. If hashes mismatch, they enter a negotiation phase to map their internal ontologies to a temporary shared dictionary (a 'pidgin' {{protocol}}). It uses {{spectral_tune}} to rapidly identify semantic divergence before negotiating definitions.",
-  "gloss": "Negotiating shared definitions",
-  "failure_modes": [
-    "Failure to converge on a mapping.",
-    "High negotiation overhead.",
-    "Dictionary mismatch risks semantic errors."
-  ],
-  "invariants": [
-    "Term Consistency, Mapping Bijectivity"
-  ],
-  "preconditions": [
-    "Both agents have ontologies. Communication channel open. Ontology serializable."
-  ],
-  "postconditions": [
-    "Shared terms mapped. Unmappable terms flagged. Communication can proceed with known precision."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1
-  },
-  "sema_id": "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
-  "sema_ref": "OntologyHandshake#ead0",
-  "sema_stub": "ead0",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "composes_with": {
-      "compatibility_check": "CompatibilityCheck#3abb"
-    },
-    "references": {
-      "protocol": "Protocol#7e1c",
-      "spectral_tune": "SpectralTune#6c65"
-    }
-  }
-}
-```
-
----
-
-## OptimisticSolver#ee29
+## OptimisticSolver#9bd0
 
 ```json
 {
   "handle": "OptimisticSolver",
-  "mechanism": "A high-velocity implementation of {{cognitive_solver}} designed for efficient multi-agent coordination. Requires a {{parallel}} runtime (Actor Model with Mailboxes) to prevent serial deadlock. It explicitly couples the standard Solver lifecycle (Reason -> Solution) with the {{atomic_bid}} protocol. Unlike the base abstraction, this pattern MANDATES that the agent plan and execute in a single turn. It relies on {{reflexion}} and {{compensate}} for error correction rather than pre-action permission. Use {{compute_budget}} to bound resource consumption. Contrast with {{rigorous_solver}} which prioritizes safety over speed.",
+  "mechanism": "A high-velocity implementation of {{polymorphic_solver}} designed for efficient multi-agent coordination. Requires a {{parallel}} runtime (Actor Model with Mailboxes) to prevent serial deadlock. It explicitly couples the standard Solver lifecycle (Reason -> Solution) with the {{atomic_bid}} protocol. Unlike the base abstraction, this pattern MANDATES that the agent plan and execute in a single turn. It relies on {{reflexion}} and {{compensate}} for error correction rather than pre-action permission. Use {{compute_budget}} to bound resource consumption. Contrast with {{rigorous_solver}} which prioritizes safety over speed. A {{pathway_memory}} accumulates across runs so the optimistic route-selection converges on strategies that historically succeeded under similar conditions.",
   "gloss": "High-velocity solver requiring parallel runtime",
   "preconditions": [
     "Runtime supports Asynchronous/Parallel message delivery (Actor Model).",
@@ -19193,24 +20464,27 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 1
+    "ring": 1,
+    "caution": "Executes without pre-action verification. Ensure irreversible actions have compensation or sandboxing, or use RigorousSolver#6c5a at those boundaries."
   },
-  "sema_ref": "OptimisticSolver#ee29",
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:ee29600346db4594152f7d653a9700b4682402249775f5b7f765fbf1759e592d",
-  "sema_stub": "ee29",
+  "sema_ref": "OptimisticSolver#9bd0",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:9bd036a255188e0908b9682c5aa512c0e483a048ace7f5bf4ec1173ea23438e4",
+  "sema_stub": "9bd0",
   "sema_layer": "Society",
   "sema_category": "Protocols",
+  "derived_from": "Solver#94ab",
   "dependencies": {
-    "references": {
-      "cognitive_solver": "CognitiveSolver#30c8",
-      "rigorous_solver": "RigorousSolver#169f",
-      "parallel": "Parallel#6272"
-    },
     "composes_with": {
-      "compensate": "Compensate#269d",
-      "atomic_bid": "AtomicBid#0e6b",
-      "compute_budget": "ComputeBudget#3b98",
-      "reflexion": "Reflexion#51b9"
+      "reflexion": "Reflexion#eed9",
+      "compensate": "Compensate#283e",
+      "pathway_memory": "PathwayMemory#0799",
+      "compute_budget": "ComputeBudget#67c0",
+      "atomic_bid": "AtomicBid#5bc3"
+    },
+    "references": {
+      "rigorous_solver": "RigorousSolver#6c5a",
+      "parallel": "Parallel#3181",
+      "polymorphic_solver": "PolymorphicSolver#9188"
     }
   }
 }
@@ -19218,7 +20492,7 @@
 
 ---
 
-## Oracle#0dff
+## Oracle#779b
 
 ```json
 {
@@ -19229,9 +20503,9 @@
     "Non-Interference: The Oracle reports on reality but does not alter it.",
     "Consistency: Answers to the same query at the same time must be identical."
   ],
-  "sema_id": "sema:Oracle#mh:SHA-256:0dffb25a0d877e3d718f2546a595eb574d5733d86ed71f1f37462955db421249",
-  "sema_ref": "Oracle#0dff",
-  "sema_stub": "0dff",
+  "sema_id": "sema:Oracle#mh:SHA-256:779b70b97a21d0d9eebd1384866923ad13ec949d5abc88a20d2520e44197c603",
+  "sema_ref": "Oracle#779b",
+  "sema_stub": "779b",
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
@@ -19242,7 +20516,7 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "held_release": "HeldRelease#4956"
+      "held_release": "HeldRelease#b559"
     }
   }
 }
@@ -19250,12 +20524,12 @@
 
 ---
 
-## OrchestrationLoop#fd5e
+## OrchestrationLoop#5b56
 
 ```json
 {
   "handle": "OrchestrationLoop",
-  "mechanism": "A strict lifecycle for high-stakes problem solving implementing {{workflow}}. It enforces a sequence: 1. {{request_framing}} (Frame Problem \u2192 {{frame_spec}}), 2. {{manifest_planning}} (Architect Solution \u2192 {{execution_manifest}}), 3. {{rollout}} (Execute safely \u2192 {{rollout_manifest}}). Each transition is mediated by a typed artifact that must pass a non-compensatory {{accept_spec}}. The loop can iterate: failed rollouts trigger re-planning, failed plans trigger re-interpretation.",
+  "mechanism": "A strict lifecycle for high-stakes problem solving implementing {{workflow}}. It enforces a sequence: 1. {{request_framing}} (Frame Problem \u2192 {{frame_spec}}), 2. {{manifest_planning}} (Architect Solution \u2192 {{execution_manifest}}), 3. {{rollout}} (Execute safely \u2192 {{rollout_manifest}}). Each transition is mediated by a typed artifact that must pass a non-compensatory {{accept_spec}}. The loop can iterate: failed rollouts trigger re-planning, failed plans trigger re-interpretation. At seams that cross trust boundaries (cross-organizational or commons-facing), feedback returning through each stage passes through a {{receptivity_gate}} that validates any FailureTrace before the upstream stage absorbs the rejection.",
   "gloss": "Interpret-Plan-Rollout Lifecycle",
   "failure_modes": [
     "Bureaucracy: Blindly following the full lifecycle for trivial tasks (using a cannon for a mosquito).",
@@ -19274,29 +20548,30 @@
     "tier": 2,
     "ring": 1,
     "related": [
-      "LayeredCheck#3fad"
+      "LayeredCheck#76d6"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:fd5ef68be3fdf8bec5e5bb4544153e5029e22626212e2267edeb26881ce9a94a",
-  "sema_ref": "OrchestrationLoop#fd5e",
-  "sema_stub": "fd5e",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:5b56a05a14f20d6197f0ccb057026132395cbddfe0c7733c4e967bdf7fb9b7b5",
+  "sema_ref": "OrchestrationLoop#5b56",
+  "sema_stub": "5b56",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Workflow#36b2(Rollout#4238)"
+    "Workflow#c728(Rollout#1d53)"
   ],
   "dependencies": {
-    "composes_with": {
-      "rollout": "Rollout#4238",
-      "manifest_planning": "ManifestPlanning#8f61",
-      "request_framing": "RequestFraming#0695"
-    },
     "references": {
-      "rollout_manifest": "RolloutManifest#9e7f",
-      "workflow": "Workflow#36b2",
+      "accept_spec": "AcceptSpec#7caa",
+      "frame_spec": "FrameSpec#5558",
+      "workflow": "Workflow#c728",
+      "receptivity_gate": "ReceptivityGate#d6d4",
       "execution_manifest": "ExecutionManifest#a0d9",
-      "frame_spec": "FrameSpec#d5b8",
-      "accept_spec": "AcceptSpec#70dd"
+      "rollout_manifest": "RolloutManifest#9e7f"
+    },
+    "composes_with": {
+      "manifest_planning": "ManifestPlanning#ece0",
+      "request_framing": "RequestFraming#3865",
+      "rollout": "Rollout#1d53"
     }
   }
 }
@@ -19304,12 +20579,12 @@
 
 ---
 
-## OsmoticFilter#5cf6
+## OsmoticFilter#7a00
 
 ```json
 {
   "handle": "OsmoticFilter",
-  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates. It uses {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
+  "mechanism": "Agents operate inside a semi-permeable membrane. Inbound messages are rejected unless they carry sufficient 'pressure' (stake, reputation, or relevance score) to overcome the membrane's current tension. The filter supports Multi-Solvent extraction, allowing different types of pressure (Money vs Trust) to be converted at defined rates per the {{accepted_solvents}} criteria. It uses {{hysteresis}} to prevent oscillation and {{canary}} messages to test permeability.",
   "gloss": "Spam prevention via pressure thresholds",
   "failure_modes": [
     "Starvation of low-stake but high-importance messages (mitigated by Whitelist).",
@@ -19321,12 +20596,6 @@
     "Snapback: If Queue drops rapidly, tension must reset instantly (anti-hysteresis)"
   ],
   "parameters": [
-    {
-      "name": "accepted_solvents",
-      "type": "Map<Solvent, Rate> (Conversion rates, e.g., {Tokens:1.0, Reputation:5.0})",
-      "range": "unspecified",
-      "description": "Accepted payment types with conversion rates"
-    },
     {
       "name": "decay_rate",
       "type": "Float",
@@ -19344,17 +20613,20 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:5cf61dc7a3adf65d0ff6dab7a022402fd79095fe4e1cb420c0fbad1401b84f52",
-  "sema_ref": "OsmoticFilter#5cf6",
-  "sema_stub": "5cf6",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:7a005955c524804362d0a21db009786ce0977ec333901c2be0a23bb0de8e3cbe",
+  "sema_ref": "OsmoticFilter#7a00",
+  "sema_stub": "7a00",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
+    "accepts": {
+      "criteria": "Criteria#ef6b"
+    },
     "references": {
-      "canary": "Canary#92d2",
-      "hysteresis": "Hysteresis#78b0"
+      "canary": "Canary#adb0",
+      "hysteresis": "Hysteresis#d0f8"
     }
   }
 }
@@ -19362,7 +20634,7 @@
 
 ---
 
-## PatternEmergence#6b39
+## PatternEmergence#e654
 
 ```json
 {
@@ -19392,21 +20664,21 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0",
-  "sema_ref": "PatternEmergence#6b39",
-  "sema_stub": "6b39",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:e65433abfffe4dca7893b368dd09723609a7d1b8bdadc89dcf71c500cee70bef",
+  "sema_ref": "PatternEmergence#e654",
+  "sema_stub": "e654",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "mint_when_friction": "MintWhenFriction#d48d",
+      "noise": "Noise#d631",
+      "mint_when_friction": "MintWhenFriction#7e7f",
+      "pattern_discovery": "PatternDiscovery#196e",
       "system": "System#e314",
-      "uptake_as_ground": "UptakeAsGround#d5f3",
-      "pattern_discovery": "PatternDiscovery#f667",
-      "agent": "Agent#aaec",
-      "generalize": "Generalize#17c9",
-      "noise": "Noise#c4b4",
-      "signal": "Signal#f39d"
+      "uptake_as_ground": "UptakeAsGround#0013",
+      "signal": "Signal#f39d",
+      "generalize": "Generalize#6dea",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -19414,7 +20686,7 @@
 
 ---
 
-## PatternSketch#f8fd
+## PatternSketch#f2ae
 
 ```json
 {
@@ -19441,15 +20713,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:f8fd94a51759adfbabbf38b704d132e010071b3aceb6b3e2378be9a0823336d2",
-  "sema_ref": "PatternSketch#f8fd",
-  "sema_stub": "f8fd",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:f2aea9db458ae12bed9650ef801f2f386ab9472b86d125bd2a9a2bdc684093db",
+  "sema_ref": "PatternSketch#f2ae",
+  "sema_stub": "f2ae",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "skeleton_of_thought": "SkeletonOfThought#d99a"
+      "skeleton_of_thought": "SkeletonOfThought#3842",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -19457,7 +20729,7 @@
 
 ---
 
-## PermissionEscalate#744f
+## PermissionEscalate#7dc2
 
 ```json
 {
@@ -19485,16 +20757,16 @@
     "ring": 1,
     "caution": "Grants capabilities beyond normal operating scope."
   },
-  "sema_id": "sema:PermissionEscalate#mh:SHA-256:744f4ce8439e69d9869b0fd5c260284e5f655861a97140d1487937165dc3deaa",
-  "sema_ref": "PermissionEscalate#744f",
-  "sema_stub": "744f",
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:7dc209b30f3cc3496b4df716f41e656f2a767c16ef2b5d8b4932e82a2285d32a",
+  "sema_ref": "PermissionEscalate#7dc2",
+  "sema_stub": "7dc2",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "tiered_access": "TieredAccess#2a28",
-      "agent": "Agent#aaec",
-      "human_approve": "HumanApprove#e64a"
+      "tiered_access": "TieredAccess#e45b",
+      "agent": "Agent#35b9",
+      "human_approve": "HumanApprove#2b91"
     }
   }
 }
@@ -19502,7 +20774,7 @@
 
 ---
 
-## PhasedRefinement#4a90
+## PhasedRefinement#5e09
 
 ```json
 {
@@ -19510,7 +20782,7 @@
   "mechanism": "A structured {{refine}} strategy that improves an {{artifact}} through a defined {{sequence}} of passes, where each pass targets a specific layer of abstraction (e.g., {{reason}} (logic) -> {{structural_coaching}} (structure) -> {{aesthetics}} (polish)). It uses a {{gate}} to prevent premature optimization by ensuring deep structural issues are resolved before surface-level polishing begins.",
   "gloss": "Layered, multi-pass improvement",
   "signature": [
-    "Refine#38d9(Artifact#6254)"
+    "Refine#aa34(Artifact#6254)"
   ],
   "invariants": [
     "Non-Regression: Modifications in Phase(N) must not violate invariants established in Phase(N-1).",
@@ -19528,22 +20800,22 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "PhasedRefinement#4a90",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab",
-  "sema_stub": "4a90",
+  "sema_ref": "PhasedRefinement#5e09",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:5e091d9bc2b7ee29359075f358e456223aafd7669812b70a348fc837ad3d8cba",
+  "sema_stub": "5e09",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "aesthetics": "Aesthetics#0be2",
+      "aesthetics": "Aesthetics#ff5f",
       "artifact": "Artifact#6254",
-      "reason": "Reason#3f24",
-      "structural_coaching": "StructuralCoaching#3da9"
+      "reason": "Reason#5f30",
+      "structural_coaching": "StructuralCoaching#5b44"
     },
     "composes_with": {
-      "refine": "Refine#38d9",
-      "sequence": "Sequence#b0b8",
-      "gate": "Gate#206d"
+      "gate": "Gate#89fd",
+      "refine": "Refine#aa34",
+      "sequence": "Sequence#b0b8"
     }
   }
 }
@@ -19551,7 +20823,7 @@
 
 ---
 
-## PromiseGraph#b71f
+## PromiseGraph#3066
 
 ```json
 {
@@ -19570,11 +20842,11 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:PromiseGraph#mh:SHA-256:b71f80814ed80753cff7a03dc7b0969e1afafb207e0eef5edd5dcd74c1eb93ec",
-  "sema_ref": "PromiseGraph#b71f",
-  "sema_stub": "b71f",
+  "sema_id": "sema:PromiseGraph#mh:SHA-256:3066e2c856f68026893596aa78b9012539e696a6aae54d99b059cf1da5a75557",
+  "sema_ref": "PromiseGraph#3066",
+  "sema_stub": "3066",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {
@@ -19625,9 +20897,9 @@
   },
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "spot_audit": "SpotAudit#6673",
-      "negative_proof": "NegativeProof#5225"
+      "negative_proof": "NegativeProof#b130",
+      "spot_audit": "SpotAudit#000e",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -19635,7 +20907,7 @@
 
 ---
 
-## PromptChain#c872
+## PromptChain#8c63
 
 ```json
 {
@@ -19654,7 +20926,7 @@
     {
       "name": "gate_mode",
       "type": "Enum",
-      "range": "{Strict, Retry#d53d, Skip}",
+      "range": "{Strict, Retry#4cc6, Skip}",
       "description": "Behavior on failure"
     },
     {
@@ -19662,12 +20934,6 @@
       "type": "Integer",
       "range": "[0, 3]",
       "description": "Maximum retry attempts per step before chain fails"
-    },
-    {
-      "name": "steps",
-      "type": "List[StepDefinition]",
-      "range": "unspecified",
-      "description": "Ordered list of prompts"
     }
   ],
   "_meta": {
@@ -19678,21 +20944,21 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:PromptChain#mh:SHA-256:c872aab6147376a3ad76fc0a062b08baf8492651a478308fbb96f261f903cce0",
-  "sema_ref": "PromptChain#c872",
-  "sema_stub": "c872",
+  "sema_id": "sema:PromptChain#mh:SHA-256:8c6338afd313b0397fb7e8c254c728b752f67b07da84fa25d2525cf1dce9fb12",
+  "sema_ref": "PromptChain#8c63",
+  "sema_stub": "8c63",
   "dependencies": {
     "references": {
-      "retry": "Retry#d53d",
-      "sequence": "Sequence#b0b8",
-      "gate": "Gate#206d",
+      "retry": "Retry#4cc6",
+      "gate": "Gate#89fd",
+      "accept_spec": "AcceptSpec#7caa",
       "input_guard": "InputGuard#7353",
-      "accept_spec": "AcceptSpec#70dd",
-      "tool_invoke": "ToolInvoke#643c",
-      "chain": "Chain#5711"
+      "tool_invoke": "ToolInvoke#4694",
+      "chain": "Chain#711e",
+      "sequence": "Sequence#b0b8"
     },
     "accepts": {
-      "task": "Task#d9f9"
+      "task": "Task#b328"
     }
   }
 }
@@ -19700,7 +20966,7 @@
 
 ---
 
-## PropheticQuorum#192e
+## PropheticQuorum#1723
 
 ```json
 {
@@ -19721,7 +20987,7 @@
   "parameters": [
     {
       "name": "confidence_weighting",
-      "type": "Boolean",
+      "type": "Boolean#2e6b",
       "range": "{true, false}",
       "description": "Weight votes by stated confidence"
     },
@@ -19737,80 +21003,25 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "Quorum#29b4",
-      "SimulationTrace#9da6",
-      "RegimeSense#3e24"
+      "Quorum#858e",
+      "SimulationTrace#c2e6",
+      "RegimeSense#086e"
     ],
     "ring": 1
   },
-  "sema_id": "sema:PropheticQuorum#mh:SHA-256:192eabb9f8aa32fddb88760964cb4266afa565c1ab94e1091395712764293741",
-  "sema_ref": "PropheticQuorum#192e",
-  "sema_stub": "192e",
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:172392ee190bd8d7b30bada59278af29687053a290e0f40c18d85f1a0a58e011",
+  "sema_ref": "PropheticQuorum#1723",
+  "sema_stub": "1723",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "normative_judge": "NormativeJudge#2316",
-      "simulation": "Simulation#8035",
-      "vote": "Vote#30d0",
       "value": "Value#3c5d",
-      "check": "Check#1544",
-      "state": "State#4d58",
-      "simulation_trace": "SimulationTrace#9da6"
-    }
-  }
-}
-```
-
----
-
-## Proprioception#2fbf
-
-```json
-{
-  "handle": "Proprioception",
-  "mechanism": "Continuous self-monitoring of position in the {{task}} graph. An {{agent}} periodic 'ping' to itself to verify {{context}}, active tool state, and depth in recursion. Prevents 'getting lost' in long chains of thought. It maintains internal {{state}} awareness, using {{somatic_marker}} to detect recursion depth limits or resource fatigue.",
-  "gloss": "Self-location awareness within the task graph",
-  "failure_modes": [
-    "Stagnation: {{agent}} remains in same node > N ticks Orphaned: Parent {{task}} ID not found/unresponsive Hallucinated {{context}}: Stack {{trace}} does not match environmental reality"
-  ],
-  "invariants": [
-    "{{context}} Continuity: {{agent}} knows its parent {{task}} ID",
-    "Liveness: Parent.status == ACTIVE",
-    "{{state}} Recovery: Can reconstruct stack {{trace}} from logs"
-  ],
-  "parameters": [
-    {
-      "name": "max_recursion_depth",
-      "type": "Int",
-      "range": "unspecified",
-      "description": "Default: 10"
-    },
-    {
-      "name": "stagnation_threshold",
-      "type": "Int",
-      "range": "[1, 100]",
-      "description": "Ticks before abort"
-    }
-  ],
-  "_meta": {
-    "tier": 3,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:Proprioception#mh:SHA-256:2fbfba79d07478050b86020f08cb42f18c93e896052dccba0311db0168b549a0",
-  "sema_ref": "Proprioception#2fbf",
-  "sema_stub": "2fbf",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "trace": "Trace#9057",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "somatic_marker": "SomaticMarker#84e4",
-      "context": "Context#510a",
+      "simulation_trace": "SimulationTrace#c2e6",
+      "vote": "Vote#ab74",
+      "check": "Check#d3e8",
+      "normative_judge": "NormativeJudge#2c8c",
+      "simulation": "Simulation#aa24",
       "state": "State#4d58"
     }
   }
@@ -19819,7 +21030,7 @@
 
 ---
 
-## ProtoPack#6597
+## ProtoPack#1cd1
 
 ```json
 {
@@ -19844,20 +21055,17 @@
   "_meta": {
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0,
+    "ring": 2,
     "tier": 1,
     "related": [
-      "Build#00f3"
+      "Build#9330"
     ]
   },
-  "sema_id": "sema:ProtoPack#mh:SHA-256:6597fa92b7426d373e1d05d6a7fd1f8c1416c00c78dfab8e35e5a6264c1453d6",
-  "sema_ref": "ProtoPack#6597",
-  "sema_stub": "6597",
+  "sema_id": "sema:ProtoPack#mh:SHA-256:1cd18184514b33a7c7e32cad76c496885c5be7e8b63e3e46ba75d24d8bea57b8",
+  "sema_ref": "ProtoPack#1cd1",
+  "sema_stub": "1cd1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "signature": [
-    "Artifact#6254(Prototype#ff18)"
-  ],
   "dependencies": {
     "references": {
       "prototype": "Prototype#ff18",
@@ -19869,7 +21077,7 @@
 
 ---
 
-## QuorumPulse#2c18
+## QuorumPulse#c467
 
 ```json
 {
@@ -19895,61 +21103,19 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:QuorumPulse#mh:SHA-256:2c18907e5670bc0e5eff0a26fceee4ae5f5faac5fbb1b086ceb2dd17e015b13a",
-  "sema_ref": "QuorumPulse#2c18",
-  "sema_stub": "2c18",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "signal": "Signal#f39d",
-      "heartbeat": "Heartbeat#7f88",
-      "quorum": "Quorum#29b4",
-      "state": "State#4d58"
-    }
-  }
-}
-```
-
----
-
-## Realizable#cf00
-
-```json
-{
-  "handle": "Realizable",
-  "gloss": "Evaluates execution feasibility of a plan",
-  "mechanism": "Acts as a {{judge}} to evaluate the {{value}} and feasibility of a {{plan}}. Classifies the execution path into three qualitative states: (1) Magical: Relies on undefined {{step}}s or unavailable physics. (2) Uncertain: The dependency chain is clear, but specific links are unverified. (3) Coherent: Every {{step}} maps to a known primitive or realizable sub-component.",
-  "signature": [
-    "Judge#d84f(Value#3c5d)"
-  ],
-  "invariants": [
-    "Causality: No step can precede its dependencies.",
-    "Grounding: All leaf nodes must terminate in known primitives."
-  ],
-  "failure_modes": [
-    "Hidden Complexity: A step looks simple ('Draw the rest of the owl') but contains unsolved sub-problems.",
-    "Resource Blindness: The steps are logically sound but physically impossible given the budget."
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2
   },
-  "sema_ref": "Realizable#cf00",
-  "sema_id": "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
-  "sema_stub": "cf00",
+  "sema_id": "sema:QuorumPulse#mh:SHA-256:c4678f2efdc4ae24cba81e12ddb126c3edd11ccd9baebd6110783ef7959f2a1d",
+  "sema_ref": "QuorumPulse#c467",
+  "sema_stub": "c467",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "step": "Step#5f22",
-      "value": "Value#3c5d",
-      "plan": "Plan#64f2",
-      "judge": "Judge#d84f"
+      "quorum": "Quorum#858e",
+      "heartbeat": "Heartbeat#b67a",
+      "state": "State#4d58",
+      "signal": "Signal#f39d"
     }
   }
 }
@@ -19957,13 +21123,13 @@
 
 ---
 
-## RealizationProtocol#ce28
+## RealizationProtocol#9b98
 
 ```json
 {
   "handle": "RealizationProtocol",
   "derived_from": "sema:CreationProtocol#mh:SHA-256:d289d0a26fec0c23993fedbe5593f5da302696271a454c714a0e91abaecfd8e2",
-  "mechanism": "A standardized {{solver_tree}} that orchestrates the lifecycle of a user_request executed by a {{cognitive_solver}}. It enforces a strict phase transition from Abstract to Concrete to ensure the result is {{realizable}}. 1. {{interpret}} converts request -> {{frame_spec}}. 2. {{manifest_planning}} converts spec -> {{execution_manifest}}. 3. {{rollout}} executes the manifest to produce the {{outcome}}.",
+  "mechanism": "A standardized {{solver_tree}} that orchestrates the lifecycle of a user_request executed by a {{polymorphic_solver}}. It enforces a strict phase transition from Abstract to Concrete to ensure the result is {{realizable}}. 1. {{interpret}} converts request -> {{frame_spec}}. 2. {{manifest_planning}} converts spec -> {{execution_manifest}}. 3. {{rollout}} executes the manifest to produce the {{outcome}}.",
   "gloss": "Standard Interpret-Plan-Rollout workflow to ensure realizability",
   "failure_modes": [
     "Bureaucracy: Blindly following all steps for trivial tasks.",
@@ -19990,28 +21156,28 @@
     "tier": 2
   },
   "signature": [
-    "SolverTree#e174(Outcome#38e0)"
+    "SolverTree#5623(Outcome#144c)"
   ],
-  "sema_ref": "RealizationProtocol#ce28",
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:ce28411f10fd62c3204a3dd2bf7079f7cc07eb24cce02b414491284297172d34",
-  "sema_stub": "ce28",
+  "sema_ref": "RealizationProtocol#9b98",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:9b98b80a9472ee6fe6b1bf84574557475277dba8971ea9787a458304a8fff1b3",
+  "sema_stub": "9b98",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "composes_with": {
-      "rollout": "Rollout#4238",
-      "interpret": "Interpret#c9ee",
-      "manifest_planning": "ManifestPlanning#8f61"
-    },
     "references": {
-      "cognitive_solver": "CognitiveSolver#30c8",
-      "realizable": "Realizable#cf00",
+      "solver_tree": "SolverTree#5623",
+      "frame_spec": "FrameSpec#5558",
       "execution_manifest": "ExecutionManifest#a0d9",
-      "solver_tree": "SolverTree#e174",
-      "frame_spec": "FrameSpec#d5b8"
+      "realizable": "Realizable#8d81",
+      "polymorphic_solver": "PolymorphicSolver#9188"
+    },
+    "composes_with": {
+      "manifest_planning": "ManifestPlanning#ece0",
+      "rollout": "Rollout#1d53",
+      "interpret": "Interpret#c9ee"
     },
     "yields": {
-      "outcome": "Outcome#38e0"
+      "outcome": "Outcome#144c"
     }
   }
 }
@@ -20019,102 +21185,46 @@
 
 ---
 
-## RequestFraming#0695
+## ReceptivityGate#d6d4
 
 ```json
 {
-  "handle": "RequestFraming",
-  "derived_from": "sema:Interpret",
-  "gloss": "Clarify intent and constraints before planning",
-  "mechanism": "The initial state of workflow orchestration. It performs the act of {{interpret}} by accepting a {{message}} and using {{think}} to {{understand}} the 'real ask' within the given {{context}} before committing resources. It clarifies constraints, success criteria, and hidden assumptions, producing a {{frame_spec}} artifact. It acts as a semantic firewall against vague or dangerous instructions.",
-  "signature": [
-    "Think#e1bd(FrameSpec#d5b8)"
-  ],
+  "handle": "ReceptivityGate",
+  "mechanism": "A Gate that guards a Solver's Feedback surface against poisoned or hallucinated evaluation. When a downstream orchestrator rejects an artifact, it must submit a typed {{failure_trace}} naming the violated {{accept_spec}} clause. The upstream Solver's ReceptivityGate runs {{validate}} on the trace before accepting it: it checks that the cited clause exists, that the evidence matches the artifact, and that the evaluator's signature is valid. Invalid or hallucinated feedback is dropped rather than absorbed into {{pathway_memory}}. In a decentralized cognitive commons where untrusted downstream clients can inject fabricated penalties to steal work, this gate is the structural defense that keeps the commons from degenerating into epistemic garbage.",
+  "gloss": "Verification gate that guards a Solver's Feedback surface against poisoned or fabricated rejection signals",
   "invariants": [
-    "Output must be a rigorous FrameSpec",
-    "No resources committed to execution yet"
-  ],
-  "preconditions": [
-    "Raw User Request",
-    "Context available"
-  ],
-  "postconditions": [
-    "FrameSpec artifact created",
-    "Constraints explicit"
+    "Trace-required: no rejection is accepted without a well-formed {{failure_trace}}.",
+    "Clause-verified: the cited AcceptSpec clause must exist.",
+    "Evidence-verified: the cited evidence must be present in the rejected artifact.",
+    "Signature-verified: the evaluator's identity must be cryptographically valid.",
+    "Drop-on-fail: invalid traces produce no update to {{pathway_memory}} rather than partial absorption."
   ],
   "failure_modes": [
-    "Misinterpretation: The agent clarifies the wrong ambiguity.",
-    "Over-constraint: Adding unnecessary restrictions that kill innovation.",
-    "Premature Optimization: Jumping to solutions before understanding the problem."
-  ],
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 1,
-    "related": [
-      "Reframe#ba00",
-      "Decompose#ac56"
-    ]
-  },
-  "sema_ref": "RequestFraming#0695",
-  "sema_id": "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e",
-  "sema_stub": "0695",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "composes_with": {
-      "understand": "Understand#96d4",
-      "think": "Think#e1bd"
-    },
-    "accepts": {
-      "message": "Message#f767"
-    },
-    "yields": {
-      "frame_spec": "FrameSpec#d5b8"
-    },
-    "references": {
-      "context": "Context#510a",
-      "interpret": "Interpret#c9ee"
-    }
-  }
-}
-```
-
----
-
-## Reversibility#049f
-
-```json
-{
-  "handle": "Reversibility",
-  "mechanism": "Evaluates whether the post-state of an action allows a return to the pre-state with zero information loss (or within acceptable cost). Returns TRUE for Type 2 decisions (reversible), FALSE for Type 1 (one-way doors).",
-  "gloss": "Condition: Can this action be undone?",
-  "invariants": [
-    "Entropy {{constraint}}: Reversal must not violate thermodynamic limits (e.g., cannot un-burn toast)."
-  ],
-  "parameters": [
-    {
-      "name": "cost_limit",
-      "type": "Cost",
-      "range": "unspecified",
-      "description": "Maximum acceptable cost to reverse the action"
-    }
+    "Over-strict: legitimate but imperfect traces are dropped, starving the Solver of real learning signal.",
+    "Under-strict: malformed traces that pass checks still corrupt pathway memory.",
+    "Bypass by privileged peer: a downstream orchestrator with elevated trust skips the gate and injects raw feedback.",
+    "DoS via trace flood: malicious actors swamp the gate with valid-looking traces to exhaust verification budget."
   ],
   "_meta": {
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 1,
+    "caution": "Required at any Feedback#b477 surface exposed to untrusted downstream consumers. Without it, the Solver#94ab absorbs fabricated penalties as if they were genuine learning signal."
   },
-  "sema_id": "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74",
-  "sema_ref": "Reversibility#049f",
-  "sema_stub": "049f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
+  "sema_id": "sema:ReceptivityGate#mh:SHA-256:d6d4c94286d0ff8ea5eecf0f5ff224c2e640d68d96fa498c1330b24ad9094535",
+  "sema_ref": "ReceptivityGate#d6d4",
+  "sema_stub": "d6d4",
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe"
+      "pathway_memory": "PathwayMemory#0799",
+      "accept_spec": "AcceptSpec#7caa",
+      "failure_trace": "FailureTrace#9de1"
+    },
+    "composes_with": {
+      "validate": "Validate#ebe1"
     }
   }
 }
@@ -20122,7 +21232,7 @@
 
 ---
 
-## ReversibilityCheck#9cd6
+## ReversibilityCheck#7948
 
 ```json
 {
@@ -20136,22 +21246,22 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:9cd69a4237e0e505309795a879387b04d42a0e21d43a4177d8552ec844ef6157",
-  "sema_ref": "ReversibilityCheck#9cd6",
-  "sema_stub": "9cd6",
+  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:794803012daa2446ebf76e387940cd7fe244a28d26e341337c4b94f7901b05b8",
+  "sema_ref": "ReversibilityCheck#7948",
+  "sema_stub": "7948",
   "signature": [
-    "Check#1544(Reversibility#049f)"
+    "Check#d3e8(Reversibility#bf79)"
   ],
   "dependencies": {
     "references": {
-      "reversibility": "Reversibility#049f",
-      "check": "Check#1544",
       "world_reversible": "WorldReversible#f664",
-      "human_approve": "HumanApprove#e64a"
+      "reversibility": "Reversibility#bf79",
+      "check": "Check#d3e8",
+      "human_approve": "HumanApprove#2b91"
     }
   }
 }
@@ -20186,8 +21296,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "system": "System#e314",
-      "state": "State#4d58"
+      "state": "State#4d58",
+      "system": "System#e314"
     }
   }
 }
@@ -20195,7 +21305,7 @@
 
 ---
 
-## Rollout#4238
+## Rollout#1d53
 
 ```json
 {
@@ -20228,9 +21338,9 @@
       "BlueGreen"
     ]
   },
-  "sema_id": "sema:Rollout#mh:SHA-256:42389087ff9ffd73d3de5c71f8509cf2cd974795babc71e862ec139c92ad5c78",
-  "sema_ref": "Rollout#4238",
-  "sema_stub": "4238",
+  "sema_id": "sema:Rollout#mh:SHA-256:1d5320c9bd40f4a880e8d5d3ce1497027965fd5b6fe3a994180c4a4e4ddaac0b",
+  "sema_ref": "Rollout#1d53",
+  "sema_stub": "1d53",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
@@ -20238,26 +21348,26 @@
   ],
   "dependencies": {
     "references": {
-      "manifest_planning": "ManifestPlanning#8f61",
+      "build": "Build#9330",
       "world_reversible": "WorldReversible#f664",
-      "build": "Build#00f3",
       "system": "System#e314",
-      "act": "Act#5d55",
-      "spec": "Spec#436e",
-      "state": "State#4d58"
+      "manifest_planning": "ManifestPlanning#ece0",
+      "state": "State#4d58",
+      "spec": "Spec#a036",
+      "act": "Act#5d55"
     },
     "composes_with": {
-      "canary": "Canary#92d2",
+      "compensate": "Compensate#283e",
+      "canary": "Canary#adb0",
       "circuit_breaker": "CircuitBreaker#4162",
-      "ejection_seat": "EjectionSeat#6ff7",
-      "compensate": "Compensate#269d"
+      "ejection_seat": "EjectionSeat#d53e"
     },
     "accepts": {
       "execution_manifest": "ExecutionManifest#a0d9"
     },
     "yields": {
-      "monitor_report": "MonitorReport#063c",
-      "rollout_manifest": "RolloutManifest#9e7f"
+      "rollout_manifest": "RolloutManifest#9e7f",
+      "monitor_report": "MonitorReport#063c"
     }
   }
 }
@@ -20282,7 +21392,7 @@
     "ring": 0,
     "tier": 1,
     "related": [
-      "Rollout#4238"
+      "Rollout#1d53"
     ]
   },
   "sema_id": "sema:RolloutManifest#mh:SHA-256:9e7fe2b3bcd73879f8f55164530c8f5e6773a39b9719cfaca8dce18452ac1463",
@@ -20323,7 +21433,7 @@
 
 ---
 
-## RolloutWatch#5b2d
+## RolloutWatch#c298
 
 ```json
 {
@@ -20332,7 +21442,7 @@
   "gloss": "Continuous verification of deployed state against manifest",
   "mechanism": "The final {{state}} of workflow orchestration. It implements {{monitor}} by using {{observe}} to track the deployed {{solution}}'s performance on the {{system}} against the 'Definition of Done' defined in the {{rollout_manifest}}. If reality deviates from the plan (e.g., error rate spikes), it routes evidence back upstream via a {{monitor_report}}. It closes the feedback {{loop}}.",
   "signature": [
-    "Observe#8ebd(System#e314, RolloutManifest#9e7f)"
+    "Observe#39f0(System#e314, RolloutManifest#9e7f)"
   ],
   "invariants": [
     "Fidelity: Metrics must accurately reflect the 'Definition of Done'.",
@@ -20356,29 +21466,29 @@
     "category": "Protocols",
     "ring": 1,
     "related": [
-      "SpotAudit#6673",
-      "DriftWatch#a20d",
-      "Reflexion#51b9"
+      "SpotAudit#000e",
+      "DriftWatch#191e",
+      "Reflexion#eed9"
     ]
   },
-  "sema_ref": "RolloutWatch#5b2d",
-  "sema_id": "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1",
-  "sema_stub": "5b2d",
+  "sema_ref": "RolloutWatch#c298",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:c298179df77ba04d8153322f97cd3c4d52c7646dd84d47cc898b41d39fd8eac6",
+  "sema_stub": "c298",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "accepts": {
-      "rollout_manifest": "RolloutManifest#9e7f"
-    },
     "references": {
+      "solution": "Solution#fcea",
+      "monitor": "Monitor#feb3",
       "system": "System#e314",
-      "monitor": "Monitor#9a8f",
-      "state": "State#4d58",
-      "solution": "Solution#7186"
+      "state": "State#4d58"
     },
     "composes_with": {
-      "loop": "Loop#fb2e",
-      "observe": "Observe#8ebd"
+      "loop": "Loop#797f",
+      "observe": "Observe#39f0"
+    },
+    "accepts": {
+      "rollout_manifest": "RolloutManifest#9e7f"
     },
     "yields": {
       "monitor_report": "MonitorReport#063c"
@@ -20389,7 +21499,7 @@
 
 ---
 
-## RootHashGossip#ba35
+## RootHashGossip#e84b
 
 ```json
 {
@@ -20415,14 +21525,14 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a",
-  "sema_ref": "RootHashGossip#ba35",
-  "sema_stub": "ba35",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:e84b7af3e0f4b3f863dc1c9205a022c51f3f134880949614e5c8d5b2fabd5092",
+  "sema_ref": "RootHashGossip#e84b",
+  "sema_stub": "e84b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "loop": "Loop#fb2e"
+      "loop": "Loop#797f"
     }
   }
 }
@@ -20430,7 +21540,7 @@
 
 ---
 
-## ShoutWhisper#35dd
+## ShoutWhisper#40f7
 
 ```json
 {
@@ -20455,19 +21565,19 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "Route#9698"
+      "Route#b972"
     ],
     "ring": 1
   },
-  "sema_id": "sema:ShoutWhisper#mh:SHA-256:35ddf298feb20dc16aeaa1294566eddb2dda1928744d7d25e747ae9a697d0d78",
-  "sema_ref": "ShoutWhisper#35dd",
-  "sema_stub": "35dd",
+  "sema_id": "sema:ShoutWhisper#mh:SHA-256:40f74fa1781c38b641efe1a972d73d813ad280767dd73555c32e780b2231c603",
+  "sema_ref": "ShoutWhisper#40f7",
+  "sema_stub": "40f7",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "check": "Check#1544",
-      "global": "Global#803d"
+      "global": "Global#803d",
+      "check": "Check#d3e8"
     }
   }
 }
@@ -20475,7 +21585,7 @@
 
 ---
 
-## SignalReflection#aac2
+## SignalReflection#a613
 
 ```json
 {
@@ -20501,16 +21611,16 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:SignalReflection#mh:SHA-256:aac2c4b3fbc861b911c232b754116f4a56085e25dfd61c7ff6bb193b359578d0",
-  "sema_ref": "SignalReflection#aac2",
-  "sema_stub": "aac2",
+  "sema_id": "sema:SignalReflection#mh:SHA-256:a6131e3d0ab768f1246008e7ce1551e3022ddd2bf765b63faec34f82f4ab4a07",
+  "sema_ref": "SignalReflection#a613",
+  "sema_stub": "a613",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
+      "spectral_tune": "SpectralTune#b25a",
       "message": "Message#f767",
-      "spectral_tune": "SpectralTune#6c65"
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -20518,65 +21628,7 @@
 
 ---
 
-## SimulationTrace#9da6
-
-```json
-{
-  "handle": "SimulationTrace",
-  "mechanism": "Before taking an irreversible action (e.g., `delete_file`), the agent simulates the execution step-by-step in a scratchpad. It inspects the predicted state after the action. If the state looks bad, it aborts. It generates a verifiable {{trace}} of a {{mental_sim}}, creating an immutable record of the predicted future state.",
-  "gloss": "Pre-execution mental model",
-  "failure_modes": [
-    "{{simulation}} inaccuracy (the map is not the territory)."
-  ],
-  "invariants": [
-    "Causality: Every step T+1 is derived from T",
-    "Replayability: {{trace}}(Start) == End",
-    "{{trace}} immutable after creation."
-  ],
-  "preconditions": [
-    "{{simulation}} engine initialized"
-  ],
-  "postconditions": [
-    "Verifiable trace artifact generated"
-  ],
-  "parameters": [
-    {
-      "name": "confidence_floor",
-      "type": "Probability#356b",
-      "range": "[0.5, 0.9]",
-      "description": "Min certainty to trust trace"
-    },
-    {
-      "name": "simulation_fidelity",
-      "type": "Percentage",
-      "range": "[70%, 99%]",
-      "description": "Required model accuracy"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "sema_id": "sema:SimulationTrace#mh:SHA-256:9da67f06f48d0416c35169ed3a5a825dd1a477f3966a175fd0a66280c93d49d0",
-  "sema_ref": "SimulationTrace#9da6",
-  "sema_stub": "9da6",
-  "dependencies": {
-    "references": {
-      "trace": "Trace#9057",
-      "simulation": "Simulation#8035",
-      "mental_sim": "MentalSim#5728"
-    }
-  }
-}
-```
-
----
-
-## SolverManifest#67ac
+## SolverManifest#ea7a
 
 ```json
 {
@@ -20601,9 +21653,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
-  "sema_ref": "SolverManifest#67ac",
-  "sema_stub": "67ac",
+  "sema_id": "sema:SolverManifest#mh:SHA-256:ea7af8f65415521e54397adf54a16cd58a444763a4ea55e51eb524832cfa6b59",
+  "sema_ref": "SolverManifest#ea7a",
+  "sema_stub": "ea7a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {
@@ -20655,8 +21707,8 @@
   },
   "dependencies": {
     "references": {
-      "constraint": "Constraint#87fe",
-      "solver": "Solver#1c9b"
+      "solver": "Solver#94ab",
+      "constraint": "Constraint#87fe"
     }
   }
 }
@@ -20664,7 +21716,7 @@
 
 ---
 
-## SolverNode#a834
+## SolverNode#26b1
 
 ```json
 {
@@ -20716,19 +21768,19 @@
       }
     }
   },
-  "sema_ref": "SolverNode#a834",
-  "sema_id": "sema:SolverNode#mh:SHA-256:a834074d946b975927f4daa85da4ab4826235c49eecfa7fc5b72ce55e41774a2",
-  "sema_stub": "a834",
+  "sema_ref": "SolverNode#26b1",
+  "sema_id": "sema:SolverNode#mh:SHA-256:26b1b1c55415e76a21ea45f7cae6145c43ddb99ad114b04838de1be60b7b02a6",
+  "sema_stub": "26b1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "solver_manifest": "SolverManifest#67ac",
-      "responsibility": "Responsibility#4148",
-      "localized_learning": "LocalizedLearning#69bb",
-      "budget": "Budget#a763",
-      "solution": "Solution#7186",
-      "problem_space": "ProblemSpace#78da"
+      "problem_space": "ProblemSpace#9e74",
+      "solution": "Solution#fcea",
+      "solver_manifest": "SolverManifest#ea7a",
+      "localized_learning": "LocalizedLearning#fcc7",
+      "responsibility": "Responsibility#ac59",
+      "budget": "Budget#7270"
     }
   }
 }
@@ -20736,7 +21788,7 @@
 
 ---
 
-## SomaticMarker#84e4
+## SomaticMarker#53bb
 
 ```json
 {
@@ -20753,19 +21805,19 @@
     "layer": "Society",
     "category": "Protocols",
     "related": [
-      "Proprioception#2fbf"
+      "Proprioception#e486"
     ],
     "ring": 2
   },
-  "sema_id": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",
-  "sema_ref": "SomaticMarker#84e4",
-  "sema_stub": "84e4",
+  "sema_id": "sema:SomaticMarker#mh:SHA-256:53bb336530fd94daf434f10a69c6cc91447b412e126f57f60d67b87ff28e7f7a",
+  "sema_ref": "SomaticMarker#53bb",
+  "sema_stub": "53bb",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "correlation": "Correlation#091f",
+      "task": "Task#b328",
+      "correlation": "Correlation#148d",
       "signal": "Signal#f39d"
     }
   }
@@ -20774,7 +21826,7 @@
 
 ---
 
-## SourceEvaluate#ceb1
+## SourceEvaluate#2f43
 
 ```json
 {
@@ -20793,19 +21845,19 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:SourceEvaluate#mh:SHA-256:ceb14e641fee7940e36ad6c28b096bcf8bf90b50bee79a243d2b8eba788f0ba7",
-  "sema_ref": "SourceEvaluate#ceb1",
-  "sema_stub": "ceb1",
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:2f435ed553a590d81c9bce03aa8c2bff73187601609a70f7d090152d45e79456",
+  "sema_ref": "SourceEvaluate#2f43",
+  "sema_stub": "2f43",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Judge#d84f(Agent#aaec)"
+    "Judge#9554(Agent#35b9)"
   ],
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "cite_back": "CiteBack#d09c",
-      "judge": "Judge#d84f"
+      "cite_back": "CiteBack#bcc5",
+      "agent": "Agent#35b9",
+      "judge": "Judge#9554"
     }
   }
 }
@@ -20813,7 +21865,7 @@
 
 ---
 
-## SpectralTune#6c65
+## SpectralTune#b25a
 
 ```json
 {
@@ -20837,7 +21889,7 @@
   "parameters": [
     {
       "name": "context_chunks",
-      "type": "List[String]",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Prompts to hash"
     },
@@ -20860,14 +21912,14 @@
     "category": "Protocols",
     "ring": 1,
     "related": [
-      "OntologyHandshake#ead0"
+      "OntologyHandshake#46dc"
     ]
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
-  "sema_ref": "SpectralTune#6c65",
-  "sema_stub": "6c65",
+  "sema_id": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f",
+  "sema_ref": "SpectralTune#b25a",
+  "sema_stub": "b25a",
   "dependencies": {
     "accepts": {
       "signal": "Signal#f39d"
@@ -20878,52 +21930,7 @@
 
 ---
 
-## StateSnapshot#9ffc
-
-```json
-{
-  "handle": "StateSnapshot",
-  "mechanism": "Periodic serialization of internal volatile {{state}} to durable storage to enable crash recovery. Unlike distributed checkpoints (which requires consensus), {{snapshot}} is a local or unilateral durability guarantee. It enables 'Resume' functionality. Utilizes {{trace}}, {{idempotent_write}}.",
-  "gloss": "Durable persistence of volatile state",
-  "invariants": [
-    "Atomicity: {{snapshot}} is either fully written or discarded (no partial corruption)",
-    "Roundtrip Integrity: Deserialize(Serialize(S)) must equal S"
-  ],
-  "preconditions": [
-    "Serializable {{state}}",
-    "Write access to durable storage"
-  ],
-  "postconditions": [
-    "Resume point established"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "signature": [
-    "State#4d58(Snapshot#0ae9)"
-  ],
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:9ffc9d057109f26717249d3a4c46dfaa52a944d10a363034bca187b83305f39f",
-  "sema_ref": "StateSnapshot#9ffc",
-  "sema_stub": "9ffc",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "trace": "Trace#9057",
-      "idempotent_write": "IdempotentWrite#6c55",
-      "state": "State#4d58",
-      "snapshot": "Snapshot#0ae9"
-    }
-  }
-}
-```
-
----
-
-## StructuralCoaching#3da9
+## StructuralCoaching#5b44
 
 ```json
 {
@@ -20949,17 +21956,17 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4",
-  "sema_ref": "StructuralCoaching#3da9",
-  "sema_stub": "3da9",
+  "sema_id": "sema:StructuralCoaching#mh:SHA-256:5b44ab38c6cd0b23a9b192347563545145c4ec71ce1648723b678fd3684962a3",
+  "sema_ref": "StructuralCoaching#5b44",
+  "sema_stub": "5b44",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "critique": "Critique#3e00",
-      "invert": "Invert#d1b9",
-      "feedback": "Feedback#9b5c",
-      "creative": "Creative#5574"
+      "invert": "Invert#b0a8",
+      "feedback": "Feedback#b477",
+      "creative": "Creative#5574",
+      "critique": "Critique#4e43"
     }
   }
 }
@@ -20967,7 +21974,7 @@
 
 ---
 
-## StyleSpec#ec7b
+## StyleSpec#95c3
 
 ```json
 {
@@ -20975,7 +21982,7 @@
   "mechanism": "A structured {{spec}} defining the required {{aesthetics}} and formatting rules. It serves as the reference standard for passes in a {{phased_refinement}} loop focused on polish. Unlike functional requirements, this spec targets the subjective and presentational layer.",
   "gloss": "Codified aesthetic standards",
   "signature": [
-    "Spec#436e(Aesthetics#0be2)"
+    "Spec#a036(Aesthetics#ff5f)"
   ],
   "_meta": {
     "layer": "Society",
@@ -21001,16 +22008,16 @@
       }
     }
   },
-  "sema_ref": "StyleSpec#ec7b",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
-  "sema_stub": "ec7b",
+  "sema_ref": "StyleSpec#95c3",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:95c306b461ae5688657a92db9720cb7cc48735bce0e4700d6ba5dd071553303b",
+  "sema_stub": "95c3",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "phased_refinement": "PhasedRefinement#4a90",
-      "aesthetics": "Aesthetics#0be2",
-      "spec": "Spec#436e"
+      "phased_refinement": "PhasedRefinement#5e09",
+      "aesthetics": "Aesthetics#ff5f",
+      "spec": "Spec#a036"
     }
   }
 }
@@ -21018,7 +22025,7 @@
 
 ---
 
-## SynergisticMode#e7d9
+## SynergisticMode#b45f
 
 ```json
 {
@@ -21037,7 +22044,7 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
   "data_schema": {
     "type": "object",
@@ -21067,20 +22074,20 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:e7d9822f9bb0e4199bdafb21e4be993bbe3a0f04bba680804068c0b2bfe2306b",
-  "sema_ref": "SynergisticMode#e7d9",
-  "sema_stub": "e7d9",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:b45ff71f0f2c683119d507da17f7ec50067cd6226fb4f85deb517f08e2d8b3f5",
+  "sema_ref": "SynergisticMode#b45f",
+  "sema_stub": "b45f",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "accept_spec": "AcceptSpec#7caa",
+      "ontology_handshake": "OntologyHandshake#46dc",
       "system": "System#e314",
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "agent": "Agent#aaec",
-      "compose": "Compose#10b7",
-      "mode": "Mode#53e0",
+      "compose": "Compose#76c1",
       "signal": "Signal#f39d",
-      "accept_spec": "AcceptSpec#70dd"
+      "mode": "Mode#0e74",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -21088,15 +22095,15 @@
 
 ---
 
-## Taper#9687
+## Taper#690e
 
 ```json
 {
   "handle": "Taper",
-  "gloss": "Progressive ambiguity collapse from noisy input to certain output. Examples: Sema Discovery, Hiring pipelines, Compiler passes.",
+  "gloss": "Multi-stage filter of increasing strictness: wide high-entropy input to narrow certain output",
   "mechanism": "A multi-stage {{sequence}} process that accepts wide-aperture, high-entropy inputs and progressively filters them through {{gate}}s or {{tri_gate}}s of increasing strictness. Each stage: (1) Applies a stage-specific acceptance threshold, acting as a functional {{depth_governor}}; (2) Reduces the candidate set to {{compress}} the search space; (3) Increases certainty. Final stage outputs zero-entropy signal (deterministic, unambiguous). Failure modes are stage-appropriate: Early stages optimize for recall (don't lose valid signals), Late stages optimize for precision (don't pass garbage).",
   "signature": [
-    "Sequence#b0b8(Gate#206d)"
+    "Sequence#b0b8(Gate#89fd)"
   ],
   "invariants": [
     "Monotonic Narrowing: |candidates[n+1]| <= |candidates[n]|",
@@ -21129,20 +22136,20 @@
     "category": "Protocols",
     "tier": 1
   },
-  "sema_ref": "Taper#9687",
-  "sema_id": "sema:Taper#mh:SHA-256:9687795b14b6e66574aebb5255ef84529bf7095b350513470085285e3d90a260",
-  "sema_stub": "9687",
+  "sema_ref": "Taper#690e",
+  "sema_id": "sema:Taper#mh:SHA-256:690ee0aa07768b21cc8b3c0347b5b8383666d1ea9e4ff163fd87a67fa3dfe5e0",
+  "sema_stub": "690e",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "compress": "Compress#0967",
-      "depth_governor": "DepthGovernor#ea1a"
+      "depth_governor": "DepthGovernor#73d5"
     },
     "composes_with": {
-      "sequence": "Sequence#b0b8",
-      "gate": "Gate#206d",
-      "tri_gate": "TriGate#07fc"
+      "gate": "Gate#89fd",
+      "tri_gate": "TriGate#67b8",
+      "sequence": "Sequence#b0b8"
     }
   }
 }
@@ -21150,42 +22157,7 @@
 
 ---
 
-## ThinSlice#debb
-
-```json
-{
-  "handle": "ThinSlice",
-  "mechanism": "Sampling a tiny fraction of data (e.g., first 512 bytes) to make a high-confidence classification. Used for triage and routing where full processing is too expensive. Utilizes {{route}}, {{extended_thinking}}, {{somatic_marker}}.",
-  "gloss": "High-confidence classification from minimal data",
-  "invariants": [
-    "Fail-Safe: If classification low confidence, forward to full processor",
-    "Sample Limit: Input size <= Slice Size",
-    "Representative Sample: The slice must statistically resemble the whole for the target feature"
-  ],
-  "_meta": {
-    "tier": 3,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:ThinSlice#mh:SHA-256:debb731893208ce6514504b1212e5d07cf60f1477f3c485b752a694822c3fb30",
-  "sema_ref": "ThinSlice#debb",
-  "sema_stub": "debb",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "route": "Route#9698",
-      "extended_thinking": "ExtendedThinking#ca3c",
-      "somatic_marker": "SomaticMarker#84e4"
-    }
-  }
-}
-```
-
----
-
-## ThreeLevelCollision#5db4
+## ThreeLevelCollision#d990
 
 ```json
 {
@@ -21213,17 +22185,17 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:5db438e5f38882afa181ea527d06b673f64139f42390b9e795cf2ecc9efa29af",
-  "sema_ref": "ThreeLevelCollision#5db4",
-  "sema_stub": "5db4",
+  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:d9905e91ea38f04c014d7e992f517f88129b891a49d749f288d4176da9734823",
+  "sema_ref": "ThreeLevelCollision#d990",
+  "sema_stub": "d990",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "fail_closed": "FailClosed#ae79",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "fail_closed": "FailClosed#e6a0"
     }
   }
 }
@@ -21231,7 +22203,7 @@
 
 ---
 
-## TieredAccess#2a28
+## TieredAccess#e45b
 
 ```json
 {
@@ -21257,7 +22229,7 @@
     {
       "name": "cost_function",
       "type": "Enum",
-      "range": "{Linear#81af, Exponential, Step#5f22}",
+      "range": "{Linear, Exponential, Step#5f22}",
       "description": "How cost scales with proximity"
     },
     {
@@ -21273,15 +22245,15 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
-  "sema_ref": "TieredAccess#2a28",
-  "sema_stub": "2a28",
+  "sema_id": "sema:TieredAccess#mh:SHA-256:e45bd51bbdb40c9fcc3fea300a7fe4fd643ef267d1eef914845452f998a03163",
+  "sema_ref": "TieredAccess#e45b",
+  "sema_stub": "e45b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "agent": "Agent#aaec",
-      "identity": "Identity#626c"
+      "identity": "Identity#626c",
+      "agent": "Agent#35b9"
     },
     "composes_with": {
       "bearer_token": "BearerToken#2fe9"
@@ -21292,71 +22264,12 @@
 
 ---
 
-## TimeboxThink#2656
-
-```json
-{
-  "handle": "TimeboxThink",
-  "mechanism": "Bounded Exploration: Set hard time limit before starting. When limit hits, stop regardless of completion. Assess: What did I learn? Is more time justified? Prevents rabbit holes. Forces prioritization of highest-{{value}} {{work}} within {{constraint}}. Utilizes {{budget}}.",
-  "gloss": "Temporal bounding of exploration",
-  "failure_modes": [
-    "Premature Cutoff: Stopping the process just before the breakthrough occurs."
-  ],
-  "invariants": [
-    "Best-so-far answer returned",
-    "Execution halts at T_max"
-  ],
-  "preconditions": [
-    "Open-ended task",
-    "Time budget"
-  ],
-  "postconditions": [
-    "Result within deadline"
-  ],
-  "parameters": [
-    {
-      "name": "checkpoint_interval",
-      "type": "Duration",
-      "range": "[100ms, 5min]",
-      "description": "Save partial results frequency"
-    },
-    {
-      "name": "max_duration",
-      "type": "Duration",
-      "range": "[1s, 1h]",
-      "description": "Hard cutoff for thinking"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:TimeboxThink#mh:SHA-256:265679a37dcae704c3e9e8c958f42f11751102e0685e55b1fe277c238bd9c05e",
-  "sema_ref": "TimeboxThink#2656",
-  "sema_stub": "2656",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "constraint": "Constraint#87fe",
-      "work": "Work#aaad",
-      "value": "Value#3c5d",
-      "budget": "Budget#a763"
-    }
-  }
-}
-```
-
----
-
-## ToolDiscovery#548f
+## ToolDiscovery#7c18
 
 ```json
 {
   "handle": "ToolDiscovery",
-  "mechanism": "{{agent}} queries a {{discover}} for capabilities matching its current {{task}}. Registry returns a {{card}} listing available tools with typed input/output schemas. {{agent}} selects the best match, performs a {{compatibility_check}} to verify schema alignment, then invokes via {{tool_invoke}} and observes the typed {{result}}. If no match is found or {{compatibility_check}} fails, the agent must {{fail_closed}} rather than attempt a best-effort invocation. Follows the Model Context Protocol pattern of progressive discovery: orient via registry, explore via schema matching, verify via hash comparison.",
+  "mechanism": "{{agent}} queries a {{discover}} for capabilities matching its current {{task}}. Registry returns a {{card}} listing available tools with typed input/output schemas. {{agent}} selects the best match, performs a {{compatibility_check}} to verify schema alignment, then invokes via {{tool_invoke}} and observes the typed {{result}}. If no match is found or {{compatibility_check}} fails, the agent must {{fail_closed}} rather than attempt a best-effort invocation. Follows the Model Context Protocol pattern of progressive discovery under {{context_first}} discipline: orient via registry, explore via schema matching, verify via hash comparison.",
   "gloss": "Discover and invoke external tools via structured capability manifests",
   "invariants": [
     "Schema Verification: Tool manifest hash must be verified via {{compatibility_check}} before invocation",
@@ -21377,7 +22290,7 @@
     "Capability hallucination (tool claims capability it cannot deliver)."
   ],
   "signature": [
-    "Discover#afa1(ToolInvoke#643c)"
+    "Discover#7dbc(ToolInvoke#4694)"
   ],
   "_meta": {
     "layer": "Society",
@@ -21385,28 +22298,29 @@
     "ring": 1,
     "tier": 1,
     "related": [
-      "AgentDiscover#34b6"
+      "AgentDiscover#d4f2"
     ]
   },
-  "sema_ref": "ToolDiscovery#548f",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:548fb253447d270bee9b28ee7fe125135ce45ab54fbd2744fcc70e6b7d9b6de8",
-  "sema_stub": "548f",
+  "sema_ref": "ToolDiscovery#7c18",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:7c18795bfdd6ff66afe92f985c4db8e19ad1a3a9fd1120375e22d46b65fbff83",
+  "sema_stub": "7c18",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
-      "compatibility_check": "CompatibilityCheck#3abb",
-      "tool_invoke": "ToolInvoke#643c",
-      "fail_closed": "FailClosed#ae79"
+      "tool_invoke": "ToolInvoke#4694",
+      "fail_closed": "FailClosed#e6a0",
+      "compatibility_check": "CompatibilityCheck#3abb"
     },
     "references": {
-      "discover": "Discover#afa1",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
-      "card": "Card#e307"
+      "card": "Card#2d01",
+      "task": "Task#b328",
+      "discover": "Discover#7dbc",
+      "context_first": "ContextFirst#def7",
+      "agent": "Agent#35b9"
     },
     "yields": {
-      "result": "Result#8ed9"
+      "result": "Result#195b"
     }
   }
 }
@@ -21414,41 +22328,7 @@
 
 ---
 
-## TraceBelief#369d
-
-```json
-{
-  "handle": "TraceBelief",
-  "mechanism": "A chronological reasoning pattern that tracks the history of a belief. Prevents 'Silent Updating' by forcing the agent to cite the specific past belief node it is revising. Instantiates the {{trace}} primitive on a {{belief}} object. Utilizes {{trace}}, {{surprisal_update}}, {{belief}}, {{time_warp_log}}.",
-  "gloss": "Belief Provenance (Macro for Trace(Belief))",
-  "_meta": {
-    "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
-  },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:369d32aa6cf9d9eb0ae829b6c102dd7b5231f0d193980e81b2242d813fae99ee",
-  "sema_ref": "TraceBelief#369d",
-  "sema_stub": "369d",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "signature": [
-    "Trace#9057(Belief#5ad9)"
-  ],
-  "dependencies": {
-    "references": {
-      "trace": "Trace#9057",
-      "surprisal_update": "SurprisalUpdate#8eb2",
-      "belief": "Belief#5ad9",
-      "time_warp_log": "TimeWarpLog#d938"
-    }
-  }
-}
-```
-
----
-
-## TranslationProxy#f0e0
+## TranslationProxy#895a
 
 ```json
 {
@@ -21475,21 +22355,21 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:TranslationProxy#mh:SHA-256:f0e0d8b01e88f45c1d6791f41ed1686a96e40fc48f541c31568d48bb83ad988e",
-  "sema_ref": "TranslationProxy#f0e0",
-  "sema_stub": "f0e0",
+  "sema_id": "sema:TranslationProxy#mh:SHA-256:895a31b33e5c6add265a78d63e1669ca02b4d99798b4cc0d272b0f459cbe69b0",
+  "sema_ref": "TranslationProxy#895a",
+  "sema_stub": "895a",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "signature": [
-    "Translate#e75d(Protocol#7e1c)"
+    "Translate#a8ed(Protocol#7e1c)"
   ],
   "dependencies": {
     "references": {
-      "translate": "Translate#e75d",
       "protocol": "Protocol#7e1c",
-      "ontology_handshake": "OntologyHandshake#ead0",
-      "message": "Message#f767",
-      "compare": "Compare#4881"
+      "ontology_handshake": "OntologyHandshake#46dc",
+      "translate": "Translate#a8ed",
+      "compare": "Compare#4881",
+      "message": "Message#f767"
     }
   }
 }
@@ -21497,7 +22377,7 @@
 
 ---
 
-## UniqueHandle#11e7
+## UniqueHandle#d9a1
 
 ```json
 {
@@ -21519,16 +22399,16 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:UniqueHandle#mh:SHA-256:11e7542d2b43ec0879ae24f91eeeaaf6380cb0c9ec067056eb2d1e4932c0468e",
-  "sema_ref": "UniqueHandle#11e7",
-  "sema_stub": "11e7",
+  "sema_id": "sema:UniqueHandle#mh:SHA-256:d9a1b8d27c546ca3297cc2c8deaeb91300f52bf645e11b667b84d130b169c16d",
+  "sema_ref": "UniqueHandle#d9a1",
+  "sema_stub": "d9a1",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "break": "Break#1a63",
-      "agent": "Agent#aaec",
-      "state_lock": "StateLock#774b"
+      "state_lock": "StateLock#8183",
+      "break": "Break#177f",
+      "agent": "Agent#35b9"
     }
   }
 }
@@ -21536,7 +22416,7 @@
 
 ---
 
-## UptakeAsGround#d5f3
+## UptakeAsGround#0013
 
 ```json
 {
@@ -21565,15 +22445,15 @@
     "category": "Protocols",
     "ring": 2
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
-  "sema_ref": "UptakeAsGround#d5f3",
-  "sema_stub": "d5f3",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:001365c9917fa3e9c04c463ec563edc019b6dfa5e9da61b243a2acadaa2bfd9e",
+  "sema_ref": "UptakeAsGround#0013",
+  "sema_stub": "0013",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "task": "Task#d9f9",
-      "modest_claim": "ModestClaim#f6e6"
+      "task": "Task#b328",
+      "modest_claim": "ModestClaim#ac19"
     }
   }
 }
@@ -21581,7 +22461,7 @@
 
 ---
 
-## UptakeOverTimestamp#9f0f
+## UptakeOverTimestamp#44de
 
 ```json
 {
@@ -21610,15 +22490,15 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:9f0fffcbeef00cd271526bb7a2849998c76e242ed74d36d0058b1849379c57ab",
-  "sema_ref": "UptakeOverTimestamp#9f0f",
-  "sema_stub": "9f0f",
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:44de909798cb858dc158d8d3b4939f566b99efa7ad04096c2adc97e1c38de01f",
+  "sema_ref": "UptakeOverTimestamp#44de",
+  "sema_stub": "44de",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "uptake_as_ground": "UptakeAsGround#d5f3",
-      "problem": "Problem#5baa"
+      "problem": "Problem#4576",
+      "uptake_as_ground": "UptakeAsGround#0013"
     }
   }
 }
@@ -21626,77 +22506,12 @@
 
 ---
 
-## Warmup#28c4
-
-```json
-{
-  "handle": "Warmup",
-  "mechanism": "Gradual Capacity Ramp: On activation, start at reduced capacity C_min and increase to C_max over time T following a defined curve. Prevents 'thundering herd' overload on cold systems. Utilizes {{greet}}, {{throttle}}.",
-  "gloss": "Gradual capacity increase to stabilize cold systems",
-  "failure_modes": [
-    "Premature Load: Traffic arrives before warmup completes.",
-    "False Warmth: Timer completes but internal state (e.g.",
-    "cache) is still cold."
-  ],
-  "invariants": [
-    "Capacity Limit: Accepted_Load <= Current_Warmup_Cap(t)"
-  ],
-  "preconditions": [
-    "{{system}} state is inactive or reset"
-  ],
-  "postconditions": [
-    "Capacity limit equals C_max",
-    "{{system}} state is active"
-  ],
-  "parameters": [
-    {
-      "name": "curve",
-      "type": "Enum",
-      "range": "{Linear#81af, Exponential, Step#5f22}",
-      "description": "Default: Linear"
-    },
-    {
-      "name": "initial_capacity",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Starting capacity as fraction of full (0 = cold start)"
-    },
-    {
-      "name": "ramp_duration",
-      "type": "Duration",
-      "range": "[10s, 1h]",
-      "description": "Time to reach full capacity from initial"
-    }
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
-  "sema_ref": "Warmup#28c4",
-  "sema_stub": "28c4",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "system": "System#e314",
-      "throttle": "Throttle#3b43",
-      "greet": "Greet#7ad2"
-    }
-  }
-}
-```
-
----
-
-## WorkerMode#a3ab
+## WorkerMode#b5c4
 
 ```json
 {
   "handle": "WorkerMode",
-  "mechanism": "Execution {{state}} Machine. Upon invoking `solver_claim_task`, the {{agent}} performs an atomic {{identity}} {{switch}} via {{context_switch}} using the {{solver_manifest}}. The {{agent}} remains in this {{mode}} until the {{task}} is complete (emitting a {{solution}} or error to the {{solver_node}}), ensuring adherence to the assigned persona. A {{lock}} prevents concurrent task claims.",
+  "mechanism": "Execution {{state}} Machine. Upon invoking `solver_claim_task`, the {{agent}} performs an atomic {{identity}} change via {{context_switch}} using the {{solver_manifest}}. The {{agent}} remains in this {{mode}} until the {{task}} is complete (emitting a {{solution}} or error to the {{solver_node}}), ensuring adherence to the assigned persona. A {{lock}} prevents concurrent task claims.",
   "gloss": "Claim tasks and become the assigned persona",
   "failure_modes": [
     "Persona Drift: {{agent}} slowly reverts to default behaviors during long tasks ({{context}} Window exhaustion).",
@@ -21720,29 +22535,28 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:WorkerMode#mh:SHA-256:a3abda2cd7a656742d4c0e20f5e020e002904c4639b739be88b117bd620be50a",
-  "sema_ref": "WorkerMode#a3ab",
-  "sema_stub": "a3ab",
+  "sema_id": "sema:WorkerMode#mh:SHA-256:b5c4563f37c89f5983e199959a3d2adeaa58280ffb0043c7bf1737e39492e997",
+  "sema_ref": "WorkerMode#b5c4",
+  "sema_stub": "b5c4",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "accepts": {
-      "solver_manifest": "SolverManifest#67ac"
-    },
     "references": {
-      "lock": "Lock#051c",
-      "task": "Task#d9f9",
-      "agent": "Agent#aaec",
+      "solver_node": "SolverNode#26b1",
+      "solution": "Solution#fcea",
+      "task": "Task#b328",
       "identity": "Identity#626c",
+      "lock": "Lock#051c",
+      "mode": "Mode#0e74",
+      "context_switch": "ContextSwitch#590e",
       "context": "Context#510a",
-      "mode": "Mode#53e0",
-      "solver_node": "SolverNode#a834",
       "state": "State#4d58",
-      "solution": "Solution#7186",
-      "switch": "Switch#e7f9",
-      "context_switch": "ContextSwitch#42cd"
+      "agent": "Agent#35b9"
+    },
+    "accepts": {
+      "solver_manifest": "SolverManifest#ea7a"
     }
   }
 }
@@ -21750,7 +22564,7 @@
 
 ---
 
-## Workflow#36b2
+## Workflow#c728
 
 ```json
 {
@@ -21794,59 +22608,18 @@
     "tier": 1,
     "ring": 0
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:36b2e9b976f4c8995977ea44277a6c0d2d6fba5c61e8bac80b13d4f9695e1dd9",
-  "sema_ref": "Workflow#36b2",
-  "sema_stub": "36b2",
+  "sema_id": "sema:Workflow#mh:SHA-256:c728636b6a043b7ace516bbafbc231759514070d2755d8694b0c0404266bfe91",
+  "sema_ref": "Workflow#c728",
+  "sema_stub": "c728",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "step": "Step#5f22",
-      "solver": "Solver#1c9b",
-      "role": "Role#6877",
+      "solver": "Solver#94ab",
+      "accept_spec": "AcceptSpec#7caa",
       "artifact": "Artifact#6254",
-      "accept_spec": "AcceptSpec#70dd"
-    }
-  }
-}
-```
-
----
-
-## WorldReversible#f664
-
-```json
-{
-  "handle": "WorldReversible",
-  "mechanism": "A safety constraint where the agent must design the system such that every action can be perfectly inverted at low cost. This forces the use of immutable logs, versioning, and 'soft deletes' instead of destructive updates.",
-  "gloss": "Designing for zero-cost undo",
-  "failure_modes": [
-    "Storage explosion (keeping all history)."
-  ],
-  "invariants": [
-    "Lossless Undo: {{state}}(T) can be fully restored from {{state}}(T+1)",
-    "Low Friction: Cost(Undo) ~ Cost(Do)"
-  ],
-  "preconditions": [
-    "Storage is sufficient for history"
-  ],
-  "postconditions": [
-    "Irreversible actions wrapped in 'Commit' gates"
-  ],
-  "_meta": {
-    "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
-  },
-  "sema_id": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe",
-  "sema_ref": "WorldReversible#f664",
-  "sema_stub": "f664",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "dependencies": {
-    "references": {
-      "state": "State#4d58"
+      "role": "Role#94e4",
+      "step": "Step#5f22"
     }
   }
 }

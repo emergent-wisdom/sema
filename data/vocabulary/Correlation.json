@@ -32,8 +32,8 @@
       }
     }
   },
-  "mechanism": "A relationship where two {{variable}}s move together, but one does not necessarily cause the other. 'Cum hoc ergo propter hoc' fallacy trap.",
-  "gloss": "Shared movement",
+  "mechanism": "Structural co-movement between two {{variable}}s without the directed edge that would make it {{causation}}: changes in one accompany changes in the other, but manipulating one does not necessarily alter the other. Characterized by a coefficient in [-1, 1]. The distinction is topological, not a consequence of the cum-hoc-ergo-propter-hoc fallacy \u2014 Correlation is defined by the structural absence of a directed causal edge.",
+  "gloss": "Co-movement between variables without directed causal edge \u2014 structurally distinct from Causation",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -42,12 +42,13 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625",
-  "sema_ref": "Correlation#091f",
-  "sema_stub": "091f",
+  "sema_id": "sema:Correlation#mh:SHA-256:148d5034bf5678b1e5c702109d82ebb76620dbf7e792717e40c3f3ed6698db9c",
+  "sema_ref": "Correlation#148d",
+  "sema_stub": "148d",
   "dependencies": {
     "references": {
-      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c"
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
+      "causation": "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc"
     }
   }
 }

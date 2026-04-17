@@ -24,12 +24,6 @@
       "type": "Duration",
       "range": "unspecified",
       "description": "Default: 1h"
-    },
-    {
-      "name": "output_artifact",
-      "type": "Solution",
-      "range": "unspecified",
-      "description": "The solution artifact produced by self-testing"
     }
   ],
   "_meta": {
@@ -38,9 +32,9 @@
     "category": "Economics",
     "ring": 0
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:3f2cc6a5a25c8127928db9d40defd1a022362de6f94ee44cbab9383134d4d9e3",
-  "sema_ref": "DogfoodFirst#3f2c",
-  "sema_stub": "3f2c",
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:25387b1cb9c36907f32775517ffb22e2370c126d85c8db8a82b611ebaed142b8",
+  "sema_ref": "DogfoodFirst#2538",
+  "sema_stub": "2538",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

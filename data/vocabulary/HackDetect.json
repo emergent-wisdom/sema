@@ -21,15 +21,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
+    "layer": "Mind",
+    "category": "Inference",
+    "ring": 2
   },
-  "sema_id": "sema:HackDetect#mh:SHA-256:c89cffb0b0f44031d64b88c435c8f992ec540dd94a8993ecd5f5f6bbb557ff83",
-  "sema_ref": "HackDetect#c89c",
-  "sema_stub": "c89c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:HackDetect#mh:SHA-256:1ecaa4bb2a72d22dc146f6a8a8ba8f4d38678acf78bf176058c0d779525b44f3",
+  "sema_ref": "HackDetect#1eca",
+  "sema_stub": "1eca",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",

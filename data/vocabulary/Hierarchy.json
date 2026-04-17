@@ -22,7 +22,7 @@
     }
   },
   "mechanism": "The vertical ranking of {{category}}s or objects. Defines Upper vs. Lower relationships, inheritance, and authority.",
-  "gloss": "Vertical ranking",
+  "gloss": "Vertical rank ordering with Upper/Lower relations, inheritance, and authority",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -31,9 +31,9 @@
   },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
-  "sema_id": "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
-  "sema_ref": "Hierarchy#aa9b",
-  "sema_stub": "aa9b",
+  "sema_id": "sema:Hierarchy#mh:SHA-256:d5301ba0587b73443b7408885a85fd530d1609add96c1250138e062d18a565cb",
+  "sema_ref": "Hierarchy#d530",
+  "sema_stub": "d530",
   "dependencies": {
     "references": {
       "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1"

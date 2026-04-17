@@ -19,11 +19,11 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Inference",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
-  "sema_ref": "SemanticTabu#82dd",
-  "sema_stub": "82dd",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:b511d0691bf169437533d1bcc074e7c350d68e0f3a1e760454eacc289e1ccd53",
+  "sema_ref": "SemanticTabu#b511",
+  "sema_stub": "b511",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

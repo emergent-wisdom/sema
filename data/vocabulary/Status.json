@@ -1,0 +1,42 @@
+{
+  "handle": "Status",
+  "mechanism": "The graded verification outcome type: Verified (the check passed), Falsified (the check failed), or Unknown (the check could not reach a definitive answer). Carries an optional reason field explaining the outcome. Distinct from Boolean (strict two-valued, no Unknown) and from Decision (three-valued with proceed/halt/debt operational semantics).",
+  "gloss": "Graded verification outcome: Verified, Falsified, or Unknown",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "value"
+    ],
+    "properties": {
+      "value": {
+        "type": "string",
+        "enum": [
+          "Verified",
+          "Falsified",
+          "Unknown"
+        ],
+        "description": "The outcome of a verification operation"
+      },
+      "reason": {
+        "type": "string",
+        "description": "Optional explanation for the outcome"
+      }
+    }
+  },
+  "invariants": [
+    "Tri-valued: exactly one of {Verified, Falsified, Unknown}.",
+    "Unknown is not a failure: it is an honest absence of evidence, distinct from Falsified."
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {},
+  "sema_id": "sema:Status#mh:SHA-256:1cf93b675b4c08b59123cb061984604d6cb3848818bb65ad87a12cb8e0503cee",
+  "sema_ref": "Status#1cf9",
+  "sema_stub": "1cf9"
+}

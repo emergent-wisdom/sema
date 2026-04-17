@@ -38,9 +38,9 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Time",
-  "sema_id": "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
-  "sema_ref": "Heartbeat#7f88",
-  "sema_stub": "7f88",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:b67a3ab4833a40c7c960fab4a7a75f920c734ddfe795a223cceb8477e327e0ef",
+  "sema_ref": "Heartbeat#b67a",
+  "sema_stub": "b67a",
   "dependencies": {
     "references": {
       "monitor": "sema:Monitor#mh:SHA-256:9a8f8879765fe55f9ab79786671b7e4cf0aa0e61730e20897214b22fb6fa08bb"

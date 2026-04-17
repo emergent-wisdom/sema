@@ -6,17 +6,17 @@
     "Targeted",
     "Structured"
   ],
-  "sema_id": "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c",
-  "sema_ref": "FeedbackSignal#f904",
-  "sema_stub": "f904",
+  "sema_id": "sema:FeedbackSignal#mh:SHA-256:f174509d1cbc29c299a7a3e39a4c9246f9fb6cbe6bb9be0cd4bac6b88a2053a6",
+  "sema_ref": "FeedbackSignal#f174",
+  "sema_stub": "f174",
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Infrastructure",
+    "category": "Primitives",
     "ring": 0,
     "tier": 1
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives",
   "data_schema": {
     "type": "object",
     "required": [

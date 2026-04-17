@@ -1,6 +1,6 @@
 {
   "handle": "ParetoFront",
-  "mechanism": "A decision primitive for explicitly balancing competing constraints (Tradeoff Space). Instead of optimizing a single metric, the agent identifies the frontier curve where improving Metric A necessitates degrading Metric B. The goal is to move the system state TO the frontier (efficiency) and then slide ALONG the frontier (preference). It uses {{rank}} to order solutions by dominance, discarding those strictly inferior on all axes.",
+  "mechanism": "A decision primitive for explicitly balancing competing {{axes}} (Tradeoff Space). Instead of optimizing a single metric, the agent identifies the frontier curve where improving axis A necessitates degrading axis B. The goal is to move the system state TO the frontier (efficiency) and then slide ALONG the frontier (preference). It uses {{rank}} to order solutions by dominance, discarding those strictly inferior on all axes.",
   "gloss": "Explicitly balancing competing constraints",
   "invariants": [
     "Efficiency: {{state}} is optimal if no metric can improve without another degrading",
@@ -14,12 +14,6 @@
     "Selected solution lies on the Pareto Frontier"
   ],
   "parameters": [
-    {
-      "name": "axes",
-      "type": "List[Metric]",
-      "range": "unspecified",
-      "description": "Dimensions to optimize"
-    },
     {
       "name": "resolution",
       "type": "Float",
@@ -37,15 +31,18 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
-  "sema_ref": "ParetoFront#9091",
-  "sema_stub": "9091",
+  "sema_id": "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be",
+  "sema_ref": "ParetoFront#c1fb",
+  "sema_stub": "c1fb",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    },
+    "accepts": {
+      "axes": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
     }
   }
 }

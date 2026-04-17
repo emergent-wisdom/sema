@@ -1,6 +1,6 @@
 {
   "handle": "AnalogyBridge",
-  "mechanism": "To solve a novel {{problem}}, the {{agent}} explicitly searches its training data for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. It merges the structural properties of the source and target domains, identifying the isomorphic mapping.",
+  "mechanism": "To solve a novel {{problem}}, the {{agent}} uses {{latent_attachment}} to search its embedding space for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. It merges the structural properties of the source and target domains, identifying the isomorphic mapping.",
   "gloss": "Mapping to known solutions",
   "failure_modes": [
     "False analogy (mapping superficial similarities)."
@@ -21,16 +21,17 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
-  "sema_ref": "AnalogyBridge#bff7",
-  "sema_stub": "bff7",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:ddb22c56410e1a3b64327940231213795520e9c0b1551e5c462bc8dd6c0fbabf",
+  "sema_ref": "AnalogyBridge#ddb2",
+  "sema_stub": "ddb2",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4"
     }
   }
 }

@@ -21,9 +21,9 @@
     "category": "Inference",
     "ring": 1
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:e67338652fa9214a713c8b4bc8f1ff1173a080090e84e8ca157f5e071f772a38",
-  "sema_ref": "OntologyAdapt#e673",
-  "sema_stub": "e673",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:4c47e0f79019b4299cb3ee8f3df1fb16c94b96a0148d7809d771109ed67ef59f",
+  "sema_ref": "OntologyAdapt#4c47",
+  "sema_stub": "4c47",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

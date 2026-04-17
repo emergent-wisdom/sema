@@ -18,15 +18,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 1
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
-  "sema_ref": "CiteBack#d09c",
-  "sema_stub": "d09c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:CiteBack#mh:SHA-256:bcc5f0da7205f446b829c6b70fa40ad3e676cc359eb04ef2280c03e1498ecde6",
+  "sema_ref": "CiteBack#bcc5",
+  "sema_stub": "bcc5",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241"

@@ -32,15 +32,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:TimeboxThink#mh:SHA-256:265679a37dcae704c3e9e8c958f42f11751102e0685e55b1fe277c238bd9c05e",
-  "sema_ref": "TimeboxThink#2656",
-  "sema_stub": "2656",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:TimeboxThink#mh:SHA-256:043d1bce17ccfc84c9942fc1d4d6d374613aece1f5d21f07be766dad3ad6df74",
+  "sema_ref": "TimeboxThink#043d",
+  "sema_stub": "043d",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "work": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",

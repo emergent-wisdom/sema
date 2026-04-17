@@ -32,9 +32,9 @@
     ],
     "ring": 1
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
-  "sema_ref": "Optimize#3075",
-  "sema_stub": "3075",
+  "sema_id": "sema:Optimize#mh:SHA-256:5b84e57715fe93b6d6b55f1d202e48e8d17b7965f61243e3b5f5f4a117775881",
+  "sema_ref": "Optimize#5b84",
+  "sema_stub": "5b84",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

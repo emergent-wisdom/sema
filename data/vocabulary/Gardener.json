@@ -10,11 +10,11 @@
     "tier": 2,
     "layer": "Society",
     "category": "Economics",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:5d74a3fff3bfed7f1d584d7894efca02274223d478477ffb00a99df127453d48",
-  "sema_ref": "Gardener#5d74",
-  "sema_stub": "5d74",
+  "sema_id": "sema:Gardener#mh:SHA-256:92d3abf6f73dd8d91a0a5256ea67fae94888fccc705ad904495f110a0935f9e7",
+  "sema_ref": "Gardener#92d3",
+  "sema_stub": "92d3",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "signature": [

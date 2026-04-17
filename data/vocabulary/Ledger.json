@@ -12,9 +12,9 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_id": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
-  "sema_ref": "Ledger#c363",
-  "sema_stub": "c363",
+  "sema_id": "sema:Ledger#mh:SHA-256:b5feb674fa403526c50d598b3d331e46aa9f5876b99ca05ab86187ecd7681c52",
+  "sema_ref": "Ledger#b5fe",
+  "sema_stub": "b5fe",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {

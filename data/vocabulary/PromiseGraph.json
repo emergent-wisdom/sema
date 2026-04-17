@@ -14,11 +14,11 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:PromiseGraph#mh:SHA-256:b71f80814ed80753cff7a03dc7b0969e1afafb207e0eef5edd5dcd74c1eb93ec",
-  "sema_ref": "PromiseGraph#b71f",
-  "sema_stub": "b71f",
+  "sema_id": "sema:PromiseGraph#mh:SHA-256:3066e2c856f68026893596aa78b9012539e696a6aae54d99b059cf1da5a75557",
+  "sema_ref": "PromiseGraph#3066",
+  "sema_stub": "3066",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "data_schema": {

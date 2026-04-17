@@ -1,7 +1,7 @@
 {
   "handle": "Expansive",
   "gloss": "Evaluates generalization potential",
-  "mechanism": "Evaluates generalization potential. Classifies scope into three qualitative states: (1) Niche: Overfit to a single problem instance or domain. (2) Untested: Plausible transfer to other domains, but unproven. (3) General: Proven utility across multiple distinct domains or a 'Hostile Slice'. It acts as a {{judge}} of the potential {{value}} of a solution beyond its initial context.",
+  "mechanism": "A {{judge}} of generalization potential: does the mechanism or concept transfer beyond the original domain it was designed in? Applies wherever breadth-of-application is the evaluative question \u2014 scientific generality, platform reuse, pattern-library transferability, business model cross-market viability. The essential move is stress-testing the artifact against domains deliberately outside its origin (hostile-domain probe) rather than demonstrating it on familiar cases. Specific rating semantics belong on descendants or on the composing protocol. The signature Judge({{value}}) captures that the output is a {{value}}-graded breadth score rather than a binary transferable/not-transferable verdict.",
   "invariants": [
     "Transfer: Must operate outside training distribution."
   ],
@@ -9,16 +9,16 @@
     "Judge(Value)"
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Reasoning",
     "ring": 2,
     "tier": 1
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
-  "sema_ref": "Expansive#c3b7",
-  "sema_stub": "c3b7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:Expansive#mh:SHA-256:3af77b1960458d1cba5bb4a66d570ec3e9cb90746fbd6b5c5754eb697c32b816",
+  "sema_ref": "Expansive#3af7",
+  "sema_stub": "3af7",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",

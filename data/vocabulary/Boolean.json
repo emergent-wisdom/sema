@@ -1,0 +1,33 @@
+{
+  "handle": "Boolean",
+  "mechanism": "The primitive true/false type. A Boolean value is one of exactly two mutually exclusive members: true or false. Used as the output type of schema-validation and as the evaluation return of conditional traits. Distinct from the three-state Decision (proceed/halt/debt) and from the graded Status (verified/falsified/unknown): Boolean admits no middle value.",
+  "gloss": "Binary truth value \u2014 true or false",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "value"
+    ],
+    "properties": {
+      "value": {
+        "type": "boolean",
+        "description": "The truth value: true or false"
+      }
+    }
+  },
+  "invariants": [
+    "Exhaustive: every Boolean value is one of exactly two members.",
+    "Exclusive: no value is simultaneously true and false."
+  ],
+  "_meta": {
+    "tier": 0,
+    "layer": "Infrastructure",
+    "category": "Data Structures",
+    "ring": 0
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
+  "dependencies": {},
+  "sema_id": "sema:Boolean#mh:SHA-256:2e6b2b2f8b0ae5c6060b15cd6cb6cb3bf21d40a4effbc18aff354559195f9217",
+  "sema_ref": "Boolean#2e6b",
+  "sema_stub": "2e6b"
+}

@@ -1,0 +1,30 @@
+{
+  "handle": "MetaProtocols",
+  "mechanism": "The paper's \u00a76.10 protocols that operate on the solver tree rather than within it \u2014 decomposing self-regulation: monitoring whether the tree remains the right shape for the problems it faces. A MetaObserverSolver maintains an approximate gestalt of tree topology and performance dynamics (redundant computation, decompositions that have outlived usefulness, {{pathway_memory}} that has drifted). Representative meta solvers: TopologyAuditorSolver (detects subtrees generating more rework than value, emits a ReframeSignal via {{reframe}}), RedundancyDetectorSolver (merges isomorphic sub-problems being solved independently), DriftMonitorSolver (flags when pathway memory has drifted from current problem distributions), OutcomeArbiterSolver (compares solution quality across structurally different decomposition paths, blind to the path that produced each result). Meta Protocols are themselves Solvers governed by the same contract; they do not solve object-level problems, they ensure the problem-solving topology remains adapted.",
+  "gloss": "Solvers that operate on the solver tree itself \u2014 monitoring topology, detecting redundancy and drift, arbitrating across decomposition paths",
+  "invariants": [
+    "Tree-level scope: Meta Protocols observe and act on topology and performance of other Solvers, not on object-level Tasks.",
+    "Contract-invariant: Meta Solvers are themselves Solvers (Manifest + Execute); their depth of meta-observation is governed by {{marginal_value_rule}}.",
+    "Blind arbitration: OutcomeArbiter evaluates final artifacts against the original Task without access to intermediate structure \u2014 blindness is what lets it compare across decomposition paths without structural-familiarity bias."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:0799234ac2992646e119585288ccf5e96685c35bd5c55ee0fb1e26ce74bdfdd4",
+      "reframe": "sema:Reframe#mh:SHA-256:0b02c55ef29a90499bf98668a0ef1f20ca89c3453a49878cb1a9f59f693fbe7c"
+    },
+    "composes_with": {
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e"
+    }
+  },
+  "sema_id": "sema:MetaProtocols#mh:SHA-256:760ece9f517ac6aae4d1eaaffc7c5fc9fab14ef7d62ea9fc4aa37e004d98f2c6",
+  "sema_ref": "MetaProtocols#760e",
+  "sema_stub": "760e"
+}

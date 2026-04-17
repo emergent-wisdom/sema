@@ -25,9 +25,9 @@
       "SolutionTree"
     ]
   },
-  "sema_id": "sema:Reframe#mh:SHA-256:ba00c40311ec71aab4f5942fcdd6876df95b15604cf54260182737e21a874dc9",
-  "sema_ref": "Reframe#ba00",
-  "sema_stub": "ba00",
+  "sema_id": "sema:Reframe#mh:SHA-256:0b02c55ef29a90499bf98668a0ef1f20ca89c3453a49878cb1a9f59f693fbe7c",
+  "sema_ref": "Reframe#0b02",
+  "sema_stub": "0b02",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

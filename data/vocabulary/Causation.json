@@ -1,6 +1,6 @@
 {
   "handle": "Causation",
-  "mechanism": "A relationship where one event directly forces another to occur. Distinct from {{correlation}} in that manipulating the cause alters the effect.",
+  "mechanism": "A relationship where manipulating one event directly forces another to occur \u2014 a directed edge in the causal graph. The definitional property is intervention-responsiveness: an external change to the cause alters the effect, which distinguishes causation from mere co-movement.",
   "gloss": "Direct force relationship",
   "_meta": {
     "layer": "Physics",
@@ -10,12 +10,7 @@
   },
   "sema_layer": "Physics",
   "sema_category": "Primitives",
-  "sema_id": "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc",
-  "sema_ref": "Causation#63e1",
-  "sema_stub": "63e1",
-  "dependencies": {
-    "references": {
-      "correlation": "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625"
-    }
-  }
+  "sema_id": "sema:Causation#mh:SHA-256:d3603cfbd4bfed0dc29051fe70c256f8962b96d530a7ec200f42359678e4929c",
+  "sema_ref": "Causation#d360",
+  "sema_stub": "d360"
 }

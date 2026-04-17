@@ -25,9 +25,9 @@
   },
   "sema_layer": "Mind",
   "sema_category": "Strategy",
-  "sema_id": "sema:EpistemicROI#mh:SHA-256:82a2da9aee8241835a3b8f370816bdd2d1e4e019cd28b52b285244ffe306b7da",
-  "sema_ref": "EpistemicROI#82a2",
-  "sema_stub": "82a2",
+  "sema_id": "sema:EpistemicROI#mh:SHA-256:0d537b6d7eaa65f91830a59ea43290a17fc175a8a352d691224ce11fe9af67b1",
+  "sema_ref": "EpistemicROI#0d53",
+  "sema_stub": "0d53",
   "dependencies": {
     "references": {
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",

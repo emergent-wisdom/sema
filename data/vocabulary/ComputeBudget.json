@@ -24,7 +24,7 @@
   "parameters": [
     {
       "name": "max_budget",
-      "type": "Integer",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Hard limit"
     },
@@ -52,9 +52,9 @@
       "TimeboxThink"
     ]
   },
-  "sema_ref": "ComputeBudget#3b98",
-  "sema_id": "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
-  "sema_stub": "3b98",
+  "sema_ref": "ComputeBudget#67c0",
+  "sema_id": "sema:ComputeBudget#mh:SHA-256:67c0cb96827aabadd1ed6ef4caedd4adcce628f1c1a2b4fc50c01dc2e94c4989",
+  "sema_stub": "67c0",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

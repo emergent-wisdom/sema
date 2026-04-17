@@ -32,15 +32,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Memory",
     "ring": 2
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
-  "sema_id": "sema:SimulationTrace#mh:SHA-256:9da67f06f48d0416c35169ed3a5a825dd1a477f3966a175fd0a66280c93d49d0",
-  "sema_ref": "SimulationTrace#9da6",
-  "sema_stub": "9da6",
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "sema_id": "sema:SimulationTrace#mh:SHA-256:c2e62aa7617e24b4d832b9c83cf544a63bc346d4e38ebf863278ccb556bb946f",
+  "sema_ref": "SimulationTrace#c2e6",
+  "sema_stub": "c2e6",
   "dependencies": {
     "references": {
       "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",

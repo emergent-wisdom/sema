@@ -20,9 +20,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d",
-  "sema_ref": "Satisfice#9161",
-  "sema_stub": "9161",
+  "sema_id": "sema:Satisfice#mh:SHA-256:98593020b0bee9478d19f3348ae7ecc588ac50ff6ebdc9be3f05d5cb07d96031",
+  "sema_ref": "Satisfice#9859",
+  "sema_stub": "9859",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

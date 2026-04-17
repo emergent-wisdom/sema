@@ -20,11 +20,11 @@
     "tier": 1,
     "layer": "Mind",
     "category": "Strategy",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:7db170eab2eaf5a1764ee61af391ab290db9e83835f6ca3107305d2a709554fe",
-  "sema_ref": "EventReact#7db1",
-  "sema_stub": "7db1",
+  "sema_id": "sema:EventReact#mh:SHA-256:da85e84f43dca3c870edf9dd518e4602a63cf1be9efada545781de12db839103",
+  "sema_ref": "EventReact#da85",
+  "sema_stub": "da85",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

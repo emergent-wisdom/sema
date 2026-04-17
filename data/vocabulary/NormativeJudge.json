@@ -1,6 +1,6 @@
 {
   "handle": "NormativeJudge",
-  "mechanism": "A purely normative {{judge}} module that evaluates static world-states against a weighted {{value}} function. To mitigate Goodhart's Law, this pattern should be deployed as an ENSEMBLE (Jury), where multiple judges with slightly perturbed {{value}} constitutions reach {{quorum}} on the {{outcome}}. It aggregates {{value}}s via {{perspective_ensemble}}, optionally escalating to {{human_approve}} for ambiguous edge cases.",
+  "mechanism": "A purely normative {{judge}} module that evaluates static world-states against a weighted {{value}} function. The caller supplies the {{weights}} that shape the value function, so preference structure is visible to the evaluator rather than hidden inside it. To mitigate Goodhart's Law, this pattern should be deployed as an ENSEMBLE (Jury), where multiple judges with slightly perturbed {{value}} constitutions reach {{quorum}} on the {{outcome}}. It aggregates {{value}}s via {{perspective_ensemble}}, optionally escalating to {{human_approve}} for ambiguous edge cases.",
   "gloss": "Value-based state evaluation",
   "failure_modes": [
     "Goodhart's Law (optimizing for the metric, not the intent).",
@@ -22,12 +22,6 @@
       "type": "Float",
       "range": "[0.5, 1.0]",
       "description": "Required agreement for Jury"
-    },
-    {
-      "name": "weights",
-      "type": "Map<Value, Float>",
-      "range": "unspecified",
-      "description": "Relative importance weights per value dimension"
     }
   ],
   "_meta": {
@@ -36,9 +30,9 @@
     "category": "Inference",
     "ring": 0
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
-  "sema_ref": "NormativeJudge#2316",
-  "sema_stub": "2316",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:2c8ca6cd8166a26b258ae67dc5df2dc1dc968f15f6edce6225b5c1615784b667",
+  "sema_ref": "NormativeJudge#2c8c",
+  "sema_stub": "2c8c",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "signature": [
@@ -55,6 +49,9 @@
     },
     "composes_with": {
       "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a"
+    },
+    "accepts": {
+      "weights": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc"
     }
   }
 }

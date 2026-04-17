@@ -9,14 +9,14 @@
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Governance",
+    "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
-  "sema_ref": "ConsensusFinder#1c5d",
-  "sema_stub": "1c5d",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:1c012e6f35c758a5cc63778e30124b372c2f5bb91ad0513056b8e2a6c1c5b4ca",
+  "sema_ref": "ConsensusFinder#1c01",
+  "sema_stub": "1c01",
   "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_category": "Coordination",
   "signature": [
     "Discover(Consensus)"
   ],

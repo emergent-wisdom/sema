@@ -24,7 +24,7 @@
     },
     {
       "name": "total_budget",
-      "type": "Float",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Tokens or Time"
     }
@@ -35,9 +35,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:OptimalStop#mh:SHA-256:74391a0813dfa1c767a2221d9fd50da3c1bd6714bd77a402f0178c707a8ad95f",
-  "sema_ref": "OptimalStop#7439",
-  "sema_stub": "7439",
+  "sema_id": "sema:OptimalStop#mh:SHA-256:c2447936a2d4beb76817499e464cde69ca608ec7a2a9898d816951ed111f1222",
+  "sema_ref": "OptimalStop#c244",
+  "sema_stub": "c244",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

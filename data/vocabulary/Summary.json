@@ -9,12 +9,33 @@
     "tier": 1
   },
   "data_schema": {
-    "type": "string",
-    "description": "The summarized text or content"
+    "type": "object",
+    "required": [
+      "source_ref"
+    ],
+    "properties": {
+      "source_ref": {
+        "type": "string",
+        "description": "sema_id of the source being summarized"
+      },
+      "compression_ratio": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "description": "Size ratio (summary_len/source_len)"
+      },
+      "preserves": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Semantic dimensions preserved (e.g., 'thesis', 'timeline', 'constraints')"
+      }
+    }
   },
-  "sema_ref": "Summary#310e",
-  "sema_id": "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de",
-  "sema_stub": "310e",
+  "sema_ref": "Summary#f785",
+  "sema_id": "sema:Summary#mh:SHA-256:f785cae6871dc00700bb21296033c24d01e0abc331097a1d43a3d423830332d6",
+  "sema_stub": "f785",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "dependencies": {

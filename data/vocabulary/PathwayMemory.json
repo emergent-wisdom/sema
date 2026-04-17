@@ -1,0 +1,62 @@
+{
+  "handle": "PathwayMemory",
+  "mechanism": "A {{cache}} of routing outcomes, recording (problem_class, route_chosen, outcome_quality) tuples. Enables a dispatching Solver to learn which routes produce better results for which problem types. The RootSolver's PathwayMemory is the architecture's most consequential site of compounding \u2014 it sees how every problem enters the system, and its accumulated routing decisions determine which reasoning highways densify over time. Every dispatching node has its own PathwayMemory; they are not shared, but can be aggregated for cross-node learning.",
+  "gloss": "Learned routing memory: problem_class \u2192 route \u2192 outcome_quality",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "entries"
+    ],
+    "properties": {
+      "entries": {
+        "type": "array",
+        "description": "List of routing records",
+        "items": {
+          "type": "object",
+          "required": [
+            "problem_class",
+            "route_chosen",
+            "outcome_quality"
+          ],
+          "properties": {
+            "problem_class": {
+              "type": "string"
+            },
+            "route_chosen": {
+              "type": "string"
+            },
+            "outcome_quality": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  },
+  "invariants": [
+    "Append-only within a session: historical records are not edited, only new entries added.",
+    "Scoped: each PathwayMemory belongs to exactly one dispatching node."
+  ],
+  "failure_modes": [
+    "Poisoned entries (false outcome_quality from compromised writers) silently bias all downstream routing without triggering any failure mode.",
+    "Stale entries reflecting outdated problem distributions mislead current routing; no automatic aging.",
+    "Cross-node aggregation without provenance contaminates local routing with off-domain signal."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Memory",
+    "ring": 1,
+    "caution": "Silent contamination vector \u2014 poisoned entries bias all downstream routing decisions without triggering failure modes. Integrity of writers must be enforced."
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory",
+  "dependencies": {
+    "references": {
+      "cache": "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073"
+    }
+  },
+  "sema_id": "sema:PathwayMemory#mh:SHA-256:0799234ac2992646e119585288ccf5e96685c35bd5c55ee0fb1e26ce74bdfdd4",
+  "sema_ref": "PathwayMemory#0799",
+  "sema_stub": "0799"
+}

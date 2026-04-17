@@ -1,0 +1,30 @@
+{
+  "handle": "DiscoveryProtocol",
+  "mechanism": "The paper's \u00a76.4 protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each bound to a maximally distinct cognitive mode via GeneratorSolvers), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generate-asked-by-many-parallel-Solvers, then reduce-asked-by-a-Solver-whose-faculty-is-evaluation-and-composition-rather-than-generation. The ReduceSolver routes among modes (AggregateSolver for ensembles, TournamentSolver for adversarial selection, PortfolioSolver for quality-diversity preservation, {{synthesis}}-based merging of compatible mechanisms). TaxonomistSolver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.",
+  "gloss": "Population-based discovery: Generate (parallel diverse solvers) + Reduce (composition-aware selection) behind hard boundaries",
+  "invariants": [
+    "Hard-boundary isolation: generators cannot see each other's outputs during generation; the reduction boundary is the first synthesis point.",
+    "Cognitive-mode diversity: each GeneratorSolver is bound to a maximally distinct mode, not just sampled from one model at different temperatures.",
+    "Non-compensatory reduction gate: novelty is a gate condition, not a tiebreaker \u2014 a structurally novel mechanism survives even if it scores lower on surface plausibility."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 2
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "references": {
+      "discover": "sema:Discover#mh:SHA-256:7dbcd27e108d0f286876b906339f3db7ab55b48ce68f058cd2c47bbfb3f2bc2b"
+    },
+    "composes_with": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+    }
+  },
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:bf29178f844591e77241b547f47963e06fc3119243dc2d7d4c2c45f24b843d43",
+  "sema_ref": "DiscoveryProtocol#bf29",
+  "sema_stub": "bf29"
+}

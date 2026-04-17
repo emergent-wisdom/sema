@@ -39,9 +39,9 @@
     "category": "Reasoning",
     "ring": 2
   },
-  "sema_ref": "StrategicReading#ef92",
-  "sema_id": "sema:StrategicReading#mh:SHA-256:ef9282eb9e5d243105ed2f8016102f7653d1a9f3abc2215f08642695fa2a33bf",
-  "sema_stub": "ef92",
+  "sema_ref": "StrategicReading#37f7",
+  "sema_id": "sema:StrategicReading#mh:SHA-256:37f7cf168532f92e8090ccae70a18f5de5540141d26656f3ba2a3912fcdcbd08",
+  "sema_stub": "37f7",
   "sema_layer": "Mind",
   "sema_category": "Reasoning",
   "dependencies": {

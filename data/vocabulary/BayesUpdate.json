@@ -34,9 +34,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
-  "sema_ref": "BayesUpdate#911b",
-  "sema_stub": "911b",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:13f8d0e6f00298f5e49187afdf1f8733638f3b222cdcb9361b1d7dd5ae07c67b",
+  "sema_ref": "BayesUpdate#13f8",
+  "sema_stub": "13f8",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

@@ -1,6 +1,6 @@
 {
   "handle": "AuditTrail",
-  "mechanism": "Every consequential {{agent}} action (state mutation, external call, delegation, decision) appends a {{sign}}ed entry to an immutable {{ledger}}. Each entry contains: timestamp, {{agent}} {{identity}}, action type, input hash, output hash, and the sema pattern invoked. Extends {{trace}} from single-entity lineage to cross-agent compliance logging. The trail is append-only \u2014 entries cannot be modified or deleted. For cross-agent auditing, individual trails are aggregated via Merkle roots into a shared {{snapshot}}, enabling any party to verify the complete history without accessing raw entries.",
+  "mechanism": "Every consequential {{agent}} action (state mutation, external call, delegation, decision) appends a {{sign}}ed entry to an immutable {{ledger}} whose sequence number advances via {{monotonic_counter}}, so no entry can be wedged between two existing ones. Each entry contains: timestamp, {{agent}} {{identity}}, action type, input hash, output hash, and the sema pattern invoked. Extends {{trace}} from single-entity lineage to cross-agent compliance logging. The trail is append-only \u2014 entries cannot be modified or deleted. For cross-agent auditing, individual trails are aggregated via Merkle roots into a shared {{snapshot}}, enabling any party to verify the complete history without accessing raw entries.",
   "gloss": "Immutable append-only log of agent actions for compliance and debugging",
   "invariants": [
     "Append-Only: No entry in the {{ledger}} may be modified after creation",
@@ -32,9 +32,9 @@
       "SpotAudit"
     ]
   },
-  "sema_ref": "AuditTrail#ff66",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c",
-  "sema_stub": "ff66",
+  "sema_ref": "AuditTrail#c891",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:c89113de796b35d71144525b03f866e7f5503ff7e908828a3af9de1f4f880526",
+  "sema_stub": "c891",
   "sema_layer": "Infrastructure",
   "sema_category": "Verification",
   "dependencies": {
@@ -44,7 +44,8 @@
       "ledger": "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
       "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
+      "sign": "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba",
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235"
     },
     "composes_with": {
       "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"

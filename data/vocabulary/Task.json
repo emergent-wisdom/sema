@@ -19,57 +19,41 @@
     "category": "Data Structures",
     "ring": 0
   },
-  "sema_id": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-  "sema_ref": "Task#d9f9",
-  "sema_stub": "d9f9",
+  "sema_id": "sema:Task#mh:SHA-256:b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c",
+  "sema_ref": "Task#b328",
+  "sema_stub": "b328",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
-      "task_id",
-      "description",
-      "status",
-      "created_at"
+      "operation",
+      "inputs",
+      "acceptance_criteria"
     ],
     "properties": {
-      "task_id": {
+      "operation": {
         "type": "string",
-        "description": "Unique UUID for the task"
+        "description": "What the Task does \u2014 the intent"
       },
-      "parent_id": {
-        "type": "string",
-        "description": "ID of the super-task, if any"
+      "inputs": {
+        "type": "object",
+        "description": "Typed inputs to the operation"
       },
-      "description": {
-        "type": "string",
-        "description": "Natural language intent"
-      },
-      "status": {
-        "type": "string",
-        "enum": [
-          "Pending",
-          "Active",
-          "Blocked",
-          "Complete",
-          "Failed"
-        ],
-        "default": "Pending"
-      },
-      "requirements": {
+      "acceptance_criteria": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "description": "List of acceptance criteria"
+        "description": "Conditions that mark the Task complete; closure signal for the caller"
       },
-      "assigned_solver_id": {
-        "type": "string",
-        "description": "The agent/node working on this"
+      "budget": {
+        "type": "object",
+        "description": "Optional resource ceiling (compute, time, tokens)"
       },
-      "created_at": {
+      "parent_id": {
         "type": "string",
-        "format": "date-time"
+        "description": "Super-task reference if hierarchical"
       },
       "deadline": {
         "type": "string",

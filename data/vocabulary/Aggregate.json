@@ -1,6 +1,6 @@
 {
   "handle": "Aggregate",
-  "mechanism": "Mathematical Reduction. A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. It serves as the computational backbone for consensus mechanisms.",
+  "mechanism": "Mathematical Reduction. A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. When the caller supplies {{weights}} alongside the vector, the reduction becomes a weighted one. It serves as the computational backbone for consensus mechanisms.",
   "gloss": "Reduce a set to a summary statistic",
   "failure_modes": [
     "Type Mismatch: Input list contains incomparable types (e.g., Integers mixed with Strings).",
@@ -24,12 +24,6 @@
       "type": "Enum",
       "range": "{Mean, Median, Mode, Sum, Min, Max, Variance, StdDev}",
       "description": "Default: Mean"
-    },
-    {
-      "name": "weights",
-      "type": "List<Float>",
-      "range": "unspecified",
-      "description": "Relative importance weights for each input element"
     }
   ],
   "_meta": {
@@ -38,9 +32,9 @@
     "category": "Primitives",
     "ring": 0
   },
-  "sema_id": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
-  "sema_ref": "Aggregate#af54",
-  "sema_stub": "af54",
+  "sema_id": "sema:Aggregate#mh:SHA-256:791202e13011d1f46a0340e4c25496549c82296bb068ab5d7b327b5af6b3f65a",
+  "sema_ref": "Aggregate#7912",
+  "sema_stub": "7912",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
@@ -51,7 +45,8 @@
       "mode": "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826"
     },
     "accepts": {
-      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc"
+      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc",
+      "weights": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc"
     }
   }
 }

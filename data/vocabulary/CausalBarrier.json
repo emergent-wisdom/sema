@@ -36,9 +36,9 @@
     "category": "Time",
     "ring": 0
   },
-  "sema_id": "sema:CausalBarrier#mh:SHA-256:0904e3eb6ac5a36cfa3ec9d1c3fe374ad4eb817e1da35375ce8d32d8272b6128",
-  "sema_ref": "CausalBarrier#0904",
-  "sema_stub": "0904",
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:3c73673cdf5f345bc792d80ad924d8cd7caa5c222303e2439d14c6683a9a3ff1",
+  "sema_ref": "CausalBarrier#3c73",
+  "sema_stub": "3c73",
   "sema_layer": "Physics",
   "sema_category": "Time",
   "dependencies": {

@@ -39,11 +39,11 @@
     "tier": 1,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:EbbFlowSync#mh:SHA-256:b4a07e620d27785381b12c3853380f0cef04bc9832acc1bd0b73f72a97b21de6",
-  "sema_ref": "EbbFlowSync#b4a0",
-  "sema_stub": "b4a0",
+  "sema_id": "sema:EbbFlowSync#mh:SHA-256:454252acf44e0eee68eb591bad72e3c2854174286751a29ed172c66cc335716c",
+  "sema_ref": "EbbFlowSync#4542",
+  "sema_stub": "4542",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

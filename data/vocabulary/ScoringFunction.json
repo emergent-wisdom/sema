@@ -34,15 +34,15 @@
       }
     }
   },
-  "mechanism": "A deterministic logical unit that maps an input artifact to a scalar {{value}} (Score). It encapsulates the criteria used by {{rank}} and {{judge}}.",
+  "mechanism": "A deterministic logical unit that maps an input artifact to a scalar {{value}} (Score). Encapsulates ranking and evaluation criteria as a first-class Noun, so callers can pass the scoring logic as an input rather than embed it inline in their own mechanism.",
   "gloss": "Deterministic valuation logic",
   "invariants": [
     "Determinism: Same input always yields same score.",
     "Range: Output must be within [0.0, 1.0] or [-inf, +inf]."
   ],
-  "sema_id": "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d",
-  "sema_ref": "ScoringFunction#3de5",
-  "sema_stub": "3de5",
+  "sema_id": "sema:ScoringFunction#mh:SHA-256:3a4ef49f597cf15d2971c8b1769506bc5a434909e98cede098d5c16664c94232",
+  "sema_ref": "ScoringFunction#3a4e",
+  "sema_stub": "3a4e",
   "_meta": {
     "layer": "Infrastructure",
     "category": "Data Structures",
@@ -53,8 +53,6 @@
   "sema_category": "Data Structures",
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
-      "rank": "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }

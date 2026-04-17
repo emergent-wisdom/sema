@@ -13,16 +13,16 @@
     "Diminishing Returns: Deeper levels must show proportionally higher marginal value."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Economics",
+    "layer": "Mind",
+    "category": "Strategy",
     "tier": 2,
     "ring": 1
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:a46a39374cd046def6d2457b87ce2a426fe1e4b957494ff4a5b62d28665e159e",
-  "sema_ref": "MarginalValueRule#a46a",
-  "sema_stub": "a46a",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:32ce91f6fe59cd8162cef8e185cd9ca48f48c421805e81125b8963b47fa8039e",
+  "sema_ref": "MarginalValueRule#32ce",
+  "sema_stub": "32ce",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "signature": [
     "Budget(RecursionDive)"
   ],

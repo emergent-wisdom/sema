@@ -15,9 +15,9 @@
     "ring": 0,
     "tier": 1
   },
-  "sema_ref": "TriGate#07fc",
-  "sema_id": "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
-  "sema_stub": "07fc",
+  "sema_ref": "TriGate#67b8",
+  "sema_id": "sema:TriGate#mh:SHA-256:67b83fef54b2ee26722f7a1de542f28ae2caa7571d825fcce6833e857afe92be",
+  "sema_stub": "67b8",
   "sema_layer": "Society",
   "sema_category": "Governance",
   "dependencies": {

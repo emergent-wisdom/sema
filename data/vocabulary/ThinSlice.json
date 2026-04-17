@@ -9,15 +9,15 @@
   ],
   "_meta": {
     "tier": 3,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:ThinSlice#mh:SHA-256:debb731893208ce6514504b1212e5d07cf60f1477f3c485b752a694822c3fb30",
-  "sema_ref": "ThinSlice#debb",
-  "sema_stub": "debb",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:ThinSlice#mh:SHA-256:bc195be4a2e6a2cef9fcdfae75347ae391abd0894f250d3f08a13a1797257223",
+  "sema_ref": "ThinSlice#bc19",
+  "sema_stub": "bc19",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "somatic_marker": "sema:SomaticMarker#mh:SHA-256:84e40c489b6061eec580753f3fea907d8b401883679a3d54d274e23f742a1e62",

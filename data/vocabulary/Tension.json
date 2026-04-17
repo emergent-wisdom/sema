@@ -7,16 +7,16 @@
     "Persistence: Must persist until explicitly resolved."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
+    "layer": "Infrastructure",
+    "category": "Data Structures",
     "ring": 1,
     "tier": 1
   },
-  "sema_id": "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5",
-  "sema_ref": "Tension#5493",
-  "sema_stub": "5493",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
+  "sema_id": "sema:Tension#mh:SHA-256:c39e010ca317c5ea11144728d4bac9d3e973a87bc75eb9063123ab1a45494c3d",
+  "sema_ref": "Tension#c39e",
+  "sema_stub": "c39e",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [

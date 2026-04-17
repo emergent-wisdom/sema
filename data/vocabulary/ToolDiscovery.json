@@ -1,6 +1,6 @@
 {
   "handle": "ToolDiscovery",
-  "mechanism": "{{agent}} queries a {{discover}} for capabilities matching its current {{task}}. Registry returns a {{card}} listing available tools with typed input/output schemas. {{agent}} selects the best match, performs a {{compatibility_check}} to verify schema alignment, then invokes via {{tool_invoke}} and observes the typed {{result}}. If no match is found or {{compatibility_check}} fails, the agent must {{fail_closed}} rather than attempt a best-effort invocation. Follows the Model Context Protocol pattern of progressive discovery: orient via registry, explore via schema matching, verify via hash comparison.",
+  "mechanism": "{{agent}} queries a {{discover}} for capabilities matching its current {{task}}. Registry returns a {{card}} listing available tools with typed input/output schemas. {{agent}} selects the best match, performs a {{compatibility_check}} to verify schema alignment, then invokes via {{tool_invoke}} and observes the typed {{result}}. If no match is found or {{compatibility_check}} fails, the agent must {{fail_closed}} rather than attempt a best-effort invocation. Follows the Model Context Protocol pattern of progressive discovery under {{context_first}} discipline: orient via registry, explore via schema matching, verify via hash comparison.",
   "gloss": "Discover and invoke external tools via structured capability manifests",
   "invariants": [
     "Schema Verification: Tool manifest hash must be verified via {{compatibility_check}} before invocation",
@@ -32,9 +32,9 @@
       "AgentDiscover"
     ]
   },
-  "sema_ref": "ToolDiscovery#548f",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:548fb253447d270bee9b28ee7fe125135ce45ab54fbd2744fcc70e6b7d9b6de8",
-  "sema_stub": "548f",
+  "sema_ref": "ToolDiscovery#7c18",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:7c18795bfdd6ff66afe92f985c4db8e19ad1a3a9fd1120375e22d46b65fbff83",
+  "sema_stub": "7c18",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
@@ -42,7 +42,8 @@
       "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
       "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
-      "card": "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626"
+      "card": "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626",
+      "context_first": "sema:ContextFirst#mh:SHA-256:2878bfc9402ba18d174040bc9614113e01c7a6f2bb775fe22fdccba6aca3dbe1"
     },
     "composes_with": {
       "fail_closed": "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",

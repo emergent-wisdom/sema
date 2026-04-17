@@ -1,0 +1,30 @@
+{
+  "handle": "EthicalReasoningProtocol",
+  "mechanism": "The paper's \u00a76.6 protocol. Applies {{conceptual_decomposition}} to right-action, producing a non-entangled pipeline that prevents the is-ought entanglement that corrupts monolithic moral reasoning. Operationalizes Hume's is-ought distinction as an architectural boundary: calculate, then think. A PredictionSolver outputs a typed PredictionLedger (branching future states with causal mechanisms and confidence envelopes) \u2014 constrained to pure description, no single point forecast. Downstream, a ValuationSolver evaluates 'which causal pathways matter, at what confidence, over what horizon' and emits a typed ScoreSheet \u2014 quantitative ranking no normative consideration has yet touched. Crucially, a PrincipleSolver acts as both an acceptance gate and a formal override: if a top-ranked option trips a sacred value, a catastrophic tail risk, or a procedural precedent, it emits a typed JudgmentNote overriding the numerical scoring. The final DecisionRecord has two distinct layers \u2014 quantitative base and qualitative override \u2014 segregated and independently auditable. This is the contract's override-with-documentation mechanism applied to ethics: the override is not an escape from the architecture but a first-class artifact within it. Composes with {{deliberative_align}} for constitutional grounding.",
+  "gloss": "Separate prediction (is) from valuation (ought) from principle (override), each behind a typed boundary \u2014 the DecisionRecord has auditable empirical and normative layers",
+  "invariants": [
+    "Is-ought boundary: PredictionSolver output is constrained to pure description (PredictionLedger); no normative consideration contaminates the empirical forecast.",
+    "Override-as-first-class: principle overrides do not adjust prediction weights silently \u2014 they emit a typed JudgmentNote that appears in the auditable DecisionRecord.",
+    "Two-layer DecisionRecord: the empirical base (what the forecast said) and the qualitative override (why we diverged) remain independently inspectable; no collapse into a single verdict."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Mind",
+    "category": "Reasoning",
+    "ring": 1,
+    "caution": "Required at autonomous-system decision points where both forecast quality and normative legitimacy must be auditable. Collapsing prediction and valuation into one pass re-introduces smuggled normativity \u2014 the failure this protocol exists to prevent."
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
+  "dependencies": {
+    "references": {
+      "deliberative_align": "sema:DeliberativeAlign#mh:SHA-256:e6cb1f5828b5aa15465af8fa15dbbeddff3a338a455492ddfe58b9ca488a6ae6"
+    },
+    "composes_with": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:f81fd419f086470d37223be58166e25c24f3c38c203689b673bc302a4a48ecfd"
+    }
+  },
+  "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:04dc0b30cbf3794fc03222c6dbd8e3b1a618305a0604c1fa024b9be53ce36027",
+  "sema_ref": "EthicalReasoningProtocol#04dc",
+  "sema_stub": "04dc"
+}

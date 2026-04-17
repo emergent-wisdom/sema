@@ -1,7 +1,7 @@
 {
   "handle": "SteelmanFirst",
   "mechanism": "Reasoning Heuristic. Before proposing a solution, the agent actively constructs the strongest possible version of the opposing argument or constraint. It ensures the critique phase of {{steelman_check}} is populated with high-quality data, not strawmen. Utilizes {{steelman_check}}.",
-  "gloss": "Construct strongest counter-argument before proposing",
+  "gloss": "Ordering rule: steelman opposing view before proposing, so SteelmanCheck has real targets",
   "failure_modes": [
     "Performative Steelman: {{agent}} lists weak counter-arguments to appear unbiased.",
     "{{cognitive_bias}} Leakage: {{agent}} frames the counter-argument in a way that makes it easy to defeat."
@@ -29,9 +29,9 @@
     "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:6069f5780eae1053b3d2a2bfb37be0df1340e1be9801d774697c57f16b26c62e",
-  "sema_ref": "SteelmanFirst#6069",
-  "sema_stub": "6069",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:6f1589b3aedbf3811ab88b094c72c9fa17a7fd7e026a9cfd569ef4df0e818f4f",
+  "sema_ref": "SteelmanFirst#6f15",
+  "sema_stub": "6f15",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

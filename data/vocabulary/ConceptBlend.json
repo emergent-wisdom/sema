@@ -1,7 +1,7 @@
 {
   "handle": "ConceptBlend",
   "mechanism": "Forcing the merger of two unrelated graph nodes to find a valid semantic path. Unlike analogy (A is like B), blending creates C (A + B). It extends {{analogy_bridge}} by not just mapping A to B, but fusing them to create C.",
-  "gloss": "Combinatorial novelty generation",
+  "gloss": "Atomic fusion of two unrelated concepts into a novel third",
   "invariants": [
     "Orthogonality: Inputs must be semantically distant (> threshold distance)",
     "Validity: Output must pass a {{tri_gate}}({{realizable}}) check"
@@ -15,9 +15,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
-  "sema_ref": "ConceptBlend#22f2",
-  "sema_stub": "22f2",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:126e802579f0301b1c71df4731146236a15095e1404d3e7358b87d2bd1f47e1a",
+  "sema_ref": "ConceptBlend#126e",
+  "sema_stub": "126e",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

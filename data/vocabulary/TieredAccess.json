@@ -37,9 +37,9 @@
     "category": "Protocols",
     "ring": 0
   },
-  "sema_id": "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
-  "sema_ref": "TieredAccess#2a28",
-  "sema_stub": "2a28",
+  "sema_id": "sema:TieredAccess#mh:SHA-256:e45bd51bbdb40c9fcc3fea300a7fe4fd643ef267d1eef914845452f998a03163",
+  "sema_ref": "TieredAccess#e45b",
+  "sema_stub": "e45b",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

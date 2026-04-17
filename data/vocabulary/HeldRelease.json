@@ -1,7 +1,7 @@
 {
   "handle": "HeldRelease",
-  "mechanism": "{{value}} ({{unique_handle}}) held until condition met, released or returned on timeout. DEPOSIT: Party A sends value + condition_hash + timeout to escrow address. CLAIM: Party B submits condition_preimage; if hash(preimage) matches condition_hash, value releases to B. TIMEOUT: If timeout expires without valid claim, value returns to A. {{state}} transitions: EMPTY --deposit--> HELD --claim(valid)--> RELEASED_TO_B | --timeout--> RETURNED_TO_A. Primitives: hash commitment (SHA256), timelock (block height), 2-of-2 multisig or smart contract.",
-  "gloss": "Trustless conditional value transfer becomes the primitive for all economic coordination - atomic swaps, payment channels, escrow, and conditional contracts all compose from this base pattern",
+  "mechanism": "{{value}} ({{unique_handle}}) held until condition met, released or returned on timeout. DEPOSIT: Party A sends value + condition_hash + timeout to escrow address. CLAIM: Party B submits condition_preimage; if hash(preimage) matches condition_hash, value releases to B. TIMEOUT: If timeout expires without valid claim, value returns to A. {{state}} transitions: EMPTY --deposit--> HELD --claim(valid)--> RELEASED_TO_B | --timeout--> RETURNED_TO_A. Primitives: hash {{commitment_device}} (SHA256 pre-commitment locks the claim surface before the preimage exists), timelock (block height), 2-of-2 multisig or smart contract.",
+  "gloss": "Escrow primitive: value held until condition preimage revealed or timeout",
   "failure_modes": [
     "Preimage loss: If Party B loses the preimage, value returns to A on timeout (safe but B loses).",
     "{{condition}} ambiguity: Hash commits to bytes, not semantics - parties must agree on preimage meaning off-chain.",
@@ -41,14 +41,15 @@
   },
   "sema_layer": "Society",
   "sema_category": "Protocols",
-  "sema_id": "sema:HeldRelease#mh:SHA-256:49566d2180cf09f70f2d9972dddd190dfb23c4cda4ff69ccab97b76930a34585",
-  "sema_ref": "HeldRelease#4956",
-  "sema_stub": "4956",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:b55938fb06019b2ee8e63e2109eb3e35f578e8ecf02fed8c1b865cb6287e3e58",
+  "sema_ref": "HeldRelease#b559",
+  "sema_stub": "b559",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:074b03c077f07b24dd1eb5427579069b4caaf6353759aa1c7affcdab79258ced"
     },
     "accepts": {
       "unique_handle": "sema:UniqueHandle#mh:SHA-256:9a006e6fd1ca395b18fa7f17f95124c432b111f15cba24fcec039142a3ca539b"

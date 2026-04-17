@@ -1,6 +1,6 @@
 {
   "handle": "EmpathySim",
-  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized with Target_Agent's known priors, goals, and constraints. It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
+  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized from a {{target_profile}} (known priors, goals, and constraints). It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
   "gloss": "Predictive modeling of external agent states",
   "failure_modes": [
     "Projection {{cognitive_bias}}: Leaking Self-Knowledge into the simulation (Mirroring Error).",
@@ -25,12 +25,6 @@
       "type": "Integer",
       "range": "[1, 3]",
       "description": "Default: 1"
-    },
-    {
-      "name": "target_profile",
-      "type": "AgentProfile",
-      "range": "unspecified",
-      "description": "Profile of the agent whose state is being modeled"
     }
   ],
   "_meta": {
@@ -42,9 +36,9 @@
     ],
     "ring": 2
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:86ab6c06ecf009fce40155d3c1aeadb76738060bcb7adbd88f9c15bd01a52f4c",
-  "sema_ref": "EmpathySim#86ab",
-  "sema_stub": "86ab",
+  "sema_id": "sema:EmpathySim#mh:SHA-256:7008dcff05dc6219c7d49dd02e8b09e6d6d4bf699ac502fc039118b33d140e3b",
+  "sema_ref": "EmpathySim#7008",
+  "sema_stub": "7008",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
@@ -54,6 +48,9 @@
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
       "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
       "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
+    },
+    "accepts": {
+      "target_profile": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
     }
   },
   "sema_layer": "Society",

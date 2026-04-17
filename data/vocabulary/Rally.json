@@ -1,6 +1,6 @@
 {
   "handle": "Rally",
-  "mechanism": "Ad-Hoc Group Formation {{protocol}}. Initiator broadcasts a 'RALLY' signal with requirements defined by an {{accept_spec}} and a selection criteria. Responders submit 'ENLIST' messages. If count >= {{quorum}} by deadline, initiator executes {{select}} and sends 'MUSTER' to form a new cryptographic group {{context}}. It broadcasts a call to form a group, using {{quorum}} to validate critical mass and {{elect}} to formalize leadership.",
+  "mechanism": "Ad-Hoc Group Formation {{protocol}}. Initiator broadcasts a 'RALLY' signal with requirements defined by an {{accept_spec}} and a selection criteria. Responders submit 'ENLIST' messages. If count >= {{quorum}} by deadline, initiator executes {{select}} and sends 'MUSTER' to form a new cryptographic group {{context}}. It broadcasts a call to form a group, using {{quorum}} to validate critical mass and {{elect}} to formalize leadership. Respondents are filtered by the caller-supplied {{selection_criteria}} before acceptance, so the rally author controls which qualifying replies proceed to enlistment.",
   "gloss": "Enable ad-hoc multi-party coordination",
   "failure_modes": [
     "Echo Chamber: Rally attracts only homogenous agents, reducing diversity.",
@@ -32,7 +32,7 @@
     },
     {
       "name": "max_participants",
-      "type": "Integer",
+      "type": "PositiveInteger",
       "range": "unspecified",
       "description": "Default: 10"
     },
@@ -41,25 +41,19 @@
       "type": "Integer",
       "range": "[1, 50]",
       "description": "Minimum agents required to proceed"
-    },
-    {
-      "name": "selection_criteria",
-      "type": "PatternRef",
-      "range": "unspecified",
-      "description": "Default: Select"
     }
   ],
   "_meta": {
     "tier": 2,
     "layer": "Society",
-    "category": "Governance",
+    "category": "Coordination",
     "ring": 1
   },
-  "sema_id": "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
-  "sema_ref": "Rally#8d04",
-  "sema_stub": "8d04",
+  "sema_id": "sema:Rally#mh:SHA-256:f5655daa2c346e9c9f5026c64e3b0ea4c06547ecc9f598c48757716479aece39",
+  "sema_ref": "Rally#f565",
+  "sema_stub": "f565",
   "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_category": "Coordination",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
@@ -70,6 +64,9 @@
     },
     "composes_with": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+    },
+    "accepts": {
+      "selection_criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
     }
   }
 }

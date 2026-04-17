@@ -1,7 +1,7 @@
 {
   "handle": "Compensate",
   "mechanism": "Execute inverse actions to undo partial coordination after BREAK. On receiving BREAK, agent retrieves compensation_log (built during forward execution\u2014each action logged its inverse). Execute inverses in REVERSE chronological order (LIFO). For each inverse: attempt execution, if fail retry (inverses must be idempotent), if still fail log and continue or escalate. Report COMPENSATE_RESULT: {completed: [steps undone], failed: [steps that couldn't undo], clean: bool, downstream_confirmed: bool}. Multi-agent coordination: each agent compensates their own scope. BREAK propagates with upstream_agents hint for cross-agent dependencies\u2014downstream agents compensate first, confirm, then upstream proceeds. Compensation cannot introduce NEW coordinated work (only cleanup and notification). Triggered by {{break}}, it reads the {{time_warp_log}} in reverse to execute the idempotent inverse of each prior action.",
-  "gloss": "Enable clean failure recovery through structured rollback, preventing orphaned resources and corrupted state",
+  "gloss": "Structured rollback via logged inverses in LIFO order",
   "failure_modes": [
     "Inverse wasn't logged (can't compensate what wasn't tracked).",
     "Inverse isn't truly idempotent (retry corrupts state).",
@@ -29,11 +29,12 @@
     "ring": 0,
     "related": [
       "Retry"
-    ]
+    ],
+    "caution": "Compensation must not erase the audit trail of what was rolled back \u2014 log both the forward action and the compensation."
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:269dac24b3d83ede5ad2419fd9d78e0e0368090c677bbd272880b1b8e6921af3",
-  "sema_ref": "Compensate#269d",
-  "sema_stub": "269d",
+  "sema_id": "sema:Compensate#mh:SHA-256:283e67ca01279958ab5e2792263d71c7ea6a00f7f61d2560444ec1d77c9930f9",
+  "sema_ref": "Compensate#283e",
+  "sema_stub": "283e",
   "sema_layer": "Physics",
   "sema_category": "Primitives",
   "dependencies": {

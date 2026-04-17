@@ -1,0 +1,78 @@
+{
+  "handle": "RootSolver",
+  "mechanism": "The apex node of a solver {{tree}} \u2014 the unique entry point where a {{problem}} (attached to a {{task}}) enters that tree. Its cognitive operation is triage: determining what kind of problem this is and routing it via a dispatch function conditioned on its {{pathway_memory}}. The RootSolver holds four unique authorities: Problem Framing (initial constraints and {{problem_space}}), Budget Allocation (cascading {{budget}} to child {{solver_node}}s), Ultimate Accountability (owning the final {{result}} or {{solution}}), and Pathway Memory maintenance (compounding learning about which routes work for which problem types). Every tree has exactly one RootSolver; sub-trees carry their own.",
+  "gloss": "Apex triage node of a SolverTree, with Pathway Memory as its compounding learning site",
+  "failure_modes": [
+    "Bad Frame: problem framed incorrectly, unsolvable by downstream nodes.",
+    "Reframe Failure: Root fails to find a valid alternative frame after downstream failure.",
+    "Budget Misallocation: resources distributed poorly across child nodes.",
+    "Poisoned Pathway Memory silently biases routing decisions \u2014 mitigated by signed writes only."
+  ],
+  "invariants": [
+    "Singleton per tree: every SolverTree has exactly one RootSolver.",
+    "Ultimate Responsibility: the RootSolver owns the final success/failure of the root {{task}}.",
+    "Reframe Authority: only the RootSolver can reframe the original {{problem}}.",
+    "Pathway Memory writes are signed \u2014 integrity of the compounding surface is enforced."
+  ],
+  "_meta": {
+    "tier": 1,
+    "layer": "Mind",
+    "category": "Strategy",
+    "ring": 1,
+    "supersedes": [
+      "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f"
+    ]
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "task_ref",
+      "problem_frame"
+    ],
+    "properties": {
+      "task_ref": {
+        "type": "string",
+        "description": "Reference to originating task"
+      },
+      "problem_frame": {
+        "type": "object",
+        "description": "Initial problem constraints and space"
+      },
+      "budget_allocation": {
+        "type": "object",
+        "description": "Resource distribution to children"
+      },
+      "pathway_memory_ref": {
+        "type": "string",
+        "description": "Reference to this Root's PathwayMemory"
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Child solver node refs"
+      }
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
+  "dependencies": {
+    "composes_with": {
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "references": {
+      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
+      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "problem": "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:78da7fef93c3a5e6a7728d30afcb0e8e9270493b23b36bd83acf2ee6977271d1"
+    }
+  },
+  "sema_id": "sema:RootSolver#mh:SHA-256:3ad183ba1595645714f4110901b66490a1b549d644955ee36657c67ce2ab61b4",
+  "sema_ref": "RootSolver#3ad1",
+  "sema_stub": "3ad1"
+}

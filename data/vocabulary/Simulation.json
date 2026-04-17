@@ -8,9 +8,9 @@
     "category": "Strategy",
     "ring": 0
   },
-  "sema_id": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
-  "sema_ref": "Simulation#8035",
-  "sema_stub": "8035",
+  "sema_id": "sema:Simulation#mh:SHA-256:aa24cc6231556ca3cf7d58aad0a8c1ffeb99e08e9ab6c4903b1c93871c926645",
+  "sema_ref": "Simulation#aa24",
+  "sema_stub": "aa24",
   "invariants": [
     "Isolation: Side effects in W' DO NOT leak to W."
   ],

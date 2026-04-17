@@ -16,9 +16,9 @@
     "category": "Primitives",
     "ring": 1
   },
-  "sema_id": "sema:Greet#mh:SHA-256:7ad2382d29cb28ed605b0505374488c7e6dcd1ff8098b63686e83ab7098e2cf6",
-  "sema_ref": "Greet#7ad2",
-  "sema_stub": "7ad2",
+  "sema_id": "sema:Greet#mh:SHA-256:bbaea8bfed1d642ff48d46fdb45939f74cb48360dedd6f7674f6b7630670b609",
+  "sema_ref": "Greet#bbae",
+  "sema_stub": "bbae",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {

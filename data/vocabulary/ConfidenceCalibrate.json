@@ -28,9 +28,9 @@
     "category": "Inference",
     "ring": 2
   },
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60",
-  "sema_ref": "ConfidenceCalibrate#0ae5",
-  "sema_stub": "0ae5",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:ba8bd9f417af19c3e8917307ec861d0d2a22fa8e700b37003f9552886c257bce",
+  "sema_ref": "ConfidenceCalibrate#ba8b",
+  "sema_stub": "ba8b",
   "sema_layer": "Mind",
   "sema_category": "Inference",
   "dependencies": {

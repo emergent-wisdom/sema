@@ -1,0 +1,38 @@
+{
+  "handle": "DocumentedOverride",
+  "mechanism": "The override-with-documentation safety valve at hard seams. Accepts a failed {{accept_spec}} evaluation plus a textual rationale and scoped override authority; composes_with {{time_warp_log}} to cryptographically log the override event (forward action + override + rationale + signing identity). Yields a forced {{decision}} that bypasses the failed gate. The override is a first-class, audit-trailed coordination act \u2014 every bypass carries non-repudiable evidence of who overrode what and why. Preserves fail-closed discipline by making the bypass explicit, named, signed, and logged rather than silent.",
+  "gloss": "Supervised bypass of a failed acceptance gate, cryptographically logged",
+  "invariants": [
+    "Every override event must be signed by an identity holding scoped override authority.",
+    "Forward action, override, rationale, and signing identity are all logged to {{time_warp_log}} \u2014 no partial records.",
+    "Rationale field must be non-empty: a DocumentedOverride with no documentation is not a DocumentedOverride."
+  ],
+  "failure_modes": [
+    "Override authority is over-scoped \u2014 any agent can bypass any gate, defeating the fail-closed discipline.",
+    "Compromised signing key enables silent override with valid-looking log entries.",
+    "Rationale accepts low-information text ('legitimate business reason') that defeats the audit purpose while technically satisfying non-empty."
+  ],
+  "_meta": {
+    "tier": 2,
+    "layer": "Society",
+    "category": "Governance",
+    "ring": 1,
+    "caution": "Overrides a failed acceptance gate. The cryptographic log is the only post-hoc accountability; ensure override authority is scoped and auditable before composing."
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "dependencies": {
+    "composes_with": {
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:d9386c726ba1c96bfae61549b82b16d1137d59b1f2129a19a24568f3117a4720"
+    },
+    "accepts": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
+    }
+  },
+  "sema_id": "sema:DocumentedOverride#mh:SHA-256:701272041d5f71e12248dd0cfc3f0250bfb2ac0bdeea76450c6119f6de001e1f",
+  "sema_ref": "DocumentedOverride#7012",
+  "sema_stub": "7012"
+}

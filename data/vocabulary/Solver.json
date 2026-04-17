@@ -1,7 +1,7 @@
 {
   "handle": "Solver",
-  "mechanism": "The abstract role (or {{protocol}}) of any agent or process that accepts a {{task}} and produces a {{solution}}. A Solver is the fundamental unit of work execution in the system, adhering to the input/output contract defined by the Task protocol.",
-  "gloss": "Abstract interface for transforming Tasks into Solutions",
+  "mechanism": "The abstract {{protocol}} exposing the five-surface Solver Contract \u2014 Manifest (what can you do?), Execute (perform the {{task}}), Consult (cost/quality/rationale), Verify (post-execution assurance), and Feedback (emits a typed {{performance_signal}} \u2014 structured evaluation, or a FrameError escalation). Manifest and Execute are mandatory; Consult/Verify/Feedback are optional but strongly recommended at hard seams. Accepts a typed Task and yields a typed {{solution}}. Solver is an interface, not a class: any {{agent}} can take on the role of a Solver for the duration of a Task. The \"[descriptor]Solver\" naming convention is the library's construction pattern \u2014 DiagnosticSolver, PlanningSolver, ReduceSolver, PUREOptimizationSolver, and so on are all minted by appending \"Solver\" to a domain descriptor, each specialising the contract. The same agent can wear many solver roles simultaneously or sequentially; lightweight roles (Manifest + Execute only) scale up to permanent instances as tasks compound. Recursion follows naturally: when a Solver decomposes its Task, it becomes the root of a sub-tree whose children are themselves Solvers \u2014 the mechanism that gives the UniversalSolverTree its fractal shape.",
+  "gloss": "Abstract five-surface contract: Manifest, Execute, Consult, Verify, Feedback",
   "signature": [
     "Protocol(Task)"
   ],
@@ -11,9 +11,9 @@
     "category": "Strategy",
     "tier": 0
   },
-  "sema_id": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982",
-  "sema_ref": "Solver#1c9b",
-  "sema_stub": "1c9b",
+  "sema_id": "sema:Solver#mh:SHA-256:94ab9ed2ef37d28c9bd267a6c7e80ef416b1f4e298e9b19b1a4c3ec5f5153311",
+  "sema_ref": "Solver#94ab",
+  "sema_stub": "94ab",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
@@ -24,7 +24,9 @@
       "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
     },
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
+      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
+      "agent": "sema:Agent#mh:SHA-256:35b97b37325c6f065a2e78f0d3397fa4984289ca90ea63feaa9902f40cfac681",
+      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:d96f75b1618e762562ef6f0bc52586e095e50ea6b9f184d0a7d349374269627f"
     }
   }
 }

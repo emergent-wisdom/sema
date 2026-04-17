@@ -27,9 +27,9 @@
     "category": "Economics",
     "ring": 1
   },
-  "sema_id": "sema:AttentionMarkets#mh:SHA-256:923679ce8222a914dc75a55824b91d403220b0b3f8943cf0d0d9fc0512c0d20b",
-  "sema_ref": "AttentionMarkets#9236",
-  "sema_stub": "9236",
+  "sema_id": "sema:AttentionMarkets#mh:SHA-256:d34aabfb744c1693ec3c85788f4f9d49878b58d5b66d8d322ced42184b46cda5",
+  "sema_ref": "AttentionMarkets#d34a",
+  "sema_stub": "d34a",
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {

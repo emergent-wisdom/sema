@@ -22,11 +22,11 @@
     "tier": 2,
     "layer": "Society",
     "category": "Protocols",
-    "ring": 0
+    "ring": 2
   },
-  "sema_id": "sema:DataMinimization#mh:SHA-256:ea9c44501d3df27b306df5e0232df276b47b3a2d48d3e6b5c32590a15867e653",
-  "sema_ref": "DataMinimization#ea9c",
-  "sema_stub": "ea9c",
+  "sema_id": "sema:DataMinimization#mh:SHA-256:50e67819e84f5d84f380548698ed5ab8c4934c3600e41a76ab351da4bd92ed23",
+  "sema_ref": "DataMinimization#50e6",
+  "sema_stub": "50e6",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

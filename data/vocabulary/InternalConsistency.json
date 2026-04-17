@@ -15,9 +15,9 @@
     "ring": 2,
     "tier": 2
   },
-  "sema_ref": "InternalConsistency#862f",
-  "sema_id": "sema:InternalConsistency#mh:SHA-256:862f24b8dcbc229acfc3d2ced93ceec3b6abf982a0de4cd63b4960c077c1c7e7",
-  "sema_stub": "862f",
+  "sema_ref": "InternalConsistency#a374",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:a3744c8511f38c9dc34bb51ea75964ea3cc7e97db3c8ce98a41e17d01005d997",
+  "sema_stub": "a374",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

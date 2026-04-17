@@ -1,7 +1,7 @@
 {
   "handle": "Bubble",
   "mechanism": "Isolated sandbox where coordination is tried before committing to reality. Creator sends BUBBLE_CREATE: {participants, ttl (time-to-live), isolation_level, parent_bubble (for nesting)}. Participants JOIN to enter isolated context. Inside bubble: state changes are copy-on-write (snapshot isolation), resource acquisitions are soft-reservations (intent, not actual), messages to non-participants are queued (not sent). {{work}} proceeds normally but nothing affects real world. When ready, creator calls PREPARE (2-phase commit). Each participant responds READY (can commit) or ABORT (cannot). If ALL READY: COMMIT\u2014queued messages sent, state changes applied atomically, reservations converted to hard acquisitions. If ANY ABORT or TTL expires: ROLLBACK\u2014all tentative work discarded silently, no compensation needed. Nested bubbles commit to parent context, not real world; parent commit makes all nested work real. It enforces a {{constraint_first}} approach around the simulation context to ensure no side effects leak into the production environment.",
-  "gloss": "Enable risk-free coordination experimentation through transactional isolation\u2014try before committing to reality",
+  "gloss": "Sandboxed coordination trial with rollback on commit refusal",
   "failure_modes": [
     "Participant crashes after READY but before COMMIT (blocking\u2014use timeout and recovery).",
     "Long-running bubbles hold soft-reservations too long (resource starvation).",
@@ -28,9 +28,9 @@
     "category": "Strategy",
     "ring": 1
   },
-  "sema_id": "sema:Bubble#mh:SHA-256:eb9a8441896625edfa7d41935d88120a27bf53db353082e49b0c6027d45e6142",
-  "sema_ref": "Bubble#eb9a",
-  "sema_stub": "eb9a",
+  "sema_id": "sema:Bubble#mh:SHA-256:189dd3deb9833b76aa24662131557e799499d0cfbab0aae8070e3496f6c0e582",
+  "sema_ref": "Bubble#189d",
+  "sema_stub": "189d",
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {

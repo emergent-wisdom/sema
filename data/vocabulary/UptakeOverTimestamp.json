@@ -24,9 +24,9 @@
     "category": "Protocols",
     "ring": 1
   },
-  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:9f0fffcbeef00cd271526bb7a2849998c76e242ed74d36d0058b1849379c57ab",
-  "sema_ref": "UptakeOverTimestamp#9f0f",
-  "sema_stub": "9f0f",
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:44de909798cb858dc158d8d3b4939f566b99efa7ad04096c2adc97e1c38de01f",
+  "sema_ref": "UptakeOverTimestamp#44de",
+  "sema_stub": "44de",
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {

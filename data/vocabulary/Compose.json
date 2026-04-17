@@ -17,15 +17,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
+    "layer": "Mind",
+    "category": "Strategy",
     "ring": 2
   },
-  "sema_id": "sema:Compose#mh:SHA-256:10b7e69d6548c3d79dcf5ccb356bb0196fe7535d273a885cbe6a2c20b9e73a11",
-  "sema_ref": "Compose#10b7",
-  "sema_stub": "10b7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:Compose#mh:SHA-256:76c1e7fb397feba35540c6efc14b56e60df485e39e0efdc3e9d60b273e1778ad",
+  "sema_ref": "Compose#76c1",
+  "sema_stub": "76c1",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy",
   "signature": [
     "Combine(PromptChain)"
   ],
