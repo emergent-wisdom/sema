@@ -20,8 +20,8 @@ See also: `docs/core/philosophy.md` for the protocol-level principles, `docs/gui
 These are the rules a new pattern must pass before it enters the default library.
 They are stated here forward-looking — as requirements for future mints — rather
 than as history. All three are enforced or validated at mint time through
-`sema apply` checks, the refinement pass (`audits/`), or the pattern-authoring
-review workflow.
+`sema apply` checks and the pattern-authoring review workflow, with the design
+manual itself (this document) as the primary review surface.
 
 ### The mechanism-sufficiency test (layer placement)
 

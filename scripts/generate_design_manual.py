@@ -9,13 +9,6 @@ The manual is fully auto-generated. Everything editable lives in two places:
     handle with `motivation`, `usage`, `design` (tensions/tradeoffs/critique),
     and `family_discussion`).
 
-To import fresh fields from the audit docs into the sidecar, run:
-
-    python scripts/migrate_design_commentary.py
-
-Migration preserves any hand-authored analytical fields and only refreshes
-the fields sourced from the audit .md files.
-
 Every run of this script rewrites the manual from scratch. Do not hand-edit
 the output file — hand-edit the sidecar or the pattern JSONs instead.
 
@@ -49,8 +42,8 @@ GOVERNING_PRINCIPLES = """\
 These are the rules a new pattern must pass before it enters the default library.
 They are stated here forward-looking — as requirements for future mints — rather
 than as history. All three are enforced or validated at mint time through
-`sema apply` checks, the refinement pass (`audits/`), or the pattern-authoring
-review workflow.
+`sema apply` checks and the pattern-authoring review workflow, with the design
+manual itself (this document) as the primary review surface.
 
 ### The mechanism-sufficiency test (layer placement)
 
