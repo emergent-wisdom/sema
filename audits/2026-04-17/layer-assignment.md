@@ -11,21 +11,28 @@ Entries prefixed with `~` are proposed moves (current placement differs).
 
 ---
 
-## Physics (9)  
+## Physics (16)  
 _Moves in: 0_
 
+- Branch — conditional-fork component — the foundational flow-shape Noun
 - CausalBarrier — buffers until causal dependencies met — causal-cone physics
 - Causation — directed causal edge obtains regardless of any author — a relationship in reality
+- Cooldown — minimum-interval component — foundational timing Noun
 - Dampen — passive attenuation models a physical damping property
 - Decay — attenuation of untended value is a physical-law analogue
 - Entropy — measure of disorder is a given property, not authored
+- Gate — filter-component Noun — the condition-filter shape higher layers compose with
+- Heartbeat — periodic liveness-signal component — foundational Noun
+- Hysteresis — asymmetric-threshold-pair component — Noun
 - Lock — mutual exclusion is a substrate atomicity primitive (kernel/hardware)
 - Mutex — specialised Lock — same substrate-atomicity floor
 - Noise — irrelevant information exists whether or not anyone designs it
 - Reversibility — condition on actions — substrate property, not authored
+- Route — classifier-component Noun — classify-and-dispatch shape
+- Throttle — rate-limiter component — foundational Noun
 
-## Infrastructure (145)  
-_Moves in: 19_
+## Infrastructure (138)  
+_Moves in: 12_
 
 - Act — root primitive for state modification; executed mechanically
 - Actor — entity capable of executing Act; no cognition required
@@ -41,7 +48,6 @@ _Moves in: 19_
 - Ballot — immutable vote container — data
 - Belief — structured claim + confidence — data
 - Boolean — primitive true/false type
-- `~` **Branch** *(was Physics/Time)* — conditional if-then-else — authored control flow
 - Break — failure-announcement signal — typed data
 - `~` **Cache** *(was Mind/Memory)* — keyed lookup storage
 - Card — capability advertisement artifact — data
@@ -60,7 +66,6 @@ _Moves in: 19_
 - Constraint — boundary condition — data
 - Context — execution-environment container — data
 - Contract — immutable record artifact (the artifact is Infra; agreement semantic is Society)
-- `~` **Cooldown** *(was Physics/Primitives)* — minimum-interval enforcement — authored delay
 - Correlation — co-movement relation — data relation
 - Criteria — judgment-standard collection — data
 - Critique — verbatim analysis against criteria — Verb primitive
@@ -78,14 +83,11 @@ _Moves in: 19_
 - FeedbackSignal — standardised learning-feedback packet
 - Forest — topology of multiple disjoint trees
 - `~` **FrameSpec** *(was Society/Protocols)* — structured problem-definition artifact
-- `~` **Gate** *(was Physics/Primitives)* — authored condition-filter primitive
 - Goal — desired-end-state spec — data
 - Greet — initial contact protocol — authored primitive
-- `~` **Heartbeat** *(was Physics/Time)* — periodic liveness-signal primitive
 - Hierarchy — rank-ordering data
 - HumanApprove — authored gate that pauses for external decision
 - Hypothesis — testable prediction — data
-- `~` **Hysteresis** *(was Physics/Primitives)* — authored asymmetric-threshold primitive
 - IdempotentWrite — dedup primitive via idempotency key
 - Identity — unique distinguishing handle — data
 - Incongruity — mismatch-signal primitive
@@ -129,7 +131,6 @@ _Moves in: 19_
 - Resource — finite allocatable entity — data
 - Result — canonical output artifact — data
 - Risk — quantified potential for negative outcome — data
-- `~` **Route** *(was Physics/Primitives)* — authored classify-and-dispatch primitive
 - RuleSet — constraint collection — data
 - Sandbox — isolated execution environment
 - Score — numerical evaluation result — data
@@ -158,7 +159,6 @@ _Moves in: 19_
 - Task — atomic unit of intent — data
 - TaskLifecycle — formal state machine for tasks
 - Tension — reified conflict-state data
-- `~` **Throttle** *(was Physics/Primitives)* — rate-limiting primitive
 - TimeWarpLog — causal-cone append-only log
 - ToolInvoke — mechanical tool-call execution
 - Topology — interface for reasoning-structure shapes — data
