@@ -11,29 +11,23 @@ Entries prefixed with `~` are proposed moves (current placement differs).
 
 ---
 
-## Physics (16)  
+## Physics (9)  
 _Moves in: 0_
 
-- Branch — conditional-fork component — the foundational flow-shape Noun
 - CausalBarrier — buffers until causal dependencies met — causal-cone physics
 - Causation — directed causal edge obtains regardless of any author — a relationship in reality
-- Cooldown — minimum-interval component — foundational timing Noun
 - Dampen — passive attenuation models a physical damping property
 - Decay — attenuation of untended value is a physical-law analogue
 - Entropy — measure of disorder is a given property, not authored
-- Gate — filter-component Noun — the condition-filter shape higher layers compose with
-- Heartbeat — periodic liveness-signal component — foundational Noun
-- Hysteresis — asymmetric-threshold-pair component — Noun
 - Lock — mutual exclusion is a substrate atomicity primitive (kernel/hardware)
 - Mutex — specialised Lock — same substrate-atomicity floor
 - Noise — irrelevant information exists whether or not anyone designs it
 - Reversibility — condition on actions — substrate property, not authored
-- Route — classifier-component Noun — classify-and-dispatch shape
-- Throttle — rate-limiter component — foundational Noun
 
-## Infrastructure (138)  
-_Moves in: 12_
+## Infrastructure (151)  
+_Moves in: 25_
 
+- `~` **AcceptSpec** *(was Society/Protocols)* — non-compensatory acceptance spec — typed data artifact (one agent can read)
 - Act — root primitive for state modification; executed mechanically
 - Actor — entity capable of executing Act; no cognition required
 - Aesthetics — metric for subjective preference — data
@@ -48,7 +42,9 @@ _Moves in: 12_
 - Ballot — immutable vote container — data
 - Belief — structured claim + confidence — data
 - Boolean — primitive true/false type
+- `~` **Branch** *(was Physics/Time)* — engineered conditional-fork primitive — authored, not substrate
 - Break — failure-announcement signal — typed data
+- Budget — arithmetic ledger with floor constraint — no cognition required; strategy of allocation is separate (ComputeBudget/MVR live in Mind)
 - `~` **Cache** *(was Mind/Memory)* — keyed lookup storage
 - Card — capability advertisement artifact — data
 - Care — entropy-reducing work primitive
@@ -58,6 +54,7 @@ _Moves in: 12_
 - CircuitBreaker — state-machine wrapper for fallible operations
 - CognitiveBias — bias-category definition — data
 - Combine — binary merge operation
+- `~` **Compare** *(was Mind/Reasoning)* — deterministic Equal/Less/Greater/Incomparable — CPU-instruction-level
 - CompatibilityCheck — schema-hash comparison — mechanical
 - `~` **Compensate** *(was Physics/Primitives)* — execute logged inverses — mechanical rollback
 - `~` **Compress** *(was Physics/Primitives)* — authored reduction operation
@@ -66,9 +63,9 @@ _Moves in: 12_
 - Constraint — boundary condition — data
 - Context — execution-environment container — data
 - Contract — immutable record artifact (the artifact is Infra; agreement semantic is Society)
+- `~` **Cooldown** *(was Physics/Primitives)* — engineered minimum-interval enforcement
 - Correlation — co-movement relation — data relation
 - Criteria — judgment-standard collection — data
-- Critique — verbatim analysis against criteria — Verb primitive
 - Cyclic — cyclic topology — data
 - DAG — directed acyclic topology — data
 - Datum — raw unit of fact
@@ -76,6 +73,7 @@ _Moves in: 12_
 - `~` **EntropyPump** *(was Physics/Primitives)* — authored noise-injection primitive
 - Event — discrete temporal occurrence — data
 - Exception — runtime anomaly signal — data
+- `~` **ExecutionManifest** *(was Society/Protocols)* — binding of design + procedure — typed data artifact
 - ExplainBeacon — telemetry stream — mechanical
 - FailClosed — authored default-deny safety primitive
 - FailureTrace — structured proof artifact
@@ -83,11 +81,14 @@ _Moves in: 12_
 - FeedbackSignal — standardised learning-feedback packet
 - Forest — topology of multiple disjoint trees
 - `~` **FrameSpec** *(was Society/Protocols)* — structured problem-definition artifact
+- `~` **Gate** *(was Physics/Primitives)* — engineered condition-filter primitive — authored, not substrate
 - Goal — desired-end-state spec — data
 - Greet — initial contact protocol — authored primitive
+- `~` **Heartbeat** *(was Physics/Time)* — engineered periodic liveness-signal protocol
 - Hierarchy — rank-ordering data
 - HumanApprove — authored gate that pauses for external decision
 - Hypothesis — testable prediction — data
+- `~` **Hysteresis** *(was Physics/Primitives)* — engineered asymmetric-threshold primitive
 - IdempotentWrite — dedup primitive via idempotency key
 - Identity — unique distinguishing handle — data
 - Incongruity — mismatch-signal primitive
@@ -131,6 +132,8 @@ _Moves in: 12_
 - Resource — finite allocatable entity — data
 - Result — canonical output artifact — data
 - Risk — quantified potential for negative outcome — data
+- `~` **RolloutManifest** *(was Society/Protocols)* — deployment execution log — data artifact
+- `~` **Route** *(was Physics/Primitives)* — engineered classify-and-dispatch primitive
 - RuleSet — constraint collection — data
 - Sandbox — isolated execution environment
 - Score — numerical evaluation result — data
@@ -144,6 +147,7 @@ _Moves in: 12_
 - Skeleton — parallel outline-first topology
 - Snapshot — immutable state record — data
 - Solution — typed output artifact — data
+- `~` **SolverManifest** *(was Society/Protocols)* — typed declaration of solver identity+capabilities — data artifact
 - Spec — rigorous requirement definition — data
 - SpotAudit — probabilistic sampling audit — mechanical
 - State — system condition at time T — data
@@ -153,12 +157,14 @@ _Moves in: 12_
 - Status — graded verification outcome enum
 - Step — atomic action with pre/post — data
 - Stream — continuous data flow — data
+- `~` **StyleSpec** *(was Society/Protocols)* — codified aesthetic standards — data artifact
 - Subject — operation target — Trait
 - Summary — compressed artifact — data
 - System — complex whole of interacting parts — data
 - Task — atomic unit of intent — data
 - TaskLifecycle — formal state machine for tasks
 - Tension — reified conflict-state data
+- `~` **Throttle** *(was Physics/Primitives)* — engineered rate-limiter primitive
 - TimeWarpLog — causal-cone append-only log
 - ToolInvoke — mechanical tool-call execution
 - Topology — interface for reasoning-structure shapes — data
@@ -173,7 +179,7 @@ _Moves in: 12_
 - Warmup — gradual capacity ramp — authored primitive
 - Work — directed effort primitive — data
 
-## Mind (179)  
+## Mind (178)  
 _Moves in: 2_
 
 - Abduction — inference to best explanation — judgment
@@ -189,7 +195,6 @@ _Moves in: 2_
 - Bisect — binary partition reasoning
 - BreadthGovernor — parallel-branch limit — cognitive budget
 - Bubble — sandboxed coordination trial — conceptual sandbox
-- `~` **Budget** *(was Infrastructure/Primitives)* — resource-allocation discipline within one agent
 - Build — low-cost prototype construction — cognitive act
 - CapacityPressure — self-imposed resource constraint
 - ChainOfThought — sequential reasoning macro
@@ -198,7 +203,6 @@ _Moves in: 2_
 - CognitiveEcho — variance-based effort estimation via self-simulation
 - CollaborativeWritingProtocol — quality-constrained production decomposition — cognitive
 - CommitmentDevice — Ulysses-pact self-binding; multi-agent slashing is a specialization
-- Compare — relational evaluation
 - Compose — recursive assembly reasoning
 - ComputeBudget — cognitive governor of self-spend
 - ConceptBlend — fusion of unrelated concepts
@@ -212,6 +216,7 @@ _Moves in: 2_
 - ContingencyPlan — if-then preparation cognition
 - Creative — cognitive novelty-generation mode — Trait
 - CreativeBlend — creative pipeline — cognitive
+- `~` **Critique** *(was Infrastructure/Data Structures)* — generating qualitative strengths/weaknesses requires semantic understanding — cognitive
 - Crystallize — explicit formalization of implicit resonance — cognitive phase
 - CurriculumReplay — self-distillation
 - Decompose — cognitive splitting of task
@@ -356,10 +361,9 @@ _Moves in: 2_
 - WhyClimb — recursive problem abstraction
 - WorldReversible — single-agent design constraint for invertibility
 
-## Society (111)  
+## Society (106)  
 _Moves in: 2_
 
-- AcceptSpec — contract between producer and verifier — ≥2 roles
 - AdversarialProof — adversarial search — multi-party threat model
 - AgentDiscover — advertise capabilities to other agents
 - AgentProtocol — multi-agent coordination bundle
@@ -396,7 +400,6 @@ _Moves in: 2_
 - Elect — leader selection across group
 - EvaluatorOptimizer — generate-evaluate loop between roles
 - ExchangeRate — conversion between value systems — multi-party
-- ExecutionManifest — binds design + ops for multi-agent rollout
 - ExpiringToken — time-decaying auth — issuer + bearer
 - FabricSharding — state-shard coordination — multi-agent
 - FeatureFlag — runtime toggle between producer + consumer
@@ -440,12 +443,10 @@ _Moves in: 2_
 - Robustness — system property across observers
 - Role — named permission/responsibility bundle — multi-agent
 - Rollout — safe reversible deployment — multi-agent
-- RolloutManifest — deployment execution log — multi-party record
 - RolloutWatch — continuous verification of deployed state
 - RootHashGossip — path-verified info spreading — multi-node
 - ShoutWhisper — dual-mode comm — broadcast + P2P
 - SignalReflection — proof of receipt — sender + receiver
-- SolverManifest — typed solver identity advertisement — cross-agent
 - SolverNode — runtime solver wrapper — network node
 - SolverTree — active command structure — multi-agent hierarchy
 - SomaticMarker — system-health gut-feeling — signals across system
@@ -453,7 +454,6 @@ _Moves in: 2_
 - `~` **StateLock** *(was Physics/Time)* — two-actor state fusion
 - `~` **Stigmergy** *(was Mind/Memory)* — indirect coordination via shared-environment traces — marker + reader
 - StructuralCoaching — guidance between coach + student
-- StyleSpec — aesthetic standards between producer + consumer
 - SynergisticMode — cognitive-mode signal to downstream solvers
 - Taper — multi-stage filter pipeline — coordination ritual
 - ThreeLevelCollision — threat-modeling primitive between parties

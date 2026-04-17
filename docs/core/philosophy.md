@@ -40,32 +40,19 @@ The vocabulary is organized into four fundamental layers that mimic a civilizati
 
 **Dependency Invariant:** `Infrastructure` constrains `Physics`, which supports `Mind`, which enables `Society`. Hard dependencies (`accepts`, `composes_with`) must flow from higher layers to lower. Soft citations (`references`) and outputs (`yields`) are exempt.
 
-### 3.1 Layer Definitions — two axes: scope + shape
+### 3.1 Tight Layer Definitions (the mechanism-sufficiency test)
 
-A pattern's layer is decided by **two axes together**: the scope of the mechanism (who / what the mechanism requires to execute) and the shape of the pattern (Noun component vs. Verb operation). The scope axis is the primary filter; the shape axis decides which category *within* a layer the pattern sits in.
+The four-layer table names the layers; these definitions give the *test* that decides where a pattern belongs. The axis is **what the pattern's mechanism structurally requires to execute** — not what it is typically used for, not what it conceptually operates on, and not how foundational it feels.
 
-**Scope (primary axis — decides the layer)**:
-
-| Layer | Scope definition | Scope test |
+| Layer | Tight definition | Test question |
 |---|---|---|
-| **Physics** | Foundational building blocks — the component-level primitives on which all higher mechanisms compose. Some are substrate (obtain regardless of authorship, e.g. `Entropy`, `Causation`); others are authored-but-foundational components (`Lock`, `Gate`, `Heartbeat`, `Branch`) that act as the low-level *things* every layer above assembles with. | *Is this a foundational component that higher layers compose with, rather than compose from higher-level parts?* |
-| **Infrastructure** | Authored structures and operations that *do not require cognition to execute*. Data artifacts, composite topologies, mechanical Verbs (schema validation, sorting, tracing). Built on Physics components. | *Can a program execute this without making any judgment? Is it composed from Physics components rather than being one itself?* |
+| **Physics** | Substrate primitives that *obtain regardless of any author*. Inviolable environmental realities — you can reconfigure Infrastructure, but you cannot negotiate with Physics. | *Does this exist whether or not anyone thinks about it or designs it?* |
+| **Infrastructure** | Authored structures and operations that *do not require cognition to execute*. Data types, composite topologies, authored foundational primitives (gates, throttles, heartbeats, control-flow shapes), mechanical Verbs (validate, sort, trace). | *Can a program execute this without making any judgment? Was this designed?* |
 | **Mind** | Mechanisms that *require cognition* — judgment, reasoning, inference, strategy. Single party is sufficient; cognition alone executes the mechanism. | *Does this require a knower to make a call that cannot be reduced to schema-matching? Can a single isolated agent execute it?* |
 | **Society** | Mechanisms that *structurally require ≥2 independent parties* — parties with separate state and potentially divergent interests. Cognition alone is insufficient; external parties are part of the mechanism. | *Does the mechanism structurally require another party whose state is outside this agent's control?* |
 
-**Shape (secondary axis — decides the category within the layer)**:
-
-Each layer contains both Nouns (things) and Verbs (operations):
-
-- Physics Nouns live in `Physics/Primitives` (the default Physics category) and `Physics/Time` (temporal components).
-- Infrastructure splits: `Data Structures` = Nouns; `Primitives` = Verbs; `Verification` = verification-Verbs.
-- Mind splits: `Memory` / some `Data Structures` = Nouns; `Reasoning` / `Strategy` / `Inference` = Verbs-and-their-products.
-- Society splits: `Protocols` / `Governance` = Nouns (rule-sets, contracts); `Coordination` / `Economics` = Verbs (acts between agents).
-
-**Key refinement — Physics is components, not just substrate.** An earlier draft of this section defined Physics narrowly as "obtains regardless of any author." That was too strict — it would evict legitimate foundational components (`Gate`, `Heartbeat`, `Throttle`) that are authored but act as building-block Nouns the rest of the library composes with. The correct framing is: Physics is the **bottom of the compose-with stack** — whether a given component is substrate-given (`Lock`) or authored-but-foundational (`Gate`), it lives in Physics when its role is to be *a component other layers use* rather than *an assembly of other components*.
-
 **Distinguishing axes**:
-- *Physics vs. Infrastructure*: foundational component (built-with) vs. higher-level assembly (built-from). If removing the pattern would eliminate a category of building-block, it's Physics. If the pattern is composed from other patterns, it's Infrastructure.
+- *Physics vs. Infrastructure*: substrate (given) vs. authored (designed). Thermodynamics vs. plumbing. You cannot redesign Entropy; you can redesign a Gate. This is the sharpest line in the spec — resist the temptation to call authored foundational primitives "Physics" just because they feel low-level. `Infrastructure/Primitives` is the right home for authored foundational building blocks.
 - *Infrastructure vs. Mind*: mechanical (no cognition) vs. cognitive (requires judgment).
 - *Mind vs. Society*: single-party (cognition sufficient) vs. multi-party (external parties required by the mechanism).
 
@@ -73,21 +60,30 @@ Each layer contains both Nouns (things) and Verbs (operations):
 - A pattern whose mechanism is a single-agent rule but is *vulnerable to* adversarial inputs in multi-agent deployments is still **Mind**. The vulnerability is compositional: wrap it with Society-layer guards (ReceptivityGate, signed consultation, FailureTrace) to harden.
 - A pattern whose mechanism *structurally assumes* ≥2 parties with divergent interests is **Society**. Consensus, Vote, Contract, ConfusedDeputy: these are incoherent with a single isolated agent.
 
+**The components-vs-substrate trap** (critical for Physics vs. Infrastructure):
+"This is a foundational building block" is a *vibe test*, not the layer test. Gate, Branch, Heartbeat, Throttle, Cooldown, Hysteresis, Route *feel* like physics because they sit at the bottom of the compose-with stack — but they are engineered. Somebody designed them. Substrate is what obtains regardless of design. Placing authored primitives in Physics conflates two categories that should stay distinct: the given (Physics) and the designed (Infrastructure). `Infrastructure/Primitives` is a large, respected category precisely because it holds the authored-but-foundational.
+
 **Worked examples**:
-- `Lock`: foundational synchronization component — a Noun at substrate level. → **Physics/Primitives**.
-- `Gate`: foundational filter component — a Noun (the shape "condition-filter") that higher-level Verbs compose with. → **Physics/Primitives**.
-- `Heartbeat`: foundational liveness-signal component. → **Physics/Time**.
-- `Sign`: the *Verb* of attaching a signature. Not a component — an operation using the Identity + Artifact components. → **Infrastructure/Primitives**.
-- `Compensate`: the *Verb* of running inverses. Operation, not component. → **Infrastructure/Primitives**.
-- `Tree` / `Chain` / `DAG`: topology shapes — Nouns but composed *from* nodes and edges, higher-level assemblies. → **Infrastructure/Data Structures**.
+- `Lock`: atomicity of mutual exclusion is a substrate property (kernel/hardware level). → **Physics**.
+- `Entropy`, `Decay`, `Dampen`, `Noise`, `Causation`, `Reversibility`: substrate properties that obtain regardless of any author. → **Physics**.
+- `Gate`: filter-component, but engineered. You designed the condition; it didn't exist before you wrote it. → **Infrastructure/Primitives**.
+- `Heartbeat`: engineered liveness-signal protocol. The concept of periodic signal is an authored pattern. → **Infrastructure/Primitives**.
+- `Sign`: the *Verb* of attaching a signature. Operation using Identity + Artifact. → **Infrastructure/Primitives**.
+- `Tree` / `Chain` / `DAG`: topology shapes — authored Nouns, not substrate. → **Infrastructure/Data Structures**.
 - `MarginalValueRule`: cognitive ratio test. → **Mind**.
 - `ChainOfThought`: sequential cognitive derivation. → **Mind**.
 - `Consensus`: "multiple parties agree on a value" — incoherent with one party. → **Society**.
 - `Validate`: matches an artifact against a schema — no judgment. → **Infrastructure/Verification**.
-- `Judge`: produces a quality rating — cognitive judgment required. → **Infrastructure/Primitives** (Verb) or **Mind** depending on whether the judgment is schema-reducible; pattern currently in Infra as a scoring primitive.
+- `Judge`: produces a quality rating — cognitive judgment required. → **Infrastructure/Primitives** as a scoring primitive; if the judgment escapes schema-matching it's Mind.
 - `ConfusedDeputy`: the threat model *is* a 3-party interaction. → **Society**.
 
-**Practical heuristic** — when deciding between Physics and Infrastructure for a low-level pattern, ask: "Is this a *Noun*, a component I can name and compose with?" If yes and it sits at the bottom of the compose stack (not assembled from other patterns), Physics. If it's a Verb that uses Physics Nouns to do something, Infrastructure/Primitives.
+**When to mint a Physics pattern — the protocol-consistency test.** Most substrate concepts (gradients, equilibrium, phase transitions, distance) can be discussed in regular English. An agent describing "the attention gradient in this context" does not need a minted `Gradient` pattern to be understood. The minting criterion is not "is this substrate?" but "**do agent protocols require cryptographically shared meaning for this concept?**"
+
+Mint a Physics pattern when two or more agents must coordinate on the *exact* semantics of the concept — when their protocols depend on agreeing on what `Lock` means (reentrant? stealable? atomicity level?) or what counts as `Causation` (is correlation enough?). Content-addressing is the mechanism of shared meaning; it earns its cost only when shared meaning is the load-bearing requirement.
+
+For concepts that agents can use with locally-varying private understanding — each having their own estimate of "gradient magnitude" or "is this at equilibrium" — **English suffices**. Pre-emptive minting adds Ring-0 orphans and violates `MintWhenFriction`.
+
+Future Physics candidates (to mint only when a concrete cross-agent protocol needs them): `Gradient`, `Equilibrium`, `Conservation`, `Distance`/`Metric`, `PhaseTransition`, `Attractor`, `MutualInformation`, `Measurement`. Each is a real substrate concept, but none currently has a protocol-consistency requirement in the library.
 
 **The Parametric Exception (Smart Infrastructure):**
 Fundamental layers (Infrastructure/Physics) may *wrap* High-Level patterns (Mind/Society) **only if** the High-Level pattern is treated as an opaque parameter (e.g., a `Condition` or `Metric`) that resolves to a strict value (Boolean/Scalar).
