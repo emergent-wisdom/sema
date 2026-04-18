@@ -592,6 +592,7 @@ def update_db(
     dry_run: bool = False,
     verify: bool = False,
     exclude: list[str] | None = None,
+    preserve_superseded: bool = False,
 ):
     """Pull latest vocabulary: walk upstream DAG in topological order, update each.
 
@@ -864,6 +865,100 @@ def update_db(
         if failed:
             raise RuntimeError(f"{len(failed)} pattern(s) failed to mint")
 
+        # ============ SUPERSESSION CLEANUP ============
+        # Upstream patterns' `_meta.supersedes` names the sema_ids of older
+        # patterns that upstream has explicitly retired. If the target has a
+        # pattern at one of those sema_ids, remove it — the replacement is
+        # already in place from the mint loop above. `--preserve-superseded`
+        # opts out (keeps both coexisting).
+        #
+        # CRITICAL: this MUST run BEFORE the cascade sweep below. Cascade
+        # rewrites user-local patterns' sema_ids when their deps change;
+        # once rewritten, the supersedes lookup wouldn't find them anymore.
+        #
+        # Orphan guard: if a user-only local pattern still depends on the
+        # soon-to-be-removed one (via edge), don't remove — report it as
+        # `superseded_kept_orphan`. The user must re-point their dependents
+        # (or opt in to `--preserve-superseded`) before the cleanup fires.
+        superseded_removed = []  # (old_handle, [successor_handles])
+        superseded_kept_orphan = []  # (old_handle, [successor_handles], [user_dependents])
+
+        # Snapshot orphan-sub-node count before cleanup so we can report a
+        # delta afterwards. Pattern deletion doesn't GC the invariant /
+        # precondition / postcondition nodes that become unreachable — we
+        # notify but don't auto-remove.
+        def _count_isolated_subs():
+            return (
+                sqlite3.connect(target_db)
+                .execute(
+                    """
+                SELECT COUNT(*) FROM nodes n
+                WHERE n.node_type IN ('INVARIANT', 'PRECONDITION', 'POSTCONDITION')
+                  AND NOT EXISTS (
+                      SELECT 1 FROM edges e
+                      WHERE e.source_id=n.id OR e.target_id=n.id
+                  )
+                """
+                )
+                .fetchone()[0]
+            )
+
+        orphan_subs_before = _count_isolated_subs()
+        if not preserve_superseded:
+            # Build reverse map: old_sema_id -> list of upstream handles that supersede it
+            supersedes_to_successors = {}
+            for u_handle, u_pattern in upstream_patterns.items():
+                for old_sid in (u_pattern.get("_meta") or {}).get("supersedes") or []:
+                    supersedes_to_successors.setdefault(old_sid, []).append(u_handle)
+
+            # Find local patterns whose sema_id matches a superseded entry.
+            # Iterate a snapshot because we'll mutate the DB during removal.
+            to_remove = []
+            for nid, data in list(target_store.get_nodes_by_type(NodeType.PATTERN)):
+                local_sid = data.get("metadata", {}).get("pattern", {}).get("sema_id", "")
+                if not local_sid or local_sid not in supersedes_to_successors:
+                    continue
+                local_handle = data.get("text")
+                if not local_handle:
+                    continue
+                # If upstream also carries this handle (not a rename, just a
+                # content edit), we don't remove — mint already updated it
+                # in place. Supersession cleanup targets handles that are
+                # gone from upstream but present locally at an old hash.
+                if local_handle in upstream_patterns:
+                    continue
+                successors = supersedes_to_successors[local_sid]
+                to_remove.append((nid, local_handle, successors))
+
+            for nid, old_h, successors in to_remove:
+                # Orphan guard: user-only dependents of this pattern?
+                user_dependents = [
+                    dep
+                    for dep in target_store.get_dependents(old_h)
+                    if dep not in upstream_patterns
+                ]
+                if user_dependents:
+                    superseded_kept_orphan.append((old_h, successors, user_dependents))
+                    continue
+                # Safe to remove
+                result = target_store.delete_node_cascade(nid)
+                if result.get("success"):
+                    superseded_removed.append((old_h, successors))
+                    # Remove from target_handles so it doesn't later show up
+                    # as "upstream_removed" — it's already been dealt with.
+                    target_handles.discard(old_h)
+
+        # Recompute upstream_removed after supersession cleanup so handles
+        # that got cleaned up don't also appear as "user-only retained."
+        # (upstream_removed was computed early for the preview print; now
+        # it needs to reflect the actual post-cleanup state.)
+        if superseded_removed:
+            removed_now = {h for h, _ in superseded_removed}
+            upstream_removed = sorted(set(upstream_removed) - removed_now)
+
+        # How many new orphan sub-nodes did the cleanup leave behind?
+        orphan_subs_new = _count_isolated_subs() - orphan_subs_before
+
         # Single cascade sweep over actually-changed upstream handles.
         # This catches user-only patterns whose deps just got new hashes.
         for handle in added + updated:
@@ -918,7 +1013,7 @@ def update_db(
     # actually changed, so the user can `sema pull --undo` to recover.
     # On a no-op pull (all fast-path skipped), discard this backup to keep
     # the older, genuinely-useful `.pull_previous` intact.
-    has_changes = bool(added or updated or cascaded_user)
+    has_changes = bool(added or updated or cascaded_user or superseded_removed)
     try:
         if has_changes:
             previous_path = target_db + ".pull_previous"
@@ -945,12 +1040,41 @@ def update_db(
         )
         for h in sorted(cascaded_user)[:10]:
             print(f"    {h}")
+    if superseded_removed:
+        print(f"→ {len(superseded_removed)} pattern(s) superseded by upstream, removed locally:")
+        for old_h, new_handles in superseded_removed[:10]:
+            print(f"    {old_h:<22} → {', '.join(new_handles)}")
+    if superseded_kept_orphan:
+        print(
+            f"⚠️  {len(superseded_kept_orphan)} supersession(s) NOT applied — your patterns "
+            "still depend on them:"
+        )
+        for old_h, new_handles, deps in superseded_kept_orphan[:10]:
+            print(
+                f"    {old_h:<22} → {', '.join(new_handles)}  "
+                f"(blocked by: {', '.join(deps[:3])}{'...' if len(deps) > 3 else ''})"
+            )
+        print(
+            "    A rename replaces a pattern's *handle* (not just its hash), so cascade "
+            "cannot bridge the reference automatically — the old and new patterns are "
+            "separate nodes. To apply the supersession:"
+        )
+        print("      1. Edit your dependent patterns to reference the successor handle, OR")
+        print("      2. Pass --preserve-superseded to keep both handles coexisting, OR")
+        print("      3. Delete the dependent patterns if they're no longer needed.")
+        print("    Then re-run `sema pull`.")
     if upstream_removed:
         print(
             f"ℹ️  Upstream removed {len(upstream_removed)} pattern(s); they remain locally as user patterns:"
         )
         for h in upstream_removed[:10]:
             print(f"    {h}")
+    if orphan_subs_new > 0:
+        print(
+            f"ℹ️  {orphan_subs_new} orphan sub-node(s) (invariants/pre/postconditions) "
+            "left behind by supersession cleanup. They don't affect queries but likely "
+            "want cleaning up in a future pass."
+        )
 
     print(
         f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
@@ -1477,6 +1601,15 @@ def main():
         action="store_true",
         help="Restore the DB from the snapshot saved by the last successful pull.",
     )
+    pull_cmd.add_argument(
+        "--preserve-superseded",
+        action="store_true",
+        help=(
+            "Keep locally superseded patterns alongside their upstream replacements. "
+            "Default: when upstream declares a pattern supersedes one local pattern "
+            "(via _meta.supersedes), the local copy is removed."
+        ),
+    )
 
     # Serve
     serve = subparsers.add_parser(
@@ -1561,6 +1694,7 @@ def main():
                 dry_run=args.dry_run,
                 verify=args.verify,
                 exclude=args.exclude,
+                preserve_superseded=args.preserve_superseded,
             )
     elif args.command == "serve":
         run_server(args.host, args.port)

@@ -1437,5 +1437,224 @@ class TestRecovery(unittest.TestCase):
         )
 
 
+class TestPullSupersessionCleanup(unittest.TestCase):
+    """Supersession cleanup: upstream declares a pattern's old sema_id
+    retired; the local copy at that sema_id gets removed on pull."""
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.upstream_db = os.path.join(self.temp_dir, "upstream.db")
+        self.user_db = os.path.join(self.temp_dir, "user.db")
+
+    def tearDown(self):
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _add(self, db, handle, mechanism="m", supersedes=None, deps=None):
+        store = GraphStore(db)
+        pat = {
+            "handle": handle,
+            "mechanism": mechanism,
+            "gloss": f"Gloss {handle}",
+            "_meta": {
+                "layer": "Infrastructure",
+                "category": "Primitives",
+                "ring": 0,
+                "tier": 1,
+            },
+        }
+        if supersedes:
+            pat["_meta"]["supersedes"] = supersedes
+        if deps:
+            pat["dependencies"] = deps
+        store.add_pattern(pat)
+
+    def _sema_id(self, db, handle):
+        store = GraphStore(db)
+        for _, data in store.get_nodes_by_type(NodeType.PATTERN):
+            if data.get("text") == handle:
+                return data.get("metadata", {}).get("pattern", {}).get("sema_id")
+        return None
+
+    def _handles(self, db):
+        store = GraphStore(db)
+        return {
+            data["text"]
+            for _, data in store.get_nodes_by_type(NodeType.PATTERN)
+            if data.get("text")
+        }
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_superseded_handle_removed_on_pull(self, mock_bundled_check, mock_bundled, mock_db):
+        """User has OldName at hash X. Upstream has NewName with
+        _meta.supersedes=[OldName#X]. After pull: OldName is gone."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName", mechanism="original")
+        old_sid = self._sema_id(self.user_db, "OldName")
+        self.assertIsNotNone(old_sid)
+
+        self._add(self.upstream_db, "NewName", mechanism="replacement", supersedes=[old_sid])
+
+        result = update_db()
+        self.assertTrue(result)
+
+        handles = self._handles(self.user_db)
+        self.assertNotIn("OldName", handles, "supersession cleanup should remove OldName")
+        self.assertIn("NewName", handles, "successor should be present")
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_preserve_superseded_flag_keeps_both(self, mock_bundled_check, mock_bundled, mock_db):
+        """With preserve_superseded=True, the old handle is retained
+        alongside the new one."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName")
+        old_sid = self._sema_id(self.user_db, "OldName")
+
+        self._add(self.upstream_db, "NewName", supersedes=[old_sid])
+
+        result = update_db(preserve_superseded=True)
+        self.assertTrue(result)
+
+        handles = self._handles(self.user_db)
+        self.assertIn("OldName", handles, "preserve_superseded should retain the old handle")
+        self.assertIn("NewName", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_orphan_guard_blocks_removal(self, mock_bundled_check, mock_bundled, mock_db):
+        """If a USER-ONLY local pattern depends on OldName, pull must
+        NOT remove OldName — the orphan guard kicks in."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName")
+        old_sid = self._sema_id(self.user_db, "OldName")
+        self._add(
+            self.user_db,
+            "UserOnly",
+            deps={"references": {"oldname": old_sid}},
+        )
+
+        self._add(self.upstream_db, "NewName", supersedes=[old_sid])
+
+        result = update_db()
+        self.assertTrue(result)
+
+        handles = self._handles(self.user_db)
+        self.assertIn(
+            "OldName",
+            handles,
+            "orphan guard should keep OldName — UserOnly still depends on it",
+        )
+        self.assertIn("UserOnly", handles)
+        self.assertIn("NewName", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_superseded_removal_runs_before_cascade(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        """Supersession cleanup must run BEFORE the cascade sweep —
+        otherwise cascade rewrites the local sema_id and the match misses.
+
+        Regression guard for the experimental.db pull: AbductiveLeap at
+        v0.1.27's sema_id got its hash rewritten by cascade (because its
+        dep Leaf changed upstream) BEFORE supersession check ran, so the
+        cleanup missed it. Test: OldName depends on Leaf, Leaf changes
+        upstream — OldName must still get cleaned up."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.upstream_db, "Leaf", mechanism="leaf v2")
+
+        self._add(self.user_db, "Leaf", mechanism="leaf v1")
+        leaf_sid_local = self._sema_id(self.user_db, "Leaf")
+        self._add(
+            self.user_db,
+            "OldName",
+            deps={"references": {"leaf": leaf_sid_local}},
+        )
+        old_sid = self._sema_id(self.user_db, "OldName")
+
+        self._add(self.upstream_db, "NewName", supersedes=[old_sid])
+
+        result = update_db()
+        self.assertTrue(result)
+
+        handles = self._handles(self.user_db)
+        self.assertNotIn(
+            "OldName",
+            handles,
+            "OldName must be removed even though Leaf change would've cascaded it",
+        )
+        self.assertIn("NewName", handles)
+        self.assertIn("Leaf", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_non_superseded_user_patterns_retained(self, mock_bundled_check, mock_bundled, mock_db):
+        """User-only patterns NOT in any supersedes list must survive."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName")
+        old_sid = self._sema_id(self.user_db, "OldName")
+        self._add(self.user_db, "PurelyLocal", mechanism="user-only")
+
+        self._add(self.upstream_db, "NewName", supersedes=[old_sid])
+
+        result = update_db()
+        self.assertTrue(result)
+
+        handles = self._handles(self.user_db)
+        self.assertNotIn("OldName", handles, "supersession should fire")
+        self.assertIn("PurelyLocal", handles, "unrelated user pattern must survive")
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_supersedes_entry_for_different_hash_no_op(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        """Upstream's supersedes entry points at a hash the user doesn't
+        have: the entry is a no-op, OldName survives as user-only."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName", mechanism="current-local")
+        current_local_sid = self._sema_id(self.user_db, "OldName")
+
+        fake_old_sid = (
+            "sema:OldName#mh:SHA-256:"
+            "deadbeefcafebabe0000000000000000000000000000000000000000000000aa"
+        )
+        self.assertNotEqual(current_local_sid, fake_old_sid)
+
+        self._add(self.upstream_db, "NewName", supersedes=[fake_old_sid])
+
+        result = update_db()
+        self.assertTrue(result)
+
+        handles = self._handles(self.user_db)
+        self.assertIn("OldName", handles, "sema_id mismatch — no supersession fires")
+        self.assertIn("NewName", handles)
+
+
 if __name__ == "__main__":
     unittest.main()
