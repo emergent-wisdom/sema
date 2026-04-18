@@ -40,13 +40,15 @@ claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
 pip install "semahash[mcp]"
 ```
 
-### Enabling minting
+### Disabling minting (optional)
 
-To create new patterns, set `SEMA_ALLOW_MINT=true` in the environment before launching your client:
+`sema_mint` is exposed by default. Deployments that want a read-only server (no pattern creation from MCP clients) can hide the tool with:
 
 ```bash
-SEMA_ALLOW_MINT=true claude
+SEMA_DISABLE_MINT=true claude
 ```
+
+A matching `SEMA_DISABLE_PULL=true` hides `sema_pull` for pinned-vocabulary deployments.
 
 ## Verify it works
 
@@ -119,12 +121,15 @@ the exclusion list and version-pinning options.
 |------|-------------|
 | `sema_search(query)` | Find patterns by concept |
 | `sema_resolve(handle)` | Full definition with dependencies |
-| `sema_tree()` | Browse by layer and category |
+| `sema_tree()` | Browse the taxonomy tree |
 | `sema_handshake(ref)` | Verify two agents share the same definition |
 | `sema_lookup(ref)` | Get pattern by exact reference |
+| `sema_root()` | Vocabulary fingerprint — one hash for the whole DB |
+| `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |
-| `sema_mint(pattern_json)` | Create a new pattern (requires `SEMA_ALLOW_MINT=true`) |
+| `sema_mint(pattern_json)` | Create a new pattern (hide with `SEMA_DISABLE_MINT=true`) |
+| `sema_pull()` | Sync the active DB with upstream; returns structured stats (hide with `SEMA_DISABLE_PULL=true`) |
 
 ## Next
 

@@ -31,8 +31,8 @@ Generative loop for growing the vocabulary. Pull a random word, think about it o
    
    Set this for the session and stick with it unless told to change mode.
 
-2. **Verify minting is enabled.** Check that `sema_mint` is available. If not, tell the user:
-   > "Minting isn't enabled. Restart with `SEMA_ALLOW_MINT=true` set in your environment."
+2. **Verify minting is enabled.** `sema_mint` is exposed by default. If it's missing, the deployment has disabled it. Tell the user:
+   > "Minting isn't available on this server — it's been disabled via `SEMA_DISABLE_MINT=true`. Unset that env var and restart to re-enable."
 
 3. **Verify the active DB is writable.** Call `sema_use()` (no args) to see current. If it's the bundled DB, tell the user to `sema build my.db --preset full` and `sema_use(db_path="my.db")` first.
 

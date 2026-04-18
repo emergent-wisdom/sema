@@ -53,7 +53,8 @@ You should see results like `Consensus#376f`, `Vote#37f8`, `StateLock#5602`.
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |
-| `sema_mint(pattern_json)` | Create a new pattern (requires `SEMA_ALLOW_MINT=true`) |
+| `sema_mint(pattern_json)` | Create a new pattern (hide with `SEMA_DISABLE_MINT=true`) |
+| `sema_pull()` | Sync the active DB with upstream; returns structured stats (hide with `SEMA_DISABLE_PULL=true`) |
 
 ## Use handles as words
 
