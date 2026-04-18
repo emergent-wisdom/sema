@@ -32,8 +32,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:a855ab4395ee0d8daee947a94e70df5eb6c311df25b9839f6203753a81786ce0",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:a855ab4395ee0d8daee947a94e70df5eb6c311df25b9839f6203753a81786ce0"
     }
   }
 }

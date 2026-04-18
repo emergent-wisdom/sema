@@ -22,11 +22,11 @@
   "sema_ref": "DecompositionGate#b0f6",
   "sema_stub": "b0f6",
   "dependencies": {
-    "yields": {
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
-    },
     "references": {
       "frame_error": "sema:FrameError#mh:SHA-256:1d3f3b715da8f97cffd880cd5bed5b59111a8347eef9ae4e328de2b15a31eb5a"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }
   }
 }

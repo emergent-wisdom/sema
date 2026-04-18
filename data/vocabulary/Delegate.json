@@ -43,19 +43,19 @@
   "sema_ref": "Delegate#ba86",
   "sema_stub": "ba86",
   "dependencies": {
-    "accepts": {
-      "holographic_shard": "sema:HolographicShard#mh:SHA-256:c98bd39904ece04278267766394f17b67c9e617742782a550861cfc505c29cc7"
+    "composes_with": {
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a",
+      "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602"
+    },
+    "references": {
+      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
+      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
     },
     "yields": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
-    "composes_with": {
-      "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a"
-    },
-    "references": {
-      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b",
-      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922"
+    "accepts": {
+      "holographic_shard": "sema:HolographicShard#mh:SHA-256:c98bd39904ece04278267766394f17b67c9e617742782a550861cfc505c29cc7"
     }
   }
 }

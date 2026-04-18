@@ -61,6 +61,18 @@ After pull, `sema pull --verify` confirms all stored hashes match recomputed val
   - `SEMA_DISABLE_MINT=true` — hides the `sema_mint` MCP tool.
   - `SEMA_ALLOW_MINT=false` — legacy alias for `SEMA_DISABLE_MINT=true`; honored one deprecation cycle.
 
+### Bug fix: `_meta.related` edges lost during apply
+
+Two compounding bugs caused `RELATED_TO` edges to be under-populated. Before this release, the DB had 24-34 such edges for ~117 `_meta.related` refs in the vocabulary — only ~20-30% of soft-links showed up as graph edges. Effect on consumers: `sema resolve Foo` missed "related" siblings; graph-based exploration tools silently skipped the weakest but still-valid link class.
+
+1. **Prefix-stripping wasn't applied.** `_meta.related` accepts both bare-handle (`"Foo"`) and full (`"sema:Foo#mh:SHA-256:..."`) refs. The edge-creation code used `item.split("#")[0]`, which for full refs yields `"sema:Foo"` — not a real handle. Fixed: use `extract_handle_from_ref(item)` to strip the `sema:` prefix before lookup.
+
+2. **Topological-order race.** Patterns apply in topological order by **hard** dependencies (`accepts`, `composes_with`, etc.). `_meta.related` is a soft link and doesn't participate in the sort. When pattern A declares `related: [B]` but B is minted after A, A's edge-creation attempt finds no B in `_handle_to_id` and silently skips. Fixed: added `GraphStore.sweep_related_edges()` — a second-pass method that walks all patterns once the full DB is loaded and creates any missing `RELATED_TO` edges. `sema apply` now calls it automatically at the end of a batch; downstream code can call it explicitly when needed.
+
+Post-fix: 105 `RELATED_TO` edges (up from 34), matching the 105 resolvable refs in the vocabulary. 12 refs remain unedged because they point to handles no longer present in the default shelf (e.g., experimental-shelf-only patterns like `ChaosDrift`, `GhostTrail`). Silent skip for those is correct — they're stale but flagged for a future cleanup pass.
+
+Pattern sema_ids unaffected; `RELATED_TO` is metadata and not part of the hash input.
+
 ### Bug fix: CATEGORY node collapse across layers
 
 `_add_or_update_pattern` in `graph_store.py` looked up `CATEGORY` nodes by text alone. When the foundation audit added Physics/Primitives patterns after Infrastructure/Primitives already existed, it matched the Infrastructure node (same text "Primitives") and bolted a second `IN_LAYER` edge onto it pointing at Physics — instead of creating a distinct Physics/Primitives node. The graph ended up with 12 CATEGORY nodes and 13 IN_LAYER edges: topology that can't represent "which-category-in-which-layer" unambiguously via edges alone (only via pattern-metadata lookup).

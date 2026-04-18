@@ -40,12 +40,12 @@
   "sema_ref": "OsmoticFilter#029a",
   "sema_stub": "029a",
   "dependencies": {
-    "accepts": {
-      "accepted_solvents": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
-    },
     "references": {
       "canary": "sema:Canary#mh:SHA-256:9cba7bbaefd69639952bd931147b0976a1f62aac9bac4ea84bb103d5c955d0ba",
       "hysteresis": "sema:Hysteresis#mh:SHA-256:addbf14e04e773a9a6b2313b0b300392bb2c33d79aace9d3b9d9a2ea600c42cb"
+    },
+    "accepts": {
+      "accepted_solvents": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
     }
   }
 }

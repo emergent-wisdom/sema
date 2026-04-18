@@ -230,6 +230,18 @@ def apply_changes(
             print(f"  ❌ Failed to add {data['handle']}: {err_msg}")
             return False
 
+    # ============ POST-APPLY SWEEP ============
+    # Topological sort orders by hard dependencies; _meta.related is a
+    # soft link and doesn't participate. A pattern whose related target
+    # is minted AFTER it silently gets no RELATED_TO edge at apply time.
+    # Sweep once the full batch is loaded to catch those.
+    if add_patterns:
+        swept = store.sweep_related_edges()
+        if swept:
+            print(
+                f"  ↔ Swept {swept} RELATED_TO edge(s) that the per-pattern apply couldn't create"
+            )
+
     # ============ DONE ============
     total_removed = len(remove_handles)
     total_added = len(add_patterns)

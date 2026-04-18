@@ -331,6 +331,42 @@ class GraphStore:
         """True if at least one edge of given type exists between src and tgt."""
         return any(e.get("edge_type") == edge_type for e in self._edges_between(src, tgt))
 
+    def sweep_related_edges(self) -> int:
+        """Second-pass sweep: create RELATED_TO edges that the per-pattern
+        apply loop couldn't create because the target hadn't been minted yet.
+
+        Topological sort during apply orders by hard dependencies only;
+        `_meta.related` is a soft/metadata link and doesn't participate in
+        ordering. When pattern A declares `related: [B]` but B is minted
+        after A, the edge-creation check at A's apply time returns None
+        (B not in _handle_to_id) and silently skips. This sweep fixes that
+        once the full DB is loaded.
+
+        Call after a batch apply or rebuild. Idempotent — only creates
+        missing edges. Refs to handles that don't exist (stale / pointing
+        to experimental shelf) are silently skipped.
+
+        Returns: number of edges created.
+        """
+        from ..core.hashing import extract_handle_from_ref
+
+        created = 0
+        for nid, data in self.get_nodes_by_type(NodeType.PATTERN):
+            pattern = data.get("metadata", {}).get("pattern", {}) or {}
+            related = (pattern.get("_meta") or {}).get("related") or []
+            for item in related:
+                if not isinstance(item, str):
+                    continue
+                target_handle = extract_handle_from_ref(item)
+                target_id = self._handle_to_id.get(target_handle)
+                if not target_id:
+                    continue  # stale ref or off-shelf target
+                if self.has_edge_of_type(nid, target_id, EdgeType.RELATED_TO):
+                    continue
+                self.create_edge(nid, target_id, EdgeType.RELATED_TO)
+                created += 1
+        return created
+
     def remove_edges_of_type(self, src: str, tgt: str, edge_type: EdgeType) -> list[str]:
         """Remove all parallel edges of `edge_type` between src and tgt.
         Returns list of edge_ids removed (for DB cleanup by caller)."""
@@ -712,7 +748,10 @@ class GraphStore:
             for item in related:
                 if not isinstance(item, str):
                     continue
-                target_handle = item.split("#")[0]
+                # Accept both bare-handle ("Decompose") and full
+                # ("sema:Decompose#mh:SHA-256:...") formats. Strip any
+                # sema: prefix before taking the portion before #.
+                target_handle = extract_handle_from_ref(item)
                 target_id = self._handle_to_id.get(target_handle)
 
                 if target_id:
