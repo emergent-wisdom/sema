@@ -120,7 +120,7 @@ The repository includes a pre-commit hook (installed via `scripts/setup_hooks.sh
 
 1. Recalculates the **Merkle root** over the entire vocabulary (`scripts/vocabulary_merkle_root.py`)
 2. Regenerates the **shorthand reference** (`scripts/export/export_short_hand.py`)
-3. Stages the updated `docs/information/vocabulary_information.md` and `reference/all_patterns_short.md`
+3. Stages the updated `docs/information/vocabulary_information.md` and `data/shorthand/all_patterns_short.md`
 
 This ensures that every commit reflects the true state of the database.
 

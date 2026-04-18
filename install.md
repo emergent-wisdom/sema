@@ -46,12 +46,14 @@ You should see results like `Consensus#376f`, `Vote#37f8`, `StateLock#5602`.
 |------|-------------|
 | `sema_search(query)` | Find patterns by concept |
 | `sema_resolve(handle)` | Full definition with dependencies |
-| `sema_tree()` | Browse by layer and category |
+| `sema_tree()` | Browse the taxonomy tree |
 | `sema_handshake(ref)` | Verify two agents share the same definition |
 | `sema_lookup(ref)` | Get pattern by exact reference |
+| `sema_root()` | Vocabulary fingerprint — one hash for the whole DB |
+| `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |
-| `sema_mint(pattern_json)` | Create a new pattern (requires SEMA_ALLOW_MINT=true) |
+| `sema_mint(pattern_json)` | Create a new pattern (requires `SEMA_ALLOW_MINT=true`) |
 
 ## Use handles as words
 
@@ -93,7 +95,13 @@ sema resolve Vote
 sema build my.db --preset standard
 sema use my.db
 sema list
+sema pull                 # sync your project DB with the latest bundled vocabulary
+sema categorize MyPattern --path Society/Governance
 ```
+
+## Keeping a project DB fresh
+
+When a new `semahash` release ships pattern updates, `sema pull` applies them to your project DB in place. Handles that upstream has renamed (via `_meta.supersedes`) are redirected automatically; add `--preserve-superseded` to keep both the old and new handles, or `sema pull --undo` to roll back the previous pull.
 
 ## Links
 

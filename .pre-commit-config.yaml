@@ -18,7 +18,7 @@ repos:
 
       - id: export-patterns
         name: export-patterns
-        entry: bash -c 'PYTHONPATH=src python scripts/export/export_short_hand.py && git add reference/all_patterns_short.md'
+        entry: bash -c 'PYTHONPATH=src python scripts/export/export_short_hand.py && git add data/shorthand/all_patterns_short.md'
         language: system
         pass_filenames: false
         files: '(data/taxonomy\.db|data/vocabulary/.*\.json)'

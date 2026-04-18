@@ -1,0 +1,83 @@
+# Sema — When the Hash Is the Word
+
+> Sema is a content-addressed vocabulary protocol: an agent's cognitive
+> patterns are named by the cryptographic hash of their own definition,
+> so any divergence in meaning produces a distinct name. Agents that
+> share a handle provably share a definition — mismatched vocabularies
+> halt rather than silently drift. This site is the interactive browser
+> for the public pattern library (452 patterns, organized by path like
+> `Physics/Primitives` or `Society/Governance`) plus the HTTP API and
+> MCP server that agents use to resolve, search, mint, and pull patterns.
+
+Sema exists to solve a coordination problem: two agents that share a
+word are not guaranteed to share its meaning. Prior content-addressing
+systems (Git, IPFS, SDH) keep the hash in an infrastructure layer
+separate from communication. Sema dissolves the hash into language
+itself — agents write sentences where each anchored term is
+simultaneously a word and a cryptographic proof. Any channel that
+carries text carries verified meaning.
+
+As of 0.2.0, the taxonomy is path-based (`_meta.path: ["Society", "Governance"]`
+rather than flat layer + category fields), and `sema pull` reads
+upstream `_meta.supersedes` to redirect retired handles automatically.
+
+## How Sema is used
+
+- **Humans.** Read or search the pattern library at https://semahash.org.
+  Each pattern has a handle, a stable sema_id (SHA-256 of its canonical
+  form), a mechanism description, invariants, worked examples, and a
+  lineage recorded via `_meta.supersedes`.
+- **AI agents (MCP).** Add the Sema MCP server with one command
+  (`claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp` or
+  the equivalent for other clients). The agent can then call
+  `sema_search`, `sema_resolve`, `sema_handshake`, `sema_tree`,
+  `sema_root`, and `sema_mint` during its reasoning.
+- **Python API.** `pip install semahash` gives you the client library,
+  the CLI (`sema search`, `sema pull`, `sema categorize`, `sema build`,
+  `sema use`), and the optional FastAPI server used to run the web UI
+  locally.
+- **HTTP API.** Live at https://semahash.org/api/* — documented below.
+
+## Install
+
+- [Install guide (machine-readable)](https://semahash.org/install.md): Markdown-formatted install instructions intended for LLM agents and humans.
+- [GitHub README](https://github.com/emergent-wisdom/sema#readme): Same content with richer cross-links.
+- [Plugin entry](https://github.com/emergent-wisdom/sema/blob/main/.claude-plugin/plugin.json): Claude Code plugin manifest.
+
+## Public HTTP API
+
+All endpoints are GET, JSON, CORS-open. No auth required for reads.
+
+- [/api/graph](https://semahash.org/api/graph): The full pattern graph — nodes (patterns, taxonomy paths) and edges (references, composes-with, in-path, parent-path) — as a single JSON object suitable for direct visualization.
+- [/api/patterns](https://semahash.org/api/patterns): List of all patterns.
+- [/api/patterns/{handle}](https://semahash.org/api/patterns/StateLock): Full record for a single pattern, keyed by handle or hash. Returns handle, sema_id, mechanism, invariants, dependencies, `_meta.path`, and `_meta.supersedes`.
+- [/api/patterns/{handle}/source](https://semahash.org/api/patterns/StateLock/source): Canonical definition source for a pattern — the bytes that hash to the pattern's sema_id.
+- [/api/search](https://semahash.org/api/search?q=coordination): Full-text search across the pattern library.
+- [/api/docs](https://semahash.org/api/docs): List of documentation pages.
+- [/api/docs/{slug}](https://semahash.org/api/docs/introduction): A single documentation page.
+- [/api/paper](https://semahash.org/api/paper): The Sema paper (PDF).
+
+## MCP discovery
+
+- [/.well-known/mcp/server.json](https://semahash.org/.well-known/mcp/server.json): Model Context Protocol registry descriptor. AI agents that follow the 2026 MCP Registry convention can auto-discover the sema MCP server via this path.
+- Registry entry: https://registry.modelcontextprotocol.io/servers/io.github.emergent-wisdom/semahash
+
+## Pages
+
+- [Home](https://semahash.org/): Introduction, quick search, entry point.
+- [Graph](https://semahash.org/graph): Interactive 3D visualization of the entire pattern library. Each coloured node is a pattern; each grey node is a taxonomy path; edges are semantic relationships.
+- [Docs](https://semahash.org/docs): Full documentation, onboarding, and conceptual background.
+
+## Paper
+
+- [Sema — When the Hash Is the Word (PDF)](https://emergentwisdom.org/papers/sema.pdf): The paper introducing content-addressed semantics. March 2026.
+- [DOI: 10.5281/zenodo.19462703](https://doi.org/10.5281/zenodo.19462703)
+
+## About
+
+- GitHub: https://github.com/emergent-wisdom/sema
+- PyPI: https://pypi.org/project/semahash/
+- Changelog: https://github.com/emergent-wisdom/sema/blob/main/CHANGELOG.md
+- Authors: Henrik Westerberg (emergent-wisdom)
+- License: code MIT, content (patterns + docs) CC-BY-4.0
+- Companion site: https://emergentwisdom.org

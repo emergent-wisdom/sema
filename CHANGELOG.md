@@ -6,7 +6,16 @@ Format draws loosely on [Keep a Changelog](https://keepachangelog.com/) and on g
 
 ---
 
-## [Unreleased] — 0.2.0 — Foundation Audit + Pull Loop (2026-04-17)
+## [0.2.1] — 2026-04-18
+
+- Moved `reference/all_patterns_short.md` → `data/shorthand/all_patterns_short.md`.
+- Added `web/public/llms.txt` so it's served at `semahash.org/llms.txt`.
+- Refreshed `install.md` for 0.2.0.
+- Bumped `experiments/orchestrator` submodule.
+
+---
+
+## [0.2.0] — Foundation Audit + Pull Loop (2026-04-17)
 
 Two coherent threads shipped in this release:
 
