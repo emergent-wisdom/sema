@@ -901,6 +901,7 @@
     "category": "Data Structures",
     "ring": 0,
     "supersedes": [
+      "Card#6848",
       "Card#6848"
     ]
   },
@@ -3233,6 +3234,7 @@
     "tier": 1,
     "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action.",
     "supersedes": [
+      "Permission#c645",
       "Permission#c645"
     ]
   },
@@ -4173,6 +4175,7 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
+      "RuleSet#a07c",
       "RuleSet#a07c"
     ]
   },
@@ -6466,6 +6469,7 @@
     ],
     "caution": "Compensation must not erase the audit trail of what was rolled back \u2014 log both the forward action and the compensation.",
     "supersedes": [
+      "Compensate#b4c5",
       "Compensate#b4c5"
     ]
   },
@@ -7019,6 +7023,7 @@
     ],
     "ring": 0,
     "supersedes": [
+      "IdempotentWrite#1023",
       "IdempotentWrite#1023"
     ]
   },
@@ -7425,7 +7430,10 @@
     "tier": 1,
     "layer": "Infrastructure",
     "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "Probe#12d8"
+    ]
   },
   "sema_id": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602",
   "sema_ref": "Probe#12d8",
@@ -7652,7 +7660,10 @@
       "CircuitBreaker#0577",
       "SafetyCartographer"
     ],
-    "caution": "Escape vectors may exist in unaudited system call surfaces."
+    "caution": "Escape vectors may exist in unaudited system call surfaces.",
+    "supersedes": [
+      "Sandbox#e00f"
+    ]
   },
   "sema_id": "sema:Sandbox#mh:SHA-256:e00f4eca5e3c4e369bc8109db17aa66835b86e5a65ee16fb07b2f431db3b8638",
   "sema_ref": "Sandbox#e00f",
@@ -7859,6 +7870,7 @@
     "category": "Primitives",
     "ring": 0,
     "supersedes": [
+      "StateSnapshot#5a11",
       "StateSnapshot#5a11"
     ]
   },
@@ -8098,6 +8110,7 @@
     "ring": 0,
     "caution": "Causal cone is only as trustworthy as the identities signing events. Unsigned or weakly-authenticated events can rewrite perceived history.",
     "supersedes": [
+      "TimeWarpLog#38ab",
       "TimeWarpLog#38ab"
     ]
   },
@@ -8148,6 +8161,7 @@
       "AgentSandbox#dcc7"
     ],
     "supersedes": [
+      "ToolInvoke#bd2b",
       "ToolInvoke#bd2b"
     ]
   },
@@ -8535,7 +8549,10 @@
     "layer": "Infrastructure",
     "category": "Verification",
     "ring": 0,
-    "caution": "Validation boundary \u2014 bypass enables injection or unexpected state."
+    "caution": "Validation boundary \u2014 bypass enables injection or unexpected state.",
+    "supersedes": [
+      "InputGuard#7353"
+    ]
   },
   "sema_ref": "InputGuard#7353",
   "sema_id": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
@@ -8565,6 +8582,7 @@
     "ring": 1,
     "caution": "Automated penalties \u2014 misconfigured rules cause cascading harm.",
     "supersedes": [
+      "OathBind#272b",
       "OathBind#272b"
     ]
   },
@@ -9041,6 +9059,7 @@
     "category": "Inference",
     "ring": 0,
     "supersedes": [
+      "ContextFirst#3ed9",
       "ContextFirst#3ed9"
     ]
   },
@@ -9144,6 +9163,7 @@
     "category": "Inference",
     "ring": 2,
     "supersedes": [
+      "HackDetect#3494",
       "HackDetect#3494"
     ]
   },
@@ -9768,6 +9788,7 @@
     ],
     "ring": 2,
     "supersedes": [
+      "SurprisalUpdate#cef3",
       "SurprisalUpdate#cef3"
     ]
   },
@@ -9942,6 +9963,7 @@
     ],
     "ring": 2,
     "supersedes": [
+      "BeliefTracking#3c59",
       "BeliefTracking#3c59"
     ]
   },
@@ -10632,6 +10654,7 @@
     "category": "Memory",
     "ring": 2,
     "supersedes": [
+      "SimulationTrace#31d6",
       "SimulationTrace#31d6"
     ]
   },
@@ -10665,6 +10688,7 @@
     "category": "Memory",
     "ring": 2,
     "supersedes": [
+      "TraceBelief#22cc",
       "TraceBelief#22cc"
     ]
   },
@@ -12196,6 +12220,7 @@
     "category": "Reasoning",
     "ring": 2,
     "supersedes": [
+      "LivedProof#3da4",
       "LivedProof#3da4"
     ]
   },
@@ -12246,6 +12271,7 @@
     "category": "Reasoning",
     "ring": 2,
     "supersedes": [
+      "MetaPrompt#b605",
       "MetaPrompt#b605"
     ]
   },
@@ -12406,6 +12432,7 @@
     ],
     "ring": 2,
     "supersedes": [
+      "ReAct#b4d0",
       "ReAct#b4d0"
     ]
   },
@@ -12556,6 +12583,7 @@
       "SolverNode#75f0"
     ],
     "supersedes": [
+      "RecursionDive#0384",
       "RecursionDive#0384"
     ]
   },
@@ -13481,6 +13509,7 @@
     "category": "Reasoning",
     "ring": 2,
     "supersedes": [
+      "Uncertain#b5f4",
       "Uncertain#b5f4"
     ]
   },
@@ -13553,6 +13582,7 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
+      "Verification#ab66",
       "Verification#ab66"
     ]
   },
@@ -13853,6 +13883,7 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
+      "BeamSearch#d483",
       "BeamSearch#d483"
     ]
   },
@@ -14085,6 +14116,7 @@
     "ring": 0,
     "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment.",
     "supersedes": [
+      "CommitmentDevice#bde9",
       "CommitmentDevice#bde9"
     ]
   },
@@ -14155,6 +14187,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "Compose#7220",
       "Compose#7220"
     ]
   },
@@ -14358,6 +14391,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "ContingencyPlan#348e",
       "ContingencyPlan#348e"
     ]
   },
@@ -14429,6 +14463,7 @@
     "ring": 1,
     "tier": 2,
     "supersedes": [
+      "CreativeBlend#424e",
       "CreativeBlend#424e"
     ]
   },
@@ -14646,6 +14681,7 @@
     "category": "Strategy",
     "ring": 0,
     "supersedes": [
+      "DepthGovernor#2efa",
       "DepthGovernor#2efa"
     ]
   },
@@ -14786,6 +14822,7 @@
     "category": "Strategy",
     "ring": 0,
     "supersedes": [
+      "DogfoodFirst#679c",
       "DogfoodFirst#679c"
     ]
   },
@@ -14849,6 +14886,7 @@
     ],
     "ring": 2,
     "supersedes": [
+      "EmpathySim#23a0",
       "EmpathySim#23a0"
     ]
   },
@@ -14943,6 +14981,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "EpistemicROI#07f9",
       "EpistemicROI#07f9"
     ]
   },
@@ -14996,6 +15035,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "EventReact#d3c4",
       "EventReact#d3c4"
     ]
   },
@@ -15031,6 +15071,7 @@
       "HypothesisLadder#ee7f"
     ],
     "supersedes": [
+      "Experiment#24aa",
       "Experiment#24aa"
     ]
   },
@@ -15166,6 +15207,7 @@
     "category": "Strategy",
     "ring": 1,
     "supersedes": [
+      "FractalIntelligence#c9bc",
       "FractalIntelligence#c9bc"
     ]
   },
@@ -15220,6 +15262,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "HypothesisEngine#7655",
       "HypothesisEngine#7655"
     ]
   },
@@ -15271,6 +15314,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "HypothesisLadder#ee7f",
       "HypothesisLadder#ee7f"
     ]
   },
@@ -15551,6 +15595,7 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
+      "MarginalValueRule#311b",
       "MarginalValueRule#311b"
     ]
   },
@@ -15619,6 +15664,7 @@
     ],
     "ring": 2,
     "supersedes": [
+      "MentalSim#2ec6",
       "MentalSim#2ec6"
     ]
   },
@@ -15775,6 +15821,7 @@
     ],
     "ring": 1,
     "supersedes": [
+      "NoiseInjection#5042",
       "NoiseInjection#5042"
     ]
   },
@@ -16129,6 +16176,7 @@
     "category": "Strategy",
     "ring": 1,
     "supersedes": [
+      "PUREBrainstorming#b9c8",
       "PUREBrainstorming#b9c8"
     ]
   },
@@ -16226,6 +16274,7 @@
       "LateralOptimization#43f9"
     ],
     "supersedes": [
+      "PUREOptimization#f429",
       "PUREOptimization#f429"
     ]
   },
@@ -16453,7 +16502,8 @@
     "category": "Strategy",
     "ring": 1,
     "supersedes": [
-      "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782"
+      "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782",
+      "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2"
     ]
   },
   "sema_layer": "Mind",
@@ -16646,6 +16696,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "ProblemFramer#5232",
       "ProblemFramer#5232"
     ]
   },
@@ -16864,6 +16915,7 @@
     ],
     "ring": 1,
     "supersedes": [
+      "Retry#ac55",
       "Retry#ac55"
     ]
   },
@@ -16903,6 +16955,7 @@
     "ring": 2,
     "tier": 2,
     "supersedes": [
+      "RigorousSolver#b7aa",
       "RigorousSolver#b7aa"
     ]
   },
@@ -16983,7 +17036,8 @@
     "category": "Strategy",
     "ring": 1,
     "supersedes": [
-      "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f"
+      "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f",
+      "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1"
     ]
   },
   "data_schema": {
@@ -17079,6 +17133,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "SacrificialProbe#970d",
       "SacrificialProbe#970d"
     ]
   },
@@ -17611,6 +17666,7 @@
     "category": "Strategy",
     "ring": 2,
     "supersedes": [
+      "UncertaintyMap#822c",
       "UncertaintyMap#822c"
     ]
   },
@@ -18293,6 +18349,7 @@
     "category": "Time",
     "ring": 0,
     "supersedes": [
+      "CausalBarrier#f2d7",
       "CausalBarrier#f2d7"
     ]
   },
@@ -18387,6 +18444,7 @@
     ],
     "caution": "Governance decisions susceptible to coordinated voting blocs.",
     "supersedes": [
+      "Consensus#376f",
       "Consensus#376f"
     ]
   },
@@ -18429,6 +18487,7 @@
     "category": "Coordination",
     "ring": 1,
     "supersedes": [
+      "ConsensusFinder#8c10",
       "ConsensusFinder#8c10"
     ]
   },
@@ -18491,6 +18550,7 @@
     ],
     "ring": 1,
     "supersedes": [
+      "Delegate#ba86",
       "Delegate#ba86"
     ]
   },
@@ -18552,6 +18612,7 @@
     "category": "Coordination",
     "ring": 1,
     "supersedes": [
+      "Disband#1c62",
       "Disband#1c62"
     ]
   },
@@ -18652,6 +18713,7 @@
     "ring": 1,
     "caution": "Trust boundary \u2014 failure enables impersonation.",
     "supersedes": [
+      "IdentityHandshake#fb21",
       "IdentityHandshake#fb21"
     ]
   },
@@ -18708,6 +18770,7 @@
     "category": "Coordination",
     "ring": 0,
     "supersedes": [
+      "LazyConsensus#8a57",
       "LazyConsensus#8a57"
     ]
   },
@@ -18832,6 +18895,7 @@
     "category": "Coordination",
     "ring": 1,
     "supersedes": [
+      "Rally#0a1c",
       "Rally#0a1c"
     ]
   },
@@ -18976,6 +19040,7 @@
     ],
     "ring": 2,
     "supersedes": [
+      "Vote#37f8",
       "Vote#37f8"
     ]
   },
@@ -19025,6 +19090,7 @@
     "category": "Economics",
     "ring": 1,
     "supersedes": [
+      "AtomicBid#c429",
       "AtomicBid#c429"
     ]
   },
@@ -19081,6 +19147,7 @@
     "category": "Economics",
     "ring": 1,
     "supersedes": [
+      "AttentionMarkets#459c",
       "AttentionMarkets#459c"
     ]
   },
@@ -19123,6 +19190,7 @@
     "category": "Economics",
     "ring": 1,
     "supersedes": [
+      "Award#a0c1",
       "Award#a0c1"
     ]
   },
@@ -19310,6 +19378,7 @@
       "AttentionMarkets#459c"
     ],
     "supersedes": [
+      "ContinuousResourceAuction#0361",
       "ContinuousResourceAuction#0361"
     ]
   },
@@ -19387,6 +19456,7 @@
     "category": "Economics",
     "ring": 2,
     "supersedes": [
+      "Gardener#d239",
       "Gardener#d239"
     ]
   },
@@ -19589,6 +19659,7 @@
     ],
     "ring": 0,
     "supersedes": [
+      "AnchorDrop#680e",
       "AnchorDrop#680e"
     ]
   },
@@ -19758,6 +19829,7 @@
     "category": "Governance",
     "ring": 1,
     "supersedes": [
+      "Responsibility#ea56",
       "Responsibility#ea56"
     ]
   },
@@ -19821,6 +19893,7 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
+      "Role#80df",
       "Role#80df"
     ]
   },
@@ -19868,6 +19941,7 @@
       "UniversalSolverTree#c523"
     ],
     "supersedes": [
+      "SolverTree#3c94",
       "SolverTree#3c94"
     ]
   },
@@ -19945,6 +20019,7 @@
     "category": "Governance",
     "ring": 1,
     "supersedes": [
+      "UniversalSolverTree#c523",
       "UniversalSolverTree#c523"
     ]
   },
@@ -20115,6 +20190,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "AgentDiscover#42ca",
       "AgentDiscover#42ca"
     ]
   },
@@ -20215,6 +20291,7 @@
       "Task#b290"
     ],
     "supersedes": [
+      "AgentSandbox#dcc7",
       "AgentSandbox#dcc7"
     ]
   },
@@ -20260,6 +20337,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "AmbiguityResolution#6858",
       "AmbiguityResolution#6858"
     ]
   },
@@ -20417,6 +20495,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "Canary#9cba",
       "Canary#9cba"
     ]
   },
@@ -20470,6 +20549,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "ConfusedDeputy#611f",
       "ConfusedDeputy#611f"
     ]
   },
@@ -20570,6 +20650,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "CounterfactualAnchor#59f7",
       "CounterfactualAnchor#59f7"
     ]
   },
@@ -20621,6 +20702,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "DataMinimization#58af",
       "DataMinimization#58af"
     ]
   },
@@ -20685,6 +20767,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "DeliberativeAlign#4275",
       "DeliberativeAlign#4275"
     ]
   },
@@ -20732,6 +20815,7 @@
     "ring": 1,
     "caution": "Verify rollback strategy exists before committing.",
     "supersedes": [
+      "Deploy#0643",
       "Deploy#0643"
     ]
   },
@@ -20984,6 +21068,7 @@
     "category": "Protocols",
     "ring": 0,
     "supersedes": [
+      "EjectionSeat#5e0d",
       "EjectionSeat#5e0d"
     ]
   },
@@ -21168,7 +21253,10 @@
     "layer": "Society",
     "category": "Protocols",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "FeatureFlag#6c5c"
+    ]
   },
   "sema_id": "sema:FeatureFlag#mh:SHA-256:6c5cf7fa3a6f169e38989b0342ed06e5f92bf4cf0749ad43c6cb0d012182664c",
   "sema_ref": "FeatureFlag#6c5c",
@@ -21209,6 +21297,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "GenealogicalTrace#18d2",
       "GenealogicalTrace#18d2"
     ]
   },
@@ -21383,6 +21472,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "Handoff#a868",
       "Handoff#a868"
     ]
   },
@@ -21454,6 +21544,7 @@
     "category": "Protocols",
     "ring": 0,
     "supersedes": [
+      "HeldRelease#5ba3",
       "HeldRelease#5ba3"
     ]
   },
@@ -21802,6 +21893,7 @@
     "category": "Protocols",
     "ring": 0,
     "supersedes": [
+      "MonotonicCounter#c7ab",
       "MonotonicCounter#c7ab"
     ]
   },
@@ -21850,6 +21942,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "Nucleate#49a0",
       "Nucleate#49a0"
     ]
   },
@@ -21899,6 +21992,7 @@
     "ring": 1,
     "caution": "Executes without pre-action verification. Ensure irreversible actions have compensation or sandboxing, or use RigorousSolver#b7aa at those boundaries.",
     "supersedes": [
+      "OptimisticSolver#8935",
       "OptimisticSolver#8935"
     ]
   },
@@ -21947,6 +22041,7 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
+      "Oracle#ed79",
       "Oracle#ed79"
     ]
   },
@@ -21989,6 +22084,7 @@
       "LayeredCheck#b6eb"
     ],
     "supersedes": [
+      "OrchestrationLoop#7f44",
       "OrchestrationLoop#7f44"
     ]
   },
@@ -22055,6 +22151,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "OsmoticFilter#029a",
       "OsmoticFilter#029a"
     ]
   },
@@ -22400,6 +22497,7 @@
     "category": "Protocols",
     "ring": 0,
     "supersedes": [
+      "PromptChain#5356",
       "PromptChain#5356"
     ]
   },
@@ -22470,6 +22568,7 @@
     ],
     "ring": 1,
     "supersedes": [
+      "PropheticQuorum#4eff",
       "PropheticQuorum#4eff"
     ]
   },
@@ -22574,6 +22673,7 @@
     "ring": 1,
     "tier": 2,
     "supersedes": [
+      "RealizationProtocol#c387",
       "RealizationProtocol#c387"
     ]
   },
@@ -22670,6 +22770,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "ReversibilityCheck#48e8",
       "ReversibilityCheck#48e8"
     ]
   },
@@ -22763,6 +22864,7 @@
       "BlueGreen"
     ],
     "supersedes": [
+      "Rollout#2ea3",
       "Rollout#2ea3"
     ]
   },
@@ -23029,6 +23131,7 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
+      "SolverNode#75f0",
       "SolverNode#75f0"
     ]
   },
@@ -23213,6 +23316,7 @@
     "tier": 1,
     "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation.",
     "supersedes": [
+      "StateLock#5602",
       "StateLock#5602"
     ]
   },
@@ -23346,6 +23450,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "SynergisticMode#90b6",
       "SynergisticMode#90b6"
     ]
   },
@@ -23439,6 +23544,7 @@
     "category": "Protocols",
     "tier": 1,
     "supersedes": [
+      "Taper#02bc",
       "Taper#02bc"
     ]
   },
@@ -23612,6 +23718,7 @@
       "AgentDiscover#42ca"
     ],
     "supersedes": [
+      "ToolDiscovery#91b0",
       "ToolDiscovery#91b0"
     ]
   },
@@ -23716,6 +23823,7 @@
     "category": "Protocols",
     "ring": 0,
     "supersedes": [
+      "UniqueHandle#e9b3",
       "UniqueHandle#e9b3"
     ]
   },
@@ -23862,6 +23970,7 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
+      "WorkerMode#2499",
       "WorkerMode#2499"
     ]
   },
@@ -23936,6 +24045,7 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
+      "Workflow#7975",
       "Workflow#7975"
     ]
   },

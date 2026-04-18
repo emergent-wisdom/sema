@@ -26,7 +26,8 @@
     "category": "Protocols",
     "ring": 2,
     "supersedes": [
-      "sema:ConfusedDeputy#mh:SHA-256:31db289ffbcd442a10cddc5c1d3460132fd073a680d436e364684e89c37a39c2"
+      "sema:ConfusedDeputy#mh:SHA-256:31db289ffbcd442a10cddc5c1d3460132fd073a680d436e364684e89c37a39c2",
+      "sema:ConfusedDeputy#mh:SHA-256:6eb586b85aa5ebf88afbd6b1e77c365c87e5f5d7ee3098479518066de00b331a"
     ]
   },
   "sema_ref": "ConfusedDeputy#611f",

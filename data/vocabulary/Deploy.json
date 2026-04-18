@@ -15,7 +15,8 @@
     "ring": 1,
     "caution": "Verify rollback strategy exists before committing.",
     "supersedes": [
-      "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e"
+      "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e",
+      "sema:Deploy#mh:SHA-256:2adf31981783f19de75dfdd1ebf2dab527b06adf703a61e649cdc28b99760815"
     ]
   },
   "sema_ref": "Deploy#0643",

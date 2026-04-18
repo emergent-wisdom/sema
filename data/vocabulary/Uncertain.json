@@ -23,7 +23,8 @@
     "category": "Reasoning",
     "ring": 2,
     "supersedes": [
-      "sema:Uncertain#mh:SHA-256:b1596d0176ec07983b13fe811026335849400cab1b8dc090e3aeec726d5e0a54"
+      "sema:Uncertain#mh:SHA-256:b1596d0176ec07983b13fe811026335849400cab1b8dc090e3aeec726d5e0a54",
+      "sema:Uncertain#mh:SHA-256:d530cb44023db8c31fcf38084d2880df7e6a9d0c51f3785cb7a42d75bd504bf8"
     ]
   },
   "sema_layer": "Mind",

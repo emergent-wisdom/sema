@@ -12,7 +12,8 @@
     "category": "Protocols",
     "ring": 1,
     "supersedes": [
-      "sema:AmbiguityResolution#mh:SHA-256:aee6c8844ad85d09c8ce0fe0819c5359ba2b52e84bc56b23837c9b156b4fa0f1"
+      "sema:AmbiguityResolution#mh:SHA-256:aee6c8844ad85d09c8ce0fe0819c5359ba2b52e84bc56b23837c9b156b4fa0f1",
+      "sema:AmbiguityResolution#mh:SHA-256:60315fece3de182c70627c9275d03be549416ef41af8112637019dc37ba2c4b9"
     ]
   },
   "sema_ref": "AmbiguityResolution#6858",

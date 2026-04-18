@@ -178,17 +178,25 @@ Post-audit surgical cleanup of internal defects found via systematic scans. None
 - **`_meta.related` refs to full format (6)** — `Entropy`, `Experiment`, `Falsification`, `RecursionDive` (also: `SolutionNode` → `SolverNode` rename followed), `Snapshot`, `Vector`.
 - **`derived_from` fixes (10)** — `AdversarialProof` (bare handle → full sema_id), `BoundedTask` (stale), `ManifestPlanning` (legacy stub), `OptimisticSolver` (stale), `PolymorphicSolver` (stale), `RequestFraming` (legacy stub), `RigorousSolver` (all-zeros placeholder fixed), `RolloutWatch` (legacy stub), `FractalIntelligence` (`RecursiveIntelligence` retired — removed), `RealizationProtocol` (`CreationProtocol` retired — removed).
 
-### Full supersedes population (360 patterns)
+### Full supersedes chain (v0.1.18 + v0.1.27 predecessors)
 
-Beyond the 5 rename supersessions above, every pattern whose current sema_id differs from the sema_id in the live users' db (the pip-installed `taxonomy.db`, reflecting the last public release) now carries the old sema_id in `_meta.supersedes`. This gives `sema pull` a clean upgrade path for every pattern that changed between releases, not just the renames.
+`_meta.supersedes` is an **append-only chain** of prior public-release sema_ids, not a pointer to the most recent. Every pattern whose current sema_id differs from the sema_id it carried in a prior public release now lists that prior sema_id. `sema pull` iterates the chain, so a consumer pinned to any version in the chain gets their old handle cleaned up on upgrade — not just consumers on the most recent prior.
 
-Breakdown of the 452-pattern library:
-- **358 patterns** — content edited since v0.1.27; now carry the v0.1.27 sema_id in `_meta.supersedes`.
-- **2 patterns** — rename-only inheritors (`PolymorphicSolver`, `RootSolver`) retain their pre-existing rename supersedes (`CognitiveSolver`, `SolverRoot`); no additional entry needed since these handles didn't exist under these names in v0.1.27.
-- **63 patterns** — unchanged since v0.1.27 (sema_id matches live exactly); no supersede entry needed.
-- **31 patterns** — new since v0.1.27 (not in the live db); no supersede needed.
+This release populates the chain against **two distinct published DB states**: v0.1.18 (the earliest 0.1.x tag with a non-trivial DB) and v0.1.27 (the last public release). The intermediate v0.1.23 tag contributed zero new entries — its sema_ids coincide with either v0.1.18 or v0.1.27 for every pattern (no pattern changed in both the 02:20→12:11 and 12:11→17:47 windows on 2026-04-16).
 
-`_meta.supersedes` is not hashed (excluded from `SEMANTIC_FIELDS` in `src/sema/core/hashing.py`), so adding these entries did not change any pattern's sema_id.
+**Rename-aware population.** For the 5 rename/collapse successors, the chain must include the predecessor's entries too — not just the successor's same-handle history. Two cases:
+- **Collapse** (`Abduction`, `Chain`, `Route`): successor handle existed in v0.1.18 and v0.1.27 as a separate pattern; its chain carries both the absorbed handle's old sema_id (`AbductiveLeap` / `Linear` / `Switch`) and its own same-handle old sema_id. For these three, the absorbed predecessor was stable across v0.1.18 → v0.1.27, so one absorbed-predecessor entry covers both tags.
+- **Pure rename** (`PolymorphicSolver`, `RootSolver`): successor handle is new in 0.2.0; the chain carries both the v0.1.27 and the v0.1.18 sema_ids of the absorbed handle (`CognitiveSolver` / `SolverRoot`), which *did* change between those tags. Without the v0.1.18 entry, a consumer pinned to a v0.1.18 install would keep the old handle orphaned on pull.
+
+**Chain-length distribution across 452 patterns:**
+- **88 patterns** — no chain. 31 new in 0.2.0 + 57 bit-identical across all three tags.
+- **263 patterns** — 1 entry. Changed once in the chain's history (either between v0.1.18 and v0.1.27, or between v0.1.27 and current).
+- **101 patterns** — 2 entries. Changed in both windows, or one of the 5 rename-aware cases.
+- Max chain length: 2.
+
+**Verified via round-trip pull test.** Point a copy of the v0.1.18 taxonomy.db at the current DB and run `sema pull`: 5 superseded-removed (all 5 rename-source handles cleaned up), 1 upstream-removed (`Group` — intentionally moved to the experimental shelf), 0 orphans. Same test from v0.1.27: identical result.
+
+`_meta.supersedes` is excluded from `SEMANTIC_FIELDS` in `src/sema/core/hashing.py`, so populating the chain — including retroactively adding older predecessors — does not cascade new hashes through the DAG.
 
 ### Hash cascades
 

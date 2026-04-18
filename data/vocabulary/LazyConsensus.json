@@ -24,7 +24,8 @@
     "category": "Coordination",
     "ring": 0,
     "supersedes": [
-      "sema:LazyConsensus#mh:SHA-256:4fc707a3608b99da4f2f0aa78d8662d3ea7056beb69e92a72be26e6085ecbfd9"
+      "sema:LazyConsensus#mh:SHA-256:4fc707a3608b99da4f2f0aa78d8662d3ea7056beb69e92a72be26e6085ecbfd9",
+      "sema:LazyConsensus#mh:SHA-256:81a36b7edd2128ea672990d4487c64770b4da347d359cd217564514017fa9032"
     ]
   },
   "sema_ref": "LazyConsensus#8a57",
