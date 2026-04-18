@@ -11,7 +11,7 @@ Format draws loosely on [Keep a Changelog](https://keepachangelog.com/) and on g
 Two coherent threads shipped in this release:
 
 1. **Foundation audit** — a cross-pattern refinement pass (dual-LLM proposal/review: Claude Opus 4.7 + Gemini 3.1 Deep Think, adjudicated by the author) tightened the governing rules and applied them to the entire library.
-2. **Pull loop closure** — `sema pull` now reads `_meta.supersedes` and redirects retired handles to their replacements by default (opt-out via `--preserve-superseded`); a new `sema_pull` MCP tool exposes the same behavior to agents; `sema_mint` flipped from opt-in to opt-out.
+2. **Pull loop closure** — `sema pull` now reads `_meta.supersedes` and redirects retired handles to their replacements by default (opt-out via `--preserve-superseded`); `sema_mint` flipped from opt-in to opt-out.
 
 **Vocabulary root:** `sema:vocab#mh:SHA-256:39ca671a4dcb3075855cb293380d1796105e2eca0de49b0537279b798b675ee6`
 **Pattern count:** 452 (default) + experimental shelf.
@@ -74,15 +74,15 @@ After pull, `sema pull --verify` confirms all stored hashes match recomputed val
 
 ### Tooling (new in 0.2.0)
 
-- **`sema_pull` MCP tool** (new). Lets Claude / MCP-compatible agents pull upstream vocabulary without falling back to `Bash("sema pull")`. Structured JSON output: `added`, `updated`, `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`, `cascaded_user`, `vocabulary_root_before`, `vocabulary_root_after`.
 - **`sema pull --preserve-superseded`** (new CLI flag). Keeps locally superseded patterns alongside their upstream replacements instead of cleaning them up.
 - **Orphan guard on supersession cleanup.** If a user-only local pattern still depends on a superseded one (via `sema_id` reference), pull keeps the superseded pattern in place and reports `superseded_kept_orphan`. Fix the dependent and re-run to complete the cleanup.
+- **Post-pull warning for stale user-owned `_meta`.** When retained user patterns (absent from upstream) still carry pre-0.2.0 `_meta.layer` + `_meta.category` instead of `_meta.path`, pull flags them by name and points at `scripts/migrate_taxonomy_to_path.py`. Notify, don't auto-migrate — user owns those patterns and the migration is a content decision.
+- **Post-pull notice for orphan sub-nodes.** When supersession cleanup leaves INVARIANT/PRECONDITION/POSTCONDITION nodes with no incoming edges (their parent pattern was removed), pull lists them with their text so consumers can do a follow-up cleanup. No auto-GC.
 - **Design manual** (`docs/manuals/vocabulary-design.md`, new). Per-pattern design commentary rendered from a sidecar — the authoritative review surface for vocabulary quality. Replaces the ad-hoc audit markdown previously kept under `audits/`.
 - **Design-critique sidecar** (`data/design_critique.json`, new). Editable source of commentary (452 entries, one per pattern). Kept out of the hash input, so edits to commentary do not cascade into pattern sema_ids.
 - **`scripts/generate_design_manual.py`** (new). Staging-aware generator — prefers `data/staging/<Handle>.json` over `data/vocabulary/<Handle>.json` when present, so the manual reflects in-progress edits without requiring an apply round-trip.
 - **`scripts/migrate_design_commentary.py`** (new, one-shot). Consolidated the per-pattern audit markdown under `audits/2026-04-17/` into the sidecar. Idempotent on re-run (preserves hand-edited fields).
 - **Env-var opt-outs**:
-  - `SEMA_DISABLE_PULL=true` — hides the `sema_pull` MCP tool (for deployments pinning a fixed vocabulary).
   - `SEMA_DISABLE_MINT=true` — hides the `sema_mint` MCP tool.
   - `SEMA_ALLOW_MINT=false` — legacy alias for `SEMA_DISABLE_MINT=true`; honored one deprecation cycle.
 
