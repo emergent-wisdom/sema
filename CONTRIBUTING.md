@@ -150,6 +150,34 @@ cd web && npm install && npm run dev
 # http://localhost:5173
 ```
 
+## Cutting a release
+
+We don't release per PR — PRs add entries to the `[Unreleased]` section of
+`CHANGELOG.md`. A release is a separate act: rename that section to
+`[X.Y.Z] - YYYY-MM-DD`, bump `pyproject.toml`, merge, then run the
+release script.
+
+1. **Prep commit (on a branch):**
+   - Rename `## [Unreleased]` → `## [X.Y.Z] - YYYY-MM-DD` in `CHANGELOG.md`
+     (add a fresh empty `## [Unreleased]` above it).
+   - Edit `pyproject.toml` → `version = "X.Y.Z"`.
+   - Commit. The `sync-release-metadata` pre-commit hook auto-updates
+     `.claude-plugin/plugin.json` and `server.json` to match.
+   - Open PR, merge to main.
+
+2. **Ship (from main, after merge):**
+   ```
+   scripts/release.sh
+   ```
+   Pre-flights (clean tree, on main, tests green, metadata synced), then
+   prompts through: create tag → push → `gh release create` (triggers
+   `publish.yml` → PyPI) → `mcp-publisher publish server.json`. Use
+   `--dry-run` for a preview, `--yes` to skip prompts.
+
+PyPI publishing is automated (trusted publishing via
+`.github/workflows/publish.yml` on GitHub release). The MCP Registry
+push requires a one-time `mcp-publisher login` (GitHub OAuth, cached).
+
 ## Documentation
 
 - [docs/versioning.md](docs/versioning.md) — hash immutability,
