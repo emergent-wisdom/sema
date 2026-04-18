@@ -22,3 +22,10 @@ repos:
         language: system
         pass_filenames: false
         files: '(data/taxonomy\.db|data/vocabulary/.*\.json)'
+
+      - id: changelog-gate
+        name: changelog-gate
+        entry: scripts/hooks/changelog_gate.sh
+        language: system
+        pass_filenames: false
+        files: 'pyproject\.toml'
