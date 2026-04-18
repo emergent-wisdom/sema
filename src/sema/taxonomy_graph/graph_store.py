@@ -1050,7 +1050,12 @@ class GraphStore:
                     alias = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
                 deps[dep_category][alias] = target_ref
 
-        return deps
+        # Sort keys deterministically. NetworkX successors() iteration
+        # order is not stable across fresh graph loads, so without this
+        # sort the JSON export would reshuffle dep keys on every rebuild
+        # even when the underlying data is bit-identical. Sorting here
+        # gives downstream callers (export, hashing) a stable surface.
+        return {cat: dict(sorted(items.items())) for cat, items in sorted(deps.items())}
 
     def compute_pattern_hash(self, pattern: dict[str, Any]) -> dict[str, Any]:
         """Compute hash for a pattern, resolving dependencies to current hashes.
