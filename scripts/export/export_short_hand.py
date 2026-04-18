@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
 from sema.core.registry import RegistryManager  # noqa: E402
 
-OUTPUT_FILE = "reference/all_patterns_short.md"
+OUTPUT_FILE = "data/shorthand/all_patterns_short.md"
 
 
 def load_patterns():

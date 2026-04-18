@@ -23,7 +23,7 @@ python3 scripts/export/export_short_hand.py
 
 # Add the updated docs to the commit
 git add docs/information/vocabulary_information.md
-git add reference/all_patterns_short.md
+git add data/shorthand/all_patterns_short.md
 
 echo "✅ Merkle Root & Reference updated."
 EOF
