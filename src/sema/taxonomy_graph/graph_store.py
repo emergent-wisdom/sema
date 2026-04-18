@@ -584,10 +584,17 @@ class GraphStore:
         if not layer_id:
             layer_id = self.create_node(NodeType.LAYER, layer_name, compute_embedding=False)
 
-        # Find/Create Category
+        # Find/Create Category. Composite key: (category_name, layer_id).
+        # The same category name may legitimately exist in two layers
+        # (e.g., "Primitives" in both Physics and Infrastructure). Matching
+        # on text alone would collapse them onto one node and bolt a second
+        # IN_LAYER edge onto it, producing a graph that can't represent
+        # which-category-in-which-layer via IN_CATEGORY edges alone.
         category_id = None
         for nid, data in self.get_nodes_by_type(NodeType.CATEGORY):
-            if data["text"] == category_name:
+            if data["text"] != category_name:
+                continue
+            if self.has_edge_of_type(nid, layer_id, EdgeType.IN_LAYER):
                 category_id = nid
                 break
         if not category_id:
@@ -595,10 +602,6 @@ class GraphStore:
                 NodeType.CATEGORY, category_name, compute_embedding=False
             )
             self.create_edge(category_id, layer_id, EdgeType.IN_LAYER)
-        else:
-            # Ensure Layer link
-            if not self.graph.has_edge(category_id, layer_id):
-                self.create_edge(category_id, layer_id, EdgeType.IN_LAYER)
 
         # Link Pattern -> Category (Idempotent: remove old if changed)
         # Note: We support moving categories by checking existing edges

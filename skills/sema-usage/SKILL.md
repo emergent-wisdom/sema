@@ -10,6 +10,7 @@ allowed-tools: |
   mcp__sema__sema_resolve
   mcp__sema__sema_handshake
   mcp__sema__sema_mint
+  mcp__sema__sema_pull
   mcp__sema__sema_tree
   mcp__sema__sema_stats
   mcp__sema__sema_use
@@ -70,38 +71,43 @@ Use it when:
 
 This is the same number that `scripts/vocabulary_merkle_root.py` writes into `docs/information/vocabulary_information.md` — so if the user references a root hash from the docs, you can verify alignment directly.
 
-## Keeping the vocabulary fresh (`sema pull`)
+## Keeping the vocabulary fresh (`sema_pull` / `sema pull`)
 
-When upstream ships new patterns or fixes existing ones, sync the user's
-active DB:
+When upstream ships new patterns or fixes existing ones, sync the user's active DB. This is available both as an MCP tool (prefer this — you get structured output) and as a CLI command:
 
-```bash
-sema pull             # apply upstream changes to active DB
-sema pull --dry-run   # preview without writing
+```javascript
+sema_pull()                              // apply upstream → active DB
+sema_pull({ dry_run: true })             // preview without writing
+sema_pull({ preserve_superseded: true }) // keep old handles alongside new
+sema_pull({ exclude: ["SomeHandle"] })   // ad-hoc skip
 ```
+
+The tool returns structured JSON: `added`, `updated`, `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after`. Read those fields rather than re-parsing the human log.
 
 **When to suggest pull unprompted:**
 - A `sema_handshake` returns HALT against a handle the user expected to know — the upstream definition may have evolved.
 - The user mentions they just upgraded the package (`pip install -U semahash`).
 - The user asks how to "update vocabulary", "sync", or "get latest patterns".
 
-**Important guarantees** (no need to over-explain to the user):
-- Custom local patterns are NEVER deleted.
+**Supersession cleanup.** When upstream ships a pattern whose `_meta.supersedes` lists a sema_id you have locally, `sema_pull` removes the superseded local pattern by default and adds the replacement. Two guard cases:
+
+- **Orphan guard** — if a *user-only* local pattern still depends on the superseded one (references its exact sema_id), pull keeps the superseded pattern in place and reports the orphan in `superseded_kept_orphan`. Re-point the dependents and re-run to complete the cleanup.
+- **Opt-out** — pass `preserve_superseded: true` to keep both old and new handles coexisting. Useful when the user wants to compare, or has reason to pin the old pattern.
+
+**Other guarantees** (no need to over-explain to the user):
+- Custom local patterns are NEVER deleted unless upstream explicitly supersedes them (and even then the orphan guard kicks in when dependents exist).
 - User-set `_meta.caution` and `_meta.related` survive updates.
 - Failures roll back atomically — there's no half-applied state to recover from.
-- Each successful pull keeps ONE pre-pull snapshot. If the user says "oh that update broke things," suggest `sema pull --undo` to revert.
+- Each successful pull keeps ONE pre-pull snapshot. If the user says "oh that update broke things," suggest `sema pull --undo` (CLI) to revert.
 
-**Excluding patterns the user doesn't want.** If a user wants to permanently opt out of a specific upstream handle (e.g. they consider it harmful, deprecated for their use case, or just want their custom version frozen):
-
-```bash
-sema pull --exclude SomeHandle    # ad-hoc, single run
-```
-
-For persistent exclusions, write to `~/.config/sema/excluded` (one handle per line, `#` starts a comment).
-
-**Version-pinning recipe:** keep a local copy of a pattern AND add it to the exclusion list. Dependents resolve against the local frozen version while upstream evolves around it.
+**Excluding patterns the user doesn't want.** For persistent exclusions, write to `~/.config/sema/excluded` (one handle per line, `#` starts a comment). **Version-pinning recipe:** keep a local copy of a pattern AND add it to the exclusion list. Dependents resolve against the local frozen version while upstream evolves around it.
 
 **Refuses to modify the bundled DB.** The same `sema build` + `sema use` setup required for minting also applies here — pull only operates on writable project DBs.
+
+**Deployment opt-outs.** Environment variables control which mutating tools are exposed by the MCP server. Both are off (i.e., tools exposed) by default:
+- `SEMA_DISABLE_PULL=true` — hides `sema_pull` (deployments that want a pinned vocabulary)
+- `SEMA_DISABLE_MINT=true` — hides `sema_mint` (read-only deployments)
+- `SEMA_ALLOW_MINT=false` — legacy alias for `SEMA_DISABLE_MINT=true`; honored for one release cycle
 
 ## Before you can mint
 
@@ -111,7 +117,7 @@ The bundled vocabulary is **read-only** — it gets overwritten on pip upgrades.
 2. Switch to it via MCP: `sema_use(db_path="/tmp/my-project.db")`
 3. Now `sema_mint` will work
 
-**Important:** `sema_mint` requires `SEMA_ALLOW_MINT=true` in the server environment. If the tool is not available, ask the user to enable it.
+**Note:** As of 0.2.0, `sema_mint` is exposed by default. If the tool is unavailable, the deployment has explicitly disabled it via `SEMA_DISABLE_MINT=true` (or legacy `SEMA_ALLOW_MINT=false`); ask the user to re-enable it if they want to mint.
 
 ## When to mint vs reuse
 

@@ -6,7 +6,7 @@ Format draws loosely on [Keep a Changelog](https://keepachangelog.com/) and on g
 
 ---
 
-## [Unreleased] — 0.1.28 — Foundation Audit + Pull Loop (2026-04-17)
+## [Unreleased] — 0.2.0 — Foundation Audit + Pull Loop (2026-04-17)
 
 Two coherent threads shipped in this release:
 
@@ -17,6 +17,8 @@ Two coherent threads shipped in this release:
 **Pattern count:** 452 (default) + experimental shelf.
 **Scope of changes:** 31 new patterns, 5 renames, 1 moved to experimental, 71 layer relocations, 71 mechanism rewrites, 50 additional structural fixes (dedup / split / broken-ref cleanup), 3 new `derived_from` wirings, full supersedes population against the live users' db (360 patterns), plus hash cascades through the dependency DAG (399 pattern files differ from v0.1.27 in total — 31 new + 368 updated).
 
+**Per-pattern reasoning:** This changelog lists *what* changed. For *why* each pattern exists, what its mechanism commits to, and the design commentary behind each rename / relocation / rewrite, see the design manual at [`docs/manuals/vocabulary-design.md`](docs/manuals/vocabulary-design.md). The manual ships with this release and is the authoritative review surface for vocabulary quality.
+
 ### Breaking changes for consumers
 
 - **Old renamed handles are removed on `sema pull`.** The default behavior reads upstream `_meta.supersedes` and removes the local copy of any superseded pattern. Use `sema pull --preserve-superseded` (CLI) or `sema_pull({preserve_superseded: true})` (MCP) to keep both the old and new handles. The pre-pull snapshot is still retained — `sema pull --undo` restores everything.
@@ -25,7 +27,7 @@ Two coherent threads shipped in this release:
 
 ### Migration guide (from 0.1.27)
 
-For a consumer running 0.1.27 who pulls to 0.1.28, the expected transcript is:
+For a consumer running 0.1.27 who pulls to 0.2.0, the expected transcript is:
 
 ```
   + 31 new            (Physics primitives, FI Table 4 gap, §6 protocols, etc.)
@@ -45,7 +47,7 @@ For a consumer running 0.1.27 who pulls to 0.1.28, the expected transcript is:
 
 After pull, `sema pull --verify` confirms all stored hashes match recomputed values.
 
-### Tooling (new in 0.1.28)
+### Tooling (new in 0.2.0)
 
 - **`sema_pull` MCP tool** (new). Lets Claude / MCP-compatible agents pull upstream vocabulary without falling back to `Bash("sema pull")`. Structured JSON output: `added`, `updated`, `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`, `cascaded_user`, `vocabulary_root_before`, `vocabulary_root_after`.
 - **`sema pull --preserve-superseded`** (new CLI flag). Keeps locally superseded patterns alongside their upstream replacements instead of cleaning them up.
@@ -58,6 +60,12 @@ After pull, `sema pull --verify` confirms all stored hashes match recomputed val
   - `SEMA_DISABLE_PULL=true` — hides the `sema_pull` MCP tool (for deployments pinning a fixed vocabulary).
   - `SEMA_DISABLE_MINT=true` — hides the `sema_mint` MCP tool.
   - `SEMA_ALLOW_MINT=false` — legacy alias for `SEMA_DISABLE_MINT=true`; honored one deprecation cycle.
+
+### Bug fix: CATEGORY node collapse across layers
+
+`_add_or_update_pattern` in `graph_store.py` looked up `CATEGORY` nodes by text alone. When the foundation audit added Physics/Primitives patterns after Infrastructure/Primitives already existed, it matched the Infrastructure node (same text "Primitives") and bolted a second `IN_LAYER` edge onto it pointing at Physics — instead of creating a distinct Physics/Primitives node. The graph ended up with 12 CATEGORY nodes and 13 IN_LAYER edges: topology that can't represent "which-category-in-which-layer" unambiguously via edges alone (only via pattern-metadata lookup).
+
+Fix: composite-key lookup — `(category_name, layer_id)` must both match. If a node with the right text exists but no `IN_LAYER` edge to the target layer, a new node is created. After a clean rebuild: 13 CATEGORY nodes, 13 IN_LAYER edges, each `(layer, category)` combo uniquely represented. Pattern `sema_id`s are unaffected (category/layer live in `_meta`, not hashed).
 
 ### Bug fix: hash canonicalization
 
@@ -202,4 +210,4 @@ Because dependency references carry target hashes, any change to a referenced pa
 
 ---
 
-*Pre-0.1.28 vocabulary changes are in git history; this file begins with the foundation audit.*
+*Pre-0.2.0 vocabulary changes are in git history; this file begins with the foundation audit.*

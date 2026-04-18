@@ -79,3 +79,101 @@ Use **snake_case keys** for dependency references:
 * **Bad:** `mechanism: "Uses {{sema:Trace#...}}"` (embedding raw hash)
 * **Bad:** `dependencies: { "composes_with": { "Logger": "..." } }, mechanism: "Uses {{Logger}}"` (PascalCase key)
 * **Good:** `dependencies: { "composes_with": { "logger": "sema:Trace#..." } }, mechanism: "Uses {{logger}}"`
+
+---
+
+## Manual-Driven Refinement Loop
+
+Editing the vocabulary is not a one-shot activity. Once the library exists, the way you improve it is to **read the design manual, act on what the analysis surfaces, and feed the result back into the manual**. The manual is both the review surface and the source of refinement pressure — it closes the loop.
+
+### The Four Artifacts
+
+| Artifact | Role |
+|---|---|
+| `data/vocabulary/<Handle>.json` | Canonical export — **do not edit directly** |
+| `data/staging/<Handle>.json` | Work-in-progress edit buffer |
+| `data/design_critique.json` | Sidecar: per-pattern design commentary (editable source of the manual's per-pattern sections) |
+| `docs/manuals/vocabulary-design.md` | Rendered manual — the review surface |
+
+The sidecar and the manual are **not** part of the hash input. Editing commentary never changes a pattern's `sema_id`. Editing a pattern *does* change its hash and cascades through the DAG.
+
+### The Loop
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 1. READ the manual (docs/manuals/vocabulary-design.md)       │
+│    Find a pattern whose commentary flags a defect, a         │
+│    weak invariant, a jammed failure mode, a broken ref,      │
+│    a stance-vs-mechanism gap, etc.                           │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. COPY data/vocabulary/<Handle>.json to data/staging/       │
+│    Make the fix in the staging copy.                         │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. UPDATE data/design_critique.json for the same handle      │
+│    in the same turn. The commentary must reflect the fix     │
+│    — stale commentary is worse than no commentary.           │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 4. PREVIEW the manual before applying.                       │
+│    `python scripts/generate_design_manual.py`                │
+│    The generator is staging-aware — it prefers staging over  │
+│    vocabulary when present, so the preview reflects the      │
+│    edit without requiring an apply round-trip.               │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 5. APPLY: `sema apply --add data/staging/<Handle>.json`      │
+│    Patterns hash, cascade through dependents, export to      │
+│    data/vocabulary/. Before applying: if the edit changes    │
+│    the hash against the last public release, add the prior   │
+│    sema_id to `_meta.supersedes` — required for every        │
+│    change, not just renames. See Lifecycle §4 "Populating    │
+│    _meta.supersedes" for the rule and its (non-)enforcement. │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 6. REGENERATE the manual post-apply.                         │
+│    `python scripts/generate_design_manual.py`                │
+│    Now the manual renders from the canonical vocabulary      │
+│    (staging is clean). Commit the manual alongside the       │
+│    pattern change.                                           │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 7. VERIFY and CLEAN.                                         │
+│    - `sema pull --verify` — stored hashes match recomputed.  │
+│    - `pytest` — regression tests green.                      │
+│    - Delete data/staging/<Handle>.json once applied.         │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+                   ── Loop back to step 1 ──
+```
+
+### Rules that hold across the loop
+
+- **Change + commentary move together.** Never edit a pattern without updating its sidecar entry in the same turn. The manual rendered from a stale sidecar is actively misleading — it looks authoritative but describes a pattern that no longer exists.
+- **Staging is ephemeral.** The presence of a file in `data/staging/` means "edit in flight." Once applied, delete it. The staging-aware generator uses file presence as the signal for which version to render.
+- **Sidecar entries are keyed by handle, not sema_id.** Renames require moving the entry under the new handle and deleting the old one; pure content edits need no sidecar key change.
+- **Never edit the manual directly.** It's a rendered artifact. Edits to `vocabulary-design.md` will be overwritten on the next regeneration. Edit the sidecar instead.
+- **Commit in phase bundles, not per-pattern.** A single commit typically touches: one or more staging JSONs (via apply, so also the corresponding vocabulary JSONs), the sidecar, the manual, and — if it changes against a public release — also CHANGELOG.md. Keep them together so the review surface and the spec stay consistent at every commit.
+
+### When the Manual Surfaces a Finding You Don't Want to Act On
+
+Some manual findings are intentionally open — e.g., the mechanism deliberately leaves room for descendants to specialize, or the pattern captures a philosophical stance rather than a mechanism. In that case, update the sidecar to **record the intent** ("open by design — descendants fill this in") rather than closing the gap in the pattern. The commentary then becomes a pointer for future readers instead of an unresolved TODO.
+
+### Prototypical Examples
+
+- The 0.2.0 release's **50 post-audit structural fixes** (dedup, split, broken-ref cleanup) were driven by this loop: manual surfaced internal defects → staging edits addressed them → sidecar commentary updated → apply + regenerate → CHANGELOG reflected the batch. See the `Additional structural fixes (50 patterns)` section in `CHANGELOG.md`.
+- The **full supersedes population** (360 patterns) was a batch-run through this loop focused on a single field (`_meta.supersedes`) rather than semantic content — a reminder that the loop scales from single-pattern refinement to full-library sweeps.
