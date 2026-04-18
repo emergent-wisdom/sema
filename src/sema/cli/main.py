@@ -1091,6 +1091,48 @@ def update_db(
             truncated = (text[:70] + "…") if len(text) > 70 else text
             print(f"    [{nt}] {truncated}")
 
+    # User-owned patterns retained across this pull (i.e. present locally
+    # but absent from upstream) are never rewritten by pull. If any of
+    # them still carry pre-0.2.0 `_meta.layer` + `_meta.category` instead
+    # of `_meta.path`, the next `sema apply` would reject them against
+    # the strict path-based schema. Warn, don't fix — the user owns
+    # these patterns and the migration is a content decision.
+    if upstream_removed:
+        with closing(sqlite3.connect(target_db)) as _c:
+            stale_meta = []
+            for handle in upstream_removed:
+                row = _c.execute(
+                    """
+                    SELECT json_extract(metadata, '$.pattern._meta')
+                    FROM nodes WHERE node_type='PATTERN' AND text=?
+                    """,
+                    (handle,),
+                ).fetchone()
+                if not row or not row[0]:
+                    continue
+                try:
+                    meta = json.loads(row[0])
+                except Exception:
+                    continue
+                if not isinstance(meta, dict):
+                    continue
+                # Missing path AND has legacy layer/category — stale.
+                if "path" not in meta and ("layer" in meta or "category" in meta):
+                    stale_meta.append(handle)
+        if stale_meta:
+            print(
+                f"⚠️  {len(stale_meta)} retained user pattern(s) carry pre-0.2.0 "
+                "_meta (layer+category) and will FAIL `sema apply` validation "
+                "until migrated to _meta.path:"
+            )
+            for h in stale_meta:
+                print(f"    {h}")
+            print(
+                "    Run `python3 scripts/migrate_taxonomy_to_path.py` against the "
+                "JSONs, or edit each pattern's _meta to use `path: [<layer>, "
+                "<category>]`."
+            )
+
     print(
         f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
     )
