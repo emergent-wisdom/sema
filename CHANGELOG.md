@@ -14,6 +14,17 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ---
 
+## [0.2.3] - 2026-04-18
+
+Docs-only release. No code or vocabulary changes.
+
+### Changed
+
+- Safety section rewritten in `README.md` and `docs/README.md` to scope the sandbox recommendation to pattern-execution (not to sema itself) and to split **intended use** (reasoning and reference) from **executing patterns as recipes** (untested research territory).
+- Stale `SEMA_ALLOW_MINT=true` instructions in `install.md`, `docs/guides/getting-started.md`, `skills/sema-mint/SKILL.md`, and `skills/sema-seed/SKILL.md` replaced with the 0.2.2 opt-out model (`SEMA_DISABLE_MINT=true`, `SEMA_DISABLE_PULL=true`). Tools tables gain `sema_pull` / `sema_root` / `sema_graph_skeleton`.
+
+---
+
 ## [0.2.2] - 2026-04-18
 
 Doc-vs-code drift fix for the MCP surface. 0.2.0's CHANGELOG, SKILL, and test file all claimed `sema_pull` was an MCP tool and `sema_mint` was exposed by default, but the server module still had `sema_mint` behind `SEMA_ALLOW_MINT=true` and no `sema_pull` at all. This release lands the code that matches the claims.

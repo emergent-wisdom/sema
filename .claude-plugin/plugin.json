@@ -1,12 +1,17 @@
 {
   "name": "sema",
-  "version": "0.2.2",
-  "description": "Content-addressed vocabulary protocol — shared meaning for AI agents",
+  "version": "0.2.3",
+  "description": "Content-addressed vocabulary protocol \u2014 shared meaning for AI agents",
   "skills": "./skills/",
   "mcpServers": {
     "sema": {
       "command": "uvx",
-      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+      "args": [
+        "--from",
+        "semahash[mcp]",
+        "sema",
+        "mcp"
+      ]
     }
   }
 }

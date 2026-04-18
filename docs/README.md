@@ -4,11 +4,13 @@ Welcome to the Sema documentation. Start at the top and read down — each secti
 
 ## Safety
 
-Sema is an experimental research project. It has not been tested in production environments. We recommend running it in a sandboxed environment.
+Sema ships no executable code — it's a library of pattern *definitions* (handles, mechanisms, invariants, dependency graphs). The MCP server hands patterns to clients as data; it does not execute the behaviors they describe.
 
-Some patterns are marked with a `caution` field in their metadata to flag them as potentially risky. The absence of a caution flag does not imply safety — many patterns carry no identifier regarding their safety status. Agents connecting via MCP are informed that referencing a pattern is not authorization to perform the actions it describes.
+**Intended use: reasoning and reference.** Patterns are thinking tools — named concepts agents can search, resolve, and handshake on to reason about coordination, risk, and procedure. See [`manuals/vocabulary-design.md`](manuals/vocabulary-design.md) for the intent behind each pattern and the design choices.
 
-The long-term goal is cryptographically enforced safety constraints for agent-to-agent communication, but further research is required to achieve this.
+**Running patterns as executable recipes is untested.** Many patterns describe procedures an agent could step through. That path is still a research phase — the mechanism text has not been validated end-to-end, and we make no claims about safety when a pattern is executed rather than referenced. If you go this route, run the agent's execution step in a sandboxed environment. Patterns with known risks carry a `caution` field in their metadata; absence of that flag means the pattern has not been classified as risky, not that it has been certified safe.
+
+The long-term goal is cryptographically enforced safety constraints on agent-to-agent communication — an active research direction.
 
 ## Orientation
 
