@@ -22,8 +22,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "related": [
       "Belief",
       "Attention"
@@ -31,10 +29,12 @@
     "ring": 0,
     "supersedes": [
       "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "sema_id": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e",
   "sema_ref": "Observe#abc0",
   "sema_stub": "abc0",
@@ -42,5 +42,7 @@
     "yields": {
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

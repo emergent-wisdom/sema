@@ -22,18 +22,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
     "supersedes": [
       "sema:StepBack#mh:SHA-256:b0799e81851e7cf503b84fcf260b81fa235cc829410fb0da67d5b8a4c1a4305a"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:StepBack#mh:SHA-256:35ad31171daed52a64436fc24ac0f61729ca54bb9b5425d341e4763e30a968c9",
   "sema_ref": "StepBack#35ad",
   "sema_stub": "35ad",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "signature": [
     "Think(Problem)"
   ],
@@ -43,5 +43,7 @@
       "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
       "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

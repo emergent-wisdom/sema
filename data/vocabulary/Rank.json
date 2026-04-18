@@ -15,15 +15,15 @@
   "sema_stub": "7a76",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "supersedes": [
       "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "accepts": {
       "scoring_function": "sema:ScoringFunction#mh:SHA-256:3a4ef49f597cf15d2971c8b1769506bc5a434909e98cede098d5c16664c94232"
@@ -31,5 +31,7 @@
     "composes_with": {
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

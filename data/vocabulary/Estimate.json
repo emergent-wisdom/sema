@@ -17,19 +17,19 @@
     "Uncertainty Honesty: Wide intervals for novel tasks, narrow for familiar."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "tier": 1,
     "ring": 1,
     "supersedes": [
       "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_ref": "Estimate#02ba",
   "sema_id": "sema:Estimate#mh:SHA-256:02ba5572d07abe1e44804a8a8b068c623f64b297a15c7cd673f30d8f5eda2d14",
   "sema_stub": "02ba",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
@@ -45,5 +45,7 @@
     "yields": {
       "bid": "sema:Bid#mh:SHA-256:464aee7df8e070d5fb943f26ea92fc1f13d705b90384852ca2f9133e35d42ff8"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

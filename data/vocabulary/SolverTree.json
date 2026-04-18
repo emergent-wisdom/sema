@@ -15,8 +15,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
     "ring": 1,
     "related": [
       "UniversalSolverTree"
@@ -24,6 +22,10 @@
     "supersedes": [
       "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def",
       "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81"
+    ],
+    "path": [
+      "Society",
+      "Governance"
     ]
   },
   "data_schema": {
@@ -57,8 +59,6 @@
   "sema_ref": "SolverTree#3c94",
   "sema_id": "sema:SolverTree#mh:SHA-256:3c94f8fbb9c4d1a56881b1d84a3cbe7ea56185fa778c2533657fc34f86ae66a1",
   "sema_stub": "3c94",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
@@ -71,5 +71,7 @@
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
       "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

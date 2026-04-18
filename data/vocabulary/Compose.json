@@ -21,16 +21,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "supersedes": [
       "sema:Compose#mh:SHA-256:10b7e69d6548c3d79dcf5ccb356bb0196fe7535d273a885cbe6a2c20b9e73a11",
       "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "signature": [
     "Combine(PromptChain)"
   ],
@@ -43,5 +43,7 @@
       "combine": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6",
       "prompt_chain": "sema:PromptChain#mh:SHA-256:5356ac5f1bd0c8d125e039a93c7f6a0b73a99586d38165494653dbed482a3472"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

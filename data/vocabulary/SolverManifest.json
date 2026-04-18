@@ -16,18 +16,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "supersedes": [
       "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:SolverManifest#mh:SHA-256:0299ce31325923a906e72bebe772918d4ce24da6d43f42bc014ffeede7972ef0",
   "sema_ref": "SolverManifest#0299",
   "sema_stub": "0299",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "description": "Typed solver identity + capabilities.",
@@ -64,5 +64,7 @@
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
       "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

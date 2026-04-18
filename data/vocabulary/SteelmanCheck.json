@@ -35,21 +35,21 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
     "related": [
       "AdversarialSteel"
     ],
     "supersedes": [
       "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a",
   "sema_ref": "SteelmanCheck#2d13",
   "sema_stub": "2d13",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "signature": [
     "Check(Robustness)",
     "Critique(Belief)"
@@ -66,5 +66,7 @@
       "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
       "robustness": "sema:Robustness#mh:SHA-256:132c09ccd0ad128aec982b0ba12b672106b6f9aedcd1b052c950ee0eb81162a1"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

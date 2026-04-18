@@ -12,12 +12,12 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:DecompositionGate#mh:SHA-256:b0f6f3df3848c501bfe8f20049593befd722a0a49b91d505f8b7ece0b21ad657",
   "sema_ref": "DecompositionGate#b0f6",
   "sema_stub": "b0f6",
@@ -28,5 +28,7 @@
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

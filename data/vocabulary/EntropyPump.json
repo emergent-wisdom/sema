@@ -8,23 +8,25 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 1,
     "supersedes": [
       "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
   "sema_id": "sema:EntropyPump#mh:SHA-256:ed3b97a2f0de4b0c3dac225aa578e266e9fce41cbb7c92d670d29a7366313818",
   "sema_ref": "EntropyPump#ed3b",
   "sema_stub": "ed3b",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212",
       "equilibrium": "sema:Equilibrium#mh:SHA-256:f7c5f4b45ee12a8b04b5543367092b5d91d4772bbb2b4f4891d1aa0e0e732ee3",
       "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

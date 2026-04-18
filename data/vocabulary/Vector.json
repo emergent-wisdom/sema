@@ -26,17 +26,19 @@
   "mechanism": "A multi-dimensional array of numbers representing a position in a semantic space.",
   "gloss": "Semantic position array",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "tier": 1,
     "related": [
       "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc",
   "sema_ref": "Vector#c7c4",
-  "sema_stub": "c7c4"
+  "sema_stub": "c7c4",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

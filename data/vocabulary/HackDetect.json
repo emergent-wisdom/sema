@@ -21,19 +21,19 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:HackDetect#mh:SHA-256:c89cffb0b0f44031d64b88c435c8f992ec540dd94a8993ecd5f5f6bbb557ff83",
       "sema:HackDetect#mh:SHA-256:105da91807253d1d7ab96a53bb46ab7f60e1cd3fa83cd78affc96e887951116e"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:HackDetect#mh:SHA-256:3494caf8262a00b5b783c48146898fa56d22fb2647897c80df5f4f4da158bcf2",
   "sema_ref": "HackDetect#3494",
   "sema_stub": "3494",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -41,5 +41,7 @@
       "input_guard": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

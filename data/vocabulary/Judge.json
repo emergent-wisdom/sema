@@ -20,18 +20,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "supersedes": [
       "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
   "sema_id": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
   "sema_ref": "Judge#efe0",
   "sema_stub": "efe0",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "accepts": {
       "scoring_function": "sema:ScoringFunction#mh:SHA-256:3a4ef49f597cf15d2971c8b1769506bc5a434909e98cede098d5c16664c94232",
@@ -47,5 +47,7 @@
     "yields": {
       "score": "sema:Score#mh:SHA-256:d2202db2d9ebb0b44afc6c6d49f918e7bb5635229d635674c2d02090c7b3fe0a"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

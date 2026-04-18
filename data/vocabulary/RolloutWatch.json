@@ -24,8 +24,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "related": [
       "SpotAudit",
@@ -34,10 +32,12 @@
     ],
     "supersedes": [
       "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:RolloutWatch#mh:SHA-256:a5a9617a45b93172652e05ab0a7367cb4e4b5e13284bd17e000be2ce240b72ee",
   "sema_ref": "RolloutWatch#a5a9",
   "sema_stub": "a5a9",
@@ -58,5 +58,7 @@
     "yields": {
       "monitor_report": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

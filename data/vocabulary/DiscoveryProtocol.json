@@ -9,12 +9,12 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:65f512a0fae847b09ea2cd48dfbdf075f95d847058d0c42c972ed5e5c2b169bf",
   "sema_ref": "DiscoveryProtocol#65f5",
   "sema_stub": "65f5",
@@ -26,5 +26,7 @@
     "references": {
       "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

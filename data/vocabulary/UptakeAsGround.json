@@ -19,15 +19,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e",
   "sema_ref": "UptakeAsGround#bcd4",
   "sema_stub": "bcd4",
@@ -36,5 +36,7 @@
       "modest_claim": "sema:ModestClaim#mh:SHA-256:7da0b36913cf91f2b27f5a1676b6cfc35dac58f7f987bdb704164ad076777ed8",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

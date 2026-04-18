@@ -21,26 +21,28 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "related": [
       "SignalReflection"
     ],
     "ring": 2,
     "supersedes": [
       "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:CognitiveEcho#mh:SHA-256:d868e8a1343b2dd5fae9e448550577746e65efc593008150300cff6e5aa5977f",
   "sema_ref": "CognitiveEcho#d868",
   "sema_stub": "d868",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

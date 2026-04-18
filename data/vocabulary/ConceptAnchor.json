@@ -30,16 +30,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 2,
     "supersedes": [
       "sema:ConceptAnchor#mh:SHA-256:91873000b379e08c41bc3fe3fea23f1f0870600871f89cca46ecbc87cc1d69d0"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:ConceptAnchor#mh:SHA-256:828bd82b36e985b1cd6b115ad27c44c7f5b34d463fa8bbebb101968f9226a46f",
   "sema_ref": "ConceptAnchor#828b",
-  "sema_stub": "828b"
+  "sema_stub": "828b",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

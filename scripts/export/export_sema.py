@@ -99,14 +99,27 @@ def export_vocabulary():
         if not handle:
             continue
 
-        # Pattern is already complete from database, just need to add sema metadata
-        meta = pattern.get("_meta", {})
-        layer = meta.get("layer")
-        category = meta.get("category")
-        if layer:
-            pattern["sema_layer"] = layer
-        if category:
-            pattern["sema_category"] = category
+        # Pattern is already complete from database. Derive sema_layer /
+        # sema_category from _meta.path (path[0] / path[1]) for legacy
+        # consumer compat. Falls back to legacy _meta.layer / _meta.category
+        # for pre-migration DBs that haven't been touched yet.
+        meta = pattern.get("_meta", {}) or {}
+        path = meta.get("path") or []
+        if path:
+            pattern["sema_layer"] = path[0]
+            if len(path) >= 2:
+                pattern["sema_category"] = path[1]
+        else:
+            layer = meta.get("layer")
+            category = meta.get("category")
+            if layer:
+                pattern["sema_layer"] = layer
+            if category:
+                pattern["sema_category"] = category
+        # Strip the legacy fields if they leaked into the stored pattern —
+        # they're derived, not canonical, and shouldn't appear in exports.
+        meta.pop("layer", None)
+        meta.pop("category", None)
 
         # Validate
         if not pattern.get("handle"):

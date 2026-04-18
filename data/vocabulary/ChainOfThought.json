@@ -8,8 +8,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
     "related": [
       "ProgramOfThought",
       "ReAct"
@@ -17,13 +15,15 @@
     "ring": 2,
     "supersedes": [
       "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f",
   "sema_ref": "ChainOfThought#dd97",
   "sema_stub": "dd97",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "signature": [
     "Think(Chain)"
   ],
@@ -37,5 +37,7 @@
       "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

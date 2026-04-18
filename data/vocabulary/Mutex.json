@@ -26,16 +26,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Physics",
-    "category": "Primitives",
     "ring": 0,
     "caution": "Exclusive access \u2014 starvation enables denial of service.",
     "supersedes": [
       "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7"
+    ],
+    "path": [
+      "Physics",
+      "Primitives"
     ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "derived_from": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
   "sema_id": "sema:Mutex#mh:SHA-256:4f92f538e7cac17a005087ef874e42d6d35f44dbf8ec3ceb863501d77450cc43",
   "sema_ref": "Mutex#4f92",
@@ -49,5 +49,7 @@
       "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
       "resource": "sema:Resource#mh:SHA-256:3a2f2f0b7b22059fa22c61184defbbe2cbefc8b8b98cef39a6bc38a24f47c1ac"
     }
-  }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

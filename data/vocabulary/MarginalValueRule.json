@@ -13,20 +13,20 @@
     "Diminishing Returns: Deeper levels must show proportionally higher marginal value."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
     "tier": 2,
     "ring": 1,
     "supersedes": [
       "sema:MarginalValueRule#mh:SHA-256:a46a39374cd046def6d2457b87ce2a426fe1e4b957494ff4a5b62d28665e159e",
       "sema:MarginalValueRule#mh:SHA-256:314d8f02234530572de34b8f0616021e51e166f2341b9a5c40491e81f7ce5201"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa",
   "sema_ref": "MarginalValueRule#311b",
   "sema_stub": "311b",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "signature": [
     "Budget(RecursionDive)"
   ],
@@ -36,5 +36,7 @@
       "estimate": "sema:Estimate#mh:SHA-256:02ba5572d07abe1e44804a8a8b068c623f64b297a15c7cd673f30d8f5eda2d14",
       "recursion_dive": "sema:RecursionDive#mh:SHA-256:038483584395139ff2a1766902d80a65edcab12a1ee39b57614fc93ce704e4ce"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

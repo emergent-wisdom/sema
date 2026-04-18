@@ -11,19 +11,19 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
     "ring": 1,
     "supersedes": [
       "sema:Award#mh:SHA-256:7bf0f52b1dd71eae4d352bfb4c2c17bf4513dbe905299f3b950222e508c90244",
       "sema:Award#mh:SHA-256:cfe24da55c73b4046503716821d17f42264ac98b8a7e5f0289582b01dbb604ed"
+    ],
+    "path": [
+      "Society",
+      "Economics"
     ]
   },
   "sema_ref": "Award#a0c1",
   "sema_id": "sema:Award#mh:SHA-256:a0c1ed8216c16698c9eaa27e8d9da38f83adfbe4feee47a0d01306ff633f12f7",
   "sema_stub": "a0c1",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
   "dependencies": {
     "accepts": {
       "bid": "sema:Bid#mh:SHA-256:464aee7df8e070d5fb943f26ea92fc1f13d705b90384852ca2f9133e35d42ff8"
@@ -41,5 +41,7 @@
     "yields": {
       "contract": "sema:Contract#mh:SHA-256:442e457b869006b480cc44f756f2d110dd28de31a9f480bbccb4e9aaf97837d8"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
 }

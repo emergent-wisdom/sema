@@ -26,23 +26,25 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "supersedes": [
       "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
   "sema_id": "sema:FailClosed#mh:SHA-256:c7fed2adfa415c82a93ecff3cc6c41f3e60ef2c9891c365987761d01d6bcf70f",
   "sema_ref": "FailClosed#c7fe",
   "sema_stub": "c7fe",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912",
       "output_guard": "sema:OutputGuard#mh:SHA-256:0d0a18559d425de5a2b734e17f21beca390f0d4fd198b8261069aca70eeb9d7d",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

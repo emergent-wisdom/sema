@@ -11,19 +11,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "caution": "Spawned advocates share the same model \u2014 collusion risk.",
     "supersedes": [
       "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:AdversarialSteel#mh:SHA-256:ded99445bc9bd5479bad257770ee426cce6ff91860bfd7c3b80fff712ec697eb",
   "sema_ref": "AdversarialSteel#ded9",
   "sema_stub": "ded9",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
@@ -36,5 +36,7 @@
       "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

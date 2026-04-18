@@ -7,8 +7,6 @@
     "Resource Bound: Total cost of Steps must be within budget."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "tier": 1,
     "related": [
@@ -18,13 +16,15 @@
     ],
     "supersedes": [
       "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502",
   "sema_ref": "ExecutionManifest#6cf5",
   "sema_stub": "6cf5",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "description": "Binds design with operation sequence.",
@@ -46,5 +46,7 @@
         }
       }
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

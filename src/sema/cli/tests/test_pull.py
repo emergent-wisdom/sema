@@ -26,8 +26,10 @@ class TestPull(unittest.TestCase):
             "mechanism": mechanism,
             "gloss": kwargs.get("gloss", f"Gloss for {handle}"),
             "_meta": {
-                "layer": kwargs.get("layer", "Infrastructure"),
-                "category": kwargs.get("category", "Primitives"),
+                "path": [
+                    kwargs.get("layer", "Infrastructure"),
+                    kwargs.get("category", "Primitives"),
+                ],
                 "ring": 0,
                 "tier": 1,
             },
@@ -457,8 +459,7 @@ class TestPull(unittest.TestCase):
                 "postconditions": ["Post 1"],
                 "failure_modes": ["Mode A", "Mode B"],
                 "_meta": {
-                    "layer": "Infrastructure",
-                    "category": "Primitives",
+                    "path": ["Infrastructure", "Primitives"],
                     "ring": 0,
                     "tier": 1,
                 },
@@ -555,8 +556,7 @@ class TestPull(unittest.TestCase):
                 "mechanism": "Test mechanism",
                 "gloss": "Test",
                 "_meta": {
-                    "layer": "Infrastructure",
-                    "category": "Primitives",
+                    "path": ["Infrastructure", "Primitives"],
                     "ring": 0,
                     "tier": 1,
                     "caution": "This is a test caution notice",
@@ -671,8 +671,10 @@ class TestPullEdgeCases(unittest.TestCase):
             "mechanism": mechanism,
             "gloss": kwargs.get("gloss", f"Gloss for {handle}"),
             "_meta": {
-                "layer": kwargs.get("layer", "Infrastructure"),
-                "category": kwargs.get("category", "Primitives"),
+                "path": [
+                    kwargs.get("layer", "Infrastructure"),
+                    kwargs.get("category", "Primitives"),
+                ],
                 "ring": 0,
                 "tier": 1,
                 **kwargs.get("meta_extra", {}),
@@ -874,8 +876,10 @@ class TestTaxonomyOverlay(unittest.TestCase):
             "mechanism": mechanism,
             "gloss": kwargs.get("gloss", f"Gloss for {handle}"),
             "_meta": {
-                "layer": kwargs.get("layer", "Infrastructure"),
-                "category": kwargs.get("category", "Primitives"),
+                "path": [
+                    kwargs.get("layer", "Infrastructure"),
+                    kwargs.get("category", "Primitives"),
+                ],
                 "ring": kwargs.get("ring", 0),
                 "tier": kwargs.get("tier", 1),
                 **kwargs.get("meta_extra", {}),
@@ -917,9 +921,10 @@ class TestTaxonomyOverlay(unittest.TestCase):
 
         meta = self._pattern_meta(self.user_db, "Foo")
         self.assertEqual(
-            meta.get("layer"), "Society", "User's layer must reflect upstream re-categorization"
+            meta.get("path"),
+            ["Society", "Protocols"],
+            "User's path must reflect upstream re-categorization",
         )
-        self.assertEqual(meta.get("category"), "Protocols")
 
     @patch("sema.cli.main.get_default_db_path")
     @patch("sema.cli.main.get_bundled_db_path")
@@ -948,7 +953,7 @@ class TestTaxonomyOverlay(unittest.TestCase):
         update_db()
 
         meta = self._pattern_meta(self.user_db, "Foo")
-        self.assertEqual(meta.get("layer"), "Society")
+        self.assertEqual(meta.get("path"), ["Society", "Protocols"])
         self.assertEqual(meta.get("caution"), "user note")
 
     @patch("sema.cli.main.get_default_db_path")
@@ -969,7 +974,9 @@ class TestTaxonomyOverlay(unittest.TestCase):
 
         meta = self._pattern_meta(self.user_db, "Foo")
         self.assertEqual(
-            meta.get("layer"), "Society", "User's local layer override must be reverted to upstream"
+            meta.get("path"),
+            ["Society", "Protocols"],
+            "User's local path override must be reverted to upstream",
         )
 
 
@@ -1033,8 +1040,7 @@ class TestExclusionList(unittest.TestCase):
                 "mechanism": mechanism,
                 "gloss": handle,
                 "_meta": {
-                    "layer": "Infrastructure",
-                    "category": "Primitives",
+                    "path": ["Infrastructure", "Primitives"],
                     "ring": 0,
                     "tier": 1,
                 },
@@ -1163,8 +1169,7 @@ class TestExclusionList(unittest.TestCase):
                 "mechanism": "Uses {{a}}",
                 "gloss": "Beta",
                 "_meta": {
-                    "layer": "Infrastructure",
-                    "category": "Primitives",
+                    "path": ["Infrastructure", "Primitives"],
                     "ring": 0,
                     "tier": 1,
                 },
@@ -1204,8 +1209,7 @@ class TestExclusionList(unittest.TestCase):
                 "mechanism": "Uses {{a}}",
                 "gloss": "Beta",
                 "_meta": {
-                    "layer": "Infrastructure",
-                    "category": "Primitives",
+                    "path": ["Infrastructure", "Primitives"],
                     "ring": 0,
                     "tier": 1,
                 },
@@ -1256,8 +1260,7 @@ class TestRecovery(unittest.TestCase):
                 "mechanism": mechanism,
                 "gloss": handle,
                 "_meta": {
-                    "layer": "Infrastructure",
-                    "category": "Primitives",
+                    "path": ["Infrastructure", "Primitives"],
                     "ring": 0,
                     "tier": 1,
                 },
@@ -1456,8 +1459,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
             "mechanism": mechanism,
             "gloss": f"Gloss {handle}",
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Primitives",
+                "path": ["Infrastructure", "Primitives"],
                 "ring": 0,
                 "tier": 1,
             },

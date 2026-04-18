@@ -13,19 +13,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
     "ring": 1,
     "supersedes": [
       "sema:AtomicBid#mh:SHA-256:0e6bf533854e1938c010cf2ce28ede3fe1642b56115e626ceb4bd652691a9edc",
       "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1"
+    ],
+    "path": [
+      "Society",
+      "Economics"
     ]
   },
   "sema_ref": "AtomicBid#c429",
   "sema_id": "sema:AtomicBid#mh:SHA-256:c429c0ee44df1f2b464558747430e559e80b9f261ebdc88520486eec13307971",
   "sema_stub": "c429",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
   "dependencies": {
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
@@ -36,5 +36,7 @@
       "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
       "lazy_consensus": "sema:LazyConsensus#mh:SHA-256:8a573c3272068dc276ae65d661840fe44a84c80ee70901eca780a8f2b4dad16c"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
 }

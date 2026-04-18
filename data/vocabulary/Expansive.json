@@ -9,23 +9,25 @@
     "Judge(Value)"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "tier": 1,
     "supersedes": [
       "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:Expansive#mh:SHA-256:fa11a8715ef56e5c0d20244ce15d16dc4a135d3ef6c92249c584138faf7115fd",
   "sema_ref": "Expansive#fa11",
   "sema_stub": "fa11",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

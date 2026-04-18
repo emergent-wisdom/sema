@@ -7,18 +7,20 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
   "sema_id": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5",
   "sema_ref": "Silence#dd79",
   "sema_stub": "dd79",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

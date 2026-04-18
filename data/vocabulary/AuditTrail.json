@@ -24,8 +24,6 @@
     "Trace(Ledger)"
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Verification",
     "ring": 1,
     "tier": 1,
     "related": [
@@ -33,13 +31,15 @@
     ],
     "supersedes": [
       "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c"
+    ],
+    "path": [
+      "Infrastructure",
+      "Verification"
     ]
   },
   "sema_ref": "AuditTrail#6735",
   "sema_id": "sema:AuditTrail#mh:SHA-256:6735b487b3fa1d278f0046cd0bccf2368a26054762cffb4543de714d59c010dd",
   "sema_stub": "6735",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Verification",
   "dependencies": {
     "composes_with": {
       "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
@@ -53,5 +53,7 @@
       "sign": "sema:Sign#mh:SHA-256:d60d27217d8d1f219460f69a9971b9f73c1e279c5fddbb7db51a87c8015e34e8",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
 }

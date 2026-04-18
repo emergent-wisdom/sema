@@ -48,8 +48,7 @@ class TestApplyCommand(unittest.TestCase):
             "mechanism": mechanism,
             "gloss": gloss,
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Primitives",  # Valid category for Infrastructure
+                "path": ["Infrastructure", "Primitives"],  # Valid category for Infrastructure
                 "ring": 0,
                 "tier": 1,
             },
@@ -68,7 +67,7 @@ class TestApplyCommand(unittest.TestCase):
             "handle": handle,
             "mechanism": mechanism,
             "gloss": "Test gloss",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives"},
+            "_meta": {"path": ["Infrastructure", "Primitives"]},
             "sema_layer": "Infrastructure",
             "sema_category": "Primitives",
         }
@@ -262,7 +261,7 @@ class TestValidatePatternFile(unittest.TestCase):
             "handle": "Valid",
             "mechanism": "Test",
             "gloss": "Test",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         with open(file_path, "w") as f:
             json.dump(pattern, f)
@@ -315,7 +314,7 @@ class TestDanglingReferences(unittest.TestCase):
             "handle": handle,
             "mechanism": f"Mechanism for {handle}",
             "gloss": f"Gloss for {handle}",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
             "sema_layer": "Infrastructure",
             "sema_category": "Primitives",
         }
@@ -329,7 +328,7 @@ class TestDanglingReferences(unittest.TestCase):
             "handle": handle,
             "mechanism": f"Mechanism for {handle}",
             "gloss": f"Gloss for {handle}",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         if deps:
             pattern["dependencies"] = deps
@@ -416,7 +415,7 @@ class TestCycleDetection(unittest.TestCase):
             "handle": handle,
             "mechanism": f"Mechanism for {handle}",
             "gloss": f"Gloss for {handle}",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         if deps:
             pattern["dependencies"] = deps
@@ -520,7 +519,7 @@ class TestLayerDirectionInApply(unittest.TestCase):
             "handle": handle,
             "mechanism": mechanism or f"Mechanism for {handle}",
             "gloss": f"Gloss for {handle}",
-            "_meta": {"layer": layer, "category": category, "ring": 1, "tier": 1},
+            "_meta": {"path": [layer, category], "ring": 1, "tier": 1},
         }
         if deps:
             pattern["dependencies"] = deps
@@ -644,7 +643,7 @@ class TestFullRoundTrip(unittest.TestCase):
             "handle": handle,
             "mechanism": mechanism,
             "gloss": f"Gloss for {handle}",
-            "_meta": {"layer": layer, "category": category, "ring": 0, "tier": 1},
+            "_meta": {"path": [layer, category], "ring": 0, "tier": 1},
         }
         if deps:
             pattern["dependencies"] = deps
@@ -813,7 +812,7 @@ class TestFullRoundTrip(unittest.TestCase):
                 }
             ],
             "dependencies": {"references": deps},
-            "_meta": {"layer": "Society", "category": "Governance", "ring": 2, "tier": 3},
+            "_meta": {"path": ["Society", "Governance"], "ring": 2, "tier": 3},
         }
 
         # Compute hash and add

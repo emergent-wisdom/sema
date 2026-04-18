@@ -43,16 +43,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
     "ring": 1,
     "supersedes": [
       "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
       "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
   "sema_id": "sema:Rally#mh:SHA-256:0a1c42730dda47444d23b2beb92f0da483126d8494d54514951bef5511e58035",
   "sema_ref": "Rally#0a1c",
   "sema_stub": "0a1c",
@@ -70,5 +70,7 @@
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

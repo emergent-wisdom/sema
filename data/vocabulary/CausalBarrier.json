@@ -32,23 +32,25 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Time",
     "ring": 0,
     "supersedes": [
       "sema:CausalBarrier#mh:SHA-256:0904e3eb6ac5a36cfa3ec9d1c3fe374ad4eb817e1da35375ce8d32d8272b6128",
       "sema:CausalBarrier#mh:SHA-256:d1b20d964f273174495ad103b4c7b31ae747e4ad56de14d9e935ca1705088c5d"
+    ],
+    "path": [
+      "Physics",
+      "Time"
     ]
   },
   "sema_id": "sema:CausalBarrier#mh:SHA-256:f2d781750c575c286e1797d49b26d82992b2f746fb5b6e91b67f8d80f6b869bd",
   "sema_ref": "CausalBarrier#f2d7",
   "sema_stub": "f2d7",
-  "sema_layer": "Physics",
-  "sema_category": "Time",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "state_lock": "sema:StateLock#mh:SHA-256:560229dacf3ebeebd3461dd3c4a9553d3658bf0f447741b31e38e0418db45e3a"
     }
-  }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Time"
 }

@@ -25,12 +25,12 @@
   "gloss": "Unique agent context (The Who)",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
   "sema_ref": "Identity#626c",
   "sema_stub": "626c",
@@ -38,5 +38,7 @@
     "references": {
       "nature": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

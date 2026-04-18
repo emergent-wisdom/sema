@@ -23,8 +23,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:OpportunityCost#mh:SHA-256:f0a3f074464fb30b60adac59167d2d34aeadf8fdd47de6c433f278c0036223fb",
       "sema:Satisfice#mh:SHA-256:fa75c44d4d400749a16f521c8c2793207877c783154cc00a93390beae85d2e0d"
@@ -32,13 +30,15 @@
     "ring": 2,
     "supersedes": [
       "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be",
   "sema_ref": "ParetoFront#c1fb",
   "sema_stub": "c1fb",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "accepts": {
       "axes": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
@@ -47,5 +47,7 @@
       "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

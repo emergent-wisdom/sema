@@ -18,18 +18,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:TranslationProxy#mh:SHA-256:f0e0d8b01e88f45c1d6791f41ed1686a96e40fc48f541c31568d48bb83ad988e"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:TranslationProxy#mh:SHA-256:342219e51cc568b1133fb7eea62a611a0ad65304d0ec26c569e1a8e40765ce61",
   "sema_ref": "TranslationProxy#3422",
   "sema_stub": "3422",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "Translate(Protocol)"
   ],
@@ -41,5 +41,7 @@
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
       "translate": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

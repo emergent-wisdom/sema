@@ -3,14 +3,16 @@
   "mechanism": "A statement accepted as true without proof to serve as a starting point. It is foundational and non-negotiable within the system's current logic frame.",
   "gloss": "Foundational truth",
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded",
   "sema_ref": "Axiom#5012",
-  "sema_stub": "5012"
+  "sema_stub": "5012",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

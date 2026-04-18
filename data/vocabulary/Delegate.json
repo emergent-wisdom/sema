@@ -26,8 +26,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
     "related": [
       "Handoff"
     ],
@@ -35,10 +33,12 @@
     "supersedes": [
       "sema:Delegate#mh:SHA-256:e557d8268697e26743dc5d2cf191741e47b7bef0d986e8dbff3d86e5e9d9486e",
       "sema:Delegate#mh:SHA-256:7e2aa7273061011208a1e1d26d4d616deed5499d29d5275ff3f09dc878e8bbc0"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
   "sema_id": "sema:Delegate#mh:SHA-256:ba86128c57746d3716854e7f3126e81933d46a6fbc636038b8321758c769b8aa",
   "sema_ref": "Delegate#ba86",
   "sema_stub": "ba86",
@@ -57,5 +57,7 @@
     "yields": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

@@ -10,20 +10,22 @@
   "sema_ref": "Oracle#ed79",
   "sema_stub": "ed79",
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:Oracle#mh:SHA-256:0dffb25a0d877e3d718f2546a595eb574d5733d86ed71f1f37462955db421249",
       "sema:Oracle#mh:SHA-256:1537b697dabd1dcda5ae750a5e90a58fe151c322522f511a0b0c26ceb38d6ca3"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "held_release": "sema:HeldRelease#mh:SHA-256:5ba3170f78928b2502cc5b4ff74a2fadde8b9264fbfa0f1ab1f6cc3b5211fe20"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

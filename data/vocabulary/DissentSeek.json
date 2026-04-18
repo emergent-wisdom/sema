@@ -19,18 +19,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:DissentSeek#mh:SHA-256:bd28d5bd7fa2253411b69c586231a1a80b835cc56569439dc8834540dcefaf54"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:DissentSeek#mh:SHA-256:b2c90e6ef9d4813d1ef3043e907c0cbe795206b77d80d12cd05fdc9028396c69",
   "sema_ref": "DissentSeek#b2c9",
   "sema_stub": "b2c9",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "confirmation_block": "sema:ConfirmationBlock#mh:SHA-256:20db49e59b1e91b692635885522c55205d7889ddad978c36965d00a4fc985a5a",
@@ -38,5 +38,7 @@
       "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a",
       "understand": "sema:Understand#mh:SHA-256:c38c510b051d292e7c85629a389e2de521ad95fab03476acabf2fa94774425ac"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

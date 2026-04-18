@@ -8,18 +8,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_ref": "DesignArchitect#9ef6",
   "sema_id": "sema:DesignArchitect#mh:SHA-256:9ef62675ffff4a15a04b90bf1c3ce216bb2635bc5a6a72df6647b021cf669855",
   "sema_stub": "9ef6",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "pre_mortem": "sema:PreMortem#mh:SHA-256:6cc4fa30402760c632af25ea100c15fa3b0191b6a3beae343b84a8162d1123e2",
@@ -31,5 +31,7 @@
     "yields": {
       "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:7e62181f83372a476d3834df559a7585e40c02f0b044d192b595ef257ee9a829"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

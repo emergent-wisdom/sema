@@ -20,18 +20,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "related": [
       "sema:EvaluatorOptimizer#mh:SHA-256:6c2dd39e3dfae94dee24fb49b8769219134e2ca9bb79e047165d9424614eb729"
     ],
     "ring": 2,
     "supersedes": [
       "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:Reflexion#mh:SHA-256:1458ddf10e51e9a5dbc4f63d328b8830c41fb24892ca9bef22179710acb4ebeb",
   "sema_ref": "Reflexion#1458",
   "sema_stub": "1458",
@@ -46,5 +46,7 @@
       "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3",
       "scratchpad": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

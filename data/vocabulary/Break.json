@@ -74,8 +74,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "related": [
       "EjectionSeat",
@@ -83,13 +81,15 @@
     ],
     "supersedes": [
       "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
   "sema_ref": "Break#79f1",
   "sema_stub": "79f1",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -98,5 +98,7 @@
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

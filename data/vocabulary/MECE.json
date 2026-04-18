@@ -48,16 +48,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "related": [
       "sema:Decompose#mh:SHA-256:31c56ead72462a2b55d1056d6d4878a4e031ebb43b7160743b861aa1c294cafe"
     ],
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:MECE#mh:SHA-256:8cb062d51bcfd89368c58a5e6247e2070596f01be8e03382dd19a0c61abe8c1b",
   "sema_ref": "MECE#8cb0",
-  "sema_stub": "8cb0"
+  "sema_stub": "8cb0",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

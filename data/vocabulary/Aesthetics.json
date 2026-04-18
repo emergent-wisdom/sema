@@ -4,18 +4,18 @@
   "gloss": "Optimization for human subjective preference",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "supersedes": [
       "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:Aesthetics#mh:SHA-256:7434862367defbfd8e582e0b18766c57aeee52557802f29334f4dabebf3873cb",
   "sema_ref": "Aesthetics#7434",
   "sema_stub": "7434",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "description": "An aesthetic assessment \u2014 a metric-shaped artifact capturing perceived beauty/quality on a defined scale.",
@@ -47,5 +47,7 @@
       "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9",
       "parsimony": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

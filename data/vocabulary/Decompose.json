@@ -20,15 +20,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "supersedes": [
       "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
   "sema_ref": "Decompose#dcf9",
   "sema_stub": "dcf9",
@@ -41,5 +41,7 @@
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
       "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

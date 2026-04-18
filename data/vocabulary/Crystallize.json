@@ -39,15 +39,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:Crystallize#mh:SHA-256:b1d941612f1b50d6f15b07e791daa145eedaefaa25c48f9c22ec602b60747891",
   "sema_ref": "Crystallize#b1d9",
   "sema_stub": "b1d9",
@@ -62,5 +62,7 @@
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

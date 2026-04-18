@@ -9,12 +9,12 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "signature": [
     "Think(DAG)"
   ],
@@ -26,5 +26,7 @@
       "d_a_g": "sema:DAG#mh:SHA-256:29cbb4f9958812e156589d79977e38031186c31d10a7dd1c5c539b06dd418cc2",
       "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

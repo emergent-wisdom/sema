@@ -8,19 +8,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
     "ring": 2,
     "supersedes": [
       "sema:Gardener#mh:SHA-256:5d74a3fff3bfed7f1d584d7894efca02274223d478477ffb00a99df127453d48",
       "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c"
+    ],
+    "path": [
+      "Society",
+      "Economics"
     ]
   },
   "sema_id": "sema:Gardener#mh:SHA-256:d2397b24580884f2da68e82fc15df085cbe900d5b347319b82742e33bfbf35d0",
   "sema_ref": "Gardener#d239",
   "sema_stub": "d239",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
   "signature": [
     "Stigmergy(Care)"
   ],
@@ -31,5 +31,7 @@
       "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:9aa382c15c9aaea3ccc1d105087cc07228eec46850c0526d4c9b2fd14c9a9b20",
       "stigmergy": "sema:Stigmergy#mh:SHA-256:53d4073df67b0c81011a3c328c1994e4d84c6d9e5c6f0c3f944ee7d9b1c34aa2"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
 }

@@ -31,9 +31,11 @@
   "gloss": "Interface for reasoning structures",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "sema_ref": "Topology#2408",
   "sema_id": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",

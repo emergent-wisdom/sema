@@ -29,8 +29,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:MentalSim#mh:SHA-256:1eca2a515c38f3be5c3956be9885e8f1e5b931a958f60b8e21d97e99dd65f3dd"
     ],
@@ -38,13 +36,15 @@
     "supersedes": [
       "sema:EmpathySim#mh:SHA-256:86ab6c06ecf009fce40155d3c1aeadb76738060bcb7adbd88f9c15bd01a52f4c",
       "sema:EmpathySim#mh:SHA-256:86e98d01cd322735f32c153f35f6d58c4d08ead468b5aa2fe07810483f9de445"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:EmpathySim#mh:SHA-256:23a06d48b2601670facbaf878d41d5cef962f944217860076adef05e61381e10",
   "sema_ref": "EmpathySim#23a0",
   "sema_stub": "23a0",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "accepts": {
       "target_profile": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
@@ -58,5 +58,7 @@
       "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

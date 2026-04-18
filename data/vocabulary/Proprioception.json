@@ -28,15 +28,15 @@
   ],
   "_meta": {
     "tier": 3,
-    "layer": "Mind",
-    "category": "Memory",
     "ring": 2,
     "supersedes": [
       "sema:Proprioception#mh:SHA-256:2fbfba79d07478050b86020f08cb42f18c93e896052dccba0311db0168b549a0"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
   "sema_id": "sema:Proprioception#mh:SHA-256:d45fa9af0b4110d49dbdf31635ebf242b613806455c1b0ff8505949b1e942e99",
   "sema_ref": "Proprioception#d45f",
   "sema_stub": "d45f",
@@ -49,5 +49,7 @@
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

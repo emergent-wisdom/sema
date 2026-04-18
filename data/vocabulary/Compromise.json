@@ -4,18 +4,18 @@
   "gloss": "Finding a mutual sacrifice zone via intensity reduction",
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
     "ring": 1,
     "supersedes": [
       "sema:Compromise#mh:SHA-256:39cc701b1389e8827a263f5180a40cea2993edf2ef94c9906553d48e9507c59f"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
     ]
   },
   "sema_ref": "Compromise#3476",
   "sema_id": "sema:Compromise#mh:SHA-256:3476091dd1f8eb70c57fc9661151cb1066f8604751fe92a75fa4f30f35679f82",
   "sema_stub": "3476",
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
   "dependencies": {
     "composes_with": {
       "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3"
@@ -25,5 +25,7 @@
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

@@ -15,18 +15,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "supersedes": [
       "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_ref": "Realizable#7ce0",
   "sema_id": "sema:Realizable#mh:SHA-256:7ce08efae9112f927f5b04e4af7dea9b2fdfe7d073bd2362b4a52834e5e725a2",
   "sema_stub": "7ce0",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
@@ -34,5 +34,7 @@
       "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

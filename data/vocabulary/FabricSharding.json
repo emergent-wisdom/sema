@@ -30,23 +30,25 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "supersedes": [
       "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:FabricSharding#mh:SHA-256:ce615fb4865cab7e631536f9bae1c869c8ed530d219d9b38754f038dce1eef5f",
   "sema_ref": "FabricSharding#ce61",
   "sema_stub": "ce61",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "parallelize": "sema:Parallelize#mh:SHA-256:37ad00e823e2263528b3d17396d9270e506c586f107a8e26eb4937b6383833b8",
       "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

@@ -29,8 +29,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "related": [
       "Quorum",
       "sema:SimulationTrace#mh:SHA-256:e778ab4f3e22ce60d3f822aeb249ae83007ad8cc505e476b01b4356f984aebd3",
@@ -40,13 +38,15 @@
     "supersedes": [
       "sema:PropheticQuorum#mh:SHA-256:192eabb9f8aa32fddb88760964cb4266afa565c1ab94e1091395712764293741",
       "sema:PropheticQuorum#mh:SHA-256:c5d889696c7dab154033eb64aa8858bdd88171cfb5d45a85dbbe806b7f1d8641"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:PropheticQuorum#mh:SHA-256:4eff46d82bb51dd54883fed64823b92bc7313193e28c21bb455da79acef487b4",
   "sema_ref": "PropheticQuorum#4eff",
   "sema_stub": "4eff",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
@@ -57,5 +57,7 @@
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
       "vote": "sema:Vote#mh:SHA-256:37f80069661e4c80fc47d051b967ac6fa103d950da07ab627cebc037a70c319f"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

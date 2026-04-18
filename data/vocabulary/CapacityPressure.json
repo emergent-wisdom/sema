@@ -36,15 +36,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:CapacityPressure#mh:SHA-256:b3634240995739a6a63e3af53d108ce2921bead06593758ffa75f3724b492980",
   "sema_ref": "CapacityPressure#b363",
   "sema_stub": "b363",
@@ -57,5 +57,7 @@
       "context_compress": "sema:ContextCompress#mh:SHA-256:4845cff7c2a6371afdb2d199ed427a5e5d8d8c5f6a2d24a3b6b8278eb8dff0ee",
       "generalize": "sema:Generalize#mh:SHA-256:ad9e81a92a651c1081fd09857e243dc804e603dc977be22f86a0051bd642596f"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -11,15 +11,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "supersedes": [
       "sema:Invert#mh:SHA-256:d1b9169d5b598e4f7f3d4d58bc2feea0f45c7830b32445fa6ab2666db271fa42"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:Invert#mh:SHA-256:c137e5a184178795586692d7551d1687973b5287509de55820e13c832539ea0a",
   "sema_ref": "Invert#c137",
   "sema_stub": "c137",
@@ -32,5 +32,7 @@
       "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

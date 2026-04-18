@@ -4,16 +4,16 @@
   "gloss": "Solver implementing the five-surface contract (polymorphic across substrates)",
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782",
       "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "invariants": [
     "Polymorphism: External Runtime treats all Solvers identically via this Interface.",
     "Recursion: Solver must accept sub-tasks via the same Interface it exposes."
@@ -48,5 +48,7 @@
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

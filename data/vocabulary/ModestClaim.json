@@ -18,18 +18,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:ModestClaim#mh:SHA-256:7da0b36913cf91f2b27f5a1676b6cfc35dac58f7f987bdb704164ad076777ed8",
   "sema_ref": "ModestClaim#7da0",
   "sema_stub": "7da0",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -39,5 +39,7 @@
       "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

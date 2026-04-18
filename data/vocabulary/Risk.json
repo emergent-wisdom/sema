@@ -15,18 +15,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "supersedes": [
       "sema:Risk#mh:SHA-256:37748bbbeb3ee23c5a258a49faee4d04a16064136fdfd8721a365d3764c73fb8"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:Risk#mh:SHA-256:198049488be8dcf811bfced0230ca10889fb531b03c6c7f66eb7dc131116be9d",
   "sema_ref": "Risk#1980",
   "sema_stub": "1980",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -66,5 +66,7 @@
       "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9",
       "probability": "sema:Probability#mh:SHA-256:356bf7e4b6ca99e4fe7705cb088c3f1cd3a5919334a772e00dc829065c71dffd"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

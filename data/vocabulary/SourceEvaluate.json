@@ -10,18 +10,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:SourceEvaluate#mh:SHA-256:ceb14e641fee7940e36ad6c28b096bcf8bf90b50bee79a243d2b8eba788f0ba7"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:SourceEvaluate#mh:SHA-256:aabaa61c06b456ca3ae0b8e867d098632b7e88894140ffb5a315fb022a05f6aa",
   "sema_ref": "SourceEvaluate#aaba",
   "sema_stub": "aaba",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "signature": [
     "Judge(Agent)"
   ],
@@ -31,5 +31,7 @@
       "cite_back": "sema:CiteBack#mh:SHA-256:69ec3a2443ee38ae07bc31e79e75f46e75cec2509baeca2ea29a8c57aac429b2",
       "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

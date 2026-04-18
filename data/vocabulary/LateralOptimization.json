@@ -21,21 +21,21 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "AnalogyBridge"
     ],
     "ring": 1,
     "supersedes": [
       "sema:LateralOptimization#mh:SHA-256:5350ae13501544830ea8db150d55264a15e06ac1d231c16d02207ae0b48eadba"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:LateralOptimization#mh:SHA-256:43f98b2d6339ebfebb9a8bf23935054088283f09da773fe49e3e3222c4132547",
   "sema_ref": "LateralOptimization#43f9",
   "sema_stub": "43f9",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "signature": [
     "Think(Creative)",
     "Optimize(Global)"
@@ -53,5 +53,7 @@
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -7,16 +7,16 @@
     "Structured: payload conforms to the defined data_schema (solution_ref, task_ref, outcome \u2208 {success, failure, partial})."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "data_schema": {
     "type": "object",
     "required": [
@@ -57,5 +57,7 @@
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

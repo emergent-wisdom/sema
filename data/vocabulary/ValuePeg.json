@@ -10,18 +10,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
     "ring": 1,
     "supersedes": [
       "sema:ValuePeg#mh:SHA-256:073fde121fc20973de3aaa17aab1af3f37f50370df31a0030cdef095095a4e5c"
+    ],
+    "path": [
+      "Society",
+      "Economics"
     ]
   },
   "sema_id": "sema:ValuePeg#mh:SHA-256:68615167fbfe4491f6410198e6364c0bb34f93d5655da070915cf17f4749ecf9",
   "sema_ref": "ValuePeg#6861",
   "sema_stub": "6861",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
   "dependencies": {
     "references": {
       "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
@@ -30,5 +30,7 @@
     "yields": {
       "exchange_rate": "sema:ExchangeRate#mh:SHA-256:1c213c4c784c00f1c44c33b48cd87f8fbff4e9c0de154e849aaff776d2e53a17"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
 }

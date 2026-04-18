@@ -8,16 +8,16 @@
   ],
   "derived_from": "sema:Task#mh:SHA-256:b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c",
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "tier": 2,
     "supersedes": [
       "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:BoundedTask#mh:SHA-256:1063ec27ef357a8a410276f42e3c8f16b17d74593121e388d2407a739b8f2c1b",
   "sema_ref": "BoundedTask#1063",
   "sema_stub": "1063",
@@ -27,5 +27,7 @@
       "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

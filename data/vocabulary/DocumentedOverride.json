@@ -14,13 +14,13 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Governance",
     "ring": 1,
-    "caution": "Overrides a failed acceptance gate. The cryptographic log is the only post-hoc accountability; ensure override authority is scoped and auditable before composing."
+    "caution": "Overrides a failed acceptance gate. The cryptographic log is the only post-hoc accountability; ensure override authority is scoped and auditable before composing.",
+    "path": [
+      "Society",
+      "Governance"
+    ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Governance",
   "sema_id": "sema:DocumentedOverride#mh:SHA-256:362906e70b8e357f4f109ddaca387573aacca0fd6583611076388779be7b7694",
   "sema_ref": "DocumentedOverride#3629",
   "sema_stub": "3629",
@@ -34,5 +34,7 @@
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

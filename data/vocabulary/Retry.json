@@ -23,8 +23,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:Backoff#mh:SHA-256:14b48b9a05b8b47aea8484dbd426cc39dcff0c2c293010415a233ce23fccab9c"
     ],
@@ -32,10 +30,12 @@
     "supersedes": [
       "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
       "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:Retry#mh:SHA-256:ac55dbe681ec32b6553effd29698527f9510384edeab4b76e18d4ac543641fd8",
   "sema_ref": "Retry#ac55",
   "sema_stub": "ac55",
@@ -46,5 +46,7 @@
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912",
       "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -24,8 +24,6 @@
     "Discover(ToolInvoke)"
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "tier": 1,
     "related": [
@@ -34,13 +32,15 @@
     "supersedes": [
       "sema:ToolDiscovery#mh:SHA-256:548fb253447d270bee9b28ee7fe125135ce45ab54fbd2744fcc70e6b7d9b6de8",
       "sema:ToolDiscovery#mh:SHA-256:0ff16794954587c168bc694f00a723973be11ddfeb3a15c73770ab660bd439d8"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_ref": "ToolDiscovery#91b0",
   "sema_id": "sema:ToolDiscovery#mh:SHA-256:91b0f355445083a62cee1ba2134401a85b719b64e0e558ecc093eef82f9216cc",
   "sema_stub": "91b0",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
@@ -57,5 +57,7 @@
     "yields": {
       "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

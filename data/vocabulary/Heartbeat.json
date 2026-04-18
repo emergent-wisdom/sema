@@ -32,15 +32,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "supersedes": [
       "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "sema_id": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a",
   "sema_ref": "Heartbeat#29e2",
   "sema_stub": "29e2",
@@ -54,5 +54,7 @@
     "references": {
       "monitor": "sema:Monitor#mh:SHA-256:c6316ed3fbded6b388d1751bb6662cb1dc10f236d031d4ac360b2a3a8b1fc272"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

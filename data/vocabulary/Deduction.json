@@ -13,13 +13,13 @@
     "Conclusion is logically necessary"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
   "sema_ref": "Deduction#9c88",
   "sema_stub": "9c88",
@@ -27,5 +27,7 @@
     "references": {
       "axiom": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

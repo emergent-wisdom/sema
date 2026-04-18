@@ -21,18 +21,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:e58e90e4e41715dd6bec748d54f0b241ed70ac5034a2e3ab661e436a1ba4b879",
   "sema_ref": "EvaluatorOptimizer#e58e",
   "sema_stub": "e58e",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "Optimize(Loop)"
   ],
@@ -44,5 +44,7 @@
       "meta_check": "sema:MetaCheck#mh:SHA-256:1914b94396caf3eed522feb1c8c72dece8ccde4cc412fc4d4a62a5ca61c4398f",
       "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

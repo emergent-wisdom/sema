@@ -28,19 +28,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 0,
     "supersedes": [
       "sema:DogfoodFirst#mh:SHA-256:3f2cc6a5a25c8127928db9d40defd1a022362de6f94ee44cbab9383134d4d9e3",
       "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:DogfoodFirst#mh:SHA-256:679c124b3fbd98be17d8f8bac1dc13a7d044e95ebd949e287a63ab7e8f1a7502",
   "sema_ref": "DogfoodFirst#679c",
   "sema_stub": "679c",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "canary": "sema:Canary#mh:SHA-256:9cba7bbaefd69639952bd931147b0976a1f62aac9bac4ea84bb103d5c955d0ba",
@@ -49,5 +49,7 @@
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
       "reflexion": "sema:Reflexion#mh:SHA-256:1458ddf10e51e9a5dbc4f63d328b8830c41fb24892ca9bef22179710acb4ebeb"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

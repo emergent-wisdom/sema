@@ -36,16 +36,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:CounterfactualAnchor#mh:SHA-256:f5845fee4dbe585ede4203b84b7eb46ae4e6ceb7a2a0edaae53471fad17d0ae5",
       "sema:CounterfactualAnchor#mh:SHA-256:4d4acdb9ee21f5c41d45e40496a2879c5c8c79efcab7f389fb6f6f36588ac23c"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:59f78fd18b3ec1e7cdd85fb0bebd4d56f5c16369d2d432d5893e283ebac4b134",
   "sema_ref": "CounterfactualAnchor#59f7",
   "sema_stub": "59f7",
@@ -57,5 +57,7 @@
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

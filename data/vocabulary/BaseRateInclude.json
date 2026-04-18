@@ -18,12 +18,14 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "related": [
       "BayesUpdate"
     ],
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Inference"
+    ]
   },
   "sema_id": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
   "sema_ref": "BaseRateInclude#aa0b",

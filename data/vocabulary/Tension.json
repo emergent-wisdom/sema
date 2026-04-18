@@ -7,19 +7,19 @@
     "Persistence: Must persist until explicitly resolved."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:Tension#mh:SHA-256:fc30a85f6d7da54e882a8f2cb095f646a5719976b5b9df30958edd556c7e1966",
   "sema_ref": "Tension#fc30",
   "sema_stub": "fc30",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -60,5 +60,7 @@
       "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4",
       "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

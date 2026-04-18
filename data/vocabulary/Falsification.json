@@ -7,8 +7,6 @@
     "Empirical Grounding: Requires observational evidence."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "tier": 1,
     "related": [
@@ -16,10 +14,12 @@
     ],
     "supersedes": [
       "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:Falsification#mh:SHA-256:021560b40fc737a96a5b716a3bac434acea9b6a1e0debe6f010740bb915aa376",
   "sema_ref": "Falsification#0215",
   "sema_stub": "0215",
@@ -29,5 +29,7 @@
       "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
       "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -8,17 +8,17 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
     "ring": 1,
     "caution": "Trust boundary \u2014 failure enables impersonation.",
     "supersedes": [
       "sema:IdentityHandshake#mh:SHA-256:f2e812c10dde8b6eb942ab763f53a42d95fd797ac09ba951d4138119a2e813be",
       "sema:IdentityHandshake#mh:SHA-256:3a336d82fa7e2ee48ba131781e470179d64be0f70915687a6adcc65fff2c05a9"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
   "sema_id": "sema:IdentityHandshake#mh:SHA-256:fb21d664e10594cf020ec4e1b52810b6e08a2bf632b8b49970610c2f980915fd",
   "sema_ref": "IdentityHandshake#fb21",
   "sema_stub": "fb21",
@@ -35,5 +35,7 @@
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
       "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

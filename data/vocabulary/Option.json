@@ -31,10 +31,12 @@
   "mechanism": "A discrete, actionable alternative within a decision space. An Option must be fully specified (executable) and mutually exclusive from other options in the same set. It represents a valid path for state transition.",
   "gloss": "A discrete, executable alternative",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "sema_id": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
   "sema_ref": "Option#483e",

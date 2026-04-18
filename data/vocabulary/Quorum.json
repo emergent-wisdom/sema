@@ -35,18 +35,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "related": [
       "sema:LazyConsensus#mh:SHA-256:7bd765a60e8b663fb8f3bd3abb5ada96b0be7ceb21b21ea656724138456447b1"
     ],
     "ring": 0,
     "supersedes": [
       "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "sema_id": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
   "sema_ref": "Quorum#a295",
   "sema_stub": "a295",
@@ -54,5 +54,7 @@
     "accepts": {
       "ballot": "sema:Ballot#mh:SHA-256:1934bd52e662c4df304637cc1c05f78635643dcacf49b4b0fe37e84900446be9"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

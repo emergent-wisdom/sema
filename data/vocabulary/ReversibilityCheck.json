@@ -7,16 +7,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:ReversibilityCheck#mh:SHA-256:9cd69a4237e0e505309795a879387b04d42a0e21d43a4177d8552ec844ef6157",
       "sema:ReversibilityCheck#mh:SHA-256:574b1afaee6cd675d04e2b9e3484ddfba1490b19121c881832865d3d31a8a2ee"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:ReversibilityCheck#mh:SHA-256:48e8d4d8ea1e20cf38acfcdc33db05196be5362faebd010f58197e87354e4a03",
   "sema_ref": "ReversibilityCheck#48e8",
   "sema_stub": "48e8",
@@ -30,5 +30,7 @@
       "reversibility": "sema:Reversibility#mh:SHA-256:bf796a25a0c91a127c9d336839033d52f198d75080d71e6ae084827f3ae158a7",
       "world_reversible": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

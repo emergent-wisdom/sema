@@ -8,18 +8,20 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
   "sema_id": "sema:Combine#mh:SHA-256:5a448e8da3c41cd922451ef5cef1acc7b96b99fe516815870e81cb2c18b196d6",
   "sema_ref": "Combine#5a44",
   "sema_stub": "5a44",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

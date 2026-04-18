@@ -6,16 +6,16 @@
   "sema_ref": "Queue#7ca9",
   "sema_stub": "7ca9",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -65,5 +65,7 @@
       "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

@@ -3,16 +3,16 @@
   "mechanism": "Information that is irrelevant or meaningless to the current {{task}}. It obscures the {{datum}} and increases the cognitive load required to extract {{signal}}.",
   "gloss": "Irrelevant information",
   "_meta": {
-    "layer": "Physics",
-    "category": "Primitives",
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d"
+    ],
+    "path": [
+      "Physics",
+      "Primitives"
     ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "sema_id": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
   "sema_ref": "Noise#3d9a",
   "sema_stub": "3d9a",
@@ -22,5 +22,7 @@
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

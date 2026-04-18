@@ -7,19 +7,19 @@
     "Irrevocability: Once made, the decision cannot be unmade without a new Decision process."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
   "sema_ref": "Decision#934e",
   "sema_stub": "934e",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "description": "A committed choice \u2014 artifact recording which option was selected.",
@@ -48,5 +48,7 @@
       "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
       "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

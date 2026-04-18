@@ -3,13 +3,15 @@
   "mechanism": "A structured collection of {{constraint}}s and invariants that defines a validity boundary. It serves as the immutable input for validation logic, distinct from a mutable policy or social {{constitution}}.",
   "gloss": "Immutable collection of constraints",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:RuleSet#mh:SHA-256:8d85afc9e1f879dc43aaf8c92bd280aa8f1c81ece7dd1bd6f36c6ab47ddc0ecf",
       "sema:RuleSet#mh:SHA-256:e91d3830512ca5aa5a8cf7f50ad7d186de4b82aeced94c8cb106258a8663e482"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "data_schema": {
@@ -30,12 +32,12 @@
   "sema_ref": "RuleSet#a07c",
   "sema_id": "sema:RuleSet#mh:SHA-256:a07c37237b1d416367ddecca975480c3b115916d551185028fb5799b3ddb3d14",
   "sema_stub": "a07c",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "constitution": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

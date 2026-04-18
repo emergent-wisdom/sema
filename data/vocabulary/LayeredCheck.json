@@ -10,8 +10,6 @@
     "Hierarchy Obedience: Checks are strictly ordered by abstraction level."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "tier": 2,
     "related": [
@@ -19,13 +17,15 @@
     ],
     "supersedes": [
       "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_ref": "LayeredCheck#b6eb",
   "sema_id": "sema:LayeredCheck#mh:SHA-256:b6eb18eb1630731a3e6ead0d82d33f01fb0ed4feb802c9530638f44564fe109a",
   "sema_stub": "b6eb",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
@@ -37,5 +37,7 @@
       "understand": "sema:Understand#mh:SHA-256:c38c510b051d292e7c85629a389e2de521ad95fab03476acabf2fa94774425ac",
       "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

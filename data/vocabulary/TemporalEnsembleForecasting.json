@@ -9,12 +9,12 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Inference"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "sema_id": "sema:TemporalEnsembleForecasting#mh:SHA-256:104126cd060ea9f8cc2af3807e0f8e3b35cb085e1302a82dfc9624961cc1ffd1",
   "sema_ref": "TemporalEnsembleForecasting#1041",
   "sema_stub": "1041",
@@ -22,5 +22,7 @@
     "composes_with": {
       "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

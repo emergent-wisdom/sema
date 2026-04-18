@@ -8,18 +8,18 @@
   ],
   "_meta": {
     "tier": 3,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:ChaosDrift#mh:SHA-256:37fb483903b835dd8b676c0116087291bb055934f9a681e28a54268d2dea328c"
     ],
     "ring": 2,
     "supersedes": [
       "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:LatentWander#mh:SHA-256:3dbbbf693356da9e6c422d15792d5f6279220acd766c780f4be282800b0843b9",
   "sema_ref": "LatentWander#3dbb",
   "sema_stub": "3dbb",
@@ -32,5 +32,7 @@
     "yields": {
       "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:fa18df1ff51bc8e86c4dc858ecb2f50f3d28820539983d83828444d840be951d"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

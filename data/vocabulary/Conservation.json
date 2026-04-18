@@ -9,13 +9,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "sema_id": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
   "sema_ref": "Conservation#ba2e",
-  "sema_stub": "ba2e"
+  "sema_stub": "ba2e",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

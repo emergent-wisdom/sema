@@ -12,16 +12,16 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:FractalIntelligence#mh:SHA-256:9c13919670cac402fbc76a2baf0c172a2d1097dec5a7957a8e80123272753ec3",
       "sema:FractalIntelligence#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:FractalIntelligence#mh:SHA-256:c9bc993c4275e181cf597ef9d481c2a9c2a462ea60d70c315e932fe26219dd0f",
   "sema_ref": "FractalIntelligence#c9bc",
   "sema_stub": "c9bc",
@@ -48,5 +48,7 @@
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
       "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:c5233490fe5067f8241c39135bdfb58032df02a30e34a1cebc91155369270cad"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

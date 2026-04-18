@@ -29,13 +29,15 @@
   ],
   "_meta": {
     "tier": 0,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Status#mh:SHA-256:7f5fb8391f994b56c06e54595ad72e9dc4f5672216cab74a9d061fb17bdd5e03",
   "sema_ref": "Status#7f5f",
-  "sema_stub": "7f5f"
+  "sema_stub": "7f5f",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

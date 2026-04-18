@@ -3,16 +3,16 @@
   "mechanism": "{{agent}}s explicitly signal a change in {{context}} (protocol {{mode}}), and all subsequent messages are interpreted under the new ruleset until a 'Revert' signal is sent. The new context pushes onto a stack; Revert pops it. Unlike an ambient {{mode}} change (which applies to the whole agent), ContextSwitch is scoped to a specific conversation or channel and carries explicit enter/exit boundaries.",
   "gloss": "Explicit, scoped protocol-mode toggle with enter/revert boundaries",
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:ContextSwitch#mh:SHA-256:312ff9263ecda7a7d90222647607f0a668a9d31ca0b0ec335d9a4ea04464fd68",
   "sema_ref": "ContextSwitch#312f",
   "sema_stub": "312f",
@@ -24,5 +24,7 @@
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

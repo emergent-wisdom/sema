@@ -19,8 +19,12 @@ LAYER_ORDER = {
 
 
 def get_layer(pattern: dict) -> str | None:
-    """Extract layer from pattern _meta."""
-    meta = pattern.get("_meta", {})
+    """Extract layer from pattern _meta. Layer is path[0] in the path-based
+    schema; falls back to legacy `_meta.layer` for pre-migration patterns."""
+    meta = pattern.get("_meta") or {}
+    path = meta.get("path")
+    if path and isinstance(path, list) and path:
+        return path[0]
     return meta.get("layer")
 
 

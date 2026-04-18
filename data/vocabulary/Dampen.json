@@ -4,23 +4,25 @@
   "gloss": "Passive attenuation of signal or force",
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
     "ring": 0,
     "supersedes": [
       "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
+    ],
+    "path": [
+      "Physics",
+      "Primitives"
     ]
   },
   "sema_ref": "Dampen#3f0c",
   "sema_id": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
   "sema_stub": "3f0c",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "dependencies": {
     "references": {
       "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

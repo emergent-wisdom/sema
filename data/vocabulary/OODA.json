@@ -21,8 +21,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "ReAct",
       "SocraticLoop",
@@ -31,13 +29,15 @@
     "ring": 1,
     "supersedes": [
       "sema:OODA#mh:SHA-256:f3bea02806503fe8a7c72a9fd3f3cdfccbae6c9519eb3bf8b25b35badc9545f7"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:OODA#mh:SHA-256:fc39754c19d5bf107190c59973e9dfb0974ef079c79e3cb6bfe4d2bbaef5027f",
   "sema_ref": "OODA#fc39",
   "sema_stub": "fc39",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "signature": [
     "Agent(Loop)",
     "Think(Strategy)"
@@ -58,5 +58,7 @@
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -20,13 +20,15 @@
   ],
   "_meta": {
     "tier": 0,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Boolean#mh:SHA-256:199e20c989a12c8b9837ec40155e521d6b4ba259090b4bcce2f8a7fb7f1b3a10",
   "sema_ref": "Boolean#199e",
-  "sema_stub": "199e"
+  "sema_stub": "199e",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

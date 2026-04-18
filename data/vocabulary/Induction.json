@@ -7,13 +7,13 @@
     "Generalization: Output rule covers more cases than Input data."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
   "sema_ref": "Induction#2487",
   "sema_stub": "2487",
@@ -21,5 +21,7 @@
     "references": {
       "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

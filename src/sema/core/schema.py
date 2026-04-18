@@ -10,76 +10,152 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-# Valid taxonomy structure (The Great Rebalancing)
-# Layer 0: Infrastructure - Nouns, file formats, execution primitives
-# Layer 1: Physics - Immutable laws of the simulation
-# Layer 2: Mind - Active cognitive processes
-# Layer 3: Society - Multi-agent coordination
-VALID_TAXONOMY = {
-    "Infrastructure": {
-        "Primitives",
-        "Data Structures",
-        "Safety",
-        "Verification",
-    },
-    "Physics": {
-        "Dynamics",
-        "Primitives",
-        "Time",
-    },
-    "Mind": {
-        "Inference",
-        "Memory",
-        "Reasoning",
-        "Strategy",
-    },
-    "Society": {
-        "Coordination",
-        "Economics",
-        "Governance",
-        "Protocols",
-        "Roles",
-    },
+# Canonical taxonomy paths. Each tuple is a valid `_meta.path` in strict
+# order: first element is the layer, subsequent elements refine it.
+#
+# Layers (non-negotiable root set):
+#   Infrastructure — Nouns, file formats, execution primitives
+#   Physics        — Immutable laws of the simulation
+#   Mind           — Active cognitive processes
+#   Society        — Multi-agent coordination
+#
+# Two paths sharing the same leaf segment (e.g. `Physics/Primitives` vs
+# `Infrastructure/Primitives`) are distinct identities — the full path,
+# not the leaf, is the canonical key. Schema migration in 0.2.0 replaced
+# the separate `_meta.layer` + `_meta.category` fields with a single
+# `_meta.path` list to make this explicit.
+#
+# Adding a new path: extend the set. Schema and graph will pick it up
+# on the next apply. Deeper hierarchies (3+ levels) are supported by the
+# data model — just add a longer tuple.
+VALID_PATHS: set[tuple[str, ...]] = {
+    ("Infrastructure", "Data Structures"),
+    ("Infrastructure", "Primitives"),
+    ("Infrastructure", "Safety"),
+    ("Infrastructure", "Verification"),
+    ("Physics", "Dynamics"),
+    ("Physics", "Primitives"),
+    ("Physics", "Time"),
+    ("Mind", "Inference"),
+    ("Mind", "Memory"),
+    ("Mind", "Reasoning"),
+    ("Mind", "Strategy"),
+    ("Society", "Coordination"),
+    ("Society", "Economics"),
+    ("Society", "Governance"),
+    ("Society", "Protocols"),
+    ("Society", "Roles"),
 }
+
+# Top-level layers (derived from VALID_PATHS for self-consistency).
+VALID_LAYERS: frozenset[str] = frozenset(p[0] for p in VALID_PATHS)
+
+# Legacy dict view (kept for tooling + tests that pre-date the path rewrite).
+# Derived from VALID_PATHS so there's a single source of truth.
+VALID_TAXONOMY: dict[str, set[str]] = {}
+for _p in VALID_PATHS:
+    _layer = _p[0]
+    _rest = _p[1:]
+    VALID_TAXONOMY.setdefault(_layer, set())
+    if _rest:
+        VALID_TAXONOMY[_layer].add("/".join(_rest))
 
 LayerType = Literal["Physics", "Mind", "Society", "Infrastructure"]
 RingType = Literal[0, 1, 2]
 TierType = Literal[0, 1, 2, 3]
 
+# Separator for rendering paths as strings (Society/Governance). The path
+# field is ALWAYS stored as a list; string form is derived on demand.
+PATH_SEPARATOR = "/"
+
+
+def path_to_string(path: list[str]) -> str:
+    """Join path segments with PATH_SEPARATOR. No escaping — segments
+    cannot contain the separator (enforced by the schema validator)."""
+    return PATH_SEPARATOR.join(path)
+
+
+def path_from_string(s: str) -> list[str]:
+    """Split a path string back into segments. Inverse of path_to_string."""
+    return [seg for seg in s.split(PATH_SEPARATOR) if seg]
+
 
 class PatternMeta(BaseModel):
-    """Metadata block for patterns (_meta field)."""
+    """Metadata block for patterns (_meta field).
 
-    model_config = ConfigDict(extra="allow")  # Allow extra fields like 'related'
+    Path-based taxonomy: `_meta.path` is a list of segments ordered from
+    root (the layer) to leaf. The full path, not any individual segment,
+    is the canonical identity — `Physics/Primitives` and
+    `Infrastructure/Primitives` are different things even though they
+    share a leaf name.
+    """
 
-    layer: LayerType = Field(description="Sema layer: Physics, Mind, Society, or Infrastructure")
-    category: str = Field(min_length=1, description="Category within the layer")
+    model_config = ConfigDict(extra="allow")  # Allow extra fields like 'caution'
+
+    path: list[str] = Field(
+        min_length=1,
+        description=(
+            "Taxonomic path from layer to leaf, e.g. ['Society', 'Governance']. "
+            "path[0] is the layer; subsequent segments refine. Full path must be "
+            "in VALID_PATHS."
+        ),
+    )
     ring: RingType = Field(
         description="Constitution ring: 0 (core), 1 (extended), or 2 (experimental)"
     )
     tier: TierType = Field(
-        description="Formalism tier: 0 (primitive), 1 (ironclad), 2 (honesty-dependent), 3 (experimental)"
+        description=(
+            "Formalism tier: 0 (primitive), 1 (ironclad), 2 (honesty-dependent), 3 (experimental)"
+        )
     )
     # Optional fields that exist in some patterns
     related: list[str] | None = Field(default=None, description="Related patterns")
-    # Versioning hook (see docs/VERSIONING.md). Optional list of full sema_id
-    # strings of older definitions this pattern is intended to replace. Purely
-    # a metadata claim — old hashes still resolve, sema_handshake still HALTs
-    # on stub mismatch. Future tooling can walk supersession chains.
+    # Versioning hook. Optional list of full sema_id strings of older
+    # definitions this pattern is intended to replace. Read by `sema pull`
+    # to clean up retired local handles on upgrade.
     supersedes: list[str] | None = Field(
         default=None, description="Older sema_ids this pattern is intended to replace"
     )
 
-    @model_validator(mode="after")
-    def validate_category_for_layer(self) -> "PatternMeta":
-        """Ensure category is valid for the given layer."""
-        valid_categories = VALID_TAXONOMY.get(self.layer, set())
-        if self.category not in valid_categories:
+    @field_validator("path")
+    @classmethod
+    def validate_path_value(cls, v: list[str]) -> list[str]:
+        """Validate path shape + membership in VALID_PATHS."""
+        if not v:
+            raise ValueError("path must have at least one segment")
+        for i, seg in enumerate(v):
+            if not isinstance(seg, str) or not seg:
+                raise ValueError(f"path segment {i} must be a non-empty string, got: {seg!r}")
+            if PATH_SEPARATOR in seg:
+                raise ValueError(
+                    f"path segment {i} ('{seg}') cannot contain '{PATH_SEPARATOR}' "
+                    "(reserved as path separator)"
+                )
+        if v[0] not in VALID_LAYERS:
             raise ValueError(
-                f"Invalid category '{self.category}' for layer '{self.layer}'. "
-                f"Valid categories: {sorted(valid_categories)}"
+                f"path[0] must be a valid layer (one of {sorted(VALID_LAYERS)}), got '{v[0]}'"
             )
-        return self
+        if tuple(v) not in VALID_PATHS:
+            raise ValueError(
+                f"invalid taxonomy path '{path_to_string(v)}': not in VALID_PATHS. "
+                f"Valid paths: {sorted(path_to_string(list(p)) for p in VALID_PATHS)}"
+            )
+        return v
+
+    @property
+    def layer(self) -> str:
+        """Derived: the first path segment (the layer).
+
+        Kept as a property for tooling / docs that still speak in terms
+        of layer+category. Do not set directly — edit `path` instead.
+        """
+        return self.path[0]
+
+    @property
+    def category(self) -> str:
+        """Derived: the second path segment (the category within a layer),
+        or empty string if the path is layer-only."""
+        return self.path[1] if len(self.path) >= 2 else ""
 
 
 class DependencyRefs(BaseModel):
@@ -267,11 +343,15 @@ class SemaPattern(BaseModel):
     @field_validator("handle")
     @classmethod
     def validate_handle_format(cls, v: str) -> str:
-        """Validate handle is CamelCase."""
+        """Validate handle is CamelCase and doesn't contain path separator."""
         if not re.match(r"^[A-Z][a-zA-Z0-9]+$", v):
             raise ValueError(
                 f"Handle '{v}' must be CamelCase (start with uppercase, "
                 f"alphanumeric only, no underscores or hyphens)"
+            )
+        if PATH_SEPARATOR in v:
+            raise ValueError(
+                f"Handle '{v}' cannot contain '{PATH_SEPARATOR}' (reserved for taxonomy paths)"
             )
         return v
 
@@ -310,10 +390,14 @@ class SemaPattern(BaseModel):
 
     @model_validator(mode="after")
     def validate_data_schema_required(self) -> "SemaPattern":
-        """Data Structures category must have data_schema (Rule J)."""
-        if self.meta.category == "Data Structures" and self.data_schema is None:
+        """Data Structures category must have data_schema (Rule J).
+
+        Checks the leaf path segment rather than a `category` field —
+        any path ending in 'Data Structures' triggers the requirement.
+        """
+        if self.meta.path and self.meta.path[-1] == "Data Structures" and self.data_schema is None:
             raise ValueError(
-                "Patterns in 'Data Structures' category must define 'data_schema' (Rule J)"
+                "Patterns whose path ends in 'Data Structures' must define 'data_schema' (Rule J)"
             )
         return self
 

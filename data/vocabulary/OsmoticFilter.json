@@ -26,16 +26,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:OsmoticFilter#mh:SHA-256:5cf61dc7a3adf65d0ff6dab7a022402fd79095fe4e1cb420c0fbad1401b84f52",
       "sema:OsmoticFilter#mh:SHA-256:36b5f762c178f196095cc38a5183326ac9183a3fe351b4b3e9dfeb44a2fac587"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:OsmoticFilter#mh:SHA-256:029a6a42e5b15acc3477c4c0c550597679a475abd00ea9d618aff539fff5f377",
   "sema_ref": "OsmoticFilter#029a",
   "sema_stub": "029a",
@@ -47,5 +47,7 @@
       "canary": "sema:Canary#mh:SHA-256:9cba7bbaefd69639952bd931147b0976a1f62aac9bac4ea84bb103d5c955d0ba",
       "hysteresis": "sema:Hysteresis#mh:SHA-256:addbf14e04e773a9a6b2313b0b300392bb2c33d79aace9d3b9d9a2ea600c42cb"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

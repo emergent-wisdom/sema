@@ -20,15 +20,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "supersedes": [
       "sema:ExtendedThinking#mh:SHA-256:ca3c54e46218935876ca5c993974742069fe61871fae7af38a2fef745753dc98"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:ExtendedThinking#mh:SHA-256:f9ebb3ff9fc1a5450b33e4bf50cc66315c1711169750e3fb3e700464fa1a80aa",
   "sema_ref": "ExtendedThinking#f9eb",
   "sema_stub": "f9eb",
@@ -39,5 +39,7 @@
     "references": {
       "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

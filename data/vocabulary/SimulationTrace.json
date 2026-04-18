@@ -32,16 +32,16 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Memory",
     "ring": 2,
     "supersedes": [
       "sema:SimulationTrace#mh:SHA-256:9da67f06f48d0416c35169ed3a5a825dd1a477f3966a175fd0a66280c93d49d0",
       "sema:SimulationTrace#mh:SHA-256:096eee69576638b38a5595613c41f79ae093e1036bdb70cd852edf65c42eead3"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
   "sema_id": "sema:SimulationTrace#mh:SHA-256:31d6537e1e627fbca06745873d4f4344990124a2a9b4502685ef75c2c9e26e30",
   "sema_ref": "SimulationTrace#31d6",
   "sema_stub": "31d6",
@@ -51,5 +51,7 @@
       "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

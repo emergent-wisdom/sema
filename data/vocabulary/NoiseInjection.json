@@ -18,8 +18,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:ChaosDrift#mh:SHA-256:d0c528b6297af51dfcb57ddcbf7f37e62a67aa90432626ec7e79ce2050d6802f"
     ],
@@ -27,13 +25,15 @@
     "supersedes": [
       "sema:NoiseInjection#mh:SHA-256:685ee3801da377f7760a3d28085a68bc01665c3ae0783e1de26ad1041096094d",
       "sema:NoiseInjection#mh:SHA-256:08547db652ddf20462b64c7a0824173b7ccc1612c5fb2537a9785d8fb517fc49"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:NoiseInjection#mh:SHA-256:5042e3f02fd0864b9ee468439978c165ae68139488e06c020bf49941f536f3a5",
   "sema_ref": "NoiseInjection#5042",
   "sema_stub": "5042",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -43,5 +43,7 @@
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

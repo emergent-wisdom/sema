@@ -4,19 +4,19 @@
   "gloss": "Belief Provenance (Macro for Trace(Belief))",
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Memory",
     "ring": 2,
     "supersedes": [
       "sema:TraceBelief#mh:SHA-256:369d32aa6cf9d9eb0ae829b6c102dd7b5231f0d193980e81b2242d813fae99ee",
       "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
     ]
   },
   "sema_id": "sema:TraceBelief#mh:SHA-256:22cc5726b2c3fa125ca0bcb8afd0e4cad2db544ae8289b33dbf5cd3a048193ea",
   "sema_ref": "TraceBelief#22cc",
   "sema_stub": "22cc",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
   "signature": [
     "Trace(Belief)"
   ],
@@ -27,5 +27,7 @@
       "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

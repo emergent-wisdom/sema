@@ -15,8 +15,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "related": [
       "EvaluatorOptimizer",
@@ -25,13 +23,15 @@
     "supersedes": [
       "sema:PUREOptimization#mh:SHA-256:279a3b75f9066f61d293acc44f18107c8d566a18ac1ad32c39439e71127b2e95",
       "sema:PUREOptimization#mh:SHA-256:d1f9eeafbaac69e359c689410fc44f7802f7c1320427f49ea27ccbdaed06cf4d"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_ref": "PUREOptimization#f429",
   "sema_id": "sema:PUREOptimization#mh:SHA-256:f429958c55992dff7d4f3cdd557c24faa860c9df540b2b3c00cfbbc332a4cea8",
   "sema_stub": "f429",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "accepts": {
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
@@ -51,5 +51,7 @@
       "pure_check": "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
       "realizable": "sema:Realizable#mh:SHA-256:7ce08efae9112f927f5b04e4af7dea9b2fdfe7d073bd2362b4a52834e5e725a2"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -37,15 +37,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Coordination",
     "ring": 1,
     "supersedes": [
       "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
   "sema_id": "sema:Resonate#mh:SHA-256:00578726e84b21be66bef145b823bf2cbfefa2a30bdfb55d7b012db367e4730c",
   "sema_ref": "Resonate#0057",
   "sema_stub": "0057",
@@ -58,5 +58,7 @@
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

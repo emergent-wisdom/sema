@@ -30,18 +30,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "supersedes": [
       "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_ref": "TensionHold#5245",
   "sema_id": "sema:TensionHold#mh:SHA-256:524574e8c7ae1e50e4744f026836d0cbb63cbf0bfab0f91aaa3bdd5959ab8532",
   "sema_stub": "5245",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -51,5 +51,7 @@
     "yields": {
       "tension": "sema:Tension#mh:SHA-256:fc30a85f6d7da54e882a8f2cb095f646a5719976b5b9df30958edd556c7e1966"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

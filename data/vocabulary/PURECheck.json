@@ -6,19 +6,19 @@
     "Protocol(Solution)"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
   "sema_ref": "PURECheck#6874",
   "sema_stub": "6874",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
@@ -33,5 +33,7 @@
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
       "tri_gate": "sema:TriGate#mh:SHA-256:641d7ad2299b51dc59bcb406922be490fbc3530a457794a6845a6c87b3fe3931"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

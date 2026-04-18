@@ -3,12 +3,14 @@
   "mechanism": "A primitive entity capable of executing an {{act}}. Unlike an agent (which possesses intent and reasoning), an Actor is a pure execution container defined by its {{identity}}, {{nature}}, and capability set. It serves as the foundational subject for permissions and logging.",
   "gloss": "A capability-bearing entity",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "tier": 0,
     "supersedes": [
       "sema:Actor#mh:SHA-256:69261bc3b260a9235b8d5fbef8b0c53c9773e60ed6d4df04babfffffd2897a89"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
   "data_schema": {
@@ -57,8 +59,6 @@
   "sema_ref": "Actor#57f6",
   "sema_id": "sema:Actor#mh:SHA-256:57f6b9dbc9b8fc596a5238327f29fc24e27d4e0228bfed7352d41f0bfacd4ea4",
   "sema_stub": "57f6",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
@@ -67,5 +67,7 @@
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
       "nature": "sema:Nature#mh:SHA-256:6c1a88dcf3f53f945e8fa9a4c8a04b8e23819954de102cd266c999447c12314b"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

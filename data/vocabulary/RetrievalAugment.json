@@ -13,21 +13,21 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Memory",
     "related": [
       "sema:DeepResearch#mh:SHA-256:cd1dc8b74fb7377b4a9754e9c3b3cadc6f718810472a63ecbae30a09aeeb8797"
     ],
     "ring": 2,
     "supersedes": [
       "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
     ]
   },
   "sema_id": "sema:RetrievalAugment#mh:SHA-256:db9507c031531031a14ac0371b3668fc844b3eb56f073a52bf009bf10d489cf0",
   "sema_ref": "RetrievalAugment#db95",
   "sema_stub": "db95",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -37,5 +37,7 @@
       "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860",
       "prompt": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

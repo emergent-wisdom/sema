@@ -33,9 +33,16 @@ class NodeType(str, Enum):
     OUTPUT = "OUTPUT"  # typed output values
     PARAMETER = "PARAMETER"  # configuration slots with range contracts
     BASELINE = "BASELINE"  # baseline comparison (deprecated: use COUNTERFACTUAL)
-    # Taxonomy hierarchy (hypergraph structure)
-    LAYER = "LAYER"  # Physics, Mind, Society, Infrastructure
-    CATEGORY = "CATEGORY"  # 19 pattern categories
+    # Taxonomy hierarchy — path-based (0.2.0+).
+    # Each TAXONOMY_PATH node represents one prefix of a valid path in
+    # VALID_PATHS. e.g. 'Physics', 'Physics/Primitives' each get their own
+    # node, linked by PARENT edges. Patterns attach via a single IN_PATH
+    # edge to their leaf node.
+    TAXONOMY_PATH = "TAXONOMY_PATH"
+    # Legacy (pre-0.2.0): kept as enum values so older DBs still load
+    # without schema errors. Migration rewrites them to TAXONOMY_PATH.
+    LAYER = "LAYER"
+    CATEGORY = "CATEGORY"
 
 
 class EdgeType(Enum):
@@ -79,7 +86,11 @@ class EdgeType(Enum):
     HAS_SIGNATURE = "HAS_SIGNATURE"  # Replaces IMPLEMENTS
     DEPENDS_ON = "DEPENDS_ON"  # Deprecated: use specific link types instead
 
-    # Other
+    # Path-based taxonomy (0.2.0+)
+    IN_PATH = "IN_PATH"  # PATTERN → leaf TAXONOMY_PATH
+    PARENT_PATH = "PARENT_PATH"  # TAXONOMY_PATH → shorter TAXONOMY_PATH (toward root)
+
+    # Legacy — kept so old DBs load. Path-based migration replaces these.
     IN_LAYER = "IN_LAYER"
     TRIGGERED_BY = "TRIGGERED_BY"
     SIMILAR_TO = "SIMILAR_TO"
@@ -548,6 +559,23 @@ class GraphStore:
         # Dependencies are stored as edges only (Merkle DAG design)
         stored_pattern = {k: v for k, v in solution.items() if k != "dependencies"}
 
+        # Derive path + legacy layer/category from _meta. Path is canonical
+        # post-0.2.0; layer/category are kept as derived fields on the node
+        # metadata so existing queries/API routes keep working.
+        meta_block = solution.get("_meta", {}) or {}
+        path_segments = list(meta_block.get("path") or [])
+        if not path_segments:
+            # Graceful fallback for pre-migration data: reconstruct a path
+            # from legacy layer/category so old DBs still load.
+            _legacy_layer = meta_block.get("layer") or solution.get("sema_layer")
+            _legacy_cat = meta_block.get("category") or solution.get("sema_category")
+            if _legacy_layer:
+                path_segments = [_legacy_layer]
+                if _legacy_cat:
+                    path_segments.append(_legacy_cat)
+        derived_layer = path_segments[0] if path_segments else "Unknown"
+        derived_category = path_segments[1] if len(path_segments) >= 2 else ""
+
         # Check for existing pattern with same handle
         existing_nid = self._find_pattern_id(handle)
         if existing_nid is not None:
@@ -555,15 +583,11 @@ class GraphStore:
             data = self.graph.nodes[existing_nid]
             if "metadata" in data:
                 data["metadata"]["pattern"] = stored_pattern
-
-                # Also promote layer/category to root metadata for easy access/indexing
-                meta_block = solution.get("_meta", {})
-                data["metadata"]["layer"] = (
-                    meta_block.get("layer") or solution.get("sema_layer") or "Unknown"
-                )
-                data["metadata"]["category"] = (
-                    meta_block.get("category") or solution.get("sema_category") or "Uncategorized"
-                )
+                # Promote path + derived layer/category to top-level node
+                # metadata for indexing and legacy query compatibility.
+                data["metadata"]["path"] = path_segments
+                data["metadata"]["layer"] = derived_layer
+                data["metadata"]["category"] = derived_category
 
                 # Persist metadata update
                 conn = sqlite3.connect(self.db_path)
@@ -578,15 +602,12 @@ class GraphStore:
             # Construct rich text for embedding: "Handle: Gloss"
             rich_text = f"{handle}: {solution.get('gloss', '')} {solution.get('mechanism', '')}"
 
-            # Prepare metadata with root-level layer/category
             # Note: stored_pattern already excludes dependencies (created above)
-            meta_block = solution.get("_meta", {})
             node_meta = {
                 "pattern": stored_pattern,
-                "layer": meta_block.get("layer") or solution.get("sema_layer") or "Unknown",
-                "category": meta_block.get("category")
-                or solution.get("sema_category")
-                or "Uncategorized",
+                "path": path_segments,
+                "layer": derived_layer,
+                "category": derived_category,
             }
 
             pattern_id = self.create_node(
@@ -598,61 +619,67 @@ class GraphStore:
             )
 
         # =====================================================================
-        # 4a. AUTO-LINKING: Layers, Categories, Dependencies, Signatures
+        # 4a. AUTO-LINKING: Taxonomy path, Dependencies, Signatures
         # =====================================================================
 
-        # A. Layer & Category
-        meta = solution.get("_meta", {})
-        layer_name = meta.get("layer") or solution.get("sema_layer") or "Unknown"
-        category_name = meta.get("category") or solution.get("sema_category") or "Uncategorized"
+        # A. Taxonomy path
+        # For a path ["Physics", "Primitives"], create/reuse two TAXONOMY_PATH
+        # nodes — one per prefix — with PARENT_PATH edges linking them toward
+        # the root, then one IN_PATH edge from this pattern to the leaf.
+        # Each node's text is the full prefix string ("Physics", "Physics/
+        # Primitives"), unambiguous across layers.
+        leaf_path_id: str | None = None
+        if path_segments:
+            # Promote to solution so the Registry & downstream tooling still
+            # see sema_layer / sema_category. These are derived, not source.
+            solution["sema_layer"] = derived_layer
+            solution["sema_category"] = derived_category
 
-        # CRITICAL FIX: Promote layer/category to top-level for Registry compatibility
-        # The Registry expects 'sema_layer' and 'sema_category' in the pattern dict
-        solution["sema_layer"] = layer_name
-        solution["sema_category"] = category_name
+            prev_path_id: str | None = None
+            for depth in range(1, len(path_segments) + 1):
+                prefix_segs = path_segments[:depth]
+                prefix_text = "/".join(prefix_segs)
 
-        # Find/Create Layer
-        layer_id = None
-        for nid, data in self.get_nodes_by_type(NodeType.LAYER):
-            if data["text"] == layer_name:
-                layer_id = nid
-                break
-        if not layer_id:
-            layer_id = self.create_node(NodeType.LAYER, layer_name, compute_embedding=False)
+                # Find/reuse TAXONOMY_PATH node by its full path text.
+                tax_id = None
+                for nid, ndata in self.get_nodes_by_type(NodeType.TAXONOMY_PATH):
+                    if ndata["text"] == prefix_text:
+                        tax_id = nid
+                        break
+                if not tax_id:
+                    tax_id = self.create_node(
+                        NodeType.TAXONOMY_PATH,
+                        prefix_text,
+                        metadata={"segments": prefix_segs, "depth": depth},
+                        compute_embedding=False,
+                    )
 
-        # Find/Create Category. Composite key: (category_name, layer_id).
-        # The same category name may legitimately exist in two layers
-        # (e.g., "Primitives" in both Physics and Infrastructure). Matching
-        # on text alone would collapse them onto one node and bolt a second
-        # IN_LAYER edge onto it, producing a graph that can't represent
-        # which-category-in-which-layer via IN_CATEGORY edges alone.
-        category_id = None
-        for nid, data in self.get_nodes_by_type(NodeType.CATEGORY):
-            if data["text"] != category_name:
-                continue
-            if self.has_edge_of_type(nid, layer_id, EdgeType.IN_LAYER):
-                category_id = nid
-                break
-        if not category_id:
-            category_id = self.create_node(
-                NodeType.CATEGORY, category_name, compute_embedding=False
-            )
-            self.create_edge(category_id, layer_id, EdgeType.IN_LAYER)
+                # Link child path → parent path (toward root).
+                if prev_path_id is not None:
+                    if not self.has_edge_of_type(tax_id, prev_path_id, EdgeType.PARENT_PATH):
+                        self.create_edge(tax_id, prev_path_id, EdgeType.PARENT_PATH)
 
-        # Link Pattern -> Category (Idempotent: remove old if changed)
-        # Note: We support moving categories by checking existing edges
-        for succ in list(self.graph.successors(pattern_id)):
-            if succ == category_id:
-                continue
-            edge_ids = self.remove_edges_of_type(pattern_id, succ, EdgeType.IN_CATEGORY)
-            for eid in edge_ids:
-                conn = sqlite3.connect(self.db_path)
-                conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
-                conn.commit()
-                conn.close()
+                prev_path_id = tax_id
+                if depth == len(path_segments):
+                    leaf_path_id = tax_id
 
-        if not self.has_edge_of_type(pattern_id, category_id, EdgeType.IN_CATEGORY):
-            self.create_edge(pattern_id, category_id, EdgeType.IN_CATEGORY)
+            # Link pattern → leaf path node (idempotent).
+            # Prune any stale IN_PATH edges from this pattern that don't
+            # point at the current leaf — supports re-categorization.
+            for succ in list(self.graph.successors(pattern_id)):
+                if succ == leaf_path_id:
+                    continue
+                edge_ids = self.remove_edges_of_type(pattern_id, succ, EdgeType.IN_PATH)
+                for eid in edge_ids:
+                    conn = sqlite3.connect(self.db_path)
+                    conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
+                    conn.commit()
+                    conn.close()
+
+            if leaf_path_id and not self.has_edge_of_type(
+                pattern_id, leaf_path_id, EdgeType.IN_PATH
+            ):
+                self.create_edge(pattern_id, leaf_path_id, EdgeType.IN_PATH)
 
         # B. Dependencies (accepts, yields, composes_with, references)
         #    Use input_deps (extracted earlier) - NOT stored in pattern, only as edges
@@ -743,7 +770,7 @@ class GraphStore:
                         self.create_edge(pattern_id, target_id, EdgeType.HAS_SIGNATURE)
 
         # D. Related (Metadata links)
-        related = meta.get("related", [])
+        related = meta_block.get("related", [])
         if related:
             for item in related:
                 if not isinstance(item, str):

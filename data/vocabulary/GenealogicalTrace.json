@@ -11,19 +11,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:GenealogicalTrace#mh:SHA-256:0e89c456c9e33d0e5e018d64df4e347c76a5d08a6cced893ec3d1a84e28d877a",
       "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:GenealogicalTrace#mh:SHA-256:18d29d4d1898afb04c0fc5f55d6bd587bbca8138cbd675cc51a39f6d303b791d",
   "sema_ref": "GenealogicalTrace#18d2",
   "sema_stub": "18d2",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "cite_back": "sema:CiteBack#mh:SHA-256:69ec3a2443ee38ae07bc31e79e75f46e75cec2509baeca2ea29a8c57aac429b2",
@@ -31,5 +31,7 @@
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
       "trace_belief": "sema:TraceBelief#mh:SHA-256:22cc5726b2c3fa125ca0bcb8afd0e4cad2db544ae8289b33dbf5cd3a048193ea"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

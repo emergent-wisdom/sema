@@ -8,19 +8,19 @@
     "Fidelity: No new information added (No hallucination)"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:Summarize#mh:SHA-256:6a000fd570638ecd8dd239be23317cf6b004e2f5ed784822f41f6658ee669c2c"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:Summarize#mh:SHA-256:d9db027acbfceb679cdf599cdf0475e48cccf3cfdbe1d30b15e4c048ce87ed0c",
   "sema_ref": "Summarize#d9db",
   "sema_stub": "d9db",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
@@ -34,5 +34,7 @@
     "yields": {
       "summary": "sema:Summary#mh:SHA-256:f785cae6871dc00700bb21296033c24d01e0abc331097a1d43a3d423830332d6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

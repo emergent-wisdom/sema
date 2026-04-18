@@ -20,15 +20,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "supersedes": [
       "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:Satisfice#mh:SHA-256:0874ef403078cce0c8c51fc3504ee0b50196737dbb9148b4eeddea66d4dce8ad",
   "sema_ref": "Satisfice#0874",
   "sema_stub": "0874",
@@ -38,5 +38,7 @@
       "optimal_stop": "sema:OptimalStop#mh:SHA-256:e7ca1560a9735578b604728b9cad0aa0b894bbdc0ff7aae3859cbc5a8e9955f0",
       "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

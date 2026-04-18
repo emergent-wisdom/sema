@@ -17,18 +17,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 1,
     "supersedes": [
       "sema:OntologyAdapt#mh:SHA-256:e67338652fa9214a713c8b4bc8f1ff1173a080090e84e8ca157f5e071f772a38"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:OntologyAdapt#mh:SHA-256:d3a4ea352b60623cfc7cc6584f2bca4bfac294028fd5463bdc6a60d85ceac0f5",
   "sema_ref": "OntologyAdapt#d3a4",
   "sema_stub": "d3a4",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -38,5 +38,7 @@
       "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

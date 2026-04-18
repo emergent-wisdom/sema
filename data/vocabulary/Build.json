@@ -19,8 +19,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "Simulation",
       "DogfoodFirst",
@@ -29,13 +27,15 @@
     "ring": 1,
     "supersedes": [
       "sema:Build#mh:SHA-256:00f3e2cc017af17d5de5a121ddd38017635736aa54c5ef23ee43c84abe5ddab6"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:Build#mh:SHA-256:8424bcb9915ad032c0b3cee2ffd24b8af14b65ed518048a220d286a447e15321",
   "sema_ref": "Build#8424",
   "sema_stub": "8424",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "signature": [
     "Act(Artifact)"
   ],
@@ -52,5 +52,7 @@
     "yields": {
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

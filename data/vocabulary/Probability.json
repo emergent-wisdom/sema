@@ -9,9 +9,11 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
     "type": "number",
@@ -22,11 +24,11 @@
   "sema_ref": "Probability#356b",
   "sema_id": "sema:Probability#mh:SHA-256:356bf7e4b6ca99e4fe7705cb088c3f1cd3a5919334a772e00dc829065c71dffd",
   "sema_stub": "356b",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "event": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

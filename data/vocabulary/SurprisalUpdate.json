@@ -35,8 +35,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "related": [
       "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
     ],
@@ -44,18 +42,22 @@
     "supersedes": [
       "sema:SurprisalUpdate#mh:SHA-256:8eb2004c635b92c95a5dad62bbc4375a5a6728f493345334dd46f8ec2b4c3714",
       "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
   "sema_ref": "SurprisalUpdate#cef3",
   "sema_stub": "cef3",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:07f9ede9b37881846f271d342862a03a5f607917798eaac4e875840d2d3114ae",
       "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
       "regime_sense": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

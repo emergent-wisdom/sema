@@ -29,16 +29,18 @@
   "gloss": "Testable prediction staged for falsification attempts \u2014 provisional, not asserted",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "supersedes": [
       "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
   "sema_ref": "Hypothesis#ffa7",
-  "sema_stub": "ffa7"
+  "sema_stub": "ffa7",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

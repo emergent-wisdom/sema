@@ -44,13 +44,13 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Memory",
     "ring": 1,
-    "caution": "Silent contamination vector \u2014 poisoned entries bias all downstream routing decisions without triggering failure modes. Integrity of writers must be enforced."
+    "caution": "Silent contamination vector \u2014 poisoned entries bias all downstream routing decisions without triggering failure modes. Integrity of writers must be enforced.",
+    "path": [
+      "Mind",
+      "Memory"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
   "sema_id": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9",
   "sema_ref": "PathwayMemory#7899",
   "sema_stub": "7899",
@@ -58,5 +58,7 @@
     "references": {
       "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

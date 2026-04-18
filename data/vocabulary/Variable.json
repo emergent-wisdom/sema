@@ -28,14 +28,16 @@
   "mechanism": "A value that can change or adapt within the system. It represents a dimension of freedom in the problem space.",
   "gloss": "Mutable value",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
   "sema_ref": "Variable#179a",
-  "sema_stub": "179a"
+  "sema_stub": "179a",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

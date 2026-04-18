@@ -9,15 +9,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "related": [
       "sema:StateSnapshot#mh:SHA-256:c86b7e118ded573ed0dd2c4b2ced4928d1c9d4c7644ebc2d0f99a9281cece4b2"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -66,5 +66,7 @@
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

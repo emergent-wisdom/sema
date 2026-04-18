@@ -30,18 +30,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:InvariantFilter#mh:SHA-256:a541049098acbba01ebe35ee9c23ebbdaf9d34e252b1b69f97daa87b3e96eea2"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:InvariantFilter#mh:SHA-256:94c3dccddfbf2087bfbfe781c3d2dcd739c0c7ac0dd90315472c4cc99271a2ce",
   "sema_ref": "InvariantFilter#94c3",
   "sema_stub": "94c3",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "accepts": {
       "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
@@ -51,5 +51,7 @@
       "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
       "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

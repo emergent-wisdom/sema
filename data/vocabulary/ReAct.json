@@ -20,8 +20,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "related": [
       "sema:Reflexion#mh:SHA-256:c5b155b3053281ade32b43be8c274c6c0f1bb4315c3ec0313ce03c3c3ae97c76"
     ],
@@ -29,10 +27,12 @@
     "supersedes": [
       "sema:ReAct#mh:SHA-256:b4879d75afcfc4c7fe1d0b48f3e65b7ad2953a9b8c2a236f2cf3a2b7f98c9688",
       "sema:ReAct#mh:SHA-256:c72018c3dbdfe960eadd257f10dfd88400a405cfd2be557977fc0e81bcae8062"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:ReAct#mh:SHA-256:b4d0fb47a1426ca3ecf1ee70b05bd585628b07eaf93faa1a4c11f832640c8bab",
   "sema_ref": "ReAct#b4d0",
   "sema_stub": "b4d0",
@@ -49,5 +49,7 @@
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
       "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

@@ -16,15 +16,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:ManifestPlanning#mh:SHA-256:d34a567ad3f296d2fe4d1b82be3b86923ad888e1206d0c1ed561a877dbb29752",
   "sema_ref": "ManifestPlanning#d34a",
   "sema_stub": "d34a",
@@ -42,5 +42,7 @@
     "yields": {
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

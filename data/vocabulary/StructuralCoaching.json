@@ -17,18 +17,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:StructuralCoaching#mh:SHA-256:5c50eb61513015591c09c95d1b5f623bd3ef356447e11a5fd10591d79d832003",
   "sema_ref": "StructuralCoaching#5c50",
   "sema_stub": "5c50",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "creative": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
@@ -36,5 +36,7 @@
       "feedback": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
       "invert": "sema:Invert#mh:SHA-256:c137e5a184178795586692d7551d1687973b5287509de55820e13c832539ea0a"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

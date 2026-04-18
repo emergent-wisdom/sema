@@ -17,23 +17,25 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 1,
     "supersedes": [
       "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
   "sema_ref": "ProphetFanOut#54ee",
   "sema_stub": "54ee",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
       "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

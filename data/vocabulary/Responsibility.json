@@ -30,19 +30,19 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
     "ring": 1,
     "supersedes": [
       "sema:Responsibility#mh:SHA-256:4148bdd8ae994620d37dbc788d066a307725d43bc5a88de4134dadf88ca1dff6",
       "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31"
+    ],
+    "path": [
+      "Society",
+      "Governance"
     ]
   },
   "sema_id": "sema:Responsibility#mh:SHA-256:ea56467d7c7475a0546a0fcf7e77b869ce679bf563ca68b182150b4a28705f7e",
   "sema_ref": "Responsibility#ea56",
   "sema_stub": "ea56",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -52,5 +52,7 @@
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

@@ -37,9 +37,11 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "sema_id": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
   "sema_ref": "Protocol#7e1c",

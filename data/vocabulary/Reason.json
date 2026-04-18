@@ -22,8 +22,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
     "related": [
       "ChainOfThought",
@@ -31,13 +29,15 @@
     ],
     "supersedes": [
       "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:Reason#mh:SHA-256:e9015c8660178539f862e6def248349a654f07571a2559bd8c47c13f9eb17f30",
   "sema_ref": "Reason#e901",
   "sema_stub": "e901",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "dependencies": {
     "accepts": {
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
@@ -51,5 +51,7 @@
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
       "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

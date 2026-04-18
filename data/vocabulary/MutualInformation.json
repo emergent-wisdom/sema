@@ -10,12 +10,12 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "sema_id": "sema:MutualInformation#mh:SHA-256:da310ac721a0b6945056d317f97ad1337ba537328f01479484cb7d261fbeed05",
   "sema_ref": "MutualInformation#da31",
   "sema_stub": "da31",
@@ -23,5 +23,7 @@
     "references": {
       "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212"
     }
-  }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

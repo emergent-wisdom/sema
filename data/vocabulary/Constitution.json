@@ -7,12 +7,14 @@
     "Stability: Modifications require a formal out-of-band process, never runtime self-modification."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Governance",
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9"
+    ],
+    "path": [
+      "Society",
+      "Governance"
     ]
   },
   "data_schema": {
@@ -48,11 +50,11 @@
   "sema_id": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
   "sema_ref": "Constitution#eb62",
   "sema_stub": "eb62",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

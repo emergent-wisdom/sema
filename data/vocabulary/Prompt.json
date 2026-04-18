@@ -4,11 +4,13 @@
   "gloss": "Structured instruction to a generative model, optionally role-tagged",
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "supersedes": [
       "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "data_schema": {

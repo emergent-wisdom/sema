@@ -12,11 +12,13 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 2,
     "supersedes": [
       "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "data_schema": {
@@ -52,8 +54,6 @@
   "sema_id": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
   "sema_ref": "Belief#1f44",
   "sema_stub": "1f44",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "dependencies": {
     "accepts": {
       "evidence": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
@@ -62,5 +62,7 @@
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

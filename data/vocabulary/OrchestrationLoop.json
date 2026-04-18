@@ -14,8 +14,6 @@
     "Iteration Bound: Maximum loop iterations before escalation."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "tier": 2,
     "ring": 1,
     "related": [
@@ -24,13 +22,15 @@
     "supersedes": [
       "sema:OrchestrationLoop#mh:SHA-256:fd5ef68be3fdf8bec5e5bb4544153e5029e22626212e2267edeb26881ce9a94a",
       "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:OrchestrationLoop#mh:SHA-256:7f449d027e907728350df1f5af3d9645ab6dca0bd7f8203d8fc110dda538e5ff",
   "sema_ref": "OrchestrationLoop#7f44",
   "sema_stub": "7f44",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "Workflow(Rollout)"
   ],
@@ -48,5 +48,7 @@
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035",
       "workflow": "sema:Workflow#mh:SHA-256:7975fc78a1a419744a496a8d10fff448ae347e41a10f0c5d528f7d9f46f162a8"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

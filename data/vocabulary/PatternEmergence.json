@@ -21,18 +21,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:PatternEmergence#mh:SHA-256:8eaa2ad1a9a8465f278536f20f2d3dad3ce579dab2fb28f23da8ae9d2c5ecf69",
   "sema_ref": "PatternEmergence#8eaa",
   "sema_stub": "8eaa",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -44,5 +44,7 @@
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

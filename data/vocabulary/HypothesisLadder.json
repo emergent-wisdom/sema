@@ -18,16 +18,16 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "supersedes": [
       "sema:HypothesisLadder#mh:SHA-256:e739d24ffb9b7c57bf309404838cdd21a4c39d6aa48b72e6565c98a8767f9fa7",
       "sema:HypothesisLadder#mh:SHA-256:b8cd4534d34515209818259fc96a079f2813f4673326b4b844d53780a3f5c4e1"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:HypothesisLadder#mh:SHA-256:ee7f654ba8144ebb6a4092924fcfdfaf0765c4e6293f34483bc334f383c82429",
   "sema_ref": "HypothesisLadder#ee7f",
   "sema_stub": "ee7f",
@@ -40,5 +40,7 @@
       "bayes_update": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1",
       "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

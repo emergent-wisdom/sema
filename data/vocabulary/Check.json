@@ -13,8 +13,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
     "related": [
       "Validate",
@@ -22,10 +20,12 @@
     ],
     "supersedes": [
       "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "sema_id": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
   "sema_ref": "Check#5f38",
   "sema_stub": "5f38",
@@ -37,5 +37,7 @@
     "yields": {
       "status": "sema:Status#mh:SHA-256:7f5fb8391f994b56c06e54595ad72e9dc4f5672216cab74a9d061fb17bdd5e03"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

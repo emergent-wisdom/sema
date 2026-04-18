@@ -21,9 +21,34 @@ Two coherent threads shipped in this release:
 
 ### Breaking changes for consumers
 
-- **Old renamed handles are removed on `sema pull`.** The default behavior reads upstream `_meta.supersedes` and removes the local copy of any superseded pattern. Use `sema pull --preserve-superseded` (CLI) or `sema_pull({preserve_superseded: true})` (MCP) to keep both the old and new handles. The pre-pull snapshot is still retained — `sema pull --undo` restores everything.
+- **`_meta.layer` + `_meta.category` consolidated into `_meta.path: list[str]`.** The taxonomy is now represented as an ordered list — `["Society", "Governance"]` instead of `{"layer": "Society", "category": "Governance"}` — so deeper hierarchies (`["Society", "Governance", "Voting"]`) don't require a schema bump. Consumers reading `pattern["_meta"]["layer"]` or `pattern["_meta"]["category"]` should read `pattern["_meta"]["path"][0]` and `pattern["_meta"]["path"][1]`. The top-level `sema_layer` and `sema_category` fields are preserved as **derived** (read-only) exports for one deprecation cycle; new code should read `_meta.path`. Graph representation follows: `LAYER` + `CATEGORY` node types are superseded by `TAXONOMY_PATH` nodes (one per valid path prefix), linked toward the root by `PARENT_PATH` edges; patterns attach via a single `IN_PATH` edge to their leaf. Pattern `sema_id`s are unaffected (path lives in `_meta`, excluded from the Merkle input).
+- **Old renamed handles are removed on `sema pull`.** The default behavior reads upstream `_meta.supersedes` and removes the local copy of any superseded pattern. Use `sema pull --preserve-superseded` to keep both the old and new handles. The pre-pull snapshot is still retained — `sema pull --undo` restores everything.
 - **`sema_mint` is now exposed by default in the MCP server.** Previously required `SEMA_ALLOW_MINT=true`. Deployments that want to keep mint disabled must now set `SEMA_DISABLE_MINT=true` (or leave the legacy `SEMA_ALLOW_MINT=false` in place — honored for one deprecation cycle).
 - **Pattern hashes shifted widely.** The foundation audit rewrote 71 mechanisms and relocated 71 patterns; canonicalization (see below) changed hashes for 4 new patterns plus their dependents. Consumers who pinned specific hashes will see `sema pull` update them automatically via the supersedes chain. Code that references handles (not full hashes) is unaffected.
+
+### Schema migration — path-based taxonomy
+
+**Before (≤ 0.1.27):**
+```json
+"_meta": {"layer": "Society", "category": "Governance", "ring": 1, "tier": 1}
+```
+
+**After (0.2.0+):**
+```json
+"_meta": {"path": ["Society", "Governance"], "ring": 1, "tier": 1}
+```
+
+**Rationale.** Categories are sub-scopes of layers, not flat labels. `Physics/Primitives` and `Infrastructure/Primitives` were always distinct concepts that happened to share a leaf name; the pre-0.2 representation forced them onto one `CATEGORY` node with two `IN_LAYER` edges — a topology lie the queries had to paper over. The list form makes the scope explicit, supports arbitrary depth (`["Society", "Governance", "Voting"]`) without schema changes, and removes ambiguity at the graph level.
+
+**Stricter validation (Pydantic, enforced on `sema apply`):**
+- `path`: list of non-empty strings, length ≥ 1, first segment in `{Physics, Infrastructure, Mind, Society}`, full tuple in `VALID_PATHS`.
+- Path segments cannot contain `/` (reserved separator).
+- Pattern `handle` cannot contain `/` (avoids collision with taxonomy path text).
+- `ring` ∈ {0, 1, 2}, `tier` ∈ {0, 1, 2, 3} — stricter than before.
+
+**New CLI command:** `sema categorize <handle> --path Physics/Primitives` — validates against `VALID_PATHS` and rewires the pattern's `TAXONOMY_PATH` linkage atomically via the existing apply path.
+
+**Migration for downstream consumers.** Run `scripts/migrate_taxonomy_to_path.py` against your `data/vocabulary/*.json` directory; it's deterministic, idempotent, and leaves `sema_id`s untouched. Then `sema apply --add data/vocabulary/` or `scripts/rebuild_vocabulary.py --replace` to get the `TAXONOMY_PATH` graph nodes. Mixed-state DBs (some patterns on `_meta.path`, others still on `_meta.layer`) are handled gracefully — the graph builder reads either shape and normalizes on write.
 
 ### Migration guide (from 0.1.27)
 

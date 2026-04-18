@@ -31,15 +31,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "supersedes": [
       "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:ConstructOntology#mh:SHA-256:fa8dac7250f1146fc25b19deab473441849277d252ad485a637e11b5264b19e2",
   "sema_ref": "ConstructOntology#fa8d",
   "sema_stub": "fa8d",
@@ -49,5 +49,7 @@
       "first_principles": "sema:FirstPrinciples#mh:SHA-256:e860c8d958c5680e9da65fd7926dfabc7ef6bb1ba3c5acfbc9f934ae84037fc8",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

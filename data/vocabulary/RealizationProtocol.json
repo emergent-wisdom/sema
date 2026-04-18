@@ -21,20 +21,20 @@
     "Process Logged"
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "tier": 2,
     "supersedes": [
       "sema:RealizationProtocol#mh:SHA-256:ce28411f10fd62c3204a3dd2bf7079f7cc07eb24cce02b414491284297172d34",
       "sema:RealizationProtocol#mh:SHA-256:24593e1b30dd1203d7c0bb73bf88e7687c24ef486e3d6c6ae5a4c34621981a3a"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:RealizationProtocol#mh:SHA-256:c387cbd176a2f09a1b55f987912398ea74c6a4ff16c4fe4fc504749124b02d6d",
   "sema_ref": "RealizationProtocol#c387",
   "sema_stub": "c387",
@@ -54,5 +54,7 @@
     "yields": {
       "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

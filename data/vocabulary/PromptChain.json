@@ -26,16 +26,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "supersedes": [
       "sema:PromptChain#mh:SHA-256:c872aab6147376a3ad76fc0a062b08baf8492651a478308fbb96f261f903cce0",
       "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:PromptChain#mh:SHA-256:5356ac5f1bd0c8d125e039a93c7f6a0b73a99586d38165494653dbed482a3472",
   "sema_ref": "PromptChain#5356",
   "sema_stub": "5356",
@@ -52,5 +52,7 @@
       "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:bd2b35e0886f79fde129e2a1185845ecb644c14c4b89b90ec5dc8eb54c51ba10"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

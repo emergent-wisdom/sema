@@ -22,19 +22,19 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:WorkerMode#mh:SHA-256:a3abda2cd7a656742d4c0e20f5e020e002904c4639b739be88b117bd620be50a",
       "sema:WorkerMode#mh:SHA-256:95993da2b311749c9e36f501b3f0e2cdaefdbbebf0fd3347f30b6ed01eb0d7cd"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:WorkerMode#mh:SHA-256:24998a4bec284472eeb1a5cedbcaa3a7e007191535d8b91d8aff2a5389d61339",
   "sema_ref": "WorkerMode#2499",
   "sema_stub": "2499",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "accepts": {
       "solver_manifest": "sema:SolverManifest#mh:SHA-256:0299ce31325923a906e72bebe772918d4ce24da6d43f42bc014ffeede7972ef0"
@@ -51,5 +51,7 @@
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

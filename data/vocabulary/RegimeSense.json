@@ -35,18 +35,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d",
   "sema_ref": "RegimeSense#1998",
   "sema_stub": "1998",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
@@ -56,5 +56,7 @@
       "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:d3a4ea352b60623cfc7cc6584f2bca4bfac294028fd5463bdc6a60d85ceac0f5",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

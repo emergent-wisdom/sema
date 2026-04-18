@@ -20,8 +20,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "related": [
       "sema:Select#mh:SHA-256:b37174cf130148f0e486f85d892b6fd42d27a35d8493ff826602c0bbdc2fbde5"
     ],
@@ -29,16 +27,20 @@
     "supersedes": [
       "sema:Switch#mh:SHA-256:e7f9f7fba998e74e83165b23f0328643be83117559cd4d1a8711043955f6d6b0",
       "sema:Route#mh:SHA-256:96986e6c4fccc6496d735394acf1f4c7c5a4ae72cee77e0686fbaf3a8b9021b6"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
   "sema_ref": "Route#34c7",
   "sema_id": "sema:Route#mh:SHA-256:34c7ac9e2640ce630821dc4d77e6a00bce56e47aff15976fd40acbc0a10eceb6",
   "sema_stub": "34c7",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

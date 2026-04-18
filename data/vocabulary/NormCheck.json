@@ -31,18 +31,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:NormCheck#mh:SHA-256:82223036f2aa91c261189aa21bb0a61a98d10cfb6f613eaf760e8635af2e30e7"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:NormCheck#mh:SHA-256:a52896d5c8971e56c195fca723da496bbb11d645a64a900ce280a3e0cb005fe7",
   "sema_ref": "NormCheck#a528",
   "sema_stub": "a528",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "signature": [
     "Check(Value)"
   ],
@@ -55,5 +55,7 @@
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

@@ -17,21 +17,23 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:RootHashGossip#mh:SHA-256:ab1608c3fee86ae97a55921d08b934e652228577956502ef3b923b20d718b2c8",
   "sema_ref": "RootHashGossip#ab16",
   "sema_stub": "ab16",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

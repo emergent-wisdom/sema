@@ -12,12 +12,14 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "supersedes": [
       "sema:SynergisticMode#mh:SHA-256:e7d9822f9bb0e4199bdafb21e4be993bbe3a0f04bba680804068c0b2bfe2306b",
       "sema:SynergisticMode#mh:SHA-256:7985e5ea5240d2fb0824c435f505c4a8f6e25b6b0c7561d49f8f68faabb3b167"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "data_schema": {
@@ -51,8 +53,6 @@
   "sema_id": "sema:SynergisticMode#mh:SHA-256:90b6858833893edf730124e87d9a8a94185b5dac1a487d4cf744b6b3059e3ded",
   "sema_ref": "SynergisticMode#90b6",
   "sema_stub": "90b6",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
@@ -63,5 +63,7 @@
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

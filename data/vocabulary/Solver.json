@@ -6,19 +6,19 @@
     "Protocol(Task)"
   ],
   "_meta": {
-    "layer": "Mind",
     "ring": 0,
-    "category": "Strategy",
     "tier": 0,
     "supersedes": [
       "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_id": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02",
   "sema_ref": "Solver#81dc",
   "sema_stub": "81dc",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
@@ -31,5 +31,7 @@
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

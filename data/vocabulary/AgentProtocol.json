@@ -7,18 +7,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:AgentProtocol#mh:SHA-256:9d708f5ee79d32de05aed2585411c32acd463e42181559834640d20c76aefad9",
   "sema_ref": "AgentProtocol#9d70",
   "sema_stub": "9d70",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "Agent(Protocol)"
   ],
@@ -33,5 +33,7 @@
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
       "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

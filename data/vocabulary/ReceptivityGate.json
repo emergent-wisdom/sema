@@ -17,13 +17,13 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
-    "caution": "Required at any Feedback surface exposed to untrusted downstream consumers. Without it, the Solver absorbs fabricated penalties as if they were genuine learning signal."
+    "caution": "Required at any Feedback surface exposed to untrusted downstream consumers. Without it, the Solver absorbs fabricated penalties as if they were genuine learning signal.",
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "sema_id": "sema:ReceptivityGate#mh:SHA-256:c40980e24aaf82edf5d6774f581eca7d907d213b878dad450d401935a3d243ba",
   "sema_ref": "ReceptivityGate#c409",
   "sema_stub": "c409",
@@ -36,5 +36,7 @@
       "failure_trace": "sema:FailureTrace#mh:SHA-256:96df1345b3421dd9a30339cc325fed27bd0bf7ff1e83b9ea35bfd20bbf02296b",
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

@@ -10,13 +10,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "sema_id": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff",
   "sema_ref": "Distance#1376",
-  "sema_stub": "1376"
+  "sema_stub": "1376",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

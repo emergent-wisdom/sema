@@ -31,20 +31,20 @@
     "StateTransition(Task)"
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 1,
     "tier": 1,
     "related": [],
     "supersedes": [
       "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
   "sema_ref": "TaskLifecycle#57c8",
   "sema_id": "sema:TaskLifecycle#mh:SHA-256:57c83d6d25fa9cf7f0427bf9ec72192eaad13cda46238d9d3a6837058e47fd5a",
   "sema_stub": "57c8",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "dependencies": {
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:9e61cab1fbacfac92d739865d4505e9e9bb9ed024e0d51b670a00ccfeb801ec4"
@@ -60,5 +60,7 @@
     "yields": {
       "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

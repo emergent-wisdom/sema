@@ -1218,6 +1218,83 @@ def use_db(path: str = None, default: bool = False):
     return True
 
 
+def categorize_pattern(handle: str, path_str: str) -> bool:
+    """Re-categorize a pattern by rewriting its `_meta.path`. Uses the
+    existing apply-path so edge re-wiring (TAXONOMY_PATH linking, IN_PATH
+    edges) happens via the canonical mint logic.
+
+    `path_str` is slash-separated, e.g. 'Physics/Primitives'. Must be in
+    VALID_PATHS (enforced by the Pydantic schema).
+    """
+    from ..core.schema import VALID_PATHS, path_to_string
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    segments = [s for s in path_str.split("/") if s]
+    if not segments:
+        print(f"❌ Invalid --path '{path_str}': empty")
+        return False
+    if tuple(segments) not in VALID_PATHS:
+        print(f"❌ Path '{path_to_string(segments)}' is not in VALID_PATHS.")
+        print("   Valid paths:")
+        for p in sorted(VALID_PATHS):
+            print(f"     {path_to_string(list(p))}")
+        return False
+
+    db_path = get_default_db_path()
+    if is_bundled_db(db_path):
+        print("❌ Cannot modify the bundled vocabulary.")
+        print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
+        return False
+
+    store = GraphStore(db_path)
+    target = None
+    for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+        if data.get("text") == handle:
+            target = data
+            break
+    if not target:
+        print(f"❌ Pattern '{handle}' not found in {db_path}")
+        return False
+
+    pattern = target.get("metadata", {}).get("pattern", {}) or {}
+    if not pattern:
+        print(f"❌ Pattern '{handle}' has no stored content")
+        return False
+
+    # Clone + update path
+    pattern = json.loads(json.dumps(pattern))  # deep copy
+    pattern["handle"] = handle
+    # Reconstruct dependencies from edges (canonical source)
+    deps = store.get_dependencies_from_edges(handle)
+    if deps:
+        pattern["dependencies"] = deps
+    meta = pattern.setdefault("_meta", {})
+    old_path = meta.get("path") or []
+    meta["path"] = segments
+    # Drop any stale derived fields so mint re-derives cleanly.
+    meta.pop("layer", None)
+    meta.pop("category", None)
+    pattern.pop("sema_layer", None)
+    pattern.pop("sema_category", None)
+
+    # Write to a temporary staging file and apply via the canonical path.
+    tmp_dir = Path(db_path).parent / "staging"
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+    tmp_file = tmp_dir / f"{handle}.json"
+    with tmp_file.open("w") as f:
+        json.dump(pattern, f, indent=2, ensure_ascii=False)
+
+    print(f"Moving {handle}: {path_to_string(old_path) or '(empty)'} → {path_to_string(segments)}")
+    ok = apply_changes(add_files=[str(tmp_file)])
+    # Clean up staging file on success
+    if ok:
+        try:
+            tmp_file.unlink()
+        except Exception:
+            pass
+    return ok
+
+
 def list_databases():
     """List all known vocabulary databases."""
     dbs = list_dbs()
@@ -1657,6 +1734,18 @@ def main():
     use_cmd.add_argument("path", nargs="?", default=None, help="Path to DB (omit to show current)")
     use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
 
+    # Categorize - move a pattern to a different taxonomy path
+    cat_cmd = subparsers.add_parser(
+        "categorize",
+        help="Re-categorize a pattern by updating its _meta.path",
+    )
+    cat_cmd.add_argument("handle", help="Pattern handle (e.g. 'BeliefTracking')")
+    cat_cmd.add_argument(
+        "--path",
+        required=True,
+        help="New taxonomy path, slash-separated (e.g. 'Mind/Memory')",
+    )
+
     # List - show known databases
     subparsers.add_parser(
         "list",
@@ -1700,6 +1789,8 @@ def main():
         ok = use_db(path=args.path, default=args.default)
     elif args.command == "list":
         list_databases()
+    elif args.command == "categorize":
+        ok = categorize_pattern(handle=args.handle, path_str=args.path)
     elif args.command == "pull":
         if args.undo:
             ok = undo_pull()

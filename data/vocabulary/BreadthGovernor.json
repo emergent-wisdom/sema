@@ -34,18 +34,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:BreadthGovernor#mh:SHA-256:e924663e0589e01869b6403b59fc721b69a0250190a6019fa6130a225360080e",
   "sema_ref": "BreadthGovernor#e924",
   "sema_stub": "e924",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
@@ -56,5 +56,7 @@
       "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

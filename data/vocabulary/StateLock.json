@@ -8,14 +8,16 @@
     "Premature dissolution: state auto-dissolves while legitimate work is in progress."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "tier": 1,
     "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation.",
     "supersedes": [
       "sema:StateLock#mh:SHA-256:774b674f80993c49b0a348c384397f80027af319faa3440813d9d53b3eaa6a14",
       "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "signature": [
@@ -24,8 +26,6 @@
   "sema_ref": "StateLock#5602",
   "sema_id": "sema:StateLock#mh:SHA-256:560229dacf3ebeebd3461dd3c4a9553d3658bf0f447741b31e38e0418db45e3a",
   "sema_stub": "5602",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "actor": "sema:Actor#mh:SHA-256:57f6b9dbc9b8fc596a5238327f29fc24e27d4e0228bfed7352d41f0bfacd4ea4",
@@ -34,5 +34,7 @@
       "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

@@ -10,13 +10,13 @@
   "sema_ref": "Assessment#a765",
   "sema_stub": "a765",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -50,5 +50,7 @@
         "description": "Actionable suggestions"
       }
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

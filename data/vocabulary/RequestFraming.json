@@ -25,8 +25,6 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
     "related": [
       "Reframe",
@@ -34,10 +32,12 @@
     ],
     "supersedes": [
       "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:RequestFraming#mh:SHA-256:2833644eb196d3f442e2b77721abaae4171fb1c5c8bb8a548e9e0acde27b2e5d",
   "sema_ref": "RequestFraming#2833",
   "sema_stub": "2833",
@@ -57,5 +57,7 @@
     "yields": {
       "frame_spec": "sema:FrameSpec#mh:SHA-256:f63f8c8259dec4a322f899ec578ce3b0a9fc9cd8b0e3592499012cd8657aee28"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

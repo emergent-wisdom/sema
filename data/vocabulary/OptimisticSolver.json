@@ -16,17 +16,17 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "caution": "Executes without pre-action verification. Ensure irreversible actions have compensation or sandboxing, or use RigorousSolver at those boundaries.",
     "supersedes": [
       "sema:OptimisticSolver#mh:SHA-256:ee29600346db4594152f7d653a9700b4682402249775f5b7f765fbf1759e592d",
       "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "derived_from": "sema:Solver#mh:SHA-256:b00a16afef5a9d3293955f36b44fe6fc0e0c4ce0fc118de4a7459f77fe7d98d7",
   "sema_id": "sema:OptimisticSolver#mh:SHA-256:89358b62fc3e7f54c787f1bfac45970017261d994869adc77c994998e91b75c1",
   "sema_ref": "OptimisticSolver#8935",
@@ -44,5 +44,7 @@
       "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:d1048d3e083414f5b7a80f2dad07db242bb03fc8107eca2663d86a7151166b73",
       "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:b7aa2d189946a424556643b92a344b3ad4fd501f41ebeb9961a4162118ed35f3"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

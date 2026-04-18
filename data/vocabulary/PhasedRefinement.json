@@ -16,19 +16,19 @@
     "Artifact satisfies the acceptance criteria of the final phase"
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
     "tier": 2,
     "supersedes": [
       "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_ref": "PhasedRefinement#e4d0",
   "sema_id": "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4",
   "sema_stub": "e4d0",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
@@ -41,5 +41,7 @@
       "reason": "sema:Reason#mh:SHA-256:e9015c8660178539f862e6def248349a654f07571a2559bd8c47c13f9eb17f30",
       "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:5c50eb61513015591c09c95d1b5f623bd3ef356447e11a5fd10591d79d832003"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

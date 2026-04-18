@@ -22,15 +22,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "supersedes": [
       "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:BackwardChain#mh:SHA-256:a6ac3dacd844cc134d4abe356539ca71797aee17d8fc8ebb1d2c95b7d6b4e1de",
   "sema_ref": "BackwardChain#a6ac",
   "sema_stub": "a6ac",
@@ -41,5 +41,7 @@
       "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
       "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

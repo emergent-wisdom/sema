@@ -9,13 +9,13 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 0,
-    "caution": "Requires an explicit retry budget; uncapped ReAttempt can amplify transient failures into DoS against downstream resources."
+    "caution": "Requires an explicit retry budget; uncapped ReAttempt can amplify transient failures into DoS against downstream resources.",
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "sema_id": "sema:ReAttempt#mh:SHA-256:a396b884a3a85bb95f9648ee00dd1e9b807853c3348aa7d3f084f16c8f5986bc",
   "sema_ref": "ReAttempt#a396",
   "sema_stub": "a396",
@@ -24,5 +24,7 @@
       "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
       "retry": "sema:Retry#mh:SHA-256:ac55dbe681ec32b6553effd29698527f9510384edeab4b76e18d4ac543641fd8"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

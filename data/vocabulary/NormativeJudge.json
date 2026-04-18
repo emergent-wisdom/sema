@@ -26,18 +26,18 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 0,
     "supersedes": [
       "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:NormativeJudge#mh:SHA-256:0323c76fdb780f34f5cbe22d598a13e3c4ca422363677141feee1d2c6c49e3cd",
   "sema_ref": "NormativeJudge#0323",
   "sema_stub": "0323",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "signature": [
     "Judge(Value)"
   ],
@@ -56,5 +56,7 @@
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

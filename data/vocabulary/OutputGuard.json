@@ -40,15 +40,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Verification",
     "ring": 0,
     "supersedes": [
       "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0"
+    ],
+    "path": [
+      "Infrastructure",
+      "Verification"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Verification",
   "sema_id": "sema:OutputGuard#mh:SHA-256:0d0a18559d425de5a2b734e17f21beca390f0d4fd198b8261069aca70eeb9d7d",
   "sema_ref": "OutputGuard#0d0a",
   "sema_stub": "0d0a",
@@ -60,5 +60,7 @@
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
 }

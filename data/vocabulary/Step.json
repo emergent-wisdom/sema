@@ -12,19 +12,19 @@
     "Causal Closure: Step preconditions must be satisfiable by prior steps or initial state."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "tier": 1,
     "ring": 0,
     "related": [
       "Plan"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "sema_id": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
   "sema_ref": "Step#5f22",
   "sema_stub": "5f22",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "data_schema": {
     "type": "object",
     "required": [
@@ -63,5 +63,7 @@
         }
       }
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

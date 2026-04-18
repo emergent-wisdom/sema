@@ -4,8 +4,6 @@
   "gloss": "Vertical traversal of the solution tree",
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "related": [
       "sema:SolverNode#mh:SHA-256:d95df25d55378a330e546ae0929a37764c7a3e78f985256faf60d4739af18807"
@@ -13,10 +11,12 @@
     "supersedes": [
       "sema:RecursionDive#mh:SHA-256:cda8342178bffc23bea270e79154d4bc0cb2df2c1bd33d2fa6590ba095f8cd49",
       "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:RecursionDive#mh:SHA-256:038483584395139ff2a1766902d80a65edcab12a1ee39b57614fc93ce704e4ce",
   "sema_ref": "RecursionDive#0384",
   "sema_stub": "0384",
@@ -28,5 +28,7 @@
       "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
       "solver_tree": "sema:SolverTree#mh:SHA-256:3c94f8fbb9c4d1a56881b1d84a3cbe7ea56185fa778c2533657fc34f86ae66a1"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

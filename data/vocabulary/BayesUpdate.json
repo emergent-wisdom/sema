@@ -34,15 +34,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "sema_id": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1",
   "sema_ref": "BayesUpdate#bbf6",
   "sema_stub": "bbf6",
@@ -52,5 +52,7 @@
       "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
       "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

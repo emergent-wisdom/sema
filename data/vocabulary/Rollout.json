@@ -21,8 +21,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "related": [
       "BlueGreen"
@@ -30,13 +28,15 @@
     "supersedes": [
       "sema:Rollout#mh:SHA-256:42389087ff9ffd73d3de5c71f8509cf2cd974795babc71e862ec139c92ad5c78",
       "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:Rollout#mh:SHA-256:2ea35592e6b73d370d768d888a19d6a64a7d0644adc8502be2f93720e2f8a4d8",
   "sema_ref": "Rollout#2ea3",
   "sema_stub": "2ea3",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "Act(ExecutionManifest)"
   ],
@@ -63,5 +63,7 @@
       "monitor_report": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

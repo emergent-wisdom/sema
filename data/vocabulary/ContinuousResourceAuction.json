@@ -53,8 +53,6 @@
   },
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Economics",
     "ring": 1,
     "related": [
       "AttentionMarkets"
@@ -62,13 +60,15 @@
     "supersedes": [
       "sema:ContinuousResourceAuction#mh:SHA-256:babf1b41f451b6df2220129e0c0a05483abfc8f8aa8b4bfd3f7fd543ac9e009f",
       "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08"
+    ],
+    "path": [
+      "Society",
+      "Economics"
     ]
   },
   "sema_ref": "ContinuousResourceAuction#0361",
   "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:0361f5fe7efb3045c6f96b1b98909949cfc83665a3f222c1fef32857b7574a81",
   "sema_stub": "0361",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
   "dependencies": {
     "accepts": {
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
@@ -79,5 +79,7 @@
     "references": {
       "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
 }

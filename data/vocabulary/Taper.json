@@ -31,20 +31,20 @@
     }
   ],
   "_meta": {
-    "layer": "Society",
     "ring": 1,
-    "category": "Protocols",
     "tier": 1,
     "supersedes": [
       "sema:Taper#mh:SHA-256:9687795b14b6e66574aebb5255ef84529bf7095b350513470085285e3d90a260",
       "sema:Taper#mh:SHA-256:2044ab29206db4b7235103a9f4a1fc6a0ba647fd31e1d6f420a1581e52845e4f"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_ref": "Taper#02bc",
   "sema_id": "sema:Taper#mh:SHA-256:02bcea63e3a48c9af3fefc3fa9e2e15c39383f22cb6d80e14ee8731a8495989e",
   "sema_stub": "02bc",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
@@ -55,5 +55,7 @@
       "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
       "depth_governor": "sema:DepthGovernor#mh:SHA-256:2efaf036bd54fc393b6df73dbc8a4da77a112f67e000c74308a4577bbb261de9"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

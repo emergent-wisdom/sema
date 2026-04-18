@@ -13,12 +13,12 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "ring": 1
+    "ring": 1,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:FrameError#mh:SHA-256:1d3f3b715da8f97cffd880cd5bed5b59111a8347eef9ae4e328de2b15a31eb5a",
   "sema_ref": "FrameError#1d3f",
   "sema_stub": "1d3f",
@@ -28,5 +28,7 @@
       "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631",
       "retry": "sema:Retry#mh:SHA-256:ac55dbe681ec32b6553effd29698527f9510384edeab4b76e18d4ac543641fd8"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

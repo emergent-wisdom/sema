@@ -18,22 +18,24 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_ref": "OpportunityCost#04c6",
   "sema_id": "sema:OpportunityCost#mh:SHA-256:04c64b50814976909ace1dd671b6b49d9b18e540e1b709c266fc48a1125e6466",
   "sema_stub": "04c6",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

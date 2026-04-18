@@ -9,12 +9,12 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
   "sema_id": "sema:Equilibrium#mh:SHA-256:f7c5f4b45ee12a8b04b5543367092b5d91d4772bbb2b4f4891d1aa0e0e732ee3",
   "sema_ref": "Equilibrium#f7c5",
   "sema_stub": "f7c5",
@@ -22,5 +22,7 @@
     "references": {
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
 }

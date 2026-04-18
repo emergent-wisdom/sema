@@ -21,18 +21,18 @@
     "Working hypothesis adopted with provisional status."
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
     "tier": 1,
     "caution": "Best-guess inference \u2014 always provisional. Must be composed with a verification step in high-stakes domains.",
     "supersedes": [
       "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
       "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
   "sema_ref": "Abduction#68f6",
   "sema_stub": "68f6",
@@ -46,5 +46,7 @@
       "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
       "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

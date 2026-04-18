@@ -20,22 +20,24 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:UptakeOverTimestamp#mh:SHA-256:9f0fffcbeef00cd271526bb7a2849998c76e242ed74d36d0058b1849379c57ab"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:20eb11fa699f1a1c125430945b323d7280d935c5d9b1a4d1a8592b97bdd43e77",
   "sema_ref": "UptakeOverTimestamp#20eb",
   "sema_stub": "20eb",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
       "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

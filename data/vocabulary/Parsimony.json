@@ -8,24 +8,26 @@
     "Judge(Topology)"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
     "tier": 1,
     "supersedes": [
       "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833",
   "sema_ref": "Parsimony#8b4e",
   "sema_stub": "8b4e",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "gloss": "Complexity justification via Occams Razor",
   "dependencies": {
     "references": {
       "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

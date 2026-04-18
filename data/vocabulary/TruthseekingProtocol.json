@@ -9,12 +9,12 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Inference",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Inference"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:274aafdf9442afa62b921aa4fc9acbac97a66d9f921dcbdd2a62261712e87abf",
   "sema_ref": "TruthseekingProtocol#274a",
   "sema_stub": "274a",
@@ -26,5 +26,7 @@
     "references": {
       "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

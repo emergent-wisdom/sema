@@ -8,19 +8,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 1,
     "supersedes": [
       "sema:PUREBrainstorming#mh:SHA-256:5dada311c0b8343b4b7848a7a07a98f0369c8bb6e6701b1d0aef69655a51d412",
       "sema:PUREBrainstorming#mh:SHA-256:2e83f252cc40be9f0eb974bf5c6a70b62cad3a53c6f8a0589d60b0393995b6f5"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_ref": "PUREBrainstorming#b9c8",
   "sema_id": "sema:PUREBrainstorming#mh:SHA-256:b9c8652d7f78244738f83251bd45b741cbecbdeeb3735f1da9addf091af251c7",
   "sema_stub": "b9c8",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "pure_check": "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
@@ -32,5 +32,7 @@
     "yields": {
       "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:7e62181f83372a476d3834df559a7585e40c02f0b044d192b595ef257ee9a829"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

@@ -17,15 +17,15 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 2,
     "supersedes": [
       "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "sema_id": "sema:SemanticTabu#mh:SHA-256:62771c80bb58f789dea6c853fb9408a3c83756a3d02d52fe8e9b46cf3fea6418",
   "sema_ref": "SemanticTabu#6277",
   "sema_stub": "6277",
@@ -35,5 +35,7 @@
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

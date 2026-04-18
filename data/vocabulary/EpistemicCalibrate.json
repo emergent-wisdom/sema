@@ -17,24 +17,26 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "related": [
       "sema:ConfidenceCalibrate#mh:SHA-256:5cf79b805014b4108d7d00bdf0fb6cd7ea9f3da94535d4dbe33c8c278c5cb7b5"
     ],
     "ring": 2,
     "supersedes": [
       "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
   "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:3e32459cf46f6d4492af69d5c6be854e9ea96d4a87c6f699d54422b9a1a7be52",
   "sema_ref": "EpistemicCalibrate#3e32",
   "sema_stub": "3e32",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
   "dependencies": {
     "references": {
       "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

@@ -7,12 +7,14 @@
     "Success Definition: Must define unambiguous success criteria."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
   "data_schema": {
@@ -52,8 +54,6 @@
   "sema_id": "sema:FrameSpec#mh:SHA-256:f63f8c8259dec4a322f899ec578ce3b0a9fc9cd8b0e3592499012cd8657aee28",
   "sema_ref": "FrameSpec#f63f",
   "sema_stub": "f63f",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "dependencies": {
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
@@ -61,5 +61,7 @@
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
       "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

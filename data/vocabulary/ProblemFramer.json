@@ -12,19 +12,19 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "supersedes": [
       "sema:ProblemFramer#mh:SHA-256:8b24c9d8bfa06e9baeef615ed22ab7c74163a021b365f0f010581bdf7e78a9f7",
       "sema:ProblemFramer#mh:SHA-256:ecc198beafea4353d2393ec31121ed9db92fa79996ffa6b9d45a5b353e4627c7"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
   "sema_ref": "ProblemFramer#5232",
   "sema_id": "sema:ProblemFramer#mh:SHA-256:5232182564bc0765b9ca38a207f1c3680f60b2bfa0628bd546ed558fbca34809",
   "sema_stub": "5232",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
       "interpret": "sema:Interpret#mh:SHA-256:8ee3b4a80afed7f69b8a1ef9c81d89279e5620e781d000ad8a25f32456b72b24",
@@ -38,5 +38,7 @@
     "yields": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

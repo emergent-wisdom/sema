@@ -7,7 +7,7 @@ Now uses Pydantic schema for structured validation with clear error messages.
 
 import re
 
-from .schema import VALID_TAXONOMY, validate_pattern_schema
+from .schema import validate_pattern_schema
 
 
 def clean_handle(ref_string: str) -> str | None:
@@ -132,15 +132,21 @@ def validate_pattern(
         # 2. Explicit Dependency Rule (Forward & Inverse)
         errors.extend(validate_dependencies_usage(pattern))
 
-        # 4. Valid Taxonomy (Strict)
+        # 4. Valid Taxonomy (Strict) — path-based
         meta = pattern.get("_meta", {})
-        layer = meta.get("layer")
-        category = meta.get("category")
+        path = meta.get("path")
 
-        if layer not in VALID_TAXONOMY:
-            errors.append(f"❌ INVALID LAYER: '{layer}' (Must be: {list(VALID_TAXONOMY.keys())})")
-        elif category not in VALID_TAXONOMY[layer]:
-            errors.append(f"❌ INVALID CATEGORY: '{category}' for Layer '{layer}'.")
+        if not path or not isinstance(path, list):
+            errors.append("❌ INVALID PATH: '_meta.path' must be a non-empty list of strings.")
+        else:
+            from .schema import VALID_LAYERS, VALID_PATHS, path_to_string
+
+            if path[0] not in VALID_LAYERS:
+                errors.append(
+                    f"❌ INVALID LAYER: '{path[0]}' (path[0] must be one of {sorted(VALID_LAYERS)})"
+                )
+            elif tuple(path) not in VALID_PATHS:
+                errors.append(f"❌ INVALID PATH: '{path_to_string(path)}' not in VALID_PATHS")
 
         # 4b. Constitution Check (Ring & Tier)
         ring = meta.get("ring")
@@ -157,9 +163,10 @@ def validate_pattern(
             errors.append(f"❌ INVALID TIER: '{tier}' (Must be 0, 1, 2, or 3).")
 
         # 5. Noun Schema Requirement (Rule J)
-        if category == "Data Structures" and "data_schema" not in pattern:
+        if path and path[-1] == "Data Structures" and "data_schema" not in pattern:
             errors.append(
-                "❌ NOUN SCHEMA VIOLATION (Rule J): Pattern in 'Data Structures' must define 'data_schema'."
+                "❌ NOUN SCHEMA VIOLATION (Rule J): "
+                "Pattern whose path ends in 'Data Structures' must define 'data_schema'."
             )
 
         # 6. Signature Syntax

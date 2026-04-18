@@ -20,19 +20,19 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 1,
     "supersedes": [
       "sema:Nucleate#mh:SHA-256:4ea1bbb47979e47bc617c7b635ee2ce9d3315ac952012984aa62b18a479dc6f1",
       "sema:Nucleate#mh:SHA-256:32c03e8bf26291ab9297e0fad910d8ffdd470c4d40d90e2482abd4c0372435a7"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:Nucleate#mh:SHA-256:49a097a086fd4dc1a574a1f6fd8a13ab4727664d7057936f5c877dd964311eb1",
   "sema_ref": "Nucleate#49a0",
   "sema_stub": "49a0",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
@@ -42,5 +42,7 @@
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

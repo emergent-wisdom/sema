@@ -20,8 +20,6 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "related": [
       "Solution",
@@ -30,13 +28,15 @@
     "supersedes": [
       "sema:AgentSandbox#mh:SHA-256:ce7e2d28fa6aefffa0164d17cebc0266c4f7e422cdeb0a7043e078d5469c4be9",
       "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:AgentSandbox#mh:SHA-256:dcc7ecdadc87094ea111dc28fa0e073d7802d8c45ba0a39f58afb04592bad66b",
   "sema_ref": "AgentSandbox#dcc7",
   "sema_stub": "dcc7",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "signature": [
     "Sandbox(Agent)"
   ],
@@ -51,5 +51,7 @@
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "sandbox": "sema:Sandbox#mh:SHA-256:e00f4eca5e3c4e369bc8109db17aa66835b86e5a65ee16fb07b2f431db3b8638"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

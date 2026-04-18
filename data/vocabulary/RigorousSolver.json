@@ -8,17 +8,17 @@
   ],
   "derived_from": "sema:PolymorphicSolver#mh:SHA-256:c28aa4f6deac2ac3a19630154520e9ba0a6dcd41d16a55c6bd0edc393140ca34",
   "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
     "ring": 2,
     "tier": 2,
     "supersedes": [
       "sema:RigorousSolver#mh:SHA-256:169f46575554787f8f6be182014bd4f008264153fb30c33ddfd03da1c5dea507",
       "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
     ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
   "sema_id": "sema:RigorousSolver#mh:SHA-256:b7aa2d189946a424556643b92a344b3ad4fd501f41ebeb9961a4162118ed35f3",
   "sema_ref": "RigorousSolver#b7aa",
   "sema_stub": "b7aa",
@@ -31,5 +31,7 @@
       "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:d1048d3e083414f5b7a80f2dad07db242bb03fc8107eca2663d86a7151166b73",
       "socratic_loop": "sema:SocraticLoop#mh:SHA-256:e9e57ec0359a06e25177a9a8074211eae0be2e582dcee00813bb7a9acf9c6f98"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

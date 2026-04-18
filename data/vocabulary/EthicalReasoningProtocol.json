@@ -9,13 +9,13 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
-    "caution": "Required at autonomous-system decision points where both forecast quality and normative legitimacy must be auditable. Collapsing prediction and valuation into one pass re-introduces smuggled normativity \u2014 the failure this protocol exists to prevent."
+    "caution": "Required at autonomous-system decision points where both forecast quality and normative legitimacy must be auditable. Collapsing prediction and valuation into one pass re-introduces smuggled normativity \u2014 the failure this protocol exists to prevent.",
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
   "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:2900ea82a95e2facb6d0f7913a2f8562636f6151485fa218107c57271e80b1a6",
   "sema_ref": "EthicalReasoningProtocol#2900",
   "sema_stub": "2900",
@@ -26,5 +26,7 @@
     "references": {
       "deliberative_align": "sema:DeliberativeAlign#mh:SHA-256:42750fd9c6c6097a9a076f98af06061c531716dd6187043ad3e7ecdb1d149602"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

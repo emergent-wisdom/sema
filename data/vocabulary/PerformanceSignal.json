@@ -49,12 +49,12 @@
   },
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:PerformanceSignal#mh:SHA-256:b9d60f668cf95c45ca8e0d8a988b27ef75a49a8e461bf3d14553fbc2ec9ec8a8",
   "sema_ref": "PerformanceSignal#b9d6",
   "sema_stub": "b9d6",
@@ -64,5 +64,7 @@
       "frame_error": "sema:FrameError#mh:SHA-256:1d3f3b715da8f97cffd880cd5bed5b59111a8347eef9ae4e328de2b15a31eb5a",
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

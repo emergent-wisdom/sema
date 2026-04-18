@@ -29,16 +29,16 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Verification",
     "ring": 1,
     "caution": "Bypassing removes the human-in-the-loop safety boundary.",
     "supersedes": [
       "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea"
+    ],
+    "path": [
+      "Infrastructure",
+      "Verification"
     ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Verification",
   "sema_id": "sema:HumanApprove#mh:SHA-256:64349d0a8daadf838541313b0ad126768854b279d8cdafa70ac06fd59b997b15",
   "sema_ref": "HumanApprove#6434",
   "sema_stub": "6434",
@@ -51,5 +51,7 @@
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
 }

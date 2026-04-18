@@ -4,18 +4,18 @@
   "gloss": "Distributed query for external resources",
   "_meta": {
     "tier": 1,
-    "category": "Protocols",
-    "layer": "Society",
     "ring": 2,
     "supersedes": [
       "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
     ]
   },
   "sema_id": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
   "sema_ref": "Discover#e889",
   "sema_stub": "e889",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
@@ -23,5 +23,7 @@
       "search": "sema:Search#mh:SHA-256:3b3192b16570b656f6bbfab3af24f36db893d5e6e161b16addd96e6d95e87f00",
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

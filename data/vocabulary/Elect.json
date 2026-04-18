@@ -24,21 +24,21 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Coordination",
     "related": [
       "Vote"
     ],
     "ring": 2,
     "supersedes": [
       "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
     ]
   },
   "sema_id": "sema:Elect#mh:SHA-256:4f89ea0f05e323ab337031d74493f564321700fa1a06cb567560e87729b62898",
   "sema_ref": "Elect#4f89",
   "sema_stub": "4f89",
-  "sema_layer": "Society",
-  "sema_category": "Coordination",
   "dependencies": {
     "accepts": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
@@ -47,5 +47,7 @@
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }
