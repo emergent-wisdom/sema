@@ -1034,26 +1034,25 @@ def update_db(
         print(f"  ~ {len(updated)} updated")
     if skipped:
         print(f"  = {len(skipped)} unchanged (fast-path)")
+    # Full lists — primary consumer is an agent that may want to act on
+    # every name. A human can still scan. No silent truncation.
     if cascaded_user:
         print(
             f"⚠️  {len(cascaded_user)} user pattern(s) had hashes auto-updated due to upstream changes:"
         )
-        for h in sorted(cascaded_user)[:10]:
+        for h in sorted(cascaded_user):
             print(f"    {h}")
     if superseded_removed:
         print(f"→ {len(superseded_removed)} pattern(s) superseded by upstream, removed locally:")
-        for old_h, new_handles in superseded_removed[:10]:
+        for old_h, new_handles in superseded_removed:
             print(f"    {old_h:<22} → {', '.join(new_handles)}")
     if superseded_kept_orphan:
         print(
             f"⚠️  {len(superseded_kept_orphan)} supersession(s) NOT applied — your patterns "
             "still depend on them:"
         )
-        for old_h, new_handles, deps in superseded_kept_orphan[:10]:
-            print(
-                f"    {old_h:<22} → {', '.join(new_handles)}  "
-                f"(blocked by: {', '.join(deps[:3])}{'...' if len(deps) > 3 else ''})"
-            )
+        for old_h, new_handles, deps in superseded_kept_orphan:
+            print(f"    {old_h:<22} → {', '.join(new_handles)}  (blocked by: {', '.join(deps)})")
         print(
             "    A rename replaces a pattern's *handle* (not just its hash), so cascade "
             "cannot bridge the reference automatically — the old and new patterns are "
@@ -1067,14 +1066,30 @@ def update_db(
         print(
             f"ℹ️  Upstream removed {len(upstream_removed)} pattern(s); they remain locally as user patterns:"
         )
-        for h in upstream_removed[:10]:
+        for h in upstream_removed:
             print(f"    {h}")
     if orphan_subs_new > 0:
         print(
             f"ℹ️  {orphan_subs_new} orphan sub-node(s) (invariants/pre/postconditions) "
             "left behind by supersession cleanup. They don't affect queries but likely "
-            "want cleaning up in a future pass."
+            "want cleaning up in a future pass:"
         )
+        # Fetch the actual orphan texts so the caller (agent or human) knows
+        # what's dangling. Same query as _count_isolated_subs but returning rows.
+        with closing(sqlite3.connect(target_db)) as _c:
+            orphan_rows = _c.execute(
+                """
+                SELECT node_type, text FROM nodes n
+                WHERE n.node_type IN ('INVARIANT', 'PRECONDITION', 'POSTCONDITION')
+                  AND NOT EXISTS (
+                      SELECT 1 FROM edges e
+                      WHERE e.source_id=n.id OR e.target_id=n.id
+                  )
+                """
+            ).fetchall()
+        for nt, text in orphan_rows:
+            truncated = (text[:70] + "…") if len(text) > 70 else text
+            print(f"    [{nt}] {truncated}")
 
     print(
         f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
