@@ -1,6 +1,6 @@
 {
   "handle": "Parsimony",
-  "mechanism": "Acts as a {{judge}} to evaluate {{topology}} necessity (Occam's Razor). Classifies complexity into three qualitative states: (1) Bloated: Core concept collapses or remains identical without this component. (2) Under-specified: Plausible utility, but necessity is not strictly proven via ablation. (3) Minimal: Proven essential; removing any part destroys the function. Aims for high {{compress}}ion.",
+  "mechanism": "A {{judge}} of structural necessity (Occam's Razor): does the minimum-complexity form of the artifact still perform its function? Applies wherever a definition, model, design, or decomposition needs to be tested for excess parts. The essential move is ablation \u2014 remove a component and see if the whole collapses \u2014 which works on theories, codebases, system designs, and cognitive schemas alike. Specific rating semantics (binary pass/fail, traffic-light ranges, ordinal ablation scores) belong on descendants or on the composing protocol; Parsimony itself names only the question and the ablation discipline. The signature Judge({{topology}}) reflects that the question operates over structural shape rather than quantitative score; an ablation is itself a topology operation, removing nodes and seeing whether the remaining shape still performs.",
   "invariants": [
     "Necessity: Every component must have a causal link to the outcome."
   ],
@@ -8,22 +8,26 @@
     "Judge(Topology)"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 2,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
-  "sema_ref": "Parsimony#1dd3",
-  "sema_stub": "1dd3",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
+  "sema_id": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833",
+  "sema_ref": "Parsimony#8b4e",
+  "sema_stub": "8b4e",
   "gloss": "Complexity justification via Occams Razor",
   "dependencies": {
     "references": {
-      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
-      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "judge": "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56"
+      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

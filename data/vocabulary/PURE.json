@@ -1,0 +1,38 @@
+{
+  "handle": "PURE",
+  "mechanism": "The framework that defines how the four general viability components \u2014 {{parsimony}}, {{novelty}}, {{realizable}}, {{expansive}} \u2014 compose into a viability evaluation. PURE specifies the usage contract shared by every PURE instance: (1) the four dimensions are orthogonal \u2014 they must be evaluated without sight of each other, because in a single context the faculties corrupt each other (an expansive vision dampens ruthlessness about uniqueness, a feasible plan inflates its own transferability); (2) the evaluation is non-compensatory \u2014 no axis can offset another's failure, explore iff no gate is Red; (3) **variable depth is definitional**: a PURE instance is a five-second screen or a week-long investigation with hundreds of sub-solvers \u2014 the same protocol at different depths. Each of the four components is itself a decomposition point (a ParsimoniousSolver might deploy sub-solvers attempting competing compressions; an ExpansiveSolver might fan out across hostile transfer domains), and how deep each gate goes is purely economic. The four component patterns (Parsimony, Novelty, Realizable, Expansive) are the general concepts; PURE is the protocol that declares how those generals are wired together when the question being asked is viability. Specializations like PURECheck (lightweight-depth triage), PUREOptimization (deep optimization target), and PUREBrainstorming (quality filter in ideation) inherit this framework as points on its depth continuum, not as distinct protocols.",
+  "gloss": "The viability framework that wires Parsimony, Novelty, Realizable, and Expansive into a non-compensatory, orthogonal evaluation \u2014 specializations (PURECheck/PUREOptimization/PUREBrainstorming) inherit this contract",
+  "invariants": [
+    "Four-axis: a PURE instance always evaluates across all four of {{parsimony}}, {{novelty}}, {{realizable}}, {{expansive}}; no subset is PURE.",
+    "Orthogonality: the four axes must be evaluated in isolation \u2014 cognitive contamination between them (a single-context pass covering all four) defeats the framework's purpose.",
+    "Non-compensatory: no high score on one axis can offset a failure on another; every axis must independently pass.",
+    "Framework not implementation: the specific rating semantics (traffic-light, scalar, binary) are descendant concerns \u2014 PURE names only the axes and the composition rule."
+  ],
+  "failure_modes": [
+    "Single-context contamination: all four axes evaluated in one pass \u2014 Parsimony softens under an expansive vision, Realizable inflates when mechanism is exciting.",
+    "Compensatory drift: a 'weighted average' implementation that lets a 9/10 on Expansive outweigh a 3/10 on Realizable \u2014 violates the non-compensatory invariant even though the framework was nominally followed.",
+    "Proxy axes: substituting a proxy for one of the four (e.g., 'market fit' for Expansive) that doesn't preserve the axis's defining question; the framework looks like PURE but scores something else.",
+    "Skipped axis: evaluating three of four and declaring pass \u2014 not a PURE evaluation."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 1,
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
+  },
+  "sema_id": "sema:PURE#mh:SHA-256:a5776a4bf504ba6c9a8d9874af1c0b6efa9f08a63b694696a760e9097db8ba23",
+  "sema_ref": "PURE#a577",
+  "sema_stub": "a577",
+  "dependencies": {
+    "composes_with": {
+      "expansive": "sema:Expansive#mh:SHA-256:fa11a8715ef56e5c0d20244ce15d16dc4a135d3ef6c92249c584138faf7115fd",
+      "novelty": "sema:Novelty#mh:SHA-256:296b5ea7f3a5eba874fedb7bc53eefa3e9512b64cf04375d4d07c18e6aced988",
+      "parsimony": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833",
+      "realizable": "sema:Realizable#mh:SHA-256:7ce08efae9112f927f5b04e4af7dea9b2fdfe7d073bd2362b4a52834e5e725a2"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

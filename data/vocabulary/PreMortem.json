@@ -6,10 +6,8 @@
     "Performative Doomerism: Listing generic catastrophes (e.g., Asteroid Strike) instead of specific, endogenous failure modes."
   ],
   "invariants": [
-    "Future Perspective: Analysis must assume failure has ALREADY happened",
-    "Perspective Shift: Analysis assumes failure has ALREADY occurred (Probability=1.0)",
-    "Specific Cause: Failure reasons must be actionable, not generic bad luck",
-    "Specificity: Failure causes must be actionable"
+    "Future Perspective: Analysis must assume failure has ALREADY happened (Probability=1.0).",
+    "Specific Cause: Failure reasons must be actionable and endogenous, not generic bad luck."
   ],
   "preconditions": [
     "{{plan}} is fully specified"
@@ -33,23 +31,28 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
-  "sema_id": "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
-  "sema_ref": "PreMortem#f69d",
-  "sema_stub": "f69d",
+  "sema_id": "sema:PreMortem#mh:SHA-256:6cc4fa30402760c632af25ea100c15fa3b0191b6a3beae343b84a8162d1123e2",
+  "sema_ref": "PreMortem#6cc4",
+  "sema_stub": "6cc4",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     },
     "references": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:6dc1c6c6188891b7f40b08560272b1290dad04faf9f88185ae1b02550d8c6310",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3",
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:7074d06ab2b317d810e688866049a24f8b303099548f033d6edab2d0d16710b9",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

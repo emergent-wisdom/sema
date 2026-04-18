@@ -1,26 +1,25 @@
 {
   "handle": "Belief",
-  "mechanism": "A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting evidence. Unlike a Fact, a Belief is subjective and mutable.",
+  "mechanism": "A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting {{evidence}}. Unlike a Fact, a Belief is subjective and mutable.",
   "gloss": "A subjective claim with confidence and evidence",
   "parameters": [
     {
       "name": "confidence",
-      "type": "Float",
-      "range": "unspecified",
+      "type": "Probability",
+      "range": "[0.0, 1.0]",
       "description": "Subjective probability that this belief is true"
-    },
-    {
-      "name": "evidence",
-      "type": "List[Context]",
-      "range": "unspecified",
-      "description": "Supporting evidence contexts for this belief"
     }
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -52,15 +51,18 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
-  "sema_ref": "Belief#5ad9",
-  "sema_stub": "5ad9",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_id": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
+  "sema_ref": "Belief#1f44",
+  "sema_stub": "1f44",
   "dependencies": {
+    "accepts": {
+      "evidence": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+    },
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

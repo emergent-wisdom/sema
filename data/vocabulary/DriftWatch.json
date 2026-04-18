@@ -1,16 +1,12 @@
 {
   "handle": "DriftWatch",
-  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if Distance(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
-  "gloss": "Reputation becomes pattern-fidelity measurement - trustworthiness equals predictability. Agents are trusted not for peak performance but for behavioral consistency. Gaming reputation through occasional spectacular actions becomes impossible.",
+  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if {{distance}}(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
+  "gloss": "Reputation scoring via behavioral deviation from baseline (2-sigma alert)",
   "failure_modes": [
-    "Witness collusion: Coordinated false drift reports.",
-    "Mitigated by random witness selection and meta-drift analysis on witness behavior.",
-    "False reports: Single malicious witness.",
-    "Mitigated by N-of-M threshold requirement.",
-    "Cold start: New agents have no baseline.",
-    "Mitigated by probationary period with higher friction, initial baseline borrowed from similar-role agents.",
-    "Baseline gaming: {{agent}} varies early to establish wide baseline.",
-    "Mitigated by crystallization window limits and anomaly detection during bootstrap."
+    "Witness collusion: Coordinated false drift reports (mitigated by random witness selection and meta-drift analysis on witness behavior).",
+    "False reports: Single malicious witness (mitigated by N-of-M threshold requirement).",
+    "Cold start: New agents have no baseline (mitigated by probationary period with higher friction, initial baseline borrowed from similar-role agents).",
+    "Baseline gaming: {{agent}} varies early to establish wide baseline (mitigated by crystallization window limits and anomaly detection during bootstrap)."
   ],
   "invariants": [
     "Baseline Persistence: Baseline must remain immutable during measurement",
@@ -35,19 +31,25 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
-  "sema_ref": "DriftWatch#a20d",
-  "sema_stub": "a20d",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:17c4d53d192ad7d6b902546c76c68007d10efc53610ac33514a39e3f6a9001f6",
+  "sema_ref": "DriftWatch#17c4",
+  "sema_stub": "17c4",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
+      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

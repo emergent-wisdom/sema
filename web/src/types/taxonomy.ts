@@ -1,7 +1,8 @@
 export type NodeType =
   | 'PATTERN'
-  | 'CATEGORY'
-  | 'LAYER'
+  | 'TAXONOMY_PATH'
+  | 'CATEGORY'      // legacy — pre-0.2.0 DBs
+  | 'LAYER'         // legacy — pre-0.2.0 DBs
   | 'INVARIANT'
   | 'PARAMETER'
   | 'PRECONDITION'
@@ -10,8 +11,10 @@ export type NodeType =
 export type EdgeType =
   | 'REFERENCES'
   | 'HAS_INVARIANT'
-  | 'IN_CATEGORY'
-  | 'IN_LAYER'
+  | 'IN_PATH'
+  | 'PARENT_PATH'
+  | 'IN_CATEGORY'   // legacy
+  | 'IN_LAYER'      // legacy
   | 'HAS_PARAMETER'
   | 'HAS_PRECONDITION'
   | 'HAS_POSTCONDITION'
@@ -116,25 +119,28 @@ export const LAYER_COLORS: Record<string, string> = {
 };
 
 export const NODE_TYPE_COLORS: Record<NodeType, string> = {
-  PATTERN: '#60a5fa',       // blue (default, overridden by layer)
-  CATEGORY: '#71717a',      // grey
-  LAYER: '#e4e4e7',         // light grey
-  INVARIANT: '#fbbf24',     // yellow
-  PARAMETER: '#22d3ee',     // cyan
-  PRECONDITION: '#f472b6',  // pink
-  POSTCONDITION: '#4ade80', // green
+  PATTERN: '#60a5fa',         // blue (default, overridden by layer)
+  TAXONOMY_PATH: '#71717a',   // grey (overridden to layer color when depth=1)
+  CATEGORY: '#71717a',        // grey (legacy)
+  LAYER: '#e4e4e7',           // light grey (legacy)
+  INVARIANT: '#fbbf24',       // yellow
+  PARAMETER: '#22d3ee',       // cyan
+  PRECONDITION: '#f472b6',    // pink
+  POSTCONDITION: '#4ade80',   // green
 };
 
 export const EDGE_TYPE_COLORS: Record<EdgeType, string> = {
-  REFERENCES: '#60a5fa',      // blue
-  COMPOSES_WITH: '#34d399',   // green
-  IN_LAYER: '#52525b',        // grey
-  IN_CATEGORY: '#52525b',     // grey
-  HAS_INVARIANT: '#fbbf24',   // yellow (not shown in filter)
-  HAS_PARAMETER: '#22d3ee',   // cyan (not shown in filter)
-  HAS_PRECONDITION: '#f472b6', // pink (not shown in filter)
+  REFERENCES: '#60a5fa',        // blue
+  COMPOSES_WITH: '#34d399',     // green
+  IN_PATH: '#52525b',           // grey — pattern → leaf taxonomy path
+  PARENT_PATH: '#3f3f46',       // darker grey — child path → parent path
+  IN_LAYER: '#52525b',          // grey (legacy)
+  IN_CATEGORY: '#52525b',       // grey (legacy)
+  HAS_INVARIANT: '#fbbf24',     // yellow (not shown in filter)
+  HAS_PARAMETER: '#22d3ee',     // cyan (not shown in filter)
+  HAS_PRECONDITION: '#f472b6',  // pink (not shown in filter)
   HAS_POSTCONDITION: '#4ade80', // green (not shown in filter)
-  ACCEPTS: '#a855f7',         // purple
-  YIELDS: '#fb923c',          // orange
-  HAS_SIGNATURE: '#71717a',   // grey (not shown in filter)
+  ACCEPTS: '#a855f7',           // purple
+  YIELDS: '#fb923c',            // orange
+  HAS_SIGNATURE: '#71717a',     // grey (not shown in filter)
 };

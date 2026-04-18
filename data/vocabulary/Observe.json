@@ -1,31 +1,5 @@
 {
   "handle": "Observe",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "observation_id",
-      "source",
-      "data"
-    ],
-    "properties": {
-      "observation_id": {
-        "type": "string",
-        "description": "Unique identifier for this observation"
-      },
-      "source": {
-        "type": "string",
-        "description": "Where the observation came from"
-      },
-      "data": {
-        "description": "The raw observed information"
-      },
-      "timestamp": {
-        "type": "string",
-        "format": "date-time",
-        "description": "When observation occurred"
-      }
-    }
-  },
   "mechanism": "The process of gathering information from the environment. It involves sensing raw data, filtering it for relevance (Attention), and integrating it into the internal {{context}} and state. Unlike passive reception, Observe is often an active query (e.g., polling an API, reading a file).",
   "gloss": "Active State Perception",
   "failure_modes": [
@@ -48,22 +22,27 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "related": [
       "Belief",
       "Attention"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
-  "sema_id": "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
-  "sema_ref": "Observe#8ebd",
-  "sema_stub": "8ebd",
+  "sema_id": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e",
+  "sema_ref": "Observe#abc0",
+  "sema_stub": "abc0",
   "dependencies": {
     "yields": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

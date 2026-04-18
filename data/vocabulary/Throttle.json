@@ -6,9 +6,8 @@
     "Legitimate Denial: Throttle cannot distinguish attack traffic from legitimate burst."
   ],
   "invariants": [
-    "Queue Bounding: Dropped requests > 0 if InputRate >> MaxRate",
-    "Rate Limit: Output events per second <= MaxRate",
-    "Rate never exceeds limit within any window."
+    "Rate Limit: Output rate \u2264 MaxRate within any window (sliding or fixed).",
+    "Queue Bounding: Dropped requests > 0 if InputRate >> MaxRate."
   ],
   "preconditions": [
     "Token bucket or Leaky bucket state initialized"
@@ -35,21 +34,26 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
-  "sema_id": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
-  "sema_ref": "Throttle#3b43",
-  "sema_stub": "3b43",
+  "sema_id": "sema:Throttle#mh:SHA-256:4d479e4b025f72c347424f50b7ac6a3503a9447bd3f085f6e032c326936e56cc",
+  "sema_ref": "Throttle#4d47",
+  "sema_stub": "4d47",
   "dependencies": {
-    "composes_with": {
-      "backoff": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
-    },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "composes_with": {
+      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

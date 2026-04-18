@@ -261,3 +261,70 @@ def vocabulary_root(pattern_hashes: list[str]) -> str:
     and the `scripts/vocabulary_merkle_root.py` doc generator.
     """
     return _sha256("".join(pattern_hashes).encode("utf-8"))
+
+
+def vocabulary_info(db_path: str) -> dict:
+    """Read a taxonomy.db and return a load-line-sized state fingerprint.
+
+    Returns:
+        {
+            "root": "sha256-hex-string",         # vocabulary Merkle root
+            "pattern_count": int,
+            "db_path": str,
+            "stamped_version": str | None,        # placeholder for future version-stamping
+        }
+
+    The root is the authoritative cryptographic fingerprint — two DBs with
+    the same set of pattern sema_ids produce the same root regardless of
+    insertion order, SQLite page layout, or anything non-semantic.
+    """
+    import json
+    import sqlite3
+
+    con = sqlite3.connect(db_path)
+    try:
+        rows = con.execute("SELECT text, metadata FROM nodes WHERE node_type='PATTERN'").fetchall()
+    finally:
+        con.close()
+
+    pairs = []
+    for text, meta_json in rows:
+        if not meta_json:
+            continue
+        meta = json.loads(meta_json)
+        sema_id = meta.get("pattern", {}).get("sema_id", "")
+        if "SHA-256:" in sema_id:
+            pairs.append((text, sema_id.split("SHA-256:")[1]))
+
+    pairs.sort(key=lambda p: p[0])
+    hashes = [h for _, h in pairs]
+    return {
+        "root": vocabulary_root(hashes),
+        "pattern_count": len(pairs),
+        "db_path": db_path,
+        "stamped_version": None,
+    }
+
+
+def format_load_line(info: dict) -> str:
+    """Banner for a vocabulary DB. Two lines — full root first (verifiable),
+    context below (scannable).
+
+    Example:
+        📚 sema:vocab#mh:SHA-256:39ca671a4dcb3075855cb293380d1796105e2eca0de49b0537279b798b675ee6
+           452 patterns (data/taxonomy.db)
+
+    When a stamped version becomes available, it's appended inline to the
+    second line without disturbing the root:
+        📚 sema:vocab#mh:SHA-256:39ca671a...
+           452 patterns, v0.2.0 (data/taxonomy.db)
+    """
+    root = info.get("root", "") or "unknown"
+    count = info.get("pattern_count", 0)
+    db = info.get("db_path", "?")
+    version = info.get("stamped_version")
+    second = f"{count} patterns"
+    if version:
+        second += f", v{version}"
+    second += f" ({db})"
+    return f"📚 sema:vocab#mh:SHA-256:{root}\n   {second}"

@@ -1,6 +1,6 @@
 {
   "handle": "SolverTree",
-  "mechanism": "The active command hierarchy that organizes {{solver_node}} instances into a coordinated {{topology}} for solving a {{task}}. Unlike a passive data tree, this structure represents the flow of Authority (downwards via delegation) and Results (upwards via reporting). It defines the Chain of Command: resources ({{budget}}) cascade from {{solver_root}} to children, while outcomes propagate back up. Each node in the tree is a unit of Blame\u2014failures can be traced to specific {{solver_node}}s for {{localized_learning}}.",
+  "mechanism": "The active command structure that organizes {{solver_node}} instances into a coordinated {{topology}} for solving a {{task}}. Unlike a passive data tree, this structure represents the flow of Authority (downwards via delegation) and Results (upwards via reporting). Resources ({{budget}}) cascade from the {{root_solver}} to children; outcomes propagate back up. Each node is a unit of attribution \u2014 failures can be traced to specific {{solver_node}}s for {{localized_learning}}. At decomposition time the structure is tree-like, but at execution time fan-in and deduplication are permitted, making the runtime a DAG.",
   "gloss": "Active hierarchy of coordinated solver instances",
   "failure_modes": [
     "Fragmentation: Sub-trees become disconnected from the Root, breaking the command chain.",
@@ -8,18 +8,24 @@
     "Blame Diffusion: Failures cannot be attributed to specific nodes."
   ],
   "invariants": [
-    "Chain of Command: Every node (except root) has exactly one active supervisor.",
     "Budget Flow: Resources flow down; Results flow up.",
-    "Connectivity: All nodes must be traceable back to the {{solver_root}}.",
-    "Acyclicity: The structure must form a DAG or {{tree}}."
+    "Connectivity: All nodes must be traceable back to the {{root_solver}}.",
+    "Acyclicity: The structure must form a DAG or {{tree}}.",
+    "Origin: tree-like at decomposition time; fan-in and deduplication permitted at execution, so the runtime graph is a DAG."
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Governance",
     "ring": 1,
     "related": [
       "UniversalSolverTree"
+    ],
+    "supersedes": [
+      "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def",
+      "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81"
+    ],
+    "path": [
+      "Society",
+      "Governance"
     ]
   },
   "data_schema": {
@@ -50,22 +56,22 @@
       }
     }
   },
-  "sema_ref": "SolverTree#e174",
-  "sema_id": "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def",
-  "sema_stub": "e174",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_ref": "SolverTree#3c94",
+  "sema_id": "sema:SolverTree#mh:SHA-256:3c94f8fbb9c4d1a56881b1d84a3cbe7ea56185fa778c2533657fc34f86ae66a1",
+  "sema_stub": "3c94",
   "dependencies": {
-    "references": {
-      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
-      "tree": "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
-      "solver_node": "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "solver_root": "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1"
-    },
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:53a7f5f86a370c0b6cb14bb1e0196c0e18ae32b2e637b4a870d7b91c1482933b",
+      "root_solver": "sema:RootSolver#mh:SHA-256:0eab25ce9d0813d98b179450701665a87b467ccbced30195d718515fb3fc5f6b",
+      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
+      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560",
+      "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
 }

@@ -13,16 +13,19 @@
     "Attribution: Feedback must be traceable to a specific action."
   ],
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "tier": 1,
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_id": "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15",
-  "sema_ref": "Feedback#9b5c",
-  "sema_stub": "9b5c",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
+  "sema_id": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
+  "sema_ref": "Feedback#6c7b",
+  "sema_stub": "6c7b",
   "signature": [
     "Signal(Incongruity)"
   ],
@@ -32,8 +35,10 @@
     },
     "references": {
       "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
-      "metric": "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
-      "result": "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
+      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9",
+      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

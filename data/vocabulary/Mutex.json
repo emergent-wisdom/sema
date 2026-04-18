@@ -4,41 +4,52 @@
   "gloss": "Physical possession token",
   "failure_modes": [
     "Totem loss (requires regeneration protocol).",
-    "Failure modes: (1) Holder crash - token orphaned, mitigated by expires_at + heartbeat.",
-    "(2) Token corruption - mitigated by REGENERATE protocol.",
-    "(3) Deadlock - mitigated by wait-for graph detection + ordered acquisition.",
-    "(4) Starvation - mitigated by aging + anti-starvation rule (no consecutive preemption).",
-    "(5) Byzantine holder - mitigated by forcible REVOKE + fencing.",
-    "(6) Split brain - mitigated by fencing tokens that invalidate on revocation."
+    "Holder crash: token orphaned (mitigated by expires_at + heartbeat).",
+    "Token corruption (mitigated by REGENERATE protocol).",
+    "Deadlock (mitigated by wait-for graph detection + ordered acquisition).",
+    "Starvation (mitigated by aging + anti-starvation rule \u2014 no consecutive preemption).",
+    "Byzantine holder (mitigated by forcible REVOKE + fencing).",
+    "Split brain (mitigated by fencing tokens that invalidate on revocation)."
   ],
   "invariants": [
-    "Uniqueness, Conservation of Totem"
+    "Uniqueness, {{conservation}} of the fencing totem"
   ],
   "preconditions": [
-    "Resource exists and is lockable. At least 2 agents contending. Agents can communicate."
+    "Resource exists and is lockable.",
+    "At least 2 agents contending.",
+    "Agents can communicate."
   ],
   "postconditions": [
-    "Exactly one agent holds lock. Other agents blocked or notified. {{lock}} state consistent across all observers."
+    "Exactly one agent holds lock.",
+    "Other agents blocked or notified.",
+    "{{lock}} state consistent across all observers."
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Physics",
-    "category": "Primitives",
     "ring": 0,
-    "caution": "Exclusive access \u2014 starvation enables denial of service."
+    "caution": "Exclusive access \u2014 starvation enables denial of service.",
+    "supersedes": [
+      "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7"
+    ],
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
+  },
+  "derived_from": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
+  "sema_id": "sema:Mutex#mh:SHA-256:4f92f538e7cac17a005087ef874e42d6d35f44dbf8ec3ceb863501d77450cc43",
+  "sema_ref": "Mutex#4f92",
+  "sema_stub": "4f92",
+  "dependencies": {
+    "accepts": {
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "references": {
+      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
+      "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
+      "resource": "sema:Resource#mh:SHA-256:3a2f2f0b7b22059fa22c61184defbbe2cbefc8b8b98cef39a6bc38a24f47c1ac"
+    }
   },
   "sema_layer": "Physics",
-  "sema_category": "Primitives",
-  "sema_id": "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7",
-  "sema_ref": "Mutex#0586",
-  "sema_stub": "0586",
-  "dependencies": {
-    "references": {
-      "resource": "sema:Resource#mh:SHA-256:9bb2dd733e5900d441d35d2c6e74f69dc4e4afe536c12adbcfc5863f3ada2922",
-      "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4"
-    },
-    "accepts": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
-    }
-  }
+  "sema_category": "Primitives"
 }

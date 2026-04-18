@@ -3,26 +3,31 @@
   "mechanism": "A specialized {{task}} enforcing {{budget}} and {{accept_spec}} to ensure economic and quality boundaries.",
   "gloss": "Economically constrained task",
   "invariants": [
-    "Budget Enclosure",
-    "Quality Gate"
+    "Budget Enclosure: total cost across all child tasks, retries, and recursions must stay within the declared {{budget}}.",
+    "Quality Gate: output must pass the declared {{accept_spec}} before the task is marked complete."
   ],
-  "derived_from": "sema:Task#mh:SHA-256:aa452d4a85efe37eed426f6529f3f2e1ee359999ff5ce3dd822f986f1513b4e7",
-  "sema_id": "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543",
-  "sema_ref": "BoundedTask#06a6",
-  "sema_stub": "06a6",
+  "derived_from": "sema:Task#mh:SHA-256:b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c",
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
-    "tier": 2
+    "tier": 2,
+    "supersedes": [
+      "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:1063ec27ef357a8a410276f42e3c8f16b17d74593121e388d2407a739b8f2c1b",
+  "sema_ref": "BoundedTask#1063",
+  "sema_stub": "1063",
   "dependencies": {
     "references": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0",
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

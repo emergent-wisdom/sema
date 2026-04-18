@@ -8,8 +8,7 @@
     "Legacy Rot: Assuming a historically popular pattern is still valid after context has drifted."
   ],
   "invariants": [
-    "Validation: Successful {{task}} completion is the only proof of shared meaning.",
-    "Wittgenstein's Razor: Meaning is Use. No Use = No Meaning."
+    "Pragmatic Validation (Wittgenstein's Razor): Successful {{task}} completion is the only proof of shared meaning \u2014 meaning is use. A pattern with zero successful coordination has no semantic mass."
   ],
   "preconditions": [
     "Pattern minted",
@@ -20,19 +19,24 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
-  "sema_ref": "UptakeAsGround#d5f3",
-  "sema_stub": "d5f3",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e",
+  "sema_ref": "UptakeAsGround#bcd4",
+  "sema_stub": "bcd4",
   "dependencies": {
     "references": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955",
-      "modest_claim": "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb"
+      "modest_claim": "sema:ModestClaim#mh:SHA-256:7da0b36913cf91f2b27f5a1676b6cfc35dac58f7f987bdb704164ad076777ed8",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

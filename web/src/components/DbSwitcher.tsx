@@ -10,6 +10,11 @@ export function DbSwitcher() {
 
   if (!data) return null
 
+  // Hide the switcher entirely when there's nothing to switch between.
+  // No databases = nothing to show; exactly one = no meaningful choice.
+  // Returning null here also lets the callsite skip its trailing divider.
+  if (!data.databases || data.databases.length < 2) return null
+
   const active = data.databases.find((d) => d.active)
   const activeName = active ? (active.bundled ? 'default' : active.name) : '?'
 

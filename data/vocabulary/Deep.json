@@ -9,9 +9,11 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
   "sema_id": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
   "sema_ref": "Deep#89f0",

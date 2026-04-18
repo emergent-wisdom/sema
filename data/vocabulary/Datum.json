@@ -23,14 +23,16 @@
   "mechanism": "A single unit of raw, unprocessed fact. Unlike information, it has no attached meaning yet, just existence. Singular of Data.",
   "gloss": "Raw unit of fact",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
   "sema_id": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b",
   "sema_ref": "Datum#31cf",
-  "sema_stub": "31cf"
+  "sema_stub": "31cf",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

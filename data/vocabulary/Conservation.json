@@ -1,0 +1,23 @@
+{
+  "handle": "Conservation",
+  "mechanism": "An invariant quantity preserved under the transformations of a closed system \u2014 no process within the system creates or destroys the conserved quantity; transformations only redistribute it. Substrate law: energy is conserved in closed physical systems; probability mass is conserved in stochastic systems; in coordination contexts, a token supply or attention budget that is conserved cannot be counterfeited mid-process. The boundary matters: conservation is defined relative to a closure; crossing the boundary violates the invariant within the enclosed system. Conservation is distinct from an authored budget constraint: budgets are engineered ceilings on consumption, while conservation is the substrate property that the sum-over-the-closed-system is invariant under the system's own dynamics.",
+  "gloss": "An invariant quantity preserved under a closed system's transformations \u2014 a substrate law",
+  "invariants": [
+    "Invariance: the conserved quantity's total value is unchanged by any transformation confined to the system.",
+    "Closure scope: conservation is defined relative to a boundary; the invariant holds strictly within the enclosed system, not across the boundary.",
+    "Redistribution only: transformations can move the quantity between parts of the system, never create or destroy it."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
+  },
+  "sema_id": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
+  "sema_ref": "Conservation#ba2e",
+  "sema_stub": "ba2e",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

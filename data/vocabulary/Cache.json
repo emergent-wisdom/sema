@@ -1,6 +1,6 @@
 {
   "handle": "Cache",
-  "mechanism": "A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}}. It enables {{heuristic_snap}} by bypassing re-computation.",
+  "mechanism": "A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}} alongside the inputs that produced them, so repeat lookups bypass re-computation. Read-through, write-behind, and invalidation discipline are descendant concerns; the foundation is the keyed lookup that returns a stored value if present.",
   "gloss": "Temporary high-speed storage",
   "failure_modes": [
     "Staleness: Serving outdated data after the source has changed.",
@@ -17,22 +17,43 @@
   "postconditions": [
     "Value retrieved significantly faster than source"
   ],
-  "sema_id": "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073",
-  "sema_ref": "Cache#1ea9",
-  "sema_stub": "1ea9",
+  "sema_id": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
+  "sema_ref": "Cache#08ed",
+  "sema_stub": "08ed",
   "_meta": {
-    "layer": "Mind",
-    "category": "Memory",
     "ring": 0,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
+  "data_schema": {
+    "type": "object",
+    "description": "Keyed-value storage with lookup semantics.",
+    "properties": {
+      "key": {
+        "type": "string",
+        "description": "Lookup key"
+      },
+      "value": {
+        "description": "Stored value"
+      },
+      "hit": {
+        "type": "boolean",
+        "description": "Whether the key was found on lookup"
+      }
+    }
+  },
   "dependencies": {
     "references": {
       "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b",
-      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

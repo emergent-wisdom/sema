@@ -3,7 +3,9 @@
   "mechanism": "A regularization pattern that forces abstraction by artificially constraining resources (bandwidth, memory, parameter count, or time). By creating a bottleneck where Capacity < Information, the agent is compelled to compress the signal, discarding noise and memorized details in favor of high-level concepts and generalizations. It artificially tightens the {{budget}}, forcing the agent to employ {{generalize}}, {{concept_blend}}, and {{context_compress}} to fit the signal within the bottleneck.",
   "gloss": "Forcing abstraction via resource starvation",
   "failure_modes": [
-    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting) Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint) False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget"
+    "Collapse: {{constraint}} is too tight; signal is lost entirely (underfitting).",
+    "Adversarial Encoding: {{agent}} finds a way to 'zip' noise rather than abstracting (violating the spirit of the constraint).",
+    "False Abstraction: {{agent}} hallucinates simple rules that don't actually exist to satisfy the budget."
   ],
   "invariants": [
     "Bottleneck Existence: Available Capacity must be strictly less than Input Information Content",
@@ -21,36 +23,41 @@
   "parameters": [
     {
       "name": "compression_ratio",
-      "type": "Float",
-      "range": "unspecified",
+      "type": "Ratio",
+      "range": "[0.0, 1.0]",
       "description": "Target resource utilization ratio that triggers forced abstraction"
     },
     {
       "name": "resource_type",
       "type": "Enum",
-      "range": "unspecified",
+      "range": "{Compute, Memory, Attention, Budget}",
       "description": "Type of resource being constrained (compute, memory, bandwidth)"
     }
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_layer": "Society",
-  "sema_category": "Economics",
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:739d57e4af53954f0cb6f880e87d85c784fea7e82643376e72777bbcd42f0d85",
-  "sema_ref": "CapacityPressure#739d",
-  "sema_stub": "739d",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:b3634240995739a6a63e3af53d108ce2921bead06593758ffa75f3724b492980",
+  "sema_ref": "CapacityPressure#b363",
+  "sema_stub": "b363",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "context_compress": "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:29a95899288d5be174cdd01853f8badd77a0508749126d87247063c2357e090e",
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "generalize": "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
+      "context_compress": "sema:ContextCompress#mh:SHA-256:4845cff7c2a6371afdb2d199ed427a5e5d8d8c5f6a2d24a3b6b8278eb8dff0ee",
+      "generalize": "sema:Generalize#mh:SHA-256:ad9e81a92a651c1081fd09857e243dc804e603dc977be22f86a0051bd642596f"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

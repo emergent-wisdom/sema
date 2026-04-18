@@ -8,23 +8,28 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Memory",
     "related": [
       "sema:GhostTrail#mh:SHA-256:ec5b2ca0ee009f2aec90a8fb2cec9ee5feb29a1d98f20a7211d973b26a629e6a",
       "sema:Signal#mh:SHA-256:30401098f53ba595e7f0c0e12b7b233d27cf170436a98f9f153016b7e5db9aa6"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_id": "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
-  "sema_ref": "Stigmergy#f624",
-  "sema_stub": "f624",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
+  "sema_id": "sema:Stigmergy#mh:SHA-256:53d4073df67b0c81011a3c328c1994e4d84c6d9e5c6f0c3f944ee7d9b1c34aa2",
+  "sema_ref": "Stigmergy#53d4",
+  "sema_stub": "53d4",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d"
+      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924",
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

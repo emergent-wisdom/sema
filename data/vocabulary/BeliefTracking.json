@@ -30,24 +30,30 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Memory",
     "related": [
       "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991",
+      "sema:BeliefTracking#mh:SHA-256:65b5f43b911ac5cf11622c6e4c4fa89457541630ec72f1f387394d5ad8afff14"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
+    ]
   },
-  "sema_id": "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991",
-  "sema_ref": "BeliefTracking#e02e",
-  "sema_stub": "e02e",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:3c59711efa02e8ad352030f7645c65d2379c63266b56da08a3e2eb15ee9b9ccd",
+  "sema_ref": "BeliefTracking#3c59",
+  "sema_stub": "3c59",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "belief": "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

@@ -1,7 +1,7 @@
 {
   "handle": "AcceptSpec",
-  "mechanism": "A strict, typed {{spec}} defining non-compensatory {{criteria}} at solver boundaries. Unlike soft prompts, an AcceptSpec specifies hard {{constraint}}s (e.g., Must be < 100/ton, Must violate no laws of physics). If ANY criterion fails, the artifact is rejected entirely. High quality in one dimension cannot compensate for failure in another.",
-  "gloss": "Non-compensatory failure boundaries",
+  "mechanism": "A strict, typed {{spec}} defining non-compensatory {{criteria}} and {{constraint}}s at solver boundaries. Each criterion is declared individually and carries a reframing hint for the FrameError emitted if it rejects. AcceptSpec is a Noun \u2014 it describes the contract. The active Verify surface of a Solver consumes the AcceptSpec, evaluates it against a Result, and yields either a Solution (on non-compensatory success) or a FrameError (on failure, carrying the specific rejecting gate and its reframing hint). A single AcceptSpec may be evaluated by multiple Verify surfaces. High quality in one dimension cannot compensate for failure in another.",
+  "gloss": "Non-compensatory acceptance contract; consumer Verify yields Solution or FrameError",
   "failure_modes": [
     "Over-constraining: Setting specs so tight that no solution can pass (Deadlock).",
     "Spec Drift: The spec does not accurately reflect the true goal."
@@ -26,9 +26,14 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -71,16 +76,16 @@
       }
     }
   },
-  "sema_id": "sema:AcceptSpec#mh:SHA-256:70ddc45d00abda5ec5b7475b080d252f01c3db589490498563621665444293f1",
-  "sema_ref": "AcceptSpec#70dd",
-  "sema_stub": "70dd",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
+  "sema_ref": "AcceptSpec#b77c",
+  "sema_stub": "b77c",
   "dependencies": {
     "references": {
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
       "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

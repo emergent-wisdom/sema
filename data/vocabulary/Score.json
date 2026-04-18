@@ -3,23 +3,58 @@
   "mechanism": "A numerical {{value}} representing the result of an evaluation or measurement. It quantifies a specific property (e.g., quality, fit, risk) on a defined scale.",
   "gloss": "Quantitative evaluation result",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Score#mh:SHA-256:29da7b609182c3ecef85ebafc34cae5acd221d65ef0e5c4b2b41bbededb6d414"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
-    "type": "number",
-    "description": "The numerical score value"
+    "type": "object",
+    "required": [
+      "value",
+      "normalized_range",
+      "metric_id"
+    ],
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "The numerical score value"
+      },
+      "normalized_range": {
+        "type": "object",
+        "required": [
+          "min",
+          "max"
+        ],
+        "properties": {
+          "min": {
+            "type": "number"
+          },
+          "max": {
+            "type": "number"
+          }
+        },
+        "description": "The [min, max] range this score is normalized against"
+      },
+      "metric_id": {
+        "type": "string",
+        "description": "Identifier of what was scored"
+      }
+    }
   },
-  "sema_ref": "Score#29da",
-  "sema_id": "sema:Score#mh:SHA-256:29da7b609182c3ecef85ebafc34cae5acd221d65ef0e5c4b2b41bbededb6d414",
-  "sema_stub": "29da",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_ref": "Score#d220",
+  "sema_id": "sema:Score#mh:SHA-256:d2202db2d9ebb0b44afc6c6d49f918e7bb5635229d635674c2d02090c7b3fe0a",
+  "sema_stub": "d220",
   "dependencies": {
     "composes_with": {
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

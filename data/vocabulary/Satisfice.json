@@ -9,27 +9,36 @@
     "Threshold cannot change mid-search."
   ],
   "preconditions": [
-    "{{option}} space enumerable. Acceptance threshold defined. Evaluation function exists."
+    "{{option}} space enumerable.",
+    "Acceptance threshold defined.",
+    "Evaluation function exists."
   ],
   "postconditions": [
-    "{{option}} meeting threshold found OR space exhausted. No backtracking occurred. {{decision}} final."
+    "{{option}} meeting threshold found OR space exhausted.",
+    "No backtracking occurred.",
+    "{{decision}} final."
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_id": "sema:Satisfice#mh:SHA-256:91615d1f2766f4391d8b6b01a9ce2c576ecabf278336b638ce9309d916d1827d",
-  "sema_ref": "Satisfice#9161",
-  "sema_stub": "9161",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
+  "sema_id": "sema:Satisfice#mh:SHA-256:0874ef403078cce0c8c51fc3504ee0b50196737dbb9148b4eeddea66d4dce8ad",
+  "sema_ref": "Satisfice#0874",
+  "sema_stub": "0874",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
-      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13",
-      "optimal_stop": "sema:OptimalStop#mh:SHA-256:74391a0813dfa1c767a2221d9fd50da3c1bd6714bd77a402f0178c707a8ad95f"
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
+      "optimal_stop": "sema:OptimalStop#mh:SHA-256:e7ca1560a9735578b604728b9cad0aa0b894bbdc0ff7aae3859cbc5a8e9955f0",
+      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

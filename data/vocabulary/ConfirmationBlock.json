@@ -10,10 +10,10 @@
   ],
   "parameters": [
     {
-      "name": "confirmations_required",
+      "name": "disconfirmations_required",
       "type": "Integer",
       "range": "[1, 100]",
-      "description": "Blocks before finality"
+      "description": "Counter-evidence instances required before the block releases. The pattern's mechanism actively seeks disconfirming evidence; this parameter names the threshold accordingly."
     },
     {
       "name": "timeout",
@@ -24,16 +24,21 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Inference",
     "ring": 0,
     "related": [
       "DissentSeek"
+    ],
+    "supersedes": [
+      "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
     ]
   },
-  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",
-  "sema_ref": "ConfirmationBlock#3dae",
-  "sema_stub": "3dae",
+  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:20db49e59b1e91b692635885522c55205d7889ddad978c36965d00a4fc985a5a",
+  "sema_ref": "ConfirmationBlock#20db",
+  "sema_stub": "20db",
   "sema_layer": "Mind",
   "sema_category": "Inference"
 }

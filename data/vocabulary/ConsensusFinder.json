@@ -8,24 +8,30 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Governance",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
+      "sema:ConsensusFinder#mh:SHA-256:c6fa491bb64048866873baff4398d1519ec3ac4fd40db0b1e281196c1482bcd9"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
+    ]
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
-  "sema_ref": "ConsensusFinder#1c5d",
-  "sema_stub": "1c5d",
-  "sema_layer": "Society",
-  "sema_category": "Governance",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:8c10ddd69cb4e8d06813558ff94bdbf80b000173fde14f65012fcd3ebaa37c86",
+  "sema_ref": "ConsensusFinder#8c10",
+  "sema_stub": "8c10",
   "signature": [
     "Discover(Consensus)"
   ],
   "dependencies": {
     "references": {
-      "consensus": "sema:Consensus#mh:SHA-256:b862129bd2b8e4a8aa030b4a62a57343385ee7e3863a0639a3563c9800da75f7",
-      "discover": "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
-      "quorum": "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
-      "resonate": "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4"
+      "consensus": "sema:Consensus#mh:SHA-256:376f5580e6df7d500aaea9020d26a976275a110e3f849d88871055e78b7c73fa",
+      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
+      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
+      "resonate": "sema:Resonate#mh:SHA-256:00578726e84b21be66bef145b823bf2cbfefa2a30bdfb55d7b012db367e4730c"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

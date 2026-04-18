@@ -7,68 +7,46 @@
     "Resource Bound: Total cost of Steps must be within budget."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "tier": 1,
     "related": [
       "Plan",
       "Build",
       "Rollout"
+    ],
+    "supersedes": [
+      "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_id": "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
-  "sema_ref": "ExecutionManifest#a0d9",
-  "sema_stub": "a0d9",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502",
+  "sema_ref": "ExecutionManifest#6cf5",
+  "sema_stub": "6cf5",
   "data_schema": {
     "type": "object",
+    "description": "Binds design with operation sequence.",
     "required": [
-      "manifest_id",
-      "steps"
+      "target_design",
+      "operation_sequence"
     ],
     "properties": {
-      "manifest_id": {
-        "type": "string"
+      "target_design": {
+        "type": "object"
       },
-      "target_system_id": {
-        "type": "string"
+      "operation_sequence": {
+        "type": "array"
       },
-      "steps": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "required": [
-            "step_id",
-            "action",
-            "params"
-          ],
-          "properties": {
-            "step_id": {
-              "type": "string"
-            },
-            "action": {
-              "type": "string"
-            },
-            "params": {
-              "type": "object"
-            },
-            "rollback_action": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "estimated_cost": {
-        "type": "number"
-      },
-      "safety_checks": {
+      "constraints": {
         "type": "array",
         "items": {
           "type": "string"
         }
       }
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

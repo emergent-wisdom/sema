@@ -1,61 +1,43 @@
 {
   "handle": "Check",
-  "data_schema": {
-    "type": "object",
-    "required": [
-      "target_id",
-      "condition",
-      "status"
-    ],
-    "properties": {
-      "target_id": {
-        "type": "string",
-        "description": "The entity being checked"
-      },
-      "condition": {
-        "type": "string",
-        "description": "The logic predicate"
-      },
-      "status": {
-        "type": "boolean",
-        "description": "True/False result"
-      },
-      "evidence": {
-        "type": "string",
-        "description": "Why it passed/failed"
-      }
-    }
-  },
-  "mechanism": "A non-blocking verification primitive. Evaluates the truth-value of a {{condition}} against a target and returns a Boolean status. Unlike a {{gate}} (which alters control flow based on the result), a Check is purely observational and side-effect free. It answers 'Is this true?' without deciding 'Should we stop?'.",
-  "gloss": "Non-blocking truth evaluation",
+  "mechanism": "A non-blocking verification primitive. Evaluates a {{condition}} against a target and yields a {{status}} (Verified, Falsified, or Unknown). Unlike a {{gate}} (which alters control flow via a Decision), Check is purely observational and side-effect free \u2014 it answers 'is this true?' without deciding 'should we stop?'. Unknown is a first-class outcome distinct from Falsified: it asserts absence of evidence, not evidence of absence.",
+  "gloss": "Side-effect-free observational verification yielding Verified/Falsified/Unknown",
   "failure_modes": [
-    "False Positive: Check returns True due to flawed logic or sensor noise.",
-    "Heisenbug: The act of checking alters the state being checked."
+    "False Positive: Check returns Verified due to flawed logic or sensor noise.",
+    "Heisenbug: The act of checking alters the state being checked.",
+    "Callers collapse Unknown into Falsified, losing the meaningful distinction."
   ],
   "invariants": [
     "Side-Effect Free: Running a check must not mutate the target state.",
-    "Determinism: Same input context yields same boolean result."
+    "Determinism: Same input context yields same status."
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 0,
     "related": [
-      "Gate#5c08",
-      "Validate#16b2",
-      "Judge#3d5f"
+      "Validate",
+      "Judge"
+    ],
+    "supersedes": [
+      "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_id": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",
-  "sema_ref": "Check#1544",
-  "sema_stub": "1544",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_id": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
+  "sema_ref": "Check#5f38",
+  "sema_stub": "5f38",
   "dependencies": {
     "references": {
-      "gate": "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d"
+    },
+    "yields": {
+      "status": "sema:Status#mh:SHA-256:7f5fb8391f994b56c06e54595ad72e9dc4f5672216cab74a9d061fb17bdd5e03"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

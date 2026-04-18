@@ -146,7 +146,7 @@ handle with a stub (`Handle#stub`).
 
 ```bash
 sema resolve <Handle>
-sema resolve 'Stigmergy#f624'
+sema resolve 'Stigmergy#53d4'
 ```
 
 ### show - Print Pattern Definition
@@ -157,7 +157,7 @@ read-path for "give me the definition behind this inline ref."
 
 ```bash
 sema show <Handle>
-sema show 'StateLock#774b'
+sema show 'StateLock#5602'
 ```
 
 ### skeleton - Graph Overview
@@ -190,6 +190,9 @@ sema pull --verify
 # Skip a specific upstream pattern (repeatable)
 sema pull --exclude SomeHandle --exclude AnotherHandle
 
+# Keep locally superseded patterns alongside their upstream replacements
+sema pull --preserve-superseded
+
 # Revert to the state before the last successful pull
 sema pull --undo
 ```
@@ -204,8 +207,9 @@ snapshot, so running `sema pull` twice in a row is safe.
 
 **Behavior contract**
 
-- **User-only patterns are never deleted.** Anything in your active DB that
-  isn't in upstream stays put — pull only adds and updates.
+- **User-only patterns are never silently deleted.** Anything in your active
+  DB that isn't in upstream stays put — with one explicit exception:
+  supersession cleanup (below).
 - **`_meta` is field-merged.** Upstream owns `layer`, `category`, `tier`,
   `ring`, `supersedes` (taxonomy reorganizations propagate to you). User
   owns `caution` and `related` (your local annotations survive).
@@ -216,6 +220,27 @@ snapshot, so running `sema pull` twice in a row is safe.
   half-applied state.
 - **Fast-path skip.** Patterns whose stored sema_id already matches upstream
   are skipped without a write.
+
+**Supersession cleanup**
+
+When an upstream pattern declares `_meta.supersedes: [<local_sema_id>]`,
+upstream has explicitly said "this obsoletes that." By default pull acts
+on that claim:
+
+- The superseded local pattern is removed.
+- The replacement is added in the same run.
+- Output shows `→ OldHandle → NewHandle`.
+
+Two guards keep this safe:
+
+- **Orphan protection** — if a user-only local pattern still depends on the
+  superseded one (references its `sema_id`), pull keeps the superseded
+  pattern in place and warns. Fix the dependent and re-run.
+- **Opt-out** — `--preserve-superseded` keeps the old handle alongside the
+  replacement. Both coexist in the DB.
+
+The pre-pull snapshot covers recovery either way: `sema pull --undo`
+restores the exact prior state.
 
 **Persistent exclusions**
 

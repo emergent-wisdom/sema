@@ -1,6 +1,6 @@
 {
   "handle": "Audit",
-  "mechanism": "The process of verifying that a {{system}}'s {{state}} or behavior matches its specifications.",
+  "mechanism": "A structured record produced by a verification event: the artifact naming what was checked, who checked it, when, the inputs and outputs, and the decision reached. Distinct from the verb 'to audit' \u2014 this Noun is the durable output that downstream callers consume and reference. Used as {{state}}-grounded evidence when disputes over {{system}} behavior arise.",
   "gloss": "Verification of conformance",
   "invariants": [
     "Immutability: Audit logs cannot be altered once written.",
@@ -15,9 +15,14 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -58,15 +63,15 @@
       }
     }
   },
-  "sema_id": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1",
-  "sema_ref": "Audit#4044",
-  "sema_stub": "4044",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_id": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
+  "sema_ref": "Audit#6888",
+  "sema_stub": "6888",
   "dependencies": {
     "references": {
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

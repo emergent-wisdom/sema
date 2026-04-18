@@ -19,26 +19,33 @@
       }
     }
   },
-  "mechanism": "A concrete data structure representing a sequential list of linked nodes. Unlike {{linear}} (which is an abstract topology class), a Chain is the instantiated storage object containing the steps and their data payloads.",
-  "gloss": "Sequential data container (Linked List)",
+  "mechanism": "A concrete sequential data structure: a list of linked nodes where each node (except the last) points to exactly one successor. Chain is the instantiated storage object \u2014 distinct from the more abstract {{sequence}} (which describes temporal ordering semantics) and from the branching {{tree}} topology. Chain is the canonical spatial form for strictly sequential, non-branching data.",
+  "gloss": "Sequential data container (linked list)",
   "invariants": [
     "Connectivity: Node(N) must point to Node(N+1).",
     "Acyclicity: No loops permitted."
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Linear#mh:SHA-256:81affcd5f7c1ea56b7572799fc235cf95d4e3c692de77c9eb8c01930b8e1d41c",
+      "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_id": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-  "sema_ref": "Chain#5711",
-  "sema_stub": "5711",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_id": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+  "sema_ref": "Chain#711e",
+  "sema_stub": "711e",
   "dependencies": {
     "references": {
-      "linear": "sema:Linear#mh:SHA-256:81affcd5f7c1ea56b7572799fc235cf95d4e3c692de77c9eb8c01930b8e1d41c"
+      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
+      "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

@@ -4,8 +4,7 @@
   "gloss": "Cost-distance indexing",
   "failure_modes": [
     "Metric Divergence: Agents disagree on distance calculation, causing payment rejection.",
-    "Center becomes economically inaccessible to low-resource agents.",
-    "Center becomes inaccessible to the poor."
+    "Center becomes economically inaccessible to low-resource agents."
   ],
   "invariants": [
     "Cost Monotonicity: Cost(Distance D-1) > Cost(Distance D) - closer to center means higher cost",
@@ -33,22 +32,27 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_id": "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
-  "sema_ref": "TieredAccess#2a28",
-  "sema_stub": "2a28",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:TieredAccess#mh:SHA-256:fa1e3953acc07b0d9ffb60cc5a042c4194bd219f100f4d41cd8167a731668a98",
+  "sema_ref": "TieredAccess#fa1e",
+  "sema_stub": "fa1e",
   "dependencies": {
-    "references": {
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
-    },
     "composes_with": {
       "bearer_token": "sema:BearerToken#mh:SHA-256:2fe9926ab156fd1df414f52e9a4d430f75c7c3311d217cd685f514253f4b1f9d"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

@@ -1,0 +1,81 @@
+{
+  "handle": "RootSolver",
+  "mechanism": "The apex node of a solver {{tree}} \u2014 the unique entry point where a {{problem}} (attached to a {{task}}) enters that tree. Its cognitive operation is triage: determining what kind of problem this is and routing it via a dispatch function conditioned on its {{pathway_memory}}. The RootSolver holds four unique authorities: Problem Framing (initial constraints and {{problem_space}}), Budget Allocation (cascading {{budget}} to child {{solver_node}}s), Ultimate Accountability (owning the final {{result}} or {{solution}}), and Pathway Memory maintenance (compounding learning about which routes work for which problem types). Every tree has exactly one RootSolver; sub-trees carry their own.",
+  "gloss": "Apex triage node of a SolverTree, with Pathway Memory as its compounding learning site",
+  "failure_modes": [
+    "Bad Frame: problem framed incorrectly, unsolvable by downstream nodes.",
+    "Reframe Failure: Root fails to find a valid alternative frame after downstream failure.",
+    "Budget Misallocation: resources distributed poorly across child nodes.",
+    "Poisoned Pathway Memory silently biases routing decisions \u2014 mitigated by signed writes only."
+  ],
+  "invariants": [
+    "Singleton per tree: every SolverTree has exactly one RootSolver.",
+    "Ultimate Responsibility: the RootSolver owns the final success/failure of the root {{task}}.",
+    "Reframe Authority: only the RootSolver can reframe the original {{problem}}.",
+    "Pathway Memory writes are signed \u2014 integrity of the compounding surface is enforced."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 1,
+    "supersedes": [
+      "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f",
+      "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "task_ref",
+      "problem_frame"
+    ],
+    "properties": {
+      "task_ref": {
+        "type": "string",
+        "description": "Reference to originating task"
+      },
+      "problem_frame": {
+        "type": "object",
+        "description": "Initial problem constraints and space"
+      },
+      "budget_allocation": {
+        "type": "object",
+        "description": "Resource distribution to children"
+      },
+      "pathway_memory_ref": {
+        "type": "string",
+        "description": "Reference to this Root's PathwayMemory"
+      },
+      "children": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Child solver node refs"
+      }
+    }
+  },
+  "sema_id": "sema:RootSolver#mh:SHA-256:0eab25ce9d0813d98b179450701665a87b467ccbced30195d718515fb3fc5f6b",
+  "sema_ref": "RootSolver#0eab",
+  "sema_stub": "0eab",
+  "dependencies": {
+    "composes_with": {
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
+    },
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:dc0727e3b91148946516db3f5b8279d289803e8db397ba54c6b860420f24e5a8",
+      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327",
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
+      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "tree": "sema:Tree#mh:SHA-256:a5a32e4770d6b17f8aae9be28e532900434ff787bfcaa768e755138293c12c65"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

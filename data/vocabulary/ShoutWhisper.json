@@ -17,22 +17,27 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "related": [
       "sema:Route#mh:SHA-256:7c7e44685dd8d0fffb3d9ff54cbfb5eba19791e324b6a6ed66382b03f2226fc9"
     ],
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:ShoutWhisper#mh:SHA-256:35ddf298feb20dc16aeaa1294566eddb2dda1928744d7d25e747ae9a697d0d78"
+    ],
+    "path": [
+      "Society",
+      "Protocols"
+    ]
   },
-  "sema_id": "sema:ShoutWhisper#mh:SHA-256:35ddf298feb20dc16aeaa1294566eddb2dda1928744d7d25e747ae9a697d0d78",
-  "sema_ref": "ShoutWhisper#35dd",
-  "sema_stub": "35dd",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:ShoutWhisper#mh:SHA-256:6cb0fb9eee1610d55dc32cf1cab74df16f7d5001bab138ad82ac7e404a5af0e0",
+  "sema_ref": "ShoutWhisper#6cb0",
+  "sema_stub": "6cb0",
   "dependencies": {
     "references": {
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
-      "check": "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6"
+      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
+      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

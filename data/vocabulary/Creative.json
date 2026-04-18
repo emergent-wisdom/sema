@@ -4,9 +4,11 @@
   "gloss": "Generating novelty and value",
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 1
+    "ring": 1,
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
   "sema_id": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
   "sema_ref": "Creative#5574",

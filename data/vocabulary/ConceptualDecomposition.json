@@ -1,0 +1,39 @@
+{
+  "handle": "ConceptualDecomposition",
+  "mechanism": "The cognitive act of taking a concept \u2014 typically a problem or task \u2014 and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (at minimum exposes a Manifest + Execute surface, so it is independently delegatable). Distinct from generic {{decompose}}: Decompose merely divides; ConceptualDecomposition divides *into solver-compatible units*. This is the intellectual move that enables recursive fractal structure \u2014 because child concepts conform to the same interface as the parent, the same five-surface contract governs every level. A few agents can assign these solver roles to themselves and perform lightweight fractal intelligence for a specific problem; the resulting structure may persist as a reusable pattern or be torn down at completion. The decomposition is passed through a {{decomposition_gate}} to validate Necessity, Independence, Universality, and Completeness before any child is spawned. Children compose back via {{synthesis}} once their individual results return.",
+  "gloss": "Breaking a concept into solver-contract-bound sub-concepts \u2014 the move that enables fractal recursion",
+  "invariants": [
+    "Contract-binding: every sub-concept exposes the {{solver}} interface (Manifest + Execute mandatory).",
+    "Gated: decompositions pass the {{decomposition_gate}} suite (Necessity, Independence, Universality, Completeness) before children are spawned.",
+    "Recomposability: results of sub-concepts compose back to the parent concept via {{synthesis}}."
+  ],
+  "failure_modes": [
+    "Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.",
+    "Non-orthogonal split: the decomposition overlaps itself; the {{decomposition_gate}} Independence test should catch this but does not if the overlap is semantic rather than structural.",
+    "Contract violation: sub-concepts that do not cleanly expose Manifest + Execute cannot be dispatched \u2014 the decomposition produced descriptions, not delegatable units.",
+    "Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing holographic-shard leakage."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 1,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
+  },
+  "sema_id": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+  "sema_ref": "ConceptualDecomposition#75bc",
+  "sema_stub": "75bc",
+  "dependencies": {
+    "composes_with": {
+      "decomposition_gate": "sema:DecompositionGate#mh:SHA-256:b0f6f3df3848c501bfe8f20049593befd722a0a49b91d505f8b7ece0b21ad657",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+    },
+    "references": {
+      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
+      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

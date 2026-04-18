@@ -8,10 +8,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Verification",
     "ring": 0,
-    "caution": "Validation boundary \u2014 bypass enables injection or unexpected state."
+    "caution": "Validation boundary \u2014 bypass enables injection or unexpected state.",
+    "supersedes": [
+      "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+    ],
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ]
   },
   "sema_ref": "InputGuard#7353",
   "sema_id": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",

@@ -10,20 +10,26 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:UncertaintyMap#mh:SHA-256:33e1f0a76ec4b9d332cea0410d83f36c9278438b64785f7093ce5e2698c493d7",
+      "sema:UncertaintyMap#mh:SHA-256:942cea71810d05d014de70e85cd6ef591b81424bdba2b6ade8866f5ed440caeb"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_id": "sema:UncertaintyMap#mh:SHA-256:33e1f0a76ec4b9d332cea0410d83f36c9278438b64785f7093ce5e2698c493d7",
-  "sema_ref": "UncertaintyMap#33e1",
-  "sema_stub": "33e1",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
+  "sema_id": "sema:UncertaintyMap#mh:SHA-256:822cd0ebde031f9245d7a5e1212dc541279653aa7f9a34ee62c10a1447394138",
+  "sema_ref": "UncertaintyMap#822c",
+  "sema_stub": "822c",
   "dependencies": {
     "references": {
-      "confidence_calibrate": "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60",
-      "prioritize": "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
-      "probe": "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa"
+      "confidence_calibrate": "sema:ConfidenceCalibrate#mh:SHA-256:597b36a0dcd0af0c273bc1819ba4845829addb5ea49663f7574cd0936bb4abef",
+      "prioritize": "sema:Prioritize#mh:SHA-256:274cda68266a9a8b986a22d2fa6f4702565fb879058e18035e64b212a850082c",
+      "probe": "sema:Probe#mh:SHA-256:12d8497f8ef8d8abe3a0bbc02cffe84a184f943e5c6845c06e6456b96e71b602"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

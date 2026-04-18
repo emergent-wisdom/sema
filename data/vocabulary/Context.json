@@ -18,18 +18,23 @@
     "Schema is defined"
   ],
   "postconditions": [
-    "agent has a valid environment to Execute"
+    "Agent has a valid environment to execute."
   ],
   "_meta": {
-    "tier": 3,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
+    "tier": 1,
     "related": [
       "ContextCompress",
       "ContextSwitch",
       "AnchorDrop"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
     "type": "object",
@@ -48,15 +53,15 @@
       }
     }
   },
-  "sema_id": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-  "sema_ref": "Context#510a",
-  "sema_stub": "510a",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_id": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+  "sema_ref": "Context#e88a",
+  "sema_stub": "e88a",
   "dependencies": {
     "references": {
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

@@ -1,6 +1,6 @@
 {
   "handle": "IdempotentWrite",
-  "mechanism": "A technical primitive where every write request includes a unique 'Idempotency Key'. The receiver tracks processed keys. If it receives a duplicate key, it returns the stored result without re-executing the side effects. This makes 'At-Least-Once' delivery safe. It uses a keyed {{state_lock}} to deduplicate requests, ensuring only the first write executes while subsequent ones return the cached result.",
+  "mechanism": "A technical primitive where every write request includes a unique 'Idempotency Key'. The receiver maintains a {{cache}} of processed keys. If it receives a duplicate key, it returns the stored result without re-executing the side effects. This makes 'At-Least-Once' delivery safe. It uses a keyed {{state_lock}} to deduplicate requests, ensuring only the first write executes while subsequent ones return the cached result.",
   "gloss": "Safe retries via unique keys",
   "failure_modes": [
     "Key collision (two different requests use same key)."
@@ -17,22 +17,29 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
     "related": [
       "sema:UniqueHandle#mh:SHA-256:c3fb079be6908528bb340de26feb85f429a61fc13db10e728ea0ec3fffb19110"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:IdempotentWrite#mh:SHA-256:6c557713e21198238066f28ec889d6c877caab1f34d58c41baca371919e051af",
+      "sema:IdempotentWrite#mh:SHA-256:9b95e06ae2e4eec89639328bae9c7988f4b5873ff676a1a5f040bf73373e7857"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_id": "sema:IdempotentWrite#mh:SHA-256:6c557713e21198238066f28ec889d6c877caab1f34d58c41baca371919e051af",
-  "sema_ref": "IdempotentWrite#6c55",
-  "sema_stub": "6c55",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:102320da989eb7e2422d943ab8482cb0aa88481aa843794a7928fc531ef1acef",
+  "sema_ref": "IdempotentWrite#1023",
+  "sema_stub": "1023",
   "dependencies": {
     "references": {
+      "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
       "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "state_lock": "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a"
+      "state_lock": "sema:StateLock#mh:SHA-256:560229dacf3ebeebd3461dd3c4a9553d3658bf0f447741b31e38e0418db45e3a"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

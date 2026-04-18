@@ -19,20 +19,26 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Physics",
-    "category": "Primitives",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:Uncertain#mh:SHA-256:b1596d0176ec07983b13fe811026335849400cab1b8dc090e3aeec726d5e0a54",
+      "sema:Uncertain#mh:SHA-256:d530cb44023db8c31fcf38084d2880df7e6a9d0c51f3785cb7a42d75bd504bf8"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_ref": "Uncertain#b159",
-  "sema_id": "sema:Uncertain#mh:SHA-256:b1596d0176ec07983b13fe811026335849400cab1b8dc090e3aeec726d5e0a54",
-  "sema_stub": "b159",
-  "sema_layer": "Physics",
-  "sema_category": "Primitives",
+  "sema_id": "sema:Uncertain#mh:SHA-256:b5f4bb10ff5dc7aed9722d5e0711d7431e2373a2ccb4d617ae685525b176b0d0",
+  "sema_ref": "Uncertain#b5f4",
+  "sema_stub": "b5f4",
   "dependencies": {
     "references": {
-      "uncertainty_map": "sema:UncertaintyMap#mh:SHA-256:942cea71810d05d014de70e85cd6ef591b81424bdba2b6ade8866f5ed440caeb",
-      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "uncertainty_map": "sema:UncertaintyMap#mh:SHA-256:822cd0ebde031f9245d7a5e1212dc541279653aa7f9a34ee62c10a1447394138",
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

@@ -17,19 +17,24 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Verification",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d"
+    ],
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ]
   },
-  "sema_id": "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d",
-  "sema_ref": "SpotAudit#6673",
-  "sema_stub": "6673",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Verification",
+  "sema_id": "sema:SpotAudit#mh:SHA-256:000ed33bc0676411521d703253810082f4a6a470818e194e833eca8605859ea8",
+  "sema_ref": "SpotAudit#000e",
+  "sema_stub": "000e",
   "dependencies": {
     "references": {
-      "state_audit": "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e",
-      "audit": "sema:Audit#mh:SHA-256:40447e5c9c68a79109ce76f564ca8c09c2c572f8deabcb92ed3d7db0b845b3c1"
+      "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
+      "state_audit": "sema:StateAudit#mh:SHA-256:81955226e479378fe597ebe9d86b1a7fe788d392f99ae29c85a81f9ac091dc96"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
 }

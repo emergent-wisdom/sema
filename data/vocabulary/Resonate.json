@@ -6,11 +6,8 @@
     "False Resonance: Apparent alignment that is actually random {{noise}}.",
     "Echo Chamber: Feedback {{loop}} amplifies error instead of {{signal}}.",
     "Spoofing: Adversarial agents emit fake intent tags (Cheap Talk).",
-    "Precise coordination required (RESONATE only achieves approximate alignment).",
-    "High-stakes actions where approximate isn't good enough.",
-    "Adversarial agents exploit {{signal}}s (fake intent tags).",
+    "Precise-coordination mismatch: RESONATE only achieves approximate alignment; high-stakes actions requiring precision need a different coordination primitive.",
     "{{signal}} {{noise}} drowns real patterns.",
-    "False resonance (apparent alignment that isn't real).",
     "Oscillation between conflicting patterns."
   ],
   "invariants": [
@@ -40,23 +37,28 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
-    "ring": 1
+    "ring": 1,
+    "supersedes": [
+      "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4"
+    ],
+    "path": [
+      "Society",
+      "Coordination"
+    ]
   },
-  "sema_id": "sema:Resonate#mh:SHA-256:99d9c2629e862fb9f647bb98e30eba4a47b9204bea6e61f79709b65f8fac55b4",
-  "sema_ref": "Resonate#99d9",
-  "sema_stub": "99d9",
-  "sema_layer": "Society",
-  "sema_category": "Economics",
+  "sema_id": "sema:Resonate#mh:SHA-256:00578726e84b21be66bef145b823bf2cbfefa2a30bdfb55d7b012db367e4730c",
+  "sema_ref": "Resonate#0057",
+  "sema_stub": "0057",
   "dependencies": {
     "references": {
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:6c65e21711b7203fcd84ed58755cd57239cda2e09a1e66ddf81e407edcd5eeb7",
-      "loop": "sema:Loop#mh:SHA-256:fb2e7eeab0b569d64f7e74defeec56aeccf5abdb6c5cd4a0ce80c397ebc5d593",
-      "dampen": "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
-      "noise": "sema:Noise#mh:SHA-256:c4b4012e79ca2e0c9e131cd4c82a8aaee8b99defed361622e04b47e94474565d",
-      "decay": "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
+      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924",
+      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
+      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

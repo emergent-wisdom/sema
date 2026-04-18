@@ -11,18 +11,23 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:RepresentationSwap#mh:SHA-256:1409e377e3904e4d36d64389fe7d8735975a2d526a9f0812005f2403f81348c3"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:1409e377e3904e4d36d64389fe7d8735975a2d526a9f0812005f2403f81348c3",
-  "sema_ref": "RepresentationSwap#1409",
-  "sema_stub": "1409",
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:806a7df2d48e461698db9c10c451bab44a98f3d27158154e27eccee51e9af1e9",
+  "sema_ref": "RepresentationSwap#806a",
+  "sema_stub": "806a",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:29a95899288d5be174cdd01853f8badd77a0508749126d87247063c2357e090e"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

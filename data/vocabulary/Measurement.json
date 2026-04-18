@@ -1,0 +1,28 @@
+{
+  "handle": "Measurement",
+  "mechanism": "The substrate act of extracting information about a system's {{state}} \u2014 an operation that, in general, *changes the state being measured*. Distinct from the cognitive `Observe` primitive: Measurement is the substrate-level phenomenon, Observe is the agent-level process. In quantum systems, measurement collapses superposition. In distributed systems, observing a clock at node A introduces latency and ambiguity about the clock's value elsewhere. In classical measurement, even reading a variable in a concurrent system can race with writers. The substrate property is that observation is never free \u2014 it takes resources, it takes time, and it perturbs the measured system. The degree of perturbation is domain-dependent (negligible for a thermometer in a large water tank; total for a measurement on a qubit); the substrate fact of perturbation is universal.",
+  "gloss": "The substrate act of extracting information from a system \u2014 in general, changes the state being measured",
+  "invariants": [
+    "Perturbation: measurement, in general, changes the state of the measured system. The degree varies by domain; the fact does not.",
+    "Cost: measurement requires resources (time, energy, channel capacity) \u2014 there is no free observation.",
+    "Irreversibility: once a measurement has extracted information, the prior state is not recoverable merely by unobserving \u2014 collapse of superposition in quantum systems, record of observation in classical systems."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
+  },
+  "sema_id": "sema:Measurement#mh:SHA-256:5da6ed7d2127c41bdeb1cfaa0d737425ec5c0d762eb6288601e0f781aa18a9e0",
+  "sema_ref": "Measurement#5da6",
+  "sema_stub": "5da6",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

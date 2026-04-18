@@ -4,23 +4,28 @@
   "gloss": "Isolation boundary",
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Primitives",
     "ring": 1,
     "related": [
       "AgentSandbox",
       "CircuitBreaker",
       "SafetyCartographer"
     ],
-    "caution": "Escape vectors may exist in unaudited system call surfaces."
+    "caution": "Escape vectors may exist in unaudited system call surfaces.",
+    "supersedes": [
+      "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
   "sema_id": "sema:Sandbox#mh:SHA-256:e00f4eca5e3c4e369bc8109db17aa66835b86e5a65ee16fb07b2f431db3b8638",
   "sema_ref": "Sandbox#e00f",
   "sema_stub": "e00f",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Primitives",
   "failure_modes": [
     "Unconstrained vector permits escape from the isolation boundary.",
     "Resource exhaustion within the sandbox affects the enclosing system."
-  ]
+  ],
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

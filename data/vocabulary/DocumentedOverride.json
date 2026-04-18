@@ -1,0 +1,40 @@
+{
+  "handle": "DocumentedOverride",
+  "mechanism": "The override-with-documentation safety valve at hard seams. Accepts a failed {{accept_spec}} evaluation plus a textual rationale and scoped override authority; composes_with {{time_warp_log}} to cryptographically log the override event (forward action + override + rationale + signing identity). Yields a forced {{decision}} that bypasses the failed gate. The override is a first-class, audit-trailed coordination act \u2014 every bypass carries non-repudiable evidence of who overrode what and why. Preserves fail-closed discipline by making the bypass explicit, named, signed, and logged rather than silent.",
+  "gloss": "Supervised bypass of a failed acceptance gate, cryptographically logged",
+  "invariants": [
+    "Every override event must be signed by an identity holding scoped override authority.",
+    "Forward action, override, rationale, and signing identity are all logged to {{time_warp_log}} \u2014 no partial records.",
+    "Rationale field must be non-empty: a DocumentedOverride with no documentation is not a DocumentedOverride."
+  ],
+  "failure_modes": [
+    "Override authority is over-scoped \u2014 any agent can bypass any gate, defeating the fail-closed discipline.",
+    "Compromised signing key enables silent override with valid-looking log entries.",
+    "Rationale accepts low-information text ('legitimate business reason') that defeats the audit purpose while technically satisfying non-empty."
+  ],
+  "_meta": {
+    "tier": 2,
+    "ring": 1,
+    "caution": "Overrides a failed acceptance gate. The cryptographic log is the only post-hoc accountability; ensure override authority is scoped and auditable before composing.",
+    "path": [
+      "Society",
+      "Governance"
+    ]
+  },
+  "sema_id": "sema:DocumentedOverride#mh:SHA-256:362906e70b8e357f4f109ddaca387573aacca0fd6583611076388779be7b7694",
+  "sema_ref": "DocumentedOverride#3629",
+  "sema_stub": "3629",
+  "dependencies": {
+    "accepts": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
+    },
+    "composes_with": {
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

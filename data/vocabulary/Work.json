@@ -38,25 +38,30 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "related": [
       "EntropyPump"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
+  },
+  "sema_id": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b",
+  "sema_ref": "Work#35b6",
+  "sema_stub": "35b6",
+  "dependencies": {
+    "composes_with": {
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "references": {
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11"
+    }
   },
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
-  "sema_id": "sema:Work#mh:SHA-256:aaad0ca428ad22dd8f5941f56b4425ddf62180752cfd6d5d8145419c8a6ac90b",
-  "sema_ref": "Work#aaad",
-  "sema_stub": "aaad",
-  "dependencies": {
-    "references": {
-      "act": "sema:Act#mh:SHA-256:5d55ad7db734254e55dfcb82c83b32a4fd5ac955428e3ff95706f9c3bfc787cd",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
-    },
-    "composes_with": {
-      "task": "sema:Task#mh:SHA-256:d9f92106bd9cd867b1b753275d6faa37b6ea4fcbb948b283460caedfa75b6955"
-    }
-  }
+  "sema_category": "Data Structures"
 }

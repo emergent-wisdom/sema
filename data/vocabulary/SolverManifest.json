@@ -16,30 +16,27 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
-  "sema_id": "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
-  "sema_ref": "SolverManifest#67ac",
-  "sema_stub": "67ac",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:SolverManifest#mh:SHA-256:0299ce31325923a906e72bebe772918d4ce24da6d43f42bc014ffeede7972ef0",
+  "sema_ref": "SolverManifest#0299",
+  "sema_stub": "0299",
   "data_schema": {
     "type": "object",
+    "description": "Typed solver identity + capabilities.",
     "required": [
       "solver_id",
-      "input_schema",
-      "output_schema"
+      "capabilities"
     ],
     "properties": {
       "solver_id": {
-        "type": "string"
-      },
-      "version": {
-        "type": "string"
-      },
-      "description": {
         "type": "string"
       },
       "capabilities": {
@@ -48,34 +45,26 @@
           "type": "string"
         }
       },
-      "cost_model": {
-        "type": "object",
-        "properties": {
-          "base_cost": {
-            "type": "number"
-          },
-          "per_token_cost": {
-            "type": "number"
-          },
-          "currency": {
-            "type": "string"
-          }
+      "input_types": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
       },
-      "input_schema": {
-        "type": "object",
-        "description": "JSON Schema for valid inputs"
-      },
-      "output_schema": {
-        "type": "object",
-        "description": "JSON Schema for guaranteed outputs"
+      "output_types": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     }
   },
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "solver": "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982"
+      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

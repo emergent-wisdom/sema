@@ -58,6 +58,15 @@ def apply_changes(
         return False
     store = GraphStore(db_path)
 
+    # Banner: fingerprint the DB before mutating it, so the audit trail is
+    # clear about which vocabulary state this apply ran against.
+    try:
+        from ..core.hashing import format_load_line, vocabulary_info
+
+        print(format_load_line(vocabulary_info(db_path)))
+    except Exception:
+        pass
+
     # ============ PHASE 1: VALIDATION ============
     print("Validating...")
     errors = []
@@ -229,6 +238,18 @@ def apply_changes(
             err_msg = "; ".join(mint_result.errors)
             print(f"  ❌ Failed to add {data['handle']}: {err_msg}")
             return False
+
+    # ============ POST-APPLY SWEEP ============
+    # Topological sort orders by hard dependencies; _meta.related is a
+    # soft link and doesn't participate. A pattern whose related target
+    # is minted AFTER it silently gets no RELATED_TO edge at apply time.
+    # Sweep once the full batch is loaded to catch those.
+    if add_patterns:
+        swept = store.sweep_related_edges()
+        if swept:
+            print(
+                f"  ↔ Swept {swept} RELATED_TO edge(s) that the per-pattern apply couldn't create"
+            )
 
     # ============ DONE ============
     total_removed = len(remove_handles)
@@ -571,6 +592,7 @@ def update_db(
     dry_run: bool = False,
     verify: bool = False,
     exclude: list[str] | None = None,
+    preserve_superseded: bool = False,
 ):
     """Pull latest vocabulary: walk upstream DAG in topological order, update each.
 
@@ -614,6 +636,12 @@ def update_db(
 
     print(f"Upstream: {source_db}")
     print(f"Active:   {target_db}")
+    try:
+        from ..core.hashing import format_load_line, vocabulary_info
+
+        print(format_load_line(vocabulary_info(target_db)))
+    except Exception:
+        pass
 
     # Build exclusion set: file + CLI args. Pull will not touch excluded
     # handles — this is the user's "I deleted this and meant it" knob.
@@ -837,6 +865,100 @@ def update_db(
         if failed:
             raise RuntimeError(f"{len(failed)} pattern(s) failed to mint")
 
+        # ============ SUPERSESSION CLEANUP ============
+        # Upstream patterns' `_meta.supersedes` names the sema_ids of older
+        # patterns that upstream has explicitly retired. If the target has a
+        # pattern at one of those sema_ids, remove it — the replacement is
+        # already in place from the mint loop above. `--preserve-superseded`
+        # opts out (keeps both coexisting).
+        #
+        # CRITICAL: this MUST run BEFORE the cascade sweep below. Cascade
+        # rewrites user-local patterns' sema_ids when their deps change;
+        # once rewritten, the supersedes lookup wouldn't find them anymore.
+        #
+        # Orphan guard: if a user-only local pattern still depends on the
+        # soon-to-be-removed one (via edge), don't remove — report it as
+        # `superseded_kept_orphan`. The user must re-point their dependents
+        # (or opt in to `--preserve-superseded`) before the cleanup fires.
+        superseded_removed = []  # (old_handle, [successor_handles])
+        superseded_kept_orphan = []  # (old_handle, [successor_handles], [user_dependents])
+
+        # Snapshot orphan-sub-node count before cleanup so we can report a
+        # delta afterwards. Pattern deletion doesn't GC the invariant /
+        # precondition / postcondition nodes that become unreachable — we
+        # notify but don't auto-remove.
+        def _count_isolated_subs():
+            return (
+                sqlite3.connect(target_db)
+                .execute(
+                    """
+                SELECT COUNT(*) FROM nodes n
+                WHERE n.node_type IN ('INVARIANT', 'PRECONDITION', 'POSTCONDITION')
+                  AND NOT EXISTS (
+                      SELECT 1 FROM edges e
+                      WHERE e.source_id=n.id OR e.target_id=n.id
+                  )
+                """
+                )
+                .fetchone()[0]
+            )
+
+        orphan_subs_before = _count_isolated_subs()
+        if not preserve_superseded:
+            # Build reverse map: old_sema_id -> list of upstream handles that supersede it
+            supersedes_to_successors = {}
+            for u_handle, u_pattern in upstream_patterns.items():
+                for old_sid in (u_pattern.get("_meta") or {}).get("supersedes") or []:
+                    supersedes_to_successors.setdefault(old_sid, []).append(u_handle)
+
+            # Find local patterns whose sema_id matches a superseded entry.
+            # Iterate a snapshot because we'll mutate the DB during removal.
+            to_remove = []
+            for nid, data in list(target_store.get_nodes_by_type(NodeType.PATTERN)):
+                local_sid = data.get("metadata", {}).get("pattern", {}).get("sema_id", "")
+                if not local_sid or local_sid not in supersedes_to_successors:
+                    continue
+                local_handle = data.get("text")
+                if not local_handle:
+                    continue
+                # If upstream also carries this handle (not a rename, just a
+                # content edit), we don't remove — mint already updated it
+                # in place. Supersession cleanup targets handles that are
+                # gone from upstream but present locally at an old hash.
+                if local_handle in upstream_patterns:
+                    continue
+                successors = supersedes_to_successors[local_sid]
+                to_remove.append((nid, local_handle, successors))
+
+            for nid, old_h, successors in to_remove:
+                # Orphan guard: user-only dependents of this pattern?
+                user_dependents = [
+                    dep
+                    for dep in target_store.get_dependents(old_h)
+                    if dep not in upstream_patterns
+                ]
+                if user_dependents:
+                    superseded_kept_orphan.append((old_h, successors, user_dependents))
+                    continue
+                # Safe to remove
+                result = target_store.delete_node_cascade(nid)
+                if result.get("success"):
+                    superseded_removed.append((old_h, successors))
+                    # Remove from target_handles so it doesn't later show up
+                    # as "upstream_removed" — it's already been dealt with.
+                    target_handles.discard(old_h)
+
+        # Recompute upstream_removed after supersession cleanup so handles
+        # that got cleaned up don't also appear as "user-only retained."
+        # (upstream_removed was computed early for the preview print; now
+        # it needs to reflect the actual post-cleanup state.)
+        if superseded_removed:
+            removed_now = {h for h, _ in superseded_removed}
+            upstream_removed = sorted(set(upstream_removed) - removed_now)
+
+        # How many new orphan sub-nodes did the cleanup leave behind?
+        orphan_subs_new = _count_isolated_subs() - orphan_subs_before
+
         # Single cascade sweep over actually-changed upstream handles.
         # This catches user-only patterns whose deps just got new hashes.
         for handle in added + updated:
@@ -891,7 +1013,7 @@ def update_db(
     # actually changed, so the user can `sema pull --undo` to recover.
     # On a no-op pull (all fast-path skipped), discard this backup to keep
     # the older, genuinely-useful `.pull_previous` intact.
-    has_changes = bool(added or updated or cascaded_user)
+    has_changes = bool(added or updated or cascaded_user or superseded_removed)
     try:
         if has_changes:
             previous_path = target_db + ".pull_previous"
@@ -912,18 +1034,104 @@ def update_db(
         print(f"  ~ {len(updated)} updated")
     if skipped:
         print(f"  = {len(skipped)} unchanged (fast-path)")
+    # Full lists — primary consumer is an agent that may want to act on
+    # every name. A human can still scan. No silent truncation.
     if cascaded_user:
         print(
             f"⚠️  {len(cascaded_user)} user pattern(s) had hashes auto-updated due to upstream changes:"
         )
-        for h in sorted(cascaded_user)[:10]:
+        for h in sorted(cascaded_user):
             print(f"    {h}")
+    if superseded_removed:
+        print(f"→ {len(superseded_removed)} pattern(s) superseded by upstream, removed locally:")
+        for old_h, new_handles in superseded_removed:
+            print(f"    {old_h:<22} → {', '.join(new_handles)}")
+    if superseded_kept_orphan:
+        print(
+            f"⚠️  {len(superseded_kept_orphan)} supersession(s) NOT applied — your patterns "
+            "still depend on them:"
+        )
+        for old_h, new_handles, deps in superseded_kept_orphan:
+            print(f"    {old_h:<22} → {', '.join(new_handles)}  (blocked by: {', '.join(deps)})")
+        print(
+            "    A rename replaces a pattern's *handle* (not just its hash), so cascade "
+            "cannot bridge the reference automatically — the old and new patterns are "
+            "separate nodes. To apply the supersession:"
+        )
+        print("      1. Edit your dependent patterns to reference the successor handle, OR")
+        print("      2. Pass --preserve-superseded to keep both handles coexisting, OR")
+        print("      3. Delete the dependent patterns if they're no longer needed.")
+        print("    Then re-run `sema pull`.")
     if upstream_removed:
         print(
             f"ℹ️  Upstream removed {len(upstream_removed)} pattern(s); they remain locally as user patterns:"
         )
-        for h in upstream_removed[:10]:
+        for h in upstream_removed:
             print(f"    {h}")
+    if orphan_subs_new > 0:
+        print(
+            f"ℹ️  {orphan_subs_new} orphan sub-node(s) (invariants/pre/postconditions) "
+            "left behind by supersession cleanup. They don't affect queries but likely "
+            "want cleaning up in a future pass:"
+        )
+        # Fetch the actual orphan texts so the caller (agent or human) knows
+        # what's dangling. Same query as _count_isolated_subs but returning rows.
+        with closing(sqlite3.connect(target_db)) as _c:
+            orphan_rows = _c.execute(
+                """
+                SELECT node_type, text FROM nodes n
+                WHERE n.node_type IN ('INVARIANT', 'PRECONDITION', 'POSTCONDITION')
+                  AND NOT EXISTS (
+                      SELECT 1 FROM edges e
+                      WHERE e.source_id=n.id OR e.target_id=n.id
+                  )
+                """
+            ).fetchall()
+        for nt, text in orphan_rows:
+            truncated = (text[:70] + "…") if len(text) > 70 else text
+            print(f"    [{nt}] {truncated}")
+
+    # User-owned patterns retained across this pull (i.e. present locally
+    # but absent from upstream) are never rewritten by pull. If any of
+    # them still carry pre-0.2.0 `_meta.layer` + `_meta.category` instead
+    # of `_meta.path`, the next `sema apply` would reject them against
+    # the strict path-based schema. Warn, don't fix — the user owns
+    # these patterns and the migration is a content decision.
+    if upstream_removed:
+        with closing(sqlite3.connect(target_db)) as _c:
+            stale_meta = []
+            for handle in upstream_removed:
+                row = _c.execute(
+                    """
+                    SELECT json_extract(metadata, '$.pattern._meta')
+                    FROM nodes WHERE node_type='PATTERN' AND text=?
+                    """,
+                    (handle,),
+                ).fetchone()
+                if not row or not row[0]:
+                    continue
+                try:
+                    meta = json.loads(row[0])
+                except Exception:
+                    continue
+                if not isinstance(meta, dict):
+                    continue
+                # Missing path AND has legacy layer/category — stale.
+                if "path" not in meta and ("layer" in meta or "category" in meta):
+                    stale_meta.append(handle)
+        if stale_meta:
+            print(
+                f"⚠️  {len(stale_meta)} retained user pattern(s) carry pre-0.2.0 "
+                "_meta (layer+category) and will FAIL `sema apply` validation "
+                "until migrated to _meta.path:"
+            )
+            for h in stale_meta:
+                print(f"    {h}")
+            print(
+                "    Run `python3 scripts/migrate_taxonomy_to_path.py` against the "
+                "JSONs, or edit each pattern's _meta to use `path: [<layer>, "
+                "<category>]`."
+            )
 
     print(
         f"\n✅ Pull complete. {len(added)} added, {len(updated)} updated, {len(skipped)} unchanged."
@@ -1035,12 +1243,98 @@ def use_db(path: str = None, default: bool = False):
     count = RegistryManager(db_path=str(resolved)).count()
     print(f"✅ Switched to {resolved} ({count} patterns)")
 
+    # Banner: show the vocabulary fingerprint right after the switch, so
+    # users can verify at a glance which state they just pointed at.
+    try:
+        from ..core.hashing import format_load_line, vocabulary_info
+
+        print(format_load_line(vocabulary_info(str(resolved))))
+    except Exception:
+        pass
+
     if os.environ.get("SEMA_DB_PATH"):
         print(f"⚠️  SEMA_DB_PATH is set to '{os.environ['SEMA_DB_PATH']}'")
         print(
             "   This env var takes priority. Run `unset SEMA_DB_PATH` for `sema use` to take effect."
         )
     return True
+
+
+def categorize_pattern(handle: str, path_str: str) -> bool:
+    """Re-categorize a pattern by rewriting its `_meta.path`. Uses the
+    existing apply-path so edge re-wiring (TAXONOMY_PATH linking, IN_PATH
+    edges) happens via the canonical mint logic.
+
+    `path_str` is slash-separated, e.g. 'Physics/Primitives'. Must be in
+    VALID_PATHS (enforced by the Pydantic schema).
+    """
+    from ..core.schema import VALID_PATHS, path_to_string
+    from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    segments = [s for s in path_str.split("/") if s]
+    if not segments:
+        print(f"❌ Invalid --path '{path_str}': empty")
+        return False
+    if tuple(segments) not in VALID_PATHS:
+        print(f"❌ Path '{path_to_string(segments)}' is not in VALID_PATHS.")
+        print("   Valid paths:")
+        for p in sorted(VALID_PATHS):
+            print(f"     {path_to_string(list(p))}")
+        return False
+
+    db_path = get_default_db_path()
+    if is_bundled_db(db_path):
+        print("❌ Cannot modify the bundled vocabulary.")
+        print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
+        return False
+
+    store = GraphStore(db_path)
+    target = None
+    for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+        if data.get("text") == handle:
+            target = data
+            break
+    if not target:
+        print(f"❌ Pattern '{handle}' not found in {db_path}")
+        return False
+
+    pattern = target.get("metadata", {}).get("pattern", {}) or {}
+    if not pattern:
+        print(f"❌ Pattern '{handle}' has no stored content")
+        return False
+
+    # Clone + update path
+    pattern = json.loads(json.dumps(pattern))  # deep copy
+    pattern["handle"] = handle
+    # Reconstruct dependencies from edges (canonical source)
+    deps = store.get_dependencies_from_edges(handle)
+    if deps:
+        pattern["dependencies"] = deps
+    meta = pattern.setdefault("_meta", {})
+    old_path = meta.get("path") or []
+    meta["path"] = segments
+    # Drop any stale derived fields so mint re-derives cleanly.
+    meta.pop("layer", None)
+    meta.pop("category", None)
+    pattern.pop("sema_layer", None)
+    pattern.pop("sema_category", None)
+
+    # Write to a temporary staging file and apply via the canonical path.
+    tmp_dir = Path(db_path).parent / "staging"
+    tmp_dir.mkdir(parents=True, exist_ok=True)
+    tmp_file = tmp_dir / f"{handle}.json"
+    with tmp_file.open("w") as f:
+        json.dump(pattern, f, indent=2, ensure_ascii=False)
+
+    print(f"Moving {handle}: {path_to_string(old_path) or '(empty)'} → {path_to_string(segments)}")
+    ok = apply_changes(add_files=[str(tmp_file)])
+    # Clean up staging file on success
+    if ok:
+        try:
+            tmp_file.unlink()
+        except Exception:
+            pass
+    return ok
 
 
 def list_databases():
@@ -1441,6 +1735,15 @@ def main():
         action="store_true",
         help="Restore the DB from the snapshot saved by the last successful pull.",
     )
+    pull_cmd.add_argument(
+        "--preserve-superseded",
+        action="store_true",
+        help=(
+            "Keep locally superseded patterns alongside their upstream replacements. "
+            "Default: when upstream declares a pattern supersedes one local pattern "
+            "(via _meta.supersedes), the local copy is removed."
+        ),
+    )
 
     # Serve
     serve = subparsers.add_parser(
@@ -1472,6 +1775,18 @@ def main():
     )
     use_cmd.add_argument("path", nargs="?", default=None, help="Path to DB (omit to show current)")
     use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
+
+    # Categorize - move a pattern to a different taxonomy path
+    cat_cmd = subparsers.add_parser(
+        "categorize",
+        help="Re-categorize a pattern by updating its _meta.path",
+    )
+    cat_cmd.add_argument("handle", help="Pattern handle (e.g. 'BeliefTracking')")
+    cat_cmd.add_argument(
+        "--path",
+        required=True,
+        help="New taxonomy path, slash-separated (e.g. 'Mind/Memory')",
+    )
 
     # List - show known databases
     subparsers.add_parser(
@@ -1516,6 +1831,8 @@ def main():
         ok = use_db(path=args.path, default=args.default)
     elif args.command == "list":
         list_databases()
+    elif args.command == "categorize":
+        ok = categorize_pattern(handle=args.handle, path_str=args.path)
     elif args.command == "pull":
         if args.undo:
             ok = undo_pull()
@@ -1525,6 +1842,7 @@ def main():
                 dry_run=args.dry_run,
                 verify=args.verify,
                 exclude=args.exclude,
+                preserve_superseded=args.preserve_superseded,
             )
     elif args.command == "serve":
         run_server(args.host, args.port)

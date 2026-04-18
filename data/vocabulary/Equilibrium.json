@@ -1,0 +1,28 @@
+{
+  "handle": "Equilibrium",
+  "mechanism": "A {{state}} of a dynamical system in which the system's time evolution under its own dynamics is stationary \u2014 once the system occupies the state it remains there absent external perturbation. Every dynamical system has equilibria (possibly empty), and they are classified by their response to perturbation: *stable* (small deviations decay back to the state), *unstable* (small deviations amplify away), *neutral* (deviations neither decay nor grow). Substrate property: equilibria are implied by a system's dynamics, not designed. Higher patterns test for equilibrium as a signal that a process has settled; some coordination protocols explicitly drive toward or away from a chosen equilibrium.",
+  "gloss": "A dynamical system's stationary state \u2014 where the dynamics leave it unchanged",
+  "invariants": [
+    "Stationarity: under its own dynamics, the system's time derivative at an equilibrium state is zero.",
+    "Stability class: every equilibrium is classifiable as stable, unstable, or neutral by perturbation response.",
+    "Multiplicity: a dynamical system may have zero, one, or many equilibria; occupancy depends on history and the basin the system entered."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
+  },
+  "sema_id": "sema:Equilibrium#mh:SHA-256:f7c5f4b45ee12a8b04b5543367092b5d91d4772bbb2b4f4891d1aa0e0e732ee3",
+  "sema_ref": "Equilibrium#f7c5",
+  "sema_stub": "f7c5",
+  "dependencies": {
+    "references": {
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+    }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

@@ -1,21 +1,52 @@
 {
   "handle": "Abduction",
-  "mechanism": "The 'best guess' based on incomplete observation. Inference to the best explanation. (The grass is wet -> It probably rained). Triggers {{hypothesis}} generation.",
-  "gloss": "Inference to best explanation",
+  "mechanism": "Inference to the best explanation. Given a surprising observation, generate candidate explanations and {{rank}} them by simplicity, scope, and coherence with existing knowledge. Adopt the highest-ranked as working {{hypothesis}}, flagged as provisional \u2014 not proven. Uses {{chain_of_thought}} to trace the reasoning path from observation to explanation so the inferential leap is explicit and verifiable. The classical third mode of reasoning alongside {{deduction}} (necessary) and {{induction}} (probable from instances): Abduction is probable from a single anomaly plus background knowledge.",
+  "gloss": "Inference to the best explanation \u2014 provisional, ranked by simplicity/scope/coherence",
+  "failure_modes": [
+    "Conspiracy Thinking: Preferring complex, coherent explanations over simple, messy ones (overfitting the narrative).",
+    "Stopping too early: adopting the first plausible explanation without considering alternatives.",
+    "Treating the provisional hypothesis as proven in downstream reasoning."
+  ],
+  "invariants": [
+    "Explanation must cover all observed anomalies in the input.",
+    "Simplicity heuristic (Occam's Razor) applied when comparing candidates of similar scope.",
+    "Output is flagged provisional, never asserted as proven."
+  ],
+  "preconditions": [
+    "Set of observations, at least one unexplained by existing model.",
+    "No deductive path to the explanation."
+  ],
+  "postconditions": [
+    "{{hypothesis}} generated and ranked by likelihood.",
+    "Working hypothesis adopted with provisional status."
+  ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "caution": "Best-guess inference \u2014 always provisional. Must be composed with a verification step in high-stakes domains.",
+    "supersedes": [
+      "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
+      "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
+  },
+  "sema_id": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
+  "sema_ref": "Abduction#68f6",
+  "sema_stub": "68f6",
+  "dependencies": {
+    "composes_with": {
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f"
+    },
+    "references": {
+      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
+      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
+      "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
+    }
   },
   "sema_layer": "Mind",
-  "sema_category": "Reasoning",
-  "sema_id": "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b",
-  "sema_ref": "Abduction#fe2b",
-  "sema_stub": "fe2b",
-  "dependencies": {
-    "references": {
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812"
-    }
-  }
+  "sema_category": "Reasoning"
 }

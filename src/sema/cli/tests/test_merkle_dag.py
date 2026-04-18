@@ -34,7 +34,7 @@ class TestDependenciesAsEdges(unittest.TestCase):
         base_pattern = {
             "handle": "BasePattern",
             "mechanism": "A base pattern",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         result1 = self.store.add_pattern(base_pattern)
         self.assertTrue(result1.get("success"), f"Failed: {result1.get('error')}")
@@ -43,7 +43,7 @@ class TestDependenciesAsEdges(unittest.TestCase):
         dependent = {
             "handle": "DependentPattern",
             "mechanism": "Uses {{base}}",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"base": "BasePattern#stub"}},
         }
         result2 = self.store.add_pattern(dependent)
@@ -73,7 +73,7 @@ class TestDependenciesAsEdges(unittest.TestCase):
         component = {
             "handle": "Component",
             "mechanism": "A component",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(component)
 
@@ -81,7 +81,7 @@ class TestDependenciesAsEdges(unittest.TestCase):
         composite = {
             "handle": "Composite",
             "mechanism": "Composed of {{comp}}",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
             "dependencies": {"composes_with": {"comp": "Component"}},
         }
         result = self.store.add_pattern(composite)
@@ -112,21 +112,21 @@ class TestDependenciesAsEdges(unittest.TestCase):
             {
                 "handle": "RefTarget",
                 "mechanism": "A reference target",
-                "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+                "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
             }
         )
         self.store.add_pattern(
             {
                 "handle": "CompTarget",
                 "mechanism": "A compose target",
-                "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+                "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
             }
         )
         self.store.add_pattern(
             {
                 "handle": "Source",
                 "mechanism": "Uses {{ref}} and {{comp}}",
-                "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+                "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
                 "dependencies": {
                     "references": {"ref": "RefTarget"},
                     "composes_with": {"comp": "CompTarget"},
@@ -210,8 +210,7 @@ class TestApplyCommand(unittest.TestCase):
                     "handle": "TestCheckPattern",
                     "mechanism": "A test pattern for validation",
                     "_meta": {
-                        "layer": "Infrastructure",
-                        "category": "Primitives",
+                        "path": ["Infrastructure", "Primitives"],
                         "tier": 1,
                         "ring": 0,
                     },
@@ -391,7 +390,7 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         pattern_b = {
             "handle": "BaseLeaf",
             "mechanism": "A base pattern with no dependencies",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
 
         # Compute hash manually
@@ -427,12 +426,12 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         pattern_base1 = {
             "handle": "DagBase1",
             "mechanism": "Base pattern one",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         pattern_base2 = {
             "handle": "DagBase2",
             "mechanism": "Base pattern two",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(pattern_base1.copy())
         self.store.add_pattern(pattern_base2.copy())
@@ -450,13 +449,13 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         pattern_dep1 = {
             "handle": "DagDependent1",
             "mechanism": "Depends on base",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"base": ref1}},
         }
         pattern_dep2 = {
             "handle": "DagDependent2",
             "mechanism": "Depends on base",  # Same mechanism
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"base": ref2}},  # Different dep
         }
         self.store.add_pattern(pattern_dep1.copy())
@@ -482,12 +481,12 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         base_a = {
             "handle": "BaseA",
             "mechanism": "First base",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         base_b = {
             "handle": "BaseB",
             "mechanism": "Second base",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
 
         hash_a = generate_sema_hash(base_a)
@@ -526,7 +525,7 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         pattern_b = {
             "handle": "LeafNode",
             "mechanism": "No dependencies",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(pattern_b.copy())
 
@@ -547,7 +546,7 @@ class TestMerkleDagHashIntegrity(unittest.TestCase):
         pattern_a = {
             "handle": "ParentNode",
             "mechanism": "References {{child}}",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"child": b_ref}},
         }
         self.store.add_pattern(pattern_a.copy())
@@ -622,7 +621,7 @@ class TestCascadeHashing(unittest.TestCase):
         pattern_c = {
             "handle": "CascadeC",
             "mechanism": "Base pattern version 1",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(pattern_c.copy())
 
@@ -639,7 +638,7 @@ class TestCascadeHashing(unittest.TestCase):
         pattern_b = {
             "handle": "CascadeB",
             "mechanism": "Depends on {{base}}",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"base": c_ref_v1}},
         }
         self.store.add_pattern(pattern_b.copy())
@@ -654,7 +653,7 @@ class TestCascadeHashing(unittest.TestCase):
         pattern_c_v2 = {
             "handle": "CascadeC",
             "mechanism": "Base pattern version 2 - CHANGED",  # Changed
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(pattern_c_v2.copy())
 
@@ -678,7 +677,7 @@ class TestCascadeHashing(unittest.TestCase):
         pattern_c = {
             "handle": "ChainC",
             "mechanism": "Base of chain",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(pattern_c.copy())
 
@@ -691,7 +690,7 @@ class TestCascadeHashing(unittest.TestCase):
         pattern_b = {
             "handle": "ChainB",
             "mechanism": "Middle of chain, uses {{c}}",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"c": c_ref}},
         }
         self.store.add_pattern(pattern_b.copy())
@@ -705,7 +704,7 @@ class TestCascadeHashing(unittest.TestCase):
         pattern_a = {
             "handle": "ChainA",
             "mechanism": "Top of chain, uses {{b}}",
-            "_meta": {"layer": "Society", "category": "Protocols", "tier": 1},
+            "_meta": {"path": ["Society", "Protocols"], "tier": 1},
             "dependencies": {"references": {"b": b_ref}},
         }
         self.store.add_pattern(pattern_a.copy())
@@ -774,7 +773,7 @@ class TestRebuildStability(unittest.TestCase):
             "handle": "StableBase",
             "mechanism": "A stable base pattern",
             "gloss": "Stability test",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         result1 = self.store.add_pattern(base.copy())
         self.assertTrue(result1.get("success"))
@@ -794,7 +793,7 @@ class TestRebuildStability(unittest.TestCase):
         base = {
             "handle": "DepBase",
             "mechanism": "Base for dependency test",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(base.copy())
         base_hash = self.store.get_pattern_hash("DepBase")
@@ -803,7 +802,7 @@ class TestRebuildStability(unittest.TestCase):
         dependent = {
             "handle": "DepChild",
             "mechanism": "Depends on {{base}}",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"base": f"DepBase#{base_hash[:4]}"}},
         }
         result1 = self.store.add_pattern(dependent.copy())
@@ -833,7 +832,7 @@ class TestRebuildStability(unittest.TestCase):
         base = {
             "handle": "EdgeBase",
             "mechanism": "Base pattern",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "tier": 1},
         }
         self.store.add_pattern(base.copy())
 
@@ -841,7 +840,7 @@ class TestRebuildStability(unittest.TestCase):
         dependent = {
             "handle": "EdgeChild",
             "mechanism": "Uses {{base}}",
-            "_meta": {"layer": "Mind", "category": "Strategy", "tier": 1},
+            "_meta": {"path": ["Mind", "Strategy"], "tier": 1},
             "dependencies": {"references": {"base": "EdgeBase#XXXX"}},  # Wrong stub!
         }
         result = self.store.add_pattern(dependent.copy())

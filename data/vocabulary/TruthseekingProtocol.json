@@ -1,0 +1,32 @@
+{
+  "handle": "TruthseekingProtocol",
+  "mechanism": "The paper's \u00a76.7 protocol for evaluating factual claims through layered epistemic decomposition, where each verified result persists as a content-addressed Sema pattern \u2014 the system gets smarter and verification gets cheaper with every use (the accretion loop). Unlike monolithic claim evaluation (which entangles source credibility, logical consistency, and cross-referencing in one pass, letting strong evidence on any one axis suppress scrutiny on the others), the protocol applies {{conceptual_decomposition}} to verification-depth, producing five layers governed by {{marginal_value_rule}}: Layer 0 cache (has this exact claim been verified?), Layer 1 structural coherence (does this contradict the verified cache?), Layer 2 epistemic decomposition (ClaimExtractorSolver isolates falsifiable statements, ProvenanceSolver evaluates source independent of content, CoherenceSolver checks internal consistency independent of source, CorrespondenceSolver queries external data, ContestabilitySolver constructs the strongest counter-case), Layer 3 cross-domain specialists in the Cognitive Commons, Layer 4 empirical verification via primary data gathering. Each layer's Solvers operate behind the contract, blind to the others' outputs until they compose at a typed boundary. Verified claims mint as new Sema patterns that enter the Layer 0 cache. Composes with {{validate}} at each layer boundary.",
+  "gloss": "Layered epistemic verification (cache \u2192 coherence \u2192 decomposition \u2192 specialists \u2192 empirical), with verified claims persisting as Sema patterns \u2014 the accretion loop",
+  "invariants": [
+    "Layer-blind composition: Solvers within a layer do not see each other's outputs until they compose at a typed boundary \u2014 no suppression of scrutiny by a strong signal on a parallel axis.",
+    "Accretion monotonic: a verified claim enters the Layer-0 cache as a content-addressed pattern and remains there until superseded by a counter-claim that survives the same layers.",
+    "Marginal-value depth: most claims resolve at Layer 0; only claims with genuine novelty or contradiction incur higher layers' cost, governed by {{marginal_value_rule}}."
+  ],
+  "_meta": {
+    "tier": 2,
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Inference"
+    ]
+  },
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:274aafdf9442afa62b921aa4fc9acbac97a66d9f921dcbdd2a62261712e87abf",
+  "sema_ref": "TruthseekingProtocol#274a",
+  "sema_stub": "274a",
+  "dependencies": {
+    "composes_with": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa"
+    },
+    "references": {
+      "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

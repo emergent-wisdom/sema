@@ -3,7 +3,7 @@
   "mechanism": "An ideation protocol where the agent explicitly lists existing mechanisms as 'Tabu' (forbidden). It must then solve the problem without using any mechanism on the list. This forces the activation of latent, low-probability pathways in the semantic network. It broadcasts the forbidden list via {{trace}} to ensure the entire swarm respects the constraint.",
   "gloss": "Constraint-based novelty enforcement",
   "failure_modes": [
-    "paralysis (if the Tabu list covers all possible physics)."
+    "Paralysis: if the Tabu list covers all possible physics."
   ],
   "invariants": [
     "{{constraint}} Satisfaction: Output \u2229 TabuList == \u00d8",
@@ -17,20 +17,25 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
-    "ring": 0
+    "ring": 2,
+    "supersedes": [
+      "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
+    ]
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
-  "sema_ref": "SemanticTabu#82dd",
-  "sema_stub": "82dd",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:62771c80bb58f789dea6c853fb9408a3c83756a3d02d52fe8e9b46cf3fea6418",
+  "sema_ref": "SemanticTabu#6277",
+  "sema_stub": "6277",
   "dependencies": {
     "references": {
-      "solution": "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

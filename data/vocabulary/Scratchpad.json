@@ -13,15 +13,15 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Memory",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Mind",
+      "Memory"
+    ]
   },
   "sema_id": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e",
   "sema_ref": "Scratchpad#75bf",
   "sema_stub": "75bf",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
   "data_schema": {
     "type": "object",
     "required": [
@@ -41,5 +41,7 @@
         "description": "Agent that owns this scratchpad"
       }
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

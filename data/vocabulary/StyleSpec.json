@@ -6,15 +6,26 @@
     "Spec(Aesthetics)"
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 2,
-    "tier": 2
+    "tier": 2,
+    "supersedes": [
+      "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
     "type": "object",
-    "description": "Schema for StyleSpec",
+    "description": "Codified aesthetic and formatting standards.",
+    "required": [
+      "style_id"
+    ],
     "properties": {
+      "style_id": {
+        "type": "string"
+      },
       "rules": {
         "type": "array",
         "items": {
@@ -22,23 +33,20 @@
         }
       },
       "examples": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
+        "type": "array"
       }
     }
   },
-  "sema_ref": "StyleSpec#ec7b",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
-  "sema_stub": "ec7b",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_ref": "StyleSpec#dac9",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:dac969ddcde8d834752b75146f356e5e702329bb38e4a9a4b65d13a3d41298a8",
+  "sema_stub": "dac9",
   "dependencies": {
     "references": {
-      "spec": "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
-      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab"
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:7434862367defbfd8e582e0b18766c57aeee52557802f29334f4dabebf3873cb",
+      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4",
+      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

@@ -10,12 +10,14 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:HeuristicSnap#mh:SHA-256:6f2b735d0b7733162773dd6f40559acbd482e1fdeebae179b2ed9cc61d2307a7"
     ],
-    "ring": 0
+    "ring": 2,
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
   "sema_id": "sema:Reflex#mh:SHA-256:ea07e889ca64536b2f0d0657d1583a178ea36fe2fda6c26889c68d46e44a47ce",
   "sema_ref": "Reflex#ea07",

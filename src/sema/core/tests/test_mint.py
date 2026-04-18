@@ -29,7 +29,7 @@ class TestMintPattern:
             "handle": "TestMint",
             "mechanism": "A test pattern for minting.",
             "gloss": "Test mint",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         result = mint_pattern(pattern, temp_store)
         assert result.success is True
@@ -43,7 +43,7 @@ class TestMintPattern:
         """Pattern without mechanism fails validation."""
         pattern = {
             "handle": "NoMechanism",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         result = mint_pattern(pattern, temp_store)
         assert result.success is False
@@ -54,7 +54,7 @@ class TestMintPattern:
         pattern = {
             "handle": "lowercase",
             "mechanism": "Bad handle.",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         result = mint_pattern(pattern, temp_store)
         assert result.success is False
@@ -65,7 +65,7 @@ class TestMintPattern:
         pattern = {
             "handle": "TestWarnings",
             "mechanism": "A test pattern.",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         result = mint_pattern(pattern, temp_store)
         assert result.success is True

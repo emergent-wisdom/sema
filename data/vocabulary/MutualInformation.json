@@ -1,0 +1,29 @@
+{
+  "handle": "MutualInformation",
+  "mechanism": "The substrate information-theoretic measure of shared entropy between two random variables: I(X; Y) = H(X) + H(Y) \u2212 H(X, Y), equivalently the reduction in {{entropy}} of one variable given knowledge of the other. Quantifies how much knowing X reduces uncertainty about Y (and symmetrically). Zero mutual information indicates statistical independence; high mutual information indicates strong coupling without specifying its form (linear, nonlinear, or arbitrary). Substrate property: exists wherever joint distributions exist, whether or not anyone estimates it. Distinct from correlation (which measures linear dependence only) and from mere co-occurrence.",
+  "gloss": "Substrate information-theoretic measure of shared entropy between two variables",
+  "invariants": [
+    "Non-negativity: I(X; Y) \u2265 0 for all random variables X, Y.",
+    "Symmetry: I(X; Y) = I(Y; X).",
+    "Zero iff independent: I(X; Y) = 0 if and only if X and Y are statistically independent.",
+    "Bounded by entropy: I(X; Y) \u2264 min(H(X), H(Y))."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
+  },
+  "sema_id": "sema:MutualInformation#mh:SHA-256:da310ac721a0b6945056d317f97ad1337ba537328f01479484cb7d261fbeed05",
+  "sema_ref": "MutualInformation#da31",
+  "sema_stub": "da31",
+  "dependencies": {
+    "references": {
+      "entropy": "sema:Entropy#mh:SHA-256:a2652f69c57b3c737f3d0d910e6751d61ea2e9007046ac0f75ee336d178c9212"
+    }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

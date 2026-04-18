@@ -5,7 +5,7 @@
   "failure_modes": [
     "Outlier Overfitting: Rare high-surprisal events dominating learning.",
     "Catastrophic Forgetting: Aggressive updates erasing previously stable knowledge.",
-    "Compute Cost: High-surprisal events require expensive gradient updates."
+    "Compute Cost: High-surprisal events require expensive {{gradient}} updates."
   ],
   "invariants": [
     "Loss Magnitude: Update size proportional to surprisal (-log P)",
@@ -35,22 +35,29 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Inference",
     "related": [
       "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SurprisalUpdate#mh:SHA-256:8eb2004c635b92c95a5dad62bbc4375a5a6728f493345334dd46f8ec2b4c3714",
+      "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca"
+    ],
+    "path": [
+      "Mind",
+      "Inference"
+    ]
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:8eb2004c635b92c95a5dad62bbc4375a5a6728f493345334dd46f8ec2b4c3714",
-  "sema_ref": "SurprisalUpdate#8eb2",
-  "sema_stub": "8eb2",
-  "sema_layer": "Mind",
-  "sema_category": "Inference",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
+  "sema_ref": "SurprisalUpdate#cef3",
+  "sema_stub": "cef3",
   "dependencies": {
     "references": {
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
-      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:742adc7d76282f41c66582e1e780930e5f83f792084fa83ac9b01f510ecaf5b0"
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:07f9ede9b37881846f271d342862a03a5f607917798eaac4e875840d2d3114ae",
+      "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
 }

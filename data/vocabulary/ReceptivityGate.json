@@ -1,0 +1,42 @@
+{
+  "handle": "ReceptivityGate",
+  "mechanism": "A Gate that guards a Solver's Feedback surface against poisoned or hallucinated evaluation. When a downstream orchestrator rejects an artifact, it must submit a typed {{failure_trace}} naming the violated {{accept_spec}} clause. The upstream Solver's ReceptivityGate runs {{validate}} on the trace before accepting it: it checks that the cited clause exists, that the evidence matches the artifact, and that the evaluator's signature is valid. Invalid or hallucinated feedback is dropped rather than absorbed into {{pathway_memory}}. In a decentralized cognitive commons where untrusted downstream clients can inject fabricated penalties to steal work, this gate is the structural defense that keeps the commons from degenerating into epistemic garbage.",
+  "gloss": "Verification gate that guards a Solver's Feedback surface against poisoned or fabricated rejection signals",
+  "invariants": [
+    "Trace-required: no rejection is accepted without a well-formed {{failure_trace}}.",
+    "Clause-verified: the cited AcceptSpec clause must exist.",
+    "Evidence-verified: the cited evidence must be present in the rejected artifact.",
+    "Signature-verified: the evaluator's identity must be cryptographically valid.",
+    "Drop-on-fail: invalid traces produce no update to {{pathway_memory}} rather than partial absorption."
+  ],
+  "failure_modes": [
+    "Over-strict: legitimate but imperfect traces are dropped, starving the Solver of real learning signal.",
+    "Under-strict: malformed traces that pass checks still corrupt pathway memory.",
+    "Bypass by privileged peer: a downstream orchestrator with elevated trust skips the gate and injects raw feedback.",
+    "DoS via trace flood: malicious actors swamp the gate with valid-looking traces to exhaust verification budget."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 1,
+    "caution": "Required at any Feedback surface exposed to untrusted downstream consumers. Without it, the Solver absorbs fabricated penalties as if they were genuine learning signal.",
+    "path": [
+      "Society",
+      "Protocols"
+    ]
+  },
+  "sema_id": "sema:ReceptivityGate#mh:SHA-256:c40980e24aaf82edf5d6774f581eca7d907d213b878dad450d401935a3d243ba",
+  "sema_ref": "ReceptivityGate#c409",
+  "sema_stub": "c409",
+  "dependencies": {
+    "composes_with": {
+      "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
+    },
+    "references": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
+      "failure_trace": "sema:FailureTrace#mh:SHA-256:96df1345b3421dd9a30339cc325fed27bd0bf7ff1e83b9ea35bfd20bbf02296b",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

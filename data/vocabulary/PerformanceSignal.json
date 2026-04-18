@@ -1,0 +1,70 @@
+{
+  "handle": "PerformanceSignal",
+  "mechanism": "The typed artifact emitted by a Solver's Feedback surface \u2014 the downstream evaluation of how a completed transaction performed against its acceptance criteria, or the escalation signal that invokes a {{frame_error}} when failure is structural rather than local. Distinct from the general {{feedback}} primitive: PerformanceSignal is the contract-typed output that feeds {{pathway_memory}} (quality, depth, cost across problem classes) and drives localized learning at each node. The signal is produced by the consumer of a Result (parent Solver or end-caller) after the Acceptance Gate either admitted the Result as a Solution or rejected it back for reframing.",
+  "gloss": "Typed artifact emitted by a Solver's Feedback surface \u2014 downstream evaluation that feeds Pathway Memory",
+  "invariants": [
+    "Typed: the signal conforms to a declared schema so {{pathway_memory}} can aggregate across instances.",
+    "Attributable: names the Solver node that produced the evaluated Result, so learning is localized.",
+    "Three-outcome: either a scored evaluation, a pass/accept confirmation, or a {{frame_error}} escalation."
+  ],
+  "failure_modes": [
+    "Sycophantic drift: evaluator shares the generator's blind spots and rubber-stamps weak outputs.",
+    "Signal poisoning in open commons: an untrusted consumer fabricates penalties to steal work (mitigated by the Receptivity Gate in \u00a77).",
+    "Latency decay: the signal arrives long after the node has moved on, weakening the learning loop.",
+    "Grade inflation: evaluators converge on 'good enough' scoring so all signals compress into a narrow band."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "solver_ref",
+      "outcome"
+    ],
+    "properties": {
+      "solver_ref": {
+        "type": "string",
+        "description": "sema_id of the Solver node being evaluated"
+      },
+      "outcome": {
+        "type": "string",
+        "enum": [
+          "accepted",
+          "scored",
+          "frame_error"
+        ],
+        "description": "Shape of the signal"
+      },
+      "score": {
+        "type": "number",
+        "description": "Optional quality score when outcome=scored"
+      },
+      "frame_error_ref": {
+        "type": "string",
+        "description": "sema_id of the FrameError when outcome=frame_error"
+      },
+      "evaluator_ref": {
+        "type": "string",
+        "description": "Identity of the evaluating entity, for trust-weighted aggregation"
+      }
+    }
+  },
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
+  },
+  "sema_id": "sema:PerformanceSignal#mh:SHA-256:b9d60f668cf95c45ca8e0d8a988b27ef75a49a8e461bf3d14553fbc2ec9ec8a8",
+  "sema_ref": "PerformanceSignal#b9d6",
+  "sema_stub": "b9d6",
+  "dependencies": {
+    "references": {
+      "feedback": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
+      "frame_error": "sema:FrameError#mh:SHA-256:1d3f3b715da8f97cffd880cd5bed5b59111a8347eef9ae4e328de2b15a31eb5a",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

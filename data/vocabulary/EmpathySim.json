@@ -1,6 +1,6 @@
 {
   "handle": "EmpathySim",
-  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized with Target_Agent's known priors, goals, and constraints. It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
+  "mechanism": "Theory of Mind simulation. {{agent}} instantiates a temporary 'Virtual {{context}}' initialized from a {{target_profile}} (known priors, goals, and constraints). It then runs inference on this context to predict Target's next move. It spins up an isolated {{agent_sandbox}} to model the target's perspective.",
   "gloss": "Predictive modeling of external agent states",
   "failure_modes": [
     "Projection {{cognitive_bias}}: Leaking Self-Knowledge into the simulation (Mirroring Error).",
@@ -25,37 +25,40 @@
       "type": "Integer",
       "range": "[1, 3]",
       "description": "Default: 1"
-    },
-    {
-      "name": "target_profile",
-      "type": "AgentProfile",
-      "range": "unspecified",
-      "description": "Profile of the agent whose state is being modeled"
     }
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Society",
-    "category": "Economics",
     "related": [
       "sema:MentalSim#mh:SHA-256:1eca2a515c38f3be5c3956be9885e8f1e5b931a958f60b8e21d97e99dd65f3dd"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:EmpathySim#mh:SHA-256:86ab6c06ecf009fce40155d3c1aeadb76738060bcb7adbd88f9c15bd01a52f4c",
+      "sema:EmpathySim#mh:SHA-256:86e98d01cd322735f32c153f35f6d58c4d08ead468b5aa2fe07810483f9de445"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:86ab6c06ecf009fce40155d3c1aeadb76738060bcb7adbd88f9c15bd01a52f4c",
-  "sema_ref": "EmpathySim#86ab",
-  "sema_stub": "86ab",
+  "sema_id": "sema:EmpathySim#mh:SHA-256:23a06d48b2601670facbaf878d41d5cef962f944217860076adef05e61381e10",
+  "sema_ref": "EmpathySim#23a0",
+  "sema_stub": "23a0",
   "dependencies": {
+    "accepts": {
+      "target_profile": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+    },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
-      "simulation": "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:dcc7ecdadc87094ea111dc28fa0e073d7802d8c45ba0a39f58afb04592bad66b",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
-      "budget": "sema:Budget#mh:SHA-256:a7637c4387d834ae190f6c42a2a96914c65294a9f618c4c96adf4ee1d26450e0"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   },
-  "sema_layer": "Society",
-  "sema_category": "Economics"
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

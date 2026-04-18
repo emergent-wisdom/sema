@@ -1,6 +1,6 @@
 {
   "handle": "LatentWander",
-  "mechanism": "Offline processing mode where the agent explores its own embedding space, connecting distant concepts (Daydreaming). Used for memory consolidation and generating novel {{analogy_bridge}}s. It uses {{concept_blend}} during offline states to traverse the embedding space and discover non-obvious connections.",
+  "mechanism": "Offline processing mode where the agent explores its own {{latent_attachment}} embedding space, connecting distant concepts (Daydreaming). Used for memory consolidation and generating novel {{analogy_bridge}}s. It uses {{concept_blend}} during offline states to traverse the embedding space and discover non-obvious connections.",
   "gloss": "Offline exploration of embedding space",
   "invariants": [
     "Drift: Exploration temperature > standard inference temperature",
@@ -8,25 +8,31 @@
   ],
   "_meta": {
     "tier": 3,
-    "layer": "Mind",
-    "category": "Strategy",
     "related": [
       "sema:ChaosDrift#mh:SHA-256:37fb483903b835dd8b676c0116087291bb055934f9a681e28a54268d2dea328c"
     ],
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc"
+    ],
+    "path": [
+      "Mind",
+      "Strategy"
+    ]
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy",
-  "sema_id": "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc",
-  "sema_ref": "LatentWander#7495",
-  "sema_stub": "7495",
+  "sema_id": "sema:LatentWander#mh:SHA-256:3dbbbf693356da9e6c422d15792d5f6279220acd766c780f4be282800b0843b9",
+  "sema_ref": "LatentWander#3dbb",
+  "sema_stub": "3dbb",
   "dependencies": {
     "references": {
-      "silence": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:29a95899288d5be174cdd01853f8badd77a0508749126d87247063c2357e090e",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860",
+      "silence": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5"
     },
     "yields": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:fa18df1ff51bc8e86c4dc858ecb2f50f3d28820539983d83828444d840be951d"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
 }

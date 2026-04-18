@@ -1,9 +1,9 @@
 {
   "handle": "ExperienceSharding",
   "mechanism": "Applies the {{shard}} primitive to agent memory. When context fills, the agent splits into two specialized agents (active vs archival) rather than forgetting. It segments history into discrete blocks via {{chunk_merge}} before distributing them across the agent cluster.",
-  "gloss": "A single agent evolves into a colony of specialists preserving total history.",
+  "gloss": "Agent bifurcation on context saturation: active vs archival specialists",
   "failure_modes": [
-    "coordination overhead between the shards increases."
+    "Coordination Overhead: Overhead between shards increases as shard count grows."
   ],
   "invariants": [
     "Recombination reconstructs global pattern",
@@ -38,22 +38,27 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Memory",
     "related": [
       "FabricSharding"
     ],
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
+    ]
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
-  "sema_ref": "ExperienceSharding#d920",
-  "sema_stub": "d920",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:1b5b67d8c6d94ebc1fa53e4f20c84f6cf1d470ab78dd34d38ef4b4dc3f60cc48",
+  "sema_ref": "ExperienceSharding#1b5b",
+  "sema_stub": "1b5b",
   "dependencies": {
     "references": {
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351",
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:38ffe7a87ca3251bba48ee7dda9ba08d6ea95d7bb2178d606a04e8268dc05e24",
       "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

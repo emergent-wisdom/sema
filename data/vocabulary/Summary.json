@@ -3,20 +3,44 @@
   "mechanism": "A compressed representation of a {{datum}} or {{artifact}} that retains high-{{value}} (salient) information while discarding redundancy.",
   "gloss": "Condensed information",
   "_meta": {
-    "layer": "Infrastructure",
-    "category": "Data Structures",
     "ring": 1,
-    "tier": 1
+    "tier": 1,
+    "supersedes": [
+      "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
   },
   "data_schema": {
-    "type": "string",
-    "description": "The summarized text or content"
+    "type": "object",
+    "required": [
+      "source_ref"
+    ],
+    "properties": {
+      "source_ref": {
+        "type": "string",
+        "description": "sema_id of the source being summarized"
+      },
+      "compression_ratio": {
+        "type": "number",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "description": "Size ratio (summary_len/source_len)"
+      },
+      "preserves": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Semantic dimensions preserved (e.g., 'thesis', 'timeline', 'constraints')"
+      }
+    }
   },
-  "sema_ref": "Summary#310e",
-  "sema_id": "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de",
-  "sema_stub": "310e",
-  "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures",
+  "sema_ref": "Summary#f785",
+  "sema_id": "sema:Summary#mh:SHA-256:f785cae6871dc00700bb21296033c24d01e0abc331097a1d43a3d423830332d6",
+  "sema_stub": "f785",
   "dependencies": {
     "composes_with": {
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
@@ -25,5 +49,7 @@
     "references": {
       "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

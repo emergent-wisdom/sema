@@ -6,7 +6,7 @@
     "Starvation: Unlucky agents keep backing off while others succeed, never getting a slot."
   ],
   "invariants": [
-    "retry budget must be finite (max_attempts set before first attempt)."
+    "Retry budget must be finite (max_attempts set before first attempt)."
   ],
   "parameters": [
     {
@@ -30,13 +30,18 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Infrastructure",
-    "category": "Primitives",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_id": "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
-  "sema_ref": "Backoff#315a",
-  "sema_stub": "315a",
+  "sema_id": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
+  "sema_ref": "Backoff#c6d1",
+  "sema_stub": "c6d1",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

@@ -1,6 +1,6 @@
 {
   "handle": "BackwardChain",
-  "mechanism": "Goal-First Decomposition: Start from desired end-state, recursively identify prerequisites. For each prerequisite, ask \"what must be true for this to hold?\" until reaching known facts or actionable steps. Execution order is reverse of discovery order. It structures the {{chain_of_thought}} in reverse chronological order, linking the desired future state to present preconditions.",
+  "mechanism": "Goal-First Decomposition: Start from desired end-state, recursively identify prerequisites. For each prerequisite, ask \"what must be true for this to hold?\" until reaching known facts or actionable steps. Execution order is reverse of discovery order. A goal-directed form of {{deduction}} \u2014 derives required antecedents from the desired consequent. Structures the {{chain_of_thought}} in reverse chronological order, linking the desired future state to present preconditions.",
   "gloss": "Goal-driven reasoning from target to preconditions",
   "failure_modes": [
     "Infinite Regression: The precondition chain never terminates because base facts are missing."
@@ -11,28 +11,37 @@
     "Leaf nodes must be actionable or known-true."
   ],
   "preconditions": [
-    "Goal is clearly defined",
-    "Goal state clearly defined. Domain has prerequisite structure. Knowledge base queryable."
+    "Goal state clearly defined.",
+    "Domain has prerequisite structure.",
+    "Knowledge base queryable."
   ],
   "postconditions": [
-    "Execution plan produced OR goal proven unachievable. {{plan}} steps in executable order. All prerequisites satisfied."
+    "Execution plan produced OR goal proven unachievable.",
+    "{{plan}} steps in executable order.",
+    "All prerequisites satisfied."
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b",
-  "sema_ref": "BackwardChain#0484",
-  "sema_stub": "0484",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:a6ac3dacd844cc134d4abe356539ca71797aee17d8fc8ebb1d2c95b7d6b4e1de",
+  "sema_ref": "BackwardChain#a6ac",
+  "sema_stub": "a6ac",
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-      "chain": "sema:Chain#mh:SHA-256:57119a990ff1c50eda6cb301dfec09450d2cbb21659ca541560b6bbb2ece0332",
-      "plan": "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f",
+      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
+      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

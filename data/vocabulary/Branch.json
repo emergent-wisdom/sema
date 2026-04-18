@@ -4,13 +4,15 @@
   "gloss": "Conditional flow",
   "_meta": {
     "tier": 1,
-    "layer": "Physics",
-    "category": "Time",
-    "ring": 0
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
   "sema_id": "sema:Branch#mh:SHA-256:329d01a4bcf9599389d35db860faee9fb6d42964ceca8fd708843b410fa7150e",
   "sema_ref": "Branch#329d",
   "sema_stub": "329d",
-  "sema_layer": "Physics",
-  "sema_category": "Time"
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

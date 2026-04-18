@@ -166,15 +166,98 @@ def calculate_stats():
         f.write(f"\\newcommand{{\\semaTierOneCount}}{{{tier_counts.get(1, 0)}}}\n")
         f.write(f"\\newcommand{{\\semaCategoryCount}}{{{len(categories)}}}\n")
 
-        # Compression stats (from representative patterns in Table 6)
-        comp_refs = [5, 6, 5, 6]
-        comp_fulls = [120, 95, 85, 65]
-        comp_avg_ref = sum(comp_refs) / len(comp_refs)
-        comp_avg_full = sum(comp_fulls) / len(comp_fulls)
-        comp_avg_ratio = comp_avg_full / comp_avg_ref
+        # Compression stats — compute real token counts for representative
+        # Tier-1 patterns using tiktoken (cl100k_base, same tokenizer as
+        # GPT-4 / Claude). "Ref" = short reference form Handle#stub that
+        # appears in the paper. "Full" = mechanism + invariants +
+        # preconditions + postconditions + failure_modes (the semantic
+        # payload an agent would need to transmit if content-addressing
+        # were unavailable).
+        import tiktoken
+
+        enc = tiktoken.get_encoding("cl100k_base")
+
+        representative = ["StateLock", "SpectralTune", "BayesUpdate", "SteelmanCheck"]
+        pattern_by_handle = {p.get("handle"): p for p in patterns}
+
+        comp_rows = []
+        for handle in representative:
+            p = pattern_by_handle.get(handle)
+            if not p:
+                raise RuntimeError(
+                    f"Compression table references '{handle}' which is not in "
+                    f"the default vocabulary. Update the representative list "
+                    f"in calculate_graph_stats.py and the table in sema.tex."
+                )
+            stub = p["sema_id"].split(":SHA-256:")[-1][:4]
+            ref_str = f"{handle}#{stub}"
+            ref_tokens = len(enc.encode(ref_str))
+
+            parts = [p.get("mechanism", "")]
+            parts.extend(p.get("invariants", []))
+            parts.extend(p.get("preconditions", []))
+            parts.extend(p.get("postconditions", []))
+            parts.extend(p.get("failure_modes", []))
+            full_str = " ".join(s for s in parts if s)
+            full_tokens = len(enc.encode(full_str))
+            ratio = full_tokens / ref_tokens if ref_tokens else 0.0
+
+            comp_rows.append((handle, stub, ref_tokens, full_tokens, ratio))
+
+            f.write(f"\\newcommand{{\\semaComp{handle}Stub}}{{{stub}}}\n")
+            f.write(f"\\newcommand{{\\semaComp{handle}Ref}}{{{ref_tokens}}}\n")
+            f.write(f"\\newcommand{{\\semaComp{handle}Full}}{{{full_tokens}}}\n")
+            f.write(f"\\newcommand{{\\semaComp{handle}Ratio}}{{{ratio:.1f}}}\n")
+
+        comp_avg_ref = sum(r[2] for r in comp_rows) / len(comp_rows)
+        comp_avg_full = sum(r[3] for r in comp_rows) / len(comp_rows)
+        comp_avg_ratio = comp_avg_full / comp_avg_ref if comp_avg_ref else 0.0
         f.write(f"\\newcommand{{\\semaCompAvgRef}}{{{comp_avg_ref:.1f}}}\n")
         f.write(f"\\newcommand{{\\semaCompAvgFull}}{{{comp_avg_full:.1f}}}\n")
         f.write(f"\\newcommand{{\\semaCompAvgRatio}}{{{comp_avg_ratio:.1f}}}\n")
+
+        # Per-layer compression: compute the same ref/full token counts
+        # across the entire default library, then average by layer. This
+        # reveals whether different layers carry different semantic weight
+        # per hash: mind/society patterns tend to be denser (invariants,
+        # failure modes) while infrastructure patterns are often terser.
+        layer_buckets = {"Physics": [], "Infrastructure": [], "Mind": [], "Society": []}
+        for p in patterns:
+            handle = p.get("handle")
+            layer = p.get("_meta", {}).get("layer") or p.get("sema_layer")
+            if not handle or layer not in layer_buckets:
+                continue
+            stub = p["sema_id"].split(":SHA-256:")[-1][:4]
+            ref_tokens = len(enc.encode(f"{handle}#{stub}"))
+            parts = [p.get("mechanism", "")]
+            parts.extend(p.get("invariants", []))
+            parts.extend(p.get("preconditions", []))
+            parts.extend(p.get("postconditions", []))
+            parts.extend(p.get("failure_modes", []))
+            full_tokens = len(enc.encode(" ".join(s for s in parts if s)))
+            if ref_tokens and full_tokens:
+                layer_buckets[layer].append((ref_tokens, full_tokens))
+
+        for layer, rows in layer_buckets.items():
+            if not rows:
+                continue
+            ar = sum(r[0] for r in rows) / len(rows)
+            af = sum(r[1] for r in rows) / len(rows)
+            rt = af / ar if ar else 0.0
+            f.write(f"\\newcommand{{\\semaLayerComp{layer}Count}}{{{len(rows)}}}\n")
+            f.write(f"\\newcommand{{\\semaLayerComp{layer}Ref}}{{{ar:.1f}}}\n")
+            f.write(f"\\newcommand{{\\semaLayerComp{layer}Full}}{{{af:.1f}}}\n")
+            f.write(f"\\newcommand{{\\semaLayerComp{layer}Ratio}}{{{rt:.1f}}}\n")
+
+        # Library-wide average (across all default patterns, not just the 4)
+        all_rows = [r for rows in layer_buckets.values() for r in rows]
+        if all_rows:
+            lib_ref = sum(r[0] for r in all_rows) / len(all_rows)
+            lib_full = sum(r[1] for r in all_rows) / len(all_rows)
+            lib_ratio = lib_full / lib_ref if lib_ref else 0.0
+            f.write(f"\\newcommand{{\\semaLibCompRef}}{{{lib_ref:.1f}}}\n")
+            f.write(f"\\newcommand{{\\semaLibCompFull}}{{{lib_full:.1f}}}\n")
+            f.write(f"\\newcommand{{\\semaLibCompRatio}}{{{lib_ratio:.1f}}}\n")
 
         # Embedding similarity stats (from taxonomy.db)
         import sqlite3

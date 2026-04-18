@@ -1,0 +1,24 @@
+{
+  "handle": "Distance",
+  "mechanism": "A function d(x, y) on a space that assigns a non-negative real number to each pair of points, satisfying the metric axioms: (1) non-negativity, d \u2265 0; (2) identity of indiscernibles, d(x, y) = 0 iff x = y; (3) symmetry, d(x, y) = d(y, x); (4) triangle inequality, d(x, z) \u2264 d(x, y) + d(y, z). The substrate of 'how close' in any space \u2014 geographic, vector-embedding, cognitive-similarity, network-hop, graph-theoretic. Every metric space has a distance function; agents cannot redefine what metric-ness requires. Pseudo-metrics (which relax identity of indiscernibles) and quasi-metrics (which relax symmetry) are distinct descendants, not specializations of Distance itself.",
+  "gloss": "Metric-axiom function d(x,y) on a space \u2014 substrate for similarity, proximity, and spatial reasoning",
+  "invariants": [
+    "Non-negativity: d(x, y) \u2265 0 for all x, y in the space.",
+    "Identity of indiscernibles: d(x, y) = 0 if and only if x = y.",
+    "Symmetry: d(x, y) = d(y, x).",
+    "Triangle inequality: d(x, z) \u2264 d(x, y) + d(y, z)."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Physics",
+      "Primitives"
+    ]
+  },
+  "sema_id": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff",
+  "sema_ref": "Distance#1376",
+  "sema_stub": "1376",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

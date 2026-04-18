@@ -14,20 +14,25 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Memory",
-    "ring": 0
+    "ring": 2,
+    "supersedes": [
+      "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832"
+    ],
+    "path": [
+      "Mind",
+      "Memory"
+    ]
   },
-  "sema_id": "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832",
-  "sema_ref": "SelfReminder#c896",
-  "sema_stub": "c896",
-  "sema_layer": "Mind",
-  "sema_category": "Memory",
+  "sema_id": "sema:SelfReminder#mh:SHA-256:cd9882d36fb491f3a1514093812b5faa5aec92cd11f539b4c2370c41253ea186",
+  "sema_ref": "SelfReminder#cd98",
+  "sema_stub": "cd98",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:510af8317d84bfff7dbba4ebbe2ae2a14d0e28ed8ed342a4e8dbc2e3294c1353",
-      "trace": "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
 }

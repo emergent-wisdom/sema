@@ -13,18 +13,23 @@
   ],
   "_meta": {
     "tier": 2,
-    "layer": "Mind",
-    "category": "Reasoning",
-    "ring": 2
+    "ring": 2,
+    "supersedes": [
+      "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d"
+    ],
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
   },
-  "sema_ref": "SelfConsistency#543d",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d",
-  "sema_stub": "543d",
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning",
+  "sema_ref": "SelfConsistency#2add",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:2adda941ce4d7f6d47908d9dd797beac631f626328184a45e544cb126a789664",
+  "sema_stub": "2add",
   "dependencies": {
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
+      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b"
     }
-  }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

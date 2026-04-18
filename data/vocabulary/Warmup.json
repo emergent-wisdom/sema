@@ -4,8 +4,7 @@
   "gloss": "Gradual capacity increase to stabilize cold systems",
   "failure_modes": [
     "Premature Load: Traffic arrives before warmup completes.",
-    "False Warmth: Timer completes but internal state (e.g.",
-    "cache) is still cold."
+    "False Warmth: Timer completes but internal state (e.g. cache) is still cold."
   ],
   "invariants": [
     "Capacity Limit: Accepted_Load <= Current_Warmup_Cap(t)"
@@ -39,20 +38,25 @@
   ],
   "_meta": {
     "tier": 1,
-    "layer": "Society",
-    "category": "Protocols",
-    "ring": 0
+    "ring": 0,
+    "supersedes": [
+      "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb"
+    ],
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
   },
-  "sema_id": "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
-  "sema_ref": "Warmup#28c4",
-  "sema_stub": "28c4",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:Warmup#mh:SHA-256:44be1ffb85b85ca350669220b7a66245968faafde2470475025869434443e76b",
+  "sema_ref": "Warmup#44be",
+  "sema_stub": "44be",
   "dependencies": {
     "references": {
-      "greet": "sema:Greet#mh:SHA-256:7ad2382d29cb28ed605b0505374488c7e6dcd1ff8098b63686e83ab7098e2cf6",
+      "greet": "sema:Greet#mh:SHA-256:be4d3659a9eaa805c17a04d495d984d85e4ec1b118c824824b58985a17581fb7",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "throttle": "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af"
+      "throttle": "sema:Throttle#mh:SHA-256:4d479e4b025f72c347424f50b7ac6a3503a9447bd3f085f6e032c326936e56cc"
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

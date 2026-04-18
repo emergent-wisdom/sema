@@ -74,6 +74,34 @@ See [CLI Reference](../tools/cli.md) for the full command set.
 
 **Bundled DB guard:** The pip-installed vocabulary is read-only — `apply` will refuse to modify it. To work with a writable database, run `sema build my.db --preset full` then `sema use my.db`.
 
+### Populating `_meta.supersedes` (author side)
+
+Supersession is a two-sided convention. The author side — what you do when you modify a pattern — is independent of the consumer side (§8 Supersession cleanup).
+
+**The rule.** Whenever an edit changes a pattern's `sema_id` against the last public release, the prior `sema_id` must appear in `_meta.supersedes`. This holds regardless of the *kind* of change:
+
+- **Rename** (handle changed) — the successor's `_meta.supersedes` lists the old-handle sema_id.
+- **Content edit** (handle unchanged, mechanism / invariants / dependencies / any hashed field changed) — the (same-handle) successor's `_meta.supersedes` lists the prior release's sema_id.
+- **Rename + content edit** — one entry suffices; list the single prior sema_id.
+- **No change since last release** — no `_meta.supersedes` entry is needed; the hash still matches.
+
+`_meta.supersedes` is a flat list of full sema_id strings (`"sema:Handle#mh:SHA-256:..."`), pointing back to the **last public release**. Intermediate, unreleased sema_ids from a local rebuild must not appear — downstream consumers never saw them, so referencing them is meaningless. When a pattern goes through multiple public releases with changes in each, each release appends its own prior sema_id; the list grows over time and acts as the versioning chain.
+
+**Why it matters.** Consumers running `sema pull` rely on `_meta.supersedes` to map their pinned hashes forward. Without it:
+
+- A rename silently leaves the old handle in the consumer's DB as an orphan alongside the new one. Dependents keep resolving to the frozen old pattern. Drift accumulates.
+- A content edit makes the consumer's `sema pull --verify` report a hash mismatch but offers no path to recognize the replacement. The consumer can't distinguish "the pattern changed" from "the pattern was corrupted."
+
+With `_meta.supersedes` populated correctly, pull acts cleanly: removes the old local copy, adds the replacement, preserves dependent wiring via hash-cascade.
+
+**What enforces this.** Honest answer: nothing blocks you on `sema apply` today. There is no compile-time gate that compares the new pattern's hash to the pip-installed pattern's hash and refuses the apply when the old sema_id isn't present in `_meta.supersedes`. The field is schema-optional (`supersedes: list[str] | None`) and excluded from the Merkle hash (see `SEMANTIC_FIELDS` in `src/sema/core/hashing.py`), so omitting it is silently permitted.
+
+This is deliberate for now — the project is small enough that author discipline and CHANGELOG review cover the gap — but a future `sema apply` could grow a `--check-supersedes` gate that cross-references the bundled DB. If that lands, it will be additive; existing patterns won't be revalidated.
+
+**What does use it.** `sema pull` is the consumer-side reader (§8). `sema pull --verify` re-hashes every stored pattern and flags mismatches but does not separately verify that `_meta.supersedes` is correctly populated. The MCP `sema_pull` tool exposes the same supersedes-based cleanup.
+
+**Batch population when you missed it.** If you ship a release whose patterns don't yet carry the prior release's sema_ids, you can populate them after the fact by diffing the current staging tree against the previous public release's DB. A one-shot script (see `scripts/` history around the 0.2.0 release) reads `{handle: prior_sema_id}` from the prior DB, walks staging, and appends the prior sema_id to each pattern whose current sema_id differs from prior. Because `_meta.supersedes` is not hashed, running this does not cascade new hashes through the DAG.
+
 ## 5. Export
 
 After applying changes, regenerate the vocabulary JSON files from the database:
@@ -122,13 +150,50 @@ sema pull
 pattern into the active DB. It does **not** wipe the target — it reconciles.
 
 - **User-only patterns are preserved.** If you've minted local patterns,
-  pull won't touch them.
+  pull won't touch them (unless they're explicitly superseded; see below).
 - **Hash cascade flows automatically.** When an upstream pattern's hash
   changes, your local patterns that depend on it get re-hashed too. Their
   identity stays mathematically consistent with the new upstream.
 - **Metadata is field-merged.** Upstream owns `_meta.layer`, `category`,
   `tier`, `ring`, `supersedes` — taxonomy reorganizations propagate. You
   own `_meta.caution` and `_meta.related` — your local annotations survive.
+
+### Supersession cleanup
+
+When an upstream pattern's `_meta.supersedes` list names the `sema_id` of a
+pattern in your local DB, upstream has explicitly declared the old pattern
+obsolete. Pull acts on that declaration by default:
+
+- The superseded local pattern is **removed** from the active DB.
+- The replacement (the upstream pattern that declared the supersession) is
+  added in the same run.
+- Reported as `superseded_removed` in the pull output:
+  `→ OldHandle → NewHandle`.
+
+**Orphan guard.** If a *user-only* local pattern still depends on the
+superseded one (its dependency map references the exact superseded
+`sema_id`), pull **keeps** the superseded pattern rather than silently
+breaking your dependent. The situation is reported as
+`superseded_kept_orphan`; re-point the dependents (or mint a replacement)
+and re-run pull to complete the cleanup.
+
+**Opt-out: `--preserve-superseded`.** If you want the old handle to stick
+around alongside the replacement (e.g. to compare, to pin an older
+semantics, or because the upstream supersession claim is wrong for your
+use case), pass the flag:
+
+```bash
+sema pull --preserve-superseded
+```
+
+Both the old and new handles end up in your DB; no supersession cleanup
+occurs.
+
+**Why the old bytes are still recoverable.** The pre-pull snapshot
+(`<db>.pull_previous`) is retained on every successful pull that changed
+something, and `sema pull --undo` restores it. So a cleaned-up
+supersession is never destructive — the previous state is one command
+away.
 
 ### Exclusions and version pinning
 

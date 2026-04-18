@@ -7,45 +7,47 @@
     "Completeness: Must record all state changes applied."
   ],
   "_meta": {
-    "layer": "Society",
-    "category": "Protocols",
     "ring": 0,
     "tier": 1,
     "related": [
       "Rollout"
+    ],
+    "supersedes": [
+      "sema:RolloutManifest#mh:SHA-256:9e7fe2b3bcd73879f8f55164530c8f5e6773a39b9719cfaca8dce18452ac1463"
+    ],
+    "path": [
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_id": "sema:RolloutManifest#mh:SHA-256:9e7fe2b3bcd73879f8f55164530c8f5e6773a39b9719cfaca8dce18452ac1463",
-  "sema_ref": "RolloutManifest#9e7f",
-  "sema_stub": "9e7f",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035",
+  "sema_ref": "RolloutManifest#5596",
+  "sema_stub": "5596",
   "data_schema": {
     "type": "object",
+    "description": "Immutable deployment record.",
     "required": [
       "deployment_id",
       "actions"
     ],
     "properties": {
       "deployment_id": {
-        "type": "string",
-        "description": "Unique deployment identifier"
+        "type": "string"
       },
       "actions": {
+        "type": "array"
+      },
+      "feature_flag_state": {
+        "type": "object"
+      },
+      "targets": {
         "type": "array",
         "items": {
-          "type": "object"
-        },
-        "description": "Actions taken during deployment"
-      },
-      "config_states": {
-        "type": "object",
-        "description": "Configuration at deployment time"
-      },
-      "feature_flags": {
-        "type": "object",
-        "description": "Feature flag settings"
+          "type": "string"
+        }
       }
     }
-  }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

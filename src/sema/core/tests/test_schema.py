@@ -16,21 +16,21 @@ class TestPatternMeta:
 
     def test_valid_meta(self):
         """Valid metadata should parse."""
-        meta = PatternMeta(layer="Infrastructure", category="Primitives", ring=0, tier=1)
+        meta = PatternMeta(path=["Infrastructure", "Primitives"], ring=0, tier=1)
         assert meta.layer == "Infrastructure"
         assert meta.category == "Primitives"
 
     def test_invalid_layer(self):
-        """Invalid layer should fail."""
-        with pytest.raises(ValueError, match="Input should be"):
-            PatternMeta(layer="InvalidLayer", category="Primitives", ring=0, tier=1)
+        """Invalid layer (path[0]) should fail."""
+        with pytest.raises(ValueError, match="path\\[0\\] must be a valid layer"):
+            PatternMeta(path=["InvalidLayer", "Primitives"], ring=0, tier=1)
 
     def test_invalid_category_for_layer(self):
-        """Category must be valid for the layer."""
-        with pytest.raises(ValueError, match="Invalid category"):
+        """Path tuple must be in VALID_PATHS."""
+        with pytest.raises(ValueError, match="invalid taxonomy path"):
             PatternMeta(
-                layer="Infrastructure",
-                category="Creativity",  # Creativity is in Mind, not Infrastructure
+                # 'Creativity' is not a valid Infrastructure leaf
+                path=["Infrastructure", "Creativity"],
                 ring=0,
                 tier=1,
             )
@@ -38,12 +38,12 @@ class TestPatternMeta:
     def test_invalid_ring(self):
         """Ring must be 0, 1, or 2."""
         with pytest.raises(ValueError):
-            PatternMeta(layer="Infrastructure", category="Primitives", ring=5, tier=1)
+            PatternMeta(path=["Infrastructure", "Primitives"], ring=5, tier=1)
 
     def test_invalid_tier(self):
         """Tier must be 0, 1, 2, or 3."""
         with pytest.raises(ValueError):
-            PatternMeta(layer="Infrastructure", category="Primitives", ring=0, tier=10)
+            PatternMeta(path=["Infrastructure", "Primitives"], ring=0, tier=10)
 
 
 def make_sema_id(handle: str, suffix: str = "a") -> str:
@@ -155,7 +155,7 @@ class TestParameters:
         return {
             "handle": "TestPattern",
             "mechanism": "Test pattern.",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
 
     def test_parameters_structure_valid(self, base_pattern):
@@ -235,7 +235,7 @@ class TestSemaPattern:
         return {
             "handle": "TestPattern",
             "mechanism": "A test pattern for validation.",
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
 
     def test_valid_pattern(self, valid_pattern):
@@ -304,8 +304,7 @@ class TestSemaPattern:
             "handle": "TestNoun",
             "mechanism": "A data structure pattern.",
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Data Structures",
+                "path": ["Infrastructure", "Data Structures"],
                 "ring": 0,
                 "tier": 1,
             },
@@ -319,8 +318,7 @@ class TestSemaPattern:
             "handle": "TestNoun",
             "mechanism": "A data structure pattern.",
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Data Structures",
+                "path": ["Infrastructure", "Data Structures"],
                 "ring": 0,
                 "tier": 1,
             },
@@ -350,7 +348,7 @@ class TestValidatePatternSchema:
         pattern = {
             "handle": "TestPattern",
             "mechanism": "Test mechanism.",
-            "_meta": {"layer": "Mind", "category": "Strategy", "ring": 1, "tier": 2},
+            "_meta": {"path": ["Mind", "Strategy"], "ring": 1, "tier": 2},
         }
         result = validate_pattern_schema(pattern)
         assert isinstance(result, tuple)
@@ -364,7 +362,7 @@ class TestValidatePatternSchema:
         pattern = {
             "handle": "invalid",  # lowercase
             "mechanism": "Test",
-            "_meta": {"layer": "Wrong", "category": "Bad", "ring": 0, "tier": 0},
+            "_meta": {"path": ["Wrong", "Bad"], "ring": 0, "tier": 0},
         }
         is_valid, errors, warnings = validate_pattern_schema(pattern)
         assert is_valid is False
@@ -381,8 +379,7 @@ class TestDataSchema:
             "handle": "TestNoun",
             "mechanism": "A test data structure.",
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Data Structures",
+                "path": ["Infrastructure", "Data Structures"],
                 "ring": 0,
                 "tier": 1,
             },
@@ -565,7 +562,7 @@ class TestNullValues:
         pattern = {
             "handle": "TestPattern",
             "mechanism": None,
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         with pytest.raises(ValueError):
             SemaPattern.model_validate(pattern)
@@ -580,8 +577,7 @@ class TestComplexDataSchema:
             "handle": "TestNested",
             "mechanism": "A nested data structure.",
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Data Structures",
+                "path": ["Infrastructure", "Data Structures"],
                 "ring": 0,
                 "tier": 1,
             },
@@ -617,8 +613,7 @@ class TestDependencyRelatedSeparation:
             "mechanism": "Uses {{gate}} for control.",
             "dependencies": {"references": {"gate": make_sema_id("Gate")}},
             "_meta": {
-                "layer": "Infrastructure",
-                "category": "Primitives",
+                "path": ["Infrastructure", "Primitives"],
                 "ring": 0,
                 "tier": 1,
                 "related": ["Gate"],
@@ -637,7 +632,7 @@ class TestSignatureBareName:
             "handle": "TestBare",
             "mechanism": "A test pattern.",
             "signature": ["Check"],
-            "_meta": {"layer": "Infrastructure", "category": "Primitives", "ring": 0, "tier": 1},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
         }
         with pytest.raises(ValueError, match="Invalid signature syntax"):
             SemaPattern.model_validate(pattern)
