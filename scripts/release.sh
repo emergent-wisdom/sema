@@ -91,7 +91,7 @@ fi
 ok "tests green"
 
 # ── Version + release-notes extraction ────────────────────────────────────
-VERSION="$(grep -E '^version\s*=' pyproject.toml | head -1 | sed -E 's/^version\s*=\s*"([^"]+)".*/\1/')"
+VERSION="$(awk -F'"' '/^version[[:space:]]*=/ { print $2; exit }' pyproject.toml)"
 [[ -n "$VERSION" ]] || fail "Could not read version from pyproject.toml"
 TAG="v$VERSION"
 ok "version: $VERSION (tag: $TAG)"
