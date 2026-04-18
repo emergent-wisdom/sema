@@ -58,6 +58,15 @@ def apply_changes(
         return False
     store = GraphStore(db_path)
 
+    # Banner: fingerprint the DB before mutating it, so the audit trail is
+    # clear about which vocabulary state this apply ran against.
+    try:
+        from ..core.hashing import format_load_line, vocabulary_info
+
+        print(format_load_line(vocabulary_info(db_path)))
+    except Exception:
+        pass
+
     # ============ PHASE 1: VALIDATION ============
     print("Validating...")
     errors = []
@@ -626,6 +635,12 @@ def update_db(
 
     print(f"Upstream: {source_db}")
     print(f"Active:   {target_db}")
+    try:
+        from ..core.hashing import format_load_line, vocabulary_info
+
+        print(format_load_line(vocabulary_info(target_db)))
+    except Exception:
+        pass
 
     # Build exclusion set: file + CLI args. Pull will not touch excluded
     # handles — this is the user's "I deleted this and meant it" knob.
@@ -1046,6 +1061,15 @@ def use_db(path: str = None, default: bool = False):
     register_db(str(resolved))
     count = RegistryManager(db_path=str(resolved)).count()
     print(f"✅ Switched to {resolved} ({count} patterns)")
+
+    # Banner: show the vocabulary fingerprint right after the switch, so
+    # users can verify at a glance which state they just pointed at.
+    try:
+        from ..core.hashing import format_load_line, vocabulary_info
+
+        print(format_load_line(vocabulary_info(str(resolved))))
+    except Exception:
+        pass
 
     if os.environ.get("SEMA_DB_PATH"):
         print(f"⚠️  SEMA_DB_PATH is set to '{os.environ['SEMA_DB_PATH']}'")

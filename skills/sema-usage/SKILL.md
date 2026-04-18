@@ -89,6 +89,8 @@ The tool returns structured JSON: `added`, `updated`, `superseded_removed`, `sup
 - The user mentions they just upgraded the package (`pip install -U semahash`).
 - The user asks how to "update vocabulary", "sync", or "get latest patterns".
 
+**When NOT to pull.** Do not call `sema_pull` as part of routine orientation. It's not a "check in" — it's an update. Pulling removes locally-superseded handles by default, which can drop patterns the user has intentionally pinned. The orient phase is `sema_graph_skeleton()` + `sema_search()` — both read-only. Reserve `sema_pull` for the specific triggers above.
+
 **Supersession cleanup.** When upstream ships a pattern whose `_meta.supersedes` lists a sema_id you have locally, `sema_pull` removes the superseded local pattern by default and adds the replacement. Two guard cases:
 
 - **Orphan guard** — if a *user-only* local pattern still depends on the superseded one (references its exact sema_id), pull keeps the superseded pattern in place and reports the orphan in `superseded_kept_orphan`. Re-point the dependents and re-run to complete the cleanup.
