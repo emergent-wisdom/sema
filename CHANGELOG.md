@@ -6,6 +6,33 @@ Format draws loosely on [Keep a Changelog](https://keepachangelog.com/) and on g
 
 ---
 
+## [0.2.2] — 2026-04-18
+
+Fixes the doc-vs-code drift that shipped with 0.2.0 around the MCP surface.
+The CHANGELOG, SKILL, and tests all claimed `sema_pull` was an MCP tool and
+`sema_mint` was exposed by default, but the server module still only had
+`sema_mint` behind `SEMA_ALLOW_MINT=true` and no `sema_pull` at all. This
+release lands the code that matches the claims.
+
+- **`sema_pull` MCP tool** — now wired into the server. Returns structured
+  JSON with `success`, `added`, `updated`, `skipped`, `cascaded_user`,
+  `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`,
+  `vocabulary_root_before`, `vocabulary_root_after` so callers can act on
+  outcomes programmatically instead of scraping the human log.
+- **`sema_mint` flipped to opt-out.** Exposed by default; hide with
+  `SEMA_DISABLE_MINT=true`. The old `SEMA_ALLOW_MINT=true` gate is gone —
+  clean break, no back-compat.
+- **`SEMA_DISABLE_PULL=true`** — matching opt-out for `sema_pull`, for
+  deployments that want a pinned vocabulary.
+- **`update_db()` returns a structured dict** instead of a bare bool. CLI
+  callers read `result["success"]` for the exit code; MCP serializes the
+  whole dict.
+- `src/sema/mcp/tests/` is now in `pytest` testpaths. The 6 tests for
+  `sema_pull` / `sema_mint` registration and structured-output shape now
+  run (and pass) as part of the default suite.
+
+---
+
 ## [0.2.1] — 2026-04-18
 
 - Moved `reference/all_patterns_short.md` → `data/shorthand/all_patterns_short.md`.
@@ -32,7 +59,7 @@ Two coherent threads shipped in this release:
 
 - **`_meta.layer` + `_meta.category` consolidated into `_meta.path: list[str]`.** The taxonomy is now represented as an ordered list — `["Society", "Governance"]` instead of `{"layer": "Society", "category": "Governance"}` — so deeper hierarchies (`["Society", "Governance", "Voting"]`) don't require a schema bump. Consumers reading `pattern["_meta"]["layer"]` or `pattern["_meta"]["category"]` should read `pattern["_meta"]["path"][0]` and `pattern["_meta"]["path"][1]`. The top-level `sema_layer` and `sema_category` fields are preserved as **derived** (read-only) exports for one deprecation cycle; new code should read `_meta.path`. Graph representation follows: `LAYER` + `CATEGORY` node types are superseded by `TAXONOMY_PATH` nodes (one per valid path prefix), linked toward the root by `PARENT_PATH` edges; patterns attach via a single `IN_PATH` edge to their leaf. Pattern `sema_id`s are unaffected (path lives in `_meta`, excluded from the Merkle input).
 - **Old renamed handles are removed on `sema pull`.** The default behavior reads upstream `_meta.supersedes` and removes the local copy of any superseded pattern. Use `sema pull --preserve-superseded` to keep both the old and new handles. The pre-pull snapshot is still retained — `sema pull --undo` restores everything.
-- **`sema_mint` is now exposed by default in the MCP server.** Previously required `SEMA_ALLOW_MINT=true`. Deployments that want to keep mint disabled must now set `SEMA_DISABLE_MINT=true` (or leave the legacy `SEMA_ALLOW_MINT=false` in place — honored for one deprecation cycle).
+- **`sema_mint` is now exposed by default in the MCP server.** Previously required `SEMA_ALLOW_MINT=true`. Deployments that want to keep mint disabled must now set `SEMA_DISABLE_MINT=true`. (Note: the code change for this actually landed in 0.2.1 — 0.2.0 described the intended behaviour but shipped with the old gate still in place.)
 - **Pattern hashes shifted widely.** The foundation audit rewrote 71 mechanisms and relocated 71 patterns; canonicalization (see below) changed hashes for 4 new patterns plus their dependents. Consumers who pinned specific hashes will see `sema pull` update them automatically via the supersedes chain. Code that references handles (not full hashes) is unaffected.
 
 ### Schema migration — path-based taxonomy

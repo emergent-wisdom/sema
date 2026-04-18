@@ -131,40 +131,33 @@ class TestSemaMintTool(unittest.TestCase):
 
 
 class TestConditionalRegistration(unittest.TestCase):
-    """Tests for SEMA_ALLOW_MINT env var gating."""
+    """Tests for SEMA_DISABLE_MINT env var gating.
 
-    def test_mint_not_registered_by_default(self):
-        """Without SEMA_ALLOW_MINT, sema_mint should not be a registered tool."""
+    Registration is opt-out: `_sema_mint` is wired into the MCP tool registry
+    by default at import time, and `SEMA_DISABLE_MINT=true` hides it. The
+    opt-out env var is asserted on a fresh subprocess import in
+    `src/sema/mcp/tests/test_mcp_pull.py`; this class covers the in-process
+    invariants (default registration, callable reachability, and idempotent
+    manual registration).
+    """
+
+    def test_mint_registered_by_default(self):
+        """With no SEMA_DISABLE_MINT set, _sema_mint is a registered MCP tool."""
         tools = server.mcp._tool_manager._tools
-        env_val = os.environ.get("SEMA_ALLOW_MINT", "").lower()
+        env_val = os.environ.get("SEMA_DISABLE_MINT", "").lower()
         if env_val != "true":
-            self.assertNotIn("_sema_mint", tools)
+            self.assertIn("_sema_mint", tools)
 
     def test_mint_function_exists_regardless(self):
-        """_sema_mint function always exists as a callable, just not as a tool."""
+        """_sema_mint function always exists as a callable, regardless of
+        registration state."""
         self.assertTrue(callable(_sema_mint))
 
-    def test_manual_registration_adds_tool(self):
-        """Manually registering _sema_mint adds it to the tool registry."""
+    def test_manual_registration_is_idempotent(self):
+        """Re-registering _sema_mint keeps it in the tool registry."""
         tools = server.mcp._tool_manager._tools
-        had_mint = "_sema_mint" in tools
-
         server.mcp.tool()(_sema_mint)
         self.assertIn("_sema_mint", tools)
-
-        # Clean up
-        if not had_mint:
-            del tools["_sema_mint"]
-
-    def test_env_var_true_variants_accepted(self):
-        """Only 'true' (case-insensitive) enables minting."""
-        for val in ["true", "True", "TRUE", "tRuE"]:
-            self.assertEqual(val.lower(), "true")
-
-    def test_env_var_false_variants_rejected(self):
-        """Non-'true' values do not enable minting."""
-        for val in ["false", "False", "0", "no", "", "yes", "1", "on", "enabled"]:
-            self.assertNotEqual(val.lower(), "true")
 
 
 if __name__ == "__main__":
