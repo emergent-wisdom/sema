@@ -53,9 +53,9 @@
   "sema_category": "Inference",
   "dependencies": {
     "references": {
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d",
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:07f9ede9b37881846f271d342862a03a5f607917798eaac4e875840d2d3114ae",
       "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
-      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:07f9ede9b37881846f271d342862a03a5f607917798eaac4e875840d2d3114ae"
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d"
     }
   }
 }

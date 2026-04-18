@@ -50,11 +50,11 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128",
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
-      "role": "sema:Role#mh:SHA-256:80dff5a7dd9afaf02aeedfe83bf88eef0062d47b630f21b49c79ecac232363a4",
       "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02"
+      "role": "sema:Role#mh:SHA-256:80dff5a7dd9afaf02aeedfe83bf88eef0062d47b630f21b49c79ecac232363a4",
+      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02",
+      "step": "sema:Step#mh:SHA-256:5f2205a7812b52b35dd75469367956e838a99360de7fde55e1585bd155eed128"
     }
   }
 }

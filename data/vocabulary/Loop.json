@@ -21,11 +21,11 @@
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives",
   "dependencies": {
-    "composes_with": {
-      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
-    },
     "accepts": {
       "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+    },
+    "composes_with": {
+      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
     }
   }
 }

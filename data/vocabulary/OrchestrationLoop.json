@@ -36,17 +36,17 @@
   ],
   "dependencies": {
     "composes_with": {
-      "request_framing": "sema:RequestFraming#mh:SHA-256:2833644eb196d3f442e2b77721abaae4171fb1c5c8bb8a548e9e0acde27b2e5d",
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:d34a567ad3f296d2fe4d1b82be3b86923ad888e1206d0c1ed561a877dbb29752",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:2833644eb196d3f442e2b77721abaae4171fb1c5c8bb8a548e9e0acde27b2e5d",
       "rollout": "sema:Rollout#mh:SHA-256:2ea35592e6b73d370d768d888a19d6a64a7d0644adc8502be2f93720e2f8a4d8"
     },
     "references": {
-      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035",
-      "workflow": "sema:Workflow#mh:SHA-256:7975fc78a1a419744a496a8d10fff448ae347e41a10f0c5d528f7d9f46f162a8",
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:f63f8c8259dec4a322f899ec578ce3b0a9fc9cd8b0e3592499012cd8657aee28",
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:6cf5e67e580558a7f0704a5046ac45ebb766d2498be800d070d331a756a57502",
-      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:c40980e24aaf82edf5d6774f581eca7d907d213b878dad450d401935a3d243ba"
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:f63f8c8259dec4a322f899ec578ce3b0a9fc9cd8b0e3592499012cd8657aee28",
+      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:c40980e24aaf82edf5d6774f581eca7d907d213b878dad450d401935a3d243ba",
+      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035",
+      "workflow": "sema:Workflow#mh:SHA-256:7975fc78a1a419744a496a8d10fff448ae347e41a10f0c5d528f7d9f46f162a8"
     }
   }
 }

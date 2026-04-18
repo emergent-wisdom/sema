@@ -47,11 +47,11 @@
   "sema_ref": "Throttle#4d47",
   "sema_stub": "4d47",
   "dependencies": {
-    "composes_with": {
-      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482"
-    },
     "accepts": {
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "composes_with": {
+      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482"
     }
   }
 }

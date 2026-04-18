@@ -24,10 +24,10 @@
   "sema_category": "Verification",
   "dependencies": {
     "references": {
-      "greet": "sema:Greet#mh:SHA-256:be4d3659a9eaa805c17a04d495d984d85e4ec1b118c824824b58985a17581fb7",
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a"
+      "greet": "sema:Greet#mh:SHA-256:be4d3659a9eaa805c17a04d495d984d85e4ec1b118c824824b58985a17581fb7",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:29e2990928bc00ebd16148f973706c04faf2318c30a2312a22c93a0910477b4a",
+      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
     }
   }
 }

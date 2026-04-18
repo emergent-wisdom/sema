@@ -33,8 +33,8 @@
   "sema_stub": "bcd4",
   "dependencies": {
     "references": {
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "modest_claim": "sema:ModestClaim#mh:SHA-256:7da0b36913cf91f2b27f5a1676b6cfc35dac58f7f987bdb704164ad076777ed8"
+      "modest_claim": "sema:ModestClaim#mh:SHA-256:7da0b36913cf91f2b27f5a1676b6cfc35dac58f7f987bdb704164ad076777ed8",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
   }
 }

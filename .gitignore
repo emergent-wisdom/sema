@@ -40,3 +40,4 @@ src/sema/server/static/assets/
 
 # Experiment traces
 experiments/sema_design_challenge/traces/test_run/
+.claude/

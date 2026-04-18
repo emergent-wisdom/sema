@@ -25,10 +25,10 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
-      "ledger": "sema:Ledger#mh:SHA-256:2be9ce799356edd033aa6efd13f028b1d06b6784a49a4e12ab35278dd28a8219",
-      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
       "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
+      "ledger": "sema:Ledger#mh:SHA-256:2be9ce799356edd033aa6efd13f028b1d06b6784a49a4e12ab35278dd28a8219"
     }
   }
 }

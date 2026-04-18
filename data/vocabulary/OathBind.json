@@ -28,8 +28,8 @@
   ],
   "dependencies": {
     "references": {
-      "rule_set": "sema:RuleSet#mh:SHA-256:a07c37237b1d416367ddecca975480c3b115916d551185028fb5799b3ddb3d14",
       "actor": "sema:Actor#mh:SHA-256:57f6b9dbc9b8fc596a5238327f29fc24e27d4e0228bfed7352d41f0bfacd4ea4",
+      "rule_set": "sema:RuleSet#mh:SHA-256:a07c37237b1d416367ddecca975480c3b115916d551185028fb5799b3ddb3d14",
       "spot_audit": "sema:SpotAudit#mh:SHA-256:000ed33bc0676411521d703253810082f4a6a470818e194e833eca8605859ea8"
     }
   }

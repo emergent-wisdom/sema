@@ -27,14 +27,14 @@
   "sema_layer": "Society",
   "sema_category": "Economics",
   "dependencies": {
+    "composes_with": {
+      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
+      "bid": "sema:Bid#mh:SHA-256:464aee7df8e070d5fb943f26ea92fc1f13d705b90384852ca2f9133e35d42ff8",
+      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631"
+    },
     "references": {
       "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
       "lazy_consensus": "sema:LazyConsensus#mh:SHA-256:8a573c3272068dc276ae65d661840fe44a84c80ee70901eca780a8f2b4dad16c"
-    },
-    "composes_with": {
-      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631",
-      "bid": "sema:Bid#mh:SHA-256:464aee7df8e070d5fb943f26ea92fc1f13d705b90384852ca2f9133e35d42ff8",
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
     }
   }
 }

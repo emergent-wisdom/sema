@@ -31,10 +31,10 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
       "queue": "sema:Queue#mh:SHA-256:7ca9c0e018ff83fb95ed910137e844544899adb371390af2da9402026c03d3e3",
-      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
-      "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
+      "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11",
+      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
+      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df"
     }
   }
 }

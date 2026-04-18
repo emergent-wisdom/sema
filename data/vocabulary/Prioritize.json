@@ -44,14 +44,14 @@
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
-    },
     "composes_with": {
       "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
+    },
+    "references": {
+      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
+      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
     }
   }
 }

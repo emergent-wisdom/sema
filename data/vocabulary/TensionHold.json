@@ -44,9 +44,9 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
     },
     "yields": {
       "tension": "sema:Tension#mh:SHA-256:fc30a85f6d7da54e882a8f2cb095f646a5719976b5b9df30958edd556c7e1966"

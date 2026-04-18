@@ -32,13 +32,13 @@
   "sema_ref": "HypothesisLadder#ee7f",
   "sema_stub": "ee7f",
   "dependencies": {
-    "references": {
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
-      "abduction": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1"
-    },
     "composes_with": {
       "experiment": "sema:Experiment#mh:SHA-256:24aa765432c012d9dd25eafe872031e765843f751ae0d08bab2ab8b5d93cd59e"
+    },
+    "references": {
+      "abduction": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c"
     }
   }
 }

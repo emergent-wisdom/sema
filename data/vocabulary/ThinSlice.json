@@ -24,8 +24,8 @@
   "dependencies": {
     "references": {
       "extended_thinking": "sema:ExtendedThinking#mh:SHA-256:f9ebb3ff9fc1a5450b33e4bf50cc66315c1711169750e3fb3e700464fa1a80aa",
-      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f",
-      "route": "sema:Route#mh:SHA-256:34c7ac9e2640ce630821dc4d77e6a00bce56e47aff15976fd40acbc0a10eceb6"
+      "route": "sema:Route#mh:SHA-256:34c7ac9e2640ce630821dc4d77e6a00bce56e47aff15976fd40acbc0a10eceb6",
+      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f"
     }
   }
 }

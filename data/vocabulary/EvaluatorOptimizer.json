@@ -38,11 +38,11 @@
   ],
   "dependencies": {
     "references": {
-      "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
       "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
       "meta_check": "sema:MetaCheck#mh:SHA-256:1914b94396caf3eed522feb1c8c72dece8ccde4cc412fc4d4a62a5ca61c4398f",
-      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+      "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4"
     }
   }
 }

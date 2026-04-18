@@ -32,10 +32,10 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
       "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "generalize": "sema:Generalize#mh:SHA-256:ad9e81a92a651c1081fd09857e243dc804e603dc977be22f86a0051bd642596f",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
+      "generalize": "sema:Generalize#mh:SHA-256:ad9e81a92a651c1081fd09857e243dc804e603dc977be22f86a0051bd642596f"
     }
   }
 }

@@ -51,9 +51,9 @@
   "sema_category": "Memory",
   "dependencies": {
     "references": {
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
-      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:ce615fb4865cab7e631536f9bae1c869c8ed530d219d9b38754f038dce1eef5f",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:ce615fb4865cab7e631536f9bae1c869c8ed530d219d9b38754f038dce1eef5f"
     }
   }
 }

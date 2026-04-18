@@ -25,14 +25,14 @@
   "sema_ref": "DocumentedOverride#3629",
   "sema_stub": "3629",
   "dependencies": {
+    "accepts": {
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
+    },
     "composes_with": {
       "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608"
     },
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
-    },
-    "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b"
     }
   }
 }

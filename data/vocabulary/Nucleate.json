@@ -35,11 +35,11 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "rally": "sema:Rally#mh:SHA-256:0a1c42730dda47444d23b2beb92f0da483126d8494d54514951bef5511e58035",
-      "crystallize": "sema:Crystallize#mh:SHA-256:b1d941612f1b50d6f15b07e791daa145eedaefaa25c48f9c22ec602b60747891",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
+      "crystallize": "sema:Crystallize#mh:SHA-256:b1d941612f1b50d6f15b07e791daa145eedaefaa25c48f9c22ec602b60747891",
       "phase_transition": "sema:PhaseTransition#mh:SHA-256:edf83fdf4afccce463a1afeb1c9562009edfc0414141ff15e5410024a5bd116a",
+      "rally": "sema:Rally#mh:SHA-256:0a1c42730dda47444d23b2beb92f0da483126d8494d54514951bef5511e58035",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
       "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
   }

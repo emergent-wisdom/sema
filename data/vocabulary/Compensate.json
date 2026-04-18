@@ -43,9 +43,9 @@
   "sema_category": "Primitives",
   "dependencies": {
     "references": {
+      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608",
-      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608"
     }
   }
 }

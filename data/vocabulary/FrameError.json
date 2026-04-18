@@ -24,9 +24,9 @@
   "sema_stub": "1d3f",
   "dependencies": {
     "references": {
-      "retry": "sema:Retry#mh:SHA-256:ac55dbe681ec32b6553effd29698527f9510384edeab4b76e18d4ac543641fd8",
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
-      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631"
+      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631",
+      "retry": "sema:Retry#mh:SHA-256:ac55dbe681ec32b6553effd29698527f9510384edeab4b76e18d4ac543641fd8"
     }
   }
 }

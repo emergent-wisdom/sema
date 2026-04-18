@@ -27,9 +27,9 @@
   "sema_category": "Strategy",
   "dependencies": {
     "composes_with": {
-      "request_framing": "sema:RequestFraming#mh:SHA-256:2833644eb196d3f442e2b77721abaae4171fb1c5c8bb8a548e9e0acde27b2e5d",
       "interpret": "sema:Interpret#mh:SHA-256:8ee3b4a80afed7f69b8a1ef9c81d89279e5620e781d000ad8a25f32456b72b24",
-      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88"
+      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:2833644eb196d3f442e2b77721abaae4171fb1c5c8bb8a548e9e0acde27b2e5d"
     },
     "references": {
       "root_solver": "sema:RootSolver#mh:SHA-256:0eab25ce9d0813d98b179450701665a87b467ccbced30195d718515fb3fc5f6b",

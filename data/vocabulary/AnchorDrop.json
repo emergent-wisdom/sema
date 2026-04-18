@@ -35,9 +35,9 @@
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
+      "consensus": "sema:Consensus#mh:SHA-256:376f5580e6df7d500aaea9020d26a976275a110e3f849d88871055e78b7c73fa",
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
-      "consensus": "sema:Consensus#mh:SHA-256:376f5580e6df7d500aaea9020d26a976275a110e3f849d88871055e78b7c73fa"
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
   }
 }

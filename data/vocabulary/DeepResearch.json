@@ -38,11 +38,11 @@
   ],
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:db9507c031531031a14ac0371b3668fc844b3eb56f073a52bf009bf10d489cf0",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
       "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
-      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574"
+      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:db9507c031531031a14ac0371b3668fc844b3eb56f073a52bf009bf10d489cf0",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
     }
   }
 }

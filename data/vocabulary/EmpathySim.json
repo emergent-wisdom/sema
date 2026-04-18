@@ -46,17 +46,17 @@
   "sema_layer": "Mind",
   "sema_category": "Strategy",
   "dependencies": {
-    "references": {
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:dcc7ecdadc87094ea111dc28fa0e073d7802d8c45ba0a39f58afb04592bad66b",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
-    },
     "accepts": {
       "target_profile": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:dcc7ecdadc87094ea111dc28fa0e073d7802d8c45ba0a39f58afb04592bad66b",
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "simulation": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
     }
   }
 }

@@ -20,8 +20,8 @@
   "sema_stub": "274a",
   "dependencies": {
     "composes_with": {
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa",
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:75bcbfab216222b2630b35dfc2c8b1bc1f24d9c4130913d402db14fa7fc23c3a",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa"
     },
     "references": {
       "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"

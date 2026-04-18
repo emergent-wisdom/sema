@@ -25,8 +25,8 @@
       "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e"
     },
     "references": {
-      "solver_tree": "sema:SolverTree#mh:SHA-256:3c94f8fbb9c4d1a56881b1d84a3cbe7ea56185fa778c2533657fc34f86ae66a1",
-      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df"
+      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:3c94f8fbb9c4d1a56881b1d84a3cbe7ea56185fa778c2533657fc34f86ae66a1"
     }
   }
 }

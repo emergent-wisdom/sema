@@ -22,10 +22,10 @@
   ],
   "dependencies": {
     "references": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608",
+      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
       "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
-      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
-      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608",
+      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
     }
   }
 }

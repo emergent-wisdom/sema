@@ -46,8 +46,8 @@
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff",
-      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b"
+      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
+      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff"
     }
   }
 }

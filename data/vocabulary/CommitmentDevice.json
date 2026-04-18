@@ -54,8 +54,8 @@
   },
   "dependencies": {
     "references": {
-      "oath_bind": "sema:OathBind#mh:SHA-256:272bd3f50b4982bf106f746084449c8498c1f7bf8c088154123a15c1e2b72c66",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "oath_bind": "sema:OathBind#mh:SHA-256:272bd3f50b4982bf106f746084449c8498c1f7bf8c088154123a15c1e2b72c66"
     }
   }
 }

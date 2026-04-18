@@ -25,8 +25,8 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add",
-      "falsification": "sema:Falsification#mh:SHA-256:021560b40fc737a96a5b716a3bac434acea9b6a1e0debe6f010740bb915aa376"
+      "falsification": "sema:Falsification#mh:SHA-256:021560b40fc737a96a5b716a3bac434acea9b6a1e0debe6f010740bb915aa376",
+      "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
     }
   }
 }

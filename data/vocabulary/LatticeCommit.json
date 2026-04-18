@@ -32,9 +32,9 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "state_transition": "sema:StateTransition#mh:SHA-256:9e61cab1fbacfac92d739865d4505e9e9bb9ed024e0d51b670a00ccfeb801ec4",
-      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
       "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
+      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
+      "state_transition": "sema:StateTransition#mh:SHA-256:9e61cab1fbacfac92d739865d4505e9e9bb9ed024e0d51b670a00ccfeb801ec4",
       "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
     }
   }

@@ -36,16 +36,16 @@
   "sema_stub": "a868",
   "dependencies": {
     "accepts": {
-      "responsibility": "sema:Responsibility#mh:SHA-256:ea56467d7c7475a0546a0fcf7e77b869ce679bf563ca68b182150b4a28705f7e",
       "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "responsibility": "sema:Responsibility#mh:SHA-256:ea56467d7c7475a0546a0fcf7e77b869ce679bf563ca68b182150b4a28705f7e",
       "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+    },
+    "composes_with": {
+      "delegate": "sema:Delegate#mh:SHA-256:ba86128c57746d3716854e7f3126e81933d46a6fbc636038b8321758c769b8aa"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
-    },
-    "composes_with": {
-      "delegate": "sema:Delegate#mh:SHA-256:ba86128c57746d3716854e7f3126e81933d46a6fbc636038b8321758c769b8aa"
     }
   }
 }

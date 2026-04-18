@@ -36,20 +36,20 @@
   "sema_layer": "Society",
   "sema_category": "Protocols",
   "dependencies": {
-    "references": {
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
-      "context_switch": "sema:ContextSwitch#mh:SHA-256:312ff9263ecda7a7d90222647607f0a668a9d31ca0b0ec335d9a4ea04464fd68",
-      "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
-    },
     "accepts": {
       "solver_manifest": "sema:SolverManifest#mh:SHA-256:0299ce31325923a906e72bebe772918d4ce24da6d43f42bc014ffeede7972ef0"
+    },
+    "references": {
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
+      "context_switch": "sema:ContextSwitch#mh:SHA-256:312ff9263ecda7a7d90222647607f0a668a9d31ca0b0ec335d9a4ea04464fd68",
+      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
+      "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
+      "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6",
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
+      "solver_node": "sema:SolverNode#mh:SHA-256:75f0eb9b1565acd834035fde4cd9efa356d39aa604647887c4950e884b3f27df",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
     }
   }
 }

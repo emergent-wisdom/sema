@@ -31,8 +31,8 @@
   "sema_category": "Governance",
   "dependencies": {
     "references": {
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:db99b93268bebbe8ad4275b280159a66e42fbc91689d230ecfd5e00454b9a4e1"
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:db99b93268bebbe8ad4275b280159a66e42fbc91689d230ecfd5e00454b9a4e1",
+      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     }
   }
 }

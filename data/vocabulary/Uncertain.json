@@ -34,9 +34,9 @@
   "sema_stub": "b5f4",
   "dependencies": {
     "references": {
+      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
       "uncertainty_map": "sema:UncertaintyMap#mh:SHA-256:822cd0ebde031f9245d7a5e1212dc541279653aa7f9a34ee62c10a1447394138",
-      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+      "variable": "sema:Variable#mh:SHA-256:179a757268e1c339725e09418eba7989ba1ffb2148e8b0f1241d2ff90062116c"
     }
   }
 }

@@ -79,11 +79,11 @@
       "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
       "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
     },
-    "yields": {
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
-    },
     "references": {
       "risk": "sema:Risk#mh:SHA-256:198049488be8dcf811bfced0230ca10889fb531b03c6c7f66eb7dc131116be9d"
+    },
+    "yields": {
+      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
     }
   }
 }

@@ -30,13 +30,13 @@
     "Signal(Incongruity)"
   ],
   "dependencies": {
-    "references": {
-      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327",
-      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
-      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
-    },
     "composes_with": {
       "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    },
+    "references": {
+      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
+      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9",
+      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327"
     }
   }
 }

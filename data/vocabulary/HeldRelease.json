@@ -49,14 +49,14 @@
   "sema_ref": "HeldRelease#5ba3",
   "sema_stub": "5ba3",
   "dependencies": {
-    "references": {
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:bde9269c325f26585d6a69bb2fc4d1a8adb0092f55a4e02296cc3d2aa2630e84",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
-    },
     "accepts": {
       "unique_handle": "sema:UniqueHandle#mh:SHA-256:e9b349e9b073d41a6bd7a92dc4592cd74f7e254c400a071e7c0c1a3fbc4783df"
+    },
+    "references": {
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:bde9269c325f26585d6a69bb2fc4d1a8adb0092f55a4e02296cc3d2aa2630e84",
+      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
     }
   }
 }

@@ -48,8 +48,8 @@
       "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
     },
     "references": {
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:9aeda0f4187115f47a3c3bea2ea9d891cba132007500215941980e27464293de"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:9aeda0f4187115f47a3c3bea2ea9d891cba132007500215941980e27464293de",
+      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
     }
   }
 }

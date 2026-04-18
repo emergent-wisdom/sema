@@ -58,11 +58,11 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
+      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:53a7f5f86a370c0b6cb14bb1e0196c0e18ae32b2e637b4a870d7b91c1482933b",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:dc0727e3b91148946516db3f5b8279d289803e8db397ba54c6b860420f24e5a8",
       "responsibility": "sema:Responsibility#mh:SHA-256:ea56467d7c7475a0546a0fcf7e77b869ce679bf563ca68b182150b4a28705f7e",
       "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
-      "problem_space": "sema:ProblemSpace#mh:SHA-256:dc0727e3b91148946516db3f5b8279d289803e8db397ba54c6b860420f24e5a8",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:53a7f5f86a370c0b6cb14bb1e0196c0e18ae32b2e637b4a870d7b91c1482933b",
-      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
       "solver_manifest": "sema:SolverManifest#mh:SHA-256:0299ce31325923a906e72bebe772918d4ce24da6d43f42bc014ffeede7972ef0"
     }
   }

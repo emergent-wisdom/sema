@@ -34,8 +34,8 @@
   "sema_category": "Protocols",
   "dependencies": {
     "references": {
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e",
-      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e"
     }
   }
 }

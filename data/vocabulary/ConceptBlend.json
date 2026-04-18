@@ -25,10 +25,10 @@
   "sema_category": "Strategy",
   "dependencies": {
     "references": {
-      "tri_gate": "sema:TriGate#mh:SHA-256:641d7ad2299b51dc59bcb406922be490fbc3530a457794a6845a6c87b3fe3931",
-      "realizable": "sema:Realizable#mh:SHA-256:7ce08efae9112f927f5b04e4af7dea9b2fdfe7d073bd2362b4a52834e5e725a2",
       "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:fa18df1ff51bc8e86c4dc858ecb2f50f3d28820539983d83828444d840be951d",
-      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff"
+      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff",
+      "realizable": "sema:Realizable#mh:SHA-256:7ce08efae9112f927f5b04e4af7dea9b2fdfe7d073bd2362b4a52834e5e725a2",
+      "tri_gate": "sema:TriGate#mh:SHA-256:641d7ad2299b51dc59bcb406922be490fbc3530a457794a6845a6c87b3fe3931"
     }
   }
 }

@@ -53,14 +53,14 @@
   "sema_stub": "b1d9",
   "dependencies": {
     "references": {
-      "entropy_pump": "sema:EntropyPump#mh:SHA-256:ed3b97a2f0de4b0c3dac225aa578e266e9fce41cbb7c92d670d29a7366313818",
-      "constitution": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5",
+      "constitution": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
       "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
-      "resonate": "sema:Resonate#mh:SHA-256:00578726e84b21be66bef145b823bf2cbfefa2a30bdfb55d7b012db367e4730c",
       "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:ed3b97a2f0de4b0c3dac225aa578e266e9fce41cbb7c92d670d29a7366313818",
+      "resonate": "sema:Resonate#mh:SHA-256:00578726e84b21be66bef145b823bf2cbfefa2a30bdfb55d7b012db367e4730c",
+      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
+      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5"
     }
   }
 }

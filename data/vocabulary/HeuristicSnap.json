@@ -31,11 +31,11 @@
   "sema_category": "Reasoning",
   "dependencies": {
     "references": {
-      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
       "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f"
+      "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f",
+      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
+      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3"
     }
   }
 }

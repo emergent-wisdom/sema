@@ -49,9 +49,9 @@
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
+      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd"
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452"
     }
   }
 }

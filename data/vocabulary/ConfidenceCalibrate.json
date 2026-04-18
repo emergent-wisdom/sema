@@ -38,8 +38,8 @@
   "sema_stub": "597b",
   "dependencies": {
     "references": {
-      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
       "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
       "bayes_update": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1"
     }
   }

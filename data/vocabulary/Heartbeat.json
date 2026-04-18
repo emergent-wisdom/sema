@@ -45,14 +45,14 @@
   "sema_ref": "Heartbeat#29e2",
   "sema_stub": "29e2",
   "dependencies": {
+    "accepts": {
+      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+    },
     "composes_with": {
       "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
     },
     "references": {
       "monitor": "sema:Monitor#mh:SHA-256:c6316ed3fbded6b388d1751bb6662cb1dc10f236d031d4ac360b2a3a8b1fc272"
-    },
-    "accepts": {
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
     }
   }
 }
