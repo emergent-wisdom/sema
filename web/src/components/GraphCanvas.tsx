@@ -25,18 +25,45 @@ interface Link3D {
   id: string
 }
 
+// TAXONOMY_PATH nodes carry their path in metadata.segments — use the
+// first segment (the layer) for coloring. Nodes with depth=1 are layer
+// roots (e.g. "Physics"); depth>=2 are refined subcategories
+// (e.g. "Physics/Primitives").
+function taxonomyPathLayer(node: GraphNode): string | undefined {
+  const segs = (node.metadata as Record<string, unknown>)?.segments
+  if (Array.isArray(segs) && segs.length > 0 && typeof segs[0] === 'string') {
+    return segs[0]
+  }
+  return undefined
+}
+
 function getNodeColor(node: GraphNode): string {
   if (node.type === 'PATTERN' && node.layer) {
     return LAYER_COLORS[node.layer] || NODE_TYPE_COLORS.PATTERN
   }
+  // Taxonomy paths are structural scaffolding, not content. Keep them
+  // visually neutral (grey) so they read as hubs/anchors without competing
+  // with pattern nodes for attention.
+  if (node.type === 'TAXONOMY_PATH') {
+    return NODE_TYPE_COLORS.TAXONOMY_PATH
+  }
+  // Legacy node types
   if (node.type === 'CATEGORY' && node.layer) {
     return LAYER_COLORS[node.layer] || NODE_TYPE_COLORS.CATEGORY
   }
   return NODE_TYPE_COLORS[node.type] || DEFAULT_COLOR
 }
 
-function getNodeSize(type: NodeType): number {
-  switch (type) {
+function getNodeSize(node: GraphNode): number {
+  if (node.type === 'TAXONOMY_PATH') {
+    // Root (layer) = 8, child paths progressively smaller.
+    const depth = (node.metadata as Record<string, unknown>)?.depth
+    if (typeof depth === 'number') {
+      return Math.max(4, 10 - 2 * depth)
+    }
+    return 6
+  }
+  switch (node.type) {
     case 'LAYER':
       return 8
     case 'CATEGORY':
@@ -165,6 +192,10 @@ export function GraphCanvas() {
     if (filterByLayer) {
       nodes = nodes.filter((n) => {
         if (n.type === 'LAYER') return n.text === filterByLayer
+        if (n.type === 'TAXONOMY_PATH') {
+          const segs = (n.metadata as Record<string, unknown>)?.segments
+          return Array.isArray(segs) && segs[0] === filterByLayer
+        }
         return n.layer === filterByLayer
       })
     }
@@ -173,6 +204,14 @@ export function GraphCanvas() {
     if (filterByCategory) {
       nodes = nodes.filter((n) => {
         if (n.type === 'CATEGORY') return n.text === filterByCategory
+        if (n.type === 'TAXONOMY_PATH') {
+          const segs = (n.metadata as Record<string, unknown>)?.segments
+          return (
+            Array.isArray(segs) &&
+            segs.length >= 2 &&
+            segs[segs.length - 1] === filterByCategory
+          )
+        }
         return n.category === filterByCategory
       })
     }
@@ -191,10 +230,26 @@ export function GraphCanvas() {
         visibleNodeIds.has(e.target),
     )
 
+    // Taxonomy node hover labels: show only the LEAF segment so users see
+    // the categorization name ("Primitives") rather than the full path
+    // ("Physics/Primitives"). The parent-layer context is already conveyed
+    // by the node's position in the graph (patterns cluster under it).
+    const nodeLabel = (n: GraphNode): string => {
+      if (n.type === 'TAXONOMY_PATH') {
+        const segs = (n.metadata as Record<string, unknown>)?.segments
+        if (Array.isArray(segs) && segs.length > 0) {
+          return String(segs[segs.length - 1])
+        }
+        const text = n.text || ''
+        return text.includes('/') ? text.split('/').pop() || text : text
+      }
+      return n.handle || n.text
+    }
+
     return {
       nodes: nodes.map((n) => ({
         id: n.id,
-        name: n.handle || n.text,
+        name: nodeLabel(n),
         color: getNodeColor(n),
         type: n.type,
         layer: n.layer,
@@ -329,7 +384,7 @@ export function GraphCanvas() {
           node.id === hoveredNodeId ? '#ffffff' : node.color
         }
         nodeRelSize={3}
-        nodeVal={(node: Node3D) => getNodeSize(node.type)}
+        nodeVal={(node: Node3D) => getNodeSize(node)}
         nodeThreeObject={undefined}
         nodeThreeObjectExtend={false}
         linkColor={(link: Link3D) => {

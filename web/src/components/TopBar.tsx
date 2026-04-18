@@ -6,13 +6,33 @@ import type { NodeType } from '@/types/taxonomy'
 import { LAYER_COLORS, NODE_TYPE_COLORS, EDGE_TYPE_COLORS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
 import { DbSwitcher } from './DbSwitcher'
+import { useDbs } from '@/hooks/useApi'
 
 const LAYERS = ['Physics', 'Mind', 'Society', 'Infrastructure']
-const NODE_TYPES: NodeType[] = ['PATTERN', 'CATEGORY', 'LAYER']
+// Node types the filter UI offers. TAXONOMY_PATH replaced the old
+// LAYER + CATEGORY scaffolding in 0.2.0; legacy types are intentionally
+// not exposed in the filter chips (they'd be empty on current DBs).
+const NODE_TYPES: NodeType[] = ['PATTERN', 'TAXONOMY_PATH']
+
+// Human-readable display names for node types. `TAXONOMY_PATH` is the
+// internal node-type identifier; users see it as "Taxonomy" in the UI.
+const NODE_TYPE_LABEL: Record<NodeType, string> = {
+  PATTERN: 'Pattern',
+  TAXONOMY_PATH: 'Taxonomy',
+  CATEGORY: 'Category',
+  LAYER: 'Layer',
+  INVARIANT: 'Invariant',
+  PARAMETER: 'Parameter',
+  PRECONDITION: 'Precondition',
+  POSTCONDITION: 'Postcondition',
+}
 
 export function TopBar() {
   const { data: graphData } = useGraph()
   const { data: patterns } = usePatterns()
+
+  const { data: dbs } = useDbs()
+  const showDbSwitcher = (dbs?.databases?.length ?? 0) >= 2
 
   const nodeCount = graphData?.nodes.length || 0
   const edgeCount = graphData?.edges.length || 0
@@ -20,10 +40,15 @@ export function TopBar() {
 
   return (
     <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-zinc-900/90 backdrop-blur-md px-4 py-2 rounded-lg border border-zinc-800 shadow-lg z-50 flex items-center gap-3">
-      {/* DB Switcher */}
-      <DbSwitcher />
-
-      <div className="w-px h-4 bg-zinc-700" />
+      {/* DB Switcher — hidden when there's nothing to switch between.
+          Hide the trailing divider along with it so the top bar doesn't
+          start with a dangling vertical line. */}
+      {showDbSwitcher && (
+        <>
+          <DbSwitcher />
+          <div className="w-px h-4 bg-zinc-700" />
+        </>
+      )}
 
       {/* Stats */}
       <div className="flex items-center gap-3 text-xs">
@@ -260,11 +285,10 @@ function NodeTypeFilter() {
                   />
                   <span
                     className={cn(
-                      'capitalize',
                       isActive ? 'text-zinc-200' : 'text-zinc-500 line-through',
                     )}
                   >
-                    {type.toLowerCase()}
+                    {NODE_TYPE_LABEL[type] ?? type}
                   </span>
                 </button>
               )

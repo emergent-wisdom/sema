@@ -25,6 +25,8 @@ export function DetailsPanel() {
 
   const getTitle = () => {
     switch (nodeType) {
+      case 'TAXONOMY_PATH':
+        return 'Taxonomy'
       case 'CATEGORY':
         return 'Category'
       case 'LAYER':
@@ -53,7 +55,9 @@ export function DetailsPanel() {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto">
-        {nodeType === 'CATEGORY' && selectedNode ? (
+        {nodeType === 'TAXONOMY_PATH' && selectedNode ? (
+          <TaxonomyPathDetails node={selectedNode} />
+        ) : nodeType === 'CATEGORY' && selectedNode ? (
           <CategoryDetails node={selectedNode} />
         ) : nodeType === 'LAYER' && selectedNode ? (
           <LayerDetails node={selectedNode} />
@@ -152,6 +156,104 @@ export function ParsedText({ text, onPatternClick }: { text: string; onPatternCl
 
   return <>{parts}</>
 }
+
+function TaxonomyPathDetails({ node }: { node: GraphNode }) {
+  const { selectNodeAndFly } = useAppStore()
+  const { data: patterns, isLoading } = usePatterns()
+
+  // Pull segments from node.metadata (set by the graph_store). Fall back
+  // to splitting node.text on '/' for defensive compat.
+  const segments: string[] = useMemo(() => {
+    const meta = node.metadata as Record<string, unknown> | undefined
+    const segs = meta?.segments
+    if (Array.isArray(segs) && segs.every((s) => typeof s === 'string')) {
+      return segs as string[]
+    }
+    return (node.text || '').split('/').filter(Boolean)
+  }, [node])
+
+  const layer = segments[0]
+  const layerColor = (layer && LAYER_COLORS[layer]) || '#71717a'
+
+  // Patterns whose path starts with this node's segments.
+  // Current schema has depth=2 everywhere, so we match on
+  // layer (segments[0]) and, if present, category (segments[1]).
+  const matched = useMemo(() => {
+    if (!patterns) return [] as Pattern[]
+    return patterns.filter((p) => {
+      if (segments[0] && p.layer !== segments[0]) return false
+      if (segments[1] && p.category !== segments[1]) return false
+      return true
+    })
+  }, [patterns, segments])
+
+  return (
+    <div className="p-4 space-y-4">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <div
+          className="p-2 rounded-lg"
+          style={{ backgroundColor: layerColor + '20' }}
+        >
+          <Layers className="w-5 h-5" style={{ color: layerColor }} />
+        </div>
+        <div>
+          {/* Path breadcrumb */}
+          <h3 className="text-lg font-semibold text-zinc-100 flex flex-wrap items-center gap-1">
+            {segments.map((seg, i) => (
+              <span key={`${seg}-${i}`} className="flex items-center gap-1">
+                {i > 0 && <span className="text-zinc-600">/</span>}
+                <span>{seg}</span>
+              </span>
+            ))}
+          </h3>
+          <p className="text-xs text-zinc-500">
+            Taxonomy · depth {segments.length} · structural node
+          </p>
+        </div>
+      </div>
+
+      {/* Pattern list — filtered by path prefix */}
+      <div>
+        <h4 className="text-xs font-medium text-zinc-500 uppercase tracking-wider mb-2">
+          Patterns under this path ({matched.length})
+        </h4>
+        {isLoading ? (
+          <div className="text-sm text-zinc-500">Loading...</div>
+        ) : matched.length > 0 ? (
+          <div className="space-y-2">
+            {matched.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => selectNodeAndFly(p.id)}
+                className="w-full text-left p-2 rounded bg-zinc-800/50 hover:bg-zinc-800 transition-colors group"
+              >
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: LAYER_COLORS[p.layer] || '#71717a' }}
+                  />
+                  <span className="text-sm text-zinc-200 group-hover:text-zinc-100">
+                    {p.handle}
+                  </span>
+                  <span className="text-xs text-zinc-600 font-mono">#{p.stub}</span>
+                  <ExternalLink className="w-3 h-3 text-zinc-600 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                {p.gloss && (
+                  <p className="text-xs text-zinc-500 mt-1 line-clamp-1">{p.gloss}</p>
+                )}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="text-sm text-zinc-500">No patterns under this path</div>
+        )}
+      </div>
+    </div>
+  )
+}
+
 
 function CategoryDetails({ node }: { node: GraphNode }) {
   const { selectNodeAndFly } = useAppStore()

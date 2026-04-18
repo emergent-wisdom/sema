@@ -523,6 +523,10 @@ function PatternCard({
           {pattern.gloss}
         </p>
         <div className="mt-4 flex items-center gap-2">
+          {/* Two-tag path rendering: the layer carries the color (it's the
+              dominant categorization), the subcategory is a neutral
+              secondary tag. Keeps the visual weight on the layer without
+              losing the subcategory information. */}
           <span
             className="text-[11px] font-medium px-2 py-1 rounded-md transition-all"
             style={{
@@ -534,6 +538,11 @@ function PatternCard({
           >
             {pattern.layer}
           </span>
+          {pattern.category && (
+            <span className="text-[11px] font-medium px-2 py-1 rounded-md border border-zinc-800 text-zinc-400">
+              {pattern.category}
+            </span>
+          )}
         </div>
       </button>
 
