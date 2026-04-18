@@ -27,12 +27,15 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy only what the runtime needs. `pyproject.toml` first so the pip
-# install layer caches across source edits.
+# Copy only what the runtime needs. `pyproject.toml` + the force-included
+# directories must all be present before `pip install` — hatchling checks
+# for them during metadata generation.
 COPY pyproject.toml README.md LICENSE LICENSE-CONTENT ./
 COPY src/ ./src/
 COPY data/ ./data/
 COPY docs/ ./docs/
+COPY .claude-plugin/ ./.claude-plugin/
+COPY skills/ ./skills/
 COPY paper/sema.pdf ./paper/sema.pdf
 
 RUN pip install --no-cache-dir -e ".[api]"
