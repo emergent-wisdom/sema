@@ -1,0 +1,34 @@
+# Keep the Docker build context lean — anything not needed at runtime or
+# build time should be listed here. Mirrors what the existing Nixpacks
+# build avoided copying.
+
+.git
+.github
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+.coverage
+.DS_Store
+
+# Build artifacts that get regenerated in the image
+web/node_modules
+web/build
+web/dist
+src/sema/server/static
+
+# Research / experiments not served by the web deploy
+experiments
+paper
+!paper/sema.pdf
+
+# Docs not served through the website (docs/ under src is served; only
+# exclude if we accidentally add a top-level one. For now, keep docs/.)
+
+# Build tooling that only matters at image-build time
+Dockerfile
+Dockerfile.mcp
+.dockerignore
+nixpacks.toml
+railway.json
