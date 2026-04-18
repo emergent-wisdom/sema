@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "semahash"
-version = "0.2.1"
+version = "0.2.2"
 description = "Content-addressed semantics for multi-agent coordination. When the hash is the word."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -115,5 +115,5 @@ line-ending = "auto"
 
 [tool.pytest.ini_options]
 pythonpath = "src"
-testpaths = ["src/sema/cli/tests", "src/sema/core/tests"]
+testpaths = ["src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests"]
 addopts = "-v"

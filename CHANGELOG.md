@@ -1,21 +1,55 @@
 # Changelog
 
-This file records vocabulary-level changes between versions — additions, renames, relocations, mechanism rewrites, retirements, and governance updates that a downstream consumer would want to know about when running `sema pull`. It also records tooling changes that affect how consumers interact with the protocol (CLI flags, MCP tool changes, behavioral defaults).
+All notable changes to this project are documented in this file.
 
-Format draws loosely on [Keep a Changelog](https://keepachangelog.com/) and on game patch notes: grouped and scannable rather than prose.
+The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html). Dates are ISO 8601 (`YYYY-MM-DD`).
 
----
-
-## [0.2.1] — 2026-04-18
-
-- Moved `reference/all_patterns_short.md` → `data/shorthand/all_patterns_short.md`.
-- Added `web/public/llms.txt` so it's served at `semahash.org/llms.txt`.
-- Refreshed `install.md` for 0.2.0.
-- Bumped `experiments/orchestrator` submodule.
+This file records vocabulary-level changes between versions — additions, renames, relocations, mechanism rewrites, retirements, and governance updates that a downstream consumer would want to know about when running `sema pull` — as well as tooling changes that affect how consumers interact with the protocol (CLI flags, MCP tool changes, behavioral defaults).
 
 ---
 
-## [0.2.0] — Foundation Audit + Pull Loop (2026-04-17)
+## [Unreleased]
+
+(nothing yet)
+
+---
+
+## [0.2.2] - 2026-04-18
+
+Doc-vs-code drift fix for the MCP surface. 0.2.0's CHANGELOG, SKILL, and test file all claimed `sema_pull` was an MCP tool and `sema_mint` was exposed by default, but the server module still had `sema_mint` behind `SEMA_ALLOW_MINT=true` and no `sema_pull` at all. This release lands the code that matches the claims.
+
+### Added
+
+- `sema_pull` MCP tool — wraps `cli.main.update_db`. Returns structured JSON with `success`, `added`, `updated`, `skipped`, `cascaded_user`, `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after` (and `dry_run` / `error` when applicable).
+- `SEMA_DISABLE_PULL=true` environment variable to hide `sema_pull` in read-only / pinned-vocabulary deployments.
+- `src/sema/mcp/tests/` registered in `pytest` testpaths. The 6 tests for `sema_pull` / `sema_mint` registration and structured-output shape now run in the default suite.
+
+### Changed
+
+- `sema_mint` flipped from opt-in (`SEMA_ALLOW_MINT=true` required) to opt-out (`SEMA_DISABLE_MINT=true` to hide). Exposed by default.
+- `update_db()` now returns a structured dict instead of a bare bool. CLI callers read `result["success"]` for the exit code; the MCP tool serializes the whole dict.
+
+### Removed
+
+- Legacy `SEMA_ALLOW_MINT` environment variable. Clean break, no back-compat shim.
+
+---
+
+## [0.2.1] - 2026-04-18
+
+### Added
+
+- `web/public/llms.txt` — served at `semahash.org/llms.txt` after the next web build (previously the file existed only in the gitignored `web/dist/` and was not deployed).
+
+### Changed
+
+- `reference/all_patterns_short.md` moved to `data/shorthand/all_patterns_short.md`. Generator (`scripts/export/export_short_hand.py`), pre-commit hook, installer hook, and lifecycle doc all updated to the new path.
+- `install.md` refreshed for 0.2.0 (adds `sema_root` / `sema_graph_skeleton` to the MCP tools table; CLI section mentions `sema pull` / `sema categorize`; new "Keeping a project DB fresh" section).
+- `experiments/orchestrator` submodule pointer bumped to the latest upstream commit.
+
+---
+
+## [0.2.0] - 2026-04-17 — Foundation Audit + Pull Loop
 
 Two coherent threads shipped in this release:
 
@@ -32,7 +66,7 @@ Two coherent threads shipped in this release:
 
 - **`_meta.layer` + `_meta.category` consolidated into `_meta.path: list[str]`.** The taxonomy is now represented as an ordered list — `["Society", "Governance"]` instead of `{"layer": "Society", "category": "Governance"}` — so deeper hierarchies (`["Society", "Governance", "Voting"]`) don't require a schema bump. Consumers reading `pattern["_meta"]["layer"]` or `pattern["_meta"]["category"]` should read `pattern["_meta"]["path"][0]` and `pattern["_meta"]["path"][1]`. The top-level `sema_layer` and `sema_category` fields are preserved as **derived** (read-only) exports for one deprecation cycle; new code should read `_meta.path`. Graph representation follows: `LAYER` + `CATEGORY` node types are superseded by `TAXONOMY_PATH` nodes (one per valid path prefix), linked toward the root by `PARENT_PATH` edges; patterns attach via a single `IN_PATH` edge to their leaf. Pattern `sema_id`s are unaffected (path lives in `_meta`, excluded from the Merkle input).
 - **Old renamed handles are removed on `sema pull`.** The default behavior reads upstream `_meta.supersedes` and removes the local copy of any superseded pattern. Use `sema pull --preserve-superseded` to keep both the old and new handles. The pre-pull snapshot is still retained — `sema pull --undo` restores everything.
-- **`sema_mint` is now exposed by default in the MCP server.** Previously required `SEMA_ALLOW_MINT=true`. Deployments that want to keep mint disabled must now set `SEMA_DISABLE_MINT=true` (or leave the legacy `SEMA_ALLOW_MINT=false` in place — honored for one deprecation cycle).
+- **`sema_mint` is now exposed by default in the MCP server.** Previously required `SEMA_ALLOW_MINT=true`. Deployments that want to keep mint disabled must now set `SEMA_DISABLE_MINT=true`. (Note: the code change for this actually landed in 0.2.1 — 0.2.0 described the intended behaviour but shipped with the old gate still in place.)
 - **Pattern hashes shifted widely.** The foundation audit rewrote 71 mechanisms and relocated 71 patterns; canonicalization (see below) changed hashes for 4 new patterns plus their dependents. Consumers who pinned specific hashes will see `sema pull` update them automatically via the supersedes chain. Code that references handles (not full hashes) is unaffected.
 
 ### Schema migration — path-based taxonomy

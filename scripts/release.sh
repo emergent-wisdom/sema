@@ -1,0 +1,182 @@
+#!/usr/bin/env bash
+#
+# Full release dance — run after pyproject.toml + CHANGELOG are merged to main.
+#
+# Phases (each gated by a confirmation prompt):
+#   1. Pre-flight  — on main, clean tree, up-to-date, tests green, sync script
+#                    reports no drift.
+#   2. Tag + push  — git tag vX.Y.Z, push to origin.
+#   3. GitHub release — gh release create (triggers publish.yml → PyPI).
+#   4. MCP Registry — mcp-publisher publish server.json.
+#   5. Verify      — print the URLs to confirm everything landed.
+#
+# Version is read from pyproject.toml (single source of truth). Release notes
+# body is auto-extracted from the matching CHANGELOG.md section.
+#
+# Usage:
+#   scripts/release.sh            # interactive (prompts before each step)
+#   scripts/release.sh --yes      # skip prompts (CI / trusted-caller mode)
+#   scripts/release.sh --dry-run  # show what would happen, execute nothing
+
+set -euo pipefail
+
+# ── Args ──────────────────────────────────────────────────────────────────
+YES=0
+DRY_RUN=0
+for arg in "$@"; do
+    case "$arg" in
+        -y|--yes) YES=1 ;;
+        -n|--dry-run) DRY_RUN=1 ;;
+        -h|--help)
+            sed -n '3,19p' "$0" | sed 's/^# \{0,1\}//'
+            exit 0 ;;
+        *)
+            echo "Unknown arg: $arg" >&2
+            exit 2 ;;
+    esac
+done
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
+
+# ── Helpers ───────────────────────────────────────────────────────────────
+bold() { printf '\033[1m%s\033[0m\n' "$*"; }
+fail() { printf '\033[31m❌ %s\033[0m\n' "$*" >&2; exit 1; }
+ok()   { printf '\033[32m✓\033[0m %s\n' "$*"; }
+run()  {
+    if [[ $DRY_RUN -eq 1 ]]; then
+        printf '  (dry-run) %s\n' "$*"
+    else
+        eval "$@"
+    fi
+}
+confirm() {
+    local prompt="$1"
+    if [[ $YES -eq 1 || $DRY_RUN -eq 1 ]]; then
+        return 0
+    fi
+    read -r -p "$prompt [y/N] " reply
+    [[ "$reply" =~ ^[Yy]$ ]] || fail "Aborted."
+}
+
+# ── Phase 1: Pre-flight ───────────────────────────────────────────────────
+bold "▸ Pre-flight checks"
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+[[ "$branch" == "main" ]] || fail "Not on main (on $branch). Merge to main first."
+ok "on main"
+
+if ! git diff --quiet || ! git diff --cached --quiet; then
+    fail "Working tree is dirty. Commit or stash first."
+fi
+ok "clean working tree"
+
+git fetch --quiet origin main
+local_sha="$(git rev-parse HEAD)"
+remote_sha="$(git rev-parse origin/main)"
+[[ "$local_sha" == "$remote_sha" ]] || fail "Local main not up to date with origin/main."
+ok "up to date with origin/main"
+
+if ! python3 scripts/sync_release_metadata.py --check >/dev/null 2>&1; then
+    fail "Release metadata out of sync. Run: python3 scripts/sync_release_metadata.py && git commit --amend --no-edit"
+fi
+ok "plugin.json + server.json + pyproject in sync"
+
+bold "▸ Running tests"
+if [[ $DRY_RUN -eq 1 ]]; then
+    printf '  (dry-run) pytest\n'
+else
+    python3 -m pytest -q >/dev/null 2>&1 || fail "Tests failed. Fix before releasing."
+fi
+ok "tests green"
+
+# ── Version + release-notes extraction ────────────────────────────────────
+VERSION="$(grep -E '^version\s*=' pyproject.toml | head -1 | sed -E 's/^version\s*=\s*"([^"]+)".*/\1/')"
+[[ -n "$VERSION" ]] || fail "Could not read version from pyproject.toml"
+TAG="v$VERSION"
+ok "version: $VERSION (tag: $TAG)"
+
+if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+    fail "Tag $TAG already exists locally. Aborting to avoid clobber."
+fi
+if git ls-remote --exit-code --tags origin "$TAG" >/dev/null 2>&1; then
+    fail "Tag $TAG already exists on origin. Aborting."
+fi
+ok "tag $TAG is unused"
+
+# Extract the CHANGELOG section for this version. Match `## [X.Y.Z]` up to
+# the next `## ` heading or `---` separator.
+RELEASE_NOTES="$(
+    awk -v ver="$VERSION" '
+        $0 ~ "^## \\[" ver "\\]" { flag = 1; next }
+        flag && /^## \[/         { exit }
+        flag && /^---$/          { exit }
+        flag                     { print }
+    ' CHANGELOG.md
+)"
+if [[ -z "$(echo "$RELEASE_NOTES" | tr -d '[:space:]')" ]]; then
+    fail "No CHANGELOG section found for $VERSION. Add one and retry."
+fi
+ok "release notes extracted from CHANGELOG.md"
+
+# ── Show plan ─────────────────────────────────────────────────────────────
+echo
+bold "▸ Release plan"
+cat <<EOF
+  Tag:           $TAG
+  Remote:        origin
+  PyPI:          semahash (auto via .github/workflows/publish.yml on release)
+  MCP Registry:  io.github.emergent-wisdom/semahash
+  Docs landing:  https://semahash.org
+
+  Release notes preview (first 20 lines):
+$(echo "$RELEASE_NOTES" | head -20 | sed 's/^/    /')
+EOF
+echo
+
+# ── Phase 2: Tag + push ───────────────────────────────────────────────────
+bold "▸ Create + push tag"
+confirm "Create tag $TAG and push to origin?"
+run "git tag -a '$TAG' -m 'Release $TAG'"
+run "git push origin '$TAG'"
+ok "tag pushed"
+
+# ── Phase 3: GitHub release ───────────────────────────────────────────────
+bold "▸ Create GitHub release (triggers PyPI publish)"
+confirm "Create GitHub release for $TAG?"
+# Use a temp file for notes so multi-line content survives shell quoting.
+NOTES_FILE="$(mktemp)"
+trap 'rm -f "$NOTES_FILE"' EXIT
+echo "$RELEASE_NOTES" > "$NOTES_FILE"
+run "gh release create '$TAG' --title '$TAG' --notes-file '$NOTES_FILE'"
+ok "GitHub release created — PyPI publish workflow should now be running"
+echo "  Watch:  gh run list --workflow publish.yml --limit 3"
+
+# ── Phase 4: MCP Registry ─────────────────────────────────────────────────
+bold "▸ Publish server.json to MCP Registry"
+if ! command -v mcp-publisher >/dev/null 2>&1; then
+    echo "  ⚠️  mcp-publisher not found on PATH — skipping."
+    echo "     Install (Homebrew): brew install mcp-publisher"
+    echo "     Or build from: https://github.com/modelcontextprotocol/registry"
+    echo "     Then rerun: mcp-publisher login && mcp-publisher publish server.json"
+else
+    confirm "Run 'mcp-publisher publish server.json'? (requires GitHub OAuth on first run)"
+    if [[ $DRY_RUN -eq 0 ]]; then
+        # First-time auth is idempotent and cached; let it no-op if already logged in.
+        mcp-publisher login 2>/dev/null || true
+    fi
+    run "mcp-publisher publish server.json"
+    ok "MCP Registry update submitted"
+fi
+
+# ── Phase 5: Verify ───────────────────────────────────────────────────────
+echo
+bold "▸ Verify (manual — give PyPI ~2 min, MCP Registry ~instant)"
+cat <<EOF
+  PyPI:         https://pypi.org/project/semahash/$VERSION/
+  GitHub:       https://github.com/emergent-wisdom/sema/releases/tag/$TAG
+  MCP Registry: https://registry.modelcontextprotocol.io/v0/servers?search=semahash
+  Actions:      https://github.com/emergent-wisdom/sema/actions/workflows/publish.yml
+
+Done — release $VERSION has left the building.
+EOF

@@ -593,7 +593,7 @@ def update_db(
     verify: bool = False,
     exclude: list[str] | None = None,
     preserve_superseded: bool = False,
-):
+) -> dict:
     """Pull latest vocabulary: walk upstream DAG in topological order, update each.
 
     Atomicity: the entire pull runs inside a single SQLite transaction. If
@@ -609,35 +609,63 @@ def update_db(
 
     User-only patterns are left untouched. Their hashes cascade automatically
     when their upstream deps change (via the final sweep).
+
+    Returns a structured dict with success flag, counts, full handle lists for
+    each category (added/updated/skipped/cascaded_user/superseded_removed/
+    superseded_kept_orphan/upstream_removed), and vocabulary_root_before /
+    vocabulary_root_after so MCP callers can act on the outcome programmatically.
     """
     from ..core.dependencies import topological_sort
-    from ..core.hashing import extract_handle_from_ref
+    from ..core.hashing import extract_handle_from_ref, vocabulary_info
     from ..core.mint import mint_pattern
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
+
+    outcome: dict = {
+        "success": False,
+        "dry_run": dry_run,
+        "added": [],
+        "updated": [],
+        "skipped": [],
+        "cascaded_user": [],
+        "superseded_removed": [],
+        "superseded_kept_orphan": [],
+        "upstream_removed": [],
+        "vocabulary_root_before": None,
+        "vocabulary_root_after": None,
+    }
 
     target_db = get_default_db_path()
     if not target_db:
         print("❌ No active database. Run `sema build` or `sema use` first.")
-        return False
+        outcome["error"] = "No active database. Run `sema build` or `sema use` first."
+        return outcome
 
     if is_bundled_db(target_db):
         print("❌ Cannot pull into bundled DB — it's read-only.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
-        return False
+        outcome["error"] = "Cannot pull into bundled DB — it's read-only."
+        return outcome
 
     source_db = source or get_bundled_db_path()
     if not source_db:
         print("❌ No source database found.")
-        return False
+        outcome["error"] = "No source database found."
+        return outcome
 
     if source_db == target_db:
         print("❌ Source and target are the same database.")
-        return False
+        outcome["error"] = "Source and target are the same database."
+        return outcome
+
+    try:
+        outcome["vocabulary_root_before"] = vocabulary_info(target_db).get("root")
+    except Exception:
+        pass
 
     print(f"Upstream: {source_db}")
     print(f"Active:   {target_db}")
     try:
-        from ..core.hashing import format_load_line, vocabulary_info
+        from ..core.hashing import format_load_line
 
         print(format_load_line(vocabulary_info(target_db)))
     except Exception:
@@ -756,13 +784,37 @@ def update_db(
         sorted_handles = topological_sort(upstream_patterns)
     except ValueError as e:
         print(f"❌ Dependency cycle in upstream: {e}")
-        return False
+        outcome["error"] = f"Dependency cycle in upstream: {e}"
+        return outcome
 
     if dry_run:
         print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
         if upstream_removed:
             print(f"User-only patterns (no longer in upstream): {len(upstream_removed)}")
-        return True
+
+        # Populate dry-run stats: added / updated splits, plus a supersedes
+        # preview (pure analysis — no DB writes). This lets MCP callers decide
+        # whether to run the real pull without executing it.
+        outcome["added"] = sorted(upstream_patterns.keys() - target_handles)
+        outcome["updated"] = sorted(upstream_patterns.keys() & target_handles)
+        outcome["upstream_removed"] = list(upstream_removed)
+        if not preserve_superseded:
+            preview: dict[str, list[str]] = {}
+            for u_handle, u_pattern in upstream_patterns.items():
+                for old_sid in (u_pattern.get("_meta") or {}).get("supersedes") or []:
+                    preview.setdefault(old_sid, []).append(u_handle)
+            for _nid, data in target_store.get_nodes_by_type(NodeType.PATTERN):
+                local_sid = data.get("metadata", {}).get("pattern", {}).get("sema_id", "")
+                local_handle = data.get("text")
+                if (
+                    local_sid
+                    and local_sid in preview
+                    and local_handle
+                    and local_handle not in upstream_patterns
+                ):
+                    outcome["superseded_removed"].append((local_handle, preview[local_sid]))
+        outcome["success"] = True
+        return outcome
 
     # Atomicity via SQLite's native backup API. Unlike `shutil.copy2`, this
     # safely captures DB state regardless of WAL mode (the WAL file would
@@ -784,7 +836,8 @@ def update_db(
         print(f"     1. If you know your DB is healthy, delete {backup_path}")
         print("     2. If not, restore from it: sqlite3 backup API or manual inspection")
         print("   Aborting to protect your data.")
-        return False
+        outcome["error"] = f"Stranded backup at {backup_path} from a prior failed pull"
+        return outcome
     # If the target DB is locked (e.g. another agent is mid-write), backup()
     # raises sqlite3.OperationalError. Without this guard, the partial 0-byte
     # `.pull_bak` file from the with-block would remain on disk and the next
@@ -808,7 +861,8 @@ def update_db(
                 # backup from catastrophic rollback failure", a terrifying
                 # jump-scare for what was actually a transient lock.
                 print(f"⚠️  Note: Please manually delete the empty {backup_path} file.")
-        return False
+        outcome["error"] = f"Could not create pre-pull backup: {e}"
+        return outcome
 
     added = []
     updated = []
@@ -1007,7 +1061,10 @@ def update_db(
         if failed:
             for h, errs in failed[:5]:
                 print(f"    {h}: {'; '.join(errs)}")
-        return False
+        outcome["error"] = err_msg
+        if failed:
+            outcome["failed"] = [(h, errs) for h, errs in failed]
+        return outcome
 
     # Success path — promote the backup to `.pull_previous` if something
     # actually changed, so the user can `sema pull --undo` to recover.
@@ -1139,16 +1196,34 @@ def update_db(
     if has_changes:
         print("ℹ️  Pre-pull snapshot saved. Run `sema pull --undo` to revert.")
 
+    outcome["added"] = list(added)
+    outcome["updated"] = list(updated)
+    outcome["skipped"] = list(skipped)
+    outcome["cascaded_user"] = sorted(cascaded_user)
+    outcome["superseded_removed"] = [(h, list(n)) for h, n in superseded_removed]
+    outcome["superseded_kept_orphan"] = [
+        (h, list(n), list(d)) for h, n, d in superseded_kept_orphan
+    ]
+    outcome["upstream_removed"] = list(upstream_removed)
+    try:
+        outcome["vocabulary_root_after"] = vocabulary_info(target_db).get("root")
+    except Exception:
+        pass
+
     if verify:
         invalid = _verify_hashes(target_db)
         if invalid:
             print(f"\n❌ Hash validity check failed: {len(invalid)} invalid patterns")
             for h in invalid[:5]:
                 print(f"    {h}")
-            return False
+            outcome["error"] = f"{len(invalid)} pattern(s) failed hash verification"
+            outcome["invalid_hashes"] = list(invalid)
+            return outcome
         print("✓ Hash validity verified.")
+        outcome["verified"] = True
 
-    return True
+    outcome["success"] = True
+    return outcome
 
 
 def _verify_hashes(db_path: str) -> list[str]:
@@ -1837,13 +1912,14 @@ def main():
         if args.undo:
             ok = undo_pull()
         else:
-            ok = update_db(
+            pull_result = update_db(
                 source=args.source,
                 dry_run=args.dry_run,
                 verify=args.verify,
                 exclude=args.exclude,
                 preserve_superseded=args.preserve_superseded,
             )
+            ok = pull_result.get("success", False)
     elif args.command == "serve":
         run_server(args.host, args.port)
     elif args.command == "mcp":

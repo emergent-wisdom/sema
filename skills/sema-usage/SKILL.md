@@ -109,7 +109,6 @@ The tool returns structured JSON: `added`, `updated`, `superseded_removed`, `sup
 **Deployment opt-outs.** Environment variables control which mutating tools are exposed by the MCP server. Both are off (i.e., tools exposed) by default:
 - `SEMA_DISABLE_PULL=true` — hides `sema_pull` (deployments that want a pinned vocabulary)
 - `SEMA_DISABLE_MINT=true` — hides `sema_mint` (read-only deployments)
-- `SEMA_ALLOW_MINT=false` — legacy alias for `SEMA_DISABLE_MINT=true`; honored for one release cycle
 
 ## Before you can mint
 
@@ -119,7 +118,7 @@ The bundled vocabulary is **read-only** — it gets overwritten on pip upgrades.
 2. Switch to it via MCP: `sema_use(db_path="/tmp/my-project.db")`
 3. Now `sema_mint` will work
 
-**Note:** As of 0.2.0, `sema_mint` is exposed by default. If the tool is unavailable, the deployment has explicitly disabled it via `SEMA_DISABLE_MINT=true` (or legacy `SEMA_ALLOW_MINT=false`); ask the user to re-enable it if they want to mint.
+**Note:** As of 0.2.1, `sema_mint` is exposed by default. If the tool is unavailable, the deployment has explicitly disabled it via `SEMA_DISABLE_MINT=true`; ask the user to re-enable it if they want to mint.
 
 ## When to mint vs reuse
 

@@ -664,7 +664,8 @@ def _sema_mint(pattern_json: str) -> str:
     hashed to produce a content-addressed identity, and added to the
     local database. Returns the new pattern's sema_id on success.
 
-    Requires SEMA_ALLOW_MINT=true to be available as a tool.
+    Exposed by default. Deployments that want a read-only server can set
+    `SEMA_DISABLE_MINT=true` to hide this tool.
 
     Args:
         pattern_json: JSON string of the pattern to mint. Required fields:
@@ -877,10 +878,64 @@ def sema_verify_context(handles: list[str], remote_hash: str) -> str:
         )
 
 
-# Conditionally register sema_mint based on SEMA_ALLOW_MINT env var.
-# Default: disabled. Set SEMA_ALLOW_MINT=true to expose the tool.
-if os.environ.get("SEMA_ALLOW_MINT", "").lower() == "true":
+def _sema_pull(
+    source: str | None = None,
+    dry_run: bool = False,
+    exclude: list[str] | None = None,
+    preserve_superseded: bool = False,
+) -> str:
+    """Refresh the local vocabulary from upstream.
+
+    Walks the upstream DAG in topological order and updates the active
+    database in place. User-only patterns are preserved; hashes cascade
+    automatically when their upstream deps change. Superseded handles are
+    redirected to their replacements by default (opt out with
+    `preserve_superseded=True`).
+
+    Returns structured JSON with `success`, `added`, `updated`, `skipped`,
+    `cascaded_user`, `superseded_removed`, `superseded_kept_orphan`,
+    `upstream_removed`, `vocabulary_root_before`, and `vocabulary_root_after`
+    so callers can react programmatically instead of parsing the human log.
+
+    Exposed by default. Deployments that want a pinned vocabulary can set
+    `SEMA_DISABLE_PULL=true` to hide this tool.
+
+    Args:
+        source: Optional path to an alternate upstream DB. Defaults to the
+            bundled vocabulary shipped with the installed package.
+        dry_run: If True, previews changes (including supersession
+            redirects) without writing to the active DB.
+        exclude: Handles to skip for this invocation. Unioned with the
+            persistent `~/.config/sema/excluded` list.
+        preserve_superseded: If True, retain locally superseded patterns
+            alongside their upstream replacements instead of removing them.
+
+    Returns:
+        JSON string of the result dict.
+    """
+    from ..cli.main import update_db
+
+    try:
+        result = update_db(
+            source=source,
+            dry_run=dry_run,
+            verify=False,
+            exclude=list(exclude) if exclude else None,
+            preserve_superseded=preserve_superseded,
+        )
+    except Exception as e:
+        return json.dumps({"success": False, "error": str(e)}, indent=2)
+
+    return json.dumps(result, indent=2, default=list)
+
+
+# Mint and pull are exposed by default. Deployments wanting a read-only
+# or pinned-vocabulary server set SEMA_DISABLE_MINT=true / SEMA_DISABLE_PULL=true.
+if os.environ.get("SEMA_DISABLE_MINT", "").lower() != "true":
     sema_mint = mcp.tool()(_sema_mint)
+
+if os.environ.get("SEMA_DISABLE_PULL", "").lower() != "true":
+    sema_pull = mcp.tool()(_sema_pull)
 
 
 def main():

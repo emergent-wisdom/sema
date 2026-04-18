@@ -60,7 +60,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         self.assertIn("Alpha", self._get_handles(self.user_db))
 
     @patch("sema.cli.main.get_default_db_path")
@@ -78,7 +78,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         handles = self._get_handles(self.user_db)
         self.assertIn("Alpha", handles)
         self.assertIn("Beta", handles)
@@ -98,7 +98,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         handles = self._get_handles(self.user_db)
         self.assertIn("Alpha", handles)
         self.assertIn("MyCustom", handles)
@@ -118,7 +118,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db(dry_run=True)
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         self.assertEqual(self._get_handles(self.user_db), {"Alpha"})
 
     @patch("sema.cli.main.get_default_db_path")
@@ -130,7 +130,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertFalse(result)
+        self.assertFalse(result["success"])
 
     @patch("sema.cli.main.get_default_db_path")
     @patch("sema.cli.main.get_bundled_db_path")
@@ -159,7 +159,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         handles = self._get_handles(self.user_db)
         self.assertIn("Leaf", handles)
         self.assertIn("Root", handles)
@@ -177,7 +177,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertFalse(result)
+        self.assertFalse(result["success"])
 
     def _sema_id(self, db_path, handle):
         """Get the stored sema_id for a handle."""
@@ -253,7 +253,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         mismatches = self._run_hash_validity(self.user_db)
         self.assertEqual(mismatches, [], f"Hash validity failed: {mismatches}")
 
@@ -295,7 +295,7 @@ class TestPull(unittest.TestCase):
         userx_before = self._sema_id(self.user_db, "UserX")
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         userx_after = self._sema_id(self.user_db, "UserX")
         self.assertIsNotNone(userx_before)
         self.assertIsNotNone(userx_after)
@@ -344,7 +344,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         mismatches = self._run_hash_validity(self.user_db)
         self.assertEqual(mismatches, [], f"Diamond hash validity: {mismatches}")
 
@@ -366,10 +366,10 @@ class TestPull(unittest.TestCase):
         )
         GraphStore(self.user_db)
 
-        self.assertTrue(update_db())
+        self.assertTrue(update_db()["success"])
         first_ids = {h: self._sema_id(self.user_db, h) for h in self._get_handles(self.user_db)}
 
-        self.assertTrue(update_db())
+        self.assertTrue(update_db()["success"])
         second_ids = {h: self._sema_id(self.user_db, h) for h in self._get_handles(self.user_db)}
 
         self.assertEqual(first_ids, second_ids, "Pull should be idempotent")
@@ -390,7 +390,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         self.assertEqual(self._get_handles(self.user_db), {"Alpha"})
 
     @patch("sema.cli.main.get_default_db_path")
@@ -408,7 +408,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         self.assertEqual(self._get_handles(self.user_db), {"Alpha", "Beta"})
 
     @patch("sema.cli.main.get_default_db_path")
@@ -432,7 +432,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         self.assertEqual(len(self._get_handles(self.user_db)), 10)
         mismatches = self._run_hash_validity(self.user_db)
         self.assertEqual(mismatches, [], f"Deep chain hash validity: {mismatches}")
@@ -469,7 +469,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         target_store = GraphStore(self.user_db)
         for _, data in target_store.get_nodes_by_type(NodeType.PATTERN):
             if data.get("text") == "RichPattern":
@@ -503,7 +503,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         after_id = self._sema_id(self.user_db, "Standalone")
         self.assertEqual(
             before_id,
@@ -534,7 +534,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         handles = self._get_handles(self.user_db)
         self.assertIn("Foundation", handles)
         self.assertIn("Building", handles)
@@ -567,7 +567,7 @@ class TestPull(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         target_store = GraphStore(self.user_db)
         for _, data in target_store.get_nodes_by_type(NodeType.PATTERN):
             if data.get("text") == "CautionPattern":
@@ -611,7 +611,7 @@ class TestPullRealVocabulary(unittest.TestCase):
 
         result = update_db()
 
-        self.assertTrue(result, "Pull failed on real vocabulary")
+        self.assertTrue(result["success"], "Pull failed on real vocabulary")
 
         store = GraphStore(self.user_db)
         patterns = {}
@@ -716,7 +716,7 @@ class TestPullEdgeCases(unittest.TestCase):
         GraphStore(self.user_db)
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         store = GraphStore(self.user_db)
         deps = store.get_dependencies_from_edges("Source")
@@ -749,7 +749,7 @@ class TestPullEdgeCases(unittest.TestCase):
         GraphStore(self.user_db)
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         store = GraphStore(self.user_db)
         deps = store.get_dependencies_from_edges("Transformer")
@@ -781,7 +781,7 @@ class TestPullEdgeCases(unittest.TestCase):
         self._add(self.upstream_db, "Foo", "v2 UPDATED mechanism")
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         p = self._pattern(self.user_db, "Foo")
         self.assertIn("UPDATED", p.get("mechanism", ""))
@@ -819,7 +819,7 @@ class TestPullEdgeCases(unittest.TestCase):
         with patch("sema.core.mint.mint_pattern", side_effect=flaky_mint):
             result = update_db()
 
-        self.assertFalse(result, "Pull should fail")
+        self.assertFalse(result["success"], "Pull should fail")
         # User DB should still contain its original pattern, no upstream patterns
         handles = {
             data["text"] for _, data in GraphStore(self.user_db).get_nodes_by_type(NodeType.PATTERN)
@@ -853,7 +853,7 @@ class TestPullEdgeCases(unittest.TestCase):
         ):
             result = update_db()
 
-        self.assertTrue(result, "Pull should skip identical patterns via fast-path")
+        self.assertTrue(result["success"], "Pull should skip identical patterns via fast-path")
 
 
 class TestTaxonomyOverlay(unittest.TestCase):
@@ -917,7 +917,7 @@ class TestTaxonomyOverlay(unittest.TestCase):
         self._add(self.upstream_db, "Foo", layer="Society", category="Protocols")
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         meta = self._pattern_meta(self.user_db, "Foo")
         self.assertEqual(
@@ -1070,7 +1070,7 @@ class TestExclusionList(unittest.TestCase):
 
         result = update_db(exclude=["Alpha"])
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         handles = self._handles(self.user_db)
         self.assertNotIn("Alpha", handles, "Alpha was excluded; must not be re-added")
         self.assertIn("Beta", handles)
@@ -1092,7 +1092,7 @@ class TestExclusionList(unittest.TestCase):
         with patch("sema.cli.main._load_exclusions", return_value={"Alpha"}):
             result = update_db()
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         self.assertNotIn("Alpha", self._handles(self.user_db))
 
     @patch("sema.cli.main.get_default_db_path")
@@ -1184,7 +1184,7 @@ class TestExclusionList(unittest.TestCase):
 
         result = update_db(exclude=["Alpha"])
 
-        self.assertTrue(result, "Pull must not abort when an excluded dep cascades")
+        self.assertTrue(result["success"], "Pull must not abort when an excluded dep cascades")
         handles = self._handles(self.user_db)
         self.assertNotIn("Alpha", handles)
         self.assertNotIn("Beta", handles, "Beta needs missing Alpha and must be auto-skipped")
@@ -1222,7 +1222,7 @@ class TestExclusionList(unittest.TestCase):
 
         result = update_db(exclude=["Alpha"])
 
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
         handles = self._handles(self.user_db)
         self.assertIn("Alpha", handles)
         self.assertIn("Beta", handles, "Beta links to local frozen Alpha")
@@ -1387,7 +1387,7 @@ class TestRecovery(unittest.TestCase):
 
         result = update_db()
 
-        self.assertFalse(result, "Pull must refuse when a stranded backup exists")
+        self.assertFalse(result["success"], "Pull must refuse when a stranded backup exists")
         # Stranded backup must be preserved untouched
         self.assertTrue(os.path.exists(backup_path))
         self.assertEqual(
@@ -1432,7 +1432,7 @@ class TestRecovery(unittest.TestCase):
         with patch.object(_sqlite3, "connect", fake_connect):
             result = update_db()
 
-        self.assertFalse(result, "Pull must fail when initial backup fails")
+        self.assertFalse(result["success"], "Pull must fail when initial backup fails")
         self.assertFalse(
             os.path.exists(backup_path),
             "Locked-DB error must clean up the 0-byte .pull_bak — otherwise next pull "
@@ -1502,7 +1502,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         self._add(self.upstream_db, "NewName", mechanism="replacement", supersedes=[old_sid])
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         handles = self._handles(self.user_db)
         self.assertNotIn("OldName", handles, "supersession cleanup should remove OldName")
@@ -1524,7 +1524,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         self._add(self.upstream_db, "NewName", supersedes=[old_sid])
 
         result = update_db(preserve_superseded=True)
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         handles = self._handles(self.user_db)
         self.assertIn("OldName", handles, "preserve_superseded should retain the old handle")
@@ -1551,7 +1551,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         self._add(self.upstream_db, "NewName", supersedes=[old_sid])
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         handles = self._handles(self.user_db)
         self.assertIn(
@@ -1594,7 +1594,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         self._add(self.upstream_db, "NewName", supersedes=[old_sid])
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         handles = self._handles(self.user_db)
         self.assertNotIn(
@@ -1621,7 +1621,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         self._add(self.upstream_db, "NewName", supersedes=[old_sid])
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         handles = self._handles(self.user_db)
         self.assertNotIn("OldName", handles, "supersession should fire")
@@ -1651,7 +1651,7 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         self._add(self.upstream_db, "NewName", supersedes=[fake_old_sid])
 
         result = update_db()
-        self.assertTrue(result)
+        self.assertTrue(result["success"])
 
         handles = self._handles(self.user_db)
         self.assertIn("OldName", handles, "sema_id mismatch — no supersession fires")
