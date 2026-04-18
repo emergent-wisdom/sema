@@ -227,7 +227,7 @@ sema_validate({ pattern_json: JSON.stringify({
 
 // 4. Mint
 sema_mint({ pattern_json: "..." })
-// → { success: true, handle: "PreMortem", sema_ref: "PreMortem#f69d", sema_id: "sema:PreMortem#mh:SHA-256:f69d..." }
+// → { success: true, handle: "PreMortem", sema_ref: "PreMortem#6cc4", sema_id: "sema:PreMortem#mh:SHA-256:f69d..." }
 ```
 
 ## Common errors and fixes

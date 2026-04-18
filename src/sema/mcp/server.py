@@ -159,7 +159,7 @@ def sema_resolve(handle: str, depth: int = 1) -> str:
         return json.dumps({"error": f"Pattern '{handle}' not found"})
 
     # Re-fetch each pattern via get_pattern() so template placeholders like
-    # {{vote}} are resolved to their canonical refs (e.g. Vote#30d0). This
+    # {{vote}} are resolved to their canonical refs (e.g. Vote#37f8). This
     # keeps sema_resolve and sema_lookup output consistent — both go through
     # the same template-resolution path. Without this, sema_resolve leaks
     # raw {{...}} placeholders that sema_lookup never shows.
@@ -241,7 +241,7 @@ def sema_lookup(ref: str) -> str:
     """Lookup a pattern by its Sema reference (Handle#stub).
 
     Args:
-        ref: Pattern reference like "ChainOfThought#6201" or just "ChainOfThought"
+        ref: Pattern reference like "ChainOfThought#dd97" or just "ChainOfThought"
 
     Returns:
         Full pattern JSON
@@ -503,7 +503,7 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
     coordinating on a pattern. It does not replace behavioral testing.
 
     Args:
-        ref: Pattern reference (e.g., "StateLock#774b" or "StateLock"),
+        ref: Pattern reference (e.g., "StateLock#5602" or "StateLock"),
              or the literal string "vocab" to handshake on the whole
              vocabulary's Merkle root.
         your_hash: Your local hash — the 4-char pattern stub, or the
