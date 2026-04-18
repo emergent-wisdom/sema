@@ -307,20 +307,24 @@ def vocabulary_info(db_path: str) -> dict:
 
 
 def format_load_line(info: dict) -> str:
-    """Single-line banner for a vocabulary DB.
+    """Banner for a vocabulary DB. Two lines — full root first (verifiable),
+    context below (scannable).
 
     Example:
-        📚 vocabulary: 452 patterns, root 39ca671a (data/taxonomy.db)
+        📚 sema:vocab#mh:SHA-256:39ca671a4dcb3075855cb293380d1796105e2eca0de49b0537279b798b675ee6
+           452 patterns (data/taxonomy.db)
 
-    When a stamped version becomes available, it's appended inline without
-    breaking the layout:
-        📚 vocabulary: 452 patterns, root 39ca671a, v0.2.0 (data/taxonomy.db)
+    When a stamped version becomes available, it's appended inline to the
+    second line without disturbing the root:
+        📚 sema:vocab#mh:SHA-256:39ca671a...
+           452 patterns, v0.2.0 (data/taxonomy.db)
     """
-    root_stub = info.get("root", "")[:8] or "unknown"
+    root = info.get("root", "") or "unknown"
     count = info.get("pattern_count", 0)
     db = info.get("db_path", "?")
     version = info.get("stamped_version")
-    parts = [f"{count} patterns", f"root {root_stub}"]
+    second = f"{count} patterns"
     if version:
-        parts.append(f"v{version}")
-    return f"📚 vocabulary: {', '.join(parts)} ({db})"
+        second += f", v{version}"
+    second += f" ({db})"
+    return f"📚 sema:vocab#mh:SHA-256:{root}\n   {second}"
