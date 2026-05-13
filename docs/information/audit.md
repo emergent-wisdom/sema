@@ -1,6 +1,6 @@
 # Vocabulary Audit Report
 
-Generated: 2026-04-18
+Generated: 2026-05-13
 
 All audits below are **advisory**. Heuristic audits generate false positives; use this report as a starting point for manual review, not as a correctness gate.
 
