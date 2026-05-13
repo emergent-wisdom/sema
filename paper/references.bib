@@ -57,7 +57,7 @@
   url         = {https://www.w3.org/TR/shacl/}
 }
 
-@techreport{longley2023rdf,
+@techreport{longley2024rdf,
   author      = {Longley, Dave and Kellogg, Gregg and Yamamoto, Dan},
   title       = {RDF Dataset Canonicalization: A Standard RDF Dataset Canonicalization Algorithm},
   year        = {2024},
@@ -75,7 +75,7 @@
   url         = {https://www.w3.org/TR/vc-data-model/}
 }
 
-@article{lov2016,
+@article{lov2017,
   author    = {Vandenbussche, Pierre-Yves and Atemezing, Ghislain A. and Poveda-Villal{\'o}n, Mar{\'i}a and Vatant, Bernard},
   title     = {Linked Open Vocabularies (LOV): A gateway to reusable semantic vocabularies on the Web},
   journal   = {Semantic Web},
@@ -191,10 +191,8 @@
   number    = {761},
   publisher = {DARPA},
   year      = {1980},
-  note      = {Be conservative in what you send, be liberal in what you accept}
+  note      = {Originating statement of the robustness principle: ``be conservative in what you do, be liberal in what you accept from others.'' The shorter ``be conservative in what you send, be liberal in what you accept'' paraphrase is from RFC 1122 (1989)}
 }
-
-% === Citations added for Resolution Patch 3 insights ===
 
 @book{brand1999clock,
   title     = {The Clock of the Long Now: Time and Responsibility},
@@ -335,7 +333,7 @@
   eprint        = {2601.17744},
   archiveprefix = {arXiv},
   primaryclass  = {cs.AI},
-  note          = {Protocol-agnostic execution control plane for autonomous agent systems}
+  note          = {Introduces the Action Authorization Boundary (AAB): a non-bypassable, deterministic PERMIT/DEFER/DENY decision over a Canonical Action Representation, placed between agent reasoning and real-world execution}
 }
 
 @misc{clbc2026,
@@ -345,7 +343,7 @@
   eprint        = {2603.00381},
   archiveprefix = {arXiv},
   primaryclass  = {cs.MA},
-  note          = {Certified bounds on covert signaling in LLM agent communication}
+  note          = {Protocol that gates messages (not agents) into the shared transcript via a verifier-approved predicate, producing certified upper bounds on covert signaling between colluding LLM agents}
 }
 
 @misc{berdoz2026agree,
@@ -355,7 +353,7 @@
   eprint        = {2603.01213},
   archiveprefix = {arXiv},
   primaryclass  = {cs.MA},
-  note          = {Shows LLM agents cannot reliably reach consensus even in benign settings; performance degrades with group size}
+  note          = {Byzantine consensus study: LLM agents fail to reliably reach valid agreement even in benign no-stake settings; performance degrades with group size and collapses under a single Byzantine agent}
 }
 
 @misc{westerberg2026crp,
@@ -363,6 +361,8 @@
   author       = {Westerberg, Henrik},
   year         = {2026},
   howpublished = {Zenodo},
+  doi          = {10.5281/zenodo.19462646},
+  url          = {https://doi.org/10.5281/zenodo.19462646},
   note         = {Preprint. Introduces the Fractal Intelligence architecture: recursive conceptual decomposition governed by a marginal-value rule, with a five-surface Solver Contract}
 }
 
@@ -399,8 +399,6 @@
   url          = {https://doi.org/10.5281/zenodo.16440312},
   note         = {July 2025. Proposed the `Living Taxonomy of Thought' as a prerequisite for beneficial AI}
 }
-
-% === Citations added per peer-review assessment (March 2026) ===
 
 @inproceedings{khattab2024dspy,
   title     = {{DSPy}: Compiling Declarative Language Model Calls into State-of-the-Art Pipelines},
@@ -472,7 +470,7 @@
   note          = {Frames AI agents as modular ``semantic processors'' exchanging typed messages}
 }
 
-@article{chocron2018vocabulary,
+@article{chocron2020vocabulary,
   title   = {Vocabulary Alignment in Openly Specified Interactions},
   author  = {Chocron, Paula and Schorlemmer, Marco},
   journal = {Journal of Artificial Intelligence Research},
@@ -535,4 +533,23 @@
   year         = {2015},
   howpublished = {\url{https://docs.soliditylang.org/en/latest/abi-spec.html}},
   note         = {Defines 4-byte Keccak-256 function selectors as call routing tokens}
+}
+
+@misc{anthropic2025skills,
+  title        = {Agent Skills Specification},
+  author       = {{Anthropic}},
+  year         = {2025},
+  howpublished = {\url{https://agentskills.io/specification}},
+  note         = {Open standard released December 2025 for portable capability definitions via \texttt{SKILL.md} files (YAML frontmatter + Markdown body) with progressive disclosure; adopted by OpenAI, Microsoft, Cursor, and others}
+}
+
+@misc{zou2025blocka2a,
+  title         = {{BlockA2A}: Towards Secure and Verifiable Agent-to-Agent Interoperability},
+  author        = {Zou, Zhenhua and Liu, Zhuotao and Zhao, Lepeng and Zhan, Qiuyang},
+  year          = {2025},
+  eprint        = {2508.01332},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CR},
+  url           = {https://arxiv.org/abs/2508.01332},
+  note          = {Blockchain-anchored trust framework using DIDs and smart contracts to verify message authenticity and execution integrity in A2A interoperability; hashes interaction artifacts rather than definitions}
 }
