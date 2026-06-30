@@ -134,16 +134,16 @@ refinement and supersession policy.
 ### Use in Python
 
 ```python
-from sema.core.actions import sema_handshake
-import json
+from sema.core.registry import RegistryManager
 
-# Look up the canonical hash
-result = json.loads(sema_handshake("StateLock"))
-print(result["canonical_stub"])  # b91b
+registry = RegistryManager()
+pattern = registry.get_pattern("StateLock")
 
-# Verify alignment
-result = json.loads(sema_handshake("StateLock#5602"))
-print(result["verdict"])  # PROCEED
+# Look up the canonical reference
+print(pattern["sema_ref"])  # StateLock#5602
+
+# Verify an inline reference before relying on it
+assert pattern["sema_ref"] == "StateLock#5602"
 ```
 
 ### Try the Protocol (No API Keys Needed)
@@ -172,7 +172,7 @@ This is the **Anti-Postel principle**: same bytes = PROCEED, different bytes = H
 
 ## The Vocabulary
 
-427 default patterns across 4 layers (additional patterns with a higher risk surface are kept in a separate DB — see [Safety](#safety)):
+452 bundled patterns across 4 layers:
 
 - **Physics** — Immutable substrate (locks, entropy, causality)
 - **Mind** — Hybrid cognition (reasoning, inference, strategy)
@@ -261,7 +261,7 @@ Full walkthrough: [docs/guides/understanding-graph.md](docs/guides/understanding
 ```
 sema/
 ├── src/sema/              Core library (hashing, validation, MCP server, API)
-├── data/                  Vocabulary (427 default + 26 higher-risk pattern cards + taxonomy databases)
+├── data/                  Vocabulary (452 bundled pattern cards + taxonomy databases)
 ├── docs/                  Documentation (philosophy, schema spec, CLI reference)
 ├── paper/                 Academic paper (sema.tex)
 ├── web/                   Web frontend (React + Three.js graph visualization)

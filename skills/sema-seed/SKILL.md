@@ -87,7 +87,7 @@ If any answer is "no", **don't mint.** Move to the next word. Most words won't p
 
 ### 4. If it passes — mint
 
-If the user chose **review mode** (the default), present the draft pattern (handle, gloss, one-paragraph mechanism summary, layer/category/tier) and ask: *"Mint this?"* Only mint after they say yes.
+If the user chose **review mode** (the default), present the draft pattern (handle, gloss, one-paragraph mechanism summary, path/ring/tier) and ask: *"Mint this?"* Only mint after they say yes.
 
 If the user chose **autonomous mode**, invoke the `sema-mint` skill directly.
 

@@ -273,7 +273,7 @@ def sema_lookup(ref: str) -> str:
 
 @mcp.tool()
 def sema_validate(pattern_json: str) -> str:
-    """Validate a pattern JSON for correctness.
+    """Validate a pattern JSON using the same rules as the mint pipeline.
 
     Args:
         pattern_json: JSON string of a pattern to validate
@@ -286,34 +286,23 @@ def sema_validate(pattern_json: str) -> str:
     except json.JSONDecodeError as e:
         return json.dumps({"valid": False, "errors": [f"Invalid JSON: {e}"]})
 
-    errors = []
-    warnings = []
+    if not isinstance(pattern, dict):
+        return json.dumps(
+            {"valid": False, "errors": ["Pattern JSON must be an object"], "warnings": []},
+            indent=2,
+        )
 
-    # Required fields
-    if "handle" not in pattern:
-        errors.append("Missing required field: 'handle'")
-    if "mechanism" not in pattern:
-        errors.append("Missing required field: 'mechanism'")
+    from ..core.validator import validate_pattern
 
-    # Recommended fields
-    if "gloss" not in pattern:
-        warnings.append("Missing recommended field: 'gloss'")
-    if "invariants" not in pattern:
-        warnings.append("Missing recommended field: 'invariants'")
-
-    # Validate links if present
     REGISTRY_MGR.refresh()
-    registry = REGISTRY_MGR.registry
-    if "links" in pattern:
-        for _rel, targets in pattern.get("links", {}).items():
-            for target in targets:
-                target_handle = target.split("#")[0]
-                if target_handle not in registry:
-                    warnings.append(f"Link target not in vocabulary: '{target}'")
+    is_valid, errors, warnings = validate_pattern(
+        pattern,
+        known_handles=set(REGISTRY_MGR.registry.keys()),
+    )
 
     return json.dumps(
         {
-            "valid": len(errors) == 0,
+            "valid": is_valid,
             "errors": errors,
             "warnings": warnings,
             "handle": pattern.get("handle", "Unknown"),

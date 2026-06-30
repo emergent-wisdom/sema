@@ -154,8 +154,8 @@ pattern into the active DB. It does **not** wipe the target — it reconciles.
 - **Hash cascade flows automatically.** When an upstream pattern's hash
   changes, your local patterns that depend on it get re-hashed too. Their
   identity stays mathematically consistent with the new upstream.
-- **Metadata is field-merged.** Upstream owns `_meta.layer`, `category`,
-  `tier`, `ring`, `supersedes` — taxonomy reorganizations propagate. You
+- **Metadata is field-merged.** Upstream owns `_meta.path`, `tier`,
+  `ring`, `supersedes` — taxonomy reorganizations propagate. You
   own `_meta.caution` and `_meta.related` — your local annotations survive.
 
 ### Supersession cleanup

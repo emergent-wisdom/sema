@@ -1,5 +1,6 @@
 """Tests for the `sema_pull` MCP tool and its env-var opt-out."""
 
+import importlib.util
 import json
 import os
 import subprocess
@@ -8,6 +9,9 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+
+if importlib.util.find_spec("mcp") is None:
+    raise unittest.SkipTest("mcp extra is not installed")
 
 
 def _run_module_check(env_overrides: dict[str, str]) -> set[str]:

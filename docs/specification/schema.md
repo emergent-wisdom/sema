@@ -76,9 +76,8 @@ Every Sema pattern is a JSON object adhering to this strict schema. This structu
   "sema_layer": "Society",                  // Flattened layer for easy access
   "sema_category": "Governance",            // Flattened category for easy access
   "_meta": {
-    "layer": "Society",                   // Stack Layer
-    "category": "Governance",             // Functional Group
-    "ring": 1,                            // Stability Ring (0=Kernel, 1=StdLib, 2=User)
+    "path": ["Society", "Governance"],    // Taxonomy path from layer to leaf
+    "ring": 1,                            // Stability Ring (0=Core, 1=Extended, 2=Experimental)
     "tier": 2,                            // Rigor Tier (0=Primitive, 1=Hard, 2=Soft)
     "related": ["Pattern#stub"],          // Soft links
     "supersedes": ["sema:OldHandle#mh:SHA-256:..."],  // [Optional] Version chain

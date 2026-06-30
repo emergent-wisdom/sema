@@ -43,9 +43,9 @@ Call `sema_reset_session()` if your context was compressed or you need full resu
 ## The workflow
 
 1. **Search** — `sema_search({ query: "trust model" })` — find existing patterns by meaning
-2. **Resolve** — `sema_resolve({ reference: "TrustModel#7859" })` — read full definition, mechanism, invariants
-3. **Handshake** — `sema_handshake({ references: ["X#1234", "Y#5678"] })` — verify two agents share meaning
-4. **Mint** — `sema_mint({ handle, gloss, description, invariants })` — create a new pattern (rare!)
+2. **Resolve** — `sema_resolve({ handle: "TrustModel#7859" })` — read full definition, mechanism, invariants
+3. **Handshake** — `sema_handshake({ ref: "X#1234" })` — verify exact meaning before relying on a handle
+4. **Mint** — `sema_mint({ pattern_json: "..." })` — create a new pattern (rare!)
 
 ## Switching and managing databases
 
@@ -134,10 +134,17 @@ Mint when:
 
 ```javascript
 sema_mint({
-  handle: "PatternName",           // 1–2 syllables, speakable
-  gloss: "One-line summary",       // What it IS
-  description: "Full definition",  // How to use it
-  invariants: ["Must...", ...],    // Non-negotiable constraints
+  pattern_json: JSON.stringify({
+    handle: "PatternName",          // 1–2 syllables, speakable
+    mechanism: "How the pattern works",
+    gloss: "One-line summary",      // What it IS
+    invariants: ["Must...", ...],   // Non-negotiable constraints
+    _meta: {
+      path: ["Mind", "Reasoning"],
+      ring: 1,
+      tier: 2,
+    },
+  })
 })
 ```
 
@@ -168,9 +175,9 @@ When two agents need to confirm they have the *same entire vocabulary* — not j
 
 ```javascript
 sema_handshake({ ref: "vocab" })
-// → { verdict: "PROVIDE_HASH", canonical_stub: "d4e71259e4dd1565", pattern_count: 435 }
+// → { verdict: "PROVIDE_HASH", canonical_stub: "39ca671a4dcb3075", pattern_count: 452 }
 
-sema_handshake({ ref: "vocab", your_hash: "d4e71259e4dd1565" })
+sema_handshake({ ref: "vocab", your_hash: "39ca671a4dcb3075" })
 // → PROCEED if byte-identical, HALT if any pattern's hash differs
 ```
 

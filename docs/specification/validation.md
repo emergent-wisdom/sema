@@ -43,7 +43,7 @@ Never use empty arrays `[]`, empty objects `{}`, or `null` values. If a field ha
 
 ### Rule E: The Noun Schema Requirement
 
-Any pattern that serves as a **Noun** (Category: `Data Structures`, or is used in `accepts`/`yields`) MUST define a `data_schema`. This prevents "Schema Drift," where agents agree on the name "Task" but disagree on its required fields.
+Any pattern that serves as a **Noun** (`_meta.path` ending in `Data Structures`, or used in `accepts`/`yields`) MUST define a `data_schema`. This prevents "Schema Drift," where agents agree on the name "Task" but disagree on its required fields.
 
 **The "Non-Vacuous" Clause:**
 The schema must define at least one specific property. Generic definitions (e.g., `{"type": "object"}`) are **strictly forbidden** for Ring 0 Nouns. If the shape is truly arbitrary, use `{"type": "object", "additionalProperties": true}` and document *why* in the mechanism.
@@ -140,4 +140,3 @@ Any pattern that serves as a **Data Structure** or a **State-Bearing Primitive**
 * **Field:** `data_schema` (JSON Schema standard).
 * **Rationale:** This defines the "Shape of the Noun," not the "Signature of the Verb." Prevents "Schema Drift."
 * **Do Not:** Define `input_schema` here. Inputs are defined by the `accepts` dependency. The verb inherits the schema from the Noun it accepts.
-
