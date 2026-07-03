@@ -3,7 +3,6 @@
 import json
 import os
 import sys
-from collections import defaultdict
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as _pkg_version
 
@@ -12,6 +11,7 @@ from mcp.server.fastmcp import FastMCP
 # Relative Imports
 from ..core.config import get_config
 from ..core.registry import RegistryManager, get_default_db_path, get_default_vocab_dir
+from ..core.workspace import GraphWorkspace, WorkspaceSession, WorkspaceSource
 
 # Initialize Config
 CONFIG = get_config()
@@ -66,12 +66,31 @@ DEFAULT_DB_PATH = get_default_db_path()
 
 # Registry Manager
 REGISTRY_MGR = RegistryManager(DEFAULT_VOCAB_DIR, db_path=DEFAULT_DB_PATH)
+_WORKSPACE_SOURCE = WorkspaceSource(
+    workspace_id="local",
+    label="Local vocabulary",
+    db_path=DEFAULT_DB_PATH,
+    vocab_dir=DEFAULT_VOCAB_DIR,
+    read_only=False,
+)
 
 # Session state: track which patterns have been fully served this session.
 # When a pattern has already been served (full mechanism shown), subsequent
 # search results return only handle + gloss to save context window space.
 # The agent can always sema_resolve() to get the full pattern again.
-_served_patterns: set[str] = set()
+_SESSION = WorkspaceSession()
+_served_patterns = _SESSION.served_patterns
+
+
+def _active_workspace() -> GraphWorkspace:
+    """Return the active local workspace wrapper.
+
+    Tests and `sema_use` still replace REGISTRY_MGR directly, so construct the
+    lightweight wrapper at call time around the current manager.
+    """
+    _WORKSPACE_SOURCE.db_path = DEFAULT_DB_PATH
+    _WORKSPACE_SOURCE.vocab_dir = DEFAULT_VOCAB_DIR
+    return GraphWorkspace(_WORKSPACE_SOURCE, registry_manager=REGISTRY_MGR)
 
 
 @mcp.tool()
@@ -85,8 +104,7 @@ def sema_reset_session() -> str:
     Returns:
         Confirmation with count of patterns cleared.
     """
-    count = len(_served_patterns)
-    _served_patterns.clear()
+    count = _SESSION.reset()
     return json.dumps({"reset": True, "patterns_cleared": count})
 
 
@@ -103,42 +121,7 @@ def sema_search(query: str) -> str:
     Returns:
         JSON array of matching patterns.
     """
-    REGISTRY_MGR.refresh()
-
-    # Use RegistryManager's hybrid search (keyword + semantic)
-    results = REGISTRY_MGR.search(query, use_semantic=True)
-
-    # Compact already-seen patterns; enrich new ones
-    compacted = []
-    new_count = 0
-    for _i, result in enumerate(results):
-        ref = result.get("sema_ref") or result.get("handle", "")
-        if ref in _served_patterns:
-            # Already served this session — compact form
-            compacted.append(
-                {
-                    "handle": result.get("handle"),
-                    "sema_ref": ref,
-                    "gloss": result.get("gloss"),
-                    "score": result.get("score"),
-                    "_seen": True,
-                }
-            )
-        else:
-            # New pattern — full result
-            _served_patterns.add(ref)
-            # Enrich top 3 new results with graph context
-            if new_count < 3:
-                handle = result.get("handle")
-                if handle:
-                    clean_handle = handle.split("#")[0]
-                    context = REGISTRY_MGR.get_context(clean_handle)
-                    if context["dependencies"] or context["used_by"]:
-                        result["graph_context"] = context
-            new_count += 1
-            compacted.append(result)
-
-    return json.dumps(compacted, indent=2)
+    return json.dumps(_active_workspace().search(query, session=_SESSION), indent=2)
 
 
 @mcp.tool()
@@ -152,32 +135,7 @@ def sema_resolve(handle: str, depth: int = 1) -> str:
     Returns:
         JSON object with the pattern and its resolved dependencies
     """
-    REGISTRY_MGR.refresh()
-    subgraph = REGISTRY_MGR.resolve(handle, depth=depth)
-
-    if not subgraph:
-        return json.dumps({"error": f"Pattern '{handle}' not found"})
-
-    # Re-fetch each pattern via get_pattern() so template placeholders like
-    # {{vote}} are resolved to their canonical refs (e.g. Vote#37f8). This
-    # keeps sema_resolve and sema_lookup output consistent — both go through
-    # the same template-resolution path. Without this, sema_resolve leaks
-    # raw {{...}} placeholders that sema_lookup never shows.
-    rendered = {}
-    for entry_handle in subgraph.keys():
-        clean = entry_handle.split("#")[0]
-        resolved_pattern = REGISTRY_MGR.get_pattern(clean)
-        # Fall back to the raw subgraph entry if get_pattern misses (shouldn't
-        # happen for anything resolve() returned, but be defensive).
-        rendered[entry_handle] = resolved_pattern or subgraph[entry_handle]
-
-    # Mark all resolved patterns as served this session
-    for entry_handle in rendered:
-        _served_patterns.add(entry_handle)
-
-    return json.dumps(
-        {"root": handle, "depth": depth, "patterns": rendered, "count": len(rendered)}, indent=2
-    )
+    return json.dumps(_active_workspace().resolve(handle, depth=depth, session=_SESSION), indent=2)
 
 
 @mcp.tool()
@@ -192,46 +150,8 @@ def sema_tree(layer: str | None = None, category: str | None = None, verbose: bo
     Returns:
         JSON tree structure of patterns
     """
-    REGISTRY_MGR.refresh()
-    registry = REGISTRY_MGR.registry
-    patterns = []
-
-    for handle, data in registry.items():
-        p_layer = data.get("sema_layer") or data.get("layer", "Unknown")
-        p_category = data.get("sema_category") or data.get("category", "UNCATEGORIZED")
-
-        # Apply filters
-        if layer and p_layer != layer:
-            continue
-        if category and p_category != category:
-            continue
-
-        if verbose:
-            gloss = data.get("gloss", "")
-            entry = f"{handle}: {gloss}" if gloss else handle
-        else:
-            entry = handle
-
-        patterns.append({"entry": entry, "category": p_category, "layer": p_layer})
-
-    # Group by layer -> category
-    tree = defaultdict(lambda: defaultdict(list))
-    for p in patterns:
-        tree[p["layer"]][p["category"]].append(p["entry"])
-
-    # Convert to regular dict for JSON
-    result = {
-        layer_name: {cat: sorted(entries) for cat, entries in cats.items()}
-        for layer_name, cats in tree.items()
-    }
-
     return json.dumps(
-        {
-            "tree": result,
-            "total_patterns": len(patterns),
-            "layers": list(tree.keys()),
-            "filter": {"layer": layer, "category": category, "verbose": verbose},
-        },
+        _active_workspace().tree(layer=layer, category=category, verbose=verbose),
         indent=2,
     )
 
@@ -246,29 +166,7 @@ def sema_lookup(ref: str) -> str:
     Returns:
         Full pattern JSON
     """
-    REGISTRY_MGR.refresh()
-
-    # Parse reference
-    parts = ref.split("#")
-    handle = parts[0]
-    stub = parts[1] if len(parts) > 1 else None
-
-    pattern = REGISTRY_MGR.get_pattern(handle)
-    if not pattern:
-        return json.dumps({"error": f"Pattern '{handle}' not found"})
-
-    # Verify stub if provided
-    if stub:
-        pattern_stub = pattern.get("sema_stub", "")
-        if stub != pattern_stub:
-            return json.dumps(
-                {
-                    "warning": f"Stub mismatch: requested '{stub}' but pattern has '{pattern_stub}'",
-                    "pattern": pattern,
-                }
-            )
-
-    return json.dumps(pattern, indent=2)
+    return json.dumps(_active_workspace().lookup(ref), indent=2)
 
 
 @mcp.tool()
@@ -281,34 +179,7 @@ def sema_validate(pattern_json: str) -> str:
     Returns:
         Validation result with any errors or warnings
     """
-    try:
-        pattern = json.loads(pattern_json)
-    except json.JSONDecodeError as e:
-        return json.dumps({"valid": False, "errors": [f"Invalid JSON: {e}"]})
-
-    if not isinstance(pattern, dict):
-        return json.dumps(
-            {"valid": False, "errors": ["Pattern JSON must be an object"], "warnings": []},
-            indent=2,
-        )
-
-    from ..core.validator import validate_pattern
-
-    REGISTRY_MGR.refresh()
-    is_valid, errors, warnings = validate_pattern(
-        pattern,
-        known_handles=set(REGISTRY_MGR.registry.keys()),
-    )
-
-    return json.dumps(
-        {
-            "valid": is_valid,
-            "errors": errors,
-            "warnings": warnings,
-            "handle": pattern.get("handle", "Unknown"),
-        },
-        indent=2,
-    )
+    return json.dumps(_active_workspace().validate_pattern_json(pattern_json), indent=2)
 
 
 @mcp.tool()
@@ -318,28 +189,7 @@ def sema_stats() -> str:
     Returns:
         JSON with vocabulary statistics
     """
-    REGISTRY_MGR.refresh()
-    registry = REGISTRY_MGR.registry
-
-    # Count by layer and category
-    layers = defaultdict(int)
-    categories = defaultdict(int)
-
-    for _handle, data in registry.items():
-        layers[data.get("sema_layer") or data.get("layer", "Unknown")] += 1
-        categories[data.get("sema_category") or data.get("category", "Unknown")] += 1
-
-    return json.dumps(
-        {
-            "total_patterns": len(registry),
-            "by_layer": dict(layers),
-            "by_category": dict(categories),
-            "vocab_dir": DEFAULT_VOCAB_DIR,
-            "data_source": REGISTRY_MGR.source,
-            "db_path": REGISTRY_MGR.db_path,
-        },
-        indent=2,
-    )
+    return json.dumps(_active_workspace().stats(), indent=2)
 
 
 @mcp.tool()
@@ -349,8 +199,7 @@ def sema_graph_skeleton() -> str:
     Returns:
         Text summary of the graph structure.
     """
-    REGISTRY_MGR.refresh()
-    return REGISTRY_MGR.get_graph_skeleton()
+    return _active_workspace().graph_skeleton()
 
 
 @mcp.tool()
@@ -433,18 +282,8 @@ def _compute_vocabulary_root() -> tuple[str, int]:
     `sema root` CLI command — hashes collected in ascending-by-handle
     order, SHA-256 over the concatenation.
     """
-    from ..core.hashing import vocabulary_root
-
-    REGISTRY_MGR.refresh()
-    registry = REGISTRY_MGR.registry
-    rows = []
-    for handle, data in registry.items():
-        sema_id = data.get("sema_id", "")
-        if "#mh:SHA-256:" in sema_id:
-            rows.append((handle, sema_id.split("#mh:SHA-256:")[1]))
-    rows.sort(key=lambda r: r[0])
-    hashes = [h for _, h in rows]
-    return vocabulary_root(hashes), len(hashes)
+    root = _active_workspace().vocabulary_root()
+    return root["hash"], root["pattern_count"]
 
 
 @mcp.tool()
@@ -462,19 +301,7 @@ def sema_root() -> str:
     Returns:
         JSON with the full sema_id, short stub, and pattern count.
     """
-    from ..core.hashing import HASH_ALGO
-
-    root, count = _compute_vocabulary_root()
-    return json.dumps(
-        {
-            "full_sema_id": f"sema:vocab#mh:{HASH_ALGO}:{root}",
-            "stub": root[:16],
-            "hash": root,
-            "pattern_count": count,
-            "db_path": REGISTRY_MGR.db_path,
-        },
-        indent=2,
-    )
+    return json.dumps(_active_workspace().root_payload(), indent=2)
 
 
 @mcp.tool()
@@ -512,138 +339,7 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
         1. Agent A: sema_handshake("vocab") -> gets 16-char vocab stub
         2. Agent B: sema_handshake("vocab", "<that stub>") -> PROCEED / HALT
     """
-    # Vocabulary-wide handshake (ref="vocab")
-    if ref.strip().lower() == "vocab":
-        from ..core.hashing import HASH_ALGO
-
-        canonical_hash, count = _compute_vocabulary_root()
-        canonical_stub = canonical_hash[:16]
-        canonical_ref = f"sema:vocab#mh:{HASH_ALGO}:{canonical_hash}"
-
-        if your_hash is None:
-            return json.dumps(
-                {
-                    "verdict": "PROVIDE_HASH",
-                    "scope": "vocab",
-                    "canonical_stub": canonical_stub,
-                    "canonical_ref": canonical_ref,
-                    "full_sema_id": canonical_ref,
-                    "pattern_count": count,
-                    "action": (
-                        "Compare this vocabulary root with yours. Call again "
-                        "with your_hash (16-char stub or 64-char full hash) to verify."
-                    ),
-                },
-                indent=2,
-            )
-
-        # Accept either the 16-char stub or the full 64-char hash
-        normalized = your_hash.strip().lower()
-        matches = normalized == canonical_stub or normalized == canonical_hash
-        if matches:
-            return json.dumps(
-                {
-                    "verdict": "PROCEED",
-                    "scope": "vocab",
-                    "verified_ref": canonical_ref,
-                    "pattern_count": count,
-                    "message": "Vocabulary alignment confirmed. Safe to coordinate.",
-                },
-                indent=2,
-            )
-        return json.dumps(
-            {
-                "verdict": "HALT",
-                "scope": "vocab",
-                "your_hash": your_hash,
-                "canonical_stub": canonical_stub,
-                "reason": "VOCABULARY DRIFT DETECTED",
-                "action": (
-                    "DO NOT PROCEED. Your vocabulary root differs. At least one "
-                    "pattern's definition or the set of patterns itself differs "
-                    "between you. Run `sema pull` to converge, or use "
-                    "`sema_propose_context` on a shared subset instead."
-                ),
-                "canonical_ref": canonical_ref,
-                "pattern_count": count,
-            },
-            indent=2,
-        )
-
-    # Per-pattern handshake (original behavior)
-    REGISTRY_MGR.refresh()
-    registry = REGISTRY_MGR.registry
-
-    # Parse reference
-    parts = ref.split("#")
-    handle = parts[0]
-    ref_stub = parts[1] if len(parts) > 1 else None
-
-    if handle not in registry:
-        return json.dumps(
-            {
-                "verdict": "HALT",
-                "reason": f"Pattern '{handle}' not found in vocabulary",
-                "action": "Cannot coordinate - pattern unknown",
-            },
-            indent=2,
-        )
-
-    pattern = registry[handle]
-    canonical_stub = pattern.get("sema_stub", "")
-    canonical_ref = pattern.get("sema_ref", f"{handle}#{canonical_stub}")
-    full_hash = pattern.get("sema_id", "")
-
-    # If no hash provided, return the canonical for comparison
-    if your_hash is None and ref_stub is None:
-        return json.dumps(
-            {
-                "verdict": "PROVIDE_HASH",
-                "handle": handle,
-                "canonical_stub": canonical_stub,
-                "canonical_ref": canonical_ref,
-                "full_sema_id": full_hash,
-                "action": (
-                    "Compare this hash with your local definition. "
-                    "Call again with your_hash to verify."
-                ),
-            },
-            indent=2,
-        )
-
-    # Determine which hash to compare
-    compare_hash = your_hash or ref_stub
-
-    # Perform fail-closed verification
-    if compare_hash == canonical_stub:
-        return json.dumps(
-            {
-                "verdict": "PROCEED",
-                "handle": handle,
-                "verified_ref": canonical_ref,
-                "message": "Semantic alignment confirmed. Safe to coordinate.",
-                "invariants": pattern.get("invariants", []),
-                "tier": pattern.get("tier", 1),
-            },
-            indent=2,
-        )
-    else:
-        return json.dumps(
-            {
-                "verdict": "HALT",
-                "handle": handle,
-                "your_hash": compare_hash,
-                "canonical_hash": canonical_stub,
-                "reason": "SEMANTIC DRIFT DETECTED",
-                "action": (
-                    "DO NOT PROCEED. Your definition differs from the canonical vocabulary. "
-                    "Either update your local definition or escalate to OntologyHandshake."
-                ),
-                "canonical_ref": canonical_ref,
-                "full_sema_id": full_hash,
-            },
-            indent=2,
-        )
+    return json.dumps(_active_workspace().handshake(ref, your_hash=your_hash), indent=2)
 
 
 def _sema_mint(pattern_json: str) -> str:

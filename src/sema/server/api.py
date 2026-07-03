@@ -11,10 +11,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from ..client import get_default_client
-
-# Relative Imports
-from ..core.registry import RegistryManager
 from ..core.utils import compact_dict
+from ..core.workspace import GraphWorkspace, WorkspaceSource
 
 app = FastAPI(
     title="Sema API",
@@ -115,8 +113,21 @@ else:
 
 print(f"Loading Registry with DB: {DB_PATH}")
 
+
+def _make_workspace(db_path: str) -> GraphWorkspace:
+    return GraphWorkspace(
+        WorkspaceSource(
+            workspace_id=os.environ.get("SEMA_WORKSPACE_ID", "local"),
+            label=os.environ.get("SEMA_WORKSPACE_LABEL", "Local vocabulary"),
+            db_path=db_path,
+            read_only=os.environ.get("SEMA_WORKSPACE_READ_ONLY", "true").lower() != "false",
+        )
+    )
+
+
 # Registry loads from database only
-registry = RegistryManager(db_path=DB_PATH)
+workspace = _make_workspace(DB_PATH)
+registry = workspace.registry_manager
 
 
 # Models
@@ -141,6 +152,12 @@ class GraphEdge(BaseModel):
 class GraphData(BaseModel):
     nodes: list[PatternNode]
     edges: list[GraphEdge]
+
+
+@app.get("/api/workspace")
+def get_workspace():
+    """Describe the active graph workspace and published vocabulary root."""
+    return workspace.describe()
 
 
 @app.get("/api/graph")
@@ -625,7 +642,7 @@ def use_db_endpoint(payload: dict):
 
     from ..core.registry import is_bundled_db, register_db, set_active_db
 
-    global DB_PATH, registry
+    global DB_PATH, registry, workspace
 
     target = payload.get("path")
     use_default = payload.get("default", False)
@@ -637,7 +654,8 @@ def use_db_endpoint(payload: dict):
         if not bundled:
             raise HTTPException(status_code=500, detail="Bundled DB not found")
         DB_PATH = bundled
-        registry = RegistryManager(db_path=bundled)
+        workspace = _make_workspace(bundled)
+        registry = workspace.registry_manager
         set_active_db(None)
         count = len(registry.registry)
         return {"success": True, "db_path": bundled, "total_patterns": count}
@@ -655,7 +673,8 @@ def use_db_endpoint(payload: dict):
         )
 
     DB_PATH = str(resolved)
-    registry = RegistryManager(db_path=str(resolved))
+    workspace = _make_workspace(str(resolved))
+    registry = workspace.registry_manager
     set_active_db(str(resolved))
     register_db(str(resolved))
     count = len(registry.registry)
