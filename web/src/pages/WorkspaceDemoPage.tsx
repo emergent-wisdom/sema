@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowLeft,
@@ -29,6 +29,21 @@ type Collaborator = {
   name: string
   role: string
   status: string
+}
+type GitHubUser = {
+  id?: number
+  login?: string
+  name?: string | null
+  avatar_url?: string | null
+  html_url?: string | null
+  email?: string | null
+}
+type AuthState = {
+  authenticated: boolean
+  user: GitHubUser | null
+  github_oauth_configured: boolean
+  session_configured: boolean
+  github_callback_url?: string
 }
 
 const steps: Array<{ id: StepId; label: string; icon: typeof Github }> = [
@@ -70,6 +85,8 @@ const initialCollaborators: Collaborator[] = [
 export function WorkspaceDemoPage() {
   const [activeStep, setActiveStep] = useState<StepId>('connect')
   const [githubConnected, setGithubConnected] = useState(false)
+  const [auth, setAuth] = useState<AuthState | null>(null)
+  const [authLoading, setAuthLoading] = useState(true)
   const [libraryName, setLibraryName] = useState('Civic Intelligence Library')
   const [repo, setRepo] = useState('henrikwesterberg/civic-intelligence')
   const [visibility, setVisibility] = useState<Visibility>('Private')
@@ -78,6 +95,30 @@ export function WorkspaceDemoPage() {
   const [published, setPublished] = useState(false)
   const [copied, setCopied] = useState(false)
 
+  useEffect(() => {
+    let active = true
+
+    fetch('/api/me', { credentials: 'same-origin' })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: AuthState | null) => {
+        if (!active) return
+        setAuth(data)
+        if (data?.authenticated) setGithubConnected(true)
+      })
+      .catch(() => {
+        if (active) setAuth(null)
+      })
+      .finally(() => {
+        if (active) setAuthLoading(false)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const authUser = auth?.user
+  const authConfigured = Boolean(auth?.github_oauth_configured && auth?.session_configured)
   const repoName = repo.split('/').filter(Boolean).pop() || 'workspace'
   const endpoint = `https://sema-web-production.up.railway.app/mcp/${repoName.toLowerCase()}`
   const currentStepIndex = steps.findIndex((step) => step.id === activeStep)
@@ -93,6 +134,14 @@ export function WorkspaceDemoPage() {
   )
 
   const graphHealth = published ? 'Published' : 'Ready'
+
+  const connectGithub = () => {
+    if (authConfigured) {
+      window.location.assign('/auth/github/start')
+      return
+    }
+    setGithubConnected(true)
+  }
 
   const nextStep = () => {
     const next = steps[Math.min(currentStepIndex + 1, steps.length - 1)]
@@ -216,7 +265,12 @@ export function WorkspaceDemoPage() {
               Workspace State
             </div>
             <div className="space-y-3 text-sm">
-              <StatusRow label="Source" value={githubConnected ? 'GitHub linked' : 'Not linked'} />
+              <StatusRow
+                label="Source"
+                value={
+                  authUser?.login ? `@${authUser.login}` : githubConnected ? 'GitHub linked' : 'Not linked'
+                }
+              />
               <StatusRow label="Access" value={visibility} />
               <StatusRow label="Root" value="39ca671a4dcb3075" />
               <StatusRow label="Graph" value={graphHealth} />
@@ -229,7 +283,10 @@ export function WorkspaceDemoPage() {
             <StepPanel
               activeStep={activeStep}
               githubConnected={githubConnected}
-              setGithubConnected={setGithubConnected}
+              authUser={authUser}
+              authConfigured={authConfigured}
+              authLoading={authLoading}
+              connectGithub={connectGithub}
               libraryName={libraryName}
               setLibraryName={setLibraryName}
               repo={repo}
@@ -324,7 +381,10 @@ export function WorkspaceDemoPage() {
 function StepPanel({
   activeStep,
   githubConnected,
-  setGithubConnected,
+  authUser,
+  authConfigured,
+  authLoading,
+  connectGithub,
   libraryName,
   setLibraryName,
   repo,
@@ -344,7 +404,10 @@ function StepPanel({
 }: {
   activeStep: StepId
   githubConnected: boolean
-  setGithubConnected: (value: boolean) => void
+  authUser?: GitHubUser | null
+  authConfigured: boolean
+  authLoading: boolean
+  connectGithub: () => void
   libraryName: string
   setLibraryName: (value: string) => void
   repo: string
@@ -362,6 +425,21 @@ function StepPanel({
   copyEndpoint: () => void
   nextStep: () => void
 }) {
+  const hasRealGithubUser = Boolean(authUser?.login)
+  const accountLabel = authUser?.login
+    ? `@${authUser.login}`
+    : githubConnected
+      ? '@henrikwesterberg'
+      : 'Waiting'
+  const ownerLabel = authUser?.name || (authUser?.login ? 'GitHub user' : 'Personal')
+  const connectLabel = authLoading
+    ? 'Checking GitHub'
+    : hasRealGithubUser
+      ? `Connected as @${authUser?.login}`
+      : authConfigured
+        ? 'Continue with GitHub'
+        : 'Try demo GitHub'
+
   if (activeStep === 'connect') {
     return (
       <div>
@@ -373,28 +451,56 @@ function StepPanel({
         />
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
           <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
-            <button
-              type="button"
-              onClick={() => setGithubConnected(true)}
-              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-100 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-white"
-            >
-              {githubConnected ? <Check className="h-4 w-4" /> : <Github className="h-4 w-4" />}
-              {githubConnected ? 'Connected as Henrik' : 'Continue with GitHub'}
-            </button>
+            <div className="flex flex-wrap items-center gap-3">
+              {authUser?.avatar_url ? (
+                <img
+                  src={authUser.avatar_url}
+                  alt=""
+                  className="h-10 w-10 rounded-lg border border-zinc-800 bg-zinc-950"
+                />
+              ) : null}
+              <button
+                type="button"
+                onClick={() => {
+                  if (!hasRealGithubUser) connectGithub()
+                }}
+                disabled={authLoading || hasRealGithubUser}
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-100 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-white',
+                  (authLoading || hasRealGithubUser) && 'cursor-default opacity-90'
+                )}
+              >
+                {githubConnected ? <Check className="h-4 w-4" /> : <Github className="h-4 w-4" />}
+                {connectLabel}
+              </button>
+              {hasRealGithubUser ? (
+                <a
+                  href="/auth/logout"
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-200"
+                >
+                  Sign out
+                </a>
+              ) : null}
+            </div>
+            {!authLoading && !authConfigured && !hasRealGithubUser ? (
+              <p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+                GitHub OAuth credentials are not installed on this environment yet.
+              </p>
+            ) : null}
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              <IdentityFact label="Account" value={githubConnected ? '@henrikwesterberg' : 'Waiting'} />
-              <IdentityFact label="Scope" value="Repo install" />
-              <IdentityFact label="Owner" value="Personal" />
+              <IdentityFact label="Account" value={accountLabel} />
+              <IdentityFact label="Scope" value={authConfigured ? 'Profile' : 'Demo'} />
+              <IdentityFact label="Owner" value={ownerLabel} />
             </div>
           </div>
           <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
-            <p className="text-sm font-medium text-zinc-200">Install target</p>
+            <p className="text-sm font-medium text-zinc-200">Selected repository</p>
             <p className="mt-2 text-sm leading-6 text-zinc-500">
-              emergent-wisdom/sema-starter
+              {repo || 'Choose a repository in the next step'}
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
               <ShieldCheck className="h-4 w-4" />
-              Repository-scoped access
+              {authConfigured ? 'Profile-scoped sign-in' : 'Demo mode'}
             </div>
           </div>
         </div>
@@ -641,3 +747,5 @@ function Metric({ label, value }: { label: string; value: string }) {
     </div>
   )
 }
+
+export default WorkspaceDemoPage

@@ -1,9 +1,17 @@
+import base64
+import binascii
+import hashlib
+import hmac
 import json
 import os
+import secrets
 import sqlite3
+import time
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlencode
 
+import httpx
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -128,6 +136,240 @@ def _make_workspace(db_path: str) -> GraphWorkspace:
 # Registry loads from database only
 workspace = _make_workspace(DB_PATH)
 registry = workspace.registry_manager
+
+
+# ── GitHub Auth ───────────────────────────────────────────────────────────────
+
+_GITHUB_AUTHORIZE_URL = "https://github.com/login/oauth/authorize"
+_GITHUB_TOKEN_URL = "https://github.com/login/oauth/access_token"
+_GITHUB_USER_URL = "https://api.github.com/user"
+_GITHUB_EMAILS_URL = "https://api.github.com/user/emails"
+_SESSION_COOKIE = "sema_session"
+_OAUTH_STATE_COOKIE = "sema_oauth_state"
+_SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 14
+
+
+def _github_client_id() -> str | None:
+    return os.environ.get("GITHUB_CLIENT_ID")
+
+
+def _github_client_secret() -> str | None:
+    return os.environ.get("GITHUB_CLIENT_SECRET")
+
+
+def _session_secret() -> str | None:
+    return os.environ.get("SEMA_SESSION_SECRET") or os.environ.get("SESSION_SECRET")
+
+
+def _request_is_secure(request: Request) -> bool:
+    forwarded_proto = request.headers.get("x-forwarded-proto")
+    if forwarded_proto:
+        return forwarded_proto.split(",", 1)[0].strip() == "https"
+    return request.url.scheme == "https"
+
+
+def _external_base_url(request: Request) -> str:
+    proto = request.headers.get("x-forwarded-proto", request.url.scheme).split(",", 1)[0].strip()
+    host = request.headers.get("x-forwarded-host") or request.headers.get("host") or request.url.netloc
+    return f"{proto}://{host}"
+
+
+def _github_redirect_uri(request: Request) -> str:
+    return os.environ.get("GITHUB_OAUTH_REDIRECT_URI") or (
+        f"{_external_base_url(request)}/auth/github/callback"
+    )
+
+
+def _github_oauth_configured() -> bool:
+    return bool(_github_client_id() and _github_client_secret())
+
+
+def _auth_ready() -> bool:
+    return bool(_github_oauth_configured() and _session_secret())
+
+
+def _workspace_auth_redirect(status: str) -> RedirectResponse:
+    return RedirectResponse(url=f"/workspace?auth={status}", status_code=303)
+
+
+def _b64encode(raw: bytes) -> str:
+    return base64.urlsafe_b64encode(raw).decode("ascii").rstrip("=")
+
+
+def _b64decode(value: str) -> bytes:
+    padding = "=" * (-len(value) % 4)
+    return base64.urlsafe_b64decode(f"{value}{padding}".encode("ascii"))
+
+
+def _sign_session_payload(payload: str, secret: str) -> str:
+    digest = hmac.new(secret.encode("utf-8"), payload.encode("ascii"), hashlib.sha256).digest()
+    return _b64encode(digest)
+
+
+def _encode_session(user: dict[str, Any]) -> str:
+    secret = _session_secret()
+    if not secret:
+        raise RuntimeError("SEMA_SESSION_SECRET is not configured")
+
+    payload = _b64encode(
+        json.dumps(
+            {"iat": int(time.time()), "user": user},
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+    )
+    return f"{payload}.{_sign_session_payload(payload, secret)}"
+
+
+def _decode_session(value: str | None) -> dict[str, Any] | None:
+    secret = _session_secret()
+    if not value or not secret or "." not in value:
+        return None
+
+    payload, signature = value.rsplit(".", 1)
+    expected = _sign_session_payload(payload, secret)
+    if not hmac.compare_digest(signature, expected):
+        return None
+
+    try:
+        data = json.loads(_b64decode(payload))
+    except (binascii.Error, ValueError, json.JSONDecodeError):
+        return None
+
+    issued_at = data.get("iat")
+    if not isinstance(issued_at, int) or issued_at < int(time.time()) - _SESSION_MAX_AGE_SECONDS:
+        return None
+
+    user = data.get("user")
+    return user if isinstance(user, dict) else None
+
+
+async def _fetch_github_identity(access_token: str) -> dict[str, Any]:
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {access_token}",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        user_response = await client.get(_GITHUB_USER_URL, headers=headers)
+        user_response.raise_for_status()
+        user_data = user_response.json()
+
+        email = user_data.get("email")
+        if not email:
+            emails_response = await client.get(_GITHUB_EMAILS_URL, headers=headers)
+            if emails_response.status_code == 200:
+                for candidate in emails_response.json():
+                    if candidate.get("primary") and candidate.get("verified"):
+                        email = candidate.get("email")
+                        break
+
+    return {
+        "id": user_data.get("id"),
+        "login": user_data.get("login"),
+        "name": user_data.get("name"),
+        "avatar_url": user_data.get("avatar_url"),
+        "html_url": user_data.get("html_url"),
+        "email": email,
+    }
+
+
+@app.get("/api/me")
+def get_current_user(request: Request):
+    user = _decode_session(request.cookies.get(_SESSION_COOKIE))
+    return {
+        "authenticated": user is not None,
+        "user": user,
+        "github_oauth_configured": _github_oauth_configured(),
+        "session_configured": bool(_session_secret()),
+        "github_callback_url": _github_redirect_uri(request),
+    }
+
+
+@app.get("/auth/github/start")
+def start_github_auth(request: Request):
+    client_id = _github_client_id()
+    if not _auth_ready() or not client_id:
+        return _workspace_auth_redirect("missing")
+
+    state = secrets.token_urlsafe(32)
+    query = urlencode(
+        {
+            "client_id": client_id,
+            "redirect_uri": _github_redirect_uri(request),
+            "scope": "read:user user:email",
+            "state": state,
+            "allow_signup": "true",
+        }
+    )
+    response = RedirectResponse(url=f"{_GITHUB_AUTHORIZE_URL}?{query}", status_code=303)
+    response.set_cookie(
+        _OAUTH_STATE_COOKIE,
+        state,
+        max_age=600,
+        httponly=True,
+        secure=_request_is_secure(request),
+        samesite="lax",
+        path="/",
+    )
+    return response
+
+
+@app.get("/auth/github/callback")
+async def github_auth_callback(request: Request, code: str | None = None, state: str | None = None):
+    client_id = _github_client_id()
+    client_secret = _github_client_secret()
+    if not _auth_ready() or not client_id or not client_secret:
+        return _workspace_auth_redirect("missing")
+
+    expected_state = request.cookies.get(_OAUTH_STATE_COOKIE)
+    if not code or not state or not expected_state or not hmac.compare_digest(state, expected_state):
+        raise HTTPException(status_code=400, detail="Invalid GitHub OAuth callback")
+
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            token_response = await client.post(
+                _GITHUB_TOKEN_URL,
+                headers={"Accept": "application/json"},
+                data={
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "code": code,
+                    "redirect_uri": _github_redirect_uri(request),
+                },
+            )
+            token_response.raise_for_status()
+            token_data = token_response.json()
+        if token_data.get("error"):
+            detail = token_data.get("error_description") or token_data["error"]
+            raise HTTPException(status_code=400, detail=detail)
+        access_token = token_data.get("access_token")
+        if not access_token:
+            raise HTTPException(status_code=400, detail="GitHub did not return an access token")
+        user = await _fetch_github_identity(access_token)
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=502, detail="GitHub OAuth request failed") from exc
+
+    response = _workspace_auth_redirect("github")
+    response.set_cookie(
+        _SESSION_COOKIE,
+        _encode_session(user),
+        max_age=_SESSION_MAX_AGE_SECONDS,
+        httponly=True,
+        secure=_request_is_secure(request),
+        samesite="lax",
+        path="/",
+    )
+    response.delete_cookie(_OAUTH_STATE_COOKIE, path="/")
+    return response
+
+
+@app.get("/auth/logout")
+def logout():
+    response = _workspace_auth_redirect("logout")
+    response.delete_cookie(_SESSION_COOKIE, path="/")
+    response.delete_cookie(_OAUTH_STATE_COOKIE, path="/")
+    return response
 
 
 # Models
