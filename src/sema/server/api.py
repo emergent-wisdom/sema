@@ -734,7 +734,7 @@ if _static_dir.exists() and (_static_dir / "index.html").exists():
 
     @app.get("/{path:path}")
     def serve_spa(path: str):
-        if path.startswith("api/"):
+        if path.startswith("api/") or path.startswith("assets/"):
             raise HTTPException(status_code=404)
         candidate = (_static_dir / path).resolve()
         if candidate.is_relative_to(_static_root) and candidate.is_file():

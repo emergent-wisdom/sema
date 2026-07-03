@@ -62,6 +62,7 @@ sema = "sema.cli.main:main"
 artifacts = [
   "src/sema/server/static/assets/**",
   "src/sema/server/static/__spa-fallback.html",
+  "src/sema/server/static/llms.txt",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -115,5 +116,5 @@ line-ending = "auto"
 
 [tool.pytest.ini_options]
 pythonpath = "src"
-testpaths = ["src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests"]
+testpaths = ["src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests", "src/sema/server/tests"]
 addopts = "-v"
