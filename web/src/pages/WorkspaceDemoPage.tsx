@@ -136,10 +136,10 @@ export function WorkspaceDemoPage() {
   const graphHealth = published ? 'Published' : 'Ready'
 
   const connectGithub = () => {
-    if (authConfigured) {
-      window.location.assign('/auth/github/start')
-      return
-    }
+    window.location.assign('/auth/github/start')
+  }
+
+  const continueDemoMode = () => {
     setGithubConnected(true)
   }
 
@@ -287,6 +287,7 @@ export function WorkspaceDemoPage() {
               authConfigured={authConfigured}
               authLoading={authLoading}
               connectGithub={connectGithub}
+              continueDemoMode={continueDemoMode}
               libraryName={libraryName}
               setLibraryName={setLibraryName}
               repo={repo}
@@ -385,6 +386,7 @@ function StepPanel({
   authConfigured,
   authLoading,
   connectGithub,
+  continueDemoMode,
   libraryName,
   setLibraryName,
   repo,
@@ -408,6 +410,7 @@ function StepPanel({
   authConfigured: boolean
   authLoading: boolean
   connectGithub: () => void
+  continueDemoMode: () => void
   libraryName: string
   setLibraryName: (value: string) => void
   repo: string
@@ -436,9 +439,7 @@ function StepPanel({
     ? 'Checking GitHub'
     : hasRealGithubUser
       ? `Connected as @${authUser?.login}`
-      : authConfigured
-        ? 'Continue with GitHub'
-        : 'Try demo GitHub'
+      : 'Log in with GitHub'
 
   if (activeStep === 'connect') {
     return (
@@ -446,7 +447,7 @@ function StepPanel({
         <StepHeader
           icon={Github}
           kicker="Account"
-          title="Continue with GitHub"
+          title="Log in with GitHub"
           body="Use your GitHub identity as the owner of a Sema workspace."
         />
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
@@ -481,6 +482,15 @@ function StepPanel({
                   Sign out
                 </a>
               ) : null}
+              {!authLoading && !authConfigured && !hasRealGithubUser ? (
+                <button
+                  type="button"
+                  onClick={continueDemoMode}
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-200"
+                >
+                  Continue in demo mode
+                </button>
+              ) : null}
             </div>
             {!authLoading && !authConfigured && !hasRealGithubUser ? (
               <p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
@@ -489,7 +499,7 @@ function StepPanel({
             ) : null}
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <IdentityFact label="Account" value={accountLabel} />
-              <IdentityFact label="Scope" value={authConfigured ? 'Profile' : 'Demo'} />
+              <IdentityFact label="Scope" value={authConfigured ? 'Profile' : 'Pending setup'} />
               <IdentityFact label="Owner" value={ownerLabel} />
             </div>
           </div>
@@ -500,7 +510,7 @@ function StepPanel({
             </p>
             <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
               <ShieldCheck className="h-4 w-4" />
-              {authConfigured ? 'Profile-scoped sign-in' : 'Demo mode'}
+              {authConfigured ? 'Profile-scoped sign-in' : 'OAuth app required'}
             </div>
           </div>
         </div>
