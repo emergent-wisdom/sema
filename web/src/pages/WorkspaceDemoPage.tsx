@@ -53,21 +53,21 @@ const steps: Array<{ id: StepId; label: string; icon: typeof Github }> = [
   { id: 'publish', label: 'Publish', icon: Rocket },
 ]
 
-const starterPatterns = [
+const demoPatterns = [
   { handle: 'Claim', stub: 'c391', layer: 'Reasoning', state: 'Published' },
   { handle: 'Evidence', stub: '8aa2', layer: 'Verification', state: 'Published' },
   { handle: 'ReviewLoop', stub: '41db', layer: 'Coordination', state: 'Draft' },
   { handle: 'DecisionRecord', stub: '91e6', layer: 'Governance', state: 'Draft' },
 ]
 
-const activity = [
+const demoActivity = [
   'Created workspace root',
   'Linked source repository',
   'Prepared collaborator invitations',
   'Generated staged MCP endpoint',
 ]
 
-const initialCollaborators: Collaborator[] = [
+const demoCollaborators: Collaborator[] = [
   {
     email: 'henrik.westeberg@emergentwisdom.org',
     name: 'Henrik Westerberg',
@@ -85,13 +85,14 @@ const initialCollaborators: Collaborator[] = [
 export function WorkspaceDemoPage() {
   const [activeStep, setActiveStep] = useState<StepId>('connect')
   const [githubConnected, setGithubConnected] = useState(false)
+  const [demoMode, setDemoMode] = useState(false)
   const [auth, setAuth] = useState<AuthState | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
-  const [libraryName, setLibraryName] = useState('Civic Intelligence Library')
-  const [repo, setRepo] = useState('henrikwesterberg/civic-intelligence')
+  const [libraryName, setLibraryName] = useState('')
+  const [repo, setRepo] = useState('')
   const [visibility, setVisibility] = useState<Visibility>('Private')
-  const [inviteEmail, setInviteEmail] = useState('claude@example.com')
-  const [collaborators, setCollaborators] = useState(initialCollaborators)
+  const [inviteEmail, setInviteEmail] = useState('')
+  const [collaborators, setCollaborators] = useState<Collaborator[]>([])
   const [published, setPublished] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -103,7 +104,10 @@ export function WorkspaceDemoPage() {
       .then((data: AuthState | null) => {
         if (!active) return
         setAuth(data)
-        if (data?.authenticated) setGithubConnected(true)
+        if (data?.authenticated) {
+          setGithubConnected(true)
+          setDemoMode(false)
+        }
       })
       .catch(() => {
         if (active) setAuth(null)
@@ -119,28 +123,59 @@ export function WorkspaceDemoPage() {
 
   const authUser = auth?.user
   const authConfigured = Boolean(auth?.github_oauth_configured && auth?.session_configured)
+  const hasRealGithubUser = Boolean(authUser?.login)
+  const isDemoWorkspace = demoMode && !hasRealGithubUser
+  const workspaceName = libraryName.trim() || (isDemoWorkspace ? 'Civic Intelligence Library' : 'Untitled workspace')
   const repoName = repo.split('/').filter(Boolean).pop() || 'workspace'
   const endpoint = `https://sema-web-production.up.railway.app/mcp/${repoName.toLowerCase()}`
   const currentStepIndex = steps.findIndex((step) => step.id === activeStep)
+  const visiblePatterns = isDemoWorkspace ? demoPatterns : []
+  const visibleActivity = isDemoWorkspace ? demoActivity : []
+  const visibleCollaborators = useMemo<Collaborator[]>(() => {
+    if (!hasRealGithubUser) return collaborators
+
+    const ownerName = authUser?.name || (authUser?.login ? `@${authUser.login}` : 'GitHub user')
+    const ownerEmail = authUser?.email || (authUser?.login ? `@${authUser.login}` : 'GitHub account')
+
+    return [
+      {
+        email: ownerEmail,
+        name: ownerName,
+        role: 'Owner',
+        status: 'Active',
+      },
+      ...collaborators,
+    ]
+  }, [authUser?.email, authUser?.login, authUser?.name, collaborators, hasRealGithubUser])
+  const sourceLabel = authUser?.login ? `@${authUser.login}` : isDemoWorkspace ? 'Demo GitHub linked' : 'Not linked'
+  const rootValue = published || isDemoWorkspace ? '39ca671a4dcb3075' : 'Not published'
+  const metricValues = isDemoWorkspace
+    ? { patterns: '24', drafts: '4', proposals: '3' }
+    : { patterns: '0', drafts: '0', proposals: '0' }
 
   const completed = useMemo<Record<StepId, boolean>>(
     () => ({
       connect: githubConnected,
       library: libraryName.trim().length > 0 && repo.includes('/'),
-      team: collaborators.length > 1,
+      team: isDemoWorkspace ? collaborators.length > 1 : collaborators.length > 0,
       publish: published,
     }),
-    [collaborators.length, githubConnected, libraryName, published, repo]
+    [collaborators.length, githubConnected, isDemoWorkspace, libraryName, published, repo]
   )
 
-  const graphHealth = published ? 'Published' : 'Ready'
+  const graphHealth = published ? 'Published' : visiblePatterns.length > 0 ? 'Ready' : 'Empty'
 
   const connectGithub = () => {
     window.location.assign('/auth/github/start')
   }
 
   const continueDemoMode = () => {
+    setDemoMode(true)
     setGithubConnected(true)
+    setLibraryName((current) => current || 'Civic Intelligence Library')
+    setRepo((current) => current || 'henrikwesterberg/civic-intelligence')
+    setInviteEmail((current) => current || 'claude@example.com')
+    setCollaborators((current) => (current.length > 0 ? current : demoCollaborators))
   }
 
   const nextStep = () => {
@@ -267,12 +302,10 @@ export function WorkspaceDemoPage() {
             <div className="space-y-3 text-sm">
               <StatusRow
                 label="Source"
-                value={
-                  authUser?.login ? `@${authUser.login}` : githubConnected ? 'GitHub linked' : 'Not linked'
-                }
+                value={sourceLabel}
               />
               <StatusRow label="Access" value={visibility} />
-              <StatusRow label="Root" value="39ca671a4dcb3075" />
+              <StatusRow label="Root" value={rootValue} />
               <StatusRow label="Graph" value={graphHealth} />
             </div>
           </section>
@@ -282,10 +315,10 @@ export function WorkspaceDemoPage() {
           <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
             <StepPanel
               activeStep={activeStep}
-              githubConnected={githubConnected}
               authUser={authUser}
               authConfigured={authConfigured}
               authLoading={authLoading}
+              demoMode={isDemoWorkspace}
               connectGithub={connectGithub}
               continueDemoMode={continueDemoMode}
               libraryName={libraryName}
@@ -296,7 +329,7 @@ export function WorkspaceDemoPage() {
               setVisibility={setVisibility}
               inviteEmail={inviteEmail}
               setInviteEmail={setInviteEmail}
-              collaborators={collaborators}
+              collaborators={visibleCollaborators}
               addCollaborator={addCollaborator}
               published={published}
               setPublished={setPublished}
@@ -312,17 +345,17 @@ export function WorkspaceDemoPage() {
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <p className="text-xs uppercase tracking-widest text-zinc-600">Workspace</p>
-                  <h2 className="mt-1 text-lg font-medium text-zinc-100">{libraryName}</h2>
+                  <h2 className="mt-1 text-lg font-medium text-zinc-100">{workspaceName}</h2>
                 </div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
                   <Network className="h-5 w-5" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <Metric label="Patterns" value="24" />
-                <Metric label="Drafts" value="4" />
-                <Metric label="Members" value={String(collaborators.length)} />
-                <Metric label="Proposals" value="3" />
+                <Metric label="Patterns" value={metricValues.patterns} />
+                <Metric label="Drafts" value={metricValues.drafts} />
+                <Metric label="Members" value={String(visibleCollaborators.length)} />
+                <Metric label="Proposals" value={metricValues.proposals} />
               </div>
             </section>
 
@@ -332,44 +365,58 @@ export function WorkspaceDemoPage() {
                 <Search className="h-4 w-4 text-zinc-600" />
               </div>
               <div className="space-y-2">
-                {starterPatterns.map((pattern) => (
-                  <div
-                    key={pattern.handle}
-                    className="flex items-center justify-between rounded-lg border border-zinc-800/70 bg-zinc-950/35 px-3 py-2"
-                  >
-                    <div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-zinc-200">{pattern.handle}</span>
-                        <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-500">
-                          #{pattern.stub}
-                        </code>
-                      </div>
-                      <p className="mt-1 text-xs text-zinc-600">{pattern.layer}</p>
-                    </div>
-                    <span
-                      className={cn(
-                        'rounded-md px-2 py-1 text-[11px] font-medium',
-                        pattern.state === 'Published'
-                          ? 'bg-emerald-500/10 text-emerald-300'
-                          : 'bg-amber-500/10 text-amber-300'
-                      )}
+                {visiblePatterns.length > 0 ? (
+                  visiblePatterns.map((pattern) => (
+                    <div
+                      key={pattern.handle}
+                      className="flex items-center justify-between rounded-lg border border-zinc-800/70 bg-zinc-950/35 px-3 py-2"
                     >
-                      {pattern.state}
-                    </span>
-                  </div>
-                ))}
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-zinc-200">{pattern.handle}</span>
+                          <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-500">
+                            #{pattern.stub}
+                          </code>
+                        </div>
+                        <p className="mt-1 text-xs text-zinc-600">{pattern.layer}</p>
+                      </div>
+                      <span
+                        className={cn(
+                          'rounded-md px-2 py-1 text-[11px] font-medium',
+                          pattern.state === 'Published'
+                            ? 'bg-emerald-500/10 text-emerald-300'
+                            : 'bg-amber-500/10 text-amber-300'
+                        )}
+                      >
+                        {pattern.state}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <EmptyState
+                    title="No patterns yet"
+                    body="Connect a repository or create the first pattern to populate the graph."
+                  />
+                )}
               </div>
             </section>
 
             <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
               <h2 className="mb-4 text-sm font-medium text-zinc-200">Recent Activity</h2>
               <div className="space-y-3">
-                {activity.map((item) => (
-                  <div key={item} className="flex gap-3 text-sm">
-                    <div className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
-                    <span className="text-zinc-500">{item}</span>
-                  </div>
-                ))}
+                {visibleActivity.length > 0 ? (
+                  visibleActivity.map((item) => (
+                    <div key={item} className="flex gap-3 text-sm">
+                      <div className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="text-zinc-500">{item}</span>
+                    </div>
+                  ))
+                ) : (
+                  <EmptyState
+                    title="No activity yet"
+                    body="Workspace events will appear here after the first repository or graph action."
+                  />
+                )}
               </div>
             </section>
           </aside>
@@ -381,10 +428,10 @@ export function WorkspaceDemoPage() {
 
 function StepPanel({
   activeStep,
-  githubConnected,
   authUser,
   authConfigured,
   authLoading,
+  demoMode,
   connectGithub,
   continueDemoMode,
   libraryName,
@@ -405,10 +452,10 @@ function StepPanel({
   nextStep,
 }: {
   activeStep: StepId
-  githubConnected: boolean
   authUser?: GitHubUser | null
   authConfigured: boolean
   authLoading: boolean
+  demoMode: boolean
   connectGithub: () => void
   continueDemoMode: () => void
   libraryName: string
@@ -431,10 +478,10 @@ function StepPanel({
   const hasRealGithubUser = Boolean(authUser?.login)
   const accountLabel = authUser?.login
     ? `@${authUser.login}`
-    : githubConnected
-      ? '@henrikwesterberg'
+    : demoMode
+      ? '@demo-user'
       : 'Waiting'
-  const ownerLabel = authUser?.name || (authUser?.login ? 'GitHub user' : 'Personal')
+  const ownerLabel = authUser?.name || (authUser?.login ? 'GitHub user' : demoMode ? 'Demo owner' : 'Personal')
   const connectLabel = authLoading
     ? 'Checking GitHub'
     : hasRealGithubUser
@@ -471,7 +518,7 @@ function StepPanel({
                   (authLoading || hasRealGithubUser) && 'cursor-default opacity-90'
                 )}
               >
-                {githubConnected ? <Check className="h-4 w-4" /> : <Github className="h-4 w-4" />}
+                {hasRealGithubUser ? <Check className="h-4 w-4" /> : <Github className="h-4 w-4" />}
                 {connectLabel}
               </button>
               {hasRealGithubUser ? (
@@ -482,7 +529,7 @@ function StepPanel({
                   Sign out
                 </a>
               ) : null}
-              {!authLoading && !authConfigured && !hasRealGithubUser ? (
+              {!authLoading && !hasRealGithubUser && !demoMode ? (
                 <button
                   type="button"
                   onClick={continueDemoMode}
@@ -499,7 +546,7 @@ function StepPanel({
             ) : null}
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
               <IdentityFact label="Account" value={accountLabel} />
-              <IdentityFact label="Scope" value={authConfigured ? 'Profile' : 'Pending setup'} />
+              <IdentityFact label="Scope" value={demoMode ? 'Demo only' : authConfigured ? 'Profile' : 'Pending setup'} />
               <IdentityFact label="Owner" value={ownerLabel} />
             </div>
           </div>
@@ -533,6 +580,7 @@ function StepPanel({
             <input
               value={libraryName}
               onChange={(event) => setLibraryName(event.target.value)}
+              placeholder={authUser?.login ? `${authUser.login}'s graph` : 'Civic Intelligence Library'}
               className="w-full rounded-lg border border-zinc-800 bg-zinc-950/70 px-3 py-2.5 text-sm text-zinc-100 outline-none transition-colors placeholder:text-zinc-700 focus:border-zinc-600"
             />
           </Field>
@@ -542,6 +590,7 @@ function StepPanel({
               <input
                 value={repo}
                 onChange={(event) => setRepo(event.target.value)}
+                placeholder={authUser?.login ? `${authUser.login}/sema-library` : 'owner/repository'}
                 className="w-full bg-transparent text-sm text-zinc-100 outline-none placeholder:text-zinc-700"
               />
             </div>
@@ -745,6 +794,15 @@ function StatusRow({ label, value }: { label: string; value: string }) {
     <div className="flex items-center justify-between gap-4">
       <span className="text-zinc-600">{label}</span>
       <span className="truncate text-right font-medium text-zinc-300">{value}</span>
+    </div>
+  )
+}
+
+function EmptyState({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="rounded-lg border border-dashed border-zinc-800 bg-zinc-950/25 px-3 py-4">
+      <p className="text-sm font-medium text-zinc-300">{title}</p>
+      <p className="mt-1 text-xs leading-5 text-zinc-600">{body}</p>
     </div>
   )
 }
