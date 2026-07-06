@@ -161,7 +161,7 @@ def sema_lookup(ref: str) -> str:
     """Lookup a pattern by its Sema reference (Handle#stub).
 
     Args:
-        ref: Pattern reference like "ChainOfThought#dd97" or just "ChainOfThought"
+        ref: Pattern reference like "ChainOfThought#c425" or just "ChainOfThought"
 
     Returns:
         Full pattern JSON
@@ -319,7 +319,7 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
     coordinating on a pattern. It does not replace behavioral testing.
 
     Args:
-        ref: Pattern reference (e.g., "StateLock#5602" or "StateLock"),
+        ref: Pattern reference (e.g., "StateLock#7cd8" or "StateLock"),
              or the literal string "vocab" to handshake on the whole
              vocabulary's Merkle root.
         your_hash: Your local hash — the 4-char pattern stub, or the
