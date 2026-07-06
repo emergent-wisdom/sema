@@ -625,15 +625,24 @@ if os.environ.get("SEMA_DISABLE_PULL", "").lower() != "true":
 
 def main():
     """Run the Sema MCP server."""
+    global DEFAULT_VOCAB_DIR, DEFAULT_DB_PATH, REGISTRY_MGR
 
     # Check for custom paths via args
+    paths_changed = False
     for i, arg in enumerate(sys.argv):
         if arg == "--vocab-dir" and i + 1 < len(sys.argv):
-            global DEFAULT_VOCAB_DIR
             DEFAULT_VOCAB_DIR = sys.argv[i + 1]
+            paths_changed = True
         elif arg == "--db-path" and i + 1 < len(sys.argv):
-            global DEFAULT_DB_PATH
             DEFAULT_DB_PATH = sys.argv[i + 1]
+            paths_changed = True
+
+    # REGISTRY_MGR was constructed at import time against the default paths.
+    # Without a rebuild, every read tool (handshake, search, resolve...)
+    # would keep answering from the default vocabulary while the banner
+    # below reports the custom one — a silent split-brain.
+    if paths_changed:
+        REGISTRY_MGR = RegistryManager(DEFAULT_VOCAB_DIR, db_path=DEFAULT_DB_PATH)
 
     # Startup banner — to stderr so it doesn't pollute the MCP stdio protocol.
     try:

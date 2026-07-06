@@ -7,6 +7,7 @@ import os
 import secrets
 import sqlite3
 import time
+from contextlib import closing
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
@@ -227,7 +228,12 @@ def _decode_session(value: str | None) -> dict[str, Any] | None:
         return None
 
     payload, signature = value.rsplit(".", 1)
-    expected = _sign_session_payload(payload, secret)
+    try:
+        expected = _sign_session_payload(payload, secret)
+    except UnicodeEncodeError:
+        # Cookie bytes outside ASCII can't have been produced by
+        # _encode_session — treat as logged out instead of erroring.
+        return None
     if not hmac.compare_digest(signature, expected):
         return None
 
@@ -412,56 +418,54 @@ def get_graph():
         return {"nodes": [], "edges": []}
 
     try:
-        conn = sqlite3.connect(DB_PATH)
-        conn.row_factory = sqlite3.Row
+        with closing(sqlite3.connect(DB_PATH)) as conn:
+            conn.row_factory = sqlite3.Row
 
-        # Get Nodes and build UUID->handle mapping
-        cursor = conn.cursor()
-        cursor.execute("SELECT id, node_type, text, metadata FROM nodes")
-        uuid_to_id = {}  # Map UUID to our node ID
+            # Get Nodes and build UUID->handle mapping
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, node_type, text, metadata FROM nodes")
+            uuid_to_id = {}  # Map UUID to our node ID
 
-        for row in cursor.fetchall():
-            meta = json.loads(row["metadata"] or "{}")
-            pattern_meta = meta.get("pattern", {})
+            for row in cursor.fetchall():
+                meta = json.loads(row["metadata"] or "{}")
+                pattern_meta = meta.get("pattern", {})
 
-            # Apply Overlay Logic
-            raw_handle = pattern_meta.get("handle") or row["text"]
-            overlaid_handle = pattern_meta.get("sema_ref") or raw_handle
+                # Apply Overlay Logic
+                raw_handle = pattern_meta.get("handle") or row["text"]
+                overlaid_handle = pattern_meta.get("sema_ref") or raw_handle
 
-            # For PATTERN nodes, use the raw handle as ID (for API lookups)
-            # For other nodes, use the UUID
-            node_id = raw_handle if row["node_type"] == "PATTERN" and raw_handle else row["id"]
-            uuid_to_id[row["id"]] = node_id
+                # For PATTERN nodes, use the raw handle as ID (for API lookups)
+                # For other nodes, use the UUID
+                node_id = raw_handle if row["node_type"] == "PATTERN" and raw_handle else row["id"]
+                uuid_to_id[row["id"]] = node_id
 
-            nodes.append(
-                {
-                    "id": node_id,
-                    "text": overlaid_handle,  # Use overlaid handle as primary text
-                    "type": row["node_type"],
-                    "layer": pattern_meta.get("sema_layer") or meta.get("sema_layer"),
-                    "category": pattern_meta.get("sema_category") or meta.get("sema_category"),
-                    "handle": overlaid_handle,
-                    "gloss": pattern_meta.get("gloss"),
-                    "stub": pattern_meta.get("sema_stub"),
-                    "metadata": meta,
-                }
-            )
+                nodes.append(
+                    {
+                        "id": node_id,
+                        "text": overlaid_handle,  # Use overlaid handle as primary text
+                        "type": row["node_type"],
+                        "layer": pattern_meta.get("sema_layer") or meta.get("sema_layer"),
+                        "category": pattern_meta.get("sema_category") or meta.get("sema_category"),
+                        "handle": overlaid_handle,
+                        "gloss": pattern_meta.get("gloss"),
+                        "stub": pattern_meta.get("sema_stub"),
+                        "metadata": meta,
+                    }
+                )
 
-        # Get Edges - translate UUIDs to our node IDs
-        cursor.execute("SELECT id, source_id, target_id, edge_type FROM edges")
-        for row in cursor.fetchall():
-            source_id = uuid_to_id.get(row["source_id"], row["source_id"])
-            target_id = uuid_to_id.get(row["target_id"], row["target_id"])
-            edges.append(
-                {
-                    "id": row["id"],
-                    "source": source_id,
-                    "target": target_id,
-                    "type": row["edge_type"],
-                }
-            )
-
-        conn.close()
+            # Get Edges - translate UUIDs to our node IDs
+            cursor.execute("SELECT id, source_id, target_id, edge_type FROM edges")
+            for row in cursor.fetchall():
+                source_id = uuid_to_id.get(row["source_id"], row["source_id"])
+                target_id = uuid_to_id.get(row["target_id"], row["target_id"])
+                edges.append(
+                    {
+                        "id": row["id"],
+                        "source": source_id,
+                        "target": target_id,
+                        "type": row["edge_type"],
+                    }
+                )
     except Exception as e:
         print(f"Error reading DB: {e}")
         raise HTTPException(status_code=500, detail=str(e)) from e
@@ -621,8 +625,7 @@ def get_pattern_details(handle: str):
 @app.get("/api/search")
 def search_patterns(q: str, semantic: bool = True):
     """Search patterns (Hybrid: Keyword + Semantic if available)."""
-    # 1. Keyword search (always)
-    keyword_results = registry.search(q)
+    keyword_results = registry.search(q, use_semantic=semantic)
 
     if not semantic:
         return keyword_results
@@ -783,7 +786,7 @@ def list_docs():
     for slug, default_title in DOCS_ORDER:
         doc_path = _get_doc_path(slug)
         if doc_path and doc_path.exists():
-            with open(doc_path) as file:
+            with open(doc_path, encoding="utf-8") as file:
                 first_line = file.readline().strip()
                 title = (
                     first_line.lstrip("#").strip() if first_line.startswith("#") else default_title
@@ -808,7 +811,7 @@ def get_doc(slug: str):
     if not doc_path:
         raise HTTPException(status_code=404, detail="Document not found")
 
-    with open(doc_path) as f:
+    with open(doc_path, encoding="utf-8") as f:
         content = f.read()
 
     lines = content.split("\n")
@@ -846,26 +849,40 @@ def get_install_md():
 
     root = _get_repo_root()
     if root and (root / "install.md").exists():
-        return PlainTextResponse((root / "install.md").read_text(), media_type="text/markdown")
+        return PlainTextResponse(
+            (root / "install.md").read_text(encoding="utf-8"), media_type="text/markdown"
+        )
     cwd = Path.cwd() / "install.md"
     if cwd.exists():
-        return PlainTextResponse(cwd.read_text(), media_type="text/markdown")
+        return PlainTextResponse(cwd.read_text(encoding="utf-8"), media_type="text/markdown")
     raise HTTPException(status_code=404, detail="install.md not found")
 
 
 # ── DB Management ──────────────────────────────────────────────────────────────
 
 
-def _is_local_server() -> bool:
-    """True when running locally (not deployed to production)."""
-    # Production sets RAILWAY_ENVIRONMENT; local does not.
-    return not os.environ.get("RAILWAY_ENVIRONMENT") and not os.environ.get("PRODUCTION")
+def _is_local_request(request: Request) -> bool:
+    """True when running locally (not deployed) AND the caller is loopback.
+
+    The env check catches known deploy targets (Railway sets
+    RAILWAY_ENVIRONMENT); the loopback check protects self-hosters who
+    expose the server without setting PRODUCTION — DB switching can point
+    the process at any readable file, so it must never be reachable
+    remotely.
+    """
+    if os.environ.get("RAILWAY_ENVIRONMENT") or os.environ.get("PRODUCTION"):
+        return False
+    client = request.client
+    if client is None:
+        # ASGI test harnesses (TestClient) have no real transport.
+        return True
+    return client.host in ("127.0.0.1", "::1", "testclient")
 
 
 @app.get("/api/dbs")
-def get_dbs():
+def get_dbs(request: Request):
     """List all known vocabulary databases. Local-only."""
-    if not _is_local_server():
+    if not _is_local_request(request):
         raise HTTPException(status_code=404, detail="DB management is local-only")
 
     from ..core.registry import list_dbs
@@ -877,9 +894,9 @@ def get_dbs():
 
 
 @app.post("/api/use")
-def use_db_endpoint(payload: dict):
+def use_db_endpoint(payload: dict, request: Request):
     """Switch the active database for this server process. Local-only."""
-    if not _is_local_server():
+    if not _is_local_request(request):
         raise HTTPException(status_code=404, detail="DB management is local-only")
 
     from ..core.registry import is_bundled_db, register_db, set_active_db

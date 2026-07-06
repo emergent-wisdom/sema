@@ -236,12 +236,28 @@ class RegistryManager:
                     "YIELDS": "yields",
                 }
 
-                cursor.execute(
-                    "SELECT source_id, target_id, edge_type FROM edges "
-                    "WHERE edge_type IN ('REFERENCES', 'COMPOSES_WITH', 'ACCEPTS', 'YIELDS')"
-                )
+                # The alias column preserves the key the author minted with
+                # (e.g. {"references": {"my_gate": ...}}). Dropping it and
+                # substituting snake_case(handle) would rename dependency
+                # keys, so {{my_gate}} templates could never resolve and the
+                # registry view would disagree with the graph-store view
+                # (get_dependencies_from_edges reads the same column).
+                try:
+                    cursor.execute(
+                        "SELECT source_id, target_id, edge_type, alias FROM edges "
+                        "WHERE edge_type IN ('REFERENCES', 'COMPOSES_WITH', 'ACCEPTS', 'YIELDS')"
+                    )
+                    edge_rows = cursor.fetchall()
+                except sqlite3.OperationalError:
+                    # Legacy DB without the alias column (pre-migration,
+                    # never opened via GraphStore). Fall back gracefully.
+                    cursor.execute(
+                        "SELECT source_id, target_id, edge_type, NULL FROM edges "
+                        "WHERE edge_type IN ('REFERENCES', 'COMPOSES_WITH', 'ACCEPTS', 'YIELDS')"
+                    )
+                    edge_rows = cursor.fetchall()
 
-                for source_id, target_id, edge_type in cursor.fetchall():
+                for source_id, target_id, edge_type, alias in edge_rows:
                     source_handle = node_id_to_handle.get(source_id)
                     target_handle = node_id_to_handle.get(target_id)
 
@@ -258,9 +274,12 @@ class RegistryManager:
                                 "sema_id", target_handle
                             )
 
-                            # Convert handle to snake_case key
-                            s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", target_handle)
-                            key = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+                            key = alias
+                            if not key:
+                                # Legacy edges that pre-date alias storage:
+                                # fall back to snake_case of the handle.
+                                s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", target_handle)
+                                key = re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
 
                             registry[source_handle]["dependencies"][dep_category][key] = (
                                 target_sema_id
@@ -305,10 +324,15 @@ class RegistryManager:
         if not isinstance(text, str):
             return text
 
-        # Lazy build lower map if missing or registry changed size
-        # Key is lowercase with underscores removed for flexible matching
-        if not hasattr(self, "_lower_map") or len(self._lower_map) != len(self.registry):
-            self._lower_map = {k.lower().replace("_", ""): k for k in self.registry.keys()}
+        # Lazy build lower map if missing or the handle set changed.
+        # Key is lowercase with underscores removed for flexible matching.
+        # (A pure len() check misses same-size swaps — e.g. a supersession
+        # pull replacing one handle with another — leaving a stale map that
+        # points at handles no longer in the registry.)
+        registry_keys = set(self.registry.keys())
+        if not hasattr(self, "_lower_map") or getattr(self, "_lower_map_keys", None) != registry_keys:
+            self._lower_map = {k.lower().replace("_", ""): k for k in registry_keys}
+            self._lower_map_keys = registry_keys
 
         def replacer(match):
             content = match.group(1)
@@ -457,7 +481,9 @@ class RegistryManager:
                             new_related.append(item)
                     else:
                         new_related.append(item)
-                resolved["_meta"]["related"] = new_related
+                # data.copy() above is shallow — writing into the original
+                # _meta would mutate the shared registry entry in place.
+                resolved["_meta"] = {**resolved["_meta"], "related": new_related}
 
         return resolved
 
@@ -516,7 +542,7 @@ class RegistryManager:
         for handle, data in self.registry.items():
             gloss = data.get("gloss", "")
             mechanism = data.get("mechanism", "")
-            signatures = " ".join(data.get("signature", []))
+            signatures = " ".join(data.get("signature") or [])
 
             # Per-field sub-scores
             scores = {

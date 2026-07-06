@@ -151,6 +151,41 @@ def test_handshake_is_scoped_to_workspace():
     assert halt["canonical_hash"] == "aaaa"
 
 
+def test_handshake_pattern_accepts_full_hash():
+    """An agent holding the full 64-char hash must not get a false HALT."""
+    workspace = make_workspace()
+
+    proceed = workspace.handshake("Alpha", your_hash="a" * 64)
+
+    assert proceed["verdict"] == "PROCEED"
+
+
+def test_handshake_pattern_normalizes_case_and_whitespace():
+    workspace = make_workspace()
+
+    proceed_stub = workspace.handshake("Alpha", your_hash="  AAAA  ")
+    proceed_full = workspace.handshake("Alpha", your_hash=("A" * 64))
+
+    assert proceed_stub["verdict"] == "PROCEED"
+    assert proceed_full["verdict"] == "PROCEED"
+
+
+def test_handshake_pattern_blank_hash_asks_for_hash():
+    workspace = make_workspace()
+
+    result = workspace.handshake("Alpha", your_hash="   ")
+
+    assert result["verdict"] == "PROVIDE_HASH"
+
+
+def test_handshake_pattern_full_hash_drift_still_halts():
+    workspace = make_workspace()
+
+    halt = workspace.handshake("Alpha", your_hash="f" * 64)
+
+    assert halt["verdict"] == "HALT"
+
+
 def test_workspace_description_exposes_hosted_identity_fields():
     workspace = make_workspace()
 

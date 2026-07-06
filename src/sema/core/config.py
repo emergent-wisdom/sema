@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 from pathlib import Path
 
 DEFAULT_CONFIG_FILE = "sema.json"
@@ -27,8 +28,9 @@ class SemaConfig:
                 with open(self.config_path) as f:
                     return json.load(f)
             except Exception as e:
-                print(f"Warning: Failed to load config {self.config_path}: {e}")
-                pass
+                # stderr: this can run during MCP server import, where
+                # stdout is the JSON-RPC transport.
+                print(f"Warning: Failed to load config {self.config_path}: {e}", file=sys.stderr)
 
         # Default Config
         return {
@@ -51,7 +53,22 @@ class SemaConfig:
 
     def get_active_profile(self):
         active_name = self.get_active_profile_name()
-        profile = self.config["profiles"].get(active_name, self.config["profiles"][DEFAULT_PROFILE])
+        profiles = self.config.get("profiles", {})
+        profile = profiles.get(active_name) or profiles.get(DEFAULT_PROFILE)
+        if profile is None:
+            # User config names a missing profile and has no "default"
+            # either — behave like an unconfigured install instead of
+            # crashing with a KeyError.
+            profile = {
+                "registry_path": DEFAULT_REGISTRY_PATH,
+                "identity": "anonymous",
+                "policies": {"fail_on_drift": True, "allow_autonomous_ingest": False},
+            }
+
+        # Return a copy with resolved paths: resolving in place would make
+        # any later save() rewrite the user's relative paths as
+        # machine-specific absolute ones.
+        profile = dict(profile)
 
         # Resolve paths relative to Project Root (where sema.json likely lives)
         project_root = Path(self.config_path).parent

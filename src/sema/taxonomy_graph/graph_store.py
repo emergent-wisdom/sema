@@ -582,6 +582,19 @@ class GraphStore:
             pattern_id = existing_nid
             data = self.graph.nodes[existing_nid]
             if "metadata" in data:
+                previous_pattern = data["metadata"].get("pattern", {}) or {}
+
+                # Carry the previous hash fields through this first write.
+                # The fresh hash is only computed (and written) after the
+                # dependency edges exist; without the carry-over, a crash in
+                # between leaves a hashless pattern that vocabulary_root()
+                # silently skips — two differing vocabularies could then
+                # produce identical roots (false PROCEED on the vocab
+                # handshake). A stale hash fails closed instead.
+                for hash_field in ("sema_id", "sema_ref", "sema_stub"):
+                    if hash_field not in stored_pattern and hash_field in previous_pattern:
+                        stored_pattern[hash_field] = previous_pattern[hash_field]
+
                 data["metadata"]["pattern"] = stored_pattern
                 # Promote path + derived layer/category to top-level node
                 # metadata for indexing and legacy query compatibility.
@@ -589,12 +602,36 @@ class GraphStore:
                 data["metadata"]["layer"] = derived_layer
                 data["metadata"]["category"] = derived_category
 
-                # Persist metadata update
-                conn = sqlite3.connect(self.db_path)
-                conn.execute(
-                    "UPDATE nodes SET metadata = ? WHERE id = ?",
-                    (json.dumps(data["metadata"]), existing_nid),
+                # Refresh the embedding when the searchable text changed —
+                # otherwise semantic search keeps ranking the pattern by its
+                # pre-update gloss/mechanism indefinitely.
+                embedding_blob = None
+                old_text = (
+                    f"{handle}: {previous_pattern.get('gloss', '')} "
+                    f"{previous_pattern.get('mechanism', '')}"
                 )
+                new_text = (
+                    f"{handle}: {stored_pattern.get('gloss', '')} "
+                    f"{stored_pattern.get('mechanism', '')}"
+                )
+                if new_text != old_text:
+                    embedding = self.embedding_service.get_embedding(new_text)
+                    if embedding is not None:
+                        embedding_blob = embedding.tobytes()
+                        data["embedding"] = embedding
+
+                # Persist metadata (and embedding, if refreshed)
+                conn = sqlite3.connect(self.db_path)
+                if embedding_blob is not None:
+                    conn.execute(
+                        "UPDATE nodes SET metadata = ?, embedding = ? WHERE id = ?",
+                        (json.dumps(data["metadata"]), embedding_blob, existing_nid),
+                    )
+                else:
+                    conn.execute(
+                        "UPDATE nodes SET metadata = ? WHERE id = ?",
+                        (json.dumps(data["metadata"]), existing_nid),
+                    )
                 conn.commit()
                 conn.close()
 
@@ -1110,31 +1147,67 @@ class GraphStore:
         return generate_sema_hash(pattern, hash_lookup)
 
     def _cascade_dependents(self, handle: str, visited: set | None = None) -> dict[str, Any]:
-        """Recursively update hashes of all patterns that depend on the given handle.
+        """Update hashes of all patterns that transitively depend on the given handle.
 
         This is called AFTER a pattern has been updated, to propagate hash changes
         to all dependents in the Merkle DAG.
 
+        Dependents are recomputed in dependency order (a pattern only after
+        every in-set pattern it depends on). A naive DFS with a visited set
+        corrupts diamond shapes: with A depending on both B and C, and both
+        depending on the updated pattern, DFS reaches A through B while C
+        still has its old hash — and the visited set then blocks the second,
+        correct recompute of A.
+
+        Args:
+            handle: The already-updated pattern whose dependents need rehashing.
+            visited: Optional set of handles to exclude from the cascade.
+
         Returns:
             {"updated": [list of handles that were updated]}
         """
-        if visited is None:
-            visited = {handle}
+        excluded = {handle} if visited is None else set(visited) | {handle}
+
+        # Collect every transitive dependent (BFS over reverse dep edges).
+        affected: set[str] = set()
+        queue = [handle]
+        while queue:
+            for dep_handle in self.get_dependents(queue.pop()):
+                if dep_handle not in affected and dep_handle not in excluded:
+                    affected.add(dep_handle)
+                    queue.append(dep_handle)
+
+        # Kahn's algorithm over the in-set dependency relation: an edge
+        # Q -> P (P depends on Q) means Q must be recomputed before P.
+        in_degree = dict.fromkeys(affected, 0)
+        dependents_of: dict[str, list[str]] = {h: [] for h in affected}
+        for h in affected:
+            for dep_handle in self.get_dependents(h):
+                if dep_handle in affected:
+                    dependents_of[h].append(dep_handle)
+                    in_degree[dep_handle] += 1
+
+        ready = sorted(h for h, deg in in_degree.items() if deg == 0)
+        order: list[str] = []
+        while ready:
+            current = ready.pop(0)
+            order.append(current)
+            for dep_handle in dependents_of[current]:
+                in_degree[dep_handle] -= 1
+                if in_degree[dep_handle] == 0:
+                    ready.append(dep_handle)
+        # Cyclic leftovers (invalid vocabularies) get appended in a stable
+        # order so the cascade still terminates and touches every node once.
+        if len(order) < len(affected):
+            order.extend(sorted(affected - set(order)))
 
         updated = []
-        dependents = self.get_dependents(handle)
-
-        for dep_handle in dependents:
-            if dep_handle in visited:
-                continue  # Cycle protection
-            visited.add(dep_handle)
-
+        for dep_handle in order:
             dep_content = self._get_pattern_content(dep_handle)
             if not dep_content:
                 continue
 
             old_hash = self.get_pattern_hash(dep_handle)
-            # Recompute hash - uses compute_pattern_hash which calls generate_sema_hash
             new_hash_info = self.compute_pattern_hash(dep_content)
 
             # Only update if hash actually changed
@@ -1144,10 +1217,6 @@ class GraphStore:
                 dep_content["sema_stub"] = new_hash_info["stub"]
                 self._update_pattern_metadata(dep_handle, dep_content)
                 updated.append(dep_handle)
-
-                # Recurse: cascade to this pattern's dependents
-                sub_result = self._cascade_dependents(dep_handle, visited)
-                updated.extend(sub_result.get("updated", []))
 
         return {"updated": updated}
 

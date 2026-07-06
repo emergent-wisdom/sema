@@ -367,7 +367,8 @@ class GraphWorkspace:
         canonical_ref = pattern.get("sema_ref", f"{handle}#{canonical_stub}")
         full_hash = pattern.get("sema_id", "")
 
-        if your_hash is None and ref_stub is None:
+        compare_hash = (your_hash or ref_stub or "").strip().lower()
+        if not compare_hash:
             return {
                 "verdict": "PROVIDE_HASH",
                 "handle": handle,
@@ -380,8 +381,16 @@ class GraphWorkspace:
                 ),
             }
 
-        compare_hash = your_hash or ref_stub
-        if compare_hash == canonical_stub:
+        # Accept the short stub or the full hash, like the vocab scope above.
+        # A full-hash match is stronger evidence of alignment than the stub;
+        # rejecting it would be a false HALT.
+        canonical_full = ""
+        marker = f"#mh:{HASH_ALGO}:"
+        if isinstance(full_hash, str) and marker in full_hash:
+            canonical_full = full_hash.split(marker, 1)[1].lower()
+        if compare_hash == canonical_stub.lower() or (
+            canonical_full and compare_hash == canonical_full
+        ):
             return {
                 "verdict": "PROCEED",
                 "handle": handle,

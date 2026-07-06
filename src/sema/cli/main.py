@@ -178,18 +178,11 @@ def apply_changes(
     # ============ PHASE 2: EXECUTION ============
     print("\nApplying...")
 
-    # 2a. Remove patterns
-    for handle in remove_handles:
-        node_id = remove_node_ids[handle]
-        result = store.delete_node_cascade(node_id)
-        if result.get("success"):
-            print(f"  ✓ Removed {handle}")
-        else:
-            print(f"  ❌ Failed to remove {handle}: {result.get('error')}")
-            # Note: partial state - could add rollback here
-            return False
-
-    # 2b. Topological sort additions
+    # 2a. Order + validate additions BEFORE any destructive removal.
+    # topological_sort and validate_layer_direction are pure functions of
+    # already-loaded data; running them after removals meant a dependency
+    # cycle or layer violation aborted the apply with patterns already
+    # deleted and nothing added — irreversible partial state.
     if add_patterns:
         patterns_dict = {p[1]["handle"]: p[1] for p in add_patterns}
         try:
@@ -198,7 +191,7 @@ def apply_changes(
             print(f"  ❌ Dependency error: {e}")
             return False
 
-        # 2b2. Check layer direction (Rule 7.6)
+        # Check layer direction (Rule 7.6)
         # Applies only to hard dependency buckets (accepts, composes_with).
         # yields and references are exempt — see dependencies._LAYER_CHECKED_BUCKETS.
         try:
@@ -219,6 +212,17 @@ def apply_changes(
         sorted_patterns = [pattern_map[h] for h in sorted_handles if h in pattern_map]
     else:
         sorted_patterns = []
+
+    # 2b. Remove patterns
+    for handle in remove_handles:
+        node_id = remove_node_ids[handle]
+        result = store.delete_node_cascade(node_id)
+        if result.get("success"):
+            print(f"  ✓ Removed {handle}")
+        else:
+            print(f"  ❌ Failed to remove {handle}: {result.get('error')}")
+            # Note: partial state - could add rollback here
+            return False
 
     # 2c. Add patterns via mint_pattern
     from ..core.mint import mint_pattern
@@ -280,7 +284,9 @@ def _validate_pattern_file(file_path: Path) -> dict:
 
 
 def search_patterns(query, use_semantic=False, verbose=False, as_json=False):
-    print(f"🔍 Semantic Search for: '{query}'...")
+    # Banner goes to stderr under --json so stdout stays parseable
+    # (`sema search --json | jq` must work).
+    print(f"🔍 Semantic Search for: '{query}'...", file=sys.stderr if as_json else sys.stdout)
     manager = get_registry()
     results = manager.search(query, use_semantic=use_semantic)
 
@@ -942,9 +948,10 @@ def update_db(
         # precondition / postcondition nodes that become unreachable — we
         # notify but don't auto-remove.
         def _count_isolated_subs():
-            return (
-                sqlite3.connect(target_db)
-                .execute(
+            # closing() matters: a leaked handle can block the backup-file
+            # os.replace later in this command on Windows.
+            with closing(sqlite3.connect(target_db)) as conn:
+                return conn.execute(
                     """
                 SELECT COUNT(*) FROM nodes n
                 WHERE n.node_type IN ('INVARIANT', 'PRECONDITION', 'POSTCONDITION')
@@ -953,9 +960,7 @@ def update_db(
                       WHERE e.source_id=n.id OR e.target_id=n.id
                   )
                 """
-                )
-                .fetchone()[0]
-            )
+                ).fetchone()[0]
 
         orphan_subs_before = _count_isolated_subs()
         if not preserve_superseded:
@@ -1583,15 +1588,42 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
     cur.execute("SELECT * FROM edges")
     all_edges_raw = cur.fetchall()
 
+    # Pull in each pattern's satellite nodes: taxonomy placement (IN_PATH
+    # since 0.2.0; IN_LAYER/IN_CATEGORY on legacy DBs) and sub-component
+    # nodes (invariants, pre/postconditions, signatures...), matching what
+    # `--preset full` keeps.
+    _SATELLITE_EDGE_TYPES = (
+        "IN_PATH",
+        "IN_LAYER",
+        "IN_CATEGORY",
+        "HAS_INVARIANT",
+        "HAS_PRECONDITION",
+        "HAS_POSTCONDITION",
+        "HAS_SIGNATURE",
+        "HAS_PARAMETER",
+        "HAS_INPUT",
+        "HAS_OUTPUT",
+        "HAS_FAILURE_MODE",
+    )
     for row in all_edges_raw:
-        if row["source_id"] in pattern_node_ids and row["edge_type"] in ("IN_LAYER", "IN_CATEGORY"):
+        if row["source_id"] in pattern_node_ids and row["edge_type"] in _SATELLITE_EDGE_TYPES:
             all_node_ids.add(row["target_id"])
 
-    # CATEGORY -> LAYER edges
-    cat_ids = all_node_ids - pattern_node_ids
-    for row in all_edges_raw:
-        if row["source_id"] in cat_ids and row["edge_type"] == "IN_LAYER":
-            all_node_ids.add(row["target_id"])
+    # Taxonomy ancestry: PARENT_PATH (0.2.0) and legacy CATEGORY -> LAYER
+    # (IN_LAYER) chains. Iterate to a fixpoint — path hierarchies nest.
+    while True:
+        added = False
+        non_pattern_ids = all_node_ids - pattern_node_ids
+        for row in all_edges_raw:
+            if (
+                row["source_id"] in non_pattern_ids
+                and row["edge_type"] in ("PARENT_PATH", "IN_LAYER")
+                and row["target_id"] not in all_node_ids
+            ):
+                all_node_ids.add(row["target_id"])
+                added = True
+        if not added:
+            break
 
     # Fetch nodes and filter edges in Python (avoids SQLite variable limits)
     cur.execute("SELECT * FROM nodes")
@@ -1615,8 +1647,16 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
         )
     for edge in edges:
         dst_conn.execute(
-            "INSERT INTO edges (id, source_id, target_id, edge_type, metadata) VALUES (?, ?, ?, ?, ?)",
-            (edge["id"], edge["source_id"], edge["target_id"], edge["edge_type"], edge["metadata"]),
+            "INSERT INTO edges (id, source_id, target_id, edge_type, alias, metadata) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                edge["id"],
+                edge["source_id"],
+                edge["target_id"],
+                edge["edge_type"],
+                edge.get("alias"),
+                edge["metadata"],
+            ),
         )
 
     dst_conn.commit()
