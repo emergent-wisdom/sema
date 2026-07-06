@@ -130,11 +130,34 @@ If a pattern claims a signature like `Act(Deploy)`, it **MUST** actively invoke 
 
 Sema uses a recursive Merkle Tree to generate the `sema_id`. This ensures that every component of the definition contributes to the identity.
 
-**The Calculation:**
+**The Calculation (canonicalization v2, semahash 0.3.0):**
 
-1. **Leaf Nodes:** Hash individual fields (Mechanism, Gloss, Invariants).
-2. **Dependency Nodes:** Hash the Dependency Map (sorted keys).
-3. **Root:** `SHA-256( H(Dependencies) || H(Mechanism) || H(Signature) ... )`
+Every node's hash input is prefixed with a single-byte type tag for domain
+separation, so structurally different values can never share a hash
+(`"1"` vs `1`, `["a","b"]` vs `{"a":"b"}`, `""` vs `[]` vs `{}`):
+
+1. **Strings:** `SHA-256("s:" + NFC-normalized, whitespace-collapsed text)`
+2. **Primitives** (number/bool/null): `SHA-256("p:" + canonical JSON)`
+3. **Lists** (order-preserving): `SHA-256("l:" + H(item1) + H(item2) + ...)`
+4. **Dicts:** `SHA-256("d:" + H(key1) + H(value1) + ...)`, entries sorted by
+   the **normalized** key. Keys that collide after normalization are
+   rejected (fail closed) rather than silently merged.
+5. **Dependencies:** aliases are authorial, so before hashing, entries are
+   re-keyed by lowercased target handle. Multiple aliases referencing the
+   same handle hash as a **sorted list** of refs — multiplicity is
+   semantic; alias spelling is not.
+6. **Root:** the canonical dict of the eleven semantic fields, hashed by
+   rule 4.
+
+> **History:** v1 (≤ 0.2.x) hashed untagged bytes and sorted dict entries
+> by raw key, so structurally different definitions could collide and the
+> same canonical form could hash two ways. 0.3.0 regenerated every
+> published hash; pre-0.3.0 vocabularies HALT on handshake and converge
+> via `sema pull`. See CHANGELOG 0.3.0.
+
+Reference implementations: `src/sema/core/hashing.py` (library) and
+`scripts/test_hash_verification.py` (dependency-free independent verifier —
+all 452 bundled patterns must verify from their JSON files alone).
 
 **The ID Format:**
 `sema:<Handle>#mh:SHA-256:<RootHash>`
