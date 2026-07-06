@@ -33,6 +33,10 @@ dependencies = [
   "numpy>=1.24",
   "networkx>=3.0",
   "fastembed>=0.2",
+  # Rule 5.2 (data_schema must be valid JSON Schema) is only enforced when
+  # jsonschema is importable — declare it so validation is deterministic
+  # across installs instead of silently skipped (issue #47).
+  "jsonschema>=4.0",
 ]
 
 [project.optional-dependencies]

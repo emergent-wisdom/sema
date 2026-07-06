@@ -3,6 +3,7 @@
 import json
 import re
 import sqlite3
+import sys
 import uuid
 from enum import Enum
 from typing import Any
@@ -147,11 +148,21 @@ class GraphStore:
         self._migrate_schema()
         self._load_graph()
 
+    def _connect(self) -> sqlite3.Connection:
+        """Open a connection with integrity enforcement enabled.
+
+        SQLite foreign-key enforcement is PER CONNECTION — setting the
+        pragma once at init does nothing for later connections. Every
+        write path must come through here, or dangling-edge protection
+        is silently off (which is how it shipped for months).
+        """
+        conn = sqlite3.connect(self.db_path)
+        conn.execute("PRAGMA foreign_keys = ON")
+        return conn
+
     def _init_tables(self):
         """Create database tables if they don't exist."""
-        conn = sqlite3.connect(self.db_path)
-        # CRITICAL: Enable foreign key enforcement to prevent dangling edges
-        conn.execute("PRAGMA foreign_keys = ON")
+        conn = self._connect()
         cursor = conn.cursor()
 
         cursor.execute(
@@ -201,19 +212,77 @@ class GraphStore:
         conn.close()
 
     def _migrate_schema(self):
-        """Add columns to existing DBs that pre-date them. Idempotent."""
-        conn = sqlite3.connect(self.db_path)
+        """Add columns/constraints to existing DBs that pre-date them. Idempotent."""
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute("PRAGMA table_info(edges)")
         cols = {row[1] for row in cursor.fetchall()}
         if "alias" not in cols:
             cursor.execute("ALTER TABLE edges ADD COLUMN alias TEXT")
+
+        # ── Schema hardening (issue #29) ─────────────────────────────────
+        # `sema apply` (and every other write path) checks these invariants
+        # in Python, but nothing stopped a direct SQL write, migration bug,
+        # or crashed half-mint from violating them silently. The schema is
+        # the backstop for identity invariants; Python keeps owning the
+        # semantic ones (hash correctness, layer rules).
+        #
+        # Each step is tolerant: a legacy DB that already violates an
+        # invariant (or an old SQLite without generated-column support)
+        # keeps working, with a loud warning instead of a hard failure.
+        # 1. At most one PATTERN row per handle.
+        try:
+            cursor.execute(
+                "CREATE UNIQUE INDEX IF NOT EXISTS idx_nodes_pattern_handle "
+                "ON nodes(text) WHERE node_type = 'PATTERN'"
+            )
+        except sqlite3.IntegrityError:
+            print(
+                f"Warning: {self.db_path} contains duplicate pattern handles; "
+                "handle-uniqueness constraint NOT installed. Run a dedupe.",
+                file=sys.stderr,
+            )
+        except sqlite3.OperationalError:
+            # Read-only DB file (e.g. root-owned install) — constraints
+            # can't be installed; Python-level checks still apply.
+            conn.close()
+            return
+
+        # 2. At most one PATTERN row per sema_id. The sema_id lives inside
+        #    the metadata JSON, so expose it as a virtual generated column
+        #    first (queryable + indexable, no data rewrite).
+        cursor.execute("PRAGMA table_info(nodes)")
+        node_cols = {row[1] for row in cursor.fetchall()}
+        if "sema_id" not in node_cols:
+            try:
+                cursor.execute(
+                    "ALTER TABLE nodes ADD COLUMN sema_id TEXT "
+                    "GENERATED ALWAYS AS (json_extract(metadata, '$.pattern.sema_id')) VIRTUAL"
+                )
+            except sqlite3.OperationalError:
+                # SQLite < 3.31 (no generated columns) — skip quietly; the
+                # Python-level checks still apply.
+                pass
+        try:
+            cursor.execute(
+                "CREATE UNIQUE INDEX IF NOT EXISTS idx_nodes_pattern_sema_id "
+                "ON nodes(sema_id) WHERE node_type = 'PATTERN' AND sema_id IS NOT NULL"
+            )
+        except sqlite3.OperationalError:
+            pass  # generated column unavailable above
+        except sqlite3.IntegrityError:
+            print(
+                f"Warning: {self.db_path} contains duplicate sema_ids; "
+                "sema_id-uniqueness constraint NOT installed. Run a dedupe.",
+                file=sys.stderr,
+            )
+
         conn.commit()
         conn.close()
 
     def _load_graph(self):
         """Load graph from database into memory."""
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
 
         cursor.execute("SELECT id, node_type, text, metadata, embedding FROM nodes")
@@ -266,7 +335,7 @@ class GraphStore:
             embedding = self.embedding_service.get_embedding(content)
             embedding_blob = embedding.tobytes()
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO nodes (id, node_type, text, metadata, embedding) VALUES (?, ?, ?, ?, ?)",
@@ -301,7 +370,7 @@ class GraphStore:
         edge_id = str(uuid.uuid4())
         metadata = metadata or {}
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO edges (id, source_id, target_id, edge_type, alias, metadata) "
@@ -621,7 +690,7 @@ class GraphStore:
                         data["embedding"] = embedding
 
                 # Persist metadata (and embedding, if refreshed)
-                conn = sqlite3.connect(self.db_path)
+                conn = self._connect()
                 if embedding_blob is not None:
                     conn.execute(
                         "UPDATE nodes SET metadata = ?, embedding = ? WHERE id = ?",
@@ -708,7 +777,7 @@ class GraphStore:
                     continue
                 edge_ids = self.remove_edges_of_type(pattern_id, succ, EdgeType.IN_PATH)
                 for eid in edge_ids:
-                    conn = sqlite3.connect(self.db_path)
+                    conn = self._connect()
                     conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
                     conn.commit()
                     conn.close()
@@ -781,7 +850,7 @@ class GraphStore:
             # 3. Prune OBSOLETE edges (target+type+alias not in desired)
             for target_id, e_type, alias, edge_id, key in existing_dep_edges:
                 if (target_id, e_type, alias) not in desired_edges:
-                    conn = sqlite3.connect(self.db_path)
+                    conn = self._connect()
                     conn.execute("DELETE FROM edges WHERE id = ?", (edge_id,))
                     conn.commit()
                     conn.close()
@@ -960,7 +1029,7 @@ class GraphStore:
                         alias=alias,
                     )
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(
             "DELETE FROM edges WHERE source_id = ? OR target_id = ?",
@@ -1298,7 +1367,7 @@ class GraphStore:
         data["metadata"]["pattern"] = new_pattern
 
         # Update in DB
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         conn.execute(
             "UPDATE nodes SET metadata = ? WHERE id = ?",
             (json.dumps(data["metadata"]), nid),
@@ -1354,7 +1423,7 @@ class GraphStore:
         )
 
         # Delete from DB - manually delete edges first (no CASCADE in schema)
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         conn.execute("DELETE FROM edges WHERE source_id = ? OR target_id = ?", (node_id, node_id))
         conn.execute("DELETE FROM nodes WHERE id = ?", (node_id,))
         conn.commit()
