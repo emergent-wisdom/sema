@@ -53,6 +53,9 @@ api = [
   "uvicorn>=0.20",
 ]
 embeddings = []  # fastembed is now a base dependency
+paper = [
+  "tiktoken>=0.7",
+]
 
 [project.urls]
 Homepage = "https://semahash.org"

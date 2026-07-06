@@ -1,5 +1,7 @@
 import json
 import os
+import sqlite3
+from collections import Counter
 
 VOCAB_DIR = "data/vocabulary"
 OUTPUT_TEX = "paper/generated_stats.tex"
@@ -117,6 +119,18 @@ def calculate_stats():
     print(f"Total parameters: {total_params}")
     print(f"Patterns that compose: {with_compose} ({with_compose / pattern_count:.0%})")
 
+    # Required for later sections of the generated file. Import before opening
+    # OUTPUT_TEX so a missing local paper dependency cannot truncate the
+    # previously committed stats file.
+    try:
+        import numpy as np
+        import tiktoken
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "paper stats generation requires numpy and tiktoken; install the "
+            "paper/dev environment before regenerating paper/generated_stats.tex"
+        ) from exc
+
     # Generate LaTeX file
     with open(OUTPUT_TEX, "w") as f:
         f.write("% Auto-generated stats from calculate_graph_stats.py\n")
@@ -151,8 +165,6 @@ def calculate_stats():
         f.write(f"\\newcommand{{\\semaTotalParams}}{{{total_params}}}\n")
 
         # Tier and category counts
-        from collections import Counter
-
         tier_counts = Counter()
         categories = set()
         for p in patterns:
@@ -173,8 +185,6 @@ def calculate_stats():
         # preconditions + postconditions + failure_modes (the semantic
         # payload an agent would need to transmit if content-addressing
         # were unavailable).
-        import tiktoken
-
         enc = tiktoken.get_encoding("cl100k_base")
 
         representative = ["StateLock", "SpectralTune", "BayesUpdate", "SteelmanCheck"]
@@ -260,10 +270,6 @@ def calculate_stats():
             f.write(f"\\newcommand{{\\semaLibCompRatio}}{{{lib_ratio:.1f}}}\n")
 
         # Embedding similarity stats (from taxonomy.db)
-        import sqlite3
-
-        import numpy as np
-
         db_path = os.path.join(os.path.dirname(OUTPUT_TEX), "..", "data", "taxonomy.db")
         if os.path.exists(db_path):
             conn = sqlite3.connect(db_path)
