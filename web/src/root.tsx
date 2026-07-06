@@ -1,4 +1,4 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, type MetaFunction } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
@@ -10,16 +10,25 @@ const queryClient = new QueryClient({
   },
 });
 
+// Default title/description, overridable per-route: a child route's meta()
+// can spread these matches and replace just the title/description entries.
+export const meta: MetaFunction = () => [
+  { title: "Sema — Content-Addressed Semantics" },
+  {
+    name: "description",
+    content:
+      "Sema is a content-addressed commons of ~450 cognitive patterns where the definition IS the identifier. Interactive browser, HTTP API, and MCP server.",
+  },
+]
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sema — Content-Addressed Semantics</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-        <meta name="description" content="Sema is a content-addressed commons of ~450 cognitive patterns where the definition IS the identifier. Interactive browser, HTTP API, and MCP server." />
         <meta name="author" content="Henrik Westerberg" />
 
         <meta property="og:title" content="Sema — When the Hash Is the Word" />

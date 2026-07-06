@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import type { MetaFunction } from 'react-router'
 import {
   ArrowLeft,
   Check,
@@ -20,6 +21,7 @@ import {
   Users,
 } from 'lucide-react'
 import { SemaLogo } from '@/components/SemaLogo'
+import { LicenseLine } from '@/components/LicenseLine'
 import { cn } from '@/lib/utils'
 
 type StepId = 'connect' | 'library' | 'team' | 'publish'
@@ -82,6 +84,21 @@ const demoCollaborators: Collaborator[] = [
   },
 ]
 
+export const meta: MetaFunction = ({ matches }) => {
+  const inherited = matches.flatMap((match) => match.meta ?? [])
+  const overridden = inherited.filter(
+    (entry) => !('title' in entry) && !('name' in entry && entry.name === 'description')
+  )
+  return [
+    ...overridden,
+    { title: 'Sema Workspace — Staging Rehearsal' },
+    {
+      name: 'description',
+      content: 'Connect GitHub, name a library, invite collaborators, and publish a Sema workspace endpoint for agents.',
+    },
+  ]
+}
+
 export function WorkspaceDemoPage() {
   const [activeStep, setActiveStep] = useState<StepId>('connect')
   const [githubConnected, setGithubConnected] = useState(false)
@@ -125,12 +142,13 @@ export function WorkspaceDemoPage() {
   const authConfigured = Boolean(auth?.github_oauth_configured && auth?.session_configured)
   const hasRealGithubUser = Boolean(authUser?.login)
   const isDemoWorkspace = demoMode && !hasRealGithubUser
-  const workspaceName = libraryName.trim() || (isDemoWorkspace ? 'Civic Intelligence Library' : 'Untitled workspace')
+  const workspaceName = libraryName.trim() || 'Untitled workspace'
   const repoName = repo.split('/').filter(Boolean).pop() || 'workspace'
   const endpoint = `https://sema-web-production.up.railway.app/mcp/${repoName.toLowerCase()}`
   const currentStepIndex = steps.findIndex((step) => step.id === activeStep)
-  const visiblePatterns = isDemoWorkspace ? demoPatterns : []
-  const visibleActivity = isDemoWorkspace ? demoActivity : []
+  const libraryReady = libraryName.trim().length > 0 && repo.includes('/')
+  const visiblePatterns = isDemoWorkspace && libraryReady ? demoPatterns : []
+  const visibleActivity = isDemoWorkspace && libraryReady ? demoActivity : []
   const visibleCollaborators = useMemo<Collaborator[]>(() => {
     if (!hasRealGithubUser) return collaborators
 
@@ -148,19 +166,19 @@ export function WorkspaceDemoPage() {
     ]
   }, [authUser?.email, authUser?.login, authUser?.name, collaborators, hasRealGithubUser])
   const sourceLabel = authUser?.login ? `@${authUser.login}` : isDemoWorkspace ? 'Demo GitHub linked' : 'Not linked'
-  const rootValue = published || isDemoWorkspace ? '39ca671a4dcb3075' : 'Not published'
-  const metricValues = isDemoWorkspace
+  const rootValue = published ? '39ca671a4dcb3075' : 'Not published'
+  const metricValues = isDemoWorkspace && libraryReady
     ? { patterns: '24', drafts: '4', proposals: '3' }
     : { patterns: '0', drafts: '0', proposals: '0' }
 
   const completed = useMemo<Record<StepId, boolean>>(
     () => ({
       connect: githubConnected,
-      library: libraryName.trim().length > 0 && repo.includes('/'),
+      library: libraryReady,
       team: isDemoWorkspace ? collaborators.length > 1 : collaborators.length > 0,
       publish: published,
     }),
-    [collaborators.length, githubConnected, isDemoWorkspace, libraryName, published, repo]
+    [collaborators.length, githubConnected, isDemoWorkspace, libraryReady, published]
   )
 
   const graphHealth = published ? 'Published' : visiblePatterns.length > 0 ? 'Ready' : 'Empty'
@@ -172,15 +190,27 @@ export function WorkspaceDemoPage() {
   const continueDemoMode = () => {
     setDemoMode(true)
     setGithubConnected(true)
-    setLibraryName((current) => current || 'Civic Intelligence Library')
-    setRepo((current) => current || 'henrikwesterberg/civic-intelligence')
-    setInviteEmail((current) => current || 'claude@example.com')
-    setCollaborators((current) => (current.length > 0 ? current : demoCollaborators))
+  }
+
+  // Prefills each step's demo data on arrival, rather than all at once, so
+  // demo mode still walks through the same steps a real signup would.
+  const goToStep = (id: StepId) => {
+    if (isDemoWorkspace) {
+      if (id === 'library') {
+        setLibraryName((current) => current || 'Civic Intelligence Library')
+        setRepo((current) => current || 'henrikwesterberg/civic-intelligence')
+      }
+      if (id === 'team') {
+        setInviteEmail((current) => current || 'teammate@example.com')
+        setCollaborators((current) => (current.length > 0 ? current : demoCollaborators))
+      }
+    }
+    setActiveStep(id)
   }
 
   const nextStep = () => {
     const next = steps[Math.min(currentStepIndex + 1, steps.length - 1)]
-    setActiveStep(next.id)
+    goToStep(next.id)
   }
 
   const addCollaborator = () => {
@@ -224,13 +254,13 @@ export function WorkspaceDemoPage() {
       <header className="sticky top-0 z-40 border-b border-zinc-800/60 bg-zinc-950/85 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 text-emerald-400">
               <SemaLogo className="h-6 w-6" />
             </div>
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-lg font-semibold tracking-tight">Sema Workspace</h1>
-                <span className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-300">
+              <div className="flex flex-wrap items-center gap-3">
+                <h1 className="text-xl font-semibold tracking-tight">Sema Workspace</h1>
+                <span className="shrink-0 whitespace-nowrap rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-300">
                   Staging rehearsal
                 </span>
               </div>
@@ -250,7 +280,7 @@ export function WorkspaceDemoPage() {
       </header>
 
       <main className="mx-auto grid max-w-7xl gap-6 px-6 py-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-        <aside className="space-y-4">
+        <aside className="order-2 space-y-4 lg:order-1">
           <nav className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-3">
             {steps.map((step, index) => {
               const Icon = step.icon
@@ -260,7 +290,7 @@ export function WorkspaceDemoPage() {
                 <button
                   key={step.id}
                   type="button"
-                  onClick={() => setActiveStep(step.id)}
+                  onClick={() => goToStep(step.id)}
                   className={cn(
                     'flex w-full items-center justify-between rounded-lg px-3 py-3 text-left transition-all',
                     isActive
@@ -281,7 +311,7 @@ export function WorkspaceDemoPage() {
                     </span>
                     <span>
                       <span className="block text-sm font-medium">{step.label}</span>
-                      <span className="block text-xs text-zinc-600">Step {index + 1}</span>
+                      <span className="block text-xs text-zinc-400">Step {index + 1}</span>
                     </span>
                   </span>
                   {isComplete ? (
@@ -311,7 +341,7 @@ export function WorkspaceDemoPage() {
           </section>
         </aside>
 
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="order-1 grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px] lg:order-2">
           <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
             <StepPanel
               activeStep={activeStep}
@@ -337,6 +367,7 @@ export function WorkspaceDemoPage() {
               copied={copied}
               copyEndpoint={copyEndpoint}
               nextStep={nextStep}
+              completed={completed}
             />
           </section>
 
@@ -344,7 +375,7 @@ export function WorkspaceDemoPage() {
             <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
               <div className="mb-4 flex items-center justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-zinc-600">Workspace</p>
+                  <p className="text-xs uppercase tracking-widest text-zinc-400">Workspace</p>
                   <h2 className="mt-1 text-lg font-medium text-zinc-100">{workspaceName}</h2>
                 </div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
@@ -378,7 +409,7 @@ export function WorkspaceDemoPage() {
                             #{pattern.stub}
                           </code>
                         </div>
-                        <p className="mt-1 text-xs text-zinc-600">{pattern.layer}</p>
+                        <p className="mt-1 text-xs text-zinc-400">{pattern.layer}</p>
                       </div>
                       <span
                         className={cn(
@@ -422,6 +453,13 @@ export function WorkspaceDemoPage() {
           </aside>
         </div>
       </main>
+
+      <footer className="mt-6 border-t border-zinc-800/50">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 text-sm text-zinc-500">
+          <p>Sema Workspace</p>
+          <LicenseLine />
+        </div>
+      </footer>
     </div>
   )
 }
@@ -450,6 +488,7 @@ function StepPanel({
   copied,
   copyEndpoint,
   nextStep,
+  completed,
 }: {
   activeStep: StepId
   authUser?: GitHubUser | null
@@ -474,6 +513,7 @@ function StepPanel({
   copied: boolean
   copyEndpoint: () => void
   nextStep: () => void
+  completed: Record<StepId, boolean>
 }) {
   const hasRealGithubUser = Boolean(authUser?.login)
   const accountLabel = authUser?.login
@@ -541,7 +581,7 @@ function StepPanel({
             </div>
             {!authLoading && !authConfigured && !hasRealGithubUser ? (
               <p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
-                GitHub OAuth credentials are not installed on this environment yet.
+                GitHub sign-in isn't available in this environment yet — use demo mode to preview the flow.
               </p>
             ) : null}
             <div className="mt-5 grid gap-3 sm:grid-cols-3">
@@ -561,7 +601,7 @@ function StepPanel({
             </div>
           </div>
         </div>
-        <StepActions onNext={nextStep} nextLabel="Create library" />
+        <StepActions onNext={nextStep} nextLabel="Create library" disabled={!completed.connect} />
       </div>
     )
   }
@@ -621,7 +661,7 @@ function StepPanel({
             })}
           </div>
         </div>
-        <StepActions onNext={nextStep} nextLabel="Invite team" />
+        <StepActions onNext={nextStep} nextLabel="Invite team" disabled={!completed.library} />
       </div>
     )
   }
@@ -662,7 +702,7 @@ function StepPanel({
             <div key={member.email} className="flex items-center justify-between gap-4 bg-zinc-950/35 px-4 py-3">
               <div>
                 <p className="text-sm font-medium text-zinc-200">{member.name}</p>
-                <p className="text-xs text-zinc-600">{member.email}</p>
+                <p className="text-xs text-zinc-400">{member.email}</p>
               </div>
               <div className="flex items-center gap-2">
                 <span className="rounded-md border border-zinc-800 px-2 py-1 text-xs text-zinc-400">
@@ -679,6 +719,8 @@ function StepPanel({
       </div>
     )
   }
+
+  const canPublish = completed.connect && completed.library
 
   return (
     <div>
@@ -699,17 +741,23 @@ function StepPanel({
           <button
             type="button"
             onClick={() => setPublished(true)}
+            disabled={!published && !canPublish}
             className={cn(
               'inline-flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors',
               published
                 ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-200'
-                : 'border-zinc-700 bg-zinc-100 text-zinc-950 hover:bg-white'
+                : canPublish
+                  ? 'border-zinc-700 bg-zinc-100 text-zinc-950 hover:bg-white'
+                  : 'cursor-not-allowed border-zinc-800 bg-zinc-900/50 text-zinc-600'
             )}
           >
             {published ? <Check className="h-4 w-4" /> : <Rocket className="h-4 w-4" />}
             {published ? 'Published' : 'Publish snapshot'}
           </button>
         </div>
+        {!published && !canPublish ? (
+          <p className="mt-3 text-xs text-zinc-400">Connect GitHub and name your library before publishing.</p>
+        ) : null}
       </div>
       <div className="mt-4 rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
         <p className="text-sm font-medium text-zinc-200">MCP endpoint</p>
@@ -748,7 +796,7 @@ function StepHeader({
         <Icon className="h-5 w-5" />
       </div>
       <div>
-        <p className="text-xs uppercase tracking-widest text-zinc-600">{kicker}</p>
+        <p className="text-xs uppercase tracking-widest text-zinc-400">{kicker}</p>
         <h2 className="mt-1 text-2xl font-semibold tracking-tight text-zinc-100">{title}</h2>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-500">{body}</p>
       </div>
@@ -756,13 +804,27 @@ function StepHeader({
   )
 }
 
-function StepActions({ onNext, nextLabel }: { onNext: () => void; nextLabel: string }) {
+function StepActions({
+  onNext,
+  nextLabel,
+  disabled,
+}: {
+  onNext: () => void
+  nextLabel: string
+  disabled?: boolean
+}) {
   return (
     <div className="mt-6 flex justify-end">
       <button
         type="button"
         onClick={onNext}
-        className="inline-flex items-center gap-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-4 py-2.5 text-sm font-medium text-emerald-300 transition-colors hover:bg-emerald-500/15 hover:text-emerald-200"
+        disabled={disabled}
+        className={cn(
+          'inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors',
+          disabled
+            ? 'cursor-not-allowed border-zinc-800 bg-zinc-900/40 text-zinc-600'
+            : 'border-emerald-500/20 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/15 hover:text-emerald-200'
+        )}
       >
         {nextLabel}
         <ChevronRight className="h-4 w-4" />
@@ -783,7 +845,7 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
 function IdentityFact({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-zinc-800 bg-zinc-950/45 px-3 py-3">
-      <p className="text-xs text-zinc-600">{label}</p>
+      <p className="text-xs text-zinc-400">{label}</p>
       <p className="mt-1 text-sm font-medium text-zinc-200">{value}</p>
     </div>
   )
@@ -792,7 +854,7 @@ function IdentityFact({ label, value }: { label: string; value: string }) {
 function StatusRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <span className="text-zinc-600">{label}</span>
+      <span className="text-zinc-400">{label}</span>
       <span className="truncate text-right font-medium text-zinc-300">{value}</span>
     </div>
   )
@@ -802,7 +864,7 @@ function EmptyState({ title, body }: { title: string; body: string }) {
   return (
     <div className="rounded-lg border border-dashed border-zinc-800 bg-zinc-950/25 px-3 py-4">
       <p className="text-sm font-medium text-zinc-300">{title}</p>
-      <p className="mt-1 text-xs leading-5 text-zinc-600">{body}</p>
+      <p className="mt-1 text-xs leading-5 text-zinc-400">{body}</p>
     </div>
   )
 }
@@ -810,7 +872,7 @@ function EmptyState({ title, body }: { title: string; body: string }) {
 function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-3">
-      <p className="text-xs text-zinc-600">{label}</p>
+      <p className="text-xs text-zinc-400">{label}</p>
       <p className="mt-2 text-2xl font-light tabular-nums text-zinc-200">{value}</p>
     </div>
   )
