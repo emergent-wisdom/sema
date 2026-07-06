@@ -36,15 +36,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Retry#mh:SHA-256:ac55dbe681ec32b6553effd29698527f9510384edeab4b76e18d4ac543641fd8",
-  "sema_ref": "Retry#ac55",
-  "sema_stub": "ac55",
+  "sema_id": "sema:Retry#mh:SHA-256:79b69773b2fdd6fc81b1205d1088e9df841db683a982e079fc2dca97f4818804",
+  "sema_ref": "Retry#79b6",
+  "sema_stub": "79b6",
   "dependencies": {
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
-      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:05770c1edb2895638cabde8b997d396f531a73f6f37cb7af97b35e9c98116912",
-      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631"
+      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
+      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:840fee4c2a300c1e17bd44e55debdf58d250ab62f79760f59c0189ca7d485824",
+      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2"
     }
   },
   "sema_layer": "Mind",

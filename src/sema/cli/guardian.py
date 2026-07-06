@@ -50,13 +50,15 @@ class TaskObj:
             c_key = c_data.get("key")
 
             try:
+                # getattr with a non-string name raises TypeError, so a
+                # constraint dict missing "type" must be caught here too.
                 c_type = getattr(ConstraintType, c_type_str)
                 # Convert list values to sets for ALLOW_LIST
                 if c_type == ConstraintType.ALLOW_LIST and isinstance(c_value, list):
                     c_value = set(c_value)
                 constraints.append(Constraint(c_type, c_value, c_key))
-            except AttributeError:
-                pass  # Skip unknown types
+            except (AttributeError, TypeError):
+                pass  # Skip unknown or malformed types
 
         return cls(
             id=data.get("id", "unknown"),

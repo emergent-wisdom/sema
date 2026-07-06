@@ -43,12 +43,12 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-  "sema_ref": "Criteria#ef6b",
-  "sema_stub": "ef6b",
+  "sema_id": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
+  "sema_ref": "Criteria#0400",
+  "sema_stub": "0400",
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
     }
   },
   "sema_layer": "Infrastructure",

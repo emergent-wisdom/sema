@@ -134,16 +134,16 @@ refinement and supersession policy.
 ### Use in Python
 
 ```python
-from sema.core.actions import sema_handshake
-import json
+from sema.core.registry import RegistryManager
 
-# Look up the canonical hash
-result = json.loads(sema_handshake("StateLock"))
-print(result["canonical_stub"])  # b91b
+registry = RegistryManager()
+pattern = registry.get_pattern("StateLock")
 
-# Verify alignment
-result = json.loads(sema_handshake("StateLock#5602"))
-print(result["verdict"])  # PROCEED
+# Look up the canonical reference
+print(pattern["sema_ref"])  # StateLock#7cd8
+
+# Verify an inline reference before relying on it
+assert pattern["sema_ref"] == "StateLock#7cd8"
 ```
 
 ### Try the Protocol (No API Keys Needed)
@@ -163,8 +163,8 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Agent A: "Let's use StateLock#5602"
-Agent B: sema_handshake("StateLock#5602")
+Agent A: "Let's use StateLock#7cd8"
+Agent B: sema_handshake("StateLock#7cd8")
          -> PROCEED (hashes match) or HALT (drift detected)
 ```
 
@@ -172,7 +172,7 @@ This is the **Anti-Postel principle**: same bytes = PROCEED, different bytes = H
 
 ## The Vocabulary
 
-427 default patterns across 4 layers (additional patterns with a higher risk surface are kept in a separate DB — see [Safety](#safety)):
+452 bundled patterns across 4 layers:
 
 - **Physics** — Immutable substrate (locks, entropy, causality)
 - **Mind** — Hybrid cognition (reasoning, inference, strategy)
@@ -188,7 +188,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | Tool | Description |
 |------|-------------|
 | `sema_search` | Search patterns by name, description, or meaning |
-| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#5602`) |
+| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#7cd8`) |
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
@@ -250,7 +250,7 @@ claude mcp add ug   -- npx -y understanding-graph mcp
 
 With both installed, an agent can:
 
-1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#5602`) so the meaning of the primitive can never drift.
+1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#7cd8`) so the meaning of the primitive can never drift.
 2. Use `graph_semantic_search` to find all past graph nodes that reference a given sema pattern — hash-stable history, not keyword matching.
 3. Call `sema_handshake` *before* writing a decision that depends on a shared concept; if it returns `HALT`, the agent writes a `tension` node instead and stops, preventing silent divergence.
 
@@ -261,7 +261,7 @@ Full walkthrough: [docs/guides/understanding-graph.md](docs/guides/understanding
 ```
 sema/
 ├── src/sema/              Core library (hashing, validation, MCP server, API)
-├── data/                  Vocabulary (427 default + 26 higher-risk pattern cards + taxonomy databases)
+├── data/                  Vocabulary (452 bundled pattern cards + taxonomy databases)
 ├── docs/                  Documentation (philosophy, schema spec, CLI reference)
 ├── paper/                 Academic paper (sema.tex)
 ├── web/                   Web frontend (React + Three.js graph visualization)

@@ -24,17 +24,17 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ReceptivityGate#mh:SHA-256:c40980e24aaf82edf5d6774f581eca7d907d213b878dad450d401935a3d243ba",
-  "sema_ref": "ReceptivityGate#c409",
-  "sema_stub": "c409",
+  "sema_id": "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
+  "sema_ref": "ReceptivityGate#2709",
+  "sema_stub": "2709",
   "dependencies": {
     "composes_with": {
-      "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
+      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
     },
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
-      "failure_trace": "sema:FailureTrace#mh:SHA-256:96df1345b3421dd9a30339cc325fed27bd0bf7ff1e83b9ea35bfd20bbf02296b",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
+      "failure_trace": "sema:FailureTrace#mh:SHA-256:416b450eb20e20b2b24b71d19b0bd43da9e9a7c0249dbdc2973797f68deb392f",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82"
     }
   },
   "sema_layer": "Society",

@@ -29,13 +29,13 @@
       }
     }
   },
-  "sema_ref": "RuleSet#a07c",
-  "sema_id": "sema:RuleSet#mh:SHA-256:a07c37237b1d416367ddecca975480c3b115916d551185028fb5799b3ddb3d14",
-  "sema_stub": "a07c",
+  "sema_ref": "RuleSet#2946",
+  "sema_id": "sema:RuleSet#mh:SHA-256:29462fee548f58cad67908506e4d68676b5a73ab4a60ca36e0cd71cd01412563",
+  "sema_stub": "2946",
   "dependencies": {
     "references": {
-      "constitution": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "constitution": "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b",
+      "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"
     }
   },
   "sema_layer": "Infrastructure",

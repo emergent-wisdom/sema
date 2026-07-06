@@ -21,20 +21,20 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:ded99445bc9bd5479bad257770ee426cce6ff91860bfd7c3b80fff712ec697eb",
-  "sema_ref": "AdversarialSteel#ded9",
-  "sema_stub": "ded9",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:5e05f6b505964cc5058f75a14b715fb3b78ad0aa96babd91dd9e5b488e471db4",
+  "sema_ref": "AdversarialSteel#5e05",
+  "sema_stub": "5e05",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
-      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
-      "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
+      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
+      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },
   "sema_layer": "Mind",

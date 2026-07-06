@@ -1,0 +1,881 @@
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import type { MetaFunction } from 'react-router'
+import {
+  ArrowLeft,
+  Check,
+  ChevronRight,
+  Circle,
+  Copy,
+  GitBranch,
+  Github,
+  Globe2,
+  Library,
+  Lock,
+  Mail,
+  Network,
+  Plus,
+  Rocket,
+  Search,
+  ShieldCheck,
+  Users,
+} from 'lucide-react'
+import { SemaLogo } from '@/components/SemaLogo'
+import { LicenseLine } from '@/components/LicenseLine'
+import { cn } from '@/lib/utils'
+
+type StepId = 'connect' | 'library' | 'team' | 'publish'
+type Visibility = 'Private' | 'Team' | 'Public'
+type Collaborator = {
+  email: string
+  name: string
+  role: string
+  status: string
+}
+type GitHubUser = {
+  id?: number
+  login?: string
+  name?: string | null
+  avatar_url?: string | null
+  html_url?: string | null
+  email?: string | null
+}
+type AuthState = {
+  authenticated: boolean
+  user: GitHubUser | null
+  github_oauth_configured: boolean
+  session_configured: boolean
+  github_callback_url?: string
+}
+
+const steps: Array<{ id: StepId; label: string; icon: typeof Github }> = [
+  { id: 'connect', label: 'GitHub', icon: Github },
+  { id: 'library', label: 'Library', icon: Library },
+  { id: 'team', label: 'Team', icon: Users },
+  { id: 'publish', label: 'Publish', icon: Rocket },
+]
+
+const demoPatterns = [
+  { handle: 'Claim', stub: 'c391', layer: 'Reasoning', state: 'Published' },
+  { handle: 'Evidence', stub: '8aa2', layer: 'Verification', state: 'Published' },
+  { handle: 'ReviewLoop', stub: '41db', layer: 'Coordination', state: 'Draft' },
+  { handle: 'DecisionRecord', stub: '91e6', layer: 'Governance', state: 'Draft' },
+]
+
+const demoActivity = [
+  'Created workspace root',
+  'Linked source repository',
+  'Prepared collaborator invitations',
+  'Generated staged MCP endpoint',
+]
+
+const demoCollaborators: Collaborator[] = [
+  {
+    email: 'henrik.westeberg@emergentwisdom.org',
+    name: 'Henrik Westerberg',
+    role: 'Owner',
+    status: 'Active',
+  },
+  {
+    email: 'researcher@example.com',
+    name: 'Research Partner',
+    role: 'Editor',
+    status: 'Invited',
+  },
+]
+
+export const meta: MetaFunction = ({ matches }) => {
+  const inherited = matches.flatMap((match) => match.meta ?? [])
+  const overridden = inherited.filter(
+    (entry) => !('title' in entry) && !('name' in entry && entry.name === 'description')
+  )
+  return [
+    ...overridden,
+    { title: 'Sema Workspace — Staging Rehearsal' },
+    {
+      name: 'description',
+      content: 'Connect GitHub, name a library, invite collaborators, and publish a Sema workspace endpoint for agents.',
+    },
+  ]
+}
+
+export function WorkspaceDemoPage() {
+  const [activeStep, setActiveStep] = useState<StepId>('connect')
+  const [githubConnected, setGithubConnected] = useState(false)
+  const [demoMode, setDemoMode] = useState(false)
+  const [auth, setAuth] = useState<AuthState | null>(null)
+  const [authLoading, setAuthLoading] = useState(true)
+  const [libraryName, setLibraryName] = useState('')
+  const [repo, setRepo] = useState('')
+  const [visibility, setVisibility] = useState<Visibility>('Private')
+  const [inviteEmail, setInviteEmail] = useState('')
+  const [collaborators, setCollaborators] = useState<Collaborator[]>([])
+  const [published, setPublished] = useState(false)
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    let active = true
+
+    fetch('/api/me', { credentials: 'same-origin' })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: AuthState | null) => {
+        if (!active) return
+        setAuth(data)
+        if (data?.authenticated) {
+          setGithubConnected(true)
+          setDemoMode(false)
+        }
+      })
+      .catch(() => {
+        if (active) setAuth(null)
+      })
+      .finally(() => {
+        if (active) setAuthLoading(false)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const authUser = auth?.user
+  const authConfigured = Boolean(auth?.github_oauth_configured && auth?.session_configured)
+  const hasRealGithubUser = Boolean(authUser?.login)
+  const isDemoWorkspace = demoMode && !hasRealGithubUser
+  const workspaceName = libraryName.trim() || 'Untitled workspace'
+  const repoName = repo.split('/').filter(Boolean).pop() || 'workspace'
+  const endpoint = `https://sema-web-production.up.railway.app/mcp/${repoName.toLowerCase()}`
+  const currentStepIndex = steps.findIndex((step) => step.id === activeStep)
+  const libraryReady = libraryName.trim().length > 0 && repo.includes('/')
+  const visiblePatterns = isDemoWorkspace && libraryReady ? demoPatterns : []
+  const visibleActivity = isDemoWorkspace && libraryReady ? demoActivity : []
+  const visibleCollaborators = useMemo<Collaborator[]>(() => {
+    if (!hasRealGithubUser) return collaborators
+
+    const ownerName = authUser?.name || (authUser?.login ? `@${authUser.login}` : 'GitHub user')
+    const ownerEmail = authUser?.email || (authUser?.login ? `@${authUser.login}` : 'GitHub account')
+
+    return [
+      {
+        email: ownerEmail,
+        name: ownerName,
+        role: 'Owner',
+        status: 'Active',
+      },
+      ...collaborators,
+    ]
+  }, [authUser?.email, authUser?.login, authUser?.name, collaborators, hasRealGithubUser])
+  const sourceLabel = authUser?.login ? `@${authUser.login}` : isDemoWorkspace ? 'Demo GitHub linked' : 'Not linked'
+  const rootValue = published ? '46e651aeeb832fdc' : 'Not published'
+  const metricValues = isDemoWorkspace && libraryReady
+    ? { patterns: '24', drafts: '4', proposals: '3' }
+    : { patterns: '0', drafts: '0', proposals: '0' }
+
+  const completed = useMemo<Record<StepId, boolean>>(
+    () => ({
+      connect: githubConnected,
+      library: libraryReady,
+      team: isDemoWorkspace ? collaborators.length > 1 : collaborators.length > 0,
+      publish: published,
+    }),
+    [collaborators.length, githubConnected, isDemoWorkspace, libraryReady, published]
+  )
+
+  const graphHealth = published ? 'Published' : visiblePatterns.length > 0 ? 'Ready' : 'Empty'
+
+  const connectGithub = () => {
+    window.location.assign('/auth/github/start')
+  }
+
+  const continueDemoMode = () => {
+    setDemoMode(true)
+    setGithubConnected(true)
+  }
+
+  // Prefills each step's demo data on arrival, rather than all at once, so
+  // demo mode still walks through the same steps a real signup would.
+  const goToStep = (id: StepId) => {
+    if (isDemoWorkspace) {
+      if (id === 'library') {
+        setLibraryName((current) => current || 'Civic Intelligence Library')
+        setRepo((current) => current || 'henrikwesterberg/civic-intelligence')
+      }
+      if (id === 'team') {
+        setInviteEmail((current) => current || 'teammate@example.com')
+        setCollaborators((current) => (current.length > 0 ? current : demoCollaborators))
+      }
+    }
+    setActiveStep(id)
+  }
+
+  const nextStep = () => {
+    const next = steps[Math.min(currentStepIndex + 1, steps.length - 1)]
+    goToStep(next.id)
+  }
+
+  const addCollaborator = () => {
+    const normalized = inviteEmail.trim().toLowerCase()
+    if (!normalized || collaborators.some((member) => member.email === normalized)) return
+
+    const name = normalized
+      .split('@')[0]
+      .split(/[._-]/)
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ')
+
+    setCollaborators((current) => [
+      ...current,
+      {
+        email: normalized,
+        name: name || normalized,
+        role: 'Reviewer',
+        status: 'Invited',
+      },
+    ])
+    setInviteEmail('')
+  }
+
+  const copyEndpoint = async () => {
+    await navigator.clipboard.writeText(endpoint)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1800)
+  }
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.018]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <header className="sticky top-0 z-40 border-b border-zinc-800/60 bg-zinc-950/85 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
+          <div className="flex items-center gap-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 text-emerald-400">
+              <SemaLogo className="h-6 w-6" />
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-3">
+                <h1 className="text-xl font-semibold tracking-tight">Sema Workspace</h1>
+                <span className="shrink-0 whitespace-nowrap rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-1 text-[11px] font-medium text-emerald-300">
+                  Staging rehearsal
+                </span>
+              </div>
+              <p className="text-xs text-zinc-500">{repo || 'No repository selected'}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-sm text-zinc-400 transition-colors hover:border-zinc-700 hover:text-zinc-100"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Patterns
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main className="mx-auto grid max-w-7xl gap-6 px-6 py-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <aside className="order-2 space-y-4 lg:order-1">
+          <nav className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-3">
+            {steps.map((step, index) => {
+              const Icon = step.icon
+              const isActive = step.id === activeStep
+              const isComplete = completed[step.id]
+              return (
+                <button
+                  key={step.id}
+                  type="button"
+                  onClick={() => goToStep(step.id)}
+                  className={cn(
+                    'flex w-full items-center justify-between rounded-lg px-3 py-3 text-left transition-all',
+                    isActive
+                      ? 'bg-zinc-800 text-zinc-100'
+                      : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-200'
+                  )}
+                >
+                  <span className="flex items-center gap-3">
+                    <span
+                      className={cn(
+                        'flex h-8 w-8 items-center justify-center rounded-lg border',
+                        isActive
+                          ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+                          : 'border-zinc-800 bg-zinc-950/50 text-zinc-500'
+                      )}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-medium">{step.label}</span>
+                      <span className="block text-xs text-zinc-400">Step {index + 1}</span>
+                    </span>
+                  </span>
+                  {isComplete ? (
+                    <Check className="h-4 w-4 text-emerald-400" />
+                  ) : (
+                    <Circle className="h-3 w-3 text-zinc-700" />
+                  )}
+                </button>
+              )
+            })}
+          </nav>
+
+          <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-4">
+            <div className="mb-4 flex items-center gap-2 text-sm font-medium text-zinc-200">
+              <ShieldCheck className="h-4 w-4 text-emerald-400" />
+              Workspace State
+            </div>
+            <div className="space-y-3 text-sm">
+              <StatusRow
+                label="Source"
+                value={sourceLabel}
+              />
+              <StatusRow label="Access" value={visibility} />
+              <StatusRow label="Root" value={rootValue} />
+              <StatusRow label="Graph" value={graphHealth} />
+            </div>
+          </section>
+        </aside>
+
+        <div className="order-1 grid gap-6 xl:grid-cols-[minmax(0,1fr)_360px] lg:order-2">
+          <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
+            <StepPanel
+              activeStep={activeStep}
+              authUser={authUser}
+              authConfigured={authConfigured}
+              authLoading={authLoading}
+              demoMode={isDemoWorkspace}
+              connectGithub={connectGithub}
+              continueDemoMode={continueDemoMode}
+              libraryName={libraryName}
+              setLibraryName={setLibraryName}
+              repo={repo}
+              setRepo={setRepo}
+              visibility={visibility}
+              setVisibility={setVisibility}
+              inviteEmail={inviteEmail}
+              setInviteEmail={setInviteEmail}
+              collaborators={visibleCollaborators}
+              addCollaborator={addCollaborator}
+              published={published}
+              setPublished={setPublished}
+              endpoint={endpoint}
+              copied={copied}
+              copyEndpoint={copyEndpoint}
+              nextStep={nextStep}
+              completed={completed}
+            />
+          </section>
+
+          <aside className="space-y-6">
+            <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-zinc-400">Workspace</p>
+                  <h2 className="mt-1 text-lg font-medium text-zinc-100">{workspaceName}</h2>
+                </div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
+                  <Network className="h-5 w-5" />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <Metric label="Patterns" value={metricValues.patterns} />
+                <Metric label="Drafts" value={metricValues.drafts} />
+                <Metric label="Members" value={String(visibleCollaborators.length)} />
+                <Metric label="Proposals" value={metricValues.proposals} />
+              </div>
+            </section>
+
+            <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-sm font-medium text-zinc-200">Library Outline</h2>
+                <Search className="h-4 w-4 text-zinc-600" />
+              </div>
+              <div className="space-y-2">
+                {visiblePatterns.length > 0 ? (
+                  visiblePatterns.map((pattern) => (
+                    <div
+                      key={pattern.handle}
+                      className="flex items-center justify-between rounded-lg border border-zinc-800/70 bg-zinc-950/35 px-3 py-2"
+                    >
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-zinc-200">{pattern.handle}</span>
+                          <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-[10px] text-zinc-500">
+                            #{pattern.stub}
+                          </code>
+                        </div>
+                        <p className="mt-1 text-xs text-zinc-400">{pattern.layer}</p>
+                      </div>
+                      <span
+                        className={cn(
+                          'rounded-md px-2 py-1 text-[11px] font-medium',
+                          pattern.state === 'Published'
+                            ? 'bg-emerald-500/10 text-emerald-300'
+                            : 'bg-amber-500/10 text-amber-300'
+                        )}
+                      >
+                        {pattern.state}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <EmptyState
+                    title="No patterns yet"
+                    body="Connect a repository or create the first pattern to populate the graph."
+                  />
+                )}
+              </div>
+            </section>
+
+            <section className="rounded-lg border border-zinc-800/70 bg-zinc-900/45 p-5">
+              <h2 className="mb-4 text-sm font-medium text-zinc-200">Recent Activity</h2>
+              <div className="space-y-3">
+                {visibleActivity.length > 0 ? (
+                  visibleActivity.map((item) => (
+                    <div key={item} className="flex gap-3 text-sm">
+                      <div className="mt-1 h-2 w-2 rounded-full bg-emerald-400" />
+                      <span className="text-zinc-500">{item}</span>
+                    </div>
+                  ))
+                ) : (
+                  <EmptyState
+                    title="No activity yet"
+                    body="Workspace events will appear here after the first repository or graph action."
+                  />
+                )}
+              </div>
+            </section>
+          </aside>
+        </div>
+      </main>
+
+      <footer className="mt-6 border-t border-zinc-800/50">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 text-sm text-zinc-500">
+          <p>Sema Workspace</p>
+          <LicenseLine />
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+function StepPanel({
+  activeStep,
+  authUser,
+  authConfigured,
+  authLoading,
+  demoMode,
+  connectGithub,
+  continueDemoMode,
+  libraryName,
+  setLibraryName,
+  repo,
+  setRepo,
+  visibility,
+  setVisibility,
+  inviteEmail,
+  setInviteEmail,
+  collaborators,
+  addCollaborator,
+  published,
+  setPublished,
+  endpoint,
+  copied,
+  copyEndpoint,
+  nextStep,
+  completed,
+}: {
+  activeStep: StepId
+  authUser?: GitHubUser | null
+  authConfigured: boolean
+  authLoading: boolean
+  demoMode: boolean
+  connectGithub: () => void
+  continueDemoMode: () => void
+  libraryName: string
+  setLibraryName: (value: string) => void
+  repo: string
+  setRepo: (value: string) => void
+  visibility: Visibility
+  setVisibility: (value: Visibility) => void
+  inviteEmail: string
+  setInviteEmail: (value: string) => void
+  collaborators: Collaborator[]
+  addCollaborator: () => void
+  published: boolean
+  setPublished: (value: boolean) => void
+  endpoint: string
+  copied: boolean
+  copyEndpoint: () => void
+  nextStep: () => void
+  completed: Record<StepId, boolean>
+}) {
+  const hasRealGithubUser = Boolean(authUser?.login)
+  const accountLabel = authUser?.login
+    ? `@${authUser.login}`
+    : demoMode
+      ? '@demo-user'
+      : 'Waiting'
+  const ownerLabel = authUser?.name || (authUser?.login ? 'GitHub user' : demoMode ? 'Demo owner' : 'Personal')
+  const connectLabel = authLoading
+    ? 'Checking GitHub'
+    : hasRealGithubUser
+      ? `Connected as @${authUser?.login}`
+      : 'Log in with GitHub'
+
+  if (activeStep === 'connect') {
+    return (
+      <div>
+        <StepHeader
+          icon={Github}
+          kicker="Account"
+          title="Log in with GitHub"
+          body="Use your GitHub identity as the owner of a Sema workspace."
+        />
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
+            <div className="flex flex-wrap items-center gap-3">
+              {authUser?.avatar_url ? (
+                <img
+                  src={authUser.avatar_url}
+                  alt=""
+                  className="h-10 w-10 rounded-lg border border-zinc-800 bg-zinc-950"
+                />
+              ) : null}
+              <button
+                type="button"
+                onClick={() => {
+                  if (!hasRealGithubUser) connectGithub()
+                }}
+                disabled={authLoading || hasRealGithubUser}
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-100 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-white',
+                  (authLoading || hasRealGithubUser) && 'cursor-default opacity-90'
+                )}
+              >
+                {hasRealGithubUser ? <Check className="h-4 w-4" /> : <Github className="h-4 w-4" />}
+                {connectLabel}
+              </button>
+              {hasRealGithubUser ? (
+                <a
+                  href="/auth/logout"
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-200"
+                >
+                  Sign out
+                </a>
+              ) : null}
+              {!authLoading && !hasRealGithubUser && !demoMode ? (
+                <button
+                  type="button"
+                  onClick={continueDemoMode}
+                  className="text-sm text-zinc-500 transition-colors hover:text-zinc-200"
+                >
+                  Continue in demo mode
+                </button>
+              ) : null}
+            </div>
+            {!authLoading && !authConfigured && !hasRealGithubUser ? (
+              <p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2 text-sm text-amber-200">
+                GitHub sign-in isn't available in this environment yet — use demo mode to preview the flow.
+              </p>
+            ) : null}
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <IdentityFact label="Account" value={accountLabel} />
+              <IdentityFact label="Scope" value={demoMode ? 'Demo only' : authConfigured ? 'Profile' : 'Pending setup'} />
+              <IdentityFact label="Owner" value={ownerLabel} />
+            </div>
+          </div>
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
+            <p className="text-sm font-medium text-zinc-200">Selected repository</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-500">
+              {repo || 'Choose a repository in the next step'}
+            </p>
+            <div className="mt-4 flex items-center gap-2 text-xs text-emerald-300">
+              <ShieldCheck className="h-4 w-4" />
+              {authConfigured ? 'Profile-scoped sign-in' : 'OAuth app required'}
+            </div>
+          </div>
+        </div>
+        <StepActions onNext={nextStep} nextLabel="Create library" disabled={!completed.connect} />
+      </div>
+    )
+  }
+
+  if (activeStep === 'library') {
+    return (
+      <div>
+        <StepHeader
+          icon={Library}
+          kicker="Library"
+          title="Name the graph"
+          body="Choose the workspace name, GitHub source, and access level."
+        />
+        <div className="grid gap-4 md:grid-cols-2">
+          <Field label="Library name">
+            <input
+              value={libraryName}
+              onChange={(event) => setLibraryName(event.target.value)}
+              placeholder={authUser?.login ? `${authUser.login}'s graph` : 'Civic Intelligence Library'}
+              className="w-full rounded-lg border border-zinc-800 bg-zinc-950/70 px-3 py-2.5 text-sm text-zinc-100 outline-none transition-colors placeholder:text-zinc-700 focus:border-zinc-600"
+            />
+          </Field>
+          <Field label="GitHub repository">
+            <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/70 px-3 py-2.5">
+              <GitBranch className="h-4 w-4 text-zinc-600" />
+              <input
+                value={repo}
+                onChange={(event) => setRepo(event.target.value)}
+                placeholder={authUser?.login ? `${authUser.login}/sema-library` : 'owner/repository'}
+                className="w-full bg-transparent text-sm text-zinc-100 outline-none placeholder:text-zinc-700"
+              />
+            </div>
+          </Field>
+        </div>
+        <div className="mt-4">
+          <p className="mb-2 text-sm font-medium text-zinc-300">Visibility</p>
+          <div className="grid gap-2 sm:grid-cols-3">
+            {(['Private', 'Team', 'Public'] as Visibility[]).map((option) => {
+              const isSelected = option === visibility
+              const Icon = option === 'Private' ? Lock : option === 'Team' ? Users : Globe2
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => setVisibility(option)}
+                  className={cn(
+                    'flex items-center gap-3 rounded-lg border px-3 py-3 text-left transition-colors',
+                    isSelected
+                      ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-200'
+                      : 'border-zinc-800 bg-zinc-950/35 text-zinc-500 hover:border-zinc-700 hover:text-zinc-200'
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="text-sm font-medium">{option}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+        <StepActions onNext={nextStep} nextLabel="Invite team" disabled={!completed.library} />
+      </div>
+    )
+  }
+
+  if (activeStep === 'team') {
+    return (
+      <div>
+        <StepHeader
+          icon={Users}
+          kicker="Team"
+          title="Invite collaborators"
+          body="Give reviewers and editors a place to propose graph changes."
+        />
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="flex flex-1 items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950/70 px-3 py-2.5">
+            <Mail className="h-4 w-4 text-zinc-600" />
+            <input
+              value={inviteEmail}
+              onChange={(event) => setInviteEmail(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') addCollaborator()
+              }}
+              placeholder="name@example.com"
+              className="w-full bg-transparent text-sm text-zinc-100 outline-none placeholder:text-zinc-700"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={addCollaborator}
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-700 bg-zinc-100 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-white"
+          >
+            <Plus className="h-4 w-4" />
+            Invite
+          </button>
+        </div>
+        <div className="mt-5 divide-y divide-zinc-800 overflow-hidden rounded-lg border border-zinc-800">
+          {collaborators.map((member) => (
+            <div key={member.email} className="flex items-center justify-between gap-4 bg-zinc-950/35 px-4 py-3">
+              <div>
+                <p className="text-sm font-medium text-zinc-200">{member.name}</p>
+                <p className="text-xs text-zinc-400">{member.email}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="rounded-md border border-zinc-800 px-2 py-1 text-xs text-zinc-400">
+                  {member.role}
+                </span>
+                <span className="rounded-md bg-emerald-500/10 px-2 py-1 text-xs font-medium text-emerald-300">
+                  {member.status}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <StepActions onNext={nextStep} nextLabel="Prepare publish" />
+      </div>
+    )
+  }
+
+  const canPublish = completed.connect && completed.library
+
+  return (
+    <div>
+      <StepHeader
+        icon={Rocket}
+        kicker="Publish"
+        title="Publish the workspace"
+        body="Create a stable graph root and expose the team workspace to agents."
+      />
+      <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-sm font-medium text-zinc-200">Vocabulary root</p>
+            <code className="mt-2 block break-all text-xs text-zinc-500">
+              sema:root#mh:SHA-256:46e651aeeb832fdc654d6e48ba2b9c9049f8585a5423371624426c1ab6d3f15b
+            </code>
+          </div>
+          <button
+            type="button"
+            onClick={() => setPublished(true)}
+            disabled={!published && !canPublish}
+            className={cn(
+              'inline-flex items-center justify-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors',
+              published
+                ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-200'
+                : canPublish
+                  ? 'border-zinc-700 bg-zinc-100 text-zinc-950 hover:bg-white'
+                  : 'cursor-not-allowed border-zinc-800 bg-zinc-900/50 text-zinc-600'
+            )}
+          >
+            {published ? <Check className="h-4 w-4" /> : <Rocket className="h-4 w-4" />}
+            {published ? 'Published' : 'Publish snapshot'}
+          </button>
+        </div>
+        {!published && !canPublish ? (
+          <p className="mt-3 text-xs text-zinc-400">Connect GitHub and name your library before publishing.</p>
+        ) : null}
+      </div>
+      <div className="mt-4 rounded-lg border border-zinc-800 bg-zinc-950/35 p-4">
+        <p className="text-sm font-medium text-zinc-200">MCP endpoint</p>
+        <div className="mt-3 flex flex-col gap-3 md:flex-row">
+          <code className="flex-1 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2.5 text-xs text-zinc-500">
+            {endpoint}
+          </code>
+          <button
+            type="button"
+            onClick={copyEndpoint}
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-800 px-3 py-2.5 text-sm text-zinc-300 transition-colors hover:border-zinc-700 hover:text-zinc-100"
+          >
+            {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function StepHeader({
+  icon: Icon,
+  kicker,
+  title,
+  body,
+}: {
+  icon: typeof Github
+  kicker: string
+  title: string
+  body: string
+}) {
+  return (
+    <div className="mb-6 flex gap-4">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
+        <Icon className="h-5 w-5" />
+      </div>
+      <div>
+        <p className="text-xs uppercase tracking-widest text-zinc-400">{kicker}</p>
+        <h2 className="mt-1 text-2xl font-semibold tracking-tight text-zinc-100">{title}</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-500">{body}</p>
+      </div>
+    </div>
+  )
+}
+
+function StepActions({
+  onNext,
+  nextLabel,
+  disabled,
+}: {
+  onNext: () => void
+  nextLabel: string
+  disabled?: boolean
+}) {
+  return (
+    <div className="mt-6 flex justify-end">
+      <button
+        type="button"
+        onClick={onNext}
+        disabled={disabled}
+        className={cn(
+          'inline-flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors',
+          disabled
+            ? 'cursor-not-allowed border-zinc-800 bg-zinc-900/40 text-zinc-600'
+            : 'border-emerald-500/20 bg-emerald-500/10 text-emerald-300 hover:bg-emerald-500/15 hover:text-emerald-200'
+        )}
+      >
+        {nextLabel}
+        <ChevronRight className="h-4 w-4" />
+      </button>
+    </div>
+  )
+}
+
+function Field({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-medium text-zinc-300">{label}</span>
+      {children}
+    </label>
+  )
+}
+
+function IdentityFact({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950/45 px-3 py-3">
+      <p className="text-xs text-zinc-400">{label}</p>
+      <p className="mt-1 text-sm font-medium text-zinc-200">{value}</p>
+    </div>
+  )
+}
+
+function StatusRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-center justify-between gap-4">
+      <span className="text-zinc-400">{label}</span>
+      <span className="truncate text-right font-medium text-zinc-300">{value}</span>
+    </div>
+  )
+}
+
+function EmptyState({ title, body }: { title: string; body: string }) {
+  return (
+    <div className="rounded-lg border border-dashed border-zinc-800 bg-zinc-950/25 px-3 py-4">
+      <p className="text-sm font-medium text-zinc-300">{title}</p>
+      <p className="mt-1 text-xs leading-5 text-zinc-400">{body}</p>
+    </div>
+  )
+}
+
+function Metric({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg border border-zinc-800 bg-zinc-950/35 p-3">
+      <p className="text-xs text-zinc-400">{label}</p>
+      <p className="mt-2 text-2xl font-light tabular-nums text-zinc-200">{value}</p>
+    </div>
+  )
+}
+
+export default WorkspaceDemoPage

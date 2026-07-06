@@ -46,16 +46,16 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:59f78fd18b3ec1e7cdd85fb0bebd4d56f5c16369d2d432d5893e283ebac4b134",
-  "sema_ref": "CounterfactualAnchor#59f7",
-  "sema_stub": "59f7",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:e7accd6c44e6cfb43cb51af464c4b2edaef05e7405ec8dd5d417fe62a00ef28d",
+  "sema_ref": "CounterfactualAnchor#e7ac",
+  "sema_stub": "e7ac",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
+      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871",
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:6169da6dce9141595fc8b7ac8d8743e397cd44a2da04b3499b2ce910e174c2ef"
     }
   },
   "sema_layer": "Society",

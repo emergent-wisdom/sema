@@ -18,13 +18,13 @@
   "signature": [
     "Think(DAG)"
   ],
-  "sema_id": "sema:GraphOfThought#mh:SHA-256:9ea17b8bda1a7518969944ca468eb2e711404338fdd2372531a6e5d469c4f9b2",
-  "sema_ref": "GraphOfThought#9ea1",
-  "sema_stub": "9ea1",
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:ccee7b6c5ea42d243d5921a7dfbf074ef9aba5212cff0714e4ce9019077c907d",
+  "sema_ref": "GraphOfThought#ccee",
+  "sema_stub": "ccee",
   "dependencies": {
     "composes_with": {
-      "d_a_g": "sema:DAG#mh:SHA-256:29cbb4f9958812e156589d79977e38031186c31d10a7dd1c5c539b06dd418cc2",
-      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
+      "d_a_g": "sema:DAG#mh:SHA-256:ed81568cef305d3f4f39c7ef157bfc4c74ef721c8ad1e9001a2d11793ce936df",
+      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
     }
   },
   "sema_layer": "Mind",

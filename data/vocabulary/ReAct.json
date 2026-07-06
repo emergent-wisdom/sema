@@ -33,21 +33,21 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ReAct#mh:SHA-256:b4d0fb47a1426ca3ecf1ee70b05bd585628b07eaf93faa1a4c11f832640c8bab",
-  "sema_ref": "ReAct#b4d0",
-  "sema_stub": "b4d0",
+  "sema_id": "sema:ReAct#mh:SHA-256:bf894b5668550ecb0031e3f015d07aa7f6023bb9fa37d89c5982b67188797bfe",
+  "sema_ref": "ReAct#bf89",
+  "sema_stub": "bf89",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },
     "composes_with": {
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:bd2b35e0886f79fde129e2a1185845ecb644c14c4b89b90ec5dc8eb54c51ba10"
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:011f50770f2599f5017df648ad5920ddb732f7681a9a3b7576cdcf3798ce6baa"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87"
     }
   },
   "sema_layer": "Mind",

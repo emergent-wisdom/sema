@@ -40,12 +40,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:OptimalStop#mh:SHA-256:e7ca1560a9735578b604728b9cad0aa0b894bbdc0ff7aae3859cbc5a8e9955f0",
-  "sema_ref": "OptimalStop#e7ca",
-  "sema_stub": "e7ca",
+  "sema_id": "sema:OptimalStop#mh:SHA-256:78c85dfc9a641c288bf891a44b1023018fce524e1d57742416604f3a1d205df0",
+  "sema_ref": "OptimalStop#78c8",
+  "sema_stub": "78c8",
   "dependencies": {
     "references": {
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:ff07d8bf174ca020ec8e1e2cd9a7ea7575264d531256aba7a1dbc11eecec1f98"
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2"
     }
   },
   "sema_layer": "Mind",

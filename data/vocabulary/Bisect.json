@@ -19,12 +19,12 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Bisect#mh:SHA-256:30ea03cad159deceac2ed6c489873b74fecd989621b6b304a4b44666b8d08454",
-  "sema_ref": "Bisect#30ea",
-  "sema_stub": "30ea",
+  "sema_id": "sema:Bisect#mh:SHA-256:419f063fbfe7ac5ecab0b0097fb72b2884685ad6c6fda01a7920be71b69cc8f8",
+  "sema_ref": "Bisect#419f",
+  "sema_stub": "419f",
   "dependencies": {
     "references": {
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:7074d06ab2b317d810e688866049a24f8b303099548f033d6edab2d0d16710b9"
+      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:4df0a86d7cf4b453356bc364e8a4ccd1cde9722ecbb667ff0afd82a932512e1c"
     }
   },
   "sema_layer": "Mind",

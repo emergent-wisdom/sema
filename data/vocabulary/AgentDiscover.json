@@ -30,17 +30,17 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentDiscover#mh:SHA-256:42ca1b2de30e52cc20bdba6aa5534244cbcc937c5329f89661f51abe56ee2f18",
-  "sema_ref": "AgentDiscover#42ca",
-  "sema_stub": "42ca",
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:73ca095c570d4eae2bb90aa8f768e5aa3f332f8c97005980f3fdf330a63a1845",
+  "sema_ref": "AgentDiscover#73ca",
+  "sema_stub": "73ca",
   "signature": [
     "Discover(Agent)"
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "card": "sema:Card#mh:SHA-256:68487a949d1a26f464e0abd5fb8b8a86c5e6a338b112634c858a7ce59631c216",
-      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "card": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
+      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104"
     }
   },
   "sema_layer": "Society",

@@ -29,14 +29,14 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:ad9e81a92a651c1081fd09857e243dc804e603dc977be22f86a0051bd642596f",
-  "sema_ref": "Generalize#ad9e",
-  "sema_stub": "ad9e",
+  "sema_id": "sema:Generalize#mh:SHA-256:78cbd8c531e0daa24d78be404ae40023b9ae598b6b0642e925756b1822145ccf",
+  "sema_ref": "Generalize#78cb",
+  "sema_stub": "78cb",
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:fa18df1ff51bc8e86c4dc858ecb2f50f3d28820539983d83828444d840be951d",
-      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
+      "induction": "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Mind",

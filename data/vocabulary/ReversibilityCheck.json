@@ -17,18 +17,18 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:48e8d4d8ea1e20cf38acfcdc33db05196be5362faebd010f58197e87354e4a03",
-  "sema_ref": "ReversibilityCheck#48e8",
-  "sema_stub": "48e8",
+  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:b8b78fe5b2d7869094d2cd61f2178cfaed3b9482a36ae3f346c7b02cdd892117",
+  "sema_ref": "ReversibilityCheck#b8b7",
+  "sema_stub": "b8b7",
   "signature": [
     "Check(Reversibility)"
   ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "human_approve": "sema:HumanApprove#mh:SHA-256:64349d0a8daadf838541313b0ad126768854b279d8cdafa70ac06fd59b997b15",
-      "reversibility": "sema:Reversibility#mh:SHA-256:bf796a25a0c91a127c9d336839033d52f198d75080d71e6ae084827f3ae158a7",
-      "world_reversible": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe"
+      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
+      "reversibility": "sema:Reversibility#mh:SHA-256:af6fad316d76d324d6c2ac02a69fc1f2f095bfc69a48c33578e599c431e9598e",
+      "world_reversible": "sema:WorldReversible#mh:SHA-256:a8e0699d7dcce24a267c2e8db351fbe4edc60323c458931e1071858c0c6c1acb"
     }
   },
   "sema_layer": "Society",

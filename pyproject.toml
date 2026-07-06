@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "semahash"
-version = "0.2.3"
+version = "0.3.0"
 description = "Content-addressed semantics for multi-agent coordination. When the hash is the word."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -33,6 +33,10 @@ dependencies = [
   "numpy>=1.24",
   "networkx>=3.0",
   "fastembed>=0.2",
+  # Rule 5.2 (data_schema must be valid JSON Schema) is only enforced when
+  # jsonschema is importable — declare it so validation is deterministic
+  # across installs instead of silently skipped (issue #47).
+  "jsonschema>=4.0",
 ]
 
 [project.optional-dependencies]
@@ -62,6 +66,7 @@ sema = "sema.cli.main:main"
 artifacts = [
   "src/sema/server/static/assets/**",
   "src/sema/server/static/__spa-fallback.html",
+  "src/sema/server/static/llms.txt",
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -115,5 +120,5 @@ line-ending = "auto"
 
 [tool.pytest.ini_options]
 pythonpath = "src"
-testpaths = ["src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests"]
+testpaths = ["src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests", "src/sema/server/tests"]
 addopts = "-v"

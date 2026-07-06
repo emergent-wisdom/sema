@@ -6,9 +6,9 @@
     "Actionability: Must contain at least one specific recommendation.",
     "Reference: Must cite specific parts of the target artifact."
   ],
-  "sema_id": "sema:Assessment#mh:SHA-256:a76518b956c1f22aec39c6402db8725510ea23bd6eda56844ef118a948de3c77",
-  "sema_ref": "Assessment#a765",
-  "sema_stub": "a765",
+  "sema_id": "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d",
+  "sema_ref": "Assessment#39df",
+  "sema_stub": "39df",
   "_meta": {
     "ring": 1,
     "tier": 1,

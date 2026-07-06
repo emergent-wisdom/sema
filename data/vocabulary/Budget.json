@@ -49,12 +49,12 @@
       "Primitives"
     ]
   },
-  "sema_ref": "Budget#4587",
-  "sema_id": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
-  "sema_stub": "4587",
+  "sema_ref": "Budget#f2f5",
+  "sema_id": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+  "sema_stub": "f2f5",
   "dependencies": {
     "references": {
-      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315"
+      "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2"
     }
   },
   "sema_layer": "Infrastructure",

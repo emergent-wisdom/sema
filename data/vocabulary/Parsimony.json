@@ -18,14 +18,14 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833",
-  "sema_ref": "Parsimony#8b4e",
-  "sema_stub": "8b4e",
+  "sema_id": "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351",
+  "sema_ref": "Parsimony#bbc6",
+  "sema_stub": "bbc6",
   "gloss": "Complexity justification via Occams Razor",
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
-      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
     }
   },
   "sema_layer": "Mind",

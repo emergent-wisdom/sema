@@ -17,9 +17,9 @@
   "postconditions": [
     "Value retrieved significantly faster than source"
   ],
-  "sema_id": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10",
-  "sema_ref": "Cache#08ed",
-  "sema_stub": "08ed",
+  "sema_id": "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5",
+  "sema_ref": "Cache#30c9",
+  "sema_stub": "30c9",
   "_meta": {
     "ring": 0,
     "tier": 1,
@@ -50,8 +50,8 @@
   },
   "dependencies": {
     "references": {
-      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Infrastructure",

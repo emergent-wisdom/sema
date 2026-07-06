@@ -11,10 +11,10 @@ This document specifies all validation rules that the Sema compiler/ingester mus
 | 1.1 | **JSON Validity** | File must be valid JSON | YES |
 | 1.2 | **Required Fields** | Must contain: `handle`, `mechanism`, `_meta` | YES |
 | 1.3 | **Handle Format** | Must be CamelCase: `^[A-Z][a-zA-Z0-9]+$` | YES |
-| 1.4 | **Layer Enum** | `_meta.layer` ∈ {Physics, Mind, Society, Infrastructure} | YES |
+| 1.4 | **Path Root Enum** | `_meta.path[0]` ∈ {Physics, Mind, Society, Infrastructure} | YES |
 | 1.5 | **Tier Enum** | `_meta.tier` ∈ {0, 1, 2, 3} | YES |
 | 1.6 | **Ring Enum** | `_meta.ring` ∈ {0, 1, 2} | YES |
-| 1.7 | **Category Valid** | `_meta.category` must be valid for the given layer | YES |
+| 1.7 | **Taxonomy Path Valid** | `_meta.path` must be one of the valid taxonomy paths | YES |
 | 1.8 | **No Empty Fields** | Empty arrays `[]` or objects `{}` must be omitted, not present | YES |
 | 1.9 | **No Null Values** | Null values forbidden in hashed fields | YES |
 
@@ -59,7 +59,7 @@ This document specifies all validation rules that the Sema compiler/ingester mus
 
 | # | Rule | Description | Implemented |
 |---|------|-------------|-------------|
-| 5.1 | **Data Structures Require Schema** | If `_meta.category == "Data Structures"`, `data_schema` MUST exist | YES |
+| 5.1 | **Data Structures Require Schema** | If `_meta.path` ends in `"Data Structures"`, `data_schema` MUST exist | YES |
 | 5.2 | **Valid JSON Schema** | `data_schema` must be a valid JSON Schema object | YES |
 | 5.3 | **Non-Empty Schema** | `data_schema` must not be empty `{}` | YES |
 

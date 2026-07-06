@@ -39,17 +39,17 @@
       "Strategy"
     ]
   },
-  "sema_ref": "TensionHold#5245",
-  "sema_id": "sema:TensionHold#mh:SHA-256:524574e8c7ae1e50e4744f026836d0cbb63cbf0bfab0f91aaa3bdd5959ab8532",
-  "sema_stub": "5245",
+  "sema_ref": "TensionHold#b084",
+  "sema_id": "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e",
+  "sema_stub": "b084",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "dialectic": "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1",
+      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     },
     "yields": {
-      "tension": "sema:Tension#mh:SHA-256:fc30a85f6d7da54e882a8f2cb095f646a5719976b5b9df30958edd556c7e1966"
+      "tension": "sema:Tension#mh:SHA-256:547a74e52a7d1be70c14efcd8565adc2fae6a2c98d9bb7915a9b9164d578cfee"
     }
   },
   "sema_layer": "Mind",

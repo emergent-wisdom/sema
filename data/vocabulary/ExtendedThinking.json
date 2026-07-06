@@ -29,15 +29,15 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ExtendedThinking#mh:SHA-256:f9ebb3ff9fc1a5450b33e4bf50cc66315c1711169750e3fb3e700464fa1a80aa",
-  "sema_ref": "ExtendedThinking#f9eb",
-  "sema_stub": "f9eb",
+  "sema_id": "sema:ExtendedThinking#mh:SHA-256:da3f0bf23a85cddefae39b7a83e02d95bf321356de714bdf4575b4ff07b8c4df",
+  "sema_ref": "ExtendedThinking#da3f",
+  "sema_stub": "da3f",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358"
+      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09"
     }
   },
   "sema_layer": "Mind",

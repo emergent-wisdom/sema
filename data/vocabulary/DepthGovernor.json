@@ -37,18 +37,18 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:2efaf036bd54fc393b6df73dbc8a4da77a112f67e000c74308a4577bbb261de9",
-  "sema_ref": "DepthGovernor#2efa",
-  "sema_stub": "2efa",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:96cf874e588e4260c67abf3b8cdca5a0234d9b6a637e1c7981b7f77025668c93",
+  "sema_ref": "DepthGovernor#96cf",
+  "sema_stub": "96cf",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
-      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
-      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3",
-      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:038483584395139ff2a1766902d80a65edcab12a1ee39b57614fc93ce704e4ce"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
+      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
+      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
+      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:7e67260837bfb3fd46b514f9ddfe0b6e6f62657e8af2a626a14e29f77ada285d"
     }
   },
   "sema_layer": "Mind",

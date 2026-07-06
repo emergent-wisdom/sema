@@ -76,14 +76,14 @@
       }
     }
   },
-  "sema_id": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
-  "sema_ref": "AcceptSpec#b77c",
-  "sema_stub": "b77c",
+  "sema_id": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
+  "sema_ref": "AcceptSpec#c156",
+  "sema_stub": "c156",
   "dependencies": {
     "references": {
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "spec": "sema:Spec#mh:SHA-256:befacf8da0e1f2df8e79b82a7d5b535d8ef222446f6ee25cbe958d73fe29649a"
+      "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
+      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
+      "spec": "sema:Spec#mh:SHA-256:47f45e3174d8a28edf9c685f6ee8356386cb30cf24d3ba82ddb0738c0c9391cb"
     }
   },
   "sema_layer": "Infrastructure",

@@ -26,14 +26,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:SignalReflection#mh:SHA-256:b7703b182120b29f875338a899819f27f2fee254331628cb4e8c8501a3cc9e00",
-  "sema_ref": "SignalReflection#b770",
-  "sema_stub": "b770",
+  "sema_id": "sema:SignalReflection#mh:SHA-256:af7fc052af761d07c60cd6a9f124af4e4bd7e5e1b66e3eb0eebccd93593523a5",
+  "sema_ref": "SignalReflection#af7f",
+  "sema_stub": "af7f",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:cb58af48ff79c9623c01cbd6be1998eda0effeb791ca79e98d21022435911f05"
     }
   },
   "sema_layer": "Society",

@@ -44,17 +44,17 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d",
-  "sema_ref": "RegimeSense#1998",
-  "sema_stub": "1998",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:56eccdcf5c9e28545cb3ad569f86ec1bf3dec5e2eb4f9620f980da72b11937cf",
+  "sema_ref": "RegimeSense#56ec",
+  "sema_stub": "56ec",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
-      "drift_watch": "sema:DriftWatch#mh:SHA-256:17c4d53d192ad7d6b902546c76c68007d10efc53610ac33514a39e3f6a9001f6",
-      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
-      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:d3a4ea352b60623cfc7cc6584f2bca4bfac294028fd5463bdc6a60d85ceac0f5",
-      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
+      "drift_watch": "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5",
+      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
+      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:1390c9f564ffb7480453ab134ed09247c75651e3512ea113371e29c1d3e95387",
+      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957"
     }
   },
   "sema_layer": "Mind",

@@ -30,18 +30,18 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:b6053eb83d319053fed9d71cf562463aa2fff96256c56d5ed1135d751f64d6cc",
-  "sema_ref": "MetaPrompt#b605",
-  "sema_stub": "b605",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:db51ab77fd1592155749c401b495f1090c0bc820458fe34b2412ce040c7e70ef",
+  "sema_ref": "MetaPrompt#db51",
+  "sema_stub": "db51",
   "signature": [
     "Meta(Prompt)"
   ],
   "dependencies": {
     "references": {
-      "meta": "sema:Meta#mh:SHA-256:90f452433c8b16a65d5842745b4cbb586957b1f45becbfca2322fece945ad3ee",
-      "prompt": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:5356ac5f1bd0c8d125e039a93c7f6a0b73a99586d38165494653dbed482a3472",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
+      "prompt": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:2543cc5972f02b5a21d776643ba485beda876462c57a10c8949d0072e54bd620",
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     }
   },
   "sema_layer": "Mind",

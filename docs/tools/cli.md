@@ -146,7 +146,7 @@ handle with a stub (`Handle#stub`).
 
 ```bash
 sema resolve <Handle>
-sema resolve 'Stigmergy#53d4'
+sema resolve 'Stigmergy#6282'
 ```
 
 ### show - Print Pattern Definition
@@ -157,7 +157,7 @@ read-path for "give me the definition behind this inline ref."
 
 ```bash
 sema show <Handle>
-sema show 'StateLock#5602'
+sema show 'StateLock#7cd8'
 ```
 
 ### skeleton - Graph Overview

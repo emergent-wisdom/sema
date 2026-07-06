@@ -21,16 +21,16 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Greet#mh:SHA-256:be4d3659a9eaa805c17a04d495d984d85e4ec1b118c824824b58985a17581fb7",
-  "sema_ref": "Greet#be4d",
-  "sema_stub": "be4d",
+  "sema_id": "sema:Greet#mh:SHA-256:58542bc100077ab85299c99424fa0ca7ea8559890678461a0d7f7aaba927c74f",
+  "sema_ref": "Greet#5854",
+  "sema_stub": "5854",
   "dependencies": {
     "composes_with": {
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554"
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
     }
   },
   "sema_layer": "Infrastructure",

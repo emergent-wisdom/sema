@@ -36,16 +36,16 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be",
-  "sema_ref": "ParetoFront#c1fb",
-  "sema_stub": "c1fb",
+  "sema_id": "sema:ParetoFront#mh:SHA-256:10a7d315172e2163bed132c3943b3008d5a566e5b4b4941af614838dcbecffe0",
+  "sema_ref": "ParetoFront#10a7",
+  "sema_stub": "10a7",
   "dependencies": {
     "accepts": {
-      "axes": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0"
+      "axes": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
     },
     "references": {
-      "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "rank": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Mind",

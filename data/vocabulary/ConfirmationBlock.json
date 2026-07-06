@@ -36,9 +36,9 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:20db49e59b1e91b692635885522c55205d7889ddad978c36965d00a4fc985a5a",
-  "sema_ref": "ConfirmationBlock#20db",
-  "sema_stub": "20db",
+  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:dc3f1d88759b024b4b5730dada9c5586759b31503d5d1dd779ca24b9fcff5c07",
+  "sema_ref": "ConfirmationBlock#dc3f",
+  "sema_stub": "dc3f",
   "sema_layer": "Mind",
   "sema_category": "Inference"
 }

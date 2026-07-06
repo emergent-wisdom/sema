@@ -13,17 +13,17 @@
       "Coordination"
     ]
   },
-  "sema_ref": "Compromise#3476",
-  "sema_id": "sema:Compromise#mh:SHA-256:3476091dd1f8eb70c57fc9661151cb1066f8604751fe92a75fa4f30f35679f82",
-  "sema_stub": "3476",
+  "sema_ref": "Compromise#228b",
+  "sema_id": "sema:Compromise#mh:SHA-256:228b2583a138a2eefc86eda678d6449b0501c7db93f51e046d39e8910c421042",
+  "sema_stub": "228b",
   "dependencies": {
     "composes_with": {
-      "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3"
+      "dampen": "sema:Dampen#mh:SHA-256:5edd829087aefc086843183dd2361355777d5c2237456e2de72f315e45ffc3a4"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
+      "yield": "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf"
     }
   },
   "sema_layer": "Society",

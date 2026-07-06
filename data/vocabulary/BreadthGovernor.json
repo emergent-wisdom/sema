@@ -43,18 +43,18 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:e924663e0589e01869b6403b59fc721b69a0250190a6019fa6130a225360080e",
-  "sema_ref": "BreadthGovernor#e924",
-  "sema_stub": "e924",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:c7ea1965d69acf5735eb3e6bc1cb21a2d8308b8b115d115c443dfc4bb949e719",
+  "sema_ref": "BreadthGovernor#c7ea",
+  "sema_stub": "c7ea",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
-      "parallel": "sema:Parallel#mh:SHA-256:318115c507a765d08bb292f74162bb6427f0756b031b2f516b089f6dbf61a753",
-      "parsimony": "sema:Parsimony#mh:SHA-256:8b4ebb22f6c7a671ab5aa8b6f64cba377b98024684c18e9f6deae86988687833",
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
+      "parallel": "sema:Parallel#mh:SHA-256:e799c1986d62c4a052090842aabe144193587f8a4d8dd23617d027b2e9b85098",
+      "parsimony": "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Mind",

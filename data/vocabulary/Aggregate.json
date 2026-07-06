@@ -37,19 +37,19 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
-  "sema_ref": "Aggregate#24a1",
-  "sema_stub": "24a1",
+  "sema_id": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
+  "sema_ref": "Aggregate#4861",
+  "sema_stub": "4861",
   "dependencies": {
     "accepts": {
-      "vector": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc",
-      "weights": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc"
+      "vector": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478",
+      "weights": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
     },
     "references": {
-      "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6"
+      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b"
     },
     "yields": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Infrastructure",

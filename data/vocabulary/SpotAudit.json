@@ -26,13 +26,13 @@
       "Verification"
     ]
   },
-  "sema_id": "sema:SpotAudit#mh:SHA-256:000ed33bc0676411521d703253810082f4a6a470818e194e833eca8605859ea8",
-  "sema_ref": "SpotAudit#000e",
-  "sema_stub": "000e",
+  "sema_id": "sema:SpotAudit#mh:SHA-256:c00cb4b5955cf4cefc126978f1c4f06d5f1a9b505ff0b92f50af1b047b82c3dc",
+  "sema_ref": "SpotAudit#c00c",
+  "sema_stub": "c00c",
   "dependencies": {
     "references": {
-      "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
-      "state_audit": "sema:StateAudit#mh:SHA-256:81955226e479378fe597ebe9d86b1a7fe788d392f99ae29c85a81f9ac091dc96"
+      "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
+      "state_audit": "sema:StateAudit#mh:SHA-256:2747b8fd941dcd5a3980556d108b22f376bb3ac0ac6de1561215ad836bf5ed17"
     }
   },
   "sema_layer": "Infrastructure",

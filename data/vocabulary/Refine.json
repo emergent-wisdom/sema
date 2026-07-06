@@ -16,18 +16,18 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Refine#mh:SHA-256:78b79a62b1ecf8a4a00537a19db4a71e06039fb5bd2792a497b9ccf16fbe8cee",
-  "sema_ref": "Refine#78b7",
-  "sema_stub": "78b7",
+  "sema_id": "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
+  "sema_ref": "Refine#8c9b",
+  "sema_stub": "8c9b",
   "dependencies": {
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200"
+      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
-      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
-      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9"
+      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
+      "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
+      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
+      "incongruity": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99"
     }
   },
   "sema_layer": "Mind",

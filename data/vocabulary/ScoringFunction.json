@@ -40,9 +40,9 @@
     "Determinism: Same input always yields same score.",
     "Range: Output must be within [0.0, 1.0] or [-inf, +inf]."
   ],
-  "sema_id": "sema:ScoringFunction#mh:SHA-256:3a4ef49f597cf15d2971c8b1769506bc5a434909e98cede098d5c16664c94232",
-  "sema_ref": "ScoringFunction#3a4e",
-  "sema_stub": "3a4e",
+  "sema_id": "sema:ScoringFunction#mh:SHA-256:932eb89612c9b1e99ca1d6d66adf15bd8544505bc46059da946cb71aa52e23ec",
+  "sema_ref": "ScoringFunction#932e",
+  "sema_stub": "932e",
   "_meta": {
     "ring": 1,
     "tier": 1,
@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "references": {
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Infrastructure",

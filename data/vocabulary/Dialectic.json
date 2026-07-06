@@ -40,16 +40,16 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4",
-  "sema_ref": "Dialectic#856d",
-  "sema_stub": "856d",
+  "sema_id": "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1",
+  "sema_ref": "Dialectic#b5d0",
+  "sema_stub": "b5d0",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003"
     },
     "references": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:9aeda0f4187115f47a3c3bea2ea9d891cba132007500215941980e27464293de",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc",
+      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     }
   },
   "sema_layer": "Mind",

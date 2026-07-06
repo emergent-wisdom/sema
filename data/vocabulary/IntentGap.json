@@ -29,13 +29,13 @@
       "Protocols"
     ]
   },
-  "sema_ref": "IntentGap#f7bb",
-  "sema_id": "sema:IntentGap#mh:SHA-256:f7bb020075b23ce5fcc6ab2c898dcf23f5a916df0b818b333dbecb43bc608069",
-  "sema_stub": "f7bb",
+  "sema_ref": "IntentGap#98b2",
+  "sema_id": "sema:IntentGap#mh:SHA-256:98b23d5faa3bb1d941a148b9c7596f6725f1b70d3447ee247243944e75114e13",
+  "sema_stub": "98b2",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154"
+      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
+      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683"
     }
   },
   "sema_layer": "Society",

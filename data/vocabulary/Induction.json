@@ -14,12 +14,12 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
-  "sema_ref": "Induction#2487",
-  "sema_stub": "2487",
+  "sema_id": "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707",
+  "sema_ref": "Induction#abe3",
+  "sema_stub": "abe3",
   "dependencies": {
     "references": {
-      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+      "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     }
   },
   "sema_layer": "Mind",

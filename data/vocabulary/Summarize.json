@@ -18,21 +18,21 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Summarize#mh:SHA-256:d9db027acbfceb679cdf599cdf0475e48cccf3cfdbe1d30b15e4c048ce87ed0c",
-  "sema_ref": "Summarize#d9db",
-  "sema_stub": "d9db",
+  "sema_id": "sema:Summarize#mh:SHA-256:fd404c257777e046e61b8aa689fa0d12f227c0e660e5e92d2b3c1d64f3ee7ff8",
+  "sema_ref": "Summarize#fd40",
+  "sema_stub": "fd40",
   "dependencies": {
     "accepts": {
-      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+      "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
-      "translate": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
+      "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
+      "translate": "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "summary": "sema:Summary#mh:SHA-256:f785cae6871dc00700bb21296033c24d01e0abc331097a1d43a3d423830332d6"
+      "summary": "sema:Summary#mh:SHA-256:7b63fff5bd05b2c584fcb5f0da4af60d5d6bf01baaf07c2e688054250c9e226e"
     }
   },
   "sema_layer": "Mind",

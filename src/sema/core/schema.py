@@ -273,13 +273,19 @@ class DataSchema(BaseModel):
         """Validate that this is a valid JSON Schema (Rule 5.2)."""
         try:
             from jsonschema import Draft7Validator
+        except ImportError as e:
+            # jsonschema is a declared dependency; if it's missing the
+            # install is broken. Failing loudly keeps Rule 5.2 deterministic
+            # instead of silently passing invalid schemas (issue #47).
+            raise ValueError(
+                "data_schema validation requires the 'jsonschema' package "
+                "(declared dependency — reinstall semahash): Rule 5.2 cannot be enforced"
+            ) from e
 
+        try:
             # Convert to dict for validation
             schema_dict = self.model_dump(exclude_none=True)
             Draft7Validator.check_schema(schema_dict)
-        except ImportError:
-            # jsonschema not available, skip validation
-            pass
         except Exception as e:
             raise ValueError(f"data_schema is not valid JSON Schema (Rule 5.2): {e}") from e
         return self

@@ -43,14 +43,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:9aa382c15c9aaea3ccc1d105087cc07228eec46850c0526d4c9b2fd14c9a9b20",
-  "sema_ref": "GracefulDegradation#9aa3",
-  "sema_stub": "9aa3",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:84362d70dbeb585179a9adc7352dcd96d5edd14a611ee6c7d2400a4d78395eec",
+  "sema_ref": "GracefulDegradation#8436",
+  "sema_stub": "8436",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:c7fed2adfa415c82a93ecff3cc6c41f3e60ef2c9891c365987761d01d6bcf70f",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-      "strategy": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada"
+      "fail_closed": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
+      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
+      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
     }
   },
   "sema_layer": "Society",

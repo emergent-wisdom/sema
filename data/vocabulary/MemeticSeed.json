@@ -25,16 +25,16 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:d42fe4a581a2c59793bd5997fa1d5b4873e138c3d5c9ddc9ba7ae8d7a5315b73",
-  "sema_ref": "MemeticSeed#d42f",
-  "sema_stub": "d42f",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:cf265f710af42a9db9e5e61327679e4a3ef1b0e1b9a8c842ea990c92fa806415",
+  "sema_ref": "MemeticSeed#cf26",
+  "sema_stub": "cf26",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:db99b93268bebbe8ad4275b280159a66e42fbc91689d230ecfd5e00454b9a4e1",
-      "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
-      "translation_proxy": "sema:TranslationProxy#mh:SHA-256:342219e51cc568b1133fb7eea62a611a0ad65304d0ec26c569e1a8e40765ce61",
-      "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:2e403d47af0e3914841b5e03a4b9531b479ae05b2a54f402c24e99232f45b38a",
+      "gradient": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
+      "translation_proxy": "sema:TranslationProxy#mh:SHA-256:e064cb7e1532435438433393ff3a3b8b87b5c86cf4705974888e9ec746f5d190",
+      "yield": "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf"
     }
   },
   "sema_layer": "Society",

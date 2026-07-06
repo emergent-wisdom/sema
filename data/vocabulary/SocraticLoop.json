@@ -44,15 +44,15 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SocraticLoop#mh:SHA-256:e9e57ec0359a06e25177a9a8074211eae0be2e582dcee00813bb7a9acf9c6f98",
-  "sema_ref": "SocraticLoop#e9e5",
-  "sema_stub": "e9e5",
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:7d528905a96b5774a2e16f7cb7b9fa50845c3bdb03549a2322889d7560d17f8e",
+  "sema_ref": "SocraticLoop#7d52",
+  "sema_stub": "7d52",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4",
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
-      "prompt": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "dialectic": "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1",
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
+      "prompt": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97"
     }
   },
   "sema_layer": "Mind",

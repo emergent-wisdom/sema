@@ -48,21 +48,21 @@
       "Coordination"
     ]
   },
-  "sema_id": "sema:Vote#mh:SHA-256:37f80069661e4c80fc47d051b967ac6fa103d950da07ab627cebc037a70c319f",
-  "sema_ref": "Vote#37f8",
-  "sema_stub": "37f8",
+  "sema_id": "sema:Vote#mh:SHA-256:3b66510363464c335c95a843247ddd37bbb98616a17f6a8d4bb17b1ac91bd41c",
+  "sema_ref": "Vote#3b66",
+  "sema_stub": "3b66",
   "dependencies": {
     "accepts": {
-      "ballot": "sema:Ballot#mh:SHA-256:1934bd52e662c4df304637cc1c05f78635643dcacf49b4b0fe37e84900446be9"
+      "ballot": "sema:Ballot#mh:SHA-256:43ebc85e8e87e132698c59536402d1ba715b0dbad9e6c116f97a056c60da4577"
     },
     "composes_with": {
-      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a"
+      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957"
     },
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
-      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
-      "elect": "sema:Elect#mh:SHA-256:4f89ea0f05e323ab337031d74493f564321700fa1a06cb567560e87729b62898",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
+      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
+      "elect": "sema:Elect#mh:SHA-256:45ff98aaa03731e8e490293d799edba62f98b40669828f2d32b436a0ecd4b6ca",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },
   "sema_layer": "Society",

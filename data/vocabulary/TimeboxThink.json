@@ -41,15 +41,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:TimeboxThink#mh:SHA-256:514b88976c0c3423900ee8a7a762a40dbe26dfd0c47b1a5ae3beb1c92462c6ae",
-  "sema_ref": "TimeboxThink#514b",
-  "sema_stub": "514b",
+  "sema_id": "sema:TimeboxThink#mh:SHA-256:1f05e3beff8f73831abe43998f43256a75d0fda80217e7d78afec6a857e5f8ab",
+  "sema_ref": "TimeboxThink#1f05",
+  "sema_stub": "1f05",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6",
-      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
+      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+      "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8",
+      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
     }
   },
   "sema_layer": "Mind",

@@ -1,5 +1,6 @@
 import logging
 import shutil
+import sys
 from pathlib import Path
 
 # We'll need these dependencies
@@ -52,7 +53,7 @@ class SemaClient:
 
         logger.info(f"Downloading database from {url} to {self.db_path}...")
         try:
-            with httpx.stream("GET", url, follow_redirects=True) as response:
+            with httpx.stream("GET", url, follow_redirects=True, timeout=60.0) as response:
                 response.raise_for_status()
                 # Download to a temporary file first
                 tmp_path = self.db_path.with_suffix(".tmp")
@@ -70,12 +71,17 @@ class SemaClient:
     def get_db_path(self) -> str:
         """Return the path to the local database, downloading it if necessary."""
         if not self.is_initialized():
-            print(f"Sema database not found at {self.db_path}.")
-            print("Downloading default database... (this happens once)")
+            # stderr, not stdout: this runs during MCP server import, and
+            # stdout is the JSON-RPC transport in stdio mode.
+            print(f"Sema database not found at {self.db_path}.", file=sys.stderr)
+            print("Downloading default database... (this happens once)", file=sys.stderr)
             try:
                 self.download_db()
             except Exception as e:
-                print(f"Warning: Could not download database ({e}). Functionality will be limited.")
+                print(
+                    f"Warning: Could not download database ({e}). Functionality will be limited.",
+                    file=sys.stderr,
+                )
         return str(self.db_path)
 
 

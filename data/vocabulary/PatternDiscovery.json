@@ -43,17 +43,17 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:abed85333f7639dc232f4bca888a78a9595059c67596331c6f6eeac73b7b3239",
-  "sema_ref": "PatternDiscovery#abed",
-  "sema_stub": "abed",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:f3a44176623cf57ec1cefc74f35944c2bd3fdbe658b31307755a8ae865532894",
+  "sema_ref": "PatternDiscovery#f3a4",
+  "sema_stub": "f3a4",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:fa8dac7250f1146fc25b19deab473441849277d252ad485a637e11b5264b19e2",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "search": "sema:Search#mh:SHA-256:3b3192b16570b656f6bbfab3af24f36db893d5e6e161b16addd96e6d95e87f00"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:9407f844acd036cc6eef2be1957467d4eac7aed577266a88648ecc8876849b2f",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
+      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
+      "search": "sema:Search#mh:SHA-256:f41f1d3dadc786c5fba7f290a9fc10ae87a39c07d6bb66a8f4deb0b9e393fc85"
     }
   },
   "sema_layer": "Mind",

@@ -47,7 +47,7 @@ Or use `sema_use(db_path="...")` via MCP.
 `sema_mint(pattern_json)` runs a full validation + hash + store pipeline:
 
 1. **Parse** — JSON syntax check
-2. **Schema validate** — required fields, handle format, layer/category validity
+2. **Schema validate** — required fields, handle format, taxonomy path validity
 3. **Dependency wiring** — every `{{placeholder}}` in text must be declared in dependencies; every declared dependency must be used
 4. **DAG check** — no cycles in the dependency graph; topological sort
 5. **Layer direction** — lower layers cannot depend on higher layers (Infrastructure < Physics < Mind < Society)
@@ -64,8 +64,7 @@ If any step fails, the pattern is rejected with an error message. No partial wri
   "mechanism": "How it works, referencing {{dependency_key}} placeholders",
   "gloss": "One-line summary",
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
+    "path": ["Mind", "Reasoning"],
     "ring": 1,
     "tier": 2
   }
@@ -77,8 +76,7 @@ If any step fails, the pattern is rejected with an error message. No partial wri
 | `handle` | PascalCase, alphanumeric, 1-50 chars. Must be unique in the vocabulary |
 | `mechanism` | How the pattern works. Must reference all dependencies via `{{snake_case_key}}` |
 | `gloss` | One-line summary of what the pattern IS |
-| `_meta.layer` | One of: `Infrastructure`, `Physics`, `Mind`, `Society` |
-| `_meta.category` | Valid for the layer (see category table below) |
+| `_meta.path` | Taxonomy path from layer to category, e.g. `["Mind", "Reasoning"]` |
 | `_meta.ring` | `0` (core), `1` (extended), `2` (experimental) |
 | `_meta.tier` | `0` (primitive), `1` (ironclad), `2` (honesty-dependent), `3` (experimental) |
 | `_meta.caution` | Optional. One-sentence warning about elevated risk. Add only if the risk isn't already obvious from the pattern's invariants or failure_modes, and adding it promotes safer use. |
@@ -97,10 +95,10 @@ Skip the flag if:
 
 The caution sits in `_meta` (unhashed), so it can be revised without changing the pattern's identity.
 
-### Layer categories
+### Valid paths
 
-| Layer | Categories |
-|-------|-----------|
+| Layer | Valid second segment |
+|-------|----------------------|
 | Infrastructure | Primitives, Data Structures, Safety, Verification |
 | Physics | Dynamics, Primitives, Time |
 | Mind | Inference, Memory, Reasoning, Strategy |
@@ -164,7 +162,7 @@ Before minting, resolve the full `sema_id` of each dependency:
 sema_resolve("Think")  →  sema_id: "sema:Think#mh:SHA-256:e1bd..."
 ```
 
-Use the full `sema_id` as the dependency value. During initial minting (before the pattern has been hashed), you can use the handle alone — the pipeline will resolve it.
+Use the full `sema_id` as the dependency value. `sema_validate` and `sema_mint` both enforce the full-hash dependency format.
 
 ## The content hash
 
@@ -212,8 +210,7 @@ sema_validate({ pattern_json: JSON.stringify({
     "Premature closure: stopping after 2-3 obvious {{risk}} factors"
   ],
   "_meta": {
-    "layer": "Mind",
-    "category": "Strategy",
+    "path": ["Mind", "Strategy"],
     "ring": 1,
     "tier": 2
   },
@@ -227,7 +224,7 @@ sema_validate({ pattern_json: JSON.stringify({
 
 // 4. Mint
 sema_mint({ pattern_json: "..." })
-// → { success: true, handle: "PreMortem", sema_ref: "PreMortem#6cc4", sema_id: "sema:PreMortem#mh:SHA-256:f69d..." }
+// → { success: true, handle: "PreMortem", sema_ref: "PreMortem#4c7f", sema_id: "sema:PreMortem#mh:SHA-256:f69d..." }
 ```
 
 ## Common errors and fixes

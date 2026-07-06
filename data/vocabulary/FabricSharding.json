@@ -39,14 +39,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:ce615fb4865cab7e631536f9bae1c869c8ed530d219d9b38754f038dce1eef5f",
-  "sema_ref": "FabricSharding#ce61",
-  "sema_stub": "ce61",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:25d27106d786155e3fda6f31260d2a56bd2e936df771d7e5d755a65676f12248",
+  "sema_ref": "FabricSharding#25d2",
+  "sema_stub": "25d2",
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:37ad00e823e2263528b3d17396d9270e506c586f107a8e26eb4937b6383833b8",
-      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "parallelize": "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf",
+      "shard": "sema:Shard#mh:SHA-256:328e51de920cace286a054e313321ff188e34a90d9e5dc8fca1eb2df24baded0",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Society",

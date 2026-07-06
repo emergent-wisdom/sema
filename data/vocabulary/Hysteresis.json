@@ -33,13 +33,13 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Hysteresis#mh:SHA-256:addbf14e04e773a9a6b2313b0b300392bb2c33d79aace9d3b9d9a2ea600c42cb",
-  "sema_ref": "Hysteresis#addb",
-  "sema_stub": "addb",
+  "sema_id": "sema:Hysteresis#mh:SHA-256:f1dfdb23e9c63915250dc6ff0b8447d728649aa00a69a0f57b6ce9d0c6f534a7",
+  "sema_ref": "Hysteresis#f1df",
+  "sema_stub": "f1df",
   "dependencies": {
     "references": {
-      "dampen": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "dampen": "sema:Dampen#mh:SHA-256:5edd829087aefc086843183dd2361355777d5c2237456e2de72f315e45ffc3a4",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Infrastructure",

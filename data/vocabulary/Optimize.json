@@ -37,17 +37,17 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
-  "sema_ref": "Optimize#6226",
-  "sema_stub": "6226",
+  "sema_id": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17",
+  "sema_ref": "Optimize#94e0",
+  "sema_stub": "94e0",
   "dependencies": {
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
+      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
     },
     "references": {
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
-      "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
-      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9"
+      "global": "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959",
+      "gradient": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
+      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c"
     }
   },
   "sema_layer": "Mind",

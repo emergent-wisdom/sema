@@ -12,11 +12,15 @@ echo ""
 # 1. Build web frontend
 echo "Building web frontend..."
 cd web
-npm install --silent
+npm ci
 npm run build
 echo "Copying frontend to server static..."
-rm -rf ../src/sema/server/static/assets ../src/sema/server/static/index.html ../src/sema/server/static/favicon.svg
-cp -r dist/* ../src/sema/server/static/
+rm -rf ../src/sema/server/static/assets \
+       ../src/sema/server/static/index.html \
+       ../src/sema/server/static/__spa-fallback.html \
+       ../src/sema/server/static/favicon.svg \
+       ../src/sema/server/static/sema_logo.svg
+cp -R build/client/. ../src/sema/server/static/
 cd "$PROJECT_ROOT"
 echo "  ✓ Frontend built"
 echo ""

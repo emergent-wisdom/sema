@@ -312,6 +312,60 @@ class TestMerkleCascade:
         assert "MidC" not in cascaded, "MidC leaked into cascade"
         assert not any(h.startswith("Leaf") for h in cascaded), "No leaf should cascade"
 
+    def test_diamond_dependency_leaves_no_stale_hashes(self, temp_db):
+        """Diamond: Top -> {Left, Right} -> Base. Updating Base must leave
+        every stored hash equal to a fresh recompute.
+
+        Regression: a DFS cascade with a visited set rehashes Top after
+        only one of Left/Right has its new hash, then the visited set
+        blocks the second, correct recompute — leaving Top's stored hash
+        permanently stale.
+        """
+        store = GraphStore(temp_db)
+
+        store.add_pattern(
+            {
+                "handle": "Base",
+                "mechanism": "The base mechanism",
+                "gloss": "Base",
+                "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            }
+        )
+        for side in ("Left", "Right"):
+            store.add_pattern(
+                {
+                    "handle": side,
+                    "mechanism": f"{side} arm uses {{{{base}}}}",
+                    "gloss": side,
+                    "dependencies": {"references": {"base": "Base"}},
+                    "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+                }
+            )
+        store.add_pattern(
+            {
+                "handle": "Top",
+                "mechanism": "Joins {{left}} and {{right}}",
+                "gloss": "Top",
+                "dependencies": {"references": {"left": "Left", "right": "Right"}},
+                "_meta": {"layer": "Infrastructure", "category": "Primitives", "tier": 1},
+            }
+        )
+
+        content = store._get_pattern_content("Base")
+        content["mechanism"] = "The base mechanism, updated"
+        result = store.update_pattern_with_cascade("Base", content)
+
+        assert result.get("success"), result.get("error")
+        assert set(result["updated"]) == {"Base", "Left", "Right", "Top"}, result["updated"]
+
+        # The invariant: every stored hash matches a fresh recompute.
+        for handle in ("Base", "Left", "Right", "Top"):
+            stored = store.get_pattern_hash(handle)
+            fresh = store.compute_pattern_hash(store._get_pattern_content(handle))["hash"]
+            assert stored == fresh, (
+                f"stale hash on '{handle}': stored={stored[:12]} fresh={fresh[:12]}"
+            )
+
     def test_validation_prevents_missing_deps(self, temp_db):
         """Adding pattern with missing dependency should fail."""
         store = GraphStore(temp_db)

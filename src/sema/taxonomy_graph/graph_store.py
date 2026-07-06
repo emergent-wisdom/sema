@@ -3,6 +3,7 @@
 import json
 import re
 import sqlite3
+import sys
 import uuid
 from enum import Enum
 from typing import Any
@@ -147,11 +148,21 @@ class GraphStore:
         self._migrate_schema()
         self._load_graph()
 
+    def _connect(self) -> sqlite3.Connection:
+        """Open a connection with integrity enforcement enabled.
+
+        SQLite foreign-key enforcement is PER CONNECTION — setting the
+        pragma once at init does nothing for later connections. Every
+        write path must come through here, or dangling-edge protection
+        is silently off (which is how it shipped for months).
+        """
+        conn = sqlite3.connect(self.db_path)
+        conn.execute("PRAGMA foreign_keys = ON")
+        return conn
+
     def _init_tables(self):
         """Create database tables if they don't exist."""
-        conn = sqlite3.connect(self.db_path)
-        # CRITICAL: Enable foreign key enforcement to prevent dangling edges
-        conn.execute("PRAGMA foreign_keys = ON")
+        conn = self._connect()
         cursor = conn.cursor()
 
         cursor.execute(
@@ -201,19 +212,77 @@ class GraphStore:
         conn.close()
 
     def _migrate_schema(self):
-        """Add columns to existing DBs that pre-date them. Idempotent."""
-        conn = sqlite3.connect(self.db_path)
+        """Add columns/constraints to existing DBs that pre-date them. Idempotent."""
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute("PRAGMA table_info(edges)")
         cols = {row[1] for row in cursor.fetchall()}
         if "alias" not in cols:
             cursor.execute("ALTER TABLE edges ADD COLUMN alias TEXT")
+
+        # ── Schema hardening (issue #29) ─────────────────────────────────
+        # `sema apply` (and every other write path) checks these invariants
+        # in Python, but nothing stopped a direct SQL write, migration bug,
+        # or crashed half-mint from violating them silently. The schema is
+        # the backstop for identity invariants; Python keeps owning the
+        # semantic ones (hash correctness, layer rules).
+        #
+        # Each step is tolerant: a legacy DB that already violates an
+        # invariant (or an old SQLite without generated-column support)
+        # keeps working, with a loud warning instead of a hard failure.
+        # 1. At most one PATTERN row per handle.
+        try:
+            cursor.execute(
+                "CREATE UNIQUE INDEX IF NOT EXISTS idx_nodes_pattern_handle "
+                "ON nodes(text) WHERE node_type = 'PATTERN'"
+            )
+        except sqlite3.IntegrityError:
+            print(
+                f"Warning: {self.db_path} contains duplicate pattern handles; "
+                "handle-uniqueness constraint NOT installed. Run a dedupe.",
+                file=sys.stderr,
+            )
+        except sqlite3.OperationalError:
+            # Read-only DB file (e.g. root-owned install) — constraints
+            # can't be installed; Python-level checks still apply.
+            conn.close()
+            return
+
+        # 2. At most one PATTERN row per sema_id. The sema_id lives inside
+        #    the metadata JSON, so expose it as a virtual generated column
+        #    first (queryable + indexable, no data rewrite).
+        cursor.execute("PRAGMA table_info(nodes)")
+        node_cols = {row[1] for row in cursor.fetchall()}
+        if "sema_id" not in node_cols:
+            try:
+                cursor.execute(
+                    "ALTER TABLE nodes ADD COLUMN sema_id TEXT "
+                    "GENERATED ALWAYS AS (json_extract(metadata, '$.pattern.sema_id')) VIRTUAL"
+                )
+            except sqlite3.OperationalError:
+                # SQLite < 3.31 (no generated columns) — skip quietly; the
+                # Python-level checks still apply.
+                pass
+        try:
+            cursor.execute(
+                "CREATE UNIQUE INDEX IF NOT EXISTS idx_nodes_pattern_sema_id "
+                "ON nodes(sema_id) WHERE node_type = 'PATTERN' AND sema_id IS NOT NULL"
+            )
+        except sqlite3.OperationalError:
+            pass  # generated column unavailable above
+        except sqlite3.IntegrityError:
+            print(
+                f"Warning: {self.db_path} contains duplicate sema_ids; "
+                "sema_id-uniqueness constraint NOT installed. Run a dedupe.",
+                file=sys.stderr,
+            )
+
         conn.commit()
         conn.close()
 
     def _load_graph(self):
         """Load graph from database into memory."""
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
 
         cursor.execute("SELECT id, node_type, text, metadata, embedding FROM nodes")
@@ -266,7 +335,7 @@ class GraphStore:
             embedding = self.embedding_service.get_embedding(content)
             embedding_blob = embedding.tobytes()
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO nodes (id, node_type, text, metadata, embedding) VALUES (?, ?, ?, ?, ?)",
@@ -301,7 +370,7 @@ class GraphStore:
         edge_id = str(uuid.uuid4())
         metadata = metadata or {}
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO edges (id, source_id, target_id, edge_type, alias, metadata) "
@@ -582,6 +651,19 @@ class GraphStore:
             pattern_id = existing_nid
             data = self.graph.nodes[existing_nid]
             if "metadata" in data:
+                previous_pattern = data["metadata"].get("pattern", {}) or {}
+
+                # Carry the previous hash fields through this first write.
+                # The fresh hash is only computed (and written) after the
+                # dependency edges exist; without the carry-over, a crash in
+                # between leaves a hashless pattern that vocabulary_root()
+                # silently skips — two differing vocabularies could then
+                # produce identical roots (false PROCEED on the vocab
+                # handshake). A stale hash fails closed instead.
+                for hash_field in ("sema_id", "sema_ref", "sema_stub"):
+                    if hash_field not in stored_pattern and hash_field in previous_pattern:
+                        stored_pattern[hash_field] = previous_pattern[hash_field]
+
                 data["metadata"]["pattern"] = stored_pattern
                 # Promote path + derived layer/category to top-level node
                 # metadata for indexing and legacy query compatibility.
@@ -589,12 +671,36 @@ class GraphStore:
                 data["metadata"]["layer"] = derived_layer
                 data["metadata"]["category"] = derived_category
 
-                # Persist metadata update
-                conn = sqlite3.connect(self.db_path)
-                conn.execute(
-                    "UPDATE nodes SET metadata = ? WHERE id = ?",
-                    (json.dumps(data["metadata"]), existing_nid),
+                # Refresh the embedding when the searchable text changed —
+                # otherwise semantic search keeps ranking the pattern by its
+                # pre-update gloss/mechanism indefinitely.
+                embedding_blob = None
+                old_text = (
+                    f"{handle}: {previous_pattern.get('gloss', '')} "
+                    f"{previous_pattern.get('mechanism', '')}"
                 )
+                new_text = (
+                    f"{handle}: {stored_pattern.get('gloss', '')} "
+                    f"{stored_pattern.get('mechanism', '')}"
+                )
+                if new_text != old_text:
+                    embedding = self.embedding_service.get_embedding(new_text)
+                    if embedding is not None:
+                        embedding_blob = embedding.tobytes()
+                        data["embedding"] = embedding
+
+                # Persist metadata (and embedding, if refreshed)
+                conn = self._connect()
+                if embedding_blob is not None:
+                    conn.execute(
+                        "UPDATE nodes SET metadata = ?, embedding = ? WHERE id = ?",
+                        (json.dumps(data["metadata"]), embedding_blob, existing_nid),
+                    )
+                else:
+                    conn.execute(
+                        "UPDATE nodes SET metadata = ? WHERE id = ?",
+                        (json.dumps(data["metadata"]), existing_nid),
+                    )
                 conn.commit()
                 conn.close()
 
@@ -671,7 +777,7 @@ class GraphStore:
                     continue
                 edge_ids = self.remove_edges_of_type(pattern_id, succ, EdgeType.IN_PATH)
                 for eid in edge_ids:
-                    conn = sqlite3.connect(self.db_path)
+                    conn = self._connect()
                     conn.execute("DELETE FROM edges WHERE id = ?", (eid,))
                     conn.commit()
                     conn.close()
@@ -744,7 +850,7 @@ class GraphStore:
             # 3. Prune OBSOLETE edges (target+type+alias not in desired)
             for target_id, e_type, alias, edge_id, key in existing_dep_edges:
                 if (target_id, e_type, alias) not in desired_edges:
-                    conn = sqlite3.connect(self.db_path)
+                    conn = self._connect()
                     conn.execute("DELETE FROM edges WHERE id = ?", (edge_id,))
                     conn.commit()
                     conn.close()
@@ -923,7 +1029,7 @@ class GraphStore:
                         alias=alias,
                     )
 
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         cursor = conn.cursor()
         cursor.execute(
             "DELETE FROM edges WHERE source_id = ? OR target_id = ?",
@@ -1110,31 +1216,67 @@ class GraphStore:
         return generate_sema_hash(pattern, hash_lookup)
 
     def _cascade_dependents(self, handle: str, visited: set | None = None) -> dict[str, Any]:
-        """Recursively update hashes of all patterns that depend on the given handle.
+        """Update hashes of all patterns that transitively depend on the given handle.
 
         This is called AFTER a pattern has been updated, to propagate hash changes
         to all dependents in the Merkle DAG.
 
+        Dependents are recomputed in dependency order (a pattern only after
+        every in-set pattern it depends on). A naive DFS with a visited set
+        corrupts diamond shapes: with A depending on both B and C, and both
+        depending on the updated pattern, DFS reaches A through B while C
+        still has its old hash — and the visited set then blocks the second,
+        correct recompute of A.
+
+        Args:
+            handle: The already-updated pattern whose dependents need rehashing.
+            visited: Optional set of handles to exclude from the cascade.
+
         Returns:
             {"updated": [list of handles that were updated]}
         """
-        if visited is None:
-            visited = {handle}
+        excluded = {handle} if visited is None else set(visited) | {handle}
+
+        # Collect every transitive dependent (BFS over reverse dep edges).
+        affected: set[str] = set()
+        queue = [handle]
+        while queue:
+            for dep_handle in self.get_dependents(queue.pop()):
+                if dep_handle not in affected and dep_handle not in excluded:
+                    affected.add(dep_handle)
+                    queue.append(dep_handle)
+
+        # Kahn's algorithm over the in-set dependency relation: an edge
+        # Q -> P (P depends on Q) means Q must be recomputed before P.
+        in_degree = dict.fromkeys(affected, 0)
+        dependents_of: dict[str, list[str]] = {h: [] for h in affected}
+        for h in affected:
+            for dep_handle in self.get_dependents(h):
+                if dep_handle in affected:
+                    dependents_of[h].append(dep_handle)
+                    in_degree[dep_handle] += 1
+
+        ready = sorted(h for h, deg in in_degree.items() if deg == 0)
+        order: list[str] = []
+        while ready:
+            current = ready.pop(0)
+            order.append(current)
+            for dep_handle in dependents_of[current]:
+                in_degree[dep_handle] -= 1
+                if in_degree[dep_handle] == 0:
+                    ready.append(dep_handle)
+        # Cyclic leftovers (invalid vocabularies) get appended in a stable
+        # order so the cascade still terminates and touches every node once.
+        if len(order) < len(affected):
+            order.extend(sorted(affected - set(order)))
 
         updated = []
-        dependents = self.get_dependents(handle)
-
-        for dep_handle in dependents:
-            if dep_handle in visited:
-                continue  # Cycle protection
-            visited.add(dep_handle)
-
+        for dep_handle in order:
             dep_content = self._get_pattern_content(dep_handle)
             if not dep_content:
                 continue
 
             old_hash = self.get_pattern_hash(dep_handle)
-            # Recompute hash - uses compute_pattern_hash which calls generate_sema_hash
             new_hash_info = self.compute_pattern_hash(dep_content)
 
             # Only update if hash actually changed
@@ -1144,10 +1286,6 @@ class GraphStore:
                 dep_content["sema_stub"] = new_hash_info["stub"]
                 self._update_pattern_metadata(dep_handle, dep_content)
                 updated.append(dep_handle)
-
-                # Recurse: cascade to this pattern's dependents
-                sub_result = self._cascade_dependents(dep_handle, visited)
-                updated.extend(sub_result.get("updated", []))
 
         return {"updated": updated}
 
@@ -1229,7 +1367,7 @@ class GraphStore:
         data["metadata"]["pattern"] = new_pattern
 
         # Update in DB
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         conn.execute(
             "UPDATE nodes SET metadata = ? WHERE id = ?",
             (json.dumps(data["metadata"]), nid),
@@ -1285,7 +1423,7 @@ class GraphStore:
         )
 
         # Delete from DB - manually delete edges first (no CASCADE in schema)
-        conn = sqlite3.connect(self.db_path)
+        conn = self._connect()
         conn.execute("DELETE FROM edges WHERE source_id = ? OR target_id = ?", (node_id, node_id))
         conn.execute("DELETE FROM nodes WHERE id = ?", (node_id,))
         conn.commit()

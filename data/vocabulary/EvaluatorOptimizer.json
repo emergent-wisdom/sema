@@ -30,19 +30,19 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:e58e90e4e41715dd6bec748d54f0b241ed70ac5034a2e3ab661e436a1ba4b879",
-  "sema_ref": "EvaluatorOptimizer#e58e",
-  "sema_stub": "e58e",
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:8ebdbab9207af96a57c670d2d3786bc01528f4ef645df1e3a225365ff161ff7e",
+  "sema_ref": "EvaluatorOptimizer#8ebd",
+  "sema_stub": "8ebd",
   "signature": [
     "Optimize(Loop)"
   ],
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
-      "meta_check": "sema:MetaCheck#mh:SHA-256:1914b94396caf3eed522feb1c8c72dece8ccde4cc412fc4d4a62a5ca61c4398f",
-      "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4"
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
+      "meta_check": "sema:MetaCheck#mh:SHA-256:67872b0654d8a91ce849b6062e34cf8842bb315e77e7bf02cda64eb53ab4314a",
+      "optimize": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17"
     }
   },
   "sema_layer": "Society",

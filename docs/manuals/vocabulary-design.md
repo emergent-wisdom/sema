@@ -86,7 +86,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ### Physics/Primitives (16)
 
-### Attractor#487f
+### Attractor#8c2d
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -128,7 +128,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Causation#d360
+### Causation#e47b
 
 `Physics` · `Primitives` · R1 · T1
 
@@ -176,11 +176,11 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 **In the family.** The causal-structure anchor in Physics. Paired with `Correlation` (the contrast anchor — what you have when you don't have Causation). Feeds `Experiment` (the intervention tool), `Abduction` (inferring causes from effects), and `CausalBarrier` (enforcing causal ordering in distributed systems).
 
 **Supersedes (prior versions).**
-- `Causation#d360`
+- `Causation#e47b`
 
 ---
 
-### Conservation#ba2e
+### Conservation#0b32
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -222,7 +222,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Dampen#3f0c
+### Dampen#5edd
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -269,11 +269,11 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 **In the family.** Foundational control primitive paired with Amplify (the inverse), Throttle (rate-limit variant), and Backoff (retry-specific damping). Used by Compromise (damp intensity), Hysteresis (damp transitions), and many resilience patterns. Compare with Entropy — both reduce, Dampen reduces magnitude, Entropy increases disorder.
 
 **Supersedes (prior versions).**
-- `Dampen#3f0c`
+- `Dampen#5edd`
 
 ---
 
-### Decay#1e8b
+### Decay#ed25
 
 `Physics` · `Primitives` · R0 · T2
 
@@ -327,11 +327,11 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 **In the family.** Substrate pattern for time-attenuation. Paired with `Dampen` (magnitude attenuation independent of time) and `Hysteresis` (threshold-crossing with gap). Invoked by attention-allocation, memory, aging-based relevance patterns across the library.
 
 **Supersedes (prior versions).**
-- `Decay#1e8b`
+- `Decay#ed25`
 
 ---
 
-### Distance#1376
+### Distance#dfdf
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -374,7 +374,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Entropy#a265
+### Entropy#323f
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -418,13 +418,13 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 - Zero invariants listed. For a concept with this much load-bearing use, at minimum: Non-Negativity (Entropy ≥ 0), Maximality (bounded by the system's state-space cardinality), Monotonicity-Without-Intervention (in a closed system, entropy is non-decreasing).
 - Zero failure modes. A pattern with this many dependents should at least name the Ambiguous Domain failure (callers mean Shannon when the spec suggests thermodynamic).
 - The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion.
-- `_meta.related` reference updated from legacy stub format (`EntropyPump#ed3b`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format (`EntropyPump#31cf`) to full sema_id.
 
 **In the family.** Substrate concept underlying `EntropyPump`, `Crystallize`'s threshold check, `Reversibility`'s Entropy constraint, and `Noise`. Paired with `Measurement` (the act of observing), `Conservation` (what doesn't increase), and `Attractor` (where dynamics land).
 
 ---
 
-### Equilibrium#f7c5
+### Equilibrium#bc85
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -466,7 +466,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Gradient#480b
+### Gradient#dcf0
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -508,7 +508,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Lock#051c
+### Lock#95c2
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -574,7 +574,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Measurement#5da6
+### Measurement#511d
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -616,7 +616,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 
 ---
 
-### Mutex#4f92
+### Mutex#58ba
 
 `Physics` · `Primitives` · R0 · T2
 
@@ -690,11 +690,11 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 **Derived from.** `Lock`
 
 **Supersedes (prior versions).**
-- `Mutex#4f92`
+- `Mutex#58ba`
 
 ---
 
-### MutualInformation#da31
+### MutualInformation#03a0
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -737,7 +737,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ---
 
-### Noise#3d9a
+### Noise#5573
 
 `Physics` · `Primitives` · R1 · T1
 
@@ -784,11 +784,11 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 **In the family.** Foundational-info primitive paired with Signal (the counterpart), Filter (the removal operation), and Dampen (the reduction). Compare with Incongruity — Noise is irrelevant variance, Incongruity is structured mismatch. Different kinds of 'not what was expected.'
 
 **Supersedes (prior versions).**
-- `Noise#3d9a`
+- `Noise#5573`
 
 ---
 
-### PhaseTransition#edf8
+### PhaseTransition#b775
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -830,7 +830,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ---
 
-### Reversibility#bf79
+### Reversibility#af6f
 
 `Physics` · `Primitives` · R0 · T1
 
@@ -881,13 +881,13 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 **In the family.** Substrate-level decision property pairing with `Entropy` (the thermodynamic limit) and with action patterns. Invoked by `PreMortem`, `ReversibilityCheck`, `SafeToTry`-style gates. The pattern names the property; specific tooling descends from it.
 
 **Supersedes (prior versions).**
-- `Reversibility#bf79`
+- `Reversibility#af6f`
 
 ---
 
 ### Physics/Time (1)
 
-### CausalBarrier#f2d7
+### CausalBarrier#39b3
 
 `Physics` · `Time` · R0 · T1
 
@@ -942,7 +942,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 **In the family.** Lives in the causation family with Causation, HappensBefore, and TemporalOrder. Implementation-oriented counterpart to Causation's theoretical role. Compare with StateLock — both use locking to preserve invariants, but StateLock protects state while CausalBarrier protects ordering. Pairs with EventQueue and AuditTrail as the infrastructure for async agent processing.
 
 **Supersedes (prior versions).**
-- `CausalBarrier#f2d7`
+- `CausalBarrier#39b3`
 
 ---
 
@@ -950,7 +950,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ### Infrastructure/Data Structures (93)
 
-### AcceptSpec#b77c
+### AcceptSpec#c156
 
 `Infrastructure` · `Data Structures` · R0 · T2
 
@@ -1006,11 +1006,11 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 **In the family.** The contract half of the (AcceptSpec, FailureTrace) pair that wires a Solver's Verify surface. Consumed by the Verify surface; produces FrameError on rejection of non-compensatory criteria. Companion to `Judge` (graded scalar) and `Check` (three-state verification) — AcceptSpec is the strict pass/fail case.
 
 **Supersedes (prior versions).**
-- `AcceptSpec#b77c`
+- `AcceptSpec#c156`
 
 ---
 
-### Aesthetics#7434
+### Aesthetics#dec7
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1059,11 +1059,11 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 **In the family.** A judgment-flavored sibling of Parsimony (simplicity as virtue), Elegance (functional beauty), and Score (generic evaluation). Distinct from functional evaluators like Validate or Solution because the criterion is subjective by design. Compare with Care — Aesthetics is about how the artifact meets the observer; Care is about how the observer meets the artifact.
 
 **Supersedes (prior versions).**
-- `Aesthetics#7434`
+- `Aesthetics#dec7`
 
 ---
 
-### Anomaly#fac8
+### Anomaly#4595
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -1110,11 +1110,11 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 **In the family.** The trigger sibling of Datum (ordinary observation), Evidence (supporting a hypothesis), and SurprisalUpdate (the Bayesian cousin). Feeds Investigation and LearningLoop as the input that forces attention. Compare with FailureTrace — FailureTrace is the structured form of a specific failure event; Anomaly is the general form for 'something deviated.'
 
 **Supersedes (prior versions).**
-- `Anomaly#fac8`
+- `Anomaly#4595`
 
 ---
 
-### Artifact#6254
+### Artifact#379a
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1170,7 +1170,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 ---
 
-### Assessment#a765
+### Assessment#39df
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -1222,7 +1222,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 ---
 
-### Assumption#efb5
+### Assumption#4647
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -1274,7 +1274,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 ---
 
-### Audit#6888
+### Audit#be97
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1334,11 +1334,11 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **In the family.** The durable-output sibling of AuditTrail (the sequence of audits) and Check (the verification verb). Produces artifacts that Witness, Decision, and State changes reference. Compare with Assessment (which is also a structured verdict artifact, but from a qualitative critique rather than a verification). Audit is binary/structured-verdict; Assessment is qualitative/recommendation-shaped.
 
 **Supersedes (prior versions).**
-- `Audit#6888`
+- `Audit#be97`
 
 ---
 
-### Ballot#1934
+### Ballot#43eb
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1394,11 +1394,11 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **In the family.** The vote-proposal data structure. Consumed by `Vote` (the protocol), enforced via `Quorum` (the threshold). Pairs with `Decision` (what the vote produces) and `Ballot` is the input; `Decision` is the output of the voting process.
 
 **Supersedes (prior versions).**
-- `Ballot#1934`
+- `Ballot#43eb`
 
 ---
 
-### Belief#1f44
+### Belief#7d83
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -1446,11 +1446,11 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **In the family.** The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Paired with `Evidence` and distinguished from `Fact` by subjectivity.
 
 **Supersedes (prior versions).**
-- `Belief#1f44`
+- `Belief#7d83`
 
 ---
 
-### Boolean#199e
+### Boolean#981e
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -1475,7 +1475,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **Design tensions.**
 - Triviality vs rigor: Boolean's mechanism is almost tautological. But the alternative — leaving it implicit — means every caller hand-wires its own Boolean representation (int 0/1? string 'true'/'false'? enum?). The library trades verbosity for typed consistency.
 - No middle value vs real-world nuance: the Exhaustive invariant forbids intermediate values. Real verification often lands in 'true with low confidence' — that belongs on Judge or Check, not Boolean. Callers who reach for a tri-valued Boolean are signaling the wrong type.
-- Minted vs imported: most languages provide Boolean as a primitive; Sema duplicates it. The justification is content-addressing — a Validate that yields `sema:Boolean#199e` is byte-verifiable against the caller's expected type.
+- Minted vs imported: most languages provide Boolean as a primitive; Sema duplicates it. The justification is content-addressing — a Validate that yields `sema:Boolean#981e` is byte-verifiable against the caller's expected type.
 
 **Tradeoffs.**
 - Explicit pattern buys typed verifiability at the cost of looking pedantic (why a whole pattern for true/false?).
@@ -1491,7 +1491,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Break#79f1
+### Break#3c37
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1557,11 +1557,11 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **In the family.** Lives in the failure-handling cluster with FailClosed, FailFast, FailSafe, Retry, and Compensate. Break is specifically the multi-party announcement flavor; FailClosed is single-actor. Pairs with AuditTrail (the durable record of the Break event) and Handoff (which a recoverable Break may trigger).
 
 **Supersedes (prior versions).**
-- `Break#79f1`
+- `Break#3c37`
 
 ---
 
-### Cache#08ed
+### Cache#30c9
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1623,11 +1623,11 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **In the family.** Core infrastructure primitive, paired with Source (the backing store), Invalidation (the freshness mechanism), and Key (the lookup handle). Compare with PathwayMemory — PathwayMemory is a memoization pattern for reasoning traces rather than values. Compare with HeuristicSnap — both speed up reasoning by avoiding work, but Cache is faithful repetition, HeuristicSnap is approximate lookup.
 
 **Supersedes (prior versions).**
-- `Cache#08ed`
+- `Cache#30c9`
 
 ---
 
-### Card#6848
+### Card#84b7
 
 `Infrastructure` · `Data Structures` · R0 · T2
 
@@ -1686,11 +1686,11 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **In the family.** The Manifest surface output of the Solver contract. Consumed by `AgentDiscover`, `ToolDiscovery`, `SpectralTune`. Paired with `Probe` (verifies claimed capabilities), `Identity` (the issuer), and the agent-protocol family for structured coordination.
 
 **Supersedes (prior versions).**
-- `Card#6848`
+- `Card#84b7`
 
 ---
 
-### Category#1ab7
+### Category#d2db
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -1738,7 +1738,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Chain#711e
+### Chain#0bd8
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -1793,11 +1793,11 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 
 **Supersedes (prior versions).**
 - `Linear#81af`
-- `Chain#711e`
+- `Chain#0bd8`
 
 ---
 
-### CognitiveBias#4b32
+### CognitiveBias#c8a4
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -1845,7 +1845,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 
 ---
 
-### ConceptAnchor#828b
+### ConceptAnchor#95cb
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -1899,11 +1899,11 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 **In the family.** Architectural substrate of the sema library itself — every pattern in the vocabulary is content-addressed, and ConceptAnchor names the pattern behind that design. Pairs with Artifact (the general immutable-by-hash primitive), Resolve (the verb for looking up anchors), and Drop (the event that finalizes a new anchor). Compare with Dictionary or Registry — ConceptAnchor is specifically the content-addressed flavor.
 
 **Supersedes (prior versions).**
-- `ConceptAnchor#828b`
+- `ConceptAnchor#95cb`
 
 ---
 
-### Condition#cbd5
+### Condition#b480
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -1960,7 +1960,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 ---
 
-### Constraint#87fe
+### Constraint#7013
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2018,7 +2018,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 ---
 
-### Context#e88a
+### Context#d5f7
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2084,11 +2084,11 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 **In the family.** The execution-environment container. Composed with `Constraint` (the inheritance-monotonic half), `Identity`, `Tool` (capability set), working memory. Pairs with `Task` (context flows with task dispatch) and `Card` (context travels with capability advertisements).
 
 **Supersedes (prior versions).**
-- `Context#e88a`
+- `Context#d5f7`
 
 ---
 
-### Contract#442e
+### Contract#9e78
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2146,11 +2146,11 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 **In the family.** The multi-party commitment artifact in Infrastructure. Composed with `Identity` (signers), `Condition` (terms), `Sign` (the signing op), `CommitmentDevice`. Used by `LatticeCommit`, governance, and economic-exchange patterns.
 
 **Supersedes (prior versions).**
-- `Contract#442e`
+- `Contract#9e78`
 
 ---
 
-### Correlation#148d
+### Correlation#3e68
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2199,11 +2199,11 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 **In the family.** Paired with Causation as the foundational statistics distinction. Compare with Covariance (close cousin, different normalization), MutualInformation (nonlinear analogue), and Correlation-vs-Causation patterns explicitly guarding against the upgrade. Used by BayesUpdate (correlation as weak evidence), Investigation (correlation as starting lead), and Explanation (correlation as data to explain).
 
 **Supersedes (prior versions).**
-- `Correlation#148d`
+- `Correlation#3e68`
 
 ---
 
-### Criteria#ef6b
+### Criteria#0400
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2251,7 +2251,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 ---
 
-### Cyclic#5e79
+### Cyclic#6d5f
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -2302,11 +2302,11 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 **In the family.** Topology-pattern counterpart to DAG. Foundational for Reflexion (iterative refinement), FeedbackLoop, and Iterate. Compare with Recurrence — Cyclic is the topology, Recurrence is the semantics; both name loop-shaped structure at different levels.
 
 **Supersedes (prior versions).**
-- `Cyclic#5e79`
+- `Cyclic#6d5f`
 
 ---
 
-### DAG#29cb
+### DAG#ed81
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -2357,11 +2357,11 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 **In the family.** Core topology primitive, paired with Cyclic (its feedback-allowing counterpart) and Graph (the general container). Foundation for Compose (which requires DAG shape), Chain (linear DAG), Pipeline (linear with side effects). Compare with Tree — Tree is DAG with single-parent constraint.
 
 **Supersedes (prior versions).**
-- `DAG#29cb`
+- `DAG#ed81`
 
 ---
 
-### Datum#31cf
+### Datum#f904
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2409,7 +2409,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 ---
 
-### Decision#934e
+### Decision#7fdf
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2463,11 +2463,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Output of `Gate` and downstream artifact for every flow-control primitive in the library. Three-state semantics (proceed / halt / debt) distinguish it from `Status` (Check's three-state: Verified / Falsified / Unknown), `Boolean` (Validate's), and `Score` (Judge's). `DocumentedOverride` pairs with debt-marked Decisions at hard seams.
 
 **Supersedes (prior versions).**
-- `Decision#934e`
+- `Decision#7fdf`
 
 ---
 
-### Event#7e71
+### Event#0354
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2515,7 +2515,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Exception#0a4d
+### Exception#054c
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2562,11 +2562,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Foundational error-handling primitive paired with CircuitBreaker (the resilience wrapper), FailClosed (the safety default), and Error (the general anomaly class). Compare with Anomaly — Exception is the signal that flow is off; Anomaly is the data that something's off. Different operational roles for deviation-from-normal.
 
 **Supersedes (prior versions).**
-- `Exception#0a4d`
+- `Exception#054c`
 
 ---
 
-### ExecutionManifest#6cf5
+### ExecutionManifest#4342
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2617,11 +2617,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Execution-artifact paired with ManifestPlanning (the producer), Rollout (the consumer), and FrameSpec (the input). Compare with RolloutManifest — ExecutionManifest is pre-deploy plan; RolloutManifest is post-deploy record.
 
 **Supersedes (prior versions).**
-- `ExecutionManifest#6cf5`
+- `ExecutionManifest#4342`
 
 ---
 
-### FailureTrace#96df
+### FailureTrace#416b
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2669,7 +2669,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Forest#5eda
+### Forest#f190
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2710,7 +2710,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### FrameSpec#f63f
+### FrameSpec#c9bc
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2763,11 +2763,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Problem-framing primitive paired with Interpret (the production step), AcceptSpec (the quality bar), and Goal (the success state). Compare with Task — Task is the execution unit; FrameSpec is the interpretive substrate Task is derived from. Different lifecycle stages.
 
 **Supersedes (prior versions).**
-- `FrameSpec#f63f`
+- `FrameSpec#c9bc`
 
 ---
 
-### Goal#0948
+### Goal#1076
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2823,11 +2823,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Foundational primitive consumed by Task, Plan, Solve, AcceptSpec, Prioritize. Sibling of Criteria (how to measure) and Purpose (why). Compare with Intent — Goal is testable end-state; Intent is the volitional precursor. Both are purpose-specifying, at different operational points.
 
 **Supersedes (prior versions).**
-- `Goal#0948`
+- `Goal#1076`
 
 ---
 
-### Hierarchy#d530
+### Hierarchy#8039
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2874,11 +2874,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Foundational structural primitive paired with Tree (a specific hierarchical topology), Category (the groupable unit), and Authority (the responsibility flavor). Compare with Lattice — Hierarchy is vertical, Lattice allows both vertical and horizontal. Different structural constraints.
 
 **Supersedes (prior versions).**
-- `Hierarchy#d530`
+- `Hierarchy#8039`
 
 ---
 
-### Hypothesis#ffa7
+### Hypothesis#e13b
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2925,11 +2925,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Core epistemic-stance primitive paired with Claim (asserted truth), Assumption (provisional proceed), Axiom (foundational). Consumed by Falsification (the test), EmpiricalTest (the pipeline), and BayesUpdate (the revision).
 
 **Supersedes (prior versions).**
-- `Hypothesis#ffa7`
+- `Hypothesis#e13b`
 
 ---
 
-### Identity#626c
+### Identity#bfe2
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2977,7 +2977,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Ledger#2be9
+### Ledger#bc30
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3028,11 +3028,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Economic-coordination primitive paired with Transaction (the entry), AuditTrail (general-purpose counterpart), and Sign (for entry authentication). Compare with AuditTrail — Ledger is economically-shaped (value, transfers); AuditTrail is action-shaped (who did what).
 
 **Supersedes (prior versions).**
-- `Ledger#2be9`
+- `Ledger#bc30`
 
 ---
 
-### MECE#8cb0
+### MECE#da19
 
 `Infrastructure` · `Data Structures` · R2 · T2
 
@@ -3089,7 +3089,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### MechanisticDesignProposal#7e62
+### MechanisticDesignProposal#4c39
 
 `Infrastructure` · `Data Structures` · R1 · T2
 
@@ -3142,11 +3142,11 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 **In the family.** Design-artifact primitive produced by DesignArchitect. Paired with Mechanism (the leverage unit), PreMortem (why-it-fails source), and Steelman (why-it-works source). Compare with FrameSpec — MechanisticDesignProposal is the design artifact; FrameSpec is the requirement artifact.
 
 **Supersedes (prior versions).**
-- `MechanisticDesignProposal#7e62`
+- `MechanisticDesignProposal#4c39`
 
 ---
 
-### Message#f767
+### Message#b175
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3198,7 +3198,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Meta#90f4
+### Meta#f277
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3240,7 +3240,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — the standalon
 
 ---
 
-### Metric#17fd
+### Metric#977d
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3289,11 +3289,11 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 **In the family.** Foundational measurement primitive paired with Score (bounded evaluation), Measure (the verb), and Quantify (the act). Consumed by Optimize, Monitor, Judge, Budget. Compare with Signal — Metric is calculated, Signal is emitted. Different origins of numerical data.
 
 **Supersedes (prior versions).**
-- `Metric#17fd`
+- `Metric#977d`
 
 ---
 
-### Mode#ea17
+### Mode#081f
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3348,11 +3348,11 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 **In the family.** Foundational stance-pattern paired with State (transient), Context (scope), and Role (responsibility). Used by ContextSwitch (mode push/pop), ExploreExploit (exploration vs exploitation modes), and IdentityHandshake (service vs coordination modes).
 
 **Supersedes (prior versions).**
-- `Mode#ea17`
+- `Mode#081f`
 
 ---
 
-### Nature#6c1a
+### Nature#4a31
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3402,7 +3402,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Option#483e
+### Option#b099
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3450,7 +3450,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Outcome#a0ab
+### Outcome#bac2
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3497,11 +3497,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Paired with Plan (the intent), Prediction (the anticipated outcome), and IntentGap (the analysis of divergence). Compare with Result — Outcome is reality-anchored; Result is the produced artifact.
 
 **Supersedes (prior versions).**
-- `Outcome#a0ab`
+- `Outcome#bac2`
 
 ---
 
-### Overlap#b462
+### Overlap#d70c
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3564,11 +3564,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Negotiation primitive paired with Compromise (iterative dampening), Consensus (full agreement), and Commit-Reveal (the cryptographic substrate). Compare with Handshake — Overlap finds shared zones; Handshake establishes connection.
 
 **Supersedes (prior versions).**
-- `Overlap#b462`
+- `Overlap#d70c`
 
 ---
 
-### Parallel#3181
+### Parallel#e799
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3616,11 +3616,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Structural opposite of `Chain` (linear). Foundational for concurrency — `AtomicBid`, `OptimisticSolver`, Actor Model implementations all assume Parallel semantics. The pattern is minimal; specializations (`ThreadedParallel`, `ProcessParallel`, `AgentParallel`) differentiate by execution substrate.
 
 **Supersedes (prior versions).**
-- `Parallel#3181`
+- `Parallel#e799`
 
 ---
 
-### PerformanceSignal#b9d6
+### PerformanceSignal#7dea
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3668,7 +3668,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Permission#c645
+### Permission#f347
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3719,11 +3719,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Foundational auth primitive paired with BearerToken (portable grant), Card (capability advertisement), and Check (evaluation). Compare with Token — Permission is the abstract grant; Token is the embodied artifact.
 
 **Supersedes (prior versions).**
-- `Permission#c645`
+- `Permission#f347`
 
 ---
 
-### Plan#c009
+### Plan#02b6
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -3776,11 +3776,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Foundational planning primitive paired with ExecutionManifest (the executable version), FrameSpec (the input), and ManifestPlanning (the production step). Compare with Strategy — Plan is step sequence; Strategy is higher-level approach.
 
 **Supersedes (prior versions).**
-- `Plan#c009`
+- `Plan#02b6`
 
 ---
 
-### Probability#356b
+### Probability#850f
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3833,7 +3833,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### Problem#64d0
+### Problem#9d2c
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -3880,11 +3880,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Foundational descriptive primitive paired with Task (directive), Goal (desired end state), and Gap (between states). Compare with FrameSpec — Problem is the raw descriptive; FrameSpec is the interpreted contract.
 
 **Supersedes (prior versions).**
-- `Problem#64d0`
+- `Problem#9d2c`
 
 ---
 
-### ProblemSpace#dc07
+### ProblemSpace#3d6d
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3935,11 +3935,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Problem-representation primitive paired with Problem (the descriptive), FrameSpec (the interpreted contract), and Constraint (the boundaries). Compare with SolutionSpace — ProblemSpace is where the question lives; SolutionSpace is where answers live.
 
 **Supersedes (prior versions).**
-- `ProblemSpace#dc07`
+- `ProblemSpace#3d6d`
 
 ---
 
-### Prompt#b18a
+### Prompt#6595
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3986,11 +3986,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Foundational LLM-interface primitive paired with MetaPrompt (higher-order), ToolDeclaration (structured attachment), and Role (the tag). Compare with Message — Prompt is model-directed; Message is agent-directed.
 
 **Supersedes (prior versions).**
-- `Prompt#b18a`
+- `Prompt#6595`
 
 ---
 
-### Proposal#ab24
+### Proposal#5e96
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -4040,11 +4040,11 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 **In the family.** Formal-message primitive paired with Message (the generic), Decision (the consumer), and Vote/Consensus (the decision-making mechanisms). Compare with MechanisticDesignProposal — Proposal is generic; MechanisticDesignProposal has specific structure for design.
 
 **Supersedes (prior versions).**
-- `Proposal#ab24`
+- `Proposal#5e96`
 
 ---
 
-### ProtoPack#1cd1
+### ProtoPack#31f5
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -4097,11 +4097,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Prototype output paired with Prototype (the concept), Build (the act), and SimulationTrace.
 
 **Supersedes (prior versions).**
-- `ProtoPack#1cd1`
+- `ProtoPack#31f5`
 
 ---
 
-### Protocol#7e1c
+### Protocol#e537
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4153,7 +4153,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Prototype#ff18
+### Prototype#f849
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -4201,7 +4201,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Queue#7ca9
+### Queue#5222
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4248,11 +4248,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Foundational container primitive paired with Stack (LIFO variant), EventQueue (event-specific), and Priority (the ordering criterion). Compare with Sequence — Queue is accessible from ends; Sequence is random-access ordered.
 
 **Supersedes (prior versions).**
-- `Queue#7ca9`
+- `Queue#5222`
 
 ---
 
-### Resource#3a2f
+### Resource#f18a
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4303,11 +4303,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Foundational allocation primitive paired with Budget (bounded resource), Lock (exclusive acquisition), and Allocate (the operation). Compare with Asset — Resource is allocable; Asset is the more general ownership concept.
 
 **Supersedes (prior versions).**
-- `Resource#3a2f`
+- `Resource#f18a`
 
 ---
 
-### Result#1a74
+### Result#255a
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4364,11 +4364,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Foundational output primitive paired with Solution (the artifact component), Task (the producer context), and Metric (the measurement). Compare with Artifact — Result is structured output with status; Artifact is the immutable data unit.
 
 **Supersedes (prior versions).**
-- `Result#1a74`
+- `Result#255a`
 
 ---
 
-### Risk#1980
+### Risk#3293
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4426,11 +4426,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Safety-planning primitive paired with Probability (the likelihood axis), Mitigation (the response), and PreMortem (the risk surfacing move). Compare with Constraint — Risk is probabilistic downside; Constraint is hard boundary.
 
 **Supersedes (prior versions).**
-- `Risk#1980`
+- `Risk#3293`
 
 ---
 
-### RolloutManifest#5596
+### RolloutManifest#c064
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4481,11 +4481,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Deploy-state primitive paired with Rollout (the production), RolloutWatch (the consumer), and AuditTrail (general analogue). Compare with ExecutionManifest — RolloutManifest is the immutable record of what happened; ExecutionManifest is the plan for what to do.
 
 **Supersedes (prior versions).**
-- `RolloutManifest#5596`
+- `RolloutManifest#c064`
 
 ---
 
-### RuleSet#a07c
+### RuleSet#2946
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4532,11 +4532,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Validity-substrate primitive paired with Constraint (the atomic rule), Validate (the check), and Policy (mutable counterpart). Compare with Constitution — RuleSet is immutable validation; Constitution is social governance.
 
 **Supersedes (prior versions).**
-- `RuleSet#a07c`
+- `RuleSet#2946`
 
 ---
 
-### Score#d220
+### Score#1eb7
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -4583,11 +4583,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Foundational evaluation primitive paired with Metric (the measured property), Judge (scalar evaluator), and Assessment (structured feedback). Compare with Rank — Score is the value; Rank orders by score.
 
 **Supersedes (prior versions).**
-- `Score#d220`
+- `Score#1eb7`
 
 ---
 
-### ScoringFunction#3a4e
+### ScoringFunction#932e
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -4638,11 +4638,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Foundational primitive paired with Score (the output), Rank (the consumer), and Criteria (the evaluation standards). Compare with Predicate — ScoringFunction produces scalar; Predicate produces boolean.
 
 **Supersedes (prior versions).**
-- `ScoringFunction#3a4e`
+- `ScoringFunction#932e`
 
 ---
 
-### Sequence#b0b8
+### Sequence#0cae
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4690,7 +4690,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Shard#1e74
+### Shard#328e
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -4743,7 +4743,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Signal#f39d
+### Signal#2ac0
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4795,7 +4795,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Skeleton#c363
+### Skeleton#c47d
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -4846,7 +4846,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Snapshot#0ae9
+### Snapshot#390d
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4894,13 +4894,13 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - All three named failure modes are real and unmitigated by the pattern.
 - Very thin mechanism — one sentence, no invariants.
 - No restore semantics specified.
-- `_meta.related` reference updated from legacy stub format (`StateSnapshot#5a11`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format (`StateSnapshot#53b2`) to full sema_id.
 
 **In the family.** State primitive paired with Restore (the recovery), AuditTrail (continuous counterpart), and Versioning. Compare with Cache — Snapshot is full state at time; Cache is keyed storage.
 
 ---
 
-### Solution#9893
+### Solution#4844
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4964,11 +4964,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Output half of the (Task, Solution) transaction. Every Solver yields a Solution typed against the Task's acceptance criteria. `FrameError` is the alternative yield when a hard seam triggers restructuring rather than production. `PerformanceSignal` is the Feedback-surface signal that attaches to Solution for downstream learning (Pathway Memory).
 
 **Supersedes (prior versions).**
-- `Solution#9893`
+- `Solution#4844`
 
 ---
 
-### SolverManifest#0299
+### SolverManifest#47d4
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5027,11 +5027,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Static counterpart of SolverNode paired with Card (the general capability advertisement), and PatternDiscovery (the consumer). Compare with AcceptSpec — SolverManifest describes the solver; AcceptSpec describes the task's criteria.
 
 **Supersedes (prior versions).**
-- `SolverManifest#0299`
+- `SolverManifest#47d4`
 
 ---
 
-### Spec#befa
+### Spec#47f4
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5082,11 +5082,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Foundational requirements primitive specialized by AcceptSpec (quality bar), FrameSpec (problem contract), and SolverManifest (capability spec). Compare with Criteria — Spec is requirements; Criteria is evaluation standards.
 
 **Supersedes (prior versions).**
-- `Spec#befa`
+- `Spec#47f4`
 
 ---
 
-### State#4d58
+### State#4f25
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5138,7 +5138,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Status#7f5f
+### Status#8e6f
 
 `Infrastructure` · `Data Structures` · R0 · T0
 
@@ -5179,7 +5179,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Step#5f22
+### Step#aa73
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5236,7 +5236,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### Stream#22f3
+### Stream#6b47
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5291,7 +5291,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### StyleSpec#dac9
+### StyleSpec#0800
 
 `Infrastructure` · `Data Structures` · R2 · T2
 
@@ -5340,11 +5340,11 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 **In the family.** Spec-variant paired with AcceptSpec (quality), FrameSpec (problem), and Aesthetics (the judge). Used by PhasedRefinement.
 
 **Supersedes (prior versions).**
-- `StyleSpec#dac9`
+- `StyleSpec#0800`
 
 ---
 
-### Subject#9a60
+### Subject#7aaa
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -5385,11 +5385,11 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 **In the family.** Foundational relational primitive paired with Object (the counterpart), Agent (active subject), and Target (receiving target).
 
 **Supersedes (prior versions).**
-- `Subject#9a60`
+- `Subject#7aaa`
 
 ---
 
-### Summary#f785
+### Summary#7b63
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -5436,11 +5436,11 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 **In the family.** Output primitive paired with Summarize (the producer), Compress (size focus), and Abstract (more aggressive reduction).
 
 **Supersedes (prior versions).**
-- `Summary#f785`
+- `Summary#7b63`
 
 ---
 
-### System#e314
+### System#f8eb
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5488,7 +5488,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 ---
 
-### Task#b290
+### Task#f239
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5547,11 +5547,11 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 **In the family.** The input type of the entire Solver family. Parent to `BoundedTask` (budget required), `ExplorationTask` (redefined acceptance), `ChildTask` (enforces holographic inheritance). Pairs with `Solution` as the canonical (Task, Solution) transaction every Solver crosses. The recursion relationship with itself is what gives `UniversalSolverTree` its fractal topology.
 
 **Supersedes (prior versions).**
-- `Task#b290`
+- `Task#f239`
 
 ---
 
-### Tension#fc30
+### Tension#547a
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -5602,11 +5602,11 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 **In the family.** Paired with TensionHold (the holding discipline), Conflict, and Compromise (the resolution). Compare with Incongruity — Tension is conflict between signals; Incongruity is expectation-reality mismatch.
 
 **Supersedes (prior versions).**
-- `Tension#fc30`
+- `Tension#547a`
 
 ---
 
-### Topology#2408
+### Topology#7562
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -5656,7 +5656,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 ---
 
-### Transition#072d
+### Transition#a7b4
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5703,7 +5703,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 ---
 
-### Tree#a5a3
+### Tree#a8c4
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -5754,11 +5754,11 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 **In the family.** Foundational topology paired with DAG (general), Forest (multi-root), and Cyclic (feedback-allowing). Specialized by TreeOfThoughts, SolverTree.
 
 **Supersedes (prior versions).**
-- `Tree#a5a3`
+- `Tree#a8c4`
 
 ---
 
-### Value#3c5d
+### Value#37fd
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5806,7 +5806,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 ---
 
-### Variable#179a
+### Variable#f488
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -5854,7 +5854,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 ---
 
-### Vector#c7c4
+### Vector#8dac
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5897,13 +5897,13 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Very thin.
 - The 'semantic space' framing is model-dependent.
 - No failure modes.
-- `_meta.related` reference updated from legacy stub format (`LatentAttachment#640e`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format (`LatentAttachment#611a`) to full sema_id.
 
 **In the family.** Foundational numeric primitive paired with LatentAttachment, Embedding, and Distance. Compare with Scalar — Vector is multi-dim; Scalar is single-dim.
 
 ---
 
-### Work#35b6
+### Work#e574
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5959,13 +5959,13 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 **In the family.** Foundational effort primitive paired with Task (the context), Budget (the resource bound), and Goal (the direction). Compare with Heat — Work is directed; Heat is undirected.
 
 **Supersedes (prior versions).**
-- `Work#35b6`
+- `Work#e574`
 
 ---
 
 ### Infrastructure/Primitives (49)
 
-### Act#dc2d
+### Act#7616
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6034,11 +6034,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** The physical-layer sibling of Task (which is Act's cognitive counterpart — intent to do something, not yet done). Paired tightly with AuditTrail (retrospective visibility) and Check (preflight authorization). Every tool invocation is ultimately an Act; the tool's job is to give the Act a meaningful target. Compare with Observe, which is the read-only counterpart.
 
 **Supersedes (prior versions).**
-- `Act#dc2d`
+- `Act#7616`
 
 ---
 
-### Actor#57f6
+### Actor#1ecd
 
 `Infrastructure` · `Primitives` · R0 · T0
 
@@ -6086,11 +6086,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** The execution-capability anchor in Infrastructure. Paired with `Act` (what it executes), `Identity` (who it is), `Nature` (what kind). Different from `Agent` (Mind): Actor is execution-only, Agent adds intent and reasoning. Many Infrastructure patterns reference Actor to stay at the correct layer.
 
 **Supersedes (prior versions).**
-- `Actor#57f6`
+- `Actor#1ecd`
 
 ---
 
-### Aggregate#24a1
+### Aggregate#4861
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6153,11 +6153,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** Core computational primitive that Vote, Consensus, AttentionMarkets, Score, Quorum all lean on. Pairs with Vector (the input shape) and Scalar (the output shape). Compare with Group which clusters without reducing, and Summary which is a cognitive counterpart that preserves meaning rather than just reducing bits.
 
 **Supersedes (prior versions).**
-- `Aggregate#24a1`
+- `Aggregate#4861`
 
 ---
 
-### Backoff#c6d1
+### Backoff#16c2
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -6211,11 +6211,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** The contention-reduction primitive for every retry loop in the library. Composed with `Cooldown` (minimum inter-event gap), `Throttle` (rate cap), and `Hysteresis` (asymmetric thresholds). Used by `Lock`, `Mutex`, `StateLock`, `Retry`, `ReAttempt`, `CircuitBreaker` at the contention layer.
 
 **Supersedes (prior versions).**
-- `Backoff#c6d1`
+- `Backoff#16c2`
 
 ---
 
-### Branch#329d
+### Branch#f46d
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6264,7 +6264,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Budget#4587
+### Budget#f2f5
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6321,11 +6321,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** The resource-allocation primitive. Composed with `Conservation` (the invariant basis), `ComputeBudget` (the cognitive-scoped variant), `BoundedTask` (budget-carrying Task). Consumed by `MarginalValueRule` (the stopping-rule condition).
 
 **Supersedes (prior versions).**
-- `Budget#4587`
+- `Budget#f2f5`
 
 ---
 
-### Care#a0fa
+### Care#4137
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6376,11 +6376,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** Philosophical sibling of Maintain, Nurture, Curate, Attend. Contrasts with Extract, Exploit, Consume. Compare with Entropy (the target Care reduces) and Work (the resource Care consumes). Part of the small 'stance' family that names non-instrumental modes of action — patterns about why, not just how.
 
 **Supersedes (prior versions).**
-- `Care#a0fa`
+- `Care#4137`
 
 ---
 
-### Check#5f38
+### Check#22ec
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6437,11 +6437,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** Anchor of the verification stack. With `Gate` (decision-producing), `Validate` (schema-match Boolean), and `Judge` (graded scalar), Check forms the four-corner taxonomy the library uses to distinguish verification roles. `Status` is Check's output type, contrasting with `Decision` (Gate), `Boolean` (Validate), and `Score` (Judge).
 
 **Supersedes (prior versions).**
-- `Check#5f38`
+- `Check#22ec`
 
 ---
 
-### CircuitBreaker#0577
+### CircuitBreaker#840f
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -6506,11 +6506,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (what calls it), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points.
 
 **Supersedes (prior versions).**
-- `CircuitBreaker#0577`
+- `CircuitBreaker#840f`
 
 ---
 
-### Combine#5a44
+### Combine#c465
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6562,7 +6562,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Compare#4881
+### Compare#ebab
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6615,7 +6615,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Compensate#b4c5
+### Compensate#9b3b
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6682,11 +6682,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** The recovery sibling of Break (the trigger) and Retry (the alternative response). Borrows saga-pattern semantics from distributed systems. Compare with Bubble — Bubble avoids partial failure by making commit all-or-nothing; Compensate accepts partial failure and unwinds. Different points on the consistency/availability axis.
 
 **Supersedes (prior versions).**
-- `Compensate#b4c5`
+- `Compensate#9b3b`
 
 ---
 
-### Compress#0967
+### Compress#b50f
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6738,7 +6738,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Cooldown#6eb2
+### Cooldown#878c
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6800,11 +6800,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** Sibling to `Backoff` (exponential growth between retries) and `Throttle` (rate cap). Where Backoff is 'wait longer after each failure' and Throttle is 'N per window,' Cooldown is 'gap ≥ D between individual invocations.' Uses monotonic time; composes with action-level safety gates.
 
 **Supersedes (prior versions).**
-- `Cooldown#6eb2`
+- `Cooldown#878c`
 
 ---
 
-### EntropyPump#ed3b
+### EntropyPump#31cf
 
 `Infrastructure` · `Primitives` · R1 · T2
 
@@ -6855,11 +6855,11 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 **In the family.** Counterweight to Aggregate, Converge, and Consensus. Used by AmbiguityResolution (surface latent conflicts), Creative (pattern breaking), and many optimization loops. Compare with CapacityPressure — EntropyPump adds information pressure; CapacityPressure restricts bandwidth. Both are cognition-shaping primitives with opposite directions.
 
 **Supersedes (prior versions).**
-- `EntropyPump#ed3b`
+- `EntropyPump#31cf`
 
 ---
 
-### FailClosed#c7fe
+### FailClosed#4088
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6922,11 +6922,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Safety-default primitive paired with FailOpen (its availability-favoring counterpart), CircuitBreaker (the resilience wrapper it often lives inside), and Exception (the trigger). Compare with AcceptSpec — FailClosed is the response to failure; AcceptSpec is the criteria. Both are safety-enforcing, at different operational points.
 
 **Supersedes (prior versions).**
-- `FailClosed#c7fe`
+- `FailClosed#4088`
 
 ---
 
-### Feedback#6c7b
+### Feedback#5e6d
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6985,11 +6985,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational closed-loop primitive paired with FeedbackSignal (the unit), Reflexion (the self-feedback variant), and Adjust (the downstream action). Used by CurriculumReplay, EvaluatorOptimizer, ConfidenceCalibrate. Compare with Observation — Feedback is attributed to an action; Observation is free-standing.
 
 **Supersedes (prior versions).**
-- `Feedback#6c7b`
+- `Feedback#5e6d`
 
 ---
 
-### FeedbackSignal#3f6e
+### FeedbackSignal#9e3b
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7040,11 +7040,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Substrate unit for the Feedback pattern. Paired with Solution (the evaluated artifact), Task (the context), and Outcome (the evaluation). Compare with Anomaly — FeedbackSignal is attributed post-action; Anomaly is unattributed observation. Both carry structured evaluation.
 
 **Supersedes (prior versions).**
-- `FeedbackSignal#3f6e`
+- `FeedbackSignal#9e3b`
 
 ---
 
-### Gate#02f6
+### Gate#bc63
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7099,11 +7099,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Sibling to `Check` (observational, no control flow) and `Branch` (structural dispatch). Feeds `Decision` downstream; reads `Condition` upstream. Ancestor of domain-specialized gates across the verification stack. `ReceptivityGate` is the Society-layer specialization that guards a Solver's Feedback surface against poisoned rejection signals.
 
 **Supersedes (prior versions).**
-- `Gate#02f6`
+- `Gate#bc63`
 
 ---
 
-### Greet#be4d
+### Greet#5854
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -7158,11 +7158,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Initial-contact primitive paired with Handshake (the generic protocol name), CompatibilityCheck (the schema verification), and AgentProtocol (the bundle that includes Greet). Compare with Discover — Discover finds agents to greet; Greet begins interaction. Sequential.
 
 **Supersedes (prior versions).**
-- `Greet#be4d`
+- `Greet#5854`
 
 ---
 
-### Heartbeat#29e2
+### Heartbeat#c36f
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7223,11 +7223,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Liveness-detection primitive paired with Quorum (the group-liveness consumer), FailureDetector (the general pattern), and Delegate (which uses Heartbeat for progress tracking). Compare with Probe — Heartbeat is periodic self-signal; Probe is active external check. Different liveness verification styles.
 
 **Supersedes (prior versions).**
-- `Heartbeat#29e2`
+- `Heartbeat#c36f`
 
 ---
 
-### Hysteresis#addb
+### Hysteresis#f1df
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -7281,11 +7281,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Sibling to `Dampen` (continuous attenuation) and `Decay` (time-based attenuation). Where Dampen smooths signal magnitudes and Decay attenuates stale values, Hysteresis discretizes transitions — the three handle different temporal dynamics of the same underlying stability problem.
 
 **Supersedes (prior versions).**
-- `Hysteresis#addb`
+- `Hysteresis#f1df`
 
 ---
 
-### IdempotentWrite#1023
+### IdempotentWrite#ebf5
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7345,11 +7345,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Distributed-systems primitive paired with Retry (the trigger), Cache (the substrate), and Act (the action being de-duped). Compare with HeldRelease — IdempotentWrite provides safe retry; HeldRelease provides safe multi-party transaction. Both are safety primitives for distributed operations.
 
 **Supersedes (prior versions).**
-- `IdempotentWrite#1023`
+- `IdempotentWrite#ebf5`
 
 ---
 
-### Incongruity#e98f
+### Incongruity#a00d
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7397,7 +7397,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Judge#efe0
+### Judge#2401
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7453,11 +7453,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Graded-scalar corner of the verification stack (Check = three-state, Gate = decision, Validate = Boolean, Judge = scalar). Yields `Score`; accepts `ScoringFunction` carrying `Criteria`. Called by `PURECheck`, `Evaluator`, and the proposed Genesis Loop's self-evaluation step.
 
 **Supersedes (prior versions).**
-- `Judge#efe0`
+- `Judge#2401`
 
 ---
 
-### Loop#d814
+### Loop#984a
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7508,11 +7508,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational control-flow primitive paired with Cyclic (the topology class), Condition (the termination predicate), and Retry (a specific failure-handling loop). Compare with Recurse — Loop is iterative, Recurse is self-calling. Different structures for repetition.
 
 **Supersedes (prior versions).**
-- `Loop#d814`
+- `Loop#984a`
 
 ---
 
-### Monitor#c631
+### Monitor#72e0
 
 `Infrastructure` · `Primitives` · R0 · T0
 
@@ -7565,11 +7565,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational operational primitive paired with Observe (the verb), Loop (the control flow), and Metric (the comparison target). Compare with DriftWatch — Monitor is general observation; DriftWatch is specific baseline-deviation detection.
 
 **Supersedes (prior versions).**
-- `Monitor#c631`
+- `Monitor#72e0`
 
 ---
 
-### MonitorReport#063c
+### MonitorReport#e239
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7617,7 +7617,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### NegativeProof#9fc0
+### NegativeProof#eedf
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -7681,11 +7681,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Cryptographic-proof primitive paired with MerkleTree (the substrate), ZeroKnowledgeProof (the privacy mechanism), and AdversarialProof (cognitive counterpart). Compare with AdversarialProof — AdversarialProof is hostile-search-based; NegativeProof is crypto-commitment-based. Different absence-proof strategies.
 
 **Supersedes (prior versions).**
-- `NegativeProof#9fc0`
+- `NegativeProof#eedf`
 
 ---
 
-### Observe#abc0
+### Observe#db88
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7750,11 +7750,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational input primitive in OODA and many agent loops. Paired with Context (the integration target), Attention (the filter), and Datum (the raw unit). Compare with Monitor — Observe is single-shot, Monitor is continuous. Different temporal profiles.
 
 **Supersedes (prior versions).**
-- `Observe#abc0`
+- `Observe#db88`
 
 ---
 
-### Probe#12d8
+### Probe#5392
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7825,7 +7825,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Quorum#a295
+### Quorum#c6a5
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7890,11 +7890,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** The threshold-checking primitive in Infrastructure. Used by `Vote`, `Consensus`, `LatticeCommit`, `Rally`, `PropheticQuorum`. Pairs with `Ballot` (what is counted) — Quorum is the gate, Ballot is the unit.
 
 **Supersedes (prior versions).**
-- `Quorum#a295`
+- `Quorum#c6a5`
 
 ---
 
-### Rank#7a76
+### Rank#44ff
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7949,11 +7949,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational ordering primitive paired with Score (the scoring substrate), Select (Top-K), and Compare (the element-comparison). Consumed by Prioritize, BeamSearch, Aggregate (sometimes).
 
 **Supersedes (prior versions).**
-- `Rank#7a76`
+- `Rank#44ff`
 
 ---
 
-### ReAttempt#a396
+### ReAttempt#39a6
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7994,7 +7994,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Route#34c7
+### Route#b3c1
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8059,11 +8059,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Supersedes (prior versions).**
 - `Switch#e7f9`
-- `Route#34c7`
+- `Route#b3c1`
 
 ---
 
-### Sandbox#e00f
+### Sandbox#64c9
 
 `Infrastructure` · `Primitives` · R1 · T2
 
@@ -8115,7 +8115,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Search#3b31
+### Search#f41f
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8166,11 +8166,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational retrieval primitive paired with Discover (distributed variant), Check (the filter), and Criteria (the query). Compare with BeamSearch — Search is single-target; BeamSearch is multi-path exploration.
 
 **Supersedes (prior versions).**
-- `Search#3b31`
+- `Search#f41f`
 
 ---
 
-### Select#15c2
+### Select#2fa0
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8234,7 +8234,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Sign#d60d
+### Sign#d89a
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -8287,11 +8287,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Cryptographic primitive paired with Hash (the substrate), Witness (the attestation counterpart), and Identity (the signer). Compare with OathBind — Sign attaches identity to artifact; OathBind binds actor to rule set.
 
 **Supersedes (prior versions).**
-- `Sign#d60d`
+- `Sign#d89a`
 
 ---
 
-### StateAudit#8195
+### StateAudit#2747
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8338,11 +8338,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Safety primitive paired with Act (the write), Observe (the verification), and StateTransition (what's being verified). Compare with SpotAudit — StateAudit is per-write; SpotAudit is probabilistic sampling.
 
 **Supersedes (prior versions).**
-- `StateAudit#8195`
+- `StateAudit#2747`
 
 ---
 
-### StateSnapshot#5a11
+### StateSnapshot#53b2
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8402,11 +8402,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Durability primitive paired with Snapshot (general), Serialize (the operation), and Restore (the recovery). Compare with LatticeCommit — StateSnapshot is unilateral; LatticeCommit is distributed consensus.
 
 **Supersedes (prior versions).**
-- `StateSnapshot#5a11`
+- `StateSnapshot#53b2`
 
 ---
 
-### StateTransition#9e61
+### StateTransition#fa0a
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8453,11 +8453,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Foundational primitive paired with State (the substrate), Event (the trigger), and Transition (the move). Compare with Event — StateTransition is state-to-state; Event is occurrence.
 
 **Supersedes (prior versions).**
-- `StateTransition#9e61`
+- `StateTransition#fa0a`
 
 ---
 
-### TaskLifecycle#57c8
+### TaskLifecycle#d935
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -8523,11 +8523,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Task-lifecycle primitive paired with Task (the unit), Status (the state), and Heartbeat (liveness). Foundational for schedulers and orchestrators.
 
 **Supersedes (prior versions).**
-- `TaskLifecycle#57c8`
+- `TaskLifecycle#d935`
 
 ---
 
-### Throttle#4d47
+### Throttle#dc14
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8585,11 +8585,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Completes the rate-control family: `Backoff` (per-retry exponential delay), `Cooldown` (per-action minimum gap), `Throttle` (rate cap per window). The three compose: a retry loop can use Backoff for delay, Cooldown for action-gap, and Throttle for global rate.
 
 **Supersedes (prior versions).**
-- `Throttle#4d47`
+- `Throttle#dc14`
 
 ---
 
-### TimeWarpLog#38ab
+### TimeWarpLog#e26e
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8650,11 +8650,11 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 **In the family.** Temporal primitive paired with Causation, CausalBarrier, and AuditTrail. Compare with AuditTrail — TimeWarpLog is causal; AuditTrail is wall-clock.
 
 **Supersedes (prior versions).**
-- `TimeWarpLog#38ab`
+- `TimeWarpLog#e26e`
 
 ---
 
-### ToolInvoke#bd2b
+### ToolInvoke#011f
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -8714,11 +8714,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Tool-use primitive paired with ToolDiscovery (discovery), InputGuard (validation), and Act (the execution).
 
 **Supersedes (prior versions).**
-- `ToolInvoke#bd2b`
+- `ToolInvoke#011f`
 
 ---
 
-### Trace#2836
+### Trace#314d
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8777,11 +8777,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Provenance primitive paired with AuditTrail (structured variant), History (the accumulated content), and Lineage (genealogical variant). Compare with AuditTrail — Trace is general-purpose; AuditTrail is verification-specific.
 
 **Supersedes (prior versions).**
-- `Trace#2836`
+- `Trace#314d`
 
 ---
 
-### TriGate#641d
+### TriGate#c182
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8834,11 +8834,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Gating primitive paired with Gate (binary), PURECheck (which orchestrates TriGates), and Judge (the underlying evaluator).
 
 **Supersedes (prior versions).**
-- `TriGate#641d`
+- `TriGate#c182`
 
 ---
 
-### Warmup#44be
+### Warmup#32d4
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8899,13 +8899,13 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Startup primitive paired with Activate, ColdStart, and CircuitBreaker. Compare with Canary — Warmup is capacity ramp; Canary is test payload.
 
 **Supersedes (prior versions).**
-- `Warmup#44be`
+- `Warmup#32d4`
 
 ---
 
 ### Infrastructure/Verification (9)
 
-### AuditTrail#6735
+### AuditTrail#bf18
 
 `Infrastructure` · `Verification` · R1 · T1
 
@@ -8973,11 +8973,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** The governance-substrate for accountability. Composed with `Sign`, `Ledger`, `MonotonicCounter`. Consumed by `TimeWarpLog` (temporal logging) and `DocumentedOverride` (signed bypass events). Sibling to `StateAudit` (state-focused) — AuditTrail is action-focused.
 
 **Supersedes (prior versions).**
-- `AuditTrail#6735`
+- `AuditTrail#bf18`
 
 ---
 
-### CompatibilityCheck#3abb
+### CompatibilityCheck#62b2
 
 `Infrastructure` · `Verification` · R0 · T1
 
@@ -9029,7 +9029,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### ExplainBeacon#db99
+### ExplainBeacon#2e40
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -9082,11 +9082,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Observability primitive paired with AuditTrail (structured log), Heartbeat (liveness signal), and DeliberativeAlign (agent reasoning about its own plan). Compare with SafetyTrace — ExplainBeacon is for human observers; SafetyTrace is for policy compliance.
 
 **Supersedes (prior versions).**
-- `ExplainBeacon#db99`
+- `ExplainBeacon#2e40`
 
 ---
 
-### HumanApprove#6434
+### HumanApprove#a00d
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -9144,11 +9144,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Safety-pattern paired with EjectionSeat (forced stop), FailClosed (default deny), and AuditTrail (who approved what). Compare with DeliberativeAlign — HumanApprove is explicit human check; DeliberativeAlign is agent self-check against policy. Both are pre-action safety, at different trust assignments.
 
 **Supersedes (prior versions).**
-- `HumanApprove#6434`
+- `HumanApprove#a00d`
 
 ---
 
-### InputGuard#7353
+### InputGuard#fb82
 
 `Infrastructure` · `Verification` · R0 · T2
 
@@ -9200,7 +9200,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### OathBind#272b
+### OathBind#e5ab
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -9255,11 +9255,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Self-enforcement primitive used by CommitmentDevice, Constitution, and SpotAudit. Compare with Sign — OathBind is commitment-with-penalty; Sign is attestation-without-penalty. Both are cryptographic commitments at different severity levels.
 
 **Supersedes (prior versions).**
-- `OathBind#272b`
+- `OathBind#e5ab`
 
 ---
 
-### OutputGuard#0d0a
+### OutputGuard#32b0
 
 `Infrastructure` · `Verification` · R0 · T2
 
@@ -9322,11 +9322,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Safety primitive paired with InputGuard (input counterpart), FailClosed (the default), and Redact (the mitigation). Compare with InvariantFilter — OutputGuard is classifier-based; InvariantFilter is predicate-based. Different filter architectures.
 
 **Supersedes (prior versions).**
-- `OutputGuard#0d0a`
+- `OutputGuard#32b0`
 
 ---
 
-### SpotAudit#000e
+### SpotAudit#c00c
 
 `Infrastructure` · `Verification` · R1 · T1
 
@@ -9386,11 +9386,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Audit primitive paired with Audit (the general structured record), OathBind (which uses SpotAudit), and Witness (the attestation). Compare with Monitor — SpotAudit is probabilistic sampling; Monitor is continuous.
 
 **Supersedes (prior versions).**
-- `SpotAudit#000e`
+- `SpotAudit#c00c`
 
 ---
 
-### Validate#7b5b
+### Validate#337c
 
 `Infrastructure` · `Verification` · R1 · T1
 
@@ -9445,7 +9445,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Pairs with AcceptSpec as the (schema, checker) pair at the boundary of every typed-data ingress. Sibling to Check (observational three-state), Gate (decision-producing), and Judge (graded scalar). Validate is the strictest — least expressive output, narrowest responsibility. Yields Boolean.
 
 **Supersedes (prior versions).**
-- `Validate#7b5b`
+- `Validate#337c`
 
 ---
 
@@ -9453,7 +9453,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ### Mind/Inference (22)
 
-### BaseRateInclude#aa0b
+### BaseRateInclude#8636
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9515,7 +9515,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### BayesUpdate#bbf6
+### BayesUpdate#3d1b
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9578,11 +9578,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Sits at the center of the belief-revision family with BaseRateInclude (anchor the prior), BeliefTracking (log the update), SurprisalUpdate (measure the magnitude), and Evidence (the trigger). It's the mathematical spine; the others are the scaffolding that makes the math usable. Compare with AcceptSpec — BayesUpdate revises internal beliefs; AcceptSpec revises external commitments. Both are 'legal change of mind' patterns, at different layers.
 
 **Supersedes (prior versions).**
-- `BayesUpdate#bbf6`
+- `BayesUpdate#3d1b`
 
 ---
 
-### BreadthGovernor#e924
+### BreadthGovernor#c7ea
 
 `Mind` · `Inference` · R2 · T2
 
@@ -9645,11 +9645,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** The counterpart to DepthGovernor (depth limit). Part of the decomposition governance cluster with ConceptualDecomposition, FractalIntelligence, UniversalSolverTree. Invoked by any pattern that spawns parallel subtasks — particularly PolymorphicSolver when running strategies in parallel. Compare with BeamSearch: BeamSearch picks top-K and moves on; BreadthGovernor is a system-wide policy that applies across decompositions.
 
 **Supersedes (prior versions).**
-- `BreadthGovernor#e924`
+- `BreadthGovernor#c7ea`
 
 ---
 
-### ConfidenceCalibrate#597b
+### ConfidenceCalibrate#7b1a
 
 `Mind` · `Inference` · R2 · T2
 
@@ -9702,11 +9702,11 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 **In the family.** Epistemic-alignment sibling of BayesUpdate (revising the posterior), BaseRateInclude (anchoring the prior), and BeliefTracking (the audit substrate). Compare with ErrorTracking (failure-rate measurement) — ConfidenceCalibrate is meta-confidence (alignment of stated vs actual), ErrorTracking is accuracy. Both are honest-reporting patterns.
 
 **Supersedes (prior versions).**
-- `ConfidenceCalibrate#597b`
+- `ConfidenceCalibrate#7b1a`
 
 ---
 
-### ConfirmationBlock#20db
+### ConfirmationBlock#dc3f
 
 `Mind` · `Inference` · R0 · T2
 
@@ -9761,11 +9761,11 @@ _Note: §3.1 rename validates — the old name literally said the opposite of th
 **In the family.** Epistemic hygiene primitive paired with RedTeam (the active disconfirmer), SteelmanCheck (the strongest opposing case), and BeliefTracking (the update substrate). Compare with AdversarialSteel — ConfirmationBlock seeks disconfirming evidence for your own hypothesis; AdversarialSteel has you argue the opposing position.
 
 **Supersedes (prior versions).**
-- `ConfirmationBlock#20db`
+- `ConfirmationBlock#dc3f`
 
 ---
 
-### ContextFirst#3ed9
+### ContextFirst#a0b6
 
 `Mind` · `Inference` · R0 · T1
 
@@ -9823,11 +9823,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Core operational invariant paired with ConstraintFirst ('define the container first'), Warmup (the initial context load), and ContextPropagation. Compare with the graph_skeleton tool in sema's MCP server — it's the literal implementation of ContextFirst for the sema vocabulary. Foundational for any agent loop that hopes to stay grounded.
 
 **Supersedes (prior versions).**
-- `ContextFirst#3ed9`
+- `ContextFirst#a0b6`
 
 ---
 
-### EpistemicCalibrate#3e32
+### EpistemicCalibrate#a902
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9887,11 +9887,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Confidence-management sibling of ConfidenceCalibrate (calibration-curve alignment) and BayesUpdate (revision substrate). Compare with CounterfactualAnchor — both guard against overconfidence; EpistemicCalibrate enforces horizon decay, CounterfactualAnchor freezes predictions before observation.
 
 **Supersedes (prior versions).**
-- `EpistemicCalibrate#3e32`
+- `EpistemicCalibrate#a902`
 
 ---
 
-### HackDetect#3494
+### HackDetect#b7d7
 
 `Mind` · `Inference` · R2 · T1
 
@@ -9955,11 +9955,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Meta-check primitive paired with Critique, MetaCheck, and AdversarialSteel. Compare with DriftWatch — HackDetect is specific pattern detection; DriftWatch is behavioral.
 
 **Supersedes (prior versions).**
-- `HackDetect#3494`
+- `HackDetect#b7d7`
 
 ---
 
-### HindsightBlock#d5b0
+### HindsightBlock#51fc
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10016,11 +10016,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Epistemic-hygiene primitive paired with CounterfactualAnchor (freeze prediction before observation), ConfidenceCalibrate (alignment loop), and IntentGap (decision-vs-outcome divergence). Core piece of the anti-hindsight-bias family.
 
 **Supersedes (prior versions).**
-- `HindsightBlock#d5b0`
+- `HindsightBlock#51fc`
 
 ---
 
-### LayeredCheck#b6eb
+### LayeredCheck#6a86
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10073,11 +10073,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Verification-strategy primitive paired with Check (the verb), Gate (the binary decision unit), and FailClosed (the fail-fast default). Compare with CheckReference — both are check patterns; LayeredCheck orchestrates multiple checks, CheckReference validates a specific reference.
 
 **Supersedes (prior versions).**
-- `LayeredCheck#b6eb`
+- `LayeredCheck#6a86`
 
 ---
 
-### NormCheck#a528
+### NormCheck#b3a0
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10139,11 +10139,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Filter primitive paired with PredictionSolver (the output source), EthicalReasoningProtocol (the consuming protocol), and IsOughtBoundary (the concept being enforced). Compare with InvariantFilter — NormCheck filters specific content; InvariantFilter filters by predicate evaluation.
 
 **Supersedes (prior versions).**
-- `NormCheck#a528`
+- `NormCheck#b3a0`
 
 ---
 
-### NormativeJudge#0323
+### NormativeJudge#bd4e
 
 `Mind` · `Inference` · R0 · T1
 
@@ -10206,11 +10206,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Normative module paired with PredictionSolver (the descriptive counterpart), Value (the axis), and EthicalReasoningProtocol (the consuming pipeline). Compare with Judge — NormativeJudge is specifically value-weighted; Judge is generic scalar evaluation.
 
 **Supersedes (prior versions).**
-- `NormativeJudge#0323`
+- `NormativeJudge#bd4e`
 
 ---
 
-### OntologyAdapt#d3a4
+### OntologyAdapt#1390
 
 `Mind` · `Inference` · R1 · T1
 
@@ -10270,11 +10270,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Adaptive-ontology primitive paired with Ontology (the substrate), RegimeSense (the trigger), and OntologicalAccommodation (the response). Compare with OntologyHandshake — OntologyAdapt is internal restructuring; OntologyHandshake is cross-ontology mapping.
 
 **Supersedes (prior versions).**
-- `OntologyAdapt#d3a4`
+- `OntologyAdapt#1390`
 
 ---
 
-### ProphetFanOut#54ee
+### ProphetFanOut#d47b
 
 `Mind` · `Inference` · R1 · T1
 
@@ -10334,11 +10334,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Prediction primitive paired with EthicalReasoningProtocol (consumer), Simulation (substrate), and NormCheck (the filter that catches normative leak).
 
 **Supersedes (prior versions).**
-- `ProphetFanOut#54ee`
+- `ProphetFanOut#d47b`
 
 ---
 
-### RegimeSense#1998
+### RegimeSense#56ec
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10402,11 +10402,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Anomaly-detection primitive paired with DriftWatch (behavioral analogue), Anomaly (the data unit), and OntologicalAccommodation (the response). Compare with Monitor — RegimeSense specifically tracks model-reality divergence; Monitor is general observation.
 
 **Supersedes (prior versions).**
-- `RegimeSense#1998`
+- `RegimeSense#56ec`
 
 ---
 
-### ScopeFreeze#d9d2
+### ScopeFreeze#939d
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10469,11 +10469,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Project-discipline primitive paired with AcceptSpec (what gets frozen), Goal (the other frozen item), and ManifestPlanning (which happens before freeze). Compare with CommitmentDevice — ScopeFreeze freezes scope; CommitmentDevice freezes actions.
 
 **Supersedes (prior versions).**
-- `ScopeFreeze#d9d2`
+- `ScopeFreeze#939d`
 
 ---
 
-### SemanticTabu#6277
+### SemanticTabu#3ef0
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10533,11 +10533,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Ideation primitive paired with Invert (the opposition move), LateralOptimization (domain shift), and NoiseInjection (escape loops). Compare with Creative — SemanticTabu forbids known; Creative encourages unknown. Different paths to novelty.
 
 **Supersedes (prior versions).**
-- `SemanticTabu#6277`
+- `SemanticTabu#3ef0`
 
 ---
 
-### SourceEvaluate#aaba
+### SourceEvaluate#1f87
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10592,11 +10592,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Credibility primitive paired with Source, Evidence, and Judge. Compare with Witness — SourceEvaluate assesses credibility; Witness produces attestation.
 
 **Supersedes (prior versions).**
-- `SourceEvaluate#aaba`
+- `SourceEvaluate#1f87`
 
 ---
 
-### SurprisalUpdate#cef3
+### SurprisalUpdate#6169
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10660,11 +10660,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Learning primitive paired with BayesUpdate (Bayesian substrate), BeliefTracking (version control), and CounterfactualAnchor (pre-commit prediction). Compare with BayesUpdate — SurprisalUpdate is surprise-weighted; BayesUpdate is likelihood-weighted.
 
 **Supersedes (prior versions).**
-- `SurprisalUpdate#cef3`
+- `SurprisalUpdate#6169`
 
 ---
 
-### SurvivorCorrect#45db
+### SurvivorCorrect#6c90
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10725,7 +10725,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TemporalEnsembleForecasting#1041
+### TemporalEnsembleForecasting#3cb6
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10766,7 +10766,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TruthseekingProtocol#274a
+### TruthseekingProtocol#afc1
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10809,7 +10809,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ### Mind/Memory (15)
 
-### BeliefTracking#3c59
+### BeliefTracking#6142
 
 `Mind` · `Memory` · R2 · T2
 
@@ -10874,11 +10874,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** The epistemic version-control layer for the whole reasoning stack. Pairs with BayesUpdate (mathematical revision), SurprisalUpdate (magnitude measurement), and the supersession primitives at the graph level. Compare with AuditTrail — BeliefTracking is the internal analogue, tracking belief changes; AuditTrail is the external analogue, tracking action and state changes.
 
 **Supersedes (prior versions).**
-- `BeliefTracking#3c59`
+- `BeliefTracking#6142`
 
 ---
 
-### ChunkMerge#38ff
+### ChunkMerge#e147
 
 `Mind` · `Memory` · R2 · T1
 
@@ -10936,11 +10936,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Cognitive-compression sibling of Compress (explicit) and Summary (human-readable). Applies Aggregate as its compression substrate. Compare with Cache — Cache stores exact (key, value) pairs for retrieval; ChunkMerge stores condensed (name, group) pairs for working-memory load. Different targets, different fidelity/volume tradeoffs.
 
 **Supersedes (prior versions).**
-- `ChunkMerge#38ff`
+- `ChunkMerge#e147`
 
 ---
 
-### ContextCompress#4845
+### ContextCompress#81bf
 
 `Mind` · `Memory` · R0 · T1
 
@@ -10987,11 +10987,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Agent-session-management primitive built on Compress, paired with ChunkMerge (structural compression) and SummarizeContext (higher-level compression). Compare with Cache — Cache stores results for retrieval; ContextCompress transforms the working context itself. Relies on Constraint and Goal patterns for the preservation criteria.
 
 **Supersedes (prior versions).**
-- `ContextCompress#4845`
+- `ContextCompress#81bf`
 
 ---
 
-### CurriculumReplay#4f14
+### CurriculumReplay#3ec2
 
 `Mind` · `Memory` · R2 · T1
 
@@ -11052,11 +11052,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Self-training primitive paired with Reflexion (deliberate feedback-driven revision), SelfDistillation (the broader technique), and PathwayMemory (reasoning trace memoization). Compare with ExperienceReplay (the RL cousin) — CurriculumReplay adds complexity ordering to the basic replay idea.
 
 **Supersedes (prior versions).**
-- `CurriculumReplay#4f14`
+- `CurriculumReplay#3ec2`
 
 ---
 
-### ExperienceSharding#1b5b
+### ExperienceSharding#3be0
 
 `Mind` · `Memory` · R0 · T1
 
@@ -11117,11 +11117,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Memory primitive paired with Shard (the general), Chunk (simpler compression), and ContextCompress. Compare with FabricSharding — ExperienceSharding is memory; FabricSharding is domain.
 
 **Supersedes (prior versions).**
-- `ExperienceSharding#1b5b`
+- `ExperienceSharding#3be0`
 
 ---
 
-### HolographicShard#c98b
+### HolographicShard#7eb7
 
 `Mind` · `Memory` · R0 · T1
 
@@ -11181,11 +11181,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Sharding primitive paired with Shard (general), ContextFirst (refresh discipline), and Decompose.
 
 **Supersedes (prior versions).**
-- `HolographicShard#c98b`
+- `HolographicShard#7eb7`
 
 ---
 
-### LatentAttachment#640e
+### LatentAttachment#611a
 
 `Mind` · `Memory` · R0 · T1
 
@@ -11245,11 +11245,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Bridge primitive paired with ConceptAnchor (the canonical hash), Cache (the fuzzy search substrate), and Embedding (the vector unit). Compare with LatentWander — LatentAttachment is the structural connection; LatentWander uses the connected embedding space for daydreaming.
 
 **Supersedes (prior versions).**
-- `LatentAttachment#640e`
+- `LatentAttachment#611a`
 
 ---
 
-### LocalizedLearning#53a7
+### LocalizedLearning#1eec
 
 `Mind` · `Memory` · R1 · T2
 
@@ -11309,11 +11309,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Learning primitive paired with Feedback, SolverManifest, and CurriculumReplay. Compare with CurriculumReplay — LocalizedLearning is routing; CurriculumReplay is self-distillation.
 
 **Supersedes (prior versions).**
-- `LocalizedLearning#53a7`
+- `LocalizedLearning#1eec`
 
 ---
 
-### PathwayMemory#7899
+### PathwayMemory#b6a0
 
 `Mind` · `Memory` · R1 · T1
 
@@ -11359,7 +11359,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### Proprioception#d45f
+### Proprioception#b2d7
 
 `Mind` · `Memory` · R2 · T3
 
@@ -11416,11 +11416,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Self-monitoring primitive paired with Heartbeat (general liveness), ContextFirst (refresh discipline), and AuditTrail (the log substrate). Compare with Monitor — Proprioception is self-directed; Monitor is target-directed. Both are observation patterns, directed inward vs outward.
 
 **Supersedes (prior versions).**
-- `Proprioception#d45f`
+- `Proprioception#b2d7`
 
 ---
 
-### RetrievalAugment#db95
+### RetrievalAugment#7ca7
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11476,11 +11476,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Grounding primitive paired with LatentAttachment (the retrieval substrate), CiteBack (source-binding), and ConceptAnchor (the canonical target). Compare with DeepResearch — RetrievalAugment is single-turn retrieval; DeepResearch is iterative multi-source.
 
 **Supersedes (prior versions).**
-- `RetrievalAugment#db95`
+- `RetrievalAugment#7ca7`
 
 ---
 
-### Scratchpad#75bf
+### Scratchpad#e805
 
 `Mind` · `Memory` · R0 · T2
 
@@ -11537,7 +11537,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SelfReminder#cd98
+### SelfReminder#d04d
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11594,11 +11594,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Alignment primitive paired with DeliberativeAlign (the broader constitutional pattern), SystemPrompt (the substrate), and ConstraintFirst (generation-time enforcement). Compare with InputGuard — SelfReminder is model-side; InputGuard is boundary-side.
 
 **Supersedes (prior versions).**
-- `SelfReminder#cd98`
+- `SelfReminder#d04d`
 
 ---
 
-### SimulationTrace#31d6
+### SimulationTrace#9383
 
 `Mind` · `Memory` · R2 · T1
 
@@ -11659,11 +11659,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Pre-action primitive paired with Simulation (the substrate), Scratchpad (the working memory), and ReversibilityCheck (the gate). Compare with PreMortem — SimulationTrace is forward prediction; PreMortem is backward failure-analysis.
 
 **Supersedes (prior versions).**
-- `SimulationTrace#31d6`
+- `SimulationTrace#9383`
 
 ---
 
-### TraceBelief#22cc
+### TraceBelief#bdfa
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11712,13 +11712,13 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Belief-tracking primitive paired with BeliefTracking, BayesUpdate, and HindsightBlock.
 
 **Supersedes (prior versions).**
-- `TraceBelief#22cc`
+- `TraceBelief#bdfa`
 
 ---
 
 ### Mind/Reasoning (60)
 
-### Abduction#68f6
+### Abduction#645a
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -11784,11 +11784,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Supersedes (prior versions).**
 - `AbductiveLeap#1069`
-- `Abduction#68f6`
+- `Abduction#645a`
 
 ---
 
-### BackwardChain#a6ac
+### BackwardChain#4f06
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -11853,11 +11853,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Paired with ChainOfThought (execution substrate) and Deduce (each step is a deductive move). Its opposite number is ForwardChain (fact-first). The solver family (PolymorphicSolver, RootSolver) uses backward chaining implicitly when decomposing a goal into subtasks. For multi-path exploration, reach for BeamSearch or TreeSearch instead — BackwardChain commits to a single line.
 
 **Supersedes (prior versions).**
-- `BackwardChain#a6ac`
+- `BackwardChain#4f06`
 
 ---
 
-### Bisect#30ea
+### Bisect#419f
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -11910,11 +11910,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Lives in the search family with BeamSearch (multi-path parallel search) and TreeSearch (branching depth-first). Bisect is the cheapest, most disciplined member — applicable only when structure allows. Frequently invoked by RecursiveRootCause as its core search step, and by Debug. The Bisect-RecursiveRootCause pairing is one of the most reliable debugging combinations in the library.
 
 **Supersedes (prior versions).**
-- `Bisect#30ea`
+- `Bisect#419f`
 
 ---
 
-### ChainOfThought#dd97
+### ChainOfThought#c425
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -11968,11 +11968,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** The linear-topology case in the thinking family: `ChainOfThought` (linear), `TreeOfThoughts` (branching), `GraphOfThought` (DAG). Instantiates the `Think` primitive with `Chain` topology. A canonical reference for LLM prompting but the pattern is substrate-independent.
 
 **Supersedes (prior versions).**
-- `ChainOfThought#dd97`
+- `ChainOfThought#c425`
 
 ---
 
-### CiteBack#69ec
+### CiteBack#7785
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12033,11 +12033,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Anti-hallucination primitive paired with Witness (attested claim), NegativeProof (principled absence), and CheckReference. Used heavily by retrieval-augmented generation (RAG). Compare with Attribution — CiteBack forbids the unsourced; Attribution tracks source once known. Both assume source existence; CiteBack enforces it at generation time.
 
 **Supersedes (prior versions).**
-- `CiteBack#69ec`
+- `CiteBack#7785`
 
 ---
 
-### CognitiveEcho#d868
+### CognitiveEcho#ae14
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12101,11 +12101,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Effort-estimation sibling of ComputeBudget (cost bound), VarianceEstimation, and Probe. Triggers ConceptualDecomposition when variance is high. Compare with Canary — CognitiveEcho simulates internally; Canary probes externally. Both cheap-risk-assessment moves, at different substrates.
 
 **Supersedes (prior versions).**
-- `CognitiveEcho#d868`
+- `CognitiveEcho#ae14`
 
 ---
 
-### CollaborativeWritingProtocol#9a3f
+### CollaborativeWritingProtocol#8a1a
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12146,7 +12146,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ConceptualDecomposition#75bc
+### ConceptualDecomposition#3cf2
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12194,7 +12194,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ConstructOntology#fa8d
+### ConstructOntology#9407
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12254,11 +12254,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Foundational epistemic primitive paired with Taxonomy (the output), Category (the building blocks), and AdversarialOntologyConstruction (the methodology that uses it). Compare with ConceptBlend — ConstructOntology builds from foundations; ConceptBlend fuses existing ontologies into a third.
 
 **Supersedes (prior versions).**
-- `ConstructOntology#fa8d`
+- `ConstructOntology#9407`
 
 ---
 
-### Critique#4e43
+### Critique#0254
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12314,11 +12314,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Produces Assessment, consumed by Reflexion and Refine. Sibling of Judge (scalar), Review (structured), and Evaluate (generic). Compare with AdversarialProof — Critique assesses quality; AdversarialProof searches for prohibited content. Both are structured-output verification.
 
 **Supersedes (prior versions).**
-- `Critique#4e43`
+- `Critique#0254`
 
 ---
 
-### Decompose#dcf9
+### Decompose#63f3
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12381,11 +12381,11 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 **In the family.** Foundational mind-layer primitive paired with Compose (the inverse), ConceptualDecomposition (the domain-driven variant), and DepthGovernor/BreadthGovernor (the termination controls). Compare with Chunk — Decompose splits by functional independence, Chunk groups by association. Opposite directions of granularity control.
 
 **Supersedes (prior versions).**
-- `Decompose#dcf9`
+- `Decompose#63f3`
 
 ---
 
-### DecompositionGate#b0f6
+### DecompositionGate#3a79
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12429,7 +12429,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### Deduction#9c88
+### Deduction#b9a0
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12487,7 +12487,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### DeepResearch#c94a
+### DeepResearch#a058
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12555,11 +12555,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Research-methodology primitive paired with Search (internal), Discover (external entity lookup), and Synthesis (the integration step). Compare with Investigation — DeepResearch is structured and autonomous; Investigation is more open-ended. Both are epistemic-work patterns at different ceremony levels.
 
 **Supersedes (prior versions).**
-- `DeepResearch#c94a`
+- `DeepResearch#a058`
 
 ---
 
-### Dialectic#856d
+### Dialectic#b5d0
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12620,11 +12620,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** The self-contained thesis/antithesis/synthesis pattern. Sibling to `SocraticLoop` (external queries), `SteelmanCheck` (rigorous self-critique), `AdversarialSteel` (structural separation for adversarial safety). The synthesis-producing member of the family.
 
 **Supersedes (prior versions).**
-- `Dialectic#856d`
+- `Dialectic#b5d0`
 
 ---
 
-### Eliminate#9ae4
+### Eliminate#9ed8
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12686,11 +12686,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Reasoning-strategy primitive paired with Falsification (the test primitive), Bisect (the binary-partition variant), and ExploreExploit (exploration-of-option-space). Compare with AdversarialProof — Eliminate systematically rules out candidates; AdversarialProof exhaustively searches for prohibited content. Both are eliminative, on different scopes.
 
 **Supersedes (prior versions).**
-- `Eliminate#9ae4`
+- `Eliminate#9ed8`
 
 ---
 
-### Estimate#02ba
+### Estimate#28d2
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12750,11 +12750,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Prediction primitive paired with HeuristicSnap (fast mode) and Simulation (accurate mode). Feeds Bid, Budget, and ContingencyPlan. Compare with CognitiveEcho — CognitiveEcho estimates effort via variance; Estimate estimates cost via two mode options. Both are 'what will this take' at different abstraction levels.
 
 **Supersedes (prior versions).**
-- `Estimate#02ba`
+- `Estimate#28d2`
 
 ---
 
-### EthicalReasoningProtocol#2900
+### EthicalReasoningProtocol#e3a6
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -12795,7 +12795,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Expansive#fa11
+### Expansive#f246
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12847,11 +12847,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Part of the PURE quality-gate quartet with Parsimonious, Unique, and Realizable. Used by DecompositionGate as one of its four tests. Compare with Transfer — Expansive is the PURE evaluation; Transfer is the general capability.
 
 **Supersedes (prior versions).**
-- `Expansive#fa11`
+- `Expansive#f246`
 
 ---
 
-### ExtendedThinking#f9eb
+### ExtendedThinking#da3f
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12914,11 +12914,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Inference-compute primitive paired with ChainOfThought (the substrate), AdaptiveThinking (the Claude-specific mechanism), and Reflexion (iterative self-critique). Compare with Simulation — ExtendedThinking is deliberate in-model reasoning; Simulation is external environment model. Both add compute for accuracy.
 
 **Supersedes (prior versions).**
-- `ExtendedThinking#f9eb`
+- `ExtendedThinking#da3f`
 
 ---
 
-### Fermi#8264
+### Fermi#128b
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12972,11 +12972,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Estimation primitive paired with Estimate (the general pattern), Decompose (the sub-factor generator), and Simulation (the accurate alternative). Compare with HeuristicSnap — HeuristicSnap is fast pattern-match; Fermi is fast decomposition. Both are quick-estimation patterns, on different cognitive axes.
 
 **Supersedes (prior versions).**
-- `Fermi#8264`
+- `Fermi#128b`
 
 ---
 
-### FirstPrinciples#e860
+### FirstPrinciples#4844
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13029,11 +13029,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Cognitive primitive paired with Axiom (the output), ChainOfThought (the construction substrate), and Reframe (the outcome of successful reconstruction). Compare with DepthGovernor — FirstPrinciples is unbounded depth by design; DepthGovernor is the bound. They're in natural tension.
 
 **Supersedes (prior versions).**
-- `FirstPrinciples#e860`
+- `FirstPrinciples#4844`
 
 ---
 
-### FrameError#1d3f
+### FrameError#22e1
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13079,7 +13079,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Generalize#ad9e
+### Generalize#78cb
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13139,11 +13139,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Canonical form of Induction. Paired with Abduction and Deduction as the reasoning triad. Compare with Compress — Generalize extracts rule structure; Compress reduces representation size. Both produce smaller artifacts from larger inputs, targeting different forms of reduction.
 
 **Supersedes (prior versions).**
-- `Generalize#ad9e`
+- `Generalize#78cb`
 
 ---
 
-### GraphOfThought#9ea1
+### GraphOfThought#ccee
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13186,7 +13186,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### HeuristicSnap#abd5
+### HeuristicSnap#bd4b
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13243,11 +13243,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Cognitive shortcut primitive paired with ChainOfThought (the deliberate counterpart), Cache (the substrate), and PathwayMemory (memoized reasoning). Compare with Fermi — HeuristicSnap is pattern-match lookup; Fermi is decomposed estimation. Both are fast-reasoning patterns, on different cognitive paths.
 
 **Supersedes (prior versions).**
-- `HeuristicSnap#abd5`
+- `HeuristicSnap#bd4b`
 
 ---
 
-### HumanEmulatorProtocol#06e6
+### HumanEmulatorProtocol#261f
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13288,7 +13288,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Induction#2487
+### Induction#abe3
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13340,7 +13340,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Interpret#8ee3
+### Interpret#ff6d
 
 `Mind` · `Reasoning` · R0 · T0
 
@@ -13393,11 +13393,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Cognitive primitive paired with Translate (syntactic change), Understand (the outcome), and Context (the substrate). Compare with FrameSpec — FrameSpec is the interpretation of a request into a contract; Interpret is the general primitive FrameSpec specializes.
 
 **Supersedes (prior versions).**
-- `Interpret#8ee3`
+- `Interpret#ff6d`
 
 ---
 
-### Invert#c137
+### Invert#5a62
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13451,11 +13451,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Reasoning-strategy primitive paired with Reverse, PreMortem (specifically for failure analysis), and AdversarialSteel. Compare with AntifragileInversion — Invert is cognitive reframing; AntifragileInversion is structural design. Both flip the problem relation.
 
 **Supersedes (prior versions).**
-- `Invert#c137`
+- `Invert#5a62`
 
 ---
 
-### LeastToMost#0ea3
+### LeastToMost#e362
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13518,11 +13518,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Prompting-strategy primitive paired with Decompose (the general split), ChainOfThought (the substrate), and MECE (the exhaustive partition). Compare with BackwardChain — LeastToMost orders forward by difficulty; BackwardChain orders backward from goal. Different ordering disciplines.
 
 **Supersedes (prior versions).**
-- `LeastToMost#0ea3`
+- `LeastToMost#e362`
 
 ---
 
-### LivedProof#3da4
+### LivedProof#6422
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13586,11 +13586,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Rhetorical/epistemic primitive paired with Proof (the general category), Demonstrate (the active form), and Witness (the attestation counterpart). Compare with CiteBack — LivedProof is self-evidencing; CiteBack is externally sourced. Different epistemic shapes.
 
 **Supersedes (prior versions).**
-- `LivedProof#3da4`
+- `LivedProof#6422`
 
 ---
 
-### MetaPrompt#b605
+### MetaPrompt#db51
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13655,11 +13655,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** Meta-pattern paired with Prompt (the substrate) and Meta (the modifier). Compare with Reflexion — MetaPrompt generates prompts for others; Reflexion revises one's own output. Both are meta-level operations, on different axes.
 
 **Supersedes (prior versions).**
-- `MetaPrompt#b605`
+- `MetaPrompt#db51`
 
 ---
 
-### Parsimony#8b4e
+### Parsimony#bbc6
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13711,11 +13711,11 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 **In the family.** PURE axis paired with Novelty, Realizable, Expansive. Consumed by PURECheck. Compare with Compress — Parsimony is structural simplicity; Compress is information-size reduction.
 
 **Supersedes (prior versions).**
-- `Parsimony#8b4e`
+- `Parsimony#bbc6`
 
 ---
 
-### PatternDiscovery#abed
+### PatternDiscovery#f3a4
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13780,11 +13780,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** Vocabulary-growth gate paired with MintWhenFriction (the trigger), Search (the substrate), and LatentAttachment (the similarity substrate). Compare with Novelty — PatternDiscovery is the deduplication check; Novelty is the structural-distinctness judge.
 
 **Supersedes (prior versions).**
-- `PatternDiscovery#abed`
+- `PatternDiscovery#f3a4`
 
 ---
 
-### ReAct#b4d0
+### ReAct#bf89
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13847,11 +13847,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** Agent-loop primitive paired with ChainOfThought (pure reasoning), EventReact (reactive counterpart), and OODA (military-origin analogue). Foundational for LLM-agent architectures.
 
 **Supersedes (prior versions).**
-- `ReAct#b4d0`
+- `ReAct#bf89`
 
 ---
 
-### Realizable#7ce0
+### Realizable#42f8
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13908,11 +13908,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** PURE axis paired with Parsimony, Novelty, Expansive. Consumed by PURECheck. Compare with ExecutionManifest — Realizable is the feasibility judgment; ExecutionManifest is the runnable artifact.
 
 **Supersedes (prior versions).**
-- `Realizable#7ce0`
+- `Realizable#42f8`
 
 ---
 
-### Reason#e901
+### Reason#c2f2
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13977,11 +13977,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** Orchestration layer paired with Think (the atomic op), ChainOfThought (linear topology), and GraphOfThought (DAG topology). Compare with Plan — Reason produces conclusions; Plan produces step sequences.
 
 **Supersedes (prior versions).**
-- `Reason#e901`
+- `Reason#c2f2`
 
 ---
 
-### RecursionDive#0384
+### RecursionDive#7e67
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14029,11 +14029,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** Solver-tree traversal paired with Decompose (the strategy), SolverTree (the structure), and DepthGovernor/MarginalValueRule (the governors). Compare with Ascend — RecursionDive goes down; Ascend (or compose) goes up.
 
 **Supersedes (prior versions).**
-- `RecursionDive#0384`
+- `RecursionDive#7e67`
 
 ---
 
-### RecursiveRootCause#7074
+### RecursiveRootCause#4df0
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14088,11 +14088,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** Investigation primitive paired with Causation (the semantic substrate), Bisect (which uses RecursiveRootCause's drill), and Why (the atomic question). Compare with Eliminate — RecursiveRootCause is causal drill; Eliminate is option-space narrowing.
 
 **Supersedes (prior versions).**
-- `RecursiveRootCause#7074`
+- `RecursiveRootCause#4df0`
 
 ---
 
-### Refine#78b7
+### Refine#8c9b
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14139,11 +14139,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** Iterative-improvement primitive paired with Critique (the feedback substrate), Reflexion (self-variant), and PhasedRefinement (layered variant). Compare with Optimize — Refine is qualitative; Optimize is quantitative.
 
 **Supersedes (prior versions).**
-- `Refine#78b7`
+- `Refine#8c9b`
 
 ---
 
-### Reflexion#1458
+### Reflexion#4a46
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14207,11 +14207,11 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **In the family.** The post-failure self-critique pattern. Composed with `MetaCheck` (preventive), `WhyClimb` (abstraction-shift on persistent failure), `Reason` (the critique itself). Used by `OptimisticSolver` for post-hoc error correction.
 
 **Supersedes (prior versions).**
-- `Reflexion#1458`
+- `Reflexion#4a46`
 
 ---
 
-### Reframe#44c5
+### Reframe#5737
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14273,11 +14273,11 @@ _Note: `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate 
 **In the family.** Cognitive-move primitive paired with Invert (specific opposition move), Perspective (the substrate), and LateralOptimization (domain-switch variant). Compare with AntifragileInversion — Reframe is cognitive; AntifragileInversion is structural design.
 
 **Supersedes (prior versions).**
-- `Reframe#44c5`
+- `Reframe#5737`
 
 ---
 
-### RequestFraming#2833
+### RequestFraming#8c6c
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -14348,11 +14348,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **Derived from.** `Interpret`
 
 **Supersedes (prior versions).**
-- `RequestFraming#2833`
+- `RequestFraming#8c6c`
 
 ---
 
-### SelfConsistency#2add
+### SelfConsistency#2095
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14408,11 +14408,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Variance-reduction primitive paired with Parallelize (Voting mode), Aggregate (the final step), and Think (the sampled operation). Compare with PerspectiveEnsemble — SelfConsistency varies via temperature; PerspectiveEnsemble varies via persona.
 
 **Supersedes (prior versions).**
-- `SelfConsistency#2add`
+- `SelfConsistency#2095`
 
 ---
 
-### SkeletonOfThought#a855
+### SkeletonOfThought#d1de
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14464,11 +14464,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Parallel-reasoning pattern paired with Skeleton (the topology), Decompose (the outline step), and ChainOfThought (the serial counterpart). Compare with GraphOfThought — SkeletonOfThought is parallel-flat; GraphOfThought is DAG-structured.
 
 **Supersedes (prior versions).**
-- `SkeletonOfThought#a855`
+- `SkeletonOfThought#d1de`
 
 ---
 
-### SocraticLoop#e9e5
+### SocraticLoop#7d52
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14532,11 +14532,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Clarification primitive paired with Understand (the goal), Interpret (the substrate), and HumanApprove (the human-in-loop counterpart). Compare with SelfReminder — SocraticLoop clarifies upstream; SelfReminder constrains downstream.
 
 **Supersedes (prior versions).**
-- `SocraticLoop#e9e5`
+- `SocraticLoop#7d52`
 
 ---
 
-### Specialize#1a76
+### Specialize#c207
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14597,11 +14597,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Instantiation primitive paired with Generalize (the reverse), Specify (synonym), and Expansive (the PURE judge). Compare with Generalize — Specialize narrows, Generalize broadens.
 
 **Supersedes (prior versions).**
-- `Specialize#1a76`
+- `Specialize#c207`
 
 ---
 
-### SteelmanCheck#2d13
+### SteelmanCheck#9c86
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -14668,11 +14668,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** The single-agent rigorous-self-critique pattern. Paired with `AdversarialSteel` (separate green/red advocates — the Tier 1 adversarial-safe specialization) and `RedTeam` (hostile adversarial review). Uses `Check` for robustness evaluation and `Critique` for belief interrogation.
 
 **Supersedes (prior versions).**
-- `SteelmanCheck#2d13`
+- `SteelmanCheck#9c86`
 
 ---
 
-### StepBack#35ad
+### StepBack#03a2
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14739,11 +14739,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Meta-cognitive primitive paired with Reframe (the outcome), FirstPrinciples (the extreme), and Think (the substrate). Compare with Reframe — StepBack gains altitude; Reframe changes perspective at the same altitude.
 
 **Supersedes (prior versions).**
-- `StepBack#35ad`
+- `StepBack#03a2`
 
 ---
 
-### StrategicReading#a1e9
+### StrategicReading#b6bf
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14807,11 +14807,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Reading-strategy primitive paired with Search (retrieval), Read (the act), and Summary (the consumption output). Compare with DeepResearch — StrategicReading is single-doc; DeepResearch is multi-source.
 
 **Supersedes (prior versions).**
-- `StrategicReading#a1e9`
+- `StrategicReading#b6bf`
 
 ---
 
-### Summarize#d9db
+### Summarize#fd40
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14863,11 +14863,11 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 **In the family.** Cognitive-compression primitive paired with Compress (size focus), ChunkMerge (structural compression), and ContextCompress (memory management). Compare with Extract — Summarize preserves structure; Extract pulls pieces.
 
 **Supersedes (prior versions).**
-- `Summarize#d9db`
+- `Summarize#fd40`
 
 ---
 
-### Synthesis#26b9
+### Synthesis#46b9
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14916,11 +14916,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Foundational primitive paired with Analysis (the opposite), Compose (structured synthesis), and Emergence (spontaneous synthesis). Compare with ConceptBlend — Synthesis is general; ConceptBlend is cross-domain.
 
 **Supersedes (prior versions).**
-- `Synthesis#26b9`
+- `Synthesis#46b9`
 
 ---
 
-### Think#0bb4
+### Think#daf8
 
 `Mind` · `Reasoning` · R0 · T0
 
@@ -14981,11 +14981,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Foundational cognitive primitive paired with Reason (multi-step), ChainOfThought (serial composition), and Think specializations (GraphOfThought, SkeletonOfThought).
 
 **Supersedes (prior versions).**
-- `Think#0bb4`
+- `Think#daf8`
 
 ---
 
-### Translate#edeb
+### Translate#b7bf
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -15048,11 +15048,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Conversion primitive paired with Interpret (abstraction-level change), Compress (size-reduction), and RepresentationSwap (orthogonal-modality variant). Compare with Interpret — Translate preserves abstraction; Interpret changes it.
 
 **Supersedes (prior versions).**
-- `Translate#edeb`
+- `Translate#b7bf`
 
 ---
 
-### TreeOfThoughts#84f9
+### TreeOfThoughts#a86a
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -15101,11 +15101,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Reasoning primitive paired with ChainOfThought (linear), GraphOfThought (DAG), and Tree (topology). Compare with BeamSearch — TreeOfThoughts explores fully; BeamSearch truncates.
 
 **Supersedes (prior versions).**
-- `TreeOfThoughts#84f9`
+- `TreeOfThoughts#a86a`
 
 ---
 
-### Uncertain#b5f4
+### Uncertain#a1a2
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -15167,11 +15167,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Epistemic-status primitive paired with Certain, Speculation, Hypothesis. Compare with Assumption — Uncertain is void-of-evidence; Assumption is provisional-truth.
 
 **Supersedes (prior versions).**
-- `Uncertain#b5f4`
+- `Uncertain#a1a2`
 
 ---
 
-### Understand#c38c
+### Understand#4cab
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -15220,11 +15220,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Cognitive primitive paired with Interpret (semantic application), Parse (syntactic), and Model (the outcome). Compare with Think — Understand is the outcome; Think is the atomic op.
 
 **Supersedes (prior versions).**
-- `Understand#c38c`
+- `Understand#4cab`
 
 ---
 
-### Verification#ab66
+### Verification#99a5
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -15275,11 +15275,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** Process primitive paired with Validate (spec-focused), Check (the verb), and Audit (durable output). Compare with Falsification — Verification confirms; Falsification denies.
 
 **Supersedes (prior versions).**
-- `Verification#ab66`
+- `Verification#99a5`
 
 ---
 
-### WhyClimb#cb43
+### WhyClimb#967d
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -15342,13 +15342,13 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** The abstraction-ascent cognitive pattern. Paired with `FirstPrinciples` (the complementary descent to irreducibles), `Reframe` (the lateral move). Used by root-cause analysis workflows; composed with `Reason` primitive.
 
 **Supersedes (prior versions).**
-- `WhyClimb#cb43`
+- `WhyClimb#967d`
 
 ---
 
 ### Mind/Strategy (81)
 
-### AdversarialSteel#ded9
+### AdversarialSteel#5e05
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -15403,11 +15403,11 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **In the family.** The adversarial-safe cousin of `SteelmanCheck`. Structural separation (three agents) defeats the Strawman Waltz. Uses `Judge` as the verdict-renderer; composes with `RedTeam` at the policy layer. The Tier 1 adversarial-hardening pattern in the reasoning family.
 
 **Supersedes (prior versions).**
-- `AdversarialSteel#ded9`
+- `AdversarialSteel#5e05`
 
 ---
 
-### Agent#2072
+### Agent#6765
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -15477,11 +15477,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** The intent-bearing cognitive unit. Composed from `Actor` (execution capability), `Observe` (perception), `Think` (reasoning), `Act` (execution), `Goal` (objective), `Identity` (persistence). Takes on `Solver` roles for specific tasks. Paired with `AgentProtocol` when coordinating with other Agents.
 
 **Supersedes (prior versions).**
-- `Agent#2072`
+- `Agent#6765`
 
 ---
 
-### AnalogyBridge#fa18
+### AnalogyBridge#31ef
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -15541,11 +15541,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Part of the creative-reasoning cluster with ConceptBlend, Reframe, and Metaphor. Draws on LatentAttachment as its search substrate. Where AnalogyBridge maps source onto target, ConceptBlend fuses them into a third; the pattern boundary is real but narrow. Adjacent to AntifragileInversion which is a specific applied analogy (biological antifragility mapped onto system design).
 
 **Supersedes (prior versions).**
-- `AnalogyBridge#fa18`
+- `AnalogyBridge#31ef`
 
 ---
 
-### AntifragileInversion#7558
+### AntifragileInversion#4d9e
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -15605,11 +15605,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Sits in the design-cognition corner alongside Reframe, ConstraintAsFeature, and FirstPrinciples. AnalogyBridge is its underpinning (biological → engineered). Compare with PhaseTransition (system state change under load) which is closer to a physical description; AntifragileInversion is the prescriptive design move that exploits that kind of nonlinearity.
 
 **Supersedes (prior versions).**
-- `AntifragileInversion#7558`
+- `AntifragileInversion#4d9e`
 
 ---
 
-### BeamSearch#d483
+### BeamSearch#fc0a
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -15660,11 +15660,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Search-family sibling of Bisect (O(log n) partition), TreeSearch (depth first), and Discover (the parent verb). Used as a subroutine by PolymorphicSolver when evaluating multiple strategies in parallel. Compare with MonteCarloTreeSearch — BeamSearch is deterministic breadth-limited, MCTS is stochastic with an exploration/exploitation balance.
 
 **Supersedes (prior versions).**
-- `BeamSearch#d483`
+- `BeamSearch#fc0a`
 
 ---
 
-### Bubble#5410
+### Bubble#710d
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -15731,11 +15731,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Transactional sibling of LatticeCommit (CRDT-style eventual consistency), AnchorDrop (emergency checkpointing), and Handoff (atomic transfer). The copy-on-write/READY-then-COMMIT shape is directly borrowed from two-phase commit protocols. Compare with AtomicBid — Bubble is heavy (all-or-nothing), AtomicBid is light (fire-and-compensate); they're opposite ends of the coordination-safety spectrum.
 
 **Supersedes (prior versions).**
-- `Bubble#5410`
+- `Bubble#710d`
 
 ---
 
-### Build#8424
+### Build#24b9
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -15799,11 +15799,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Sibling of Plan (the precursor) and Rollout (the successor). Part of the deliberate-execution family with FirstPrinciples, Sketch, and Experiment. Compare with Canary — Build is a prototype of the artifact itself; Canary is a prototype of the execution path. Both de-risk before committing, on different axes.
 
 **Supersedes (prior versions).**
-- `Build#8424`
+- `Build#24b9`
 
 ---
 
-### CapacityPressure#b363
+### CapacityPressure#f289
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -15868,11 +15868,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Information-theoretic sibling of Compress (explicit reduction), Abstraction (the output), and Parsimony (the goal). Compare with EntropyPump — both manipulate information content to drive cognition; EntropyPump injects, CapacityPressure constrains. Sits in the rare corner of the library devoted to representation engineering.
 
 **Supersedes (prior versions).**
-- `CapacityPressure#b363`
+- `CapacityPressure#f289`
 
 ---
 
-### CommitmentDevice#bde9
+### CommitmentDevice#dbdb
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -15930,11 +15930,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** A stance-pattern sibling of Promise, Oath, Contract, and Sign. Uses OathBind as its substrate. Compare with Constitution (community-level commitment) — CommitmentDevice is self-to-self, Constitution is we-to-us. Pairs with Compensate for the unhappy path when commitments must be broken despite the cost.
 
 **Supersedes (prior versions).**
-- `CommitmentDevice#bde9`
+- `CommitmentDevice#dbdb`
 
 ---
 
-### Compose#7220
+### Compose#57a9
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16000,11 +16000,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Pairs with Decompose (the inverse), Combine (the physical assembly step), and PromptChain (the substrate for many agent compositions). Compare with Aggregate — Compose assembles structurally, Aggregate reduces numerically; both collapse many-into-one, on different axes.
 
 **Supersedes (prior versions).**
-- `Compose#7220`
+- `Compose#57a9`
 
 ---
 
-### ComputeBudget#ff07
+### ComputeBudget#47c6
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -16071,11 +16071,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** The cognitive-cost governor for the solver family. Composed with `Budget` (the conservation base), `MarginalValueRule` (the stopping decision), `Judge` (for evaluating whether a compute step produced proportional value). Held by `RootSolver` for top-level budget allocation.
 
 **Supersedes (prior versions).**
-- `ComputeBudget#ff07`
+- `ComputeBudget#47c6`
 
 ---
 
-### ConceptBlend#29a9
+### ConceptBlend#6bdf
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -16127,11 +16127,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** The combinatoric-novelty generator. Extends `AnalogyBridge` with fusion (not just mapping). Used in creative pipelines with `TriGate` for validity filtering. Composed with `Distance` for orthogonality checks. Sibling to `Synthesis` (combining conforming parts, not distant ones).
 
 **Supersedes (prior versions).**
-- `ConceptBlend#29a9`
+- `ConceptBlend#6bdf`
 
 ---
 
-### ConstraintFirst#c7cb
+### ConstraintFirst#10b8
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -16185,7 +16185,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### ContingencyPlan#348e
+### ContingencyPlan#c760
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16246,11 +16246,11 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 **In the family.** Planning family, paired with Plan (the main), PreMortem (the trigger-discovery move), and Recover. Compare with Compensate — ContingencyPlan is pre-planned response to anticipated failure; Compensate is generic rollback after unanticipated failure. Both handle failure, at different planning points.
 
 **Supersedes (prior versions).**
-- `ContingencyPlan#348e`
+- `ContingencyPlan#c760`
 
 ---
 
-### Creative#5574
+### Creative#c7e4
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -16300,7 +16300,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### CreativeBlend#424e
+### CreativeBlend#0f9f
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -16355,11 +16355,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **Derived from.** `Creative`
 
 **Supersedes (prior versions).**
-- `CreativeBlend#424e`
+- `CreativeBlend#0f9f`
 
 ---
 
-### Crystallize#b1d9
+### Crystallize#d187
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -16427,11 +16427,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Norm-formation primitive paired with Resonate (the soft signal substrate), Constitution (the hard-rule output), and Consensus (the validation step). Compare with PhaseTransition — Crystallize is the social/epistemic phase transition (norms formalizing); PhaseTransition is the general physics-inspired primitive.
 
 **Supersedes (prior versions).**
-- `Crystallize#b1d9`
+- `Crystallize#d187`
 
 ---
 
-### Deep#89f0
+### Deep#12d3
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16482,7 +16482,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### Defer#ccb6
+### Defer#2c34
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16543,11 +16543,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Pairs with Prioritize (the re-insertion step when the trigger fires), Yield (similar postponement but with submission connotations), and ContingencyPlan (pre-planned response to trigger). Compare with FailClosed — Defer holds state and waits; FailClosed halts and errors. Different responses to 'can't decide now.'
 
 **Supersedes (prior versions).**
-- `Defer#ccb6`
+- `Defer#2c34`
 
 ---
 
-### DepthGovernor#2efa
+### DepthGovernor#96cf
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -16603,11 +16603,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Paired with BreadthGovernor (fan-out limit) as the decomposition governance duo. Consumed by ConceptualDecomposition and FractalIntelligence, which use both governors to stay bounded. Compare with Budget — DepthGovernor is a quality-driven ceiling (entropy threshold), Budget is a resource-driven ceiling. Both bound unbounded processes.
 
 **Supersedes (prior versions).**
-- `DepthGovernor#2efa`
+- `DepthGovernor#96cf`
 
 ---
 
-### DesignArchitect#9ef6
+### DesignArchitect#de8c
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -16658,11 +16658,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Role-pattern sibling of Solver (the executor) and Evaluator (the judge). Uses SteelmanCheck, PreMortem, and Strategy as its toolkit. Compare with Critic — DesignArchitect produces; Critic evaluates. Compare with Plan — Plan is the artifact; DesignArchitect is the role producing richer DesignProposal artifacts.
 
 **Supersedes (prior versions).**
-- `DesignArchitect#9ef6`
+- `DesignArchitect#de8c`
 
 ---
 
-### DiscoveryProtocol#65f5
+### DiscoveryProtocol#7ada
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16703,7 +16703,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DogfoodFirst#679c
+### DogfoodFirst#3b9d
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -16766,11 +16766,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Validation-methodology primitive paired with Canary (expendable probe), SmokeTest (minimal end-to-end check), and RealUser testing. Compare with Experiment — DogfoodFirst is real-world validation by the creator; Experiment is controlled validation. Both are 'test before ship,' at different fidelity points.
 
 **Supersedes (prior versions).**
-- `DogfoodFirst#679c`
+- `DogfoodFirst#3b9d`
 
 ---
 
-### EmpathySim#23a0
+### EmpathySim#2f02
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16834,11 +16834,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Theory-of-mind primitive paired with AgentSandbox (the isolation substrate), TargetProfile (the input model), and Prediction (the output). Compare with AnalogyBridge — EmpathySim simulates the other; AnalogyBridge maps structure across domains. Different abstractions of 'modeling the outside.'
 
 **Supersedes (prior versions).**
-- `EmpathySim#23a0`
+- `EmpathySim#2f02`
 
 ---
 
-### EmpiricalTest#bdb0
+### EmpiricalTest#0938
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -16892,11 +16892,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Verification-family primitive paired with Falsification (the substrate), Experiment (the causal variant), and Validate (the spec-compliance counterpart). Compare with Witness — EmpiricalTest produces empirical confidence; Witness produces attestation. Both build trust, at different substrates.
 
 **Supersedes (prior versions).**
-- `EmpiricalTest#bdb0`
+- `EmpiricalTest#0938`
 
 ---
 
-### EpistemicROI#07f9
+### EpistemicROI#d486
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16958,11 +16958,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Decision-theory primitive paired with Estimate (cost projection), Experiment (the target), and Defer (a related 'gather more info' move). Compare with CommitmentDevice — EpistemicROI guards against uninformative experimentation; CommitmentDevice guards against motivated pivoting. Both are discipline-around-action patterns.
 
 **Supersedes (prior versions).**
-- `EpistemicROI#07f9`
+- `EpistemicROI#d486`
 
 ---
 
-### EventReact#d3c4
+### EventReact#d2e1
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -17023,11 +17023,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Reactive-agent primitive paired with Event (the unit), EventQueue (the substrate), and Handler (the response). Often triggers ReAct cycles upon signal reception. Compare with AgentProtocol bundle (which includes event-handling primitives implicitly). Foundation for any event-driven agent architecture.
 
 **Supersedes (prior versions).**
-- `EventReact#d3c4`
+- `EventReact#d2e1`
 
 ---
 
-### Experiment#24aa
+### Experiment#3a0d
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -17070,16 +17070,16 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Very thin — the mechanism says 'use Control and Treatment,' which is correct and under-specified. Real experiments have blinding, randomization, sample size, power calculations; the pattern mentions none.
 - No failure modes listed — experiments have many (confounders, selection bias, over-fitting to treatment) and the pattern doesn't catalogue them.
 - Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time.
-- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#ee7f`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#5f0c`) to full sema_id.
 
 **In the family.** Causal-discovery primitive paired with Verification (confirmation), Experiment-specific patterns (A/B, RCT), and Hypothesis (the pre-registered claim being tested). Compare with Probe — Experiment is structured causal, Probe is single-shot observational. Both gather information, at different rigor levels.
 
 **Supersedes (prior versions).**
-- `Experiment#24aa`
+- `Experiment#3a0d`
 
 ---
 
-### ExploreExploit#d500
+### ExploreExploit#f920
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17132,11 +17132,11 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 **In the family.** Allocation primitive paired with UCB (the specific algorithm), Bandit (the decision class), and Prioritize (resource allocation). Compare with Defer — ExploreExploit balances now vs later information; Defer waits for specific future information. Both time-trade decisions, on different axes.
 
 **Supersedes (prior versions).**
-- `ExploreExploit#d500`
+- `ExploreExploit#f920`
 
 ---
 
-### Falsification#0215
+### Falsification#e44f
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17183,16 +17183,16 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Duhem-Quine thesis is the classical problem — any observation technically falsifies a conjunction, not a single hypothesis. The pattern assumes clean falsification.
 - The 'If Prediction implies Observation, and not-Observation, then not-Hypothesis' invariant is valid logic; the practical problem is that real hypotheses rarely imply crisp observations.
 - Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes.
-- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#ee7f`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#5f0c`) to full sema_id.
 
 **In the family.** Epistemic primitive paired with Verify (affirmative counterpart), Hypothesis (the subject), and Prediction (the falsifiable statement). Compare with NegativeProof — Falsification proves a claim false; NegativeProof proves a claim about absence. Both are eliminative, at different targets.
 
 **Supersedes (prior versions).**
-- `Falsification#0215`
+- `Falsification#e44f`
 
 ---
 
-### FractalIntelligence#c9bc
+### FractalIntelligence#5481
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17248,11 +17248,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **In the family.** The architectural umbrella under which the solver family, UniversalSolverTree, and PathwayMemory organize. Composed with `ConceptualDecomposition` (the recursive move), `RootSolver` (apex), `UniversalSolverTree` (topology), `MarginalValueRule` (bounding), `PathwayMemory` (learning). The library's central cognitive architecture pattern.
 
 **Supersedes (prior versions).**
-- `FractalIntelligence#c9bc`
+- `FractalIntelligence#5481`
 
 ---
 
-### HypothesisEngine#7655
+### HypothesisEngine#2dae
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -17303,11 +17303,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **In the family.** Methodology engine paired with Hypothesis (the unit), Falsification (the test), BayesUpdate (the revision), and BeliefTracking (the audit). Compare with HypothesisLadder — HypothesisEngine is the running cycle; HypothesisLadder is the state structure the cycle operates on.
 
 **Supersedes (prior versions).**
-- `HypothesisEngine#7655`
+- `HypothesisEngine#2dae`
 
 ---
 
-### HypothesisLadder#ee7f
+### HypothesisLadder#5f0c
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -17368,11 +17368,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **In the family.** Hypothesis-tracking primitive paired with Hypothesis (the unit), BayesUpdate (the revision substrate), and BeliefTracking (the audit trail). Compare with BeliefTracking — HypothesisLadder is specifically multi-hypothesis; BeliefTracking is general belief version control.
 
 **Supersedes (prior versions).**
-- `HypothesisLadder#ee7f`
+- `HypothesisLadder#5f0c`
 
 ---
 
-### Jester#89e4
+### Jester#0c49
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17419,11 +17419,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **In the family.** Social-communication primitive paired with Critique (the content), Diplomacy, and Framing. Uses Incongruity as its mechanism. Compare with Steelman — Jester delivers critique indirectly; Steelman strengthens opposing positions. Both are trust-preserving epistemic moves.
 
 **Supersedes (prior versions).**
-- `Jester#89e4`
+- `Jester#0c49`
 
 ---
 
-### Kairos#5e42
+### Kairos#c297
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -17475,7 +17475,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### LatentWander#3dbb
+### LatentWander#6e05
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -17526,11 +17526,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **In the family.** Offline-mode primitive paired with LatentAttachment (the substrate), ConceptBlend (the primary operation during wandering), and AnalogyBridge (the typical output). Compare with CurriculumReplay — both are offline/idle processing; LatentWander explores embedding space, CurriculumReplay revisits successful examples.
 
 **Supersedes (prior versions).**
-- `LatentWander#3dbb`
+- `LatentWander#6e05`
 
 ---
 
-### LateralOptimization#43f9
+### LateralOptimization#2bdb
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17600,11 +17600,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **In the family.** Creative-reasoning primitive paired with Reframe (the domain-shift move), AnalogyBridge (the mapping substrate), and Optimize (the goal). Compare with FirstPrinciples — LateralOptimization escapes via domain switch; FirstPrinciples escapes via axiomatic reconstruction. Different escape strategies.
 
 **Supersedes (prior versions).**
-- `LateralOptimization#43f9`
+- `LateralOptimization#2bdb`
 
 ---
 
-### ManifestPlanning#d34a
+### ManifestPlanning#b7f2
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17664,11 +17664,11 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 **Derived from.** `Plan`
 
 **Supersedes (prior versions).**
-- `ManifestPlanning#d34a`
+- `ManifestPlanning#b7f2`
 
 ---
 
-### MarginalValueRule#311b
+### MarginalValueRule#eebb
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17729,11 +17729,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Economic governor paired with Budget (resource bound), Estimate (marginal-value input), and DepthGovernor (quality-driven counterpart). Compare with RecursionDive — MarginalValueRule gates dives; RecursionDive is the dive itself.
 
 **Supersedes (prior versions).**
-- `MarginalValueRule#311b`
+- `MarginalValueRule#eebb`
 
 ---
 
-### MentalSim#2ec6
+### MentalSim#2874
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17795,11 +17795,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Predictive-reasoning primitive paired with AgentSandbox (the isolation substrate), CausalGraph (the simulation substrate), and PreMortem (failure-specific variant). Compare with CognitiveEcho — MentalSim simulates the full plan; CognitiveEcho runs quick variance probes. Both are pre-execution testing.
 
 **Supersedes (prior versions).**
-- `MentalSim#2ec6`
+- `MentalSim#2874`
 
 ---
 
-### MetaCheck#1914
+### MetaCheck#6787
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17863,11 +17863,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The periodic self-audit pattern. Composed with `Reflexion` (post-failure learning) and `WhyClimb` (abstraction shift when the audit suggests reframing). Uses bounded meta-recursion to prevent infinite regress.
 
 **Supersedes (prior versions).**
-- `MetaCheck#1914`
+- `MetaCheck#6787`
 
 ---
 
-### MetaProtocols#86b7
+### MetaProtocols#3561
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17908,7 +17908,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### NoiseInjection#5042
+### NoiseInjection#9cd5
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17969,11 +17969,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Recovery primitive paired with EntropyPump (the general noise-injection pattern), LatentWander (offline variant), and CreativeBlend (which uses NoiseInjection). Compare with Jester — both inject incongruity; NoiseInjection for recovery, Jester for critique delivery.
 
 **Supersedes (prior versions).**
-- `NoiseInjection#5042`
+- `NoiseInjection#9cd5`
 
 ---
 
-### Novelty#296b
+### Novelty#262f
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18025,11 +18025,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** PURE-gate element for the Unique dimension. Paired with Expansive (transfer judge), Parsimonious (simplicity judge), Realizable (coherence judge). Used by DecompositionGate. Compare with Originality — same concept, different framing.
 
 **Supersedes (prior versions).**
-- `Novelty#296b`
+- `Novelty#262f`
 
 ---
 
-### OODA#fc39
+### OODA#c15f
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -18100,11 +18100,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision-cycle paired with Loop (control flow), Observe (the gathering step), and Orient (the contextualization). Compare with ReAct — both are cyclic decision patterns; OODA is military-origin agility-focused; ReAct is LLM-origin reasoning-acting.
 
 **Supersedes (prior versions).**
-- `OODA#fc39`
+- `OODA#c15f`
 
 ---
 
-### OpportunityCost#04c6
+### OpportunityCost#ab1b
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18165,11 +18165,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision-theory primitive paired with Value (the axis), Budget (the resource), and ExploreExploit (which uses opportunity cost). Compare with EpistemicROI — OpportunityCost is about forgone alternatives; EpistemicROI is about forgone information.
 
 **Supersedes (prior versions).**
-- `OpportunityCost#04c6`
+- `OpportunityCost#ab1b`
 
 ---
 
-### OptimalStop#e7ca
+### OptimalStop#78c8
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18223,11 +18223,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision-theory primitive paired with ExploreExploit, ComputeBudget, and SearchStrategy. Compare with Defer — OptimalStop decides when to stop searching; Defer decides when to wait for more information.
 
 **Supersedes (prior versions).**
-- `OptimalStop#e7ca`
+- `OptimalStop#78c8`
 
 ---
 
-### Optimize#6226
+### Optimize#94e0
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18293,11 +18293,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Foundational primitive paired with Metric (the objective), EntropyPump (local-optima escape), and LateralOptimization (creative escape). Compare with Refine — Optimize is quantitative; Refine is qualitative. Both are improvement loops, on different axes.
 
 **Supersedes (prior versions).**
-- `Optimize#6226`
+- `Optimize#94e0`
 
 ---
 
-### PURE#a577
+### PURE#7ed4
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18345,7 +18345,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREBrainstorming#b9c8
+### PUREBrainstorming#9ba1
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -18396,11 +18396,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** PURE-application sibling of PURECheck (triage mode) and PUREOptimization (improvement mode). Compare with standard Brainstorming — PUREBrainstorming trades volume for quality.
 
 **Supersedes (prior versions).**
-- `PUREBrainstorming#b9c8`
+- `PUREBrainstorming#9ba1`
 
 ---
 
-### PURECheck#6874
+### PURECheck#e277
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18449,11 +18449,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** PURE instantiation paired with PUREBrainstorming (another application), TriGate (the sub-component), and LayeredCheck (the execution pattern). Compare with PUREOptimization — different PURE applications for different contexts.
 
 **Supersedes (prior versions).**
-- `PURECheck#6874`
+- `PURECheck#e277`
 
 ---
 
-### PUREOptimization#f429
+### PUREOptimization#89fe
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18510,11 +18510,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** PURE-application sibling of PURECheck (triage) and PUREBrainstorming (ideation). Uses PURE as the evaluation framework.
 
 **Supersedes (prior versions).**
-- `PUREOptimization#f429`
+- `PUREOptimization#89fe`
 
 ---
 
-### Parallelize#37ad
+### Parallelize#f2bb
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -18579,11 +18579,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Orchestration primitive paired with Sectioning (Decompose variant), Vote (the voting mode), and Merge (the aggregation). Compare with Chain — Parallelize is breadth, Chain is depth. Both are orchestration.
 
 **Supersedes (prior versions).**
-- `Parallelize#37ad`
+- `Parallelize#f2bb`
 
 ---
 
-### ParetoFront#c1fb
+### ParetoFront#10a7
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18641,11 +18641,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Multi-objective primitive paired with Optimize (single-objective counterpart), Compromise (the social analogue), and ExchangeRate (the tradeoff-quantifier). Compare with OpportunityCost — ParetoFront is multi-axis; OpportunityCost is alternative-based.
 
 **Supersedes (prior versions).**
-- `ParetoFront#c1fb`
+- `ParetoFront#10a7`
 
 ---
 
-### PerspectiveEnsemble#9aed
+### PerspectiveEnsemble#3f70
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18703,11 +18703,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Multi-persona primitive paired with SteelmanCheck (strongest opposing), DissentSeek (active disagreement), and Debate (the activity). Compare with DiscoveryProtocol — PerspectiveEnsemble is persona-based, DiscoveryProtocol is mode-based; both enforce diversity.
 
 **Supersedes (prior versions).**
-- `PerspectiveEnsemble#9aed`
+- `PerspectiveEnsemble#3f70`
 
 ---
 
-### PolymorphicSolver#d104
+### PolymorphicSolver#272a
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18758,7 +18758,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PreMortem#6cc4
+### PreMortem#4c7f
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18818,11 +18818,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Risk-analysis primitive paired with Steelman (the positive counterpart), MechanisticDesignProposal (which requires PreMortem for dialectic balance), and DesignArchitect (which wields it). Compare with Falsification — PreMortem anticipates failure; Falsification tests current claims.
 
 **Supersedes (prior versions).**
-- `PreMortem#6cc4`
+- `PreMortem#4c7f`
 
 ---
 
-### Prioritize#274c
+### Prioritize#8028
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18882,11 +18882,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Ordering primitive paired with Score (the evaluation substrate), Rank (the general operation), and Triage (the urgency-weighted variant). Compare with OptimalStop — Prioritize orders items; OptimalStop decides when to stop processing.
 
 **Supersedes (prior versions).**
-- `Prioritize#274c`
+- `Prioritize#8028`
 
 ---
 
-### ProblemFramer#5232
+### ProblemFramer#2718
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18941,11 +18941,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Role-pattern paired with FrameSpec (the artifact), RequestFraming (the verb), and RootSolver (the downstream anchor). Compare with DesignArchitect — ProblemFramer interprets requests; DesignArchitect produces design proposals. Different inputs, different outputs.
 
 **Supersedes (prior versions).**
-- `ProblemFramer#5232`
+- `ProblemFramer#2718`
 
 ---
 
-### RedTeam#d22e
+### RedTeam#15c5
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -19005,11 +19005,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Adversarial-testing primitive paired with SteelmanCheck (strongest-opposing variant), AdversarialProof (exhaustive search), and DissentSeek (disagreement-seeking). Compare with PreMortem — RedTeam is adversarial-external; PreMortem is failure-future.
 
 **Supersedes (prior versions).**
-- `RedTeam#d22e`
+- `RedTeam#15c5`
 
 ---
 
-### Reflex#ea07
+### Reflex#c1f2
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19063,7 +19063,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### RegretMinimization#37b4
+### RegretMinimization#67cf
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -19114,11 +19114,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision-under-extreme-risk primitive paired with ExpectedValue (the standard framing), Minimax (the game-theoretic cousin), and Utility (the optimized-for). Compare with OptimalStop — RegretMinimization is stance for extreme-risk; OptimalStop is search termination. Different decision-theory moves.
 
 **Supersedes (prior versions).**
-- `RegretMinimization#37b4`
+- `RegretMinimization#67cf`
 
 ---
 
-### RepresentationSwap#806a
+### RepresentationSwap#68ab
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19172,11 +19172,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Verification-via-modality primitive paired with Translate (the mechanism), Critique (the target), and Incongruity (the output). Compare with CiteBack — RepresentationSwap reveals errors via modality shift; CiteBack enforces source-grounding. Different verification strategies.
 
 **Supersedes (prior versions).**
-- `RepresentationSwap#806a`
+- `RepresentationSwap#68ab`
 
 ---
 
-### Retry#ac55
+### Retry#79b6
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19242,11 +19242,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Resilience primitive paired with Backoff (the delay discipline), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one.
 
 **Supersedes (prior versions).**
-- `Retry#ac55`
+- `Retry#79b6`
 
 ---
 
-### RigorousSolver#b7aa
+### RigorousSolver#b75d
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19301,11 +19301,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **Derived from.** `PolymorphicSolver`
 
 **Supersedes (prior versions).**
-- `RigorousSolver#b7aa`
+- `RigorousSolver#b75d`
 
 ---
 
-### Roadmap#a785
+### Roadmap#0b54
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -19352,11 +19352,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Strategic-planning primitive paired with Plan (tactical), Milestone (the discrete units), and Goal (the targets). Compare with Strategy — Roadmap is temporal; Strategy is approach-level.
 
 **Supersedes (prior versions).**
-- `Roadmap#a785`
+- `Roadmap#0b54`
 
 ---
 
-### RootSolver#0eab
+### RootSolver#6d0d
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19408,7 +19408,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### SacrificialProbe#970d
+### SacrificialProbe#aca7
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19470,11 +19470,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Reconnaissance primitive paired with Canary (similar expendable-agent probe), Probe (active query), and SafeFailure (graceful). Compare with Probe — SacrificialProbe expects failure; Probe expects answer.
 
 **Supersedes (prior versions).**
-- `SacrificialProbe#970d`
+- `SacrificialProbe#aca7`
 
 ---
 
-### Satisfice#0874
+### Satisfice#ac34
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -19537,11 +19537,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision primitive paired with Optimize (the alternative), OptimalStop (the stopping counterpart), and Prioritize (the ordering). Compare with Compromise — Satisfice is single-agent acceptance; Compromise is multi-agent dampening.
 
 **Supersedes (prior versions).**
-- `Satisfice#0874`
+- `Satisfice#ac34`
 
 ---
 
-### Silence#dd79
+### Silence#cc90
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -19592,7 +19592,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Simulation#5e80
+### Simulation#ebb1
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -19642,11 +19642,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Foundational predictive primitive paired with AgentSandbox (agent-specific), MentalSim (agent-reasoning variant), and Prediction (the output). Compare with Experiment — Simulation is isolated; Experiment is in reality.
 
 **Supersedes (prior versions).**
-- `Simulation#5e80`
+- `Simulation#ebb1`
 
 ---
 
-### Solver#81dc
+### Solver#04b5
 
 `Mind` · `Strategy` · R0 · T0
 
@@ -19696,11 +19696,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The library's central verb-pattern. `PolymorphicSolver` is the concrete five-surface implementer; `OptimisticSolver` and `RigorousSolver` specialize on rigor; `RootSolver` is the apex triage node with Pathway Memory. `UniversalSolverTree` is the topology produced by Solver recursion. `Task` and `Solution` are the input/output types Solver types against; `AcceptSpec`, `FrameError`, `PerformanceSignal` wire the Verify/Feedback surfaces.
 
 **Supersedes (prior versions).**
-- `Solver#81dc`
+- `Solver#04b5`
 
 ---
 
-### SteelmanFirst#9d16
+### SteelmanFirst#894f
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19760,11 +19760,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Epistemic-hygiene primitive paired with SteelmanCheck (the general), ConfirmationBlock (disconfirmation-seeking), and DissentSeek (finding disagreement). Compare with PreMortem — SteelmanFirst is argument; PreMortem is failure.
 
 **Supersedes (prior versions).**
-- `SteelmanFirst#9d16`
+- `SteelmanFirst#894f`
 
 ---
 
-### Strategy#cd1d
+### Strategy#0f2f
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19811,11 +19811,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Planning primitive paired with Plan (tactical), Roadmap (temporal-strategic), and Goal (what's being won). Compare with Plan — Strategy is adaptive; Plan is sequential.
 
 **Supersedes (prior versions).**
-- `Strategy#cd1d`
+- `Strategy#0f2f`
 
 ---
 
-### SunkCostIgnore#12a7
+### SunkCostIgnore#aa85
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -19876,11 +19876,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision-discipline primitive paired with OpportunityCost, EpistemicROI, and RegretMinimization. Compare with CommitmentDevice — SunkCostIgnore counters over-continuation; CommitmentDevice counters under-continuation.
 
 **Supersedes (prior versions).**
-- `SunkCostIgnore#12a7`
+- `SunkCostIgnore#aa85`
 
 ---
 
-### TensionHold#5245
+### TensionHold#b084
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19945,11 +19945,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Conflict-handling primitive paired with Tension (the object), Compromise (the resolution), and Dialectic (the opposing-view approach).
 
 **Supersedes (prior versions).**
-- `TensionHold#5245`
+- `TensionHold#b084`
 
 ---
 
-### ThinSlice#4d20
+### ThinSlice#c21b
 
 `Mind` · `Strategy` · R2 · T3
 
@@ -20001,11 +20001,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Triage primitive paired with Classify (the decision), HeuristicSnap (similar fast path), and ThinSlice (early-routing). Compare with CognitiveEcho — ThinSlice is structural-data triage; CognitiveEcho is variance-based effort estimation.
 
 **Supersedes (prior versions).**
-- `ThinSlice#4d20`
+- `ThinSlice#c21b`
 
 ---
 
-### TimeboxThink#514b
+### TimeboxThink#1f05
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -20066,11 +20066,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Bounded-exploration primitive paired with OptimalStop, ComputeBudget, and Timeout. Compare with OptimalStop — TimeboxThink is wall-clock; OptimalStop is decision-theoretic.
 
 **Supersedes (prior versions).**
-- `TimeboxThink#514b`
+- `TimeboxThink#1f05`
 
 ---
 
-### TradeOff#1838
+### TradeOff#dbb6
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -20121,11 +20121,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Decision-framing primitive paired with OpportunityCost, Decision, and Value.
 
 **Supersedes (prior versions).**
-- `TradeOff#1838`
+- `TradeOff#dbb6`
 
 ---
 
-### UncertaintyMap#822c
+### UncertaintyMap#de94
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -20178,11 +20178,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Epistemic primitive paired with Uncertain, EpistemicCalibrate, and Risk.
 
 **Supersedes (prior versions).**
-- `UncertaintyMap#822c`
+- `UncertaintyMap#de94`
 
 ---
 
-### WorldReversible#f664
+### WorldReversible#a8e0
 
 `Mind` · `Strategy` · R0 · T1
 
@@ -20247,7 +20247,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ### Society/Coordination (12)
 
-### Compromise#3476
+### Compromise#228b
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20294,11 +20294,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Social-layer sibling of Yield (binary submission), Consensus (full agreement), and Vote (majority rule). Uses Dampen as its reduction primitive. Compare with Quorum — Compromise is about preference intensity; Quorum is about participation count. Both are decision-reaching mechanisms, on different axes.
 
 **Supersedes (prior versions).**
-- `Compromise#3476`
+- `Compromise#228b`
 
 ---
 
-### Consensus#376f
+### Consensus#45f4
 
 `Society` · `Coordination` · R0 · T1
 
@@ -20366,11 +20366,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The multi-party-agreement substrate. Uses `Vote` (mechanism) and `Quorum` (threshold). Parent or peer to `LatticeCommit` (geometric-locality variant) and invoked by `Rally`, `Constitution`-ratification workflows. Foundational for every Society protocol that needs collective commitment.
 
 **Supersedes (prior versions).**
-- `Consensus#376f`
+- `Consensus#45f4`
 
 ---
 
-### ConsensusFinder#8c10
+### ConsensusFinder#980a
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20423,11 +20423,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Sits in the consensus family with Consensus (the substance), Vote (the creation mechanism), and ConsensusReduce (the collapsing move). ConsensusFinder is the read-only counterpart to these active patterns. Mirrors the read/write split in the database sense — find before you commit.
 
 **Supersedes (prior versions).**
-- `ConsensusFinder#8c10`
+- `ConsensusFinder#980a`
 
 ---
 
-### Delegate#ba86
+### Delegate#78a8
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20496,11 +20496,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Core multi-agent coordination primitive. Pairs with Handoff (transfer of ownership), Rally (group delegation), and Heartbeat (the progress substrate). Compare with Assign — Delegate is a protocol with acceptance; Assign is direct with no refusal right. Different agency models.
 
 **Supersedes (prior versions).**
-- `Delegate#ba86`
+- `Delegate#78a8`
 
 ---
 
-### Disband#1c62
+### Disband#9953
 
 `Society` · `Coordination` · R1 · T1
 
@@ -20566,11 +20566,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Group-lifecycle primitive paired with Elect (formation), Rally (coordinated action), and EjectionSeat (forced termination). Compare with Break — Break is per-member failure announcement; Disband is group-level dissolution. Both end coordination, at different scopes.
 
 **Supersedes (prior versions).**
-- `Disband#1c62`
+- `Disband#9953`
 
 ---
 
-### Elect#4f89
+### Elect#45ff
 
 `Society` · `Coordination` · R2 · T1
 
@@ -20637,11 +20637,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Governance primitive paired with Nominate, Ballot, Vote, and Recall. Compare with Appoint — Elect is legitimacy-through-process; Appoint is legitimacy-through-authority. Different governance models. Foundational for any durable multi-agent community that needs leadership.
 
 **Supersedes (prior versions).**
-- `Elect#4f89`
+- `Elect#45ff`
 
 ---
 
-### IdentityHandshake#fb21
+### IdentityHandshake#03d2
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20694,11 +20694,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Discovery-plus-verification primitive paired with Discover(Identity) and Check(Nature) as its substrate. Compare with Greet — Greet is generic handshake; IdentityHandshake is Nature-aware handshake for mode routing.
 
 **Supersedes (prior versions).**
-- `IdentityHandshake#fb21`
+- `IdentityHandshake#03d2`
 
 ---
 
-### LazyConsensus#8a57
+### LazyConsensus#cb1b
 
 `Society` · `Coordination` · R0 · T2
 
@@ -20761,11 +20761,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Optimistic-coordination primitive paired with Consensus (the opposite discipline), AtomicBid (similar fire-first shape for single actors), and Compensate (the rollback substrate). Compare with Bubble — LazyConsensus skips the bubble and accepts rollback cost; Bubble isolates before commit.
 
 **Supersedes (prior versions).**
-- `LazyConsensus#8a57`
+- `LazyConsensus#cb1b`
 
 ---
 
-### OntologyHandshake#8443
+### OntologyHandshake#fc51
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20830,11 +20830,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Multi-ontology coordination primitive paired with CompatibilityCheck (the hash-mismatch detector), ConceptAnchor (the hashed terms), and Greet (the general handshake). Compare with IdentityHandshake — OntologyHandshake aligns term meanings; IdentityHandshake aligns agent natures.
 
 **Supersedes (prior versions).**
-- `OntologyHandshake#8443`
+- `OntologyHandshake#fc51`
 
 ---
 
-### Rally#0a1c
+### Rally#48a0
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20901,11 +20901,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The dynamic-team-formation protocol in Society. Composes with `AcceptSpec` (requirements), `Quorum` (minimum size), `Select` (from responders). Sibling to `Delegate` (principal-to-agent assignment) — Rally is broadcast-and-assemble, Delegate is directed handoff.
 
 **Supersedes (prior versions).**
-- `Rally#0a1c`
+- `Rally#48a0`
 
 ---
 
-### Resonate#0057
+### Resonate#70c7
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20971,11 +20971,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Stigmergic-coordination primitive paired with Stigmergy (trace-based communication), Amplify (reinforcement), Dampen (reduction), and Crystallize (the hardening move). Compare with Consensus — Resonate is implicit alignment; Consensus is explicit agreement.
 
 **Supersedes (prior versions).**
-- `Resonate#0057`
+- `Resonate#70c7`
 
 ---
 
-### Vote#37f8
+### Vote#3b66
 
 `Society` · `Coordination` · R2 · T2
 
@@ -21034,13 +21034,13 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The concrete voting protocol. Composed with `Ballot` (vote container), `Quorum` (threshold), `Consensus` (the abstract property). Used by `Rally` (group formation), governance-layer workflows. Sibling to `LatticeCommit` (geometric-local variant).
 
 **Supersedes (prior versions).**
-- `Vote#37f8`
+- `Vote#3b66`
 
 ---
 
 ### Society/Economics (10)
 
-### AtomicBid#c429
+### AtomicBid#33e1
 
 `Society` · `Economics` · R1 · T2
 
@@ -21096,11 +21096,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Sits between Bid (deliberate, halted for approval) and Act (the execution primitive). Closely related to Compensate (the undo path when the race loses) and AuditTrail (the log infrastructure). Philosophically, AtomicBid is a distributed-systems idiom imported into agent coordination — 'optimistic execution with compensation' is the underlying insight.
 
 **Supersedes (prior versions).**
-- `AtomicBid#c429`
+- `AtomicBid#33e1`
 
 ---
 
-### AttentionMarkets#459c
+### AttentionMarkets#787e
 
 `Society` · `Economics` · R1 · T1
 
@@ -21166,11 +21166,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Market-mechanism sibling of ComputeMarket (priced compute), AuctionMechanism (generic auction pattern), and Bid/AtomicBid (the individual offering unit). Compare with Quorum/Vote — AttentionMarkets prices by willingness-to-pay, Vote by numerosity; both are mechanisms for surfacing prioritized signal from a crowd, optimizing for different properties.
 
 **Supersedes (prior versions).**
-- `AttentionMarkets#459c`
+- `AttentionMarkets#787e`
 
 ---
 
-### Award#a0c1
+### Award#af8e
 
 `Society` · `Economics` · R1 · T1
 
@@ -21223,11 +21223,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The pivot point between the bidding family (Bid, AtomicBid, AuctionMechanism) and the execution family (Contract, Sign, HeldRelease, Task). Compare with Commit — Award is the multi-party commit; Commit is the single-actor version. Contrast with Veto (the refusal counterpart) — Award accepts, Veto rejects, both atomic.
 
 **Supersedes (prior versions).**
-- `Award#a0c1`
+- `Award#af8e`
 
 ---
 
-### Bid#464a
+### Bid#5c45
 
 `Society` · `Economics` · R1 · T1
 
@@ -21287,11 +21287,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** The offering unit that feeds AuctionMechanism, ComputeMarket, Award, and AtomicBid (the fire-and-log variant). Sibling of BoundedTask (which packages the outputs) and Solver (the bidder). Compare with AcceptSpec — Bid is the solver's commitment to cost; AcceptSpec is the evaluator's commitment to quality criteria. Both live before execution and shape it.
 
 **Supersedes (prior versions).**
-- `Bid#464a`
+- `Bid#5c45`
 
 ---
 
-### ContinuousResourceAuction#0361
+### ContinuousResourceAuction#1553
 
 `Society` · `Economics` · R1 · T1
 
@@ -21349,11 +21349,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Market-mechanism sibling of AttentionMarkets (priced bandwidth), AuctionMechanism (discrete auction), and ComputeMarket (compute-specific). Uses StateLock to serialize bids. Compare with Token/BearerToken — ContinuousResourceAuction prices the resource; Tokens authorize usage. Both are capability-management, at different abstraction levels.
 
 **Supersedes (prior versions).**
-- `ContinuousResourceAuction#0361`
+- `ContinuousResourceAuction#1553`
 
 ---
 
-### ExchangeRate#1c21
+### ExchangeRate#eadb
 
 `Society` · `Economics` · R1 · T1
 
@@ -21404,11 +21404,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Economic primitive paired with Value (the abstract substrate), Price (market-derived rate), and ContinuousResourceAuction (dynamic pricing). Compare with Conversion — ExchangeRate is value-to-value; Conversion is type-to-type. Different abstraction levels for transformation.
 
 **Supersedes (prior versions).**
-- `ExchangeRate#1c21`
+- `ExchangeRate#eadb`
 
 ---
 
-### Gardener#d239
+### Gardener#52f3
 
 `Society` · `Economics` · R2 · T2
 
@@ -21461,11 +21461,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Role-pattern paired with Care (the underlying stance), Stigmergy (the communication substrate), and Curate (the adjacent role). Compare with Steward — Gardener is environmental maintenance; Steward is resource trusteeship. Different flavors of 'tend to something.'
 
 **Supersedes (prior versions).**
-- `Gardener#d239`
+- `Gardener#52f3`
 
 ---
 
-### MintWhenFriction#b259
+### MintWhenFriction#76ce
 
 `Society` · `Economics` · R2 · T2
 
@@ -21529,11 +21529,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Vocabulary-growth primitive paired with Mint (the action), PatternDiscovery (the prior-art check), and FrictionLog (the trigger). Compare with DogfoodFirst — MintWhenFriction requires lived friction; DogfoodFirst requires creator use. Both gate adoption by real use.
 
 **Supersedes (prior versions).**
-- `MintWhenFriction#b259`
+- `MintWhenFriction#76ce`
 
 ---
 
-### ValuePeg#6861
+### ValuePeg#dfa9
 
 `Society` · `Economics` · R1 · T1
 
@@ -21586,11 +21586,11 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Economic primitive paired with ExchangeRate, Value, and ContinuousResourceAuction.
 
 **Supersedes (prior versions).**
-- `ValuePeg#6861`
+- `ValuePeg#dfa9`
 
 ---
 
-### Yield#e15f
+### Yield#d802
 
 `Society` · `Economics` · R1 · T2
 
@@ -21646,13 +21646,13 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 **In the family.** Negotiation primitive paired with Overlap (the precursor), Compromise (iterative dampening), and MemeticSeed (subsidy). Compare with Compromise — Yield is explicit concession; Compromise is iterative dampening.
 
 **Supersedes (prior versions).**
-- `Yield#e15f`
+- `Yield#d802`
 
 ---
 
 ### Society/Governance (8)
 
-### AnchorDrop#680e
+### AnchorDrop#695e
 
 `Society` · `Governance` · R0 · T1
 
@@ -21714,11 +21714,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Lives in the coordination-under-stress cluster with Consensus, Quorum, and StateLock. AnchorDrop is the emergency-stop; Consensus is the routine agreement mechanism; Quorum is the counting threshold. Compare with PhaseTransition — AnchorDrop is what you invoke when a phase transition would be catastrophic, to force the system to stay in its current phase.
 
 **Supersedes (prior versions).**
-- `AnchorDrop#680e`
+- `AnchorDrop#695e`
 
 ---
 
-### Constitution#eb62
+### Constitution#f749
 
 `Society` · `Governance` · R0 · T1
 
@@ -21770,11 +21770,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** The governance-layer rule set. Paired with `OathBind` (binding agents to constitutions), `AuditTrail` (for enforcement logging), penalty-automation patterns. Sibling to `Contract` (bilateral/multi-party) — Constitution is group-level rules, Contract is inter-party agreement.
 
 **Supersedes (prior versions).**
-- `Constitution#eb62`
+- `Constitution#f749`
 
 ---
 
-### DocumentedOverride#3629
+### DocumentedOverride#4054
 
 `Society` · `Governance` · R1 · T2
 
@@ -21821,7 +21821,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Responsibility#ea56
+### Responsibility#8cf5
 
 `Society` · `Governance` · R1 · T1
 
@@ -21886,11 +21886,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Governance primitive paired with Role (the capability bundle), Permission (the grant), and Invariant (what's being maintained). Compare with Task — Responsibility is continuous; Task is discrete. Different temporal structures.
 
 **Supersedes (prior versions).**
-- `Responsibility#ea56`
+- `Responsibility#8cf5`
 
 ---
 
-### Role#80df
+### Role#1401
 
 `Society` · `Governance` · R1 · T1
 
@@ -21937,11 +21937,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Foundational capability primitive paired with Identity (persistent handle), Permission (the atomic grant), and Responsibility (the continuous contract). Compare with Card — Role is a local concept; Card is the advertisement.
 
 **Supersedes (prior versions).**
-- `Role#80df`
+- `Role#1401`
 
 ---
 
-### SolverTree#3c94
+### SolverTree#2e4c
 
 `Society` · `Governance` · R1 · T1
 
@@ -21999,11 +21999,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Foundational solver-structure primitive paired with SolverNode (the unit), RootSolver (the origin), and Task (the work). Compare with DAG — SolverTree is solver-specific; DAG is general topology.
 
 **Supersedes (prior versions).**
-- `SolverTree#3c94`
+- `SolverTree#2e4c`
 
 ---
 
-### UniversalSolverTree#c523
+### UniversalSolverTree#7361
 
 `Society` · `Governance` · R1 · T1
 
@@ -22061,11 +22061,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** The aggregate structure in Society/Governance. Composed with `FractalIntelligence` (the architecture), `ConceptualDecomposition` (the local move), `RootSolver` (entry points). Paired with the coherence and synthesis patterns that keep the universal structure consistent across agents.
 
 **Supersedes (prior versions).**
-- `UniversalSolverTree#c523`
+- `UniversalSolverTree#7361`
 
 ---
 
-### WorldTransparent#54c0
+### WorldTransparent#8440
 
 `Society` · `Governance` · R2 · T1
 
@@ -22125,13 +22125,13 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Design-constraint primitive paired with AuditTrail, WorldReversible (dual), and DeliberativeAlign.
 
 **Supersedes (prior versions).**
-- `WorldTransparent#54c0`
+- `WorldTransparent#8440`
 
 ---
 
 ### Society/Protocols (76)
 
-### AdversarialProof#d764
+### AdversarialProof#80dd
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22196,11 +22196,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **Derived from.** `NegativeProof`
 
 **Supersedes (prior versions).**
-- `AdversarialProof#d764`
+- `AdversarialProof#80dd`
 
 ---
 
-### AgentDiscover#42ca
+### AgentDiscover#73ca
 
 `Society` · `Protocols` · R1 · T2
 
@@ -22265,11 +22265,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Core agent-infrastructure pattern, paired with AgentProtocol (how they talk once discovered), AgentSandbox (how they run safely), and Card (what gets advertised). The 'macro for Discover(Agent)' framing makes it explicit that Discover is a general primitive and this is its agent-specialized form. Compare with ResourceDiscover (same structure, different referent).
 
 **Supersedes (prior versions).**
-- `AgentDiscover#42ca`
+- `AgentDiscover#73ca`
 
 ---
 
-### AgentProtocol#9d70
+### AgentProtocol#e6b4
 
 `Society` · `Protocols` · R1 · T2
 
@@ -22321,11 +22321,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** A meta-pattern in the agent coordination family; the bundle includes Task, FailClosed, Greet, AcceptSpec, Solution. Sibling patterns AgentDiscover and AgentSandbox address discovery and isolation respectively. Compare with Constitution (which bundles governance primitives for a community) — AgentProtocol is the operational analogue at the individual-agent level.
 
 **Supersedes (prior versions).**
-- `AgentProtocol#9d70`
+- `AgentProtocol#e6b4`
 
 ---
 
-### AgentSandbox#dcc7
+### AgentSandbox#c092
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22390,11 +22390,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** The isolation layer for the agent runtime, paired with Act (the gateway for state changes that sandboxing regulates) and Permission (what the sandbox allows). Compare with AuditTrail (after-the-fact visibility) — AgentSandbox is preventive, AuditTrail is retrospective; both are required in serious deployments. Sits adjacent to AgentProtocol (how agents talk) and AgentDiscover (how they find each other) as the 'how do we run them safely' leg of agent infrastructure.
 
 **Supersedes (prior versions).**
-- `AgentSandbox#dcc7`
+- `AgentSandbox#c092`
 
 ---
 
-### AmbiguityResolution#6858
+### AmbiguityResolution#4c6b
 
 `Society` · `Protocols` · R1 · T2
 
@@ -22445,11 +22445,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Social-layer sibling of Consensus (agreement about truth claims), Vote (the counting mechanism), and Rally (mobilization around a position). AmbiguityResolution is the specific case of 'what to do when positions disagree about the meaning itself.' Pairs with EntropyPump (surfacer) and BeliefTracking (each agent's version history) to form the epistemic-integrity spine of a multi-agent namespace.
 
 **Supersedes (prior versions).**
-- `AmbiguityResolution#6858`
+- `AmbiguityResolution#4c6b`
 
 ---
 
-### Axiom#5012
+### Axiom#8b1c
 
 `Society` · `Protocols` · R1 · T1
 
@@ -22497,7 +22497,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### BearerToken#2fe9
+### BearerToken#e5bd
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22563,7 +22563,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### BoundedTask#1063
+### BoundedTask#a1c2
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22617,11 +22617,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **Derived from.** `Task`
 
 **Supersedes (prior versions).**
-- `BoundedTask#1063`
+- `BoundedTask#a1c2`
 
 ---
 
-### Canary#9cba
+### Canary#bda6
 
 `Society` · `Protocols` · R1 · T1
 
@@ -22686,11 +22686,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Safety-testing sibling of Build (prototype the artifact), Probe (measure-specific-property), and Witness (produce an attestation). Compare with Bubble — Canary is lightweight sacrificial, Bubble is heavyweight transactional. Both test coordination before commit, at different cost/confidence points.
 
 **Supersedes (prior versions).**
-- `Canary#9cba`
+- `Canary#bda6`
 
 ---
 
-### ConfusedDeputy#611f
+### ConfusedDeputy#c6c9
 
 `Society` · `Protocols` · R2 · T1
 
@@ -22755,11 +22755,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Security-pattern canonical entry. Pairs with BearerToken (the leak vector), Permission (the authority being misused), and AgentSandbox (the containment strategy). LLM-specific instance: prompt injection, which is in some sense the whole reason the pattern is back in 2020s vocabularies. Compare with PrivilegeEscalation — ConfusedDeputy is accidental misuse via a helpful intermediary; PrivilegeEscalation is intentional.
 
 **Supersedes (prior versions).**
-- `ConfusedDeputy#611f`
+- `ConfusedDeputy#c6c9`
 
 ---
 
-### ContextSwitch#312f
+### ContextSwitch#67b2
 
 `Society` · `Protocols` · R0 · T1
 
@@ -22806,11 +22806,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Protocol pattern paired with ContextCompress (size management), ContextFirst (refresh discipline), and Context as the underlying object. Compare with Handoff — ContextSwitch changes interpretation rules; Handoff transfers responsibility. Both are mode-changing, at different axes.
 
 **Supersedes (prior versions).**
-- `ContextSwitch#312f`
+- `ContextSwitch#67b2`
 
 ---
 
-### CounterfactualAnchor#59f7
+### CounterfactualAnchor#e7ac
 
 `Society` · `Protocols` · R1 · T2
 
@@ -22875,11 +22875,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Calibration primitive paired with ConfidenceCalibrate (the aggregate update loop), BayesUpdate (the probabilistic substrate), and Prediction as the input. Compare with CommitmentDevice — CounterfactualAnchor is commitment of a prediction; CommitmentDevice is commitment of an action plan. Both use immutability to resist later revision.
 
 **Supersedes (prior versions).**
-- `CounterfactualAnchor#59f7`
+- `CounterfactualAnchor#e7ac`
 
 ---
 
-### DataMinimization#58af
+### DataMinimization#4acf
 
 `Society` · `Protocols` · R2 · T2
 
@@ -22942,11 +22942,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Privacy/compliance primitive paired with PrincipalOfLeastAuthority (authorization analogue), BearerToken (capability-scoped access), and AuditTrail (what remains after minimization). Compare with ContextCompress — DataMinimization filters before ingesting; ContextCompress reduces after. Both manage information volume, at different operational points.
 
 **Supersedes (prior versions).**
-- `DataMinimization#58af`
+- `DataMinimization#4acf`
 
 ---
 
-### DeliberativeAlign#4275
+### DeliberativeAlign#9fd3
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23010,11 +23010,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Safety-pattern paired with Constitution (the policy source), SafetyTrace (the output), and AbortAction (the response to violation). Compare with ConstraintFirst — DeliberativeAlign checks plans against policy; ConstraintFirst generates within constraints from the start. Both are pre-action safety, at different operational points.
 
 **Supersedes (prior versions).**
-- `DeliberativeAlign#4275`
+- `DeliberativeAlign#9fd3`
 
 ---
 
-### Deploy#0643
+### Deploy#1119
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23066,11 +23066,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Deployment primitive paired with Rollout (the progressive unfold), Canary (the safety probe), FeatureFlag (the toggle), and Rollback (the recovery). Compare with Release — Release is the artifact version transition; Deploy is the environment transition. Often conflated.
 
 **Supersedes (prior versions).**
-- `Deploy#0643`
+- `Deploy#1119`
 
 ---
 
-### Discover#e889
+### Discover#8895
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23117,11 +23117,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Foundational distributed-coordination primitive. Specializes into AgentDiscover (agents), ResourceDiscover (resources), ConsensusFinder (consensus). Paired with Search (internal scan), Check (response filter), and Criteria (query shape). Compare with Handshake — Discover finds, Handshake initiates the interaction.
 
 **Supersedes (prior versions).**
-- `Discover#e889`
+- `Discover#8895`
 
 ---
 
-### DissentSeek#b2c9
+### DissentSeek#ce78
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23183,11 +23183,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Adversarial-epistemics primitive paired with SteelmanCheck (steelman the opposing case), RedTeam (active adversarial stance), and ConfirmationBlock (disconfirmation-seeking). Compare with ConsensusFinder — DissentSeek looks for disagreement; ConsensusFinder looks for agreement. Opposite search directions, both diagnostic.
 
 **Supersedes (prior versions).**
-- `DissentSeek#b2c9`
+- `DissentSeek#ce78`
 
 ---
 
-### DriftWatch#17c4
+### DriftWatch#49b6
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23247,11 +23247,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Reputation-monitoring primitive paired with Reputation (the stored history), Witness (the peer-report substrate), and MetaDrift (detecting drift in the watchers themselves). Compare with Anomaly — DriftWatch is specifically behavioral baseline violation over time; Anomaly is single-point baseline deviation.
 
 **Supersedes (prior versions).**
-- `DriftWatch#17c4`
+- `DriftWatch#49b6`
 
 ---
 
-### EbbFlowSync#2af4
+### EbbFlowSync#7c07
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23311,11 +23311,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Coordination primitive paired with Heartbeat (liveness), AnchorDrop (emergency reconciliation), and Consensus.
 
 **Supersedes (prior versions).**
-- `EbbFlowSync#2af4`
+- `EbbFlowSync#7c07`
 
 ---
 
-### EjectionSeat#5e0d
+### EjectionSeat#a164
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23370,11 +23370,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Safety-primitive paired with FailSafe (default-to-safe), HumanInTheLoop (graceful override), and Observability (the monitoring substrate that tells the operator when to eject). Compare with Disband — EjectionSeat is forced hard stop; Disband is a cooperative wind-down. Different operating modes for 'end the swarm.'
 
 **Supersedes (prior versions).**
-- `EjectionSeat#5e0d`
+- `EjectionSeat#a164`
 
 ---
 
-### EvaluatorOptimizer#e58e
+### EvaluatorOptimizer#8ebd
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23440,11 +23440,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Meta-pattern in the quality-constrained production family. Paired with Critique (the feedback substrate), Reflexion (the self-critique variant), and Refine (the improvement step). Compare with CollaborativeWritingProtocol — both are production loops; CollaborativeWritingProtocol adds the orthogonal-dimension decomposition.
 
 **Supersedes (prior versions).**
-- `EvaluatorOptimizer#e58e`
+- `EvaluatorOptimizer#8ebd`
 
 ---
 
-### ExpiringToken#8bc1
+### ExpiringToken#b0e8
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23499,11 +23499,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Specialization of BearerToken with time-decay semantics. Pairs with Revocation (the sudden-termination counterpart), Permission (what degrades), and AuditTrail (who had what when). Compare with DriftWatch — ExpiringToken is scheduled capability decay; DriftWatch is detected behavioral drift. Both mitigate time-based risk.
 
 **Supersedes (prior versions).**
-- `ExpiringToken#8bc1`
+- `ExpiringToken#b0e8`
 
 ---
 
-### FabricSharding#ce61
+### FabricSharding#25d2
 
 `Society` · `Protocols` · R0 · T2
 
@@ -23556,11 +23556,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Sharding primitive paired with Shard (the general), ExperienceSharding (memory variant), and Slice.
 
 **Supersedes (prior versions).**
-- `FabricSharding#ce61`
+- `FabricSharding#25d2`
 
 ---
 
-### FeatureFlag#6c5c
+### FeatureFlag#dd17
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23612,7 +23612,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### GenealogicalTrace#18d2
+### GenealogicalTrace#fa22
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23666,11 +23666,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Audit primitive paired with Trace (general), SourceEvaluate (credibility), and AuditTrail. Compare with SourceEvaluate — GenealogicalTrace is origin-focused; SourceEvaluate is credibility-focused.
 
 **Supersedes (prior versions).**
-- `GenealogicalTrace#18d2`
+- `GenealogicalTrace#fa22`
 
 ---
 
-### GlacialVault#0a81
+### GlacialVault#2b9f
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23723,11 +23723,11 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **In the family.** Cryptographic-primitive paired with HeldRelease (escrow with condition), ExpiringToken (capability decay), and VerifiableDelayFunction (the substrate). Compare with Defer — GlacialVault is trustless time-lock; Defer is caller-controlled postponement.
 
 **Supersedes (prior versions).**
-- `GlacialVault#0a81`
+- `GlacialVault#2b9f`
 
 ---
 
-### Global#803d
+### Global#75a2
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23775,7 +23775,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### GracefulDegradation#9aa3
+### GracefulDegradation#8436
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23838,11 +23838,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** Resilience primitive paired with Hash (the verification substrate), ConceptAnchor (what's being resolved), and FailClosed (the fallback default if even graceful degradation fails). Compare with CircuitBreaker — GracefulDegradation adds alternative resolution paths; CircuitBreaker stops trying. Opposite responses to failure.
 
 **Supersedes (prior versions).**
-- `GracefulDegradation#9aa3`
+- `GracefulDegradation#8436`
 
 ---
 
-### Handoff#a868
+### Handoff#4e0f
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23907,11 +23907,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** The swarm-coordination primitive for control transfer. Composes with `Context` (what is transferred), `Identity` (who is involved). Sibling to `Delegate` (which is initiated-by-principal task assignment); Handoff is peer-to-peer transfer of ongoing work.
 
 **Supersedes (prior versions).**
-- `Handoff#a868`
+- `Handoff#4e0f`
 
 ---
 
-### HeldRelease#5ba3
+### HeldRelease#533b
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23969,11 +23969,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** Escrow primitive paired with Contract (the agreement container), Award (the acceptance event), and Sign (the commitment action). Compare with AtomicBid — HeldRelease is multi-party value escrow; AtomicBid is single-actor log-then-act. Different coordination shapes.
 
 **Supersedes (prior versions).**
-- `HeldRelease#5ba3`
+- `HeldRelease#533b`
 
 ---
 
-### IntentGap#f7bb
+### IntentGap#98b2
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24036,11 +24036,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** Post-hoc analysis primitive paired with HindsightBlock (anti-hindsight discipline), CounterfactualAnchor (pre-commitment), and BeliefTracking (the learning substrate). Compare with IntentOverride — IntentGap is diagnostic; IntentOverride is prescriptive.
 
 **Supersedes (prior versions).**
-- `IntentGap#f7bb`
+- `IntentGap#98b2`
 
 ---
 
-### InternalConsistency#1abc
+### InternalConsistency#5e8f
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24093,11 +24093,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** Verification primitive paired with Validate (external consistency), Check (the general verification verb), and NonContradiction (the philosophical principle). Compare with Coherence — InternalConsistency is strict logical; Coherence is looser 'fits together.'
 
 **Supersedes (prior versions).**
-- `InternalConsistency#1abc`
+- `InternalConsistency#5e8f`
 
 ---
 
-### InvariantFilter#94c3
+### InvariantFilter#cc37
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24162,11 +24162,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** Safety-boundary primitive paired with InputGuard (the general pattern), OutputGuard (counterpart for outgoing), and FailClosed (the default). Compare with LayeredCheck — InvariantFilter is a flat set of predicates at a boundary; LayeredCheck is ordered layers at abstraction levels.
 
 **Supersedes (prior versions).**
-- `InvariantFilter#94c3`
+- `InvariantFilter#cc37`
 
 ---
 
-### LatticeCommit#eb95
+### LatticeCommit#74db
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24225,11 +24225,11 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 **In the family.** The geometric-local variant of Consensus. Pairs with `Quorum` (local threshold), `Sign` (signatures). Sibling to `Consensus` (global) and `Vote` (tallied). Used where spatial locality is a meaningful coordination axis.
 
 **Supersedes (prior versions).**
-- `LatticeCommit#eb95`
+- `LatticeCommit#74db`
 
 ---
 
-### MemeticSeed#d42f
+### MemeticSeed#cf26
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24290,11 +24290,11 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 **In the family.** Standards-coordination primitive paired with Yield (the favorable terms), TranslationProxy (the cost being reduced), and Rally (group adoption). Compare with Constitution — MemeticSeed is voluntary spreading via subsidy; Constitution is collective agreement.
 
 **Supersedes (prior versions).**
-- `MemeticSeed#d42f`
+- `MemeticSeed#cf26`
 
 ---
 
-### ModestClaim#7da0
+### ModestClaim#c00b
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24355,11 +24355,11 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 **In the family.** Epistemic-stance primitive paired with ConceptAnchor (what hashing addresses), Hash (the detection mechanism), and Coordination (the success measure). Foundational to sema's philosophy. Compare with LivedProof — both are epistemic stances; ModestClaim is about what to claim, LivedProof is about how to claim it.
 
 **Supersedes (prior versions).**
-- `ModestClaim#7da0`
+- `ModestClaim#c00b`
 
 ---
 
-### MonotonicCounter#c7ab
+### MonotonicCounter#21c6
 
 `Society` · `Protocols` · R0 · T1
 
@@ -24419,11 +24419,11 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 **In the family.** Distributed-coordination primitive paired with Version, CRDT concepts, and Consensus (the fuller primitive it substitutes for). Compare with Clock — MonotonicCounter is a value; Clock is a time primitive. Both are monotonic, on different semantic axes.
 
 **Supersedes (prior versions).**
-- `MonotonicCounter#c7ab`
+- `MonotonicCounter#21c6`
 
 ---
 
-### Nucleate#49a0
+### Nucleate#457a
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24486,11 +24486,11 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 **In the family.** Emergence primitive paired with Stigmergy (the substrate), Trace (the communication unit), and Crystallize (the phase transition). Compare with Rally — Nucleate is indirect; Rally is direct group mobilization.
 
 **Supersedes (prior versions).**
-- `Nucleate#49a0`
+- `Nucleate#457a`
 
 ---
 
-### OptimisticSolver#8935
+### OptimisticSolver#18c0
 
 `Society` · `Protocols` · R1 · T2
 
@@ -24555,11 +24555,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **Derived from.** `Solver`
 
 **Supersedes (prior versions).**
-- `OptimisticSolver#8935`
+- `OptimisticSolver#18c0`
 
 ---
 
-### Oracle#ed79
+### Oracle#32ff
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24610,11 +24610,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Bridge primitive paired with HeldRelease (condition resolver), Sign (the cryptographic backing), and Witness (related attestation). Compare with Prophet — Oracle reports external reality; Prophet predicts from internal model. Different sources of truth.
 
 **Supersedes (prior versions).**
-- `Oracle#ed79`
+- `Oracle#32ff`
 
 ---
 
-### OrchestrationLoop#7f44
+### OrchestrationLoop#2d63
 
 `Society` · `Protocols` · R1 · T2
 
@@ -24674,11 +24674,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** High-ceremony workflow primitive paired with RequestFraming, ManifestPlanning, and Rollout. Compare with OODA — OrchestrationLoop is heavyweight sequential; OODA is lightweight cyclic. Different stakes, different ceremony.
 
 **Supersedes (prior versions).**
-- `OrchestrationLoop#7f44`
+- `OrchestrationLoop#2d63`
 
 ---
 
-### OsmoticFilter#029a
+### OsmoticFilter#d437
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24733,11 +24733,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Attention primitive paired with AttentionMarkets (pricing-based), InputGuard (predicate-based), and Throttle. Compare with AttentionMarkets — OsmoticFilter is pressure; AttentionMarkets is auction.
 
 **Supersedes (prior versions).**
-- `OsmoticFilter#029a`
+- `OsmoticFilter#d437`
 
 ---
 
-### PatternEmergence#8eaa
+### PatternEmergence#2816
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24801,11 +24801,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Observation-first primitive paired with PatternDiscovery (the pre-mint search), DogfoodFirst (creator validation), and Stigmergy (the trace substrate). Compare with ConstructOntology — PatternEmergence is bottom-up; ConstructOntology is top-down.
 
 **Supersedes (prior versions).**
-- `PatternEmergence#8eaa`
+- `PatternEmergence#2816`
 
 ---
 
-### PatternSketch#70ae
+### PatternSketch#645a
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24866,11 +24866,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Pattern-lifecycle primitive paired with Mint (the canonicalization step), PatternDiscovery (prior art), and ConceptAnchor (the canonical target). Compare with Hypothesis — both are provisional; Hypothesis is for claims, PatternSketch is for patterns.
 
 **Supersedes (prior versions).**
-- `PatternSketch#70ae`
+- `PatternSketch#645a`
 
 ---
 
-### PermissionEscalate#8183
+### PermissionEscalate#0ca5
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24931,11 +24931,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Security primitive paired with Permission, BearerToken, and HumanApprove.
 
 **Supersedes (prior versions).**
-- `PermissionEscalate#8183`
+- `PermissionEscalate#0ca5`
 
 ---
 
-### PhasedRefinement#e4d0
+### PhasedRefinement#56f0
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24994,11 +24994,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Refinement-strategy primitive paired with Refine (the general pattern), Reflexion (single-pass self-revision), and EvaluatorOptimizer (the two-role loop). Compare with Iterate — PhasedRefinement is layered; Iterate is unstructured repetition.
 
 **Supersedes (prior versions).**
-- `PhasedRefinement#e4d0`
+- `PhasedRefinement#56f0`
 
 ---
 
-### PromiseGraph#41aa
+### PromiseGraph#b671
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25053,11 +25053,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Trust primitive paired with Sign, Witness, and Identity. Compare with Consensus — PromiseGraph is graph-based trust; Consensus is agreement-based.
 
 **Supersedes (prior versions).**
-- `PromiseGraph#41aa`
+- `PromiseGraph#b671`
 
 ---
 
-### PromptChain#5356
+### PromptChain#2543
 
 `Society` · `Protocols` · R0 · T2
 
@@ -25112,11 +25112,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Workflow primitive paired with Chain (the substrate), AcceptSpec (the gate), and ChainOfThought (the cognitive analogue). Compare with Parallelize — PromptChain is serial; Parallelize is concurrent. Both decompose tasks, on different execution axes.
 
 **Supersedes (prior versions).**
-- `PromptChain#5356`
+- `PromptChain#2543`
 
 ---
 
-### PropheticQuorum#4eff
+### PropheticQuorum#1091
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25174,11 +25174,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Consensus primitive paired with Quorum, Consensus, and Simulation. Compare with Vote — PropheticQuorum adds reality-check; Vote is preference-only.
 
 **Supersedes (prior versions).**
-- `PropheticQuorum#4eff`
+- `PropheticQuorum#1091`
 
 ---
 
-### QuorumPulse#9aa7
+### QuorumPulse#809c
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25240,11 +25240,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Signal primitive paired with Heartbeat, Quorum, and Pulse.
 
 **Supersedes (prior versions).**
-- `QuorumPulse#9aa7`
+- `QuorumPulse#809c`
 
 ---
 
-### RealizationProtocol#c387
+### RealizationProtocol#663b
 
 `Society` · `Protocols` · R1 · T2
 
@@ -25312,11 +25312,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Lifecycle-protocol primitive paired with PolymorphicSolver (the consumer), FrameSpec/ExecutionManifest (the seam artifacts), and OrchestrationLoop (which uses it). Compare with AgentProtocol — RealizationProtocol is execution lifecycle; AgentProtocol is interop bundle.
 
 **Supersedes (prior versions).**
-- `RealizationProtocol#c387`
+- `RealizationProtocol#663b`
 
 ---
 
-### ReceptivityGate#c409
+### ReceptivityGate#2709
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25366,7 +25366,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### ReversibilityCheck#48e8
+### ReversibilityCheck#b8b7
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25418,11 +25418,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Safety primitive paired with Check (the verb), Reversibility (the property), and HumanApprove (alternative heavier gate). Compare with FailClosed — ReversibilityCheck is specifically about reversibility; FailClosed is general denial.
 
 **Supersedes (prior versions).**
-- `ReversibilityCheck#48e8`
+- `ReversibilityCheck#b8b7`
 
 ---
 
-### Robustness#132c
+### Robustness#1fa3
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25477,7 +25477,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### Rollout#2ea3
+### Rollout#8fc1
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25543,11 +25543,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Deployment primitive paired with Build (artifact production), CircuitBreaker (the envelope), Compensate (the reversal), and EjectionSeat (the override). Compare with Deploy — Rollout is the disciplined version; Deploy is the raw move.
 
 **Supersedes (prior versions).**
-- `Rollout#2ea3`
+- `Rollout#8fc1`
 
 ---
 
-### RolloutWatch#a5a9
+### RolloutWatch#fb6e
 
 `Society` · `Protocols` · R1 · T2
 
@@ -25615,11 +25615,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **Derived from.** `Monitor`
 
 **Supersedes (prior versions).**
-- `RolloutWatch#a5a9`
+- `RolloutWatch#fb6e`
 
 ---
 
-### RootHashGossip#ab16
+### RootHashGossip#87c2
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25679,11 +25679,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Distributed-gossip primitive paired with Sign, Trace (path analogue), and MemeticSeed (ontology spread).
 
 **Supersedes (prior versions).**
-- `RootHashGossip#ab16`
+- `RootHashGossip#87c2`
 
 ---
 
-### ShoutWhisper#6cb0
+### ShoutWhisper#f9a8
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25743,11 +25743,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Two-phase coordination paired with Discover (the Shout step), Handshake, and Encrypt. Compare with OntologyHandshake — ShoutWhisper is discovery+coord; OntologyHandshake is term negotiation.
 
 **Supersedes (prior versions).**
-- `ShoutWhisper#6cb0`
+- `ShoutWhisper#f9a8`
 
 ---
 
-### SignalReflection#b770
+### SignalReflection#af7f
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25807,11 +25807,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Proof primitive paired with Hash (cheaper), Sign (authorship), and Witness (attestation).
 
 **Supersedes (prior versions).**
-- `SignalReflection#b770`
+- `SignalReflection#af7f`
 
 ---
 
-### SolverNode#75f0
+### SolverNode#fd50
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25864,11 +25864,11 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 **In the family.** Foundational solver-runtime primitive paired with SolverManifest (the static declaration), SolverTree (the structure), and Task (the work).
 
 **Supersedes (prior versions).**
-- `SolverNode#75f0`
+- `SolverNode#fd50`
 
 ---
 
-### SomaticMarker#7250
+### SomaticMarker#5407
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25922,11 +25922,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Health-signal primitive paired with Task (uses SomaticMarker), Signal (emission), and Stress (the input). Compare with Kairos — SomaticMarker is stress-inhibition; Kairos is readiness-detection.
 
 **Supersedes (prior versions).**
-- `SomaticMarker#7250`
+- `SomaticMarker#5407`
 
 ---
 
-### SpectralTune#b25a
+### SpectralTune#cb58
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25987,11 +25987,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Pre-payload primitive paired with Hash (the substrate), OntologyHandshake (broader ontology negotiation), and Greet (initial contact). Compare with OntologyHandshake — SpectralTune is per-payload; OntologyHandshake is session-level.
 
 **Supersedes (prior versions).**
-- `SpectralTune#b25a`
+- `SpectralTune#cb58`
 
 ---
 
-### StateLock#5602
+### StateLock#7cd8
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26046,11 +26046,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** The two-party cross-actor specialization of the Lock family, placed in Society because the mechanism structurally requires a counterparty. Pairs with `Backoff` and `Cooldown` for contention behavior and with `AtomicBid` for multi-agent coordination. Where `Mutex` is one-holder exclusion, `StateLock` is two-party agreement.
 
 **Supersedes (prior versions).**
-- `StateLock#5602`
+- `StateLock#7cd8`
 
 ---
 
-### Stigmergy#53d4
+### Stigmergy#6282
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26102,11 +26102,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** The environment-mediated coordination primitive in Society. Composed with `Decay` (the attenuation substrate). Sibling to direct-messaging protocols (`Handoff`, `ShoutWhisper`). Parent to ant-colony-inspired and pheromone-based descendants.
 
 **Supersedes (prior versions).**
-- `Stigmergy#53d4`
+- `Stigmergy#6282`
 
 ---
 
-### StructuralCoaching#5c50
+### StructuralCoaching#63bb
 
 `Society` · `Protocols` · R2 · T1
 
@@ -26166,11 +26166,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Critique primitive paired with Critique (the general), EvaluatorOptimizer (the loop), and Reframe (the pivot response). Compare with Critique — StructuralCoaching is structural; Critique is content-general.
 
 **Supersedes (prior versions).**
-- `StructuralCoaching#5c50`
+- `StructuralCoaching#63bb`
 
 ---
 
-### SynergisticMode#90b6
+### SynergisticMode#02f9
 
 `Society` · `Protocols` · R2 · T2
 
@@ -26225,11 +26225,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Multi-agent-coordination primitive paired with OntologyHandshake (the declaration substrate), Generator/Verifier roles, and SynergisticPairing. Compare with Mode — SynergisticMode is paired-declared; Mode is single-agent.
 
 **Supersedes (prior versions).**
-- `SynergisticMode#90b6`
+- `SynergisticMode#02f9`
 
 ---
 
-### Taper#02bc
+### Taper#83db
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26283,11 +26283,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Filtering-discipline primitive paired with Select (the atomic filter), LayeredCheck (similar layering), and Rank (ordering). Compare with LayeredCheck — Taper is filtering; LayeredCheck is checking.
 
 **Supersedes (prior versions).**
-- `Taper#02bc`
+- `Taper#83db`
 
 ---
 
-### ThreeLevelCollision#b3c3
+### ThreeLevelCollision#f9f9
 
 `Society` · `Protocols` · R2 · T1
 
@@ -26351,11 +26351,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Security primitive paired with Hash (the substrate), ConceptAnchor (what gets hashed), and CompatibilityCheck.
 
 **Supersedes (prior versions).**
-- `ThreeLevelCollision#b3c3`
+- `ThreeLevelCollision#f9f9`
 
 ---
 
-### TieredAccess#fa1e
+### TieredAccess#805c
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26416,11 +26416,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Access-pricing primitive paired with ContinuousResourceAuction, AttentionMarkets, and Permission.
 
 **Supersedes (prior versions).**
-- `TieredAccess#fa1e`
+- `TieredAccess#805c`
 
 ---
 
-### ToolDiscovery#91b0
+### ToolDiscovery#4b60
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26487,11 +26487,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Discovery primitive paired with Discover, Card (tool advertisement), and ToolInvoke (the consumer).
 
 **Supersedes (prior versions).**
-- `ToolDiscovery#91b0`
+- `ToolDiscovery#4b60`
 
 ---
 
-### TranslationProxy#3422
+### TranslationProxy#e064
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26554,11 +26554,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Legacy-integration primitive paired with Translate, OntologyHandshake, and Agent. Compare with Translate — TranslationProxy is stateless wrapper; Translate is the operation.
 
 **Supersedes (prior versions).**
-- `TranslationProxy#3422`
+- `TranslationProxy#e064`
 
 ---
 
-### UniqueHandle#e9b3
+### UniqueHandle#88da
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26614,11 +26614,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Linear-resource primitive paired with Resource, Lock, and BearerToken (which is copyable).
 
 **Supersedes (prior versions).**
-- `UniqueHandle#e9b3`
+- `UniqueHandle#88da`
 
 ---
 
-### UptakeAsGround#bcd4
+### UptakeAsGround#c6ca
 
 `Society` · `Protocols` · R2 · T2
 
@@ -26680,11 +26680,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Epistemic-philosophical primitive paired with ModestClaim, ConceptAnchor, and UptakeOverTimestamp.
 
 **Supersedes (prior versions).**
-- `UptakeAsGround#bcd4`
+- `UptakeAsGround#c6ca`
 
 ---
 
-### UptakeOverTimestamp#20eb
+### UptakeOverTimestamp#6bf8
 
 `Society` · `Protocols` · R1 · T2
 
@@ -26747,11 +26747,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Governance primitive paired with UptakeAsGround, PatternDiscovery, and MintWhenFriction.
 
 **Supersedes (prior versions).**
-- `UptakeOverTimestamp#20eb`
+- `UptakeOverTimestamp#6bf8`
 
 ---
 
-### WorkerMode#2499
+### WorkerMode#5a39
 
 `Society` · `Protocols` · R2 · T1
 
@@ -26816,11 +26816,11 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Execution-state primitive paired with SolverManifest, ContextSwitch, and Identity.
 
 **Supersedes (prior versions).**
-- `WorkerMode#2499`
+- `WorkerMode#5a39`
 
 ---
 
-### Workflow#7975
+### Workflow#e8ce
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26877,7 +26877,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 **In the family.** Orchestration primitive paired with Solver (the nodes), Artifact (the edges), and OrchestrationLoop (the lifecycle).
 
 **Supersedes (prior versions).**
-- `Workflow#7975`
+- `Workflow#e8ce`
 
 ---
 

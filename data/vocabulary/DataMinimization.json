@@ -30,20 +30,20 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:DataMinimization#mh:SHA-256:58af468f7afe789afc6bce443433dcef51557757e65e78c9598f2f4fccdcc99a",
-  "sema_ref": "DataMinimization#58af",
-  "sema_stub": "58af",
+  "sema_id": "sema:DataMinimization#mh:SHA-256:4acfb59bfe56143484d061281b8f3669d1dc7cb79ba78fabde6134268ff1ef2b",
+  "sema_ref": "DataMinimization#4acf",
+  "sema_stub": "4acf",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:b77c58e1b37f0f0831222fa405282a76f576491620b53b96463120125d2fff5b",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "context_compress": "sema:ContextCompress#mh:SHA-256:4845cff7c2a6371afdb2d199ed427a5e5d8d8c5f6a2d24a3b6b8278eb8dff0ee",
-      "correlation": "sema:Correlation#mh:SHA-256:148d5034bf5678b1e5c702109d82ebb76620dbf7e792717e40c3f3ed6698db9c",
-      "input_guard": "sema:InputGuard#mh:SHA-256:7353542b505beb1db87ba1adf08ecc5cf24112e70c325eef336e3d13654ea533",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "select": "sema:Select#mh:SHA-256:15c257d42d18f33a5a4bdf1ef5ab16712dfd0293cd03ebb28ce746a119f0dfcc",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "context_compress": "sema:ContextCompress#mh:SHA-256:81bff304fb7fe57e71c152ac04faa987e06787468369ea65ab3cd2339c8739cb",
+      "correlation": "sema:Correlation#mh:SHA-256:3e6845523b8166fa55b82ef6ecd1ae129688fae1507fc6b4f92b9bc662936f42",
+      "input_guard": "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
+      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
+      "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6",
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     }
   },
   "sema_layer": "Society",

@@ -21,14 +21,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f",
-  "sema_ref": "SomaticMarker#7250",
-  "sema_stub": "7250",
+  "sema_id": "sema:SomaticMarker#mh:SHA-256:5407ee6cd23a39146580474a840ef33416d5b61a1e7f9be6ad2896179a1ff74e",
+  "sema_ref": "SomaticMarker#5407",
+  "sema_stub": "5407",
   "dependencies": {
     "references": {
-      "correlation": "sema:Correlation#mh:SHA-256:148d5034bf5678b1e5c702109d82ebb76620dbf7e792717e40c3f3ed6698db9c",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "correlation": "sema:Correlation#mh:SHA-256:3e6845523b8166fa55b82ef6ecd1ae129688fae1507fc6b4f92b9bc662936f42",
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     }
   },
   "sema_layer": "Society",

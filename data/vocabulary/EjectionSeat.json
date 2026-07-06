@@ -22,13 +22,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:EjectionSeat#mh:SHA-256:5e0d1d900fa6bb3f00b356fbaa1fdf13a4447c66cb36601256eb897b733bc96c",
-  "sema_ref": "EjectionSeat#5e0d",
-  "sema_stub": "5e0d",
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:a164bf13e2782b724df3bfd0f3a53c11933d0881a4c1ff0cbef9fd738a871ba4",
+  "sema_ref": "EjectionSeat#a164",
+  "sema_stub": "a164",
   "dependencies": {
     "references": {
-      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2",
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
     }
   },
   "sema_layer": "Society",

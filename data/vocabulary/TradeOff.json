@@ -17,12 +17,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:TradeOff#mh:SHA-256:18382c0953f988f4640c73c0f333d15a8cf5f29c884b3dda8342420d4c8c8e76",
-  "sema_ref": "TradeOff#1838",
-  "sema_stub": "1838",
+  "sema_id": "sema:TradeOff#mh:SHA-256:dbb6229d95c7d568ee05870f5438a55116b2c824046fb76b832c3fcef151636f",
+  "sema_ref": "TradeOff#dbb6",
+  "sema_stub": "dbb6",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c"
+      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"
     }
   },
   "sema_layer": "Mind",

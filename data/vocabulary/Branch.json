@@ -10,9 +10,9 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Branch#mh:SHA-256:329d01a4bcf9599389d35db860faee9fb6d42964ceca8fd708843b410fa7150e",
-  "sema_ref": "Branch#329d",
-  "sema_stub": "329d",
+  "sema_id": "sema:Branch#mh:SHA-256:f46dda4eb763c7f60ed646fa3d0eee2c32e6a5decbb721e61412eb112dd90f29",
+  "sema_ref": "Branch#f46d",
+  "sema_stub": "f46d",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

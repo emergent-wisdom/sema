@@ -31,15 +31,15 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:a6ac3dacd844cc134d4abe356539ca71797aee17d8fc8ebb1d2c95b7d6b4e1de",
-  "sema_ref": "BackwardChain#a6ac",
-  "sema_stub": "a6ac",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:4f06546167f2ac9d04fadbbb0c8033f2638d91d8c319b346f4b3c735a819dfab",
+  "sema_ref": "BackwardChain#4f06",
+  "sema_stub": "4f06",
   "dependencies": {
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f",
-      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
-      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3"
+      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
+      "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
+      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
     }
   },
   "sema_layer": "Mind",

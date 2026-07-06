@@ -19,13 +19,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Novelty#mh:SHA-256:296b5ea7f3a5eba874fedb7bc53eefa3e9512b64cf04375d4d07c18e6aced988",
-  "sema_ref": "Novelty#296b",
-  "sema_stub": "296b",
+  "sema_id": "sema:Novelty#mh:SHA-256:262f2a36b4fb3ef6b2589307d7eb751cfec6e32548a444535c6e5db2d5c6c1a0",
+  "sema_ref": "Novelty#262f",
+  "sema_stub": "262f",
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Mind",

@@ -30,19 +30,19 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:c94a2c40ad961081b8ca49841054be3bed19f1f826fa744c065be1c2faf3f552",
-  "sema_ref": "DeepResearch#c94a",
-  "sema_stub": "c94a",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:a0583250bce8e627c58247bd2dba4de9d9fb9ffabf0a36c66eceb7ddebee4577",
+  "sema_ref": "DeepResearch#a058",
+  "sema_stub": "a058",
   "signature": [
     "Deep(Discover)"
   ],
   "dependencies": {
     "references": {
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "deep": "sema:Deep#mh:SHA-256:89f02aa7bc72cf8798b5619ae123bf4da38cff92f5147a436729ce2af17f897b",
-      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:db9507c031531031a14ac0371b3668fc844b3eb56f073a52bf009bf10d489cf0",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
+      "deep": "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824",
+      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:7ca744ce28611156f415add4da95e3dc93006d92061a05139e17b70d3882e848",
+      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     }
   },
   "sema_layer": "Mind",

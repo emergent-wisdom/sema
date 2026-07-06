@@ -13,12 +13,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Silence#mh:SHA-256:dd793ba60c09b5f61e3de738047e725509758d63311879876b400ff563619ea5",
-  "sema_ref": "Silence#dd79",
-  "sema_stub": "dd79",
+  "sema_id": "sema:Silence#mh:SHA-256:cc90dc097c5c67b0cb24bc8e74c7d0a105b5877c2a075a20454114dac44b4893",
+  "sema_ref": "Silence#cc90",
+  "sema_stub": "cc90",
   "dependencies": {
     "references": {
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
     }
   },
   "sema_layer": "Mind",

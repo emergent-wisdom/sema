@@ -21,25 +21,25 @@
       "Economics"
     ]
   },
-  "sema_ref": "Award#a0c1",
-  "sema_id": "sema:Award#mh:SHA-256:a0c1ed8216c16698c9eaa27e8d9da38f83adfbe4feee47a0d01306ff633f12f7",
-  "sema_stub": "a0c1",
+  "sema_ref": "Award#af8e",
+  "sema_id": "sema:Award#mh:SHA-256:af8e239d97dd719c5e42fbc977e8b3a67a0aa31bd3f788883dea1475098ef976",
+  "sema_stub": "af8e",
   "dependencies": {
     "accepts": {
-      "bid": "sema:Bid#mh:SHA-256:464aee7df8e070d5fb943f26ea92fc1f13d705b90384852ca2f9133e35d42ff8"
+      "bid": "sema:Bid#mh:SHA-256:5c45e9bd8858829e5a5cde5ad4f3ab26f4bb6937f88c1ddde40798b58799a266"
     },
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "held_release": "sema:HeldRelease#mh:SHA-256:5ba3170f78928b2502cc5b4ff74a2fadde8b9264fbfa0f1ab1f6cc3b5211fe20",
-      "sign": "sema:Sign#mh:SHA-256:d60d27217d8d1f219460f69a9971b9f73c1e279c5fddbb7db51a87c8015e34e8"
+      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
+      "held_release": "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5",
+      "sign": "sema:Sign#mh:SHA-256:d89a18b44321e4b9ba9aada7ac698f69ef9f24a2b0d92e0906168554604a301c"
     },
     "references": {
-      "solver": "sema:Solver#mh:SHA-256:81dc29ca3d3f1d7622441d71ea87e515e99fbb7330ba5a5d1cb1ecb879688e02",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "solver": "sema:Solver#mh:SHA-256:04b58c815005971905e3d430112a06fb76b727882204a80fe58ace79b066a1d6",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "contract": "sema:Contract#mh:SHA-256:442e457b869006b480cc44f756f2d110dd28de31a9f480bbccb4e9aaf97837d8"
+      "contract": "sema:Contract#mh:SHA-256:9e78730155e2edf5c5a6c8eeec52557d4db784b376957bdfffa1e0fe785b77f6"
     }
   },
   "sema_layer": "Society",

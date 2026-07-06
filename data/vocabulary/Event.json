@@ -36,13 +36,13 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Event#mh:SHA-256:7e714768a058525ab90fde17df7c38c827e4b3ceb771bdcba49586347271a00d",
-  "sema_ref": "Event#7e71",
-  "sema_stub": "7e71",
+  "sema_id": "sema:Event#mh:SHA-256:035497ae50cbbc61e245e1116f6e9b4a6e3c73aa41252052e8dd74a4dde35b96",
+  "sema_ref": "Event#0354",
+  "sema_stub": "0354",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "stream": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71"
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "stream": "sema:Stream#mh:SHA-256:6b47aafa55e0339455fa2d82d2077ffbf2c2dea744bd7034a99a3b77cfacfaec"
     }
   },
   "sema_layer": "Infrastructure",

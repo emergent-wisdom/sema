@@ -28,9 +28,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:bde9269c325f26585d6a69bb2fc4d1a8adb0092f55a4e02296cc3d2aa2630e84",
-  "sema_ref": "CommitmentDevice#bde9",
-  "sema_stub": "bde9",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4",
+  "sema_ref": "CommitmentDevice#dbdb",
+  "sema_stub": "dbdb",
   "data_schema": {
     "type": "object",
     "required": [
@@ -54,8 +54,8 @@
   },
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "oath_bind": "sema:OathBind#mh:SHA-256:272bd3f50b4982bf106f746084449c8498c1f7bf8c088154123a15c1e2b72c66"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "oath_bind": "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e"
     }
   },
   "sema_layer": "Mind",

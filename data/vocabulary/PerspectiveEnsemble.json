@@ -38,18 +38,18 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:9aeda0f4187115f47a3c3bea2ea9d891cba132007500215941980e27464293de",
-  "sema_ref": "PerspectiveEnsemble#9aed",
-  "sema_stub": "9aed",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc",
+  "sema_ref": "PerspectiveEnsemble#3f70",
+  "sema_stub": "3f70",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
-      "chain": "sema:Chain#mh:SHA-256:711e99072dc1ff9112f4840a6fcbe256b090f0b20c426ba7f3628ea58c15f358",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a",
-      "synthesis": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
+      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
+      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     }
   },
   "sema_layer": "Mind",

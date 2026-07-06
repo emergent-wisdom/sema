@@ -26,12 +26,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:ab1608c3fee86ae97a55921d08b934e652228577956502ef3b923b20d718b2c8",
-  "sema_ref": "RootHashGossip#ab16",
-  "sema_stub": "ab16",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:87c263b8b32c10b73610683d41d32b0b14750edbe32b604b402b95834e7596d8",
+  "sema_ref": "RootHashGossip#87c2",
+  "sema_stub": "87c2",
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b"
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87"
     }
   },
   "sema_layer": "Society",

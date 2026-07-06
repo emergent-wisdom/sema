@@ -37,21 +37,21 @@
       "Verification"
     ]
   },
-  "sema_ref": "AuditTrail#6735",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:6735b487b3fa1d278f0046cd0bccf2368a26054762cffb4543de714d59c010dd",
-  "sema_stub": "6735",
+  "sema_ref": "AuditTrail#bf18",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:bf18738b25414c907d542cc6971b13ecf1fb7b415d10529f1c398a1e08109f92",
+  "sema_stub": "bf18",
   "dependencies": {
     "composes_with": {
-      "snapshot": "sema:Snapshot#mh:SHA-256:0ae992361f9dfef49e88efa9a985826833260038fb99978615f5df709eba04f1"
+      "snapshot": "sema:Snapshot#mh:SHA-256:390d2ec2934136d534f969b4039e6b899d2ed3956ddd8aa0ca4754068ed8d133"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
-      "identity": "sema:Identity#mh:SHA-256:626c6180c1969117e0375625c31d4e39b77e6330d3a197dc7099acf85d1d57b3",
-      "ledger": "sema:Ledger#mh:SHA-256:2be9ce799356edd033aa6efd13f028b1d06b6784a49a4e12ab35278dd28a8219",
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:c7ab5a704cf6435c4e976029c884f170c39d2dfdfa3d22d8b819cf63cbdc9f0c",
-      "sign": "sema:Sign#mh:SHA-256:d60d27217d8d1f219460f69a9971b9f73c1e279c5fddbb7db51a87c8015e34e8",
-      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
+      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
+      "ledger": "sema:Ledger#mh:SHA-256:bc308b35d2c0be6d4a9159ebe2b3c4989e559628145ba9fccb970d8ec2264b04",
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:21c63e6bc594106fb6bd773e2d91a2ecb0aebb43e550d55cfbe901e6a38628a3",
+      "sign": "sema:Sign#mh:SHA-256:d89a18b44321e4b9ba9aada7ac698f69ef9f24a2b0d92e0906168554604a301c",
+      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
     }
   },
   "sema_layer": "Infrastructure",

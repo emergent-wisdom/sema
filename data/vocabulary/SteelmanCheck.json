@@ -47,24 +47,24 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:2d13b593c6209c12f0139e72867ec1acab3bda91b54584ce2b4c6de4f6aea27a",
-  "sema_ref": "SteelmanCheck#2d13",
-  "sema_stub": "2d13",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
+  "sema_ref": "SteelmanCheck#9c86",
+  "sema_stub": "9c86",
   "signature": [
     "Check(Robustness)",
     "Critique(Belief)"
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
-      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9",
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
-      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
-      "robustness": "sema:Robustness#mh:SHA-256:132c09ccd0ad128aec982b0ba12b672106b6f9aedcd1b052c950ee0eb81162a1"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "belief": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
+      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
+      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
+      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
+      "robustness": "sema:Robustness#mh:SHA-256:1fa393f9475d2418957334a1802dd65a159d3e680673a0d10874a97e915da7bf"
     }
   },
   "sema_layer": "Mind",

@@ -16,12 +16,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:cd1d23e6a0319d00f13415889419d9ebe2ae4706bf58896a8b7008f3a9cbfada",
-  "sema_ref": "Strategy#cd1d",
-  "sema_stub": "cd1d",
+  "sema_id": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
+  "sema_ref": "Strategy#0f2f",
+  "sema_stub": "0f2f",
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:c009b072dc99de2de17eae14a7aca0a3ffc7960c0a7323a56996d5c9da2947b3"
+      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
     }
   },
   "sema_layer": "Mind",

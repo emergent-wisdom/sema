@@ -20,13 +20,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:RegretMinimization#mh:SHA-256:37b429d3a47a455a26ea2355dcf837a28420cf4ef4b1e9d5432fe7496db1a734",
-  "sema_ref": "RegretMinimization#37b4",
-  "sema_stub": "37b4",
+  "sema_id": "sema:RegretMinimization#mh:SHA-256:67cf65e0135da11b92eb57178fd5d9270aae532c4a9c3964c2d7adc4f60c1e0a",
+  "sema_ref": "RegretMinimization#67cf",
+  "sema_stub": "67cf",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:04c64b50814976909ace1dd671b6b49d9b18e540e1b709c266fc48a1125e6466"
+      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
+      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:ab1b4c48b8b40b35607e94fa11f1488c23b07b4c846daca0aef109b8a55cd357"
     }
   },
   "sema_layer": "Mind",

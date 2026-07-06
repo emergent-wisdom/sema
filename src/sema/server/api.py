@@ -1,9 +1,18 @@
+import base64
+import binascii
+import hashlib
+import hmac
 import json
 import os
+import secrets
 import sqlite3
+import time
+from contextlib import closing
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlencode
 
+import httpx
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
@@ -11,10 +20,8 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from ..client import get_default_client
-
-# Relative Imports
-from ..core.registry import RegistryManager
 from ..core.utils import compact_dict
+from ..core.workspace import GraphWorkspace, WorkspaceSource
 
 app = FastAPI(
     title="Sema API",
@@ -115,8 +122,267 @@ else:
 
 print(f"Loading Registry with DB: {DB_PATH}")
 
+
+def _make_workspace(db_path: str) -> GraphWorkspace:
+    return GraphWorkspace(
+        WorkspaceSource(
+            workspace_id=os.environ.get("SEMA_WORKSPACE_ID", "local"),
+            label=os.environ.get("SEMA_WORKSPACE_LABEL", "Local vocabulary"),
+            db_path=db_path,
+            read_only=os.environ.get("SEMA_WORKSPACE_READ_ONLY", "true").lower() != "false",
+        )
+    )
+
+
 # Registry loads from database only
-registry = RegistryManager(db_path=DB_PATH)
+workspace = _make_workspace(DB_PATH)
+registry = workspace.registry_manager
+
+
+# ── GitHub Auth ───────────────────────────────────────────────────────────────
+
+_GITHUB_AUTHORIZE_URL = "https://github.com/login/oauth/authorize"
+_GITHUB_TOKEN_URL = "https://github.com/login/oauth/access_token"
+_GITHUB_USER_URL = "https://api.github.com/user"
+_GITHUB_EMAILS_URL = "https://api.github.com/user/emails"
+_SESSION_COOKIE = "sema_session"
+_OAUTH_STATE_COOKIE = "sema_oauth_state"
+_SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 14
+
+
+def _github_client_id() -> str | None:
+    return os.environ.get("GITHUB_CLIENT_ID")
+
+
+def _github_client_secret() -> str | None:
+    return os.environ.get("GITHUB_CLIENT_SECRET")
+
+
+def _session_secret() -> str | None:
+    return os.environ.get("SEMA_SESSION_SECRET") or os.environ.get("SESSION_SECRET")
+
+
+def _request_is_secure(request: Request) -> bool:
+    forwarded_proto = request.headers.get("x-forwarded-proto")
+    if forwarded_proto:
+        return forwarded_proto.split(",", 1)[0].strip() == "https"
+    return request.url.scheme == "https"
+
+
+def _external_base_url(request: Request) -> str:
+    proto = request.headers.get("x-forwarded-proto", request.url.scheme).split(",", 1)[0].strip()
+    host = (
+        request.headers.get("x-forwarded-host") or request.headers.get("host") or request.url.netloc
+    )
+    return f"{proto}://{host}"
+
+
+def _github_redirect_uri(request: Request) -> str:
+    return os.environ.get("GITHUB_OAUTH_REDIRECT_URI") or (
+        f"{_external_base_url(request)}/auth/github/callback"
+    )
+
+
+def _github_oauth_configured() -> bool:
+    return bool(_github_client_id() and _github_client_secret())
+
+
+def _auth_ready() -> bool:
+    return bool(_github_oauth_configured() and _session_secret())
+
+
+def _workspace_auth_redirect(status: str) -> RedirectResponse:
+    return RedirectResponse(url=f"/workspace?auth={status}", status_code=303)
+
+
+def _b64encode(raw: bytes) -> str:
+    return base64.urlsafe_b64encode(raw).decode("ascii").rstrip("=")
+
+
+def _b64decode(value: str) -> bytes:
+    padding = "=" * (-len(value) % 4)
+    return base64.urlsafe_b64decode(f"{value}{padding}".encode("ascii"))
+
+
+def _sign_session_payload(payload: str, secret: str) -> str:
+    digest = hmac.new(secret.encode("utf-8"), payload.encode("ascii"), hashlib.sha256).digest()
+    return _b64encode(digest)
+
+
+def _encode_session(user: dict[str, Any]) -> str:
+    secret = _session_secret()
+    if not secret:
+        raise RuntimeError("SEMA_SESSION_SECRET is not configured")
+
+    payload = _b64encode(
+        json.dumps(
+            {"iat": int(time.time()), "user": user},
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+    )
+    return f"{payload}.{_sign_session_payload(payload, secret)}"
+
+
+def _decode_session(value: str | None) -> dict[str, Any] | None:
+    secret = _session_secret()
+    if not value or not secret or "." not in value:
+        return None
+
+    payload, signature = value.rsplit(".", 1)
+    try:
+        expected = _sign_session_payload(payload, secret)
+    except UnicodeEncodeError:
+        # Cookie bytes outside ASCII can't have been produced by
+        # _encode_session — treat as logged out instead of erroring.
+        return None
+    if not hmac.compare_digest(signature, expected):
+        return None
+
+    try:
+        data = json.loads(_b64decode(payload))
+    except (binascii.Error, ValueError, json.JSONDecodeError):
+        return None
+
+    issued_at = data.get("iat")
+    if not isinstance(issued_at, int) or issued_at < int(time.time()) - _SESSION_MAX_AGE_SECONDS:
+        return None
+
+    user = data.get("user")
+    return user if isinstance(user, dict) else None
+
+
+async def _fetch_github_identity(access_token: str) -> dict[str, Any]:
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {access_token}",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    async with httpx.AsyncClient(timeout=10.0) as client:
+        user_response = await client.get(_GITHUB_USER_URL, headers=headers)
+        user_response.raise_for_status()
+        user_data = user_response.json()
+
+        email = user_data.get("email")
+        if not email:
+            emails_response = await client.get(_GITHUB_EMAILS_URL, headers=headers)
+            if emails_response.status_code == 200:
+                for candidate in emails_response.json():
+                    if candidate.get("primary") and candidate.get("verified"):
+                        email = candidate.get("email")
+                        break
+
+    return {
+        "id": user_data.get("id"),
+        "login": user_data.get("login"),
+        "name": user_data.get("name"),
+        "avatar_url": user_data.get("avatar_url"),
+        "html_url": user_data.get("html_url"),
+        "email": email,
+    }
+
+
+@app.get("/api/me")
+def get_current_user(request: Request):
+    user = _decode_session(request.cookies.get(_SESSION_COOKIE))
+    return {
+        "authenticated": user is not None,
+        "user": user,
+        "github_oauth_configured": _github_oauth_configured(),
+        "session_configured": bool(_session_secret()),
+        "github_callback_url": _github_redirect_uri(request),
+    }
+
+
+@app.get("/auth/github/start")
+def start_github_auth(request: Request):
+    client_id = _github_client_id()
+    if not _auth_ready() or not client_id:
+        return _workspace_auth_redirect("missing")
+
+    state = secrets.token_urlsafe(32)
+    query = urlencode(
+        {
+            "client_id": client_id,
+            "redirect_uri": _github_redirect_uri(request),
+            "scope": "read:user user:email",
+            "state": state,
+            "allow_signup": "true",
+        }
+    )
+    response = RedirectResponse(url=f"{_GITHUB_AUTHORIZE_URL}?{query}", status_code=303)
+    response.set_cookie(
+        _OAUTH_STATE_COOKIE,
+        state,
+        max_age=600,
+        httponly=True,
+        secure=_request_is_secure(request),
+        samesite="lax",
+        path="/",
+    )
+    return response
+
+
+@app.get("/auth/github/callback")
+async def github_auth_callback(request: Request, code: str | None = None, state: str | None = None):
+    client_id = _github_client_id()
+    client_secret = _github_client_secret()
+    if not _auth_ready() or not client_id or not client_secret:
+        return _workspace_auth_redirect("missing")
+
+    expected_state = request.cookies.get(_OAUTH_STATE_COOKIE)
+    if (
+        not code
+        or not state
+        or not expected_state
+        or not hmac.compare_digest(state, expected_state)
+    ):
+        raise HTTPException(status_code=400, detail="Invalid GitHub OAuth callback")
+
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            token_response = await client.post(
+                _GITHUB_TOKEN_URL,
+                headers={"Accept": "application/json"},
+                data={
+                    "client_id": client_id,
+                    "client_secret": client_secret,
+                    "code": code,
+                    "redirect_uri": _github_redirect_uri(request),
+                },
+            )
+            token_response.raise_for_status()
+            token_data = token_response.json()
+        if token_data.get("error"):
+            detail = token_data.get("error_description") or token_data["error"]
+            raise HTTPException(status_code=400, detail=detail)
+        access_token = token_data.get("access_token")
+        if not access_token:
+            raise HTTPException(status_code=400, detail="GitHub did not return an access token")
+        user = await _fetch_github_identity(access_token)
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=502, detail="GitHub OAuth request failed") from exc
+
+    response = _workspace_auth_redirect("github")
+    response.set_cookie(
+        _SESSION_COOKIE,
+        _encode_session(user),
+        max_age=_SESSION_MAX_AGE_SECONDS,
+        httponly=True,
+        secure=_request_is_secure(request),
+        samesite="lax",
+        path="/",
+    )
+    response.delete_cookie(_OAUTH_STATE_COOKIE, path="/")
+    return response
+
+
+@app.get("/auth/logout")
+def logout():
+    response = _workspace_auth_redirect("logout")
+    response.delete_cookie(_SESSION_COOKIE, path="/")
+    response.delete_cookie(_OAUTH_STATE_COOKIE, path="/")
+    return response
 
 
 # Models
@@ -143,6 +409,12 @@ class GraphData(BaseModel):
     edges: list[GraphEdge]
 
 
+@app.get("/api/workspace")
+def get_workspace():
+    """Describe the active graph workspace and published vocabulary root."""
+    return workspace.describe()
+
+
 @app.get("/api/graph")
 def get_graph():
     """Get the full graph structure for visualization."""
@@ -153,56 +425,54 @@ def get_graph():
         return {"nodes": [], "edges": []}
 
     try:
-        conn = sqlite3.connect(DB_PATH)
-        conn.row_factory = sqlite3.Row
+        with closing(sqlite3.connect(DB_PATH)) as conn:
+            conn.row_factory = sqlite3.Row
 
-        # Get Nodes and build UUID->handle mapping
-        cursor = conn.cursor()
-        cursor.execute("SELECT id, node_type, text, metadata FROM nodes")
-        uuid_to_id = {}  # Map UUID to our node ID
+            # Get Nodes and build UUID->handle mapping
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, node_type, text, metadata FROM nodes")
+            uuid_to_id = {}  # Map UUID to our node ID
 
-        for row in cursor.fetchall():
-            meta = json.loads(row["metadata"] or "{}")
-            pattern_meta = meta.get("pattern", {})
+            for row in cursor.fetchall():
+                meta = json.loads(row["metadata"] or "{}")
+                pattern_meta = meta.get("pattern", {})
 
-            # Apply Overlay Logic
-            raw_handle = pattern_meta.get("handle") or row["text"]
-            overlaid_handle = pattern_meta.get("sema_ref") or raw_handle
+                # Apply Overlay Logic
+                raw_handle = pattern_meta.get("handle") or row["text"]
+                overlaid_handle = pattern_meta.get("sema_ref") or raw_handle
 
-            # For PATTERN nodes, use the raw handle as ID (for API lookups)
-            # For other nodes, use the UUID
-            node_id = raw_handle if row["node_type"] == "PATTERN" and raw_handle else row["id"]
-            uuid_to_id[row["id"]] = node_id
+                # For PATTERN nodes, use the raw handle as ID (for API lookups)
+                # For other nodes, use the UUID
+                node_id = raw_handle if row["node_type"] == "PATTERN" and raw_handle else row["id"]
+                uuid_to_id[row["id"]] = node_id
 
-            nodes.append(
-                {
-                    "id": node_id,
-                    "text": overlaid_handle,  # Use overlaid handle as primary text
-                    "type": row["node_type"],
-                    "layer": pattern_meta.get("sema_layer") or meta.get("sema_layer"),
-                    "category": pattern_meta.get("sema_category") or meta.get("sema_category"),
-                    "handle": overlaid_handle,
-                    "gloss": pattern_meta.get("gloss"),
-                    "stub": pattern_meta.get("sema_stub"),
-                    "metadata": meta,
-                }
-            )
+                nodes.append(
+                    {
+                        "id": node_id,
+                        "text": overlaid_handle,  # Use overlaid handle as primary text
+                        "type": row["node_type"],
+                        "layer": pattern_meta.get("sema_layer") or meta.get("sema_layer"),
+                        "category": pattern_meta.get("sema_category") or meta.get("sema_category"),
+                        "handle": overlaid_handle,
+                        "gloss": pattern_meta.get("gloss"),
+                        "stub": pattern_meta.get("sema_stub"),
+                        "metadata": meta,
+                    }
+                )
 
-        # Get Edges - translate UUIDs to our node IDs
-        cursor.execute("SELECT id, source_id, target_id, edge_type FROM edges")
-        for row in cursor.fetchall():
-            source_id = uuid_to_id.get(row["source_id"], row["source_id"])
-            target_id = uuid_to_id.get(row["target_id"], row["target_id"])
-            edges.append(
-                {
-                    "id": row["id"],
-                    "source": source_id,
-                    "target": target_id,
-                    "type": row["edge_type"],
-                }
-            )
-
-        conn.close()
+            # Get Edges - translate UUIDs to our node IDs
+            cursor.execute("SELECT id, source_id, target_id, edge_type FROM edges")
+            for row in cursor.fetchall():
+                source_id = uuid_to_id.get(row["source_id"], row["source_id"])
+                target_id = uuid_to_id.get(row["target_id"], row["target_id"])
+                edges.append(
+                    {
+                        "id": row["id"],
+                        "source": source_id,
+                        "target": target_id,
+                        "type": row["edge_type"],
+                    }
+                )
     except Exception as e:
         print(f"Error reading DB: {e}")
         raise HTTPException(status_code=500, detail=str(e)) from e
@@ -362,8 +632,7 @@ def get_pattern_details(handle: str):
 @app.get("/api/search")
 def search_patterns(q: str, semantic: bool = True):
     """Search patterns (Hybrid: Keyword + Semantic if available)."""
-    # 1. Keyword search (always)
-    keyword_results = registry.search(q)
+    keyword_results = registry.search(q, use_semantic=semantic)
 
     if not semantic:
         return keyword_results
@@ -524,7 +793,7 @@ def list_docs():
     for slug, default_title in DOCS_ORDER:
         doc_path = _get_doc_path(slug)
         if doc_path and doc_path.exists():
-            with open(doc_path) as file:
+            with open(doc_path, encoding="utf-8") as file:
                 first_line = file.readline().strip()
                 title = (
                     first_line.lstrip("#").strip() if first_line.startswith("#") else default_title
@@ -549,7 +818,7 @@ def get_doc(slug: str):
     if not doc_path:
         raise HTTPException(status_code=404, detail="Document not found")
 
-    with open(doc_path) as f:
+    with open(doc_path, encoding="utf-8") as f:
         content = f.read()
 
     lines = content.split("\n")
@@ -587,26 +856,40 @@ def get_install_md():
 
     root = _get_repo_root()
     if root and (root / "install.md").exists():
-        return PlainTextResponse((root / "install.md").read_text(), media_type="text/markdown")
+        return PlainTextResponse(
+            (root / "install.md").read_text(encoding="utf-8"), media_type="text/markdown"
+        )
     cwd = Path.cwd() / "install.md"
     if cwd.exists():
-        return PlainTextResponse(cwd.read_text(), media_type="text/markdown")
+        return PlainTextResponse(cwd.read_text(encoding="utf-8"), media_type="text/markdown")
     raise HTTPException(status_code=404, detail="install.md not found")
 
 
 # ── DB Management ──────────────────────────────────────────────────────────────
 
 
-def _is_local_server() -> bool:
-    """True when running locally (not deployed to production)."""
-    # Production sets RAILWAY_ENVIRONMENT; local does not.
-    return not os.environ.get("RAILWAY_ENVIRONMENT") and not os.environ.get("PRODUCTION")
+def _is_local_request(request: Request) -> bool:
+    """True when running locally (not deployed) AND the caller is loopback.
+
+    The env check catches known deploy targets (Railway sets
+    RAILWAY_ENVIRONMENT); the loopback check protects self-hosters who
+    expose the server without setting PRODUCTION — DB switching can point
+    the process at any readable file, so it must never be reachable
+    remotely.
+    """
+    if os.environ.get("RAILWAY_ENVIRONMENT") or os.environ.get("PRODUCTION"):
+        return False
+    client = request.client
+    if client is None:
+        # ASGI test harnesses (TestClient) have no real transport.
+        return True
+    return client.host in ("127.0.0.1", "::1", "testclient")
 
 
 @app.get("/api/dbs")
-def get_dbs():
+def get_dbs(request: Request):
     """List all known vocabulary databases. Local-only."""
-    if not _is_local_server():
+    if not _is_local_request(request):
         raise HTTPException(status_code=404, detail="DB management is local-only")
 
     from ..core.registry import list_dbs
@@ -618,14 +901,14 @@ def get_dbs():
 
 
 @app.post("/api/use")
-def use_db_endpoint(payload: dict):
+def use_db_endpoint(payload: dict, request: Request):
     """Switch the active database for this server process. Local-only."""
-    if not _is_local_server():
+    if not _is_local_request(request):
         raise HTTPException(status_code=404, detail="DB management is local-only")
 
     from ..core.registry import is_bundled_db, register_db, set_active_db
 
-    global DB_PATH, registry
+    global DB_PATH, registry, workspace
 
     target = payload.get("path")
     use_default = payload.get("default", False)
@@ -637,7 +920,8 @@ def use_db_endpoint(payload: dict):
         if not bundled:
             raise HTTPException(status_code=500, detail="Bundled DB not found")
         DB_PATH = bundled
-        registry = RegistryManager(db_path=bundled)
+        workspace = _make_workspace(bundled)
+        registry = workspace.registry_manager
         set_active_db(None)
         count = len(registry.registry)
         return {"success": True, "db_path": bundled, "total_patterns": count}
@@ -655,7 +939,8 @@ def use_db_endpoint(payload: dict):
         )
 
     DB_PATH = str(resolved)
-    registry = RegistryManager(db_path=str(resolved))
+    workspace = _make_workspace(str(resolved))
+    registry = workspace.registry_manager
     set_active_db(str(resolved))
     register_db(str(resolved))
     count = len(registry.registry)
@@ -715,7 +1000,7 @@ if _static_dir.exists() and (_static_dir / "index.html").exists():
 
     @app.get("/{path:path}")
     def serve_spa(path: str):
-        if path.startswith("api/"):
+        if path.startswith("api/") or path.startswith("assets/"):
             raise HTTPException(status_code=404)
         candidate = (_static_dir / path).resolve()
         if candidate.is_relative_to(_static_root) and candidate.is_file():

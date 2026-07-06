@@ -23,12 +23,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:WorldReversible#mh:SHA-256:f6649f97dc12bc980722caa393140b9043af7dd470fdac4e1f40fa3f6a22dfbe",
-  "sema_ref": "WorldReversible#f664",
-  "sema_stub": "f664",
+  "sema_id": "sema:WorldReversible#mh:SHA-256:a8e0699d7dcce24a267c2e8db351fbe4edc60323c458931e1071858c0c6c1acb",
+  "sema_ref": "WorldReversible#a8e0",
+  "sema_stub": "a8e0",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Mind",

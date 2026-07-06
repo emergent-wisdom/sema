@@ -13,16 +13,16 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Simulation#mh:SHA-256:5e80a6ebef4ecbdf66157f03cd64c7b5d7b5663c11c6d50d3166ba95c9087530",
-  "sema_ref": "Simulation#5e80",
-  "sema_stub": "5e80",
+  "sema_id": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
+  "sema_ref": "Simulation#ebb1",
+  "sema_stub": "ebb1",
   "invariants": [
     "Isolation: Side effects in W' DO NOT leak to W."
   ],
   "dependencies": {
     "references": {
-      "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Mind",

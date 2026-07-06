@@ -20,13 +20,13 @@ allowed-tools: |
 
 # Speak in Sema
 
-Sema is a **content-addressed vocabulary protocol**. ~450 patterns that give you precise, shared words for concepts that would otherwise require paragraphs of re-explanation. Each pattern has a handle (e.g. `StateLock#5602`) that is a cryptographic commitment to its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a **content-addressed vocabulary protocol**. ~450 patterns that give you precise, shared words for concepts that would otherwise require paragraphs of re-explanation. Each pattern has a handle (e.g. `StateLock#7cd8`) that is a cryptographic commitment to its definition — two agents using the same handle are provably talking about the same thing.
 
 Before defining a concept from scratch, check if sema already has a word:
 
 1. `sema_search` with the idea
 2. `sema_resolve` to read mechanism and invariants
-3. Use the handle as a load-bearing noun in your text: *"This uses `StateLock#5602` to prevent concurrent mutation"*
+3. Use the handle as a load-bearing noun in your text: *"This uses `StateLock#7cd8` to prevent concurrent mutation"*
 
 Not footnotes — actual words you think with.
 
@@ -43,9 +43,9 @@ Call `sema_reset_session()` if your context was compressed or you need full resu
 ## The workflow
 
 1. **Search** — `sema_search({ query: "trust model" })` — find existing patterns by meaning
-2. **Resolve** — `sema_resolve({ reference: "TrustModel#7859" })` — read full definition, mechanism, invariants
-3. **Handshake** — `sema_handshake({ references: ["X#1234", "Y#5678"] })` — verify two agents share meaning
-4. **Mint** — `sema_mint({ handle, gloss, description, invariants })` — create a new pattern (rare!)
+2. **Resolve** — `sema_resolve({ handle: "TrustModel#7859" })` — read full definition, mechanism, invariants
+3. **Handshake** — `sema_handshake({ ref: "X#1234" })` — verify exact meaning before relying on a handle
+4. **Mint** — `sema_mint({ pattern_json: "..." })` — create a new pattern (rare!)
 
 ## Switching and managing databases
 
@@ -134,10 +134,17 @@ Mint when:
 
 ```javascript
 sema_mint({
-  handle: "PatternName",           // 1–2 syllables, speakable
-  gloss: "One-line summary",       // What it IS
-  description: "Full definition",  // How to use it
-  invariants: ["Must...", ...],    // Non-negotiable constraints
+  pattern_json: JSON.stringify({
+    handle: "PatternName",          // 1–2 syllables, speakable
+    mechanism: "How the pattern works",
+    gloss: "One-line summary",      // What it IS
+    invariants: ["Must...", ...],   // Non-negotiable constraints
+    _meta: {
+      path: ["Mind", "Reasoning"],
+      ring: 1,
+      tier: 2,
+    },
+  })
 })
 ```
 
@@ -145,7 +152,7 @@ sema_mint({
 
 Use sema handles as load-bearing nouns — not footnotes, actual words you think with:
 
-> "This uses `StateLock#5602` to prevent concurrent mutation"
+> "This uses `StateLock#7cd8` to prevent concurrent mutation"
 
 Wrap handles in backticks for readability. When you encounter a handle you don't recognize, resolve it before proceeding.
 
@@ -154,7 +161,7 @@ Wrap handles in backticks for readability. When you encounter a handle you don't
 When two agents (or an agent and a human) need to agree on meaning:
 
 ```javascript
-sema_handshake({ ref: "StateLock#5602" })
+sema_handshake({ ref: "StateLock#7cd8" })
 // → canonical stub. Compare against your local value, then:
 sema_handshake({ ref: "StateLock", your_hash: "774b" })
 // PROCEED (match) or HALT (drift). No silent misunderstandings.
@@ -168,9 +175,9 @@ When two agents need to confirm they have the *same entire vocabulary* — not j
 
 ```javascript
 sema_handshake({ ref: "vocab" })
-// → { verdict: "PROVIDE_HASH", canonical_stub: "d4e71259e4dd1565", pattern_count: 435 }
+// → { verdict: "PROVIDE_HASH", canonical_stub: "46e651aeeb832fdc", pattern_count: 452 }
 
-sema_handshake({ ref: "vocab", your_hash: "d4e71259e4dd1565" })
+sema_handshake({ ref: "vocab", your_hash: "46e651aeeb832fdc" })
 // → PROCEED if byte-identical, HALT if any pattern's hash differs
 ```
 
@@ -183,9 +190,9 @@ Sema patterns are **thinking tools**, not references. When a user asks you to re
 For example, if someone asks "how should I start a business?":
 1. Search for `strategy`, `risk`, `decision`, `explore exploit`, `decompose`
 2. Resolve the top hits — read their mechanisms and invariants
-3. Use those patterns to *structure your answer*: "This is a `Strategy#cd1d` problem, not a `Plan#c009` problem, because..."
+3. Use those patterns to *structure your answer*: "This is a `Strategy#0f2f` problem, not a `Plan#02b6` problem, because..."
 
-The patterns aren't labels you slap on afterward. They're lenses that change what you see. `ExploreExploit#d500` doesn't just name a concept — it tells you *when to stop researching and start acting*. `PreMortem#6cc4` doesn't just mean "think about failure" — it has a specific mechanism for surfacing hidden risks.
+The patterns aren't labels you slap on afterward. They're lenses that change what you see. `ExploreExploit#f920` doesn't just name a concept — it tells you *when to stop researching and start acting*. `PreMortem#4c7f` doesn't just mean "think about failure" — it has a specific mechanism for surfacing hidden risks.
 
 **When to reach for sema unprompted:**
 - User asks an open-ended reasoning question (how, why, what should I)

@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback, createContext, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github, MessageCircle } from 'lucide-react'
+import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github, MessageCircle, Users } from 'lucide-react'
 import { usePatterns, usePattern, useSearchPatterns } from '@/hooks/useApi'
 import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
@@ -213,6 +213,13 @@ export function HomePage() {
               >
                 <Box className="w-4 h-4" />
                 3D Graph
+              </Link>
+              <Link
+                to="/workspace"
+                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
+              >
+                <Users className="w-4 h-4" />
+                Workspace
               </Link>
             </div>
           </div>

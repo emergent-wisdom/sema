@@ -15,16 +15,16 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:MetaProtocols#mh:SHA-256:86b7350d0d8972236eb2c0be50d8727142b669226169ae8e5110f4f6ac84e0eb",
-  "sema_ref": "MetaProtocols#86b7",
-  "sema_stub": "86b7",
+  "sema_id": "sema:MetaProtocols#mh:SHA-256:3561dab6b3e3d5d307a14f23031e29f122c76cbcc4ea1557a3cfdf02e3fe1195",
+  "sema_ref": "MetaProtocols#3561",
+  "sema_stub": "3561",
   "dependencies": {
     "composes_with": {
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:311b06bbfabf2310065755ebf60ddb02d0ac101870f589c092731a19237fe4aa"
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026"
     },
     "references": {
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9",
-      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88"
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",
+      "reframe": "sema:Reframe#mh:SHA-256:573733f86a965e0db34ce77c54bada908c9561248a7d5a9b76652dba71e1565a"
     }
   },
   "sema_layer": "Mind",
