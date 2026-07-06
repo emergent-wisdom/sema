@@ -84,8 +84,7 @@ class TestSchemaConstraints(unittest.TestCase):
         try:
             with pytest.raises(sqlite3.IntegrityError):
                 conn.execute(
-                    "INSERT INTO edges (id, source_id, target_id, edge_type) "
-                    "VALUES (?, ?, ?, ?)",
+                    "INSERT INTO edges (id, source_id, target_id, edge_type) VALUES (?, ?, ?, ?)",
                     (str(uuid.uuid4()), anchor_id, "no-such-node-id", "REFERENCES"),
                 )
         finally:

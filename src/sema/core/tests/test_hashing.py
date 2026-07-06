@@ -114,9 +114,7 @@ class TestDependencyAliasCanonicalization:
         """One reference to Gate vs two references to Gate must differ."""
         base = {"handle": "P", "mechanism": "m", "gloss": "g"}
         lookup = {"Gate": "f" * 64}.get
-        one = generate_sema_hash(
-            {**base, "dependencies": {"references": {"gate": "Gate"}}}, lookup
-        )
+        one = generate_sema_hash({**base, "dependencies": {"references": {"gate": "Gate"}}}, lookup)
         two = generate_sema_hash(
             {**base, "dependencies": {"references": {"a": "Gate", "b": "Gate"}}}, lookup
         )
@@ -134,9 +132,7 @@ class TestDependencyAliasCanonicalization:
         assert mine["hash"] == yours["hash"]
 
     def test_resolver_handles_multi_ref_lists(self):
-        deps = canonicalize_dependency_keys(
-            {"references": {"a": "Gate#aa11", "b": "Gate#bb22"}}
-        )
+        deps = canonicalize_dependency_keys({"references": {"a": "Gate#aa11", "b": "Gate#bb22"}})
         resolved = resolve_dependencies_to_sema_ids(deps, {"Gate": "e" * 64}.get)
         refs = resolved["references"]["gate"]
         assert isinstance(refs, list) and len(refs) == 2

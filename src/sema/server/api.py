@@ -171,7 +171,9 @@ def _request_is_secure(request: Request) -> bool:
 
 def _external_base_url(request: Request) -> str:
     proto = request.headers.get("x-forwarded-proto", request.url.scheme).split(",", 1)[0].strip()
-    host = request.headers.get("x-forwarded-host") or request.headers.get("host") or request.url.netloc
+    host = (
+        request.headers.get("x-forwarded-host") or request.headers.get("host") or request.url.netloc
+    )
     return f"{proto}://{host}"
 
 
@@ -329,7 +331,12 @@ async def github_auth_callback(request: Request, code: str | None = None, state:
         return _workspace_auth_redirect("missing")
 
     expected_state = request.cookies.get(_OAUTH_STATE_COOKIE)
-    if not code or not state or not expected_state or not hmac.compare_digest(state, expected_state):
+    if (
+        not code
+        or not state
+        or not expected_state
+        or not hmac.compare_digest(state, expected_state)
+    ):
         raise HTTPException(status_code=400, detail="Invalid GitHub OAuth callback")
 
     try:

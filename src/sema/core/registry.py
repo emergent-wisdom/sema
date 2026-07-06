@@ -330,7 +330,10 @@ class RegistryManager:
         # pull replacing one handle with another — leaving a stale map that
         # points at handles no longer in the registry.)
         registry_keys = set(self.registry.keys())
-        if not hasattr(self, "_lower_map") or getattr(self, "_lower_map_keys", None) != registry_keys:
+        if (
+            not hasattr(self, "_lower_map")
+            or getattr(self, "_lower_map_keys", None) != registry_keys
+        ):
             self._lower_map = {k.lower().replace("_", ""): k for k in registry_keys}
             self._lower_map_keys = registry_keys
 

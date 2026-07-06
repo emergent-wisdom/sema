@@ -195,9 +195,7 @@ def canonicalize_dependency_keys(deps: dict[str, Any]) -> dict[str, Any]:
 
             normalized[dep_type] = {}
             for canonical_key, refs in grouped.items():
-                normalized[dep_type][canonical_key] = (
-                    refs[0] if len(refs) == 1 else sorted(refs)
-                )
+                normalized[dep_type][canonical_key] = refs[0] if len(refs) == 1 else sorted(refs)
             normalized[dep_type].update(passthrough)
         else:
             normalized[dep_type] = items
