@@ -20,12 +20,12 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
-  "sema_ref": "Deduction#9c88",
-  "sema_stub": "9c88",
+  "sema_id": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
+  "sema_ref": "Deduction#b9a0",
+  "sema_stub": "b9a0",
   "dependencies": {
     "references": {
-      "axiom": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded"
+      "axiom": "sema:Axiom#mh:SHA-256:8b1ca0bfefdb4954778b4074a3164934cb3a7e01be32aeb488b284dd81e5879c"
     }
   },
   "sema_layer": "Mind",

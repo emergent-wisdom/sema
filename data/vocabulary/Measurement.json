@@ -15,12 +15,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Measurement#mh:SHA-256:5da6ed7d2127c41bdeb1cfaa0d737425ec5c0d762eb6288601e0f781aa18a9e0",
-  "sema_ref": "Measurement#5da6",
-  "sema_stub": "5da6",
+  "sema_id": "sema:Measurement#mh:SHA-256:511d865266a5ce7cb8ae2b9e666b91684dc05a7fb6127ea2947d625e7508a2e0",
+  "sema_ref": "Measurement#511d",
+  "sema_stub": "511d",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Physics",

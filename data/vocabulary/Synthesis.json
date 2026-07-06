@@ -13,12 +13,12 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Synthesis#mh:SHA-256:26b9e3bc68112d12015efd608c76860f1a5a796c5171145eb2959627fee88a90",
-  "sema_ref": "Synthesis#26b9",
-  "sema_stub": "26b9",
+  "sema_id": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea",
+  "sema_ref": "Synthesis#46b9",
+  "sema_stub": "46b9",
   "dependencies": {
     "references": {
-      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01"
+      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237"
     }
   },
   "sema_layer": "Mind",

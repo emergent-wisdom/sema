@@ -38,24 +38,24 @@
       "Protocols"
     ]
   },
-  "sema_ref": "ToolDiscovery#91b0",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:91b0f355445083a62cee1ba2134401a85b719b64e0e558ecc093eef82f9216cc",
-  "sema_stub": "91b0",
+  "sema_ref": "ToolDiscovery#4b60",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:4b608d9d78051bf0f7bd10120d145dd6664c416fc0c52969156f9a31d171d45b",
+  "sema_stub": "4b60",
   "dependencies": {
     "composes_with": {
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:c7fed2adfa415c82a93ecff3cc6c41f3e60ef2c9891c365987761d01d6bcf70f",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:bd2b35e0886f79fde129e2a1185845ecb644c14c4b89b90ec5dc8eb54c51ba10"
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:011f50770f2599f5017df648ad5920ddb732f7681a9a3b7576cdcf3798ce6baa"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "card": "sema:Card#mh:SHA-256:68487a949d1a26f464e0abd5fb8b8a86c5e6a338b112634c858a7ce59631c216",
-      "context_first": "sema:ContextFirst#mh:SHA-256:3ed95df7c1428047ef2ab1f4df7752ab486650f5f1149b65d5cedcf8e090a9c6",
-      "discover": "sema:Discover#mh:SHA-256:e88909f7f41ba60803a03d03f611eaea8203179f4bccf4002613ad479ed2c574",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "card": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
+      "context_first": "sema:ContextFirst#mh:SHA-256:a0b6432a809a0c73841202d1802a83018f3db9d5938893415218a383ce151d6a",
+      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },
     "yields": {
-      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327"
+      "result": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d"
     }
   },
   "sema_layer": "Society",

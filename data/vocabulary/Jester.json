@@ -13,14 +13,14 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Jester#mh:SHA-256:89e4837cef25026abcca4ff8115cf029e1c5ecb176f1297692f511815c200d4a",
-  "sema_ref": "Jester#89e4",
-  "sema_stub": "89e4",
+  "sema_id": "sema:Jester#mh:SHA-256:0c49122270f0f4e06d731097b2fdb8a60832060cb71f41399604c2df5e6d4c49",
+  "sema_ref": "Jester#0c49",
+  "sema_stub": "0c49",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:79f191925e5a58c01a7f0414bf24e5479e19fb663bf2d7b42e608d28d6ad6922",
-      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
-      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9"
+      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
+      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
+      "incongruity": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99"
     }
   },
   "sema_layer": "Mind",

@@ -166,7 +166,7 @@ export function WorkspaceDemoPage() {
     ]
   }, [authUser?.email, authUser?.login, authUser?.name, collaborators, hasRealGithubUser])
   const sourceLabel = authUser?.login ? `@${authUser.login}` : isDemoWorkspace ? 'Demo GitHub linked' : 'Not linked'
-  const rootValue = published ? '39ca671a4dcb3075' : 'Not published'
+  const rootValue = published ? '46e651aeeb832fdc' : 'Not published'
   const metricValues = isDemoWorkspace && libraryReady
     ? { patterns: '24', drafts: '4', proposals: '3' }
     : { patterns: '0', drafts: '0', proposals: '0' }
@@ -735,7 +735,7 @@ function StepPanel({
           <div>
             <p className="text-sm font-medium text-zinc-200">Vocabulary root</p>
             <code className="mt-2 block break-all text-xs text-zinc-500">
-              sema:root#mh:SHA-256:39ca671a4dcb3075855cb293380d1796105e2eca0de49b0537279b798b675ee6
+              sema:root#mh:SHA-256:46e651aeeb832fdc654d6e48ba2b9c9049f8585a5423371624426c1ab6d3f15b
             </code>
           </div>
           <button

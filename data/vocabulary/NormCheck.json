@@ -40,20 +40,20 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:a52896d5c8971e56c195fca723da496bbb11d645a64a900ce280a3e0cb005fe7",
-  "sema_ref": "NormCheck#a528",
-  "sema_stub": "a528",
+  "sema_id": "sema:NormCheck#mh:SHA-256:b3a0c556a3b52cdd3b366f6494e2d93b3a105434f18f5b913f53164d02868424",
+  "sema_ref": "NormCheck#b3a0",
+  "sema_stub": "b3a0",
   "signature": [
     "Check(Value)"
   ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
-      "normative_judge": "sema:NormativeJudge#mh:SHA-256:0323c76fdb780f34f5cbe22d598a13e3c4ca422363677141feee1d2c6c49e3cd",
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
-      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095",
+      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Mind",

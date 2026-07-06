@@ -29,14 +29,14 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Satisfice#mh:SHA-256:0874ef403078cce0c8c51fc3504ee0b50196737dbb9148b4eeddea66d4dce8ad",
-  "sema_ref": "Satisfice#0874",
-  "sema_stub": "0874",
+  "sema_id": "sema:Satisfice#mh:SHA-256:ac34d966be2982e055c21bdd09f05f7f341c21f6d4f1f3966b11f443abf2af40",
+  "sema_ref": "Satisfice#ac34",
+  "sema_stub": "ac34",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:934e336cd9323a59a2af8f1248d0a4122183efe479c561162289f23d4226944c",
-      "optimal_stop": "sema:OptimalStop#mh:SHA-256:e7ca1560a9735578b604728b9cad0aa0b894bbdc0ff7aae3859cbc5a8e9955f0",
-      "option": "sema:Option#mh:SHA-256:483eebf0a4fdc817585be429278bf1c8c56b815249bbf91501073dce1453cf13"
+      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
+      "optimal_stop": "sema:OptimalStop#mh:SHA-256:78c85dfc9a641c288bf891a44b1023018fce524e1d57742416604f3a1d205df0",
+      "option": "sema:Option#mh:SHA-256:b099a885b070faa10168a2edff0671cd773d31c0cc5fb0e775521a12444c1135"
     }
   },
   "sema_layer": "Mind",

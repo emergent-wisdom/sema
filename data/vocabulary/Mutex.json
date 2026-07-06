@@ -37,17 +37,17 @@
     ]
   },
   "derived_from": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-  "sema_id": "sema:Mutex#mh:SHA-256:4f92f538e7cac17a005087ef874e42d6d35f44dbf8ec3ceb863501d77450cc43",
-  "sema_ref": "Mutex#4f92",
-  "sema_stub": "4f92",
+  "sema_id": "sema:Mutex#mh:SHA-256:58bad5fd876ab54e26c1bb6882ca10aadc55681be7b443a0fb89239b184a6866",
+  "sema_ref": "Mutex#58ba",
+  "sema_stub": "58ba",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },
     "references": {
-      "conservation": "sema:Conservation#mh:SHA-256:ba2edbdbf71a22b97fac45165ec000693c600499cd525ef1a17975a3951d9315",
-      "lock": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-      "resource": "sema:Resource#mh:SHA-256:3a2f2f0b7b22059fa22c61184defbbe2cbefc8b8b98cef39a6bc38a24f47c1ac"
+      "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
+      "lock": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
+      "resource": "sema:Resource#mh:SHA-256:f18a2d66448ccb0cc712adcc06c5344a6f3c38ba927fd5d642d5e50dbfdca898"
     }
   },
   "sema_layer": "Physics",

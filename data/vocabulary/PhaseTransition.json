@@ -15,12 +15,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:PhaseTransition#mh:SHA-256:edf83fdf4afccce463a1afeb1c9562009edfc0414141ff15e5410024a5bd116a",
-  "sema_ref": "PhaseTransition#edf8",
-  "sema_stub": "edf8",
+  "sema_id": "sema:PhaseTransition#mh:SHA-256:b7752342dcc7b20033400fc4ec1befd4bc3a31532493d6acdce763293e81c1d7",
+  "sema_ref": "PhaseTransition#b775",
+  "sema_stub": "b775",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721"
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },
   "sema_layer": "Physics",

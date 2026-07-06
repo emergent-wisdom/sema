@@ -50,14 +50,14 @@
       "Data Structures"
     ]
   },
-  "sema_ref": "Permission#c645",
-  "sema_id": "sema:Permission#mh:SHA-256:c6450780831c9125b22468b89de1c143edb74dc76bf9417abdac82250e74fd83",
-  "sema_stub": "c645",
+  "sema_ref": "Permission#f347",
+  "sema_id": "sema:Permission#mh:SHA-256:f3470b4ff692d65cb74a12a52b69caffdf008e55e1ef0062a9927c6b72877005",
+  "sema_stub": "f347",
   "dependencies": {
     "references": {
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9"
+      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
     }
   },
   "sema_layer": "Infrastructure",

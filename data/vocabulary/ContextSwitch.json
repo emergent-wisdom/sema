@@ -13,16 +13,16 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:312ff9263ecda7a7d90222647607f0a668a9d31ca0b0ec335d9a4ea04464fd68",
-  "sema_ref": "ContextSwitch#312f",
-  "sema_stub": "312f",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:67b2747f9e0dc041462f36df02e5b33540c2feb0d83bf40c580ea122d8f9ec06",
+  "sema_ref": "ContextSwitch#67b2",
+  "sema_stub": "67b2",
   "dependencies": {
     "accepts": {
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "mode": "sema:Mode#mh:SHA-256:ea171e388aae10ccd1ad2951a9516eb2da7a979b3c025b204f81a4d42537d1d6"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b"
     }
   },
   "sema_layer": "Society",

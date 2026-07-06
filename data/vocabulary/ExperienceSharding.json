@@ -50,13 +50,13 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:1b5b67d8c6d94ebc1fa53e4f20c84f6cf1d470ab78dd34d38ef4b4dc3f60cc48",
-  "sema_ref": "ExperienceSharding#1b5b",
-  "sema_stub": "1b5b",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:3be09a0c57f793ab33a1efbd6773feac4bd2fc1dda5ec3b6beb56a7230793188",
+  "sema_ref": "ExperienceSharding#3be0",
+  "sema_stub": "3be0",
   "dependencies": {
     "references": {
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:38ffe7a87ca3251bba48ee7dda9ba08d6ea95d7bb2178d606a04e8268dc05e24",
-      "shard": "sema:Shard#mh:SHA-256:1e7407cbee28a243c16fac90559884c44c3d12cbded23486cd281853627bad0b"
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:e147d7618ec5f0a810d55c1671aefeda6a5ea31f0f33642660e715dd86404c68",
+      "shard": "sema:Shard#mh:SHA-256:328e51de920cace286a054e313321ff188e34a90d9e5dc8fca1eb2df24baded0"
     }
   },
   "sema_layer": "Mind",

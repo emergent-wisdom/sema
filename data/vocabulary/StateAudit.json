@@ -2,9 +2,9 @@
   "handle": "StateAudit",
   "mechanism": "A safety pattern where an agent performs an explicit {{audit}} of the {{state}} immediately after a write to ensure the {{state_transition}} occurred as expected. Catches silent API failures.",
   "gloss": "Verifying system state after an operation",
-  "sema_id": "sema:StateAudit#mh:SHA-256:81955226e479378fe597ebe9d86b1a7fe788d392f99ae29c85a81f9ac091dc96",
-  "sema_ref": "StateAudit#8195",
-  "sema_stub": "8195",
+  "sema_id": "sema:StateAudit#mh:SHA-256:2747b8fd941dcd5a3980556d108b22f376bb3ac0ac6de1561215ad836bf5ed17",
+  "sema_ref": "StateAudit#2747",
+  "sema_stub": "2747",
   "_meta": {
     "ring": 0,
     "tier": 1,
@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "references": {
-      "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "state_transition": "sema:StateTransition#mh:SHA-256:9e61cab1fbacfac92d739865d4505e9e9bb9ed024e0d51b670a00ccfeb801ec4"
+      "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "state_transition": "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2"
     }
   },
   "sema_layer": "Infrastructure",

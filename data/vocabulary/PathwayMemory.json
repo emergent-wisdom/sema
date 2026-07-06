@@ -51,12 +51,12 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9",
-  "sema_ref": "PathwayMemory#7899",
-  "sema_stub": "7899",
+  "sema_id": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",
+  "sema_ref": "PathwayMemory#b6a0",
+  "sema_stub": "b6a0",
   "dependencies": {
     "references": {
-      "cache": "sema:Cache#mh:SHA-256:08ede75502246829cb9313bd69e53d3f1560a7ac41890c5a3f1f5e37c942bf10"
+      "cache": "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5"
     }
   },
   "sema_layer": "Mind",

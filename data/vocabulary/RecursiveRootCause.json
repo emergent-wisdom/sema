@@ -25,13 +25,13 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:RecursiveRootCause#mh:SHA-256:7074d06ab2b317d810e688866049a24f8b303099548f033d6edab2d0d16710b9",
-  "sema_ref": "RecursiveRootCause#7074",
-  "sema_stub": "7074",
+  "sema_id": "sema:RecursiveRootCause#mh:SHA-256:4df0a86d7cf4b453356bc364e8a4ccd1cde9722ecbb667ff0afd82a932512e1c",
+  "sema_ref": "RecursiveRootCause#4df0",
+  "sema_stub": "4df0",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
     }
   },
   "sema_layer": "Mind",

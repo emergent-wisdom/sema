@@ -17,16 +17,16 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Experiment#mh:SHA-256:24aa765432c012d9dd25eafe872031e765843f751ae0d08bab2ab8b5d93cd59e",
-  "sema_ref": "Experiment#24aa",
-  "sema_stub": "24aa",
+  "sema_id": "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b",
+  "sema_ref": "Experiment#3a0d",
+  "sema_stub": "3a0d",
   "dependencies": {
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "verification": "sema:Verification#mh:SHA-256:ab660a05252f66ba0506f45e85aa3dcd28fb437ac3c78ecffca50015c3a70690"
+      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
+      "verification": "sema:Verification#mh:SHA-256:99a57c2cef1d442480417b63b008e656f2b67f586886666234a41bc9251a4956"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
+      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
     }
   },
   "sema_layer": "Mind",

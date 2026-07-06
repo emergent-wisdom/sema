@@ -32,14 +32,14 @@
       "Protocols"
     ]
   },
-  "sema_ref": "ConfusedDeputy#611f",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:611f80b86d587cbe31b79eb4f2b4277fb773870b1feae81533608ade7a4fc2b4",
-  "sema_stub": "611f",
+  "sema_ref": "ConfusedDeputy#c6c9",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:c6c91849305a72c909564056bd6940139ca01f2f127f83818cc3e844dfc8a165",
+  "sema_stub": "c6c9",
   "dependencies": {
     "references": {
-      "actor": "sema:Actor#mh:SHA-256:57f6b9dbc9b8fc596a5238327f29fc24e27d4e0228bfed7352d41f0bfacd4ea4",
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "permission": "sema:Permission#mh:SHA-256:c6450780831c9125b22468b89de1c143edb74dc76bf9417abdac82250e74fd83"
+      "actor": "sema:Actor#mh:SHA-256:1ecd855bdf9fc33f99840af8b53729d917355fb151d36ff21947885fac5c5907",
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "permission": "sema:Permission#mh:SHA-256:f3470b4ff692d65cb74a12a52b69caffdf008e55e1ef0062a9927c6b72877005"
     }
   },
   "sema_layer": "Society",

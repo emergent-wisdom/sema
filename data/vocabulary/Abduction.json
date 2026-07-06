@@ -33,18 +33,18 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
-  "sema_ref": "Abduction#68f6",
-  "sema_stub": "68f6",
+  "sema_id": "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841",
+  "sema_ref": "Abduction#645a",
+  "sema_stub": "645a",
   "dependencies": {
     "composes_with": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06"
     },
     "references": {
-      "deduction": "sema:Deduction#mh:SHA-256:9c881288e30f01162b178b66fc1299a776dc08cc5add52ac8b31fe51d552dd12",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
-      "induction": "sema:Induction#mh:SHA-256:2487959ee211affb6f6ec74764316eb616e33c815603cf12b59518ab0bcfca54",
-      "rank": "sema:Rank#mh:SHA-256:7a76c5fdee1e9cbf69fbdee2cb56796594c56b5285ad9cd3fbd8903430407a11"
+      "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
+      "induction": "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707",
+      "rank": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104"
     }
   },
   "sema_layer": "Mind",

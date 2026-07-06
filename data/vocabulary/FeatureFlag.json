@@ -13,16 +13,16 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:FeatureFlag#mh:SHA-256:6c5cf7fa3a6f169e38989b0342ed06e5f92bf4cf0749ad43c6cb0d012182664c",
-  "sema_ref": "FeatureFlag#6c5c",
-  "sema_stub": "6c5c",
+  "sema_id": "sema:FeatureFlag#mh:SHA-256:dd1786602a5f6a608ac5a4ee986715239a7ee218ef831eb350d9f1dcf563da3b",
+  "sema_ref": "FeatureFlag#dd17",
+  "sema_stub": "dd17",
   "failure_modes": [
     "Flag outlives its purpose, accumulating unused conditional branches.",
     "Flag state inconsistent across distributed evaluators."
   ],
   "dependencies": {
     "references": {
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e"
+      "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5"
     }
   },
   "sema_layer": "Society",

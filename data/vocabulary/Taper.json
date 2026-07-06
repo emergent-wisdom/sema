@@ -42,18 +42,18 @@
       "Protocols"
     ]
   },
-  "sema_ref": "Taper#02bc",
-  "sema_id": "sema:Taper#mh:SHA-256:02bcea63e3a48c9af3fefc3fa9e2e15c39383f22cb6d80e14ee8731a8495989e",
-  "sema_stub": "02bc",
+  "sema_ref": "Taper#83db",
+  "sema_id": "sema:Taper#mh:SHA-256:83db268464c312c097ff6e9f579a6ae4c484097c3f4e601a4d88c8151fd9ccb0",
+  "sema_stub": "83db",
   "dependencies": {
     "composes_with": {
-      "gate": "sema:Gate#mh:SHA-256:02f682e5f7ba995d66c0a7b7d48a82cd37c07fa06ae5b04fd68a26f58a00e13d",
-      "sequence": "sema:Sequence#mh:SHA-256:b0b8e964bbbea762dc40b4b6c1f26de9542a2fec19412e0094c7288c2a54553f",
-      "tri_gate": "sema:TriGate#mh:SHA-256:641d7ad2299b51dc59bcb406922be490fbc3530a457794a6845a6c87b3fe3931"
+      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
+      "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a",
+      "tri_gate": "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824"
     },
     "references": {
-      "compress": "sema:Compress#mh:SHA-256:0967b06ee8a76319b59ee923f2302ff5aebac89f396d79b55f2a0f9e1239f621",
-      "depth_governor": "sema:DepthGovernor#mh:SHA-256:2efaf036bd54fc393b6df73dbc8a4da77a112f67e000c74308a4577bbb261de9"
+      "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
+      "depth_governor": "sema:DepthGovernor#mh:SHA-256:96cf874e588e4260c67abf3b8cdca5a0234d9b6a637e1c7981b7f77025668c93"
     }
   },
   "sema_layer": "Society",

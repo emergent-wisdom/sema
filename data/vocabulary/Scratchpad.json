@@ -19,9 +19,9 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:Scratchpad#mh:SHA-256:75bf0d045bf0907b1412c0698a7a5f7cffb2963b653646c0831ec1d3bdab186e",
-  "sema_ref": "Scratchpad#75bf",
-  "sema_stub": "75bf",
+  "sema_id": "sema:Scratchpad#mh:SHA-256:e805c332532cf4a435c48cc87d4db771e1645bb52c47d00dce318e2619ca6749",
+  "sema_ref": "Scratchpad#e805",
+  "sema_stub": "e805",
   "data_schema": {
     "type": "object",
     "required": [

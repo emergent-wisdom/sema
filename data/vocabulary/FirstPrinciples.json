@@ -19,14 +19,14 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:e860c8d958c5680e9da65fd7926dfabc7ef6bb1ba3c5acfbc9f934ae84037fc8",
-  "sema_ref": "FirstPrinciples#e860",
-  "sema_stub": "e860",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb",
+  "sema_ref": "FirstPrinciples#4844",
+  "sema_stub": "4844",
   "dependencies": {
     "references": {
-      "assumption": "sema:Assumption#mh:SHA-256:efb5be2691c91cb98b493543154f2a9d7d492911088e3bf1cbc048f5ac317978",
-      "axiom": "sema:Axiom#mh:SHA-256:50121ab598ddbe31a5c35482eb3ddd598ec8e64d797811ab765027e88975dded",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:dd97d4d5716eeaafe46cdd5a28b52626665d6c8fe6d58782b3e78d97a2481e9f"
+      "assumption": "sema:Assumption#mh:SHA-256:46479820ecd594cd6c789bae96a1eb67b14d6b04d2e4371913852292c0a402a0",
+      "axiom": "sema:Axiom#mh:SHA-256:8b1ca0bfefdb4954778b4074a3164934cb3a7e01be32aeb488b284dd81e5879c",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06"
     }
   },
   "sema_layer": "Mind",

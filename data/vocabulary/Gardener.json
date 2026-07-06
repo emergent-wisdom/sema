@@ -18,18 +18,18 @@
       "Economics"
     ]
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:d2397b24580884f2da68e82fc15df085cbe900d5b347319b82742e33bfbf35d0",
-  "sema_ref": "Gardener#d239",
-  "sema_stub": "d239",
+  "sema_id": "sema:Gardener#mh:SHA-256:52f38862732f67f4fae97ec17422f694d4a03299edda23a8f91dc7d01a1bc716",
+  "sema_ref": "Gardener#52f3",
+  "sema_stub": "52f3",
   "signature": [
     "Stigmergy(Care)"
   ],
   "dependencies": {
     "references": {
-      "care": "sema:Care#mh:SHA-256:a0fa02599631a11057b0245411446ac9f1bd3242bb6b6210a6d64b8983368a4d",
-      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631",
-      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:9aa382c15c9aaea3ccc1d105087cc07228eec46850c0526d4c9b2fd14c9a9b20",
-      "stigmergy": "sema:Stigmergy#mh:SHA-256:53d4073df67b0c81011a3c328c1994e4d84c6d9e5c6f0c3f944ee7d9b1c34aa2"
+      "care": "sema:Care#mh:SHA-256:413702da5928490b73e9aad2760480d231f2c40cf4c30a7d298ab118581ff20c",
+      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2",
+      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:84362d70dbeb585179a9adc7352dcd96d5edd14a611ee6c7d2400a4d78395eec",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af"
     }
   },
   "sema_layer": "Society",

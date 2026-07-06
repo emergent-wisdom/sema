@@ -22,15 +22,15 @@
       "Economics"
     ]
   },
-  "sema_id": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9",
-  "sema_ref": "Yield#e15f",
-  "sema_stub": "e15f",
+  "sema_id": "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf",
+  "sema_ref": "Yield#d802",
+  "sema_stub": "d802",
   "dependencies": {
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:c6d1d5ba3a4d0347d9191a13c52d9eb43b7b3a19ed611fbb17a0e4dd49249482",
-      "defer": "sema:Defer#mh:SHA-256:ccb6a7e9695bf506e5dcc02ef9650caaf58355948fd17ab27e940071f61cd429",
-      "overlap": "sema:Overlap#mh:SHA-256:b462648204bcf1076f89ccda750a6ed2427ab85c74602d24fcbf30aadf5c6e36",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
+      "defer": "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa",
+      "overlap": "sema:Overlap#mh:SHA-256:d70c8e5e00064f385853d70213d03d8ba547a1156024f826c4f782c4b677cefd",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },
   "sema_layer": "Society",

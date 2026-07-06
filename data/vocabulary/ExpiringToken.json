@@ -21,13 +21,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ExpiringToken#mh:SHA-256:8bc1a75bca402bc51d11342914b50bfbb511875f537dcd5913e30f79b4c8e79e",
-  "sema_ref": "ExpiringToken#8bc1",
-  "sema_stub": "8bc1",
+  "sema_id": "sema:ExpiringToken#mh:SHA-256:b0e80819310c7415a0348183bb08bdca243d7193f93e11a5f665f7ce1a9414d3",
+  "sema_ref": "ExpiringToken#b0e8",
+  "sema_stub": "b0e8",
   "dependencies": {
     "references": {
-      "bearer_token": "sema:BearerToken#mh:SHA-256:2fe9926ab156fd1df414f52e9a4d430f75c7c3311d217cd685f514253f4b1f9d",
-      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
+      "bearer_token": "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825",
+      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
     }
   },
   "sema_layer": "Society",

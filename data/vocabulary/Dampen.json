@@ -13,14 +13,14 @@
       "Primitives"
     ]
   },
-  "sema_ref": "Dampen#3f0c",
-  "sema_id": "sema:Dampen#mh:SHA-256:3f0c7b83e6f4573c0ba43deb323efe1058f76dcb9ceeb11c3cc0bc5cb03eeaa3",
-  "sema_stub": "3f0c",
+  "sema_ref": "Dampen#5edd",
+  "sema_id": "sema:Dampen#mh:SHA-256:5edd829087aefc086843183dd2361355777d5c2237456e2de72f315e45ffc3a4",
+  "sema_stub": "5edd",
   "dependencies": {
     "references": {
-      "noise": "sema:Noise#mh:SHA-256:3d9a1d81d0ed1dbb9b14ab1d1f466e0ee229330c4f1dae8f2a5ddb7e02126d8e",
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Physics",

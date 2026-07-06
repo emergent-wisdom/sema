@@ -16,17 +16,17 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:a855ab4395ee0d8daee947a94e70df5eb6c311df25b9839f6203753a81786ce0",
-  "sema_ref": "SkeletonOfThought#a855",
-  "sema_stub": "a855",
+  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:d1de76d91f7ffcd0d27396b6b2e1cf638d5caab161280628d8254e00b5b6e60f",
+  "sema_ref": "SkeletonOfThought#d1de",
+  "sema_stub": "d1de",
   "signature": [
     "Think(Skeleton)"
   ],
   "dependencies": {
     "references": {
-      "decompose": "sema:Decompose#mh:SHA-256:dcf99e14c65846625b881abd179307b62089f9045333c001617035d8ed0c895e",
-      "skeleton": "sema:Skeleton#mh:SHA-256:c363c9db1e917d4920a28b689c8e0f3fcfcd7060fde1963cea22b352570d5c87",
-      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
+      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
+      "skeleton": "sema:Skeleton#mh:SHA-256:c47d47fcefb07fc006ebfc53a7a6ce8e6bdc57da37a7feb5743e3f9563ab6907",
+      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
     }
   },
   "sema_layer": "Mind",

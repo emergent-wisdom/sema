@@ -21,13 +21,13 @@
       "Protocols"
     ]
   },
-  "sema_ref": "Deploy#0643",
-  "sema_id": "sema:Deploy#mh:SHA-256:06439c27e298d332461d82e2995f8e9b746f406eb696f3b9eb2c192b0f7ca6ee",
-  "sema_stub": "0643",
+  "sema_ref": "Deploy#1119",
+  "sema_id": "sema:Deploy#mh:SHA-256:1119a1844362113a6df1acb77aeb863d67922c60a600ebba232cd66da0c2f825",
+  "sema_stub": "1119",
   "dependencies": {
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "rollout": "sema:Rollout#mh:SHA-256:2ea35592e6b73d370d768d888a19d6a64a7d0644adc8502be2f93720e2f8a4d8"
+      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
+      "rollout": "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996"
     }
   },
   "sema_layer": "Society",

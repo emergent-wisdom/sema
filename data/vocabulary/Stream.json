@@ -41,12 +41,12 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Stream#mh:SHA-256:22f34aeb7fa579ab417c94c54424d1b54e73097208077c890b0e429be87c9f71",
-  "sema_ref": "Stream#22f3",
-  "sema_stub": "22f3",
+  "sema_id": "sema:Stream#mh:SHA-256:6b47aafa55e0339455fa2d82d2077ffbf2c2dea744bd7034a99a3b77cfacfaec",
+  "sema_ref": "Stream#6b47",
+  "sema_stub": "6b47",
   "dependencies": {
     "references": {
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea"
     }
   },
   "sema_layer": "Infrastructure",

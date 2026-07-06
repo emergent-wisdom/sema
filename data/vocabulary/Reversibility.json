@@ -24,12 +24,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Reversibility#mh:SHA-256:bf796a25a0c91a127c9d336839033d52f198d75080d71e6ae084827f3ae158a7",
-  "sema_ref": "Reversibility#bf79",
-  "sema_stub": "bf79",
+  "sema_id": "sema:Reversibility#mh:SHA-256:af6fad316d76d324d6c2ac02a69fc1f2f095bfc69a48c33578e599c431e9598e",
+  "sema_ref": "Reversibility#af6f",
+  "sema_stub": "af6f",
   "dependencies": {
     "references": {
-      "constraint": "sema:Constraint#mh:SHA-256:87fec7246c97fce8fbd2a8cf829d08f623839f9f6da7a3c4a7db2a2bf70a9551"
+      "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"
     }
   },
   "sema_layer": "Physics",

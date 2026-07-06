@@ -15,12 +15,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Attractor#mh:SHA-256:487f2045fc607c43b7168549c6a8cf0eb02d269be82e5625beb6e5d5dc69169d",
-  "sema_ref": "Attractor#487f",
-  "sema_stub": "487f",
+  "sema_id": "sema:Attractor#mh:SHA-256:8c2d9daace2e9ba3e4b061e43c7ac213c185639763e7b36d53bfca4cdc97a0ea",
+  "sema_ref": "Attractor#8c2d",
+  "sema_stub": "8c2d",
   "dependencies": {
     "references": {
-      "equilibrium": "sema:Equilibrium#mh:SHA-256:f7c5f4b45ee12a8b04b5543367092b5d91d4772bbb2b4f4891d1aa0e0e732ee3"
+      "equilibrium": "sema:Equilibrium#mh:SHA-256:bc8538ba0df944bb075946160a4b75f60a3a74b434090952b23ee718805ce88c"
     }
   },
   "sema_layer": "Physics",

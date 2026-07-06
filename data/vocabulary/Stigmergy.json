@@ -21,13 +21,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Stigmergy#mh:SHA-256:53d4073df67b0c81011a3c328c1994e4d84c6d9e5c6f0c3f944ee7d9b1c34aa2",
-  "sema_ref": "Stigmergy#53d4",
-  "sema_stub": "53d4",
+  "sema_id": "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af",
+  "sema_ref": "Stigmergy#6282",
+  "sema_stub": "6282",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924",
-      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
+      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552",
+      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
     }
   },
   "sema_layer": "Society",

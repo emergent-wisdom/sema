@@ -26,15 +26,15 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:StructuralCoaching#mh:SHA-256:5c50eb61513015591c09c95d1b5f623bd3ef356447e11a5fd10591d79d832003",
-  "sema_ref": "StructuralCoaching#5c50",
-  "sema_stub": "5c50",
+  "sema_id": "sema:StructuralCoaching#mh:SHA-256:63bb74ec91e4203ff5337192785a5c1b0cc27d3be6b39be59a8043a1f97488ff",
+  "sema_ref": "StructuralCoaching#63bb",
+  "sema_stub": "63bb",
   "dependencies": {
     "references": {
-      "creative": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
-      "critique": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
-      "feedback": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
-      "invert": "sema:Invert#mh:SHA-256:c137e5a184178795586692d7551d1687973b5287509de55820e13c832539ea0a"
+      "creative": "sema:Creative#mh:SHA-256:c7e4f6515c3f0708fbccb3610a70abed0d2e4eb4f5d41eeb337941992e1caff1",
+      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
+      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
+      "invert": "sema:Invert#mh:SHA-256:5a62fd17178c18fa3a2d3b9aa070f8776f1ad47418b4830dcc685e435eba02d8"
     }
   },
   "sema_layer": "Society",

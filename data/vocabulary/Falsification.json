@@ -20,14 +20,14 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Falsification#mh:SHA-256:021560b40fc737a96a5b716a3bac434acea9b6a1e0debe6f010740bb915aa376",
-  "sema_ref": "Falsification#0215",
-  "sema_stub": "0215",
+  "sema_id": "sema:Falsification#mh:SHA-256:e44f4a50368282b2da7ea5465d1368ca095c1dce2c970f23d5ce39cf1461ce7f",
+  "sema_ref": "Falsification#e44f",
+  "sema_stub": "e44f",
   "dependencies": {
     "references": {
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c",
-      "incongruity": "sema:Incongruity#mh:SHA-256:e98f92b190747bd8e26597ea3f6bf095428479527d5ca69fb7b30de9423ed1f9",
-      "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e"
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
+      "incongruity": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99",
+      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871"
     }
   },
   "sema_layer": "Mind",

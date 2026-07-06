@@ -28,17 +28,17 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:ee7f654ba8144ebb6a4092924fcfdfaf0765c4e6293f34483bc334f383c82429",
-  "sema_ref": "HypothesisLadder#ee7f",
-  "sema_stub": "ee7f",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:5f0c04b152f81423c0ed9daa5433cd2d0be8413c6d5790c4cee54ea54ab488b5",
+  "sema_ref": "HypothesisLadder#5f0c",
+  "sema_stub": "5f0c",
   "dependencies": {
     "composes_with": {
-      "experiment": "sema:Experiment#mh:SHA-256:24aa765432c012d9dd25eafe872031e765843f751ae0d08bab2ab8b5d93cd59e"
+      "experiment": "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b"
     },
     "references": {
-      "abduction": "sema:Abduction#mh:SHA-256:68f6179524d73f50a819201e13126f39e6e4568ac69064b8591b95fcf1a39b4b",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:bbf630ec769089e187db54a22ff2025a069927ef91750cd8033ecea8d7bff8f1",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:ffa724a18ea59f5a3bde93aef6536203e472268db7ecb2f6135577d5b4303e6c"
+      "abduction": "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:3d1ba13d30f25ea87acd410653f8e4477e280d0f5a204cd1eacf96de4013f7db",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71"
     }
   },
   "sema_layer": "Mind",

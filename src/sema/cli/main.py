@@ -232,8 +232,19 @@ def apply_changes(
         if mint_result.success:
             print(f"  ✓ Added {mint_result.sema_ref}")
 
-            # Write hash back to file (CLI-specific: persist hashes to source)
+            # Write hashes back to file (CLI-specific: persist hashes to source).
+            # Refresh dependency ref values too — the batch is topo-sorted so
+            # every dependency already has its final hash. Without this the
+            # JSON keeps whatever dep hashes it was authored with, and the
+            # source files stop being independently verifiable (stored
+            # sema_id can't be recomputed from the file alone).
             try:
+                if isinstance(data.get("dependencies"), dict):
+                    from ..core.hashing import resolve_dependencies_to_sema_ids
+
+                    data["dependencies"] = resolve_dependencies_to_sema_ids(
+                        data["dependencies"], store.get_pattern_hash
+                    )
                 with open(file_path, "w") as f:
                     json.dump(data, f, indent=2)
             except Exception as e:

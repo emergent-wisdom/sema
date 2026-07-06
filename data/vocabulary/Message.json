@@ -44,12 +44,12 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-  "sema_ref": "Message#f767",
-  "sema_stub": "f767",
+  "sema_id": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
+  "sema_ref": "Message#b175",
+  "sema_stub": "b175",
   "dependencies": {
     "references": {
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
     }
   },
   "sema_layer": "Infrastructure",

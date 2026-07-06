@@ -45,18 +45,18 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:HeldRelease#mh:SHA-256:5ba3170f78928b2502cc5b4ff74a2fadde8b9264fbfa0f1ab1f6cc3b5211fe20",
-  "sema_ref": "HeldRelease#5ba3",
-  "sema_stub": "5ba3",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5",
+  "sema_ref": "HeldRelease#533b",
+  "sema_stub": "533b",
   "dependencies": {
     "accepts": {
-      "unique_handle": "sema:UniqueHandle#mh:SHA-256:e9b349e9b073d41a6bd7a92dc4592cd74f7e254c400a071e7c0c1a3fbc4783df"
+      "unique_handle": "sema:UniqueHandle#mh:SHA-256:88da37fb134c04632530db979115adbb3ca558bdc4f60111df03e9282de8cd3a"
     },
     "references": {
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:bde9269c325f26585d6a69bb2fc4d1a8adb0092f55a4e02296cc3d2aa2630e84",
-      "condition": "sema:Condition#mh:SHA-256:cbd53b7aaedc24a8cb5f0b95661b5053850b6fd8198ba6d490bc8b7374739c6e",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4",
+      "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Society",

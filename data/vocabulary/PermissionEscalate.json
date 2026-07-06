@@ -28,14 +28,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:PermissionEscalate#mh:SHA-256:818304f2924dedd99eca0708c5cfd807082aa848de0d2c0d1e81715050466f9a",
-  "sema_ref": "PermissionEscalate#8183",
-  "sema_stub": "8183",
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:0ca59c3513edbad36bd4775b0fd6145bff74b809b75e23ae4b49f3a6a73da907",
+  "sema_ref": "PermissionEscalate#0ca5",
+  "sema_stub": "0ca5",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "human_approve": "sema:HumanApprove#mh:SHA-256:64349d0a8daadf838541313b0ad126768854b279d8cdafa70ac06fd59b997b15",
-      "tiered_access": "sema:TieredAccess#mh:SHA-256:fa1e3953acc07b0d9ffb60cc5a042c4194bd219f100f4d41cd8167a731668a98"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
+      "tiered_access": "sema:TieredAccess#mh:SHA-256:805cff9b1016fb2e59af973679a456842d0d764359ffa1c0bc708e7633218334"
     }
   },
   "sema_layer": "Society",

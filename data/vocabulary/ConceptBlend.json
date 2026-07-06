@@ -20,15 +20,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:29a95899288d5be174cdd01853f8badd77a0508749126d87247063c2357e090e",
-  "sema_ref": "ConceptBlend#29a9",
-  "sema_stub": "29a9",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a",
+  "sema_ref": "ConceptBlend#6bdf",
+  "sema_stub": "6bdf",
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:fa18df1ff51bc8e86c4dc858ecb2f50f3d28820539983d83828444d840be951d",
-      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff",
-      "realizable": "sema:Realizable#mh:SHA-256:7ce08efae9112f927f5b04e4af7dea9b2fdfe7d073bd2362b4a52834e5e725a2",
-      "tri_gate": "sema:TriGate#mh:SHA-256:641d7ad2299b51dc59bcb406922be490fbc3530a457794a6845a6c87b3fe3931"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
+      "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893",
+      "realizable": "sema:Realizable#mh:SHA-256:42f8270af6b0361a440bf86d1ece23a0117d34f504d9db576f30f67cf04815b3",
+      "tri_gate": "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824"
     }
   },
   "sema_layer": "Mind",

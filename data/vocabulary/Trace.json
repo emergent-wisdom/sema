@@ -25,12 +25,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733",
-  "sema_ref": "Trace#2836",
-  "sema_stub": "2836",
+  "sema_id": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab",
+  "sema_ref": "Trace#314d",
+  "sema_stub": "314d",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
+      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
     }
   },
   "sema_layer": "Infrastructure",

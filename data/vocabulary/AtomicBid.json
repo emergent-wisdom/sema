@@ -23,18 +23,18 @@
       "Economics"
     ]
   },
-  "sema_ref": "AtomicBid#c429",
-  "sema_id": "sema:AtomicBid#mh:SHA-256:c429c0ee44df1f2b464558747430e559e80b9f261ebdc88520486eec13307971",
-  "sema_stub": "c429",
+  "sema_ref": "AtomicBid#33e1",
+  "sema_id": "sema:AtomicBid#mh:SHA-256:33e1d5689a56922e56ffedb768c82621a62e207160fc4f97228e5dddac588d65",
+  "sema_stub": "33e1",
   "dependencies": {
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "bid": "sema:Bid#mh:SHA-256:464aee7df8e070d5fb943f26ea92fc1f13d705b90384852ca2f9133e35d42ff8",
-      "compensate": "sema:Compensate#mh:SHA-256:b4c51f5f3f9fbc1bfbcc1818e9adad4aef185bff315eaacee47a4a8fbee50631"
+      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
+      "bid": "sema:Bid#mh:SHA-256:5c45e9bd8858829e5a5cde5ad4f3ab26f4bb6937f88c1ddde40798b58799a266",
+      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2"
     },
     "references": {
-      "audit": "sema:Audit#mh:SHA-256:68888bbb031dec6f35f66748f2b6f415e6852897bf4e8c20817bedfc998ae8ae",
-      "lazy_consensus": "sema:LazyConsensus#mh:SHA-256:8a573c3272068dc276ae65d661840fe44a84c80ee70901eca780a8f2b4dad16c"
+      "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
+      "lazy_consensus": "sema:LazyConsensus#mh:SHA-256:cb1be5ea25df833482f581771c52a12c2f24b1865b13306e18f6423a99fa94f0"
     }
   },
   "sema_layer": "Society",

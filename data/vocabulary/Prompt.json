@@ -27,9 +27,9 @@
       "text"
     ]
   },
-  "sema_id": "sema:Prompt#mh:SHA-256:b18ab0584687fc34da5cae296e8fc8c2b833f215d2f7add7d36a5a05fd5f59c1",
-  "sema_ref": "Prompt#b18a",
-  "sema_stub": "b18a",
+  "sema_id": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97",
+  "sema_ref": "Prompt#6595",
+  "sema_stub": "6595",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

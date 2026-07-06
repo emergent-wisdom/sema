@@ -50,12 +50,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f",
-  "sema_ref": "SpectralTune#b25a",
-  "sema_stub": "b25a",
+  "sema_id": "sema:SpectralTune#mh:SHA-256:cb58af48ff79c9623c01cbd6be1998eda0effeb791ca79e98d21022435911f05",
+  "sema_ref": "SpectralTune#cb58",
+  "sema_stub": "cb58",
   "dependencies": {
     "accepts": {
-      "signal": "sema:Signal#mh:SHA-256:f39d9ead873eb693a51f3944066dae67a238b07cd9ba6e194023785fa7d884fe"
+      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
     }
   },
   "sema_layer": "Society",

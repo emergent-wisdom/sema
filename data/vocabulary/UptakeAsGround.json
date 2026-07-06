@@ -28,13 +28,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:bcd4fcf46154b1091389b0a6d8241ada3c0f75b06fb202a218f66c28f61b1f3e",
-  "sema_ref": "UptakeAsGround#bcd4",
-  "sema_stub": "bcd4",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:c6caf6df2b735657fed6b551af0f9fb18896d24be03a45b384723951d06c672b",
+  "sema_ref": "UptakeAsGround#c6ca",
+  "sema_stub": "c6ca",
   "dependencies": {
     "references": {
-      "modest_claim": "sema:ModestClaim#mh:SHA-256:7da0b36913cf91f2b27f5a1676b6cfc35dac58f7f987bdb704164ad076777ed8",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5"
+      "modest_claim": "sema:ModestClaim#mh:SHA-256:c00b37f51471b8820b17447d652af2a338ceebb1ca140fcdd216b52cd204cdc6",
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     }
   },
   "sema_layer": "Society",

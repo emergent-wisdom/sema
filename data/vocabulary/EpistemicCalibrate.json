@@ -29,12 +29,12 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:3e32459cf46f6d4492af69d5c6be854e9ea96d4a87c6f699d54422b9a1a7be52",
-  "sema_ref": "EpistemicCalibrate#3e32",
-  "sema_stub": "3e32",
+  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:a9024e32f3f2d5b1ff0e5bf7361b951acacdc7a359afc8c4ad5823b59738cf65",
+  "sema_ref": "EpistemicCalibrate#a902",
+  "sema_stub": "a902",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
+      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
     }
   },
   "sema_layer": "Mind",

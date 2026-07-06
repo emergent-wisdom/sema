@@ -14,18 +14,18 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:22cc5726b2c3fa125ca0bcb8afd0e4cad2db544ae8289b33dbf5cd3a048193ea",
-  "sema_ref": "TraceBelief#22cc",
-  "sema_stub": "22cc",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:bdfa33f15f8f71e3fa221c802b6366c6922de402326dd447841d3258b97bf053",
+  "sema_ref": "TraceBelief#bdfa",
+  "sema_stub": "bdfa",
   "signature": [
     "Trace(Belief)"
   ],
   "dependencies": {
     "references": {
-      "belief": "sema:Belief#mh:SHA-256:1f44935a0c3f58adb07024c4c3c8df389f2b04d34e29218f6bbb454bbb8e8bfd",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:38abcf6e5ee0371e37de090f371e6d46977cc461577284f33b1f821054f7e608",
-      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
+      "belief": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:6169da6dce9141595fc8b7ac8d8743e397cd44a2da04b3499b2ce910e174c2ef",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:e26edd5011e4842730b23fb11a2d5efaff9a52112e8081f5856893c9c4ce99ff",
+      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
     }
   },
   "sema_layer": "Mind",

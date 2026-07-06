@@ -19,12 +19,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:GlacialVault#mh:SHA-256:0a81732a0a3572f9829b71aeff53347a1451f44f1d793070ae821d52443f7a1a",
-  "sema_ref": "GlacialVault#0a81",
-  "sema_stub": "0a81",
+  "sema_id": "sema:GlacialVault#mh:SHA-256:2b9fb3dcc823fcfb25fcf08b01812ecb31a9f584670c9978d0b81e3537ad578c",
+  "sema_ref": "GlacialVault#2b9f",
+  "sema_stub": "2b9f",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:1e8b3dab66b0ccef4d350f94e38aa66dc3757d6b5c429f024d90a98ec67ed924"
+      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
     }
   },
   "sema_layer": "Society",

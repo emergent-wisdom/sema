@@ -42,16 +42,16 @@
       "Data Structures"
     ]
   },
-  "sema_ref": "Proposal#ab24",
-  "sema_id": "sema:Proposal#mh:SHA-256:ab244c2a0c2715df0b7c48b200d94c62c207ff9f7510f7df4d45b6d5a698eae0",
-  "sema_stub": "ab24",
+  "sema_ref": "Proposal#5e96",
+  "sema_id": "sema:Proposal#mh:SHA-256:5e96c86b24df6ee2910c5d4c8cc75531e10e402d2867bb68ed5dc04606e538f4",
+  "sema_stub": "5e96",
   "dependencies": {
     "composes_with": {
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f"
+      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea"
     },
     "references": {
-      "act": "sema:Act#mh:SHA-256:dc2d664fa788a0cd307e733dd233853f5f3c6095fe8e86a29b29d966c1a7b200",
-      "transition": "sema:Transition#mh:SHA-256:072d2cb413f704ace7da4027449396ee7bac683536da918a39e93f4f43e0d1b5"
+      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
+      "transition": "sema:Transition#mh:SHA-256:a7b4277599c68a617b43f1d0c52d807837717913731aec1463caccdcd568cfe3"
     }
   },
   "sema_layer": "Infrastructure",

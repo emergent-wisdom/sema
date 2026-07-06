@@ -6,9 +6,9 @@
     "Bijectivity: Rate(A->B) must equal 1 / Rate(B->A).",
     "Time-Bound: Must include a timestamp or validity window."
   ],
-  "sema_id": "sema:ExchangeRate#mh:SHA-256:1c213c4c784c00f1c44c33b48cd87f8fbff4e9c0de154e849aaff776d2e53a17",
-  "sema_ref": "ExchangeRate#1c21",
-  "sema_stub": "1c21",
+  "sema_id": "sema:ExchangeRate#mh:SHA-256:eadb7e9b1d80ab8649e81786e787373fd234ae5f949fd84525795ddd5525b729",
+  "sema_ref": "ExchangeRate#eadb",
+  "sema_stub": "eadb",
   "_meta": {
     "ring": 1,
     "tier": 1,
@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "references": {
-      "metric": "sema:Metric#mh:SHA-256:17fda0aa76055cb25425b9b1db1b48510c630d3ed7fde62fc8e8d6702e8a9db9",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Society",

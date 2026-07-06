@@ -40,14 +40,14 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:fa8dac7250f1146fc25b19deab473441849277d252ad485a637e11b5264b19e2",
-  "sema_ref": "ConstructOntology#fa8d",
-  "sema_stub": "fa8d",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:9407f844acd036cc6eef2be1957467d4eac7aed577266a88648ecc8876849b2f",
+  "sema_ref": "ConstructOntology#9407",
+  "sema_stub": "9407",
   "dependencies": {
     "references": {
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:ded99445bc9bd5479bad257770ee426cce6ff91860bfd7c3b80fff712ec697eb",
-      "first_principles": "sema:FirstPrinciples#mh:SHA-256:e860c8d958c5680e9da65fd7926dfabc7ef6bb1ba3c5acfbc9f934ae84037fc8",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f"
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:5e05f6b505964cc5058f75a14b715fb3b78ad0aa96babd91dd9e5b488e471db4",
+      "first_principles": "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e"
     }
   },
   "sema_layer": "Mind",

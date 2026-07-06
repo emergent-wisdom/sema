@@ -35,26 +35,26 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:0323c76fdb780f34f5cbe22d598a13e3c4ca422363677141feee1d2c6c49e3cd",
-  "sema_ref": "NormativeJudge#0323",
-  "sema_stub": "0323",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
+  "sema_ref": "NormativeJudge#bd4e",
+  "sema_stub": "bd4e",
   "signature": [
     "Judge(Value)"
   ],
   "dependencies": {
     "accepts": {
-      "weights": "sema:Vector#mh:SHA-256:c7c4d97d3416646673aa3d70d27aa4da40c7c2ae86180c92901a0e23429ffedc"
+      "weights": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
     },
     "composes_with": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:9aeda0f4187115f47a3c3bea2ea9d891cba132007500215941980e27464293de"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc"
     },
     "references": {
-      "human_approve": "sema:HumanApprove#mh:SHA-256:64349d0a8daadf838541313b0ad126768854b279d8cdafa70ac06fd59b997b15",
-      "judge": "sema:Judge#mh:SHA-256:efe07332d29c0bde6fe192f1b99b3024f8966c9341b5e0e87c8598f0d9e2443e",
-      "outcome": "sema:Outcome#mh:SHA-256:a0ab266885ed48c7414af0b9e9a2ba8037a8d758dafffb6cf43de4eacc8bc154",
-      "quorum": "sema:Quorum#mh:SHA-256:a295620c00226d81fa6218bae4cc88714365179ef9cfa18cbfb65bd34e6fc19a",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
+      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
+      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Mind",

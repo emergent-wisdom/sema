@@ -29,13 +29,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ShoutWhisper#mh:SHA-256:6cb0fb9eee1610d55dc32cf1cab74df16f7d5001bab138ad82ac7e404a5af0e0",
-  "sema_ref": "ShoutWhisper#6cb0",
-  "sema_stub": "6cb0",
+  "sema_id": "sema:ShoutWhisper#mh:SHA-256:f9a8bedaa2a57a13a489fbc7e19b9dd780dc00b9f589d14e4eaab3ae404db82d",
+  "sema_ref": "ShoutWhisper#f9a8",
+  "sema_stub": "f9a8",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab"
+      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "global": "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959"
     }
   },
   "sema_layer": "Society",

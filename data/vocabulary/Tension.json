@@ -17,9 +17,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Tension#mh:SHA-256:fc30a85f6d7da54e882a8f2cb095f646a5719976b5b9df30958edd556c7e1966",
-  "sema_ref": "Tension#fc30",
-  "sema_stub": "fc30",
+  "sema_id": "sema:Tension#mh:SHA-256:547a74e52a7d1be70c14efcd8565adc2fae6a2c98d9bb7915a9b9164d578cfee",
+  "sema_ref": "Tension#547a",
+  "sema_stub": "547a",
   "data_schema": {
     "type": "object",
     "required": [
@@ -57,8 +57,8 @@
   },
   "dependencies": {
     "references": {
-      "dialectic": "sema:Dialectic#mh:SHA-256:856d2fa70b1e5822ec6179a511f7a3601a773e7e7b6f9ce26ea68f7dea171ef4",
-      "yield": "sema:Yield#mh:SHA-256:e15f2fad96e427845648106b5757a17b7c3053fcbbd603ba79d33bb4a673a1f9"
+      "dialectic": "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1",
+      "yield": "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf"
     }
   },
   "sema_layer": "Infrastructure",

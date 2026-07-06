@@ -22,12 +22,12 @@
       "Reasoning"
     ]
   },
-  "sema_ref": "SelfConsistency#2add",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:2adda941ce4d7f6d47908d9dd797beac631f626328184a45e544cb126a789664",
-  "sema_stub": "2add",
+  "sema_ref": "SelfConsistency#2095",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:2095d12c9020575e57fc798f2f5b9d0a112bc8827e2c015e0d894a456427efbd",
+  "sema_stub": "2095",
   "dependencies": {
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b"
+      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b"
     }
   },
   "sema_layer": "Mind",

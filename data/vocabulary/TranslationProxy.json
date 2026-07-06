@@ -27,19 +27,19 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:TranslationProxy#mh:SHA-256:342219e51cc568b1133fb7eea62a611a0ad65304d0ec26c569e1a8e40765ce61",
-  "sema_ref": "TranslationProxy#3422",
-  "sema_stub": "3422",
+  "sema_id": "sema:TranslationProxy#mh:SHA-256:e064cb7e1532435438433393ff3a3b8b87b5c86cf4705974888e9ec746f5d190",
+  "sema_ref": "TranslationProxy#e064",
+  "sema_stub": "e064",
   "signature": [
     "Translate(Protocol)"
   ],
   "dependencies": {
     "references": {
-      "compare": "sema:Compare#mh:SHA-256:48815374a8845487f135578867a9a36ffeeb0e786007b63da5713292723e2109",
-      "message": "sema:Message#mh:SHA-256:f7678d6d403b174dec233b366b6f352da445c31ab2577c7314dd0b1d52161d7f",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "translate": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b"
+      "compare": "sema:Compare#mh:SHA-256:ebab280da9048edf2cc508cf0e554b153e3afd516056b4c2ae51ca85ec6ad2e1",
+      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e",
+      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
+      "translate": "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e"
     }
   },
   "sema_layer": "Society",

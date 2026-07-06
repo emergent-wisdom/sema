@@ -27,13 +27,13 @@
       "Strategy"
     ]
   },
-  "sema_ref": "OpportunityCost#04c6",
-  "sema_id": "sema:OpportunityCost#mh:SHA-256:04c64b50814976909ace1dd671b6b49d9b18e540e1b709c266fc48a1125e6466",
-  "sema_stub": "04c6",
+  "sema_ref": "OpportunityCost#ab1b",
+  "sema_id": "sema:OpportunityCost#mh:SHA-256:ab1b4c48b8b40b35607e94fa11f1488c23b07b4c846daca0aef109b8a55cd357",
+  "sema_stub": "ab1b",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:4587951099fa9b5e853f76549e9ba17b0489327cc19a2e422f01b1b48d273c11",
-      "value": "sema:Value#mh:SHA-256:3c5de39bf1f148c0da463c8e5b2fd928a67ce8547fe30a5d5afe436560ab68b6"
+      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+      "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },
   "sema_layer": "Mind",

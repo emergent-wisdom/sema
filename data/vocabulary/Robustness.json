@@ -17,13 +17,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Robustness#mh:SHA-256:132c09ccd0ad128aec982b0ba12b672106b6f9aedcd1b052c950ee0eb81162a1",
-  "sema_ref": "Robustness#132c",
-  "sema_stub": "132c",
+  "sema_id": "sema:Robustness#mh:SHA-256:1fa393f9475d2418957334a1802dd65a159d3e680673a0d10874a97e915da7bf",
+  "sema_ref": "Robustness#1fa3",
+  "sema_stub": "1fa3",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },
   "sema_layer": "Society",

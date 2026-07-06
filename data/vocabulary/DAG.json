@@ -39,13 +39,13 @@
     "Acyclicity: No path exists from Node(A) to itself.",
     "Directedness: Edges have a single direction."
   ],
-  "sema_id": "sema:DAG#mh:SHA-256:29cbb4f9958812e156589d79977e38031186c31d10a7dd1c5c539b06dd418cc2",
-  "sema_ref": "DAG#29cb",
-  "sema_stub": "29cb",
+  "sema_id": "sema:DAG#mh:SHA-256:ed81568cef305d3f4f39c7ef157bfc4c74ef721c8ad1e9001a2d11793ce936df",
+  "sema_ref": "DAG#ed81",
+  "sema_stub": "ed81",
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:37ad00e823e2263528b3d17396d9270e506c586f107a8e26eb4937b6383833b8",
-      "topology": "sema:Topology#mh:SHA-256:240866adb33767b1d651245af4038bfbcb29a575b2704288273eba41937e0560"
+      "parallelize": "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf",
+      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
     }
   },
   "sema_layer": "Infrastructure",

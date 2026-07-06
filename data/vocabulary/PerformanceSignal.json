@@ -55,14 +55,14 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:PerformanceSignal#mh:SHA-256:b9d60f668cf95c45ca8e0d8a988b27ef75a49a8e461bf3d14553fbc2ec9ec8a8",
-  "sema_ref": "PerformanceSignal#b9d6",
-  "sema_stub": "b9d6",
+  "sema_id": "sema:PerformanceSignal#mh:SHA-256:7dea9b2784b3fa72856ba2b90eedc79ceb7c0b499b1c2a2bfdac205a5dbc27bf",
+  "sema_ref": "PerformanceSignal#7dea",
+  "sema_stub": "7dea",
   "dependencies": {
     "references": {
-      "feedback": "sema:Feedback#mh:SHA-256:6c7ba2e165c466e5ec4046b10d68ab0da964217da331cbff47c14234d0fd1494",
-      "frame_error": "sema:FrameError#mh:SHA-256:1d3f3b715da8f97cffd880cd5bed5b59111a8347eef9ae4e328de2b15a31eb5a",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:7899805e7e4497c1bbd072db6763026b3f0b966e773b1901bdf40701f21861d9"
+      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
+      "frame_error": "sema:FrameError#mh:SHA-256:22e143610af8d9d6296b9497ad462eb71a3933aa6d77488f6a1e2226f81c45fc",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82"
     }
   },
   "sema_layer": "Infrastructure",

@@ -22,9 +22,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Goal#mh:SHA-256:0948d036a4b39fc3950e582a6d68027d9b8e4e605bc9cb6190def4aedc839d37",
-  "sema_ref": "Goal#0948",
-  "sema_stub": "0948",
+  "sema_id": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
+  "sema_ref": "Goal#1076",
+  "sema_stub": "1076",
   "data_schema": {
     "type": "object",
     "required": [
@@ -73,8 +73,8 @@
   },
   "dependencies": {
     "references": {
-      "result": "sema:Result#mh:SHA-256:1a7493c9191384558f88cac755299c8c5886be2f4fccda887f3d535432673327",
-      "work": "sema:Work#mh:SHA-256:35b61a3e2b92b017548be1d504ff4c00d2fb86e3d4d5826affc88cf74a1f3e8b"
+      "result": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
+      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
     }
   },
   "sema_layer": "Infrastructure",

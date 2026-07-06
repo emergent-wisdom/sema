@@ -57,9 +57,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:MECE#mh:SHA-256:8cb062d51bcfd89368c58a5e6247e2070596f01be8e03382dd19a0c61abe8c1b",
-  "sema_ref": "MECE#8cb0",
-  "sema_stub": "8cb0",
+  "sema_id": "sema:MECE#mh:SHA-256:da19e78dcf447f07e12eca8703f1992fe96f3b0d9b06d42dc349e11dad4ad23f",
+  "sema_ref": "MECE#da19",
+  "sema_stub": "da19",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

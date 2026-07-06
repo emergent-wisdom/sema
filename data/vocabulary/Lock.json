@@ -28,9 +28,9 @@
       "Primitives"
     ]
   },
-  "sema_ref": "Lock#051c",
-  "sema_id": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-  "sema_stub": "051c",
+  "sema_ref": "Lock#95c2",
+  "sema_id": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
+  "sema_stub": "95c2",
   "sema_layer": "Physics",
   "sema_category": "Primitives"
 }

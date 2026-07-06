@@ -26,15 +26,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:fa18df1ff51bc8e86c4dc858ecb2f50f3d28820539983d83828444d840be951d",
-  "sema_ref": "AnalogyBridge#fa18",
-  "sema_stub": "fa18",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
+  "sema_ref": "AnalogyBridge#31ef",
+  "sema_stub": "31ef",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:640effb57697210d6b0f9c583d706aeac2d5203635437b407f690333dceb5860",
-      "problem": "sema:Problem#mh:SHA-256:64d0f0f9577f850e62e350817995bed218d466d655cc641b9e4f5e689d7fd4f3",
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
+      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
+      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
     }
   },
   "sema_layer": "Mind",

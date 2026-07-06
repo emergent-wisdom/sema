@@ -37,17 +37,17 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:d45fa9af0b4110d49dbdf31635ebf242b613806455c1b0ff8505949b1e942e99",
-  "sema_ref": "Proprioception#d45f",
-  "sema_stub": "d45f",
+  "sema_id": "sema:Proprioception#mh:SHA-256:b2d70e4416d6b55a8b9f1fe6e9b462855a6efb710eab02138b493aa047424001",
+  "sema_ref": "Proprioception#b2d7",
+  "sema_stub": "b2d7",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03",
-      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:7250740ec4cb55bd03e0b2a0070c21795cd61e18247c06deb53f41e778ed032f",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "task": "sema:Task#mh:SHA-256:b290c7f79fd936d3a3035c5b35658f94b85b6e1b749b1916576a1cf587d8e8c5",
-      "trace": "sema:Trace#mh:SHA-256:2836bfb80d859fb0e87d1426101a44aff10d69487ac2d31f0919626e06512733"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "somatic_marker": "sema:SomaticMarker#mh:SHA-256:5407ee6cd23a39146580474a840ef33416d5b61a1e7f9be6ad2896179a1ff74e",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
+      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
     }
   },
   "sema_layer": "Mind",

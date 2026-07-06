@@ -1,6 +1,6 @@
 {
   "name": "sema",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Content-addressed vocabulary protocol \u2014 shared meaning for AI agents",
   "skills": "./skills/",
   "mcpServers": {

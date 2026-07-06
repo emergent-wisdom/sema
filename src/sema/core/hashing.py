@@ -30,48 +30,75 @@ def canonical_json(obj: Any) -> bytes:
     )
 
 
+# Canonicalization v2 domain-separation tags (semahash 0.3.0).
+#
+# v1 hashed raw bytes with no type information, so structurally different
+# values collided: merkle_hash("1") == merkle_hash(1),
+# merkle_hash("") == merkle_hash([]) == merkle_hash({}), and a 2-element
+# list collided with a 1-entry dict (both concatenate two digests). For a
+# protocol whose invariant is word = hash(canonical(definition)), two
+# different definitions sharing one address is the worst failure mode.
+# Every node's hash input is now prefixed with its type. Digests are
+# fixed-width hex, so tagged concatenations are unambiguous.
+_TAG_STR = b"s:"
+_TAG_PRIMITIVE = b"p:"
+_TAG_LIST = b"l:"
+_TAG_DICT = b"d:"
+
+
 def merkle_hash(obj: Any) -> tuple[str, Any]:
     """
     Recursively hash an object, returning (hash, canonical_obj).
 
-    Rules:
-    - String: Hash(Normalize(s))
-    - Number/Bool/Null: Hash(CanonicalJSON(v))
-    - List: Hash(Hash(Item1) + Hash(Item2)...)
-    - Dict: Hash(Sort(Key) + Hash(Key) + Hash(Value)...)
+    Canonicalization v2 rules:
+    - String: Hash("s:" + Normalize(s))
+    - Number/Bool/Null: Hash("p:" + CanonicalJSON(v))
+    - List: Hash("l:" + Hash(Item1) + Hash(Item2)...)  — order preserved
+    - Dict: Hash("d:" + Hash(NormKey) + Hash(Value)...), entries sorted by
+      NORMALIZED key so the hash is a function of the canonical form.
+      Keys that collide after normalization raise ValueError (fail closed;
+      v1 silently dropped one entry).
     """
     if isinstance(obj, str):
         norm = normalize_string(obj)
-        return _sha256(norm.encode("utf-8")), norm
+        return _sha256(_TAG_STR + norm.encode("utf-8")), norm
 
     elif isinstance(obj, int | float | bool | type(None)):
         canon = canonical_json(obj)
-        return _sha256(canon), obj
+        return _sha256(_TAG_PRIMITIVE + canon), obj
 
     elif isinstance(obj, list):
         # Hash each item
         hashed_items = [merkle_hash(item) for item in obj]
         # Merkle of list is Hash of concatenation of item hashes
         # This preserves ORDER.
-        concatenated = "".join(h for h, _ in hashed_items).encode("utf-8")
+        concatenated = _TAG_LIST + "".join(h for h, _ in hashed_items).encode("utf-8")
         return _sha256(concatenated), [val for _, val in hashed_items]
 
     elif isinstance(obj, dict):
-        # Hash keys and values
-        # Sort by Key
-        sorted_items = sorted(obj.items(), key=lambda x: x[0])
+        entries = []
+        values_by_canon_key: dict[str, Any] = {}
 
-        concatenated = b""
-        canon_dict = {}
-
-        for k, v in sorted_items:
+        for k, v in obj.items():
             # Key Hash (Keys must be strings)
             k_hash, k_canon = merkle_hash(str(k))
+            if k_canon in values_by_canon_key:
+                raise ValueError(
+                    f"Dict keys collide after normalization: {k_canon!r} — "
+                    "the canonical form would silently lose an entry"
+                )
             # Value Hash
             v_hash, v_canon = merkle_hash(v)
+            entries.append((k_canon, k_hash, v_hash))
+            values_by_canon_key[k_canon] = v_canon
 
-            concatenated += k_hash.encode("utf-8") + v_hash.encode("utf-8")
-            canon_dict[k_canon] = v_canon
+        # Sort by the NORMALIZED key: v1 sorted by raw key but hashed the
+        # normalized key, so the same canonical dict could hash two ways.
+        entries.sort(key=lambda entry: entry[0])
+        concatenated = _TAG_DICT + b"".join(
+            k_hash.encode("utf-8") + v_hash.encode("utf-8") for _, k_hash, v_hash in entries
+        )
+        canon_dict = {k_canon: values_by_canon_key[k_canon] for k_canon, _, _ in entries}
 
         return _sha256(concatenated), canon_dict
 
@@ -138,8 +165,14 @@ def normalize_dependencies_to_handles(deps: dict[str, Any]) -> dict[str, Any]:
 def canonicalize_dependency_keys(deps: dict[str, Any]) -> dict[str, Any]:
     """Canonicalize dependency keys for consistent hashing.
 
-    Uses lowercased target handle as the key, ensuring consistent
+    Uses the lowercased target handle as the key, ensuring consistent
     hashing regardless of the user-provided alias.
+
+    When multiple aliases point at the same handle (e.g. gate_in/gate_out
+    both referencing Gate), the canonical value is the sorted LIST of refs
+    — v1 collapsed them to one insertion-order-dependent entry, silently
+    dropping a dependency from the hash input. Multiplicity is semantic
+    (two slots vs one); alias spelling is not.
 
     Input: {"references": {"base": "TargetHandle#abc1"}}
     Output: {"references": {"targethandle": "TargetHandle#abc1"}}
@@ -150,15 +183,22 @@ def canonicalize_dependency_keys(deps: dict[str, Any]) -> dict[str, Any]:
     normalized = {}
     for dep_type, items in deps.items():
         if isinstance(items, dict):
-            normalized[dep_type] = {}
+            grouped: dict[str, list[str]] = {}
+            passthrough = {}
             for key, val in items.items():
                 if isinstance(val, str):
                     # Extract handle and use lowercased as canonical key
                     handle = extract_handle_from_ref(val)
-                    canonical_key = handle.lower()
-                    normalized[dep_type][canonical_key] = val
+                    grouped.setdefault(handle.lower(), []).append(val)
                 else:
-                    normalized[dep_type][key] = val
+                    passthrough[key] = val
+
+            normalized[dep_type] = {}
+            for canonical_key, refs in grouped.items():
+                normalized[dep_type][canonical_key] = (
+                    refs[0] if len(refs) == 1 else sorted(refs)
+                )
+            normalized[dep_type].update(passthrough)
         else:
             normalized[dep_type] = items
     return normalized
@@ -177,22 +217,30 @@ def resolve_dependencies_to_sema_ids(deps: dict[str, Any], hash_lookup: callable
     if not isinstance(deps, dict):
         return deps
 
+    def _resolve_ref(ref: str) -> str:
+        # Extract clean handle from any format
+        clean_handle = extract_handle_from_ref(ref)
+        current_hash = hash_lookup(clean_handle)
+        if current_hash:
+            return f"sema:{clean_handle}#mh:{HASH_ALGO}:{current_hash}"
+        # Keep original if not found (will fail validation)
+        return ref
+
     resolved = {}
     for dep_type, items in deps.items():
         if isinstance(items, dict):
             resolved[dep_type] = {}
             for key, ref in items.items():
                 if isinstance(ref, str):
-                    # Extract clean handle from any format
-                    clean_handle = extract_handle_from_ref(ref)
-                    current_hash = hash_lookup(clean_handle)
-                    if current_hash:
-                        resolved[dep_type][key] = (
-                            f"sema:{clean_handle}#mh:{HASH_ALGO}:{current_hash}"
-                        )
-                    else:
-                        # Keep original if not found (will fail validation)
-                        resolved[dep_type][key] = ref
+                    resolved[dep_type][key] = _resolve_ref(ref)
+                elif isinstance(ref, list):
+                    # Multi-ref entry from canonicalize_dependency_keys
+                    # (several aliases to one handle). Re-sort after
+                    # resolution so the canonical order doesn't depend on
+                    # the pre-resolution ref format.
+                    resolved[dep_type][key] = sorted(
+                        _resolve_ref(r) if isinstance(r, str) else r for r in ref
+                    )
                 else:
                     resolved[dep_type][key] = ref
         else:
@@ -311,12 +359,12 @@ def format_load_line(info: dict) -> str:
     context below (scannable).
 
     Example:
-        📚 sema:vocab#mh:SHA-256:39ca671a4dcb3075855cb293380d1796105e2eca0de49b0537279b798b675ee6
+        📚 sema:vocab#mh:SHA-256:46e651aeeb832fdc654d6e48ba2b9c9049f8585a5423371624426c1ab6d3f15b
            452 patterns (data/taxonomy.db)
 
     When a stamped version becomes available, it's appended inline to the
     second line without disturbing the root:
-        📚 sema:vocab#mh:SHA-256:39ca671a...
+        📚 sema:vocab#mh:SHA-256:46e651ae...
            452 patterns, v0.2.0 (data/taxonomy.db)
     """
     root = info.get("root", "") or "unknown"

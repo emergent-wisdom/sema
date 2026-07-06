@@ -34,12 +34,12 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Hierarchy#mh:SHA-256:d5301ba0587b73443b7408885a85fd530d1609add96c1250138e062d18a565cb",
-  "sema_ref": "Hierarchy#d530",
-  "sema_stub": "d530",
+  "sema_id": "sema:Hierarchy#mh:SHA-256:80394d9e6f07112954f1c2d203eaf6095df4d4569a890a9c6ca8b9c9b534ba3d",
+  "sema_ref": "Hierarchy#8039",
+  "sema_stub": "8039",
   "dependencies": {
     "references": {
-      "category": "sema:Category#mh:SHA-256:1ab7e3c9863286a33d2be0ec51112ecfadef9e46a07f5f15b9f6cd33f74d8bd1"
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"
     }
   },
   "sema_layer": "Infrastructure",

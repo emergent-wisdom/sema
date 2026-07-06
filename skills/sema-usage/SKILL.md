@@ -175,9 +175,9 @@ When two agents need to confirm they have the *same entire vocabulary* — not j
 
 ```javascript
 sema_handshake({ ref: "vocab" })
-// → { verdict: "PROVIDE_HASH", canonical_stub: "39ca671a4dcb3075", pattern_count: 452 }
+// → { verdict: "PROVIDE_HASH", canonical_stub: "46e651aeeb832fdc", pattern_count: 452 }
 
-sema_handshake({ ref: "vocab", your_hash: "39ca671a4dcb3075" })
+sema_handshake({ ref: "vocab", your_hash: "46e651aeeb832fdc" })
 // → PROCEED if byte-identical, HALT if any pattern's hash differs
 ```
 

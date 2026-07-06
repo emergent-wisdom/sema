@@ -20,17 +20,17 @@
       "Protocols"
     ]
   },
-  "sema_ref": "InternalConsistency#1abc",
-  "sema_id": "sema:InternalConsistency#mh:SHA-256:1abcb35606638a79fea8a6725274b5514820ddb345fb1a8d9900cf9033f10569",
-  "sema_stub": "1abc",
+  "sema_ref": "InternalConsistency#5e8f",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:5e8f63a779b9918f3d1c75a4ea5b8988b025218f0f67aed0b7d6198deadf57d9",
+  "sema_stub": "5e8f",
   "dependencies": {
     "composes_with": {
-      "check": "sema:Check#mh:SHA-256:5f38a1da12b7230618159ba1ff08a4ded1e65b0c6a26af63a4c0d12c11e51d8e",
-      "validate": "sema:Validate#mh:SHA-256:7b5b780bf9a5270871dfc0a7c3ebb89e2b7370b8841c779842525826cda65add"
+      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:6254c09973118bce3ba2813b7494dee7a61c8b2a87fbcb4d2830f9fbf8d29cf9",
-      "context": "sema:Context#mh:SHA-256:e88aa7f08b065746d26535db4cb40965ee62226f9dfbbd92fb091ae0ba8d8c03"
+      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
+      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
     }
   },
   "sema_layer": "Society",

@@ -23,13 +23,13 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:SurvivorCorrect#mh:SHA-256:45db899fcfc34876e7be9c72005d3c45d5d5983c6c24a357b2df33d189e7effa",
-  "sema_ref": "SurvivorCorrect#45db",
-  "sema_stub": "45db",
+  "sema_id": "sema:SurvivorCorrect#mh:SHA-256:6c9093fc93158cdc0e8e81af7cd3dbc29b9998b609d3a490a18142ae96179aea",
+  "sema_ref": "SurvivorCorrect#6c90",
+  "sema_stub": "6c90",
   "dependencies": {
     "references": {
-      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:aa0b8b4d62885496dfbe0caffc5def9e15fb9fee63d787918bce4be8593f0916",
-      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:4b32f79732d4468fa0de4facb106dbbd2889bfa1d3ce62e77b09e606011680c9"
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:8636331d386b5d9b9f7b6177fa3d3486699c5cc486e823cafb7065ae7554b5a5",
+      "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387"
     }
   },
   "sema_layer": "Mind",

@@ -38,25 +38,25 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:RolloutWatch#mh:SHA-256:a5a9617a45b93172652e05ab0a7367cb4e4b5e13284bd17e000be2ce240b72ee",
-  "sema_ref": "RolloutWatch#a5a9",
-  "sema_stub": "a5a9",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:fb6e194752fe142c36efd550427b0aa6e0041bb15a44ca95c94e85c297be15eb",
+  "sema_ref": "RolloutWatch#fb6e",
+  "sema_stub": "fb6e",
   "dependencies": {
     "accepts": {
-      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035"
+      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28"
     },
     "composes_with": {
-      "loop": "sema:Loop#mh:SHA-256:d8144765ffd478df48287cea73974e30b490a039c6eeb4155d56adb2108da27b",
-      "observe": "sema:Observe#mh:SHA-256:abc0f98910ec9f78f075f0ee9afb963a01a77d2c2a6d58b18e96c5760056ce4e"
+      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
+      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871"
     },
     "references": {
-      "monitor": "sema:Monitor#mh:SHA-256:c6316ed3fbded6b388d1751bb6662cb1dc10f236d031d4ac360b2a3a8b1fc272",
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
-      "state": "sema:State#mh:SHA-256:4d582a0ac4af7ae886c83da9825e07c39f1e72ece21fd65a40b6a4fc71882721",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e"
+      "monitor": "sema:Monitor#mh:SHA-256:72e04554c76cd2e06afaeb7284aaab96f37499b0ab3d58c76612819136447f2e",
+      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
+      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     },
     "yields": {
-      "monitor_report": "sema:MonitorReport#mh:SHA-256:063cc5c1f90b2e11e3446ddfaec7034ed51acb83432fe11ba2d1e7151ac0d42d"
+      "monitor_report": "sema:MonitorReport#mh:SHA-256:e239e925f7a7aea755f1f1ee2c2b97245ef628ca9647726fc8995ee6e96afa0b"
     }
   },
   "sema_layer": "Society",

@@ -48,14 +48,14 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:cef347bb0f9f1bb2594a87da899af13e6514209a1f540742a2cd5c8ebecf1452",
-  "sema_ref": "SurprisalUpdate#cef3",
-  "sema_stub": "cef3",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:6169da6dce9141595fc8b7ac8d8743e397cd44a2da04b3499b2ce910e174c2ef",
+  "sema_ref": "SurprisalUpdate#6169",
+  "sema_stub": "6169",
   "dependencies": {
     "references": {
-      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:07f9ede9b37881846f271d342862a03a5f607917798eaac4e875840d2d3114ae",
-      "gradient": "sema:Gradient#mh:SHA-256:480b30ac75af5c4fb2509b9889b184b6691482045af22a9dfbdbdf362535fb99",
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:1998253afb563d783510f7ccf3b5cb6b4cffd7138cd62745cbc2283d7412436d"
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:d48670433cb6617e8e1914f9d062939bb852ef2b7188e17a1cbb1803b81dad1e",
+      "gradient": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:56eccdcf5c9e28545cb3ad569f86ec1bf3dec5e2eb4f9620f980da72b11937cf"
     }
   },
   "sema_layer": "Mind",

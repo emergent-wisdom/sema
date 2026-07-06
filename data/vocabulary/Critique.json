@@ -11,9 +11,9 @@
     "Feedback must be descriptive, not just scalar.",
     "Must reference specific criteria."
   ],
-  "sema_id": "sema:Critique#mh:SHA-256:4e43011af49e8973c5f934ad6ee91ea40254fa1a4f6bff9f6880309ba9affe01",
-  "sema_ref": "Critique#4e43",
-  "sema_stub": "4e43",
+  "sema_id": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
+  "sema_ref": "Critique#0254",
+  "sema_stub": "0254",
   "_meta": {
     "tier": 1,
     "ring": 1,
@@ -80,11 +80,11 @@
   },
   "dependencies": {
     "accepts": {
-      "criteria": "sema:Criteria#mh:SHA-256:ef6b31198694b637dc1eca8e24c56057b6df0e90fba8f32de8a7c15b747cdbe0",
-      "datum": "sema:Datum#mh:SHA-256:31cf815f74eb603adc09807862a9f295e90a97280509e6078c7cb63eff1edd3b"
+      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
+      "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "yields": {
-      "assessment": "sema:Assessment#mh:SHA-256:a76518b956c1f22aec39c6402db8725510ea23bd6eda56844ef118a948de3c77"
+      "assessment": "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d"
     }
   },
   "sema_layer": "Mind",

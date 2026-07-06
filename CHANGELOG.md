@@ -14,6 +14,32 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ---
 
+## [0.3.0] - 2026-07-06
+
+**Breaking: canonicalization v2 — every pattern hash and the vocabulary root change.** No dual-hash migration is shipped, deliberately: pre-0.3.0 vocabularies HALT on handshake against 0.3.0 registries (fail-closed working as designed) and converge via `sema pull`.
+
+New vocabulary root: `46e651aeeb832fdc654d6e48ba2b9c9049f8585a5423371624426c1ab6d3f15b` (452 patterns, previously `39ca671a4dcb3075…`).
+
+### Fixed — hash spec
+
+v1 canonicalization allowed structurally different definitions to share one content address, breaking `word = hash(canonical(definition))`:
+
+- **No domain separation**: `merkle_hash("1") == merkle_hash(1)`, `"" == [] == {}`, and a 2-element list collided with a 1-entry dict — two schema-valid patterns differing only in `data_schema` shape produced the same `sema_id`. Every hash-tree node input is now prefixed with a type tag (`s:`/`p:`/`l:`/`d:`).
+- **Raw-key ordering**: dict entries were sorted by raw key but hashed by normalized key, so the same canonical form could hash two ways, and keys colliding after normalization silently dropped an entry (now a `ValueError` — fail closed).
+- **Dependency alias collapse**: multiple aliases referencing the same handle collapsed to one insertion-order-dependent entry, silently dropping a dependency from the hash input. Multiple refs to one handle now hash as a sorted list (arity is semantic; alias spelling is not).
+
+### Fixed — reproducibility
+
+- `sema apply` write-back now refreshes dependency ref values in the source JSON (the batch is topo-sorted, so dep hashes are final). Previously files kept whatever dep hashes they were authored with, so stored `sema_id`s could not be recomputed from the files alone.
+- `scripts/test_hash_verification.py` (the dependency-free independent verifier) updated to v2 and taught the dependency-canonicalization step. All 452 patterns now verify from their JSON files alone — this did not hold under v1.
+- First pytest coverage for the hashing core (`src/sema/core/tests/test_hashing.py`): every v1 collision pair is a regression test.
+
+### Changed
+
+- All 452 pattern hashes, refs, and stubs regenerated; `docs/information/vocabulary_information.md` and `skills/sema-usage/SKILL.md` examples updated. Historical `_meta.supersedes` refs keep their original v1 hashes (archival provenance).
+
+---
+
 ## [0.2.3] - 2026-04-18
 
 Docs-only release. No code or vocabulary changes.

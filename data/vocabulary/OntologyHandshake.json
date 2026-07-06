@@ -31,16 +31,16 @@
       "Coordination"
     ]
   },
-  "sema_id": "sema:OntologyHandshake#mh:SHA-256:8443a5ff6918e7aefbb04017aaaf658c9bdbd39a80bc9663bd731060a6adb23f",
-  "sema_ref": "OntologyHandshake#8443",
-  "sema_stub": "8443",
+  "sema_id": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e",
+  "sema_ref": "OntologyHandshake#fc51",
+  "sema_stub": "fc51",
   "dependencies": {
     "composes_with": {
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:3abb595523dc765c8ebe497169cd2c12494c93a85e50c8785577cef22c465554"
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727"
     },
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:7e1cc426d8550edc0ee84d4e4fd7b7dc3aecdfad496dc3e2cc636c36a7f4389e",
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:b25afcef8b09a2a4368090150d529379ce3124ae280a660ba40b27025265a34f"
+      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:cb58af48ff79c9623c01cbd6be1998eda0effeb791ca79e98d21022435911f05"
     }
   },
   "sema_layer": "Society",

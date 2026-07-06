@@ -33,25 +33,25 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:43f98b2d6339ebfebb9a8bf23935054088283f09da773fe49e3e3222c4132547",
-  "sema_ref": "LateralOptimization#43f9",
-  "sema_stub": "43f9",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:2bdbd09ab93650640efab3e086f47aa1caaeaa95eb789a7f39e6e89400637d6f",
+  "sema_ref": "LateralOptimization#2bdb",
+  "sema_stub": "2bdb",
   "signature": [
     "Think(Creative)",
     "Optimize(Global)"
   ],
   "dependencies": {
     "composes_with": {
-      "optimize": "sema:Optimize#mh:SHA-256:6226b1e1141743f34f47c669b40de8ffa8bced4e7f7d9b8d615c6fc4dabb1ab4",
-      "reframe": "sema:Reframe#mh:SHA-256:44c576a9631661094e0b507c6e2ec3a9cfd5761ab217fa2f32628c9dd4c9db88",
-      "translate": "sema:Translate#mh:SHA-256:edeb5de688448dd2554f9b5c7cabde53b99149b994957661946c4e3983b72f3b"
+      "optimize": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17",
+      "reframe": "sema:Reframe#mh:SHA-256:573733f86a965e0db34ce77c54bada908c9561248a7d5a9b76652dba71e1565a",
+      "translate": "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e"
     },
     "references": {
-      "creative": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
-      "global": "sema:Global#mh:SHA-256:803d9dfe9fd3e6b4901fcc0dcbbcdaba7861b3ce89146d012ca78857b176e7ab",
-      "solution": "sema:Solution#mh:SHA-256:989382800bb2df2523fd89ab4165220db8ff3b66dd0de04945c040c9ff4e77c9",
-      "system": "sema:System#mh:SHA-256:e314d24e05d0e9ffaaa9c44b249bca8882f00ae6596af18edd245a4fe9df5f0e",
-      "think": "sema:Think#mh:SHA-256:0bb444287b2c8715bd6d7b0aaba25fe44a3ed8551ffa420a4a8d9a6cb8e4585b"
+      "creative": "sema:Creative#mh:SHA-256:c7e4f6515c3f0708fbccb3610a70abed0d2e4eb4f5d41eeb337941992e1caff1",
+      "global": "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959",
+      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
+      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
     }
   },
   "sema_layer": "Mind",

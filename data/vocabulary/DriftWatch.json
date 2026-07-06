@@ -40,14 +40,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:17c4d53d192ad7d6b902546c76c68007d10efc53610ac33514a39e3f6a9001f6",
-  "sema_ref": "DriftWatch#17c4",
-  "sema_stub": "17c4",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5",
+  "sema_ref": "DriftWatch#49b6",
+  "sema_stub": "49b6",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883",
-      "aggregate": "sema:Aggregate#mh:SHA-256:24a150f046cac2bf6aba6924bf1b2764f09309f535e4731eb00330f85296af8b",
-      "distance": "sema:Distance#mh:SHA-256:13767c627f3a0fcf8bba2b250e87644373f9b4dc519ed8055e6facdc8e4545ff"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
+      "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893"
     }
   },
   "sema_layer": "Society",

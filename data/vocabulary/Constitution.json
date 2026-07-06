@@ -47,12 +47,12 @@
       }
     }
   },
-  "sema_id": "sema:Constitution#mh:SHA-256:eb620f991e093f8303dfac879392ca7fe6727602d3147c319cbad83ab4081bc8",
-  "sema_ref": "Constitution#eb62",
-  "sema_stub": "eb62",
+  "sema_id": "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b",
+  "sema_ref": "Constitution#f749",
+  "sema_stub": "f749",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:20723f0bbc86b2a6c4e6163dbe70ce1344f06cc1edda1a3f3285b0cf54bff883"
+      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf"
     }
   },
   "sema_layer": "Society",

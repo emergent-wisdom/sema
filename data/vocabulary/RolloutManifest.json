@@ -20,9 +20,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:RolloutManifest#mh:SHA-256:55968fc104d6ae67466bddb0eda77cb62b3a9e0e98311f9d308bdd86a3b8f035",
-  "sema_ref": "RolloutManifest#5596",
-  "sema_stub": "5596",
+  "sema_id": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28",
+  "sema_ref": "RolloutManifest#c064",
+  "sema_stub": "c064",
   "data_schema": {
     "type": "object",
     "description": "Immutable deployment record.",
