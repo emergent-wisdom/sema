@@ -10,6 +10,8 @@ any mismatch.
 Scope: README.md, install.md, docs/**/*.md, skills/**/*.md.
 Out of scope: paper/, experiments/, tests/, source code — they may
 cite specific historical refs or use intentionally-invalid stubs.
+The generated vocabulary manual's "Supersedes (prior versions)" blocks
+are also preserved because those refs are deliberately historical.
 
 Usage:
     python scripts/update_doc_refs.py          # rewrite in place
@@ -45,6 +47,8 @@ SCOPED_SOURCE_FILES = [
 ]
 
 HASH_REF = re.compile(r"(?P<handle>[A-Z][A-Za-z0-9]+)#(?P<stub>[a-f0-9]{4,8})\b")
+GENERATED_MANUAL = REPO_ROOT / "docs" / "manuals" / "vocabulary-design.md"
+HISTORICAL_MANUAL_HEADINGS = {"**Supersedes (prior versions).**"}
 
 
 def load_current_stubs() -> dict[str, str]:
@@ -87,6 +91,36 @@ def rewrite(text: str, current: dict[str, str]) -> tuple[str, list[tuple[str, st
     return HASH_REF.sub(repl, text), changes
 
 
+def rewrite_doc(
+    path: Path, text: str, current: dict[str, str]
+) -> tuple[str, list[tuple[str, str, str]]]:
+    """Rewrite current refs while preserving historical refs in the generated manual."""
+    if path != GENERATED_MANUAL:
+        return rewrite(text, current)
+
+    chunks = []
+    all_changes = []
+    in_historical_block = False
+
+    for line in text.splitlines(keepends=True):
+        stripped = line.strip()
+        if stripped in HISTORICAL_MANUAL_HEADINGS:
+            in_historical_block = True
+            chunks.append(line)
+            continue
+        if in_historical_block:
+            chunks.append(line)
+            if not stripped:
+                in_historical_block = False
+            continue
+
+        new_line, changes = rewrite(line, current)
+        chunks.append(new_line)
+        all_changes.extend(changes)
+
+    return "".join(chunks), all_changes
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="Fail if stale refs exist")
@@ -98,7 +132,7 @@ def main():
 
     for path in iter_doc_files():
         text = path.read_text()
-        new_text, changes = rewrite(text, current)
+        new_text, changes = rewrite_doc(path, text, current)
         if changes:
             total_changes += len(changes)
             files_changed.append((path.relative_to(REPO_ROOT), changes))

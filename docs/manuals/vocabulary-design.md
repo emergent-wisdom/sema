@@ -418,7 +418,7 @@ a mechanism so generic it has no teeth (too vague, underconstrains the concept).
 - Zero invariants listed. For a concept with this much load-bearing use, at minimum: Non-Negativity (Entropy ≥ 0), Maximality (bounded by the system's state-space cardinality), Monotonicity-Without-Intervention (in a closed system, entropy is non-decreasing).
 - Zero failure modes. A pattern with this many dependents should at least name the Ambiguous Domain failure (callers mean Shannon when the spec suggests thermodynamic).
 - The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion.
-- `_meta.related` reference updated from legacy stub format (`EntropyPump#961c`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format to full sema_id.
 
 **In the family.** Substrate concept underlying `EntropyPump`, `Crystallize`'s threshold check, `Reversibility`'s Entropy constraint, and `Noise`. Paired with `Measurement` (the act of observing), `Conservation` (what doesn't increase), and `Attractor` (where dynamics land).
 
@@ -1476,7 +1476,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 **Design tensions.**
 - Triviality vs rigor: Boolean's mechanism is almost tautological. But the alternative — leaving it implicit — means every caller hand-wires its own Boolean representation (int 0/1? string 'true'/'false'? enum?). The library trades verbosity for typed consistency.
 - No middle value vs real-world nuance: the Exhaustive invariant forbids intermediate values. Real verification often lands in 'true with low confidence' — that belongs on Judge or Check, not Boolean. Callers who reach for a tri-valued Boolean are signaling the wrong type.
-- Minted vs imported: most languages provide Boolean as a primitive; Sema duplicates it. The justification is content-addressing — a Validate that yields `sema:Boolean#2e6b` is byte-verifiable against the caller's expected type.
+- Minted vs imported: most languages provide Boolean as a primitive; Sema duplicates it. The justification is content-addressing — a Validate that yields `sema:Boolean#981e` is byte-verifiable against the caller's expected type.
 
 **Tradeoffs.**
 - Explicit pattern buys typed verifiability at the cost of looking pedantic (why a whole pattern for true/false?).
@@ -4898,7 +4898,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - All three named failure modes are real and unmitigated by the pattern.
 - Very thin mechanism — one sentence, no invariants.
 - No restore semantics specified.
-- `_meta.related` reference updated from legacy stub format (`StateSnapshot#940f`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format to full sema_id.
 
 **In the family.** State primitive paired with Restore (the recovery), AuditTrail (continuous counterpart), and Versioning. Compare with Cache — Snapshot is full state at time; Cache is keyed storage.
 
@@ -5901,7 +5901,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Very thin.
 - The 'semantic space' framing is model-dependent.
 - No failure modes.
-- `_meta.related` reference updated from legacy stub format (`LatentAttachment#15a6`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format to full sema_id.
 
 **In the family.** Foundational numeric primitive paired with LatentAttachment, Embedding, and Distance. Compare with Scalar — Vector is multi-dim; Scalar is single-dim.
 
@@ -17147,7 +17147,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Very thin — the mechanism says 'use Control and Treatment,' which is correct and under-specified. Real experiments have blinding, randomization, sample size, power calculations; the pattern mentions none.
 - No failure modes listed — experiments have many (confounders, selection bias, over-fitting to treatment) and the pattern doesn't catalogue them.
 - Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time.
-- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format to full sema_id.
 
 **In the family.** Causal-discovery primitive paired with Verification (confirmation), Experiment-specific patterns (A/B, RCT), and Hypothesis (the pre-registered claim being tested). Compare with Probe — Experiment is structured causal, Probe is single-shot observational. Both gather information, at different rigor levels.
 
@@ -17261,7 +17261,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Duhem-Quine thesis is the classical problem — any observation technically falsifies a conjunction, not a single hypothesis. The pattern assumes clean falsification.
 - The 'If Prediction implies Observation, and not-Observation, then not-Hypothesis' invariant is valid logic; the practical problem is that real hypotheses rarely imply crisp observations.
 - Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes.
-- `_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id.
+- `_meta.related` reference updated from legacy stub format to full sema_id.
 
 **In the family.** Epistemic primitive paired with Verify (affirmative counterpart), Hypothesis (the subject), and Prediction (the falsifiable statement). Compare with NegativeProof — Falsification proves a claim false; NegativeProof proves a claim about absence. Both are eliminative, at different targets.
 
