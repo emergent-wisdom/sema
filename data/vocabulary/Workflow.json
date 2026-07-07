@@ -45,18 +45,18 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:308e2d82c68aa4722439d5012e964739441bb993b4c3c45f20ea3fd90ce6528c",
-  "sema_ref": "Workflow#308e",
-  "sema_stub": "308e",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:Workflow#mh:SHA-256:6de060aa8b0e98b2042b10aa6465125ca877a41d8d10859a8d4a7f2f9ea5fcc6",
+  "sema_ref": "Workflow#6de0",
+  "sema_stub": "6de0",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
       "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "role": "sema:Role#mh:SHA-256:d064dc4e34a38187c5df17241aa27ae110986ce78de7a75f1a9bd7779f2ac09d",
+      "role": "sema:Role#mh:SHA-256:315289020c8b40e92e7e84298036fa6417d6f779f6980a7a48d2ba68c62d6fad",
       "solver": "sema:Solver#mh:SHA-256:04b58c815005971905e3d430112a06fb76b727882204a80fe58ace79b066a1d6",
       "step": "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

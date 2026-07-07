@@ -28,17 +28,17 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:DissentSeek#mh:SHA-256:0995b538c8e62951c0d63d24934696fa941a192274537b3adb5f87a86db2e905",
-  "sema_ref": "DissentSeek#0995",
-  "sema_stub": "0995",
-  "sema_layer": "Society",
-  "sema_category": "Protocols",
+  "sema_id": "sema:DissentSeek#mh:SHA-256:ce789971353ca0b8c002250a6e0ced756de6099be34025af28cf5617e0d16273",
+  "sema_ref": "DissentSeek#ce78",
+  "sema_stub": "ce78",
   "dependencies": {
     "references": {
       "confirmation_block": "sema:ConfirmationBlock#mh:SHA-256:dc3f1d88759b024b4b5730dada9c5586759b31503d5d1dd779ca24b9fcff5c07",
       "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
       "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
-      "understand": "sema:Understand#mh:SHA-256:0e78945e9808539158f969be47b38093ed6998dd0ac5a3bed1166fd87d279b01"
+      "understand": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a"
     }
-  }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
 }

@@ -41,6 +41,23 @@ def get_db_path():
 EXPORT_DIR = os.path.join(project_root, "data/vocabulary")
 
 
+def normalize_export_order(card):
+    """Keep derived compatibility fields after dependencies to avoid export churn."""
+    if "dependencies" not in card:
+        return card
+
+    layer = card.pop("sema_layer", None)
+    category = card.pop("sema_category", None)
+    dependencies = card.pop("dependencies")
+
+    card["dependencies"] = dependencies
+    if layer is not None:
+        card["sema_layer"] = layer
+    if category is not None:
+        card["sema_category"] = category
+    return card
+
+
 def wipe_directory(path):
     """Remove all .json files from a directory."""
     if os.path.exists(path):
@@ -165,6 +182,7 @@ def export_vocabulary():
 
         # Remove deprecated 'links' field - edges are stored in graph database
         card.pop("links", None)
+        normalize_export_order(card)
 
         # Determine Destination (Archive vs Root)
         # Check mechanism for placeholders

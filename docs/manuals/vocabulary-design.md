@@ -5295,7 +5295,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### StyleSpec#f0a9
+### StyleSpec#a12b
 
 `Infrastructure` · `Data Structures` · R2 · T2
 
@@ -10041,7 +10041,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### LayeredCheck#cf0d
+### LayeredCheck#6a86
 
 `Mind` · `Inference` · R2 · T2
 
@@ -14121,7 +14121,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### Refine#ffec
+### Refine#2956
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14130,22 +14130,6 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **Mechanism.**
 
 > Iteratively improves an {{artifact}} by applying {{critique}} to identify {{incongruity}}s and then performing {{act}}s of editing to resolve them. It cycles until the {{artifact}} meets a specific {{condition}} or quality threshold.
-
-**Invariants.**
-- edit linkage: Every edit {{act}} in the refinement loop must address at least one stated {{critique}} or {{incongruity}}.
-- stop rule visibility: The loop must expose the {{condition}} that stops refinement before edits begin.
-- continuity: The refined {{artifact}} remains traceably the same artifact unless the loop explicitly switches to replacement.
-
-**Preconditions.**
-- An {{artifact}} exists and a critique source can identify concrete incongruities or unmet conditions.
-
-**Postconditions.**
-- The resulting {{artifact}} has fewer unresolved incongruities or a documented reason the loop stopped without improvement.
-
-**Failure modes.**
-- Diminishing Returns: Additional refinement cycles consume available effort without materially improving the {{artifact}}.
-- Cosmetic Drift: Edits resolve surface incongruities while leaving deeper structural problems intact.
-- Termination Drift: The stopping {{condition}} changes during refinement, making completion impossible to assess.
 
 #### Design
 
@@ -14177,9 +14161,9 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gives up: blank-slate thinking. Refine preserves structure; when structure is the problem, Refine can't help.
 
 **Critique.**
-- Failure modes now cover the main refinement traps: diminishing returns, cosmetic drift, and termination drift.
-- The mechanism remains compact, but the added invariants carry the loop discipline: critique-edit linkage, visible termination, and artifact continuity.
-- The pattern still assumes critique is available and actionable; the added precondition makes that assumption explicit rather than silent.
+- No canonical invariants or failure modes listed by design: Refine is a cross-context primitive, and hard loop rules belong in descendants or callers.
+- Common traps still matter — diminishing returns, cosmetic drift, and termination drift — but they are reviewer guidance rather than universal constraints.
+- The pattern still assumes critique is available and actionable; producing good critique is itself work.
 
 **In the family.** Iterative-improvement primitive paired with Critique (the feedback substrate), Reflexion (self-variant), and PhasedRefinement (layered variant). Compare with Optimize — Refine is qualitative; Optimize is quantitative.
 
@@ -14187,6 +14171,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - `Refine#38d9`
 - `Refine#8c9b`
 - `Refine#2809`
+- `Refine#ffec`
 
 ---
 
@@ -14324,7 +14309,7 @@ _Note: `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate 
 
 ---
 
-### RequestFraming#fadb
+### RequestFraming#8c6c
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -15219,7 +15204,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 ---
 
-### Understand#0e78
+### Understand#4cab
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -15230,22 +15215,6 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 **Mechanism.**
 
 > The process of applying {{think}} to construct an internal model that accurately reflects the causal structure, semantics, and {{context}} of an input. It goes beyond simple parsing to grasp 'why' and 'how'.
-
-**Invariants.**
-- Context Binding: Understanding must preserve the {{context}} needed to interpret the input's meaning.
-- Causal Coherence: The internal model must explain relevant why/how relations rather than only surface tokens.
-- Revision Openness: New evidence may revise the model without pretending the prior understanding was complete.
-
-**Preconditions.**
-- Input is available and enough {{context}} exists to attempt semantic modeling.
-
-**Postconditions.**
-- The agent has a model that can guide downstream {{think}} operations or expose what remains ambiguous.
-
-**Failure modes.**
-- Surface Paraphrase: The output restates the input without modeling cause, intent, or {{context}}.
-- False Coherence: The model fills gaps with plausible assumptions and mistakes them for understanding.
-- Stale Basis: Missing or stale {{context}} causes locally coherent but globally wrong interpretation.
 
 #### Design
 
@@ -15277,16 +15246,16 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gives up: certainty. Understanding is never complete.
 
 **Critique.**
-- The mechanism remains compact, but the added contracts specify what must be preserved: context binding, causal coherence, and revision openness.
-- Failure modes now distinguish surface paraphrase, false coherence, and context loss — the three ways an agent can look like it understands while missing the meaning.
-- The 'accurately reflects' claim remains aspirational; the pattern now treats understanding as revisable rather than final.
+- No canonical invariants or failure modes listed by design: Understanding is a cognitive goal whose adequacy depends heavily on domain, task, and evidence standard.
+- Surface paraphrase, false coherence, and context loss are important diagnostic risks, but not universal hash-level constraints for the base pattern.
+- The 'accurately reflects' claim remains aspirational; adequacy should be judged by the caller's domain, task, and evidence standard rather than encoded as a universal invariant.
 
 **In the family.** Cognitive primitive paired with Interpret (semantic application), Parse (syntactic), and Model (the outcome). Compare with Think — Understand is the outcome; Think is the atomic op.
 
 **Supersedes (prior versions).**
 - `Understand#96d4`
-- `Understand#4cab`
 - `Understand#5d70`
+- `Understand#0e78`
 
 ---
 
@@ -17270,7 +17239,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### FractalIntelligence#1479
+### FractalIntelligence#5481
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18429,7 +18398,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREBrainstorming#5f7b
+### PUREBrainstorming#9ba1
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -18485,7 +18454,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PURECheck#1fc2
+### PURECheck#e277
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18538,7 +18507,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREOptimization#c8b5
+### PUREOptimization#89fe
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18973,7 +18942,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ProblemFramer#da76
+### ProblemFramer#2718
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -21998,7 +21967,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Role#d064
+### Role#3152
 
 `Society` · `Governance` · R1 · T1
 
@@ -22007,22 +21976,6 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 **Mechanism.**
 
 > A named collection of {{permission}}s and {{responsibility}}s assigned to an {{agent}}. Decouples {{identity}} from capability, allowing agents to switch contexts by adopting different roles.
-
-**Invariants.**
-- role separation: A role grants capabilities to an {{agent}} without rewriting identity data.
-- access closure: Every operation enabled by a role must be covered by at least one declared {{permission}}.
-- accountability binding: If a role carries a {{responsibility}}, assignment also binds the agent to the corresponding accountability surface.
-
-**Preconditions.**
-- The assigning system can identify the target {{agent}} and the role's permission and responsibility sets.
-
-**Postconditions.**
-- The assigned {{agent}} can be evaluated by role membership rather than by per-agent hardcoding.
-
-**Failure modes.**
-- Privilege Creep: {{permission}}s accumulate on a role after the original accountability set narrows.
-- Role Explosion: Too many narrowly scoped roles make assignment and review harder than direct permissioning.
-- Conflicting Assignment: An {{agent}} holds roles whose {{permission}}s or accountability obligations contradict each other.
 
 #### Design
 
@@ -22054,9 +22007,9 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gives up: simplicity. Roles add a layer of indirection; for simple systems, direct permissioning is cleaner.
 
 **Critique.**
-- Failure modes now name the common operational breaks: privilege creep, role explosion, and conflicting assignments.
-- The mechanism remains intentionally compact; the added invariants pin identity decoupling, permission closure, and responsibility binding without over-specifying inheritance or revocation.
-- Relationship with Identity and Responsibility is still easy to conflate in practice, but the contract surface now makes the distinction reviewable.
+- No canonical invariants or failure modes listed by design: Role is the capability-bundle primitive, not a full RBAC policy.
+- Privilege creep, role explosion, conflicting assignments, inheritance, and revocation are real implementation concerns, but they vary enough to belong in descendants or callers.
+- The mechanism now explicitly links Identity; the relationship with Identity and Responsibility is still easy to conflate in practice.
 
 **In the family.** Foundational capability primitive paired with Identity (persistent handle), Permission (the atomic grant), and Responsibility (the continuous contract). Compare with Card — Role is a local concept; Card is the advertisement.
 
@@ -22065,6 +22018,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - `Role#9896`
 - `Role#1401`
 - `Role#b612`
+- `Role#d064`
 
 ---
 
@@ -23259,7 +23213,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### DissentSeek#0995
+### DissentSeek#ce78
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24763,7 +24717,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### OrchestrationLoop#1f13
+### OrchestrationLoop#156f
 
 `Society` · `Protocols` · R1 · T2
 
@@ -25086,7 +25040,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PhasedRefinement#3010
+### PhasedRefinement#537d
 
 `Society` · `Protocols` · R2 · T2
 
@@ -26983,7 +26937,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### Workflow#308e
+### Workflow#6de0
 
 `Society` · `Protocols` · R0 · T1
 

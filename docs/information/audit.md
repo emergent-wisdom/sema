@@ -1513,7 +1513,7 @@ Source: `scripts/audit/audit_missing_links.py` (ok)
 🔍 Scanning data/vocabulary for missing links...
 Loaded 452 patterns.
 
-Found 396 potential missing links.
+Found 395 potential missing links.
 
 🔹 AcceptSpec
    ❓ Mentions 'FrameError' but not linked.
