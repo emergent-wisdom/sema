@@ -38,16 +38,18 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:RequestFraming#mh:SHA-256:8c6cf10e82ea7b80e3902d6947dca62be9ae0d7494787c6c4ca84113653e26e6",
-  "sema_ref": "RequestFraming#8c6c",
-  "sema_stub": "8c6c",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:fadbc391873f51197d3d8ad326777b8d05cc58d5cd37a031d07363f7eae2f100",
+  "sema_ref": "RequestFraming#fadb",
+  "sema_stub": "fadb",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "accepts": {
       "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea"
     },
     "composes_with": {
       "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5",
-      "understand": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a"
+      "understand": "sema:Understand#mh:SHA-256:0e78945e9808539158f969be47b38093ed6998dd0ac5a3bed1166fd87d279b01"
     },
     "references": {
       "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
@@ -57,7 +59,5 @@
     "yields": {
       "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e"
     }
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning"
+  }
 }

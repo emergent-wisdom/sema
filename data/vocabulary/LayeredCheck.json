@@ -23,9 +23,11 @@
       "Inference"
     ]
   },
-  "sema_ref": "LayeredCheck#6a86",
-  "sema_id": "sema:LayeredCheck#mh:SHA-256:6a86ad58c1141b1555efe8596df42dfaae516abed5c05a41092a3db7e5602aaa",
-  "sema_stub": "6a86",
+  "sema_ref": "LayeredCheck#cf0d",
+  "sema_id": "sema:LayeredCheck#mh:SHA-256:cf0db9baee24ddd714fb8c44282ed628be71d7d5f97a875eacf7e03e1991c2bb",
+  "sema_stub": "cf0d",
+  "sema_layer": "Mind",
+  "sema_category": "Inference",
   "dependencies": {
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
@@ -34,10 +36,8 @@
     },
     "references": {
       "hierarchy": "sema:Hierarchy#mh:SHA-256:80394d9e6f07112954f1c2d203eaf6095df4d4569a890a9c6ca8b9c9b534ba3d",
-      "understand": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a",
+      "understand": "sema:Understand#mh:SHA-256:0e78945e9808539158f969be47b38093ed6998dd0ac5a3bed1166fd87d279b01",
       "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
     }
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Inference"
+  }
 }

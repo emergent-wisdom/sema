@@ -28,16 +28,18 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374",
-  "sema_ref": "OrchestrationLoop#2d63",
-  "sema_stub": "2d63",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:1f13e27f2e9099f4474907e351f71a048a2be0a8756d63c804aac35d1b997235",
+  "sema_ref": "OrchestrationLoop#1f13",
+  "sema_stub": "1f13",
   "signature": [
     "Workflow(Rollout)"
   ],
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:8c6cf10e82ea7b80e3902d6947dca62be9ae0d7494787c6c4ca84113653e26e6",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:fadbc391873f51197d3d8ad326777b8d05cc58d5cd37a031d07363f7eae2f100",
       "rollout": "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996"
     },
     "references": {
@@ -46,9 +48,7 @@
       "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
       "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28",
-      "workflow": "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728"
+      "workflow": "sema:Workflow#mh:SHA-256:308e2d82c68aa4722439d5012e964739441bb993b4c3c45f20ea3fd90ce6528c"
     }
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  }
 }

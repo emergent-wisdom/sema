@@ -10537,9 +10537,9 @@
         "Gives up: blank-slate thinking. Refine preserves structure; when structure is the problem, Refine can't help."
       ],
       "critique": [
-        "No failure modes listed; Refine has some (diminishing returns, cosmetic changes, termination drift).",
-        "Very thin — one-sentence mechanism.",
-        "The pattern assumes critique is available and actionable; producing good critique is itself work."
+        "Failure modes now cover the main refinement traps: diminishing returns, cosmetic drift, and termination drift.",
+        "The mechanism remains compact, but the added invariants carry the loop discipline: critique-edit linkage, visible termination, and artifact continuity.",
+        "The pattern still assumes critique is available and actionable; the added precondition makes that assumption explicit rather than silent."
       ]
     },
     "family_discussion": "Iterative-improvement primitive paired with Critique (the feedback substrate), Reflexion (self-variant), and PhasedRefinement (layered variant). Compare with Optimize — Refine is qualitative; Optimize is quantitative."
@@ -11206,9 +11206,9 @@
         "Gives up: simplicity. Roles add a layer of indirection; for simple systems, direct permissioning is cleaner."
       ],
       "critique": [
-        "No failure modes listed; Role has some (privilege creep, role explosion, conflicting assignments).",
-        "Very thin mechanism — bundle semantics are deferred to the specific role definitions.",
-        "Relationship with Identity and Responsibility is specified in principle and often conflated in practice."
+        "Failure modes now name the common operational breaks: privilege creep, role explosion, and conflicting assignments.",
+        "The mechanism remains intentionally compact; the added invariants pin identity decoupling, permission closure, and responsibility binding without over-specifying inheritance or revocation.",
+        "Relationship with Identity and Responsibility is still easy to conflate in practice, but the contract surface now makes the distinction reviewable."
       ]
     },
     "family_discussion": "Foundational capability primitive paired with Identity (persistent handle), Permission (the atomic grant), and Responsibility (the continuous contract). Compare with Card — Role is a local concept; Card is the advertisement."
@@ -14428,9 +14428,9 @@
         "Gives up: certainty. Understanding is never complete."
       ],
       "critique": [
-        "Very thin mechanism.",
-        "No invariants, no failure modes.",
-        "The 'accurately reflects' claim is aspirational."
+        "The mechanism remains compact, but the added contracts specify what must be preserved: context binding, causal coherence, and revision openness.",
+        "Failure modes now distinguish surface paraphrase, false coherence, and context loss — the three ways an agent can look like it understands while missing the meaning.",
+        "The 'accurately reflects' claim remains aspirational; the pattern now treats understanding as revisable rather than final."
       ]
     },
     "family_discussion": "Cognitive primitive paired with Interpret (semantic application), Parse (syntactic), and Model (the outcome). Compare with Think — Understand is the outcome; Think is the atomic op."

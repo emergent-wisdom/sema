@@ -1385,7 +1385,7 @@ Source: `scripts/audit/audit_graph.py` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 1809 nodes and 3580 edges.
+Graph loaded with 1824 nodes and 3596 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -1393,7 +1393,7 @@ Checking for hierarchy cycles...
 Checking for duplicate names...
 Checking rigor...
 
-Audit Complete. Found 79 problems.
+Audit Complete. Found 76 problems.
 
 [NO_CONTRACTS] Pattern 'Axiom' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Branch' has no Invariants, Preconditions, or Postconditions.
@@ -1439,12 +1439,10 @@ Audit Complete. Found 79 problems.
 [NO_CONTRACTS] Pattern 'ContextCompress' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'StateAudit' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Actor' has no Invariants, Preconditions, or Postconditions.
-[NO_CONTRACTS] Pattern 'Refine' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Subject' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Noise' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Problem' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Queue' has no Invariants, Preconditions, or Postconditions.
-[NO_CONTRACTS] Pattern 'Understand' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Discover' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'ReversibilityCheck' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Dampen' has no Invariants, Preconditions, or Postconditions.
@@ -1466,7 +1464,6 @@ Audit Complete. Found 79 problems.
 [NO_CONTRACTS] Pattern 'TreeOfThoughts' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'HypothesisEngine' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'ReAttempt' has no Invariants, Preconditions, or Postconditions.
-[NO_CONTRACTS] Pattern 'Role' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Deploy' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'Aesthetics' has no Invariants, Preconditions, or Postconditions.
 [NO_CONTRACTS] Pattern 'TraceBelief' has no Invariants, Preconditions, or Postconditions.
@@ -1483,11 +1480,11 @@ Source: `scripts/audit/audit_rigor.py` (ok)
 ```text
 {
   "total": 452,
-  "with_invariants": 372,
-  "with_preconditions": 181,
-  "with_postconditions": 171,
-  "fully_rigorous": 170,
-  "naked": 79
+  "with_invariants": 375,
+  "with_preconditions": 184,
+  "with_postconditions": 174,
+  "fully_rigorous": 173,
+  "naked": 76
 }
 
 Sample 'Naked' Patterns (No strict logic):
@@ -1516,7 +1513,7 @@ Source: `scripts/audit/audit_missing_links.py` (ok)
 🔍 Scanning data/vocabulary for missing links...
 Loaded 452 patterns.
 
-Found 395 potential missing links.
+Found 396 potential missing links.
 
 🔹 AcceptSpec
    ❓ Mentions 'FrameError' but not linked.
@@ -3291,8 +3288,6 @@ Scanning 452 patterns for unlinked handle mentions...
    • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Refine:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Reflexion:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -3383,8 +3378,6 @@ Scanning 452 patterns for unlinked handle mentions...
    • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Robustness:
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Role:
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Rollout:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Compensate' (unlinked). Should it be '{{{ghost}}}'?
@@ -3742,7 +3735,7 @@ Scanning 452 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 371 patterns.
+Scan complete. Found unlinked handle mentions in 369 patterns.
 ```
 
 ## Semantic similarity between patterns

@@ -1,30 +1,48 @@
 {
   "handle": "Understand",
   "mechanism": "The process of applying {{think}} to construct an internal model that accurately reflects the causal structure, semantics, and {{context}} of an input. It goes beyond simple parsing to grasp 'why' and 'how'.",
+  "invariants": [
+    "Context Binding: Understanding must preserve the {{context}} needed to interpret the input's meaning.",
+    "Causal Coherence: The internal model must explain relevant why/how relations rather than only surface tokens.",
+    "Revision Openness: New evidence may revise the model without pretending the prior understanding was complete."
+  ],
+  "preconditions": [
+    "Input is available and enough {{context}} exists to attempt semantic modeling."
+  ],
+  "postconditions": [
+    "The agent has a model that can guide downstream {{think}} operations or expose what remains ambiguous."
+  ],
+  "failure_modes": [
+    "Surface Paraphrase: The output restates the input without modeling cause, intent, or {{context}}.",
+    "False Coherence: The model fills gaps with plausible assumptions and mistakes them for understanding.",
+    "Stale Basis: Missing or stale {{context}} causes locally coherent but globally wrong interpretation."
+  ],
   "gloss": "Deep semantic modeling",
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
+      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b",
+      "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a",
+      "sema:Understand#mh:SHA-256:5d7084e766e9cddac3c84dd8b291b31ab2b539a1ddadfbd5013e3ae32e79fe26"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a",
-  "sema_ref": "Understand#4cab",
-  "sema_stub": "4cab",
+  "sema_id": "sema:Understand#mh:SHA-256:0e78945e9808539158f969be47b38093ed6998dd0ac5a3bed1166fd87d279b01",
+  "sema_ref": "Understand#0e78",
+  "sema_stub": "0e78",
   "signature": [
     "Think(Context)"
   ],
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
       "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
     }
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning"
+  }
 }

@@ -343,8 +343,8 @@ def render_manual(patterns: dict[str, dict], sidecar: dict[str, dict]) -> str:
         "     in `data/vocabulary/*.json` and design commentary in",
         "     `data/design_critique.json`. -->",
         "",
-        f"_Generated: {date.today().isoformat()}_  ",
-        f"_Patterns covered: {len(patterns)} (from `data/vocabulary/`)_  ",
+        f"_Generated: {date.today().isoformat()}_",
+        f"_Patterns covered: {len(patterns)} (from `data/vocabulary/`)_",
         f"_Commentary entries in sidecar: {len(sidecar)} (from `data/design_critique.json`)_",
         "",
         "This manual is the design reference for the Sema Bootstrap Library. "

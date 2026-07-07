@@ -1,6 +1,22 @@
 {
   "handle": "Refine",
-  "mechanism": "Iteratively improves an {{artifact}} by applying {{critique}} to identify {{incongruity}}s and then performing {{act}}s of editing to resolve them. It cycles until the artifact meets a specific {{condition}} or quality threshold.",
+  "mechanism": "Iteratively improves an {{artifact}} by applying {{critique}} to identify {{incongruity}}s and then performing {{act}}s of editing to resolve them. It cycles until the {{artifact}} meets a specific {{condition}} or quality threshold.",
+  "invariants": [
+    "edit linkage: Every edit {{act}} in the refinement loop must address at least one stated {{critique}} or {{incongruity}}.",
+    "stop rule visibility: The loop must expose the {{condition}} that stops refinement before edits begin.",
+    "continuity: The refined {{artifact}} remains traceably the same artifact unless the loop explicitly switches to replacement."
+  ],
+  "preconditions": [
+    "An {{artifact}} exists and a critique source can identify concrete incongruities or unmet conditions."
+  ],
+  "postconditions": [
+    "The resulting {{artifact}} has fewer unresolved incongruities or a documented reason the loop stopped without improvement."
+  ],
+  "failure_modes": [
+    "Diminishing Returns: Additional refinement cycles consume available effort without materially improving the {{artifact}}.",
+    "Cosmetic Drift: Edits resolve surface incongruities while leaving deeper structural problems intact.",
+    "Termination Drift: The stopping {{condition}} changes during refinement, making completion impossible to assess."
+  ],
   "gloss": "Iterative improvement loop",
   "_meta": {
     "ring": 1,
@@ -9,16 +25,20 @@
       "PhasedRefinement"
     ],
     "supersedes": [
-      "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d"
+      "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d",
+      "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
+      "sema:Refine#mh:SHA-256:28091f23319cb40c5c62f6ef318429a11b9d3673f1e46d8d57f441e89e8b3f75"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
-  "sema_ref": "Refine#8c9b",
-  "sema_stub": "8c9b",
+  "sema_id": "sema:Refine#mh:SHA-256:ffecaaec51afb1783b46706651baad833b716ddb22935c80e9df622c76e718c7",
+  "sema_ref": "Refine#ffec",
+  "sema_stub": "ffec",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning",
   "dependencies": {
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d"
@@ -29,7 +49,5 @@
       "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
       "incongruity": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99"
     }
-  },
-  "sema_layer": "Mind",
-  "sema_category": "Reasoning"
+  }
 }

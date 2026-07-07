@@ -26,13 +26,15 @@
       "Protocols"
     ]
   },
-  "sema_ref": "PhasedRefinement#56f0",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:56f079ec75061b35f56d543d1ab12c7c4822b1e0f5816cf342a796104756642c",
-  "sema_stub": "56f0",
+  "sema_ref": "PhasedRefinement#3010",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:3010f1c8bbc05cd2fe394d6ec50b05c0d4ce08dc5bf2b96d3336fd2f19dfef03",
+  "sema_stub": "3010",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "refine": "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
+      "refine": "sema:Refine#mh:SHA-256:ffecaaec51afb1783b46706651baad833b716ddb22935c80e9df622c76e718c7",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a"
     },
     "references": {
@@ -41,7 +43,5 @@
       "reason": "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed",
       "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:63bb74ec91e4203ff5337192785a5c1b0cc27d3be6b39be59a8043a1f97488ff"
     }
-  },
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  }
 }
