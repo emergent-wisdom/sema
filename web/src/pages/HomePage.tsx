@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef, useCallback, createContext, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github, MessageCircle, Users } from 'lucide-react'
+import { Search, Filter, X, ChevronDown, ChevronUp, Copy, Check, Users } from 'lucide-react'
 import { usePatterns, usePattern, useSearchPatterns } from '@/hooks/useApi'
 import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
@@ -8,6 +8,8 @@ import { ParsedText } from '@/components/DetailsPanel'
 import { SemaLogo } from '@/components/SemaLogo'
 import { LicenseLine } from '@/components/LicenseLine'
 import { DbSwitcher } from '@/components/DbSwitcher'
+import { NavItem, PrimaryLink } from '@/components/ui'
+import { HandshakeDemo } from '@/components/HandshakeDemo'
 
 // Context to allow pattern cards to register themselves and handle navigation
 type PatternNavigationContextType = {
@@ -163,116 +165,78 @@ export function HomePage() {
         </div>
 
         <div className="relative max-w-6xl mx-auto px-6 pt-12 pb-16">
-          {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:justify-between gap-6 mb-12">
-            <div className="flex items-center gap-5">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center shadow-lg shadow-emerald-900/20 text-emerald-400">
-                <SemaLogo className="w-8 h-8" />
+          {/* Header — wordmark + quiet links + one loud CTA */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-16">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-1 ring-inset ring-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <SemaLogo className="w-5 h-5" />
               </div>
-              <div>
-                <h1 className="text-3xl font-semibold tracking-tight">Sema</h1>
-                <p className="text-sm text-zinc-500">When the hash is the word</p>
-              </div>
+              <h1 className="text-lg font-semibold tracking-tight">Sema</h1>
             </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <a
-                href="/api/paper"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
-              >
-                <FileText className="w-4 h-4" />
-                Paper
-              </a>
-              <a
-                href="https://github.com/emergent-wisdom/sema"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
-              >
-                <Github className="w-4 h-4" />
-                GitHub
-              </a>
-              <a
-                href="https://discord.gg/hRhVqAuDYQ"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
-              >
-                <MessageCircle className="w-4 h-4" />
-                Discord
-              </a>
-              <Link
-                to="/docs"
-                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
-              >
-                <Book className="w-4 h-4" />
-                Docs
-              </Link>
-              <Link
-                to="/graph"
-                className="flex items-center gap-2 px-4 py-2.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-lg transition-all text-sm text-emerald-400 hover:text-emerald-300 hover:border-emerald-500/30"
-              >
-                <Box className="w-4 h-4" />
-                3D Graph
-              </Link>
+            <nav className="flex items-center gap-5 sm:gap-7 flex-wrap sm:justify-end">
+              <NavItem href="/api/paper">Paper</NavItem>
+              <NavItem href="https://github.com/emergent-wisdom/sema">GitHub</NavItem>
+              <NavItem href="https://discord.gg/hRhVqAuDYQ">Discord</NavItem>
+              <NavItem to="/docs">Docs</NavItem>
+              <NavItem to="/graph">3D Graph</NavItem>
               {WORKSPACE_ENABLED ? (
-                <Link
-                  to="/workspace"
-                  className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
-                >
+                <PrimaryLink to="/workspace">
                   <Users className="w-4 h-4" />
                   Workspace
-                </Link>
+                </PrimaryLink>
               ) : null}
+            </nav>
+          </div>
+
+          {/* Hero — statement + running proof, side by side */}
+          <div className="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-10 lg:gap-14 items-center mb-16">
+            <div className="rise-in">
+              <p className="ref-mono text-emerald-400/80 mb-4 text-sm">
+                word = hash(canonical(definition))
+              </p>
+              <h2 className="text-5xl sm:text-6xl font-light tracking-[-0.03em] text-zinc-100 leading-[1.05] mb-6">
+                When the hash
+                <br />
+                <span className="text-emerald-400">is the word.</span>
+              </h2>
+              <p className="text-lg text-zinc-400 leading-relaxed max-w-lg">
+                Content-addressed patterns for autonomous agents. When two
+                agents share a pattern hash, they share exact semantics —
+                and when they don't, the handshake fails closed.
+              </p>
+            </div>
+            <div className="rise-in flex lg:justify-end" style={{ animationDelay: '0.15s' }}>
+              <HandshakeDemo />
             </div>
           </div>
 
-          {/* Hero content */}
-          <div className="max-w-4xl mb-12">
-            <h2 className="text-4xl font-light tracking-tight text-zinc-100 mb-4">
-              Content-addressed patterns for{' '}
-              <span className="text-emerald-400">autonomous agents</span>
-            </h2>
-            <p className="text-lg text-zinc-500 leading-relaxed">
-              A taxonomy of cognitive patterns with cryptographic identity.
-              When agents share a pattern hash, they share exact semantics.
-            </p>
-          </div>
-
-          {/* Layer stats */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {LAYERS.map((layer, i) => (
+          {/* Layer stats — borderless strip, hairline separators */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 rounded-xl bg-white/[0.02] ring-1 ring-inset ring-white/[0.05] divide-y sm:divide-y-0 sm:divide-x divide-white/[0.05]">
+            {LAYERS.map((layer) => (
               <button
                 key={layer}
                 type="button"
                 onClick={() => setSelectedLayer(selectedLayer === layer ? null : layer)}
                 className={cn(
-                  "group relative p-4 rounded-xl border transition-all duration-300 text-left",
-                  selectedLayer === layer
-                    ? "bg-zinc-800/80 border-zinc-600"
-                    : "bg-zinc-900/50 border-zinc-800/50 hover:bg-zinc-800/50 hover:border-zinc-700"
+                  'group p-5 text-left transition-colors',
+                  selectedLayer === layer ? 'bg-white/[0.05]' : 'hover:bg-white/[0.03]'
                 )}
-                style={{
-                  animationDelay: `${i * 100}ms`,
-                }}
               >
-                <div className="flex items-center gap-3 mb-1">
+                <div className="flex items-center gap-2.5 mb-2">
                   <div
-                    className="w-2 h-2 rounded-full"
+                    className="w-1.5 h-1.5 rounded-full"
                     style={{ backgroundColor: LAYER_COLORS[layer] }}
                   />
-                  <span className="text-sm font-medium text-zinc-200">{layer}</span>
+                  <span className="text-[13px] font-medium tracking-wide text-zinc-300">
+                    {layer}
+                  </span>
                 </div>
-                <div className="text-2xl font-light text-zinc-400 tabular-nums mb-1">
+                <div className="text-3xl font-light text-zinc-100 tabular-nums mb-1.5">
                   {layerCounts[layer] || 0}
                 </div>
-                <p className="text-xs text-zinc-600 leading-relaxed">
+                <p className="text-xs text-zinc-500 leading-relaxed">
                   {LAYER_DESCRIPTIONS[layer]}
                 </p>
-                {selectedLayer === layer && (
-                  <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-white/5" />
-                )}
               </button>
             ))}
           </div>
