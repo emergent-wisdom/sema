@@ -11,6 +11,12 @@ FROM node:20-slim AS web-builder
 
 WORKDIR /app/web
 
+# Railway exposes service variables as Docker build arguments. Keep the
+# unfinished workspace UI out of canonical production by default, while
+# allowing the separate staging project to opt in explicitly.
+ARG VITE_ENABLE_WORKSPACE=false
+ENV VITE_ENABLE_WORKSPACE=$VITE_ENABLE_WORKSPACE
+
 # Lockfile-first for layer caching; only invalidated when deps change.
 COPY web/package.json web/package-lock.json ./
 RUN npm ci
