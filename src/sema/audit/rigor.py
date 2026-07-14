@@ -1,9 +1,4 @@
 import json
-import os
-import sys
-
-# Add project root to path
-sys.path.append(os.getcwd())
 
 from sema.taxonomy_graph.graph_store import EdgeType, GraphStore, NodeType
 

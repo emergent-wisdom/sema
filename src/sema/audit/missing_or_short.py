@@ -2,7 +2,7 @@
 """
 Audit Missing or Short Fields
 
-Analyzes patterns in sema-core/src/sema/inventory/data/ for:
+Analyzes patterns in data/vocabulary/ for:
 1. Missing essential fields (handle, gloss, mechanism, tier, category).
 2. Very short content in gloss or mechanism, indicating potential low quality.
 """

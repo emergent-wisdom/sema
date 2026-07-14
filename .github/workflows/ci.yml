@@ -40,7 +40,7 @@ jobs:
 
       - name: Hash validity (blocking)
         if: matrix.python-version == '3.12'
-        run: python scripts/audit/audit_hash_validity.py
+        run: python -m sema.audit.hash_validity
 
       - name: Vocabulary JSON hashes are stable
         if: matrix.python-version == '3.12'
@@ -57,11 +57,11 @@ jobs:
         if: matrix.python-version == '3.12'
         run: |
           python scripts/vocabulary_merkle_root.py
-          python scripts/audit/run_all_audits.py
+          python -m sema.audit
           if ! git diff --exit-code -- docs/information/vocabulary_information.md docs/information/audit.md; then
             echo "::error::Generated docs are stale. Run locally and commit:"
             echo "  python scripts/vocabulary_merkle_root.py"
-            echo "  python scripts/audit/run_all_audits.py"
+            echo "  python -m sema.audit"
             exit 1
           fi
 
