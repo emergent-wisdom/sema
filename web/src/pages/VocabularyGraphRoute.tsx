@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import GraphPageLazy from './GraphPageLazy'
+import { GraphPageLoader } from './GraphPageLazy'
 
 /**
  * The graph view of one vocabulary. Same data, different lens — reached
@@ -20,7 +20,7 @@ export default function VocabularyGraphRoute() {
           Patterns
         </Link>
       </div>
-      <GraphPageLazy showBackButton={false} />
+      <GraphPageLoader showBackButton={false} />
     </div>
   )
 }
