@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Bot, Check, Copy, Network, Search, ShieldCheck, X } from 'lucide-react'
 import { usePattern, usePatterns } from '@/hooks/useApi'
@@ -31,6 +31,38 @@ export function VocabularyPage() {
   const [jsonView, setJsonView] = useState(false)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [summary, setSummary] = useState<WorkspaceSummary | null>(null)
+  const mobileListScrollY = useRef(0)
+
+  // The narrow-screen detail pane is a modal over the list. Lock the page
+  // underneath it and restore the exact list position when it closes.
+  useLayoutEffect(() => {
+    if (selectedId === null || !window.matchMedia('(max-width: 1023px)').matches) return
+
+    mobileListScrollY.current = window.scrollY
+    const { body } = document
+    const previous = {
+      position: body.style.position,
+      top: body.style.top,
+      left: body.style.left,
+      right: body.style.right,
+      width: body.style.width,
+    }
+
+    body.style.position = 'fixed'
+    body.style.top = `-${mobileListScrollY.current}px`
+    body.style.left = '0'
+    body.style.right = '0'
+    body.style.width = '100%'
+
+    return () => {
+      body.style.position = previous.position
+      body.style.top = previous.top
+      body.style.left = previous.left
+      body.style.right = previous.right
+      body.style.width = previous.width
+      window.scrollTo({ top: mobileListScrollY.current, behavior: 'instant' })
+    }
+  }, [selectedId !== null])
 
   // One template for every vocabulary: header facts come from the API.
   useEffect(() => {
@@ -70,14 +102,6 @@ export function VocabularyPage() {
         (LAYER_ORDER.indexOf(b) + 99 * +(LAYER_ORDER.indexOf(b) < 0))
     )
   }, [filtered])
-
-  const closeDetail = () => {
-    const id = selectedId
-    setSelectedId(null)
-    if (id) requestAnimationFrame(() => {
-      document.getElementById(`pat-${id}`)?.scrollIntoView({ block: 'center' })
-    })
-  }
 
   const selectPattern = (id: string) => {
     const clean = id.split('#')[0]
@@ -269,7 +293,7 @@ export function VocabularyPage() {
             </div>
 
             {/* Detail panel */}
-            <DetailPane selectedId={selectedId} onRef={selectPattern} onClose={closeDetail} />
+            <DetailPane selectedId={selectedId} onRef={selectPattern} onClose={() => setSelectedId(null)} />
           </div>
         )}
       </main>
@@ -319,7 +343,7 @@ function DetailPane({
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-zinc-950 p-6 lg:static lg:z-auto lg:overflow-visible lg:rounded-xl lg:border lg:border-zinc-800 lg:bg-zinc-900/30 lg:p-8"
+      className="fixed inset-0 z-50 overscroll-contain overflow-y-auto bg-zinc-950 p-6 lg:static lg:z-auto lg:overflow-visible lg:rounded-xl lg:border lg:border-zinc-800 lg:bg-zinc-900/30 lg:p-8"
       style={{ borderTop: `3px solid ${layerColor}` }}
     >
       <button
