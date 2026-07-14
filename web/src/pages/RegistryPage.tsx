@@ -491,7 +491,7 @@ function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: (
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
             <Bot className="h-6 w-6" />
           </div>
-          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 3</p>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 2</p>
           <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Connect an MCP-compatible agent</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
             MCP standardizes the server protocol, while each agent has its own setup format. Choose your client below; every option starts the same local Sema stdio server.
@@ -622,7 +622,7 @@ function VocabularyCreator({
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
             <Library className="h-6 w-6" />
           </div>
-          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 2</p>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 1</p>
           <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Create your vocabulary</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
             Choose a name and a starting point. The commands below create a real local vocabulary your agent can use after you connect it.
