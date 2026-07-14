@@ -43,7 +43,7 @@ RUN apt-get update \
 # requires `.claude-plugin/` and `skills/` to exist at build time, so
 # they must be copied before `pip install` even though they aren't
 # imported at runtime.
-COPY pyproject.toml README.md LICENSE LICENSE-CONTENT ./
+COPY pyproject.toml README.md LICENSE LICENSE-CONTENT install.md server.json ./
 COPY src/ ./src/
 COPY data/ ./data/
 COPY docs/ ./docs/
