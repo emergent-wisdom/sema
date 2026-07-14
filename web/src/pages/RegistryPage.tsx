@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { MetaFunction } from 'react-router'
 import {
@@ -18,14 +18,10 @@ import {
   LogOut,
   Network,
   Plus,
-  Search,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react'
 import { SemaLogo } from '@/components/SemaLogo'
 import { LicenseLine } from '@/components/LicenseLine'
-import { useGraph, usePatterns } from '@/hooks/useApi'
-import type { Pattern } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
 
 type Screen = 'discover' | 'connect' | 'create'
@@ -52,7 +48,6 @@ type WorkspaceSummary = {
 }
 
 const MCP_COMMAND = 'claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp'
-const SEMANTIC_EDGE_TYPES = new Set(['REFERENCES', 'COMPOSES_WITH', 'ACCEPTS', 'YIELDS'])
 
 export const meta: MetaFunction = ({ matches }) => {
   const inherited = matches.flatMap((match) => match.meta ?? [])
@@ -69,14 +64,11 @@ export const meta: MetaFunction = ({ matches }) => {
   ]
 }
 
-export function RegistryPage() {
-  const { data: patterns = [], isLoading: patternsLoading } = usePatterns()
-  const { data: graph } = useGraph()
+export function RegistryPage({ initialScreen = 'discover' }: { initialScreen?: Screen } = {}) {
   const [auth, setAuth] = useState<AuthState | null>(null)
   const [workspace, setWorkspace] = useState<WorkspaceSummary | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
-  const [screen, setScreen] = useState<Screen>('discover')
-  const [searchQuery, setSearchQuery] = useState('')
+  const [screen, setScreen] = useState<Screen>(initialScreen)
 
   useEffect(() => {
     let active = true
@@ -110,40 +102,6 @@ export function RegistryPage() {
 
   const authenticated = Boolean(auth?.authenticated && auth.user?.login)
   const authReady = Boolean(auth?.github_oauth_configured && auth?.session_configured)
-
-  const connectedPatterns = useMemo(() => {
-    if (!patterns.length) return []
-
-    const ids = new Set(patterns.map((pattern) => pattern.id))
-    const degree = new Map<string, number>()
-    for (const edge of graph?.edges ?? []) {
-      if (!SEMANTIC_EDGE_TYPES.has(edge.type)) continue
-      if (ids.has(edge.source)) degree.set(edge.source, (degree.get(edge.source) ?? 0) + 1)
-      if (ids.has(edge.target)) degree.set(edge.target, (degree.get(edge.target) ?? 0) + 1)
-    }
-
-    return [...patterns]
-      .sort((left, right) => {
-        const scoreDifference = (degree.get(right.id) ?? 0) - (degree.get(left.id) ?? 0)
-        return scoreDifference || left.id.localeCompare(right.id)
-      })
-      .slice(0, 8)
-      .map((pattern) => ({ pattern, connections: degree.get(pattern.id) ?? 0 }))
-  }, [graph?.edges, patterns])
-
-  const searchResults = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase()
-    if (query.length < 2) return []
-
-    return patterns
-      .filter((pattern) => (
-        pattern.id.toLowerCase().includes(query)
-        || pattern.gloss.toLowerCase().includes(query)
-        || pattern.category.toLowerCase().includes(query)
-        || pattern.layer.toLowerCase().includes(query)
-      ))
-      .slice(0, 12)
-  }, [patterns, searchQuery])
 
   const startAuth = () => {
     window.location.assign('/auth/github/start')
@@ -193,11 +151,6 @@ export function RegistryPage() {
         <Discovery
           authenticated={authenticated}
           workspace={workspace}
-          patternsLoading={patternsLoading}
-          connectedPatterns={connectedPatterns}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          searchResults={searchResults}
           startAuth={startAuth}
           openConnect={() => openProtectedScreen('connect')}
           openCreate={() => openProtectedScreen('create')}
@@ -322,67 +275,38 @@ function RegistryHeader({
 function Discovery({
   authenticated,
   workspace,
-  patternsLoading,
-  connectedPatterns,
-  searchQuery,
-  setSearchQuery,
-  searchResults,
   startAuth,
   openConnect,
   openCreate,
 }: {
   authenticated: boolean
   workspace: WorkspaceSummary | null
-  patternsLoading: boolean
-  connectedPatterns: Array<{ pattern: Pattern; connections: number }>
-  searchQuery: string
-  setSearchQuery: (value: string) => void
-  searchResults: Pattern[]
   startAuth: () => void
   openConnect: () => void
   openCreate: () => void
 }) {
-  const hasSearch = searchQuery.trim().length >= 2
-  const displayedPatterns = hasSearch
-    ? searchResults.map((pattern) => ({ pattern, connections: null }))
-    : connectedPatterns
-
   return (
     <main className="relative">
       <section className="overflow-hidden border-b border-zinc-800/50">
         <div className="absolute left-1/2 top-0 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-900/10 blur-3xl" />
-        <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24">
+        <div className="relative mx-auto max-w-7xl px-6 py-14 sm:py-20">
           <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-300">
-              <Sparkles className="h-3.5 w-3.5" />
-              Public registry preview
-            </div>
-            <h1 className="text-4xl font-light tracking-tight text-zinc-50 sm:text-6xl">
-              Find the patterns your agent should know.
+            <h1 className="text-4xl font-light tracking-tight text-zinc-50 sm:text-5xl">
+              Public vocabularies your agent can verify.
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
-              Explore shared vocabularies, give your agent exact semantic references, and publish a vocabulary of your own.
+              Browse published pattern collections, connect your agent to use
+              them, and publish a vocabulary of your own.
             </p>
-
-            <div className="mx-auto mt-9 flex max-w-2xl items-center gap-3 rounded-2xl border border-zinc-700/80 bg-zinc-900/90 px-4 py-3 shadow-2xl shadow-black/20 focus-within:border-emerald-500/40">
-              <Search className="h-5 w-5 shrink-0 text-zinc-500" />
-              <input
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Search patterns by name, category, or layer"
-                className="w-full bg-transparent text-base text-zinc-100 outline-none placeholder:text-zinc-600"
-              />
-              {patternsLoading ? <Loader2 className="h-4 w-4 animate-spin text-zinc-600" /> : null}
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="#patterns"
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={openConnect}
                 className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-emerald-300"
               >
-                Explore patterns
-                <ArrowRight className="h-4 w-4" />
-              </a>
+                <Bot className="h-4 w-4" />
+                Connect my agent
+              </button>
               <button
                 type="button"
                 onClick={authenticated ? openCreate : startAuth}
@@ -393,41 +317,7 @@ function Discovery({
               </button>
             </div>
           </div>
-
-          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-3 divide-x divide-zinc-800 rounded-xl border border-zinc-800/70 bg-zinc-900/40 py-4 text-center">
-            <RegistryMetric value={String(workspace?.pattern_count ?? 452)} label="Public patterns" />
-            <RegistryMetric value="1" label="Public vocabulary" />
-            <RegistryMetric value="SHA-256" label="Verified identity" />
-          </div>
         </div>
-      </section>
-
-      <section id="patterns" className="mx-auto max-w-7xl px-6 py-14">
-        <SectionHeading
-          kicker={hasSearch ? 'Search results' : 'Top patterns'}
-          title={hasSearch ? `Matches for “${searchQuery.trim()}”` : 'Most connected patterns'}
-          body={hasSearch
-            ? `${searchResults.length} result${searchResults.length === 1 ? '' : 's'} in the public vocabulary.`
-            : 'Ranked by semantic connections in the graph. Real popularity ranking will begin when agent usage events are available.'}
-          action={<Link to="/" className="inline-flex items-center gap-1 text-sm text-emerald-300 hover:text-emerald-200">Browse all <ChevronRight className="h-4 w-4" /></Link>}
-        />
-
-        {displayedPatterns.length > 0 ? (
-          <div className="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-            {displayedPatterns.map(({ pattern, connections }, index) => (
-              <PatternRankCard
-                key={pattern.id}
-                pattern={pattern}
-                rank={hasSearch ? null : index + 1}
-                connections={connections}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="mt-7 rounded-xl border border-dashed border-zinc-800 px-6 py-12 text-center text-sm text-zinc-500">
-            {patternsLoading ? 'Loading patterns…' : 'No patterns match this search yet.'}
-          </div>
-        )}
       </section>
 
       <section className="border-y border-zinc-800/60 bg-zinc-900/20">
@@ -497,58 +387,6 @@ function Discovery({
         </div>
       </section>
     </main>
-  )
-}
-
-function PatternRankCard({
-  pattern,
-  rank,
-  connections,
-}: {
-  pattern: Pattern
-  rank: number | null
-  connections: number | null
-}) {
-  const [copied, setCopied] = useState(false)
-
-  const copyHandle = async () => {
-    await navigator.clipboard.writeText(pattern.handle)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1600)
-  }
-
-  return (
-    <article className="group flex min-h-56 flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/45 p-5 transition-colors hover:border-zinc-700 hover:bg-zinc-900/75">
-      <div className="flex items-center justify-between gap-3">
-        {rank ? (
-          <span className="text-xs font-medium tabular-nums text-zinc-600">#{rank.toString().padStart(2, '0')}</span>
-        ) : (
-          <span className="text-xs font-medium text-zinc-500">{pattern.layer}</span>
-        )}
-        {connections !== null ? (
-          <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500">
-            <Network className="h-3.5 w-3.5" />
-            {connections} links
-          </span>
-        ) : null}
-      </div>
-      <div className="mt-6">
-        <h3 className="text-lg font-medium tracking-tight text-zinc-100">{pattern.id}</h3>
-        <code className="mt-1 block text-xs text-emerald-400/80">#{pattern.stub}</code>
-      </div>
-      <p className="mt-4 line-clamp-3 flex-1 text-sm leading-6 text-zinc-500">{pattern.gloss}</p>
-      <div className="mt-5 flex items-center justify-between border-t border-zinc-800/70 pt-4">
-        <span className="text-xs text-zinc-600">{pattern.category}</span>
-        <button
-          type="button"
-          onClick={copyHandle}
-          className="inline-flex items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-zinc-200"
-        >
-          {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
-          {copied ? 'Copied' : 'Copy handle'}
-        </button>
-      </div>
-    </article>
   )
 }
 
@@ -906,15 +744,6 @@ function SectionHeading({
         <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-500">{body}</p>
       </div>
       {action}
-    </div>
-  )
-}
-
-function RegistryMetric({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="px-3">
-      <span className="block text-lg font-medium text-zinc-200 sm:text-xl">{value}</span>
-      <span className="mt-1 block text-[11px] text-zinc-600 sm:text-xs">{label}</span>
     </div>
   )
 }
