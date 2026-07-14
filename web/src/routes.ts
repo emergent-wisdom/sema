@@ -13,6 +13,7 @@ export default [
     ? [
         route("/registry", "pages/RegistryPage.tsx"),
         route("/connect", "pages/ConnectRoute.tsx"),
+        route("/vocabularies/bootstrap", "pages/VocabularyPage.tsx"),
         // Old public URL — kept as a redirect so bookmarks survive.
         route("/workspace", "pages/WorkspaceRedirect.tsx"),
       ]
