@@ -237,7 +237,7 @@ export function VocabularyPage() {
                   <h3 className="mb-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
                     {category} <span className="normal-case tracking-normal text-zinc-600">· {items.length}</span>
                   </h3>
-                  <div className="grid gap-3 md:grid-cols-2">
+                  <div className="grid items-start gap-3 md:grid-cols-2">
                     {items.map((p) => (
                       <PatternCard key={p.id} pattern={p} onRef={jumpToPattern} expandAll={expandAll} />
                     ))}
