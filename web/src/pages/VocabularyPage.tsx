@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Bot, Check, ChevronDown, Copy, Network, Search, ShieldCheck } from 'lucide-react'
 import { usePatterns } from '@/hooks/useApi'
 import type { Pattern } from '@/types/taxonomy'
+import { LAYER_COLORS } from '@/types/taxonomy'
+import { ParsedText } from '@/components/DetailsPanel'
 import { SemaLogo } from '@/components/SemaLogo'
 import { LicenseLine } from '@/components/LicenseLine'
 import { cn } from '@/lib/utils'
@@ -22,6 +24,7 @@ export function VocabularyPage() {
   const { slug = 'bootstrap' } = useParams()
   const { data: patterns = [], isLoading } = usePatterns()
   const [query, setQuery] = useState('')
+  const [layerFilter, setLayerFilter] = useState<string | null>(null)
   const [summary, setSummary] = useState<WorkspaceSummary | null>(null)
 
   // One template for every vocabulary: header facts come from the API.
@@ -38,24 +41,39 @@ export function VocabularyPage() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
-    if (q.length < 2) return patterns
-    return patterns.filter(
+    const base = layerFilter ? patterns.filter((p) => p.layer === layerFilter) : patterns
+    if (q.length < 2) return base
+    return base.filter(
       (p) =>
         p.id.toLowerCase().includes(q) ||
         p.gloss?.toLowerCase().includes(q) ||
         p.mechanism?.toLowerCase().includes(q) ||
         p.category?.toLowerCase().includes(q)
     )
-  }, [patterns, query])
+  }, [patterns, query, layerFilter])
 
-  const byCategory = useMemo(() => {
-    const map = new Map<string, Pattern[]>()
+  // The vocabulary's own organization: taxonomy layers first (in
+  // canonical order, with their colors), categories inside each layer.
+  const byLayer = useMemo(() => {
+    const layers = new Map<string, Map<string, Pattern[]>>()
     for (const p of filtered) {
+      const layer = p.layer || 'Unknown'
       const cat = p.category || 'Uncategorized'
-      map.set(cat, [...(map.get(cat) ?? []), p])
+      if (!layers.has(layer)) layers.set(layer, new Map())
+      const cats = layers.get(layer)!
+      cats.set(cat, [...(cats.get(cat) ?? []), p])
     }
-    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b))
+    const order = ['Physics', 'Mind', 'Society', 'Infrastructure']
+    return [...layers.entries()].sort(
+      ([a], [b]) => (order.indexOf(a) + 99 * +(order.indexOf(a) < 0)) - (order.indexOf(b) + 99 * +(order.indexOf(b) < 0))
+    )
   }, [filtered])
+
+  const jumpToPattern = (handle: string) => {
+    setLayerFilter(null)
+    setQuery(handle.split('#')[0])
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
@@ -134,6 +152,37 @@ export function VocabularyPage() {
               Graph
             </Link>
           </nav>
+
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setLayerFilter(null)}
+              className={cn(
+                'rounded-full px-3 py-1 text-xs transition-colors',
+                layerFilter === null
+                  ? 'bg-zinc-100 text-zinc-900 font-medium'
+                  : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
+              )}
+            >
+              All layers
+            </button>
+            {(['Physics', 'Mind', 'Society', 'Infrastructure'] as const).map((layer) => (
+              <button
+                key={layer}
+                type="button"
+                onClick={() => setLayerFilter(layerFilter === layer ? null : layer)}
+                className={cn(
+                  'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs transition-colors',
+                  layerFilter === layer
+                    ? 'bg-zinc-800 text-zinc-100 font-medium ring-1 ring-inset ring-zinc-600'
+                    : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
+                )}
+              >
+                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: LAYER_COLORS[layer] }} />
+                {layer}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -143,17 +192,27 @@ export function VocabularyPage() {
         ) : filtered.length === 0 ? (
           <p className="py-16 text-center text-sm text-zinc-500">No patterns match “{query.trim()}”.</p>
         ) : (
-          byCategory.map(([category, items]) => (
-            <section key={category} className="mb-10">
-              <div className="mb-4 flex items-baseline justify-between border-b border-zinc-800/60 pb-2">
-                <h2 className="text-lg font-medium tracking-tight text-zinc-200">{category}</h2>
-                <span className="text-xs tabular-nums text-zinc-500">{items.length}</span>
+          byLayer.map(([layer, cats]) => (
+            <section key={layer} className="mb-12">
+              <div className="mb-6 flex items-center gap-3 border-b border-zinc-800/60 pb-3">
+                <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LAYER_COLORS[layer] || '#71717a' }} />
+                <h2 className="text-xl font-medium tracking-tight text-zinc-100">{layer}</h2>
+                <span className="text-xs tabular-nums text-zinc-500">
+                  {[...cats.values()].reduce((n, items) => n + items.length, 0)}
+                </span>
               </div>
-              <div className="grid gap-3 md:grid-cols-2">
-                {items.map((p) => (
-                  <PatternCard key={p.id} pattern={p} />
-                ))}
-              </div>
+              {[...cats.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([category, items]) => (
+                <div key={category} className="mb-8">
+                  <h3 className="mb-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
+                    {category} <span className="normal-case tracking-normal text-zinc-600">· {items.length}</span>
+                  </h3>
+                  <div className="grid gap-3 md:grid-cols-2">
+                    {items.map((p) => (
+                      <PatternCard key={p.id} pattern={p} onRef={jumpToPattern} />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </section>
           ))
         )}
@@ -169,7 +228,7 @@ export function VocabularyPage() {
   )
 }
 
-function PatternCard({ pattern }: { pattern: Pattern }) {
+function PatternCard({ pattern, onRef }: { pattern: Pattern; onRef: (handle: string) => void }) {
   const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
@@ -179,8 +238,13 @@ function PatternCard({ pattern }: { pattern: Pattern }) {
     setTimeout(() => setCopied(false), 1500)
   }
 
+  const layerColor = LAYER_COLORS[pattern.layer] || '#71717a'
+
   return (
-    <article className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 transition-colors hover:border-zinc-700">
+    <article
+      className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 transition-colors hover:border-zinc-700"
+      style={{ borderLeft: `3px solid ${layerColor}55` }}
+    >
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -203,7 +267,9 @@ function PatternCard({ pattern }: { pattern: Pattern }) {
         <div className="border-t border-zinc-800/60 px-4 pb-4">
           {pattern.mechanism && (
             <PatternSection label="Mechanism">
-              <p className="text-sm leading-6 text-zinc-300">{pattern.mechanism}</p>
+              <p className="text-sm leading-6 text-zinc-300">
+                <ParsedText text={pattern.mechanism} onPatternClick={onRef} />
+              </p>
             </PatternSection>
           )}
           {pattern.invariants?.length > 0 && (
@@ -212,7 +278,7 @@ function PatternCard({ pattern }: { pattern: Pattern }) {
                 {pattern.invariants.map((inv) => (
                   <li key={inv} className="flex gap-2 text-sm leading-6 text-zinc-300">
                     <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-emerald-400/70" />
-                    {inv}
+                    <span><ParsedText text={inv} onPatternClick={onRef} /></span>
                   </li>
                 ))}
               </ul>
