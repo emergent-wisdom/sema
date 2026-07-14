@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowLeft, Bot, Check, ChevronDown, Copy, Search, ShieldCheck } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { ArrowLeft, Bot, Check, ChevronDown, Copy, Network, Search, ShieldCheck } from 'lucide-react'
 import { usePatterns } from '@/hooks/useApi'
 import type { Pattern } from '@/types/taxonomy'
 import { SemaLogo } from '@/components/SemaLogo'
@@ -12,9 +12,29 @@ import { cn } from '@/lib/utils'
  * Every pattern card opens to show what the pattern actually says —
  * gloss, mechanism, invariants — not just a handle and a copy button.
  */
+type WorkspaceSummary = {
+  label?: string
+  pattern_count?: number
+  vocabulary_root_stub?: string
+}
+
 export function VocabularyPage() {
+  const { slug = 'bootstrap' } = useParams()
   const { data: patterns = [], isLoading } = usePatterns()
   const [query, setQuery] = useState('')
+  const [summary, setSummary] = useState<WorkspaceSummary | null>(null)
+
+  // One template for every vocabulary: header facts come from the API.
+  // Today only the default workspace exists; when multi-tenant lands,
+  // this becomes /api/workspaces/{slug} + tenant-scoped pattern reads.
+  useEffect(() => {
+    let active = true
+    fetch('/api/workspace')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (active) setSummary(d) })
+      .catch(() => { if (active) setSummary(null) })
+    return () => { active = false }
+  }, [slug])
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -73,26 +93,27 @@ export function VocabularyPage() {
               </div>
               <div>
                 <div className="flex items-center gap-3">
-                  <h1 className="text-2xl font-medium tracking-tight">Sema Bootstrap</h1>
+                  <h1 className="text-2xl font-medium tracking-tight">{slug === 'bootstrap' ? 'Sema Bootstrap' : (summary?.label ?? slug)}</h1>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
                     <ShieldCheck className="h-3.5 w-3.5" />
                     Public &amp; verified
                   </span>
                 </div>
                 <p className="mt-1 max-w-xl text-sm leading-6 text-zinc-400">
-                  The shared starting vocabulary for agent reasoning, coordination,
-                  verification, and infrastructure.
+                  {slug === 'bootstrap'
+                    ? 'The shared starting vocabulary for agent reasoning, coordination, verification, and infrastructure.'
+                    : 'A published Sema vocabulary.'}
                 </p>
               </div>
             </div>
             <dl className="ref-mono flex gap-8 text-sm">
               <div>
                 <dt className="text-zinc-500">Patterns</dt>
-                <dd className="mt-1 text-zinc-200">{patterns.length || '…'}</dd>
+                <dd className="mt-1 text-zinc-200">{summary?.pattern_count ?? patterns.length ?? '…'}</dd>
               </div>
               <div>
                 <dt className="text-zinc-500">Root</dt>
-                <dd className="mt-1 text-emerald-400/90">46e651aeeb832fdc…</dd>
+                <dd className="mt-1 text-emerald-400/90">{summary?.vocabulary_root_stub ? `${summary.vocabulary_root_stub}…` : '…'}</dd>
               </div>
               <div>
                 <dt className="text-zinc-500">License</dt>
@@ -100,6 +121,19 @@ export function VocabularyPage() {
               </div>
             </dl>
           </div>
+
+          <nav className="mt-8 flex items-center gap-1 border-b border-zinc-800/60">
+            <span className="border-b-2 border-emerald-400 px-3 py-2 text-sm font-medium text-zinc-100">
+              Patterns
+            </span>
+            <Link
+              to={`/vocabularies/${slug}/graph`}
+              className="inline-flex items-center gap-1.5 px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100"
+            >
+              <Network className="h-4 w-4" />
+              Graph
+            </Link>
+          </nav>
         </div>
       </section>
 
@@ -127,7 +161,7 @@ export function VocabularyPage() {
 
       <footer className="border-t border-zinc-800/50">
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-3 px-6 py-6 text-sm text-zinc-500 sm:flex-row sm:items-center">
-          <p>Sema Bootstrap · part of the public registry</p>
+          <p>Part of the public registry</p>
           <LicenseLine />
         </div>
       </footer>
