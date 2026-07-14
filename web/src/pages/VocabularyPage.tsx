@@ -238,7 +238,7 @@ export function VocabularyPage() {
         </div>
       </section>
 
-      <main className="mx-auto max-w-[1400px] px-6 py-8">
+      <main className="mx-auto min-w-0 max-w-[1400px] overflow-x-hidden px-6 py-8">
         {isLoading ? (
           <p className="py-16 text-center text-sm text-zinc-500">Loading vocabulary…</p>
         ) : jsonView ? (
@@ -248,9 +248,9 @@ export function VocabularyPage() {
         ) : filtered.length === 0 ? (
           <p className="py-16 text-center text-sm text-zinc-500">No patterns match “{query.trim()}”.</p>
         ) : (
-          <div className="grid items-start gap-8 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
+          <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] items-start gap-8 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
             {/* Master list */}
-            <div className="scroll-slim lg:sticky lg:top-[60px] lg:h-[calc(100vh-76px)] lg:overflow-y-auto lg:pr-3">
+            <div className="scroll-slim min-w-0 lg:sticky lg:top-[60px] lg:h-[calc(100vh-76px)] lg:overflow-y-auto lg:pr-3">
               {byLayer.map(([layer, cats]) => (
                 <section key={layer} className="mb-6">
                   <div className="sticky top-0 z-10 flex items-center gap-2 bg-zinc-950/95 py-1.5 backdrop-blur">
@@ -272,13 +272,13 @@ export function VocabularyPage() {
                           type="button"
                           onClick={() => setSelectedId(p.id)}
                           className={cn(
-                            'block w-full rounded-lg border-l-2 px-3 py-2 text-left transition-colors',
+                            'block min-w-0 w-full overflow-hidden rounded-lg border-l-2 px-3 py-2 text-left transition-colors',
                             selectedId === p.id ? 'bg-zinc-800/80' : 'hover:bg-zinc-900/70'
                           )}
                           style={{ borderLeftColor: `${LAYER_COLORS[p.layer] || '#71717a'}${selectedId === p.id ? 'ff' : '55'}` }}
                         >
-                          <span className="flex items-baseline gap-2">
-                            <span className={cn('text-sm font-medium', selectedId === p.id ? 'text-zinc-50' : 'text-zinc-200')}>
+                          <span className="flex min-w-0 items-baseline gap-2">
+                            <span className={cn('min-w-0 truncate text-sm font-medium', selectedId === p.id ? 'text-zinc-50' : 'text-zinc-200')}>
                               {p.id}
                             </span>
                             <code className="ref-mono text-emerald-400/70">#{p.stub}</code>
