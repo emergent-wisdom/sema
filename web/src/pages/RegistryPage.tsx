@@ -130,7 +130,6 @@ export function RegistryPage({ initialScreen = 'discover' }: { initialScreen?: S
         authLoading={authLoading}
         authReady={authReady}
         user={auth?.user}
-        screen={screen}
         setScreen={setScreen}
         startAuth={startAuth}
         openCreate={() => openProtectedScreen('create')}
@@ -172,7 +171,6 @@ function RegistryHeader({
   authLoading,
   authReady,
   user,
-  screen,
   setScreen,
   startAuth,
   openCreate,
@@ -181,7 +179,6 @@ function RegistryHeader({
   authLoading: boolean
   authReady: boolean
   user?: GitHubUser | null
-  screen: Screen
   setScreen: (screen: Screen) => void
   startAuth: () => void
   openCreate: () => void
@@ -203,18 +200,6 @@ function RegistryHeader({
           </span>
         </button>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          <button
-            type="button"
-            onClick={() => setScreen('discover')}
-            className={cn(
-              'rounded-lg px-3 py-2 text-sm transition-colors',
-              screen === 'discover' ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-400 hover:text-zinc-100'
-            )}
-          >
-            Explore
-          </button>
-        </nav>
 
         <div className="flex items-center gap-2">
           {authLoading ? (
