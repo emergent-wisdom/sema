@@ -218,7 +218,7 @@ export function VocabularyPage() {
         ) : (
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
             {/* Master list */}
-            <div className="max-h-[calc(100vh-140px)] overflow-y-auto pr-1 lg:sticky lg:top-[76px]">
+            <div className="pr-1 lg:sticky lg:top-[60px] lg:h-[calc(100vh-76px)] lg:overflow-y-auto">
               {byLayer.map(([layer, cats]) => (
                 <section key={layer} className="mb-6">
                   <div className="sticky top-0 z-10 flex items-center gap-2 bg-zinc-950/95 py-1.5 backdrop-blur">
@@ -291,7 +291,7 @@ function DetailPane({
 
   if (!selectedId) {
     return (
-      <div className="hidden rounded-xl border border-dashed border-zinc-800 px-8 py-24 text-center lg:block">
+      <div className="hidden rounded-xl border border-dashed border-zinc-800 px-8 py-24 text-center lg:sticky lg:top-[76px] lg:block">
         <p className="text-sm text-zinc-500">Select a pattern to inspect it.</p>
         <p className="mt-2 text-xs text-zinc-600">
           Gloss, mechanism, invariants, contracts, and dependencies appear here.
@@ -311,7 +311,7 @@ function DetailPane({
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-zinc-950 p-6 lg:static lg:z-auto lg:max-h-[calc(100vh-140px)] lg:rounded-xl lg:border lg:border-zinc-800 lg:bg-zinc-900/30 lg:p-8"
+      className="fixed inset-0 z-50 overflow-y-auto bg-zinc-950 p-6 lg:static lg:z-auto lg:overflow-visible lg:rounded-xl lg:border lg:border-zinc-800 lg:bg-zinc-900/30 lg:p-8"
       style={{ borderTop: `3px solid ${layerColor}` }}
     >
       <button
