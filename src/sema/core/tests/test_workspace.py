@@ -1,6 +1,14 @@
 import hashlib
 
-from sema.core.workspace import GraphWorkspace, WorkspaceSession, WorkspaceSource
+import pytest
+
+from sema.core.workspace import (
+    GraphWorkspace,
+    WorkspaceCatalog,
+    WorkspaceNotFoundError,
+    WorkspaceSession,
+    WorkspaceSource,
+)
 
 
 class StubRegistry:
@@ -196,3 +204,49 @@ def test_workspace_description_exposes_hosted_identity_fields():
     assert description["pattern_count"] == 2
     assert description["db_path"] == "/tmp/workspace.db"
     assert description["data_source"] == "stub"
+
+
+def test_workspace_catalog_opens_each_tenant_lazily_once():
+    opened = []
+
+    def factory(source):
+        opened.append(source.workspace_id)
+        return GraphWorkspace(source, registry_manager=StubRegistry())
+
+    catalog = WorkspaceCatalog(
+        [
+            WorkspaceSource(workspace_id="team-a", db_path="/tmp/a.db"),
+            WorkspaceSource(workspace_id="team-b", db_path="/tmp/b.db"),
+        ],
+        workspace_factory=factory,
+    )
+
+    team_a = catalog.resolve("team-a")
+
+    assert catalog.resolve("team-a") is team_a
+    assert catalog.resolve("team-b") is not team_a
+    assert opened == ["team-a", "team-b"]
+
+
+def test_workspace_catalog_replacing_source_invalidates_cached_workspace():
+    catalog = WorkspaceCatalog(
+        [WorkspaceSource(workspace_id="team-a", label="Old")],
+        workspace_factory=lambda source: GraphWorkspace(source, registry_manager=StubRegistry()),
+    )
+    old_workspace = catalog.resolve("team-a")
+
+    catalog.register_source(WorkspaceSource(workspace_id="team-a", label="New"))
+    new_workspace = catalog.resolve("team-a")
+
+    assert new_workspace is not old_workspace
+    assert new_workspace.source.label == "New"
+
+
+def test_workspace_catalog_rejects_unknown_or_ambiguous_ids():
+    catalog = WorkspaceCatalog()
+
+    with pytest.raises(ValueError, match="surrounding whitespace"):
+        catalog.register_source(WorkspaceSource(workspace_id=" team-a "))
+
+    with pytest.raises(WorkspaceNotFoundError, match="missing"):
+        catalog.resolve("missing")
