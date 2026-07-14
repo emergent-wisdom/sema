@@ -218,7 +218,7 @@ export function VocabularyPage() {
         ) : (
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
             {/* Master list */}
-            <div className="pr-1 lg:sticky lg:top-[60px] lg:h-[calc(100vh-76px)] lg:overflow-y-auto">
+            <div className="scroll-slim lg:sticky lg:top-[60px] lg:h-[calc(100vh-76px)] lg:overflow-y-auto lg:pr-3">
               {byLayer.map(([layer, cats]) => (
                 <section key={layer} className="mb-6">
                   <div className="sticky top-0 z-10 flex items-center gap-2 bg-zinc-950/95 py-1.5 backdrop-blur">

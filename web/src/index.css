@@ -105,3 +105,17 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Slim inner-pane scrollbar: thumb only, no track — for sidebars whose
+   scroll shouldn't read as a structural divider. */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(113 113 122 / 0.4) transparent;
+}
+.scroll-slim::-webkit-scrollbar { width: 5px; height: 5px; }
+.scroll-slim::-webkit-scrollbar-track { background: transparent; }
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: rgba(113 113 122 / 0.35);
+  border-radius: 4px;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover { background: rgba(113 113 122 / 0.6); }
