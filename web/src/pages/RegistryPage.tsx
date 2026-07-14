@@ -214,12 +214,6 @@ function RegistryHeader({
           >
             Explore
           </button>
-          <Link to="/" className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100">
-            All patterns
-          </Link>
-          <Link to="/graph" className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100">
-            Graph
-          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
