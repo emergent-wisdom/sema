@@ -9,7 +9,6 @@ Usage:
     python scripts/audit/run_all_audits.py
 """
 
-import datetime
 import os
 import subprocess
 import sys
@@ -54,8 +53,7 @@ def run_audit(script: str) -> tuple[int, str]:
 
 
 def main():
-    date = datetime.date.today().isoformat()
-    sections = [f"# Vocabulary Audit Report\n\nGenerated: {date}\n"]
+    sections = ["# Vocabulary Audit Report\n"]
     sections.append(
         "All audits below are **advisory**. Heuristic audits generate false positives; "
         "use this report as a starting point for manual review, not as a correctness gate.\n"

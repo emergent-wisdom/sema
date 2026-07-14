@@ -1,7 +1,5 @@
 # Vocabulary Audit Report
 
-Generated: 2026-07-07
-
 All audits below are **advisory**. Heuristic audits generate false positives; use this report as a starting point for manual review, not as a correctness gate.
 
 ## Hash validity (stored sema_id matches content)
