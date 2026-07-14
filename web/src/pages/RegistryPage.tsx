@@ -356,11 +356,11 @@ function Discovery({
               <span>
                 <span className="block text-lg font-medium text-zinc-200">Publish your vocabulary</span>
                 <span className="mt-2 block max-w-sm text-sm leading-6 text-zinc-500">
-                  Log in, create a vocabulary, then connect an agent to work on it with you.
+                  Create locally and connect an agent now. Hosted GitHub publishing is the next registry milestone.
                 </span>
               </span>
               <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
-                {authenticated ? 'Start creating' : 'Start locally'}
+                Start locally
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </button>
@@ -377,15 +377,6 @@ function Discovery({
         <div className="mt-7 grid gap-4 md:grid-cols-3">
           <JourneyStep
             number="01"
-            icon={Github}
-            title="GitHub login (optional)"
-            body="Use GitHub as your identity when you want to save or publish. Browsing remains public."
-            action={authenticated ? 'You are signed in' : 'Log in with GitHub'}
-            onClick={authenticated ? undefined : startAuth}
-            complete={authenticated}
-          />
-          <JourneyStep
-            number="02"
             icon={Library}
             title="Create your own"
             body="Start from the public library, a smaller preset, or an empty vocabulary."
@@ -393,12 +384,21 @@ function Discovery({
             onClick={openCreate}
           />
           <JourneyStep
-            number="03"
+            number="02"
             icon={Bot}
             title="Connect your agent"
             body="Choose your MCP client and connect it to the vocabulary you selected."
             action="Connect agent"
             onClick={openConnect}
+          />
+          <JourneyStep
+            number="03"
+            icon={Github}
+            title="Publish later"
+            body="GitHub will identify you when saving and publishing goes live. It is not required for local work."
+            action={authenticated ? 'GitHub connected' : 'Log in with GitHub'}
+            onClick={authenticated ? undefined : startAuth}
+            complete={authenticated}
           />
         </div>
       </section>
