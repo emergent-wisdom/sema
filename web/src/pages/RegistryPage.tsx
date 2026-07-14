@@ -586,7 +586,7 @@ function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: (
         </section>
 
         <aside className="space-y-4">
-          <InfoCard icon={Check} title="GitHub login complete" body="Your Sema account is connected to your GitHub identity." tone="success" />
+          <InfoCard icon={Check} title="No account required" body="Local MCP setup works without signing in. GitHub login is only needed to save or publish a vocabulary." tone="success" />
           <InfoCard icon={Link2} title="One server, many clients" body="Claude Code, Codex, Cursor, VS Code, and Claude Desktop all launch the same Sema stdio server." />
           <InfoCard icon={ShieldCheck} title="The agent gets instructions" body="Sema supplies workflow guidance and detailed tool descriptions during MCP initialization; the kickoff prompt makes the writable-vocabulary check explicit." />
           <InfoCard icon={Network} title="Hosted endpoint next" body="A workspace-specific hosted MCP URL will arrive with the GitHub import and publishing backend." />
