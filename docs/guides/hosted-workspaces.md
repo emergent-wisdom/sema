@@ -76,3 +76,38 @@ The repo already has Railway-compatible deployment files (`railway.json`,
 `Dockerfile`, `Dockerfile.web`). Scaling the hosted process is plausible once the
 workspace boundary is real, but deployment should wait until tenant state is not
 held in process-wide globals.
+
+### Staging promotion gate
+
+Every multi-tenant or deployment-affecting change must run on the separate
+Railway staging service before it is merged to `main`:
+
+- Railway project: `semahash-staging`
+- Service: `sema-web`
+- URL: `https://sema-web-production.up.railway.app`
+
+From the feature worktree, link the staging target once and deploy the checked-out
+commit:
+
+```bash
+railway link \
+  --workspace "Emergent Wisdom" \
+  --project semahash-staging \
+  --environment production \
+  --service sema-web
+railway up --detach --service sema-web
+```
+
+After Railway reports a successful and healthy deployment, run the repeatable
+tenant-boundary smoke test:
+
+```bash
+python3 scripts/smoke_hosted_workspaces.py \
+  https://sema-web-production.up.railway.app
+```
+
+The gate checks that the known workspace can be read, private materialization
+fields are not exposed, search/lookup/resolve/root work, and unknown workspace
+IDs return 404 across every tenant route instead of falling back to another
+workspace. The PR should record the deployed commit and passing command. Merge
+to `main` only after CI and this staging gate both pass.
