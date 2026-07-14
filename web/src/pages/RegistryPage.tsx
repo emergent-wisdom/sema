@@ -148,11 +148,7 @@ export function RegistryPage({ initialScreen = 'discover' }: { initialScreen?: S
     window.location.assign('/auth/github/start')
   }
 
-  const openProtectedScreen = (nextScreen: Exclude<Screen, 'discover'>) => {
-    if (!authenticated) {
-      startAuth()
-      return
-    }
+  const openScreen = (nextScreen: Exclude<Screen, 'discover'>) => {
     setScreen(nextScreen)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -173,7 +169,7 @@ export function RegistryPage({ initialScreen = 'discover' }: { initialScreen?: S
         user={auth?.user}
         setScreen={setScreen}
         startAuth={startAuth}
-        openCreate={() => openProtectedScreen('create')}
+        openCreate={() => openScreen('create')}
       />
 
       {screen === 'connect' ? (
@@ -192,8 +188,8 @@ export function RegistryPage({ initialScreen = 'discover' }: { initialScreen?: S
           authenticated={authenticated}
           workspace={workspace}
           startAuth={startAuth}
-          openConnect={() => openProtectedScreen('connect')}
-          openCreate={() => openProtectedScreen('create')}
+          openConnect={() => openScreen('connect')}
+          openCreate={() => openScreen('create')}
         />
       )}
 
@@ -329,11 +325,11 @@ function Discovery({
               </button>
               <button
                 type="button"
-                onClick={authenticated ? openCreate : startAuth}
+                onClick={openCreate}
                 className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/70 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-800"
               >
-                <Github className="h-4 w-4" />
-                {authenticated ? 'Create a vocabulary' : 'Log in to create'}
+                <Library className="h-4 w-4" />
+                Create a vocabulary
               </button>
             </div>
           </div>
@@ -364,7 +360,7 @@ function Discovery({
                 </span>
               </span>
               <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
-                {authenticated ? 'Start creating' : 'Log in to start'}
+                {authenticated ? 'Start creating' : 'Start locally'}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </button>
@@ -382,7 +378,7 @@ function Discovery({
           <JourneyStep
             number="01"
             icon={Github}
-            title="Log in"
+            title="GitHub login (optional)"
             body="Use GitHub as your identity when you want to save or publish. Browsing remains public."
             action={authenticated ? 'You are signed in' : 'Log in with GitHub'}
             onClick={authenticated ? undefined : startAuth}
