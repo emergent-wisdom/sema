@@ -22,6 +22,11 @@ COPY web/package.json web/package-lock.json ./
 RUN npm ci
 
 COPY web/ ./
+# Vite inlines VITE_* at build time; Railway passes service variables to
+# Docker builds only as build args, so declare it or the workspace route
+# gets silently compiled out of deploys.
+ARG VITE_ENABLE_WORKSPACE
+ENV VITE_ENABLE_WORKSPACE=${VITE_ENABLE_WORKSPACE}
 RUN npm run build
 
 # ── Stage 2: Python runtime serving the compiled frontend + API ──────

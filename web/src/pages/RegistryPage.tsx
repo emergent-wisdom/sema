@@ -21,7 +21,6 @@ import {
   Search,
   ShieldCheck,
   Sparkles,
-  Users,
 } from 'lucide-react'
 import { SemaLogo } from '@/components/SemaLogo'
 import { LicenseLine } from '@/components/LicenseLine'
