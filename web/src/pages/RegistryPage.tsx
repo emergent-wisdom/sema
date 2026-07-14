@@ -695,7 +695,14 @@ function VocabularyCreator({
         </section>
 
         <aside className="space-y-4">
-          <InfoCard icon={CircleUserRound} title={`Signed in as @${user?.login ?? 'GitHub user'}`} body="This identity will own hosted vocabularies once publishing is enabled." tone="success" />
+          <InfoCard
+            icon={CircleUserRound}
+            title={user?.login ? `Signed in as @${user.login}` : 'Local vocabulary'}
+            body={user?.login
+              ? 'This identity will own hosted vocabularies once publishing is enabled.'
+              : 'This vocabulary lives on your computer. GitHub login will only matter when hosted publishing is enabled.'}
+            tone={user?.login ? 'success' : undefined}
+          />
           <InfoCard icon={Lock} title="Nothing fake is saved" body="This staging screen generates working local commands. It does not pretend a hosted vocabulary was created." />
           <InfoCard icon={Github} title="Publishing is not live yet" body="GitHub App installation, repository import, and the public registry record are the next backend milestone." />
         </aside>
