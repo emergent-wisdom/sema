@@ -25,6 +25,8 @@ export function VocabularyPage() {
   const { data: patterns = [], isLoading } = usePatterns()
   const [query, setQuery] = useState('')
   const [layerFilter, setLayerFilter] = useState<string | null>(null)
+  const [expandAll, setExpandAll] = useState(false)
+  const [jsonView, setJsonView] = useState(false)
   const [summary, setSummary] = useState<WorkspaceSummary | null>(null)
 
   // One template for every vocabulary: header facts come from the API.
@@ -182,6 +184,31 @@ export function VocabularyPage() {
                 {layer}
               </button>
             ))}
+            <span className="mx-1 hidden h-4 w-px bg-zinc-800 sm:block" />
+            <button
+              type="button"
+              onClick={() => setExpandAll((v) => !v)}
+              className={cn(
+                'rounded-full px-3 py-1 text-xs transition-colors',
+                expandAll
+                  ? 'bg-zinc-800 text-zinc-100 font-medium ring-1 ring-inset ring-zinc-600'
+                  : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
+              )}
+            >
+              {expandAll ? 'Collapse all' : 'Expand all'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setJsonView((v) => !v)}
+              className={cn(
+                'ref-mono rounded-full px-3 py-1 text-xs transition-colors',
+                jsonView
+                  ? 'bg-zinc-800 text-zinc-100 font-medium ring-1 ring-inset ring-zinc-600'
+                  : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
+              )}
+            >
+              {jsonView ? 'Card view' : 'JSON view'}
+            </button>
           </div>
         </div>
       </section>
@@ -191,6 +218,10 @@ export function VocabularyPage() {
           <p className="py-16 text-center text-sm text-zinc-500">Loading vocabulary…</p>
         ) : filtered.length === 0 ? (
           <p className="py-16 text-center text-sm text-zinc-500">No patterns match “{query.trim()}”.</p>
+        ) : jsonView ? (
+          <pre className="ref-mono overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs leading-5 text-zinc-400">
+            {JSON.stringify(filtered, null, 2)}
+          </pre>
         ) : (
           byLayer.map(([layer, cats]) => (
             <section key={layer} className="mb-12">
@@ -208,7 +239,7 @@ export function VocabularyPage() {
                   </h3>
                   <div className="grid gap-3 md:grid-cols-2">
                     {items.map((p) => (
-                      <PatternCard key={p.id} pattern={p} onRef={jumpToPattern} />
+                      <PatternCard key={p.id} pattern={p} onRef={jumpToPattern} expandAll={expandAll} />
                     ))}
                   </div>
                 </div>
@@ -228,9 +259,11 @@ export function VocabularyPage() {
   )
 }
 
-function PatternCard({ pattern, onRef }: { pattern: Pattern; onRef: (handle: string) => void }) {
-  const [open, setOpen] = useState(false)
+function PatternCard({ pattern, onRef, expandAll }: { pattern: Pattern; onRef: (handle: string) => void; expandAll: boolean }) {
+  const [localOpen, setLocalOpen] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [showJson, setShowJson] = useState(false)
+  const open = localOpen || expandAll
 
   const copyHandle = async () => {
     await navigator.clipboard.writeText(pattern.handle)
@@ -247,7 +280,7 @@ function PatternCard({ pattern, onRef }: { pattern: Pattern; onRef: (handle: str
     >
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setLocalOpen((v) => !v)}
         className="flex w-full items-start justify-between gap-4 p-4 text-left"
       >
         <div className="min-w-0">
@@ -284,8 +317,22 @@ function PatternCard({ pattern, onRef }: { pattern: Pattern; onRef: (handle: str
               </ul>
             </PatternSection>
           )}
+          {showJson && (
+            <pre className="ref-mono mt-4 max-h-80 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs leading-5 text-zinc-400">
+              {JSON.stringify(pattern, null, 2)}
+            </pre>
+          )}
           <div className="mt-4 flex items-center justify-between">
-            <code className="ref-mono text-xs text-zinc-500">{pattern.layer} / {pattern.category}</code>
+            <div className="flex items-center gap-3">
+              <code className="ref-mono text-xs text-zinc-500">{pattern.layer} / {pattern.category}</code>
+              <button
+                type="button"
+                onClick={() => setShowJson((v) => !v)}
+                className="ref-mono text-xs text-zinc-500 transition-colors hover:text-zinc-200"
+              >
+                {showJson ? 'hide json' : 'json'}
+              </button>
+            </div>
             <button
               type="button"
               onClick={copyHandle}
