@@ -24,7 +24,26 @@ Sema is a semantic commons that content-addresses meaning itself: the definition
 
 ### MCP Server (recommended)
 
-Add to any MCP client (Claude Code, Cursor, VS Code, Windsurf, Claude Desktop):
+Sema uses MCP's local **stdio** transport. MCP standardizes the protocol, but
+each agent has its own server-registration format. Install
+[uv](https://docs.astral.sh/uv/getting-started/installation/) first, then use
+the instructions for your client.
+
+#### Claude Code
+
+```bash
+claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
+```
+
+#### Codex
+
+```bash
+codex mcp add sema -- uvx --from "semahash[mcp]" sema mcp
+```
+
+#### Cursor
+
+Add to `.cursor/mcp.json`:
 
 ```json
 {
@@ -37,10 +56,33 @@ Add to any MCP client (Claude Code, Cursor, VS Code, Windsurf, Claude Desktop):
 }
 ```
 
-Or via Claude Code CLI:
+#### VS Code
 
-```bash
-claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
+Add to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "sema": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+    }
+  }
+}
+```
+
+#### Claude Desktop and clients using `mcpServers`
+
+```json
+{
+  "mcpServers": {
+    "sema": {
+      "command": "uvx",
+      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+    }
+  }
+}
 ```
 
 This uses [uv](https://docs.astral.sh/uv/) to download, install, and run sema
@@ -92,7 +134,10 @@ pip install -e "./sema[mcp]"
 
 Your agent now has access to `sema_search`, `sema_lookup`, `sema_handshake`, and 9 more tools. Any MCP-compatible client works — Sema exposes a standard stdio server.
 
-**Verify it works** — ask your agent: *"Search sema for coordination patterns and handshake on StateLock"*
+**Verify it works** — ask your agent: *"Use the Sema tools. First call
+`sema_use` with no arguments and report which vocabulary is active and whether
+it is bundled/read-only. Then search Sema for coordination patterns. Do not mint
+anything yet."*
 
 Sema exposes a standard MCP stdio server — any MCP-compatible client works, including [OpenClaw](https://openclaw.ai/) (`openclaw mcp set sema '{"command":"uvx","args":["--from","semahash[mcp]","sema","mcp"]}'`).
 
@@ -115,21 +160,21 @@ sema skeleton
 sema serve
 ```
 
-### Bring Your Own Vocabulary
+### Create Your Own Vocabulary
 
-Build a private registry from scratch — no PR or maintainer in the loop:
+The bundled vocabulary is read-only. Create and select a writable project
+vocabulary before connecting your agent:
 
 ```bash
-sema init ./mylib.db
-export SEMA_DB_PATH=$(pwd)/mylib.db
-sema apply --add path/to/MyPattern.json
-sema search "..."
+uvx --from "semahash[mcp]" sema build my-vocabulary.db --preset full
+uvx --from "semahash[mcp]" sema use my-vocabulary.db
 ```
 
-Subsequent `sema` commands (including `sema mcp`) read from your private
-registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
-contribution path and [docs/specification/versioning.md](docs/specification/versioning.md) for the
-refinement and supersession policy.
+Then connect or restart the MCP server. It will open the selected vocabulary,
+and the agent can search, validate, and mint into it. Presets are `full`,
+`standard`, and `empty`. See the
+[getting-started guide](docs/guides/getting-started.md#create-your-own-vocabulary)
+for selective builds and the complete workflow.
 
 ### Use in Python
 

@@ -36,7 +36,16 @@ mcp = FastMCP(
         "3. DEEPEN: `sema_resolve(handle)` - inspect mechanism & dependencies\n"
         "4. ALIGN: `sema_handshake(ref)` - verify exact definition match\n"
         "5. COORDINATE: `sema_propose_context` / `sema_verify_context` - multi-agent alignment\n"
-        "6. CREATE: `sema_mint(pattern_json)` - mint new patterns into the vocabulary\n\n"
+        "6. CREATE: draft -> `sema_validate(pattern_json)` -> user approval -> `sema_mint(pattern_json)`\n\n"
+        "BEFORE CREATING:\n"
+        "- Call `sema_use()` with no arguments and inspect `bundled`. The bundled vocabulary is read-only.\n"
+        "- If it is bundled and you have terminal access, run "
+        "`uvx --from 'semahash[mcp]' sema build my-vocabulary.db --preset full`, then call "
+        "`sema_use(db_path='<absolute path>/my-vocabulary.db')`.\n"
+        "- If you do not have terminal access, give that command to the user and ask them to reconnect "
+        "Sema after running it.\n"
+        "- Search for existing patterns before proposing a new one. Draft and validate first; do not mint "
+        "until the user approves unless they explicitly authorized autonomous minting.\n\n"
         "UPDATING: `sema_pull` refreshes the local vocabulary from upstream. Only call it "
         "when you have a concrete reason — the user mentions upgrading, `sema_handshake` "
         "returns HALT, or an expected pattern is missing. Do NOT call it reflexively at "
@@ -254,7 +263,8 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
         return json.dumps(
             {
                 "error": "Cannot use the bundled DB — it gets overwritten on upgrade. "
-                "Run `sema build my.db --preset full` then `sema_use(db_path='my.db')` first."
+                "Run `uvx --from 'semahash[mcp]' sema build my.db --preset full` then "
+                "`sema_use(db_path='<absolute path>/my.db')` first."
             }
         )
 
@@ -373,7 +383,9 @@ def _sema_mint(pattern_json: str) -> str:
                 "success": False,
                 "errors": [
                     "Cannot mint into the bundled vocabulary — it gets overwritten on upgrade. "
-                    "Run `sema build my.db --preset full` then `sema use my.db` to create your own vocabulary first."
+                    "Run `uvx --from 'semahash[mcp]' sema build my.db --preset full`, then "
+                    "call `sema_use(db_path='<absolute path>/my.db')` to create and select "
+                    "your own vocabulary first."
                 ],
             }
         )

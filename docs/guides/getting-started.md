@@ -15,7 +15,26 @@ This installs the MCP server plus the `sema-usage` skill that teaches the agent 
 
 ### MCP Server (any client)
 
-Add to your MCP client config (Claude Code, Cursor, VS Code, Claude Desktop):
+Sema uses MCP's local stdio transport. MCP standardizes the protocol, not the
+client configuration file, so register the same Sema server using the format
+your client expects. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+first so `uvx` is available.
+
+#### Claude Code
+
+```bash
+claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
+```
+
+#### Codex
+
+```bash
+codex mcp add sema -- uvx --from "semahash[mcp]" sema mcp
+```
+
+#### Cursor
+
+Add to `.cursor/mcp.json`:
 
 ```json
 {
@@ -28,10 +47,33 @@ Add to your MCP client config (Claude Code, Cursor, VS Code, Claude Desktop):
 }
 ```
 
-Or via Claude Code CLI:
+#### VS Code
 
-```bash
-claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp
+Add to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "sema": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+    }
+  }
+}
+```
+
+#### Claude Desktop and clients using `mcpServers`
+
+```json
+{
+  "mcpServers": {
+    "sema": {
+      "command": "uvx",
+      "args": ["--from", "semahash[mcp]", "sema", "mcp"]
+    }
+  }
+}
 ```
 
 ### Via pip
@@ -45,16 +87,20 @@ pip install "semahash[mcp]"
 `sema_mint` is exposed by default. Deployments that want a read-only server (no pattern creation from MCP clients) can hide the tool with:
 
 ```bash
-SEMA_DISABLE_MINT=true claude
+SEMA_DISABLE_MINT=true uvx --from "semahash[mcp]" sema mcp
 ```
 
-A matching `SEMA_DISABLE_PULL=true` hides `sema_pull` for pinned-vocabulary deployments.
+Put the same environment variable in your client's MCP server configuration if
+the client launches Sema for you. A matching `SEMA_DISABLE_PULL=true` hides
+`sema_pull` for pinned-vocabulary deployments.
 
 ## Verify it works
 
-Ask your agent:
+After Sema appears in the client's tool list, ask your agent:
 
-> Search sema for coordination patterns
+> Use the Sema tools. First call `sema_use` with no arguments and report which
+> vocabulary is active and whether it is bundled/read-only. Then search Sema
+> for coordination patterns. Do not mint anything yet.
 
 You should see results like `Consensus#45f4`, `Vote#3b66`, `StateLock#7cd8`.
 
@@ -68,14 +114,18 @@ Sema handles are thinking tools, not footnotes:
 
 ## Create your own vocabulary
 
-The bundled vocabulary is read-only. To mint your own patterns:
+The bundled vocabulary is read-only. Create and select a writable vocabulary
+before connecting your agent:
 
 ```bash
-sema build my-project.db --preset full
-sema use my-project.db
+uvx --from "semahash[mcp]" sema build my-project.db --preset full
+uvx --from "semahash[mcp]" sema use my-project.db
 ```
 
-Then `sema_mint` works. Your project DB survives package upgrades.
+Then connect or restart the MCP server. Sema provides workflow instructions
+during MCP initialization, so the agent knows to search first, draft and
+validate a pattern, and wait for approval before `sema_mint`. Your project DB
+survives package upgrades.
 
 Presets: `full` (all default patterns), `standard` (curated subset), `empty` (blank).
 
@@ -83,7 +133,7 @@ Or pick specific patterns:
 
 ```bash
 printf "ChainOfThought\nVote\nConsensus\n" > patterns.txt
-sema build my-project.db --from patterns.txt
+uvx --from "semahash[mcp]" sema build my-project.db --from patterns.txt
 ```
 
 Dependencies are resolved automatically.

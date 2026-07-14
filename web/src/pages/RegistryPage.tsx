@@ -26,6 +26,7 @@ import { cn } from '@/lib/utils'
 
 type Screen = 'discover' | 'connect' | 'create'
 type Preset = 'full' | 'standard' | 'empty'
+type McpClientId = 'claude-code' | 'codex' | 'cursor' | 'vscode' | 'claude-desktop'
 
 type GitHubUser = {
   login?: string
@@ -47,7 +48,47 @@ type WorkspaceSummary = {
   vocabulary_root_stub: string
 }
 
-const MCP_COMMAND = 'claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp'
+const MCP_ARGS = ['--from', 'semahash[mcp]', 'sema', 'mcp']
+const AGENT_KICKOFF_PROMPT =
+  'Use the Sema tools to help me build a vocabulary. First call sema_use with no arguments and report which vocabulary is active and whether it is bundled/read-only. Search existing patterns before proposing new ones. Draft and validate each new pattern, and wait for my approval before calling sema_mint.'
+
+const MCP_SETUPS: Array<{
+  id: McpClientId
+  label: string
+  location: string
+  snippet: string
+}> = [
+  {
+    id: 'claude-code',
+    label: 'Claude Code',
+    location: 'Run in a terminal',
+    snippet: 'claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp',
+  },
+  {
+    id: 'codex',
+    label: 'Codex',
+    location: 'Run in a terminal',
+    snippet: 'codex mcp add sema -- uvx --from "semahash[mcp]" sema mcp',
+  },
+  {
+    id: 'cursor',
+    label: 'Cursor',
+    location: 'Add to .cursor/mcp.json',
+    snippet: JSON.stringify({ mcpServers: { sema: { command: 'uvx', args: MCP_ARGS } } }, null, 2),
+  },
+  {
+    id: 'vscode',
+    label: 'VS Code',
+    location: 'Add to .vscode/mcp.json',
+    snippet: JSON.stringify({ servers: { sema: { type: 'stdio', command: 'uvx', args: MCP_ARGS } } }, null, 2),
+  },
+  {
+    id: 'claude-desktop',
+    label: 'Claude Desktop',
+    location: 'Add to claude_desktop_config.json',
+    snippet: JSON.stringify({ mcpServers: { sema: { command: 'uvx', args: MCP_ARGS } } }, null, 2),
+  },
+]
 
 export const meta: MetaFunction = ({ matches }) => {
   const inherited = matches.flatMap((match) => match.meta ?? [])
@@ -319,7 +360,7 @@ function Discovery({
               <span>
                 <span className="block text-lg font-medium text-zinc-200">Publish your vocabulary</span>
                 <span className="mt-2 block max-w-sm text-sm leading-6 text-zinc-500">
-                  Log in, connect an agent, and create a vocabulary that can appear in this registry.
+                  Log in, create a vocabulary, then connect an agent to work on it with you.
                 </span>
               </span>
               <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
@@ -349,19 +390,19 @@ function Discovery({
           />
           <JourneyStep
             number="02"
-            icon={Bot}
-            title="Connect your agent"
-            body="Install the Sema MCP so your agent can search, resolve, verify, and mint patterns."
-            action="Connect agent"
-            onClick={openConnect}
-          />
-          <JourneyStep
-            number="03"
             icon={Library}
             title="Create your own"
             body="Start from the public library, a smaller preset, or an empty vocabulary."
             action="Create vocabulary"
             onClick={openCreate}
+          />
+          <JourneyStep
+            number="03"
+            icon={Bot}
+            title="Connect your agent"
+            body="Choose your MCP client and connect it to the vocabulary you selected."
+            action="Connect agent"
+            onClick={openConnect}
           />
         </div>
       </section>
@@ -430,11 +471,20 @@ function VocabularyCard({
 
 function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: () => void }) {
   const [copied, setCopied] = useState(false)
+  const [copiedPrompt, setCopiedPrompt] = useState(false)
+  const [clientId, setClientId] = useState<McpClientId>('claude-code')
+  const selectedSetup = MCP_SETUPS.find((setup) => setup.id === clientId) ?? MCP_SETUPS[0]
 
   const copyCommand = async () => {
-    await navigator.clipboard.writeText(MCP_COMMAND)
+    await navigator.clipboard.writeText(selectedSetup.snippet)
     setCopied(true)
     setTimeout(() => setCopied(false), 1800)
+  }
+
+  const copyPrompt = async () => {
+    await navigator.clipboard.writeText(AGENT_KICKOFF_PROMPT)
+    setCopiedPrompt(true)
+    setTimeout(() => setCopiedPrompt(false), 1800)
   }
 
   return (
@@ -445,15 +495,51 @@ function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: (
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
             <Bot className="h-6 w-6" />
           </div>
-          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 2</p>
-          <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Connect your agent</h1>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 3</p>
+          <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Connect an MCP-compatible agent</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
-            Add the Sema MCP server to Claude Code. Your agent can immediately search, resolve, verify, and mint patterns.
+            MCP standardizes the server protocol, while each agent has its own setup format. Choose your client below; every option starts the same local Sema stdio server.
           </p>
+          <p className="mt-3 text-sm text-zinc-500">
+            Prerequisite: install{' '}
+            <a
+              href="https://docs.astral.sh/uv/getting-started/installation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-300 underline decoration-emerald-500/30 underline-offset-4 hover:text-emerald-200"
+            >
+              uv
+            </a>{' '}
+            once so the <code className="text-zinc-300">uvx</code> command is available.
+          </p>
+
+          <div className="mt-8">
+            <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">Choose your client</p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {MCP_SETUPS.map((setup) => (
+                <button
+                  key={setup.id}
+                  type="button"
+                  onClick={() => {
+                    setClientId(setup.id)
+                    setCopied(false)
+                  }}
+                  className={cn(
+                    'rounded-lg border px-3 py-2 text-sm transition-colors',
+                    clientId === setup.id
+                      ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-200'
+                      : 'border-zinc-800 bg-zinc-950/35 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200'
+                  )}
+                >
+                  {setup.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-950/80 p-4">
             <div className="mb-3 flex items-center justify-between gap-3">
-              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">Terminal</span>
+              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">{selectedSetup.location}</span>
               <button
                 type="button"
                 onClick={copyCommand}
@@ -463,14 +549,20 @@ function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: (
                 {copied ? 'Copied' : 'Copy'}
               </button>
             </div>
-            <code className="block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">{MCP_COMMAND}</code>
+            <pre className="overflow-x-auto whitespace-pre text-sm leading-6 text-emerald-300">{selectedSetup.snippet}</pre>
           </div>
 
           <div className="mt-6 rounded-xl border border-zinc-800 bg-zinc-950/35 p-4">
-            <p className="text-sm font-medium text-zinc-200">Verify it</p>
-            <p className="mt-2 text-sm text-zinc-500">Ask your agent:</p>
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-medium text-zinc-200">Start the working session</p>
+              <button type="button" onClick={copyPrompt} className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-100">
+                {copiedPrompt ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                {copiedPrompt ? 'Copied' : 'Copy prompt'}
+              </button>
+            </div>
+            <p className="mt-2 text-sm text-zinc-500">After Sema appears in your client's tool list, send:</p>
             <blockquote className="mt-3 border-l-2 border-emerald-500/40 pl-4 text-sm text-zinc-300">
-              Search Sema for coordination patterns.
+              {AGENT_KICKOFF_PROMPT}
             </blockquote>
           </div>
 
@@ -480,7 +572,7 @@ function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: (
               onClick={onCreate}
               className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-emerald-300"
             >
-              Create a vocabulary
+              Create a vocabulary first
               <ArrowRight className="h-4 w-4" />
             </button>
             <Link
@@ -495,7 +587,8 @@ function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: (
 
         <aside className="space-y-4">
           <InfoCard icon={Check} title="GitHub login complete" body="Your Sema account is connected to your GitHub identity." tone="success" />
-          <InfoCard icon={Link2} title="Local connection today" body="This command connects the published bootstrap vocabulary through a local stdio MCP server." />
+          <InfoCard icon={Link2} title="One server, many clients" body="Claude Code, Codex, Cursor, VS Code, and Claude Desktop all launch the same Sema stdio server." />
+          <InfoCard icon={ShieldCheck} title="The agent gets instructions" body="Sema supplies workflow guidance and detailed tool descriptions during MCP initialization; the kickoff prompt makes the writable-vocabulary check explicit." />
           <InfoCard icon={Network} title="Hosted endpoint next" body="A workspace-specific hosted MCP URL will arrive with the GitHub import and publishing backend." />
         </aside>
       </div>
@@ -516,10 +609,11 @@ function VocabularyCreator({
   const [preset, setPreset] = useState<Preset>('full')
   const [copied, setCopied] = useState(false)
   const slug = slugify(name) || 'my-vocabulary'
-  const createCommand = `sema build ${slug}.db --preset ${preset}`
+  const createCommand = `uvx --from "semahash[mcp]" sema build ${slug}.db --preset ${preset}`
+  const useCommand = `uvx --from "semahash[mcp]" sema use ${slug}.db`
 
   const copyCommand = async () => {
-    await navigator.clipboard.writeText(`${createCommand}\nsema use ${slug}.db`)
+    await navigator.clipboard.writeText(`${createCommand}\n${useCommand}`)
     setCopied(true)
     setTimeout(() => setCopied(false), 1800)
   }
@@ -532,10 +626,21 @@ function VocabularyCreator({
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
             <Library className="h-6 w-6" />
           </div>
-          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 3</p>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 2</p>
           <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Create your vocabulary</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
-            Choose a name and a starting point. The commands below create a real local vocabulary your connected agent can mint into today.
+            Choose a name and a starting point. The commands below create a real local vocabulary your agent can use after you connect it.
+          </p>
+          <p className="mt-3 text-sm text-zinc-500">
+            These commands use <code className="text-zinc-300">uvx</code>. If it is not installed,{' '}
+            <a
+              href="https://docs.astral.sh/uv/getting-started/installation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-emerald-300 underline decoration-emerald-500/30 underline-offset-4 hover:text-emerald-200"
+            >
+              install uv first
+            </a>.
           </p>
 
           <label className="mt-8 block">
@@ -566,7 +671,8 @@ function VocabularyCreator({
               </button>
             </div>
             <code className="block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">{createCommand}</code>
-            <code className="mt-2 block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">sema use {slug}.db</code>
+            <code className="mt-2 block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">{useCommand}</code>
+            <p className="mt-3 text-xs leading-5 text-zinc-500">Run both commands before connecting. If Sema is already connected, restart the MCP server so it opens the selected vocabulary.</p>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -576,17 +682,15 @@ function VocabularyCreator({
               className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 hover:border-zinc-600"
             >
               <Bot className="h-4 w-4" />
-              Agent connection
+              Continue to agent connection
             </button>
-            <a
-              href="https://github.com/emergent-wisdom/sema/blob/main/docs/guides/getting-started.md#create-your-own-vocabulary"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/docs"
               className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 hover:border-zinc-600"
             >
               Creation guide
               <ExternalLink className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </section>
 
