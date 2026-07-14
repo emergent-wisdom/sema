@@ -71,6 +71,14 @@ export function VocabularyPage() {
     )
   }, [filtered])
 
+  const closeDetail = () => {
+    const id = selectedId
+    setSelectedId(null)
+    if (id) requestAnimationFrame(() => {
+      document.getElementById(`pat-${id}`)?.scrollIntoView({ block: 'center' })
+    })
+  }
+
   const selectPattern = (id: string) => {
     const clean = id.split('#')[0]
     setSelectedId(clean)
@@ -261,7 +269,7 @@ export function VocabularyPage() {
             </div>
 
             {/* Detail panel */}
-            <DetailPane selectedId={selectedId} onRef={selectPattern} onClose={() => setSelectedId(null)} />
+            <DetailPane selectedId={selectedId} onRef={selectPattern} onClose={closeDetail} />
           </div>
         )}
       </main>
