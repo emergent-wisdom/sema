@@ -137,7 +137,16 @@ cd sema
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[full]"
 pytest
+
+# Run the consolidated vocabulary audit
+python -m sema.audit
 ```
+
+Audits are importable modules, so an individual check can also be run directly,
+for example `python -m sema.audit.rigor`. The legacy
+`python scripts/audit/run_all_audits.py` command remains available as a
+compatibility wrapper. Both forms use the editable install above; they do not
+modify `PYTHONPATH` to find the checkout.
 
 To browse the vocabulary in the web UI while you work:
 

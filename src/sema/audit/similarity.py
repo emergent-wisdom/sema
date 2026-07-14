@@ -1,11 +1,6 @@
-import os
 import sqlite3
-import sys
 
 import numpy as np
-
-# Add project root
-sys.path.append(os.path.join(os.path.dirname(__file__), "../../"))
 
 DB_PATH = "data/taxonomy.db"
 

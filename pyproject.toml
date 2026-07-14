@@ -120,5 +120,5 @@ line-ending = "auto"
 
 [tool.pytest.ini_options]
 pythonpath = "src"
-testpaths = ["src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests", "src/sema/server/tests"]
+testpaths = ["src/sema/audit/tests", "src/sema/cli/tests", "src/sema/core/tests", "src/sema/mcp/tests", "src/sema/server/tests"]
 addopts = "-v"
