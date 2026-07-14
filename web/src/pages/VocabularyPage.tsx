@@ -1,18 +1,19 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft, Bot, Check, ChevronDown, Copy, Network, Search, ShieldCheck } from 'lucide-react'
-import { usePatterns } from '@/hooks/useApi'
+import { ArrowLeft, Bot, Check, Copy, Network, Search, ShieldCheck, X } from 'lucide-react'
+import { usePattern, usePatterns } from '@/hooks/useApi'
 import type { Pattern } from '@/types/taxonomy'
-import { LAYER_COLORS } from '@/types/taxonomy'
+import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { ParsedText } from '@/components/DetailsPanel'
 import { SemaLogo } from '@/components/SemaLogo'
 import { LicenseLine } from '@/components/LicenseLine'
 import { cn } from '@/lib/utils'
 
 /**
- * One vocabulary, understood and browsable (site-architecture pass 2).
- * Every pattern card opens to show what the pattern actually says —
- * gloss, mechanism, invariants — not just a handle and a copy button.
+ * One vocabulary as master–detail: a compact, layer-colored pattern
+ * list on the left; a persistent detail panel on the right that
+ * updates on selection. Same interaction model as the graph view
+ * (select → inspect), so the two lenses feel like one tool.
  */
 type WorkspaceSummary = {
   label?: string
@@ -20,18 +21,18 @@ type WorkspaceSummary = {
   vocabulary_root_stub?: string
 }
 
+const LAYER_ORDER = ['Physics', 'Mind', 'Society', 'Infrastructure']
+
 export function VocabularyPage() {
   const { slug = 'bootstrap' } = useParams()
   const { data: patterns = [], isLoading } = usePatterns()
   const [query, setQuery] = useState('')
   const [layerFilter, setLayerFilter] = useState<string | null>(null)
-  const [expandAll, setExpandAll] = useState(false)
   const [jsonView, setJsonView] = useState(false)
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const [summary, setSummary] = useState<WorkspaceSummary | null>(null)
 
   // One template for every vocabulary: header facts come from the API.
-  // Today only the default workspace exists; when multi-tenant lands,
-  // this becomes /api/workspaces/{slug} + tenant-scoped pattern reads.
   useEffect(() => {
     let active = true
     fetch('/api/workspace')
@@ -54,8 +55,6 @@ export function VocabularyPage() {
     )
   }, [patterns, query, layerFilter])
 
-  // The vocabulary's own organization: taxonomy layers first (in
-  // canonical order, with their colors), categories inside each layer.
   const byLayer = useMemo(() => {
     const layers = new Map<string, Map<string, Pattern[]>>()
     for (const p of filtered) {
@@ -65,27 +64,28 @@ export function VocabularyPage() {
       const cats = layers.get(layer)!
       cats.set(cat, [...(cats.get(cat) ?? []), p])
     }
-    const order = ['Physics', 'Mind', 'Society', 'Infrastructure']
     return [...layers.entries()].sort(
-      ([a], [b]) => (order.indexOf(a) + 99 * +(order.indexOf(a) < 0)) - (order.indexOf(b) + 99 * +(order.indexOf(b) < 0))
+      ([a], [b]) =>
+        (LAYER_ORDER.indexOf(a) + 99 * +(LAYER_ORDER.indexOf(a) < 0)) -
+        (LAYER_ORDER.indexOf(b) + 99 * +(LAYER_ORDER.indexOf(b) < 0))
     )
   }, [filtered])
 
-  const jumpToPattern = (handle: string) => {
-    setLayerFilter(null)
-    setQuery(handle.split('#')[0])
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  const selectPattern = (id: string) => {
+    const clean = id.split('#')[0]
+    setSelectedId(clean)
+    document.getElementById(`pat-${clean}`)?.scrollIntoView({ block: 'nearest' })
   }
 
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100">
       <header className="sticky top-0 z-40 border-b border-zinc-800/60 bg-zinc-950/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-6 py-3">
           <Link to="/registry" className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100">
             <ArrowLeft className="h-4 w-4" />
             Registry
           </Link>
-          <div className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/80 px-3 py-2 w-full max-w-sm">
+          <div className="flex w-full max-w-sm items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/80 px-3 py-2">
             <Search className="h-4 w-4 shrink-0 text-zinc-500" />
             <input
               value={query}
@@ -93,6 +93,11 @@ export function VocabularyPage() {
               placeholder="Search this vocabulary…"
               className="w-full bg-transparent text-sm outline-none placeholder:text-zinc-600"
             />
+            {query && (
+              <button type="button" onClick={() => setQuery('')} className="text-zinc-500 hover:text-zinc-300">
+                <X className="h-3.5 w-3.5" />
+              </button>
+            )}
           </div>
           <Link
             to="/connect"
@@ -105,7 +110,7 @@ export function VocabularyPage() {
       </header>
 
       <section className="border-b border-zinc-800/50">
-        <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="mx-auto max-w-[1400px] px-6 py-8">
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 ring-1 ring-inset ring-emerald-500/20 text-emerald-400">
@@ -113,7 +118,9 @@ export function VocabularyPage() {
               </div>
               <div>
                 <div className="flex items-center gap-3">
-                  <h1 className="text-2xl font-medium tracking-tight">{slug === 'bootstrap' ? 'Sema Bootstrap' : (summary?.label ?? slug)}</h1>
+                  <h1 className="text-2xl font-medium tracking-tight">
+                    {slug === 'bootstrap' ? 'Sema Bootstrap' : (summary?.label ?? slug)}
+                  </h1>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
                     <ShieldCheck className="h-3.5 w-3.5" />
                     Public &amp; verified
@@ -142,10 +149,8 @@ export function VocabularyPage() {
             </dl>
           </div>
 
-          <nav className="mt-8 flex items-center gap-1 border-b border-zinc-800/60">
-            <span className="border-b-2 border-emerald-400 px-3 py-2 text-sm font-medium text-zinc-100">
-              Patterns
-            </span>
+          <nav className="mt-6 flex items-center gap-1 border-b border-zinc-800/60">
+            <span className="border-b-2 border-emerald-400 px-3 py-2 text-sm font-medium text-zinc-100">Patterns</span>
             <Link
               to={`/vocabularies/${slug}/graph`}
               className="inline-flex items-center gap-1.5 px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100"
@@ -162,13 +167,13 @@ export function VocabularyPage() {
               className={cn(
                 'rounded-full px-3 py-1 text-xs transition-colors',
                 layerFilter === null
-                  ? 'bg-zinc-100 text-zinc-900 font-medium'
+                  ? 'bg-zinc-100 font-medium text-zinc-900'
                   : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
               )}
             >
               All layers
             </button>
-            {(['Physics', 'Mind', 'Society', 'Infrastructure'] as const).map((layer) => (
+            {LAYER_ORDER.map((layer) => (
               <button
                 key={layer}
                 type="button"
@@ -176,7 +181,7 @@ export function VocabularyPage() {
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs transition-colors',
                   layerFilter === layer
-                    ? 'bg-zinc-800 text-zinc-100 font-medium ring-1 ring-inset ring-zinc-600'
+                    ? 'bg-zinc-800 font-medium text-zinc-100 ring-1 ring-inset ring-zinc-600'
                     : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
                 )}
               >
@@ -187,70 +192,82 @@ export function VocabularyPage() {
             <span className="mx-1 hidden h-4 w-px bg-zinc-800 sm:block" />
             <button
               type="button"
-              onClick={() => setExpandAll((v) => !v)}
-              className={cn(
-                'rounded-full px-3 py-1 text-xs transition-colors',
-                expandAll
-                  ? 'bg-zinc-800 text-zinc-100 font-medium ring-1 ring-inset ring-zinc-600'
-                  : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
-              )}
-            >
-              {expandAll ? 'Collapse all' : 'Expand all'}
-            </button>
-            <button
-              type="button"
               onClick={() => setJsonView((v) => !v)}
               className={cn(
                 'ref-mono rounded-full px-3 py-1 text-xs transition-colors',
                 jsonView
-                  ? 'bg-zinc-800 text-zinc-100 font-medium ring-1 ring-inset ring-zinc-600'
+                  ? 'bg-zinc-800 font-medium text-zinc-100 ring-1 ring-inset ring-zinc-600'
                   : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
               )}
             >
-              {jsonView ? 'Card view' : 'JSON view'}
+              {jsonView ? 'List view' : 'JSON view'}
             </button>
           </div>
         </div>
       </section>
 
-      <main className="mx-auto max-w-6xl px-6 py-10">
+      <main className="mx-auto max-w-[1400px] px-6 py-8">
         {isLoading ? (
           <p className="py-16 text-center text-sm text-zinc-500">Loading vocabulary…</p>
-        ) : filtered.length === 0 ? (
-          <p className="py-16 text-center text-sm text-zinc-500">No patterns match “{query.trim()}”.</p>
         ) : jsonView ? (
           <pre className="ref-mono overflow-x-auto rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-xs leading-5 text-zinc-400">
             {JSON.stringify(filtered, null, 2)}
           </pre>
+        ) : filtered.length === 0 ? (
+          <p className="py-16 text-center text-sm text-zinc-500">No patterns match “{query.trim()}”.</p>
         ) : (
-          byLayer.map(([layer, cats]) => (
-            <section key={layer} className="mb-12">
-              <div className="mb-6 flex items-center gap-3 border-b border-zinc-800/60 pb-3">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LAYER_COLORS[layer] || '#71717a' }} />
-                <h2 className="text-xl font-medium tracking-tight text-zinc-100">{layer}</h2>
-                <span className="text-xs tabular-nums text-zinc-500">
-                  {[...cats.values()].reduce((n, items) => n + items.length, 0)}
-                </span>
-              </div>
-              {[...cats.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([category, items]) => (
-                <div key={category} className="mb-8">
-                  <h3 className="mb-3 text-sm font-medium uppercase tracking-widest text-zinc-500">
-                    {category} <span className="normal-case tracking-normal text-zinc-600">· {items.length}</span>
-                  </h3>
-                  <div className="grid items-start gap-3 md:grid-cols-2">
-                    {items.map((p) => (
-                      <PatternCard key={p.id} pattern={p} onRef={jumpToPattern} expandAll={expandAll} />
-                    ))}
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(300px,380px)_minmax(0,1fr)]">
+            {/* Master list */}
+            <div className="max-h-[calc(100vh-140px)] overflow-y-auto pr-1 lg:sticky lg:top-[76px]">
+              {byLayer.map(([layer, cats]) => (
+                <section key={layer} className="mb-6">
+                  <div className="sticky top-0 z-10 flex items-center gap-2 bg-zinc-950/95 py-1.5 backdrop-blur">
+                    <span className="h-2 w-2 rounded-full" style={{ backgroundColor: LAYER_COLORS[layer] || '#71717a' }} />
+                    <h2 className="text-sm font-medium tracking-wide text-zinc-200">{layer}</h2>
+                    <span className="text-xs tabular-nums text-zinc-600">
+                      {[...cats.values()].reduce((n, items) => n + items.length, 0)}
+                    </span>
                   </div>
-                </div>
+                  {[...cats.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([category, items]) => (
+                    <div key={category} className="mb-2">
+                      <h3 className="px-2 py-1 text-[10px] font-medium uppercase tracking-widest text-zinc-600">
+                        {category}
+                      </h3>
+                      {items.map((p) => (
+                        <button
+                          key={p.id}
+                          id={`pat-${p.id}`}
+                          type="button"
+                          onClick={() => setSelectedId(p.id)}
+                          className={cn(
+                            'block w-full rounded-lg border-l-2 px-3 py-2 text-left transition-colors',
+                            selectedId === p.id ? 'bg-zinc-800/80' : 'hover:bg-zinc-900/70'
+                          )}
+                          style={{ borderLeftColor: `${LAYER_COLORS[p.layer] || '#71717a'}${selectedId === p.id ? 'ff' : '55'}` }}
+                        >
+                          <span className="flex items-baseline gap-2">
+                            <span className={cn('text-sm font-medium', selectedId === p.id ? 'text-zinc-50' : 'text-zinc-200')}>
+                              {p.id}
+                            </span>
+                            <code className="ref-mono text-emerald-400/70">#{p.stub}</code>
+                          </span>
+                          <span className="mt-0.5 block truncate text-xs text-zinc-500">{p.gloss}</span>
+                        </button>
+                      ))}
+                    </div>
+                  ))}
+                </section>
               ))}
-            </section>
-          ))
+            </div>
+
+            {/* Detail panel */}
+            <DetailPane selectedId={selectedId} onRef={selectPattern} onClose={() => setSelectedId(null)} />
+          </div>
         )}
       </main>
 
       <footer className="border-t border-zinc-800/50">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-3 px-6 py-6 text-sm text-zinc-500 sm:flex-row sm:items-center">
+        <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-3 px-6 py-6 text-sm text-zinc-500 sm:flex-row sm:items-center">
           <p>Part of the public registry</p>
           <LicenseLine />
         </div>
@@ -259,101 +276,181 @@ export function VocabularyPage() {
   )
 }
 
-function PatternCard({ pattern, onRef, expandAll }: { pattern: Pattern; onRef: (handle: string) => void; expandAll: boolean }) {
-  const [localOpen, setLocalOpen] = useState(false)
+function DetailPane({
+  selectedId,
+  onRef,
+  onClose,
+}: {
+  selectedId: string | null
+  onRef: (handle: string) => void
+  onClose: () => void
+}) {
+  const { data: pattern, isLoading } = usePattern(selectedId)
   const [copied, setCopied] = useState(false)
   const [showJson, setShowJson] = useState(false)
-  const open = localOpen || expandAll
+
+  if (!selectedId) {
+    return (
+      <div className="hidden rounded-xl border border-dashed border-zinc-800 px-8 py-24 text-center lg:block">
+        <p className="text-sm text-zinc-500">Select a pattern to inspect it.</p>
+        <p className="mt-2 text-xs text-zinc-600">
+          Gloss, mechanism, invariants, contracts, and dependencies appear here.
+        </p>
+      </div>
+    )
+  }
+
+  const layerColor = pattern ? LAYER_COLORS[pattern.layer] || '#71717a' : '#71717a'
+  const handle = pattern ? `${pattern.id}#${pattern.stub}` : selectedId
 
   const copyHandle = async () => {
-    await navigator.clipboard.writeText(pattern.handle)
+    await navigator.clipboard.writeText(handle)
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
   }
 
-  const layerColor = LAYER_COLORS[pattern.layer] || '#71717a'
-
   return (
-    <article
-      className="rounded-xl border border-zinc-800/80 bg-zinc-900/40 transition-colors hover:border-zinc-700"
-      style={{ borderLeft: `3px solid ${layerColor}55` }}
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto bg-zinc-950 p-6 lg:static lg:z-auto lg:max-h-[calc(100vh-140px)] lg:rounded-xl lg:border lg:border-zinc-800 lg:bg-zinc-900/30 lg:p-8"
+      style={{ borderTop: `3px solid ${layerColor}` }}
     >
       <button
         type="button"
-        onClick={() => setLocalOpen((v) => !v)}
-        className="flex w-full items-start justify-between gap-4 p-4 text-left"
+        onClick={onClose}
+        className="mb-4 inline-flex items-center gap-1.5 text-sm text-zinc-400 hover:text-zinc-100 lg:hidden"
       >
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <h3 className="font-medium tracking-tight text-zinc-100">{pattern.id}</h3>
-            <code className="ref-mono text-emerald-400/80">#{pattern.stub}</code>
-          </div>
-          {/* The gloss is always visible — a card must say what the pattern IS. */}
-          <p className={cn('mt-1.5 text-sm leading-6 text-zinc-400', !open && 'line-clamp-2')}>
-            {pattern.gloss}
-          </p>
-        </div>
-        <ChevronDown className={cn('mt-1 h-4 w-4 shrink-0 text-zinc-500 transition-transform', open && 'rotate-180')} />
+        <ArrowLeft className="h-4 w-4" />
+        Back to list
       </button>
 
-      {open && (
-        <div className="border-t border-zinc-800/60 px-4 pb-4">
-          {pattern.mechanism && (
-            <PatternSection label="Mechanism">
-              <p className="text-sm leading-6 text-zinc-300">
-                <ParsedText text={pattern.mechanism} onPatternClick={onRef} />
+      {isLoading || !pattern ? (
+        <p className="py-16 text-center text-sm text-zinc-500">Loading pattern…</p>
+      ) : (
+        <>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3">
+                <h2 className="text-2xl font-medium tracking-tight text-zinc-50">{pattern.id}</h2>
+                <code className="ref-mono text-emerald-400/90">#{pattern.stub}</code>
+              </div>
+              <p className="ref-mono mt-1 text-xs text-zinc-500">
+                <span className="inline-flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: layerColor }} />
+                  {pattern.layer} / {pattern.category}
+                </span>
+                {pattern.meta?.ring !== undefined && (
+                  <span className="ml-3">Ring {pattern.meta.ring}: {RING_LABELS[pattern.meta.ring] || '—'}</span>
+                )}
+                {pattern.meta?.tier !== undefined && (
+                  <span className="ml-3">Tier {pattern.meta.tier}: {TIER_LABELS[pattern.meta.tier] || '—'}</span>
+                )}
               </p>
-            </PatternSection>
-          )}
-          {pattern.invariants?.length > 0 && (
-            <PatternSection label="Invariants">
-              <ul className="space-y-1.5">
-                {pattern.invariants.map((inv) => (
-                  <li key={inv} className="flex gap-2 text-sm leading-6 text-zinc-300">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-emerald-400/70" />
-                    <span><ParsedText text={inv} onPatternClick={onRef} /></span>
-                  </li>
-                ))}
-              </ul>
-            </PatternSection>
-          )}
-          {showJson && (
-            <pre className="ref-mono mt-4 max-h-80 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs leading-5 text-zinc-400">
-              {JSON.stringify(pattern, null, 2)}
-            </pre>
-          )}
-          <div className="mt-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <code className="ref-mono text-xs text-zinc-500">{pattern.layer} / {pattern.category}</code>
+            </div>
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setShowJson((v) => !v)}
-                className="ref-mono text-xs text-zinc-500 transition-colors hover:text-zinc-200"
+                className={cn(
+                  'ref-mono rounded-lg px-3 py-1.5 text-xs transition-colors',
+                  showJson ? 'bg-zinc-800 text-zinc-100' : 'border border-zinc-800 text-zinc-400 hover:text-zinc-200'
+                )}
               >
-                {showJson ? 'hide json' : 'json'}
+                json
+              </button>
+              <button
+                type="button"
+                onClick={copyHandle}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-800 px-3 py-1.5 text-xs text-zinc-300 transition-colors hover:border-zinc-700 hover:text-zinc-100"
+              >
+                {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? 'Copied' : handle}
               </button>
             </div>
-            <button
-              type="button"
-              onClick={copyHandle}
-              className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-zinc-100"
-            >
-              {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
-              {copied ? 'Copied' : `Copy ${pattern.handle}`}
-            </button>
           </div>
-        </div>
+
+          {showJson ? (
+            <pre className="ref-mono mt-6 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-4 text-xs leading-5 text-zinc-400">
+              {JSON.stringify(pattern, null, 2)}
+            </pre>
+          ) : (
+            <>
+              <p className="mt-5 text-base leading-7 text-zinc-300">
+                <ParsedText text={pattern.gloss} onPatternClick={onRef} />
+              </p>
+
+              {pattern.mechanism && (
+                <DetailSection label="Mechanism">
+                  <p className="text-sm leading-7 text-zinc-300">
+                    <ParsedText text={pattern.mechanism} onPatternClick={onRef} />
+                  </p>
+                </DetailSection>
+              )}
+
+              {pattern.invariants?.length > 0 && (
+                <DetailSection label="Invariants">
+                  <BulletList items={pattern.invariants} onRef={onRef} />
+                </DetailSection>
+              )}
+              {pattern.preconditions && pattern.preconditions.length > 0 && (
+                <DetailSection label="Preconditions">
+                  <BulletList items={pattern.preconditions} onRef={onRef} />
+                </DetailSection>
+              )}
+              {pattern.postconditions && pattern.postconditions.length > 0 && (
+                <DetailSection label="Postconditions">
+                  <BulletList items={pattern.postconditions} onRef={onRef} />
+                </DetailSection>
+              )}
+              {pattern.failureModes && pattern.failureModes.length > 0 && (
+                <DetailSection label="Failure modes">
+                  <BulletList items={pattern.failureModes} onRef={onRef} halt />
+                </DetailSection>
+              )}
+
+              {pattern.relatedPatterns?.length > 0 && (
+                <DetailSection label="Related">
+                  <div className="flex flex-wrap gap-2">
+                    {pattern.relatedPatterns.map((r) => (
+                      <button
+                        key={r.id}
+                        type="button"
+                        onClick={() => onRef(r.id)}
+                        className="ref-mono rounded-md bg-white/[0.04] px-2 py-1 text-xs text-zinc-300 transition-colors hover:bg-white/[0.08] hover:text-zinc-100"
+                      >
+                        {r.id}
+                        <span className="text-emerald-400/70">#{r.stub}</span>
+                      </button>
+                    ))}
+                  </div>
+                </DetailSection>
+              )}
+            </>
+          )}
+        </>
       )}
-    </article>
+    </div>
   )
 }
 
-function PatternSection({ label, children }: { label: string; children: React.ReactNode }) {
+function DetailSection({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="mt-4">
-      <p className="mb-1.5 text-[11px] font-medium uppercase tracking-widest text-zinc-500">{label}</p>
+    <div className="mt-6">
+      <p className="mb-2 text-[11px] font-medium uppercase tracking-widest text-zinc-500">{label}</p>
       {children}
     </div>
+  )
+}
+
+function BulletList({ items, onRef, halt }: { items: string[]; onRef: (h: string) => void; halt?: boolean }) {
+  return (
+    <ul className="space-y-1.5">
+      {items.map((item) => (
+        <li key={item} className="flex gap-2 text-sm leading-6 text-zinc-300">
+          <span className={cn('mt-2 h-1 w-1 shrink-0 rounded-full', halt ? 'bg-red-400/70' : 'bg-emerald-400/70')} />
+          <span><ParsedText text={item} onPatternClick={onRef} /></span>
+        </li>
+      ))}
+    </ul>
   )
 }
 
