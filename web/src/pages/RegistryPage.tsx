@@ -1,0 +1,940 @@
+import { useEffect, useMemo, useState, type ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+import type { MetaFunction } from 'react-router'
+import {
+  ArrowLeft,
+  ArrowRight,
+  Bot,
+  Check,
+  ChevronRight,
+  CircleUserRound,
+  Copy,
+  ExternalLink,
+  Github,
+  Library,
+  Link2,
+  Loader2,
+  Lock,
+  LogOut,
+  Network,
+  Plus,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from 'lucide-react'
+import { SemaLogo } from '@/components/SemaLogo'
+import { LicenseLine } from '@/components/LicenseLine'
+import { useGraph, usePatterns } from '@/hooks/useApi'
+import type { Pattern } from '@/types/taxonomy'
+import { cn } from '@/lib/utils'
+
+type Screen = 'discover' | 'connect' | 'create'
+type Preset = 'full' | 'standard' | 'empty'
+
+type GitHubUser = {
+  login?: string
+  name?: string | null
+  avatar_url?: string | null
+}
+
+type AuthState = {
+  authenticated: boolean
+  user: GitHubUser | null
+  github_oauth_configured: boolean
+  session_configured: boolean
+}
+
+type WorkspaceSummary = {
+  workspace_id: string
+  label: string
+  pattern_count: number
+  vocabulary_root_stub: string
+}
+
+const MCP_COMMAND = 'claude mcp add sema -- uvx --from "semahash[mcp]" sema mcp'
+const SEMANTIC_EDGE_TYPES = new Set(['REFERENCES', 'COMPOSES_WITH', 'ACCEPTS', 'YIELDS'])
+
+export const meta: MetaFunction = ({ matches }) => {
+  const inherited = matches.flatMap((match) => match.meta ?? [])
+  const overridden = inherited.filter(
+    (entry) => !('title' in entry) && !('name' in entry && entry.name === 'description')
+  )
+  return [
+    ...overridden,
+    { title: 'Explore Sema — Patterns and Vocabularies' },
+    {
+      name: 'description',
+      content: 'Discover public agent patterns and vocabularies, connect your agent, and create a vocabulary of your own.',
+    },
+  ]
+}
+
+export function RegistryPage() {
+  const { data: patterns = [], isLoading: patternsLoading } = usePatterns()
+  const { data: graph } = useGraph()
+  const [auth, setAuth] = useState<AuthState | null>(null)
+  const [workspace, setWorkspace] = useState<WorkspaceSummary | null>(null)
+  const [authLoading, setAuthLoading] = useState(true)
+  const [screen, setScreen] = useState<Screen>('discover')
+  const [searchQuery, setSearchQuery] = useState('')
+
+  useEffect(() => {
+    let active = true
+
+    Promise.all([
+      fetch('/api/me', { credentials: 'same-origin' }).then((response) => (
+        response.ok ? response.json() as Promise<AuthState> : null
+      )),
+      fetch('/api/workspace').then((response) => (
+        response.ok ? response.json() as Promise<WorkspaceSummary> : null
+      )),
+    ])
+      .then(([authState, workspaceState]) => {
+        if (!active) return
+        setAuth(authState)
+        setWorkspace(workspaceState)
+      })
+      .catch(() => {
+        if (!active) return
+        setAuth(null)
+        setWorkspace(null)
+      })
+      .finally(() => {
+        if (active) setAuthLoading(false)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const authenticated = Boolean(auth?.authenticated && auth.user?.login)
+  const authReady = Boolean(auth?.github_oauth_configured && auth?.session_configured)
+
+  const connectedPatterns = useMemo(() => {
+    if (!patterns.length) return []
+
+    const ids = new Set(patterns.map((pattern) => pattern.id))
+    const degree = new Map<string, number>()
+    for (const edge of graph?.edges ?? []) {
+      if (!SEMANTIC_EDGE_TYPES.has(edge.type)) continue
+      if (ids.has(edge.source)) degree.set(edge.source, (degree.get(edge.source) ?? 0) + 1)
+      if (ids.has(edge.target)) degree.set(edge.target, (degree.get(edge.target) ?? 0) + 1)
+    }
+
+    return [...patterns]
+      .sort((left, right) => {
+        const scoreDifference = (degree.get(right.id) ?? 0) - (degree.get(left.id) ?? 0)
+        return scoreDifference || left.id.localeCompare(right.id)
+      })
+      .slice(0, 8)
+      .map((pattern) => ({ pattern, connections: degree.get(pattern.id) ?? 0 }))
+  }, [graph?.edges, patterns])
+
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase()
+    if (query.length < 2) return []
+
+    return patterns
+      .filter((pattern) => (
+        pattern.id.toLowerCase().includes(query)
+        || pattern.gloss.toLowerCase().includes(query)
+        || pattern.category.toLowerCase().includes(query)
+        || pattern.layer.toLowerCase().includes(query)
+      ))
+      .slice(0, 12)
+  }, [patterns, searchQuery])
+
+  const startAuth = () => {
+    window.location.assign('/auth/github/start')
+  }
+
+  const openProtectedScreen = (nextScreen: Exclude<Screen, 'discover'>) => {
+    if (!authenticated) {
+      startAuth()
+      return
+    }
+    setScreen(nextScreen)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+      <div
+        className="fixed inset-0 pointer-events-none opacity-[0.018]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <RegistryHeader
+        authenticated={authenticated}
+        authLoading={authLoading}
+        authReady={authReady}
+        user={auth?.user}
+        screen={screen}
+        setScreen={setScreen}
+        startAuth={startAuth}
+        openCreate={() => openProtectedScreen('create')}
+      />
+
+      {screen === 'connect' ? (
+        <AgentConnection
+          onBack={() => setScreen('discover')}
+          onCreate={() => setScreen('create')}
+        />
+      ) : screen === 'create' ? (
+        <VocabularyCreator
+          user={auth?.user}
+          onBack={() => setScreen('discover')}
+          onConnect={() => setScreen('connect')}
+        />
+      ) : (
+        <Discovery
+          authenticated={authenticated}
+          workspace={workspace}
+          patternsLoading={patternsLoading}
+          connectedPatterns={connectedPatterns}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          searchResults={searchResults}
+          startAuth={startAuth}
+          openConnect={() => openProtectedScreen('connect')}
+          openCreate={() => openProtectedScreen('create')}
+        />
+      )}
+
+      <footer className="relative mt-16 border-t border-zinc-800/60">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 px-6 py-7 text-sm text-zinc-500 sm:flex-row sm:items-center">
+          <p>Sema public registry preview</p>
+          <LicenseLine />
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+function RegistryHeader({
+  authenticated,
+  authLoading,
+  authReady,
+  user,
+  screen,
+  setScreen,
+  startAuth,
+  openCreate,
+}: {
+  authenticated: boolean
+  authLoading: boolean
+  authReady: boolean
+  user?: GitHubUser | null
+  screen: Screen
+  setScreen: (screen: Screen) => void
+  startAuth: () => void
+  openCreate: () => void
+}) {
+  return (
+    <header className="relative z-40 border-b border-zinc-800/60 bg-zinc-950/85 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-4">
+        <button
+          type="button"
+          onClick={() => setScreen('discover')}
+          className="flex items-center gap-3 text-left"
+        >
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
+            <SemaLogo className="h-6 w-6" />
+          </span>
+          <span>
+            <span className="block text-base font-semibold tracking-tight">Sema</span>
+            <span className="block text-xs text-zinc-500">Patterns for agents</span>
+          </span>
+        </button>
+
+        <nav className="hidden items-center gap-1 md:flex">
+          <button
+            type="button"
+            onClick={() => setScreen('discover')}
+            className={cn(
+              'rounded-lg px-3 py-2 text-sm transition-colors',
+              screen === 'discover' ? 'bg-zinc-800 text-zinc-100' : 'text-zinc-400 hover:text-zinc-100'
+            )}
+          >
+            Explore
+          </button>
+          <Link to="/" className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100">
+            All patterns
+          </Link>
+          <Link to="/graph" className="rounded-lg px-3 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100">
+            Graph
+          </Link>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          {authLoading ? (
+            <span className="inline-flex items-center gap-2 px-3 py-2 text-sm text-zinc-500">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Checking account
+            </span>
+          ) : authenticated ? (
+            <>
+              <div className="hidden items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2 sm:flex">
+                {user?.avatar_url ? (
+                  <img src={user.avatar_url} alt="" className="h-5 w-5 rounded-full" />
+                ) : (
+                  <CircleUserRound className="h-4 w-4 text-zinc-500" />
+                )}
+                <span className="text-sm text-zinc-300">@{user?.login}</span>
+              </div>
+              <button
+                type="button"
+                onClick={openCreate}
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-3.5 py-2 text-sm font-medium text-zinc-950 transition-colors hover:bg-emerald-300"
+              >
+                <Plus className="h-4 w-4" />
+                <span className="hidden sm:inline">Create vocabulary</span>
+                <span className="sm:hidden">Create</span>
+              </button>
+              <a
+                href="/auth/logout"
+                aria-label="Sign out"
+                className="rounded-lg border border-zinc-800 p-2 text-zinc-500 transition-colors hover:text-zinc-200"
+              >
+                <LogOut className="h-4 w-4" />
+              </a>
+            </>
+          ) : (
+            <button
+              type="button"
+              onClick={startAuth}
+              disabled={!authReady}
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-950 transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Github className="h-4 w-4" />
+              Log in
+            </button>
+          )}
+        </div>
+      </div>
+    </header>
+  )
+}
+
+function Discovery({
+  authenticated,
+  workspace,
+  patternsLoading,
+  connectedPatterns,
+  searchQuery,
+  setSearchQuery,
+  searchResults,
+  startAuth,
+  openConnect,
+  openCreate,
+}: {
+  authenticated: boolean
+  workspace: WorkspaceSummary | null
+  patternsLoading: boolean
+  connectedPatterns: Array<{ pattern: Pattern; connections: number }>
+  searchQuery: string
+  setSearchQuery: (value: string) => void
+  searchResults: Pattern[]
+  startAuth: () => void
+  openConnect: () => void
+  openCreate: () => void
+}) {
+  const hasSearch = searchQuery.trim().length >= 2
+  const displayedPatterns = hasSearch
+    ? searchResults.map((pattern) => ({ pattern, connections: null }))
+    : connectedPatterns
+
+  return (
+    <main className="relative">
+      <section className="overflow-hidden border-b border-zinc-800/50">
+        <div className="absolute left-1/2 top-0 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-emerald-900/10 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-300">
+              <Sparkles className="h-3.5 w-3.5" />
+              Public registry preview
+            </div>
+            <h1 className="text-4xl font-light tracking-tight text-zinc-50 sm:text-6xl">
+              Find the patterns your agent should know.
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg">
+              Explore shared vocabularies, give your agent exact semantic references, and publish a vocabulary of your own.
+            </p>
+
+            <div className="mx-auto mt-9 flex max-w-2xl items-center gap-3 rounded-2xl border border-zinc-700/80 bg-zinc-900/90 px-4 py-3 shadow-2xl shadow-black/20 focus-within:border-emerald-500/40">
+              <Search className="h-5 w-5 shrink-0 text-zinc-500" />
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Search patterns, categories, or vocabularies"
+                className="w-full bg-transparent text-base text-zinc-100 outline-none placeholder:text-zinc-600"
+              />
+              {patternsLoading ? <Loader2 className="h-4 w-4 animate-spin text-zinc-600" /> : null}
+            </div>
+
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="#patterns"
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-emerald-300"
+              >
+                Explore patterns
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <button
+                type="button"
+                onClick={authenticated ? openCreate : startAuth}
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/70 px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-800"
+              >
+                <Github className="h-4 w-4" />
+                {authenticated ? 'Create a vocabulary' : 'Log in to create'}
+              </button>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-3xl grid-cols-3 divide-x divide-zinc-800 rounded-xl border border-zinc-800/70 bg-zinc-900/40 py-4 text-center">
+            <RegistryMetric value={String(workspace?.pattern_count ?? 452)} label="Public patterns" />
+            <RegistryMetric value="1" label="Public vocabulary" />
+            <RegistryMetric value="SHA-256" label="Verified identity" />
+          </div>
+        </div>
+      </section>
+
+      <section id="patterns" className="mx-auto max-w-7xl px-6 py-14">
+        <SectionHeading
+          kicker={hasSearch ? 'Search results' : 'Top patterns'}
+          title={hasSearch ? `Matches for “${searchQuery.trim()}”` : 'Most connected patterns'}
+          body={hasSearch
+            ? `${searchResults.length} result${searchResults.length === 1 ? '' : 's'} in the public vocabulary.`
+            : 'Ranked by semantic connections in the graph. Real popularity ranking will begin when agent usage events are available.'}
+          action={<Link to="/" className="inline-flex items-center gap-1 text-sm text-emerald-300 hover:text-emerald-200">Browse all <ChevronRight className="h-4 w-4" /></Link>}
+        />
+
+        {displayedPatterns.length > 0 ? (
+          <div className="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {displayedPatterns.map(({ pattern, connections }, index) => (
+              <PatternRankCard
+                key={pattern.id}
+                pattern={pattern}
+                rank={hasSearch ? null : index + 1}
+                connections={connections}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="mt-7 rounded-xl border border-dashed border-zinc-800 px-6 py-12 text-center text-sm text-zinc-500">
+            {patternsLoading ? 'Loading patterns…' : 'No patterns match this search yet.'}
+          </div>
+        )}
+      </section>
+
+      <section className="border-y border-zinc-800/60 bg-zinc-900/20">
+        <div className="mx-auto max-w-7xl px-6 py-14">
+          <SectionHeading
+            kicker="Vocabularies"
+            title="Public vocabularies"
+            body="Browse stable, published collections your agent can use. Community publishing is the next registry milestone."
+          />
+          <div className="mt-7 grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,.75fr)]">
+            <VocabularyCard workspace={workspace} openConnect={openConnect} />
+            <button
+              type="button"
+              onClick={openCreate}
+              className="group flex min-h-64 flex-col items-start justify-between rounded-2xl border border-dashed border-zinc-700 bg-zinc-950/30 p-6 text-left transition-colors hover:border-emerald-500/40 hover:bg-emerald-500/[0.03]"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-400 transition-colors group-hover:border-emerald-500/30 group-hover:text-emerald-300">
+                <Plus className="h-5 w-5" />
+              </span>
+              <span>
+                <span className="block text-lg font-medium text-zinc-200">Publish your vocabulary</span>
+                <span className="mt-2 block max-w-sm text-sm leading-6 text-zinc-500">
+                  Log in, connect an agent, and create a vocabulary that can appear in this registry.
+                </span>
+              </span>
+              <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-300">
+                {authenticated ? 'Start creating' : 'Log in to start'}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 py-14">
+        <SectionHeading
+          kicker="Your path"
+          title="Explore first. Create when you are ready."
+          body="Account setup should follow value, not block it."
+        />
+        <div className="mt-7 grid gap-4 md:grid-cols-3">
+          <JourneyStep
+            number="01"
+            icon={Github}
+            title="Log in"
+            body="Use GitHub as your identity when you want to save or publish. Browsing remains public."
+            action={authenticated ? 'You are signed in' : 'Log in with GitHub'}
+            onClick={authenticated ? undefined : startAuth}
+            complete={authenticated}
+          />
+          <JourneyStep
+            number="02"
+            icon={Bot}
+            title="Connect your agent"
+            body="Install the Sema MCP so your agent can search, resolve, verify, and mint patterns."
+            action="Connect agent"
+            onClick={openConnect}
+          />
+          <JourneyStep
+            number="03"
+            icon={Library}
+            title="Create your own"
+            body="Start from the public library, a smaller preset, or an empty vocabulary."
+            action="Create vocabulary"
+            onClick={openCreate}
+          />
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function PatternRankCard({
+  pattern,
+  rank,
+  connections,
+}: {
+  pattern: Pattern
+  rank: number | null
+  connections: number | null
+}) {
+  const [copied, setCopied] = useState(false)
+
+  const copyHandle = async () => {
+    await navigator.clipboard.writeText(pattern.handle)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1600)
+  }
+
+  return (
+    <article className="group flex min-h-56 flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/45 p-5 transition-colors hover:border-zinc-700 hover:bg-zinc-900/75">
+      <div className="flex items-center justify-between gap-3">
+        {rank ? (
+          <span className="text-xs font-medium tabular-nums text-zinc-600">#{rank.toString().padStart(2, '0')}</span>
+        ) : (
+          <span className="text-xs font-medium text-zinc-500">{pattern.layer}</span>
+        )}
+        {connections !== null ? (
+          <span className="inline-flex items-center gap-1.5 text-xs text-zinc-500">
+            <Network className="h-3.5 w-3.5" />
+            {connections} links
+          </span>
+        ) : null}
+      </div>
+      <div className="mt-6">
+        <h3 className="text-lg font-medium tracking-tight text-zinc-100">{pattern.id}</h3>
+        <code className="mt-1 block text-xs text-emerald-400/80">#{pattern.stub}</code>
+      </div>
+      <p className="mt-4 line-clamp-3 flex-1 text-sm leading-6 text-zinc-500">{pattern.gloss}</p>
+      <div className="mt-5 flex items-center justify-between border-t border-zinc-800/70 pt-4">
+        <span className="text-xs text-zinc-600">{pattern.category}</span>
+        <button
+          type="button"
+          onClick={copyHandle}
+          className="inline-flex items-center gap-1.5 text-xs text-zinc-500 transition-colors hover:text-zinc-200"
+        >
+          {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? 'Copied' : 'Copy handle'}
+        </button>
+      </div>
+    </article>
+  )
+}
+
+function VocabularyCard({
+  workspace,
+  openConnect,
+}: {
+  workspace: WorkspaceSummary | null
+  openConnect: () => void
+}) {
+  return (
+    <article className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/[0.08] via-zinc-900/70 to-zinc-950 p-6">
+      <div className="absolute right-0 top-0 h-52 w-52 rounded-full bg-emerald-500/5 blur-3xl" />
+      <div className="relative flex h-full min-h-64 flex-col justify-between gap-8">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-start">
+          <div className="flex items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
+              <SemaLogo className="h-7 w-7" />
+            </span>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="text-xl font-medium text-zinc-50">Sema Bootstrap</h3>
+                <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-300">Official</span>
+              </div>
+              <p className="mt-1 text-sm text-zinc-500">emergent-wisdom/sema</p>
+            </div>
+          </div>
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-zinc-700 bg-zinc-950/50 px-3 py-1.5 text-xs text-zinc-400">
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+            Public & verified
+          </span>
+        </div>
+        <p className="max-w-2xl text-sm leading-6 text-zinc-400">
+          The shared starting vocabulary for agent reasoning, coordination, verification, and infrastructure.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <VocabularyFact label="Patterns" value={String(workspace?.pattern_count ?? 452)} />
+          <VocabularyFact label="Root" value={workspace?.vocabulary_root_stub ?? '46e651aeeb832fdc'} mono />
+          <VocabularyFact label="License" value="CC BY 4.0" />
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-4 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-white"
+          >
+            Browse vocabulary
+            <ExternalLink className="h-4 w-4" />
+          </Link>
+          <button
+            type="button"
+            onClick={openConnect}
+            className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/70 px-4 py-2.5 text-sm font-medium text-zinc-200 transition-colors hover:border-zinc-600 hover:bg-zinc-800"
+          >
+            <Bot className="h-4 w-4" />
+            Connect agent
+          </button>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function AgentConnection({ onBack, onCreate }: { onBack: () => void; onCreate: () => void }) {
+  const [copied, setCopied] = useState(false)
+
+  const copyCommand = async () => {
+    await navigator.clipboard.writeText(MCP_COMMAND)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1800)
+  }
+
+  return (
+    <main className="relative mx-auto max-w-5xl px-6 py-12">
+      <BackButton onClick={onBack}>Back to explore</BackButton>
+      <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <section className="rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6 sm:p-8">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
+            <Bot className="h-6 w-6" />
+          </div>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 2</p>
+          <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Connect your agent</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
+            Add the Sema MCP server to Claude Code. Your agent can immediately search, resolve, verify, and mint patterns.
+          </p>
+
+          <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-950/80 p-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">Terminal</span>
+              <button
+                type="button"
+                onClick={copyCommand}
+                className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-100"
+              >
+                {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? 'Copied' : 'Copy'}
+              </button>
+            </div>
+            <code className="block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">{MCP_COMMAND}</code>
+          </div>
+
+          <div className="mt-6 rounded-xl border border-zinc-800 bg-zinc-950/35 p-4">
+            <p className="text-sm font-medium text-zinc-200">Verify it</p>
+            <p className="mt-2 text-sm text-zinc-500">Ask your agent:</p>
+            <blockquote className="mt-3 border-l-2 border-emerald-500/40 pl-4 text-sm text-zinc-300">
+              Search Sema for coordination patterns.
+            </blockquote>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={onCreate}
+              className="inline-flex items-center gap-2 rounded-lg bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 hover:bg-emerald-300"
+            >
+              Create a vocabulary
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <Link
+              to="/docs"
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 hover:border-zinc-600"
+            >
+              Full installation guide
+              <ExternalLink className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
+        <aside className="space-y-4">
+          <InfoCard icon={Check} title="GitHub login complete" body="Your Sema account is connected to your GitHub identity." tone="success" />
+          <InfoCard icon={Link2} title="Local connection today" body="This command connects the published bootstrap vocabulary through a local stdio MCP server." />
+          <InfoCard icon={Network} title="Hosted endpoint next" body="A workspace-specific hosted MCP URL will arrive with the GitHub import and publishing backend." />
+        </aside>
+      </div>
+    </main>
+  )
+}
+
+function VocabularyCreator({
+  user,
+  onBack,
+  onConnect,
+}: {
+  user?: GitHubUser | null
+  onBack: () => void
+  onConnect: () => void
+}) {
+  const [name, setName] = useState('')
+  const [preset, setPreset] = useState<Preset>('full')
+  const [copied, setCopied] = useState(false)
+  const slug = slugify(name) || 'my-vocabulary'
+  const createCommand = `sema build ${slug}.db --preset ${preset}`
+
+  const copyCommand = async () => {
+    await navigator.clipboard.writeText(`${createCommand}\nsema use ${slug}.db`)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1800)
+  }
+
+  return (
+    <main className="relative mx-auto max-w-5xl px-6 py-12">
+      <BackButton onClick={onBack}>Back to explore</BackButton>
+      <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_300px]">
+        <section className="rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6 sm:p-8">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-300">
+            <Library className="h-6 w-6" />
+          </div>
+          <p className="mt-7 text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">Step 3</p>
+          <h1 className="mt-2 text-3xl font-light tracking-tight text-zinc-50">Create your vocabulary</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-zinc-400">
+            Choose a name and a starting point. The commands below create a real local vocabulary your connected agent can mint into today.
+          </p>
+
+          <label className="mt-8 block">
+            <span className="text-sm font-medium text-zinc-300">Vocabulary name</span>
+            <input
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder={user?.login ? `${user.login}'s vocabulary` : 'My vocabulary'}
+              className="mt-2 w-full rounded-xl border border-zinc-800 bg-zinc-950/70 px-4 py-3 text-sm text-zinc-100 outline-none placeholder:text-zinc-700 focus:border-emerald-500/40"
+            />
+          </label>
+
+          <fieldset className="mt-6">
+            <legend className="text-sm font-medium text-zinc-300">Starting point</legend>
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              <PresetOption value="full" selected={preset} setSelected={setPreset} title="Full" body="All 452 patterns" />
+              <PresetOption value="standard" selected={preset} setSelected={setPreset} title="Standard" body="Curated essentials" />
+              <PresetOption value="empty" selected={preset} setSelected={setPreset} title="Empty" body="Start from zero" />
+            </div>
+          </fieldset>
+
+          <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-950/80 p-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">Create locally</span>
+              <button type="button" onClick={copyCommand} className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-100">
+                {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                {copied ? 'Copied' : 'Copy commands'}
+              </button>
+            </div>
+            <code className="block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">{createCommand}</code>
+            <code className="mt-2 block overflow-x-auto whitespace-nowrap text-sm text-emerald-300">sema use {slug}.db</code>
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={onConnect}
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 hover:border-zinc-600"
+            >
+              <Bot className="h-4 w-4" />
+              Agent connection
+            </button>
+            <a
+              href="https://github.com/emergent-wisdom/sema/blob/main/docs/guides/getting-started.md#create-your-own-vocabulary"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 px-5 py-2.5 text-sm text-zinc-300 hover:border-zinc-600"
+            >
+              Creation guide
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+
+        <aside className="space-y-4">
+          <InfoCard icon={CircleUserRound} title={`Signed in as @${user?.login ?? 'GitHub user'}`} body="This identity will own hosted vocabularies once publishing is enabled." tone="success" />
+          <InfoCard icon={Lock} title="Nothing fake is saved" body="This staging screen generates working local commands. It does not pretend a hosted vocabulary was created." />
+          <InfoCard icon={Github} title="Publishing is not live yet" body="GitHub App installation, repository import, and the public registry record are the next backend milestone." />
+        </aside>
+      </div>
+    </main>
+  )
+}
+
+function PresetOption({
+  value,
+  selected,
+  setSelected,
+  title,
+  body,
+}: {
+  value: Preset
+  selected: Preset
+  setSelected: (value: Preset) => void
+  title: string
+  body: string
+}) {
+  const active = value === selected
+  return (
+    <button
+      type="button"
+      onClick={() => setSelected(value)}
+      className={cn(
+        'rounded-xl border p-4 text-left transition-colors',
+        active
+          ? 'border-emerald-500/40 bg-emerald-500/10'
+          : 'border-zinc-800 bg-zinc-950/35 hover:border-zinc-700'
+      )}
+    >
+      <span className={cn('block text-sm font-medium', active ? 'text-emerald-200' : 'text-zinc-200')}>{title}</span>
+      <span className="mt-1 block text-xs text-zinc-500">{body}</span>
+    </button>
+  )
+}
+
+function JourneyStep({
+  number,
+  icon: Icon,
+  title,
+  body,
+  action,
+  onClick,
+  complete = false,
+}: {
+  number: string
+  icon: typeof Github
+  title: string
+  body: string
+  action: string
+  onClick?: () => void
+  complete?: boolean
+}) {
+  return (
+    <article className="flex min-h-64 flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/35 p-6">
+      <div className="flex items-center justify-between">
+        <span className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-950/60 text-zinc-400">
+          {complete ? <Check className="h-5 w-5 text-emerald-400" /> : <Icon className="h-5 w-5" />}
+        </span>
+        <span className="text-xs font-medium text-zinc-700">{number}</span>
+      </div>
+      <h3 className="mt-6 text-lg font-medium text-zinc-100">{title}</h3>
+      <p className="mt-2 flex-1 text-sm leading-6 text-zinc-500">{body}</p>
+      <button
+        type="button"
+        onClick={onClick}
+        disabled={!onClick}
+        className={cn(
+          'mt-6 inline-flex w-fit items-center gap-2 text-sm font-medium',
+          complete ? 'text-emerald-300' : 'text-zinc-300 hover:text-emerald-300',
+          !onClick && !complete && 'cursor-default text-zinc-600'
+        )}
+      >
+        {action}
+        {complete ? null : <ChevronRight className="h-4 w-4" />}
+      </button>
+    </article>
+  )
+}
+
+function InfoCard({
+  icon: Icon,
+  title,
+  body,
+  tone = 'neutral',
+}: {
+  icon: typeof Github
+  title: string
+  body: string
+  tone?: 'neutral' | 'success'
+}) {
+  return (
+    <section className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
+      <Icon className={cn('h-4 w-4', tone === 'success' ? 'text-emerald-400' : 'text-zinc-500')} />
+      <h2 className="mt-3 text-sm font-medium text-zinc-200">{title}</h2>
+      <p className="mt-2 text-xs leading-5 text-zinc-500">{body}</p>
+    </section>
+  )
+}
+
+function BackButton({ onClick, children }: { onClick: () => void; children: ReactNode }) {
+  return (
+    <button type="button" onClick={onClick} className="inline-flex items-center gap-2 text-sm text-zinc-500 hover:text-zinc-200">
+      <ArrowLeft className="h-4 w-4" />
+      {children}
+    </button>
+  )
+}
+
+function SectionHeading({
+  kicker,
+  title,
+  body,
+  action,
+}: {
+  kicker: string
+  title: string
+  body: string
+  action?: ReactNode
+}) {
+  return (
+    <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-emerald-400">{kicker}</p>
+        <h2 className="mt-2 text-2xl font-light tracking-tight text-zinc-100 sm:text-3xl">{title}</h2>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-500">{body}</p>
+      </div>
+      {action}
+    </div>
+  )
+}
+
+function RegistryMetric({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="px-3">
+      <span className="block text-lg font-medium text-zinc-200 sm:text-xl">{value}</span>
+      <span className="mt-1 block text-[11px] text-zinc-600 sm:text-xs">{label}</span>
+    </div>
+  )
+}
+
+function VocabularyFact({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
+  return (
+    <div className="rounded-lg border border-zinc-800/80 bg-zinc-950/35 px-3 py-3">
+      <span className="block text-[11px] uppercase tracking-wider text-zinc-600">{label}</span>
+      <span className={cn('mt-1 block truncate text-sm text-zinc-300', mono && 'font-mono text-xs')}>{value}</span>
+    </div>
+  )
+}
+
+function slugify(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+export default RegistryPage
