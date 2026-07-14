@@ -20,7 +20,7 @@ export default function VocabularyGraphRoute() {
           Patterns
         </Link>
       </div>
-      <GraphPageLazy />
+      <GraphPageLazy showBackButton={false} />
     </div>
   )
 }
