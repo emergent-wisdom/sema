@@ -9,3 +9,6 @@
 ## How to test
 
 - [ ]
+- [ ] If this changes deployment or tenant behavior: deployed the PR commit to
+      `semahash-staging` and ran `python3 scripts/smoke_hosted_workspaces.py`
+      successfully.
