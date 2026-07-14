@@ -370,7 +370,7 @@ function Discovery({
               <input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                placeholder="Search patterns, categories, or vocabularies"
+                placeholder="Search patterns by name, category, or layer"
                 className="w-full bg-transparent text-base text-zinc-100 outline-none placeholder:text-zinc-600"
               />
               {patternsLoading ? <Loader2 className="h-4 w-4 animate-spin text-zinc-600" /> : null}
