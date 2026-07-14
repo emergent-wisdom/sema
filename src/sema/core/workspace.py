@@ -9,7 +9,9 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
+from threading import RLock
 from typing import Any
 
 from .hashing import HASH_ALGO, vocabulary_root
@@ -413,3 +415,75 @@ class GraphWorkspace:
             "canonical_ref": canonical_ref,
             "full_sema_id": full_hash,
         }
+
+
+class WorkspaceNotFoundError(LookupError):
+    """Raised when a tenant workspace ID is not registered."""
+
+    def __init__(self, workspace_id: str):
+        self.workspace_id = workspace_id
+        super().__init__(f"Workspace '{workspace_id}' not found")
+
+
+class WorkspaceCatalog:
+    """Resolve registered tenant IDs to isolated graph workspaces.
+
+    Sources are cheap catalog records. ``GraphWorkspace`` instances are opened
+    lazily and cached per ID so one tenant can never fall through to another
+    tenant's process-wide registry. A future Supabase adapter can refresh the
+    registered sources without changing the hosted route boundary.
+    """
+
+    def __init__(
+        self,
+        sources: Iterable[WorkspaceSource] = (),
+        *,
+        workspace_factory: Callable[[WorkspaceSource], GraphWorkspace] = GraphWorkspace,
+    ):
+        self._sources: dict[str, WorkspaceSource] = {}
+        self._workspaces: dict[str, GraphWorkspace] = {}
+        self._workspace_factory = workspace_factory
+        self._lock = RLock()
+        for source in sources:
+            self.register_source(source)
+
+    @staticmethod
+    def _source_id(source: WorkspaceSource) -> str:
+        workspace_id = source.workspace_id.strip()
+        if not workspace_id:
+            raise ValueError("workspace_id must not be blank")
+        if workspace_id != source.workspace_id:
+            raise ValueError("workspace_id must not have surrounding whitespace")
+        return workspace_id
+
+    def register_source(self, source: WorkspaceSource) -> None:
+        """Add or replace a source and invalidate any cached workspace."""
+
+        workspace_id = self._source_id(source)
+        with self._lock:
+            self._sources[workspace_id] = source
+            self._workspaces.pop(workspace_id, None)
+
+    def register_workspace(self, workspace: GraphWorkspace) -> None:
+        """Register an already-open workspace, such as the local default."""
+
+        workspace_id = self._source_id(workspace.source)
+        with self._lock:
+            self._sources[workspace_id] = workspace.source
+            self._workspaces[workspace_id] = workspace
+
+    def resolve(self, workspace_id: str) -> GraphWorkspace:
+        """Return the isolated workspace for ``workspace_id``, opening it once."""
+
+        with self._lock:
+            cached = self._workspaces.get(workspace_id)
+            if cached is not None:
+                return cached
+
+            source = self._sources.get(workspace_id)
+            if source is None:
+                raise WorkspaceNotFoundError(workspace_id)
+
+            workspace = self._workspace_factory(source)
+            self._workspaces[workspace_id] = workspace
+            return workspace

@@ -20,7 +20,8 @@ connection layer.
 
 ## Current Foundation
 
-The first code step is `sema.core.workspace.GraphWorkspace`.
+The first code step is `sema.core.workspace.GraphWorkspace`, followed by the
+in-process `WorkspaceCatalog` boundary.
 
 It wraps a registry plus workspace identity so API and MCP code can ask:
 
@@ -41,11 +42,26 @@ GET /api/workspace
 which returns the active workspace identity, read-only flag, pattern count, and
 vocabulary root.
 
+Registered workspaces also have tenant-scoped, read-only routes:
+
+```text
+GET /api/workspaces/{workspace_id}
+GET /api/workspaces/{workspace_id}/search?q=...
+GET /api/workspaces/{workspace_id}/patterns/{handle}
+GET /api/workspaces/{workspace_id}/resolve/{handle}
+GET /api/workspaces/{workspace_id}/root
+```
+
+The deployed process currently registers only its local default workspace. The
+catalog deliberately does not list workspace IDs or expose materialized DB
+paths. A persistent adapter will populate it with authorized, published
+workspace sources.
+
 ## Next Steps
 
-1. Add a workspace catalog that resolves `{workspace_id}` to a GitHub
-   installation/repo/ref and a materialized DB path.
-2. Add hosted routes under `/api/workspaces/{workspace_id}/...`.
+1. Back the workspace catalog with Supabase records that resolve
+   `{workspace_id}` to a GitHub installation/repo/ref and materialized DB path.
+2. Add authorization and visibility checks before registering private sources.
 3. Add GitHub App authentication and installation selection.
 4. Add import/sync: clone or fetch a repo ref, validate pattern JSON, and build a
    workspace DB.
