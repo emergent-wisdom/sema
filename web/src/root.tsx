@@ -10,6 +10,23 @@ const queryClient = new QueryClient({
   },
 });
 
+const plausibleBootstrap = `
+  if (["semahash.org", "www.semahash.org"].includes(window.location.hostname)) {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://plausible.io/js/pa-2brno4TEeC51MdCh3HMPq.js";
+    document.head.appendChild(script);
+
+    window.plausible = window.plausible || function () {
+      (window.plausible.q = window.plausible.q || []).push(arguments);
+    };
+    window.plausible.init = window.plausible.init || function (options) {
+      window.plausible.o = options || {};
+    };
+    window.plausible.init();
+  }
+`;
+
 // Default title/description, overridable per-route: a child route's meta()
 // can spread these matches and replace just the title/description entries.
 export const meta: MetaFunction = () => [
@@ -38,6 +55,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         <Meta />
         <Links />
+        {/* Plausible is intentionally limited to the canonical production hosts. */}
+        <script dangerouslySetInnerHTML={{ __html: plausibleBootstrap }} />
       </head>
       <body>
         {children}
