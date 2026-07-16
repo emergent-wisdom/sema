@@ -1,11 +1,6 @@
-import os
-import sys
 from collections import defaultdict
 
 import networkx as nx
-
-# Add project root to path
-sys.path.append(os.getcwd())
 
 from sema.taxonomy_graph.graph_store import EdgeType, GraphStore, NodeType
 

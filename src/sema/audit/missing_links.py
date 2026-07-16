@@ -3,7 +3,7 @@ import json
 import os
 import re
 
-# Path to vocabulary
+# Repository-relative path to the canonical vocabulary.
 VOCAB_DIR = "data/vocabulary"
 
 
