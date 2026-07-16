@@ -629,10 +629,10 @@ def _sema_pull(
 # Mint and pull are exposed by default. Deployments wanting a read-only
 # or pinned-vocabulary server set SEMA_DISABLE_MINT=true / SEMA_DISABLE_PULL=true.
 if os.environ.get("SEMA_DISABLE_MINT", "").lower() != "true":
-    sema_mint = mcp.tool()(_sema_mint)
+    sema_mint = mcp.tool(name="sema_mint")(_sema_mint)
 
 if os.environ.get("SEMA_DISABLE_PULL", "").lower() != "true":
-    sema_pull = mcp.tool()(_sema_pull)
+    sema_pull = mcp.tool(name="sema_pull")(_sema_pull)
 
 
 def main():

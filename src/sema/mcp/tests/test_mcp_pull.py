@@ -15,8 +15,8 @@ if importlib.util.find_spec("mcp") is None:
 
 
 def _run_module_check(env_overrides: dict[str, str]) -> set[str]:
-    """Import the MCP server module in a clean subprocess and return the set
-    of symbols prefixed with `sema_` that the module exposes. Running in a
+    """Import the MCP server module in a clean subprocess and return its
+    registered MCP tool names. Running in a
     subprocess guarantees a clean import — the MCP FastMCP singleton mutates
     on `@mcp.tool()` decoration, so reimporting in-process would leak state
     between tests.
@@ -33,8 +33,9 @@ def _run_module_check(env_overrides: dict[str, str]) -> set[str]:
             env.pop(k, None)
 
     code = (
-        "import sys; from sema.mcp import server; "
-        "print(','.join(sorted(n for n in dir(server) if n.startswith('sema_'))))"
+        "import asyncio; from sema.mcp import server; "
+        "tools = asyncio.run(server.mcp.list_tools()); "
+        "print(','.join(sorted(tool.name for tool in tools)))"
     )
     out = subprocess.check_output([sys.executable, "-c", code], env=env, text=True)
     return set(out.strip().split(","))
