@@ -23,9 +23,17 @@ jobs:
           build-args: "--wfail"
           test: false
           lint: false
-          leanchecker: true
+          leanchecker: false
           use-mathlib-cache: false
           lake-package-directory: verification/lean
+
+      - name: Independently check Lean proof artifacts
+        working-directory: verification/lean
+        run: >-
+          lake env leanchecker
+          SemaVerification
+          SemaVerification.Handshake
+          SemaVerification.CanonicalEncoding
 
   test:
     runs-on: ubuntu-latest
