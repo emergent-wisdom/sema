@@ -1,0 +1,6 @@
+name = "sema_verification"
+version = "0.1.0"
+defaultTargets = ["SemaVerification"]
+
+[[lean_lib]]
+name = "SemaVerification"

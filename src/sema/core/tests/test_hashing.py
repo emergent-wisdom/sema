@@ -12,6 +12,10 @@ Every collision pair below hashed IDENTICALLY under v1.
 import pytest
 
 from sema.core.hashing import (
+    _TAG_DICT,
+    _TAG_LIST,
+    _TAG_PRIMITIVE,
+    _TAG_STR,
     canonicalize_dependency_keys,
     generate_sema_hash,
     merkle_hash,
@@ -21,6 +25,20 @@ from sema.core.hashing import (
 
 class TestDomainSeparation:
     """v1 collision pairs — each must now hash differently."""
+
+    def test_production_tags_match_verified_lean_model(self):
+        """Keep Python's bytes connected to CanonicalEncoding.lean."""
+        assert {
+            "string": _TAG_STR,
+            "primitive": _TAG_PRIMITIVE,
+            "list": _TAG_LIST,
+            "dictionary": _TAG_DICT,
+        } == {
+            "string": bytes([115, 58]),
+            "primitive": bytes([112, 58]),
+            "list": bytes([108, 58]),
+            "dictionary": bytes([100, 58]),
+        }
 
     @pytest.mark.parametrize(
         "a,b",

@@ -166,6 +166,37 @@ def test_handshake_pattern_accepts_full_hash():
     proceed = workspace.handshake("Alpha", your_hash="a" * 64)
 
     assert proceed["verdict"] == "PROCEED"
+    assert proceed["assurance"] == "full_hash"
+
+
+def test_handshake_cooperative_stub_reports_prefix_assurance():
+    workspace = make_workspace()
+
+    proceed = workspace.handshake("Alpha", your_hash="aaaa")
+
+    assert proceed["verdict"] == "PROCEED"
+    assert proceed["assurance"] == "prefix"
+    assert proceed["mode"] == "cooperative"
+
+
+def test_handshake_strict_stub_requests_full_hash():
+    workspace = make_workspace()
+
+    result = workspace.handshake("Alpha", your_hash="aaaa", strict=True)
+
+    assert result["verdict"] == "REQUIRE_FULL_HASH"
+    assert result["mode"] == "strict"
+    assert result["full_sema_id"].endswith("a" * 64)
+
+
+def test_handshake_strict_full_hash_proceeds():
+    workspace = make_workspace()
+
+    result = workspace.handshake("Alpha", your_hash="a" * 64, strict=True)
+
+    assert result["verdict"] == "PROCEED"
+    assert result["assurance"] == "full_hash"
+    assert result["mode"] == "strict"
 
 
 def test_handshake_pattern_normalizes_case_and_whitespace():
