@@ -152,7 +152,9 @@ assert pattern["sema_ref"] == "StateLock#7cd8"
 python experiments/demos/local_handshake.py
 ```
 
-See the handshake in action: matching hashes PROCEED, mismatched hashes HALT, unknown patterns HALT. Takes 2 seconds.
+See the handshake in action: matching hashes PROCEED, mismatched hashes HALT,
+and unknown patterns HALT. Cooperative mode accepts short prefixes for drift
+detection; strict mode requires the full hash. Takes 2 seconds.
 
 ## How It Works
 
@@ -163,12 +165,16 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Agent A: "Let's use StateLock#7cd8"
-Agent B: sema_handshake("StateLock#7cd8")
-         -> PROCEED (hashes match) or HALT (drift detected)
+Cooperative: sema_handshake("StateLock#7cd8")
+             -> PROCEED with assurance="prefix", or HALT
+
+Strict:      sema_handshake("StateLock", "<full 64-char hash>", strict=true)
+             -> PROCEED with assurance="full_hash", or HALT
 ```
 
-This is the **Anti-Postel principle**: same bytes = PROCEED, different bytes = HALT. No ambiguity, no silent failures.
+This is the **Anti-Postel principle**: strict mode proceeds only on full-hash
+identity; cooperative mode uses compact prefixes as a non-adversarial drift
+signal. Mismatches fail closed in both modes.
 
 ## The Vocabulary
 
@@ -238,6 +244,17 @@ See [`experiments/sema_design_challenge/README.md`](experiments/sema_design_chal
 - **16.9x average token compression** via content-addressed stubs
 - **Fail-closed architecture** — mismatches halt, never fail silently
 - **Mean embedding similarity of 0.21** — high structural distinctness
+
+### Formal-verification pilot
+
+Sema's handshake decision kernel and canonicalization type tags have a small
+Lean 4 proof suite. The handshake supports cooperative prefix matching for
+ordinary drift detection and strict full-hash verification for proof-grade
+identity; the proofs state each guarantee separately. The encoding proof
+establishes pre-hash domain separation, while Python conformance tests connect
+the models to production. See
+[`verification/README.md`](verification/README.md) for the proven theorems,
+trusted-computing-base assumptions, and explicit limits of the claim.
 
 ## Using with understanding-graph
 

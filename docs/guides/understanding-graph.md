@@ -42,12 +42,22 @@ Before writing a `decision` node in Understanding Graph that depends on a
 shared concept (a lock, a protocol, a verification step), run a `sema`
 handshake first:
 
-```
-sema_handshake({ ref: "StateLock#7cd8" })
+```json
+sema_handshake({
+  "ref": "StateLock",
+  "your_hash": "<full 64-character SHA-256 hash>",
+  "strict": true
+})
 ```
 
-- If the verdict is `PROCEED`, both agents share the same byte-exact
-  definition of `StateLock`. Safe to write the decision node and commit.
+- If the verdict is `PROCEED` with `assurance: "full_hash"`, both agents share
+  the same byte-exact definition of `StateLock`. Safe to write the decision
+  node and commit.
+- A cooperative stub check can return `PROCEED` with `assurance: "prefix"`.
+  That is appropriate for ordinary drift detection, but is not proof-grade
+  identity.
+- In strict mode, a matching stub returns `REQUIRE_FULL_HASH` rather than
+  proceeding.
 - If the verdict is `HALT`, the definitions have drifted. Do *not* write a
   decision. Write a `tension` node instead, capturing the drift, so other
   agents can see why work is blocked.

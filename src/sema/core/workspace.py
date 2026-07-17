@@ -14,6 +14,7 @@ from dataclasses import dataclass, field
 from threading import RLock
 from typing import Any
 
+from .handshake import HandshakeMode, HandshakeVerdict, decide_handshake
 from .hashing import HASH_ALGO, vocabulary_root
 from .registry import RegistryManager
 from .validator import validate_pattern
@@ -304,16 +305,27 @@ class GraphWorkspace:
             "db_path": self.db_path,
         }
 
-    def handshake(self, ref: str, your_hash: str | None = None) -> dict[str, Any]:
+    def handshake(
+        self, ref: str, your_hash: str | None = None, *, strict: bool = False
+    ) -> dict[str, Any]:
+        mode = HandshakeMode.STRICT if strict else HandshakeMode.COOPERATIVE
         if ref.strip().lower() == "vocab":
             root = self.vocabulary_root()
             canonical_hash = root["hash"]
             canonical_stub = root["stub"]
             canonical_ref = f"sema:vocab#mh:{HASH_ALGO}:{canonical_hash}"
+            presented_hash = None if your_hash is None else your_hash.strip().lower()
+            verdict = decide_handshake(
+                available=True,
+                presented_hash=presented_hash,
+                canonical_stub=canonical_stub,
+                canonical_full=canonical_hash,
+                mode=mode,
+            )
 
-            if your_hash is None:
+            if verdict is HandshakeVerdict.PROVIDE_HASH:
                 return {
-                    "verdict": "PROVIDE_HASH",
+                    "verdict": verdict.value,
                     "scope": "vocab",
                     "canonical_stub": canonical_stub,
                     "canonical_ref": canonical_ref,
@@ -325,18 +337,35 @@ class GraphWorkspace:
                     ),
                 }
 
-            normalized = your_hash.strip().lower()
-            if normalized == canonical_stub or normalized == canonical_hash:
+            if verdict is HandshakeVerdict.PROCEED:
+                assurance = "full_hash" if presented_hash == canonical_hash else "prefix"
                 return {
-                    "verdict": "PROCEED",
+                    "verdict": verdict.value,
                     "scope": "vocab",
                     "verified_ref": canonical_ref,
+                    "assurance": assurance,
+                    "mode": mode.value,
                     "pattern_count": root["pattern_count"],
                     "message": "Vocabulary alignment confirmed. Safe to coordinate.",
                 }
 
+            if verdict is HandshakeVerdict.REQUIRE_FULL_HASH:
+                return {
+                    "verdict": verdict.value,
+                    "scope": "vocab",
+                    "canonical_stub": canonical_stub,
+                    "canonical_ref": canonical_ref,
+                    "full_sema_id": canonical_ref,
+                    "pattern_count": root["pattern_count"],
+                    "mode": mode.value,
+                    "action": (
+                        "The vocabulary prefix matches, but strict verification requires "
+                        "the full 64-character hash. Call again with the full hash."
+                    ),
+                }
+
             return {
-                "verdict": "HALT",
+                "verdict": verdict.value,
                 "scope": "vocab",
                 "your_hash": your_hash,
                 "canonical_stub": canonical_stub,
@@ -358,8 +387,15 @@ class GraphWorkspace:
         ref_stub = parts[1] if len(parts) > 1 else None
 
         if handle not in registry:
+            verdict = decide_handshake(
+                available=False,
+                presented_hash=your_hash or ref_stub,
+                canonical_stub="",
+                canonical_full=None,
+                mode=mode,
+            )
             return {
-                "verdict": "HALT",
+                "verdict": verdict.value,
                 "reason": f"Pattern '{handle}' not found in vocabulary",
                 "action": "Cannot coordinate - pattern unknown",
             }
@@ -370,9 +406,23 @@ class GraphWorkspace:
         full_hash = pattern.get("sema_id", "")
 
         compare_hash = (your_hash or ref_stub or "").strip().lower()
-        if not compare_hash:
+        # Accept the short stub or the full hash, like the vocab scope above.
+        # A full-hash match is stronger evidence of alignment than the stub;
+        # rejecting it would be a false HALT.
+        canonical_full = ""
+        marker = f"#mh:{HASH_ALGO}:"
+        if isinstance(full_hash, str) and marker in full_hash:
+            canonical_full = full_hash.split(marker, 1)[1].lower()
+        verdict = decide_handshake(
+            available=True,
+            presented_hash=compare_hash or None,
+            canonical_stub=canonical_stub.lower(),
+            canonical_full=canonical_full or None,
+            mode=mode,
+        )
+        if verdict is HandshakeVerdict.PROVIDE_HASH:
             return {
-                "verdict": "PROVIDE_HASH",
+                "verdict": verdict.value,
                 "handle": handle,
                 "canonical_stub": canonical_stub,
                 "canonical_ref": canonical_ref,
@@ -383,27 +433,35 @@ class GraphWorkspace:
                 ),
             }
 
-        # Accept the short stub or the full hash, like the vocab scope above.
-        # A full-hash match is stronger evidence of alignment than the stub;
-        # rejecting it would be a false HALT.
-        canonical_full = ""
-        marker = f"#mh:{HASH_ALGO}:"
-        if isinstance(full_hash, str) and marker in full_hash:
-            canonical_full = full_hash.split(marker, 1)[1].lower()
-        if compare_hash == canonical_stub.lower() or (
-            canonical_full and compare_hash == canonical_full
-        ):
+        if verdict is HandshakeVerdict.PROCEED:
+            assurance = "full_hash" if compare_hash == canonical_full else "prefix"
             return {
-                "verdict": "PROCEED",
+                "verdict": verdict.value,
                 "handle": handle,
                 "verified_ref": canonical_ref,
+                "assurance": assurance,
+                "mode": mode.value,
                 "message": "Semantic alignment confirmed. Safe to coordinate.",
                 "invariants": pattern.get("invariants", []),
                 "tier": pattern.get("tier", 1),
             }
 
+        if verdict is HandshakeVerdict.REQUIRE_FULL_HASH:
+            return {
+                "verdict": verdict.value,
+                "handle": handle,
+                "canonical_stub": canonical_stub,
+                "canonical_ref": canonical_ref,
+                "full_sema_id": full_hash,
+                "mode": mode.value,
+                "action": (
+                    "The pattern prefix matches, but strict verification requires the full "
+                    "64-character hash. Call again with the full hash."
+                ),
+            }
+
         return {
-            "verdict": "HALT",
+            "verdict": verdict.value,
             "handle": handle,
             "your_hash": compare_hash,
             "canonical_hash": canonical_stub,

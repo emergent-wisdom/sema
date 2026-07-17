@@ -10,6 +10,31 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  formal-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Lean safety proofs
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          auto-config: false
+          build: true
+          build-args: "--wfail"
+          test: false
+          lint: false
+          leanchecker: false
+          use-mathlib-cache: false
+          lake-package-directory: verification/lean
+
+      - name: Independently check Lean proof artifacts
+        working-directory: verification/lean
+        run: >-
+          lake env leanchecker
+          SemaVerification
+          SemaVerification.Handshake
+          SemaVerification.CanonicalEncoding
+
   test:
     runs-on: ubuntu-latest
     strategy:

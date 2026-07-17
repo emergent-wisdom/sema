@@ -1,95 +1,70 @@
-"""
-Local Handshake Demo — no external APIs required.
+"""Local handshake demo with cooperative and strict trust modes.
 
-Simulates two agents verifying semantic alignment via Sema hashes.
-Run: python experiments/demos/local_handshake.py
+No external APIs are required.
+Run from the repository root: ``python experiments/demos/local_handshake.py``.
 """
 
-import json
-import sys
 import os
+import sys
 
-# Ensure src is importable when running from repo root
+# Ensure src is importable when running from a checkout without installation.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "..", "src"))
 
-from sema.core.actions import sema_handshake
+from sema.core.registry import RegistryManager
+from sema.core.workspace import GraphWorkspace
 
 
 def main():
+    workspace = GraphWorkspace(registry_manager=RegistryManager())
+
     print("Sema Local Handshake Demo")
-    print("=" * 50)
+    print("=" * 60)
 
-    # --- Round 0: Look up the canonical hash ---
-    print("\nRound 0: Agent A looks up StateLock's canonical hash")
-    print("-" * 50)
+    print("\nRound 0: Look up StateLock's canonical identity")
+    print("-" * 60)
+    lookup = workspace.handshake("StateLock")
+    canonical_stub = lookup["canonical_stub"]
+    full_sema_id = lookup["full_sema_id"]
+    canonical_full = full_sema_id.split("#mh:SHA-256:", 1)[1]
+    print(f"  Stub:     {canonical_stub}")
+    print(f"  Full ID:  {full_sema_id}")
 
-    lookup = json.loads(sema_handshake("StateLock"))
-    canonical_stub = lookup.get("canonical_stub")
-    print(f"  Handle:         StateLock")
-    print(f"  Canonical stub: {canonical_stub}")
-    print(f"  -> Agent A now knows the correct ref: StateLock#{canonical_stub}")
+    print("\nRound 1: Cooperative prefix check")
+    print("-" * 60)
+    cooperative = workspace.handshake("StateLock", your_hash=canonical_stub)
+    print(f"  Verdict:   {cooperative['verdict']}")
+    print(f"  Assurance: {cooperative['assurance']}")
+    assert cooperative["verdict"] == "PROCEED"
+    assert cooperative["assurance"] == "prefix"
 
-    # --- Round 1: Matching hashes (happy path) ---
-    print(f"\nRound 1: Agent A proposes StateLock#{canonical_stub}")
-    print("-" * 50)
+    print("\nRound 2: Strict mode rejects prefix-only evidence")
+    print("-" * 60)
+    strict_prefix = workspace.handshake("StateLock", your_hash=canonical_stub, strict=True)
+    print(f"  Verdict: {strict_prefix['verdict']}")
+    assert strict_prefix["verdict"] == "REQUIRE_FULL_HASH"
 
-    result = json.loads(sema_handshake(f"StateLock#{canonical_stub}"))
-    print(f"  Ref:     {result.get('ref')}")
-    print(f"  Verdict: {result.get('verdict')}")
+    print("\nRound 3: Strict full-hash verification")
+    print("-" * 60)
+    strict_full = workspace.handshake("StateLock", your_hash=canonical_full, strict=True)
+    print(f"  Verdict:   {strict_full['verdict']}")
+    print(f"  Assurance: {strict_full['assurance']}")
+    assert strict_full["verdict"] == "PROCEED"
+    assert strict_full["assurance"] == "full_hash"
 
-    if result["verdict"] == "PROCEED":
-        print("  -> Agents are semantically aligned. Coordination can proceed.")
-    else:
-        print(f"  -> Unexpected verdict: {result.get('verdict')}")
+    print("\nRound 4: Mismatched full hash")
+    print("-" * 60)
+    mismatch = workspace.handshake("StateLock", your_hash="0" * 64, strict=True)
+    print(f"  Verdict: {mismatch['verdict']}")
+    assert mismatch["verdict"] == "HALT"
 
-    # --- Round 2: Mismatched hash (attack/drift) ---
-    print("\nRound 2: Agent A proposes StateLock with wrong hash")
-    print("-" * 50)
+    print("\nRound 5: Unknown pattern")
+    print("-" * 60)
+    unknown = workspace.handshake("NonExistentPattern", your_hash="0" * 64, strict=True)
+    print(f"  Verdict: {unknown['verdict']}")
+    assert unknown["verdict"] == "HALT"
 
-    result = json.loads(sema_handshake("StateLock#deadbeef"))
-    print(f"  Ref:      {result.get('ref')}")
-    print(f"  Verdict:  {result.get('verdict')}")
-    print(f"  Expected: {result.get('expected_hash', 'N/A')}")
-    print(f"  Got:      {result.get('your_hash', 'N/A')}")
-
-    if result["verdict"] == "HALT":
-        print("  -> Drift detected. Coordination halted. Fail-closed.")
-    else:
-        print("  -> ERROR: Expected HALT on mismatched hash.")
-
-    # --- Round 3: Session-scoped handshake (multiple patterns) ---
-    print("\nRound 3: Session handshake over multiple patterns")
-    print("-" * 50)
-
-    # Step 1: Agent A computes context hash for a set of patterns
-    patterns = ["StateLock", "Abduction", "ChainOfThought"]
-    result = json.loads(sema_handshake(patterns))
-    context_hash = result.get("context_hash")
-    print(f"  Patterns:     {patterns}")
-    print(f"  Context hash: {context_hash}")
-
-    # Step 2: Agent B verifies with the same context hash
-    print(f"\n  Agent B verifies with context hash: {context_hash}")
-    result2 = json.loads(sema_handshake(patterns, your_hash=context_hash))
-    print(f"  Verdict:      {result2.get('verdict')}")
-
-    if result2["verdict"] == "PROCEED":
-        print(f"  -> All three patterns verified. Session is semantically aligned.")
-        print(f"     Any agent with context hash {context_hash} shares the exact same contracts.")
-
-    # --- Round 4: Unknown pattern ---
-    print("\nRound 4: Agent A proposes a pattern that doesn't exist")
-    print("-" * 50)
-
-    result = json.loads(sema_handshake("NonExistentPattern#abcd"))
-    print(f"  Ref:     {result.get('ref')}")
-    print(f"  Verdict: {result.get('verdict')}")
-
-    if result["verdict"] == "HALT":
-        print("  -> Unknown pattern. Coordination halted.")
-
-    print("\n" + "=" * 50)
-    print("All rounds complete. The protocol is working.")
+    print("\n" + "=" * 60)
+    print("All rounds passed.")
 
 
 if __name__ == "__main__":
