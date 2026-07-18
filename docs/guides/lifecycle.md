@@ -140,6 +140,20 @@ This keeps the committed vocabulary root synchronized with the database.
 ./scripts/setup_hooks.sh
 ```
 
+Before opening a vocabulary pull request, run the complete post-apply workflow:
+
+```bash
+python scripts/verify_vocabulary_change.py --refresh
+python scripts/verify_vocabulary_change.py
+```
+
+The first command retains regenerated manuals, audit reports, vocabulary
+information, and current documentation hash references. The second is
+non-destructive and verifies those artifacts, all exported hashes, clean
+staging, database/export parity, and deterministic reconstruction. CI runs the
+same check command, so local and remote vocabulary gates cannot silently
+diverge.
+
 ## 7. Distribution
 
 The vocabulary ships via two channels:

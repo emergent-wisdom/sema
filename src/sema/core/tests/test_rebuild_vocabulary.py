@@ -1,6 +1,7 @@
 """Tests for deterministic vocabulary rebuild helpers."""
 
 import importlib.util
+import os
 from pathlib import Path
 
 
@@ -31,3 +32,12 @@ def test_changed_vocabulary_files_compares_with_pre_rebuild_snapshot(tmp_path):
         "Beta.json",
         "Gamma.json",
     ]
+
+
+def test_isolated_registry_environment_replaces_home_without_losing_environment(tmp_path):
+    rebuild = load_rebuild_module()
+
+    env = rebuild.isolated_registry_environment(str(tmp_path))
+
+    assert env["HOME"] == str(tmp_path)
+    assert all(env.get(key) == value for key, value in os.environ.items() if key != "HOME")

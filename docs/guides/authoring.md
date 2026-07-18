@@ -22,6 +22,7 @@ Before submitting a pattern, verify:
   without unstated domain policy
 - [ ] `sema apply --check` passes
 - [ ] No collisions: `sema search "your handle"` returns no conflicts
+- [ ] `python scripts/verify_vocabulary_change.py` passes after apply/export
 
 For the full rule set, see [Validation Rules](../specification/validation.md). For lifecycle context (what happens after apply), see [Pattern Lifecycle](lifecycle.md).
 
@@ -156,17 +157,24 @@ The sidecar and the manual are **not** part of the hash input. Editing commentar
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ 7. VERIFY and CLEAN.                                         │
-│    - `python -m sema.audit.hash_validity` — exported hashes  │
-│      match their recomputed definitions.                     │
-│    - `python scripts/rebuild_vocabulary.py`                   │
-│      A clean rebuild reproduces the same hashes.             │
-│    - `pytest` — regression tests green.                      │
 │    - Delete data/staging/<Handle>.json once applied.         │
+│    - `python scripts/verify_vocabulary_change.py --refresh`  │
+│      regenerates the manual, audit, root, and doc refs.       │
+│    - `python scripts/verify_vocabulary_change.py` checks all  │
+│      generated artifacts, DB/export parity, hashes, rebuild.  │
+│    - `pytest` — regression tests green.                      │
 └─────────────────────────────────────────────────────────────┘
                             │
                             ▼
                    ── Loop back to step 1 ──
 ```
+
+The verification command does not apply staging or retain a new database
+export. Those remain explicit semantic operations in steps 5 and 6. Its
+default check mode is non-destructive: generated files and vocabulary JSON are
+restored after comparison. `--refresh` is the deliberate write mode for
+derived documentation; review and commit the resulting artifacts before
+running check mode again.
 
 ### Rules that hold across the loop
 
