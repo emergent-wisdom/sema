@@ -41,12 +41,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:TieredAccess#mh:SHA-256:805cff9b1016fb2e59af973679a456842d0d764359ffa1c0bc708e7633218334",
-  "sema_ref": "TieredAccess#805c",
-  "sema_stub": "805c",
+  "sema_id": "sema:TieredAccess#mh:SHA-256:f3f651c9ef144f5a78f1ba4539ff8af7d1b70c625ef9cc119cf31e8f7e5340dd",
+  "sema_ref": "TieredAccess#f3f6",
+  "sema_stub": "f3f6",
   "dependencies": {
     "composes_with": {
-      "bearer_token": "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825"
+      "bearer_token": "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",

@@ -14,7 +14,11 @@ import sys
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(script_dir, "../.."))
 src_path = os.path.join(project_root, "src")
-sys.path.append(src_path)
+# Export with this checkout's implementation even when the active runtime also
+# has a released version of sema installed in site-packages.
+if src_path in sys.path:
+    sys.path.remove(src_path)
+sys.path.insert(0, src_path)
 
 # Imports
 from sema.core.config import get_config  # noqa: E402

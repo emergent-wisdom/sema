@@ -41,7 +41,7 @@ GOVERNING_PRINCIPLES = """\
 
 These are the rules a new pattern must pass before it enters the default library.
 They are stated here forward-looking — as requirements for future mints — rather
-than as history. All three are enforced or validated at mint time through
+than as history. All four are enforced or validated at mint time through
 `sema apply` checks and the pattern-authoring review workflow, with the design
 manual itself (this document) as the primary review surface.
 
@@ -100,6 +100,38 @@ For each pattern, enumerate:
 The discipline prevents two failure modes simultaneously: a mechanism overfit
 to the author's first use case (too specific, breaks legitimate variants) and
 a mechanism so generic it has no teeth (too vague, underconstrains the concept).
+
+### The constraint-placement test (what belongs in the hash)
+
+Breadth is required of the reusable ancestry spine, not of every leaf. A
+specific leaf pattern can and should pin a concrete strategy when that
+specificity is what gives the pattern value. A short, general parent handle has
+a different obligation: its hashed definition must admit every legitimate
+broad-use context named in its commentary.
+
+Before adding a mechanism clause, invariant, precondition, postcondition, or
+failure mode to a parent, ask:
+
+1. **Identity test** — if an implementation omits this requirement, does it
+   cease to be the pattern in every broad-use context? If not, the requirement
+   is not universal enough for the parent hash.
+2. **Placement test** — is this an intrinsic quantitative axis, a qualitatively
+   different strategy, deployment policy, or reviewer diagnostic? Put intrinsic
+   quantitative axes in parameters, different strategies in descendants,
+   deployment policy in callers, and contextual guidance in the sidecar.
+3. **Testability test** — can independent agents determine whether the
+   requirement holds without importing unstated domain policy? Aspirational or
+   context-relative claims belong in commentary until a caller supplies the
+   missing standard.
+
+Failure modes belong in the hash when they arise structurally from the named
+mechanism. Risks that depend on a particular deployment, threat model, or
+quality threshold belong in the sidecar or a specialized descendant.
+
+An absent contract is therefore not automatically a defect. Thin primitives,
+abstract nouns, and extension points may intentionally omit contracts that
+would merely restate the mechanism or narrow legitimate composition. Audit the
+reason for the omission; do not optimize for the number of populated fields.
 """
 
 

@@ -1,36 +1,31 @@
 {
   "handle": "BearerToken",
-  "mechanism": "A portable authorization artifact. Unlike {{identity}}-Based Access Control (IBAC) which checks 'Who are you?', this checks 'Do you have the token?'. The Token grants specific rights (e.g., 'Read /data/logs') to the bearer. It can be passed freely between agents to delegate authority without re-configuring the server's Access Control List. It often encodes an access level directly within its signed payload, allowing stateless verification of privilege scopes. May function as an expiring token.",
-  "gloss": "Possession-based authorization",
+  "mechanism": "A portable authorization artifact whose presentation is sufficient to exercise a declared grant. The bearer need not prove an {{identity}} or possession of separate key material. A verifier resolves the token's validity and token-conferred authority through an authority-defined mechanism, such as local verification of a protected structured token or lookup or introspection of an opaque reference token. Representation, expiry, revocation, and transfer policy are supplied by descendants or the deployment.",
+  "gloss": "Possession-based authorization independent of token representation",
   "failure_modes": [
-    "Theft: If a BearerToken is intercepted, the attacker gains full rights (no identity check is performed).",
-    "Replay Attack: Using a spent token again (requires Nonce or Expiry).",
-    "Scope Creep: Token grants more rights than necessary for the task."
+    "Disclosure: A party that obtains an accepted token can exercise its token-conferred authority."
   ],
   "invariants": [
-    "Possession Equals Access: The token itself grants rights; no identity check required.",
-    "Possession Equals Authority: Verifier checks Token signature, not ID.",
-    "Revocability: Token MUST have an Expiry or RevocationID.",
-    "Integrity: Payload must be cryptographically signed by a trusted Issuer."
-  ],
-  "preconditions": [
-    "Issuer public key is known to Verifier",
-    "Token is within validity window"
+    "Possession Semantics: Presenting the same valid token confers the same token-scoped authority regardless of the bearer's {{identity}}.",
+    "Validation Boundary: Token-conferred authority is recognized only when the verifier's authority-defined validation mechanism accepts the token for the requested use."
   ],
   "postconditions": [
-    "Access granted or denied based on signature verification"
+    "Verifier produces an authorization decision from token acceptance and associated grant without separate bearer identity proof"
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
+    "supersedes": [
+      "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825"
+    ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825",
-  "sema_ref": "BearerToken#e5bd",
-  "sema_stub": "e5bd",
+  "sema_id": "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad",
+  "sema_ref": "BearerToken#a682",
+  "sema_stub": "a682",
   "dependencies": {
     "references": {
       "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"

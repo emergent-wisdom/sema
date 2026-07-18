@@ -5,7 +5,7 @@
      in `data/vocabulary/*.json` and design commentary in
      `data/design_critique.json`. -->
 
-_Generated: 2026-07-07_
+_Generated: 2026-07-18_
 _Patterns covered: 452 (from `data/vocabulary/`)_
 _Commentary entries in sidecar: 452 (from `data/design_critique.json`)_
 
@@ -19,7 +19,7 @@ See also: `docs/core/philosophy.md` for the protocol-level principles, `docs/gui
 
 These are the rules a new pattern must pass before it enters the default library.
 They are stated here forward-looking — as requirements for future mints — rather
-than as history. All three are enforced or validated at mint time through
+than as history. All four are enforced or validated at mint time through
 `sema apply` checks and the pattern-authoring review workflow, with the design
 manual itself (this document) as the primary review surface.
 
@@ -78,6 +78,38 @@ For each pattern, enumerate:
 The discipline prevents two failure modes simultaneously: a mechanism overfit
 to the author's first use case (too specific, breaks legitimate variants) and
 a mechanism so generic it has no teeth (too vague, underconstrains the concept).
+
+### The constraint-placement test (what belongs in the hash)
+
+Breadth is required of the reusable ancestry spine, not of every leaf. A
+specific leaf pattern can and should pin a concrete strategy when that
+specificity is what gives the pattern value. A short, general parent handle has
+a different obligation: its hashed definition must admit every legitimate
+broad-use context named in its commentary.
+
+Before adding a mechanism clause, invariant, precondition, postcondition, or
+failure mode to a parent, ask:
+
+1. **Identity test** — if an implementation omits this requirement, does it
+   cease to be the pattern in every broad-use context? If not, the requirement
+   is not universal enough for the parent hash.
+2. **Placement test** — is this an intrinsic quantitative axis, a qualitatively
+   different strategy, deployment policy, or reviewer diagnostic? Put intrinsic
+   quantitative axes in parameters, different strategies in descendants,
+   deployment policy in callers, and contextual guidance in the sidecar.
+3. **Testability test** — can independent agents determine whether the
+   requirement holds without importing unstated domain policy? Aspirational or
+   context-relative claims belong in commentary until a caller supplies the
+   missing standard.
+
+Failure modes belong in the hash when they arise structurally from the named
+mechanism. Risks that depend on a particular deployment, threat model, or
+quality threshold belong in the sidecar or a specialized descendant.
+
+An absent contract is therefore not automatically a defect. Thin primitives,
+abstract nouns, and extension points may intentionally omit contracts that
+would merely restate the mechanism or narrow legitimate composition. Audit the
+reason for the omission; do not optimize for the number of populated fields.
 
 ---
 
@@ -6187,7 +6219,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 **Intended use.** exponential delay to reduce contention — multiplier growth + jitter + cap.
 
-**Future uses.** any contention-reducing delay strategy.
+**Future uses.** exponential retry-delay variants with different caps, jitter distributions, and reset policies.
 
 **Broad-use contexts.** retry backoff, thundering-herd prevention, rate-limit recovery, connection retry, TCP congestion, SaaS API integration.
 
@@ -6195,7 +6227,9 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 **Varies (descendant territory).** multiplier value, jitter distribution, cap value, reset-on-success semantic, per-target vs global.
 
-**Extension shape.** `ExponentialBackoff`, `JitteredBackoff`, `FibonacciBackoff`, `AdaptiveBackoff`.
+**Extension shape.** `JitteredExponentialBackoff`, `CappedExponentialBackoff`; a generic `Backoff` parent with `ExponentialBackoff`, `FibonacciBackoff`, and `AdaptiveBackoff` children requires a migration.
+
+_Note: The published hash is specifically exponential despite the general handle; the commentary no longer presents non-exponential strategies as honest descendants of that definition._
 
 **Design tensions.**
 - Deterministic policy vs jitter: the mechanism mandates jitter to prevent thundering herd, which is inherently non-deterministic. Callers who need reproducibility have to seed or disable jitter — the pattern doesn't expose the seed.
@@ -6208,9 +6242,9 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 - Finite retry budget buys crash-loop prevention at the cost of surrendering on persistent failures that would eventually resolve.
 
 **Critique.**
-- Only one failure mode (Starvation). Missing: Thundering Herd Despite Jitter (jitter-bounded collisions at very high contention), Exhaustion Before Recovery (budget runs out while the service is still warming up), Retry Amplification (cascading retries across a service chain multiply load).
-- The invariant 'retry budget must be finite' is correct but the pattern does not say who owns the budget — caller? descendant? The distinction matters: a global-budget Backoff differs operationally from a per-attempt-budget Backoff.
-- 'Multiplier (typically 2)' is advisory; no invariant pins the minimum or maximum multiplier. Descendants (`FibonacciBackoff`, `AdaptiveBackoff`) diverge from 2 without a parent-level constraint to check against.
+- The short parent handle squats on the general concept while the hash pins exponential growth, mandatory jitter, reset-on-success, a finite retry budget, and arbitrary numeric ranges.
+- `FibonacciBackoff` and `AdaptiveBackoff` cannot honestly derive from this definition because they violate its mechanism. The clean fix is a generic `Backoff` parent plus an `ExponentialBackoff` child, not more contracts on the current parent.
+- That split affects the paper's parameter example and a wide dependent subtree, so it is recorded as a dedicated migration rather than silently weakened in this batch. Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain relevant family risks.
 
 **In the family.** The contention-reduction primitive for every retry loop in the library. Composed with `Cooldown` (minimum inter-event gap), `Throttle` (rate cap), and `Hysteresis` (asymmetric thresholds). Used by `Lock`, `Mutex`, `StateLock`, `Retry`, `ReAttempt`, `CircuitBreaker` at the contention layer.
 
@@ -15487,9 +15521,9 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** LLM agents, human workers, robots, tool-users, services, processes, swarms, subagents, simulation characters, NPCs, CI runners, daemons.
 
-**Every context needs.** the observe → think → act → observe loop; state maintenance; goal orientation.
+**Every context needs.** capacity to perceive relevant state, select among possible actions in relation to one or more goals, and act; recurrence is not universal.
 
-**Varies (descendant territory).** perception modality, state representation, reasoning substrate (LLM, rules, humans), action space, loop cycle time, embodiment.
+**Varies (descendant territory).** perception modality, state representation, reasoning substrate (LLM, rules, humans), action space, execution cadence (one-shot, event-driven, recurrent), goal explicitness, identity lifetime, embodiment.
 
 **Extension shape.** `LLMAgent`, `HumanAgent`, `RoboticAgent`, `SubAgent`, `AutonomousAgent`, `SupervisedAgent`.
 
@@ -15506,9 +15540,9 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Identity persistence invariant buys traceability at the cost of forcing stateless substrates to wrap themselves in persistent-identity machinery.
 
 **Critique.**
-- Three invariants are load-bearing but thin. Missing: Goal Explicitness (the objective function must be machine-readable, not just intended), Bounded Autonomy (the scope over which the Agent is authorized to select must be defined), Responsibility (failures by the Agent are traceable to its identity).
-- Goal Drift and Reward Hacking are named failures but the pattern has no detection or mitigation — both are caller concerns. A pattern this foundational could at least name the detection surface.
-- 'Continuous loop' implies ongoing operation. Batch or one-shot agents (a single LLM call configured with a goal) fit uncomfortably — they arguably satisfy one iteration of the loop but are not 'continuous.'
+- The current parent overcommits to a continuous loop, explicit objective function, persistent identity, allocated resources, and a preserved trace. One-shot, event-driven, supervised, and ephemeral agents can still satisfy the defining perceive-select-act capability.
+- Goal Drift and Reward Hacking are important caller diagnostics, but they do not justify adding more universal contracts to Agent; some legitimate agents do not expose an optimization metric or machine-readable objective.
+- A canonical broadening should be handled as a dedicated migration because Agent is one of the library's most widely depended-upon parents. Until then, the mismatch is recorded here rather than papered over with additional invariants.
 
 **In the family.** The intent-bearing cognitive unit. Composed from `Actor` (execution capability), `Observe` (perception), `Think` (reasoning), `Act` (execution), `Goal` (objective), `Identity` (persistence). Takes on `Solver` roles for specific tasks. Paired with `AgentProtocol` when coordinating with other Agents.
 
@@ -22583,69 +22617,66 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### BearerToken#e5bd
+### BearerToken#a682
 
 `Society` · `Protocols` · R0 · T1
 
-**Gloss.** Possession-based authorization
+**Gloss.** Possession-based authorization independent of token representation
 
 **Mechanism.**
 
-> A portable authorization artifact. Unlike {{identity}}-Based Access Control (IBAC) which checks 'Who are you?', this checks 'Do you have the token?'. The Token grants specific rights (e.g., 'Read /data/logs') to the bearer. It can be passed freely between agents to delegate authority without re-configuring the server's Access Control List. It often encodes an access level directly within its signed payload, allowing stateless verification of privilege scopes. May function as an expiring token.
+> A portable authorization artifact whose presentation is sufficient to exercise a declared grant. The bearer need not prove an {{identity}} or possession of separate key material. A verifier resolves the token's validity and token-conferred authority through an authority-defined mechanism, such as local verification of a protected structured token or lookup or introspection of an opaque reference token. Representation, expiry, revocation, and transfer policy are supplied by descendants or the deployment.
 
 **Invariants.**
-- Possession Equals Access: The token itself grants rights; no identity check required.
-- Possession Equals Authority: Verifier checks Token signature, not ID.
-- Revocability: Token MUST have an Expiry or RevocationID.
-- Integrity: Payload must be cryptographically signed by a trusted Issuer.
-
-**Preconditions.**
-- Issuer public key is known to Verifier
-- Token is within validity window
+- Possession Semantics: Presenting the same valid token confers the same token-scoped authority regardless of the bearer's {{identity}}.
+- Validation Boundary: Token-conferred authority is recognized only when the verifier's authority-defined validation mechanism accepts the token for the requested use.
 
 **Postconditions.**
-- Access granted or denied based on signature verification
+- Verifier produces an authorization decision from token acceptance and associated grant without separate bearer identity proof
 
 **Failure modes.**
-- Theft: If a BearerToken is intercepted, the attacker gains full rights (no identity check is performed).
-- Replay Attack: Using a spent token again (requires Nonce or Expiry).
-- Scope Creep: Token grants more rights than necessary for the task.
+- Disclosure: A party that obtains an accepted token can exercise its token-conferred authority.
 
 #### Design
 
-**Why it exists.** Identity-based authorization requires every actor to re-authenticate at every checkpoint, which is expensive and couples authorization to identity infrastructure. BearerToken decouples the two: possession grants rights, without identity check. This makes delegation (agent-to-agent, human-to-agent) composable — you can hand over capability without handing over identity.
+**Why it exists.** Bearer authorization decouples exercise of a grant from proof of the bearer's identity. The shared semantic is possession: a verifier accepts the token itself as the credential, regardless of whether the token is opaque and looked up or structured and locally verified.
 
 **Why Society.** possession-based authorization — issuer + bearer
 
-**Can it be removed?** Removable in systems where identity-based authorization is sufficient and delegation is rare. The pattern earns its weight in agent ecosystems where capabilities flow across trust boundaries frequently — in those settings, re-authenticating at every hop is untenable.
+**Can it be removed?** Removable in systems that always bind authorization to a separately authenticated identity. It earns its weight wherever a portable credential or reference can carry a grant without repeating identity proof at each resource.
 
 **Intended use.** possession-based authorization — "do you have the token?" not "who are you?"
 
-**Future uses.** any portable authorization artifact.
+**Future uses.** any authorization credential whose possession is sufficient to exercise its recognized grant.
 
 **Broad-use contexts.** OAuth bearer tokens, API keys, session cookies, access tokens, movie theater tickets, transit passes.
 
-**Every context needs.** signed token payload, rights encoding, delegation semantic (freely passable).
+**Every context needs.** token presentation, a verifier-recognized grant, an authority-defined validity check, and no separate bearer identity proof.
 
-**Varies (descendant territory).** signature algorithm, expiry, scope encoding, revocation mechanism.
+**Varies (descendant territory).** opaque vs structured representation, lookup/introspection vs local cryptographic validation, expiry, revocation, scope encoding, and intentional transfer policy.
 
-**Extension shape.** `JWTBearerToken`, `SessionBearerToken`, `ScopedBearerToken`.
+**Extension shape.** `JWTBearerToken`, `OpaqueBearerToken`, `SessionBearerToken`, `ExpiringToken`, `ScopedBearerToken`.
+
+_Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 explicitly supports opaque tokens validated through introspection; signatures and public keys are therefore descendant choices, not parent invariants._
 
 **Design tensions.**
 - Possession equals access (convenience) vs possession equals risk (theft) — the same property that makes tokens composable makes them the target of every credential stealer.
 - Fine-grained scope vs token management burden — narrow-scoped tokens minimize blast radius and multiply management overhead; wide-scoped tokens are convenient and dangerous.
-- Expiry too short (constant refresh) vs too long (theft window) — the pattern names revocability/expiry as invariant but doesn't prescribe the window.
+- Local validation vs authority lookup — structured tokens reduce round trips but can retain stale grants; opaque introspection centralizes current validity at the cost of availability and latency.
 
 **Tradeoffs.**
-- Gains: composable authorization, clean delegation, separation of identity from capability, offline validation (verifier only needs the issuer's public key).
-- Gives up: identity binding — if the token is stolen, the attacker has exactly what the legitimate bearer had, and the pattern provides no way to distinguish them.
+- Gains: representation-neutral possession semantics, separation of identity from capability, and compatibility with both opaque and self-contained token systems.
+- Gives up: identity binding — if the token is copied or stolen, the verifier cannot distinguish the unauthorized presenter without adding a non-bearer constraint.
 
 **Critique.**
-- Theft is listed as a failure mode but there's no built-in mitigation (proof-of-possession keys, token binding to TLS session, sender-constrained tokens are all external to the pattern).
-- Replay attacks require nonce or expiry, as the pattern notes, but neither is listed as an invariant — only expiry/revocation-ID is mandated, which is insufficient against replay.
-- 'Scope Creep' is a failure mode with no structural mitigation — token scope is whatever the issuer wrote, and over-issuance is a social problem the pattern doesn't address.
+- The prior version incorrectly required a signed payload, issuer public key, expiry or revocation ID, and offline signature verification. Those are sound designs for some descendants but exclude legitimate opaque bearer tokens.
+- Theft and replay remain structural risks of possession semantics. Proof-of-possession keys, sender-constrained tokens, or token binding mitigate them by creating a different or specialized credential contract.
+- The parent now pins only possession and validation semantics without prescribing representation. Replay policy, expiry, revocation, caching, and scope granularity remain deployment or descendant responsibilities.
 
-**In the family.** Capability-auth sibling of Permission (the general access primitive), Card (the capability-advertisement artifact), and IdentityBasedAccess (the opposing model). In agent systems, BearerToken is the natural primitive — agents delegate frequently and have weak identity in any case. Compare with Contract — BearerToken is ad-hoc, contract is negotiated; both confer rights with different ceremony.
+**In the family.** Capability-auth sibling of Permission (the abstract grant), Card (capability advertisement), and identity-bound access (the contrasting model). `JWTBearerToken` and `OpaqueBearerToken` specialize representation; `ExpiringToken` and `ScopedBearerToken` specialize validity and grant policy. Proof-of-possession credentials are adjacent but deliberately not bearer tokens because they require separate key proof.
+
+**Supersedes (prior versions).**
+- `BearerToken#e5bd`
 
 ---
 
@@ -23537,7 +23568,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### ExpiringToken#b0e8
+### ExpiringToken#a1c3
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24975,7 +25006,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PermissionEscalate#0ca5
+### PermissionEscalate#d454
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26469,7 +26500,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### TieredAccess#805c
+### TieredAccess#f3f6
 
 `Society` · `Protocols` · R0 · T1
 

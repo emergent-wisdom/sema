@@ -34,3 +34,13 @@ def test_normalize_export_order_keeps_compat_fields_after_dependencies():
     export_sema.normalize_export_order(card)
 
     assert list(card)[-3:] == ["dependencies", "sema_layer", "sema_category"]
+
+
+def test_exporter_prioritizes_checkout_source():
+    export_sema = load_export_module()
+    repo_root = Path(__file__).resolve().parents[4]
+
+    assert Path(export_sema.sys.path[0]).resolve() == repo_root / "src"
+    assert Path(export_sema.generate_sema_hash.__code__.co_filename).resolve() == (
+        repo_root / "src" / "sema" / "core" / "hashing.py"
+    )

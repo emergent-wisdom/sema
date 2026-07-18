@@ -7,8 +7,10 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
+import numpy as np
+
 from sema.cli.main import _validate_pattern_file, apply_changes
-from sema.taxonomy_graph.graph_store import GraphStore, NodeType
+from sema.taxonomy_graph.graph_store import EdgeType, GraphStore, NodeType
 
 
 def make_sema_id(handle: str, suffix: str = "a") -> str:
@@ -241,6 +243,63 @@ class TestApplyCommand(unittest.TestCase):
         self.assertTrue(result)
         self.assertTrue(self._pattern_exists("PatternA"))
         self.assertTrue(self._pattern_exists("PatternB"))
+
+    def test_updating_pattern_replaces_schema_edges(self):
+        """Superseded contracts must not remain linked in the graph."""
+        original = {
+            "handle": "ChangingContract",
+            "mechanism": "A contract that changes",
+            "gloss": "Changing contract",
+            "invariants": ["The old invariant"],
+            "preconditions": ["The old precondition"],
+            "postconditions": ["The old postcondition"],
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+        updated = {
+            **original,
+            "invariants": ["The replacement invariant"],
+            "postconditions": ["The replacement postcondition"],
+        }
+        updated.pop("preconditions")
+
+        # Exact node creation keeps this test focused on edge lifecycle rather
+        # than embedding similarity.
+        with (
+            patch.object(self.store, "find_similar_node", return_value=None),
+            patch.object(
+                self.store.embedding_service,
+                "get_embedding",
+                return_value=np.zeros(1, dtype=np.float32),
+            ),
+        ):
+            self.store.add_pattern(original)
+            self.store.add_pattern(updated)
+
+        fresh = GraphStore(self.db_path)
+        pattern_id = fresh._find_pattern_id("ChangingContract")
+
+        def linked_texts(edge_type):
+            return {
+                fresh.graph.nodes[target_id]["text"]
+                for target_id in fresh.graph.successors(pattern_id)
+                if fresh.has_edge_of_type(pattern_id, target_id, edge_type)
+            }
+
+        self.assertEqual(linked_texts(EdgeType.HAS_INVARIANT), {"The replacement invariant"})
+        self.assertEqual(linked_texts(EdgeType.HAS_PRECONDITION), set())
+        self.assertEqual(
+            linked_texts(EdgeType.HAS_POSTCONDITION), {"The replacement postcondition"}
+        )
+
+        schema_texts = {
+            data["text"]
+            for _, data in fresh.graph.nodes(data=True)
+            if data.get("node_type")
+            in {NodeType.INVARIANT, NodeType.PRECONDITION, NodeType.POSTCONDITION}
+        }
+        self.assertNotIn("The old invariant", schema_texts)
+        self.assertNotIn("The old precondition", schema_texts)
+        self.assertNotIn("The old postcondition", schema_texts)
 
 
 class TestValidatePatternFile(unittest.TestCase):

@@ -1383,7 +1383,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 1824 nodes and 3596 edges.
+Graph loaded with 1820 nodes and 3592 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -1479,9 +1479,9 @@ Source: `sema.audit.rigor` (ok)
 {
   "total": 452,
   "with_invariants": 375,
-  "with_preconditions": 184,
+  "with_preconditions": 183,
   "with_postconditions": 174,
-  "fully_rigorous": 173,
+  "fully_rigorous": 172,
   "naked": 76
 }
 
@@ -2217,10 +2217,6 @@ Scanning 452 patterns for unlinked handle mentions...
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  BearerToken:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Delegate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Belief:
    • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
