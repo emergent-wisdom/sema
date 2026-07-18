@@ -7,9 +7,9 @@ All audits below are **advisory**. Heuristic audits generate false positives; us
 Source: `sema.audit.hash_validity` (ok)
 
 ```text
-Checking hash validity for 452 patterns...
+Checking hash validity for 453 patterns...
 
-All 452 hashes valid.
+All 453 hashes valid.
 ```
 
 ## Missing or short fields
@@ -17,7 +17,7 @@ All 452 hashes valid.
 Source: `sema.audit.missing_or_short` (ok)
 
 ```text
-Auditing 452 patterns in data/vocabulary...
+Auditing 453 patterns in data/vocabulary...
 ✅ No issues found.
 ```
 
@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 1805 nodes and 3577 edges.
+Graph loaded with 1807 nodes and 3580 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -45,16 +45,17 @@ Source: `sema.audit.rigor` (ok)
 
 ```text
 {
-  "total": 452,
+  "total": 453,
   "with_invariants": 372,
   "with_preconditions": 180,
   "with_postconditions": 171,
   "with_all_contract_fields": 169,
-  "without_explicit_contracts": 79
+  "without_explicit_contracts": 80
 }
 
 Sample patterns without explicit contracts (review only; omission may be intentional):
 - Axiom
+- Backoff
 - Branch
 - Category
 - Causation
@@ -68,7 +69,6 @@ Sample patterns without explicit contracts (review only; omission may be intenti
 - Option
 - Parallel
 - Prompt
-- Protocol
 ```
 
 ## Potential missing dependency links
@@ -77,7 +77,7 @@ Source: `sema.audit.missing_links` (ok)
 
 ```text
 🔍 Scanning data/vocabulary for missing links...
-Loaded 452 patterns.
+Loaded 453 patterns.
 
 Found 395 potential missing links.
 
@@ -661,7 +661,7 @@ Found 395 potential missing links.
 Source: `sema.audit.unlinked_mentions` (ok)
 
 ```text
-Scanning 452 patterns for unlinked handle mentions...
+Scanning 453 patterns for unlinked handle mentions...
 
 ⚠️  Abduction:
    • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
@@ -765,6 +765,8 @@ Scanning 452 patterns for unlinked handle mentions...
 ⚠️  Axiom:
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Backoff:
+   • Mentions 'Defer' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  BackwardChain:
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
@@ -1205,6 +1207,10 @@ Scanning 452 patterns for unlinked handle mentions...
    • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExponentialBackoff:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ExtendedThinking:
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Think' (unlinked). Should it be '{{{ghost}}}'?
@@ -1909,7 +1915,6 @@ Scanning 452 patterns for unlinked handle mentions...
    • Mentions 'Vector' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Retry:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Backoff' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
@@ -2297,7 +2302,7 @@ Scanning 452 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 369 patterns.
+Scan complete. Found unlinked handle mentions in 370 patterns.
 ```
 
 ## Semantic similarity between patterns
