@@ -63,36 +63,9 @@ jobs:
           sema resolve StateLock > /dev/null
           sema skeleton > /dev/null
 
-      - name: Hash validity (blocking)
+      - name: Verify vocabulary workflow
         if: matrix.python-version == '3.12'
-        run: python -m sema.audit.hash_validity
-
-      - name: Vocabulary JSON hashes are stable
-        if: matrix.python-version == '3.12'
-        run: |
-          python scripts/rebuild_vocabulary.py || true
-          if ! git diff --exit-code -- data/vocabulary/; then
-            echo "::error::Vocabulary JSON hashes drift when rebuilt from source."
-            echo "Run 'python scripts/rebuild_vocabulary.py --replace' locally and commit the"
-            echo "updated JSON files + taxonomy.db."
-            exit 1
-          fi
-
-      - name: Generated docs are up-to-date
-        if: matrix.python-version == '3.12'
-        run: |
-          python scripts/vocabulary_merkle_root.py
-          python -m sema.audit
-          if ! git diff --exit-code -- docs/information/vocabulary_information.md docs/information/audit.md; then
-            echo "::error::Generated docs are stale. Run locally and commit:"
-            echo "  python scripts/vocabulary_merkle_root.py"
-            echo "  python -m sema.audit"
-            exit 1
-          fi
-
-      - name: Doc hash references are current
-        if: matrix.python-version == '3.12'
-        run: python scripts/update_doc_refs.py --check
+        run: python scripts/verify_vocabulary_change.py
 
   lint:
     runs-on: ubuntu-latest
@@ -108,7 +81,15 @@ jobs:
         run: pip install ruff==0.11.12
 
       - name: Lint
-        run: ruff check src/
+        run: >-
+          ruff check
+          src/
+          scripts/rebuild_vocabulary.py
+          scripts/verify_vocabulary_change.py
 
       - name: Format check
-        run: ruff format --check src/
+        run: >-
+          ruff format --check
+          src/
+          scripts/rebuild_vocabulary.py
+          scripts/verify_vocabulary_change.py

@@ -23,6 +23,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
@@ -64,6 +65,13 @@ def get_embedding_cache_path():
         return os.path.join(user_cache_dir("sema"), "embedding_cache.db")
     except ImportError:
         return None
+
+
+def isolated_registry_environment(home: str) -> dict[str, str]:
+    """Return an environment that keeps ``sema init`` out of user config."""
+    env = os.environ.copy()
+    env["HOME"] = home
+    return env
 
 
 def main():
@@ -111,7 +119,11 @@ def main():
     try:
         # 2. Fresh DB
         os.remove(DB_PATH)
-        rc, out, err = run([sys.executable, "-m", "sema.cli.main", "init", DB_PATH])
+        with tempfile.TemporaryDirectory(prefix="sema-rebuild-home-") as isolated_home:
+            rc, out, err = run(
+                [sys.executable, "-m", "sema.cli.main", "init", DB_PATH],
+                env=isolated_registry_environment(isolated_home),
+            )
         if rc != 0:
             print(f"ERROR: sema init failed:\n{err}")
             sys.exit(1)

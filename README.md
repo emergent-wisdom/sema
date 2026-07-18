@@ -178,14 +178,16 @@ signal. Mismatches fail closed in both modes.
 
 ## The Vocabulary
 
-452 bundled patterns across 4 layers:
+The bundled vocabulary spans 4 layers:
 
 - **Physics** — Immutable substrate (locks, entropy, causality)
 - **Mind** — Hybrid cognition (reasoning, inference, strategy)
 - **Society** — Multi-agent coordination (economics, governance, protocols)
 - **Infrastructure** — Operational constraints (data structures, verification)
 
-Each pattern is an executable specification containing machine-verifiable contracts, invariants, failure modes, and typed dependencies.
+Each pattern is a content-addressed behavioral definition. Concrete cards may
+add machine-verifiable contracts, invariants, failure modes, parameters, and
+typed dependencies where those fields are identity-defining.
 
 ## MCP Tools
 
@@ -278,7 +280,7 @@ Full walkthrough: [docs/guides/understanding-graph.md](docs/guides/understanding
 ```
 sema/
 ├── src/sema/              Core library (hashing, validation, MCP server, API)
-├── data/                  Vocabulary (452 bundled pattern cards + taxonomy databases)
+├── data/                  Vocabulary pattern cards + taxonomy databases
 ├── docs/                  Documentation (philosophy, schema spec, CLI reference)
 ├── paper/                 Academic paper (sema.tex)
 ├── web/                   Web frontend (React + Three.js graph visualization)

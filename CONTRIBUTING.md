@@ -20,16 +20,20 @@ sema apply --add path/to/MyPattern.json
 review, no maintainer in the loop.
 
 **The canonical vocabulary.** The bundled patterns that ship with
-`pip install semahash` live in `data/vocabulary/` in this repo.
-Contributions to the canonical vocabulary go through GitHub PRs against
-that directory. The rest of this document is about that path.
+`pip install semahash` live in `data/taxonomy.db`. The JSON files under
+`data/vocabulary/` are reviewable exports, not authoring sources.
+Contributions to the canonical vocabulary go through GitHub PRs. The rest of
+this document is about that path.
 
 ## 1. Author a pattern
 
-Create a JSON file in `data/vocabulary/<NewPattern>.json`. Required
-fields are `handle`, `mechanism`, `gloss`, and `_meta` with `layer`,
-`category`, `ring`, `tier`. See [docs/specification/authoring.md](docs/specification/authoring.md)
-for the full schema reference. A minimal pattern:
+Create a JSON file in `data/staging/<NewPattern>.json`. To refine an existing
+pattern, copy its current export from `data/vocabulary/` into `data/staging/`
+and edit the staging copy. Required fields include `handle`, `mechanism`,
+`gloss`, and `_meta` with `path`, `ring`, and `tier`. See the
+[Pattern Authoring Guide](docs/guides/authoring.md) and
+[Pattern Card schema](docs/specification/schema.md) for the full rules. A
+minimal pattern:
 
 ```json
 {
@@ -37,37 +41,51 @@ for the full schema reference. A minimal pattern:
   "mechanism": "Description of what this pattern does and how it works.",
   "gloss": "One-line summary used by semantic search.",
   "_meta": {
-    "layer": "Mind",
-    "category": "Reasoning",
+    "path": ["Mind", "Reasoning"],
     "ring": 2,
     "tier": 1
   }
 }
 ```
 
-Use `{{snake_case}}` placeholders to reference other patterns; declare
-each one in `dependencies.references`. Look up dependency hashes with
-`sema show <Handle>`.
+Use `{{snake_case}}` placeholders to reference other patterns; declare each one
+in exactly one dependency category. Look up dependency hashes with
+`sema show <Handle>`. Add or update the matching entry in
+`data/design_critique.json`, then preview the staging-aware design manual with
+`python scripts/generate_design_manual.py`.
 
 ## 2. Validate locally
 
-Before opening a PR, run all three:
+Validate, apply, and export through the authoritative database:
 
 ```bash
-# Schema, dependency wiring, and dependency-key usage check
-sema apply --check --add data/vocabulary/MyPattern.json
+# Schema, dependency wiring, layer direction, and dependency-key usage
+sema apply --check --add data/staging/MyPattern.json
 
-# Fold into the local DB so search/show work against the new pattern
-./scripts/rebuild_db.sh
+# Apply to the canonical development database
+sema apply --add data/staging/MyPattern.json
 
-# Sanity-check the result
-sema show MyPattern
+# Export reviewable JSON from the database, then remove the staging file
+python scripts/export/export_sema.py
 ```
 
-`sema apply --check` is a dry run — it never writes to the registry.
-Once it passes, `rebuild_db.sh` rebuilds `data/taxonomy.db` from the
-full `data/vocabulary/` directory and writes the new pattern's
-canonical hash back into your JSON file.
+`sema apply --check` is a dry run. The non-check command writes the canonical
+database and updates the staging file with its resolved hash. Export only after
+the complete batch applies successfully. Delete applied staging JSON before
+final verification; an unexpected staging file means work is still in flight.
+
+Then run the same complete workflow CI uses:
+
+```bash
+python scripts/verify_vocabulary_change.py --refresh
+python scripts/verify_vocabulary_change.py
+pytest
+```
+
+The refresh command keeps generated manuals, audit reports, root information,
+and current documentation refs. The check command is non-destructive and also
+proves database/export parity, exported hash validity, and deterministic
+reconstruction.
 
 ## 3. PR checklist
 
@@ -77,6 +95,9 @@ A pattern PR is ready to review when:
       a declared dependency (`sema apply --check` enforces this). Failure
       modes are concrete, not hand-wavy. Parameters, where used, have
       `name`, `type`, `range`, `description`.
+- [ ] **A general handle stays general.** Short parent handles contain only the
+      broad-use intersection. Strategy belongs in descendants, deployment
+      policy in callers, and contextual diagnostics in the design sidecar.
 - [ ] **It is not a duplicate.** Run `sema search "<your gloss>"` and
       `sema search "<your handle>"` first. If a near-match exists, the
       PR description should explain how this pattern is distinct (or
@@ -94,40 +115,40 @@ Three things, in order:
 1. **Novelty.** Does it name something that doesn't already have a
    canonical entry? If a near-duplicate exists, can we refine the
    existing one instead? (Refinement produces a new hash; see
-   [docs/versioning.md](docs/versioning.md).)
-2. **Specificity.** Is the mechanism concrete enough that two
-   independent implementers would produce roughly the same thing? Vague
-   patterns dilute the vocabulary.
+   [Pattern Lifecycle](docs/guides/lifecycle.md).)
+2. **Identity and specificity.** Is the mechanism testable without importing
+   unstated domain policy? Is a general parent broad enough for every listed
+   context while concrete descendants remain precise?
 3. **Coverage fit.** Does it fill a gap in the layer and category it
    claims, or is it cross-cutting in a way that suggests a different
    placement?
 
 ## 5. After merge
 
-The maintainer runs `./scripts/rebuild_db.sh`, then
-`./scripts/compile_paper.sh` to refresh the paper's hash references,
-bumps the package version, and publishes a new PyPI release. Your
-pattern is then available to anyone running `pip install --upgrade
-semahash`, and to any MCP client that points at the bundled DB.
+CI reruns the canonical non-destructive vocabulary workflow. Releases are not
+cut per PR; the merged pattern becomes available through the living GitHub
+source immediately and through PyPI at the next versioned release. If the
+change affects paper content or paper-cited hashes, the maintainer compiles the
+paper with its existing style in the same PR.
 
 ## Refining or removing existing patterns
 
-Pattern definitions are content-addressed and immutable: editing a
-pattern's mechanism produces a new hash, not an in-place update. Old
-hashes remain valid forever. See [docs/versioning.md](docs/versioning.md)
-for the full policy on refinement, supersession, and what
-`sema_handshake` does across versions. The short version is: edit the
-JSON, run `./scripts/rebuild_db.sh`, and the new hash becomes the
-current canonical stub for the handle.
+Pattern definitions are content-addressed: editing a pattern's mechanism
+produces a new hash, not an in-place identity update. See
+[Pattern Lifecycle](docs/guides/lifecycle.md) for refinement, supersession, and
+consumer migration. The short version is: edit a staging copy, include the
+last public `sema_id` in `_meta.supersedes`, apply through `sema apply`, export,
+and run the canonical verification workflow.
 
-To remove a pattern from the vocabulary:
+To remove a pattern from the vocabulary database:
 
 ```bash
 sema apply --remove HandleName
 ```
 
-This fails if other patterns depend on the one being removed. The error
-message will list the dependents; remove or update them in the same PR.
+This fails if other patterns depend on the one being removed. The error message
+will list the dependents; remove or update them atomically, then export and
+verify the resulting vocabulary.
 
 ## Local development
 
@@ -138,15 +159,13 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[full]"
 pytest
 
-# Run the consolidated vocabulary audit
-python -m sema.audit
+# Run the complete non-destructive vocabulary workflow
+python scripts/verify_vocabulary_change.py
 ```
 
-Audits are importable modules, so an individual check can also be run directly,
-for example `python -m sema.audit.rigor`. The legacy
-`python scripts/audit/run_all_audits.py` command remains available as a
-compatibility wrapper. Both forms use the editable install above; they do not
-modify `PYTHONPATH` to find the checkout.
+Audits remain importable modules, so an individual diagnostic can also be run
+directly, for example `python -m sema.audit.rigor`. The full workflow includes
+the consolidated audit and all blocking vocabulary checks.
 
 To browse the vocabulary in the web UI while you work:
 
@@ -189,9 +208,9 @@ push requires a one-time `mcp-publisher login` (GitHub OAuth, cached).
 
 ## Documentation
 
-- [docs/versioning.md](docs/versioning.md) — hash immutability,
+- [docs/guides/lifecycle.md](docs/guides/lifecycle.md) — hash identity,
   refinement, supersession, handshake semantics
-- [docs/specification/authoring.md](docs/specification/authoring.md) —
+- [docs/guides/authoring.md](docs/guides/authoring.md) —
   full schema and authoring rules
 - [docs/specification/validation.md](docs/specification/validation.md) —
   Forward/Inverse rules, Gravity, Empty Fields

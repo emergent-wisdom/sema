@@ -12,6 +12,11 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Added
 
+- Canonical `scripts/verify_vocabulary_change.py` workflow for contributors and
+  CI. It refreshes or non-destructively checks the design manual, audit,
+  vocabulary root, documentation hash references, database/export parity,
+  exported hashes, clean staging, and deterministic reconstruction in one
+  command.
 - `ExponentialBackoff`, a concrete child for capped geometric delay growth
   with configurable jitter. Retry eligibility, budgets, and reset policy remain
   caller-owned rather than requirements of the delay strategy.
@@ -55,6 +60,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- Deterministic rebuilds isolate temporary `sema init` registry writes instead
+  of modifying the developer's real `~/.config/sema` registry.
 - Updating an existing pattern now replaces superseded schema edges and removes
   orphaned contract facets instead of leaving old invariants, preconditions, or
   postconditions attached to the graph.
