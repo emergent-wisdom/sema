@@ -59,7 +59,7 @@
         "Per-criterion reframing hints buy actionable failures at the cost of spec authoring cost — each criterion must be paired with a hint."
       ],
       "critique": [
-        "Only two invariants and two failure modes. Missing invariants: Criterion Orthogonality (criteria shouldn't semantically overlap), Hint Presence (every criterion must carry a reframing hint), Evaluator Determinism (same Result + same Spec → same evaluation). Missing failure modes: Hint Incoherence (hint contradicts the criterion it's attached to), Evaluator Ambiguity (the check is subjective enough that different evaluators disagree).",
+        "Criterion overlap, hint incoherence, and evaluator disagreement are useful review diagnostics. They should not be promoted automatically to parent contracts: overlap can be intentional and human or model evaluators need not be deterministic. Concrete AcceptSpec dialects or Verify surfaces should state those policies.",
         "Over-constraining (deadlock-by-spec) is a common real-world failure and the pattern offers no detection — only acknowledges the failure mode. A Criterion-Coverage heuristic (% of generated Results that would pass each criterion individually) would help; not in the pattern.",
         "The 'active Verify surface consumes the AcceptSpec' relationship is stated but not enforced — a Solver could ignore the AcceptSpec and return a Solution anyway. The pattern depends on caller discipline."
       ]
@@ -128,8 +128,8 @@
         "Capability-set membership buys composability (Actors can be filtered, authorized) at the cost of requiring an outside authority to define capabilities."
       ],
       "critique": [
-        "Zero invariants and zero failure modes. For a foundational subject, this is a significant gap — at minimum: Identity Uniqueness, Capability Stability (capabilities don't change without an event), Non-Privileged (an Actor has no authority beyond its declared capabilities).",
-        "The mechanism is one sentence. A pattern that is 'the foundational subject for permissions and logging' warrants more structure — what fields are required in the identity? What shape does the capability set take?",
+        "Identity collisions, capability drift, and undeclared authority are important deployment risks, but none is established as universal to every Actor. Adding contracts solely to fill empty fields would narrow a deliberately minimal subject; specific Actor types or their callers should pin those policies.",
+        "The mechanism is intentionally compact, but the data schema is not: required agent_id, public_key, and status fields appear narrower than the listed uses of functions, actuators, and organizational roles. That mechanism-schema mismatch needs a dedicated migration review, not extra invariants.",
         "The distinction from Agent is stated but not formally enforced — the library's Actor and Agent patterns could coexist with duplicate concerns if not carefully disambiguated."
       ]
     },
@@ -248,8 +248,8 @@
       "intended": "the fundamental unit of agency — any entity that observes, reasons, acts.",
       "future": "any autonomous entity participating in coordination.",
       "broad_contexts": "LLM agents, human workers, robots, tool-users, services, processes, swarms, subagents, simulation characters, NPCs, CI runners, daemons.",
-      "every_context_needs": "the observe → think → act → observe loop; state maintenance; goal orientation.",
-      "varies": "perception modality, state representation, reasoning substrate (LLM, rules, humans), action space, loop cycle time, embodiment.",
+      "every_context_needs": "capacity to perceive relevant state, select among possible actions in relation to one or more goals, and act; recurrence is not universal.",
+      "varies": "perception modality, state representation, reasoning substrate (LLM, rules, humans), action space, execution cadence (one-shot, event-driven, recurrent), goal explicitness, identity lifetime, embodiment.",
       "extensions": "`LLMAgent`, `HumanAgent`, `RoboticAgent`, `SubAgent`, `AutonomousAgent`, `SupervisedAgent`.",
       "notes": [
         "§4 of the audit flags Agent's layer placement as debatable. Broad-use spans cognition (think), coordination (participate with peers), and execution (act on environment), so its placement touches all three upper layers. Mind/Strategy is defensible because the *defining activity* is the cognitive loop; the other aspects are behaviors it composes."
@@ -267,9 +267,9 @@
         "Identity persistence invariant buys traceability at the cost of forcing stateless substrates to wrap themselves in persistent-identity machinery."
       ],
       "critique": [
-        "Three invariants are load-bearing but thin. Missing: Goal Explicitness (the objective function must be machine-readable, not just intended), Bounded Autonomy (the scope over which the Agent is authorized to select must be defined), Responsibility (failures by the Agent are traceable to its identity).",
-        "Goal Drift and Reward Hacking are named failures but the pattern has no detection or mitigation — both are caller concerns. A pattern this foundational could at least name the detection surface.",
-        "'Continuous loop' implies ongoing operation. Batch or one-shot agents (a single LLM call configured with a goal) fit uncomfortably — they arguably satisfy one iteration of the loop but are not 'continuous.'"
+        "The current parent overcommits to a continuous loop, explicit objective function, persistent identity, allocated resources, and a preserved trace. One-shot, event-driven, supervised, and ephemeral agents can still satisfy the defining perceive-select-act capability.",
+        "Goal Drift and Reward Hacking are important caller diagnostics, but they do not justify adding more universal contracts to Agent; some legitimate agents do not expose an optimization metric or machine-readable objective.",
+        "A canonical broadening should be handled as a dedicated migration because Agent is one of the library's most widely depended-upon parents. Until then, the mismatch is recorded here rather than papered over with additional invariants."
       ]
     },
     "family_discussion": "The intent-bearing cognitive unit. Composed from `Actor` (execution capability), `Observe` (perception), `Think` (reasoning), `Act` (execution), `Goal` (objective), `Identity` (persistence). Takes on `Solver` roles for specific tasks. Paired with `AgentProtocol` when coordinating with other Agents."
@@ -915,12 +915,14 @@
     },
     "usage": {
       "intended": "exponential delay to reduce contention — multiplier growth + jitter + cap.",
-      "future": "any contention-reducing delay strategy.",
+      "future": "exponential retry-delay variants with different caps, jitter distributions, and reset policies.",
       "broad_contexts": "retry backoff, thundering-herd prevention, rate-limit recovery, connection retry, TCP congestion, SaaS API integration.",
       "every_context_needs": "initial delay, multiplier, jitter, cap.",
       "varies": "multiplier value, jitter distribution, cap value, reset-on-success semantic, per-target vs global.",
-      "extensions": "`ExponentialBackoff`, `JitteredBackoff`, `FibonacciBackoff`, `AdaptiveBackoff`.",
-      "notes": []
+      "extensions": "`JitteredExponentialBackoff`, `CappedExponentialBackoff`; a generic `Backoff` parent with `ExponentialBackoff`, `FibonacciBackoff`, and `AdaptiveBackoff` children requires a migration.",
+      "notes": [
+        "The published hash is specifically exponential despite the general handle; the commentary no longer presents non-exponential strategies as honest descendants of that definition."
+      ]
     },
     "design": {
       "tensions": [
@@ -934,9 +936,9 @@
         "Finite retry budget buys crash-loop prevention at the cost of surrendering on persistent failures that would eventually resolve."
       ],
       "critique": [
-        "Only one failure mode (Starvation). Missing: Thundering Herd Despite Jitter (jitter-bounded collisions at very high contention), Exhaustion Before Recovery (budget runs out while the service is still warming up), Retry Amplification (cascading retries across a service chain multiply load).",
-        "The invariant 'retry budget must be finite' is correct but the pattern does not say who owns the budget — caller? descendant? The distinction matters: a global-budget Backoff differs operationally from a per-attempt-budget Backoff.",
-        "'Multiplier (typically 2)' is advisory; no invariant pins the minimum or maximum multiplier. Descendants (`FibonacciBackoff`, `AdaptiveBackoff`) diverge from 2 without a parent-level constraint to check against."
+        "The short parent handle squats on the general concept while the hash pins exponential growth, mandatory jitter, reset-on-success, a finite retry budget, and arbitrary numeric ranges.",
+        "`FibonacciBackoff` and `AdaptiveBackoff` cannot honestly derive from this definition because they violate its mechanism. The clean fix is a generic `Backoff` parent plus an `ExponentialBackoff` child, not more contracts on the current parent.",
+        "That split affects the paper's parameter example and a wide dependent subtree, so it is recorded as a dedicated migration rather than silently weakened in this batch. Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain relevant family risks."
       ]
     },
     "family_discussion": "The contention-reduction primitive for every retry loop in the library. Composed with `Cooldown` (minimum inter-event gap), `Throttle` (rate cap), and `Hysteresis` (asymmetric thresholds). Used by `Lock`, `Mutex`, `StateLock`, `Retry`, `ReAttempt`, `CircuitBreaker` at the contention layer."
@@ -1110,35 +1112,37 @@
   "BearerToken": {
     "motivation": {
       "why_this_layer": "possession-based authorization — issuer + bearer",
-      "why_it_exists": "Identity-based authorization requires every actor to re-authenticate at every checkpoint, which is expensive and couples authorization to identity infrastructure. BearerToken decouples the two: possession grants rights, without identity check. This makes delegation (agent-to-agent, human-to-agent) composable — you can hand over capability without handing over identity.",
-      "removability": "Removable in systems where identity-based authorization is sufficient and delegation is rare. The pattern earns its weight in agent ecosystems where capabilities flow across trust boundaries frequently — in those settings, re-authenticating at every hop is untenable."
+      "why_it_exists": "Bearer authorization decouples exercise of a grant from proof of the bearer's identity. The shared semantic is possession: a verifier accepts the token itself as the credential, regardless of whether the token is opaque and looked up or structured and locally verified.",
+      "removability": "Removable in systems that always bind authorization to a separately authenticated identity. It earns its weight wherever a portable credential or reference can carry a grant without repeating identity proof at each resource."
     },
     "usage": {
       "intended": "possession-based authorization — \"do you have the token?\" not \"who are you?\"",
-      "future": "any portable authorization artifact.",
+      "future": "any authorization credential whose possession is sufficient to exercise its recognized grant.",
       "broad_contexts": "OAuth bearer tokens, API keys, session cookies, access tokens, movie theater tickets, transit passes.",
-      "every_context_needs": "signed token payload, rights encoding, delegation semantic (freely passable).",
-      "varies": "signature algorithm, expiry, scope encoding, revocation mechanism.",
-      "extensions": "`JWTBearerToken`, `SessionBearerToken`, `ScopedBearerToken`.",
-      "notes": []
+      "every_context_needs": "token presentation, a verifier-recognized grant, an authority-defined validity check, and no separate bearer identity proof.",
+      "varies": "opaque vs structured representation, lookup/introspection vs local cryptographic validation, expiry, revocation, scope encoding, and intentional transfer policy.",
+      "extensions": "`JWTBearerToken`, `OpaqueBearerToken`, `SessionBearerToken`, `ExpiringToken`, `ScopedBearerToken`.",
+      "notes": [
+        "OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 explicitly supports opaque tokens validated through introspection; signatures and public keys are therefore descendant choices, not parent invariants."
+      ]
     },
     "design": {
       "tensions": [
         "Possession equals access (convenience) vs possession equals risk (theft) — the same property that makes tokens composable makes them the target of every credential stealer.",
         "Fine-grained scope vs token management burden — narrow-scoped tokens minimize blast radius and multiply management overhead; wide-scoped tokens are convenient and dangerous.",
-        "Expiry too short (constant refresh) vs too long (theft window) — the pattern names revocability/expiry as invariant but doesn't prescribe the window."
+        "Local validation vs authority lookup — structured tokens reduce round trips but can retain stale grants; opaque introspection centralizes current validity at the cost of availability and latency."
       ],
       "tradeoffs": [
-        "Gains: composable authorization, clean delegation, separation of identity from capability, offline validation (verifier only needs the issuer's public key).",
-        "Gives up: identity binding — if the token is stolen, the attacker has exactly what the legitimate bearer had, and the pattern provides no way to distinguish them."
+        "Gains: representation-neutral possession semantics, separation of identity from capability, and compatibility with both opaque and self-contained token systems.",
+        "Gives up: identity binding — if the token is copied or stolen, the verifier cannot distinguish the unauthorized presenter without adding a non-bearer constraint."
       ],
       "critique": [
-        "Theft is listed as a failure mode but there's no built-in mitigation (proof-of-possession keys, token binding to TLS session, sender-constrained tokens are all external to the pattern).",
-        "Replay attacks require nonce or expiry, as the pattern notes, but neither is listed as an invariant — only expiry/revocation-ID is mandated, which is insufficient against replay.",
-        "'Scope Creep' is a failure mode with no structural mitigation — token scope is whatever the issuer wrote, and over-issuance is a social problem the pattern doesn't address."
+        "The prior version incorrectly required a signed payload, issuer public key, expiry or revocation ID, and offline signature verification. Those are sound designs for some descendants but exclude legitimate opaque bearer tokens.",
+        "Theft and replay remain structural risks of possession semantics. Proof-of-possession keys, sender-constrained tokens, or token binding mitigate them by creating a different or specialized credential contract.",
+        "The parent now pins only possession and validation semantics without prescribing representation. Replay policy, expiry, revocation, caching, and scope granularity remain deployment or descendant responsibilities."
       ]
     },
-    "family_discussion": "Capability-auth sibling of Permission (the general access primitive), Card (the capability-advertisement artifact), and IdentityBasedAccess (the opposing model). In agent systems, BearerToken is the natural primitive — agents delegate frequently and have weak identity in any case. Compare with Contract — BearerToken is ad-hoc, contract is negotiated; both confer rights with different ceremony."
+    "family_discussion": "Capability-auth sibling of Permission (the abstract grant), Card (capability advertisement), and identity-bound access (the contrasting model). `JWTBearerToken` and `OpaqueBearerToken` specialize representation; `ExpiringToken` and `ScopedBearerToken` specialize validity and grant policy. Proof-of-possession credentials are adjacent but deliberately not bearer tokens because they require separate key proof."
   },
   "Belief": {
     "motivation": {
@@ -1167,7 +1171,7 @@
         "Mutability (distinct from Fact) buys accurate epistemic modeling at the cost of harder-to-verify claim chains."
       ],
       "critique": [
-        "Zero invariants and zero failure modes. For a substrate pattern this central, missing: Confidence Range (0 ≤ c ≤ 1), Evidence Existence (referenced evidence must exist at creation time), Monotonic Update (confidence changes should be tied to evidence changes).",
+        "The confidence range and required claim are already encoded by the mechanism, parameter, and data schema; duplicating them as invariants would add no meaning. Evidence existence and monotonic updates are policies for evidence-tracked or calibrated descendants, not established properties of every Belief.",
         "The subjectivity is named but not operationalized — an agent can hold contradictory Beliefs without detection.",
         "Evidence-backed is structurally implied (pointer to evidence) but not enforced — a Belief with null evidence pointer is technically a Belief, operationally useless."
       ]
@@ -1292,7 +1296,7 @@
       "tensions": [
         "Triviality vs rigor: Boolean's mechanism is almost tautological. But the alternative — leaving it implicit — means every caller hand-wires its own Boolean representation (int 0/1? string 'true'/'false'? enum?). The library trades verbosity for typed consistency.",
         "No middle value vs real-world nuance: the Exhaustive invariant forbids intermediate values. Real verification often lands in 'true with low confidence' — that belongs on Judge or Check, not Boolean. Callers who reach for a tri-valued Boolean are signaling the wrong type.",
-        "Minted vs imported: most languages provide Boolean as a primitive; Sema duplicates it. The justification is content-addressing — a Validate that yields `sema:Boolean#2e6b` is byte-verifiable against the caller's expected type."
+        "Minted vs imported: most languages provide Boolean as a primitive; Sema duplicates it. The justification is content-addressing — a Validate that yields `sema:Boolean#981e` is byte-verifiable against the caller's expected type."
       ],
       "tradeoffs": [
         "Explicit pattern buys typed verifiability at the cost of looking pedantic (why a whole pattern for true/false?).",
@@ -1368,7 +1372,7 @@
         "The lack of explicit output shape (no yields declaration in the spec shown) leaves composition implicit."
       ],
       "critique": [
-        "Zero invariants and zero failure modes listed. For a primitive this thin, that might be acceptable, but at minimum: Exhaustive (A and B together cover the condition space); Deterministic (same C → same branch).",
+        "The empty contract lists are consistent with a minimal control-flow primitive: the condition, two alternatives, and mutual exclusion are already in the mechanism. Determinism depends on what context the condition may read, so it needs an explicit execution model before it can become a contract.",
         "The boundary between Branch and Route is not articulated in the pattern — readers looking at both have to infer that Route is N-way and Branch is 2-way.",
         "No mention of what Branch yields. If it passes through the chosen side's output, that's worth stating; if it yields a Decision, it overlaps Gate."
       ]
@@ -1501,7 +1505,7 @@
         "Conservation invariant buys book-keeping rigor at the cost of needing a trusted accounting mechanism."
       ],
       "critique": [
-        "Only one invariant, zero failure modes. Missing invariants: Monotonic Consumption (used resources don't un-use themselves), Non-negativity (Remaining ≥ 0). Missing failure modes: Accounting Drift (sum-to-Total invariant violated), Budget Exhaustion (consumption exceeds limit despite check).",
+        "Monotonic consumption and non-negativity are not universal across refunding, rolling, and overdraft budgets. Accounting drift and exhaustion remain useful reviewer diagnostics, but they do not justify hardening the general Budget parent without choosing a narrower budget strategy.",
         "'Hard limit on consumption' is declarative but has no enforcement mechanism — the pattern is a contract, not a check.",
         "The resource type is free-form ('compute, time, energy'). A typed resource field would let Budget-compatibility checks happen at compose time."
       ]
@@ -1800,7 +1804,7 @@
         "Substrate placement buys stability (the relation doesn't depend on who names it) at the cost of ignoring the observer effects in Measurement."
       ],
       "critique": [
-        "Zero invariants and zero failure modes. For a pattern this philosophically-loaded, at least: Directedness (cause precedes effect; not symmetric); Non-Inverse (A causing B does not imply B causes A); Testability-Under-Intervention (the edge is falsifiable by an intervention experiment).",
+        "Empty contract fields are not, by themselves, a defect here. Directedness and intervention-responsiveness are already part of the mechanism, while strict temporal precedence and practical intervention testability do not hold uniformly across causal models; those claims need narrower descendants or inference callers.",
         "The mechanism mentions 'external change to the cause alters the effect' as the definitional property but doesn't say what counts as external. Internal feedback loops blur this.",
         "No cross-reference to Correlation, despite the library minting both and defining them against each other. A 'Distinguished From' block is warranted."
       ]
@@ -1870,7 +1874,7 @@
         "Naming the technique as a pattern buys canonicalization at the cost of pattern-count inflation for what is arguably a prompt style."
       ],
       "critique": [
-        "Two invariants, zero failure modes. Missing: Step Drift (later steps contradict earlier ones), Rationalization (steps reverse-engineered from a pre-held conclusion), Overconfident Chain (long reasoning chain amplifies errors).",
+        "Step drift, post-hoc rationalization, and error amplification are important diagnostics when reviewing a reasoning trace. They remain sidecar risks unless a concrete ChainOfThought verifier supplies testable criteria; their absence from the failure_modes field is not itself a gap.",
         "'Inherits from Think and Chain' is convenient but invariants should be stated independently — readers seeing ChainOfThought in isolation shouldn't have to chase two other patterns.",
         "The Tier is not displayed in this excerpt but CoT is Tier 2 (honesty-dependent): a dishonest agent can produce fake reasoning. The pattern doesn't explicitly note this vulnerability."
       ]
@@ -2772,7 +2776,7 @@
         "Automated penalty rules buy consistency at the cost of case-specific judgment."
       ],
       "critique": [
-        "Two invariants, zero failure modes. Missing: Ambiguity (a rule technically machine-verifiable but semantically underspecified), Penalty Proportionality (rules fire proportional to offense), Consistency (rules don't contradict each other).",
+        "Ambiguity, contradictory rules, and disproportionate penalties are useful governance diagnostics. Penalty proportionality is a normative policy rather than a universal property of every Constitution, and the other risks need a supplied interpretation or consistency standard before they become testable contracts.",
         "The relationship to OathBind is one-way (Constitution is the input to OathBind) but the pattern doesn't declare this dependency explicitly.",
         "Modification process ('formal out-of-band') is mentioned but unspecified — what constitutes 'formal' and 'out-of-band' is a governance question the pattern leaves open."
       ]
@@ -3643,7 +3647,7 @@
         "Single-selection (must choose exactly one option) excludes plural or weighted decisions — tender/approve-partial, approve-subset — those need a richer pattern like `Allocation`."
       ],
       "critique": [
-        "No failure modes listed. A foundational data-structure primitive should at least name Stale Decision (artifact outlives its validity window) and Phantom Option (selected option no longer exists).",
+        "Stale decisions and options that disappear after selection are lifecycle diagnostics. Their meaning depends on a caller-supplied validity window and option source, so they belong in commentary or a time-bound Decision descendant rather than being added merely to populate failure_modes.",
         "'Debt' appears in Gate's mechanism but not in Decision's — the obligation semantics live implicitly between the two. The Decision pattern does not define what holding a debt-marked Decision means or requires of the holder.",
         "The Select reference (`uses {{select}}`) implies Decision is the output of a selection act. But Decision is also used for opportunistic commits where no select step happens (a Gate's passthrough on proceed). The mechanism is ambiguous about whether Decision without a select history is valid."
       ]
@@ -4540,10 +4544,10 @@
         "Implicit in many downstream patterns (EntropyPump, Crystallize) at the cost of leaving the cross-references shape-of-the-concept-only, not operationalized."
       ],
       "critique": [
-        "Zero invariants listed. For a concept with this much load-bearing use, at minimum: Non-Negativity (Entropy ≥ 0), Maximality (bounded by the system's state-space cardinality), Monotonicity-Without-Intervention (in a closed system, entropy is non-decreasing).",
-        "Zero failure modes. A pattern with this many dependents should at least name the Ambiguous Domain failure (callers mean Shannon when the spec suggests thermodynamic).",
+        "Non-negativity, maximality, and monotonicity depend on which entropy formulation and normalization a caller means. Adding them to this broad parent would conflate thermodynamic, Shannon, and informal disorder semantics; a dedicated family split or typed descendants should pin those laws.",
+        "Ambiguous Domain is the central reviewer diagnostic: callers may mean Shannon entropy while the surrounding discussion implies thermodynamic entropy. That is evidence to clarify or split the family, not evidence that the base pattern needs a populated failure_modes field.",
         "The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion.",
-        "`_meta.related` reference updated from legacy stub format (`EntropyPump#961c`) to full sema_id."
+        "`_meta.related` reference updated from legacy stub format to full sema_id."
       ]
     },
     "family_discussion": "Substrate concept underlying `EntropyPump`, `Crystallize`'s threshold check, `Reversibility`'s Entropy constraint, and `Noise`. Paired with `Measurement` (the act of observing), `Conservation` (what doesn't increase), and `Attractor` (where dynamics land)."
@@ -5040,7 +5044,7 @@
         "Very thin — the mechanism says 'use Control and Treatment,' which is correct and under-specified. Real experiments have blinding, randomization, sample size, power calculations; the pattern mentions none.",
         "No failure modes listed — experiments have many (confounders, selection bias, over-fitting to treatment) and the pattern doesn't catalogue them.",
         "Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time.",
-        "`_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id."
+        "`_meta.related` reference updated from legacy stub format to full sema_id."
       ]
     },
     "family_discussion": "Causal-discovery primitive paired with Verification (confirmation), Experiment-specific patterns (A/B, RCT), and Hypothesis (the pre-registered claim being tested). Compare with Probe — Experiment is structured causal, Probe is single-shot observational. Both gather information, at different rigor levels."
@@ -5308,7 +5312,7 @@
         "Duhem-Quine thesis is the classical problem — any observation technically falsifies a conjunction, not a single hypothesis. The pattern assumes clean falsification.",
         "The 'If Prediction implies Observation, and not-Observation, then not-Hypothesis' invariant is valid logic; the practical problem is that real hypotheses rarely imply crisp observations.",
         "Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes.",
-        "`_meta.related` reference updated from legacy stub format (`HypothesisLadder#f88b`) to full sema_id."
+        "`_meta.related` reference updated from legacy stub format to full sema_id."
       ]
     },
     "family_discussion": "Epistemic primitive paired with Verify (affirmative counterpart), Hypothesis (the subject), and Prediction (the falsifiable statement). Compare with NegativeProof — Falsification proves a claim false; NegativeProof proves a claim about absence. Both are eliminative, at different targets."
@@ -5675,7 +5679,7 @@
         "Per-item halt (vs system halt) enables graceful degradation; loses strong system-wide guarantees when those are what the deployment actually wants."
       ],
       "critique": [
-        "Only one invariant pair and one failure mode — thin for a foundational primitive. Missing invariants: Verdict Observability (Decision must be emitted, not discarded); Separation (Gate must not mutate the condition's subject). Missing failure modes: Stale Decision (artifact outlives its validity window but still routes traffic).",
+        "Field count is not evidence of weakness. Verdict observability is already stated by the mechanism's Decision yield; non-mutation may define a PureGate descendant, and stale decisions require a caller-supplied validity model. Review those as placement questions rather than automatic parent contracts.",
         "'Debt' is mentioned in the mechanism but never defined: what are the obligations, who discharges them, how is debt tracked? Descendants invent this per-deployment, losing the shared semantics the parent should have provided.",
         "The condition is a single slot (`{{condition}}`). Real gates often compose multiple conditions (all-of, any-of, weighted). No compositional story in the parent."
       ]
@@ -10537,9 +10541,9 @@
         "Gives up: blank-slate thinking. Refine preserves structure; when structure is the problem, Refine can't help."
       ],
       "critique": [
-        "No failure modes listed; Refine has some (diminishing returns, cosmetic changes, termination drift).",
-        "Very thin — one-sentence mechanism.",
-        "The pattern assumes critique is available and actionable; producing good critique is itself work."
+        "No canonical invariants or failure modes listed by design: Refine is a cross-context primitive, and hard loop rules belong in descendants or callers.",
+        "Common traps still matter — diminishing returns, cosmetic drift, and termination drift — but they are reviewer guidance rather than universal constraints.",
+        "The pattern still assumes critique is available and actionable; producing good critique is itself work."
       ]
     },
     "family_discussion": "Iterative-improvement primitive paired with Critique (the feedback substrate), Reflexion (self-variant), and PhasedRefinement (layered variant). Compare with Optimize — Refine is qualitative; Optimize is quantitative."
@@ -11206,9 +11210,9 @@
         "Gives up: simplicity. Roles add a layer of indirection; for simple systems, direct permissioning is cleaner."
       ],
       "critique": [
-        "No failure modes listed; Role has some (privilege creep, role explosion, conflicting assignments).",
-        "Very thin mechanism — bundle semantics are deferred to the specific role definitions.",
-        "Relationship with Identity and Responsibility is specified in principle and often conflated in practice."
+        "No canonical invariants or failure modes listed by design: Role is the capability-bundle primitive, not a full RBAC policy.",
+        "Privilege creep, role explosion, conflicting assignments, inheritance, and revocation are real implementation concerns, but they vary enough to belong in descendants or callers.",
+        "The mechanism now explicitly links Identity; the relationship with Identity and Responsibility is still easy to conflate in practice."
       ]
     },
     "family_discussion": "Foundational capability primitive paired with Identity (persistent handle), Permission (the atomic grant), and Responsibility (the continuous contract). Compare with Card — Role is a local concept; Card is the advertisement."
@@ -12235,7 +12239,7 @@
         "All three named failure modes are real and unmitigated by the pattern.",
         "Very thin mechanism — one sentence, no invariants.",
         "No restore semantics specified.",
-        "`_meta.related` reference updated from legacy stub format (`StateSnapshot#940f`) to full sema_id."
+        "`_meta.related` reference updated from legacy stub format to full sema_id."
       ]
     },
     "family_discussion": "State primitive paired with Restore (the recovery), AuditTrail (continuous counterpart), and Versioning. Compare with Cache — Snapshot is full state at time; Cache is keyed storage."
@@ -12833,7 +12837,7 @@
         "Distinctness from Decision is conceptually clean but imposes type-disambiguation load on readers who have to track which three-valued type is at hand."
       ],
       "critique": [
-        "No failure modes listed. Status is a data structure so failure modes are subtle — but at least Misinterpretation (caller collapses Unknown into Falsified) and Stale Status (value outlives the observation window) should be named.",
+        "Collapsing Unknown into Falsified and reusing a stale Status are caller and lifecycle diagnostics. Their meaning depends on downstream routing and a validity window, so the empty failure_modes field is not itself a defect in this lightweight outcome type.",
         "The reason field is string-typed (implicitly) with no structure. A structured reason (code + message + evidence) would let callers route on Falsified-because-X vs Falsified-because-Y. Pushing this to FailureTrace means the lightweight case is under-served.",
         "'Distinct from Boolean' is asserted but not defended in the mechanism — why is three-valued the right shape rather than confidence-weighted-Boolean or probabilistic? The audit discussed this; the pattern's mechanism does not."
       ]
@@ -14428,9 +14432,9 @@
         "Gives up: certainty. Understanding is never complete."
       ],
       "critique": [
-        "Very thin mechanism.",
-        "No invariants, no failure modes.",
-        "The 'accurately reflects' claim is aspirational."
+        "No canonical invariants or failure modes listed by design: Understanding is a cognitive goal whose adequacy depends heavily on domain, task, and evidence standard.",
+        "Surface paraphrase, false coherence, and context loss are important diagnostic risks, but not universal hash-level constraints for the base pattern.",
+        "The 'accurately reflects' claim remains aspirational; adequacy should be judged by the caller's domain, task, and evidence standard rather than encoded as a universal invariant."
       ]
     },
     "family_discussion": "Cognitive primitive paired with Interpret (semantic application), Parse (syntactic), and Model (the outcome). Compare with Think — Understand is the outcome; Think is the atomic op."
@@ -14730,7 +14734,7 @@
         "Very thin.",
         "The 'semantic space' framing is model-dependent.",
         "No failure modes.",
-        "`_meta.related` reference updated from legacy stub format (`LatentAttachment#15a6`) to full sema_id."
+        "`_meta.related` reference updated from legacy stub format to full sema_id."
       ]
     },
     "family_discussion": "Foundational numeric primitive paired with LatentAttachment, Embedding, and Distance. Compare with Scalar — Vector is multi-dim; Scalar is single-dim."

@@ -28,14 +28,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:PermissionEscalate#mh:SHA-256:0ca59c3513edbad36bd4775b0fd6145bff74b809b75e23ae4b49f3a6a73da907",
-  "sema_ref": "PermissionEscalate#0ca5",
-  "sema_stub": "0ca5",
+  "sema_id": "sema:PermissionEscalate#mh:SHA-256:d4544d06098df4779b8fe2956c168d331ee3443b531f13eb81b6339ffafdeec6",
+  "sema_ref": "PermissionEscalate#d454",
+  "sema_stub": "d454",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
       "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
-      "tiered_access": "sema:TieredAccess#mh:SHA-256:805cff9b1016fb2e59af973679a456842d0d764359ffa1c0bc708e7633218334"
+      "tiered_access": "sema:TieredAccess#mh:SHA-256:f3f651c9ef144f5a78f1ba4539ff8af7d1b70c625ef9cc119cf31e8f7e5340dd"
     }
   },
   "sema_layer": "Society",

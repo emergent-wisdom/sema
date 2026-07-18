@@ -17,8 +17,8 @@ OUTPUT = REPO_ROOT / "docs" / "information" / "audit.md"
 AUDITS = [
     ("sema.audit.hash_validity", "Hash validity (stored sema_id matches content)"),
     ("sema.audit.missing_or_short", "Missing or short fields"),
-    ("sema.audit.graph", "Graph structure (orphans, duplicates, naked patterns)"),
-    ("sema.audit.rigor", "Rigor coverage (invariants / pre / post)"),
+    ("sema.audit.graph", "Graph structure (orphans, cycles, metadata, duplicates)"),
+    ("sema.audit.rigor", "Contract-field coverage (invariants / pre / post)"),
     ("sema.audit.missing_links", "Potential missing dependency links"),
     ("sema.audit.unlinked_mentions", "Unlinked handle mentions"),
     ("sema.audit.similarity", "Semantic similarity between patterns"),

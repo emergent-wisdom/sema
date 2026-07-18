@@ -41,7 +41,7 @@ GOVERNING_PRINCIPLES = """\
 
 These are the rules a new pattern must pass before it enters the default library.
 They are stated here forward-looking — as requirements for future mints — rather
-than as history. All three are enforced or validated at mint time through
+than as history. All four are enforced or validated at mint time through
 `sema apply` checks and the pattern-authoring review workflow, with the design
 manual itself (this document) as the primary review surface.
 
@@ -89,9 +89,9 @@ For each pattern, enumerate:
 - **future uses** (plausible scenarios it might reach),
 - the **broad-use contexts** (the enumerated range of legitimate deployment
   contexts across which it should behave coherently),
-- **what every context needs** (the intersection: fields/invariants that must
-  hold in every single listed context — this becomes the pattern's mechanism
-  and core invariants),
+- **what every context needs** (a review hypothesis about the intersection;
+  each candidate must still pass the constraint-placement test before it
+  enters the pattern's mechanism or contracts),
 - **what varies** (context-specific features that belong in descendants, not
   the parent pattern),
 - the **extension shape** (specific `derived_from` descendants that specialize
@@ -100,6 +100,51 @@ For each pattern, enumerate:
 The discipline prevents two failure modes simultaneously: a mechanism overfit
 to the author's first use case (too specific, breaks legitimate variants) and
 a mechanism so generic it has no teeth (too vague, underconstrains the concept).
+
+### The constraint-placement test (what belongs in the hash)
+
+Breadth is required of the reusable ancestry spine, not of every leaf. A
+specific leaf pattern can and should pin a concrete strategy when that
+specificity is what gives the pattern value. A short, general parent handle has
+a different obligation: its hashed definition must admit every legitimate
+broad-use context named in its commentary.
+
+Before adding a mechanism clause, invariant, precondition, postcondition, or
+failure mode to a parent, ask:
+
+1. **Identity test** — if an implementation omits this requirement, does it
+   cease to be the pattern in every broad-use context? If not, the requirement
+   is not universal enough for the parent hash.
+2. **Placement test** — is this an intrinsic quantitative axis, a qualitatively
+   different strategy, deployment policy, or reviewer diagnostic? Put intrinsic
+   quantitative axes in parameters, different strategies in descendants,
+   deployment policy in callers, and contextual guidance in the sidecar.
+3. **Testability test** — can independent agents determine whether the
+   requirement holds without importing unstated domain policy? Aspirational or
+   context-relative claims belong in commentary until a caller supplies the
+   missing standard.
+
+Failure modes belong in the hash when they arise structurally from the named
+mechanism. Risks that depend on a particular deployment, threat model, or
+quality threshold belong in the sidecar or a specialized descendant.
+
+An absent contract is therefore not automatically a defect. Thin primitives,
+abstract nouns, and extension points may intentionally omit contracts that
+would merely restate the mechanism or narrow legitimate composition. Audit the
+reason for the omission; do not optimize for the number of populated fields.
+
+### Reading the design commentary
+
+The sidecar is review evidence, not a normative extension of the pattern. Its
+broad-use intersection is a hypothesis to test against the canonical
+definition, and its critique identifies questions and risks for reviewers. A
+listed diagnostic does not imply that a matching invariant or failure mode
+belongs in the parent hash.
+
+Useful commentary names the likely placement of a concern: parent identity,
+parameter, descendant strategy, caller policy, or reviewer diagnostic. Counts
+such as "only two invariants" are not evidence of a design defect by
+themselves; rewrite them around the semantic risk and run the placement test.
 """
 
 
@@ -285,7 +330,9 @@ def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
         lines.append(f"**Broad-use contexts.** {usage['broad_contexts']}")
         lines.append("")
     if usage.get("every_context_needs"):
-        lines.append(f"**Every context needs.** {usage['every_context_needs']}")
+        lines.append(
+            f"**Broad-use intersection (review hypothesis).** {usage['every_context_needs']}"
+        )
         lines.append("")
     if usage.get("varies"):
         lines.append(f"**Varies (descendant territory).** {usage['varies']}")
@@ -308,7 +355,7 @@ def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
             lines.append(f"- {t}")
         lines.append("")
     if design.get("critique"):
-        lines.append("**Critique.**")
+        lines.append("**Critique (diagnostic, not contract requirements).**")
         for c in design["critique"]:
             lines.append(f"- {c}")
         lines.append("")
@@ -343,8 +390,8 @@ def render_manual(patterns: dict[str, dict], sidecar: dict[str, dict]) -> str:
         "     in `data/vocabulary/*.json` and design commentary in",
         "     `data/design_critique.json`. -->",
         "",
-        f"_Generated: {date.today().isoformat()}_  ",
-        f"_Patterns covered: {len(patterns)} (from `data/vocabulary/`)_  ",
+        f"_Generated: {date.today().isoformat()}_",
+        f"_Patterns covered: {len(patterns)} (from `data/vocabulary/`)_",
         f"_Commentary entries in sidecar: {len(sidecar)} (from `data/design_critique.json`)_",
         "",
         "This manual is the design reference for the Sema Bootstrap Library. "

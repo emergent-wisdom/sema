@@ -27,6 +27,31 @@ This file records vocabulary-level changes between versions — additions, renam
   detection, but successful responses now report `assurance: "prefix"` or
   `assurance: "full_hash"` plus the selected mode. Documentation no longer
   describes a truncated prefix match as byte-exact identity proof.
+- Pattern authoring now includes an explicit constraint-placement test: general
+  parents contain only cross-context, identity-defining contracts, while
+  strategy, deployment policy, and contextual diagnostics belong in
+  descendants, callers, parameters, or design commentary.
+- The design manual now labels broad-use intersections as review hypotheses
+  and critiques as diagnostics rather than contract requirements. Foundational
+  examples no longer treat field counts as evidence that a pattern is weak.
+- `BearerToken` now defines representation-neutral possession semantics.
+  Opaque tokens validated by lookup or introspection and structured tokens
+  validated locally both satisfy the parent; signatures, expiry, revocation,
+  and transfer policy are descendant or deployment choices.
+
+### Fixed
+
+- Updating an existing pattern now replaces superseded schema edges and removes
+  orphaned contract facets instead of leaving old invariants, preconditions, or
+  postconditions attached to the graph.
+- Vocabulary export always loads the current checkout's hashing code, and the
+  deterministic rebuild compares against its pre-rebuild input snapshot. This
+  avoids stale installed-package hashes and false drift reports on intentional
+  uncommitted vocabulary edits.
+- Vocabulary audits now validate current `path`/`ring`/`tier` metadata and
+  report missing contract fields as advisory coverage rather than structural
+  problems. Broad primitives are no longer labeled defective merely because
+  their contracts are intentionally absent.
 
 ---
 

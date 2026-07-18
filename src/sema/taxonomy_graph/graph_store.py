@@ -896,20 +896,19 @@ class GraphStore:
         created_nodes = {}
         linked_nodes = {}
 
-        # 5. Process every field in schema
+        # 5. Reconcile every schema field. Pattern updates replace their
+        # structural claims; retaining old edges would make the graph assert
+        # both the superseded and current contracts.
+        stale_schema_targets: set[str] = set()
         for field_name, (node_type, edge_type) in self.REQUIRED_SCHEMA.items():
             content = solution.get(field_name)
-            if not content:
-                continue
-
-            # Normalize to list
-            items = content if isinstance(content, list) else [content]
+            items = content if isinstance(content, list) else ([content] if content else [])
             link_id = field_mappings.get(field_name)
+            desired_targets: set[str] = set()
 
             # Prepare result containers
-            if field_name not in created_nodes:
+            if items:
                 created_nodes[field_name] = []
-            if field_name not in linked_nodes:
                 linked_nodes[field_name] = []
 
             for text_item in items:
@@ -939,11 +938,45 @@ class GraphStore:
                         target_id = self.create_node(node_type, text_item)
                         created_nodes[field_name].append({"id": target_id, "text": text_item[:80]})
 
+                desired_targets.add(target_id)
+
                 # MultiDiGraph supports multiple typed edges between the same
                 # (src, tgt). We only create a new edge of `edge_type` if no
                 # edge of that exact type already exists between this pair.
                 if not self.has_edge_of_type(pattern_id, target_id, edge_type):
                     self.create_edge(pattern_id, target_id, edge_type)
+
+            # Remove schema links no longer present in the authored field.
+            # Dependency, taxonomy, signature, and related edges use separate
+            # edge types and are unaffected.
+            removed_edge_ids: list[str] = []
+            for target_id in list(self.graph.successors(pattern_id)):
+                if target_id in desired_targets:
+                    continue
+                edge_ids = self.remove_edges_of_type(pattern_id, target_id, edge_type)
+                if edge_ids:
+                    removed_edge_ids.extend(edge_ids)
+                    stale_schema_targets.add(target_id)
+
+            if removed_edge_ids:
+                conn = self._connect()
+                conn.executemany(
+                    "DELETE FROM edges WHERE id = ?", [(eid,) for eid in removed_edge_ids]
+                )
+                conn.commit()
+                conn.close()
+
+        # Schema facets have no independent lifecycle. Delete superseded ones
+        # once no pattern or other graph node references them; shared facets
+        # remain intact.
+        schema_node_types = {node_type for node_type, _ in self.REQUIRED_SCHEMA.values()}
+        for target_id in stale_schema_targets:
+            if (
+                target_id in self.graph
+                and self.graph.nodes[target_id].get("node_type") in schema_node_types
+                and self.graph.degree(target_id) == 0
+            ):
+                self.delete_node_cascade(target_id)
 
         # Compute hash AFTER edges exist (dependencies derived from edges)
         hash_info = self.compute_pattern_hash(solution)

@@ -14,7 +14,11 @@ import sys
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(script_dir, "../.."))
 src_path = os.path.join(project_root, "src")
-sys.path.append(src_path)
+# Export with this checkout's implementation even when the active runtime also
+# has a released version of sema installed in site-packages.
+if src_path in sys.path:
+    sys.path.remove(src_path)
+sys.path.insert(0, src_path)
 
 # Imports
 from sema.core.config import get_config  # noqa: E402
@@ -39,6 +43,23 @@ def get_db_path():
 
 
 EXPORT_DIR = os.path.join(project_root, "data/vocabulary")
+
+
+def normalize_export_order(card):
+    """Keep derived compatibility fields after dependencies to avoid export churn."""
+    if "dependencies" not in card:
+        return card
+
+    layer = card.pop("sema_layer", None)
+    category = card.pop("sema_category", None)
+    dependencies = card.pop("dependencies")
+
+    card["dependencies"] = dependencies
+    if layer is not None:
+        card["sema_layer"] = layer
+    if category is not None:
+        card["sema_category"] = category
+    return card
 
 
 def wipe_directory(path):
@@ -165,6 +186,7 @@ def export_vocabulary():
 
         # Remove deprecated 'links' field - edges are stored in graph database
         card.pop("links", None)
+        normalize_export_order(card)
 
         # Determine Destination (Archive vs Root)
         # Check mechanism for placeholders

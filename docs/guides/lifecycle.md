@@ -17,7 +17,7 @@ Write a new pattern as a JSON file in `data/staging/`:
 data/staging/MyPattern.json
 ```
 
-The file must conform to the [Pattern Card schema](../specification/schema.md). At minimum it needs: `handle`, `mechanism`, `gloss`, `dependencies` (or omit if none), `signature`, and `_meta` with `layer`, `category`, `ring`, `tier`.
+The file must conform to the [Pattern Card schema](../specification/schema.md). At minimum it needs: `handle`, `mechanism`, `gloss`, `dependencies` (or omit if none), `signature`, and `_meta` with a valid `path`, `ring`, and `tier`.
 
 See the [Pattern Authoring Guide](authoring.md) for the full workflow.
 

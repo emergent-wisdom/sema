@@ -11,7 +11,7 @@ What it does:
     1. Back up the current taxonomy.db
     2. Create a fresh empty DB
     3. Feed all data/vocabulary/*.json through sema apply (topo-sorted, one-by-one via mint_pattern)
-    4. Report whether any JSON files changed (git diff)
+    4. Compare the rebuilt JSON files with a pre-rebuild byte snapshot
     5. Restore the original DB (or keep the new one with --replace)
 
 This is the canonical way to prove the hash pipeline is deterministic:
@@ -24,10 +24,24 @@ import shutil
 import subprocess
 import sys
 import time
+from pathlib import Path
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(REPO_ROOT, "data", "taxonomy.db")
 VOCAB_DIR = os.path.join(REPO_ROOT, "data", "vocabulary")
+
+
+def snapshot_vocabulary(vocab_dir=VOCAB_DIR) -> dict[str, bytes]:
+    """Capture root vocabulary JSON bytes for deterministic rebuild checks."""
+    return {path.name: path.read_bytes() for path in sorted(Path(vocab_dir).glob("*.json"))}
+
+
+def changed_vocabulary_files(before: dict[str, bytes], vocab_dir=VOCAB_DIR) -> list[str]:
+    """Return added, removed, or byte-changed vocabulary files."""
+    after = snapshot_vocabulary(vocab_dir)
+    return sorted(
+        name for name in before.keys() | after.keys() if before.get(name) != after.get(name)
+    )
 
 
 def run(cmd, **kwargs):
@@ -74,7 +88,8 @@ def main():
         print(f"ERROR: Vocabulary dir not found: {VOCAB_DIR}")
         sys.exit(1)
 
-    json_count = len([f for f in os.listdir(VOCAB_DIR) if f.endswith(".json")])
+    vocabulary_before = snapshot_vocabulary()
+    json_count = len(vocabulary_before)
     print(f"Rebuilding {json_count} patterns from {VOCAB_DIR}")
 
     # 1. Back up
@@ -126,15 +141,14 @@ def main():
             print("\n--check mode: no JSON files were modified")
             return
 
-        # 4. Check git diff on JSON files
-        rc, diff_out, _ = run(["git", "diff", "--stat", "data/vocabulary/"])
-        if diff_out.strip():
-            print(f"\n❌ HASH DRIFT DETECTED — {diff_out.count('|')} files changed:")
-            print(diff_out)
-            rc2, diff_detail, _ = run(["git", "diff", "--name-only", "data/vocabulary/"])
-            for line in diff_detail.strip().split("\n")[:10]:
-                if line:
-                    print(f"  {line}")
+        # 4. Compare against the exact inputs to this rebuild. Using `git
+        # diff` here produces false failures whenever an author is verifying
+        # an intentional, not-yet-committed vocabulary edit.
+        changed_files = changed_vocabulary_files(vocabulary_before)
+        if changed_files:
+            print(f"\n❌ HASH DRIFT DETECTED — {len(changed_files)} files changed:")
+            for name in changed_files[:10]:
+                print(f"  data/vocabulary/{name}")
             sys.exit(1)
         else:
             print("\n✅ All hashes stable — zero diff on vocabulary JSON files")

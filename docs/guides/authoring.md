@@ -14,8 +14,12 @@ Before submitting a pattern, verify:
 - [ ] No empty fields (`[]`, `{}`, `null`) — omit instead
 - [ ] Signatures use `Intent(Target)` form, not bare names
 - [ ] Nouns / data structures define `data_schema`
-- [ ] `_meta` has all four fields: `layer`, `category`, `ring`, `tier`
+- [ ] `_meta` has a valid `path` plus `ring` and `tier`
 - [ ] Handle follows [Naming Taxonomy](../specification/naming.md) conventions
+- [ ] Short/general handles pass the Occupancy Test and contain only the
+  broad-use intersection; specialized policy lives in descendants or callers
+- [ ] Every hashed contract is identity-defining, cross-context, and testable
+  without unstated domain policy
 - [ ] `sema apply --check` passes
 - [ ] No collisions: `sema search "your handle"` returns no conflicts
 
@@ -152,7 +156,10 @@ The sidecar and the manual are **not** part of the hash input. Editing commentar
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ 7. VERIFY and CLEAN.                                         │
-│    - `sema pull --verify` — stored hashes match recomputed.  │
+│    - `python -m sema.audit.hash_validity` — exported hashes  │
+│      match their recomputed definitions.                     │
+│    - `python scripts/rebuild_vocabulary.py`                   │
+│      A clean rebuild reproduces the same hashes.             │
 │    - `pytest` — regression tests green.                      │
 │    - Delete data/staging/<Handle>.json once applied.         │
 └─────────────────────────────────────────────────────────────┘
@@ -172,6 +179,21 @@ The sidecar and the manual are **not** part of the hash input. Editing commentar
 ### When the Manual Surfaces a Finding You Don't Want to Act On
 
 Some manual findings are intentionally open — e.g., the mechanism deliberately leaves room for descendants to specialize, or the pattern captures a philosophical stance rather than a mechanism. In that case, update the sidecar to **record the intent** ("open by design — descendants fill this in") rather than closing the gap in the pattern. The commentary then becomes a pointer for future readers instead of an unresolved TODO.
+
+Missing fields are not a coverage target. Before adding a contract, apply the
+manual's constraint-placement test: the requirement belongs in a general
+parent only when omitting it would make the implementation cease to be that
+pattern across every listed broad-use context. Put quantitative identity axes
+in parameters, qualitatively different strategies in descendants, deployment
+policy in callers, and contextual risks or reviewer diagnostics in the
+sidecar. Concrete leaf patterns may remain deliberately narrow; the reusable
+ancestry spine is where over-specificity causes ecosystem-wide damage.
+
+Treat sidecar commentary as review evidence, not as a second specification or
+a backlog of contracts to add. Phrase critique around the semantic risk and
+its likely placement. Field-count complaints such as "only two invariants" are
+not actionable without an identity argument; rewrite them as a concrete
+question, descendant opportunity, caller policy, or reviewer diagnostic.
 
 ### Prototypical Examples
 
