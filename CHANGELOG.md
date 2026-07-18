@@ -23,6 +23,9 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Changed
 
+- The shorthand vocabulary reference is now generated on demand instead of
+  tracked and silently staged by the pre-commit hook. Its exporter uses the
+  current `_meta.path` taxonomy and the database remains the source of truth.
 - Cooperative handshake behavior remains the default for non-adversarial drift
   detection, but successful responses now report `assurance: "prefix"` or
   `assurance: "full_hash"` plus the selected mode. Documentation no longer
