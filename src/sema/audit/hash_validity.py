@@ -15,8 +15,6 @@ import os
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
-
 from sema.core.hashing import generate_sema_hash
 
 VOCAB_DIR = os.environ.get("SEMA_VOCAB_DIR", "data/vocabulary")

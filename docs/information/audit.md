@@ -1,12 +1,10 @@
 # Vocabulary Audit Report
 
-Generated: 2026-07-07
-
 All audits below are **advisory**. Heuristic audits generate false positives; use this report as a starting point for manual review, not as a correctness gate.
 
 ## Hash validity (stored sema_id matches content)
 
-Source: `scripts/audit/audit_hash_validity.py` (ok)
+Source: `sema.audit.hash_validity` (ok)
 
 ```text
 Checking hash validity for 452 patterns...
@@ -16,7 +14,7 @@ All 452 hashes valid.
 
 ## Missing or short fields
 
-Source: `scripts/audit/audit_missing_or_short.py` (ok)
+Source: `sema.audit.missing_or_short` (ok)
 
 ```text
 Auditing 452 patterns in data/vocabulary...
@@ -1381,7 +1379,7 @@ Found issues in 452 patterns.
 
 ## Graph structure (orphans, duplicates, naked patterns)
 
-Source: `scripts/audit/audit_graph.py` (ok)
+Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
@@ -1475,7 +1473,7 @@ Audit Complete. Found 76 problems.
 
 ## Rigor coverage (invariants / pre / post)
 
-Source: `scripts/audit/audit_rigor.py` (ok)
+Source: `sema.audit.rigor` (ok)
 
 ```text
 {
@@ -1507,7 +1505,7 @@ Sample 'Naked' Patterns (No strict logic):
 
 ## Potential missing dependency links
 
-Source: `scripts/audit/audit_missing_links.py` (ok)
+Source: `sema.audit.missing_links` (ok)
 
 ```text
 🔍 Scanning data/vocabulary for missing links...
@@ -2092,7 +2090,7 @@ Found 395 potential missing links.
 
 ## Unlinked handle mentions
 
-Source: `scripts/audit/audit_unlinked_mentions.py` (ok)
+Source: `sema.audit.unlinked_mentions` (ok)
 
 ```text
 Scanning 452 patterns for unlinked handle mentions...
@@ -3740,7 +3738,7 @@ Scan complete. Found unlinked handle mentions in 369 patterns.
 
 ## Semantic similarity between patterns
 
-Source: `scripts/audit/audit_similarity.py` (ok)
+Source: `sema.audit.similarity` (ok)
 
 ```text
 🔍 Computing pairwise similarities to find missing SIMILAR_TO links...
@@ -3751,7 +3749,7 @@ Found 0 pairs with High Similarity (> 0.75) but NO link.
 
 ## Scenario coverage
 
-Source: `scripts/audit/audit_scenarios.py` (ok)
+Source: `sema.audit.scenarios` (ok)
 
 ```text
 Auditing 0 scenarios...

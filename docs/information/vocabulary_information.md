@@ -4,7 +4,7 @@
 
 - **Merkle Root**: `c929ae6ef5d56f196c84cd0e5be193438b26bdc4f42b13eca35fdfe0801e395d`
 - **Pattern Count**: 452
-- **Last Verified**: 2026-07-07
+- **Verified Against Root**: `46e651aeeb832fdc…`
 
 ## Usage
 

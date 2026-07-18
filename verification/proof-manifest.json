@@ -1,0 +1,47 @@
+{
+  "format": "sema-proof-manifest/v1",
+  "verifier": {
+    "name": "Lean",
+    "toolchain": "leanprover/lean4:v4.30.0",
+    "build": "cd verification/lean && lake build --wfail"
+  },
+  "proofs": [
+    {
+      "id": "handshake.fail_closed",
+      "model": "verification/lean/SemaVerification/Handshake.lean",
+      "theorems": [
+        "unknownAlwaysHalts",
+        "missingHashRequestsCanonical",
+        "mismatchHalts",
+        "fullHashAlwaysProceeds",
+        "cooperativeStubProceeds",
+        "strictStubRequiresFull",
+        "cooperativeProceedIffAvailableAndAnyMatch",
+        "strictProceedIffAvailableAndFullMatch",
+        "strictProceedRequiresFullIdentity"
+      ],
+      "implementation": "src/sema/core/handshake.py",
+      "conformance_test": "src/sema/core/tests/test_handshake_contract.py",
+      "assumptions": [
+        "GraphWorkspace supplies normalized lookup and hash inputs",
+        "Python executes the conformance-tested decision kernel faithfully",
+        "Cooperative prefix matches are drift signals, not proof-grade identity"
+      ]
+    },
+    {
+      "id": "canonicalization.node_kind_domain_separation",
+      "model": "verification/lean/SemaVerification/CanonicalEncoding.lean",
+      "theorems": [
+        "tagByteInjective",
+        "nodeKindsAreDomainSeparated",
+        "crossKindDigestEqualityRequiresCollision"
+      ],
+      "implementation": "src/sema/core/hashing.py",
+      "conformance_test": "src/sema/core/tests/test_hashing.py::TestDomainSeparation::test_production_tags_match_verified_lean_model",
+      "assumptions": [
+        "SHA-256 is collision resistant",
+        "Python byte concatenation implements the modeled preimage construction"
+      ]
+    }
+  ]
+}

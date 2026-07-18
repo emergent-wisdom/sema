@@ -21,7 +21,12 @@ from pydantic import BaseModel
 
 from ..client import get_default_client
 from ..core.utils import compact_dict
-from ..core.workspace import GraphWorkspace, WorkspaceSource
+from ..core.workspace import (
+    GraphWorkspace,
+    WorkspaceCatalog,
+    WorkspaceNotFoundError,
+    WorkspaceSource,
+)
 
 app = FastAPI(
     title="Sema API",
@@ -137,6 +142,8 @@ def _make_workspace(db_path: str) -> GraphWorkspace:
 # Registry loads from database only
 workspace = _make_workspace(DB_PATH)
 registry = workspace.registry_manager
+workspace_catalog = WorkspaceCatalog()
+workspace_catalog.register_workspace(workspace)
 
 
 # ── GitHub Auth ───────────────────────────────────────────────────────────────
@@ -413,6 +420,68 @@ class GraphData(BaseModel):
 def get_workspace():
     """Describe the active graph workspace and published vocabulary root."""
     return workspace.describe()
+
+
+def _resolve_hosted_workspace(workspace_id: str) -> GraphWorkspace:
+    try:
+        return workspace_catalog.resolve(workspace_id)
+    except WorkspaceNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+
+@app.get("/api/workspaces/{workspace_id}")
+def get_hosted_workspace(workspace_id: str):
+    """Describe one registered workspace without exposing server paths."""
+
+    description = _resolve_hosted_workspace(workspace_id).describe()
+    public_fields = (
+        "workspace_id",
+        "label",
+        "owner",
+        "repo",
+        "ref",
+        "read_only",
+        "pattern_count",
+        "vocabulary_root",
+        "vocabulary_root_stub",
+    )
+    return {field: description[field] for field in public_fields}
+
+
+@app.get("/api/workspaces/{workspace_id}/search")
+def search_hosted_workspace(workspace_id: str, q: str, semantic: bool = True):
+    """Search patterns inside one registered workspace."""
+
+    return _resolve_hosted_workspace(workspace_id).search(q, use_semantic=semantic)
+
+
+@app.get("/api/workspaces/{workspace_id}/patterns/{handle}")
+def get_hosted_pattern(workspace_id: str, handle: str):
+    """Look up a pattern inside one registered workspace."""
+
+    result = _resolve_hosted_workspace(workspace_id).lookup(handle)
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+
+@app.get("/api/workspaces/{workspace_id}/resolve/{handle}")
+def resolve_hosted_pattern(workspace_id: str, handle: str, depth: int = 1):
+    """Resolve a pattern subgraph inside one registered workspace."""
+
+    result = _resolve_hosted_workspace(workspace_id).resolve(handle, depth=depth)
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+
+@app.get("/api/workspaces/{workspace_id}/root")
+def get_hosted_workspace_root(workspace_id: str):
+    """Return the published vocabulary identity for one workspace."""
+
+    payload = _resolve_hosted_workspace(workspace_id).root_payload()
+    payload.pop("db_path", None)
+    return payload
 
 
 @app.get("/api/graph")
@@ -922,6 +991,7 @@ def use_db_endpoint(payload: dict, request: Request):
         DB_PATH = bundled
         workspace = _make_workspace(bundled)
         registry = workspace.registry_manager
+        workspace_catalog.register_workspace(workspace)
         set_active_db(None)
         count = len(registry.registry)
         return {"success": True, "db_path": bundled, "total_patterns": count}
@@ -941,6 +1011,7 @@ def use_db_endpoint(payload: dict, request: Request):
     DB_PATH = str(resolved)
     workspace = _make_workspace(str(resolved))
     registry = workspace.registry_manager
+    workspace_catalog.register_workspace(workspace)
     set_active_db(str(resolved))
     register_db(str(resolved))
     count = len(registry.registry)

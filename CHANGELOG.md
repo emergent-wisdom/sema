@@ -10,7 +10,23 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
-(nothing yet)
+### Added
+
+- Lean 4 formal-verification pilot for the handshake decision kernel and
+  canonicalization type-tag domain separation. Proofs are pinned to Lean
+  4.30.0, checked without `sorry`, independently rechecked by `leanchecker`,
+  and enforced by blocking CI.
+- Machine-readable `verification/proof-manifest.json` linking theorem names to
+  production implementations, conformance tests, and explicit assumptions.
+- `sema_handshake(..., strict=true)` mode. Only the full 64-character hash can
+  produce `PROCEED`; a matching truncated stub returns `REQUIRE_FULL_HASH`.
+
+### Changed
+
+- Cooperative handshake behavior remains the default for non-adversarial drift
+  detection, but successful responses now report `assurance: "prefix"` or
+  `assurance: "full_hash"` plus the selected mode. Documentation no longer
+  describes a truncated prefix match as byte-exact identity proof.
 
 ---
 
