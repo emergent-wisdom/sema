@@ -44,6 +44,8 @@ This file records vocabulary-level changes between versions — additions, renam
 - Updating an existing pattern now replaces superseded schema edges and removes
   orphaned contract facets instead of leaving old invariants, preconditions, or
   postconditions attached to the graph.
+- Updating or removing a pattern signature or `_meta.related` declaration now
+  prunes its stale graph edges without disturbing parallel relationship types.
 - Vocabulary export always loads the current checkout's hashing code, and the
   deterministic rebuild compares against its pre-rebuild input snapshot. This
   avoids stale installed-package hashes and false drift reports on intentional
