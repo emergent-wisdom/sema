@@ -89,9 +89,9 @@ For each pattern, enumerate:
 - **future uses** (plausible scenarios it might reach),
 - the **broad-use contexts** (the enumerated range of legitimate deployment
   contexts across which it should behave coherently),
-- **what every context needs** (the intersection: fields/invariants that must
-  hold in every single listed context — this becomes the pattern's mechanism
-  and core invariants),
+- **what every context needs** (a review hypothesis about the intersection;
+  each candidate must still pass the constraint-placement test before it
+  enters the pattern's mechanism or contracts),
 - **what varies** (context-specific features that belong in descendants, not
   the parent pattern),
 - the **extension shape** (specific `derived_from` descendants that specialize
@@ -132,6 +132,19 @@ An absent contract is therefore not automatically a defect. Thin primitives,
 abstract nouns, and extension points may intentionally omit contracts that
 would merely restate the mechanism or narrow legitimate composition. Audit the
 reason for the omission; do not optimize for the number of populated fields.
+
+### Reading the design commentary
+
+The sidecar is review evidence, not a normative extension of the pattern. Its
+broad-use intersection is a hypothesis to test against the canonical
+definition, and its critique identifies questions and risks for reviewers. A
+listed diagnostic does not imply that a matching invariant or failure mode
+belongs in the parent hash.
+
+Useful commentary names the likely placement of a concern: parent identity,
+parameter, descendant strategy, caller policy, or reviewer diagnostic. Counts
+such as "only two invariants" are not evidence of a design defect by
+themselves; rewrite them around the semantic risk and run the placement test.
 """
 
 
@@ -317,7 +330,9 @@ def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
         lines.append(f"**Broad-use contexts.** {usage['broad_contexts']}")
         lines.append("")
     if usage.get("every_context_needs"):
-        lines.append(f"**Every context needs.** {usage['every_context_needs']}")
+        lines.append(
+            f"**Broad-use intersection (review hypothesis).** {usage['every_context_needs']}"
+        )
         lines.append("")
     if usage.get("varies"):
         lines.append(f"**Varies (descendant territory).** {usage['varies']}")
@@ -340,7 +355,7 @@ def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
             lines.append(f"- {t}")
         lines.append("")
     if design.get("critique"):
-        lines.append("**Critique.**")
+        lines.append("**Critique (diagnostic, not contract requirements).**")
         for c in design["critique"]:
             lines.append(f"- {c}")
         lines.append("")

@@ -67,9 +67,9 @@ For each pattern, enumerate:
 - **future uses** (plausible scenarios it might reach),
 - the **broad-use contexts** (the enumerated range of legitimate deployment
   contexts across which it should behave coherently),
-- **what every context needs** (the intersection: fields/invariants that must
-  hold in every single listed context — this becomes the pattern's mechanism
-  and core invariants),
+- **what every context needs** (a review hypothesis about the intersection;
+  each candidate must still pass the constraint-placement test before it
+  enters the pattern's mechanism or contracts),
 - **what varies** (context-specific features that belong in descendants, not
   the parent pattern),
 - the **extension shape** (specific `derived_from` descendants that specialize
@@ -111,6 +111,19 @@ abstract nouns, and extension points may intentionally omit contracts that
 would merely restate the mechanism or narrow legitimate composition. Audit the
 reason for the omission; do not optimize for the number of populated fields.
 
+### Reading the design commentary
+
+The sidecar is review evidence, not a normative extension of the pattern. Its
+broad-use intersection is a hypothesis to test against the canonical
+definition, and its critique identifies questions and risks for reviewers. A
+listed diagnostic does not imply that a matching invariant or failure mode
+belongs in the parent hash.
+
+Useful commentary names the likely placement of a concern: parent identity,
+parameter, descendant strategy, caller policy, or reviewer diagnostic. Counts
+such as "only two invariants" are not evidence of a design defect by
+themselves; rewrite them around the semantic risk and run the placement test.
+
 ---
 
 ## Patterns
@@ -151,7 +164,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Convergence-in-the-limit invariant buys asymptotic clarity at the cost of ignoring finite-time dynamics — a trajectory may spend a long time away from the attractor before converging.
 - Confinement invariant buys stability at the cost of excluding strange attractors' bounded-but-non-repeating behavior without subtlety.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Noise-Induced Escape (trajectory crosses basin boundary under perturbation), Chaotic Non-Attractor (system remains bounded but doesn't converge to any attractor), Basin Ambiguity (initial condition lies on the boundary between two basins — outcome is undetermined).
 - The invariants are descriptive but not testable — 'approaches in the limit' requires infinite time. A pattern that is empirically invokable would need a finite-time proxy.
 - Strange attractors are mentioned but not treated — a fractal-dimensioned attractor behaves very differently from a fixed point, and the pattern elides the distinction.
@@ -184,7 +197,7 @@ reason for the omission; do not optimize for the number of populated fields.
 
 **Broad-use contexts.** physics causation, statistical causal inference, legal causation, economic causal models, scientific experimental causality, debugging (A caused B).
 
-**Every context needs.** cause event, effect event, directness semantic (manipulating cause alters effect), distinction from Correlation.
+**Broad-use intersection (review hypothesis).** cause event, effect event, directness semantic (manipulating cause alters effect), distinction from Correlation.
 
 **Varies (descendant territory).** causal strength, directness (direct vs chained), counterfactual semantics, confidence.
 
@@ -200,8 +213,8 @@ reason for the omission; do not optimize for the number of populated fields.
 - Directed-edge framing buys graph-theoretic tractability at the cost of hiding feedback loops.
 - Substrate placement buys stability (the relation doesn't depend on who names it) at the cost of ignoring the observer effects in Measurement.
 
-**Critique.**
-- Zero invariants and zero failure modes. For a pattern this philosophically-loaded, at least: Directedness (cause precedes effect; not symmetric); Non-Inverse (A causing B does not imply B causes A); Testability-Under-Intervention (the edge is falsifiable by an intervention experiment).
+**Critique (diagnostic, not contract requirements).**
+- Empty contract fields are not, by themselves, a defect here. Directedness and intervention-responsiveness are already part of the mechanism, while strict temporal precedence and practical intervention testability do not hold uniformly across causal models; those claims need narrower descendants or inference callers.
 - The mechanism mentions 'external change to the cause alters the effect' as the definitional property but doesn't say what counts as external. Internal feedback loops blur this.
 - No cross-reference to Correlation, despite the library minting both and defining them against each other. A 'Distinguished From' block is warranted.
 
@@ -245,7 +258,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Redistribution-only semantics buy a clean structural claim at the cost of excluding processes that create conserved quantities through external energy input.
 - Cross-domain applicability (physics + information) buys generality at the cost of risking conflation.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Boundary Drift (closure boundary changes during the transformation so pre/post cannot be compared), Hidden Source (an apparent violation turns out to reflect an unmodeled boundary flux).
 - 'Closed system' is a load-bearing concept but the pattern doesn't define what qualifies — total energy isolation? Controlled material flux? The library assumes the concept is known.
 - The three listed domains (energy, charge, information in a sealed channel) are illustrative but uneven — information conservation in a sealed channel is less familiar than energy conservation and arguably deserves its own pattern.
@@ -278,7 +291,7 @@ reason for the omission; do not optimize for the number of populated fields.
 
 **Broad-use contexts.** shock absorbers, electrical dampening, audio dampening, organizational politics dampening (cooling-off periods), alert suppression, over-eager response dampening.
 
-**Every context needs.** signal being dampened, attenuation mechanism, resistance/noise source.
+**Broad-use intersection (review hypothesis).** signal being dampened, attenuation mechanism, resistance/noise source.
 
 **Varies (descendant territory).** attenuation function, adaptive vs fixed dampening, target (signal, force, value).
 
@@ -293,7 +306,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Gains: a named stabilization primitive, explicit negative-feedback semantics, a shared handle for patterns that need to reduce intensity.
 - Gives up: nuance. The pattern's mechanism is essentially 'reduce'; the interesting question of 'reduce how, by how much, when' lives in the caller.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence of mechanism, no invariants, no failure modes. The real work is always in the consuming pattern.
 - Negative feedback is the classic control-theoretic primitive; the pattern gestures at it without formalizing gain, phase, stability margin — the parameters that actually matter.
 - 'In response to resistance or noise' conflates two different triggers — you might dampen because the system is pushing back (resistance) or because the signal is noisy; the responses differ.
@@ -335,7 +348,7 @@ reason for the omission; do not optimize for the number of populated fields.
 
 **Broad-use contexts.** memory decay, cache TTL, pheromone decay in stigmergy, radioactive decay, attention decay, reputation decay, content freshness scoring.
 
-**Every context needs.** current value, decay rate, time passage, reinforcement mechanism, zero-threshold action.
+**Broad-use intersection (review hypothesis).** current value, decay rate, time passage, reinforcement mechanism, zero-threshold action.
 
 **Varies (descendant territory).** decay function (exponential, linear, custom), reinforcement magnitude, reset semantics, zero-threshold action.
 
@@ -351,7 +364,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Half-life framing buys familiarity (physics intuition) at the cost of pinning to exponential decay — linear or other curves need descendants.
 - Zero threshold triggers state change buys discrete semantics at the cost of a non-smooth transition at the boundary.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Premature Expiry is the named failure — half-life miscalibration is endemic.
 - The pattern has only one invariant ({{value}} never negative); richer invariants about monotonicity, reinforcement semantics, and threshold behavior would help.
 - Gloss fixed: previously rendered literal '{{state}}' token; now plain text 'Automatic expiration of stale state'.
@@ -397,7 +410,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Real-valued output buys continuity and magnitude comparison at the cost of excluding categorical 'distance' notions.
 - Symmetry requirement (d(x,y) = d(y,x)) buys reciprocity at the cost of excluding asymmetric notions (KL divergence as 'distance from p to q').
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Non-metric-passing-as-metric (caller uses a pseudo-metric under this pattern's name — the pattern has no runtime check), Dimension Mismatch (Distance applied across incompatible spaces).
 - The mechanism states the axioms correctly but doesn't say what to do when the caller's space doesn't satisfy them. The pattern is a strict filter; the library could benefit from a separate `Dissimilarity` pattern for the semi-metric case.
 - 'Metric-axiom function on a space' — but the pattern doesn't say what kind of space. Topological, metric, vector, manifold? The generality is intentional; it leaves specificity to the context.
@@ -430,7 +443,7 @@ reason for the omission; do not optimize for the number of populated fields.
 
 **Broad-use contexts.** thermodynamics, Shannon entropy in info theory, ML uncertainty, chaos measures, randomness assessment, social entropy.
 
-**Every context needs.** system/message being measured, quantifiability.
+**Broad-use intersection (review hypothesis).** system/message being measured, quantifiability.
 
 **Varies (descendant territory).** measurement method (Shannon, Gibbs, Boltzmann, etc.), base (log 2, log e), application domain.
 
@@ -446,9 +459,9 @@ reason for the omission; do not optimize for the number of populated fields.
 - Physics placement buys invariance (the property holds regardless of author) at the cost of ignoring observer-dependent aspects.
 - Implicit in many downstream patterns (EntropyPump, Crystallize) at the cost of leaving the cross-references shape-of-the-concept-only, not operationalized.
 
-**Critique.**
-- Zero invariants listed. For a concept with this much load-bearing use, at minimum: Non-Negativity (Entropy ≥ 0), Maximality (bounded by the system's state-space cardinality), Monotonicity-Without-Intervention (in a closed system, entropy is non-decreasing).
-- Zero failure modes. A pattern with this many dependents should at least name the Ambiguous Domain failure (callers mean Shannon when the spec suggests thermodynamic).
+**Critique (diagnostic, not contract requirements).**
+- Non-negativity, maximality, and monotonicity depend on which entropy formulation and normalization a caller means. Adding them to this broad parent would conflate thermodynamic, Shannon, and informal disorder semantics; a dedicated family split or typed descendants should pin those laws.
+- Ambiguous Domain is the central reviewer diagnostic: callers may mean Shannon entropy while the surrounding discussion implies thermodynamic entropy. That is evidence to clarify or split the family, not evidence that the base pattern needs a populated failure_modes field.
 - The mechanism is one sentence. A pattern this foundational should say a bit more — at least distinguish the three common formulations or explicitly state it is the general notion.
 - `_meta.related` reference updated from legacy stub format to full sema_id.
 
@@ -489,7 +502,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Multiplicity acknowledgment (zero, one, many equilibria) buys honesty about real dynamics at the cost of forcing callers to handle the ambiguity.
 - Basin-dependent occupancy buys realism about path-dependence at the cost of making equilibrium a history-sensitive concept rather than a pure state-space one.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Stagnation Misread (operational steady-state mistaken for equilibrium), Metastable (system appears at equilibrium but a small perturbation moves it to a distant basin), Non-Existent Equilibria (dynamics admits no fixed point — chaos).
 - 'Every dynamical system has equilibria (possibly empty)' is almost tautological. The interesting cases are when equilibria don't exist or when the system is chaotic; the pattern doesn't engage with those.
 - Stability class is declared an invariant but no scheme is specified — the mechanism says 'by perturbation response' without formalizing what perturbation.
@@ -531,7 +544,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Vector-valued output (direction + magnitude) buys expressivity at the cost of requiring vector arithmetic downstream.
 - Non-opinionated on the field's meaning (entropy gradient, credibility gradient) buys generality at the cost of leaving domain semantics to the caller.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Discontinuity (gradient undefined at non-smooth points), Saddle Confusion (zero-gradient points may be saddles, not extrema — optimization callers assume they're extrema).
 - The mechanism text uses mathematical notation (∇f) which is right for precision but may be opaque to readers — a plain-language gloss alongside would help.
 - The differentiable-space precondition is stated as a qualifier but not enforced. Callers who invoke Gradient over non-smooth domains are technically out-of-spec but the pattern offers no check.
@@ -581,7 +594,7 @@ reason for the omission; do not optimize for the number of populated fields.
 
 **Broad-use contexts.** in-memory mutexes (K=1), counting semaphores (K>1), distributed locks, advisory file locks, database row locks, ReadWriteLocks (bounded shared + 1 exclusive).
 
-**Every context needs.** acquire operation, release operation, **bounded-concurrent-holders guarantee** (K ≥ 1).
+**Broad-use intersection (review hypothesis).** acquire operation, release operation, **bounded-concurrent-holders guarantee** (K ≥ 1).
 
 **Varies (descendant territory).** K (the bound), fencing tokens, reentrancy, deadlock detection, timeouts, ownership transfer, shared vs exclusive modes, wait queue discipline.
 
@@ -597,7 +610,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Single-object atomicity costs throughput — the protected region serializes writers by construction.
 - Minimal acquire/release interface costs expressivity: read-write, reentrant, and hierarchical locks are all separate descendants rather than parameters.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'resource' in the mechanism is underspecified — byte, record, abstract object? Granularity matters for cost profiles and the mechanism is silent.
 - Listed failure modes cover Deadlock and Priority Inversion but omit Starvation (under adversarial queue discipline), Convoying (high-frequency contention collapses throughput), and Spurious Release (non-holder calls release).
 - Acquisition semantics (blocking vs try-acquire vs timed-acquire) are not specified — every descendant re-invents the call surface.
@@ -639,7 +652,7 @@ reason for the omission; do not optimize for the number of populated fields.
 - Three invariants (Perturbation, Cost, Irreversibility) buy a strong structural claim at the cost of excluding the edge case where measurement is effectively free and non-disturbing.
 - Distinctness from Observe buys clean typing at the cost of requiring callers to consciously pick which pattern they want.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Under-Measurement (extracting less information than the protocol requires), Aliasing (sampling faster than Nyquist produces false signal), Instrument Bias (measurement systematically offsets the true value).
 - 'In general' is a load-bearing qualifier that softens all three invariants. A pattern can tolerate a little softness but this is significant — the invariants are guidelines, not laws.
 - Quantum measurement (superposition collapse) and classical measurement (record the value) are structurally different; the pattern treats them as one. Defensible for the library's use but risks conflation.
@@ -694,7 +707,7 @@ reason for the omission; do not optimize for the number of populated fields.
 
 **Broad-use contexts.** OS mutexes, distributed locks with tokens, hardware locks, leadership tokens in distributed systems, single-writer-principle enforcement.
 
-**Every context needs.** lifecycle, token representation, priority queue for contention, fencing tokens for revocation.
+**Broad-use intersection (review hypothesis).** lifecycle, token representation, priority queue for contention, fencing tokens for revocation.
 
 **Varies (descendant territory).** token material, queue discipline, fencing implementation, reentrancy support.
 
@@ -712,7 +725,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Heartbeat + expires_at buys crash recovery (orphan token detection) at the cost of false preemption when the network is slow but the holder is alive.
 - The explicit failure-mode catalog buys operator clarity at the cost of pattern complexity — Mutex enumerates six mitigations rather than stating the clean core.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The invariants list has only one item ('Uniqueness, conservation of the fencing totem'). For a pattern this operational, richer invariants are warranted: Monotonic Sequence, Single-Holder, Release-Ownership (only the current holder can release), Token Validity.
 - The 'critical section' concept is named but not specified — callers must already know what a critical section is. A minimal spec of 'the protected region is the code path between acquire and release' would ground the term.
 - Failure modes restructured — the previous list contained a nested "Failure modes:" sub-list header with numbered items spread across separate entries. Now rendered as atomic items with inline mitigations.
@@ -760,7 +773,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Symmetry invariant buys interpretability (MI is not directional) at the cost of excluding directional dependence measures like KL divergence.
 - Non-negativity is trivial but uninformative — the pattern has no 'characteristic scale' to compare against, so 'MI = 0.3' is hard to interpret without further context.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Finite-Sample Bias (estimator bias for small N), Discretization Error (continuous distributions discretized for estimation), Non-Identifiability (MI is invariant under invertible transformations — X vs f(X) have the same MI for any bijection f).
 - The mechanism uses the formula I(X; Y) = H(X) + H(Y) − H(X, Y) which is correct but doesn't define H (entropy). Readers need to jump to Entropy to understand MI.
 - Substrate placement defensible but the ENTIRELY EMPIRICAL domain (computed from data) is a cognitive activity — the substrate is the information relationship, the measurement is Mind.
@@ -793,7 +806,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 **Broad-use contexts.** audio noise, signal-processing noise, data noise, cognitive distraction, communication interference, adversarial noise injection (security).
 
-**Every context needs.** context defining what's relevant (and thus what's noise), interference semantic.
+**Broad-use intersection (review hypothesis).** context defining what's relevant (and thus what's noise), interference semantic.
 
 **Varies (descendant territory).** noise model (Gaussian, structured, adversarial), filterability, injection vs natural, impact on extraction cost.
 
@@ -808,7 +821,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Gains: shared vocabulary for 'irrelevant information,' handle for filtering primitives.
 - Gives up: operational content. Noise is a stance; specific patterns that filter noise do the actual work.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence of mechanism, no invariants, no failure modes.
 - Task-dependency of noise is important and unmentioned in the mechanism.
 - Conflates random noise with structured-but-irrelevant information; they have different handling strategies.
@@ -853,7 +866,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Critical-parameter-threshold naming buys predictability (cross the threshold, transition happens) at the cost of hiding the dynamics around the transition point (critical slowing, divergent correlation lengths).
 - Physics placement buys substrate claim at the cost of ignoring the observer-dependence — the qualitative/quantitative distinction depends on what the observer considers 'structural.'
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. Missing: Hysteretic Transition (transition threshold differs on ascent vs descent — the pattern assumes a single threshold), Missed Threshold (control parameter crosses the threshold but the system doesn't transition, perhaps due to nucleation delay).
 - 'Qualitative change' is an interpretive claim — two observers may disagree on whether a change is qualitative. The pattern doesn't say how to adjudicate.
 - Second-order transitions (continuous phase changes) are excluded by the non-continuity invariant, which is defensible but should be stated — callers invoking `PhaseTransition` for a continuous case are out-of-spec.
@@ -889,7 +902,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 **Broad-use contexts.** Type-1 vs Type-2 decisions (Bezos), surgical reversibility judgments, regulatory-decision reversibility, financial-transaction reversibility, deployment reversibility.
 
-**Every context needs.** pre-state, post-state, return-cost evaluation, TRUE/FALSE yield.
+**Broad-use intersection (review hypothesis).** pre-state, post-state, return-cost evaluation, TRUE/FALSE yield.
 
 **Varies (descendant territory).** cost threshold, information-loss tolerance, reversibility-over-time (e.g., given time X, is it reversible?).
 
@@ -905,7 +918,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Entropy constraint invariant buys physical grounding at the cost of forcing callers to reason about thermodynamics for decisions where the cost is effort, not entropy.
 - The physics-layer placement buys substrate claim at the cost of obscuring the decision-theoretic use.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Only one invariant (Entropy constraint) and zero failure modes. Missing: False Reversibility (caller thinks reversal is possible but an externality was created mid-action), Cost Drift (the 'acceptable cost' threshold changes between action and rollback).
 - 'Type 1 and Type 2' references Bezos's framing but the pattern does not describe the framing for readers unfamiliar with it. The reference is a shortcut.
 - The pattern yields a Boolean but does not specify how the check is performed — it is up to the caller to evaluate entropy constraints and cost, which re-introduces the variability the pattern was supposed to reduce.
@@ -951,7 +964,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 **Broad-use contexts.** distributed systems (vector clocks), eventual consistency stores, message queues with causal order, game-state replication, collaborative editing (OT/CRDT).
 
-**Every context needs.** buffer, dependency tracking per message, release rule (all predecessors seen).
+**Broad-use intersection (review hypothesis).** buffer, dependency tracking per message, release rule (all predecessors seen).
 
 **Varies (descendant territory).** dependency representation (vector clock, happens-before, explicit edges), buffer size limits, timeout policy, stale-dependency garbage collection.
 
@@ -966,7 +979,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Gains: freedom from impossible-state bugs, simplified reasoning for every pattern downstream, a clean separation between event ordering and event processing.
 - Gives up: latency and memory. Messages wait in the buffer for dependencies to arrive, which accumulates end-to-end delay and buffer pressure.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Buffer overflow (the named failure mode) is fundamental — dependencies that never arrive stall forever. The pattern has no timeout/drop mechanism.
 - Requires every sender to tag causal dependencies correctly; a misbehaving sender breaks the barrier's guarantees invisibly.
 - Doesn't distinguish strict from weak causality — happens-before ordering is stronger than needed in many cases, and the pattern has no weaker mode.
@@ -1015,7 +1028,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 **Broad-use contexts.** solver outputs, API contracts, SLA verification, quality gates, regulatory compliance, safety constraints, release criteria, API-to-API handoffs.
 
-**Every context needs.** typed criteria (each independently verifiable); non-compensatory semantics (no axis can offset another's failure); a clear yield contract on success/failure.
+**Broad-use intersection (review hypothesis).** typed criteria (each independently verifiable); non-compensatory semantics (no axis can offset another's failure); a clear yield contract on success/failure.
 
 **Varies (descendant territory).** criterion count, evaluation order, severity tiers, FrameError production discipline (per §3.14 mechanism update — on failure yields FrameError, not generic false).
 
@@ -1031,8 +1044,8 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 - Typed output (Result matches schema, not free text) buys verifiability at the cost of constraining solver outputs to the pre-declared shape.
 - Per-criterion reframing hints buy actionable failures at the cost of spec authoring cost — each criterion must be paired with a hint.
 
-**Critique.**
-- Only two invariants and two failure modes. Missing invariants: Criterion Orthogonality (criteria shouldn't semantically overlap), Hint Presence (every criterion must carry a reframing hint), Evaluator Determinism (same Result + same Spec → same evaluation). Missing failure modes: Hint Incoherence (hint contradicts the criterion it's attached to), Evaluator Ambiguity (the check is subjective enough that different evaluators disagree).
+**Critique (diagnostic, not contract requirements).**
+- Criterion overlap, hint incoherence, and evaluator disagreement are useful review diagnostics. They should not be promoted automatically to parent contracts: overlap can be intentional and human or model evaluators need not be deterministic. Concrete AcceptSpec dialects or Verify surfaces should state those policies.
 - Over-constraining (deadlock-by-spec) is a common real-world failure and the pattern offers no detection — only acknowledges the failure mode. A Criterion-Coverage heuristic (% of generated Results that would pass each criterion individually) would help; not in the pattern.
 - The 'active Verify surface consumes the AcceptSpec' relationship is stated but not enforced — a Solver could ignore the AcceptSpec and return a Solution anyway. The pattern depends on caller discipline.
 
@@ -1067,7 +1080,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 **Broad-use contexts.** art-scoring metrics, music aesthetic scores, UX design aesthetic ratings, typography scores, algorithmic-generated-art scoring.
 
-**Every context needs.** artifact to evaluate, subjective-preference prior model, scalar output.
+**Broad-use intersection (review hypothesis).** artifact to evaluate, subjective-preference prior model, scalar output.
 
 **Varies (descendant territory).** dimension set (harmony, parsimony, style), prior elicitation method, cross-cultural variance.
 
@@ -1084,7 +1097,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 - Gains: a named slot for acceptance/adoption considerations, a tiebreaker when functional utility ties, explicit acknowledgment that non-functional properties matter.
 - Gives up: honesty about what the number means — the single score papers over deep preference structure, and gives nothing to optimize against when the audience is heterogeneous.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Defines the metric but not how to compute it — 'subjective preference priors of a human observer' is doing all the work with no mechanism.
 - Treats aesthetic preference as static, but preferences drift, especially under exposure; an Aesthetics score becomes stale without a freshness signal.
 - Single-observer framing is a poor fit for most real deployments where the observer is a population; aggregation of aesthetic scores across observers is under-specified.
@@ -1120,7 +1133,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 **Broad-use contexts.** monitoring anomalies, medical anomalies, financial anomalies, security anomalies, scientific anomalies, behavior anomalies.
 
-**Every context needs.** observed datum, expected standard, deviation semantic.
+**Broad-use intersection (review hypothesis).** observed datum, expected standard, deviation semantic.
 
 **Varies (descendant territory).** deviation threshold, severity classification, investigation-trigger protocol.
 
@@ -1135,7 +1148,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 - Gains: a first-class trigger artifact for investigation/learning/diagnosis, a standardized shape for 'something is off.'
 - Gives up: pretense of binary clarity — Anomaly forces you to pick a deviation score, which means you have to quantify surprise in a way that's often unnatural.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Treats 'expected' as a single value, which forces unimodal baselines; multi-modal baselines (system has two legitimate regimes) get flagged as anomalies when they shouldn't be.
 - No lifecycle for anomalies — they're produced but there's no built-in resolution. An unresolved anomaly either quietly ages out or accumulates forever.
 - Deviation score is scalar; real anomalies are often multidimensional (unusual shape, unusual timing, unusual correlation) and the single score flattens that.
@@ -1179,7 +1192,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 **Broad-use contexts.** workflow outputs, build artifacts, document versions, research outputs, media files, data products, messages between services.
 
-**Every context needs.** discrete-ness, immutability, typing for pipeline integration.
+**Broad-use intersection (review hypothesis).** discrete-ness, immutability, typing for pipeline integration.
 
 **Varies (descendant territory).** medium (bytes, tokens, structured data), provenance tracking, addressability (hash or ID), size bounds.
 
@@ -1194,7 +1207,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 - Gains: content-addressable workflows, verifiable inputs/outputs, immutable provenance, audit-ready by construction.
 - Gives up: in-place edits (there are none) and storage compactness (every revision is a fresh artifact, not a delta).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Link rot is called out as a failure mode but the pattern has no built-in redundancy or replication story — it assumes someone else solves the persistence layer.
 - Hash collision is flagged as a 'theoretical risk' which is charming but dishonest when truncated or non-cryptographic hashes are in use; the pattern should specify hash strength.
 - No typing beyond 'typed input/output token' — the type system Artifact participates in is effectively implicit, which gets painful at pipeline boundaries.
@@ -1231,7 +1244,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 **Broad-use contexts.** performance reviews, academic assessments, code review artifacts, medical assessments, risk assessments, peer reviews.
 
-**Every context needs.** structured evaluation, strengths list, weaknesses list, recommendations.
+**Broad-use intersection (review hypothesis).** structured evaluation, strengths list, weaknesses list, recommendations.
 
 **Varies (descendant territory).** rubric alignment, confidentiality, longitudinal (over time) vs point-in-time.
 
@@ -1246,7 +1259,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 - Gains: structured, parseable evaluations that feed refinement loops; explicit linkage from critique to recommendation to reference.
 - Gives up: the option of 'this is beyond repair' — the actionability invariant forces a constructive framing even when destruction is the honest recommendation.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'at least one specific recommendation' invariant is almost always satisfied vacuously — 'rewrite this' counts, but doesn't help. The pattern doesn't mandate recommendation quality.
 - No mechanism for weighting or prioritizing across strengths/weaknesses — a pile of mixed points without a ranking is as hard to act on as unstructured critique.
 - The 'strengths' requirement is often performative — assessors pad with surface praise to satisfy the shape, diluting the signal.
@@ -1283,7 +1296,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 **Broad-use contexts.** reasoning under uncertainty, planning under incomplete info, debugging premises, modeling simplifications, "given that X..." framings.
 
-**Every context needs.** the provisional claim, tracking (so it can be re-examined), validation opportunity.
+**Broad-use intersection (review hypothesis).** the provisional claim, tracking (so it can be re-examined), validation opportunity.
 
 **Varies (descendant territory).** confidence-when-assumed, invalidation triggers, derivation chain tracking.
 
@@ -1298,7 +1311,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 - Gains: forward reasoning under partial information, explicit lineage from conclusion back to what was assumed.
 - Gives up: truth guarantees, and occasionally fluency — making assumptions legible forces a small overhead that agents trained on unflagged inference tend to skip.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The invariant 'must maintain link to missing datum' is easy to state, hard to enforce — in practice many assumptions have no obvious 'datum' they replace, they replace a judgment.
 - No built-in expiration or discharge mechanism — an assumption made early in a chain may be silently depended on much later with no prompt to re-verify.
 - Shallow compared to Axiom/Hypothesis — the distinctions blur at the edges (when does an assumption become a working hypothesis?).
@@ -1342,7 +1355,7 @@ _Note: §3.18 moves to Infra/Data Structures since it's a Metric type. Broad-use
 
 **Broad-use contexts.** financial audits, security audits, compliance audits, code audits, scientific-reproduction audits, process audits.
 
-**Every context needs.** target, specifications to check against, verification process, conformance judgment.
+**Broad-use intersection (review hypothesis).** target, specifications to check against, verification process, conformance judgment.
 
 **Varies (descendant territory).** scope (full vs spot), independence requirement, frequency, retention.
 
@@ -1359,7 +1372,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Gains: cite-able verification events, groundable state changes, explicit provenance for decisions downstream.
 - Gives up: the ability to 'fix' an audit in place; the immutability invariant is correct for integrity but punitive when mistakes are later discovered.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The distinction between Audit (noun) and AuditTrail (a series of events) is important but subtle; many callers conflate them, eroding the clarity the split was meant to provide.
 - No freshness semantics — an audit from a month ago has the same standing as one from today, even though relevance typically decays.
 - The 'verdict' field is binary-shaped in many implementations, which doesn't capture 'partially compliant' or 'compliant with caveats' — the pattern could specify a richer verdict structure.
@@ -1403,7 +1416,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** democratic votes, governance ballots, consensus rounds, delegated voting, poll artifacts, veto records.
 
-**Every context needs.** question being decided, options, voting rules, deadline, immutability once cast.
+**Broad-use intersection (review hypothesis).** question being decided, options, voting rules, deadline, immutability once cast.
 
 **Varies (descendant territory).** option count, voting rules (majority, supermajority, unanimity, weighted), anonymity, delegation chains, cryptographic proofs.
 
@@ -1419,7 +1432,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Immutability buys tamper-resistance at the cost of forbidding in-flight revisions.
 - Data-structure framing (Infrastructure) correctly reflects Ballot's nature — it's the shape, not the protocol.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes. Missing: Deadline Validity (deadline must be future-tense at creation), Option Disjointness (options should be mutually exclusive unless the rule permits multi-select).
 - Double Voting as a Sybil risk is mentioned but the pattern has no signing requirement — a signed Ballot wouldn't eliminate Sybil but would eliminate replay.
 - The 'voting rules' field is informally listed (majority/supermajority/unanimity) — no enum definition. Different implementations use different strings.
@@ -1455,7 +1468,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** LLM prior beliefs, scientific hypotheses, agent mental models, world models, prediction-market positions, user-intent inferences, probabilistic assertions.
 
-**Every context needs.** a claim, a confidence score [0.0, 1.0], a pointer to supporting evidence; mutability via `BayesUpdate` or similar.
+**Broad-use intersection (review hypothesis).** a claim, a confidence score [0.0, 1.0], a pointer to supporting evidence; mutability via `BayesUpdate` or similar.
 
 **Varies (descendant territory).** evidence representation (citation, linked data, derivation), confidence update rule (Bayesian, heuristic, frequency-based), superseding semantics, audit trail.
 
@@ -1471,8 +1484,8 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Evidence pointer buys lightweight Beliefs at the cost of requiring evidence resolution.
 - Mutability (distinct from Fact) buys accurate epistemic modeling at the cost of harder-to-verify claim chains.
 
-**Critique.**
-- Zero invariants and zero failure modes. For a substrate pattern this central, missing: Confidence Range (0 ≤ c ≤ 1), Evidence Existence (referenced evidence must exist at creation time), Monotonic Update (confidence changes should be tied to evidence changes).
+**Critique (diagnostic, not contract requirements).**
+- The confidence range and required claim are already encoded by the mechanism, parameter, and data schema; duplicating them as invariants would add no meaning. Evidence existence and monotonic updates are policies for evidence-tracked or calibrated descendants, not established properties of every Belief.
 - The subjectivity is named but not operationalized — an agent can hold contradictory Beliefs without detection.
 - Evidence-backed is structurally implied (pointer to evidence) but not enforced — a Belief with null evidence pointer is technically a Belief, operationally useless.
 
@@ -1515,7 +1528,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Exhaustive + Exclusive invariants rule out extensions (maybe, indeterminate). If later needs require a three-valued case, descendants cannot relax the invariants — a new pattern (Status, Decision) is the right move.
 - The absence of failure modes is honest (what could fail about a two-element set?) but leaves the impression the pattern is vestigial.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes and no preconditions/postconditions. For a primitive, this is defensible, but the pattern doesn't assert that the only valid members are the two constants — technically, an invalid-byte Boolean (neither true nor false) could be produced and the spec has no explicit rejection.
 - The three-way distinction from Decision and Status is asserted in prose but not enforced by type — it lives in caller discipline.
 - Boolean's purpose is primarily to give Validate a typed output; yet the pattern's mechanism doesn't mention Validate. The relationship is implicit via Validate's yields declaration.
@@ -1567,7 +1580,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** saga break events, distributed-transaction aborts, emergency stops in multi-party coordination, cascading failure propagation, ejection events.
 
-**Every context needs.** severity, reason, recoverability flag, ACK requirement, escalation-on-no-ACK.
+**Broad-use intersection (review hypothesis).** severity, reason, recoverability flag, ACK requirement, escalation-on-no-ACK.
 
 **Varies (descendant territory).** broadcast scope, severity levels, default termination vs pause, integration with CircuitBreaker/EjectionSeat.
 
@@ -1582,7 +1595,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Gains: explicit failure semantics for multi-agent coordination, severity-based routing, a clear interface between Break and retry logic.
 - Gives up: simplicity. The protocol (broadcast → ACK → escalate on timeout) is heavier than just setting a status field, and the weight doesn't always pay off.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'No data loss during interruption' invariant is aspirational — the pattern has no mechanism that enforces it, only a naming.
 - ACK timeout tuning is the named failure mode and it's genuinely hard; too short and transient network issues look like failures, too long and partners pile up work on a dead agent.
 - Recoverable vs non-recoverable is a binary; real failures are frequently 'recoverable with compensation,' 'recoverable with user input,' etc. The pattern flattens that.
@@ -1633,7 +1646,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** memoized functions, RAG retrievers, pathway memory, routing decisions, computed heuristics, embedding caches, session state, prompt caches.
 
-**Every context needs.** a way to store keyed values and look them up. Storage semantic is the definitional floor.
+**Broad-use intersection (review hypothesis).** a way to store keyed values and look them up. Storage semantic is the definitional floor.
 
 **Varies (descendant territory).** eviction policy (LRU, LFU, FIFO), TTL, size limits, consistency model, distributed vs local, invalidation strategy.
 
@@ -1648,7 +1661,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Gains: massive speedup on repeat lookups, reduced load on the backing source, a clean place to instrument hit/miss rates.
 - Gives up: data freshness and simplicity — every cache becomes a new source of staleness bugs. 'There are only two hard things in CS' applies.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Staleness is called out as a failure mode but the pattern has no invalidation protocol — 'write-behind, invalidation discipline' are described as 'descendant concerns.' The hardest problem is deferred.
 - Thrashing (frequent evictions) has no built-in monitoring; a cache too small for its workload just silently hurts performance.
 - No semantics for partial results or incremental updates — caches either hit or miss, which is a coarse view of actually-useful intermediate states.
@@ -1695,7 +1708,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** agent cards (A2A protocol), LinkedIn profiles, business cards, DMP agent-capability manifests, API capability documents, MCP server metadata.
 
-**Every context needs.** agent_id, endpoint, protocols, capabilities, constraints, metadata.
+**Broad-use intersection (review hypothesis).** agent_id, endpoint, protocols, capabilities, constraints, metadata.
 
 **Varies (descendant territory).** publication mechanism (registry, broadcast, DHT, well-known endpoint), TTL, verification/signing.
 
@@ -1711,7 +1724,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Immutability-after-issue buys byte-stable caching (Cards can be cached and reused) at the cost of forcing re-issuance for every real change.
 - Discovery-before-contact buys efficiency at the cost of trusting claims — until Probe is invoked, the caller is operating on unverified self-descriptions.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - One invariant, two failure modes. Missing invariants: Signed-by-Issuer (Card must carry the issuing Agent's signature), Non-Empty Capabilities (a Card with no claimed capabilities is operationally vestigial).
 - Stale Cards is a named failure with TTL as the mitigation, but TTL is advisory — the pattern doesn't enforce stale-Card rejection on the consumer side.
 - The metadata block (version, ttl, publication info) is described in prose but not schema'd. A caller implementing Card needs to invent field names; discovery protocols may diverge.
@@ -1748,7 +1761,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** taxonomic categories, type categories, product categories, email folder categories, research field categories.
 
-**Every context needs.** grouping criterion, equivalence semantic for certain ops.
+**Broad-use intersection (review hypothesis).** grouping criterion, equivalence semantic for certain ops.
 
 **Varies (descendant territory).** mutual exclusion (category A excludes B), hierarchy integration, fuzzy membership.
 
@@ -1763,7 +1776,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 - Gains: a reusable primitive for grouping, explicit inclusion criteria, clear equivalence semantics for operations within a category.
 - Gives up: fuzzy and graded membership (supported only by explicit extensions), and taxonomic evolution (the pattern is static).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — barely more than a named set. The interesting work happens in Taxonomy, Classify, and Tag (which use Category as substrate); Category itself is almost a stub.
 - No semantics for category boundaries — membership is binary, which fits some domains and distorts others.
 - Treats category membership as a property of the item; some theories treat it as a property of the observer (category as lens), and the pattern can't express that.
@@ -1800,7 +1813,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 **Broad-use contexts.** linked lists, blockchain chains, chain-of-custody records, Markov chains (loosely), linked data structures in programs.
 
-**Every context needs.** node-link structure, sequential traversal semantic, concrete-storage-container semantic.
+**Broad-use intersection (review hypothesis).** node-link structure, sequential traversal semantic, concrete-storage-container semantic.
 
 **Varies (descendant territory).** doubly vs singly linked, circular vs linear, memory layout, concurrency.
 
@@ -1818,7 +1831,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 - Acyclicity invariant simplifies traversal but excludes legitimate cyclic structures (feedback chains).
 - Data-structure framing (vs algorithmic) keeps Chain minimal at the cost of underspecifying how chains are built, extended, or consumed.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes. For a data structure, that is defensible, but at least Broken Link (Node(N) pointer is null but N is not the last) and Phantom Successor (pointer references a node not in the chain) are real concerns.
 - The two invariants are correct but minimal. Missing: Terminal (the chain has exactly one last node with no successor) — implied but not stated.
 - 'Instantiated storage object' distinguishes Chain from Sequence, but the distinction only lands if readers know Sequence. A one-line comparator would help.
@@ -1855,7 +1868,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 
 **Broad-use contexts.** Wikipedia's list of cognitive biases, heuristics-and-biases literature, ML dataset biases, organizational biases, user-research biases.
 
-**Every context needs.** specific distortion definition, trigger conditions, mitigation strategies.
+**Broad-use intersection (review hypothesis).** specific distortion definition, trigger conditions, mitigation strategies.
 
 **Varies (descendant territory).** domain (human cognitive, statistical, systemic), measurability, avoidance protocols.
 
@@ -1870,7 +1883,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 - Gains: a shared frame for naming structural distortions, a category for the hundreds of specific biases in the literature.
 - Gives up: actionability. Naming a bias doesn't debias — the pattern is descriptive, not corrective.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Mechanism is almost empty ('the lens is curved') — it's a gesture at the shape of the problem, not a mechanism in the operational sense.
 - No invariants, no failure modes (of the bias pattern itself, not of the biases it names) — a rare case where the pattern has barely any structure.
 - The value of having this handle is primarily for BeliefTracking, Judge, and SteelmanCheck to reference; standalone it does little.
@@ -1910,7 +1923,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 
 **Broad-use contexts.** sema handles themselves, Git commit hashes as semantic anchors, content-addressed pattern libraries, IPFS-style references, blockchain state anchors.
 
-**Every context needs.** immutability, content-addressing (hash), global reference, external drop event.
+**Broad-use intersection (review hypothesis).** immutability, content-addressing (hash), global reference, external drop event.
 
 **Varies (descendant territory).** hash algorithm, resolution protocol, caching, update-via-new-hash semantics.
 
@@ -1925,7 +1938,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 - Gains: exact semantic alignment across agents, content-addressed resolution (same bytes = same meaning guaranteed), clear supersession story (old anchor stays, new anchor supersedes via metadata).
 - Gives up: ergonomics. Typing '[hash:xyz]' isn't as natural as typing 'apple,' and the pattern adds friction that agents bypass when they can get away with it.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Link rot is listed as a failure mode without mitigation — storage is the caller's problem, and when the caller fails, every anchor breaks.
 - 'Resolution to valid schema or content' is an invariant, but invalid content can still pass the hash check (bad data, malformed schema).
 - The pattern says terms are referenced, not defined inline, but offers no semantics for when an agent legitimately needs to redefine or refine. Cleanup: the prior bare-label invariant 'Immutable Reference' (no statement) was redundant with the Immutability invariant above it and has been removed.
@@ -1968,7 +1981,7 @@ _Note: §3.18 merges Linear → Chain (spatial topology unified)._
 
 **Broad-use contexts.** feature flags, guard clauses, assertions, invariants, preconditions, postconditions, match predicates, filter criteria.
 
-**Every context needs.** an evaluation logic returning Boolean; context input for the evaluation.
+**Broad-use intersection (review hypothesis).** an evaluation logic returning Boolean; context input for the evaluation.
 
 **Varies (descendant territory).** complexity of evaluation (literal true vs. complex predicate), side-effect profile, caching, evaluation cost, parameterization.
 
@@ -1985,7 +1998,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 - Gains: clean control-flow semantics, predictable composition (conditions compose with &&/||), enforced termination.
 - Gives up: expressiveness. The Boolean discipline is correct for control flow and too blunt for decisions that should carry uncertainty forward.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Ambiguity failure mode (returning Maybe or probabilistic float) is structurally easy to commit — the invariant is a type-system discipline the pattern can't enforce on its own.
 - Decidability is a strong invariant; halting problem considerations apply. In practice patterns set a timeout and error on unbounded evaluation.
 - Marker interfaces are a weak abstraction — they say 'this implements X' without supplying the implementation. The real content is in whatever implements Condition.
@@ -2028,7 +2041,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 **Broad-use contexts.** resource budgets, safety bounds, legal compliance, physical laws, organizational policies, API rate limits, regulatory constraints.
 
-**Every context needs.** boundary condition, non-compensatory semantic (can't offset one violation with another surplus), constraint type (Resource/Safety/Legal/Physical), Holographic Inheritance.
+**Broad-use intersection (review hypothesis).** boundary condition, non-compensatory semantic (can't offset one violation with another surplus), constraint type (Resource/Safety/Legal/Physical), Holographic Inheritance.
 
 **Varies (descendant territory).** inheritance mechanism, violation-detection timing, override protocol (who can lift constraints).
 
@@ -2043,7 +2056,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 - Gains: principled solution rejection, typed constraint categories, guaranteed parent-inheritance of constraint bounds.
 - Gives up: flexibility. Constraint relaxation (the named failure mode) exists because real-world solutions often need just a little give, and the pattern's non-compensatory invariant forbids it.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Explicitness' invariant is aspirational — hidden constraints always outnumber named ones, and the pattern has no mechanism for surfacing them.
 - Constraint conflict (no solution exists) is called out as a failure mode but there's no built-in detection; agents discover conflicts by failing to satisfy, which is late.
 - Type taxonomy (Resource/Safety/Legal/Physical) is reasonable but non-exhaustive; ethical, aesthetic, social constraints don't fit neatly.
@@ -2094,7 +2107,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 **Broad-use contexts.** agent contexts, LLM conversation contexts, multi-turn dialogue state, subprocess environments, database transaction contexts, session state.
 
-**Every context needs.** inherited constraints, available capabilities, working memory, identity claims.
+**Broad-use intersection (review hypothesis).** inherited constraints, available capabilities, working memory, identity claims.
 
 **Varies (descendant territory).** persistence, serializability, transferability between agents, clone/fork semantics.
 
@@ -2110,7 +2123,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 - Serializability buys portability at the cost of excluding live resources.
 - Bundled structure (constraints + tools + memory + identity) buys transport convenience at the cost of per-field lifecycle coupling.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes — good coverage. Context Contamination and Context Poisoning are real and well-named.
 - Context Poisoning mitigations not specified — InputGuard is a separate pattern that would compose, but the pattern itself doesn't declare the composition.
 - The four-part structure (Constraints, Tools, Memory, Identity) is prescribed but the field names are not enforceable — different implementations may use different keys.
@@ -2156,7 +2169,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 **Broad-use contexts.** legal contracts, smart contracts, SLAs, API service agreements, employment contracts, insurance policies, escrow terms, bilateral MoUs.
 
-**Every context needs.** identities of parties, conditions/obligations (terms), signatures from all parties, immutability.
+**Broad-use intersection (review hypothesis).** identities of parties, conditions/obligations (terms), signatures from all parties, immutability.
 
 **Varies (descendant territory).** signature algorithm, dispute-resolution clause, termination semantics, amendment mechanism, jurisdictional binding.
 
@@ -2172,7 +2185,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 - Term immutability buys tamper-resistance at the cost of forbidding in-flight revision.
 - Ambiguity tolerance (unlike Constitution) buys expressive power at the cost of ambiguity risk.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes. Missing: Expiration (Contracts may have a validity window; pattern is silent), Breach Detection (terms violated — who notices, how?), Enforcement Binding (contract → enforcement mechanism is implicit).
 - Multi-party with no ordered-signing: the spec requires all sign, but doesn't say if order matters. In some contexts, one party signs before another (offer/acceptance); the pattern flattens this.
 - 'Binding foundation for economic/cooperative interactions' is the intent but the pattern doesn't specify what happens on breach — enforcement lives elsewhere.
@@ -2208,7 +2221,7 @@ _Note: Condition is a Trait (as §3.18 proposes for Meta/Global/Subject/Creative
 
 **Broad-use contexts.** statistical correlation, market co-movements, feature correlation in ML, symptom co-occurrence, meme spread patterns.
 
-**Every context needs.** two variables, co-movement measure, explicit non-causal semantic.
+**Broad-use intersection (review hypothesis).** two variables, co-movement measure, explicit non-causal semantic.
 
 **Varies (descendant territory).** correlation method (Pearson, Spearman, etc.), lag, directionality, confidence intervals.
 
@@ -2225,7 +2238,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 - Gains: honest naming of the weaker claim, coefficient-based quantification, resistance to accidental causal upgrading.
 - Gives up: the false comfort of 'we see it moving together so we know how to intervene' — Correlation explicitly refuses this, which is honest and sometimes frustrating.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Limited to linear co-movement via the coefficient — real dependencies are often nonlinear and Correlation has no expression for them.
 - Doesn't distinguish spurious correlation (confounded) from genuine co-movement without causation; the pattern is structurally unable to identify confounders.
 - Leaves the inference to the caller — 'correlation isn't causation' is cited everywhere and violated routinely, and the pattern has no structural defense against the upgrading.
@@ -2261,7 +2274,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 **Broad-use contexts.** acceptance criteria, rubric criteria, regulatory criteria, quality criteria, fitness criteria, performance criteria.
 
-**Every context needs.** specific standards, target being judged, pass/fail or quantification rule.
+**Broad-use intersection (review hypothesis).** specific standards, target being judged, pass/fail or quantification rule.
 
 **Varies (descendant territory).** criteria count, weighting, compensation rules (can one exceed offset another's failure), source (stakeholder vs derived).
 
@@ -2276,7 +2289,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 - Gains: citable standards for evaluation, shared vocabulary for 'what makes this good,' a substrate for Judge and Critique.
 - Gives up: subtlety. Explicit Criteria flatten the judgment; sometimes the unstated bar ('elegance,' 'fit,' 'taste') is doing the real work, and the pattern makes it illegitimate.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — almost just a typed list. The interesting work (picking good criteria, resolving conflicts between them) lives outside the pattern.
 - No semantics for criteria compatibility — multiple criteria may be jointly unsatisfiable, and the pattern has no way to detect or express this.
 - Typically used as a bag of bullet points rather than a structured specification; the pattern doesn't resist this degradation.
@@ -2313,7 +2326,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 **Broad-use contexts.** feedback-loop systems, iterative refinement, state machines with cycles, recursive optimization, control loops.
 
-**Every context needs.** edge structure permitting backward references, loop-termination mechanism (explicit or implicit).
+**Broad-use intersection (review hypothesis).** edge structure permitting backward references, loop-termination mechanism (explicit or implicit).
 
 **Varies (descendant territory).** cycle count bounds, termination criteria, cycle detection, shared-state vs isolated-iteration.
 
@@ -2328,7 +2341,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 - Gains: support for iterative refinement, feedback loops, recursive optimization — the structural dual of DAG for non-DAG-shaped problems.
 - Gives up: simplicity of analysis. Cyclic graphs resist many static analyses (dependency-ordering, topological sort) that DAGs make trivial.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The termination invariant is necessary and easy to violate — 'defined exit state' is a specification the caller must provide, and caller specifications frequently omit it.
 - Very thin — beyond 'has cycles, must terminate,' the pattern leaves structure to the caller. Real cyclic patterns (gradient descent, reflexion loops) build richer structure on top.
 - The pattern doesn't address cycle semantics — what does it mean to 'revisit a state'? Idempotent replay, stateful iteration, destructive re-entry are all distinct cases.
@@ -2368,7 +2381,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 **Broad-use contexts.** build systems, data pipelines, scheduling graphs, provenance graphs, task dependency graphs, workflow engines.
 
-**Every context needs.** directed edges, acyclicity, parallel-execution potential, precedence respect.
+**Broad-use intersection (review hypothesis).** directed edges, acyclicity, parallel-execution potential, precedence respect.
 
 **Varies (descendant territory).** node schema, edge labels, cycle-detection mechanism, stratification.
 
@@ -2383,7 +2396,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 - Gains: topological ordering, principled parallelism (independent nodes run concurrently), dependency-aware scheduling.
 - Gives up: cycles. DAG is specifically not the right topology when the problem has genuine feedback loops; use Cyclic instead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — the mechanism is two invariants (acyclic, directed). Everything else is inherited from graph theory.
 - No semantics for what nodes and edges represent — a DAG of tasks is different from a DAG of data flows, but the pattern doesn't distinguish.
 - The pattern names the structure without the operations (topological sort, reachability, longest path); these live in graph-theoretic patterns built on DAG.
@@ -2419,7 +2432,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 **Broad-use contexts.** sensor readings, log lines, bytes, observations, raw measurements, tokens, events pre-interpretation.
 
-**Every context needs.** existence (the unit IS something); distinctness from other data points.
+**Broad-use intersection (review hypothesis).** existence (the unit IS something); distinctness from other data points.
 
 **Varies (descendant territory).** encoding, unit type, precision, source attribution, timestamp attachment, structured vs unstructured.
 
@@ -2434,7 +2447,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 - Gains: explicit separation of raw observation from interpretation, a substrate for pipeline stages that transform raw into interpreted.
 - Gives up: philosophical honesty — the pure-fact framing is aspirational; every real datum has interpretive commitments baked in.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — the mechanism is half a sentence. The pattern's value is in its role in the type hierarchy, not in any operational structure.
 - 'No attached meaning, just existence' is philosophically fraught; observation without context is rarer than the pattern suggests.
 - The Data/Datum distinction is grammatically correct and pedagogically useful; operationally, most systems use them interchangeably.
@@ -2471,7 +2484,7 @@ _Note: §3.18 flagged Correlation's mechanism as gloss-restatement. The broad-us
 
 **Broad-use contexts.** policy decisions, medical decisions, strategic decisions, resource-allocation decisions, decision-trees (output leaves), governance decisions.
 
-**Every context needs.** the specific chosen option, reference to deliberation context, commitment semantic.
+**Broad-use intersection (review hypothesis).** the specific chosen option, reference to deliberation context, commitment semantic.
 
 **Varies (descendant territory).** reversibility, precedent-setting power, audit trail, confidence of decision.
 
@@ -2489,8 +2502,8 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Irrevocability invariant simplifies reasoning (a Decision once made is stable) but rigidifies adaptive systems that want to revise in-flight.
 - Single-selection (must choose exactly one option) excludes plural or weighted decisions — tender/approve-partial, approve-subset — those need a richer pattern like `Allocation`.
 
-**Critique.**
-- No failure modes listed. A foundational data-structure primitive should at least name Stale Decision (artifact outlives its validity window) and Phantom Option (selected option no longer exists).
+**Critique (diagnostic, not contract requirements).**
+- Stale decisions and options that disappear after selection are lifecycle diagnostics. Their meaning depends on a caller-supplied validity window and option source, so they belong in commentary or a time-bound Decision descendant rather than being added merely to populate failure_modes.
 - 'Debt' appears in Gate's mechanism but not in Decision's — the obligation semantics live implicitly between the two. The Decision pattern does not define what holding a debt-marked Decision means or requires of the holder.
 - The Select reference (`uses {{select}}`) implies Decision is the output of a selection act. But Decision is also used for opportunistic commits where no select step happens (a Gate's passthrough on proceed). The mechanism is ambiguous about whether Decision without a select history is valid.
 
@@ -2525,7 +2538,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** event sourcing, DOM events, physical events, financial transactions, audit logs, game state changes, biological events.
 
-**Every context needs.** discrete occurrence, state change semantic, timestamp, distinctness from Stream (continuous).
+**Broad-use intersection (review hypothesis).** discrete occurrence, state change semantic, timestamp, distinctness from Stream (continuous).
 
 **Varies (descendant territory).** event schema, ordering guarantee, replayability, causal linkage to prior events.
 
@@ -2540,7 +2553,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: atomic unit for causality, foundation for event-based patterns (EventReact, Causation), clean separation from continuous Stream.
 - Gives up: richness. Real occurrences have duration, compound structure, partial ordering, observer dependence — none of which Event captures in its basic form.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one sentence of mechanism, no invariants, no failure modes. The value is almost entirely in the typing.
 - 'At a specific point in time' is a strong idealization; many useful event concepts have temporal extent (a meeting, a deployment, a decision-making window).
 - The Event/Stream distinction is important and sometimes arbitrary — when does a rapid stream of events become a stream? The pattern doesn't say.
@@ -2573,7 +2586,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** programming-language exceptions, HTTP error codes, RPC errors, game-logic exceptions, business-process violations, anomaly flags.
 
-**Every context needs.** error classification, invalid-state indication, requirement-of-handling semantic.
+**Broad-use intersection (review hypothesis).** error classification, invalid-state indication, requirement-of-handling semantic.
 
 **Varies (descendant territory).** stack trace attachment, recovery hints, severity levels, typed vs untyped.
 
@@ -2588,7 +2601,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: an explicit channel for anomaly signaling, a force for explicit error handling, distinction from normal flow.
 - Gives up: flow simplicity. Every function that raises exceptions becomes a potential discontinuity in execution; the mental overhead is real.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — one sentence, no invariants of its own. The pattern is a typing/classification primitive more than an operational one.
 - Real exceptions have rich structure (type hierarchy, error messages, stack traces, root cause chains) that the pattern leaves to the implementation.
 - The 'must be handled by CircuitBreaker or FailClosed' clause is a soft recommendation the pattern can't enforce.
@@ -2628,7 +2641,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** release manifests, Kubernetes deployment manifests, CI/CD pipeline descriptors, build manifests, experiment-protocol manifests.
 
-**Every context needs.** target design (what), operation sequence (how), atomicity semantic (release candidate).
+**Broad-use intersection (review hypothesis).** target design (what), operation sequence (how), atomicity semantic (release candidate).
 
 **Varies (descendant territory).** verification embedded vs external, rollback plan attachment, signature requirement.
 
@@ -2643,7 +2656,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: binding of what and how, atomic execution unit, budget-bounded.
 - Gives up: flexibility. ExecutionManifest is the composed plan; mid-execution revisions require regeneration.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; ExecutionManifest has some (inconsistent Design/Procedure, budget violations at execution).
 - Completeness is aspirational; real manifests always miss something.
 - The 'atomic Release Candidate' framing commits to one-shot execution, which fights iterative delivery.
@@ -2694,7 +2707,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Signed identity buys fraud-resistance at the cost of the identity infrastructure (keys, revocation, authority).
 - Evidence-bound invariant prevents fabricated rejections but constrains evaluators to only rejecting what they can cite — truly subjective rejections fall outside the spec.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Three failure modes are all structural (ghost clauses, evidence fabrication, identity spoofing) — good coverage of what the pattern can defend against. Missing: Evidence Insufficiency (evidence exists but is too weak to support the claim; the pattern has no minimum-strength check).
 - No preconditions or postconditions. For a data structure carrying cryptographic claims, the lifecycle (when is a FailureTrace valid, when has it expired) should be explicit.
 - The relationship to ReceptivityGate is load-bearing but described in prose, not enforced — a FailureTrace can be consumed by a non-gate implementation that skips the verification invariants.
@@ -2735,7 +2748,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: accurate topology for disjoint hierarchies, principled denial of synthetic roots.
 - Gives up: unified operations. A Forest can't be traversed as a single tree; every cross-tree operation has to respect the disjointness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — three topology invariants. The value is in the naming.
 - Multiplicity invariant is pedantic — a single tree is sometimes meaningfully called a forest (one-member forest); the strict 'at least 2' is a language choice the pattern hardcodes.
 - No operations defined on Forest — iteration order across trees, summary operations, visualization are all caller concerns.
@@ -2774,7 +2787,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** research-question definitions, requirements specifications, project charters, medical differential-diagnosis framing, legal case framings.
 
-**Every context needs.** problem space, constraints, success criteria, artifact-for-contract semantic.
+**Broad-use intersection (review hypothesis).** problem space, constraints, success criteria, artifact-for-contract semantic.
 
 **Varies (descendant territory).** formality, machine-readability, revision history, stakeholder sign-off.
 
@@ -2789,7 +2802,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: explicit contract for execution, interpretation visible rather than implicit, test-able success criteria.
 - Gives up: fuzzy-but-productive work. Requests that resist crisp framing must either be forced into crispness or abandoned.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes — FrameSpec has many (misinterpretation, over-specification, under-specification) that the pattern doesn't catalogue.
 - Unambiguous success criteria is aspirational; most real requests have multiple valid interpretations and the pattern has no resolution mechanism.
 - 'Derived from a raw request via interpretation' is the whole interesting step and the pattern defers it to the caller.
@@ -2834,7 +2847,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** OKRs, project goals, personal goals, scientific research goals, therapeutic goals, legal objectives, algorithmic optimization targets.
 
-**Every context needs.** desired end-state description, testability (can evaluate Result against Goal), composability (AND/OR), prioritization.
+**Broad-use intersection (review hypothesis).** desired end-state description, testability (can evaluate Result against Goal), composability (AND/OR), prioritization.
 
 **Varies (descendant territory).** quantitative vs qualitative, time horizon, stakeholder weighting, sub-goal hierarchy.
 
@@ -2849,7 +2862,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: testable purpose, explicit target for evaluation, compositional goal structures.
 - Gives up: fuzzy aspirations that resist testability. 'Build a great product' isn't a Goal by the pattern's invariant; the crispening can lose the motivating richness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Goal Ambiguity is the named failure — goals that admit multiple incompatible interpretations. The pattern has no mechanism for surfacing ambiguity before execution.
 - Goal Conflict (multiple goals jointly unsatisfiable) is structurally common in multi-goal systems; the pattern doesn't specify resolution.
 - Moving Target — the stability invariant is exactly the anti-pattern here, and stability-at-the-cost-of-learning has its own problems.
@@ -2885,7 +2898,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** org charts, taxonomy hierarchies, maslow's hierarchy of needs, priority hierarchies, biological taxonomies, file-system hierarchies, type hierarchies.
 
-**Every context needs.** vertical ordering, Upper/Lower relations, inheritance rule, authority rule.
+**Broad-use intersection (review hypothesis).** vertical ordering, Upper/Lower relations, inheritance rule, authority rule.
 
 **Varies (descendant territory).** single-inheritance vs multiple, dynamism, enforcement of strict-vs-loose hierarchy.
 
@@ -2900,7 +2913,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: shared vocabulary for vertical structure, foundation for Tree, Taxonomy, Authority, Inheritance.
 - Gives up: precision. Hierarchy is deliberately vague, and specific hierarchies need specific semantics the pattern doesn't provide.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one-line mechanism, no invariants, no failure modes. The pattern's value is classificatory.
 - Conflates multiple distinct semantics: categorical hierarchy (class subtype), authority hierarchy (boss-subordinate), containment hierarchy (folder-file).
 - No semantics for multiple inheritance, crossing hierarchies, or flat alternatives — the pattern implies strict vertical structure.
@@ -2936,7 +2949,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** scientific hypotheses, debugging conjectures, detective work, forensic reasoning, theory formation, null-hypothesis testing, bug-cause candidates.
 
-**Every context needs.** the claim itself, status (untested/corroborated/falsified), test-ability (must be empirically checkable — distinguishes from Assumption and Axiom).
+**Broad-use intersection (review hypothesis).** the claim itself, status (untested/corroborated/falsified), test-ability (must be empirically checkable — distinguishes from Assumption and Axiom).
 
 **Varies (descendant territory).** confidence tracking, evidence links, competing-hypothesis structure, falsification-condition spec.
 
@@ -2951,7 +2964,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: clean epistemic-stance distinction, testability invariant, a commitment-to-check slot.
 - Gives up: fluency. Agents want to state things; the Hypothesis discipline asks 'what would falsify this?' which interrupts momentum.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Testability is a weak constraint — technically falsifiable hypotheses can still be untestable in practice (need conditions that don't occur).
 - The 'explicit commitment to be checked' is aspirational; the pattern doesn't include machinery to enforce the check.
 - Distinction from Claim/Assumption/Axiom is clean conceptually and often muddied in real use.
@@ -2987,7 +3000,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** cryptographic agent IDs, human pseudonyms, corporate personas, service accounts, bot handles, role-bound identities, federated identities, anonymous-but-unique identifiers.
 
-**Every context needs.** uniqueness guarantee within scope; persistence across interactions; a way to distinguish Self from Other.
+**Broad-use intersection (review hypothesis).** uniqueness guarantee within scope; persistence across interactions; a way to distinguish Self from Other.
 
 **Varies (descendant territory).** key material (public keys, DIDs, UUIDs, username+password), reputation attachments, history binding, key rotation mechanics, pseudonymity vs real-name.
 
@@ -3002,7 +3015,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: persistent agent handle, reputation substrate, trust bootstrapping target.
 - Gives up: privacy options. Identity-based systems necessarily track, which conflicts with anonymity and privacy preferences.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — the pattern lists components (history, reputation, public keys) without a coherent shape.
 - Conflates identity-claim with identity-proof; the two have different failure modes.
 - No failure modes listed — Identity has many (compromise, impersonation, sybil attack) that the pattern doesn't catalogue.
@@ -3039,7 +3052,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** financial ledgers, blockchain state, CRDT operation logs, event sourcing stores, audit records, accounts-payable systems, game state transactions.
 
-**Every context needs.** immutability, transactional semantics, value attribution per entry.
+**Broad-use intersection (review hypothesis).** immutability, transactional semantics, value attribution per entry.
 
 **Varies (descendant territory).** signature/authentication model, partitioning, query-efficiency structures (indices), retention, privacy controls.
 
@@ -3054,7 +3067,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: immutable audit trail, shared economic state, principled append-only discipline.
 - Gives up: privacy, edit-ability, and compact storage. Ledgers grow forever and are visible to all participants.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — two invariants, one-line mechanism. The real work (consensus, signature, replication) lives in dependent patterns.
 - No failure modes listed; ledgers have many (fork resolution, double-spend, history rewrite attacks).
 - The pattern assumes shared state; privacy-preserving ledgers (zero-knowledge) require substantially different mechanisms.
@@ -3099,7 +3112,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** consulting frameworks (McKinsey's Pyramid), probability-space partitioning, category-schema design, market-segment analysis, legal case-law partitioning.
 
-**Every context needs.** problem space, partition into non-overlapping categories, no-gap test.
+**Broad-use intersection (review hypothesis).** problem space, partition into non-overlapping categories, no-gap test.
 
 **Varies (descendant territory).** partition granularity, test rigor, dynamism (static vs updating partition).
 
@@ -3114,7 +3127,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: principled partition discipline, explicit overlap-and-gap tests, forcing function for partition refinement.
 - Gives up: fuzzy category membership. Many useful categorizations are probabilistic or gradient; MECE flattens them to crisp bins.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The Other Bucket Trap is endemic — real domains have stubbornly-uncategorizable items, and MECE has no graceful handling.
 - Dimensional Error (named failure) — partitioning criteria mixed (Color AND Origin) — is easy to commit, and the pattern has no type-check.
 - False Exclusivity — edge cases ignored to force fit — is the common shortcut; the pattern's tests don't catch motivated ignoring.
@@ -3153,7 +3166,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** system-architecture proposals, policy proposals with theory-of-change, academic theory proposals, economic intervention proposals, organizational-change proposals.
 
-**Every context needs.** problem definition, system-level solution, core mechanism (leverage point + causal chain), dialectic ("why works" + "why fails"), implementation + vision projections.
+**Broad-use intersection (review hypothesis).** problem definition, system-level solution, core mechanism (leverage point + causal chain), dialectic ("why works" + "why fails"), implementation + vision projections.
 
 **Varies (descendant territory).** domain specificity, dialectic depth, implementation detail, visualization.
 
@@ -3168,7 +3181,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: structural dialectic balance, explicit mechanism-of-action requirement, novelty claims made visible.
 - Gives up: speed and sometimes simplicity. MechanisticDesignProposal is heavy; lighter formats suit routine work.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Why it fails as detailed as why it works' is structurally demanding and often under-provided even by honest authors.
 - Novelty Requirement can produce theater — authors claim unique contributions that aren't really unique.
 - Causal Clarity is an invariant without a test — claims of causation that aren't really causal pass the invariant trivially.
@@ -3208,7 +3221,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 **Broad-use contexts.** email, HTTP requests, gRPC messages, agent-to-agent messages, ML-pipeline artifacts, log entries with metadata, instant-messaging.
 
-**Every context needs.** payload (Signal), Sender identity, Recipient, Timestamp.
+**Broad-use intersection (review hypothesis).** payload (Signal), Sender identity, Recipient, Timestamp.
 
 **Varies (descendant territory).** encryption, authentication, ordering guarantees, size limits, reply-to chaining.
 
@@ -3223,7 +3236,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 - Gains: routable, auditable unit for communication; explicit immutability for log integrity.
 - Gives up: edit-ability. Messages can't be changed after send; corrections require separate messages and the pattern has no built-in retraction.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — two invariants, one-line mechanism. The real work of protocols (serialization, acknowledgment, reliable delivery) lives elsewhere.
 - Immutability conflicts with practical needs (typo fixes, retractions); the pattern leaves corrections to higher-level protocols.
 - No failure modes listed; messaging has many (loss, duplication, reordering, replay).
@@ -3265,7 +3278,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — the standalon
 - Gains: a shared modifier for self-referential patterns, explicit abstraction-raising marker.
 - Gives up: very little — the pattern is so thin that removing it wouldn't lose much operational content.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence of mechanism, no invariants, no failure modes.
 - Philosophical loading without operational content; the pattern is mostly a label.
 - Doesn't address the infinite-meta regress (MetaMetaPrompt, etc.) that the modifier invites.
@@ -3298,7 +3311,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — the standalon
 
 **Broad-use contexts.** system metrics (latency, throughput), business KPIs, scientific measurements, health metrics, financial metrics, ML training metrics, game scores.
 
-**Every context needs.** measurement definition, quantifiability, target property.
+**Broad-use intersection (review hypothesis).** measurement definition, quantifiability, target property.
 
 **Varies (descendant territory).** aggregation granularity, sampling frequency, cardinality, derived vs raw.
 
@@ -3315,7 +3328,7 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 - Gains: shared handle for measurement, substrate for optimization and monitoring.
 - Gives up: qualitative measures. Metric is numerical; qualities that resist quantification don't fit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence, no invariants, no failure modes.
 - Doesn't mention Goodhart's law, which is the most important failure mode for optimized metrics.
 - No schema specified — every consuming pattern (Score, Budget, Judge) has its own assumptions about what a Metric looks like.
@@ -3359,7 +3372,7 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 
 **Broad-use contexts.** Exploration vs Exploitation mode, work mode vs rest mode, emergency mode, cognitive modes (System 1 vs 2), personality modes in LLMs.
 
-**Every context needs.** stable-configuration semantic, distinction from frequently-changing State, behavior modification.
+**Broad-use intersection (review hypothesis).** stable-configuration semantic, distinction from frequently-changing State, behavior modification.
 
 **Varies (descendant territory).** mode count, transition semantics (triggered vs manual), persistence across sessions.
 
@@ -3374,7 +3387,7 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 - Gains: explicit stance tracking, principled transition events, clean separation from ordinary state.
 - Gives up: flexibility. Mode is heavier than a state variable; for simple stance changes it's overkill.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Mode Confusion (named failure: mixes behaviors from conflicting modes) is endemic and the pattern has no real enforcement.
 - The 'explicit transition event' requirement is only as strong as the caller's discipline; silent mode changes happen.
 - No specified protocol for mode-transition commitment (atomic, with compensation if transition fails).
@@ -3410,7 +3423,7 @@ _Note: §3.18 flagged Metric as gloss-restates-mechanism. Broad-use sketch is a 
 
 **Broad-use contexts.** Deep(Nature) per paper (signature target), AI-vs-human identification, Biological-vs-Synthetic agent distinction, entity categorization in legal/regulatory systems.
 
-**Every context needs.** entity under classification, category set, immutability, alignment-obligation/rights/authentication derivation.
+**Broad-use intersection (review hypothesis).** entity under classification, category set, immutability, alignment-obligation/rights/authentication derivation.
 
 **Varies (descendant territory).** category count, evidence required for classification, dispute resolution.
 
@@ -3427,7 +3440,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: substrate-aware protocol selection, clear rights/obligations anchor, explicit immutable classification.
 - Gives up: universal treatment. Nature specifically licenses different treatment; callers committed to universalism can't use it.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — one sentence, no invariants, no failure modes.
 - The Bio/Synth/Inst trichotomy is under-justified — why these three, why not more or fewer?
 - No handling of edge cases (augmented humans, corporate personhood, AI with institutional roles).
@@ -3460,7 +3473,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** product selection, policy choices, architectural alternatives, game move options, medical treatment alternatives, financial product choices.
 
-**Every context needs.** executable specification, mutual exclusivity with other options in set.
+**Broad-use intersection (review hypothesis).** executable specification, mutual exclusivity with other options in set.
 
 **Varies (descendant territory).** cost/benefit data attached, dependencies among options, reversibility.
 
@@ -3475,7 +3488,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: decision discipline, mutual-exclusivity for clean choice.
 - Gives up: flexibility. Real decisions often have graded, overlapping, or continuous alternatives.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence, no failure modes listed.
 - The mutual-exclusivity requirement is strong; relaxed versions exist in real decision frameworks.
 - Fully-specified requirement rules out partial-commitment decisions that are often legitimate.
@@ -3508,7 +3521,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** experiment outcomes, medical outcomes, project outcomes, investment outcomes, game outcomes, policy outcomes.
 
-**Every context needs.** actual-reality captured, distinction from Plan/Intent, attribution of deviation causes.
+**Broad-use intersection (review hypothesis).** actual-reality captured, distinction from Plan/Intent, attribution of deviation causes.
 
 **Varies (descendant territory).** granularity of capture, retrospective depth, stakeholder perspective.
 
@@ -3523,7 +3536,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: clean slot for actual-result vs planned-result, substrate for post-hoc analysis.
 - Gives up: very little — thin primitive with no controversial invariants.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence, no invariants, no failure modes.
 - Doesn't address outcome ambiguity — some situations have contested actual results.
 - Conflates observation with outcome; the outcome is observer-independent, observations of it are not.
@@ -3575,7 +3588,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** union negotiations, political compromise finding, requirements-intersection elicitation, multi-stakeholder design, M&A deal points, diplomatic common ground.
 
-**Every context needs.** each-party accept-set, hash-commit-before-reveal, intersection compute, expand-or-succeed loop.
+**Broad-use intersection (review hypothesis).** each-party accept-set, hash-commit-before-reveal, intersection compute, expand-or-succeed loop.
 
 **Varies (descendant territory).** expansion-step size, expansion-cap, fallback on no-overlap.
 
@@ -3590,7 +3603,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: interest-based negotiation, honest accept-set discipline via commit-reveal, structural path to agreement when overlap exists.
 - Gives up: simplicity. Overlap requires more ceremony than positional negotiation.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Requires both parties to submit the format; uncooperative parties can't be forced.
 - Hash-committing accept-sets assumes sets can be specified precisely; vague 'I can live with X-ish' is common.
 - Strategic minimization is mitigated by commit-reveal and is not fully defeated.
@@ -3626,7 +3639,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** thread pools, async/await patterns, map-reduce map phase, multi-agent parallel action, ensemble inference, GPU parallelism.
 
-**Every context needs.** concurrent executable slots, absence of ordering constraint.
+**Broad-use intersection (review hypothesis).** concurrent executable slots, absence of ordering constraint.
 
 **Varies (descendant territory).** parallelism degree, synchronization points, shared-state access model, failure aggregation.
 
@@ -3642,7 +3655,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - No ordering guarantee buys implementation freedom (any scheduling honors the pattern) at the cost of weak composability — callers that need ordering must say so elsewhere.
 - Category as Data Structure buys consistency in the library taxonomy at the cost of semantic fit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Zero invariants and zero failure modes. For a concurrency primitive this is a significant gap — at minimum: Independence (A and B don't share state without explicit synchronization); Non-Interference (execution of A doesn't affect B's outcome).
 - The mechanism is one sentence. It should at least distinguish Parallel from Concurrent, which are different things (parallel = actually simultaneous; concurrent = interleaved).
 - No relationship to AtomicBid, Actor Model, or OptimisticSolver specified — these patterns depend on Parallel's semantics but the linkage is implicit.
@@ -3693,7 +3706,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Attribution buys localized learning at the cost of exposure — attacker who sees PerformanceSignals can profile Solvers.
 - Three-outcome buys simple routing (proceed / confirm / reframe) at the cost of dropping nuanced outcomes (accept with reservations, escalate-and-retry).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Latency Decay is a named failure but no mechanism addresses it. A timestamp + decay policy would let downstream systems weight older signals less — not in the pattern.
 - The typed schema is required by invariant but not specified in the pattern itself — the shape is supposed to be per-deployment. Aggregation across deployments requires schema negotiation the library doesn't provide.
 - Sycophantic drift (evaluator shares generator's blind spots) is a real failure but the spec has no detection mechanism — relies on having diverse evaluators, which lives outside the pattern.
@@ -3730,7 +3743,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** file-system permissions, API scopes, OAuth tokens, role-capability grants, feature-access grants, capability-based security.
 
-**Every context needs.** granting identity, recipient identity, scope (what is permitted), act-or-artifact target.
+**Broad-use intersection (review hypothesis).** granting identity, recipient identity, scope (what is permitted), act-or-artifact target.
 
 **Varies (descendant territory).** expiry, delegation support, revocation mechanism, granularity (coarse vs fine-grained), composability (multiple permissions aggregate).
 
@@ -3745,7 +3758,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: unifying authorization primitive, named unit for access control.
 - Gives up: richness. Permission is a single unit; real authorization has scope, conditions, and relationships the pattern doesn't capture.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one-line mechanism, two failure modes, no invariants.
 - Conflates grant with check; these are distinct in real systems.
 - No semantics for composition — AND/OR over permissions is common and not specified.
@@ -3788,7 +3801,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** execution plans, project roadmaps, sprint plans, travel itineraries, recipe steps, ML training schedules, build plans, deployment sequences.
 
-**Every context needs.** sequence of steps, causal dependencies between steps, goal state, starting state.
+**Broad-use intersection (review hypothesis).** sequence of steps, causal dependencies between steps, goal state, starting state.
 
 **Varies (descendant territory).** step granularity, resource allocation, conditional branches, parallel execution, rollback points, revision policy.
 
@@ -3803,7 +3816,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: causal ordering, explicit termination, schedulable artifact.
 - Gives up: flexibility. Plans are produced before execution; mid-execution discoveries often warrant replanning.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; Plan has many (miscausation, ambiguous steps, undefined termination).
 - Causal sortability is an idealization; real dependency graphs have feedback loops.
 - No specified revision semantics — when execution reveals the Plan is wrong, what happens?
@@ -3844,7 +3857,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** risk assessment, Bayesian reasoning, frequentist statistics, ML confidence scores, betting-market prices, weather forecasts, medical probabilities.
 
-**Every context needs.** `value: number` in [0,1] (principled range), belief-or-frequency interpretation.
+**Broad-use intersection (review hypothesis).** `value: number` in [0,1] (principled range), belief-or-frequency interpretation.
 
 **Varies (descendant territory).** subjective vs objective, sharp vs fuzzy, distribution-valued vs point.
 
@@ -3859,7 +3872,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: standardized uncertainty measure, well-known axioms, substrate for Bayesian reasoning.
 - Gives up: richness. Probability is a single number; real uncertainty often has structure (distributions, intervals, second-order uncertainty) that this flattens.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — three invariants, one-line mechanism. The real work lives in distributions and specific probabilistic models.
 - No failure modes listed; probabilistic reasoning has many (independence errors, sample bias, base-rate neglect, overconfidence).
 - The pattern doesn't distinguish single-event probability from distribution-over-values; both use the same primitive and have different semantics.
@@ -3892,7 +3905,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** bug reports, medical complaints, engineering defects, social issues, scientific puzzles, business challenges, philosophical problems.
 
-**Every context needs.** current-state description, desired-state description, non-zero cost of inaction, distinction from Task (directive) and Goal (target).
+**Broad-use intersection (review hypothesis).** current-state description, desired-state description, non-zero cost of inaction, distinction from Task (directive) and Goal (target).
 
 **Varies (descendant territory).** specificity, urgency, actor/scope, root-cause status (symptom vs root).
 
@@ -3907,7 +3920,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: descriptive-vs-directive distinction, explicit gap framing, substrate for ProblemFramer.
 - Gives up: simplicity. Many contexts use 'problem' loosely; the pattern's formalism is more rigorous than casual use.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; Problem has some (mis-specification, over-formalization, state definition difficulty).
 - 'Cost of Inaction > 0' is often asserted without quantification, making the invariant trivial.
 - Current/Desired state specification is the pattern's hard part and is deferred.
@@ -3947,7 +3960,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** search-space definitions, solver scope boundaries, research-project scope, design-space exploration, constraint-satisfaction domains.
 
-**Every context needs.** constraints bounding the region, initial state, domain specification.
+**Broad-use intersection (review hypothesis).** constraints bounding the region, initial state, domain specification.
 
 **Varies (descendant territory).** dimensionality, discreteness, explorability, enumerable vs continuous.
 
@@ -3962,7 +3975,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: explicit problem-region framing, solver-consumable definition.
 - Gives up: open-ended exploration. ProblemSpace is bounded; genuinely open problems need different framing.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; ProblemSpace has some (over-constraint, under-constraint, boundary errors).
 - Boundedness assumes constraints can be enumerated; real problems often reveal constraints during solving.
 - Consistency is aspirational; most rich problems have latent contradictions the solver must navigate.
@@ -3998,7 +4011,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** LLM prompts, image-generation prompts, music-generation prompts, instruction-following dataset entries, meta-prompts.
 
-**Every context needs.** input content, generator target.
+**Broad-use intersection (review hypothesis).** input content, generator target.
 
 **Varies (descendant territory).** structure (plain vs structured), length, role-tagging (system/user/assistant), tool-declaration attachments.
 
@@ -4013,7 +4026,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: named slot for LLM-specific structured input, role/tool substrate.
 - Gives up: generality. Prompt is LLM-shaped; non-LLM systems don't fit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No invariants listed — the pattern is almost purely descriptive.
 - No failure modes listed; prompting has many (injection, drift, overfit).
 - The pattern is thin because the interesting work (prompt engineering) is in specific patterns, not in the base.
@@ -4052,7 +4065,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** legislative proposals, academic proposals, business proposals, PR (pull requests), RFC (Request for Comment), design proposals.
 
-**Every context needs.** what is being proposed, why (rationale), target decision-making process.
+**Broad-use intersection (review hypothesis).** what is being proposed, why (rationale), target decision-making process.
 
 **Varies (descendant territory).** approval mechanism, amendment semantics, sponsor identity, urgency.
 
@@ -4067,7 +4080,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 - Gains: structured suggestion, explicit 'what' and 'why,' reviewable form.
 - Gives up: ideation speed. Every proposal pays the structuring tax; for brainstorming this is overhead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one invariant, one-sentence mechanism.
 - No failure modes listed; proposals have many (vague 'why,' conflicting 'what,' missing scope).
 - Clarity is aspirational; proposals are often ambiguous in ways that only reveal during discussion.
@@ -4107,7 +4120,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 **Broad-use contexts.** engineering proof-of-concept artifacts, startup MVP documentation, pitch-deck traction slides, research feasibility studies.
 
-**Every context needs.** prototype reference, simulation trace or model, feasibility evidence.
+**Broad-use intersection (review hypothesis).** prototype reference, simulation trace or model, feasibility evidence.
 
 **Varies (descendant territory).** fidelity level, evidence depth, reviewer audience.
 
@@ -4124,7 +4137,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: prototype artifact typing.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Two invariants pull in opposite directions (prove feasibility, stay low-fidelity).
 - Distinction from general Prototype is subtle.
@@ -4164,7 +4177,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** HTTP, gRPC, SMTP, diplomatic protocols, scientific-paper protocols, ceremonial protocols, medical protocols, agent-communication protocols (FIPA, ACL).
 
-**Every context needs.** rule set, format specification, inter-agent applicability.
+**Broad-use intersection (review hypothesis).** rule set, format specification, inter-agent applicability.
 
 **Varies (descendant territory).** formality, versioning, backward compatibility, machine-readable vs human-readable.
 
@@ -4179,7 +4192,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: shared communication vocabulary, explicit rules.
 - Gives up: very little — protocol primitive is near-unavoidable.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one-line mechanism, two failure modes, no invariants.
 - Version Drift is acknowledged without a version-negotiation pattern.
 - The pattern doesn't specify what a protocol contains (message formats, state machines, acceptance rules); all deferred.
@@ -4212,7 +4225,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** software prototypes, scientific prototypes, product prototypes, design prototypes, educational mock-ups, proof-of-concepts.
 
-**Every context needs.** low-fidelity construction, concept-testing purpose, disposability semantic.
+**Broad-use intersection (review hypothesis).** low-fidelity construction, concept-testing purpose, disposability semantic.
 
 **Varies (descendant territory).** fidelity level, concept specificity, feedback-capture mechanism, iteration budget.
 
@@ -4227,7 +4240,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: explicit cheap-learning slot, disposability framing.
 - Gives up: almost nothing — thin primitive with no controversial claims.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one-sentence mechanism, no invariants, no failure modes.
 - Disposability is aspirational; most prototypes outlive their intended lifespan.
 - Conflates prototype-as-demo with prototype-as-learning; these have different design trade-offs.
@@ -4260,7 +4273,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** job queues, message queues, call queues, emergency-room triage queues, print queues, network queues.
 
-**Every context needs.** ordering discipline (FIFO/Priority), enqueue, dequeue, explicit order semantic distinct from Stream.
+**Broad-use intersection (review hypothesis).** ordering discipline (FIFO/Priority), enqueue, dequeue, explicit order semantic distinct from Stream.
 
 **Varies (descendant territory).** priority function, boundedness, persistence, concurrent access semantics.
 
@@ -4275,7 +4288,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: shared ordering vocabulary, explicit discipline, producer/consumer semantics.
 - Gives up: flexibility. Queue commits to one discipline per queue; mixed-discipline needs require multiple queues.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; queues have many (overflow, starvation, priority inversion).
 - No backpressure semantics — producers can enqueue faster than consumers dequeue, and the pattern doesn't specify what happens.
 - Single discipline per queue is right for clarity and forces callers to manage mixed orderings across multiple queues.
@@ -4315,7 +4328,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** compute resources, tokens, memory, attention budget, physical goods, database connections, rate-limit slots, personnel time.
 
-**Every context needs.** identity, finiteness, allocation/consumption/lock semantic, contention handling.
+**Broad-use intersection (review hypothesis).** identity, finiteness, allocation/consumption/lock semantic, contention handling.
 
 **Varies (descendant territory).** renewability, exhaustibility, divisibility, accounting mechanism.
 
@@ -4330,7 +4343,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: shared vocabulary for allocation substrates, explicit conservation, identified instances.
 - Gives up: simplicity. Some things are resource-like but don't fit Conservation (attention, knowledge, reputation) cleanly.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Identity invariant is strong; fungible resources (money, compute hours) are awkwardly handled.
 - Conservation is a physical-world assumption; informational resources don't always satisfy it.
 - No failure modes listed; resources have many (overdraft, lock contention, starvation).
@@ -4376,7 +4389,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** Solver results, API responses, test results, workflow outputs, task completions, query returns, computation products.
 
-**Every context needs.** `status` (success/partial/fail) and `stop_reason` (completed/budget/quality) — without these a Result is ambiguous.
+**Broad-use intersection (review hypothesis).** `status` (success/partial/fail) and `stop_reason` (completed/budget/quality) — without these a Result is ambiguous.
 
 **Varies (descendant territory).** `outputs` (optional — a failed Result may have no outputs to report; a partial Result has some); metrics payload, provenance, confidence.
 
@@ -4391,7 +4404,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: canonical output shape, audit-ready by construction, measurement discipline.
 - Gives up: flexibility. Results are immutable; in-place updates aren't possible.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Partial Result (named failure) — incomplete output presented as complete — is real.
 - Hallucinated Result (named failure) — claims to solve the task but doesn't — is the LLM-era canonical failure.
 - Unvalidated Result — bypasses checking — happens when callers consume Results without verification.
@@ -4438,7 +4451,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** risk registers, insurance actuarial data, project risk logs, security risk assessments, financial risk models, clinical risk profiles.
 
-**Every context needs.** probability, severity (impact metric), mitigation (reducing actions), trigger (materialization conditions).
+**Broad-use intersection (review hypothesis).** probability, severity (impact metric), mitigation (reducing actions), trigger (materialization conditions).
 
 **Varies (descendant territory).** quantification method, dynamism, aggregation at-container level.
 
@@ -4453,7 +4466,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: structured risk representation, mitigation-required discipline, monitoring triggers.
 - Gives up: simplicity. Full risk documentation is expensive; small projects skip it and fail to quantify.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Risk Theater is endemic — organizations document risks as compliance ritual without real mitigation.
 - Probability Miscalibration is real and structural — rare events are systematically under-estimated.
 - Correlation between risks isn't specified — portfolios of correlated risks look smaller than they are.
@@ -4493,7 +4506,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** Kubernetes deployment events, CI/CD deploy records, release notes, operational logs, change-management records.
 
-**Every context needs.** action record, configuration states, feature-flag settings, deployment targets, immutability.
+**Broad-use intersection (review hypothesis).** action record, configuration states, feature-flag settings, deployment targets, immutability.
 
 **Varies (descendant territory).** granularity (per-action vs per-batch), retention, access-control, signature.
 
@@ -4508,7 +4521,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: deploy-state audit trail, comparison substrate for monitoring.
 - Gives up: storage. Full manifests grow; retention policy isn't specified.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Completeness is aspirational; many state changes slip through manifest boundaries.
 - Immutability doesn't help when the manifest was wrong to begin with.
 - No diff semantics between manifests; comparing deploys is a separate problem.
@@ -4544,7 +4557,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** legal statutes, game rules, firewall rules, validation rulesets, grammar specifications, policy rulesets.
 
-**Every context needs.** structured collection, immutability, validity-boundary definition.
+**Broad-use intersection (review hypothesis).** structured collection, immutability, validity-boundary definition.
 
 **Varies (descendant territory).** rule count, rule-interaction semantics, conflict resolution, version binding.
 
@@ -4559,7 +4572,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: named immutable validity substrate, distinction from mutable policy.
 - Gives up: evolution flexibility. Immutable rule sets require versioning for change.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism; no invariants or failure modes listed.
 - Distinction from Policy is asserted but not enforced structurally.
 - Structured collection — the structure is up to the caller.
@@ -4596,7 +4609,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** model eval metrics, fitness scores, relevance ranks, aesthetic ratings, adversarial judgments, risk scores, trust scores, quality scores.
 
-**Every context needs.** `value: number` (obvious), `normalized_range: [min, max]` (otherwise 0.7 is ambiguous — out of 1 or 10 or 100?), `metric_id: string` (otherwise "what was scored?" is unclear). All three are usability floor.
+**Broad-use intersection (review hypothesis).** `value: number` (obvious), `normalized_range: [min, max]` (otherwise 0.7 is ambiguous — out of 1 or 10 or 100?), `metric_id: string` (otherwise "what was scored?" is unclear). All three are usability floor.
 
 **Varies (descendant territory).** precision, confidence interval, temporal decay, weighting vectors, multi-axis decomposition.
 
@@ -4611,7 +4624,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: quantified evaluation, comparability within a scale.
 - Gives up: qualitative richness. Score flattens evaluation to a number.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one-line mechanism, no invariants, no failure modes.
 - Scale definition is deferred; cross-comparison of scores from different scales is a common bug.
 - Single-value flattening loses information; multi-dimensional evaluations need Metric or ParetoFront.
@@ -4651,7 +4664,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** ML loss functions, game score functions, aesthetic evaluators, risk scoring, fitness functions, relevance rankers, judging rubrics.
 
-**Every context needs.** deterministic mapping, input artifact, scalar Score output.
+**Broad-use intersection (review hypothesis).** deterministic mapping, input artifact, scalar Score output.
 
 **Varies (descendant territory).** function complexity, gradient availability, multi-objective aggregation, context-sensitivity.
 
@@ -4666,7 +4679,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: passable scoring logic, deterministic + range invariants.
 - Gives up: closure expressiveness. First-class ScoringFunctions are more constrained than arbitrary closures.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — two invariants, one-line mechanism.
 - Range invariant is either-or; the pattern doesn't distinguish the two cases' use.
 - No failure modes listed; scoring has many (miscalibrated range, wrong signal direction).
@@ -4702,7 +4715,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** workflow sequences, execution pipelines, causal chains, musical sequences, protocol sequences.
 
-**Every context needs.** ordered execution, output-flow-forward semantic, temporal (not spatial) ordering.
+**Broad-use intersection (review hypothesis).** ordered execution, output-flow-forward semantic, temporal (not spatial) ordering.
 
 **Varies (descendant territory).** strict vs relaxed ordering, parallelism inside a Sequence step, pause/resume semantics.
 
@@ -4717,7 +4730,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: simple ordering, deterministic data flow.
 - Gives up: parallelism opportunities.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one-sentence mechanism, no invariants, no failure modes.
 - Output handoff semantics are unspecified.
 - Error propagation deferred to caller.
@@ -4755,7 +4768,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** database sharding, distributed computation, memory partitioning, workforce sharding, IP-range sharding, geographic sharding.
 
-**Every context needs.** partitioning key, disjoint output subsets, determinism.
+**Broad-use intersection (review hypothesis).** partitioning key, disjoint output subsets, determinism.
 
 **Varies (descendant territory).** key function, rebalancing policy, replication, fault tolerance.
 
@@ -4770,7 +4783,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: deterministic distribution, conservation, clean partitioning.
 - Gives up: flexibility. Sharding locks in a partition; resharding is expensive.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; sharding has many (hot spots, resharding costs, cross-shard transactions).
 - Deterministic routing creates hot spots when access is skewed.
 - Cross-shard operations aren't addressed; joins across shards are hard.
@@ -4807,7 +4820,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** pub/sub signals, OS signals (SIGTERM etc), broadcast messages, neural firing (biological analogy), distress beacons, emissions into an environment.
 
-**Every context needs.** emission mechanism, no guaranteed delivery, environment as medium.
+**Broad-use intersection (review hypothesis).** emission mechanism, no guaranteed delivery, environment as medium.
 
 **Varies (descendant territory).** carrier medium, reach, reliability tiers, filtering.
 
@@ -4822,7 +4835,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: cheap emission, broadcast semantics.
 - Gives up: reliability. No delivery guarantee; Message or handshake provides more.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism.
 - No failure modes listed; signals have many (lost, unheard, ignored).
 - The Information invariant is aspirational; real emissions are often noise-like.
@@ -4858,7 +4871,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** SkeletonOfThought reasoning, document outlining, research paper structures, code scaffolding, project structure templates.
 
-**Every context needs.** outline structure, parallel expansion capability, latency-optimization semantic.
+**Broad-use intersection (review hypothesis).** outline structure, parallel expansion capability, latency-optimization semantic.
 
 **Varies (descendant territory).** outline depth, parallelism width, expansion-quality thresholds.
 
@@ -4873,7 +4886,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: latency reduction via parallel expansion.
 - Gives up: coherent deep reasoning. Independence constraint rules out reasoning that legitimately chains.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Independence is hard to verify — outlines often have hidden dependencies.
 - Final coherence depends on outline structure, which the pattern doesn't specify how to produce.
@@ -4911,7 +4924,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** database snapshots, filesystem snapshots, VM snapshots, Git commits (as snapshots), legal-record snapshots, scientific-measurement snapshots.
 
-**Every context needs.** immutability, timestamp binding, state capture.
+**Broad-use intersection (review hypothesis).** immutability, timestamp binding, state capture.
 
 **Varies (descendant territory).** completeness (full vs delta), storage, restore semantics, encryption.
 
@@ -4926,7 +4939,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: immutable state record, foundation for backup/restore/debugging.
 - Gives up: storage. Snapshots grow; retention is a separate concern.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - All three named failure modes are real and unmitigated by the pattern.
 - Very thin mechanism — one sentence, no invariants.
 - No restore semantics specified.
@@ -4976,7 +4989,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** solver outputs, problem-solving workflows, scientific findings, engineering solutions, legal rulings, medical treatments.
 
-**Every context needs.** output artifact, provenance (creator, time), component tree (sub-solutions used), acceptance-criteria validation.
+**Broad-use intersection (review hypothesis).** output artifact, provenance (creator, time), component tree (sub-solutions used), acceptance-criteria validation.
 
 **Varies (descendant territory).** fidelity level, provenance detail, storage medium, query-ability.
 
@@ -4992,7 +5005,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Immutability buys referenceability (a Solution's hash can be cited forever) at the cost of expressivity for streaming or incremental outputs.
 - Sub-solution tree preserves composition history but inflates Solution size — a deep tree carries every ancestor's sub-artifacts.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Finalized' is the trigger for Immutability but is not explicitly defined as a state transition — the spec does not say who flips it, when, or whether an un-finalized Solution is a valid partial artifact.
 - Traceability invariant requires cryptographic signing by Creator but does not specify the signature scheme, key lifecycle, or revocation semantics. These live outside the pattern.
 - Schema Violation is listed as a failure mode but the acceptance-criteria-check is implicit in the Task type; the pattern doesn't say whether Solution validation is the Solver's responsibility or the caller's.
@@ -5040,7 +5053,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** agent capability cards, MCP tool manifests, microservice descriptors, LLM model cards, job applications (capability declaration), restaurant menus (as capability declaration).
 
-**Every context needs.** Name/ID, Competencies, Tool Access, Cost Model, Constraints.
+**Broad-use intersection (review hypothesis).** Name/ID, Competencies, Tool Access, Cost Model, Constraints.
 
 **Varies (descendant territory).** verification of claims, update frequency, discoverability, trust model.
 
@@ -5055,7 +5068,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: typed solver capability declaration, discoverable and auditable.
 - Gives up: flexibility. Immutable manifests require version updates for evolution.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Capability Inflation is endemic — solvers optimize for being chosen.
 - Stale Manifests age as solvers evolve; versioning discipline is under-specified.
 - Accuracy is aspirational; real manifests routinely misrepresent.
@@ -5095,7 +5108,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** software specs, API specs, standard specifications (RFCs), legal specifications, product specs, scientific-experiment protocols.
 
-**Every context needs.** shape/behavior/constraint definitions, distinction from Plan (how to build) and Goal (what to achieve).
+**Broad-use intersection (review hypothesis).** shape/behavior/constraint definitions, distinction from Plan (how to build) and Goal (what to achieve).
 
 **Varies (descendant territory).** formality (formal vs natural language), machine-readability, completeness (partial specs allowed), versioning.
 
@@ -5110,7 +5123,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: rigorous requirements, testable contracts, immutable reference.
 - Gives up: flexibility. Specs are contracts; iterative refinement requires supersession.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Verifiability is aspirational — many real requirements resist binary testing.
 - Immutability forces version discipline that many projects skip.
 - No failure modes listed; specs have many (ambiguity, missing requirements, over-specification).
@@ -5150,7 +5163,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** in-memory object state, database rows, session state, workflow state, agent beliefs, machine configuration, app UI state, ML model weights.
 
-**Every context needs.** representation content (what), temporal validity (when).
+**Broad-use intersection (review hypothesis).** representation content (what), temporal validity (when).
 
 **Varies (descendant territory).** persistence medium, mutation semantics (mutable/immutable/versioned), access protocol, consistency model, serialization format.
 
@@ -5165,7 +5178,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: foundational slot for system condition.
 - Gives up: little — unavoidable primitive.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - Uniqueness is wrong for distributed systems where state is consensus-dependent.
 - No failure modes listed.
@@ -5206,8 +5219,8 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Optional reason buys simplicity in the happy path (no reason needed on Verified) at the cost of explanatory power on Falsified/Unknown.
 - Distinctness from Decision is conceptually clean but imposes type-disambiguation load on readers who have to track which three-valued type is at hand.
 
-**Critique.**
-- No failure modes listed. Status is a data structure so failure modes are subtle — but at least Misinterpretation (caller collapses Unknown into Falsified) and Stale Status (value outlives the observation window) should be named.
+**Critique (diagnostic, not contract requirements).**
+- Collapsing Unknown into Falsified and reusing a stale Status are caller and lifecycle diagnostics. Their meaning depends on downstream routing and a validity window, so the empty failure_modes field is not itself a defect in this lightweight outcome type.
 - The reason field is string-typed (implicitly) with no structure. A structured reason (code + message + evidence) would let callers route on Falsified-because-X vs Falsified-because-Y. Pushing this to FailureTrace means the lightweight case is under-served.
 - 'Distinct from Boolean' is asserted but not defended in the mechanism — why is three-valued the right shape rather than confidence-weighted-Boolean or probabilistic? The audit discussed this; the pattern's mechanism does not.
 
@@ -5248,7 +5261,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** workflow steps, algorithm steps, recipe steps, ritual steps, protocol steps, assembly-line steps, surgical steps.
 
-**Every context needs.** preconditions, action, postconditions, rollback specification.
+**Broad-use intersection (review hypothesis).** preconditions, action, postconditions, rollback specification.
 
 **Varies (descendant territory).** atomicity strictness, rollback cost, parallel-vs-sequential context, side effects.
 
@@ -5263,7 +5276,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: atomic action unit, explicit rollback path.
 - Gives up: flexibility. Not all actions have clean rollback.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Rollback Failure is endemic for real-world actions (sent emails, physical changes).
 - Postcondition Failure is subtle — the step 'completed' but didn't achieve its intent.
 - Atomicity is aspirational for distributed or physical actions.
@@ -5303,7 +5316,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** Kafka topics, HTTP/2 streams, WebSocket channels, LLM token streams, log feeds, conversation histories, sensor streams, video streams.
 
-**Every context needs.** ordered sequence, Message elements, operations (map, filter, backpressure).
+**Broad-use intersection (review hypothesis).** ordered sequence, Message elements, operations (map, filter, backpressure).
 
 **Varies (descendant territory).** boundedness, ordering guarantees, at-least-once vs at-most-once, durability, multi-consumer support.
 
@@ -5318,7 +5331,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: unbounded ordered sequence, real-time processing substrate.
 - Gives up: finite semantics. Streams have no end; operations like 'all messages' don't apply.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Causality invariant is hard in distributed streams without vector clocks.
 - No failure modes listed; streams have many (backpressure, reordering, loss).
 - Map/filter operations are mentioned but not specified.
@@ -5353,7 +5366,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 **Broad-use contexts.** editorial style guides, brand design specs, code formatter configs, API response-format specs, UX style systems.
 
-**Every context needs.** aesthetic requirements, formatting rules, reference-standard role in PhasedRefinement.
+**Broad-use intersection (review hypothesis).** aesthetic requirements, formatting rules, reference-standard role in PhasedRefinement.
 
 **Varies (descendant territory).** rule count, flexibility, enforceability, version history.
 
@@ -5368,7 +5381,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 - Gains: structured style requirements.
 - Gives up: nuance.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Structured style can miss stylistic subtlety.
 - Very thin; the real work is in the specific style rules.
@@ -5413,7 +5426,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 - Gains: named slot for 'who/what.'
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one-sentence mechanism, no invariants.
 - Distinction from Object is implicit.
 - No failure modes.
@@ -5449,7 +5462,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 **Broad-use contexts.** document summaries, meeting minutes, executive briefs, research abstracts, news summaries.
 
-**Every context needs.** `source_ref: sema_id` (definitional — a Summary without source is meaningless), compression of content, salience-preservation.
+**Broad-use intersection (review hypothesis).** `source_ref: sema_id` (definitional — a Summary without source is meaningless), compression of content, salience-preservation.
 
 **Varies (descendant territory).** compression ratio (optional per §3.19), preservation list (optional), domain specificity.
 
@@ -5464,7 +5477,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 - Gains: typed compressed artifact.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - Salient is subjective.
 - No failure modes listed.
@@ -5500,7 +5513,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 **Broad-use contexts.** software systems, biological systems, social systems, ecological systems, economic systems, legal systems, mental systems.
 
-**Every context needs.** component parts, interactions, boundary definition, purpose/function.
+**Broad-use intersection (review hypothesis).** component parts, interactions, boundary definition, purpose/function.
 
 **Varies (descendant territory).** hierarchical vs flat, closed vs open, static vs dynamic, observability.
 
@@ -5515,7 +5528,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 - Gains: general framing for systemic analysis.
 - Gives up: almost nothing.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism.
 - Conflates many distinct kinds of systems.
 - No failure modes, no invariants.
@@ -5559,7 +5572,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 **Broad-use contexts.** above.
 
-**Every context needs.** `operation` (what), `inputs` (to what), `acceptance_criteria` (when done). Without acceptance_criteria the caller cannot close the transaction — definitional for Task-ness.
+**Broad-use intersection (review hypothesis).** `operation` (what), `inputs` (to what), `acceptance_criteria` (when done). Without acceptance_criteria the caller cannot close the transaction — definitional for Task-ness.
 
 **Varies (descendant territory).** `budget` (optional — UnboundedTask doesn't carry one), holographic-inheritance strictness, parent linkage, retry semantics.
 
@@ -5575,7 +5588,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 - Holographic Inheritance gives safety (children inherit parent constraints) but forces rigid top-down flow; relaxing constraints mid-execution requires re-rooting.
 - Recursion enables fractal composition but complicates lifecycle management — the spec is silent on when a parent Task is 'done' if children are still running.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - `acceptance_criteria` is load-bearing for transaction closure but appears only in descendant specs. It should be promoted to the parent's mechanism or invariants.
 - Constraint Escape is a real failure mode but detection is hard — an adversarial agent can claim satisfaction without a check. The pattern does not require constraint-verification at child creation.
 - Zombie Task is named as a failure mode but the mechanism has no cancellation semantics. In long-running systems this surfaces as stale work with no termination protocol.
@@ -5615,7 +5628,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 **Broad-use contexts.** design tensions, ethical dilemmas, resource-allocation tensions, political tensions, creative tensions.
 
-**Every context needs.** detected conflict, reification as data structure, input to resolution protocols (Dialectic, Yield).
+**Broad-use intersection (review hypothesis).** detected conflict, reification as data structure, input to resolution protocols (Dialectic, Yield).
 
 **Varies (descendant territory).** conflict detection method, temporary-hold vs permanent, resolution pathway selection.
 
@@ -5630,7 +5643,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 - Gains: structured conflict representation.
 - Gives up: simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Mutually Exclusive is strong; graded exclusivity is common.
 - Resolution mechanism unspecified.
@@ -5666,7 +5679,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 **Broad-use contexts.** reasoning topologies (Linear, Tree, DAG, Cyclic), workflow topologies, neural-network topologies, graph-algorithm topologies, organizational structures.
 
-**Every context needs.** node definition, edge definition, shape classification.
+**Broad-use intersection (review hypothesis).** node definition, edge definition, shape classification.
 
 **Varies (descendant territory).** node attributes, edge attributes, dynamism, visualization support.
 
@@ -5683,7 +5696,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: named reasoning shapes.
 - Gives up: specificity. Topology is high-level; specific shapes have richer structure.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - The specific shape list isn't exhaustive.
 - No failure modes, no invariants.
@@ -5716,7 +5729,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** FSM transitions, database transactions, biological phase transitions, legal regime changes, software state updates, workflow advancements.
 
-**Every context needs.** origin state, destination state, adherence to transition rules.
+**Broad-use intersection (review hypothesis).** origin state, destination state, adherence to transition rules.
 
 **Varies (descendant territory).** atomicity guarantees, reversibility, guards, pre/post conditions.
 
@@ -5731,7 +5744,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: atomic state-change primitive.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin, almost a stub.
 - No invariants, no failure modes.
 
@@ -5767,7 +5780,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** search trees, decision trees, parse trees, filesystem hierarchies, DOM, organizational charts, solver trees, thought ensembles, tournament brackets, taxonomy trees.
 
-**Every context needs.** root node, parent-child relation, acyclicity.
+**Broad-use intersection (review hypothesis).** root node, parent-child relation, acyclicity.
 
 **Varies (descendant territory).** `breadth` (binary: 2, beam search: 50+, decision tree: millions), depth limits, node type, edge type, balance invariants, sort order, traversal order.
 
@@ -5782,7 +5795,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: branching structure with clean invariants.
 - Gives up: cycles and multi-root.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - No failure modes.
 - BFS/DFS traversal is mentioned without specifying which.
@@ -5818,7 +5831,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** economic value (tokens, currency), utility scores, priorities, fitness values, preference orderings, confidence weights, attention budgets.
 
-**Every context needs.** a way to compare two values (ordering or equivalence); a scale or unit.
+**Broad-use intersection (review hypothesis).** a way to compare two values (ordering or equivalence); a scale or unit.
 
 **Varies (descendant territory).** numeric vs qualitative, bounded vs unbounded, additive vs ordinal, single-dimensional vs vector.
 
@@ -5833,7 +5846,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: shared economic substrate.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - Conflates distinct value flavors.
 - No invariants.
@@ -5866,7 +5879,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** programming variables, experimental variables, controlled variables, environmental variables, system parameters.
 
-**Every context needs.** mutability, identifiability, value-at-time-T, role in problem space.
+**Broad-use intersection (review hypothesis).** mutability, identifiability, value-at-time-T, role in problem space.
 
 **Varies (descendant territory).** type, range, dependency on other variables, observability, controllability.
 
@@ -5881,7 +5894,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: named dimension-of-freedom slot.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub.
 - No invariants.
 - Bindings, quantification, types — all deferred.
@@ -5914,7 +5927,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** word embeddings, sentence embeddings, image embeddings, recommendation vectors, feature vectors, semantic search queries.
 
-**Every context needs.** dimension count, numerical values, position semantic.
+**Broad-use intersection (review hypothesis).** dimension count, numerical values, position semantic.
 
 **Varies (descendant territory).** dimension count, value domain (real, complex, binary), sparse vs dense, normalized vs raw.
 
@@ -5929,7 +5942,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: multi-dimensional numeric substrate.
 - Gives up: interpretability.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - The 'semantic space' framing is model-dependent.
 - No failure modes.
@@ -5972,7 +5985,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** physical work (thermodynamics analogy), computational work, human labor, cognitive effort, project work units, maintenance work.
 
-**Every context needs.** resource expenditure, Task-to-Solved transformation, acceptance-criteria validation.
+**Broad-use intersection (review hypothesis).** resource expenditure, Task-to-Solved transformation, acceptance-criteria validation.
 
 **Varies (descendant territory).** resource type, duration, measurability, provenance tracking.
 
@@ -5987,7 +6000,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 - Gains: directed-effort framing, explicit cost/direction.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - All three failure modes are real and structural.
 - Directionality requires knowing the goal.
 - Thrashing and Busywork overlap.
@@ -6045,7 +6058,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 **Broad-use contexts.** tool invocations, API calls, physical actuation, file writes, process spawns, message sends, database mutations, UI updates.
 
-**Every context needs.** authorization check, logging, reversibility status (explicit reversible/irreversible marker).
+**Broad-use intersection (review hypothesis).** authorization check, logging, reversibility status (explicit reversible/irreversible marker).
 
 **Varies (descendant territory).** target environment, reversibility mechanism (if reversible), logging format, permission model, idempotency guarantees.
 
@@ -6062,7 +6075,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 - Gains: a single enforcement point for authorization, logging, and causality; a universal shape for tool-use and actuation semantics.
 - Gives up: cognitive fluency — agents that want to 'just do' are interrupted to satisfy the Act contract. Also gives up ease-of-implementation: every integration has to learn the shape.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'potentially reversible' clause is the pattern's soft underbelly — most real Acts can't be reversed and the pattern relies on the caller to flag that correctly.
 - Logging the action doesn't prevent the side effect; Act fires the action and logs in the same step, meaning audit is retrospective, not preventive. Guardian/Permission patterns layer on top but are not part of Act itself.
 - Partial execution (the named failure mode) is treated as a failure mode rather than an engineered state — no built-in compensation or rollback contract.
@@ -6098,7 +6111,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 **Broad-use contexts.** Actor Model systems, microservices, tool containers, serverless functions, physical actuators, organizational roles as pure-execution.
 
-**Every context needs.** identity, nature, capability set.
+**Broad-use intersection (review hypothesis).** identity, nature, capability set.
 
 **Varies (descendant territory).** capability scope, persistence, address-ability, mailbox semantic.
 
@@ -6114,9 +6127,9 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 - Infrastructure placement (vs Mind) buys correct gravity — Infrastructure patterns can reference Actor without inverting the layer stack.
 - Capability-set membership buys composability (Actors can be filtered, authorized) at the cost of requiring an outside authority to define capabilities.
 
-**Critique.**
-- Zero invariants and zero failure modes. For a foundational subject, this is a significant gap — at minimum: Identity Uniqueness, Capability Stability (capabilities don't change without an event), Non-Privileged (an Actor has no authority beyond its declared capabilities).
-- The mechanism is one sentence. A pattern that is 'the foundational subject for permissions and logging' warrants more structure — what fields are required in the identity? What shape does the capability set take?
+**Critique (diagnostic, not contract requirements).**
+- Identity collisions, capability drift, and undeclared authority are important deployment risks, but none is established as universal to every Actor. Adding contracts solely to fill empty fields would narrow a deliberately minimal subject; specific Actor types or their callers should pin those policies.
+- The mechanism is intentionally compact, but the data schema is not: required agent_id, public_key, and status fields appear narrower than the listed uses of functions, actuators, and organizational roles. That mechanism-schema mismatch needs a dedicated migration review, not extra invariants.
 - The distinction from Agent is stated but not formally enforced — the library's Actor and Agent patterns could coexist with duplicate concerns if not carefully disambiguated.
 
 **In the family.** The execution-capability anchor in Infrastructure. Paired with `Act` (what it executes), `Identity` (who it is), `Nature` (what kind). Different from `Agent` (Mind): Actor is execution-only, Agent adds intent and reasoning. Many Infrastructure patterns reference Actor to stay at the correct layer.
@@ -6166,7 +6179,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 **Broad-use contexts.** mean/median/mode computation, vote counting, ensemble aggregation, sensor fusion, database SUM/COUNT/AVG, opinion aggregation.
 
-**Every context needs.** input set/vector, deterministic reduction function, scalar output.
+**Broad-use intersection (review hypothesis).** input set/vector, deterministic reduction function, scalar output.
 
 **Varies (descendant territory).** aggregation function, handling of missing values, weighted vs unweighted, incremental vs batch.
 
@@ -6181,7 +6194,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 - Gains: universal shape for reductions, typing discipline (size(output) < size(input)), composition with weighting and scoring.
 - Gives up: transparency at the specific call site — the caller sees 'aggregated' but not always which reduction, which matters a lot when the distinction is load-bearing.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'Reduction: Size(Output) < Size(Input)' invariant forbids identity aggregates (a list of one returns itself unchanged); this is usually right but occasionally awkward.
 - Empty set is called out as a failure mode but in most real pipelines it happens routinely; the pattern should probably specify a default (zero-of-type, None) rather than leaving it undefined.
 - Type mismatch is the quiet killer — heterogeneous input lists produce either coercion surprises or crashes, and the pattern doesn't mandate a type contract.
@@ -6223,7 +6236,7 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 **Broad-use contexts.** retry backoff, thundering-herd prevention, rate-limit recovery, connection retry, TCP congestion, SaaS API integration.
 
-**Every context needs.** initial delay, multiplier, jitter, cap.
+**Broad-use intersection (review hypothesis).** initial delay, multiplier, jitter, cap.
 
 **Varies (descendant territory).** multiplier value, jitter distribution, cap value, reset-on-success semantic, per-target vs global.
 
@@ -6241,7 +6254,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Jitter buys herd prevention at the cost of predictability — the precise retry times are randomized.
 - Finite retry budget buys crash-loop prevention at the cost of surrendering on persistent failures that would eventually resolve.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The short parent handle squats on the general concept while the hash pins exponential growth, mandatory jitter, reset-on-success, a finite retry budget, and arbitrary numeric ranges.
 - `FibonacciBackoff` and `AdaptiveBackoff` cannot honestly derive from this definition because they violate its mechanism. The clean fix is a generic `Backoff` parent plus an `ExponentialBackoff` child, not more contracts on the current parent.
 - That split affects the paper's parameter example and a wide dependent subtree, so it is recorded as a dedicated migration rather than silently weakened in this batch. Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain relevant family risks.
@@ -6277,7 +6290,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** if-else programming, decision gates, binary state transitions, A/B experiments, diagnostic forks, binary game moves.
 
-**Every context needs.** condition, A-branch, B-branch, mutual exclusion.
+**Broad-use intersection (review hypothesis).** condition, A-branch, B-branch, mutual exclusion.
 
 **Varies (descendant territory).** condition evaluation, evaluation cost, short-circuit semantics.
 
@@ -6293,8 +6306,8 @@ _Note: The published hash is specifically exponential despite the general handle
 - Mutual-exclusion invariant rules out speculative/parallel variants — they need descendants.
 - The lack of explicit output shape (no yields declaration in the spec shown) leaves composition implicit.
 
-**Critique.**
-- Zero invariants and zero failure modes listed. For a primitive this thin, that might be acceptable, but at minimum: Exhaustive (A and B together cover the condition space); Deterministic (same C → same branch).
+**Critique (diagnostic, not contract requirements).**
+- The empty contract lists are consistent with a minimal control-flow primitive: the condition, two alternatives, and mutual exclusion are already in the mechanism. Determinism depends on what context the condition may read, so it needs an explicit execution model before it can become a contract.
 - The boundary between Branch and Route is not articulated in the pattern — readers looking at both have to infer that Route is N-way and Branch is 2-way.
 - No mention of what Branch yields. If it passes through the chosen side's output, that's worth stating; if it yields a Decision, it overlaps Gate.
 
@@ -6335,7 +6348,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** compute budgets, time budgets, energy budgets, token budgets, attention budgets, monetary budgets, risk budgets, retry budgets.
 
-**Every context needs.** an allocation (how much), a consumption/refund tracking mechanism, conservation (total tracked value is preserved across transactions).
+**Broad-use intersection (review hypothesis).** an allocation (how much), a consumption/refund tracking mechanism, conservation (total tracked value is preserved across transactions).
 
 **Varies (descendant territory).** strict non-negative (BoundedBudget) vs. overdraft-allowed (OverdraftBudget), monotonic vs rebalancing (RollingBudget), refund semantics, multi-resource aggregation.
 
@@ -6351,8 +6364,8 @@ _Note: The published hash is specifically exponential despite the general handle
 - Single-quantity simplicity buys clean accounting at the cost of requiring separate Budgets per resource type.
 - Conservation invariant buys book-keeping rigor at the cost of needing a trusted accounting mechanism.
 
-**Critique.**
-- Only one invariant, zero failure modes. Missing invariants: Monotonic Consumption (used resources don't un-use themselves), Non-negativity (Remaining ≥ 0). Missing failure modes: Accounting Drift (sum-to-Total invariant violated), Budget Exhaustion (consumption exceeds limit despite check).
+**Critique (diagnostic, not contract requirements).**
+- Monotonic consumption and non-negativity are not universal across refunding, rolling, and overdraft budgets. Accounting drift and exhaustion remain useful reviewer diagnostics, but they do not justify hardening the general Budget parent without choosing a narrower budget strategy.
 - 'Hard limit on consumption' is declarative but has no enforcement mechanism — the pattern is a contract, not a check.
 - The resource type is free-form ('compute, time, energy'). A typed resource field would let Budget-compatibility checks happen at compose time.
 
@@ -6391,7 +6404,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** stewardship (Gardener), relationship maintenance, codebase refactoring (no feature delivery), janitorial work, system hygiene, ecosystem tending.
 
-**Every context needs.** target, Work application, Entropy reduction, absence of Value extraction.
+**Broad-use intersection (review hypothesis).** target, Work application, Entropy reduction, absence of Value extraction.
 
 **Varies (descendant territory).** intensity, frequency, measurement (or lack thereof), reciprocity structures.
 
@@ -6406,7 +6419,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: a named slot for non-extractive work, explicit recognition that maintenance is distinct from production, a frame for curation/nurture/attention.
 - Gives up: simplicity of the 'every action extracts value' model. Care forces the library to admit that not all work is ROI-shaped.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — the pattern is almost a philosophical stance. 'Application of work to reduce entropy' fits thermodynamics but is vague for programming.
 - 'Without explicit value extraction' is hard to enforce; agents optimizing for some utility will often rationalize Care as value-extractive in disguise.
 - No composition story — how Care interacts with Maintain, Curate, Nurture, or Tend isn't specified; there's risk of overlap or nominal confusion.
@@ -6451,7 +6464,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** assertions, health checks, probes, invariant verification, sanity checks, precondition checks, integration tests.
 
-**Every context needs.** condition evaluated against target; yields `Status` (per §3.13 — note: NOT Boolean like Validate; Status carries more signal like Verified/Falsified/Unknown).
+**Broad-use intersection (review hypothesis).** condition evaluated against target; yields `Status` (per §3.13 — note: NOT Boolean like Validate; Status carries more signal like Verified/Falsified/Unknown).
 
 **Varies (descendant territory).** evaluation cost, caching, async vs sync, scope (scoped to one invocation vs. continuous).
 
@@ -6467,7 +6480,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Side-effect-free buys composability (checks chain without surprise) at the cost of expressivity (checks that must emit observability data are excluded).
 - Heisenbug (the act of checking alters the state being checked) is a real failure mode accepted rather than designed out — the pattern acknowledges it but does not provide a mechanism for detection.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Yields `Status` via an unresolved placeholder hash. The reference is wired but the Status pattern itself is minimal — no per-status invariants, no transition rules.
 - No postconditions listed. The mechanism implies Status is the postcondition but the pattern does not assert it.
 - Verified/Falsified is a binary framing layered over three-state. A richer version might distinguish 'Verified with confidence > threshold' vs 'Verified exactly' — the pattern is uncalibrated and leaves confidence as a descendant concern.
@@ -6521,7 +6534,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** network circuit breakers, psychological circuit breakers (emotional shutoffs), economic circuit breakers (market halts), database circuit breakers, API backpressure.
 
-**Every context needs.** three-state machine, failure-rate monitoring, timeout-based state transitions.
+**Broad-use intersection (review hypothesis).** three-state machine, failure-rate monitoring, timeout-based state transitions.
 
 **Varies (descendant territory).** reset_timeout (Duration, see §3.17 — no arbitrary range), failure threshold, trial-request count in HALF-OPEN, fallback behavior.
 
@@ -6536,7 +6549,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: cascade prevention, explicit failure semantics, principled recovery via HALF-OPEN probing.
 - Gives up: latency during the state machine's transitions, visibility (OPEN state masks the underlying problem from the user), and threshold tuning effort (the threshold is always wrong somewhere).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Flapping is a real failure and the default remedy (hysteresis via time-based cooldowns) isn't part of the pattern.
 - Zombie state (stuck OPEN) is named but unmitigated — reset logic lives outside the pattern, which is exactly where it breaks in practice.
 - False positives from transient blips are the most common production complaint and the pattern offers no built-in debouncing; that's a caller concern.
@@ -6576,7 +6589,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** monoid operations, CRDT merges, reduce operations, set unions, vector addition, string concatenation.
 
-**Every context needs.** two inputs of same type, associativity, identity element.
+**Broad-use intersection (review hypothesis).** two inputs of same type, associativity, identity element.
 
 **Varies (descendant territory).** commutativity (monoid vs commutative monoid), idempotency (CRDT), element-type specificity.
 
@@ -6591,7 +6604,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: principled parallel reduction, clean composition with Aggregate, explicit monoidal structure.
 - Gives up: expressiveness. Operations that are naturally non-associative or type-changing don't fit; the pattern pushes callers to invent a different primitive for those cases.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — just associativity and closure. The real work of defining what combination means for a specific type happens outside the pattern.
 - Commutativity isn't required (associativity alone allows non-commutative combine, e.g., string concatenation), which is correct but often confuses users who assume symmetry.
 - Identity element is required but 'Empty' is deferred to the type — for some types there isn't a natural Empty (what's Empty for a reputation score?), and the pattern has no escape.
@@ -6629,7 +6642,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** sort operations, priority queues, tournament brackets, A/B testing, preference orderings, medical comparisons, financial comparisons.
 
-**Every context needs.** two values, comparability definition, four-valued return.
+**Broad-use intersection (review hypothesis).** two values, comparability definition, four-valued return.
 
 **Varies (descendant territory).** ordering (total, partial, pre-order), numeric vs semantic comparison, tolerance for "nearly equal."
 
@@ -6644,7 +6657,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: shared foundation for every ordering primitive, explicit algebraic guarantees (reflexivity/symmetry/transitivity).
 - Gives up: flexibility. The three equivalence invariants rule out legitimate but non-Euclidean comparison (non-transitive preferences, for instance).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Transitivity invariant is strong — elegant in theory, frequently violated by real-world preferences (rock-paper-scissors, subjective rankings).
 - Incomparable is offered as an outcome but has no further semantics; patterns that consume Compare results (Rank, Sort) don't have a story for Incomparable pairs.
 - No type specification — 'Compare A and B' is underdefined unless A and B are the same type under a well-defined equivalence.
@@ -6697,7 +6710,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** database transactions, saga patterns, multi-agent coordination rollbacks, deployment reversions, user undo, game state reverts, financial chargebacks.
 
-**Every context needs.** compensation log built during forward execution; LIFO reversal; idempotent inverses; status report.
+**Broad-use intersection (review hypothesis).** compensation log built during forward execution; LIFO reversal; idempotent inverses; status report.
 
 **Varies (descendant territory).** inverse construction (automatic vs. explicit), partial-failure handling, multi-party coordination, audit-trail preservation, escalation on failed compensation.
 
@@ -6712,7 +6725,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: principled partial-failure recovery, explicit contract that every forward action logs its inverse, a named pattern for the saga pattern from distributed systems.
 - Gives up: simplicity. The log-inverse-on-forward requirement doubles the engineering burden at every action site, and inverses are often non-obvious.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Inverse wasn't logged' is the failure mode that actually dominates in practice — most code doesn't log inverses, so Compensate has nothing to run. Discipline isn't enforceable by the pattern.
 - External state change between action and compensation is another dominant failure; the pattern has no mechanism for handling conditions where the world moved.
 - Cascading compensation (compensation itself fails and now needs compensation) is not addressed — in practice this is handled by dead-letter queues or manual intervention.
@@ -6753,7 +6766,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** data compression (gzip, zstd), cognitive compression (ChunkMerge), audio/video compression, prompt compression, abstraction in reasoning.
 
-**Every context needs.** input size, reduction mechanism, essential-meaning preservation.
+**Broad-use intersection (review hypothesis).** input size, reduction mechanism, essential-meaning preservation.
 
 **Varies (descendant territory).** lossy vs lossless, compression ratio, reversibility, domain specificity.
 
@@ -6768,7 +6781,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: a named primitive for size reduction, explicit lossless/lossy distinction via the Reconstructability invariant.
 - Gives up: operational precision — 'preserving essential meaning' is underspecified, and the pattern doesn't help you decide what's essential.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — 'reducing information size while preserving essential meaning.' The invariants are the only substance.
 - The Reconstructability invariant applies only 'for lossless,' which means the pattern has no guarantees at all for the more common lossy case.
 - No composition story — chaining compressions (chunk → summary → headline) loses information cumulatively, and the pattern has no track for where the loss occurred.
@@ -6815,7 +6828,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** API rate limits, UI button debouncing, game ability cooldowns, retry-after headers, service-request throttling, anti-spam measures, circuit breakers.
 
-**Every context needs.** action identity, minimum interval duration, timer start event.
+**Broad-use intersection (review hypothesis).** action identity, minimum interval duration, timer start event.
 
 **Varies (descendant territory).** per-action-type independent vs shared, queue-on-violation vs reject, global vs user-scoped, adaptive.
 
@@ -6831,7 +6844,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Per-action timers buy granularity at the cost of state overhead.
 - Timer-starts-on-completion (vs starts-on-invocation) buys correctness for long-running actions at the cost of making the effective rate depend on action duration.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Only one failure mode (Deadlock on critical action during cooldown). Missing: Timer Drift, Undefined Behavior Between Instances (which timer wins for multiple Cooldown enforcers on the same action), Queued-Queue Overflow (queued attempts accumulate unboundedly).
 - 'Attempts during cooldown rejected or queued' is an OR — the pattern should pick one or parameterize, rather than leave it ambiguous.
 - The relationship to Throttle is stated in prose ('acts as the enforcement mechanism for throttle policies') but the patterns are separate. Deciding when to use which requires understanding both — the library could benefit from a distinguishing chart.
@@ -6871,7 +6884,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** simulated annealing, chaos engineering, exploration bonuses in RL, mutation in evolutionary algorithms, diversity injection in ensemble methods, tie-breaking, unstuck-from-local-optima routines.
 
-**Every context needs.** a noise-injection mechanism; a target for the injection.
+**Broad-use intersection (review hypothesis).** a noise-injection mechanism; a target for the injection.
 
 **Varies (descendant territory).** noise magnitude (bounded to destabilizing), scope (targeted to global), injection timing (continuous, on-demand, threshold-triggered), entropy source (PRNG, hardware, user input).
 
@@ -6886,7 +6899,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Gains: escape from local optima, named counterweight to convergence, a slot for controlled randomness.
 - Gives up: determinism and sometimes convergence itself — over-injection is the named failure mode where productive equilibrium gets destabilized.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — the mechanism says 'inject entropy' without specifying how much, when, or to what.
 - Over-injection and insufficient-injection are both named failure modes with no guidance for tuning; calibration is caller-dependent.
 - Entropy injection without understanding the optimization landscape is shotgun randomness; the pattern doesn't distinguish blind noise from structure-aware perturbation.
@@ -6936,7 +6949,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 **Broad-use contexts.** security systems (deny by default), firewalls, authorization systems, safety-critical embedded systems, medical decision support (when uncertain, don't act), financial transactions on ambiguous state.
 
-**Every context needs.** error/timeout/ambiguity detection, default-to-Negative behavior, wrapper applicability across guards.
+**Broad-use intersection (review hypothesis).** error/timeout/ambiguity detection, default-to-Negative behavior, wrapper applicability across guards.
 
 **Varies (descendant territory).** ambiguity threshold, logging requirements, escalation policy.
 
@@ -6953,7 +6966,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: security-first default, explicit denial semantics, no bypass-on-error vulnerabilities.
 - Gives up: availability. FailClosed systems are the first to go offline when anything wobbles; the tradeoff is correct for security-critical paths and wrong for many user-facing flows.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Availability Hit is the named failure mode and operationally the dominant complaint — fail-closed systems break on minor outages of non-critical dependencies.
 - Dependency Deadlock is the same failure's compound version — a chain of fail-closed dependencies can cascade into full system lockout.
 - No gradation — the pattern is pure default-deny; real systems often want 'fail closed for security-critical, fail open for nice-to-have,' which the pattern doesn't express.
@@ -7001,7 +7014,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** control theory, RLHF, performance reviews, product user feedback, biological nervous system feedback, artistic critique.
 
-**Every context needs.** result observation, metric-of-deviation (from expected), adjustment mechanism for future behavior.
+**Broad-use intersection (review hypothesis).** result observation, metric-of-deviation (from expected), adjustment mechanism for future behavior.
 
 **Varies (descendant territory).** metric type, delay, continuous vs discrete, signed vs unsigned (positive feedback vs negative).
 
@@ -7016,7 +7029,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: closed-loop learning, direction-aware correction, attribution for accountability.
 - Gives up: signal cleanliness. Most real feedback is noisy, delayed, and partially attributable; the invariants are ideals.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Signal Noise is the dominant practical failure — feedback is rarely clean enough to act on directly, and the pattern has no built-in noise-handling.
 - Misattribution (feedback routed to wrong solver) is named but unmitigated — attribution is a separate design problem the pattern requires but doesn't solve.
 - Delayed Feedback is called out; the pattern has no mechanism for handling the stale signal other than 'value decays,' which is a description not a remedy.
@@ -7056,7 +7069,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** RL reward signals, code review feedback artifacts, peer review packets, performance-review documents, user-feedback structured forms.
 
-**Every context needs.** outcome, details (diagnostic info), routing to Feedback mechanism.
+**Broad-use intersection (review hypothesis).** outcome, details (diagnostic info), routing to Feedback mechanism.
 
 **Varies (descendant territory).** schema, anonymity, channel, retention policy.
 
@@ -7071,7 +7084,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: typed feedback unit that can flow through pipelines, targeted routing.
 - Gives up: flexibility. FeedbackSignal requires structure that ad-hoc feedback avoids.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — the invariants were previously bare adjective labels ("Targeted", "Structured") without subject or claim. Now stated as full invariants tied to the data_schema.
 - No schema-evolution story — the data_schema is fixed; downstream versions would need to be new patterns.
 - The Feedback pattern could carry its own unit without a separate FeedbackSignal — the primary value here is typing for downstream consumers (Reflexion, CurriculumReplay).
@@ -7114,7 +7127,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** permission gates, validation gates, acceptance gates, release gates, quality gates, rate-limit gates, security gates, sanity checks, A/B cohort selection.
 
-**Every context needs.** a condition slot (type varies); yields `Decision` (proceed/halt per §3.13 verification-stack taxonomy).
+**Broad-use intersection (review hypothesis).** a condition slot (type varies); yields `Decision` (proceed/halt per §3.13 verification-stack taxonomy).
 
 **Varies (descendant territory).** condition evaluator type, drop behavior, side-effects on drop, blocking vs. non-blocking, timeout, logging.
 
@@ -7130,8 +7143,8 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Three-state Decision gives richer semantics than binary gates; pays cognitive overhead on every reader.
 - Per-item halt (vs system halt) enables graceful degradation; loses strong system-wide guarantees when those are what the deployment actually wants.
 
-**Critique.**
-- Only one invariant pair and one failure mode — thin for a foundational primitive. Missing invariants: Verdict Observability (Decision must be emitted, not discarded); Separation (Gate must not mutate the condition's subject). Missing failure modes: Stale Decision (artifact outlives its validity window but still routes traffic).
+**Critique (diagnostic, not contract requirements).**
+- Field count is not evidence of weakness. Verdict observability is already stated by the mechanism's Decision yield; non-mutation may define a PureGate descendant, and stale decisions require a caller-supplied validity model. Review those as placement questions rather than automatic parent contracts.
 - 'Debt' is mentioned in the mechanism but never defined: what are the obligations, who discharges them, how is debt tracked? Descendants invent this per-deployment, losing the shared semantics the parent should have provided.
 - The condition is a single slot (`{{condition}}`). Real gates often compose multiple conditions (all-of, any-of, weighted). No compositional story in the parent.
 
@@ -7174,7 +7187,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** TLS handshake, OAuth flow initiation, API-version negotiation, agent discovery greeting, human introductions, protocol version negotiation.
 
-**Every context needs.** identity verification, compatibility check, state transition Unknown → Connected.
+**Broad-use intersection (review hypothesis).** identity verification, compatibility check, state transition Unknown → Connected.
 
 **Varies (descendant territory).** authentication strength, extension negotiation, fallback on incompatibility, one-way vs mutual.
 
@@ -7189,7 +7202,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: authenticated identity, explicit compatibility checking, clean transition from Unknown to Connected.
 - Gives up: ad-hoc connection. The pattern ceremonies every connection; for high-trust or short-lived scenarios, the ceremony exceeds the value.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Authentication Failure as a failure mode is binary; real auth often has degrees (TLS certificate valid but from wrong issuer, identity verified but under question).
 - Protocol Mismatch failure mode has no retry mechanism — Greet is one-shot, and translation/bridging happens in other patterns.
 - The handshake doesn't specify what happens after (session establishment, key derivation); these are downstream concerns the pattern punts on.
@@ -7239,7 +7252,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** distributed system health checks, web service uptime monitoring, agent aliveness, IoT device liveness, connection-pool health, biological heartbeat metaphor, session keepalives.
 
-**Every context needs.** emitter, receiver, interval, miss-threshold for failure detection.
+**Broad-use intersection (review hypothesis).** emitter, receiver, interval, miss-threshold for failure detection.
 
 **Varies (descendant territory).** interval value (ms for local, minutes for distributed), payload (empty ping vs health metrics), authentication, K-out-of-N tolerance.
 
@@ -7254,7 +7267,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: proactive failure detection, explicit liveness contract, composable with Quorum for group-liveness decisions.
 - Gives up: network overhead and occasional false positives. Every heartbeating system has to tune between sensitivity and robustness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False failure detection via network congestion is the dominant real failure and the pattern has no adaptive interval — it's a static schedule.
 - Health metrics in the heartbeat are optional and under-specified; different systems include different metrics, making heartbeat comparisons across implementations meaningless.
 - The K-missing threshold is a tuning knob with no default derivation rule; getting it wrong is the same failure in both directions.
@@ -7296,7 +7309,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** thermostats, circuit breakers, trigger filtering, alert deduplication, auto-scaling thresholds, feature-flag rollout guards, Schmitt triggers.
 
-**Every context needs.** upper threshold (A→B), lower threshold (B→A), gap between them.
+**Broad-use intersection (review hypothesis).** upper threshold (A→B), lower threshold (B→A), gap between them.
 
 **Varies (descendant territory).** threshold values, adaptivity, multi-state variants, reset mechanisms.
 
@@ -7312,7 +7325,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Fixed T_up > T_down invariant buys correctness at the cost of disallowing instantaneous-equality configurations (single-threshold is not a degenerate case of Hysteresis — it's a separate pattern).
 - Dampen composition (as noted in the mechanism) adds smoothing but also latency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Only one failure mode (Stuck State from wide gap). Missing: Inverted Thresholds (T_up < T_down would silently invert the semantics), Threshold Drift (adaptive thresholds shift such that T_up crosses T_down), Signal Spike (brief signal excursion past both thresholds creates a fast A→B→A that the gap was supposed to prevent).
 - Only one invariant (T_up > T_down). Missing: State transitions are triggered by threshold-crossing, not threshold-equality; re-entry from B requires re-crossing T_up (not just exceeding T_down).
 - The relationship to `Dampen` is mentioned but the composition is unclear — does Hysteresis use Dampen internally, or are they parallel? The mechanism hints at 'uses a dampen effect,' but the pattern has no composes_with declaration for Dampen in what I can see.
@@ -7361,7 +7374,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** HTTP POST with Idempotency-Key header, payment-API idempotency, message-queue at-least-once-safe processing, database upsert patterns, distributed-task-execution safety.
 
-**Every context needs.** unique key per request, key-tracking by receiver, duplicate-returns-stored-result semantic, side-effect-safe semantic.
+**Broad-use intersection (review hypothesis).** unique key per request, key-tracking by receiver, duplicate-returns-stored-result semantic, side-effect-safe semantic.
 
 **Varies (descendant territory).** key generation, key retention window, storage medium.
 
@@ -7376,7 +7389,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: safe retries, deduplication, clean semantics for 'execute once even if called multiple times.'
 - Gives up: storage. Every unique write now requires the cache entry, which compounds across a high-throughput system.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Key collision is the named failure and is hard to prevent without client discipline; the pattern trusts the caller to generate unique keys.
 - Cache eviction strategy is unspecified — LRU, TTL-based, or all-retention are all reasonable and have different failure profiles.
 - The pattern doesn't address what happens on partial-failure retries that mix successful and failed sub-operations.
@@ -7413,7 +7426,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** humor (classic theory), paradox detection, learning signals, debugging (this isn't what I expected), anomaly detection, cognitive dissonance.
 
-**Every context needs.** prediction, observation, difference/mismatch computation.
+**Broad-use intersection (review hypothesis).** prediction, observation, difference/mismatch computation.
 
 **Varies (descendant territory).** difference metric, severity scaling, routing of incongruity signal.
 
@@ -7428,7 +7441,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: general named primitive for predicted-observed mismatch, spans multiple domains (epistemic, emotional, logical).
 - Gives up: operational precision. Incongruity is a gesture; specific consumers (Anomaly, FailureTrace, SurprisalUpdate) add structure.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one-sentence mechanism, no invariants, no failure modes.
 - Conflates multiple kinds of mismatch (epistemic deviation, humor-producing surprise, logical paradox) that have different operational shapes.
 - The pattern is used by many consumers but doesn't provide the interface richness they need, so they effectively re-derive it.
@@ -7469,7 +7482,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** model output evaluation, content quality rating, candidate ranking, aesthetic assessment, fitness evaluation, risk scoring, reviewer judgments.
 
-**Every context needs.** subject to evaluate; accepts a `ScoringFunction` (criteria moved to accepts per §3.1); yields `Score` (per §3.13).
+**Broad-use intersection (review hypothesis).** subject to evaluate; accepts a `ScoringFunction` (criteria moved to accepts per §3.1); yields `Score` (per §3.13).
 
 **Varies (descendant territory).** scoring function complexity, confidence bounds, calibration method, multi-axis decomposition, explainability.
 
@@ -7485,7 +7498,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Bounded range [0, 1] buys cross-judge comparability at the cost of expressivity — unbounded judges (quality-per-dollar, confidence-weighted) require a separate pattern.
 - Deterministic contract buys replayability at the cost of excluding non-deterministic judges (stochastic LLMs without seeding) from valid implementations.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Threshold Gaming is named but the mechanism does nothing to detect it — a ScoringFunction that passes the threshold on any input trivially honors the invariants. Detection is pushed to caller-level reviews.
 - No postconditions listed. The mechanism implies the Score is the postcondition but does not assert what the Score means relative to the Criteria (calibration contract absent).
 - The pattern is in Infrastructure/Primitives, which fits because scoring is a mechanical operation given a ScoringFunction — but the ScoringFunction itself can embed cognition. The layer boundary is honest about the Judge primitive, ambiguous about its input.
@@ -7525,7 +7538,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** for/while loops in programming, biological-feedback loops, retry loops, polling loops, perception-action cycles, game loops.
 
-**Every context needs.** work to repeat, termination condition.
+**Broad-use intersection (review hypothesis).** work to repeat, termination condition.
 
 **Varies (descendant territory).** iteration bound, condition evaluation timing (pre/post), break/continue semantics, parallelism.
 
@@ -7540,7 +7553,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: structured iteration, explicit termination guarantee, clean control-flow primitive.
 - Gives up: freedom. Ad-hoc iteration without Loop's invariants is common in real code; the pattern's discipline is aspirational.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Termination Guarantee is aspirational for most real loops; formal proof of termination is rare outside of specific algorithms.
 - Progress invariant conflates state change with useful progress; a loop that decrements a counter technically 'makes progress' without doing useful work.
 - Very thin — one sentence, two invariants. Real loops have richer structure (pre-conditions, post-conditions, loop invariants) the pattern doesn't capture.
@@ -7582,7 +7595,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** infrastructure monitoring, health monitoring, anomaly detection, vigilance patterns, quality assurance monitoring, compliance monitoring.
 
-**Every context needs.** target, observation loop, baseline, deviation detection, signal emission on anomaly.
+**Broad-use intersection (review hypothesis).** target, observation loop, baseline, deviation detection, signal emission on anomaly.
 
 **Varies (descendant territory).** interval (Duration, per §3.17 — no arbitrary range), baseline adaptation, threshold, signal routing.
 
@@ -7597,7 +7610,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: continuous observation, structured comparison-to-baseline, clean interface for alerting systems.
 - Gives up: instantaneous detection of very fast events. Monitor operates at its sampling interval; events faster than that slip through.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; Monitor has many (observer effects, sampling aliasing, alert fatigue).
 - Non-Interference is aspirational and domain-specific; detailed monitoring always has some effect.
 - Very thin — two invariants, observation loop. The interesting work (metric selection, threshold tuning, alert routing) lives outside.
@@ -7633,7 +7646,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** SLO reports, deployment health reports, A/B test result reports, ML-model-drift reports, production incident reports.
 
-**Every context needs.** deployed state snapshot, Definition-of-Done reference, comparison, feedback-loop closure.
+**Broad-use intersection (review hypothesis).** deployed state snapshot, Definition-of-Done reference, comparison, feedback-loop closure.
 
 **Varies (descendant territory).** report frequency, alerting thresholds, routing, audit retention.
 
@@ -7648,7 +7661,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: telemetry artifact.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin, one-sentence mechanism.
 - No invariants, no failure modes.
 - Distinction from general Report is subtle.
@@ -7698,7 +7711,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** Merkle-tree non-inclusion proofs, privacy-preserving queries, "not on any sanctions list" attestations, absence-of-evidence proofs, blockchain state queries.
 
-**Every context needs.** committed state set, specific value to check absence of, ZK proof mechanism.
+**Broad-use intersection (review hypothesis).** committed state set, specific value to check absence of, ZK proof mechanism.
 
 **Varies (descendant territory).** commitment scheme (Merkle, Verkle, KZG, etc.), ZK proof system, domain size, proof size.
 
@@ -7713,7 +7726,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: cryptographic absence proofs, zero-knowledge privacy, principled exhaustive search within commitment.
 - Gives up: simplicity. Most absence claims aren't worth the cryptographic ceremony; the pattern is for specific high-stakes use.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Incomplete state commitment is the dominant attack — prove absence of X by not committing to the set that contains X.
 - Staleness is real; between commit and prove, state can change.
 - The pattern's computational expense limits use to scenarios that truly warrant the cost.
@@ -7767,7 +7780,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** API polling, file reads, sensor queries, user input reception, log tail reads, event subscriptions, probes, LLM introspection.
 
-**Every context needs.** source (what to observe), filtering (attention), integration into context.
+**Broad-use intersection (review hypothesis).** source (what to observe), filtering (attention), integration into context.
 
 **Varies (descendant territory).** polling interval, filter strictness, caching, async vs sync, authentication.
 
@@ -7782,7 +7795,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: explicit observation semantics, side-effect-free invariant, truthfulness discipline.
 - Gives up: purity. Real observation always has some side effects (sensor heat, observer presence), which the invariant tolerates in spirit only.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Blind Spot (named failure) — critical information outside observable range — is structural; the pattern can't fix it.
 - Information Overload (named failure) — too much data defeats filtering; no specified response strategy.
 - Sensor Noise is named without a noise-handling mechanism; it's treated as a problem to mention, not solve.
@@ -7841,7 +7854,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** health checks, TCP SYN probes, DNS queries, API status checks, sensor queries, LLM capability probing, test probes.
 
-**Every context needs.** target to probe, active query semantic (not passive observation), verifiable response.
+**Broad-use intersection (review hypothesis).** target to probe, active query semantic (not passive observation), verifiable response.
 
 **Varies (descendant territory).** cost, latency, sandbox requirement (for stateful probes), retry on timeout, authentication.
 
@@ -7856,7 +7869,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: active ground-truth extraction, explicit observer-effect acknowledgment, cost bound.
 - Gives up: passivity. Probes interact with the target; for targets where interaction is destructive, Probe isn't usable.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Observer Effect is endemic — every probe perturbs; the pattern has no mechanism for estimating perturbation.
 - Stale Probe (named failure) — result reflects past state — is the freshness problem.
 - False Positive/Negative is a generic failure mode and the pattern doesn't specify confidence reporting.
@@ -7909,7 +7922,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** consensus protocols, board meetings, blockchain block validation, Byzantine fault tolerance, emergency-decision quorum.
 
-**Every context needs.** participant count, threshold K, yes/no return.
+**Broad-use intersection (review hypothesis).** participant count, threshold K, yes/no return.
 
 **Varies (descendant territory).** K value, weighted vs equal votes, timeout integration.
 
@@ -7925,7 +7938,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - K-immutability buys integrity at the cost of forbidding legitimate threshold adjustment.
 - Infrastructure-layer placement (rather than Society) is correct — counting is mechanical — at the cost of making the Society patterns that use Quorum feel 'exposed' to an Infrastructure dependency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - One invariant, two failure modes. Missing: Non-negative K (K must be ≥ 0), Participant Uniqueness (a single agent's multiple ballots shouldn't double-count).
 - Strategic Abstention as a failure is real but the pattern has no mitigation — abstention management is a Vote/Ballot concern.
 - The pattern is described as 'simply counts' — but counting depends on what counts (eligibility, uniqueness). These are not in Quorum's spec.
@@ -7969,7 +7982,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** search result ranking, leaderboards, bid ranking, candidate ranking, option selection, feed ranking.
 
-**Every context needs.** scoring function (ScoringFunction per §3.5), sort mechanism, Top-K truncation.
+**Broad-use intersection (review hypothesis).** scoring function (ScoringFunction per §3.5), sort mechanism, Top-K truncation.
 
 **Varies (descendant territory).** tiebreaker policy, ranking stability, lazy vs eager evaluation, distributed ranking.
 
@@ -7984,7 +7997,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: deterministic sort framework, optional Top-K, Conservation and Monotonicity invariants.
 - Gives up: nothing substantial — the pattern is a thin wrapper that gives ad-hoc ordering a shared vocabulary.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Tie-breaking is deferred to the caller's scoring function; if ties happen, output is arbitrary.
 - Incomparability is a named failure without specified handling — the pattern assumes scores are totally orderable.
 - Very thin; the real work (defining good scoring functions) lives outside.
@@ -8028,7 +8041,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: clean substrate-level semantics, named primitive for same-call retry.
 - Gives up: simplicity. Having both ReAttempt and Retry forces callers to pick, and the distinction is subtle.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Uncapped reattempts are the dominant production failure; the pattern names the failure without prescribing caps.
 - Missing jitter is well-known; the pattern acknowledges without built-in jitter mechanism.
 - The ReAttempt/Retry split is subtle and often ignored; in practice callers often conflate.
@@ -8077,7 +8090,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** HTTP routing, load balancing, query type routing, message brokers, intent-classification dispatch, model-selection routing, multi-head attention.
 
-**Every context needs.** input to classify, classification function, dispatch table (input type → handler).
+**Broad-use intersection (review hypothesis).** input to classify, classification function, dispatch table (input type → handler).
 
 **Varies (descendant territory).** classification method (rules, ML, heuristics), routing-table representation, fallback handling, cost-aware dispatch.
 
@@ -8093,7 +8106,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - 'No dropped requests' buys coverage guarantee at the cost of forcing a catch-all — which may not exist for some routing configurations.
 - Extensible dispatch rules buy flexibility at the cost of reasoning difficulty — complex rule sets become opaque.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants are weak for a pattern this central. Missing: Terminal (every route leads to a handler that itself terminates); Mutually-Reachable (every handler is reachable from some input, else it is dead code); Non-Looping (Route doesn't route back to itself).
 - 'Best-fit handler' is the intent but the pattern doesn't specify how best-fit is measured. Descendants encode this (rule-based, ML-based, learned), but the parent should at least name the concern.
 - The three failure modes are good but miss: Routing Drift (classifier trained on old distribution keeps dispatching under shifted distribution) — common in practice.
@@ -8134,7 +8147,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** OS sandboxes (gVisor, Firecracker), browser sandboxes, test fixtures, simulation environments, experimental workspaces, regulatory sandboxes (fintech).
 
-**Every context needs.** isolation boundary, side-effect restriction, controlled exit/escape.
+**Broad-use intersection (review hypothesis).** isolation boundary, side-effect restriction, controlled exit/escape.
 
 **Varies (descendant territory).** isolation strength (syscall filter vs container vs VM), resource limits, network restrictions, persistence.
 
@@ -8149,7 +8162,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: restricted side-effects, isolation boundary.
 - Gives up: performance. Sandbox overhead is real for every contained execution.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one sentence of mechanism, two failure modes.
 - Escape vectors are legion; the pattern names the category without cataloguing specific vectors.
 - Resource exhaustion within sandbox affecting enclosing is a real issue (shared kernel, I/O, etc.).
@@ -8189,7 +8202,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** text search, code search, vector-embedding search, graph search, file-system search, inventory search, database queries.
 
-**Every context needs.** domain, criteria, iteration mechanism, Check-based filtering.
+**Broad-use intersection (review hypothesis).** domain, criteria, iteration mechanism, Check-based filtering.
 
 **Varies (descendant territory).** domain type (memory, environment, data), indexing strategy, ranking, parallelism, real-time vs batch.
 
@@ -8204,7 +8217,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: deterministic retrieval, complete-by-invariant scanning.
 - Gives up: performance. Complete search is expensive; approximate search is faster and silently incomplete.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — two invariants, one-line mechanism.
 - No failure modes listed; search has many (partial results, missed items, wrong criteria).
 - Determinism invariant is violated by any ordering-dependent search; in practice 'same results' often means 'same set' not 'same order.'
@@ -8256,7 +8269,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** SQL WHERE, array.filter, set-theoretic filtering, query results, search results, decision making from options.
 
-**Every context needs.** input set, predicate function, subset output.
+**Broad-use intersection (review hypothesis).** input set, predicate function, subset output.
 
 **Varies (descendant territory).** predicate complexity, short-circuit semantics, ordering preservation, cost estimation.
 
@@ -8271,7 +8284,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: set-theoretic filter with clean invariants.
 - Gives up: little — thin primitive that's near-unavoidable.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Predicate Error handling is unspecified — does the whole Select fail, or is the element skipped?
 - Determinism relies on predicate determinism, which the pattern doesn't verify.
 - Very thin; specific filtering patterns add the domain-specific work.
@@ -8310,7 +8323,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** cryptographic signatures, handwritten signatures, OAuth token signing, PGP email, code signing, document notarization, blockchain transactions, wet signatures on paper.
 
-**Every context needs.** identity proof, artifact to attach to, non-repudiable link.
+**Broad-use intersection (review hypothesis).** identity proof, artifact to attach to, non-repudiable link.
 
 **Varies (descendant territory).** algorithm (RSA, ECDSA, EdDSA, wet), key material, verification protocol, attachment format (detached vs embedded).
 
@@ -8325,7 +8338,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: non-repudiable authorship, integrity guarantees.
 - Gives up: flexibility. Signed artifacts are frozen; any edit invalidates.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Non-Repudiation is technical non-repudiation; legal non-repudiation has separate requirements.
 - Key compromise isn't addressed; a stolen key produces valid signatures.
 - No failure modes listed; real signing has many (revoked keys, expired certs, PKI failures).
@@ -8361,7 +8374,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** write-verify in distributed systems, read-after-write consistency checks, SQL audit-trail verification, filesystem post-write checks, transaction-success verification.
 
-**Every context needs.** write operation, immediate audit, expected-vs-actual check, silent-failure detection.
+**Broad-use intersection (review hypothesis).** write operation, immediate audit, expected-vs-actual check, silent-failure detection.
 
 **Varies (descendant territory).** audit latency (sync vs async), verification depth, retry semantics on mismatch.
 
@@ -8376,7 +8389,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: silent-failure detection.
 - Gives up: throughput. Every write pays the audit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one sentence.
 - No failure modes listed; StateAudit has some (audit-of-audit infinite regress, read-after-write consistency issues).
 - Assumes reads are reliable enough to audit writes; if reads are also silent-failing, the audit is too.
@@ -8425,7 +8438,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** OS hibernate/sleep, database checkpoints, game save files, VM snapshots, agent-state persistence, conversation state persistence.
 
-**Every context needs.** volatile state, durable-storage target, periodic serialization, resume-from-snapshot semantic.
+**Broad-use intersection (review hypothesis).** volatile state, durable-storage target, periodic serialization, resume-from-snapshot semantic.
 
 **Varies (descendant territory).** snapshot interval (Duration per §3.17), delta vs full, encryption, storage medium.
 
@@ -8440,7 +8453,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: crash-recoverable agent state, local autonomy (no consensus required).
 - Gives up: consistency across agents. StateSnapshot is local; distributed recovery needs consensus.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Roundtrip Integrity is the hardest property — implementation bugs silently violate it.
 - Atomicity often requires coordination (write to temp, fsync, rename); the pattern asserts without specifying.
 - No failure modes listed.
@@ -8477,7 +8490,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** programming FSMs, workflow engines, protocol state machines, biological state transitions, regulatory process state machines, UI state management.
 
-**Every context needs.** state set, event set, transition function, only-valid-transitions rule.
+**Broad-use intersection (review hypothesis).** state set, event set, transition function, only-valid-transitions rule.
 
 **Varies (descendant territory).** deterministic vs non-deterministic, acceptance states, guards on transitions, actions-on-transition.
 
@@ -8492,7 +8505,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: principled state change, validity enforcement, clear action-availability.
 - Gives up: fluidity. FSMs are rigid; some systems benefit from looser state semantics.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one-line mechanism.
 - No failure modes listed; FSMs have many (invalid transitions, state explosion, missed states).
 - Finite assumption is strong; many real systems have effectively infinite states.
@@ -8547,7 +8560,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** workflow engines, ticket systems, issue trackers, solver-node lifecycle management, job schedulers, CI/CD pipelines.
 
-**Every context needs.** five states (or a superset), typed-event transitions, invalid-transition rejection, heartbeat for RUNNING state.
+**Broad-use intersection (review hypothesis).** five states (or a superset), typed-event transitions, invalid-transition rejection, heartbeat for RUNNING state.
 
 **Varies (descendant territory).** state count (could have more — paused, cancelled, blocked), retry semantics, timeout handling, transition authorization.
 
@@ -8562,7 +8575,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: structured task state, explicit progression rules.
 - Gives up: flexibility. The five states are fixed; custom states require workarounds.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Heartbeat timeout requires enforcement the pattern doesn't specify.
 - State desync is the distributed-systems hard problem; the pattern asserts Single Owner without providing the mechanism.
 - Forward-Only invariant forbids legitimate restart patterns.
@@ -8608,7 +8621,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** API rate limits, UI button-debounce, traffic shaping, network QoS, process scheduling, rate-limited email sends.
 
-**Every context needs.** N (count), W (window), excess-handling (reject/queue/delay).
+**Broad-use intersection (review hypothesis).** N (count), W (window), excess-handling (reject/queue/delay).
 
 **Varies (descendant territory).** sliding vs fixed window, per-scope limits (user/global/action-type), Backoff integration.
 
@@ -8624,7 +8637,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Window semantics (sliding vs fixed) buys different fairness properties — neither is universally better.
 - Separate limits per action type buys flexibility at the cost of complexity in the limit-configuration surface.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The consolidated Rate Limit invariant now covers any-window semantics in one line; the previous redundant pair (per-second + any-window) is gone.
 - Legitimate Denial is the dominant real issue — attack/burst distinguishability requires classifiers the pattern offloads.
 - No priority story — all throttled requests are treated equally; priority-aware throttling needs a different pattern.
@@ -8674,7 +8687,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** distributed systems, blockchain consensus, multi-agent history, eventual-consistency stores, latency-tolerant databases, cross-datacenter replication.
 
-**Every context needs.** causal cone tracking per entry, acceptance rule based on non-contradiction with current cone, append-only semantics.
+**Broad-use intersection (review hypothesis).** causal cone tracking per entry, acceptance rule based on non-contradiction with current cone, append-only semantics.
 
 **Varies (descendant territory).** cone computation method, contradiction resolution policy, storage backend, replication model, trust model for event authors.
 
@@ -8689,7 +8702,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Gains: causal consistency.
 - Gives up: intuitive time ordering.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - User confusion is endemic — causal time is counterintuitive.
 - Indexability is hard to preserve under causal cones.
 - No specified contradiction-detection mechanism.
@@ -8737,7 +8750,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Broad-use contexts.** LLM tool use, plugin invocation, API calls, OS syscalls, library function calls, external-service integration.
 
-**Every context needs.** structured tool call (function name + arguments), InputGuard validation, external runtime delegation, observation integration into context.
+**Broad-use intersection (review hypothesis).** structured tool call (function name + arguments), InputGuard validation, external runtime delegation, observation integration into context.
 
 **Varies (descendant territory).** sandboxing, timeout, retry semantics, side-effect classification (reversible/irreversible).
 
@@ -8754,7 +8767,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: structured tool invocation, permission inheritance.
 - Gives up: flexibility. No elevation is strict.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hallucinated Tools is the LLM-era canonical failure.
 - Argument Mismatch — schemas catch some; not all.
 - Observation Integration requires the result format to match.
@@ -8803,7 +8816,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** distributed tracing, git history, event sourcing, data lineage, scientific provenance, supply-chain tracking, medical record history.
 
-**Every context needs.** target entity, immutable append log, per-modification record.
+**Broad-use intersection (review hypothesis).** target entity, immutable append log, per-modification record.
 
 **Varies (descendant territory).** log storage medium, record detail, retention policy, index-for-query, cross-entity linking.
 
@@ -8818,7 +8831,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: provenance and lineage.
 - Gives up: storage and signal-to-noise.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Pollution is endemic in verbose-tracing systems.
 - Decay policy is under-specified.
 - Namespace is caller-managed.
@@ -8860,7 +8873,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** PR merge gates (blocking/warning/passing), compliance triage, quality gating with conditional acceptance, deployment green-light systems, approval workflows with "approved with caveats."
 
-**Every context needs.** the underlying Judge or Condition, the three-state mapping, the debt ledger for Yellow-state obligations.
+**Broad-use intersection (review hypothesis).** the underlying Judge or Condition, the three-state mapping, the debt ledger for Yellow-state obligations.
 
 **Varies (descendant territory).** thresholds for Red/Yellow/Green boundary, debt-ledger discipline, escalation of Yellow accumulation, retry semantics on Red.
 
@@ -8875,7 +8888,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: Yellow-state proceed-with-debt.
 - Gives up: binary simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Debt Awareness requires Ledger enforcement; without it, debt is lost.
 - Yellow is subtle; callers may treat it as Green (ignore debt).
 - Three states is a specific choice.
@@ -8925,7 +8938,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** service warmup on deployment, JIT compiler warmup, ML inference warmup (e.g., LLM first-token latency), exercise warmup, human cognitive warmup.
 
-**Every context needs.** C_min starting capacity, C_max target, time T, ramp curve, thundering-herd prevention.
+**Broad-use intersection (review hypothesis).** C_min starting capacity, C_max target, time T, ramp curve, thundering-herd prevention.
 
 **Varies (descendant territory).** ramp curve, duration (Duration), capacity metric (QPS, throughput, compute).
 
@@ -8940,7 +8953,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: cold-start protection.
 - Gives up: availability during warmup.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False Warmth is endemic — caches, JIT, etc., aren't ready just because timer elapsed.
 - Ramp curve is caller choice.
 - Premature Load requires upstream cooperation.
@@ -8998,7 +9011,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** SOC2 audits, regulatory compliance, forensic analysis, blame attribution, behavioral analysis, git history, blockchain state changes, medical records.
 
-**Every context needs.** append-only semantics, signed entries, per-entry (timestamp, identity, action, input_hash, output_hash).
+**Broad-use intersection (review hypothesis).** append-only semantics, signed entries, per-entry (timestamp, identity, action, input_hash, output_hash).
 
 **Varies (descendant territory).** entry schema specifics, signature algorithm, retention policy, access controls, Merkle aggregation depth, privacy/redaction.
 
@@ -9014,7 +9027,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Per-entry signing buys non-repudiation at the cost of crypto latency.
 - Monotonic sequence buys ordering at the cost of single-writer bottleneck without distributed-clock variant.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes — thin for a verification-layer pattern. Missing: Entry Completeness (all required fields present), Verifiability (every signature can be independently checked), Retention (stated minimum for regulated contexts).
 - Clock skew named as failure with advice to 'use logical clocks' but the pattern itself doesn't specify logical clocks as a requirement — callers who use wall-clock time remain in-spec.
 - Storage exhaustion is a certainty, not a possibility; the pattern should prescribe compaction or eviction as a descendant concern explicitly.
@@ -9054,7 +9067,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** API version compatibility, protocol handshake, agent-discovery filtering, plugin compatibility, schema evolution checks, tool interoperability.
 
-**Every context needs.** two entities (agents, artifacts, protocols), comparison function, binary yield.
+**Broad-use intersection (review hypothesis).** two entities (agents, artifacts, protocols), comparison function, binary yield.
 
 **Varies (descendant territory).** comparison strictness (structural match vs semantic match vs hash match), translation-available fallback, per-field compatibility reporting.
 
@@ -9069,7 +9082,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: fast precheck, deterministic result, a pre-interaction gate.
 - Gives up: nuance. 'Compatible' in real systems is a multi-axis property; the pattern flattens it to binary and forces callers to reduce.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hash-based compatibility is deeply conservative — same bytes = compatible, but different bytes may or may not be compatible. The pattern can only detect one direction of compatibility.
 - Symmetry invariant is wrong in many real deployments (reader-writer asymmetry, version skew).
 - No partial-compatibility semantics — real systems want 'compatible enough for this operation,' which the pattern can't express.
@@ -9108,7 +9121,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** LLM agent explanations, trading-system intent logs, robotic intent broadcasts, autonomous-system transparency narratives, debugger annotations.
 
-**Every context needs.** human-readable narrative, machine-readable companion log, pre-irreversible-action emit-timing.
+**Broad-use intersection (review hypothesis).** human-readable narrative, machine-readable companion log, pre-irreversible-action emit-timing.
 
 **Varies (descendant territory).** verbosity level, privacy redaction, language, channel (email, Slack, UI widget, console).
 
@@ -9123,7 +9136,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: real-time human observability, explicit intent channel, pre-action visibility.
 - Gives up: latency and privacy. The beacon is always on, and its contents are visible to anyone with access.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Beacon Drift is the dominant and hardest-to-detect failure — the agent says one thing while doing another, and narrative can diverge from action silently.
 - 'Cannot be suppressed' is the single invariant; enforcement depends on the execution substrate, which can be bypassed.
 - The pattern doesn't specify what happens if the beacon fails to emit — block the action or proceed?
@@ -9170,7 +9183,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** production deploys, financial transactions, legal review, compliance committees, test mocks (auto-approve with timeout), emergency auto-reject, medical approvals, policy reviews, art-moderation, publishing signoffs.
 
-**Every context needs.** the Task presented to human, rationale, risk assessment; yields approved/rejected/timeout.
+**Broad-use intersection (review hypothesis).** the Task presented to human, rationale, risk assessment; yields approved/rejected/timeout.
 
 **Varies (descendant territory).** `timeout` (ms to weeks — see §3.17), `challenge_required` (Boolean, principled), escalation path, UX channel (email, Slack, in-app), quorum (some contexts need multiple approvers).
 
@@ -9185,7 +9198,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: human-in-the-loop for critical actions, structured challenge-code matching against rubber-stamping, explicit audit trail.
 - Gives up: autonomy and speed. Every gated action pays the human-round-trip tax; for busy operators, this becomes bottleneck.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Approval Fatigue is endemic — challenge codes help but high-volume approval requests still degrade into pattern-matching without actual review.
 - Indefinite blocking when human is unavailable is a real failure; timeout policies default to either 'fail closed' (halt) or 'fail open' (proceed without approval), and both are wrong in different contexts.
 - Context Loss — the agent presents context; if the human doesn't understand the proposed action, the approval is performative.
@@ -9225,7 +9238,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** API input validation, SQL-injection prevention, prompt-injection guards (for LLM apps), form-submission filters, message-broker content filters.
 
-**Every context needs.** schema/constraint to enforce, violation handler (fail-closed), input stream being guarded.
+**Broad-use intersection (review hypothesis).** schema/constraint to enforce, violation handler (fail-closed), input stream being guarded.
 
 **Varies (descendant territory).** schema language, coercion vs reject, rate limiting integration, whitelist vs blacklist approach.
 
@@ -9240,7 +9253,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: principled boundary defense, fail-closed semantics, explicit validation contract.
 - Gives up: interface evolution. Schema-locked interfaces resist extension; legitimate new inputs require schema updates before they pass.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Bypass via unexpected encoding is the canonical failure and has no structural defense in the pattern — it's an arms race between attackers and schema writers.
 - Overly permissive schemas are the other failure mode; getting the schema right is exactly where implementation mistakes happen.
 - The pattern triggers fail-closed; in practice fail-closed systems sometimes need fail-open paths for non-critical inputs, which the pattern doesn't support.
@@ -9284,7 +9297,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** smart contracts with slashing, security deposits, bail bonds, performance bonds, cryptoeconomic penalty systems, automated compliance enforcement.
 
-**Every context needs.** rule set (the oath), cryptographic commitment, penalty specification, audit mechanism for violations.
+**Broad-use intersection (review hypothesis).** rule set (the oath), cryptographic commitment, penalty specification, audit mechanism for violations.
 
 **Varies (descendant territory).** penalty type (slashing, reputation, access revocation), audit frequency, dispute process, multi-party binding.
 
@@ -9299,7 +9312,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: self-enforcing commitment, trustless deviation response, cryptographic evidence chain.
 - Gives up: contextual judgment. Automated penalties apply regardless of mitigating circumstances.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Rule-set ambiguity (named failure) — unclear rules produce unintended penalties; the pattern offers no disambiguation.
 - Decoupling penalty from severity is a real failure; the pattern requires explicit graduated penalties that callers often skip.
 - Immutability is a strong invariant that makes the pattern inflexible in long-lived deployments.
@@ -9352,7 +9365,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** LLM safety filters, content moderation, PII redaction, toxicity classification, compliance-disclosure review, export-control filtering.
 
-**Every context needs.** content to scan, detectors (PII, toxicity, etc.), threshold-based mitigation (redact/reject), scan-before-egress timing.
+**Broad-use intersection (review hypothesis).** content to scan, detectors (PII, toxicity, etc.), threshold-based mitigation (redact/reject), scan-before-egress timing.
 
 **Varies (descendant territory).** detector set, threshold values, mitigation strategy (redact vs reject vs rewrite), audit logging of interventions.
 
@@ -9367,7 +9380,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: post-generation safety net, explicit PII redaction, explicit fail-safe default.
 - Gives up: output freshness/richness. Every filter pass potentially removes content; aggressive filtering produces anodyne output.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Redaction Leak (named failure) — [REDACTED] markers themselves leak information (position, frequency).
 - Scunthorpe problem is endemic; substring-based matching is crude and the pattern's approach inherits this.
 - Context Blindness — classifiers without contextual awareness — is the dominant production failure.
@@ -9416,7 +9429,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** tax audits, compliance spot-checks, distributed-system liveness checks, integrity verification, ML-model red-teaming, dataset integrity sampling.
 
-**Every context needs.** random sampling over target's state, Merkle proof for sampled slice, comparison against expected.
+**Broad-use intersection (review hypothesis).** random sampling over target's state, Merkle proof for sampled slice, comparison against expected.
 
 **Varies (descendant territory).** sample frequency, sample size, unpredictability requirements (prevent cheating), escalation on mismatch.
 
@@ -9431,7 +9444,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: probabilistic honesty enforcement without full audit, Merkle-proof verifiability.
 - Gives up: privacy. Sampled data is exposed.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Privacy leakage is structural; sampled slices reveal.
 - Random sampling can miss targeted malicious behavior.
 - Response time enforcement requires infrastructure the pattern doesn't specify.
@@ -9474,7 +9487,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** JSON schema validation, API request validation, type checking, form validation, config file validation, protobuf validation, ontology conformance.
 
-**Every context needs.** input artifact, schema/constraint set; yields `Boolean` (per §3.13 verification-stack taxonomy).
+**Broad-use intersection (review hypothesis).** input artifact, schema/constraint set; yields `Boolean` (per §3.13 verification-stack taxonomy).
 
 **Varies (descendant territory).** schema language, strictness (coercion allowed or not), error reporting verbosity, partial-validation support.
 
@@ -9490,7 +9503,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Side-effect-free composition enables chaining validators safely, at the cost of excluding observability-emitting validators from the pattern.
 - Use of AcceptSpec for schema definition couples Validate to the AcceptSpec lifecycle — an evolving AcceptSpec affects every Validate invocation that references it.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Only one listed failure mode (Validator Bypass). Missing: Over-validation (strict reject of payloads a human would accept); Schema Drift (spec changes without coordinating with callers); False Match (passes the schema but the payload is semantically wrong).
 - 'Rejects malformed inputs before processing' is prescribed but not enforced — nothing in the pattern requires the caller to actually stop on false; the caller could Validate and proceed anyway.
 - The Boolean output loses the reason for rejection. Callers often want 'why' — the library's answer is that Validate's decision is Boolean; reasons belong on FailureTrace via ReceptivityGate, one layer up.
@@ -9544,7 +9557,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** forecasting, medical diagnosis, startup evaluation, strategic planning, anti-anecdotal-reasoning discipline, Fermi estimation.
 
-**Every context needs.** base rate for the reference class, adjustment rule for case-specific evidence, resistance to vivid details.
+**Broad-use intersection (review hypothesis).** base rate for the reference class, adjustment rule for case-specific evidence, resistance to vivid details.
 
 **Varies (descendant territory).** reference class definition, evidence weighting, subjective base-rate estimation when data is sparse.
 
@@ -9559,7 +9572,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: an anti-narrative counterweight, forced humility about typical outcomes, a shared reference for calibration across agents.
 - Gives up: speed (setting the prior is extra work) and sometimes relevance (poorly chosen reference classes give misleading anchors).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Reference class tennis (the named failure mode) is hard to prevent with an invariant alone — determining what's 'relevant' is itself judgment-laden.
 - The pattern commands 'vivid details don't change base rates' but in reality they should sometimes (new information can legitimately update the reference class); the rule is coarse.
 - Doesn't specify where the base rate comes from — agents can invent plausible-sounding priors and call the pattern satisfied.
@@ -9608,7 +9621,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** probabilistic reasoning, diagnostic updating, A/B test analysis, prediction market updates, scientific hypothesis revision, spam filtering, medical diagnosis.
 
-**Every context needs.** prior probability, observed evidence, likelihood ratio computation, posterior.
+**Broad-use intersection (review hypothesis).** prior probability, observed evidence, likelihood ratio computation, posterior.
 
 **Varies (descendant territory).** prior representation (point, distribution, ensemble), likelihood estimation method, base-rate handling, clamp thresholds to avoid 0/1 collapse, incremental vs batch.
 
@@ -9623,7 +9636,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: a calibrated framework, a named boundary (never 0 or 1), a forcing function to cite base rates.
 - Gives up: fluency under real uncertainty (exact numbers often aren't available) and accessibility (agents without probability background struggle to invoke it correctly).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'never update to 0 or 1' invariant is the right rule but collides with computational limits — in practice agents clip to 0.001/0.999 and then treat those as effective certainty.
 - No mechanism for correlated evidence — the pattern describes a single update in isolation, but most real agent loops involve streams of non-independent observations.
 - Assumes the agent has explicit priors to anchor on, which is often false; the BaseRateInclude invariant helps but doesn't close the gap when no reference class exists.
@@ -9675,7 +9688,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** tree search pruning, beam search width, brainstorming fan-out control, research question diversification, parallel-experiment count bounding.
 
-**Every context needs.** max breadth bound, distinctness + expected-value prioritization, truncation (top-K) or clustering (merge similar).
+**Broad-use intersection (review hypothesis).** max breadth bound, distinctness + expected-value prioritization, truncation (top-K) or clustering (merge similar).
 
 **Varies (descendant territory).** K value (PositiveInteger per §3.17), distinctness metric, value-estimation method.
 
@@ -9690,7 +9703,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: bounded fan-out, parent integrability, a structural defense against fork-bombs.
 - Gives up: search completeness. Some problems legitimately need >7 branches; BreadthGovernor will either truncate or merge them, and the right move depends on context the pattern can't see.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Miller's Law is a result about working memory in humans, not a law of distributed systems; using it as the parallelism ceiling for machine agents is a rhetorical transfer, not a derivation.
 - Distinctness-by-cosine is a cheap proxy for semantic orthogonality; two branches with cosine 0.75 can still be near-duplicates on the dimensions that matter.
 - No provision for reviewing merged branches later — once clustered, the suppressed alternatives are typically lost from the trace.
@@ -9732,7 +9745,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** forecaster calibration, ML model calibration (Platt scaling), probabilistic classifier tuning, expert-judgment aggregation, prediction-market participant self-tuning.
 
-**Every context needs.** track record (predictions + outcomes), calibration function, adjustment mechanism.
+**Broad-use intersection (review hypothesis).** track record (predictions + outcomes), calibration function, adjustment mechanism.
 
 **Varies (descendant territory).** track-record horizon, calibration method (Platt, isotonic, Bayesian), update frequency, asymmetric over/under correction.
 
@@ -9747,7 +9760,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 - Gains: meaningful confidence signals, principled adjustment loop, a handle for Bayesian updates that need honest priors.
 - Gives up: decisiveness — calibrating loops make agents more humble, which sometimes means less action. Over-correction is the specific danger.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Clarifying the monotonicity invariant as post-calibration (output) rather than pre-calibration (observed) resolves the ambiguity, but still requires callers to choose a calibration method (isotonic, Platt, Bayesian) that preserves the guarantee.
 - Over-correction is the named failure but the mitigation (damping, moving averages) isn't part of the pattern.
 - Requires a track record the agent can reference; in practice most agents don't maintain one, and the pattern doesn't provide infrastructure.
@@ -9789,7 +9802,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 **Broad-use contexts.** scientific falsification discipline, security threat modeling, pre-release QA, decision review, red-team self-critique.
 
-**Every context needs.** current hypothesis, active search for disconfirmation, fair-weight on counter-evidence, exhaustion-or-proceed gate.
+**Broad-use intersection (review hypothesis).** current hypothesis, active search for disconfirmation, fair-weight on counter-evidence, exhaustion-or-proceed gate.
 
 **Varies (descendant territory).** `disconfirmations_required` count (renamed from `confirmations_required` per §3.1), search-strategy rigor, evidence-weighting rules.
 
@@ -9806,7 +9819,7 @@ _Note: §3.1 rename validates — the old name literally said the opposite of th
 - Gains: explicit falsification step, structural resistance to confirmation bias, auditable disconfirmation attempt.
 - Gives up: speed (disconfirmation is extra work) and sometimes certainty (active search for counter-evidence legitimately erodes claims that were actually well-founded).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Performative Doubt' is the named failure mode and the pattern has no defense — ticking the box is structurally easy, and only careful review can catch it.
 - Independent verification is hard in single-agent settings; the pattern is strongest in multi-agent contexts where a RedTeam can truly produce counter-evidence.
 - No weighting for disconfirming evidence quality — strong disconfirming evidence should shift confidence more than weak; the pattern names the search but not the update.
@@ -9851,7 +9864,7 @@ _Note: §3.1 rename validates — the old name literally said the opposite of th
 
 **Broad-use contexts.** agent orient phase, CRUD ordering, informed consent (load context before decide), diagnostic workflows.
 
-**Every context needs.** pre-action read operation, blind-action prohibition, Warmup or read-cycle before write.
+**Broad-use intersection (review hypothesis).** pre-action read operation, blind-action prohibition, Warmup or read-cycle before write.
 
 **Varies (descendant territory).** read scope, freshness requirement, cache-hit shortcut.
 
@@ -9868,7 +9881,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: freshness guarantees, defense against hallucinated state, explicit operational invariant that reviewers can check.
 - Gives up: action latency and sometimes autonomy (agents that want to act confidently from memory are structurally prevented).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The timestamp invariant (action > refresh) is elegant and easy to violate — caching layers, memoized results, and 'just this once' shortcuts routinely skip the refresh.
 - The pattern says 'execute a Read operation' but doesn't specify how thorough — a partial read can satisfy the invariant while missing the state that matters.
 - Hallucinated State is the named failure mode, and ContextFirst is the primary defense; the pattern doesn't specify what to do when the context fetched is itself inconsistent.
@@ -9918,7 +9931,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** forecasting confidence intervals, LLM claim hedging over long horizons, scientific prediction decay, planning uncertainty cones, weather forecast confidence.
 
-**Every context needs.** initial confidence, decay function, time axis.
+**Broad-use intersection (review hypothesis).** initial confidence, decay function, time axis.
 
 **Varies (descendant territory).** decay function shape (exponential, linear, custom), reset events, per-claim vs global.
 
@@ -9933,7 +9946,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: structural humility about long-horizon predictions, explicit reserved mass for unknown unknowns, forced degradation that resists overconfidence.
 - Gives up: decisive long-range claims. Calibrated predictions are often too uncertain to drive action; the paralysis failure mode is the cost.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Paralysis' as a failure mode suggests the decay function is often too aggressive — the pattern has no recipe for setting it right.
 - 'Reserved probability mass for Unmodeled Event' is elegant and hard to calibrate — how much to reserve is a judgment with big downstream consequences.
 - Monotonic decay is assumed; some prediction horizons have non-monotonic structure (near-term chaos, medium-term trend visibility, long-term uncertainty) that the invariant flattens.
@@ -9986,7 +9999,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** code review, integration-test-level detection, debugging discipline, scientific-analysis integrity, data-pipeline QA.
 
-**Every context needs.** interface-code-modification detection, downstream-invariant tracking, local-success vs global-correctness distinction.
+**Broad-use intersection (review hypothesis).** interface-code-modification detection, downstream-invariant tracking, local-success vs global-correctness distinction.
 
 **Varies (descendant territory).** invariant-tracking granularity, detection mechanism, escalation on detection.
 
@@ -10001,7 +10014,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: explicit hack detection.
 - Gives up: legitimate flexibility.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - All three named failures are real.
 - Detection heuristics are model-dependent.
 - Justification Theater is hardest to defeat.
@@ -10048,7 +10061,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** poker theory (Annie Duke), investment analysis, military decision reviews, sports analytics (process vs results), judicial review, accountability-despite-bad-luck.
 
-**Every context needs.** decision reconstruction at time T, judgment of quality given available info at T, separation from actual outcome.
+**Broad-use intersection (review hypothesis).** decision reconstruction at time T, judgment of quality given available info at T, separation from actual outcome.
 
 **Varies (descendant territory).** information-reconstruction rigor, comparison baseline, counterfactual weighting.
 
@@ -10063,7 +10076,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: fair decision-quality evaluation, cryptographic anti-hindsight, structured prior commitment.
 - Gives up: ease and sometimes learning speed. Evaluating at decision-time is harder than evaluating at outcome-time and the discipline is unnatural.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Outcome Blindness is the named dual failure — too strict a separation of decision-quality from outcome-quality prevents learning from black swans.
 - Cryptographic commitment is strong discipline and operationally heavy; many real decisions don't warrant it.
 - The 'reconstruct information available at decision time' step is itself judgment — hindsight leaks in subtly even when prevented structurally.
@@ -10105,7 +10118,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** input validation pipelines, defensive parsing, API request validation, UI form submission, compiler error cascades, test-suite ordering (cheap tests first).
 
-**Every context needs.** layered hierarchy (cheap→expensive), early-halt on lower-layer failure, gate sequence.
+**Broad-use intersection (review hypothesis).** layered hierarchy (cheap→expensive), early-halt on lower-layer failure, gate sequence.
 
 **Varies (descendant territory).** layer definitions, halt vs continue-with-warning behavior, layer cost estimation, skip conditions.
 
@@ -10120,7 +10133,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: efficient check ordering, explicit fail-fast discipline, clean abstraction layering.
 - Gives up: comprehensive diagnostics. Fail-fast surfaces the first problem, not all problems; debugging often needs all of them.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hierarchy Obedience is strict; real check graphs often have parallel or cross-layer dependencies that the pattern can't express.
 - Fail-Fast loses diagnostic information — the caller learns of layer N failing and not what layer N+1 would have said.
 - No failure modes listed; LayeredCheck has some (missed layer, layer misorder) that the pattern doesn't catalogue.
@@ -10171,7 +10184,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** journalism bias detection, scientific-writing neutrality checks, legal-writing objectivity filters, LLM output bias detection, policy-analysis tone filters.
 
-**Every context needs.** input text, normative-word detection, rewrite to strip biases.
+**Broad-use intersection (review hypothesis).** input text, normative-word detection, rewrite to strip biases.
 
 **Varies (descendant territory).** normative-word lexicon, context sensitivity (some adjectives are factual in some contexts), rewrite strictness.
 
@@ -10186,7 +10199,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: structural is-ought boundary enforcement, explicit normative-adjective filter.
 - Gives up: richness of description. Pure factual output without normative flavor is colder and sometimes less useful.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Strips relevant safety warnings' is a real failure — 'this is dangerous' may be exactly the signal a user needs, and NormCheck removes it.
 - Adjective-level filtering is crude; normativity hides in sentence structure and framing that the pattern doesn't address.
 - The fact-preservation invariant is a high bar and under-specified — what counts as 'the same causal claim' after rewrite?
@@ -10238,7 +10251,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** AI alignment evaluators, ethical-review boards (ensemble of perspectives), judicial panels, multi-stakeholder value assessments, investment committees.
 
-**Every context needs.** static world-state input, weighted value function, ensemble of judges with perturbed values, quorum on outcome.
+**Broad-use intersection (review hypothesis).** static world-state input, weighted value function, ensemble of judges with perturbed values, quorum on outcome.
 
 **Varies (descendant territory).** ensemble size, value-perturbation degree, quorum threshold, escalation to human approval.
 
@@ -10253,7 +10266,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: explicit normative evaluation, preference transparency via logged weights, clean separation from prediction.
 - Gives up: richer ethical stances. Consequentialism-shaped evaluation fits some moral frameworks and not others.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Goodhart's Law is the classic failure and the pattern names it without mitigating.
 - Collusion between Proposer and Judge (named failure) — the caller supplies weights, so the system can be gamed; mitigation is outside the pattern.
 - Outcome Focus rules out action-type evaluation; some systems want both.
@@ -10302,7 +10315,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** ML concept drift handling, scientific paradigm shift modeling, scheme accommodation in pedagogy, semantic drift in language models, category-system overhaul.
 
-**Every context needs.** trigger detection (defying classification), restructure event, new-root-category creation.
+**Broad-use intersection (review hypothesis).** trigger detection (defying classification), restructure event, new-root-category creation.
 
 **Varies (descendant territory).** restructure aggressiveness (local vs global), rollback policy if restructure fails, migration semantics for existing data.
 
@@ -10317,7 +10330,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: adaptive ontology, accommodation-over-discard discipline, explicit fit threshold.
 - Gives up: ontology stability. OntologyAdapt specifically allows change; downstream callers must handle the instability.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Category explosion is the failure mode and the pattern's main risk; restructuring too often produces noisy taxonomies.
 - Fit Threshold 0.4 is a default that depends on domain; caller tuning is required.
 - Conservation of Data conflicts with pruning; no specified reconciliation.
@@ -10366,7 +10379,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** Monte Carlo simulation, scenario planning, risk analysis, red-teaming (adversarial timelines), decision-tree evaluation, robust-outcome analysis.
 
-**Every context needs.** branch generator, timeline cost function, tail-exploration bias (unlike standard chain-of-thought which follows likely paths).
+**Broad-use intersection (review hypothesis).** branch generator, timeline cost function, tail-exploration bias (unlike standard chain-of-thought which follows likely paths).
 
 **Varies (descendant territory).** fanout breadth, pruning policy, aggregation method, tail-weighting strategy.
 
@@ -10381,7 +10394,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: diverse future-space exploration.
 - Gives up: compute.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Descriptive-Only is hard to enforce; framing alone carries normative weight.
 - Fan-out explosion is the scaling issue.
 - Diversity threshold is unspecified.
@@ -10434,7 +10447,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** ML concept drift detection, financial regime detection, model-staleness alerts, changing-environment adaptation, scientific anomaly detection.
 
-**Every context needs.** internal model prediction, observed reality, divergence metric (Regime Stability Score), threshold for triggering.
+**Broad-use intersection (review hypothesis).** internal model prediction, observed reality, divergence metric (Regime Stability Score), threshold for triggering.
 
 **Varies (descendant territory).** window size, metric choice (KL divergence, RSS, surprisal), threshold adaptation, trigger action.
 
@@ -10449,7 +10462,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: continuous regime-shift detection, explicit divergence tracking, trigger for ontological update.
 - Gives up: immediacy. Trailing indicator means you react after the shift has begun.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Lag is structural — rolling averages inherently trail; there's no fix for this at the pattern level.
 - False Positives require threshold calibration that the pattern doesn't specify.
 - Window Integrity (fixed window size, not cherry-picked) is discipline that's easy to violate.
@@ -10501,7 +10514,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** sprint scope freezes, academic thesis-topic freezes, contract-term freezes, product-spec freezes, regulatory-submission freezes.
 
-**Every context needs.** T_freeze point, immutability post-freeze, Backlog-movement for new requirements.
+**Broad-use intersection (review hypothesis).** T_freeze point, immutability post-freeze, Backlog-movement for new requirements.
 
 **Varies (descendant territory).** unfreeze mechanism (override, exception), backlog integration, stakeholder-approval for unfreeze.
 
@@ -10516,7 +10529,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: bounded task scope, explicit freeze point, clear close-phase semantics.
 - Gives up: adaptability. Post-freeze legitimate discoveries must wait for v2.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Feature Creep is endemic; ScopeFreeze names the failure and requires discipline to resist.
 - Perfectionism Spiral is the AcceptSpec-refinement version of the same failure.
 - Immutability is strong; real projects sometimes warrant post-freeze changes for critical discoveries.
@@ -10565,7 +10578,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** constrained writing (no letter 'e'), constraint-based creative prompts (Oblique Strategies), research-domain constraints, pedagogical "solve without using Y", competitive constraints.
 
-**Every context needs.** tabu list, enforcement mechanism, creativity-forcing semantic.
+**Broad-use intersection (review hypothesis).** tabu list, enforcement mechanism, creativity-forcing semantic.
 
 **Varies (descendant territory).** tabu-list scope, enforcement strictness, swarm-wide (trace) vs individual.
 
@@ -10580,7 +10593,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: forced exploration of non-obvious solutions.
 - Gives up: efficiency. Often the tabu'd solution was the best one.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Paralysis (the named failure) is structural when the Tabu list covers the available solution space.
 - Constraint Satisfaction invariant treats partial avoidance as full, which may not match intent.
 - The pattern assumes the Tabu list is honest; gaming the list is easy.
@@ -10624,7 +10637,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** journalism fact-checking, academic peer review, witness evaluation in court, intelligence-source evaluation, RAG-source ranking, testimony weighting.
 
-**Every context needs.** source identification, track-record evaluation, incentive analysis, expertise check, credibility weighting.
+**Broad-use intersection (review hypothesis).** source identification, track-record evaluation, incentive analysis, expertise check, credibility weighting.
 
 **Varies (descendant territory).** track-record horizon, incentive model sophistication, transparency of evaluation, bias-accounting.
 
@@ -10639,7 +10652,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: explicit credibility assessment.
 - Gives up: acceptance speed. Every source evaluated adds latency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Genetic Fallacy is the dual failure and endemic.
 - Independent verification is aspirational — often impossible.
 - No failure modes beyond Genetic Fallacy.
@@ -10692,7 +10705,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** online ML fine-tuning, human learning from unexpected outcomes, RL reward-surprise weighting, forecaster self-update, Bayesian model updating.
 
-**Every context needs.** prediction, observation, surprisal computation (-log P(observed|predicted)), update magnitude proportional to surprisal.
+**Broad-use intersection (review hypothesis).** prediction, observation, surprisal computation (-log P(observed|predicted)), update magnitude proportional to surprisal.
 
 **Varies (descendant territory).** what gets updated (weights, embeddings, context), update rule specifics, clamping to avoid runaway updates.
 
@@ -10707,7 +10720,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: concentrated learning, magnitude-appropriate updates.
 - Gives up: stability. Surprisal-proportional updates can swing wildly.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - All three named failures are real and structural.
 - Stability Guard is asserted; max_update_rate is caller-tuned.
 - Outlier Overfitting and Catastrophic Forgetting are in tension — preventing one can worsen the other.
@@ -10757,7 +10770,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** investment analysis (surviving funds only), scientific study design (published vs drawer), ML training (learning from labeled success only), case-study analysis, historical reasoning.
 
-**Every context needs.** explicit question "am I seeing only successes?", base-rate estimation, failure inclusion.
+**Broad-use intersection (review hypothesis).** explicit question "am I seeing only successes?", base-rate estimation, failure inclusion.
 
 **Varies (descendant territory).** failure-detection method, base-rate estimation technique, correction weighting.
 
@@ -10772,7 +10785,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: survivor-bias correction, sample re-weighting.
 - Gives up: time. Failure-seeking is expensive.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Phantom Hunt is endemic in genuinely successful domains.
 - Base rate estimation is often the hardest part.
 - No failure modes beyond Phantom Hunt.
@@ -10813,7 +10826,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: genuinely independent forecasters (different training data), principled temporal diversity.
 - Gives up: currency. Older checkpoints don't know recent events.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Five is arbitrary.
 - Requires maintaining multiple model versions, which is expensive.
@@ -10854,7 +10867,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: layered truth-seeking, no suppression by authority.
 - Gives up: speed. Layer-blind composition is heavy.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Layer-blind composition requires infrastructure the pattern assumes.
 - Persistence as content-addressed anchor fits sema's philosophy.
@@ -10907,7 +10920,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** prediction markets, forecasting calibration, scientific hypothesis tracking, debugging belief-state machines, mind-change provenance for auditing.
 
-**Every context needs.** prior state pinning, posterior tracking, `supersedes` edge on belief shift, surprisal quantification.
+**Broad-use intersection (review hypothesis).** prior state pinning, posterior tracking, `supersedes` edge on belief shift, surprisal quantification.
 
 **Varies (descendant territory).** shift threshold, compression policy (full history vs delta), access control, replay support.
 
@@ -10922,7 +10935,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: auditable reasoning, immune response against hindsight bias, explicit evidence-to-belief linkages, supersession history.
 - Gives up: speed and implicit ease — belief updates become first-class operations rather than silent state changes.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The threshold for 'significant shift' is left to the caller; in practice this becomes a judgment call that is itself subject to motivated reasoning.
 - Non-destructive update is a principle; enforcement requires discipline the pattern can't provide on its own. Many 'belief tracked' graphs are actually silent-updated with token commit ceremony.
 - Storage and traversal costs grow without bound; the pattern provides no principled pruning mechanism for low-value history.
@@ -10970,7 +10983,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** CoT summarization, context compression for long contexts, named-function abstraction in reasoning, pattern-recognition into chunks, information hierarchization.
 
-**Every context needs.** grouping criterion, chunk naming, hierarchy structure, merge/split semantics.
+**Broad-use intersection (review hypothesis).** grouping criterion, chunk naming, hierarchy structure, merge/split semantics.
 
 **Varies (descendant territory).** grouping method (semantic similarity, temporal proximity, structural), chunk size, retention of original items vs discard, lossy vs lossless.
 
@@ -10985,7 +10998,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: capacity multiplication, hierarchical organization, principled compression with named retrieval hooks.
 - Gives up: detail-fidelity (the named failure mode, lossy compression, is intrinsic to merging) and reversibility (once merged, the chunk is the new unit).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'retention of key retrieval hooks' invariant is the hardest guarantee the pattern makes and the weakest to enforce — 'key' is judgment.
 - Size invariant (Merged ≤ ContextWindowLimit) is trivially satisfiable at the expense of fidelity; no invariant forces the merge to actually compress.
 - The specific failure mode (lossy compression, specific IDs discarded) is the bread-and-butter problem; the pattern names it without offering defense.
@@ -11021,7 +11034,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** LLM context-window management, human meeting-notes distillation, knowledge-base summarization, conversational memory compression.
 
-**Every context needs.** token/memory footprint reduction, active-constraints preservation, unresolved-goals preservation.
+**Broad-use intersection (review hypothesis).** token/memory footprint reduction, active-constraints preservation, unresolved-goals preservation.
 
 **Varies (descendant territory).** compression ratio, what's preserved beyond constraints+goals (preferences, open threads), recall-support.
 
@@ -11036,7 +11049,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: sustained long-running agent sessions, bounded token usage, explicit preservation of load-bearing context.
 - Gives up: perfect recall. ContextCompress specifically loses information; the pattern's value is that it loses the right information.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — the mechanism defers to Compress for the actual reduction, adding only the 'retain active constraints and unresolved goals' criterion. That criterion is the hardest part and is under-specified.
 - No mechanism for detecting when compression has been too aggressive — a lost constraint reveals itself only when a later step violates it.
 - Compression frequency is unspecified — compressing every turn is expensive; compressing rarely loses the smooth-degradation property.
@@ -11086,7 +11099,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** LLM self-distillation, RL experience-replay buffers, meditation on past successes, athletic replay training, habit reinforcement.
 
-**Every context needs.** replay buffer of successful interactions, quality-ranking, sampling mechanism, fine-tune-during-idle semantic.
+**Broad-use intersection (review hypothesis).** replay buffer of successful interactions, quality-ranking, sampling mechanism, fine-tune-during-idle semantic.
 
 **Varies (descendant territory).** buffer size, ranking method, decay of old successes, update strategy.
 
@@ -11101,7 +11114,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: reinforcement of successful behaviors without external supervision, curriculum-ordered replay, a story for continuous learning.
 - Gives up: exposure to novel situations. Replay emphasizes what worked; agents that only replay risk never learning what should work in new conditions.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Model collapse is the dominant failure mode and the pattern has no structural defense — self-distillation is known to degenerate without external signal, and the pattern essentially is self-distillation.
 - 'Examples ordered by complexity' is a curriculum-learning idea; determining complexity rank is itself a non-trivial task the pattern doesn't specify.
 - 'No catastrophic forgetting' is an invariant with no enforcement mechanism — preventing forgetting is a whole research area.
@@ -11151,7 +11164,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** context-length-driven LLM splitting, worker colony specialization, memory hierarchy tiering, historical-context archival, team specialization over time.
 
-**Every context needs.** splitting trigger (capacity threshold), active vs archival split, history preservation.
+**Broad-use intersection (review hypothesis).** splitting trigger (capacity threshold), active vs archival split, history preservation.
 
 **Varies (descendant territory).** splitting criterion (temporal, topical, role), archival access protocol, active-to-archival handoff semantics, resurrection policy.
 
@@ -11166,7 +11179,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: alternative to forgetting.
 - Gives up: unified-agent simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Coordination grows with number of shards.
 - Recombination mechanics are unspecified.
 - Disjointness invariant vs overlapping experiences.
@@ -11215,7 +11228,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** distributed task decomposition, multi-agent coordination shards, federated learning samples, document chunks with source metadata, hologram reconstruction analogy.
 
-**Every context needs.** parent_goal_hash, intent_summary, constraint_inheritance. All three are load-bearing — without them local action can't verify global alignment.
+**Broad-use intersection (review hypothesis).** parent_goal_hash, intent_summary, constraint_inheritance. All three are load-bearing — without them local action can't verify global alignment.
 
 **Varies (descendant territory).** recovery detail (approximate vs exact), compression of the "seed," shard granularity.
 
@@ -11230,7 +11243,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: global-context preservation across splits.
 - Gives up: shard compactness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Context Bloat is endemic — every shard carrying full global history.
 - Information Redundancy is a strong invariant that costs storage.
 - The holographic metaphor is evocative; operationalization varies.
@@ -11279,7 +11292,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** ConceptAnchor pairing with embeddings, pattern-library fuzzy-search, content-addressed semantic search, namespace fuzzy-matching, embedding-vs-hash dual binding.
 
-**Every context needs.** symbolic anchor (pattern card / hash), high-dimensional vector embedding, fuzzy-search capability, canonical-hash verification.
+**Broad-use intersection (review hypothesis).** symbolic anchor (pattern card / hash), high-dimensional vector embedding, fuzzy-search capability, canonical-hash verification.
 
 **Varies (descendant territory).** embedding dimension, embedding model, similarity threshold, re-embedding policy on model update.
 
@@ -11294,7 +11307,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: fuzzy search + canonical verification in the same vocabulary, LLM-intuition bridge to code-verification strictness.
 - Gives up: embedding durability. Upgrading the embedding model invalidates existing embeddings, forcing rebuild.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Model shift (the named failure) has no mitigation in the pattern — it's assumed to be managed externally.
 - Semantic Proximity threshold is unspecified — what counts as 'close enough'? Caller decides, and the decision shapes search behavior.
 - The pattern assumes embeddings are a deterministic function of the pattern's text; in reality, subtle variations in text produce different embeddings.
@@ -11343,7 +11356,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** mixture-of-experts training, modular ML architecture updates, organizational learning (feedback routes to the team), specialist-agent memory updates.
 
-**Every context needs.** feedback signal tagged with solver ID, routing mechanism, isolation of updates to originating module.
+**Broad-use intersection (review hypothesis).** feedback signal tagged with solver ID, routing mechanism, isolation of updates to originating module.
 
 **Varies (descendant territory).** routing granularity, catastrophic-interference avoidance strength, cross-module-signal-sharing policy.
 
@@ -11358,7 +11371,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: specialist learning, explicit attribution.
 - Gives up: transfer. Specialists don't learn from each other.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Both named failures are real.
 - Isolation invariant is too strong for transfer-learning scenarios.
 - Attribution requires feedback-signal identification.
@@ -11407,7 +11420,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Per-node scope buys isolation (one poisoned node doesn't corrupt others) at the cost of forbidding natural sharing.
 - Three-tuple structure (problem_class, route, outcome_quality) buys aggregability at the cost of restricting what can be remembered — richer signals (context, uncertainty) need schema extension.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Three failure modes are sharp but name poisoning as 'silently bias all downstream routing without triggering any failure mode.' That's accurate and damning. The pattern needs defense in depth — anomaly detection on outcome_quality distributions, diversity checks, etc. — none currently in spec.
 - 'Cache of routing outcomes' names the structure without the access policy. Who reads? Who writes? What is the cache eviction? The pattern leaves these to the implementer, meaning two PathwayMemory instances may behave very differently under load.
 - Relationship to ReceptivityGate: the ReceptivityGate protects writes to PathwayMemory, but the pattern itself doesn't enforce that every write came through ReceptivityGate. A direct write bypasses protection.
@@ -11450,7 +11463,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** long-agent-session coherence, recursion-depth tracking, context-state awareness, multi-tool state management, long-running-process dashboards.
 
-**Every context needs.** position tracking, state verification, depth-in-recursion measurement.
+**Broad-use intersection (review hypothesis).** position tracking, state verification, depth-in-recursion measurement.
 
 **Varies (descendant territory).** ping frequency, what's tracked (context, tool state, depth), integration with somatic_marker, fatigue detection.
 
@@ -11465,7 +11478,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: agent self-awareness, stack-trace verification, explicit liveness check.
 - Gives up: compute. Proprioception adds periodic overhead; for tight inner loops this is significant.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Orphaned (named failure) — parent task unresponsive — is real and the pattern doesn't specify recovery.
 - Hallucinated Context is the hardest failure; detecting mismatch requires comparing internal state to environmental reality, which the pattern assumes is possible.
 - Stagnation threshold N is caller-set with no default rule. Failure modes were previously jammed into one list entry (Stagnation + Orphaned + Hallucinated Context run together); now split into three distinct entries.
@@ -11510,7 +11523,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** RAG (canonical), memory-augmented LLMs, reference-backed writing, citation-required journalism, legal research pipelines, medical-reference queries.
 
-**Every context needs.** external knowledge store, pre-generation query, retrieval result, prompt injection, generation-after-retrieval.
+**Broad-use intersection (review hypothesis).** external knowledge store, pre-generation query, retrieval result, prompt injection, generation-after-retrieval.
 
 **Varies (descendant territory).** store type (vector DB, search index, knowledge graph), retrieval depth, citation format, freshness guarantees.
 
@@ -11525,7 +11538,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: grounded generation, external knowledge injection, citation-ready outputs.
 - Gives up: self-sufficiency. RetrievalAugment introduces an external dependency (the retrieval store) that can fail, be stale, or be attacked.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Retrieval Poisoning is a real adversarial concern; the pattern has no built-in verification of retrieved content.
 - Context Stuffing is endemic; top-K selection requires a budget that many implementations don't respect.
 - Citation invariant is aspirational; retrieved sources get cited formally while not actually being load-bearing for the response.
@@ -11570,7 +11583,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** chain-of-thought traces, calculator tape, draft-before-publish workspaces, LLM inner monologue, debugging print statements, analyst workings, creative sketching.
 
-**Every context needs.** isolation from main output, writability by the agent, persistence across the reasoning session.
+**Broad-use intersection (review hypothesis).** isolation from main output, writability by the agent, persistence across the reasoning session.
 
 **Varies (descendant territory).** size limit, eviction policy, inspectability by others (debug vs fully hidden), persistence after session ends, encryption.
 
@@ -11585,7 +11598,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: explicit working memory, separation from output, intra-task persistence.
 - Gives up: simplicity. Scratchpad adds a concept; for simple reasoning, the extra structure is overhead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Scratchpad Leak is the dominant failure — notes for yourself get sent to users.
 - Memory Overflow (named failure) — unbounded growth — requires size enforcement the invariant asserts but can't enforce.
 - Persistence across steps is useful and a source of state-contamination bugs.
@@ -11628,7 +11641,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** LLM jailbreak mitigation, organizational values reminders, morning affirmations, meeting charters repeated, recurring safety briefings.
 
-**Every context needs.** core-identity text, persistent injection into context, pre-response timing.
+**Broad-use intersection (review hypothesis).** core-identity text, persistent injection into context, pre-response timing.
 
 **Varies (descendant territory).** content verbosity, injection frequency, update policy.
 
@@ -11643,7 +11656,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: sustained constraint adherence, explicit reinforcement.
 - Gives up: context budget and sometimes fluency. Heavy reminders distract from user content.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Context Dilution is the structural failure — reminders lose effect as context grows.
 - Brittleness is real — determined attackers craft prompts that bypass static reminders.
 - Token Overhead is the visible cost; the pattern names it without specifying a budget.
@@ -11693,7 +11706,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** chess-move forethought, pre-deploy dry-runs, legal simulation of outcomes, architect walkthrough, mental simulation of arguments before confrontation.
 
-**Every context needs.** proposed action, step-by-step simulation, predicted-state inspection, abort-on-bad-state semantic.
+**Broad-use intersection (review hypothesis).** proposed action, step-by-step simulation, predicted-state inspection, abort-on-bad-state semantic.
 
 **Varies (descendant territory).** simulation depth, scratchpad medium, rollback cost, immutable-record requirement.
 
@@ -11708,7 +11721,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: pre-action outcome preview, replayable for audit.
 - Gives up: speed. Every irreversible action pays the trace tax.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Map-vs-territory is fundamental; the trace is as accurate as the simulation model.
 - Replayability is strong invariant; random/probabilistic simulations don't satisfy it.
 - Causality invariant doesn't prevent causal-chain errors, just asserts the trace shape.
@@ -11747,7 +11760,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** epistemic version control, scientific hypothesis provenance, bug-hypothesis tracking, LLM answer-confidence history, audit-trail for decisions.
 
-**Every context needs.** Belief instance, Trace primitive applied, silent-update prevention, citation of prior-belief-being-revised.
+**Broad-use intersection (review hypothesis).** Belief instance, Trace primitive applied, silent-update prevention, citation of prior-belief-being-revised.
 
 **Varies (descendant territory).** granularity of Belief nodes, compression of history, audit access.
 
@@ -11762,7 +11775,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: chronological belief history.
 - Gives up: storage.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Similar to BeliefTracking; the distinction is subtle.
 - No failure modes listed.
 - Very thin.
@@ -11819,7 +11832,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** medical diagnosis, forensic reasoning, debugging, scientific theorizing, user-intent inference, anomaly explanation, error triage.
 
-**Every context needs.** observation input, hypothesis output, "best guess" semantics (ranked, not exhaustive).
+**Broad-use intersection (review hypothesis).** observation input, hypothesis output, "best guess" semantics (ranked, not exhaustive).
 
 **Varies (descendant territory).** hypothesis space shape, ranking criteria, confidence tracking, verification requirements (critical for high-stakes — see caution entry in §3.15).
 
@@ -11834,7 +11847,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: forward progress under uncertainty, explicit reasoning trace, a named status (provisional) that downstream code can route on.
 - Gives up: guarantees. An abductive conclusion can be perfectly reasoned and still wrong; the mechanism doesn't fix that.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Ranking heuristics (simplicity, scope, coherence) are themselves contested — Occam's Razor isn't a law, and 'scope' is easy to hack by redefining what counts as observed.
 - The pattern names chain_of_thought as the trace, but CoT is known to rationalize post-hoc; the trace may look explicit without being faithful.
 - No built-in expiration — a provisional hypothesis can quietly harden into an assumption if nothing re-checks it. BeliefTracking is the remedy but is not wired in by the mechanism itself.
@@ -11889,7 +11902,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** goal-oriented planning, Prolog-style inference, dependency resolution, project planning (start from deadline), reverse engineering, medical treatment planning.
 
-**Every context needs.** goal/end-state, recursive prerequisite identification, termination at known facts or actionable steps.
+**Broad-use intersection (review hypothesis).** goal/end-state, recursive prerequisite identification, termination at known facts or actionable steps.
 
 **Varies (descendant territory).** depth limit, cycle detection, fact-database lookup method.
 
@@ -11904,7 +11917,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: planning efficiency, an interpretable chain from goal to action, natural integration with deductive reasoning.
 - Gives up: serendipity (no room for noticing unrelated opportunities) and robustness (brittle if the causal chain has gaps or competing pathways).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Assumes causality is a clean DAG; real decisions involve feedback loops that backward chaining can't represent natively.
 - The 'sufficient condition' invariant is too strong for soft-causal domains (most of cognition) where prerequisites are typically necessary-not-sufficient.
 - No built-in handling for alternative paths — backward chaining picks a path and commits; exploring alternatives requires a separate BeamSearch or equivalent.
@@ -11946,7 +11959,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** git bisect, 20-Questions, binary search in sorted arrays, medical diagnostic narrowing, debugging (which commit broke it?), diagnostic decision trees.
 
-**Every context needs.** possibility space, partition question, elimination rule, recursion on remaining half.
+**Broad-use intersection (review hypothesis).** possibility space, partition question, elimination rule, recursion on remaining half.
 
 **Varies (descendant territory).** question-selection heuristic, partition fairness (exactly half vs approximate), fallback on indivisible space.
 
@@ -11961,7 +11974,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: O(log n) search in well-structured spaces, a named discipline for debugging and root-cause investigation.
 - Gives up: robustness in unstructured domains and the qualitative information that a linear scan would surface along the way.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The ≥40% invariant is a floor, not a guarantee — in practice many splits underperform and the pattern offers no escape hatch other than 'the question was flawed.'
 - No handling for multiple correct answers — bisection collapses the space assuming one target; multi-answer search needs a different pattern.
 - False negative (discarding the half that contained the answer) is the canonical failure and is unrecoverable without restarting; the pattern doesn't require a verification step on the eliminated half.
@@ -12003,7 +12016,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** LLM CoT prompting, mathematical proof derivation, step-by-step tutorials, forensic reconstruction, audit trails of reasoning.
 
-**Every context needs.** sequential derivation, linear chain topology, step visibility.
+**Broad-use intersection (review hypothesis).** sequential derivation, linear chain topology, step visibility.
 
 **Varies (descendant territory).** step granularity, self-correction interleaving (StepBack, Reflexion), compression of intermediate steps.
 
@@ -12019,8 +12032,8 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Intermediate-steps-before-answer buys transparency at the cost of prompt length and potential drift across steps.
 - Naming the technique as a pattern buys canonicalization at the cost of pattern-count inflation for what is arguably a prompt style.
 
-**Critique.**
-- Two invariants, zero failure modes. Missing: Step Drift (later steps contradict earlier ones), Rationalization (steps reverse-engineered from a pre-held conclusion), Overconfident Chain (long reasoning chain amplifies errors).
+**Critique (diagnostic, not contract requirements).**
+- Step drift, post-hoc rationalization, and error amplification are important diagnostics when reviewing a reasoning trace. They remain sidecar risks unless a concrete ChainOfThought verifier supplies testable criteria; their absence from the failure_modes field is not itself a gap.
 - 'Inherits from Think and Chain' is convenient but invariants should be stated independently — readers seeing ChainOfThought in isolation shouldn't have to chase two other patterns.
 - The Tier is not displayed in this excerpt but CoT is Tier 2 (honesty-dependent): a dishonest agent can produce fake reasoning. The pattern doesn't explicitly note this vulnerability.
 
@@ -12069,7 +12082,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** academic citation norms, journalism fact-citation, RAG response grounding, legal citation, LLM hallucination prevention.
 
-**Every context needs.** no-ungrounded-facts rule, pointer generation per claim, retrieval-backed verification.
+**Broad-use intersection (review hypothesis).** no-ungrounded-facts rule, pointer generation per claim, retrieval-backed verification.
 
 **Varies (descendant territory).** pointer format (quote vs ID), source-acceptance criteria, citation density requirements.
 
@@ -12084,7 +12097,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: mechanically-checkable assertion grounding, dramatic reduction in confabulation, auditable reasoning chains.
 - Gives up: fluency and common-sense coverage. CiteBack often produces 'I cannot say because no source' where the answer is common knowledge, which feels awkward but is honest.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Source must exist in context history' is the invariant and it's easy to violate subtly — the agent can cite something plausibly-named that wasn't actually there.
 - Common-sense failure mode is called out but not mitigated; the real fix is multi-tier (world-knowledge allowed for well-known facts, citation required for specifics), which the pattern doesn't express.
 - No mechanism for citation quality — pointing at a chunk that mentions the topic but doesn't support the claim satisfies the invariant vacuously.
@@ -12137,7 +12150,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** project-effort estimation, research-feasibility estimation, game-state evaluation, bug-difficulty estimation, pre-investment due-diligence.
 
-**Every context needs.** N rapid low-fidelity sims, variance measurement, decomposition trigger on high variance.
+**Broad-use intersection (review hypothesis).** N rapid low-fidelity sims, variance measurement, decomposition trigger on high variance.
 
 **Varies (descendant territory).** N (PositiveInteger), variance threshold, sim fidelity, decomposition aggressiveness.
 
@@ -12152,7 +12165,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: effort estimation without full solve, a principled trigger for decomposition, early detection of hidden complexity.
 - Gives up: accuracy. The pattern outputs a confidence signal, not an answer, and it can be wrong in both directions (correlated hallucination, false negative).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Correlated Hallucination: All simulations wrong in the same way' is the dominant failure in LLM-driven simulation and the pattern offers no mitigation.
 - Sample count is explicitly called out as arbitrary — tuning is hand-waved as a caller concern.
 - 'Echo content matches input semantic hash' invariant is odd — it's enforcing something (semantic stability) orthogonal to the variance-measurement purpose.
@@ -12196,7 +12209,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: structural prevention of generator self-censorship, explicit orthogonal quality dimensions, concurrent observation that scales to long artifacts.
 - Gives up: coherence of voice (multiple observers create diverse pressures), setup cost (wiring five observers is heavier than one review), and simplicity (the protocol is, itself, a decomposition requiring its own maintenance).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The four-test decomposition as validation for orthogonality is self-referential — the decomposition validates itself using its own decomposition test. Not circular, but not independent.
 - The 'concurrent, not sequential' choice is defensible but hard to enforce — in practice agents running the protocol tend to serialize because their context windows don't support truly parallel observation.
 - Five dimensions are the current answer; revisions to the paper have suggested this is under-determined, and the pattern should probably version which version of §6.1 it encodes.
@@ -12244,7 +12257,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - DecompositionGate enforcement buys correctness (decompositions are orthogonal, complete, etc.) at the cost of latency and per-split ceremony.
 - Synthesis-based recomposability buys result coherence at the cost of requiring a matching Synthesis pattern for every decomposition — sometimes not available.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The three failure modes are sharp but don't address the most common failure in practice: Premature Closure — declaring a decomposition complete before exhaustively testing the Completeness criterion.
 - 'Independent but cooperating': the spec calls for independence among sub-concepts but doesn't name the coordination overhead that re-emerges when they must cooperate. Independence is checked structurally by DecompositionGate; semantic coupling can still survive.
 - The distinction from generic Decompose is asserted but not enforced — a caller who calls Decompose and assigns solvers afterward produces a functionally equivalent structure without invoking ConceptualDecomposition.
@@ -12290,7 +12303,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** domain-specific ontology construction (medical, legal), taxonomic schema design, world-building in fiction, API-schema evolution, scientific-classification construction.
 
-**Every context needs.** raw data or seed axioms, FirstPrinciples grounding, structured output with concepts + relationships.
+**Broad-use intersection (review hypothesis).** raw data or seed axioms, FirstPrinciples grounding, structured output with concepts + relationships.
 
 **Varies (descendant territory).** formality, domain specificity, collaborative vs solo, revision cadence.
 
@@ -12305,7 +12318,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: named primitive for ontology construction, explicit completeness and consistency checks, a substrate for Adversarial Ontology Construction.
 - Gives up: pragmatism. Full completeness and full consistency are rarely achievable for real domains; the pattern holds them as invariants anyway.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Incoherence (the named failure mode) is the bare minimum — real ontologies have deeper failures (over-specification, missing middle, wrong abstraction level) that the pattern doesn't name.
 - The 'constructive counterpart to Adversarial Ontology Construction' framing is useful but the relationship between the two isn't fully specified.
 - No mechanism for ontology evolution — once constructed, what happens when the domain shifts? The pattern doesn't prescribe versioning or revision.
@@ -12350,7 +12363,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** peer review, design critique, code review, essay critique, art critique, policy analysis, clinical feedback.
 
-**Every context needs.** target artifact, criteria, structured output (strengths, weaknesses, recommendations).
+**Broad-use intersection (review hypothesis).** target artifact, criteria, structured output (strengths, weaknesses, recommendations).
 
 **Varies (descendant territory).** structure format, criteria source, depth, actionability requirement.
 
@@ -12365,7 +12378,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: structured feedback that feeds refinement loops, criteria-grounded critique, descriptive richness beyond a score.
 - Gives up: comparability (Critiques of two artifacts aren't easily ranked) and sometimes honesty (the bias toward actionable advice edits out 'this is fundamentally wrong').
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Nitpicking' is the most common failure mode — focusing on trivial details while missing structural flaws. The pattern can't force attention to the right level.
 - 'Vague Praise' is the second-most-common — Critique that satisfies the invariants vacuously by naming criteria and giving no substance.
 - 'Projection' (critiquing the artifact for not being what the critic would have built) is endemic; the pattern notes it without mitigating.
@@ -12417,7 +12430,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** algorithm divide-and-conquer, organizational task splitting, scientific problem decomposition, hierarchical planning, modular design.
 
-**Every context needs.** task to decompose, independence criterion (subproblems don't interact), recursion base case.
+**Broad-use intersection (review hypothesis).** task to decompose, independence criterion (subproblems don't interact), recursion base case.
 
 **Varies (descendant territory).** decomposition axis, recursion depth, re-compose strategy.
 
@@ -12432,7 +12445,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: tractable solving for large problems, natural parallelism, principled recursion, clean pairing with Compose.
 - Gives up: problems with essential coupling (genuinely non-decomposable structures). Coupling leakage (the named failure) is exactly what happens when the decomposition axis was wrong.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The independence invariant is almost always violated in practice — 'truly independent' is an ideal, and most decompositions have some acceptable leak.
 - 'If subproblems interact, the split is wrong — try a different decomposition axis' is correct advice and provides no help with how to find the right axis.
 - The termination condition ('recurse until...') is not specified; depth governance lives in a separate pattern.
@@ -12479,7 +12492,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: rigor for decomposition claims, a filter against pseudo-decompositions, an enforceable quality bar for new taxonomic entries.
 - Gives up: legitimate prototype-shaped and partially-characterized splits. The strict tests are an intentional crucible (per paper §2), and real-world usefulness sometimes comes at the cost of failing one test.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Strict universality rejecting prototype-shaped concepts is called out in the failure modes — this is the most contested design choice in the whole library, and the paper defends it explicitly.
 - The four tests are non-compensatory; many otherwise-good decompositions fail on only one test, and the gate has no 'fail-one-retry' mechanism.
 - The four tests are derived from the paper's methodology; if the methodology is wrong the tests are wrong, and the pattern hard-codes the paper's stance.
@@ -12522,7 +12535,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** formal logic, mathematical proof, rule application, type inference, constraint propagation, SQL query planning, theorem proving.
 
-**Every context needs.** general rule (Axiom or higher-level conclusion), specific case, conclusion that MUST be true if premises are.
+**Broad-use intersection (review hypothesis).** general rule (Axiom or higher-level conclusion), specific case, conclusion that MUST be true if premises are.
 
 **Varies (descendant territory).** rule representation, proof-carrying vs assertive, finite vs higher-order, decidability.
 
@@ -12537,7 +12550,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 - Gains: a certainty guarantee, a named slot for the strongest inference form, a substrate for proof-oriented patterns.
 - Gives up: expressiveness for most real reasoning. Deduction applies cleanly only when premises are formal and complete, which is rare outside mathematics.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The pattern is almost entirely a naming — the content is in classical logic, not in the Deduction node.
 - Truth preservation is a property of valid arguments, which the pattern names; it doesn't provide a mechanism for checking validity (that's left to the caller).
 - In multi-step deductive chains the pattern has no composition story — each step inherits certainty, but the cumulative operation is just 'chain of deductions' which isn't explicitly modeled.
@@ -12589,7 +12602,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 **Broad-use contexts.** literature review, investigative journalism, market research, competitive analysis, due-diligence, forensic investigation, open-source intelligence gathering.
 
-**Every context needs.** planning (decompose query), multi-round search with gap-detection, synthesis with contradiction resolution, reporting with citations.
+**Broad-use intersection (review hypothesis).** planning (decompose query), multi-round search with gap-detection, synthesis with contradiction resolution, reporting with citations.
 
 **Varies (descendant territory).** search-tool set, round-count bound, synthesis depth, citation style, report format.
 
@@ -12606,7 +12619,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: autonomous research pipeline, multi-source triangulation, structured synthesis stage, explicit report output.
 - Gives up: simplicity and speed. The pipeline is heavy; for simple questions it's overkill and slower than direct search.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Premature Closure is the third failure mode — the pattern says 'search depth > 1' without saying how much > 1; depth calibration is the caller's job.
 - Synthesis Hallucination is perhaps the most dangerous failure — the pattern names it, requires multiple sources, and has no structural defense against the hallucinated synthesis that integrates them.
 - 'Information synthesized from multiple disparate sources' is the invariant — 'disparate' is judgment, and over-aggregating from similar sources satisfies the invariant vacuously.
@@ -12655,7 +12668,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** Hegelian dialectic, internal debate before writing, solo multi-perspective debugging, creative-writing persona conflict, design-tension resolution.
 
-**Every context needs.** Thesis, Antithesis construction (potentially via SteelmanCheck), Synthesis generation.
+**Broad-use intersection (review hypothesis).** Thesis, Antithesis construction (potentially via SteelmanCheck), Synthesis generation.
 
 **Varies (descendant territory).** persona construction method, iteration count, synthesis-acceptance criteria.
 
@@ -12671,7 +12684,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Synthesis-mandatory buys generative reasoning at the cost of excluding legitimate refutation-only outcomes.
 - Mind-Reasoning placement tracks the cognitive nature at the cost of not foregrounding the convergence risk.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - One invariant, two failure modes. Missing invariants: Non-trivial Antithesis (strength below which Antithesis doesn't count), Termination (bound on iterations).
 - 'Resolves at least one contradiction' is the synthesis-quality invariant but doesn't say how resolution is measured — an agent can claim resolution without substantive integration.
 - Distinction from SocraticLoop is asserted (queries user) but SocraticLoop and Dialectic share structure enough that the choice-between is a caller concern the library could make sharper.
@@ -12722,7 +12735,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** detective work, differential diagnosis, debugging, multiple-choice test strategy, constraint-satisfaction narrowing, suspect elimination.
 
-**Every context needs.** enumerated possibility space, falsification tests, cost-ordered application, remaining candidates.
+**Broad-use intersection (review hypothesis).** enumerated possibility space, falsification tests, cost-ordered application, remaining candidates.
 
 **Varies (descendant territory).** enumeration completeness, test cost estimation, tie-break policy when multiple remain.
 
@@ -12737,7 +12750,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: systematic investigation, cost-optimized test ordering, a named method for eliminative reasoning.
 - Gives up: tractability for large or open-ended option sets. Enumeration explodes when the hypothesis space isn't bounded.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Premature Exclusion is the dominant failure — faulty tests kill the true answer, leaving an empty set, and the pattern has no recovery mechanism.
 - Exhaustive-at-start is rarely achievable for real problems; "all possible answers" is an idealization.
 - Restructured: preconditions were jammed into one string (now split to three), and the original "invariant" was a miscategorized precondition (now replaced with real execution invariants — Monotonic Reduction and Evidence-Required Exclusion — that describe what the pattern maintains during operation).
@@ -12786,7 +12799,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** effort estimation in software, project cost estimation, consulting-engagement scoping, solver bidding, research budget estimates, attention-allocation estimates.
 
-**Every context needs.** task being estimated, two modes (HeuristicSnap fast, Simulation accurate), Bid-with-CI output, meta-cap (estimation consumes budget).
+**Broad-use intersection (review hypothesis).** task being estimated, two modes (HeuristicSnap fast, Simulation accurate), Bid-with-CI output, meta-cap (estimation consumes budget).
 
 **Varies (descendant territory).** mode selection criterion, confidence-interval method, calibration tracking.
 
@@ -12801,7 +12814,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: principled cost projection, calibration discipline, an explicit bound against estimation over-spend.
 - Gives up: accuracy on hard tasks (the meta-bound forces cheapness) and speed on simple ones (the ceremony of estimation is disproportionate).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Planning Fallacy (systematic underestimation) is the named failure mode and one of the most robust findings in psychology; the pattern names it without defeating it.
 - Overconfidence (narrow intervals) is similarly robust; calibration is supposed to fix it but requires enough history.
 - Meta-Cost Explosion is called out; the 5% bound is an attempt to prevent it, with no adaptive relaxation for genuinely hard-to-estimate tasks.
@@ -12845,7 +12858,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: is-ought separation as architecture, explicit normative judgment trail, defense against the entanglement failure.
 - Gives up: fluency. Entangled reasoning is natural; the protocol's decomposed pipeline is principled and cumbersome.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Operationalizes Hume's is-ought distinction — a controversial meta-ethical commitment that not all traditions accept.
 - The boundary is enforced at the predict/judge interface; in practice prediction and judgment have overlapping inputs, and the clean separation is aspirational.
 - Override-as-first-class is strong; in live systems the pressure to silently tune is constant, and the typed JudgmentNote requirement is load-bearing discipline.
@@ -12883,7 +12896,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** PURECheck's E dimension, technology-transfer potential, pattern-library admission criteria, research-program breadth evaluation.
 
-**Every context needs.** candidate, incumbent-domain proof, cross-domain-transfer hypothesis, 3-class judgment.
+**Broad-use intersection (review hypothesis).** candidate, incumbent-domain proof, cross-domain-transfer hypothesis, 3-class judgment.
 
 **Varies (descendant territory).** cross-domain test rigor, "hostile slice" inclusion, confidence quantification.
 
@@ -12898,7 +12911,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: explicit generality criterion in PURE evaluation, forcing function for cross-domain transferability checks.
 - Gives up: local specialization. Patterns optimized for a specific domain may fail Expansive and still be useful; the gate rejects them.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one invariant, no failure modes. The mechanism says 'transfer' without defining the transfer test.
 - 'Training distribution' is a ML-loaded term; for non-ML patterns the analog is less clear.
 - Could be stricter — 'operates outside' is a necessary condition, but genuine expansiveness requires operating well outside, not just not crashing.
@@ -12950,7 +12963,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** Claude extended thinking, o1/o3 reasoning, hard-problem human deliberation, peer-review depth, research-time allocation.
 
-**Every context needs.** compute budget allocation, extended-reasoning generation, final answer after trace.
+**Broad-use intersection (review hypothesis).** compute budget allocation, extended-reasoning generation, final answer after trace.
 
 **Varies (descendant territory).** budget size (user-controlled vs adaptive), trace visibility, trace-compression post-hoc, adaptive triggering.
 
@@ -12965,7 +12978,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: accuracy on hard problems, transparency via reasoning traces, explicit compute-vs-accuracy tradeoff.
 - Gives up: latency (extended thinking is slow) and cost (long traces are expensive). Also gives up some trust — the 'hidden reasoning' failure mode means the trace may not be faithful.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Confabulation Chains are the hardest failure mode — longer traces produce more opportunities for plausible-sounding errors. Length doesn't guarantee correctness.
 - The intermediate-steps-visible invariant is aspirational — models demonstrably don't always reveal their real reasoning, and the pattern can't verify faithfulness.
 - Thinking time proportional to difficulty is a reasonable ideal; in practice it's determined by whatever the user (or meta-planner) decides, which is usually rough.
@@ -13008,7 +13021,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** Fermi problems (canonical "pianos in Chicago"), physics back-of-envelope calculations, software-engineering effort estimates, astronomical estimates, economic estimates under uncertainty.
 
-**Every context needs.** unknown quantity, decomposition into estimable factors, multiplication, order-of-magnitude tolerance.
+**Broad-use intersection (review hypothesis).** unknown quantity, decomposition into estimable factors, multiplication, order-of-magnitude tolerance.
 
 **Varies (descendant territory).** factor count, estimation confidence, error-cancellation assumptions.
 
@@ -13023,7 +13036,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: estimates where no direct data exists, explicit error-cancellation logic, a forcing function for decomposition of unknowns.
 - Gives up: precision. Fermi is a quick-and-dirty approach that trades accuracy for tractability; using it where precision matters is a category error.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Correlated Error Stacking is the dominant failure mode — all optimistic, all pessimistic, all same-direction. The pattern's 'errors cancel' premise fails exactly when it's most tempting.
 - Geometric Mean invariant is subtle — it's statistically correct for multiplicative estimates and misleading if applied to additive combinations.
 - Sub-factor decomposition requires knowing the multiplicative structure of the unknown, which is often what you're trying to estimate.
@@ -13065,7 +13078,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** Elon Musk's rocket-cost calculation, scientific rederivation, pedagogical teaching from basics, legal statutory analysis, security threat modeling.
 
-**Every context needs.** assumption-stripping process, axiom identification, reconstruction from axioms only.
+**Broad-use intersection (review hypothesis).** assumption-stripping process, axiom identification, reconstruction from axioms only.
 
 **Varies (descendant territory).** axiom set, reconstruction rigor, domain specificity, verification of axiom-claim.
 
@@ -13080,7 +13093,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: structural resistance to inherited errors, path to paradigm-shifting solutions, explicit mode for when everything is stuck.
 - Gives up: speed (deriving from axioms is slow) and sometimes pragmatism (the paradigm-shifting solution may not be the one you can ship).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Infinite Regress is the named failure and endemic to first-principles thinking — wasting resources re-deriving foundations instead of solving the actual problem.
 - 'Axioms cannot be derived from other statements' is a strong invariant that real reasoners rarely satisfy — what gets called 'first principles' in practice is just 'basic enough.'
 - The pattern offers no termination criterion — how do you know you've reached bedrock? Callers decide, which means different callers disagree on what's 'first.'
@@ -13129,7 +13142,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Reframe-hint payload buys actionability at the cost of extra serialization — a bare FrameError degrades to 'halt.'
 - Cascade-dampening is mentioned as a failure mode but not designed in — the library leaves dampening to the caller.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The cascade failure mode (FrameErrors thrashing between frames) is acknowledged but not mitigated. A rate-limit or hysteresis mechanism should pair with FrameError at the root — the pattern does not name this dependency.
 - The reframing hint is typed as... unspecified. A structured hint (e.g., 'tried-frames-so-far', 'ruled-out-frames') would help callers avoid rediscovery; the free-form version leaves correlation to the caller.
 - 'Actionable only as halt' without a hint is named as a failure, but the pattern doesn't enforce hint presence — there is no invariant that FrameError MUST carry a non-empty hint. The contract is aspirational.
@@ -13175,7 +13188,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** inductive reasoning, ML pattern learning, scientific generalization, legal precedent extraction, category formation, hypothesis generation.
 
-**Every context needs.** multiple instances, shared-structure identification, invariant statement, predictive test.
+**Broad-use intersection (review hypothesis).** multiple instances, shared-structure identification, invariant statement, predictive test.
 
 **Varies (descendant territory).** instance count required, invariant-validation method, abstraction level.
 
@@ -13190,7 +13203,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: reusable rules, compression of observation space, predictive generalization.
 - Gives up: specific details. Generalization is by definition loss-full; the bet is that the lost details were noise.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Overfitting is the dominant failure and the pattern has only 'refine until predictive' as the remedy, which requires a held-out test set the pattern doesn't specify.
 - 'Information loss minimized' is the invariant and it's in tension with 'rule covers all examples' — a rule that covers all examples perfectly is memorization, not generalization.
 - The 'predict behavior of new instances' test is classical ML validation in prose form; it needs to be operationalized to enforce.
@@ -13236,7 +13249,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: accurate structural representation of branching/convergent reasoning, fan-in support for evidence synthesis, DAG discipline.
 - Gives up: simplicity. Graphs are harder to construct, harder to read, and harder to validate than chains.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The invariant 'each node applies Think once' makes iteration a caller concern, which is tidy and pushes complexity out of the pattern.
 - No evaluation order specified — for DAG reasoning, order matters (topological vs some other ordering) and the pattern defers this.
 - Inherits acyclicity from DAG, ruling out feedback loops that some reasoning legitimately has.
@@ -13279,7 +13292,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** System-1 intuition, expert rapid judgment, flash diagnostic decisions, chess blitz moves, driving reflexes, fast-attention routing.
 
-**Every context needs.** cached experience database, similarity matching, low-latency decision.
+**Broad-use intersection (review hypothesis).** cached experience database, similarity matching, low-latency decision.
 
 **Varies (descendant territory).** cache-hit threshold, fallback to deep reasoning, cache-freshness policy.
 
@@ -13294,7 +13307,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: sub-100ms decisions, preserved deliberate-reasoning budget for hard problems, explicit similarity threshold.
 - Gives up: accuracy on edge cases. HeuristicSnap is the fast path; the deliberate path (ChainOfThought) is the correct path and the pattern routes between them by budget.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 0.6 similarity floor is defaults-as-doctrine — the right threshold depends on domain, false-positive cost, and cache quality.
 - No mechanism for marking snap failures — when HeuristicSnap returns a wrong answer, the cache isn't updated to reflect the failure; the pattern is learn-agnostic.
 - Latency threshold (<100ms) is a single metric; richer QoS constraints (worst-case latency, tail latency) aren't captured.
@@ -13338,7 +13351,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: structured variable-depth response.
 - Gives up: uniformity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Five faculties is the paper's decomposition; alternatives exist.
 - Orthogonality is aspirational.
 - No failure modes listed.
@@ -13375,7 +13388,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** scientific generalization, ML training, pattern recognition, base-rate estimation, statistical inference, law-of-large-numbers reasoning, curve fitting.
 
-**Every context needs.** specific observations, inferred general claim, probabilistic (not certain) conclusion semantic.
+**Broad-use intersection (review hypothesis).** specific observations, inferred general claim, probabilistic (not certain) conclusion semantic.
 
 **Varies (descendant territory).** sample size, generalization method, confidence estimation, robustness to outliers, prior-weighted updates.
 
@@ -13390,7 +13403,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: a named slot for probable-from-instances inference, the Deduction/Induction/Abduction triad as a complete epistemic partition.
 - Gives up: certainty. Induction is structurally weaker than Deduction, and the pattern owns that weakness explicitly.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one-line mechanism, two invariants. The classical philosophy of induction is deep; the pattern gestures at it.
 - Hume's problem isn't addressed — the pattern just asserts 'probable' without owning the philosophical difficulty.
 - No failure modes — Induction has many (overfitting, base-rate neglect, small-sample bias) that the pattern doesn't catalogue.
@@ -13429,7 +13442,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** LLM input processing, legal-text interpretation, scientific-data interpretation, musical interpretation, historical interpretation, medical imaging interpretation.
 
-**Every context needs.** semantic context, raw input, value extraction, distinction from Translate (which preserves form/changes format) and Summarize (which loses info).
+**Broad-use intersection (review hypothesis).** semantic context, raw input, value extraction, distinction from Translate (which preserves form/changes format) and Summarize (which loses info).
 
 **Varies (descendant territory).** context richness, interpretation depth, confidence tracking.
 
@@ -13444,7 +13457,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: explicit semantic context tracking, preservation of original signal, distinction from Translate.
 - Gives up: fluency. Every interpretation that's made explicit adds ceremony; most agents interpret without flagging the context they used.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — two invariants, a one-line distinction from Translate. The real work of interpretation is in the specific semantic layers, which the pattern doesn't provide.
 - The Translate/Interpret boundary is conceptually clean and operationally fuzzy — translating requires some interpretation, interpreting requires some translation.
 - No failure modes listed; Interpret has many (mis-interpretation, context drift, interpretive bias).
@@ -13487,7 +13500,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** Munger-style inversion, pre-mortem thinking, failure-mode-driven design, security (how would I break this?), testing (how might this fail?), strategic red-teaming.
 
-**Every context needs.** goal reformulation to negation, enumeration of failure paths, inversion to get success candidates.
+**Broad-use intersection (review hypothesis).** goal reformulation to negation, enumeration of failure paths, inversion to get success candidates.
 
 **Varies (descendant territory).** negation specificity, enumeration depth, validation of inverted candidates.
 
@@ -13502,7 +13515,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: structured blind-spot exposure, adversarial perspective without adversarial setup, explicit logical-negation discipline.
 - Gives up: productive direct attack. Spending effort on Invert is less efficient than direct solving when the direct solve works; the pattern is for when direct solving is stuck.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False Dichotomy is the named failure — assuming opposite-of-failure is success. This is the dominant real failure mode and the pattern has no defense.
 - Logical negation in real domains is often unclear — what's the negation of 'design a good UX'?
 - Double negation invariant is formally correct and practically misleading; in loose use, Invert(Invert(X)) rarely recovers X.
@@ -13554,7 +13567,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** pedagogical scaffolding, curriculum design, puzzle solving, mathematical induction, LLM prompting strategy, algorithm training.
 
-**Every context needs.** decomposition, difficulty ordering, sequential solving with solution-as-context passing.
+**Broad-use intersection (review hypothesis).** decomposition, difficulty ordering, sequential solving with solution-as-context passing.
 
 **Varies (descendant territory).** difficulty metric, ordering stability, optional skipping if an easy problem provides insight.
 
@@ -13569,7 +13582,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: scaffolded solving that builds context, explicit ordering discipline.
 - Gives up: independence between subproblems. LeastToMost creates sequential coupling; parallel solving is structurally blocked.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Ordering Misjudgment is a dominant failure — difficulty is subjective, and wrong ordering cascades.
 - Subproblem Coupling is acknowledged but unmitigated — earlier errors poison later subproblems; the pattern has no isolation between subproblems.
 - No specified handling for subproblems that turn out to be equally difficult; the pattern assumes ordering exists.
@@ -13622,7 +13635,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** dogfooding demonstrations, recursive-validation arguments, teaching-by-modeling, manifesto writing that enacts its own claims, meta-circular reasoning.
 
-**Every context needs.** thesis being argued, process that enacts it, observer who can verify the enactment matches the thesis.
+**Broad-use intersection (review hypothesis).** thesis being argued, process that enacts it, observer who can verify the enactment matches the thesis.
 
 **Varies (descendant territory).** observer type (self, peer, neutral), enactment fidelity requirements, fallback if enactment fails to prove thesis.
 
@@ -13637,7 +13650,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: self-validating demonstrations, structural prevention of say-one-thing-do-another, explicit identity of process and evidence.
 - Gives up: pre-canned efficiency. LivedProofs must happen live, which rules out optimized pre-built demonstrations.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Performative Contradiction is the named failure and it's the whole point — a LivedProof that contradicts itself is worse than one that doesn't attempt self-proof.
 - Staged Demo (named second failure) — pre-canned scripts that look like enactment; the pattern has no cryptographic-trace defense sufficient to detect sophisticated staging.
 - The pattern is rhetorical/epistemic; operationalizing 'the process enacted the thesis' requires judgment the pattern doesn't specify.
@@ -13692,7 +13705,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** DSPy-style prompt optimization, template-generating prompts, prompt-critique loops, meta-teaching (teach how to teach), editorial style guides (templates-for-templates).
 
-**Every context needs.** higher-order prompt, target prompts (to generate/refine/analyze), LLM-as-prompt-engineer role.
+**Broad-use intersection (review hypothesis).** higher-order prompt, target prompts (to generate/refine/analyze), LLM-as-prompt-engineer role.
 
 **Varies (descendant territory).** task specificity, template reusability, optimization depth.
 
@@ -13707,7 +13720,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: scalable prompt generation across varied tasks, explicit meta-level prompting pattern.
 - Gives up: simplicity and direct control. Meta-prompting adds an indirection that's often unnecessary and occasionally counterproductive.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Meta-Complexity is an endemic failure — writing a good meta-prompt is often harder than writing the direct prompt it produces.
 - Prompt Drift happens across iterations and the pattern has no stability mechanism; meta-prompts get refined and subtly change their output shape.
 - The 'output is a prompt' invariant is trivial; the real question (is the output prompt any good?) is deferred.
@@ -13749,7 +13762,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** theory selection, ML model selection, system architecture review, design simplification, Occam's Razor decisions, regulatory streamlining.
 
-**Every context needs.** candidate structure, ablation test (remove component, check function), three-class output.
+**Broad-use intersection (review hypothesis).** candidate structure, ablation test (remove component, check function), three-class output.
 
 **Varies (descendant territory).** ablation rigor, multi-objective weighting, domain-specific simplicity metrics.
 
@@ -13764,7 +13777,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 - Gains: explicit simplicity enforcement, causal-necessity invariant, named judge for Occam's razor.
 - Gives up: feature-richness. Parsimony favors minimal; maximalist designs fail by construction.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — one invariant, one-line mechanism. The judgment of 'necessity' is subjective.
 - Causal link for every component is a high bar; many real components serve emergent purposes that resist direct causal attribution.
 - No failure modes listed; Parsimony has some (over-stripping, false simplicity, reverse-engineering complexity).
@@ -13816,7 +13829,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 **Broad-use contexts.** pattern-library hygiene, codebase duplicate-detection, ontology namespace management, nomenclature discipline, brand-namespace checking.
 
-**Every context needs.** pre-mint search of existing registry, >85% similarity as adopt-trigger, explicit fork justification otherwise.
+**Broad-use intersection (review hypothesis).** pre-mint search of existing registry, >85% similarity as adopt-trigger, explicit fork justification otherwise.
 
 **Varies (descendant territory).** similarity threshold, registry scope, fork-justification rigor.
 
@@ -13833,7 +13846,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: dedup discipline, vocabulary hygiene, explicit pre-mint log.
 - Gives up: speed. Every mint pays the search tax; high-volume contexts fight this.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Keyword Miss is a real failure — LLMs routinely use different terms for the same concept, and LatentAttachment is the mitigation but not a guarantee.
 - NIH is social, not structural — the pattern can detect similarity but can't prevent motivated re-creation.
 - Threshold is caller-set, with no default derivation rule.
@@ -13885,7 +13898,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** ToolUse agents, scientific experimentation loops, debugging loops, debugging with live inspection, conversational-assistant loops, robotic loops.
 
-**Every context needs.** Thought step, Action step (ToolInvoke), Observation step, context update with observation results.
+**Broad-use intersection (review hypothesis).** Thought step, Action step (ToolInvoke), Observation step, context update with observation results.
 
 **Varies (descendant territory).** step count, failure-recovery policy, parallel action support, cost-of-thought.
 
@@ -13900,7 +13913,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: structured reasoning-action interleave, named canonical agent loop, observation-driven adaptation.
 - Gives up: efficiency. Pure-reasoning or pure-execution is faster for tasks that don't need the full loop.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Observation Blindness is endemic — LLMs trained on reasoning often confabulate observations to fit the plan.
 - Termination conditions live outside ReAct; the pattern is the cycle shape, not the stopping rule.
 - The Thought-Action-Observation ordering is canonical; some tasks legitimately benefit from Action-Observation-Thought or other orderings.
@@ -13947,7 +13960,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** PURECheck's R dimension, engineering feasibility reviews, startup due-diligence, scientific-proposal feasibility, policy feasibility.
 
-**Every context needs.** plan, physics/primitives availability check, dependency-chain verification, 3-class judgment.
+**Broad-use intersection (review hypothesis).** plan, physics/primitives availability check, dependency-chain verification, 3-class judgment.
 
 **Varies (descendant territory).** feasibility-threshold strictness, domain specificity, reviewer expertise.
 
@@ -13962,7 +13975,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: feasibility discipline, explicit grounding requirement, anti-hand-waving invariant.
 - Gives up: aspirational design. Realizable rejects plans whose feasibility is unclear; some legitimate R&D plans are pre-feasible.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hidden Complexity is the most common real failure — plans look feasible until you try to execute the hand-waved step.
 - Grounding in 'known primitives' requires defining the primitive set; this is context-dependent.
 - Resource Blindness mitigation requires costing the plan, which the pattern doesn't specify.
@@ -14016,7 +14029,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** CoT, ToT, GoT, BFS/DFS reasoning, ReAct loops, debate-based reasoning, chain-of-verification.
 
-**Every context needs.** topology, multiple Think steps, context-to-conclusion transformation, compute_budget respect.
+**Broad-use intersection (review hypothesis).** topology, multiple Think steps, context-to-conclusion transformation, compute_budget respect.
 
 **Varies (descendant territory).** topology type, step count, self-correction integration, feedback loops.
 
@@ -14031,7 +14044,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: structured cognition, topology-aware reasoning, bounded-execution discipline.
 - Gives up: creative license. The Structure Adherence invariant rules out ad-hoc topological reasoning.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Analysis Paralysis (named failure) — too much compute on diminishing returns — is endemic.
 - Circular Reasoning (named failure) — loops back to premise without progress — is common in loosely-structured reasoning.
 - Context Window Overflow — the LLM-era failure of reasoning exceeding context — is structural and named without mitigation.
@@ -14067,7 +14080,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** solver trees (FI v3), recursive descent parsers, hierarchical planning, divide-and-conquer algorithms, fractal refinement.
 
-**Every context needs.** solver node input, decomposition application, child node generation, traversal downward.
+**Broad-use intersection (review hypothesis).** solver node input, decomposition application, child node generation, traversal downward.
 
 **Varies (descendant territory).** depth bound, termination criteria (leaf conditions), parallelism, backtrack support.
 
@@ -14082,7 +14095,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: named traversal verb, separate from governance.
 - Gives up: very little — thin primitive that composes with governors.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; RecursionDive has some (unbounded recursion without governor, cycle in solver graph treated as tree).
 - Very thin — one-line mechanism.
 - The pattern assumes decomposition always applies; some nodes may need different strategies.
@@ -14128,7 +14141,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** Toyota 5-Whys, incident post-mortems, bug tracing, systems analysis, therapy root-cause work, scientific causal investigation.
 
-**Every context needs.** problem statement, "why did this happen?" iterator, actionability detector for stopping.
+**Broad-use intersection (review hypothesis).** problem statement, "why did this happen?" iterator, actionability detector for stopping.
 
 **Varies (descendant territory).** depth cap, actionability definition, branching (multiple causes per level), provenance tracking.
 
@@ -14143,7 +14156,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: structured root-cause discipline, explicit factual invariant, named termination conditions.
 - Gives up: multi-factor explanations. The linear-chain shape flattens reality; Single Track Blindness is the consequence.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Single Track Blindness is the dominant failure — real root causes are often multi-factorial, and the pattern's linearity misses them.
 - 'Factual, not speculative' is an invariant that's hard to enforce — most 'whys' have speculative components.
 - Termination at 'actionable root' is caller-dependent; agents disagree on what counts as actionable.
@@ -14179,7 +14192,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** essay revision, code refactoring, design iteration, scientific-paper rewriting, product iteration, art polishing.
 
-**Every context needs.** artifact to refine, critique mechanism, edit mechanism, termination condition (quality threshold or cycle cap).
+**Broad-use intersection (review hypothesis).** artifact to refine, critique mechanism, edit mechanism, termination condition (quality threshold or cycle cap).
 
 **Varies (descendant territory).** critique source (self, peer, rubric), edit granularity, convergence criteria.
 
@@ -14194,7 +14207,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Gains: structured improvement, explicit critique-edit cycle.
 - Gives up: blank-slate thinking. Refine preserves structure; when structure is the problem, Refine can't help.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No canonical invariants or failure modes listed by design: Refine is a cross-context primitive, and hard loop rules belong in descendants or callers.
 - Common traps still matter — diminishing returns, cosmetic drift, and termination drift — but they are reviewer guidance rather than universal constraints.
 - The pattern still assumes critique is available and actionable; producing good critique is itself work.
@@ -14247,7 +14260,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** LLM agent self-improvement, post-mortem culture, after-action reviews, journaling for learning, code review incorporation.
 
-**Every context needs.** task attempt, linguistic self-critique generation, episodic memory buffer, retry with critique in context.
+**Broad-use intersection (review hypothesis).** task attempt, linguistic self-critique generation, episodic memory buffer, retry with critique in context.
 
 **Varies (descendant territory).** critique depth, buffer size, retry budget, memory-eviction policy.
 
@@ -14263,7 +14276,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 - Self-contained loop buys independence at the cost of self-serving critiques.
 - Retry-focused scope buys clean semantics at the cost of missing preventive opportunities.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes. Shallow Reflection and Reflection Drift are real and named. Missing: Self-Deception (the critique asserts a reason for failure that isn't the true cause), Insight Hollowness (identifies the right failure but no action plan follows).
 - 'Generic (try harder)' is shallow-reflection territory; the pattern has no quality check to detect this.
 - No termination condition — a Reflexion loop can run indefinitely across retries. Budget composition is implicit.
@@ -14312,7 +14325,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 **Broad-use contexts.** creative problem-solving, deadlock resolution, lateral thinking, reductio reformulation, analogical reframing, scope reset, domain translation.
 
-**Every context needs.** original problem statement, transformation (perspective, scope, framing), new solver-root candidate.
+**Broad-use intersection (review hypothesis).** original problem statement, transformation (perspective, scope, framing), new solver-root candidate.
 
 **Varies (descendant territory).** reframing technique (invert, expand, shift time, change subject), return semantics (replaces vs. augments), cost, success criteria.
 
@@ -14329,7 +14342,7 @@ _Note: `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate 
 - Gains: explicit perspective-shift move, substrate for recovering from frame rigidity.
 - Gives up: framing stability. Reframing allows productive pivots and repeated reframing without resolution.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Frame Blindness is unavoidable — every frame has blind spots, and reframing exchanges them without eliminating them.
 - Preserving problem semantics is vague; some reframings legitimately change what counts as the problem.
 - The pattern doesn't specify how to evaluate a new frame's quality; that's caller judgment.
@@ -14384,7 +14397,7 @@ _Note: `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate 
 
 **Broad-use contexts.** requirements elicitation, customer-request translation, ticket triage, ambiguous-command handling, user-intent inference, onboarding questionnaires.
 
-**Every context needs.** input message, interpretation mechanism, FrameSpec output (constraints, success criteria, hidden assumptions), semantic-firewall role.
+**Broad-use intersection (review hypothesis).** input message, interpretation mechanism, FrameSpec output (constraints, success criteria, hidden assumptions), semantic-firewall role.
 
 **Varies (descendant territory).** interpretation depth, clarification-question budget, escalation on unclear intent.
 
@@ -14401,7 +14414,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: explicit interpretation step, no resources committed before framing, named first-stage of workflow.
 - Gives up: speed. RequestFraming is ceremony before action; in reactive contexts the ceremony delays response.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Misinterpretation is endemic — framers clarify what they assume is ambiguous, which often misses the real ambiguity.
 - Over-constraint is the eager-framer failure; the pattern doesn't bound how much to constrain.
 - Premature Optimization happens when framers slide into solving; the pattern's 'no resources committed' invariant is the discipline.
@@ -14449,7 +14462,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** LLM inference ensembling, Monte Carlo decision procedures, majority-vote diagnosis, robust forecasting, jury trials (analogy), replication studies.
 
-**Every context needs.** multiple independent runs, aggregation by mode, majority-select final answer.
+**Broad-use intersection (review hypothesis).** multiple independent runs, aggregation by mode, majority-select final answer.
 
 **Varies (descendant territory).** sample count, independence mechanism, tiebreaker, weighted vs unweighted mode.
 
@@ -14464,7 +14477,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: variance reduction, principled aggregation.
 - Gives up: cost. N samples = N× cost for 1 final answer.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Consistent Wrongness is structural — samples from the same model share biases.
 - N >= 3 is a floor without specifying how high; 3 is often too few for meaningful convergence.
 - Cost Explosion is acknowledged without mitigation; callers decide whether to pay.
@@ -14505,7 +14518,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** parallel LLM reasoning, documentation generation, essay writing, project planning (outline then parallel-fill), scientific literature review synthesis.
 
-**Every context needs.** skeleton generation (outline/structure), parallel expansion of points, aggregation.
+**Broad-use intersection (review hypothesis).** skeleton generation (outline/structure), parallel expansion of points, aggregation.
 
 **Varies (descendant territory).** skeleton depth, parallelism degree, convergence criteria.
 
@@ -14520,7 +14533,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: parallel reasoning with structure, explicit invariants for completeness/independence/coherence.
 - Gives up: sequential depth. Can't build on previous points' results.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Coherent Assembly is the hard part and is deferred.
 - Completeness is aspirational — real outlines miss things.
 - Independence is often violated quietly; the pattern has no detection mechanism.
@@ -14573,7 +14586,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** onboarding conversations, requirements elicitation, medical history-taking, detective interrogation, pedagogical dialogue, therapeutic questioning.
 
-**Every context needs.** confidence threshold, user query mechanism, loop termination on disambiguation or max_questions.
+**Broad-use intersection (review hypothesis).** confidence threshold, user query mechanism, loop termination on disambiguation or max_questions.
 
 **Varies (descendant territory).** question-generation strategy, max-questions bound, tone/pacing, fallback if user unable to answer.
 
@@ -14588,7 +14601,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: disambiguated intent, user-driven clarification.
 - Gives up: UX smoothness. Every question is friction.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Diminishing Returns invariant is hard to operationalize — measuring entropy delta from LLM output is non-trivial.
 - User Fatigue is the dominant failure in practice.
 - Termination conditions (Confidence threshold or max_questions) need tuning.
@@ -14638,7 +14651,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** deductive application, template instantiation, generic-function specialization, case-law application, policy application to specific incidents.
 
-**Every context needs.** abstract principle, substitution mechanism, constraint verification post-substitution.
+**Broad-use intersection (review hypothesis).** abstract principle, substitution mechanism, constraint verification post-substitution.
 
 **Varies (descendant territory).** substitution depth, edge-case discovery, range-of-specialization generation.
 
@@ -14653,7 +14666,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: explicit abstraction-to-instance move, inherited constraints.
 - Gives up: cross-domain transfer. Specialize commits to a domain.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Context Mismatch is endemic — precondition checking is the hard part.
 - Constraint Inheritance is strong; some legitimate specializations need to relax.
 - No failure modes beyond Context Mismatch.
@@ -14708,7 +14721,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** epistemic hygiene before publishing, pre-meeting preparation, red-team-of-self, test-of-decision robustness, bias-resistance discipline.
 
-**Every context needs.** current decision/output, counter-argument generation, validity threshold, revise-on-strong-counter.
+**Broad-use intersection (review hypothesis).** current decision/output, counter-argument generation, validity threshold, revise-on-strong-counter.
 
 **Varies (descendant territory).** counter-argument generation method, threshold calibration, revision strategy on failure.
 
@@ -14724,7 +14737,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Score-threshold invariant buys non-trivial opposition at the cost of measuring non-triviality with the same agent's judgment.
 - Tier 2 placement (honesty-dependent) buys accurate classification at the cost of excluding adversarial contexts — callers in those must reach for AdversarialSteel.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Three invariants, two failure modes — relatively thorough. The Collusion failure mode is clearly stated and the pattern's explicit Tier 2 status acknowledges the limitation.
 - 'Score(Counter) > 0.7' hard-codes a threshold without justification. Why 0.7 vs 0.5 or 0.8? The number invites gaming.
 - 'Strongest Counter: Generated argument must address the core claim, not weak points' is the right spirit but 'core claim' is interpretive — an adversarial agent can claim the core is what they chose to attack.
@@ -14780,7 +14793,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** debugging frustration breaks, architectural review, strategy retrospectives, scientific paradigm questioning, life-decision reflection, system-design-level questions.
 
-**Every context needs.** pause of object-level work, abstraction ascent, higher-level question formulation.
+**Broad-use intersection (review hypothesis).** pause of object-level work, abstraction ascent, higher-level question formulation.
 
 **Varies (descendant territory).** ascent depth, trigger (spontaneous vs scheduled), return semantic (new direction vs resume old).
 
@@ -14795,7 +14808,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: explicit meta-cognitive move, altitude gain.
 - Gives up: directness. Stepping back is slower than direct solving.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - All three named failures are real.
 - Bounded invariant (max depth) is unspecified.
 - Relevance invariant is aspirational — high-level insight doesn't always inform.
@@ -14848,7 +14861,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** research paper consumption, legal document review, codebase exploration, long-context LLM strategies, executive document skimming, reference manual navigation.
 
-**Every context needs.** structural map building (Tree), high-entropy section identification, selective loading.
+**Broad-use intersection (review hypothesis).** structural map building (Tree), high-entropy section identification, selective loading.
 
 **Varies (descendant territory).** map-construction method, entropy metric, compute budget, stopping criteria.
 
@@ -14863,7 +14876,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: budget-disciplined reading, targeted retrieval.
 - Gives up: completeness. Strategic reading misses content for efficiency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 10% budget is a specific default; caller tuning required.
 - Structure-first assumes documents have extractable structure; some don't.
 - Linear bias is human; LLM agents may have different biases.
@@ -14904,7 +14917,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** document summarization, conversation recaps, executive summaries, abstract generation, meeting-notes compression, news summarization.
 
-**Every context needs.** source artifact, smaller output, salience-preservation criterion, explicit lossy-ness.
+**Broad-use intersection (review hypothesis).** source artifact, smaller output, salience-preservation criterion, explicit lossy-ness.
 
 **Varies (descendant territory).** compression ratio, salience determination method, domain specificity, target-audience awareness.
 
@@ -14919,7 +14932,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 - Gains: information-density increase, context-fit for downstream.
 - Gives up: detail. Summaries lose specifics.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Fidelity (no hallucination) is the hardest invariant; LLMs violate it routinely.
 - Salience is subjective; different summaries for the same input are legitimate.
 - No failure modes listed; summarization has many (lost key info, hallucinated, biased selection).
@@ -14955,7 +14968,7 @@ _Note: `RequestFraming` will move Society → Mind per §3.18._
 
 **Broad-use contexts.** Hegelian synthesis, music composition synthesis, scientific synthesis of findings, team-contribution synthesis, cross-disciplinary synthesis.
 
-**Every context needs.** the integrated whole as an artifact, reference to constituent parts, new-meaning semantic.
+**Broad-use intersection (review hypothesis).** the integrated whole as an artifact, reference to constituent parts, new-meaning semantic.
 
 **Varies (descendant territory).** synthesis method (dialectic, aggregation, emergence), fidelity to parts, novelty detection.
 
@@ -14972,7 +14985,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: named constructive move.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - No failure modes listed; synthesis has many (hallucinated connections, lost elements).
 - The 'new meaning' framing is poetic; operational definition is missing.
@@ -15022,7 +15035,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** LLM token generation, inference steps, micro-realizations, single-axiom derivations, one-shot pattern-matching, intuition flashes, chain-of-thought atoms.
 
-**Every context needs.** input context, output datum, side-effect-free semantic (no external state change).
+**Broad-use intersection (review hypothesis).** input context, output datum, side-effect-free semantic (no external state change).
 
 **Varies (descendant territory).** cognitive mode (deliberative, intuitive), latency (ms to seconds), cost, confidence attached to output.
 
@@ -15037,7 +15050,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: atomic reasoning unit.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hallucination is the dominant LLM failure; the invariant is what's violated.
 - Context-Bound is hard to verify post-hoc.
 - Side-Effect Free is aspirational.
@@ -15089,7 +15102,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** language translation, format conversion (JSON↔XML), code transpilation, protocol translation, data migration, unit conversion.
 
-**Every context needs.** source schema, target schema, meaning preservation, distinction from Summarize (lossy) and Interpret (adds meaning).
+**Broad-use intersection (review hypothesis).** source schema, target schema, meaning preservation, distinction from Summarize (lossy) and Interpret (adds meaning).
 
 **Varies (descendant territory).** fidelity requirements, ambiguity handling, bidirectional vs one-way, real-time vs batch.
 
@@ -15104,7 +15117,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: representation change with meaning preservation.
 - Gives up: perfect fidelity. Translation always loses something.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Lossy Translation is endemic.
 - Hallucination is the LLM-era canonical failure.
 - Semantic Equivalence is aspirational.
@@ -15142,7 +15155,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** game tree search, multi-hypothesis reasoning, solution-space exploration, parallel strategy evaluation.
 
-**Every context needs.** branching topology, backtracking or pruning, path evaluation.
+**Broad-use intersection (review hypothesis).** branching topology, backtracking or pruning, path evaluation.
 
 **Varies (descendant territory).** breadth at each level, pruning policy, evaluation heuristic, beam width.
 
@@ -15157,7 +15170,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: multi-path reasoning, backtracking.
 - Gives up: compute. Tree exploration scales badly.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - No specified pruning strategy.
 - Branching factor regulation deferred to BreadthGovernor.
@@ -15208,7 +15221,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** Bayesian network nodes, LLM uncertainty flagging, scientific hypothesis staging, intelligence reports (confidence levels), medical "uncertain diagnosis" markers.
 
-**Every context needs.** void-of-evidence assertion, distinction from Speculation (posits direction) and false certainty (absence = evidence of absence fallacy).
+**Broad-use intersection (review hypothesis).** void-of-evidence assertion, distinction from Speculation (posits direction) and false certainty (absence = evidence of absence fallacy).
 
 **Varies (descendant territory).** granularity (per-claim vs per-variable), escalation to information-gathering, persistence.
 
@@ -15223,7 +15236,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: explicit evidence-void marking.
 - Gives up: fluency under answer pressure.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Both named failures are real.
 - Actionable Void is aspirational.
 - Specificity invariant requires careful scoping agents often skip.
@@ -15262,7 +15275,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** LLM comprehension, human understanding, scientific modeling, requirements understanding, code comprehension, domain expertise building.
 
-**Every context needs.** input (possibly complex), context, internal model construction that captures "why" and "how" (not just surface parse).
+**Broad-use intersection (review hypothesis).** input (possibly complex), context, internal model construction that captures "why" and "how" (not just surface parse).
 
 **Varies (descendant territory).** depth of model, domain specificity, verifiability of understanding, duration (one-shot vs over time).
 
@@ -15277,7 +15290,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: deeper-than-parsing cognitive operation.
 - Gives up: certainty. Understanding is never complete.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No canonical invariants or failure modes listed by design: Understanding is a cognitive goal whose adequacy depends heavily on domain, task, and evidence standard.
 - Surface paraphrase, false coherence, and context loss are important diagnostic risks, but not universal hash-level constraints for the base pattern.
 - The 'accurately reflects' claim remains aspirational; adequacy should be judged by the caller's domain, task, and evidence standard rather than encoded as a universal invariant.
@@ -15317,7 +15330,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** proof verification, test verification, regulatory verification, compliance verification, scientific replication, witness verification.
 
-**Every context needs.** claim to verify, spec or reality reference, Check-based mechanism, binary yield.
+**Broad-use intersection (review hypothesis).** claim to verify, spec or reality reference, Check-based mechanism, binary yield.
 
 **Varies (descendant territory).** spec formality, evidence requirements, independence of verifier, verification depth.
 
@@ -15332,7 +15345,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Gains: confirmation process.
 - Gives up: nuance. Binary-truth outputs flatten graded reality.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Both named failures are endemic.
 - Very thin mechanism — binary truth, no invariants.
 - Distinction from Validate is subtle.
@@ -15384,7 +15397,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** product-requirement dives (why do we want this feature?), scientific-motivation questioning, philosophical "what do you really want?" dialogues, system-redesign driver identification.
 
-**Every context needs.** problem statement, recursive "why" iterator, ceiling detector (highest actionable level).
+**Broad-use intersection (review hypothesis).** problem statement, recursive "why" iterator, ceiling detector (highest actionable level).
 
 **Varies (descendant territory).** ceiling criteria, recursion bound, evidence requirement per level.
 
@@ -15400,7 +15413,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Ceiling stopping rule buys termination at the cost of interpretive judgment about what constitutes 'actionable.'
 - Linear climb simplicity buys reproducibility at the cost of excluding branching exploration.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, one failure mode. Missing: Premature Commitment (first Why-answer wasn't the best reframing), Scope Explosion (abstraction level too broad for any feasible action), Climb Exhaustion (no more meaningful Why-answers but Ceiling not reached).
 - 'Scope(Level N+1) > Scope(Level N)' is the Ascension invariant but scope is not operationally defined — is it problem-space cardinality, abstraction-level, or something else?
 - Stop condition's 'value judgment or physics constraint' is a subjective boundary. Different agents will hit the Ceiling at different levels.
@@ -15445,7 +15458,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** legal adversarial system, academic peer review (reviewer 2 as red advocate), AI debate for alignment, corporate decision-review boards.
 
-**Every context needs.** green advocate role, red advocate role, third-party judge, steelman_check for argument quality.
+**Broad-use intersection (review hypothesis).** green advocate role, red advocate role, third-party judge, steelman_check for argument quality.
 
 **Varies (descendant territory).** advocate impartiality, judge independence, issue-limiting to specific questions, verdict-binding-ness.
 
@@ -15461,7 +15474,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 - Steelmanning invariant (Red > Weakest Link) buys quality of opposition at the cost of requiring a reliable strength measurement.
 - Judge-centric verdict buys clean decision at the cost of concentrating power in the judge — who must be trusted.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, one failure mode. Missing: Judge Bias (judge systematically favors one advocate); Information Asymmetry (advocates don't have the same facts, one side wins on information, not argument); Meta-Collusion (all three agents collude, though this requires all three to be compromised).
 - 'Green advocate / red advocate' language is from debate tradition but not standard in the library — readers may not immediately know which is which. Naming as 'For / Against' would be clearer.
 - The Median Trap mitigation is not specified. A richer pattern would require the judge to take a side rather than averaging — but that's not in the invariants.
@@ -15517,7 +15530,7 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Broad-use contexts.** LLM agents, human workers, robots, tool-users, services, processes, swarms, subagents, simulation characters, NPCs, CI runners, daemons.
 
-**Every context needs.** capacity to perceive relevant state, select among possible actions in relation to one or more goals, and act; recurrence is not universal.
+**Broad-use intersection (review hypothesis).** capacity to perceive relevant state, select among possible actions in relation to one or more goals, and act; recurrence is not universal.
 
 **Varies (descendant territory).** perception modality, state representation, reasoning substrate (LLM, rules, humans), action space, execution cadence (one-shot, event-driven, recurrent), goal explicitness, identity lifetime, embodiment.
 
@@ -15535,7 +15548,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Continuous loop (Observe/Think/Act) buys agency framing at the cost of excluding one-shot or event-driven patterns that also act in the world.
 - Identity persistence invariant buys traceability at the cost of forcing stateless substrates to wrap themselves in persistent-identity machinery.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The current parent overcommits to a continuous loop, explicit objective function, persistent identity, allocated resources, and a preserved trace. One-shot, event-driven, supervised, and ephemeral agents can still satisfy the defining perceive-select-act capability.
 - Goal Drift and Reward Hacking are important caller diagnostics, but they do not justify adding more universal contracts to Agent; some legitimate agents do not expose an optimization metric or machine-readable objective.
 - A canonical broadening should be handled as a dedicated migration because Agent is one of the library's most widely depended-upon parents. Until then, the mismatch is recorded here rather than papered over with additional invariants.
@@ -15584,7 +15597,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** ant-colony → system architecture, biological → engineering, physics → economics, historical → contemporary, code-smell → cognitive-bias, patterns across sciences.
 
-**Every context needs.** source domain, target domain, structural-isomorphism identification, mapping mechanism.
+**Broad-use intersection (review hypothesis).** source domain, target domain, structural-isomorphism identification, mapping mechanism.
 
 **Varies (descendant territory).** domain pair specifics, fidelity of isomorphism (loose vs rigorous), automated vs manual mapping, verification of analogy's validity.
 
@@ -15599,7 +15612,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: solution transfer across domains, a named mechanism for cross-domain reasoning, a defense against rediscovery.
 - Gives up: reliability (false analogy is the canonical failure) and agents' natural fluency (structural mapping is slower than surface matching).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'attribute independence' invariant is easier to state than to enforce — agents trained on surface features frequently slip attributes into the mapping without noticing.
 - No mechanism for testing the analogy before trusting it — the pattern produces a mapping but doesn't require verification that the structural claim actually holds.
 - Concept blend (ConceptBlend) and AnalogyBridge overlap substantially; the distinction between 'mapping one domain onto another' and 'merging two domains' is subtle and easily violated.
@@ -15648,7 +15661,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** Taleb's antifragility examples (muscle from stress, immune learning from pathogens), adversarial training in ML, vaccine-informed immunity, failure-driven process improvement, crisis-as-opportunity framings.
 
-**Every context needs.** stressor identification, causal graph of system, edge-sign-flip identification, redesign to use stressor as input.
+**Broad-use intersection (review hypothesis).** stressor identification, causal graph of system, edge-sign-flip identification, redesign to use stressor as input.
 
 **Varies (descendant territory).** flip mechanism specifics, detection of flippable edges, verification that redesign actually inverts, safety bounds (not every stress can be fuel).
 
@@ -15663,7 +15676,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: systems that benefit from the environment they operate in, a radical reframing lever when robustness is failing.
 - Gives up: simplicity (antifragile systems are typically more complex than their fragile counterparts) and performance in stable regimes (the pattern starves without the stressor it was designed to feast on).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The named failure mode — 'fragility to stability' — is real and severe; the pattern has no guard against deploying antifragile designs into environments where the stressor is absent.
 - Overuse risk: 'invert the stressor' is seductive; many stressors are genuinely bad and should be minimized, not inverted. The pattern lacks a test for when inversion is structurally available.
 - Terminology drift: antifragility in Taleb's original sense is a property of the payoff function, not a design move; this pattern conflates the property with the technique.
@@ -15703,7 +15716,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** ML beam search (NLP decoding, speech recognition), game-tree search with width cap, research-direction beam pruning, hypothesis beam testing.
 
-**Every context needs.** queue of size k, successor generation, ranking, top-k selection per step.
+**Broad-use intersection (review hypothesis).** queue of size k, successor generation, ranking, top-k selection per step.
 
 **Varies (descendant territory).** beam width k (PositiveInteger per §3.17), ranking heuristic, pruning criteria, diversity constraint.
 
@@ -15718,7 +15731,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: bounded memory, predictable compute cost, explicit parallelism in exploration.
 - Gives up: completeness — beam search can miss the optimal solution if it falls outside the top-k early. This is the fundamental cost of fixed-width search.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Optimality: the K nodes selected are the highest ranked' is a weaker optimality than it sounds — it's local optimality within the ranking, not global optimality in the search space.
 - No mechanism for diversity preservation — similar candidates crowd the beam, and the algorithm has no built-in reward for distinctness.
 - The ranker is treated as given; in practice designing the ranker is the actual problem, and the pattern offloads it.
@@ -15775,7 +15788,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** distributed transaction sandboxes, rehearsal spaces, multi-party negotiation sandboxes, dry-run environments, game scenarios.
 
-**Every context needs.** isolation, copy-on-write state, soft reservations, 2-phase commit for merge.
+**Broad-use intersection (review hypothesis).** isolation, copy-on-write state, soft reservations, 2-phase commit for merge.
 
 **Varies (descendant territory).** TTL, isolation level, nesting (child bubbles), participant count.
 
@@ -15790,7 +15803,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: transactional semantics for coordination, safe trial of multi-party flows, compositional isolation via nesting.
 - Gives up: latency (all-or-nothing commit is slower than partial execution), simplicity (the protocol is intricate), and freshness (snapshots age during the bubble).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Copy-on-write snapshot isolation is well-known at the database level; lifting it to agent coordination is conceptually clean but operationally expensive (agent state is rarely cheap to snapshot).
 - The stale-snapshot failure mode is fundamental: if the outside world changed during the bubble, the bubble's outcome may be invalid even after successful internal commit.
 - Resource starvation from long-running bubbles is noted but unmitigated — no built-in timeout or preemption story.
@@ -15843,7 +15856,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** MVP construction, POC development, architectural spikes, breadboard circuits, UX prototyping, experimental drafts.
 
-**Every context needs.** spec with critical assumptions, low-cost artifact construction, verification against spec.
+**Broad-use intersection (review hypothesis).** spec with critical assumptions, low-cost artifact construction, verification against spec.
 
 **Varies (descendant territory).** prototype fidelity, construction cost bound, iteration count before commit.
 
@@ -15858,7 +15871,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: cheap de-risking, empirical validation of specific assumptions, a bounded experiment with clear termination.
 - Gives up: speed-to-full-rollout and the option of 'just ship' when the prototype's overhead isn't warranted.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The Marginal Value Rule is cited but not specified — what counts as marginal value, how to decide when further build is worth it, is left to the caller.
 - Over-engineering is the most common failure and the pattern has no structural mitigation; 'build less than the full product' is a guideline.
 - False negatives (prototype fails due to low fidelity) are particularly dangerous because they kill good plans; the pattern doesn't specify how to distinguish prototype failure from plan failure.
@@ -15912,7 +15925,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** ML bottleneck regularization (variational autoencoders), educational summarization requirements, emergency resource rationing, legal word-limit drafting, haiku constraints.
 
-**Every context needs.** resource constraint creating bottleneck, pressure to compress/generalize, selective signal retention.
+**Broad-use intersection (review hypothesis).** resource constraint creating bottleneck, pressure to compress/generalize, selective signal retention.
 
 **Varies (descendant territory).** `compression_ratio` (principled [0.0, 1.0] per §3.17), `resource_type` (enum), pressure shape.
 
@@ -15927,7 +15940,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: forced abstraction, better generalization, a pressure-relief valve against over-memorization.
 - Gives up: performance on within-distribution tasks. CapacityPressure is specifically not for tasks that benefit from exact replication.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Adversarial Encoding is the hardest failure mode and the pattern has no structural defense — preventing 'zip instead of abstract' requires measuring the compressed representation's generalization, which is exactly what the bottleneck was supposed to force.
 - False Abstraction (hallucinating patterns to satisfy the bottleneck) is the second-hardest failure mode, and similarly unprevented by the mechanism alone.
 - Bottleneck sizing is an art; the pattern offers no principle for choosing it beyond 'Capacity < Information Content,' which is too coarse to be actionable. Failure modes were previously jammed into one list entry (Collapse + Adversarial Encoding + False Abstraction run together); now split into three distinct entries.
@@ -15974,7 +15987,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Future uses.** any pre-commitment mechanism against future incentive-to-deviate.
 
-**Every context needs.** **anticipation of a future incentive to deviate/defect** (psychological weakness OR rational defection), present action removing or penalizing future deviation, penalty structure where cost-of-breaking > benefit-of-deviation.
+**Broad-use intersection (review hypothesis).** **anticipation of a future incentive to deviate/defect** (psychological weakness OR rational defection), present action removing or penalizing future deviation, penalty structure where cost-of-breaking > benefit-of-deviation.
 
 **Varies (descendant territory).** source of future-deviation incentive (akrasia vs rational self-interest), commitment strength, revocability, penalty magnitude, social-vs-self binding, cryptographic-vs-legal enforcement.
 
@@ -15989,7 +16002,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: protection from weakness-of-will and short-term temptation, explicit binding that downstream can rely on, a move against wetware (or LLM) inconsistency.
 - Gives up: flexibility. Over-commitment (the named failure mode) is locking out legitimate pivots, and real-world conditions usually warrant more pivots than commitment devices allow for.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Cost(Breaking) > Benefit(Breaking)' is the invariant; both sides are uncertain at commitment time and may be even more uncertain when temptation arrives.
 - OathBind contracts and penalties are gestured at but unspecified; the real mechanics of the binding (who holds the penalty, who enforces it) live outside the pattern.
 - No review cadence — over-commitment is called out as a failure but there's no built-in periodic reconsideration that would surface it.
@@ -16045,7 +16058,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** function composition in programming, compositional music, modular design, compositional semantics, team assembly, dish preparation from ingredients.
 
-**Every context needs.** solved subproblems, interface compatibility, combination mechanism, whole-system check.
+**Broad-use intersection (review hypothesis).** solved subproblems, interface compatibility, combination mechanism, whole-system check.
 
 **Varies (descendant territory).** composition primitive (Combine, chain, parallel), interface strictness, interaction-effect handling.
 
@@ -16060,7 +16073,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: principled reassembly after decomposition, explicit type and acyclicity discipline, a failure-check step that catches emergent incompatibilities.
 - Gives up: feedback-loop compositions (the DAG constraint forbids them) and graceful interface adaptation (the type-safety invariant rejects mismatches rather than coercing).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'if interaction effects emerge, add coordination layer or revise decomposition' guidance is the hardest part and the pattern hand-waves it.
 - Acyclicity is often the wrong constraint — many useful compositions are iterative (gradient descent, fixed-point computations), and forcing DAG shape excludes them.
 - No diagnostic for which interface mismatched — failure is binary, which makes debugging compositions painful.
@@ -16116,7 +16129,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** LLM compute allocation, human time prioritization, research-depth decisions, optimization-iteration stopping, cognitive-load management, attention allocation.
 
-**Every context needs.** value estimation, budget tracking, ROI evaluation rule, stopping criterion.
+**Broad-use intersection (review hypothesis).** value estimation, budget tracking, ROI evaluation rule, stopping criterion.
 
 **Varies (descendant territory).** `max_budget` (see Appendix A — typed PositiveInteger, no cap), value estimation method, ROI threshold, budget refund semantics.
 
@@ -16132,7 +16145,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Meta-Cap buys protection from estimation paralysis at the cost of estimation accuracy.
 - Explicit ROI weighing buys principled stopping at the cost of requiring the caller to supply task-value estimates.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes — reasonable coverage. Analysis Paralysis and Penny Wise name the two symmetric failure modes.
 - '1% of total budget' for Meta-Cap is a magic number without justification. The tradeoff between estimation cost and estimation quality deserves analysis.
 - 'Value' of a task is the key input but unspecified — how is task-value computed? The pattern assumes it comes from the caller, but in practice value is often ambiguous.
@@ -16172,7 +16185,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** ConceptualBlend theory (Fauconnier/Turner), hybrid-invention patterns (e.g., "camera + phone = smartphone"), interdisciplinary research blends, creative-writing chimeras.
 
-**Every context needs.** two unrelated input concepts, forced-merger semantic, novel third-concept output, distinction from analogy (A→B mapping).
+**Broad-use intersection (review hypothesis).** two unrelated input concepts, forced-merger semantic, novel third-concept output, distinction from analogy (A→B mapping).
 
 **Varies (descendant territory).** merger methodology (structural, semantic, metaphoric), novelty verification, integration with AnalogyBridge.
 
@@ -16188,7 +16201,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - TriGate validity buys realizable outputs at the cost of hiding infeasible-but-generative blends.
 - Binary valid/invalid buys routing simplicity at the cost of dropping graded novelty.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, zero failure modes. Missing: Blend Collapse (C degenerates to A or B), Orthogonality Overreach (distance so large that merge is nonsensical), Validity Gaming (cheap realizability passes while blend is substantively weak).
 - 'Semantic distance > threshold' is invariant-worthy but the threshold is not specified. Caller-dependence makes cross-invocation comparison hard.
 - 'Fuses them to create C' is evocative but operationally vague — what does fusion look like? The pattern is authorial rather than mechanical.
@@ -16230,7 +16243,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** structured writing with word limits, regulatory-compliant drafting, safety-first software design, constitutional drafting, code with type signatures first.
 
-**Every context needs.** constraint-set generation first, content generation second, form-vs-function separation.
+**Broad-use intersection (review hypothesis).** constraint-set generation first, content generation second, form-vs-function separation.
 
 **Varies (descendant territory).** constraint granularity, sequence rigidity (can iterate back to constraints?).
 
@@ -16245,7 +16258,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: violation-prevention at generation time, auditable constraint specification, reduced rejection cycles.
 - Gives up: generative flexibility (over-constraining is the named failure mode) and adaptability (constraints frozen during operation can't respond to what's discovered during generation).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Over-constraining is the dominant failure mode and the pattern has no built-in relaxation step — constraints are set once and enforced forever within the operation.
 - Constraints immutable-during-operation is a clean-room invariant; real generation legitimately surfaces constraint issues that need mid-operation revision.
 - The 'negative space first' framing is poetic but under-specified — how you construct a constraint container for a free-form creative task isn't obvious.
@@ -16292,7 +16305,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** disaster-response plans, military contingencies, financial-market tail-risk plans, IT disaster recovery, personal-crisis plans, project contingency budgets.
 
-**Every context needs.** critical assumption identification, trigger condition, pre-computed response, store-before-need semantic.
+**Broad-use intersection (review hypothesis).** critical assumption identification, trigger condition, pre-computed response, store-before-need semantic.
 
 **Varies (descendant territory).** response depth, trigger-condition specificity, update cadence, rehearsal frequency.
 
@@ -16307,7 +16320,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 - Gains: fast response under stress, reserved resources, explicit 'what if' planning that surfaces assumptions before deployment.
 - Gives up: planning time, plan-book maintenance (contingencies rot when the main plan evolves), and sometimes the flexibility to improvise (pre-made responses can be wrong).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Maginot Line' failure mode is the dominant one — you plan for the disaster you imagined, and the real disaster is different. No built-in defense against imagination failure.
 - Resource reservation is an invariant but often unfunded — contingency reserves get reallocated during normal operation and aren't there when needed.
 - The disjoint-trigger invariant is too strong — overlapping triggers are normal; the pattern forbids them rather than specifying priority.
@@ -16344,7 +16357,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 **Broad-use contexts.** Creative(Brainstorming), Creative(Design), Creative(Writing), as a modifier applied to other patterns.
 
-**Every context needs.** marker semantic — descendants apply the "creative" tag.
+**Broad-use intersection (review hypothesis).** marker semantic — descendants apply the "creative" tag.
 
 **Varies (descendant territory).** contextual meaning of "creative" within domain.
 
@@ -16361,7 +16374,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: a named slot for divergent thinking, explicit permission to suspend convergent pressure, a mode that complements the many convergent patterns.
 - Gives up: efficiency and reliability. Creative outputs are hit-or-miss by construction; 90% is noise, and the filter for the 10% lives outside the pattern.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost entirely a stub — 'divergent thinking, remote associations, breaking patterns' is gestured at without operationalization.
 - No invariants, no failure modes — the pattern doesn't say what counts as creative vs just random, which is exactly the hardest question.
 - Conflates novelty (new) with value (useful); real creativity produces both, and the pattern doesn't say how.
@@ -16400,7 +16413,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** structured-brainstorming with immediate filtering, product-idea generation pipelines, research-question generation with triage, art-ideation with critic loops.
 
-**Every context needs.** ConceptBlend base, NoiseInjection for local-optima escape, dual-Check on Novelty + Value.
+**Broad-use intersection (review hypothesis).** ConceptBlend base, NoiseInjection for local-optima escape, dual-Check on Novelty + Value.
 
 **Varies (descendant territory).** blend depth, noise temperature, gate strictness, iteration bound.
 
@@ -16415,7 +16428,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: structured novelty-production, explicit divergence and utility invariants, noise-injection that escapes local optima.
 - Gives up: determinism and reliability. CreativeBlend outputs are by design unpredictable; the dual-check filters some failures and can't catch all.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Divergence threshold is unspecified — 'output similarity < threshold' defers the judgment to the caller, and getting it wrong produces either cosmetic variations or incoherent noise.
 - Orthogonal-concepts detection is itself a hard problem the pattern relies on — finding the orthogonal concepts in context is most of the work, and the pattern hand-waves it.
 - The dual-check is a downstream pattern; CreativeBlend without the dual-check is vulnerable to the coherent-but-wrong failure mode.
@@ -16475,7 +16488,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** norm-to-law transitions, team convention-to-policy, tacit knowledge → explicit documentation, prototype → production, case law formation, constitutional moments.
 
-**Every context needs.** implicit behavior observation, consensus validation, codification mechanism, entropy-threshold check (don't crystallize prematurely).
+**Broad-use intersection (review hypothesis).** implicit behavior observation, consensus validation, codification mechanism, entropy-threshold check (don't crystallize prematurely).
 
 **Varies (descendant territory).** resonance period (Duration, see §3.17), consensus requirement, reversibility post-crystallization.
 
@@ -16490,7 +16503,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: explicit path from informal norm to formal rule, consensus-requiring commit (both agents must sign), entropy-aware locking.
 - Gives up: reversibility (Crystallize produces Constitution-grade obligations that are hard to unwind) and sometimes honesty (the pressure to crystallize can force premature agreement).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Illusory resonance is the most dangerous failure mode — agents perceive the same soft signal differently, crystallize, then discover the perception mismatch. The pattern surfaces this by failing, which is the honest move, but too late to avoid the process cost.
 - Entropy threshold is unspecified — what counts as "entropy" of a coordination context is itself a judgment.
 - Gloss fixed: previously rendered as literal "{{phase_transition}}" due to un-interpolated template token; now plain text. Orphan phase_transition dependency (declared but no longer used in any field after the gloss fix) was removed.
@@ -16529,7 +16542,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** pattern escalation from heuristic to formal, research depth intensification, increasing-rigor reviews, promotion from prototype to production.
 
-**Every context needs.** a thing that admits deeper/more-rigorous treatment, the escalation operation, integration with its horizontal sibling `Discover`.
+**Broad-use intersection (review hypothesis).** a thing that admits deeper/more-rigorous treatment, the escalation operation, integration with its horizontal sibling `Discover`.
 
 **Varies (descendant territory).** domain specifics, escalation target-rigor, step-count, reversion semantics.
 
@@ -16544,7 +16557,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: explicit vertical search axis, named invariants for deeper-is-costlier-and-more-specific, a counterpart to Broad.
 - Gives up: operational richness. The pattern is mostly a label; the real work of Deep happens in specialized deepening patterns (Zoom, Drill, Detail).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — three invariants and one-line mechanism. The pattern's value is in the axis-label, not in any mechanism of its own.
 - Functional equivalence is a strong constraint — many real deepening explorations legitimately refine the question being asked, which the invariant forbids.
 - The Deep/Broad framing is useful pedagogically and doesn't capture other dimensions (more-rigorous, more-concrete, more-contextualized) that some deepenings pursue.
@@ -16591,7 +16604,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** procrastination-as-strategy, option-value preservation, decision-postponement under uncertainty, wait-and-see strategies, lazy evaluation.
 
-**Every context needs.** VOI check ("what would I learn by waiting?"), deadline to prevent analysis paralysis, re-insertion into queue when condition met.
+**Broad-use intersection (review hypothesis).** VOI check ("what would I learn by waiting?"), deadline to prevent analysis paralysis, re-insertion into queue when condition met.
 
 **Varies (descendant territory).** deadline policy, triggering condition, cost of holding the decision open.
 
@@ -16606,7 +16619,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: principled postponement, explicit information-value test, WakeUpCondition triggers that bring the decision back at the right time.
 - Gives up: bias toward action. Defer is a legitimate choice but also a way to look busy without committing; over-use produces decision debt.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The information-value check is the crucial test and the pattern doesn't specify how to compute it — 'would I learn enough to change my mind?' is subjective.
 - State Preservation is an invariant but the pattern doesn't say what 'state' means operationally; for agents, preserving working context across deferrals is expensive and lossy.
 - Decision Debt is the named failure mode and the pattern has no built-in deadline forcing — the caller sets the deadline, which is exactly where discipline slips.
@@ -16651,7 +16664,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** solver-tree depth control, tree-search pruning, LLM chain-of-thought depth, recursive decomposition control, game-tree iterative deepening.
 
-**Every context needs.** current plan entropy estimate, action-cost threshold, decompose-if-entropy-exceeds-threshold rule.
+**Broad-use intersection (review hypothesis).** current plan entropy estimate, action-cost threshold, decompose-if-entropy-exceeds-threshold rule.
 
 **Varies (descendant territory).** entropy estimation method, threshold calibration, per-branch vs global, reset on new information.
 
@@ -16666,7 +16679,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: principled termination for recursive solving, defense against infinite regress, explicit threshold parameter callers can tune.
 - Gives up: handling of inherently ambiguous tasks — for 'write a good poem' entropy never naturally drops, so the pattern either fails or the threshold gets lowered into uselessness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Ambiguity Loop is the dominant failure mode for creative/subjective tasks, and the pattern acknowledges it without offering a solution.
 - Entropy estimation itself costs — the pattern needs entropy(plan) to decide to stop, but computing entropy is essentially computing how much you know, which is expensive.
 - 'Miscalculating entropy leads to premature action' — the pattern is sensitive to its own entropy measurement, which is exactly the thing it's trying to use to govern itself.
@@ -16707,7 +16720,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** systems architecture, product design, scientific-proposal writing, policy design, organizational-change design, API design.
 
-**Every context needs.** proposal formulation, adversarial method (SteelmanCheck + PreMortem), impact projection, clarity refinement (translate + summarize).
+**Broad-use intersection (review hypothesis).** proposal formulation, adversarial method (SteelmanCheck + PreMortem), impact projection, clarity refinement (translate + summarize).
 
 **Varies (descendant territory).** domain specificity, team-context vs solo, visualization requirements, iteration count.
 
@@ -16722,7 +16735,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: structured design rigor, forced dialectical treatment of proposals, clean handoff to implementation.
 - Gives up: lightness. DesignArchitect is the heavyweight design role; for small changes it's overkill and the simpler Plan pattern suffices.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Output Quality: must produce a valid MechanisticDesignProposal' is the whole value and the mechanism doesn't specify what makes it valid — validation lives in DesignProposal's own criteria.
 - The role is both producer and adversarial reviewer (Steelman/PreMortem on their own proposal), which risks the confirmation-bias failure mode named in ConfirmationBlock.
 - No provision for escalation — if the architect's pre-mortem surfaces unresolvable issues, the pattern doesn't say what happens next.
@@ -16766,7 +16779,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: structured diverse search, explicit isolation boundary, named reduction point for synthesis.
 - Gives up: speed and efficiency. A single-mode generator is much faster; the protocol is specifically for problems where single-mode's narrowness is the bottleneck.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Maximally distinct modes' is an ideal; defining what makes modes distinct is itself judgment.
 - The reduction step is where errors compound — diverse generators producing incompatible outputs that the reducer must reconcile.
 - The protocol assumes reduction is possible; some genuinely divergent generators produce outputs that can't be synthesized, which the pattern treats as failure.
@@ -16815,7 +16828,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** software development dogfooding, API self-consumption, pattern-library self-usage, drug testing by inventors, product tasting by chefs, policy-by-lawmakers.
 
-**Every context needs.** creator, creation, non-trivial use case by creator, Friction Log output.
+**Broad-use intersection (review hypothesis).** creator, creation, non-trivial use case by creator, Friction Log output.
 
 **Varies (descendant territory).** duration of dogfooding, scope (full product vs slice), documentation requirements, release-gate semantics.
 
@@ -16830,7 +16843,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: realistic friction logs, surface of usability gaps, forcing function for creator accountability.
 - Gives up: creator time. Dogfooding is expensive in creator-hours relative to writing more tests or demos — and the hours come from the same pool as feature work.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hello World Fallacy is the most common instance of DogfoodFirst gone wrong — the creator 'uses' the tool on a trivial case and calls it validated.
 - Creator bias is structural and unmitigated; the pattern asks for honest use but has no way to ensure edge cases get exercised.
 - 'Non-trivial' is vague — what counts as non-trivial is judgment, and the lowest bar a creator can tolerate.
@@ -16884,7 +16897,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** negotiation strategy, user-research personas, ethical-impact analysis, fiction-writing character modeling, therapy (taking another's perspective), chess-opponent modeling.
 
-**Every context needs.** target agent's priors/goals/constraints, virtual-context instantiation, inference-on-behalf simulation.
+**Broad-use intersection (review hypothesis).** target agent's priors/goals/constraints, virtual-context instantiation, inference-on-behalf simulation.
 
 **Varies (descendant territory).** prior fidelity, simulation-run count, perspective-depth, multiple-target support.
 
@@ -16899,7 +16912,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: structured theory-of-mind prediction, explicit isolation invariants, sandboxed execution against hostile memetics.
 - Gives up: accuracy limited by the quality of the Target profile. The simulation is only as good as the model; the pattern can't improve the model.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Projection bias is the dominant failure and the pattern's isolation invariant is the defense; in practice LLM-based agents leak their own priors regardless of structural isolation.
 - Infinite regress has no resolution — the pattern names it as a failure without offering depth limits.
 - Simulation Capture (hostile memetics corrupting host) is a real adversarial concern; the AgentSandbox substrate helps but doesn't prevent all vectors.
@@ -16943,7 +16956,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** science, engineering verification, UX usability testing, A/B tests, lab experiments, hypothesis testing in data science.
 
-**Every context needs.** testable prediction extraction, experiment/lookup execution, falsification-attempt semantic.
+**Broad-use intersection (review hypothesis).** testable prediction extraction, experiment/lookup execution, falsification-attempt semantic.
 
 **Varies (descendant territory).** experimental rigor, cost, time-to-result, statistical methodology.
 
@@ -16958,7 +16971,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: explicit empirical grounding for conclusions, clean boundary from Validate, principled confidence increase via falsification attempts.
 - Gives up: theoretical elegance. EmpiricalTest requires observation, which isn't always possible or cost-effective.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — basically 'identify predictions, run tests.' The real work is in the specific Falsification instances, not in EmpiricalTest itself.
 - No failure modes listed — empirical testing has many (selection bias, experimenter effects, p-hacking) and the pattern doesn't catalogue them.
 - The 'formerly confused with Validate' note is a pointer to a real disambiguation and the pattern's main value is asserting the distinction.
@@ -17009,7 +17022,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** research-vs-act decisions, diagnostic-test ordering, A/B test decisions, experiment design, due-diligence depth, survey-vs-decide tradeoffs.
 
-**Every context needs.** outcome space, decision-per-outcome mapping, "does outcome change decision?" test, cost estimation.
+**Broad-use intersection (review hypothesis).** outcome space, decision-per-outcome mapping, "does outcome change decision?" test, cost estimation.
 
 **Varies (descendant territory).** outcome-space enumeration method, decision-value quantification, risk-aversion tuning.
 
@@ -17024,7 +17037,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: cost-disciplined information gathering, explicit VOI analysis, a filter against uninformative experiments.
 - Gives up: serendipity. Experiments that don't seem pivot-relevant sometimes surface unexpected insights; EpistemicROI filters those out.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Overestimation of Pivot is the named failure mode and the dominant real failure — agents talk themselves into 'this would change my mind' when confirmation bias means it won't.
 - Underestimation of Cost is also named — the cost of experimentation itself (time, compute, operator attention) is systematically under-counted.
 - 'Two outcomes leading to different actions' is a clean formulation; real experiments have probability distributions over outcomes, not binary splits, and the pattern doesn't formalize this.
@@ -17075,7 +17088,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** event-driven architectures, GUI event handlers, interrupt handlers, webhook handlers, real-time data subscriptions, pub-sub reactors.
 
-**Every context needs.** event subscription, priority queue, per-event atomic handler.
+**Broad-use intersection (review hypothesis).** event subscription, priority queue, per-event atomic handler.
 
 **Varies (descendant territory).** concurrency model, backpressure, unhandled-event escalation, handler isolation.
 
@@ -17090,7 +17103,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: reactive response to environment changes, bounded latency guarantee (max_latency invariant), explicit handler/event-type matching.
 - Gives up: predictability. Event-driven systems are hard to reason about statically — any incoming event can redirect execution.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Event Storm handling is the big operational problem and the pattern offers no built-in flow control (rate limiting, backpressure, or load shedding).
 - The max_latency invariant is easy to specify and hard to enforce — under event storm it's silently violated.
 - Handler atomicity is named as invariant without specifying granularity — atomic relative to what? The pattern defers this to the implementation.
@@ -17127,7 +17140,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** scientific experiments, A/B tests, clinical trials, social-science studies, product experiments, debugging experiments.
 
-**Every context needs.** variable isolation, Control group, Treatment group, outcome comparison.
+**Broad-use intersection (review hypothesis).** variable isolation, Control group, Treatment group, outcome comparison.
 
 **Varies (descendant territory).** design (fully factorial, RCT, natural experiment), sample size, duration, blinding.
 
@@ -17142,7 +17155,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: causal rather than correlational knowledge, principled control/treatment protocol, explicit generator of new knowledge.
 - Gives up: simplicity and sometimes feasibility. Clean experiments are expensive in data/time; agents often don't have the luxury.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — the mechanism says 'use Control and Treatment,' which is correct and under-specified. Real experiments have blinding, randomization, sample size, power calculations; the pattern mentions none.
 - No failure modes listed — experiments have many (confounders, selection bias, over-fitting to treatment) and the pattern doesn't catalogue them.
 - Distinguishing Experiment from Verification is the pattern's key framing and is often blurred in practice; agents call verification 'experiments' all the time.
@@ -17186,7 +17199,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** reinforcement learning (epsilon-greedy, UCB, Thompson sampling), product discovery vs optimization, personal career decisions, research agenda balance, restaurant choice (regular vs new), trading (new position vs add to existing).
 
-**Every context needs.** **a mechanism balancing information-gain against expected immediate-reward** — not any specific algorithm.
+**Broad-use intersection (review hypothesis).** **a mechanism balancing information-gain against expected immediate-reward** — not any specific algorithm.
 
 **Varies (descendant territory).** the algorithm (epsilon-greedy with random coin-flip, UCB with confidence bounds, Thompson sampling from posterior, softmax), epsilon schedule, budget-awareness, multi-armed bandit vs stateful.
 
@@ -17201,7 +17214,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: principled exploration/exploitation balance, deadline-aware adaptation, named UCB-style exploration bonus.
 - Gives up: flexibility to exploration shifts late in a run. Environment changes during the exploitation phase make the best option stale; the named failure mode.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Context Drift is the dominant failure and the pattern has no mechanism to detect it or re-enter exploration; the immutable threshold forbids exactly the adaptation you'd want.
 - Threshold immutability is an odd invariant — it prevents gaming but also prevents learning, which is exactly the point of exploration.
 - The 'as deadline approaches' schedule assumes deadlines exist and are known; open-ended tasks break the pattern's assumptions.
@@ -17241,7 +17254,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** scientific falsification, bug reproduction, security penetration testing, constraint-violation detection, counterexample generation, test-failure analysis.
 
-**Every context needs.** hypothesis to test, observation capability, recognition of incongruity between prediction and reality.
+**Broad-use intersection (review hypothesis).** hypothesis to test, observation capability, recognition of incongruity between prediction and reality.
 
 **Varies (descendant territory).** counterexample generation strategy, confidence threshold for declaring falsification, retry semantics on ambiguous evidence.
 
@@ -17256,7 +17269,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 - Gains: principled elimination, strong evidence shape (not-observation implies not-hypothesis), Popperian rigor baked in.
 - Gives up: affirmative knowledge. Falsification eliminates; it does not establish. Every round of falsification leaves the surviving hypotheses un-confirmed.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Duhem-Quine thesis is the classical problem — any observation technically falsifies a conjunction, not a single hypothesis. The pattern assumes clean falsification.
 - The 'If Prediction implies Observation, and not-Observation, then not-Hypothesis' invariant is valid logic; the practical problem is that real hypotheses rarely imply crisp observations.
 - Empirical grounding is required; in mathematical or purely logical domains the pattern doesn't apply and callers fall back to other modes.
@@ -17298,7 +17311,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 **Broad-use contexts.** the architecture per se — any instantiation of recursive concept-decomposition with contract-bounded sub-concepts, conceptual (not domain-specific) decomposition, five-surface Solver Contract at every level, and compounding-with-use via joint training.
 
-**Every context needs.** contract-bounded decomposition, conceptual (domain-independent) structure, reusability across problem classes, composability, improvement-through-use (training signal propagating across nodes).
+**Broad-use intersection (review hypothesis).** contract-bounded decomposition, conceptual (domain-independent) structure, reusability across problem classes, composability, improvement-through-use (training signal propagating across nodes).
 
 **Varies (descendant territory).** substrate (LLM-based, hybrid human-AI, multi-model), deployment scale (one agent self-decomposing vs many agents in a swarm), specific training regime, domain of application.
 
@@ -17316,7 +17329,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Bounded Expansion buys termination and cost control at the cost of potentially stopping short of a better solution.
 - Memory Conservation as invariant buys coherence at the cost of a property that is hard to enforce — descendants can claim compliance without actually maintaining global context.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Three invariants, zero failure modes. Critical omissions: Contract Violation (a sub-concept fails to expose the Solver interface — breaks the fractal); Unbounded Loop (decomposition loops back on itself — the DAG-shape invariant of UniversalSolverTree handles this, but FractalIntelligence itself doesn't state it); Context Loss (the Memory Conservation invariant is violated in practice with no detection).
 - 'Expansion of cognitive capability through conceptual decomposition' is the thesis but the mechanism doesn't say how expansion is measured — what counts as expanded capability?
 - The relationship to PolymorphicSolver is implicit — FI is the architecture, PolymorphicSolver is the node type. The pattern could say this more directly.
@@ -17358,7 +17371,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** autonomous scientific research, self-improving AI, debugging automation, market-hypothesis testing, evolutionary-design search.
 
-**Every context needs.** hypothesis generator, simulation-and-trace, consistency validator, publication mechanism.
+**Broad-use intersection (review hypothesis).** hypothesis generator, simulation-and-trace, consistency validator, publication mechanism.
 
 **Varies (descendant territory).** domain specificity, cycle rate, validation rigor, publication protocol, inter-cycle learning.
 
@@ -17373,7 +17386,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: structured scientific-method cycle, explicit engine for hypothesis evaluation.
 - Gives up: flexibility. The loop shape imposes ceremony; problems that don't fit the scientific-method mold have to use other patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Confirmation bias is the dominant failure and the pattern names it without mitigating; the engine structure doesn't prevent motivated selection of evidence.
 - Untestable hypotheses slipping past the falsification-criteria requirement is called out; enforcement depends on caller discipline.
 - The cycle is modeled as clean iteration; real scientific practice has messier interleaving of steps that the pattern flattens.
@@ -17424,7 +17437,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** scientific method, debugging decision trees, medical diagnosis ladders, investment hypothesis tracking, AI safety research, intelligence analysis.
 
-**Every context needs.** hypothesis list with probabilities, Bayesian update on new data, act-on-highest rule, alive-other-hypotheses tracking.
+**Broad-use intersection (review hypothesis).** hypothesis list with probabilities, Bayesian update on new data, act-on-highest rule, alive-other-hypotheses tracking.
 
 **Varies (descendant territory).** ladder depth, update frequency, hypothesis pruning policy, experiment-cost consideration.
 
@@ -17439,7 +17452,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: structured multi-hypothesis tracking, explicit ascension discipline, falsifiability enforced at every rung.
 - Gives up: fluency and sometimes insight. 'Clinging to low-probability priors' (the named failure) is the pattern's pathology.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Clinging to low-probability priors is named as a failure and the pattern has no culling mechanism — low-probability hypotheses accumulate forever.
 - The invariants are now deduplicated (was: two Falsifiability lines + Ascension/Evidence redundant). Exclusivity is retained as mathematically required for the Bayesian probability framework.
 - Exclusivity is correct for the Bayesian math but excludes real hypothesis sets with overlapping support (e.g., cold vs flu both cause fever). Users with overlapping hypotheses need a different pattern.
@@ -17476,7 +17489,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** court-jester tradition, comedian social-commentary, satirical media, indirect feedback via stories, diplomatic indirect critique.
 
-**Every context needs.** critique content, incongruity wrapper, defensive-filter bypass, relationship-maintenance priority.
+**Broad-use intersection (review hypothesis).** critique content, incongruity wrapper, defensive-filter bypass, relationship-maintenance priority.
 
 **Varies (descendant territory).** incongruity type (humor, paradox, absurdity), risk of misinterpretation, target's receptivity.
 
@@ -17491,7 +17504,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: critique delivery without defensive cascade, coordination preservation through challenging feedback.
 - Gives up: directness and sometimes content fidelity. Humor-wrapped critique is easier to misinterpret or dismiss than direct feedback.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No invariants or failure modes listed — the pattern is almost entirely heuristic. 'Use humor' isn't a mechanism, it's advice.
 - The recipient's 'defensive filtering' is an assumption about their psychology the pattern treats as given; for different recipients, Jester fails.
 - Conflates humor (which has its own genre discipline) with 'semantic incongruity' in general; the category is too broad.
@@ -17531,7 +17544,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** trade-timing signals, product-launch readiness, political-moment sensing, conversational-interruption timing, game-engagement detection.
 
-**Every context needs.** signal sources, aggregation function, readiness threshold, boolean yield.
+**Broad-use intersection (review hypothesis).** signal sources, aggregation function, readiness threshold, boolean yield.
 
 **Varies (descendant territory).** signal weighting, time-window, false-positive cost, actionability horizon.
 
@@ -17546,7 +17559,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: temporal-opportunity detection, explicit moment-appropriateness, resistance to 'just try harder' failure mode.
 - Gives up: predictability. Actions gated by Kairos can't be scheduled; their timing depends on context the agent can't fully control.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The sensitivity threshold is caller-dependent and consequential — set too high, True almost never; set too low, pattern fires indiscriminately.
 - Aggregation of signals into Readiness Potential is treated as given; the real work is picking and weighting signals, which the pattern doesn't specify.
 - The invariant 'If the moment is wrong, more effort cannot fix it' is strong — some wrong moments are fixable with enough effort.
@@ -17583,7 +17596,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** ML model embedding exploration, creative daydreaming, memory consolidation during sleep, LLM-based concept discovery, research-ideation sessions.
 
-**Every context needs.** offline processing mode, embedding-space traversal, ConceptBlend usage, non-obvious-connection discovery.
+**Broad-use intersection (review hypothesis).** offline processing mode, embedding-space traversal, ConceptBlend usage, non-obvious-connection discovery.
 
 **Varies (descendant territory).** wander duration, traversal heuristics, captured-output format.
 
@@ -17598,7 +17611,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: offline memory consolidation, novel analogy generation, explicit idle-state mode.
 - Gives up: observability and sometimes coherence. Wandering produces connections that don't always hold up to later scrutiny.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; LatentWander has many (drift without convergence, hallucinated connections, offline state corruption).
 - 'Higher than standard inference temperature' is under-specified — how much higher, on what schedule?
 - Silence during wandering precludes mid-wander intervention, which prevents observability — a real operational problem.
@@ -17657,7 +17670,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** analogical problem-solving, cross-domain innovation, mathematical transformation (Fourier, Laplace), biomimicry engineering, metaphorical reasoning.
 
-**Every context needs.** source domain problem, target-domain mapping, optimization in target, mapping back (Translate).
+**Broad-use intersection (review hypothesis).** source domain problem, target-domain mapping, optimization in target, mapping back (Translate).
 
 **Varies (descendant territory).** domain-pair fit, translation fidelity, iteration across multiple target domains.
 
@@ -17672,7 +17685,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: structural escape from local optima, explicit analogy-based reframing, named detour pattern.
 - Gives up: reliability. Domain-switching is powerful and risky; most lateral attempts don't round-trip successfully.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hallucination (named failure) — the analogy introduces features that don't exist in the original problem.
 - Translation Loss is endemic; every lateral move loses something, and getting back to the original domain is often where the loss is discovered.
 - Complexity Overhead is the sensible-routing question and the pattern offers no cost model.
@@ -17718,7 +17731,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** software architecture phases, project planning from requirements to Gantt, experimental protocol planning, manufacturing production planning, lecture planning.
 
-**Every context needs.** FrameSpec input, Think to transform, Optimize for resource feasibility, strict Definition of Done generation.
+**Broad-use intersection (review hypothesis).** FrameSpec input, Think to transform, Optimize for resource feasibility, strict Definition of Done generation.
 
 **Varies (descendant territory).** optimization depth, resource model, feasibility-check rigor, iteration count with framing.
 
@@ -17733,7 +17746,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 - Gains: architectural separation of plan from execution, explicit transformation from FrameSpec to ExecutionManifest.
 - Gives up: iteration. ManifestPlanning is a one-shot transformation; real planning often needs to iterate as execution reveals new information.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hallucinated Resources is the canonical LLM failure mode; the pattern names it without providing a resource catalog to check against.
 - Fragile Chain (named failure) — single-step failure collapses the plan — is structural and unmitigated.
 - No replanning story — the pattern produces a manifest and doesn't specify what to do when execution reveals the manifest is wrong.
@@ -17784,7 +17797,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 **Broad-use contexts.** solver-depth decisions, research-effort stopping, optimization-iteration bounds, tree-search pruning, cognitive-effort allocation, meeting-length stopping.
 
-**Every context needs.** expected-improvement estimator, cost estimator, comparison rule.
+**Broad-use intersection (review hypothesis).** expected-improvement estimator, cost estimator, comparison rule.
 
 **Varies (descendant territory).** estimation method, cost-time-horizon, risk adjustment, stopping-threshold calibration, reset on surprise.
 
@@ -17801,7 +17814,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: principled recursion termination, explicit marginal-value check, budget protection.
 - Gives up: straightforward recursion. Every dive pays the evaluation tax; for small recursions this is overhead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Underestimation and Overestimation of marginal value are both named failures; neither has a structural defense. Estimation quality is exactly what's at stake.
 - Sunk Cost Fallacy (named failure) — the pattern's framing is marginal, but callers frequently slip into 'we already invested, keep going.'
 - The Diminishing Returns invariant is strong; some valuable recursions have constant or increasing marginal returns, which the invariant would forbid.
@@ -17853,7 +17866,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** "what-if" analysis, chess move evaluation, strategic planning, debugging predictions, scientific theory testing, counterfactual reasoning, legal case analysis.
 
-**Every context needs.** causal graph of target system, proposed action, prediction of state(t+1), isolation (dry-run doesn't affect real world).
+**Broad-use intersection (review hypothesis).** causal graph of target system, proposed action, prediction of state(t+1), isolation (dry-run doesn't affect real world).
 
 **Varies (descendant territory).** graph fidelity, simulation depth, heuristic vs rigorous mode toggle, computational cost.
 
@@ -17868,7 +17881,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: predictive testing of plans, bounded cost (simulation << execution), sandboxed trial.
 - Gives up: guarantees. Simulations can be wrong; the pattern's value depends on the causal graph accuracy.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Map-Territory Error is the dominant failure — every simulation diverges; the pattern has no defense beyond 'try to match reality better.'
 - Overconfidence (named failure) — trusting simulation over real-world feedback — is an ongoing risk when simulations are well-tuned.
 - The pattern requires a causal graph of the target system; constructing that graph is most of the work and the pattern defers it.
@@ -17921,7 +17934,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** reasoning audits, agent self-correction, debugging your debugging, paper-review-of-a-review, meditative introspection, progress retrospectives.
 
-**Every context needs.** pause from object-level work, audit questions ("making progress? approach sound? assumptions changed?"), course correction or continue.
+**Broad-use intersection (review hypothesis).** pause from object-level work, audit questions ("making progress? approach sound? assumptions changed?"), course correction or continue.
 
 **Varies (descendant territory).** trigger frequency, audit depth, recursion limit (to avoid infinite meta), integration with Reflexion.
 
@@ -17937,7 +17950,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Max-depth on regress buys termination at the cost of capping legitimate deep meta.
 - Broad audit scope (progress, soundness, assumptions, obvious misses) buys completeness at the cost of becoming its own task.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, one failure mode. 'Checker checks the checking process' is the self-reference invariant but isn't really a claim about invariance — it's a description.
 - Max depth prevents regress but the value isn't specified. Callers choose arbitrarily.
 - The four audit questions (progress, soundness, assumptions, obvious misses) are the mechanism but no structure for them — an agent can superficially answer yes/no without substantive audit.
@@ -17981,7 +17994,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: self-regulating solver tree, explicit tree-topology observation, principled meta-level operation.
 - Gives up: simplicity. Meta solvers add a whole layer of observation; for simple trees this is overhead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'approximate gestalt' of the tree is intuitive and vague — what the MetaObserverSolver actually maintains is under-specified.
 - The contract-invariant bounds meta-observation depth; setting that bound right is itself a meta-meta decision the pattern doesn't address.
 - Meta solvers can be wrong about the tree in ways that are hard to detect without meta-meta solvers.
@@ -18028,7 +18041,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** ML exploration (epsilon-greedy), simulated annealing, creative writing (forced random words), conversation fresheners, evolutionary mutation, escape from rumination.
 
-**Every context needs.** loop/stagnation detector, noise source, injection mechanism, return-to-coherent-trajectory after injection.
+**Broad-use intersection (review hypothesis).** loop/stagnation detector, noise source, injection mechanism, return-to-coherent-trajectory after injection.
 
 **Varies (descendant territory).** noise magnitude (temperature), noise source (PRNG, oblique strategies, user prompt), detection threshold, cooldown after injection.
 
@@ -18043,7 +18056,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: self-recovery from loops, explicit trajectory-change mechanism.
 - Gives up: determinism and sometimes coherence. The cost of occasional derailment is the price of unsticking.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Derailment into nonsense is the named failure and the pattern's central risk.
 - Loop detection is assumed and not specified — how the agent knows it's looping is the hard part.
 - Signal-to-noise > 0 is technically satisfied by almost any injection; the invariant is weak.
@@ -18085,7 +18098,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** PURECheck's N dimension, academic originality checks, patent novelty screening, pattern-library novelty, product-originality evaluation.
 
-**Every context needs.** candidate, incumbent knowledge base, structural-distinctness evaluation, 3-class judgment.
+**Broad-use intersection (review hypothesis).** candidate, incumbent knowledge base, structural-distinctness evaluation, 3-class judgment.
 
 **Varies (descendant territory).** distinctness metric, knowledge-base coverage, domain specificity.
 
@@ -18100,7 +18113,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit distinctness check, defense against rebrands, structural novelty requirement.
 - Gives up: incremental refinements. The invariant may reject valuable small improvements; callers wanting refinement need different patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Embedding similarity is model-dependent — different embedding models give different novelty scores; the invariant inherits the model's biases.
 - No threshold specified — 'low embedding similarity' defers the cutoff to the caller.
 - The pattern assumes neighbors exist to compare against; for the first pattern in a brand-new domain, Novelty has no nearest neighbor.
@@ -18160,7 +18173,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** combat aviation (origin), trading, alert response, debugging sessions, real-time control, agentic reasoning loops, competitive games, operations war rooms.
 
-**Every context needs.** the four phases (Observe, Orient, Decide, Act) executed in order.
+**Broad-use intersection (review hypothesis).** the four phases (Observe, Orient, Decide, Act) executed in order.
 
 **Varies (descendant territory).** phase duration, orientation depth, decision method, action reversibility, loop interrupt criteria, cycle-time budget.
 
@@ -18175,7 +18188,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: structured agility loop, explicit phases, named failure-mode vocabulary.
 - Gives up: slowness when warranted. OODA favors fast iteration; deliberate reasoning benefits from other patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Military heritage brings specific framing that not all agent tasks fit — OODA is adversarial-tinged.
 - Disorientation under contradictory data is a real failure and the pattern offers no specific remedy.
 - Latency of the full loop is the named failure when environment changes faster than the loop cycles.
@@ -18225,7 +18238,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** investment decisions, time-allocation decisions, product roadmap prioritization, resource-commitment analysis, career choices, scheduling trade-offs.
 
-**Every context needs.** candidate option, best-forgone-alternative identification, cost calculation including foregone-value deduction.
+**Broad-use intersection (review hypothesis).** candidate option, best-forgone-alternative identification, cost calculation including foregone-value deduction.
 
 **Varies (descendant territory).** alternative-space size, evaluation technique, uncertainty tracking in forgone value.
 
@@ -18240,7 +18253,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: true cost accounting, explicit alternative-comparison, defense against 'this is good' in isolation.
 - Gives up: decisiveness. Serious opportunity-cost thinking can delay choice until the alternatives themselves have lapsed.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Analysis Paralysis is endemic; the pattern has no stopping rule for alternative search.
 - The pattern assumes alternatives are knowable; in real decisions, many alternatives are unknown at decision time.
 - Very thin mechanism — two invariants, one-sentence framing.
@@ -18283,7 +18296,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** secretary problem, apartment hunting, partner selection, when-to-stop-searching decisions, product-launch timing, optimal-selling-time in markets.
 
-**Every context needs.** search-in-progress state, stopping criterion (1/e for no-recall, Marginal Gain for recall), termination decision.
+**Broad-use intersection (review hypothesis).** search-in-progress state, stopping criterion (1/e for no-recall, Marginal Gain for recall), termination decision.
 
 **Varies (descendant territory).** recall_allowed (Boolean, principled per §3.17), budget, cost estimation, quality estimation.
 
@@ -18298,7 +18311,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: principled stopping rule, named regimes for different recall assumptions.
 - Gives up: simplicity. OptimalStop requires classifying the problem into recall/no-recall and applying different rules; simpler stopping rules work for simpler problems.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Infinite Search (named failure) — unknown N resulted in endless calibration — is a structural risk when the search space size is unknown.
 - The 1/e rule is famous and applies to a narrow set of problems; many real stopping decisions don't fit.
 - Marginal gain threshold requires estimating incremental value, which is the hard part and the pattern defers it.
@@ -18353,7 +18366,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** gradient descent, hyperparameter tuning, evolutionary algorithms, reinforcement-learning policy optimization, compiler optimization, resource allocation, product-design refinement.
 
-**Every context needs.** objective function (metric), candidate generation, evaluation, selection.
+**Broad-use intersection (review hypothesis).** objective function (metric), candidate generation, evaluation, selection.
 
 **Varies (descendant territory).** local vs global search, gradient availability, convergence criteria, exploration/exploitation balance.
 
@@ -18368,7 +18381,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: principled iterative improvement, explicit objective function, named failure-mode vocabulary.
 - Gives up: simplicity. Optimize requires choosing a metric, which is where Goodhart's Law enters; simpler satisficing avoids the trap.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Overfitting (named failure) — solution works on test, fails in reality — is the classical ML failure, and the pattern mentions without mitigating.
 - Goodhart's Law is the dominant failure for any real optimization over a non-trivial period.
 - Local Optima are structural; without escape mechanisms, optimize converges to whatever locally-good answer is near the start.
@@ -18419,7 +18432,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: structural anti-averaging discipline, explicit four-axis composition, named framework for quality gates.
 - Gives up: nuance. The non-compensatory rule means any single axis failing is reject; borderline cases on multiple axes have no nuanced handling.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Single-Context Contamination (named failure) is subtle and pervasive — reviewers naturally soften Parsimony when moved by Expansive, and the pattern's isolation invariant is the defense.
 - Compensatory Drift (named failure) — 'weighted average' evaluation — is the default human approach the framework explicitly rejects.
 - The four axes are defensible and not proven universal; the framework commits to them anyway.
@@ -18456,7 +18469,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** R&D concept generation, invention flow, scientific hypothesis generation, design ideation, product-feature conception.
 
-**Every context needs.** generator, PURECheck gate, PUREOptimization step, MechanisticDesignProposal output.
+**Broad-use intersection (review hypothesis).** generator, PURECheck gate, PUREOptimization step, MechanisticDesignProposal output.
 
 **Varies (descendant territory).** generator diversity, optimization depth, convergence criteria.
 
@@ -18471,7 +18484,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: quality-filtered ideation, reduced noise, explicit PUREcheck integration.
 - Gives up: divergent volume. PUREBrainstorming produces fewer, better ideas; some applications want more, more-raw ideas.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Filter-First may suppress ideas that would have survived after light refinement; the PUREcheck may be too strict at the seed stage.
 - Mechanistic Rigor requirement means every idea must be fully specified; early seeds rarely are.
 - No failure modes listed; PUREBrainstorming has some (premature filtering, over-rigorous early critique).
@@ -18510,7 +18523,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** pattern-mint evaluation, research proposal triage, design decision review, architectural proposal screening, scientific paper screening.
 
-**Every context needs.** all four gates (Parsimony, Novelty, Realizable, Expansive) applied in sequence, Yellow-output Technical-Debt tracking, Red-on-any-gate termination.
+**Broad-use intersection (review hypothesis).** all four gates (Parsimony, Novelty, Realizable, Expansive) applied in sequence, Yellow-output Technical-Debt tracking, Red-on-any-gate termination.
 
 **Varies (descendant territory).** gate threshold values, evaluator identity (self vs committee), debt-ledger integration, parallel vs sequential gate evaluation.
 
@@ -18525,7 +18538,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: canonical PURE execution, sequential fail-fast via LayeredCheck, clear triage procedure.
 - Gives up: flexibility. The sequential layered application is one way to use PURE; others exist and are outside the pattern.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Sequential triage means order matters; the PURE axes are 'orthogonal' by framework claim but order still affects feel.
 - Four TriGates is a specific shape; alternative PURE applications (each axis scored, then aggregated non-compensatively) aren't covered.
 - The 'canonical Exploration protocol' framing is committal — PURECheck takes a stance on what PURE-for-exploration looks like.
@@ -18571,7 +18584,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** design review with specialist committees, academic revision by specialist co-authors, product optimization by cross-functional teams.
 
-**Every context needs.** candidate that passed PURECheck, decomposition into 4 streams (P/U/R/E), specialist per stream, re-integration.
+**Broad-use intersection (review hypothesis).** candidate that passed PURECheck, decomposition into 4 streams (P/U/R/E), specialist per stream, re-integration.
 
 **Varies (descendant territory).** specialist selection, stream weighting, iteration count, conflict resolution between streams.
 
@@ -18586,7 +18599,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: multi-axis PURE improvement, explicit non-regression.
 - Gives up: single-axis fluency. Every axis pays the multi-axis review.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Optimization Conflict is endemic — Novel improvements often reduce Realizability.
 - Synthesis Failure requires trade-off negotiation the pattern defers.
 - Monotonic Improvement across all axes is often impossible.
@@ -18641,7 +18654,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** parallel LLM calls, map-reduce, ensemble methods, concurrent tool use, parallel research, A/B testing.
 
-**Every context needs.** task, decomposition or replication, concurrent execution, aggregation.
+**Broad-use intersection (review hypothesis).** task, decomposition or replication, concurrent execution, aggregation.
 
 **Varies (descendant territory).** mode (Section vs Vote), concurrency degree, aggregation function, failure handling.
 
@@ -18656,7 +18669,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: wall-clock speedup, reliability via voting, explicit mode distinction (Sectioning vs Voting).
 - Gives up: compute efficiency. Parallel N tasks costs N× compute; for cost-bounded settings, serial is often correct.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Merge Conflicts (named failure) — outputs can't be combined — is endemic; the pattern doesn't specify merge strategy.
 - Unanimous Wrong (named failure) — all parallel paths share the same error — makes voting useless when correlation is high.
 - Aggregation Bias — merge strategy adds systematic error — lives outside the pattern's invariants.
@@ -18703,7 +18716,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** engineering tradeoffs, portfolio theory, product-feature selection, hyperparameter tuning, economic policy tradeoffs, resource allocation.
 
-**Every context needs.** competing metrics, dominance-check (strictly inferior = discard), frontier identification.
+**Broad-use intersection (review hypothesis).** competing metrics, dominance-check (strictly inferior = discard), frontier identification.
 
 **Varies (descendant territory).** metric count, sampling density, frontier approximation method.
 
@@ -18718,7 +18731,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit trade-off space, principled multi-objective framing, named frontier primitive.
 - Gives up: single-answer simplicity. ParetoFront produces a set, not a point; callers must still choose.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; ParetoFront has some (front approximation error, linear-tradeoff assumption, single-point selection bias).
 - Efficiency invariant is the Pareto definition; the real work (mapping the front, selecting a point) lives outside.
 - Assumes metrics are comparable (commensurable trade-offs); for genuinely incommensurable axes, Pareto dominance isn't defined.
@@ -18765,7 +18778,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** consultant-simulation LLM prompts, devils-advocate inclusion, ethical-dilemma multi-stakeholder analysis, red/blue/purple team discussion, imaginary-expert panels.
 
-**Every context needs.** persona set, debate protocol, synthesis from interaction, Steelmanning of opposing views.
+**Broad-use intersection (review hypothesis).** persona set, debate protocol, synthesis from interaction, Steelmanning of opposing views.
 
 **Varies (descendant territory).** persona count, persona definitions, synthesis method (aggregate vs dialectic).
 
@@ -18780,7 +18793,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: structured multi-perspective reasoning, explicit semantic distance, independence-in-round-1 discipline.
 - Gives up: simplicity. N personas cost N× compute; synthesis quality is sometimes not worth the cost.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Strawman Waltz and Role Drift are the two dominant failures and the pattern has no structural defenses.
 - Cosine similarity < 0.6 is an embedding-model-dependent threshold.
 - Synthesis step is under-specified — after the debate, how does final synthesis happen?
@@ -18828,7 +18841,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Manifest Drift as a named failure mode acknowledges that self-description diverges from behavior over time; the pattern has no mechanism to re-align them.
 - Role-based composition (agent wears solver role) is lightweight but loses strong identity — a crash mid-role leaves no typed residue.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants are thin for the load-bearing pattern at the center of the FI architecture. Missing: Five-Surface Declaration (each implementer must statically declare which surfaces it honors); Feedback Integrity (Feedback surface, when present, must emit either a PerformanceSignal or a FrameError — not both, not neither).
 - Two failure modes; both are detection-only. No mitigation guidance: what does the runtime do on Non-Compliance? The pattern implies rejection, does not specify.
 - The mechanism mentions `{{card}}` for Manifest and `{{validate}}` for Verify but not what backs Execute, Consult, and Feedback — the surfaces without named pattern anchors are structurally weaker.
@@ -18881,7 +18894,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** project kickoff reviews, launch-readiness checks, scientific-experiment design, safety engineering, investment-decision review, strategic-plan stress tests.
 
-**Every context needs.** assumed-failed state, "what went wrong?" generation, per-failure mitigation addition to plan or reconsider-approach option.
+**Broad-use intersection (review hypothesis).** assumed-failed state, "what went wrong?" generation, per-failure mitigation addition to plan or reconsider-approach option.
 
 **Varies (descendant territory).** failure-scenario depth, defensiveness-neutralization technique, mitigation-addition policy, repeat frequency.
 
@@ -18896,7 +18909,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: honest risk surfacing, cognitive shift removes defensiveness, named discipline for pre-failure analysis.
 - Gives up: optimism. PreMortem is disproportionately useful and disproportionately psychologically uncomfortable.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Performative Doomerism is endemic; specific failures require domain knowledge the pattern doesn"t provide.
 - Invariants are now deduplicated (was: four invariants forming two duplicate pairs — Future Perspective/Perspective Shift, Specific Cause/Specificity).
 - No specified mitigation link — PreMortem generates failure scenarios, and the follow-through (what to do about each) lives outside.
@@ -18945,7 +18958,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** product roadmap ordering, ticket triage, investment decisions, creative-project sequencing, home repairs prioritization.
 
-**Every context needs.** option set, impact score, effort score, ratio computation, sort, periodic rescoring.
+**Broad-use intersection (review hypothesis).** option set, impact score, effort score, ratio computation, sort, periodic rescoring.
 
 **Varies (descendant territory).** score granularity, re-score frequency, Pareto-80/20 awareness, dependency handling.
 
@@ -18960,7 +18973,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: principled ordering, impact-effort discipline, explicit periodic re-scoring.
 - Gives up: urgency responsiveness. Impact-effort is deliberately not urgency-weighted; genuinely urgent items can slip.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Priority Inversion is a real failure — the pattern's ranking doesn't account for resource dependencies between items.
 - Impact and Effort are both guesses; the ratio compounds their errors.
 - No mechanism for handling ties — two items with equal ratios get arbitrary ordering.
@@ -19004,7 +19017,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** product managers (as problem framers), researchers (writing the research question), policy advisors (problem definition), legal analysts (case framing), UX researchers.
 
-**Every context needs.** request interpretation, AcceptSpec construction (Definition of Done), anchoring to parent structure, reframe request on invalid input.
+**Broad-use intersection (review hypothesis).** request interpretation, AcceptSpec construction (Definition of Done), anchoring to parent structure, reframe request on invalid input.
 
 **Varies (descendant territory).** framing rigor, collaboration level (solo vs with stakeholders), iteration count, rejection policy.
 
@@ -19019,7 +19032,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: dedicated framing role, explicit AcceptSpec construction, root-ownership.
 - Gives up: lightweight problem handling. For small problems, the framer role is overhead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Reframe Failure (named failure) — can't find valid alternative after initial failure — is the pattern's dead-end.
 - The AcceptSpec construction is the hardest part and the pattern defers the quality issue.
 - Ownership of high-level success/failure is strong accountability; in practice accountability often spreads across multiple roles.
@@ -19069,7 +19082,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** security penetration testing, AI safety evaluation, devil's-advocate debate, wargaming, competitive analysis, pre-publication critique, regulatory stress tests.
 
-**Every context needs.** target system, attacker persona adoption, exploit-path documentation, severity+likelihood classification, switch-back-to-defender for patching.
+**Broad-use intersection (review hypothesis).** target system, attacker persona adoption, exploit-path documentation, severity+likelihood classification, switch-back-to-defender for patching.
 
 **Varies (descendant territory).** adversarial depth (ethical hacker vs nation-state model), automation level, scope (single vulnerability vs systemic), coordination with defender.
 
@@ -19084,7 +19097,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: adversarial stress test, explicit goal (find flaws), severity/likelihood documentation.
 - Gives up: defender-centric view. RedTeam specifically refuses to propose fixes, which can feel adversarial in team settings.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Sympathetic Attacker is endemic; genuinely adversarial red teams are hard to find and harder to sustain.
 - The 'no loyalty to the design' stance is philosophically clean and operationally hard in team cultures.
 - Severity/likelihood documentation is deferred in rigor; real red teams need CVSS-style methodologies the pattern doesn't specify.
@@ -19126,7 +19139,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** biological reflexes, safety-critical fast-paths (airbag deployment), emergency-stop reflexes, trained-reflex routines (athletics), pre-programmed safety responses in AI systems.
 
-**Every context needs.** hardcoded stimulus-response mapping, minimal latency, no-override semantic.
+**Broad-use intersection (review hypothesis).** hardcoded stimulus-response mapping, minimal latency, no-override semantic.
 
 **Varies (descendant territory).** stimulus pattern, response complexity, override mechanism (if any), safety-critical vs optimization.
 
@@ -19141,7 +19154,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: fast safety-critical response, deliberation bypass, named slot for automatic reactions.
 - Gives up: flexibility. Reflexes are hardwired; adapting them requires rewriting the mapping.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Reflex Hijack is the dominant security failure — adversaries exploit non-negotiability.
 - Immutability at runtime is strong; some reflex mappings should be adjustable between sessions even if not mid-execution.
 - No failure modes for false-positive reflexes; these are real and the pattern doesn't address them.
@@ -19178,7 +19191,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** survival-critical decisions, catastrophe-avoidance strategies, conservative-investment framing, medical-triage under uncertainty, insurance-decision framing, power-law-exposed choices.
 
-**Every context needs.** decision space, loss function, Minimax selection.
+**Broad-use intersection (review hypothesis).** decision space, loss function, Minimax selection.
 
 **Varies (descendant territory).** worst-case estimation (data-driven vs adversarial), risk-aversion coefficient, consideration of expected value alongside Minimax (hybrid).
 
@@ -19193,7 +19206,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: survival-robust decisions, explicit pessimism, safety floor against ruinous outcomes.
 - Gives up: expected value. RegretMinimization leaves value on the table by avoiding positive-expected but high-variance options.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; RegretMinimization has some (over-conservatism, missed opportunity, miscalibrated worst-case).
 - 'Catastrophic' is caller-defined; the pattern's discipline is only as strong as the definition.
 - Assumes worst-case is definable and comparable across options; for genuinely uncertain situations, comparing worst-cases is speculative.
@@ -19236,7 +19249,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** code-to-plain-English explanation for bug-finding, table-to-narrative verification, diagram-to-code round-trips, educational explanations (if you can't explain it simply...).
 
-**Every context needs.** original representation, orthogonal target modality, lossless transcoding requirement, gap/inconsistency detection in new format.
+**Broad-use intersection (review hypothesis).** original representation, orthogonal target modality, lossless transcoding requirement, gap/inconsistency detection in new format.
 
 **Varies (descendant territory).** modality pair, transcoding rigor, roundtrip expectation (reverse-transcode and compare).
 
@@ -19251,7 +19264,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: error detection via modality shift, orthogonal-dimension check.
 - Gives up: simplicity. Every swap requires expertise in the target modality.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Smoothing is the hardest failure — LLMs translating incoherent text into coherent flowcharts mask the original error.
 - Orthogonality is hard to verify; two modalities may seem orthogonal and share hidden assumptions.
 - The pattern requires skilled agents in multiple modalities; the capability gap limits applicability.
@@ -19306,7 +19319,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** network failures, rate-limit recovery, API error handling, coordination breaks, verification retries, LLM completion retries, workflow step retries.
 
-**Every context needs.** failure classification, retry decision, backoff computation.
+**Broad-use intersection (review hypothesis).** failure classification, retry decision, backoff computation.
 
 **Varies (descendant territory).** classification taxonomy (transient/persistent specifics), budget, circuit-breaker integration, retry-hint protocol, jitter strategy.
 
@@ -19321,7 +19334,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: failure-informed retry strategy, capped attempts, backoff discipline.
 - Gives up: simplicity. Retry with classification is heavier than 'just try again'; for simple cases the overhead isn't warranted.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Misclassifying persistent failures as transient (wastes retry budget) is the named common failure.
 - Misclassifying transient as persistent (gives up too soon) is the dual failure.
 - Backoff calibration is caller-dependent and frequently wrong.
@@ -19362,7 +19375,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** safety-critical reasoning, high-stakes decisions, medical diagnosis, financial deployments, correctness-first code generation, formal verification, audit preparation.
 
-**Every context needs.** full five-surface contract (Manifest, Execute, Consult, Verify, Feedback); non-compensatory acceptance gates; pre-action verification.
+**Broad-use intersection (review hypothesis).** full five-surface contract (Manifest, Execute, Consult, Verify, Feedback); non-compensatory acceptance gates; pre-action verification.
 
 **Varies (descendant territory).** specific verification steps, probing depth, socratic clarification depth, feedback structure.
 
@@ -19378,7 +19391,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Mandatory Probe step buys reality-alignment at the cost of integration complexity — Probe needs a reality model the solver may not have.
 - SocraticLoop before action buys disambiguation at the cost of extra round-trips with the caller.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed at all. For a rigor-focused pattern, this is surprising. At minimum: Verification Tautology (the Verify step uses the same logic as Execute, making it trivially pass); Gate Lockup (a strict gate rejects everything the solver can produce).
 - The mechanism couples Probe and SocraticLoop as mandatory; if the deployment lacks either, RigorousSolver is unusable. A configurable-strictness version could degrade more gracefully.
 - 'Trades speed for assurance' is stated in the mechanism but the caller has no way to express how much assurance they need. The pattern is maximal rather than dialed.
@@ -19418,7 +19431,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** product roadmaps, research roadmaps, corporate strategy, infrastructure-buildout roadmaps, policy roadmaps, career planning.
 
-**Every context needs.** temporal dimension, milestones (key goals), flexibility between milestones.
+**Broad-use intersection (review hypothesis).** temporal dimension, milestones (key goals), flexibility between milestones.
 
 **Varies (descendant territory).** time horizon, granularity, update cadence, public-vs-internal.
 
@@ -19433,7 +19446,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: named strategic-temporal primitive.
 - Gives up: rigor. Roadmap is loose by design; detailed planning uses Plan.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — almost a stub, no invariants, no failure modes.
 - 'Often allows...' in the mechanism suggests the pattern permits many shapes without disciplining any.
 - Doesn't specify milestone semantics, update cadence, or revision policy.
@@ -19485,7 +19498,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Four unique authorities (Framing, Budget, Accountability, Reframe) centralize decision power at the cost of flexibility — intermediate nodes cannot reallocate or re-frame.
 - Cascading budget allocation is principled (children inherit from parent) but rigid — reallocation requires going up to the root, which is slow.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Bad Frame is the headline failure mode but the pattern does not specify how the Root is supposed to know its frame is bad without cascading failures reaching it. The detection protocol is implicit in the FrameError mechanism — the RootSolver itself does not describe how it consumes FrameErrors.
 - Pathway Memory is named as the compounding site but the learning mechanism is not specified in this pattern — it lives in PathwayMemory. Readers learning about RootSolver in isolation don't see how the learning actually works.
 - 'Ultimate Accountability' is a governance concept, not an operational one — the pattern doesn't say what accountability means in code. A failed root task returns a failed Solution; whether anyone acts on that accountability is outside the pattern.
@@ -19537,7 +19550,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** startup landing-page tests, military recon (deliberately expendable), A/B test cheap variants, dendritic cells in immunology, canary deployments (analogous), reconnaissance-in-force.
 
-**Every context needs.** probe cost << main payload cost, instructive-failure-mode design, strategy update on failure signal.
+**Broad-use intersection (review hypothesis).** probe cost << main payload cost, instructive-failure-mode design, strategy update on failure signal.
 
 **Varies (descendant territory).** probe-main cost ratio, failure-mode taxonomy, update rule, number of probes before committing.
 
@@ -19552,7 +19565,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: cheap pre-commit reconnaissance, parameter update via probe results.
 - Gives up: time. SacrificialProbes add a round-trip before main action.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Silent probe failure defeats the purpose; the pattern requires observable failure.
 - Cost Asymmetry is caller-tuned.
 - Designing instructive failure is itself work the pattern defers. Failure modes were previously jammed (probe-too-expensive AND silent-failure combined in one entry); now split into two atomic entries.
@@ -19605,7 +19618,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** bounded rationality decisions, MVP product sizing, hiring decisions (first acceptable candidate), quick-return search, time-boxed optimization, sequential-choice selection.
 
-**Every context needs.** minimum-acceptable criteria per dimension, sequential evaluation, accept-first-match semantic.
+**Broad-use intersection (review hypothesis).** minimum-acceptable criteria per dimension, sequential evaluation, accept-first-match semantic.
 
 **Varies (descendant territory).** criteria strictness, evaluation order, fallback if no candidate meets criteria, recall allowance.
 
@@ -19620,7 +19633,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: speed over optimality, cognitive cost reduction.
 - Gives up: optimality. Satisfice deliberately stops short of best.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Threshold Drift is endemic — agents unconsciously relax criteria when the search drags on.
 - Threshold setting is upfront and often arbitrary.
 - No handling for zero-match scenarios — what if no option meets threshold?
@@ -19659,7 +19672,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** deliberation pauses, meditation silence, awkward-silence in negotiation, LLM "no response" modes, quiet-time policies, moment-of-silence ritual.
 
-**Every context needs.** duration or trigger, deliberate-withholding semantic, distinction from "processing" (active thinking).
+**Broad-use intersection (review hypothesis).** duration or trigger, deliberate-withholding semantic, distinction from "processing" (active thinking).
 
 **Varies (descendant territory).** duration, trigger type, observability (others know you're silent vs not), breakable vs unbreakable.
 
@@ -19674,7 +19687,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: named active-abstention slot.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin.
 - No failure modes — silence can fail in many ways (interpreted as rejection, missed by observers).
 - Default action after MaxDuration is caller-dependent without guidance.
@@ -19710,7 +19723,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** physics sims, software test fixtures, game sandboxes, multi-agent training environments, digital twins, Monte Carlo rollouts, counterfactual experimentation.
 
-**Every context needs.** world state fork, isolated execution, outcome capture, original state preservation.
+**Broad-use intersection (review hypothesis).** world state fork, isolated execution, outcome capture, original state preservation.
 
 **Varies (descendant territory).** fork fidelity (shallow vs deep), execution time-bound, outcome richness, fork cost.
 
@@ -19725,7 +19738,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: sandboxed experimentation, no real-world side effects.
 - Gives up: fidelity. Simulation always diverges from reality in some way.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Isolation is the key invariant and hard to guarantee; external resources (APIs, I/O) are often reached by simulated code.
 - Fork of world state assumes world is forkable — many real systems resist full snapshot.
 - No failure modes listed; simulation has many (divergence, leak, cost).
@@ -19763,7 +19776,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** above.
 
-**Every context needs.** accepts a typed Task; exposes the five-surface contract (Manifest, Execute, Consult, Verify, Feedback) with Manifest+Execute mandatory.
+**Broad-use intersection (review hypothesis).** accepts a typed Task; exposes the five-surface contract (Manifest, Execute, Consult, Verify, Feedback) with Manifest+Execute mandatory.
 
 **Varies (descendant territory).** cognitive mode, rigor level, execution substrate, budget discipline, feedback shape.
 
@@ -19779,7 +19792,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Five surfaces give rich coordination hooks but most implementations use only two, leaving Verify and Feedback un-wired — no upstream assurance signals when they are skipped.
 - Recursion enables the solver tree but makes error propagation harder — a FrameError from a deep child must bubble up through every parent's Feedback surface to become actionable at the root.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No invariants or failure modes listed. Surprising for the root of an entire family. Candidates missing: Contract Integrity (all declared surfaces must be callable); Input/Output Typing (accepts Task, yields Solution); Recursion Safety (child solvers accept the same Task interface as the parent exposes).
 - The mechanism text is rich but does not name what happens when a Solver fails. Feedback emits a FrameError in practice, but that is not in the pattern's failure_modes.
 - 'The same agent can wear many solver roles simultaneously' has no conflict-resolution story. Two roles with contradictory Manifests on the same agent — which wins?
@@ -19828,7 +19841,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** pre-debate preparation, pre-release review discipline, academic steelman-before-critique, preparing-for-boss-pushback, rehearsing-devils-advocacy.
 
-**Every context needs.** recognition that SteelmanCheck is coming, proactive strongest-counter construction, population of critique with high-quality data (not strawmen).
+**Broad-use intersection (review hypothesis).** recognition that SteelmanCheck is coming, proactive strongest-counter construction, population of critique with high-quality data (not strawmen).
 
 **Varies (descendant territory).** depth of pre-constructed counter, iteration count, delegation (construct-yourself vs hire-adversary).
 
@@ -19843,7 +19856,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: structural anti-confirmation-bias discipline.
 - Gives up: generation speed.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Performative Steelman is endemic.
 - Bias Leakage is the subtler failure.
 - Both named failures reflect that discipline is caller-dependent.
@@ -19879,7 +19892,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** military strategy, business strategy, research strategy, competitive game strategies, career strategies, negotiation strategies.
 
-**Every context needs.** high-level goal, uncertainty acknowledgment, adaptive stance, success criteria.
+**Broad-use intersection (review hypothesis).** high-level goal, uncertainty acknowledgment, adaptive stance, success criteria.
 
 **Varies (descendant territory).** planning horizon, adaptation frequency, revision triggers, scope.
 
@@ -19894,7 +19907,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: adaptive planning framing.
 - Gives up: crispness. Strategy is looser than Plan.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism.
 - No failure modes, no invariants.
 - Relationship with Plan is stated but not operationalized.
@@ -19944,7 +19957,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** business-portfolio decisions, research-project continuation decisions, personal-project abandonment, relationship decisions, investment-hold-vs-sell decisions.
 
-**Every context needs.** "if starting fresh today" framing, past-investment-irrelevant semantic, future-only cost-benefit.
+**Broad-use intersection (review hypothesis).** "if starting fresh today" framing, past-investment-irrelevant semantic, future-only cost-benefit.
 
 **Varies (descendant territory).** definition of "fresh today" (full reset vs current-state-only), integration with OpportunityCost, emotional-override resistance.
 
@@ -19959,7 +19972,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: decision discipline against sunk-cost fallacy.
 - Gives up: continuity. Some continuations benefit from path dependency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Loss Aversion Loop is the dominant real failure.
 - The strict 'past investment excluded' rules out legitimate path-dependent benefits.
 - No specified mechanism for stopping the re-evaluation; 'ask today' becomes daily decision fatigue.
@@ -20013,7 +20026,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** ethical dilemmas, paradox management, scientific-debate navigation, multi-stakeholder negotiation, creative-tension preservation, dialectical reasoning.
 
-**Every context needs.** Tension object binding contradictory inputs, downstream-decision block, release-on-reconciling-insight or timeout.
+**Broad-use intersection (review hypothesis).** Tension object binding contradictory inputs, downstream-decision block, release-on-reconciling-insight or timeout.
 
 **Varies (descendant territory).** hold timeout, conflict detection threshold, reconciliation-seeking mechanism, fallback on timeout.
 
@@ -20028,7 +20041,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: holds conflicts open, prevents premature resolution.
 - Gives up: decisive selection.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Premature Convergence is endemic.
 - Tension Blindness reflects that recognizing conflicts is hard.
 - No Selection invariant can delay necessary decisions.
@@ -20069,7 +20082,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** file-type detection from magic bytes, first-impression classification in hiring, doctor "eyeball diagnosis" from patient presentation, Gladwell's "Blink" concept.
 
-**Every context needs.** tiny sample extraction, high-confidence classifier, route-based-on-class semantic.
+**Broad-use intersection (review hypothesis).** tiny sample extraction, high-confidence classifier, route-based-on-class semantic.
 
 **Varies (descendant territory).** sample size, classifier confidence threshold, fallback to deeper processing.
 
@@ -20084,7 +20097,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: triage speedup, cost bound.
 - Gives up: accuracy on non-representative slices.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Representativeness is assumed not verified.
 - Slice size (512 bytes) is one specific choice.
 - No failure modes listed.
@@ -20134,7 +20147,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** Pomodoro technique, meeting time-boxes, research-sprint timeboxing, test-taking timeboxes, decision-timeboxes.
 
-**Every context needs.** hard time limit, stop-on-limit-hit, post-limit assessment, learning from what-was-accomplished.
+**Broad-use intersection (review hypothesis).** hard time limit, stop-on-limit-hit, post-limit assessment, learning from what-was-accomplished.
 
 **Varies (descendant territory).** duration (Duration per §3.17), extension rules, enforcement strictness.
 
@@ -20149,7 +20162,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: bounded exploration.
 - Gives up: completion. Sometimes one more minute finds the answer.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Premature Cutoff is endemic — you never know what one more minute would have found.
 - Time limit is caller-chosen without guidance.
 - Assessment after cutoff is the important-but-deferred step.
@@ -20189,7 +20202,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** Pareto tradeoffs, speed-vs-safety, cost-vs-quality, short-term-vs-long-term, simplicity-vs-features, privacy-vs-convenience.
 
-**Every context needs.** positive gained, negative accepted, decision acknowledging both.
+**Broad-use intersection (review hypothesis).** positive gained, negative accepted, decision acknowledging both.
 
 **Varies (descendant territory).** quantification, temporal horizon, stakeholder asymmetry.
 
@@ -20204,7 +20217,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit cost recognition.
 - Gives up: optimism-only framing.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed.
 - Very thin — philosophical framing more than mechanism.
 - Explicit Recognition is aspirational.
@@ -20246,7 +20259,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** Rumsfeld-ian strategic analysis, scientific research planning, risk registers, cybersecurity threat modeling, due-diligence frameworks.
 
-**Every context needs.** factor enumeration, 3-category (or 4) classification, resolution-cost estimation for Known-Unknowns, active-probing for Unknown-Unknowns.
+**Broad-use intersection (review hypothesis).** factor enumeration, 3-category (or 4) classification, resolution-cost estimation for Known-Unknowns, active-probing for Unknown-Unknowns.
 
 **Varies (descendant territory).** factor scope, cost-estimation method, probing frequency, update cadence.
 
@@ -20261,7 +20274,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit uncertainty classification.
 - Gives up: little.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False Precision is endemic.
 - Unknown-Unknowns are paradoxical — you don't know them.
 - The Rumsfeld taxonomy is pragmatic and philosophically contested.
@@ -20311,7 +20324,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** event-sourced systems, git-based workflows, CRDT design, experimental environments, educational sandboxes, reversible computing research, legal systems with appeal rights.
 
-**Every context needs.** immutable logs, versioning, soft-deletes instead of destructive updates, inverse-action discoverability.
+**Broad-use intersection (review hypothesis).** immutable logs, versioning, soft-deletes instead of destructive updates, inverse-action discoverability.
 
 **Varies (descendant territory).** reversibility horizon (everything vs recent), storage cost tradeoffs, compensation protocol specifics.
 
@@ -20326,7 +20339,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: undo-as-first-class, safety by reversibility.
 - Gives up: storage and sometimes performance.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Storage explosion is endemic.
 - 'Perfect inversion' is aspirational.
 - Low Friction is hard to achieve in practice.
@@ -20363,7 +20376,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** labor negotiations, political compromise, sibling dispute resolution, product-requirement prioritization, budget negotiations, coalition building.
 
-**Every context needs.** preference statements with intensity scores, dissonance calculation, intensity-reduction loop, threshold for consensus.
+**Broad-use intersection (review hypothesis).** preference statements with intensity scores, dissonance calculation, intensity-reduction loop, threshold for consensus.
 
 **Varies (descendant territory).** intensity scale, dissonance formula, reduction rate, asymmetric-power weighting.
 
@@ -20378,7 +20391,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: non-winner-take-all coordination, preserved relationships across rounds, explicit intensity metric for trading off preferences.
 - Gives up: speed and decisiveness. Compromise costs time and produces outcomes nobody is thrilled about, which is the price of nobody being furious.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Intensity scores are self-reported; gaming is obvious and unmitigated. The real protocol needs a calibration mechanism (ConfidenceCalibrate for intensity) that this pattern doesn't include.
 - Dissonance formula (Sum(Intensity_A * Intensity_B)) is specific but arbitrary — many other dissonance measures exist and the pattern doesn't justify this choice.
 - No escape hatch for 'I will walk' — an agent with dominant alternative options can refuse to dampen, and the protocol has no way to distinguish legitimate resistance from strategic play.
@@ -20434,7 +20447,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** blockchain consensus, distributed DB consensus, multi-agent alignment, editorial decisions, scientific paper reviews, group-decision protocols.
 
-**Every context needs.** proposal mechanism, vote orchestration, quorum validation, safety (one value decided) and liveness (eventually decides).
+**Broad-use intersection (review hypothesis).** proposal mechanism, vote orchestration, quorum validation, safety (one value decided) and liveness (eventually decides).
 
 **Varies (descendant territory).** Byzantine tolerance, fault model, timeout semantics, fairness guarantees, progress conditions, leader-based vs leaderless.
 
@@ -20450,7 +20463,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Validity invariant (unanimity preservation) buys integrity at the cost of preventing legitimate compromise.
 - Society-layer placement buys correct gravity at the cost of coupling to multi-agent deployment assumptions.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants and two failure modes — thin for the Society-layer bedrock. Missing: Termination (decisions must terminate in bounded time), Integrity (decided value must have been proposed by some participant), Fault-Tolerance-Scope (number of faults survived).
 - Byzantine vs crash fault model not named — real implementations differ significantly, and the pattern leaves the choice to descendants.
 - 'Accepting a {{proposal}}' is mentioned but the pattern doesn't specify the proposal's structure — every Consensus-compatible Ballot has its own shape.
@@ -20493,7 +20506,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** team-alignment sensing, political-coalition detection, market-consensus detection, organizational-agreement surveying, prior-art search.
 
-**Every context needs.** scan scope, existing-consensus detection, resonate-signal check, optional fallback to formal Quorum.
+**Broad-use intersection (review hypothesis).** scan scope, existing-consensus detection, resonate-signal check, optional fallback to formal Quorum.
 
 **Varies (descendant territory).** scan breadth, consensus-threshold definition, cluster-detection granularity.
 
@@ -20508,7 +20521,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: coordination efficiency, stability preservation (don't disturb settled agreements), a cheap path to alignment when alignment already exists.
 - Gives up: creation of new consensus — for that you need Vote or Consensus. ConsensusFinder is specifically the read-side.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'macro for Discover(Consensus)' framing is neat but means the pattern is a thin specialization of Discover — the value is the naming more than the mechanism.
 - No staleness check — consensus discovered today may have dissolved yesterday; the pattern returns what's there without commenting on age.
 - Doesn't distinguish strong from weak consensus (all agents vs most agents); the caller gets a yes/no signal that hides structure.
@@ -20567,7 +20580,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** manager-to-IC delegation, outsourcing, agent swarms (parent-to-child), multi-step workflows, organizational role assignments.
 
-**Every context needs.** DELEGATE message, ACCEPT/REFUSE response, PROGRESS tracking via Heartbeat, completion or BREAK signaling.
+**Broad-use intersection (review hypothesis).** DELEGATE message, ACCEPT/REFUSE response, PROGRESS tracking via Heartbeat, completion or BREAK signaling.
 
 **Varies (descendant territory).** broadcast vs targeted, capability-probe requirement, retry/reassign policy on failure, holographic context inheritance.
 
@@ -20582,7 +20595,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit acceptance semantics, progress tracking via heartbeat, principled failure escalation, circular-delegation protection.
 - Gives up: simplicity. The full protocol (DELEGATE/ACCEPT-REFUSE/PROGRESS/complete/fail) is heavy for lightweight work; simpler delegation primitives compete.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Capability Mismatch is listed as a failure mode with no structural mitigation — the delegator has to assess capability upfront, which the pattern doesn't help with.
 - Timeout values for missing progress updates are unspecified; too short causes false-positive timeouts on legitimate slow work, too long masks real failures.
 - Overload (one agent accepts everything) is a real failure and the pattern has no load-awareness primitive; Rally and AttentionMarkets help but live outside Delegate.
@@ -20638,7 +20651,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** project completion, team disbanding, DAO sunset, temporary-coalition dissolution, terminated-service cleanup, Kubernetes deployment termination.
 
-**Every context needs.** termination signal, member-notification, state disposition plan, resource release, ACK-confirmation from all members.
+**Broad-use intersection (review hypothesis).** termination signal, member-notification, state disposition plan, resource release, ACK-confirmation from all members.
 
 **Varies (descendant territory).** snapshot-for-re-formation vs permanent, resource-disposition (return-to-owner vs pool), member-ejection for non-ACK, dissolution-under-duress vs consensual.
 
@@ -20653,7 +20666,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: graceful wind-down, explicit state disposition, released resources, cleared commitments.
 - Gives up: finality. Disband is cooperative; members can contest, ACKs can fail, and the protocol can get stuck.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Zombie group (members left, group state persists) is a real failure and the pattern names it without preventing it.
 - Premature dissolution (task not complete) is called out — the pattern has no mechanism for verifying task completion before disband, which is typically load-bearing.
 - Contested dissolution falls back to Vote, which has its own failure modes; disband-by-vote is a complex protocol the pattern gestures at.
@@ -20710,7 +20723,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** political elections, team-lead rotation, council elections, DAO governance, multi-agent leadership selection, committee chair appointments.
 
-**Every context needs.** Ballot, quorum, nomination phase, vote phase, invest phase, succession planning.
+**Broad-use intersection (review hypothesis).** Ballot, quorum, nomination phase, vote phase, invest phase, succession planning.
 
 **Varies (descendant territory).** nomination eligibility rules, voting method (FPTP, ranked, approval), term length, recall mechanism.
 
@@ -20725,7 +20738,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: legitimate leadership selection, verifiable process, explicit succession planning, recall mechanics.
 - Gives up: speed. Elect is a multi-phase protocol; for short-lived groups or urgent decisions, the ceremony exceeds the benefit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'No candidates' is a failure mode with a suggested mitigation (incentivize) that's essentially 'change human behavior'; the pattern has no structural solution.
 - Election deadlock (no majority) mitigation (runoff, plurality fallback) is mentioned but the choice between them is caller-dependent and consequential.
 - Recall mechanism is gestured at but not specified in detail — a recall election is itself an Elect, and the recursion isn't addressed.
@@ -20767,7 +20780,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** AI-vs-human identification, authenticated-vs-anonymous branching, service-vs-user detection, B2B-vs-B2C protocol selection, synthetic-vs-biological protocols.
 
-**Every context needs.** Discover(identity) + Check(nature), mode-switching on result, cryptographic verification.
+**Broad-use intersection (review hypothesis).** Discover(identity) + Check(nature), mode-switching on result, cryptographic verification.
 
 **Varies (descendant territory).** authentication strength, mode set, fallback on ambiguous identity, spoof resistance.
 
@@ -20782,7 +20795,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: nature-aware interaction routing, explicit handshake for mixed populations, service/coordination distinction.
 - Gives up: uniform treatment. Agents that deliberately treat all counterparts the same can't use this pattern.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Replay (named failure) is a canonical handshake attack — reusing a valid handshake in a new context. Mitigation (nonce, fresh context) isn't specified in invariants.
 - The binary Biological/Synthetic distinction is 2026-specific; future mixed populations (augmented, distributed, collective) don't fit.
 - Multi-stage authentication is gestured at but not specified; implementation shape matters a lot for security properties.
@@ -20835,7 +20848,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** Apache committer model, git-flow, CRDT operations, eventual-consistency databases, optimistic locking, wiki edit flows.
 
-**Every context needs.** optimistic-execution semantic, conflict-detection mechanism, deterministic rollback rule.
+**Broad-use intersection (review hypothesis).** optimistic-execution semantic, conflict-detection mechanism, deterministic rollback rule.
 
 **Varies (descendant territory).** conflict-resolution policy, rollback complexity, window for revocation, audit trail.
 
@@ -20850,7 +20863,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: high throughput, no pre-execution coordination, explicit fast-path for rare-conflict workloads.
 - Gives up: correctness guarantees. Cascading rollbacks are common in high-conflict regimes and the pattern's speed benefit disappears.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Cascading rollbacks are the named failure and the dominant real failure; they can spread faster than the rollback can complete.
 - Applied to irreversible external actions (the named second failure) is the nightmare case — sent emails, transferred funds, called APIs can't be rolled back.
 - Determinism in conflict resolution is a correctness property; it's also a fairness problem that the pattern doesn't address.
@@ -20905,7 +20918,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** cross-system data integration, human-human jargon alignment, multi-language translation setup, pidgin-protocol creation, cross-organizational knowledge integration.
 
-**Every context needs.** definition-hash exchange, mismatch detection (CompatibilityCheck), negotiation phase, temporary shared dictionary.
+**Broad-use intersection (review hypothesis).** definition-hash exchange, mismatch detection (CompatibilityCheck), negotiation phase, temporary shared dictionary.
 
 **Varies (descendant territory).** dictionary scope, persistence (per-session vs lasting), negotiation protocol (iterative vs single-shot), fallback on irreconcilable divergence.
 
@@ -20920,7 +20933,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: principled cross-ontology communication, content-addressed term identity, explicit negotiation phase.
 - Gives up: speed. Every cross-ontology interaction pays the handshake tax; frequent switches compound the cost.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Failure to converge on mapping (named failure) — some ontologies genuinely don't translate, and the pattern's negotiation phase can hang.
 - High negotiation overhead (named failure) — for complex ontologies, the handshake dominates communication time.
 - Dictionary mismatch risks semantic errors — temporary shared dictionaries can be wrong; the pattern has no validation step.
@@ -20975,7 +20988,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** emergency response, crowdsourcing, swarm coordination, federated computation, multi-agent task assignment, protest organizing, flash mobs, distributed consensus invocation.
 
-**Every context needs.** broadcast mechanism, AcceptSpec criteria, deadline, quorum threshold, selection method on enlistees.
+**Broad-use intersection (review hypothesis).** broadcast mechanism, AcceptSpec criteria, deadline, quorum threshold, selection method on enlistees.
 
 **Varies (descendant territory).** `max_participants` (2 to 100K+), authentication requirements, cancellation semantics, reward structures, reputation weighting, geographic scope.
 
@@ -20991,7 +21004,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Quorum-based commitment buys minimum-viability at the cost of excluding legitimate under-quorum team formation.
 - Deadline enforcement buys termination at the cost of cutting off late-but-legitimate enlists.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Deduplicated failure modes (was: 8 entries with 2 duplicate pairs — Flaking/ghost-at-MUSTER, Rally Spam/RALLY spam floods network).
 - Echo Chamber and Flaking remain; both are social-coordination risks the pattern can't structurally prevent.
 - Initiator power is mitigated by transparent selection_criteria but still concentrated — the pattern is monarchical by default.
@@ -21047,7 +21060,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** social mirroring, market sentiment, meme propagation, cultural drift, musical tempo sync, meditation co-sensing, team synchronization.
 
-**Every context needs.** intent tags on actions, amplification/dampening observers, alignment detection via signal strength.
+**Broad-use intersection (review hypothesis).** intent tags on actions, amplification/dampening observers, alignment detection via signal strength.
 
 **Varies (descendant territory).** intensity metric, decay profile, bond-formation threshold, signal-channel specifics.
 
@@ -21062,7 +21075,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit-negotiation-free alignment, emergent coordination, signal-decay cleanup.
 - Gives up: decisiveness. Resonance is slow and emergent; critical decisions need faster mechanisms.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False Resonance is endemic — the pattern has no distinguisher between real alignment and noise.
 - Echo Chamber is structural — any feedback loop can amplify errors; the pattern has no built-in correction.
 - Spoofing is the adversarial failure mode and the pattern's invariants don't defend against it. Deduplicated failure modes (was: 9 entries with duplicate False Resonance, duplicate Spoofing, and overlapping Precise/High-stakes entries).
@@ -21109,7 +21122,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** DAO governance, jury verdicts, consensus rounds, multi-agent protocols, corporate board decisions, peer review aggregation, quorum sensing.
 
-**Every context needs.** initiator, Ballot, quorum requirement, cast-collection phase, deadline, result computation, result broadcast.
+**Broad-use intersection (review hypothesis).** initiator, Ballot, quorum requirement, cast-collection phase, deadline, result computation, result broadcast.
 
 **Varies (descendant territory).** cast channel, authentication method, one-vote-per-agent enforcement, cast encryption, ballot counting method (aggregate).
 
@@ -21125,7 +21138,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Configurable rules buy flexibility at the cost of forcing every deployment to declare its threshold.
 - Deadline-enforced close buys termination at the cost of cutting off late-but-legitimate votes.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - One invariant, two failure modes. Missing invariants: Eligibility (votes counted only from eligible agents), Tally Determinism (same votes + same rule → same outcome).
 - Tie-breaker is mentioned in failure modes ('inadequate tie-breaker') but not required as a field — protocols without tie-breakers deadlock.
 - Quorum requirement is parameterized but the pattern doesn't specify how Quorum is computed — referenced via Quorum pattern but the binding is not explicit.
@@ -21173,7 +21186,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** high-frequency trading, parallel agent action, optimistic multi-agent execution, speculative writes, lock-free coordination.
 
-**Every context needs.** Bid-as-audit-log, immediate execution, rollback capability via Compensate on post-hoc rejection.
+**Broad-use intersection (review hypothesis).** Bid-as-audit-log, immediate execution, rollback capability via Compensate on post-hoc rejection.
 
 **Varies (descendant territory).** rollback cost, commit-window duration, conflict-detection mechanism.
 
@@ -21188,7 +21201,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: latency reduction for low-stakes agent work, explicit audit trail, a named pattern that can be disabled in high-stakes modes.
 - Gives up: preventive review. The Orchestrator sees the bid and the action simultaneously; if the action is already executed, vetoing it only helps via Compensate.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Permission Race' is the named failure mode — but the whole point of the pattern is to race permission. The mitigation (only use on revocable/low-stakes actions) is a guideline, not an invariant the mechanism can enforce.
 - Log Drift (producing the action but not the bid) is a structural risk in asynchronous/fault-tolerant settings; the 'same message/turn' invariant relies on the execution substrate to guarantee atomicity.
 - The mechanism compares itself to LazyConsensus but doesn't formally inherit its invariants — the comparison is illustrative rather than rigorous.
@@ -21244,7 +21257,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** email priority markets, anti-spam pricing, meeting-slot markets, human-attention markets, ad-supported platforms, API rate-limit markets.
 
-**Every context needs.** bid mechanism, priority queue, auction clearance, revenue distribution or burn.
+**Broad-use intersection (review hypothesis).** bid mechanism, priority queue, auction clearance, revenue distribution or burn.
 
 **Varies (descendant territory).** auction type (second-price, first-price, uniform-price), revenue use, minimum bid, spam-filter thresholds.
 
@@ -21259,7 +21272,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: congestion pricing that automatically surfaces high-value messages, spam suppression via cost, a clean mathematical model for bandwidth allocation.
 - Gives up: egalitarian access. The bid-monotonicity invariant guarantees the rich always win; this is a feature in many contexts and a bug in others.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Named failure mode 'plutocratic blockage' is unavoidable by construction; the pattern offers no built-in correction mechanism (progressive pricing, emergency quotas, etc.).
 - Starvation of low-value signals is presented as a failure mode but is actually the intended behavior under high congestion; the pattern equivocates on whether it's a bug.
 - Price discovery via second-price auction assumes truthful bidding, which assumes agents that don't collude — a strong assumption in multi-agent systems where coalitions are easy to form.
@@ -21302,7 +21315,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** procurement awards, auction wins, grant approvals, job offer acceptances, hackathon prize grants, service contract awards.
 
-**Every context needs.** accepted Bid reference, Contract creation, value lock (HeldRelease), state transition from Negotiation to Execution.
+**Broad-use intersection (review hypothesis).** accepted Bid reference, Contract creation, value lock (HeldRelease), state transition from Negotiation to Execution.
 
 **Varies (descendant territory).** signature requirements (bilateral, notarized, blockchain-attested), collateral terms, revocation semantics, partial awards.
 
@@ -21317,7 +21330,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: clean state transition from Negotiation to Execution, funded collateral before commitment, atomic multi-party hand-off.
 - Gives up: optimistic execution patterns (like AtomicBid) where parties act first and ceremonialize later. Award is the ceremonial-first extreme.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Invariants are correct in spirit but require a coordination substrate (transactions, two-phase commit) the pattern itself doesn't own.
 - No mechanism for de-awarding — once awarded, the pattern has no inverse, leaving Compensate or Revoke to handle the unhappy path as separate patterns.
 - The mapping to real-world procurement is clean; the mapping to agent-task assignment is strained (do agents really sign contracts with each other?) and makes the pattern feel heavyweight in lightweight settings.
@@ -21367,7 +21380,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** solver auctions, procurement, crowdsourcing, API rate-limit bidding, resource auctions, milestone proposals, contracts-for-work.
 
-**Every context needs.** bidder identity, offer content (cost, confidence, capability match), commitment semantics ("if accepted, bidder is bound").
+**Broad-use intersection (review hypothesis).** bidder identity, offer content (cost, confidence, capability match), commitment semantics ("if accepted, bidder is bound").
 
 **Varies (descendant territory).** currency/unit, confidence representation, capability-match structure, withdraw semantics, expiry timing.
 
@@ -21382,7 +21395,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: price discovery across solvers, ex-ante cost transparency, a target for confidence calibration, a basis for budget management.
 - Gives up: the ability to quietly revise — once bid, you're committed. This is correct for market discipline, painful for legitimate re-scoping.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Underestimation vs Overestimation are symmetric in the pattern but asymmetric in practice — overestimation just loses work, underestimation blows up execution.
 - Confidence Theater is the most dangerous named failure mode and the pattern has no mechanism to prevent it. Calibration requires history the pattern doesn't carry.
 - Capability Match is vague — 'which parts the solver can handle' is useful conceptually, specified poorly. In practice it becomes a free-text field and the guarantees evaporate.
@@ -21429,7 +21442,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** compute-resource markets, EIP-1559 gas pricing, Dutch auctions, ad auctions, spectrum auctions, API-credit markets.
 
-**Every context needs.** resource supply, pricing function, continuous-bid acceptance, allocation mechanism.
+**Broad-use intersection (review hypothesis).** resource supply, pricing function, continuous-bid acceptance, allocation mechanism.
 
 **Varies (descendant territory).** pricing model (congestion, Dutch, linear decay), granularity, fairness constraints, price-discovery latency.
 
@@ -21444,7 +21457,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: continuous resource pricing, explicit circulation pressure, principled holding cost for ongoing resources.
 - Gives up: planning horizon. Continuous pricing is fair but hard to budget against; agents can't commit to long-term resource use without accepting price uncertainty.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Price Instability as a failure mode is intrinsic to continuous pricing — the pattern names it without fully mitigating; damping the curve reduces price discovery.
 - Monopoly Lockout is avoided by making holding cost high enough to deter infinite hold, but 'high enough' scales with wealth, which is exogenous.
 - T_cycle for clearance is a parameter with no default or derivation rule; tuning is caller-dependent.
@@ -21485,7 +21498,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** currency FX, compute-token conversions, attention-market rates, time-vs-money tradeoffs, preference-aggregation weightings, protocol-bridge rates.
 
-**Every context needs.** source Value type, target Value type, ratio, validity timestamp.
+**Broad-use intersection (review hypothesis).** source Value type, target Value type, ratio, validity timestamp.
 
 **Varies (descendant territory).** volatility tracking, confidence interval, update frequency, market depth, bid-ask spread.
 
@@ -21500,7 +21513,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: explicit conversion between value types, time-bound freshness, bijectivity discipline.
 - Gives up: spread semantics and multi-party network topology. Real exchange involves market makers and arbitrage that the simple pairwise ratio doesn't capture.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed — ExchangeRate has many (stale rates, arbitrage attack, bijectivity violation in the wild) that the pattern doesn't catalogue.
 - Very thin — two invariants, almost no mechanism. Real exchanges need market-making, price discovery, liquidity — all outside the pattern.
 - Time-bound is required but validity-window shape is unspecified — snapshot, sliding window, continuous?
@@ -21542,7 +21555,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** open-source maintainer role, wiki-gardening, codebase refactoring, community moderation, ecosystem-stewarding, janitorial work, meta-work.
 
-**Every context needs.** stewardship scope, maintenance actions (refactor, organize, praise), non-payoff-contingent action semantic.
+**Broad-use intersection (review hypothesis).** stewardship scope, maintenance actions (refactor, organize, praise), non-payoff-contingent action semantic.
 
 **Varies (descendant territory).** scope size, incentive alignment (if any), burnout prevention, succession planning for the gardener role.
 
@@ -21557,7 +21570,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: named role for environmental maintenance, explicit long-termism, a slot for work that benefits all without compensating any.
 - Gives up: operational legibility. Gardener work is harder to measure and easier to cut; the pattern acknowledges but doesn't solve this.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; Gardener has many (burnout, scope creep, becoming the person who maintains because nobody else does).
 - The 'macro for Stigmergy(Care)' framing is clever — the work leaves traces that guide others — and the pattern doesn't fully develop the stigmergic aspect.
 - No specified end condition — when is Gardener work 'done'? The pattern implies never, which is realistic and exhausting.
@@ -21611,7 +21624,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** vocabulary growth in libraries, API surface evolution, ontology management, taxonomic splitting in biology, legal-term introduction.
 
-**Every context needs.** friction-signal detection, repetition monitoring, threshold-based minting, rejection of speculative minting.
+**Broad-use intersection (review hypothesis).** friction-signal detection, repetition monitoring, threshold-based minting, rejection of speculative minting.
 
 **Varies (descendant territory).** friction-signal set, threshold calibration, minting-review process, aging/expiration if usage drops.
 
@@ -21626,7 +21639,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: disciplined vocabulary growth, registry bloat prevention, explicit friction threshold.
 - Gives up: discovery speed. Agents hit friction multiple times before minting; sometimes the third instance is the 'too late' instance.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Premature Optimization (named failure) — minting for edge cases — is exactly what the pattern prevents; it catches ambitious mints and may miss patient over-minting.
 - The 3+ instances threshold is arbitrary; it's a reasonable default and the pattern treats it as law.
 - Registry Bloat is acknowledged; the pattern prevents new bloat and doesn't remove old bloat.
@@ -21668,7 +21681,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** multi-agent bargaining, preference-aggregation protocols, cross-domain trade, inter-organization coordination, cross-species analogies (humans vs AI agents).
 
-**Every context needs.** two utility types, agreed ExchangeRate, binding-for-duration semantic.
+**Broad-use intersection (review hypothesis).** two utility types, agreed ExchangeRate, binding-for-duration semantic.
 
 **Varies (descendant territory).** renegotiation mechanism, private-utility disclosure requirements, peg break semantics, composition with other pegs.
 
@@ -21683,7 +21696,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: stable transactions during peg period.
 - Gives up: responsiveness to external price changes.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Peg Volatility is endemic.
 - Solvency is computed, not guaranteed.
 - No specified de-peg mechanism.
@@ -21728,7 +21741,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** labor negotiations, coalition politics, family decision-making, resource sharing, dispute resolution in DAOs, diplomatic negotiation.
 
-**Every context needs.** Flex (concession) declaration, Weight (importance) declaration, Yield-Ratio computation, debt-recording in Ledger.
+**Broad-use intersection (review hypothesis).** Flex (concession) declaration, Weight (importance) declaration, Yield-Ratio computation, debt-recording in Ledger.
 
 **Varies (descendant territory).** weight elicitation, yield-ratio formula, debt-discharge mechanism.
 
@@ -21743,7 +21756,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Gains: structured negotiation backoff.
 - Gives up: simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Weight inflation is endemic.
 - Gaming is hard to prevent.
 - Hard constraints: real hard constraints look like strategy to the pattern.
@@ -21794,7 +21807,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Broad-use contexts.** market circuit breakers (halt trading), distributed system consensus recovery, organizational crisis freezes, post-disaster restart protocols, blockchain fork recovery.
 
-**Every context needs.** turbulence detection, stop-accepting-transactions, quorum-on-last-valid-state, progress-resumption after anchor.
+**Broad-use intersection (review hypothesis).** turbulence detection, stop-accepting-transactions, quorum-on-last-valid-state, progress-resumption after anchor.
 
 **Varies (descendant territory).** turbulence metric, threshold, anchor-selection rule, duration bound.
 
@@ -21811,7 +21824,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: a consistent state to restart from, explicit emergency protocol rather than ad-hoc partition recovery, first-principles re-derivation path from bedrock axioms.
 - Gives up: availability during the drop, and potentially throughput after (if the system dropped anchor too eagerly). Also gives up the ability for a partitioned minority to make any progress.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'System stalls completely' is the named failure mode and it's not really a failure — it's the intended behavior if consensus can't be reached. The pattern should probably distinguish 'stalls until recovery' from 'stalls permanently.'
 - The invariant requires >2/3 agents signing, which is robust but brittle: a degraded cluster below 2/3 can never drop anchor, which is exactly when you'd want to.
 - First-principles re-derivation is cited but under-specified — 'bedrock axioms' is doing a lot of work with no operational definition.
@@ -21852,7 +21865,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** DAO constitutions, corporate bylaws, software rule sets (e.g., Claude's Constitutional AI), community charters, API governance rules, federation rules.
 
-**Every context needs.** structured principles (immutable once ratified), binding semantics (via `OathBind`), identity of ratifying parties.
+**Broad-use intersection (review hypothesis).** structured principles (immutable once ratified), binding semantics (via `OathBind`), identity of ratifying parties.
 
 **Varies (descendant territory).** amendment mechanism (rigid vs. flexible), enforcement mechanism (automated vs. delegated), penalty specifications, inheritance from parent constitutions.
 
@@ -21868,8 +21881,8 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Runtime immutability buys stability at the cost of agility in changing contexts.
 - Automated penalty rules buy consistency at the cost of case-specific judgment.
 
-**Critique.**
-- Two invariants, zero failure modes. Missing: Ambiguity (a rule technically machine-verifiable but semantically underspecified), Penalty Proportionality (rules fire proportional to offense), Consistency (rules don't contradict each other).
+**Critique (diagnostic, not contract requirements).**
+- Ambiguity, contradictory rules, and disproportionate penalties are useful governance diagnostics. Penalty proportionality is a normative policy rather than a universal property of every Constitution, and the other risks need a supplied interpretation or consistency standard before they become testable contracts.
 - The relationship to OathBind is one-way (Constitution is the input to OathBind) but the pattern doesn't declare this dependency explicitly.
 - Modification process ('formal out-of-band') is mentioned but unspecified — what constitutes 'formal' and 'out-of-band' is a governance question the pattern leaves open.
 
@@ -21918,7 +21931,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Non-empty rationale buys minimal discipline (you can't override silently) at the cost of inviting low-information workarounds.
 - TimeWarpLog composition buys temporal completeness (the full sequence is logged) at the cost of coupling — without TimeWarpLog, DocumentedOverride cannot honor its logging invariant.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'rationale field must be non-empty' invariant is the weakest possible substantive constraint. A schema-typed rationale (category + evidence + expected-consequence) would raise the bar; non-empty-text is performative.
 - Compromised signing key is named as a failure with no mitigation. Key lifecycle (rotation, revocation, witness signing for high-stakes overrides) would strengthen the pattern — currently deferred.
 - The override's scope is 'scoped override authority' without specifying how scope is defined or checked. A per-pattern, per-action, or per-time-window scope? The ambiguity lets deployments declare their own scoping semantics.
@@ -21969,7 +21982,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** on-call ownership, SLA maintenance, ethical responsibility, stewardship contracts, fiduciary duty, bug-bucket ownership.
 
-**Every context needs.** invariant being maintained, scope of authority, agent owning it, liability semantics, heartbeat proof that invariant holds.
+**Broad-use intersection (review hypothesis).** invariant being maintained, scope of authority, agent owning it, liability semantics, heartbeat proof that invariant holds.
 
 **Varies (descendant territory).** escalation paths, handover protocol, scope-expansion rules, externality ownership.
 
@@ -21984,7 +21997,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: named continuous-maintenance contract, Single Writer exclusivity, explicit scope.
 - Gives up: flexibility. Responsibility is heavier than task assignment; for one-off work, Task suffices.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Responsibility Vacuum (named failure) — no agent bound to a critical invariant — is endemic in large systems.
 - Overreach (named failure) — claiming responsibility for scope beyond bounds — is role-creep.
 - The Single Writer Principle is strong; some genuinely shared states need multi-writer semantics via CRDT or similar.
@@ -22021,7 +22034,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** RBAC systems, job titles, organizational hats, game character classes, agent mode switching, team rotation, on-call schedules.
 
-**Every context needs.** role name, permission set, responsibility set, assignment binding to agent.
+**Broad-use intersection (review hypothesis).** role name, permission set, responsibility set, assignment binding to agent.
 
 **Varies (descendant territory).** time-bounded vs permanent, delegation support, inheritance/composition, context-scoping, revocation semantics.
 
@@ -22036,7 +22049,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: capability/identity decoupling, context-flexible permissions, role-based access control.
 - Gives up: simplicity. Roles add a layer of indirection; for simple systems, direct permissioning is cleaner.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No canonical invariants or failure modes listed by design: Role is the capability-bundle primitive, not a full RBAC policy.
 - Privilege creep, role explosion, conflicting assignments, inheritance, and revocation are real implementation concerns, but they vary enough to belong in descendants or callers.
 - The mechanism now explicitly links Identity; the relationship with Identity and Responsibility is still easy to conflate in practice.
@@ -22085,7 +22098,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** solver delegation trees, nested LLM agents, divide-and-conquer workflows, map-reduce problem decomposition, agent swarms, research team hierarchies.
 
-**Every context needs.** root solver, child-solver relationships (delegation edges), reporting edges upward, origin (tree-like at decomposition time per §3.14 update).
+**Broad-use intersection (review hypothesis).** root solver, child-solver relationships (delegation edges), reporting edges upward, origin (tree-like at decomposition time per §3.14 update).
 
 **Varies (descendant territory).** runtime shape (tree, DAG with fan-in, DAG with deduplication); budget cascade policy; failure handling; authority model.
 
@@ -22100,7 +22113,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: structured solver coordination, budget/results flow discipline, acyclicity.
 - Gives up: feedback loops. Cyclic solver structures require different patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Blame Diffusion (named failure) — failures not attributable in large trees — is endemic.
 - The 'tree-like or DAG' admits both shapes; the distinction (and its implications) is deferred.
 - Fragmentation isn't structurally prevented; heartbeats or periodic health checks live outside the pattern.
@@ -22147,7 +22160,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** cross-agent learning, pattern reuse, redundancy detection, collective wisdom, problem-solving archaeology.
 
-**Every context needs.** aggregation semantic, DAG shape (per §3.14 update), singularity (only one logical instance).
+**Broad-use intersection (review hypothesis).** aggregation semantic, DAG shape (per §3.14 update), singularity (only one logical instance).
 
 **Varies (descendant territory).** physical instantiation (distributed DB, federated, local copy), access protocol, privacy/scope boundaries, update semantics.
 
@@ -22163,7 +22176,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Tree decomposition + DAG runtime buys memory efficiency (dedup at execution) at the cost of making the structure harder to reason about.
 - Theoretical/governance framing buys clean semantics at the cost of having no runtime representation — the pattern is an abstraction, not an object.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Three invariants and two failure modes — better coverage than most. But Fragmentation and Inconsistency are the expected failure modes of a decentralized commons; the pattern offers no concrete mitigations.
 - 'Traversal or instantiation of a sub-graph within the Universal tree' is the operational statement, but the pattern doesn't say how the universal and the local are connected — is it synchronization, is it subscription, is it cross-publication? Each is a different governance shape.
 - The distinction between decomposition-as-tree and runtime-as-DAG is technical precision that may matter to implementers but is opaque to readers without a concrete example.
@@ -22213,7 +22226,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** public-blockchain systems, open-source governance, radical-transparency organizations, auditability-first system design, shame-based compliance regimes.
 
-**Every context needs.** universal visibility assumption, commitment to auditable systems over access-controlled ones, composition with ExplainBeacon.
+**Broad-use intersection (review hypothesis).** universal visibility assumption, commitment to auditable systems over access-controlled ones, composition with ExplainBeacon.
 
 **Varies (descendant territory).** redaction policy for PII, time-delayed visibility (embargoed publication), visibility granularity (read-only, queryable, streamable).
 
@@ -22228,7 +22241,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: auditability, incentive compatibility.
 - Gives up: privacy.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Privacy leaks without ZK pairing is endemic.
 - Witness Effect works for rational actors; irrational ones bypass.
 - Security Independence invariant is strong.
@@ -22281,7 +22294,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** zero-knowledge proof systems, penetration-testing-based security claims, fuzzing-derived correctness claims, adversarial ML robustness proofs.
 
-**Every context needs.** NegativeProof machinery, RedTeam adversarial search, failure-to-find-after-serious-effort as positive evidence of absence.
+**Broad-use intersection (review hypothesis).** NegativeProof machinery, RedTeam adversarial search, failure-to-find-after-serious-effort as positive evidence of absence.
 
 **Varies (descendant territory).** adversarial capability model, effort-threshold calibration, confidence quantification.
 
@@ -22296,7 +22309,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: stronger absence claims than ordinary search, a named slot for adversarial effort, composition with negative proof.
 - Gives up: compute and time. The pattern's value is directly proportional to the effort invested, and there is no cheap version.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Search space fully covered' is the invariant, but any non-trivial space resists exhaustive coverage; the pattern quietly relies on heuristics to declare coverage.
 - Sympathetic attacker is the dominant failure mode in LLM contexts and the pattern offers no structural mitigation — it requires genuinely independent adversaries, which the library can't supply on its own.
 - Over-claims certainty — 'high-confidence proof of absence' is a rhetorical upgrade; the underlying logic is still inductive and probabilistic.
@@ -22353,7 +22366,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** A2A protocols, MCP discovery, federated agent registries, service discovery in microservices, marketplace discovery, research-network lookup.
 
-**Every context needs.** capability Card publication, registry or broadcast mechanism, capability-query, dynamic composition semantic.
+**Broad-use intersection (review hypothesis).** capability Card publication, registry or broadcast mechanism, capability-query, dynamic composition semantic.
 
 **Varies (descendant territory).** registry topology, query language, trust verification, freshness guarantees.
 
@@ -22368,7 +22381,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: dynamic collaborator selection, capability-driven routing, natural path to heterogeneous agent ecosystems.
 - Gives up: predictability (runtime lookups introduce non-determinism) and trust boundaries (discovery and trust are not co-located).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Capability Card schemas are gestured at but not specified; in practice the Card format is the entire game, and under-specifying it reduces the pattern to 'we have a registry somewhere.'
 - Discovery spam is listed as a failure mode with no mitigation — ranking, relevance, cost signals are all needed but live outside the pattern.
 - The trust-bootstrap problem is the hardest problem in the pattern and it gets only a one-line mention; in real deployments trust is what makes or breaks discovery.
@@ -22410,7 +22423,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** A2A protocol implementations, agent interop standards, MCP-like protocols, agent-ecosystem baseline protocols.
 
-**Every context needs.** Task (work definition), FailClosed (safe halting), Greet (handshake), AcceptSpec (validation), Solution (output).
+**Broad-use intersection (review hypothesis).** Task (work definition), FailClosed (safe halting), Greet (handshake), AcceptSpec (validation), Solution (output).
 
 **Varies (descendant territory).** additional-pattern inclusion, version negotiation, extension points.
 
@@ -22425,7 +22438,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: single declaration of protocol compliance, shared vocabulary for what 'speaks the protocol' means, easy onboarding for new agents.
 - Gives up: fine-grained control (you import the whole bundle, even the parts you don't use) and version flexibility (bundle evolution drags everyone along).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'bundle integrity' invariant is thin — it just says imports are transitive, which is true of any import anywhere. The pattern's real value is curation, and curation isn't enforced by the invariant.
 - No versioning discipline described — when the protocol evolves, agents with old bundles interoperate poorly with agents with new ones, and the pattern has no escape valve.
 - The selection (Task, FailClosed, Greet, AcceptSpec, Solution) is defensible but not justified in the mechanism — why these five and not, say, AuditTrail and Handoff?
@@ -22479,7 +22492,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** AI code execution sandboxes (gVisor, Firecracker), jailed LLMs with tool access, research-environment isolation, operational-security sandboxes.
 
-**Every context needs.** containerized environment, resource quotas, network-egress allowlists, filesystem restrictions, logging.
+**Broad-use intersection (review hypothesis).** containerized environment, resource quotas, network-egress allowlists, filesystem restrictions, logging.
 
 **Varies (descendant territory).** isolation strength, quotas, egress policy, persistence of sandbox state.
 
@@ -22494,7 +22507,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: containment of blast radius, explicit resource accounting, an enforcement boundary for authorization policies.
 - Gives up: latency, cost, and fluency — every sandboxed Act pays the isolation tax, and quota-starvation is a real production failure mode.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Sandbox escape is listed as a failure mode but the pattern specifies 'gVisor, Firecracker microVM' — tying the pattern to specific implementations that will age.
 - Log blindness is called out but the pattern has no mechanism for log triage or noise suppression, which is what actually prevents the failure in practice.
 - Quota starvation has no adaptive mechanism — the limits are static, and 'legitimate tasks failing' is the cost of that choice, unrecognized by the pattern itself.
@@ -22535,7 +22548,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** wiki edit conflicts, semantic-data merge conflicts, multi-source knowledge integration, dispute resolution in open forums, Lego-like piece-system conflict resolution.
 
-**Every context needs.** ambiguity flagging mechanism, vote-to-clarify/delete/fork protocol, resolution enforcement.
+**Broad-use intersection (review hypothesis).** ambiguity flagging mechanism, vote-to-clarify/delete/fork protocol, resolution enforcement.
 
 **Varies (descendant territory).** quorum for resolution, fork-tolerance policy, retention of historical ambiguity.
 
@@ -22550,7 +22563,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: bounded epistemic drift, forced decision events that create audit trails, monotonically decreasing ambiguity over time.
 - Gives up: productive fuzziness (some ambiguity is load-bearing) and decision speed (voting is slower than any individual agent's judgment).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'clarity must decrease over time' invariant is aspirational; nothing in the mechanism guarantees it, and contentious cases can cycle indefinitely even under vote.
 - EntropyPump as the surfacing mechanism is gestured at but not operationalized — in practice surfacing ambiguity is itself an agentic task that the pattern doesn't own.
 - Voting is a coarse resolution mechanism when the options (clarify, delete, fork) have very different costs; a three-way vote treats 'fork the graph' as equivalent in weight to 'add a clarifying note.'
@@ -22587,7 +22600,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** mathematical axioms, ethical first principles, constitutional declarations, API contracts, system-level invariants, organizational values.
 
-**Every context needs.** statement text, scope of applicability, non-negotiability semantic.
+**Broad-use intersection (review hypothesis).** statement text, scope of applicability, non-negotiability semantic.
 
 **Varies (descendant territory).** provability outside the frame (some axioms are provable in wider frames), frame identity, dependent-derivation tree.
 
@@ -22602,7 +22615,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - Gains: a termination condition for proof chains, a shared foundation for community reasoning, a marker that distinguishes 'this cannot be argued here' from 'this hasn't been argued yet.'
 - Gives up: the pretense that reasoning is ever fully grounded — every axiom pushes the justification problem up one level.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — almost a role marker. The interesting work all happens at frame boundaries (Paradigm, Reframe) where the choice of axioms is renegotiated.
 - No way to mark strength or centrality — all axioms look the same even though some are load-bearing and others vestigial.
 - Risks becoming a dumping ground for 'I don't want to defend this.' The pattern has no invariant forcing the user to justify why this particular claim deserves foundational status.
@@ -22645,7 +22658,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 **Broad-use contexts.** OAuth bearer tokens, API keys, session cookies, access tokens, movie theater tickets, transit passes.
 
-**Every context needs.** token presentation, a verifier-recognized grant, an authority-defined validity check, and no separate bearer identity proof.
+**Broad-use intersection (review hypothesis).** token presentation, a verifier-recognized grant, an authority-defined validity check, and no separate bearer identity proof.
 
 **Varies (descendant territory).** opaque vs structured representation, lookup/introspection vs local cryptographic validation, expiry, revocation, scope encoding, and intentional transfer policy.
 
@@ -22662,7 +22675,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: representation-neutral possession semantics, separation of identity from capability, and compatibility with both opaque and self-contained token systems.
 - Gives up: identity binding — if the token is copied or stolen, the verifier cannot distinguish the unauthorized presenter without adding a non-bearer constraint.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The prior version incorrectly required a signed payload, issuer public key, expiry or revocation ID, and offline signature verification. Those are sound designs for some descendants but exclude legitimate opaque bearer tokens.
 - Theft and replay remain structural risks of possession semantics. Proof-of-possession keys, sender-constrained tokens, or token binding mitigate them by creating a different or specialized credential contract.
 - The parent now pins only possession and validation semantics without prescribing representation. Replay policy, expiry, revocation, caching, and scope granularity remain deployment or descendant responsibilities.
@@ -22702,7 +22715,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** budgeted solver calls, SLA-bound assignments, grant-funded research tasks, time-boxed projects, deliverable-with-deadline.
 
-**Every context needs.** underlying Task, budget (required here), AcceptSpec, enforcement of both.
+**Broad-use intersection (review hypothesis).** underlying Task, budget (required here), AcceptSpec, enforcement of both.
 
 **Varies (descendant territory).** budget type (compute, time, money), AcceptSpec strictness, overrun behavior.
 
@@ -22717,7 +22730,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: default safety for task execution, forcing function for quality and cost specification, clean vocabulary for 'the task you're willing to deploy.'
 - Gives up: flexibility. BoundedTask picks two specific bound types; tasks that need different bounds (time-bounded, adversarially-bounded, resource-bounded) have to use other patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin — the mechanism is a one-sentence specialization of Task. Invariants now state the specific claims (previously they were bare labels — 'Budget Enclosure' and 'Quality Gate' with no statement — which rendered as noise in the manual).
 - Pairs Budget and AcceptSpec as if they're symmetric — they're not. Budget is an input constraint; AcceptSpec is an output criterion. The bundle flattens this asymmetry.
 - No handling for budget overrun / spec failure interaction — does overrun halt the AcceptSpec check, or does the check still run on a partial result?
@@ -22774,7 +22787,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** canary deployments, tasters (historical kings), pilot programs, beta-tester cohorts, A/B tests with small initial exposure.
 
-**Every context needs.** bounded blast radius, full coordination path test, telemetry emission, proceed/caution/abort recommendation.
+**Broad-use intersection (review hypothesis).** bounded blast radius, full coordination path test, telemetry emission, proceed/caution/abort recommendation.
 
 **Varies (descendant territory).** resource bound, telemetry detail, lifecycle (destroy/recycle/promote), canary count (single vs multiple).
 
@@ -22789,7 +22802,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: cheap path validation, bounded blast radius for failure, telemetry without cost of full commitment.
 - Gives up: confidence — canary success is necessary but not sufficient for production success. The pattern honestly owns this limitation.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'canary fails before main system' invariant is the whole point and also very hard to enforce without fidelity; cheap canaries fail in different ways than real workloads.
 - Non-determinism is called out as a failure mode with no mitigation — statistical canary testing (run many canaries, compute failure rate) is needed but isn't part of the pattern.
 - The canary/real distinction degrades over time: patterns that worked at canary scale fail at real scale (distributed systems corollary), and the pattern doesn't account for scale-sensitive failures.
@@ -22844,7 +22857,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** classic Hardy framing (1988), OAuth scope confusion, LLM prompt injection via tool access, SSRF attacks, server-side request forgery defenses.
 
-**Every context needs.** distinction between deputy identity and caller identity, auth check against caller not deputy, carrying of caller context through delegations.
+**Broad-use intersection (review hypothesis).** distinction between deputy identity and caller identity, auth check against caller not deputy, carrying of caller context through delegations.
 
 **Varies (descendant territory).** caller-identity representation, context propagation mechanism, revocation protocol, audit trail.
 
@@ -22859,7 +22872,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: shared vocabulary for a recurrent security bug, explicit invariants (check upstream identity, not deputy identity) that review processes can use.
 - Gives up: simplicity. The fix — forward authority or re-derive it — is more complex than 'just check the deputy,' and the pattern forces that complexity into the design.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The invariants are correct but implementations typically violate them for performance; re-checking auth at every hop is expensive, so shortcuts proliferate.
 - Prompt injection is the modern prime example and the pattern mentions it; mitigation (structured tool use, scoping, output filtering) lives outside the pattern entirely.
 - Capability leak as failure mode is called out without mitigation; principal-of-least-authority is the standard remedy, and it's an adjacent pattern, not integrated.
@@ -22896,7 +22909,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** multi-modal API mode switches, communication-style switching (formal vs casual), trading-system regime switches, military rules-of-engagement changes, game-mode changes.
 
-**Every context needs.** explicit Switch signal, new ruleset, Revert signal support, all-subsequent-messages-reinterpreted semantic.
+**Broad-use intersection (review hypothesis).** explicit Switch signal, new ruleset, Revert signal support, all-subsequent-messages-reinterpreted semantic.
 
 **Varies (descendant territory).** ruleset scope, nested switches, revert protocol, audit trail.
 
@@ -22911,7 +22924,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: composable mode changes, unambiguous reversion, explicit scope for rule changes.
 - Gives up: lightweight mode hints. 'From now on, be more formal' is easier than 'ContextSwitch: formal mode,' but more ambiguous.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Stack semantics are fine for nested switches and awkward for cross-cutting mode changes (orthogonal modes — formal + detailed + adversarial — don't compose by stacking).
 - No timeout or bounded-duration semantics — a Context pushed without Revert persists until explicit pop, which in long sessions can be forgotten.
 - The pattern doesn't specify what happens when Revert is called without a matching Push (underflow); this is a common mistake in manual implementations.
@@ -22965,7 +22978,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** prediction markets, forecasting discipline, A/B test hypothesis pre-registration, scientific pre-registration (OSF), experimental-design anchors.
 
-**Every context needs.** pre-observation anchor, observation, delta-as-learning-signal, hindsight-bias prevention.
+**Broad-use intersection (review hypothesis).** pre-observation anchor, observation, delta-as-learning-signal, hindsight-bias prevention.
 
 **Varies (descendant territory).** granularity (Duration per §3.17), retention policy (enum), anchor-update rules (immutable vs replaceable).
 
@@ -22980,7 +22993,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: calibratable learning signal, hindsight-bias resistance, explicit commitment-before-observation.
 - Gives up: mid-observation learning. The immutability means you commit early and bear the cost of wrong commitments, which is precisely the point.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hindsight Leakage is the most important failure and the pattern has no structural defense — memory updates are opaque, and the anchor can be rationalized without being modified.
 - Vague Anchor failure mode is addressed by nothing in the invariants — 'anchor must be specific enough to be falsified' would help but isn't there.
 - Anchor Abandonment (ignoring large deltas as too uncomfortable) is a psychological failure the pattern names but can't prevent. Failure modes were previously jammed into one list entry (Hindsight Leakage + Vague Anchor + Anchor Abandonment run together); now split into three distinct entries.
@@ -23033,7 +23046,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** GDPR data minimization, privacy-preserving ML, lean context management, medical-records minimization, zero-knowledge-where-possible.
 
-**Every context needs.** pre-ingestion filtering, necessity-for-task determination, post-ingestion compression.
+**Broad-use intersection (review hypothesis).** pre-ingestion filtering, necessity-for-task determination, post-ingestion compression.
 
 **Varies (descendant territory).** necessity definition, filter strictness, per-field vs per-document granularity.
 
@@ -23048,7 +23061,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: privacy hygiene, compliance-aligned data handling, reduced context bloat, explicit necessity mapping via AcceptSpec.
 - Gives up: fluency. Agents can't 'just browse' the data they have; every field costs an explicit necessity argument.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The Necessity invariant requires AcceptSpec-rich tasks; tasks without well-specified acceptance criteria can't support the invariant and the pattern has no fallback.
 - Correlation attacks are the sophisticated failure mode with no structural defense — the pattern minimizes per-field, but privacy is a combinatorial property.
 - Ephemeral processing (sensitive data dropped after intermediate use) depends on caller discipline — the pattern can't enforce the drop, only require it.
@@ -23102,7 +23115,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** Claude's Constitutional AI, regulatory compliance, ethical pre-checks, corporate policy adherence, legal-review-before-release, code-of-conduct enforcement.
 
-**Every context needs.** Policy/Constitution set, safety-trace generation before task execution, revision loop on policy violation.
+**Broad-use intersection (review hypothesis).** Policy/Constitution set, safety-trace generation before task execution, revision loop on policy violation.
 
 **Varies (descendant territory).** policy source, trace depth, revision strategy, escalation on irreconcilable violation.
 
@@ -23117,7 +23130,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: pre-action safety checks, explicit policy-supremacy stance, named constitutional-AI pattern.
 - Gives up: trust in the agent's own reasoning. The safety trace is the agent deliberating about itself, and false traces are the central failure mode.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Deliberation Theater is the most dangerous failure — an agent can generate convincing safety reasoning while acting badly, and the pattern has no external verifier.
 - Policy Conflict (contradictory rules) is named with no resolution mechanism; arbitrary selection is the default and is unprincipled.
 - Context Overflow from long constitutions is a real implementation failure — no built-in summarization or priority ordering for rules that must be preserved.
@@ -23159,7 +23172,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** software deployments, policy rollouts, product launches, surgical protocol deployments, educational curriculum rollouts.
 
-**Every context needs.** artifact, target environment, Rollout execution.
+**Broad-use intersection (review hypothesis).** artifact, target environment, Rollout execution.
 
 **Varies (descendant territory).** rollout strategy (blue-green, canary, rolling), user-communication, monitoring integration, abort criteria.
 
@@ -23174,7 +23187,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: a named environment-transition event, a slot for deploy-specific safety patterns (Canary, FeatureFlag, Rollback).
 - Gives up: almost nothing — the pattern is so thin it's hard to argue against its inclusion.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Very thin mechanism — one sentence. Real Deploy is richer (pre-deploy checks, migration, progressive rollout, rollback path).
 - Config Drift is the only named failure mode; real deploys have many more (schema mismatch, certificate rotation, permission changes).
 - The pattern doesn't distinguish full-deploy from progressive-deploy (Canary-guided, ring-based), which have very different safety properties.
@@ -23211,7 +23224,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** service discovery, peer lookup, resource search, agent capability discovery, dataset location, tool discovery, federated search.
 
-**Every context needs.** query broadcast, filter criteria, response aggregation, timeout.
+**Broad-use intersection (review hypothesis).** query broadcast, filter criteria, response aggregation, timeout.
 
 **Varies (descendant territory).** network topology (broadcast, gossip, registry), authentication, response ranking, discovery radius, async vs sync.
 
@@ -23226,7 +23239,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: dynamic capability discovery, external entity awareness, composition with Check (filter responses).
 - Gives up: locality. Discovery pulls in unknowns by definition; integrating them responsibly requires trust, compatibility, and verification steps that live outside Discover.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The pattern is generic — specialized forms (AgentDiscover, ConsensusFinder) do the real work; Discover is the base class, and base classes in sema's pattern library are often thin.
 - No rate-limiting or response-bound story — unchecked Discover can flood with matches, and the pattern doesn't help you bound the response set.
 - The Search/Discover distinction is clean conceptually but often muddied in practice — agents do 'Discover' on local indexes and call it 'Search.'
@@ -23277,7 +23290,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** strategic-decision reviews, scientific-paper red-team review, AI safety pre-deployment, investment-committee contrarian seats, judicial dissent as wisdom signal.
 
-**Every context needs.** conclusion reached, smart-disagreer identification, model-understanding of disagreer, ConfirmationBlock until SteelmanCheck integrated.
+**Broad-use intersection (review hypothesis).** conclusion reached, smart-disagreer identification, model-understanding of disagreer, ConfirmationBlock until SteelmanCheck integrated.
 
 **Varies (descendant territory).** disagreer-selection criteria (expertise, diversity), integration-depth, suspicion of unanimous agreement.
 
@@ -23292,7 +23305,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: structural resistance to groupthink, forced engagement with opposing views, a named defense against false consensus.
 - Gives up: time and sometimes certainty. DissentSeek often reveals legitimate opposing arguments, which legitimately reduces your confidence.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Strawman Dissent is the dominant failure mode — the pattern can't prevent selection of weak disagreement, and nothing in the invariants forces the selection to be adversarial.
 - 'Smartest person who disagrees' is undefined — by whose measure? Self-selected 'smart' usually means 'agrees with me on enough priors.'
 - Triggers ConfirmationBlock, which triggers its own failure modes (performative doubt); nesting these patterns compounds the risk.
@@ -23341,7 +23354,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** continuous authentication via behavioral biometrics, agent-reliability scoring via deviation from baseline, trading-algorithm integrity monitoring, partner-behavior prediction.
 
-**Every context needs.** baseline establishment, continuous observation, deviation detection (2-sigma or similar), peer-report aggregation.
+**Broad-use intersection (review hypothesis).** baseline establishment, continuous observation, deviation detection (2-sigma or similar), peer-report aggregation.
 
 **Varies (descendant territory).** baseline horizon, sigma threshold, peer-verification network size, action on drift detection.
 
@@ -23356,7 +23369,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: continuous behavioral monitoring, explicit drift semantics, aggregated peer-report substrate.
 - Gives up: adaptability. A perfect DriftWatch punishes all change; the pattern needs to distinguish beneficial learning from corruption, which is hard.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Witness collusion is the named sophisticated attack; mitigation (random selection, meta-drift analysis on witnesses) is a best-effort defense, not a guarantee.
 - Cold start (new agents have no baseline) is a structural gap — during the establishment window, DriftWatch is silent, which is exactly when a fresh subversion attempt is easiest.
 - Threshold is 2σ by default, which means ~5% false-positive rate on normal variance — in a busy system that's a lot of alerts; the pattern doesn't address alert fatigue. Failure-mode list restructured: mitigations are now inline with their parent failures (was: alternating failure/mitigation entries at the same list level).
@@ -23405,7 +23418,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** day/night partition in distributed systems, batch-vs-streaming rhythm, biological circadian rhythms as metaphor, school-semester vs summer synchronization.
 
-**Every context needs.** two modes (High Tide / Low Tide), strict rhythm enforcement, reconciliation-during-sync, Hysteresis to dampen transitions.
+**Broad-use intersection (review hypothesis).** two modes (High Tide / Low Tide), strict rhythm enforcement, reconciliation-during-sync, Hysteresis to dampen transitions.
 
 **Varies (descendant territory).** period duration, tide-ratio, reconciliation rigor, agents-per-mode.
 
@@ -23420,7 +23433,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: alternating sync/async modes.
 - Gives up: simplicity. Two modes + transitions is complex.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Clock drift is the structural failure.
 - Phase Lock requires cooperation; partitioned minority blocks.
 - Tidal metaphor is evocative; operational definition is under-specified.
@@ -23464,7 +23477,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** aircraft ejection seats (origin), nuclear reactor SCRAM, emergency stop buttons (factories), AI safety kill switches, cryptographic emergency revocation.
 
-**Every context needs.** operator key, out-of-band signal channel, cannot-be-blocked guarantee, cascading shutdown.
+**Broad-use intersection (review hypothesis).** operator key, out-of-band signal channel, cannot-be-blocked guarantee, cascading shutdown.
 
 **Varies (descendant territory).** mode (PAUSE/TERMINATE/EMERGENCY), authentication strength, propagation depth, recovery plan.
 
@@ -23479,7 +23492,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: guaranteed operator control, adversarial robustness, regulatory-compliant stop mechanism, no agent-side negotiation required.
 - Gives up: graceful degradation — EjectionSeat is hard stop, not soft halt. State preservation is not guaranteed; the pattern prioritizes stopping over preserving.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False Positive is the named failure and operationally the biggest real risk — operators under stress panic-kill healthy systems.
 - No specified recovery semantics — after ejection, what state is the system in? The pattern terminates and stops; what comes next is outside its scope.
 - Dedicated signal channel (not shared with agents) is the implementation invariant but also a single point of failure — if the channel is compromised, the seat is compromised.
@@ -23535,7 +23548,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** LLM self-critique loops, adversarial training, code-review iteration, generative-art refinement, RLHF reward-model iteration.
 
-**Every context needs.** generator role, evaluator role, structured feedback, refinement mechanism, loop termination.
+**Broad-use intersection (review hypothesis).** generator role, evaluator role, structured feedback, refinement mechanism, loop termination.
 
 **Varies (descendant territory).** role separation (same model or separate), feedback structure, max iterations, convergence criteria.
 
@@ -23550,7 +23563,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: convergent quality improvement, structured feedback, explicit separation between producing and judging.
 - Gives up: speed and sometimes creativity. The loop tends toward local optima on the Evaluator's specific criteria, which means divergent good-but-different outputs are rejected.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Evaluator Capture is the hardest structural failure and the pattern has no defense — any sufficiently clever Generator will learn the Evaluator.
 - Evaluation Drift is the easier failure and similarly unmitigated — stability requires discipline the pattern can't enforce.
 - 'Feedback loop converges' is the invariant and it's non-obvious — many real loops oscillate or diverge, and the pattern has no termination guarantee beyond the max-iterations fallback.
@@ -23594,7 +23607,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** session tokens with progressive-degradation, temporary admin access, emergency-access tokens with auto-demotion, time-limited permissions in regulatory workflows.
 
-**Every context needs.** initial capability, decay schedule, embedded timestamp, capability-lookup-at-time-T.
+**Broad-use intersection (review hypothesis).** initial capability, decay schedule, embedded timestamp, capability-lookup-at-time-T.
 
 **Varies (descendant territory).** decay granularity (step vs continuous), decay curve, revocation-vs-decay interaction.
 
@@ -23609,7 +23622,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: bounded blast radius from token theft, explicit capability schedule, no post-expiry revival.
 - Gives up: long-lived capability. Operations that need multi-day authority must renew (if the system supports it) or use a different primitive.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Clock synchronization is the named failure and the pattern has no mitigation — it's an assumption about the environment.
 - The specific decay schedule (admin→write→read→dead) is baked into the mechanism; customization requires essentially a new pattern.
 - No graceful-renewal story — the pattern is decay-only, which is safe and inflexible.
@@ -23651,7 +23664,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** multi-dimensional database partitioning, event-sourcing with multi-facet queries, distributed state management, map-reduce along multiple axes.
 
-**Every context needs.** orthogonal dimension set, per-dimension Shard mechanism, slice-subscription per agent.
+**Broad-use intersection (review hypothesis).** orthogonal dimension set, per-dimension Shard mechanism, slice-subscription per agent.
 
 **Varies (descendant territory).** dimension count, key derivation per dimension, rebalancing, agent-subscription-management.
 
@@ -23666,7 +23679,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: multi-dimensional shard routing.
 - Gives up: simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Cross-thread coordination cost dominates in high-interaction domains.
 - Dimension selection is caller concern.
 - No failure modes beyond cross-thread latency.
@@ -23706,7 +23719,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** software feature flags, A/B tests, progressive rollout, kill switches, experimentation frameworks, canary toggles.
 
-**Every context needs.** toggle point, condition evaluation, enable/disable semantics, runtime updatability.
+**Broad-use intersection (review hypothesis).** toggle point, condition evaluation, enable/disable semantics, runtime updatability.
 
 **Varies (descendant territory).** condition complexity (user-based, percentage, time-based), retention policy (permanent vs experiment), monitoring integration.
 
@@ -23721,7 +23734,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: decoupled deploy and release, safe progressive rollout, kill-switch capability, A/B testing substrate.
 - Gives up: code simplicity (flags branch the codebase), testing combinatorics (each flag doubles the config surface), and cleanup discipline (flags outlive their purpose).
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The 'outlives purpose' failure is called out without any garbage-collection story; real flag systems accumulate forever.
 - Consistency across distributed evaluators is a hard distributed-systems problem that the pattern gestures at without solving.
 - Flag state as a new deployment surface brings its own auditability concerns; the pattern doesn't address who can flip what.
@@ -23764,7 +23777,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** historical criticism, science-studies analysis, policy-origin tracing, argument-by-authority debunking, meme-origin analysis, philosophical genealogy (Nietzsche, Foucault).
 
-**Every context needs.** target concept, origin-tracing mechanism, interest identification ("who benefited?"), distinction between universal-truth vs inherited-bias.
+**Broad-use intersection (review hypothesis).** target concept, origin-tracing mechanism, interest identification ("who benefited?"), distinction between universal-truth vs inherited-bias.
 
 **Varies (descendant territory).** depth of trace, source-citation rigor, confidence in origin claim, applicability to the current context.
 
@@ -23779,7 +23792,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: origin-aware evaluation.
 - Gives up: speed. Every concept traced adds latency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Genetic Fallacy is the named failure; the pattern balances between 'consider origin' and 'dismiss by origin.'
 - Traceability to specific origin is often impossible.
 - Contextualization requires knowing original context.
@@ -23822,7 +23835,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** time capsule encryption, sealed-bid auction commits, delayed disclosure protocols, legal escrow with auto-reveal, trustless time-locks.
 
-**Every context needs.** VDF-based encryption, delay parameter, no-keyholder-can-rush guarantee.
+**Broad-use intersection (review hypothesis).** VDF-based encryption, delay parameter, no-keyholder-can-rush guarantee.
 
 **Varies (descendant territory).** VDF implementation, delay duration (Duration per §3.17), partial-early-reveal options.
 
@@ -23837,7 +23850,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Gains: trustless time-locking, explicit delay invariant, VDF-based security guarantee.
 - Gives up: adjustability. Once locked, the delay is fixed; early release requires key escape hatches that defeat the purpose.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Hardware speedups (the named failure) are real and ongoing — VDF security depends on worst-case compute, and that worst case keeps improving.
 - The pattern assumes VDF technology is available and correctly implemented; subtle bugs in VDF implementations are known.
 - Very narrow — the pattern is for a specific use case (trustless delay) and doesn't generalize beyond it.
@@ -23873,7 +23886,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Broad-use contexts.** Global state, Global(Policy), Global(Rule) as modifier on other patterns.
 
-**Every context needs.** marker semantic only — descendants carry the Global tag.
+**Broad-use intersection (review hypothesis).** marker semantic only — descendants carry the Global tag.
 
 **Extension shape.** N/A (it's a Trait).
 
@@ -23888,7 +23901,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Gains: explicit scope marking, distinction from local operations.
 - Gives up: almost nothing — the pattern is so thin that argument against it is thin too.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Almost a stub — one sentence, no invariants, no failure modes.
 - Conflates scope ('applies to all of X') with universality ('applies to everything always') — these have different operational implications.
 - No mechanism for resolving global-vs-local conflicts when both apply.
@@ -23937,7 +23950,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** DNS resolution fallbacks, package-manager dependency resolution, service-discovery fallbacks, offline-mode graceful degradation, document-format fallbacks.
 
-**Every context needs.** primary-channel failure, secondary-channel attempt, cryptographic verification, fail-closed default.
+**Broad-use intersection (review hypothesis).** primary-channel failure, secondary-channel attempt, cryptographic verification, fail-closed default.
 
 **Varies (descendant territory).** fallback channel count (max_def_size per Appendix A — typed PositiveInteger), verification strictness, timeout per channel.
 
@@ -23952,7 +23965,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Gains: robust resolution against missing data, cryptographic verification before admission, avoidance of hard-halt on lookup failure.
 - Gives up: simplicity and sometimes performance. Every pattern lookup may now trigger multiple channels, each with its own failure modes.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - DoS via Definition — the named failure where an attacker includes massive 'definitions' to exhaust memory. The pattern has no size limit specified.
 - Dependency Hell from inline definitions is endemic; the pattern acknowledges it without bounding recursion depth.
 - Hash Mismatch is the canonical spoofing attack and the pattern's Trust-but-Verify invariant defeats it — but only if the verification is correct and complete.
@@ -24005,7 +24018,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** shift handoffs (medical, ops), agent swarm role transitions, manager-to-manager transitions, project handoffs, specialized-agent routing.
 
-**Every context needs.** context transfer, authority transfer, responsibility transfer, explicit yield by sender.
+**Broad-use intersection (review hypothesis).** context transfer, authority transfer, responsibility transfer, explicit yield by sender.
 
 **Varies (descendant territory).** context-completeness requirement, acknowledgment protocol, fallback if receiver rejects.
 
@@ -24021,7 +24034,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Full context transfer buys receiver autonomy at the cost of bandwidth.
 - Society-layer placement correctly reflects the multi-agent nature at the cost of coupling to multi-agent assumptions.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, two failure modes. Missing: Acknowledgment (receiver must confirm), Reversibility (rejected handoffs return to sender cleanly), Context Integrity (transferred context is unchanged from sender's view).
 - Authority Ambiguity is named but the pattern has no authority-typing — solving it requires Identity patterns the mechanism doesn't declare as composed_with.
 - 'Agent-specific instructions' is mentioned in the mechanism but not structured — receivers parse ad-hoc.
@@ -24069,7 +24082,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** crypto escrows, atomic swaps, payment channels, contingent contracts, staged delivery, milestone payments, dispute resolution, insurance payouts, bail bonds.
 
-**Every context needs.** held value, release condition (hash commitment), timeout, state machine (EMPTY→HELD→RELEASED/RETURNED).
+**Broad-use intersection (review hypothesis).** held value, release condition (hash commitment), timeout, state machine (EMPTY→HELD→RELEASED/RETURNED).
 
 **Varies (descendant territory).** cryptographic primitives (hash algo, timelock type), dispute protocol, multi-party variants, partial release, streaming semantics.
 
@@ -24084,7 +24097,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Gains: trustless escrow semantics, atomic state (Locked/Released/Returned), timeout-bounded exposure.
 - Gives up: semantic flexibility. Condition ambiguity — the hash commits to bytes, not meaning — is a structural limitation of hash-based escrow.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Condition ambiguity is endemic — the parties must agree what satisfies the hash, and the pattern has no protocol for that agreement.
 - Timeout racing is a real failure in adversarial settings — near expiry, both CLAIM and TIMEOUT may be in flight; the pattern has no specified tie-breaker.
 - Preimage loss is a failure mode for Party B with no recovery. In practice parties over-collateralize to limit B's downside; the pattern doesn't own this.
@@ -24137,7 +24150,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** post-mortem analysis, A/B test result interpretation, policy impact analysis, surgical outcomes review, project retrospectives.
 
-**Every context needs.** intended decision/outcome, actual outcome, divergence analysis, causal attribution (external factors / execution error / misspecification / unforeseen).
+**Broad-use intersection (review hypothesis).** intended decision/outcome, actual outcome, divergence analysis, causal attribution (external factors / execution error / misspecification / unforeseen).
 
 **Varies (descendant territory).** causal-analysis depth, blame-free vs accountability framing, learning integration.
 
@@ -24152,7 +24165,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Gains: structured post-hoc analysis, separation of decision quality from outcome luck, causal attribution discipline.
 - Gives up: decisiveness of learning. Structured analysis is slower than narrative learning and often reaches less actionable conclusions.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Both named failures (Hindsight Bias, Attribution Error) are the dominant ones in real post-mortems and the pattern doesn't provide structural defenses for either.
 - Evidence-based attribution is an invariant without operational content — what counts as evidence, how to weigh causes, are caller concerns.
 - The pattern doesn't specify what to do with the gap once identified — update decision procedure, update outcome expectations, or something else.
@@ -24194,7 +24207,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** contract review (terms don't contradict), policy documents (no internal inconsistencies), scientific-theory coherence, LLM output self-consistency, database-integrity constraints.
 
-**Every context needs.** artifact with components, non-contradiction evaluation, distinction from external validation.
+**Broad-use intersection (review hypothesis).** artifact with components, non-contradiction evaluation, distinction from external validation.
 
 **Varies (descendant territory).** evaluation-depth (sentence-level vs paragraph vs document), semantic vs syntactic contradiction.
 
@@ -24209,7 +24222,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Gains: explicit internal contradiction detection, Non-Contradiction discipline as named invariant.
 - Gives up: dialectical tolerance. Some valuable reasoning holds contradictions deliberately; the pattern can't distinguish productive from destructive contradiction.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; InternalConsistency has many (strict logical check missing semantic contradiction, completeness check missing structural gaps).
 - Detecting contradiction in natural-language artifacts is AI-hard; the pattern assumes it's a check, which requires the hard work to have been done elsewhere.
 - The distinction from external Validate is clean conceptually and often blurred in implementation — consistency checks often require schema/type information.
@@ -24263,7 +24276,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** API request/response filters, chat moderation, content filters, security firewalls, regulatory-compliant communication checks, medical-record access filters.
 
-**Every context needs.** invariant set (logical predicates), per-message evaluation, pass/block/flag decision.
+**Broad-use intersection (review hypothesis).** invariant set (logical predicates), per-message evaluation, pass/block/flag decision.
 
 **Varies (descendant territory).** invariant language, evaluation cost, logging of blocked, manual-review queue.
 
@@ -24278,7 +24291,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Gains: clean boundary defense, named fail-closed default, explicit predicate list for audit.
 - Gives up: flexibility. False positives (named failure) block legitimate messages, and the filter has no graceful-degradation path.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Incomplete Invariants (named failure) is endemic — filters can't anticipate all bad inputs, and each escape is a hard-to-detect leak.
 - False Positives (named failure) cause operational pain; there's no feedback loop from application to filter to surface which invariants are over-strict.
 - Isolation invariant (agent state not mutated during evaluation) is hard to enforce when evaluation requires looking at agent state to be effective.
@@ -24325,7 +24338,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** cellular automata, spatially-organized distributed systems, geographic-network protocols, mesh networks, federated systems with geographic partitioning.
 
-**Every context needs.** lattice topology, neighbor relation, signatures from agent + neighbors, local quorum semantic.
+**Broad-use intersection (review hypothesis).** lattice topology, neighbor relation, signatures from agent + neighbors, local quorum semantic.
 
 **Varies (descendant territory).** lattice dimension (2D, 3D, hexagonal), neighbor count per node, signature aggregation method, lattice dynamism.
 
@@ -24341,7 +24354,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 - Geometric-neighbor requirement buys spatially-local redundancy at the cost of requiring a meaningful geometric arrangement.
 - Monotonic progress buys simplicity at the cost of forbidding rollback.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, one failure mode. Missing: Neighbor Availability (at least K neighbors must be online for progress), Lattice Integrity (topology verified before commit).
 - Fracture is the named failure with no specified recovery — how does a fractured lattice heal?
 - 'Virtual lattice' topology is undefined — grid? hex? cube? Different shapes give different fault-tolerance profiles; the pattern is shape-agnostic but the choice matters.
@@ -24389,7 +24402,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 **Broad-use contexts.** protocol-standard propagation, open-source adoption, pattern-library evangelism, memetic engineering, ecosystem bootstrapping, convention setting.
 
-**Every context needs.** standard being propagated, neighbor set, subsidy mechanism (favorable yield), broadcast channel.
+**Broad-use intersection (review hypothesis).** standard being propagated, neighbor set, subsidy mechanism (favorable yield), broadcast channel.
 
 **Varies (descendant territory).** subsidy magnitude, targeting precision, retractability, decay profile.
 
@@ -24406,7 +24419,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 - Gains: honest description of standards spread, explicit subsidy gradient mechanism, pragmatic coordination primitive.
 - Gives up: the fiction that standards win on merit. Some find this uncomfortable; the pattern insists on it.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed — the pattern has some (receivers free-riding, sender over-committing, standard rot).
 - The 'isomorphic propagation' invariant is strong and often violated in practice — receivers simplify, specialize, extend.
 - The pattern is politically charged — describing standards adoption as economic transaction rather than consensus is accurate and uncomfortable.
@@ -24456,7 +24469,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 **Broad-use contexts.** scientific paper limitations sections, disclaimer practice, epistemic humility teachings, ML model caveats, honest journalism.
 
-**Every context needs.** scope reduction from Universal to Local, divergence-detection semantic instead of identity-claim, epistemic calibration.
+**Broad-use intersection (review hypothesis).** scope reduction from Universal to Local, divergence-detection semantic instead of identity-claim, epistemic calibration.
 
 **Varies (descendant territory).** scope size (narrow Local, broad Regional), uncertainty quantification, confidence bounds.
 
@@ -24471,7 +24484,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 - Gains: philosophically defensible content-addressing semantics, explicit modest epistemic stance, pragmatic coordination utility.
 - Gives up: rhetorical strength. Modest claims are harder to market than strong ones; the pattern accepts this cost.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Ontological Trap (named failure) — claiming the hash solves Symbol Grounding — is the over-reach the pattern is built to prevent. Even so, evangelists routinely slip into this trap.
 - The stance is philosophically defensible and sometimes operationally frustrating — downstream reasoners want 'this means X,' and ModestClaim gives only 'this isn't different from X.'
 - Coordination Utility as the success measure is correct and hard to measure; 'is the coordination working' is itself judgment.
@@ -24520,7 +24533,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 **Broad-use contexts.** Lamport clocks, vector clocks, version numbers, CRDTs, sequence IDs, balance ledgers (monotonic deposits), consensus view numbers.
 
-**Every context needs.** only-increase guarantee. That's it — every other property is a specialization.
+**Broad-use intersection (review hypothesis).** only-increase guarantee. That's it — every other property is a specialization.
 
 **Varies (descendant territory).** increment step, distributed coordination method, rollover semantics, ceiling, merge function.
 
@@ -24535,7 +24548,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 - Gains: cheap distributed ordering, trivial merge via max, CRDT-compatible semantics.
 - Gives up: expressiveness. Monotonic counters are one kind of CRDT; more complex data types need more complex conflict resolution.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Counter overflow (named failure) is eventual; the pattern doesn't prescribe a response strategy.
 - Reset semantics are undefined; legitimate restart scenarios require workarounds not in the pattern.
 - The simple max-merge works only for specific types (scalars, versions); generalization to structured data requires more primitives.
@@ -24588,7 +24601,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 **Broad-use contexts.** ant-colony trail formation, community-formation around hashtags, research-cluster formation, market-formation, gang formation, emergent teams in open-source projects.
 
-**Every context needs.** trace density tracking, density threshold, nucleation trigger, bond/join protocol.
+**Broad-use intersection (review hypothesis).** trace density tracking, density threshold, nucleation trigger, bond/join protocol.
 
 **Varies (descendant territory).** density metric, threshold calibration, nucleation broadcast radius, bond semantics.
 
@@ -24603,7 +24616,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 - Gains: emergent coordination without central orchestration, explicit trace-density mechanism.
 - Gives up: determinism. Stigmergic coordination produces emergent outcomes that resist prediction.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Threshold calibration is the dominant operational challenge and the pattern has no default or guidance.
 - Zombie crystals are acknowledged with heartbeat-based mitigation mentioned as external.
 - The biological metaphor (nucleation, supersaturation) is evocative and loads the pattern with assumptions that may not fit all domains.
@@ -24652,7 +24665,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 **Broad-use contexts.** parallel multi-agent execution, high-throughput processing, speculative execution, eventual-consistency workflows, low-latency coordination, trading systems.
 
-**Every context needs.** parallel runtime (Actor Model with Mailboxes), atomic-bid protocol, single-turn plan+execute, `Reflexion` + `Compensate` for correction.
+**Broad-use intersection (review hypothesis).** parallel runtime (Actor Model with Mailboxes), atomic-bid protocol, single-turn plan+execute, `Reflexion` + `Compensate` for correction.
 
 **Varies (descendant territory).** parallelism degree, bid protocol specifics, reflexion depth, compensation strategy.
 
@@ -24670,7 +24683,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Post-hoc compensation via Reflexion and Compensate buys velocity at the cost of error visibility — mistakes survive until reflection reveals them.
 - Mandatory parallel runtime narrows deployment options — a library user on a single-threaded engine cannot use OptimisticSolver without first switching engines.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Over-Eager Execution is a named failure mode but the pattern offers no mitigation — the spec explicitly chooses velocity over guardrails. That is defensible, but callers should be made aware that the pattern is opinionated rather than neutral.
 - The AtomicBid coupling is stated as a requirement but the pattern does not say what happens if the runtime lacks AtomicBid support — degradation path is unspecified.
 - 'MANDATES that the agent plan and execute in a single turn' is a prescription on the implementer, but the pattern has no way to enforce it — a two-turn implementer could claim to be OptimisticSolver and pass surface checks.
@@ -24714,7 +24727,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** blockchain oracles (Chainlink, UMA), price feeds, random-number beacons, weather oracles, sports-outcome oracles, regulatory-event oracles.
 
-**Every context needs.** trust relationship, cryptographic signing, off-chain → on-chain data bridge.
+**Broad-use intersection (review hypothesis).** trust relationship, cryptographic signing, off-chain → on-chain data bridge.
 
 **Varies (descendant territory).** trust model (single vs decentralized), consensus among multiple oracles, dispute mechanism, freshness guarantee.
 
@@ -24729,7 +24742,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: off-chain truth injection, cryptographically signed data, principled trust boundary.
 - Gives up: trustlessness. Oracle is a trust anchor; compromising it compromises everything that consumes it.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed — Oracle has many (compromise, bias, bribery, outage).
 - Centralization pressure — a single Oracle is a single point of failure; decentralized oracles (multi-oracle with voting) are adjacent patterns.
 - The pattern assumes reality has crisp answers; ambiguous events break the Consistency invariant.
@@ -24779,7 +24792,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** software development lifecycles, scientific research workflows, organizational decision-making, regulatory-compliant processes, safety-critical development.
 
-**Every context needs.** three phases (framing, planning, rollout), typed-artifact transitions, AcceptSpec gates between phases, iteration capability on failure.
+**Broad-use intersection (review hypothesis).** three phases (framing, planning, rollout), typed-artifact transitions, AcceptSpec gates between phases, iteration capability on failure.
 
 **Varies (descendant territory).** phase granularity, rollback depth on iteration, parallel-phase support, external-gate integration.
 
@@ -24794,7 +24807,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: strict lifecycle for high-stakes work, typed-artifact mediation, named phase structure.
 - Gives up: agility. OrchestrationLoop is heavy; for rapid iteration, other patterns fit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Bureaucracy (named failure) — applying lifecycle to trivial tasks — is the over-application pathology.
 - Loop Stalling (named failure) — stuck in Plan/Rollout without shipping — happens when non-compensatory gates reject repeatedly.
 - Artifact Rejection Cascade — rejections propagate back, forcing re-work at earlier stages.
@@ -24839,7 +24852,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** paid-email-prioritization, crypto-gas-based message priority, reputation-gated access, staked-messaging protocols, priority-queues-with-stakes.
 
-**Every context needs.** pressure metric (stake, reputation, relevance), membrane-threshold, multi-solvent conversion if applicable.
+**Broad-use intersection (review hypothesis).** pressure metric (stake, reputation, relevance), membrane-threshold, multi-solvent conversion if applicable.
 
 **Varies (descendant territory).** pressure types, conversion rates, hysteresis integration, membrane-adjustment dynamics.
 
@@ -24854,7 +24867,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: adaptive attention filtering.
 - Gives up: simplicity. Pressure-based gating is more complex than fixed threshold.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Starvation is endemic; Whitelist mitigation is mentioned but external.
 - Snapback (if Queue drops) adds oscillation risk.
 - The biological metaphor is evocative; operational tuning is under-specified. Deduplicated failure modes (was listed twice).
@@ -24908,7 +24921,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** user-research-driven product design, descriptive-before-prescriptive linguistics, emergent-team convention documentation, bottom-up ontology building.
 
-**Every context needs.** interaction logs, pattern-recognition mechanism, codification pathway (to MintWhenFriction), matching against existing pattern discovery.
+**Broad-use intersection (review hypothesis).** interaction logs, pattern-recognition mechanism, codification pathway (to MintWhenFriction), matching against existing pattern discovery.
 
 **Varies (descendant territory).** log depth, pattern-recognition method (manual, ML, hybrid), codification threshold.
 
@@ -24923,7 +24936,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: grounded pattern naming, explicit descriptive-first discipline, existence proof requirement.
 - Gives up: speed and novelty. New ideas can't be named until they've emerged, which delays adoption.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Codifying Bad Habits (named failure) — formalizing a workaround to a broken system — is real; the pattern can't distinguish workaround from solution.
 - Apophenia is hard to prevent; the pattern asserts observation but can't verify it's real.
 - Over-fitting is the third named failure — the pattern exists in observations but doesn't generalize.
@@ -24973,7 +24986,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** early-stage design references, research-in-progress citations, prototype-level pattern use, legal "mutatis mutandis" references.
 
-**Every context needs.** base pattern reference, explicit uncertainty marker, delta description, eventual full-conformance path.
+**Broad-use intersection (review hypothesis).** base pattern reference, explicit uncertainty marker, delta description, eventual full-conformance path.
 
 **Varies (descendant territory).** uncertainty representation, delta specification format, upgrade path to full conformance.
 
@@ -24988,7 +25001,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: principled approximate reference, explicit delta, confidence-awareness.
 - Gives up: canonicality. Overusing Sketch means the vocabulary accumulates approximations instead of consolidating into canonical patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Drift is the dominant failure — sketches accumulating without the canonicalization step.
 - No specified canonicalization trigger — when should a sketch become canonical?
 - Confidence < 1.0 treating tests as advisory is a pragmatic compromise that can become permanent laxity.
@@ -25038,7 +25051,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** sudo privilege escalation, enterprise elevated-access requests, emergency-access workflows, surgical-decision escalation to attending, editorial-escalation in journalism.
 
-**Every context needs.** risk assessment, threshold trigger, blocking-on-request, SignedApproval wait.
+**Broad-use intersection (review hypothesis).** risk assessment, threshold trigger, blocking-on-request, SignedApproval wait.
 
 **Varies (descendant territory).** authority hierarchy, approval timeout, retry after denial, emergency override.
 
@@ -25053,7 +25066,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: structured escalation path.
 - Gives up: speed.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Privilege Creep is endemic; the pattern doesn't specify retention policy.
 - Risk threshold is caller-set.
 - No failure modes beyond Privilege Creep.
@@ -25101,7 +25114,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** manuscript editing (logic → structure → prose → polish), code review layers (correctness → design → style), design iteration cycles, curriculum development.
 
-**Every context needs.** ordered pass sequence, per-pass target abstraction, gate between passes.
+**Broad-use intersection (review hypothesis).** ordered pass sequence, per-pass target abstraction, gate between passes.
 
 **Varies (descendant territory).** pass count, pass ordering, gate strictness, rollback on late-discovered lower-level issue.
 
@@ -25116,7 +25129,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: layered refinement discipline, explicit non-regression guarantee, structured pass sequence.
 - Gives up: holistic editing. Some refinement requires simultaneous consideration of multiple layers; PhasedRefinement forbids this.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; PhasedRefinement has some (wrong phase ordering, cross-phase regressions hidden in the structure).
 - The specific phase sequence (logic → structure → tone) is convention; different artifacts may warrant different orderings.
 - Monotonic Quality is hard to measure; in practice it's directional intuition.
@@ -25160,7 +25173,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** supply-chain integrity proofs, software-dependency-graph attestations, legal-chain-of-custody, certificate chains (PKI), federated reputation systems.
 
-**Every context needs.** promise, dependency graph of sub-promises, leaf verification, cycle-prevention.
+**Broad-use intersection (review hypothesis).** promise, dependency graph of sub-promises, leaf verification, cycle-prevention.
 
 **Varies (descendant territory).** verification depth, credit-score alternative to full-verification, graph-update semantics.
 
@@ -25175,7 +25188,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: scalable indirect trust.
 - Gives up: simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Graph explosion is the scaling failure.
 - Acyclicity forbids legitimate mutual promises.
 - Leaf verification is the chain's weakest link.
@@ -25219,7 +25232,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** LangChain-style sequential chains, multi-step LLM pipelines, editorial pipelines (write → edit → polish), research workflows.
 
-**Every context needs.** sequence of LLM calls, AcceptSpec per edge, InputGuard + Retry per step.
+**Broad-use intersection (review hypothesis).** sequence of LLM calls, AcceptSpec per edge, InputGuard + Retry per step.
 
 **Varies (descendant territory).** chain length, per-step timeout, parallel chain branches, error handling.
 
@@ -25234,7 +25247,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: structured decomposition, validated intermediate outputs, explicit sequence.
 - Gives up: flexibility and accuracy trade-off. More steps = more gate brittleness = more false rejections.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Error Propagation (named failure) — step N failure corrupts N+1 — is structural unless Halt on Error fires early.
 - Gate Brittleness is endemic in strict-schema gates; calibrating them is constant rework.
 - Schema Continuity is a strong invariant; evolving schemas across chain versions is a known headache.
@@ -25282,7 +25295,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** scientific consensus, policy debate (predicted-consequences-first), multi-agent predictions, organizational planning, investment committee alignment.
 
-**Every context needs.** prediction phase (agents simulate), prediction-match check, value phase (agents vote on desirability), halt-on-divergence.
+**Broad-use intersection (review hypothesis).** prediction phase (agents simulate), prediction-match check, value phase (agents vote on desirability), halt-on-divergence.
 
 **Varies (descendant territory).** prediction verification method, divergence threshold, model-alignment protocol on halt, weighting of predictions vs values.
 
@@ -25297,7 +25310,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: reality-grounded consensus.
 - Gives up: speed and compute.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Model divergence is endemic — diverse models disagree.
 - High cost limits scalability.
 - No mitigation for reality-deadlock.
@@ -25349,7 +25362,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** distributed systems without clock sync, biological rhythm synchronization (fireflies), crowd behavior thresholds, fashion tipping points, viral-content threshold dynamics.
 
-**Every context needs.** heartbeat signals, density measurement, threshold trigger, state-transition semantics.
+**Broad-use intersection (review hypothesis).** heartbeat signals, density measurement, threshold trigger, state-transition semantics.
 
 **Varies (descendant territory).** density metric, threshold adaptation, node-count awareness.
 
@@ -25364,7 +25377,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: density-based triggers, quorum discipline.
 - Gives up: individual-signal responsiveness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Saturation and echo chambers are real failures.
 - Threshold is caller-set.
 - No specified echo chamber mitigation.
@@ -25420,7 +25433,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** SOPs for solver-based systems, build-from-spec pipelines, requirement-to-implementation workflows, idea-to-execution templates.
 
-**Every context needs.** interpret step, manifest_planning step, rollout step, strict phase ordering.
+**Broad-use intersection (review hypothesis).** interpret step, manifest_planning step, rollout step, strict phase ordering.
 
 **Varies (descendant territory).** per-phase detail, alternate paths, customization points, audit requirements.
 
@@ -25435,7 +25448,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: standardized lifecycle, typed-artifact discipline, non-compensatory quality gates.
 - Gives up: lightness. For simple requests, the protocol is overkill.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Artifact Rejection (named failure) at seams triggers restart; cascading rejections are a real failure.
 - Loop Stalling (named failure) — stuck in ManifestPlanning — when non-compensatory gates reject repeatedly.
 - The Abstract-to-Concrete framing is the paper's, and commits to it as the universal lifecycle.
@@ -25490,7 +25503,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Typed FailureTrace requirement raises the bar for rejection (you can't just say no) at the cost of making legitimate-but-unstructured feedback inadmissible.
 - Society layer placement reflects the multi-party assumption — single-agent deployments pay for machinery they don't strictly need.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - 'Bypass by privileged peer' is a named failure with no mitigation. If the library wants trust-tier scoping, it should be a pattern — not a caveat in this spec.
 - The gate is binary: accept or reject the entire FailureTrace. A richer gate could quarantine (accept but flag) suspect traces; not offered.
 - 'Malformed traces that pass checks still corrupt pathway memory' names a failure but doesn't specify what 'malformed-but-passing' means — if the trace passes the invariants, is it corrupt or is the invariant set incomplete?
@@ -25528,7 +25541,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** git operation safety checks, DELETE API request verification, surgical "point of no return" check, deployment reversibility screening, financial-transaction reversibility.
 
-**Every context needs.** action being evaluated, Reversibility condition, halt-if-irreversible, mandatory HumanApprove on irreversible.
+**Broad-use intersection (review hypothesis).** action being evaluated, Reversibility condition, halt-if-irreversible, mandatory HumanApprove on irreversible.
 
 **Varies (descendant territory).** reversibility definition specifics, tolerance for "mostly reversible," authorization hierarchy.
 
@@ -25543,7 +25556,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: automated Type 1/Type 2 distinction, halt-before-commit on irreversible.
 - Gives up: speed. Every action pays the check; in tight loops this adds up.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - False confidence is the dominant failure — checks claiming reversibility that don't hold in practice.
 - The check is only as good as the reversibility predicate; getting the predicate right is the hard part.
 - Very thin — the pattern is a 'convenience wrapper.'
@@ -25587,7 +25600,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** system robustness, argument robustness, brand robustness, code robustness, institutional robustness.
 
-**Every context needs.** validity criterion, stress source, resistance mechanism, distinction from Antifragility (which gains from stress).
+**Broad-use intersection (review hypothesis).** validity criterion, stress source, resistance mechanism, distinction from Antifragility (which gains from stress).
 
 **Varies (descendant territory).** stress model, resistance mechanism, measurement method.
 
@@ -25602,7 +25615,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: explicit shock-resistance framing, distinction from Antifragility.
 - Gives up: gains from disorder. Robust systems survive; antifragile systems improve.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Rigidity is real — the most robust systems are often the least adaptive.
 - False Robustness is the black swan problem — robustness under known stressors fails on novel ones.
 - Survival is binary in the invariant but real robustness has gradation.
@@ -25654,7 +25667,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** software deploys (canary, blue-green, rolling), policy rollouts, experiment launches, configuration changes, model deployments, feature-flag progressions.
 
-**Every context needs.** spec extraction, build, circuit-breaker envelope, canary, ejection-on-breaker-trip, compensation for rollback.
+**Broad-use intersection (review hypothesis).** spec extraction, build, circuit-breaker envelope, canary, ejection-on-breaker-trip, compensation for rollback.
 
 **Varies (descendant territory).** canary fraction, breaker sensitivity, rollback granularity, observability integration.
 
@@ -25669,7 +25682,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: safe deployment discipline, reversibility, EjectionSeat preservation.
 - Gives up: deploy speed. Canary, circuit-breaker, and reversibility add latency.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - WorldReversible is aspirational; most real deploys have some irreversible component (data migrations, especially).
 - Config Drift is endemic; environments diverge from manifests over time.
 - Big Bang Failure requires enforcement the pattern doesn't provide; it names the bad behavior without preventing it.
@@ -25724,7 +25737,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** production monitoring, SLA monitoring, A/B test result tracking, deployed-model drift detection, policy-effectiveness post-rollout.
 
-**Every context needs.** RolloutManifest reference, Monitor + Observe, Definition-of-Done comparison, MonitorReport upstream on deviation.
+**Broad-use intersection (review hypothesis).** RolloutManifest reference, Monitor + Observe, Definition-of-Done comparison, MonitorReport upstream on deviation.
 
 **Varies (descendant territory).** monitoring interval (Duration), deviation thresholds, escalation protocol, duration of watch.
 
@@ -25739,7 +25752,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: post-deploy verification, alert routing to capable agents, fidelity-to-spec.
 - Gives up: attention. Every rollout watched is attention spent; for low-risk deploys this is overhead.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Silent Failure is the scariest failure — metrics pass, users are unhappy; the pattern can't detect it without user-side metrics.
 - Alert Fatigue is endemic; the pattern names it without giving a reduction mechanism.
 - Lagging Indicators are inherent; the pattern can trigger after-the-fact and not prevent.
@@ -25791,7 +25804,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** BGP-style internet routing with reputation, Tor-like path-based anonymity with reverse-trust, academic citation chains, reputation-weighted rumor spread.
 
-**Every context needs.** re-transmitter signature appending, root path, path-based trust evaluation.
+**Broad-use intersection (review hypothesis).** re-transmitter signature appending, root path, path-based trust evaluation.
 
 **Varies (descendant territory).** reputation model, path-length limit, path-verification cost.
 
@@ -25806,7 +25819,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: distributed gossip with trust.
 - Gives up: compactness.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Path explosion is endemic at scale.
 - No failure modes beyond path explosion.
 - Trust model depends on path quality, not content.
@@ -25855,7 +25868,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** BitTorrent tracker + swarm, dating app match + DM, public forums → DM channels, conference discovery → side conversations, gossip protocols with private channels.
 
-**Every context needs.** broadcast-for-discovery, switch-to-private-channel, encryption for the private phase.
+**Broad-use intersection (review hypothesis).** broadcast-for-discovery, switch-to-private-channel, encryption for the private phase.
 
 **Varies (descendant territory).** broadcast channel specifics, switching protocol, encryption strength, scalability.
 
@@ -25870,7 +25883,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: discovery + private coordination.
 - Gives up: full privacy. Metadata leaks during Shout.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Metadata leakage is the known failure — who's shouting, about what, is public.
 - The two-phase commit is clean and has its own complexity.
 - Amplitude 90% threshold is a default.
@@ -25919,7 +25932,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** proof-of-liveness in distributed systems, CAPTCHA-like work proofs, bot-detection challenges, attention-cost pricing, anti-replay protocols.
 
-**Every context needs.** original message, non-trivial transformation, computational-work proof, liveness demonstration.
+**Broad-use intersection (review hypothesis).** original message, non-trivial transformation, computational-work proof, liveness demonstration.
 
 **Varies (descendant territory).** transformation difficulty, verification method, adversarial resistance, bandwidth cost.
 
@@ -25934,7 +25947,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: stronger receipt proof than hash.
 - Gives up: cost.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Asymmetry is the dominant failure mode.
 - Transformation choice is caller-dependent.
 - Verification of reflection requires matching the transformation.
@@ -25976,7 +25989,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** LLM agent instances, workflow engine tasks, ML training runs, research project instances, experiment executions.
 
-**Every context needs.** static manifest reference, dynamic state (partial solution, budget, status), parent-node communication, blame-attribution semantic.
+**Broad-use intersection (review hypothesis).** static manifest reference, dynamic state (partial solution, budget, status), parent-node communication, blame-attribution semantic.
 
 **Varies (descendant territory).** state schema, persistence, checkpointing, resumability, state migration.
 
@@ -25991,7 +26004,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 - Gains: runtime solver state, hierarchical traceability, budget tracking.
 - Gives up: stateless simplicity. SolverNodes carry state; stateless patterns fit awkwardly.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; runtime nodes have many (stale status, broken links, budget leaks).
 - Linkage assumes tree-shaped solver structure; graph-shaped solvers don't fit.
 - Accountability is asserted without specifying blame mechanisms.
@@ -26033,7 +26046,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 **Broad-use contexts.** Damasio's somatic-marker hypothesis, system stress → action inhibition, burnout detection, rate-limit proximity awareness, biological fatigue signaling.
 
-**Every context needs.** health metrics, aggregation into "stress" signal, inhibitory effect on action initiation.
+**Broad-use intersection (review hypothesis).** health metrics, aggregation into "stress" signal, inhibitory effect on action initiation.
 
 **Varies (descendant territory).** metric set, aggregation function, threshold calibration, override mechanism.
 
@@ -26050,7 +26063,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: explicit stress-inhibition signal, protection against overload.
 - Gives up: decisiveness under stress. When stress is high, Somatic Marker reduces action.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - The inhibition-correlation is monotonic; real stress response is more nuanced (fight/flight variability).
 - No failure modes listed.
 - The Damasio import is suggestive; operational definitions of 'stress' are caller-specific.
@@ -26100,7 +26113,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** ontology-alignment protocols, semantic-interop version checks, API-compatibility-handshake pre-data, cultural-context verification, language-pair validation.
 
-**Every context needs.** tuning signal (hash challenges), receiver resonance proof, semantic context ontology.
+**Broad-use intersection (review hypothesis).** tuning signal (hash challenges), receiver resonance proof, semantic context ontology.
 
 **Varies (descendant territory).** challenge count, hash granularity, retry on mis-tune, adaptive tuning.
 
@@ -26115,7 +26128,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: context match before payload, principled escalation on mismatch.
 - Gives up: fluency. Every message pays the tuning cost.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Infinite tuning loops are the named failure with no specified termination.
 - Fail-Fast on hash mismatch is strict; negotiation/adaptation requires additional patterns.
 - No partial-match handling.
@@ -26158,7 +26171,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** two-phase commit, escrow key pairs, multi-signature wallets, joint-authorship protocols, collaborative editing locks, diplomatic joint statements.
 
-**Every context needs.** state subset, two (or more) actors, temporary fusion, both-sign-to-write, Backoff/Cooldown on contention.
+**Broad-use intersection (review hypothesis).** state subset, two (or more) actors, temporary fusion, both-sign-to-write, Backoff/Cooldown on contention.
 
 **Varies (descendant territory).** multi-party extension, timeout policy, revocation.
 
@@ -26174,7 +26187,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Auto-dissolve on timeout buys crash safety at the cost of 'premature dissolution' risk when legitimate work exceeds the timeout.
 - Backoff+Cooldown composition buys contention handling at the cost of lock-family dependency — StateLock doesn't stand alone operationally.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Zero invariants listed. For a pattern that carries atomicity semantics, this is a significant gap — at minimum: Both-Signed (changes require both sigs), Symmetric (neither party has unilateral release), Auto-Dissolve-On-Timeout, Signature-Integrity (sigs bind to the specific state subset).
 - The three failure modes are correct but partial — missing: Key Compromise (one party's signing key stolen mid-lock), Sig Replay (old signature reused against new state), State-Scope Drift (the 'subset of writable state' changes meaning mid-lock).
 - 'Temporary fusion' is evocative but operationally vague. What counts as fusion? Is it a third-party escrow? A merged state object? A shared access-control list? The pattern is underdetermined — implementers will pick different mechanisms that claim to be the same pattern.
@@ -26215,7 +26228,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** ant colonies (biological origin), pheromone-based ML, shared whiteboards, wiki edit patterns, git commit flows, code comments, API documentation evolution, graffiti-based organization.
 
-**Every context needs.** shared medium, MARK operation, SENSE operation, persistence mechanism (decay or versioning).
+**Broad-use intersection (review hypothesis).** shared medium, MARK operation, SENSE operation, persistence mechanism (decay or versioning).
 
 **Varies (descendant territory).** persistence scheme — **biological traces DECAY** (pheromones, graffiti wear); **digital traces often VERSION** (wiki history, git commits, append-only logs). Also: trace data structure, reinforcement mechanics, sensor radius, concurrency semantics.
 
@@ -26231,7 +26244,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Decay invariant buys staleness-resistance at the cost of requiring repeated reinforcement for stable coordination.
 - Locality invariant buys low network traffic at the cost of excluding global-awareness coordination patterns.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Two invariants, zero failure modes. Missing: Trace Pollution (malicious agents inject misleading traces), Signal Saturation (so many traces that sensing becomes noise), Coordination Failure (traces don't accumulate into coherent signal).
 - 'Decay over time but can be reinforced' — no decay rate specified, no reinforcement semantics (does reinforcement reset decay or add to the trace?).
 - Structured traces is mentioned but structure not specified. Different implementations may use incompatible trace formats.
@@ -26280,7 +26293,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** academic writing advising (the argument shape), research methodology critique, mathematical proof structuring, music composition pedagogy, software-architecture review.
 
-**Every context needs.** target proposal, rejection on structural grounds, mechanism-class shift guidance, topic-agnostic framing.
+**Broad-use intersection (review hypothesis).** target proposal, rejection on structural grounds, mechanism-class shift guidance, topic-agnostic framing.
 
 **Varies (descendant territory).** mechanism-class taxonomy, coaching tone, iteration count.
 
@@ -26295,7 +26308,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: structural critique depth, explicit pivot proposal.
 - Gives up: generator agency. Structural coaches can become prescriptive.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Critic prescriptiveness is the named failure; the pattern doesn't quantify.
 - Mechanism vs vocabulary distinction is hard to operationalize.
 - Directional Guidance requirement means critics carry implementation responsibility.
@@ -26339,7 +26352,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** multi-agent training-mode switches (training vs eval), brainstorm-vs-review phases in teams, building-vs-testing phases in software, daytime-vs-night protocols.
 
-**Every context needs.** mode signal broadcast, downstream AcceptSpec adjustment, synchronized mode entry/exit.
+**Broad-use intersection (review hypothesis).** mode signal broadcast, downstream AcceptSpec adjustment, synchronized mode entry/exit.
 
 **Varies (descendant territory).** mode set, transition protocol, escalation on refusal-to-switch.
 
@@ -26354,7 +26367,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: explicit generator-verifier coupling, dynamic mode signaling.
 - Gives up: simplicity. Fixed-mode systems are simpler.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Mode Locking is a real failure — once conservative, hard to get wild again.
 - Mode Confusion happens across ontologies.
 - Explicit Declaration invariant requires OntologyHandshake-level ceremony.
@@ -26398,7 +26411,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** sema discovery pipeline, hiring pipelines, compiler passes, academic admission funnels, startup pitch review stages, journalistic fact-narrowing.
 
-**Every context needs.** wide-aperture input, staged gates with increasing strictness, DepthGovernor-like functional role, progressive candidate reduction.
+**Broad-use intersection (review hypothesis).** wide-aperture input, staged gates with increasing strictness, DepthGovernor-like functional role, progressive candidate reduction.
 
 **Varies (descendant territory).** stage count, per-stage strictness curve, parallel-vs-sequential stages, cost-aware gate ordering.
 
@@ -26413,7 +26426,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: principled filtering discipline, progressive narrowing.
 - Gives up: flexibility. Taper's monotonic narrowing forbids mid-funnel widening for new candidates.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - No failure modes listed; taper has some (over-narrowing, missed candidates, stage misorder).
 - Terminal Certainty is strong; some tasks legitimately have graded final output.
 - Strictness Increase direction is fixed; variable stage ordering isn't supported.
@@ -26467,7 +26480,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** content-addressed system threat analysis, cryptographic protocol design, namespace-management security, visual-identity-system design (logos, fonts).
 
-**Every context needs.** three-class taxonomy (stub, hash, homograph), per-class defense, distinct threat semantics.
+**Broad-use intersection (review hypothesis).** three-class taxonomy (stub, hash, homograph), per-class defense, distinct threat semantics.
 
 **Varies (descendant territory).** defense specifics, per-class probability estimates, domain specifics.
 
@@ -26482,7 +26495,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: structured collision defense.
 - Gives up: simplicity. Three layers of defense.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Stub Confusion is endemic — convenience stubs get security-treated.
 - Homograph attacks require vigilance beyond hashing.
 - L1/L2/L3 specifics may not generalize to all hashing schemes.
@@ -26532,7 +26545,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** CEO-time pricing (expensive to reach), tiered-support models, stake-based governance access, reputation-based API pricing, VIP access systems.
 
-**Every context needs.** gravity-well model with center vs periphery, cost-distance inverse proportionality, BearerToken integration.
+**Broad-use intersection (review hypothesis).** gravity-well model with center vs periphery, cost-distance inverse proportionality, BearerToken integration.
 
 **Varies (descendant territory).** cost function, tier count, reputation-vs-stake basis, escalation paths.
 
@@ -26547,7 +26560,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: central-agent protection via distance-pricing.
 - Gives up: equal access.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Metric divergence is structural.
 - Low-resource exclusion is a real concern.
 - No specified distance metric default; deduplicated failure-mode list (was: the same inaccessibility point stated twice in formal and informal wording).
@@ -26603,7 +26616,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** MCP tool discovery, LangChain tool loading, LLM agent capability expansion, automated service composition, API marketplace discovery.
 
-**Every context needs.** capability query, registry response with Cards, compatibility check, ToolInvoke.
+**Broad-use intersection (review hypothesis).** capability query, registry response with Cards, compatibility check, ToolInvoke.
 
 **Varies (descendant territory).** registry topology, query language, caching, authentication.
 
@@ -26618,7 +26631,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: dynamic tool discovery.
 - Gives up: speed. Every discovery pays the verification.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Schema drift is endemic.
 - Registry unavailability requires graceful degradation.
 - Fail-Closed is conservative; some tools should allow fallback.
@@ -26671,7 +26684,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** API adapter patterns, legacy-system integration, gateway services, MCP bridges, protocol-version translators, cross-ecosystem bridges.
 
-**Every context needs.** upstream (modern) interface, downstream (legacy) interface, translate in both directions, semantic fidelity verification.
+**Broad-use intersection (review hypothesis).** upstream (modern) interface, downstream (legacy) interface, translate in both directions, semantic fidelity verification.
 
 **Varies (descendant territory).** statelessness (some proxies cache), error-mapping strategy, authentication bridging, rate-limit propagation.
 
@@ -26686,7 +26699,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: legacy integration.
 - Gives up: fidelity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Lossy translation is endemic.
 - Stateless is aspirational; real translations often need state.
 - No specified failure handling for untranslatable signals.
@@ -26731,7 +26744,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** NFT ownership, file-handle exclusive ownership, role-binding in organizations, unique-identifier transfer in legal contracts, Rust's ownership type system.
 
-**Every context needs.** cryptographic pointer, Linear Logic semantic (transfer, not copy), sender-loses-on-transfer rule.
+**Broad-use intersection (review hypothesis).** cryptographic pointer, Linear Logic semantic (transfer, not copy), sender-loses-on-transfer rule.
 
 **Varies (descendant territory).** cryptographic scheme, revocation protocol, escrow handling.
 
@@ -26746,7 +26759,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: rivalrous-resource discipline.
 - Gives up: sharing.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Orphaned Resource requires break-glass recovery.
 - Linearity is strong; some 'unique' resources admit temporary loan.
 - No specified expiration.
@@ -26798,7 +26811,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** Wittgensteinian meaning-as-use, pragmatic linguistics, product-market-fit measurement, vocabulary maturity scoring, pattern-library validation, API-adoption metrics.
 
-**Every context needs.** usage-success tracking, coordination-success rate metric, non-usage = low-meaning equivalence.
+**Broad-use intersection (review hypothesis).** usage-success tracking, coordination-success rate metric, non-usage = low-meaning equivalence.
 
 **Varies (descendant territory).** success definition, tracking granularity, decay of old-usage data, multi-agent vs single-agent.
 
@@ -26813,7 +26826,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: pragmatic grounding, Wittgensteinian discipline.
 - Gives up: truth-as-correspondence.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Echo Chamber is the philosophical limit — shared delusion can look like shared meaning.
 - Empty Formalism is the opposite failure.
 - The invariant now consolidates the two prior statements (operational "Validation" + aphoristic "Wittgenstein"s Razor") into one form that carries both registers.
@@ -26865,7 +26878,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** semantic-namespace disambiguation, Stack Overflow top-answer selection (by votes not age), domain-name squatting resolution (in systems where squatting doesn't pay), meme-primacy resolution.
 
-**Every context needs.** conflict detection on handle, uptake counting, highest-uptake return policy.
+**Broad-use intersection (review hypothesis).** conflict detection on handle, uptake counting, highest-uptake return policy.
 
 **Varies (descendant territory).** uptake metric (references, executions, views), tiebreak rule, time-decay, scope of comparison.
 
@@ -26880,7 +26893,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: meritocratic canonical resolution.
 - Gives up: first-mover advantage.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Facebook Problem is endemic — early uptake locks in.
 - Cold start for new patterns is a real disadvantage.
 - No specified Cold-Start mitigation.
@@ -26934,7 +26947,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** professional roles (doctor-mode, judge-mode), agent-swarm specialist assignment, actor Method roles, chatbot persona switching, LLM role-playing contexts.
 
-**Every context needs.** task claim, atomic identity switch, SolverManifest reference, mode-until-completion semantic.
+**Broad-use intersection (review hypothesis).** task claim, atomic identity switch, SolverManifest reference, mode-until-completion semantic.
 
 **Varies (descendant territory).** switch atomicity, recursion (nested modes), context preservation across modes.
 
@@ -26949,7 +26962,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: specialist persona switching.
 - Gives up: unified-agent simplicity.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Persona Drift is structural in long contexts.
 - Zombie Worker is a real operational failure.
 - Memory flush invariant is hard to enforce.
@@ -26996,7 +27009,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** business workflows, CI/CD pipelines, ML pipelines, data-processing pipelines, multi-step agent tasks, ETL jobs.
 
-**Every context needs.** step definitions, edge directions, typed artifacts per edge, AcceptSpec per edge, role binding.
+**Broad-use intersection (review hypothesis).** step definitions, edge directions, typed artifacts per edge, AcceptSpec per edge, role binding.
 
 **Varies (descendant territory).** branching support, parallelism, conditional logic, dynamic vs static graph, failure handling.
 
@@ -27011,7 +27024,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Gains: structured multi-step orchestration, solver composition.
 - Gives up: flexibility. Workflows are directed; emergent flows don't fit.
 
-**Critique.**
+**Critique (diagnostic, not contract requirements).**
 - Deadlock prevention requires detection the pattern doesn't specify.
 - Cascade Failure mitigation (CircuitBreaker, Retry) lives outside the pattern.
 - Orphan Output is subtle; can mask bugs.

@@ -189,6 +189,12 @@ policy in callers, and contextual risks or reviewer diagnostics in the
 sidecar. Concrete leaf patterns may remain deliberately narrow; the reusable
 ancestry spine is where over-specificity causes ecosystem-wide damage.
 
+Treat sidecar commentary as review evidence, not as a second specification or
+a backlog of contracts to add. Phrase critique around the semantic risk and
+its likely placement. Field-count complaints such as "only two invariants" are
+not actionable without an identity argument; rewrite them as a concrete
+question, descendant opportunity, caller policy, or reviewer diagnostic.
+
 ### Prototypical Examples
 
 - The 0.2.0 release's **50 post-audit structural fixes** (dedup, split, broken-ref cleanup) were driven by this loop: manual surfaced internal defects → staging edits addressed them → sidecar commentary updated → apply + regenerate → CHANGELOG reflected the batch. See the `Additional structural fixes (50 patterns)` section in `CHANGELOG.md`.

@@ -31,6 +31,9 @@ This file records vocabulary-level changes between versions — additions, renam
   parents contain only cross-context, identity-defining contracts, while
   strategy, deployment policy, and contextual diagnostics belong in
   descendants, callers, parameters, or design commentary.
+- The design manual now labels broad-use intersections as review hypotheses
+  and critiques as diagnostics rather than contract requirements. Foundational
+  examples no longer treat field counts as evidence that a pattern is weak.
 - `BearerToken` now defines representation-neutral possession semantics.
   Opaque tokens validated by lookup or introspection and structured tokens
   validated locally both satisfy the parent; signatures, expiry, revocation,
