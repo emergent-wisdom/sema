@@ -301,6 +301,95 @@ class TestApplyCommand(unittest.TestCase):
         self.assertNotIn("The old precondition", schema_texts)
         self.assertNotIn("The old postcondition", schema_texts)
 
+    def test_updating_pattern_reconciles_signature_and_related_edges(self):
+        """Signature and related replacements remove only their stale edge types."""
+        original = {
+            "handle": "ChangingLinks",
+            "mechanism": "Uses {{output}} while exposing an interface",
+            "gloss": "Changing links",
+            "signature": ["Input(Output)"],
+            "dependencies": {"references": {"output": "Output#test"}},
+            "_meta": {
+                "path": ["Infrastructure", "Primitives"],
+                "ring": 0,
+                "tier": 1,
+                "related": ["Output"],
+            },
+        }
+        updated = {
+            **original,
+            "signature": ["Input(State)"],
+            "_meta": {**original["_meta"], "related": ["State"]},
+        }
+
+        with patch.object(
+            self.store.embedding_service,
+            "get_embedding",
+            return_value=np.zeros(1, dtype=np.float32),
+        ):
+            for handle in ["Input", "Output", "State"]:
+                self._add_pattern_to_db(handle)
+            self.store.add_pattern(original)
+            self.store.add_pattern(updated)
+
+        source_id = self.store._find_pattern_id("ChangingLinks")
+        input_id = self.store._find_pattern_id("Input")
+        output_id = self.store._find_pattern_id("Output")
+        state_id = self.store._find_pattern_id("State")
+
+        self.assertTrue(self.store.has_edge_of_type(source_id, input_id, EdgeType.HAS_SIGNATURE))
+        self.assertFalse(self.store.has_edge_of_type(source_id, output_id, EdgeType.HAS_SIGNATURE))
+        self.assertTrue(self.store.has_edge_of_type(source_id, state_id, EdgeType.HAS_SIGNATURE))
+        self.assertFalse(self.store.has_edge_of_type(source_id, output_id, EdgeType.RELATED_TO))
+        self.assertTrue(self.store.has_edge_of_type(source_id, state_id, EdgeType.RELATED_TO))
+        self.assertTrue(self.store.has_edge_of_type(source_id, output_id, EdgeType.REFERENCES))
+
+    def test_removing_signature_and_related_edges_persists_after_reopen(self):
+        """Empty declarations prune their edges while parallel dependencies survive."""
+        original = {
+            "handle": "RemovingLinks",
+            "mechanism": "Uses {{output}} while exposing an interface",
+            "gloss": "Removing links",
+            "signature": ["Input(Output)"],
+            "dependencies": {"references": {"output": "Output#test"}},
+            "_meta": {
+                "path": ["Infrastructure", "Primitives"],
+                "ring": 0,
+                "tier": 1,
+                "related": ["Output"],
+            },
+        }
+        updated = {**original, "_meta": {**original["_meta"]}}
+        updated.pop("signature")
+        updated["_meta"].pop("related")
+
+        with patch.object(
+            self.store.embedding_service,
+            "get_embedding",
+            return_value=np.zeros(1, dtype=np.float32),
+        ):
+            for handle in ["Input", "Output"]:
+                self._add_pattern_to_db(handle)
+            self.store.add_pattern(original)
+            self.store.add_pattern(updated)
+            self.store.add_pattern(updated)
+
+        fresh = GraphStore(self.db_path)
+        source_id = fresh._find_pattern_id("RemovingLinks")
+        input_id = fresh._find_pattern_id("Input")
+        output_id = fresh._find_pattern_id("Output")
+
+        self.assertFalse(fresh.has_edge_of_type(source_id, input_id, EdgeType.HAS_SIGNATURE))
+        self.assertFalse(fresh.has_edge_of_type(source_id, output_id, EdgeType.HAS_SIGNATURE))
+        self.assertFalse(fresh.has_edge_of_type(source_id, output_id, EdgeType.RELATED_TO))
+        self.assertTrue(fresh.has_edge_of_type(source_id, output_id, EdgeType.REFERENCES))
+        reference_edges = [
+            edge
+            for edge in fresh._edges_between(source_id, output_id)
+            if edge.get("edge_type") == EdgeType.REFERENCES
+        ]
+        self.assertEqual(len(reference_edges), 1)
+
 
 class TestValidatePatternFile(unittest.TestCase):
     """Test the pattern file validation helper."""

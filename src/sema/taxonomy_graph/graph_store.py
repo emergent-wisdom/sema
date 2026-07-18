@@ -457,6 +457,27 @@ class GraphStore:
                 self.graph.remove_edge(src, tgt, key=key)
         return removed_ids
 
+    def _reconcile_edges_of_type(
+        self, source_id: str, edge_type: EdgeType, desired_targets: set[str]
+    ) -> None:
+        """Replace one typed relationship set without disturbing parallel edges."""
+        removed_edge_ids: list[str] = []
+        for target_id in list(self.graph.successors(source_id)):
+            if target_id not in desired_targets:
+                removed_edge_ids.extend(self.remove_edges_of_type(source_id, target_id, edge_type))
+
+        if removed_edge_ids:
+            conn = self._connect()
+            conn.executemany(
+                "DELETE FROM edges WHERE id = ?", [(edge_id,) for edge_id in removed_edge_ids]
+            )
+            conn.commit()
+            conn.close()
+
+        for target_id in desired_targets:
+            if not self.has_edge_of_type(source_id, target_id, edge_type):
+                self.create_edge(source_id, target_id, edge_type)
+
     def _find_pattern_id(self, handle: str) -> str | None:
         """O(1) handle → node_id lookup for PATTERN nodes.
 
@@ -864,34 +885,30 @@ class GraphStore:
 
         # C. Signatures (Interfaces)
         signatures = solution.get("signature", [])
-        if signatures:
-            for sig in signatures:
-                # "Deep(Research)" -> Link to 'Deep' and 'Research'
-                matches = re.findall(r"\w+", sig)
-                for m in matches:
-                    target_id = self._handle_to_id.get(m)
-                    if target_id and not self.has_edge_of_type(
-                        pattern_id, target_id, EdgeType.HAS_SIGNATURE
-                    ):
-                        self.create_edge(pattern_id, target_id, EdgeType.HAS_SIGNATURE)
+        desired_signature_targets: set[str] = set()
+        for sig in signatures if isinstance(signatures, list) else []:
+            if not isinstance(sig, str):
+                continue
+            # "Deep(Research)" -> Link to 'Deep' and 'Research'
+            for match in re.findall(r"\w+", sig):
+                target_id = self._handle_to_id.get(match)
+                if target_id:
+                    desired_signature_targets.add(target_id)
+        self._reconcile_edges_of_type(pattern_id, EdgeType.HAS_SIGNATURE, desired_signature_targets)
 
         # D. Related (Metadata links)
         related = meta_block.get("related", [])
-        if related:
-            for item in related:
-                if not isinstance(item, str):
-                    continue
-                # Accept both bare-handle ("Decompose") and full
-                # ("sema:Decompose#mh:SHA-256:...") formats. Strip any
-                # sema: prefix before taking the portion before #.
-                target_handle = extract_handle_from_ref(item)
-                target_id = self._handle_to_id.get(target_handle)
-
-                if target_id:
-                    # RELATED_TO is distinct from dependencies — only check for
-                    # an existing edge of this exact type.
-                    if not self.has_edge_of_type(pattern_id, target_id, EdgeType.RELATED_TO):
-                        self.create_edge(pattern_id, target_id, EdgeType.RELATED_TO)
+        desired_related_targets: set[str] = set()
+        for item in related if isinstance(related, list) else []:
+            if not isinstance(item, str):
+                continue
+            # Accept both bare-handle ("Decompose") and full
+            # ("sema:Decompose#mh:SHA-256:...") formats.
+            target_handle = extract_handle_from_ref(item)
+            target_id = self._handle_to_id.get(target_handle)
+            if target_id:
+                desired_related_targets.add(target_id)
+        self._reconcile_edges_of_type(pattern_id, EdgeType.RELATED_TO, desired_related_targets)
 
         created_nodes = {}
         linked_nodes = {}
