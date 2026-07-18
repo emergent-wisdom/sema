@@ -28,9 +28,9 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374",
-  "sema_ref": "OrchestrationLoop#2d63",
-  "sema_stub": "2d63",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:156fbc2f8630fe24a957a3c9a9938a02ce3494b9858d7e939d882430e96e23e9",
+  "sema_ref": "OrchestrationLoop#156f",
+  "sema_stub": "156f",
   "signature": [
     "Workflow(Rollout)"
   ],
@@ -46,7 +46,7 @@
       "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
       "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28",
-      "workflow": "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728"
+      "workflow": "sema:Workflow#mh:SHA-256:6de060aa8b0e98b2042b10aa6465125ca877a41d8d10859a8d4a7f2f9ea5fcc6"
     }
   },
   "sema_layer": "Society",

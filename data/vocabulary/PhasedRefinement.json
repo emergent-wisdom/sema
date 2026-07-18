@@ -26,13 +26,13 @@
       "Protocols"
     ]
   },
-  "sema_ref": "PhasedRefinement#56f0",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:56f079ec75061b35f56d543d1ab12c7c4822b1e0f5816cf342a796104756642c",
-  "sema_stub": "56f0",
+  "sema_ref": "PhasedRefinement#537d",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:537d912308d8a01e95f50f5434bed908f353d05268f4f214ae60ac0d100d37b3",
+  "sema_stub": "537d",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "refine": "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
+      "refine": "sema:Refine#mh:SHA-256:29562908643e0cfc62b4f9b75a83c76bd40e2afd818c40edf669f9de15297bc0",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a"
     },
     "references": {

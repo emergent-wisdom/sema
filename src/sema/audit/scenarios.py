@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-import os
-import sys
 
-sys.path.append(os.getcwd())
 from sema.taxonomy_graph.graph_store import GraphStore, NodeType
 
 

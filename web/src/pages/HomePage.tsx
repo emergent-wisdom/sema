@@ -30,6 +30,8 @@ const LAYER_DESCRIPTIONS: Record<string, string> = {
   Infrastructure: 'Safety rails and constraints',
 }
 
+const WORKSPACE_ENABLED = import.meta.env.VITE_ENABLE_WORKSPACE === 'true'
+
 export function HomePage() {
   const { data: patterns, isLoading } = usePatterns()
   const [searchQuery, setSearchQuery] = useState('')
@@ -214,13 +216,15 @@ export function HomePage() {
                 <Box className="w-4 h-4" />
                 3D Graph
               </Link>
-              <Link
-                to="/workspace"
-                className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
-              >
-                <Users className="w-4 h-4" />
-                Workspace
-              </Link>
+              {WORKSPACE_ENABLED ? (
+                <Link
+                  to="/workspace"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-lg transition-all text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-600"
+                >
+                  <Users className="w-4 h-4" />
+                  Workspace
+                </Link>
+              ) : null}
             </div>
           </div>
 

@@ -331,7 +331,7 @@ EMPTY FIELD RULE VIOLATION: dependencies = {}
 _meta.ring; Field required
 ```
 
-**Fix:** Ensure `_meta` has all four fields: `layer`, `category`, `ring`, `tier`.
+**Fix:** Ensure `_meta` has a valid `path` plus `ring` and `tier`.
 
 ## Best Practices
 

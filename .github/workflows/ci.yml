@@ -10,6 +10,31 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
+  formal-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Lean safety proofs
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
+        with:
+          auto-config: false
+          build: true
+          build-args: "--wfail"
+          test: false
+          lint: false
+          leanchecker: false
+          use-mathlib-cache: false
+          lake-package-directory: verification/lean
+
+      - name: Independently check Lean proof artifacts
+        working-directory: verification/lean
+        run: >-
+          lake env leanchecker
+          SemaVerification
+          SemaVerification.Handshake
+          SemaVerification.CanonicalEncoding
+
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -40,7 +65,7 @@ jobs:
 
       - name: Hash validity (blocking)
         if: matrix.python-version == '3.12'
-        run: python scripts/audit/audit_hash_validity.py
+        run: python -m sema.audit.hash_validity
 
       - name: Vocabulary JSON hashes are stable
         if: matrix.python-version == '3.12'
@@ -57,11 +82,11 @@ jobs:
         if: matrix.python-version == '3.12'
         run: |
           python scripts/vocabulary_merkle_root.py
-          python scripts/audit/run_all_audits.py
+          python -m sema.audit
           if ! git diff --exit-code -- docs/information/vocabulary_information.md docs/information/audit.md; then
             echo "::error::Generated docs are stale. Run locally and commit:"
             echo "  python scripts/vocabulary_merkle_root.py"
-            echo "  python scripts/audit/run_all_audits.py"
+            echo "  python -m sema.audit"
             exit 1
           fi
 

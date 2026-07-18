@@ -34,7 +34,8 @@ mcp = FastMCP(
         "1. ORIENT: `sema_graph_skeleton()` - map the terrain\n"
         "2. EXPLORE: `sema_search(query)` - find existing patterns by concept\n"
         "3. DEEPEN: `sema_resolve(handle)` - inspect mechanism & dependencies\n"
-        "4. ALIGN: `sema_handshake(ref)` - verify exact definition match\n"
+        "4. ALIGN: `sema_handshake(ref)` - detect drift; use strict=true with a full hash "
+        "for exact identity\n"
         "5. COORDINATE: `sema_propose_context` / `sema_verify_context` - multi-agent alignment\n"
         "6. CREATE: `sema_mint(pattern_json)` - mint new patterns into the vocabulary\n\n"
         "UPDATING: `sema_pull` refreshes the local vocabulary from upstream. Only call it "
@@ -305,11 +306,11 @@ def sema_root() -> str:
 
 
 @mcp.tool()
-def sema_handshake(ref: str, your_hash: str | None = None) -> str:
+def sema_handshake(ref: str, your_hash: str | None = None, strict: bool = False) -> str:
     """Byte-level definition agreement check between two agents.
 
     Verifies that the requesting agent and the local registry have the
-    *same definition* of a pattern, by comparing hash stubs. This is a
+    *same definition* of a pattern, by comparing content hashes. This is a
     necessary precondition for shared reasoning about a pattern, but it
     is NOT a guarantee of shared behavior: two agents can agree on the
     definition text and still implement it differently. Think of it as
@@ -325,10 +326,15 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
         your_hash: Your local hash — the 4-char pattern stub, or the
              16-char vocab root stub (or full 64-char root). If omitted,
              returns the canonical hash for you to compare.
+        strict: If true, only a full 64-character hash can produce PROCEED.
+             A matching stub returns REQUIRE_FULL_HASH. If false (default),
+             stubs may proceed for cooperative drift detection.
 
     Returns:
-        JSON with verdict: PROCEED (hashes match), HALT (mismatch), or
-        PROVIDE_HASH (canonical hash for your comparison)
+        JSON with verdict: PROCEED (accepted under the selected mode), HALT
+        (mismatch), PROVIDE_HASH (no hash supplied), or REQUIRE_FULL_HASH
+        (stub matches but strict mode needs the complete digest). PROCEED
+        includes assurance=prefix or assurance=full_hash.
 
     Example workflow (pattern):
         1. Agent A: sema_handshake("StateLock") -> gets canonical hash "2f3c"
@@ -339,7 +345,9 @@ def sema_handshake(ref: str, your_hash: str | None = None) -> str:
         1. Agent A: sema_handshake("vocab") -> gets 16-char vocab stub
         2. Agent B: sema_handshake("vocab", "<that stub>") -> PROCEED / HALT
     """
-    return json.dumps(_active_workspace().handshake(ref, your_hash=your_hash), indent=2)
+    return json.dumps(
+        _active_workspace().handshake(ref, your_hash=your_hash, strict=strict), indent=2
+    )
 
 
 def _sema_mint(pattern_json: str) -> str:

@@ -10,6 +10,7 @@ venv/
 .env
 .mcp.json
 .pytest_cache/
+.lake/
 
 # LaTeX build artifacts
 *.aux

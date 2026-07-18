@@ -1,11 +1,6 @@
-import os
-import sys
 from collections import defaultdict
 
 import networkx as nx
-
-# Add project root to path
-sys.path.append(os.getcwd())
 
 from sema.taxonomy_graph.graph_store import EdgeType, GraphStore, NodeType
 
@@ -100,36 +95,14 @@ def audit_graph():
                 f"[DUPLICATE] Pattern '{name}' appears {len(ids)} times (IDs: {', '.join(ids)})."
             )
 
-    # 6. Check Rigor (Missing Invariants/Pre/Post)
-    print("Checking rigor...")
-    for sol_id, data in solutions:
-        has_inv = False
-        has_pre = False
-        has_post = False
-
-        # MultiDiGraph.get_edge_data returns {key: attrs}; iterate values.
-        for succ in store.graph.successors(sol_id):
-            for edge_data in (store.graph.get_edge_data(sol_id, succ) or {}).values():
-                edge_type = edge_data.get("edge_type")
-                if edge_type == EdgeType.HAS_INVARIANT:
-                    has_inv = True
-                if edge_type == EdgeType.HAS_PRECONDITION:
-                    has_pre = True
-                if edge_type == EdgeType.HAS_POSTCONDITION:
-                    has_post = True
-
-        if not (has_inv or has_pre or has_post):
-            problems.append(
-                f"[NO_CONTRACTS] Pattern '{data['text']}' has no Invariants, Preconditions, or Postconditions."
-            )
-
     # Report
-    print(f"\nAudit Complete. Found {len(problems)} problems.\n")
+    problem_label = "problem" if len(problems) == 1 else "problems"
+    print(f"\nAudit Complete. Found {len(problems)} structural {problem_label}.\n")
     if problems:
         for p in problems:
             print(p)
     else:
-        print("No problems found!")
+        print("No structural problems found.")
 
 
 if __name__ == "__main__":

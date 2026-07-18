@@ -129,6 +129,8 @@ class TestMCPVocabRootAndHandshake:
             self.mcp_server.sema_handshake(ref="vocab", your_hash=self.expected_root[:16])
         )
         assert result["verdict"] == "PROCEED"
+        assert result["assurance"] == "prefix"
+        assert result["mode"] == "cooperative"
         assert result["scope"] == "vocab"
         assert result["pattern_count"] == 3
 
@@ -138,6 +140,27 @@ class TestMCPVocabRootAndHandshake:
             self.mcp_server.sema_handshake(ref="vocab", your_hash=self.expected_root)
         )
         assert result["verdict"] == "PROCEED"
+        assert result["assurance"] == "full_hash"
+
+    def test_handshake_vocab_strict_stub_requires_full_hash(self):
+        result = json.loads(
+            self.mcp_server.sema_handshake(
+                ref="vocab", your_hash=self.expected_root[:16], strict=True
+            )
+        )
+
+        assert result["verdict"] == "REQUIRE_FULL_HASH"
+        assert result["mode"] == "strict"
+        assert result["full_sema_id"].endswith(self.expected_root)
+
+    def test_handshake_vocab_strict_full_hash_proceeds(self):
+        result = json.loads(
+            self.mcp_server.sema_handshake(ref="vocab", your_hash=self.expected_root, strict=True)
+        )
+
+        assert result["verdict"] == "PROCEED"
+        assert result["assurance"] == "full_hash"
+        assert result["mode"] == "strict"
 
     def test_handshake_vocab_halt_on_drift(self):
         """Wrong hash → HALT with drift message."""

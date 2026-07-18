@@ -21,12 +21,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ExpiringToken#mh:SHA-256:b0e80819310c7415a0348183bb08bdca243d7193f93e11a5f665f7ce1a9414d3",
-  "sema_ref": "ExpiringToken#b0e8",
-  "sema_stub": "b0e8",
+  "sema_id": "sema:ExpiringToken#mh:SHA-256:a1c3ec3a2dcab7d534072c42b3829b0bb654f8a593c63a71075a38e75bedf72d",
+  "sema_ref": "ExpiringToken#a1c3",
+  "sema_stub": "a1c3",
   "dependencies": {
     "references": {
-      "bearer_token": "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825",
+      "bearer_token": "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad",
       "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
     }
   },

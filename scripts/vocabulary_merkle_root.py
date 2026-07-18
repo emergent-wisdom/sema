@@ -10,7 +10,6 @@ This script:
 5. Updates the website's merkle.json
 """
 
-import datetime
 import hashlib
 import json
 import os
@@ -108,7 +107,6 @@ def generate_markdown_content(
     merkle_root: str, patterns: list[dict[str, Any]], stats: dict[str, dict[str, int]]
 ) -> str:
     """Generate the content for vocabulary_information.md."""
-    date_str = datetime.date.today().isoformat()
     total_patterns = len(patterns)
 
     content = f"""# Vocabulary Information
@@ -117,7 +115,7 @@ def generate_markdown_content(
 
 - **Merkle Root**: `{merkle_root}`
 - **Pattern Count**: {total_patterns}
-- **Last Verified**: {date_str}
+- **Verified Against Root**: `{merkle_root[:16]}…`
 
 ## Usage
 
@@ -193,7 +191,7 @@ def main():
                 {
                     "root": merkle_root,
                     "count": len(patterns),
-                    "last_verified": datetime.date.today().isoformat(),
+                    "verified_against_root": merkle_root,
                 },
                 f,
                 indent=2,
