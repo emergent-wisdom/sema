@@ -31,13 +31,13 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:HackDetect#mh:SHA-256:b7d777a40cff7df013903736c7cd026d53e89b50088d32ebc33bce7a352c23e3",
-  "sema_ref": "HackDetect#b7d7",
-  "sema_stub": "b7d7",
+  "sema_id": "sema:HackDetect#mh:SHA-256:a488f5c7cc85b98461fd84fe650423ece6a96ad1d64a9a0dd6a10856d34ed87b",
+  "sema_ref": "HackDetect#a488",
+  "sema_stub": "a488",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:a164bf13e2782b724df3bfd0f3a53c11933d0881a4c1ff0cbef9fd738a871ba4",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:e8361ca7c2ffb506b32cd36f16addc253ecbc51350f98b983db9c122bb51f106",
       "input_guard": "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

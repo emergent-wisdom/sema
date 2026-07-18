@@ -27,13 +27,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:74db69a4c37ebbc4996db3ccd03a5cfcbd2ab54abecb6a408dbb7db5a36de30f",
-  "sema_ref": "LatticeCommit#74db",
-  "sema_stub": "74db",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:667592b99ed2c9b29b4e071b38ac960b911e36aa8f2ac73a8a3285d4e5277403",
+  "sema_ref": "LatticeCommit#6675",
+  "sema_stub": "6675",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
       "state_transition": "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2",
       "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
     }

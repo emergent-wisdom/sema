@@ -15,12 +15,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:MetaProtocols#mh:SHA-256:3561dab6b3e3d5d307a14f23031e29f122c76cbcc4ea1557a3cfdf02e3fe1195",
-  "sema_ref": "MetaProtocols#3561",
-  "sema_stub": "3561",
+  "sema_id": "sema:MetaProtocols#mh:SHA-256:488517ecd31d0dccd9948780277ddd3915ad53def0d955cff90d365b1a665db9",
+  "sema_ref": "MetaProtocols#4885",
+  "sema_stub": "4885",
   "dependencies": {
     "composes_with": {
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026"
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d"
     },
     "references": {
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",

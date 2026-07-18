@@ -35,9 +35,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:OODA#mh:SHA-256:c15f818b1324490d5a833f2646f83c4e7f7ac33cbef0637ea076e32ce024be70",
-  "sema_ref": "OODA#c15f",
-  "sema_stub": "c15f",
+  "sema_id": "sema:OODA#mh:SHA-256:2ba0f7a9e4405b1310c229508f60a66290f8616fce92af7d1e9796cf3210b90e",
+  "sema_ref": "OODA#2ba0",
+  "sema_stub": "2ba0",
   "signature": [
     "Agent(Loop)",
     "Think(Strategy)"
@@ -53,7 +53,7 @@
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "context_first": "sema:ContextFirst#mh:SHA-256:a0b6432a809a0c73841202d1802a83018f3db9d5938893415218a383ce151d6a",
+      "context_first": "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
       "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"

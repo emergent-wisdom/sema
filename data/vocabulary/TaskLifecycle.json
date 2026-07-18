@@ -42,9 +42,9 @@
       "Primitives"
     ]
   },
-  "sema_ref": "TaskLifecycle#d935",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:d935155779f500df5554666848f4360d5eba80b106a40b7a4580ce848f420d33",
-  "sema_stub": "d935",
+  "sema_ref": "TaskLifecycle#3a3e",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:3a3ece262c27914b8ff68afdf259cff4f046bf495558a190a43e32d6ee7dd5b8",
+  "sema_stub": "3a3e",
   "dependencies": {
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2"
@@ -52,8 +52,8 @@
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
       "event": "sema:Event#mh:SHA-256:035497ae50cbbc61e245e1116f6e9b4a6e3c73aa41252052e8dd74a4dde35b96",
-      "exception": "sema:Exception#mh:SHA-256:054ce28455dfd0a13bce0b5a23e048429a58a1b7e6c9082252bc3f815fe6be21",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:c36fe65a4b171559a33cb36f37ec448dce8ad7092c665426bfabee3dbeb6d1c1",
+      "exception": "sema:Exception#mh:SHA-256:39fb7ba646e5c1dc91699ae4b3dc0887f4ec476fe6bf29970b83aaaca025f686",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
       "risk": "sema:Risk#mh:SHA-256:329330b9f212869f983266b693b3b90a816506d6905501d682676af2dd281a30",
       "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },

@@ -26,12 +26,12 @@
       "Governance"
     ]
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:8440e780396b6f32b6f0f5157c33379961fce250cca368611ef283706a0c77be",
-  "sema_ref": "WorldTransparent#8440",
-  "sema_stub": "8440",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:4a70f373c5298ed905d1e3afc59372689b205775e3cb6898c94a6bb076c0f64e",
+  "sema_ref": "WorldTransparent#4a70",
+  "sema_stub": "4a70",
   "dependencies": {
     "references": {
-      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:2e403d47af0e3914841b5e03a4b9531b479ae05b2a54f402c24e99232f45b38a",
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

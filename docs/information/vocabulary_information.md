@@ -2,9 +2,9 @@
 
 ## System Status
 
-- **Merkle Root**: `b7c42bc564f5a8d2ac3cb6140430e9d98feb82a8f9b943f550f554e9ba6360b5`
-- **Pattern Count**: 452
-- **Verified Against Root**: `b7c42bc564f5a8d2…`
+- **Merkle Root**: `901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa`
+- **Pattern Count**: 453
+- **Verified Against Root**: `901130d88dab244c…`
 
 ## Usage
 
@@ -14,7 +14,7 @@ Agents use the Merkle root for fail-closed semantic verification:
 
 ```python
 # Agent A shares vocabulary root
-R_context_A = "b7c42bc564f5a8d2ac3cb6140430e9d98feb82a8f9b943f550f554e9ba6360b5"
+R_context_A = "901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa"
 
 # Agent B computes their vocabulary root
 R_context_B = compute_vocabulary_merkle_root()
@@ -29,9 +29,9 @@ else:
 
 Breakdown of patterns by Civilization Layer and Functional Category.
 
-### Unclassified (452)
+### Unclassified (453)
 
 | Category | Count |
 | :--- | :---: |
-| Uncategorized | 452 |
+| Uncategorized | 453 |
 

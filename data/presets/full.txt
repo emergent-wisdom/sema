@@ -82,6 +82,7 @@ Act
 Actor
 Aggregate
 Backoff
+ExponentialBackoff
 Budget
 Care
 CircuitBreaker

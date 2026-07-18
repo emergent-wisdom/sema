@@ -42,9 +42,9 @@
       "Protocols"
     ]
   },
-  "sema_ref": "Taper#83db",
-  "sema_id": "sema:Taper#mh:SHA-256:83db268464c312c097ff6e9f579a6ae4c484097c3f4e601a4d88c8151fd9ccb0",
-  "sema_stub": "83db",
+  "sema_ref": "Taper#8dc5",
+  "sema_id": "sema:Taper#mh:SHA-256:8dc5f590659da3360002d22320c458eeaa775788b16700359f704838c9d16c2e",
+  "sema_stub": "8dc5",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
@@ -53,7 +53,7 @@
     },
     "references": {
       "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
-      "depth_governor": "sema:DepthGovernor#mh:SHA-256:96cf874e588e4260c67abf3b8cdca5a0234d9b6a637e1c7981b7f77025668c93"
+      "depth_governor": "sema:DepthGovernor#mh:SHA-256:a3e937d651c99333315d333034b3a3be136376bfc1a5139cc758f218640cfc87"
     }
   },
   "sema_layer": "Society",

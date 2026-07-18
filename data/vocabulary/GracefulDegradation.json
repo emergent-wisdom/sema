@@ -43,12 +43,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:84362d70dbeb585179a9adc7352dcd96d5edd14a611ee6c7d2400a4d78395eec",
-  "sema_ref": "GracefulDegradation#8436",
-  "sema_stub": "8436",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:1a82403193308a36bfe7623bdbd9e98dd611761e086b0e038ced0655e8db0336",
+  "sema_ref": "GracefulDegradation#1a82",
+  "sema_stub": "1a82",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
       "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
       "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
     }

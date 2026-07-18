@@ -26,15 +26,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:BeamSearch#mh:SHA-256:fc0a0d78a67aeda031b4316da9d81b9918064f81e06ceeb198ebfd30976e9b0b",
-  "sema_ref": "BeamSearch#fc0a",
-  "sema_stub": "fc0a",
+  "sema_id": "sema:BeamSearch#mh:SHA-256:70d31a67347fab104678e9d6038acfd4b42b5c46967c71d6090b443b0a27fd14",
+  "sema_ref": "BeamSearch#70d3",
+  "sema_stub": "70d3",
   "dependencies": {
     "references": {
       "queue": "sema:Queue#mh:SHA-256:52224702509927c0b69df5580e0554e4ca381f93d291a08d7b2e8d4eaf04cdb2",
       "rank": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104",
       "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6",
-      "solver_node": "sema:SolverNode#mh:SHA-256:fd50fc5063ba52d2670169e4a8388e475cdc69084de648606236716f9ccc13b4"
+      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a"
     }
   },
   "sema_layer": "Mind",

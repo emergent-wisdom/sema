@@ -6,8 +6,8 @@
      `data/design_critique.json`. -->
 
 _Generated: 2026-07-18_
-_Patterns covered: 452 (from `data/vocabulary/`)_
-_Commentary entries in sidecar: 452 (from `data/design_critique.json`)_
+_Patterns covered: 453 (from `data/vocabulary/`)_
+_Commentary entries in sidecar: 453 (from `data/design_critique.json`)_
 
 This manual is the design reference for the Sema Bootstrap Library. For each pattern, it shows the machine-checkable spec (mechanism, invariants, pre/postconditions, failure modes) alongside the design commentary: why it exists, why it sits where it does, whether it could be removed, how it's used across contexts, its design tensions and tradeoffs, critique, and where it sits in its family.
 
@@ -932,7 +932,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ### Physics/Time (1)
 
-### CausalBarrier#39b3
+### CausalBarrier#9e17
 
 `Physics` · `Time` · R0 · T1
 
@@ -992,7 +992,7 @@ _Note: §3.3 adds `derived_from Lock` to Mutex. Broad-use test confirms Mutex as
 
 ---
 
-## Infrastructure (151)
+## Infrastructure (152)
 
 ### Infrastructure/Data Structures (93)
 
@@ -1384,7 +1384,7 @@ _Note: `Audit` at R0T1 is a Noun (the audit artifact/process). `SpotAudit` (cove
 
 ---
 
-### Ballot#43eb
+### Ballot#84c3
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2562,7 +2562,7 @@ _Note: §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rew
 
 ---
 
-### Exception#054c
+### Exception#39fb
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -3667,7 +3667,7 @@ _Note: §3.18 (after Gemini Round 4) keeps Nature as canonical Noun per paper Ta
 
 ---
 
-### PerformanceSignal#7dea
+### PerformanceSignal#10af
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5017,7 +5017,7 @@ _Note: §3.12 flagged ProtoPack for phantom signature — mechanism has no compo
 
 ---
 
-### SolverManifest#47d4
+### SolverManifest#47ae
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5600,7 +5600,7 @@ _Note: §3.18 converts to Trait. Broad-use confirms — it's a grammatical role,
 
 ---
 
-### Tension#547a
+### Tension#5dce
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -6012,7 +6012,7 @@ _Note: §3.18 moves Cyclic/Parallel/Linear to Infra/DS alongside Chain/Tree/DAG/
 
 ---
 
-### Infrastructure/Primitives (49)
+### Infrastructure/Primitives (50)
 
 ### Act#7616
 
@@ -6206,63 +6206,57 @@ _Note: `Act`'s mandate that "All Acts must be authorized, logged, and potentiall
 
 ---
 
-### Backoff#16c2
+### Backoff#9e59
 
 `Infrastructure` · `Primitives` · R0 · T2
 
-**Gloss.** Exponential delay to reduce contention
+**Gloss.** Delay subsequent attempts after failure or contention
 
 **Mechanism.**
 
-> Exponential Delay: On failure, wait delay D before retry. On repeated failure, D *= multiplier (typically 2). Add jitter to prevent thundering herd. Cap at maximum delay. Reset on success.
-
-**Invariants.**
-- Retry budget must be finite (max_attempts set before first attempt).
-
-**Failure modes.**
-- Starvation: Unlucky agents keep backing off while others succeed, never getting a slot.
+> After an attempt encounters failure, rejection, or contention and a caller elects to try again, defer the next eligible attempt according to a delay policy. The policy may derive the delay from attempt count, failure history, feedback, or external conditions. Backoff supplies spacing; retry eligibility and retry budgets remain caller policy.
 
 #### Design
 
-**Why it exists.** Contention reduction as a typed primitive — every retry loop needs exponential delay with jitter and a cap, and reinventing it per call site produces inconsistent behavior (different multipliers, missing jitter, unbounded growth). Backoff pins the minimum mechanism so every retry loop in the library inherits the same shape.
+**Why it exists.** Retry and contention mechanisms need a shared name for deferring a subsequent attempt without pretending that exponential growth, Fibonacci growth, feedback adaptation, jitter, caps, reset rules, or retry budgets are universal. Backoff pins that reusable family intersection.
 
-**Why Infrastructure.** exponential delay — mechanical primitive
+**Why Infrastructure.** failure-responsive delay — mechanical primitive
 
-**Can it be removed?** No. Referenced by Retry, ReAttempt, StateLock, Mutex, Lock, Throttle, and every other pattern that has to handle contention. Removing would force each site to re-declare the delay mechanics.
+**Can it be removed?** No. Retry, ReAttempt, CircuitBreaker, StateLock, and Throttle use the shared delay concept. Removing it would force each caller to re-declare the family-level spacing semantics.
 
-**Intended use.** exponential delay to reduce contention — multiplier growth + jitter + cap.
+**Intended use.** defer a subsequent attempt after failure, rejection, or contention according to a delay policy.
 
-**Future uses.** exponential retry-delay variants with different caps, jitter distributions, and reset policies.
+**Future uses.** shared parent for exponential, Fibonacci, fixed, feedback-adaptive, and externally signaled delay strategies.
 
 **Broad-use contexts.** retry backoff, thundering-herd prevention, rate-limit recovery, connection retry, TCP congestion, SaaS API integration.
 
-**Broad-use intersection (review hypothesis).** initial delay, multiplier, jitter, cap.
+**Broad-use intersection (review hypothesis).** a triggering failure, rejection, or contention outcome; a caller-selected subsequent attempt; and a policy-derived delay before eligibility.
 
-**Varies (descendant territory).** multiplier value, jitter distribution, cap value, reset-on-success semantic, per-target vs global.
+**Varies (descendant territory).** delay progression, feedback inputs, jitter, cap, reset boundary, scope, and retry budget.
 
-**Extension shape.** `JitteredExponentialBackoff`, `CappedExponentialBackoff`; a generic `Backoff` parent with `ExponentialBackoff`, `FibonacciBackoff`, and `AdaptiveBackoff` children requires a migration.
+**Extension shape.** `ExponentialBackoff`, `FibonacciBackoff`, `AdaptiveBackoff`, and domain-specific feedback policies.
 
-_Note: The published hash is specifically exponential despite the general handle; the commentary no longer presents non-exponential strategies as honest descendants of that definition._
+_Note: The former published definition was specifically exponential. That strategy now lives in `ExponentialBackoff`; the short parent handle contains only the broad-use intersection._
 
 **Design tensions.**
-- Deterministic policy vs jitter: the mechanism mandates jitter to prevent thundering herd, which is inherently non-deterministic. Callers who need reproducibility have to seed or disable jitter — the pattern doesn't expose the seed.
-- Exponential growth vs cap: unbounded growth is catastrophic; bounded growth degrades the 'exponential' property at the cap. The pattern requires the cap but doesn't say what value is reasonable.
-- Reset-on-success vs sticky state: the mechanism says reset on success. Some production systems want to keep the backoff growing across independent operations on the same resource (adaptive throttling). That is a descendant concern.
+- Load reduction vs liveness: longer spacing protects a contested target but delays recovery after conditions improve.
+- Local history vs external feedback: some policies derive delay from attempt count while others consume server hints or observed load; the parent must admit both.
+- Shared policy vs caller ownership: Backoff determines spacing, while the decision to retry and the retry budget remain with the caller.
 
 **Tradeoffs.**
-- Exponential buys rapid contention reduction at the cost of slow recovery from transient failures (a single failed attempt takes exponential time to retry).
-- Jitter buys herd prevention at the cost of predictability — the precise retry times are randomized.
-- Finite retry budget buys crash-loop prevention at the cost of surrendering on persistent failures that would eventually resolve.
+- A shared parent makes retry strategies substitutable at the cost of leaving concrete scheduling guarantees to descendants.
+- Deferral reduces repeated pressure at the cost of progress latency and possible starvation under unfair contention.
 
 **Critique (diagnostic, not contract requirements).**
-- The short parent handle squats on the general concept while the hash pins exponential growth, mandatory jitter, reset-on-success, a finite retry budget, and arbitrary numeric ranges.
-- `FibonacciBackoff` and `AdaptiveBackoff` cannot honestly derive from this definition because they violate its mechanism. The clean fix is a generic `Backoff` parent plus an `ExponentialBackoff` child, not more contracts on the current parent.
-- That split affects the paper's parameter example and a wide dependent subtree, so it is recorded as a dedicated migration rather than silently weakened in this batch. Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain relevant family risks.
+- The parent is intentionally mechanism-light: adding a multiplier, jitter, cap, reset rule, or finite budget here would again exclude legitimate family members.
+- The time-delay mechanism excludes negotiation concession and other metaphorical uses of the English word 'backoff'; those belong to different patterns.
+- Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain family-level review risks, but their mitigations depend on the selected descendant and caller policy.
 
-**In the family.** The contention-reduction primitive for every retry loop in the library. Composed with `Cooldown` (minimum inter-event gap), `Throttle` (rate cap), and `Hysteresis` (asymmetric thresholds). Used by `Lock`, `Mutex`, `StateLock`, `Retry`, `ReAttempt`, `CircuitBreaker` at the contention layer.
+**In the family.** The parent of concrete delay policies such as `ExponentialBackoff`. Composes with `Cooldown` (minimum inter-event gap), `Throttle` (aggregate rate cap), and retry callers such as `Retry`, `ReAttempt`, and `CircuitBreaker`.
 
 **Supersedes (prior versions).**
 - `Backoff#315a`
+- `Backoff#16c2`
 
 ---
 
@@ -6492,7 +6486,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 ---
 
-### CircuitBreaker#840f
+### CircuitBreaker#3caa
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -6554,7 +6548,7 @@ _Note: The published hash is specifically exponential despite the general handle
 - Zombie state (stuck OPEN) is named but unmitigated — reset logic lives outside the pattern, which is exactly where it breaks in practice.
 - False positives from transient blips are the most common production complaint and the pattern offers no built-in debouncing; that's a caller concern.
 
-**In the family.** The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (what calls it), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points.
+**In the family.** The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (the delay discipline for recovery probes), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points.
 
 **Supersedes (prior versions).**
 - `CircuitBreaker#4162`
@@ -6666,7 +6660,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 ---
 
-### Compensate#9b3b
+### Compensate#e23b
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6790,7 +6784,7 @@ _Note: The published hash is specifically exponential despite the general handle
 
 ---
 
-### Cooldown#878c
+### Cooldown#6f56
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -6911,7 +6905,68 @@ _Note: The published hash is specifically exponential despite the general handle
 
 ---
 
-### FailClosed#4088
+### ExponentialBackoff#a543
+
+`Infrastructure` · `Primitives` · R0 · T1
+
+**Gloss.** Geometrically increasing capped retry delay
+
+**Mechanism.**
+
+> A {{backoff}} delay policy whose unjittered delay grows geometrically across consecutive unsuccessful attempts: base_delay * multiplier^attempt_index. A configurable jitter factor may perturb the candidate delay to decorrelate concurrent attempts, after which the scheduled delay is clamped to max_delay. The caller defines retry eligibility, retry budget, and when the attempt sequence resets.
+
+**Invariants.**
+- Scheduled delay is greater than zero and does not exceed max_delay.
+- Before jitter, delay is non-decreasing with attempt_index until max_delay is reached.
+
+**Failure modes.**
+- Synchronized retries when jitter is zero or correlated across callers.
+- Excessive recovery delay when the multiplier or cap is too large.
+- Retry amplification when callers use the delay policy without a retry budget.
+
+#### Design
+
+**Why it exists.** Geometric delay growth is common enough to deserve a precise child instead of occupying the generic Backoff handle. It lets callers request multiplier growth, a cap, and optional jitter without imposing those choices on Fibonacci or feedback-adaptive policies.
+
+**Why Infrastructure.** geometrically increasing delay — mechanical strategy
+
+**Can it be removed?** Removable in capability terms because callers can implement the formula directly, but retaining it gives transient Retry paths an honest, reusable dependency.
+
+**Intended use.** capped geometric delay growth across consecutive unsuccessful attempts.
+
+**Future uses.** exponential retry-delay variants with different multipliers, caps, and jitter factors.
+
+**Broad-use contexts.** service retries, lock contention, connection recovery, rate-limit recovery, and thundering-herd mitigation.
+
+**Broad-use intersection (review hypothesis).** positive base delay, multiplier greater than one, attempt index, and maximum delay.
+
+**Varies (descendant territory).** base delay, multiplier, cap, jitter factor, reset boundary, and caller-owned retry budget.
+
+**Extension shape.** `DecorrelatedJitterBackoff`, `SeededExponentialBackoff`, and protocol-specific capped variants.
+
+_Note: Retry eligibility, finite budgets, and reset conditions are caller policy rather than identity requirements of the delay strategy._
+
+**Design tensions.**
+- Rapid load shedding vs recovery latency: geometric growth quickly protects a failing target but can delay useful probes.
+- Jitter vs reproducibility: randomization reduces synchronized retries but complicates deterministic schedules and tests.
+- Cap vs geometric progression: clamping is operationally necessary but ends pure exponential growth once reached.
+
+**Tradeoffs.**
+- Geometric growth buys fast contention reduction at the cost of potentially long recovery delays.
+- Optional jitter admits both decorrelated production schedules and deterministic callers, so herd prevention is not guaranteed by the child alone.
+
+**Critique (diagnostic, not contract requirements).**
+- A zero jitter factor is valid but leaves synchronized callers exposed; concurrency-heavy callers should select nonzero or decorrelated jitter.
+- The formula does not decide whether another attempt is justified. Pair it with Retry, CircuitBreaker, or another caller that owns eligibility and budget.
+- Reset policy is deliberately outside the hash; callers must make the sequence boundary explicit when state spans operations.
+
+**In the family.** A concrete child of `Backoff`, alongside future Fibonacci and feedback-adaptive strategies. Retry selects it specifically for transient failures and may use other Backoff descendants for persistent failures.
+
+**Derived from.** `Backoff`
+
+---
+
+### FailClosed#eae7
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7214,7 +7269,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Heartbeat#c36f
+### Heartbeat#d0e6
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7337,7 +7392,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### IdempotentWrite#ebf5
+### IdempotentWrite#e919
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7881,7 +7936,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Quorum#c6a5
+### Quorum#d634
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8009,7 +8064,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### ReAttempt#39a6
+### ReAttempt#be44
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8034,7 +8089,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Design tensions.**
 - Uncapped reattempts (named failure) vs transient recovery — without caps, amplification into DoS.
-- Missing jitter (named failure) — thundering herd on shared resources.
+- Concurrent callers vs synchronized reattempts — jitter or another decorrelation strategy belongs in the selected Backoff policy or caller.
 - Same-call semantics vs parameter variation — ReAttempt is strict same-args; Retry allows variation, and the line is easy to blur.
 
 **Tradeoffs.**
@@ -8043,7 +8098,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 **Critique (diagnostic, not contract requirements).**
 - Uncapped reattempts are the dominant production failure; the pattern names the failure without prescribing caps.
-- Missing jitter is well-known; the pattern acknowledges without built-in jitter mechanism.
+- The thundering-herd risk is real, but mandatory jitter would over-specify this substrate primitive; select a jittered Backoff descendant where concurrent callers require it.
 - The ReAttempt/Retry split is subtle and often ignored; in practice callers often conflate.
 
 **In the family.** Substrate-level primitive paired with Retry (semantic variant), Backoff (the delay discipline), and CircuitBreaker (the cap). Compare with IdempotentWrite — ReAttempt makes safe retry possible (with idempotency); IdempotentWrite is the safety property.
@@ -8401,7 +8456,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### StateSnapshot#53b2
+### StateSnapshot#5791
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8517,7 +8572,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### TaskLifecycle#d935
+### TaskLifecycle#3a3e
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -8587,7 +8642,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 ---
 
-### Throttle#dc14
+### Throttle#2486
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8609,7 +8664,7 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 
 #### Design
 
-**Why it exists.** Rate limiting as a named primitive — bounded events per time window. Essential for API contracts, queue drainage, and load protection. Different from Backoff (per-failure exponential) and Cooldown (per-action minimum gap): Throttle bounds aggregate rate across many events.
+**Why it exists.** Rate limiting as a named primitive — bounded events per time window. Essential for API contracts, queue drainage, and load protection. Different from Backoff (failure-responsive spacing) and Cooldown (per-action minimum gap): Throttle bounds aggregate rate across many events.
 
 **Why Infrastructure.** engineered rate-limiter primitive
 
@@ -8642,14 +8697,14 @@ _Note: §3.18 moves to Infra (single-system substrate discipline). Broad-use con
 - Legitimate Denial is the dominant real issue — attack/burst distinguishability requires classifiers the pattern offloads.
 - No priority story — all throttled requests are treated equally; priority-aware throttling needs a different pattern.
 
-**In the family.** Completes the rate-control family: `Backoff` (per-retry exponential delay), `Cooldown` (per-action minimum gap), `Throttle` (rate cap per window). The three compose: a retry loop can use Backoff for delay, Cooldown for action-gap, and Throttle for global rate.
+**In the family.** Completes the rate-control family: `Backoff` (failure-responsive attempt spacing), `Cooldown` (per-action minimum gap), and `Throttle` (rate cap per window). The three compose: a retry loop can select a Backoff strategy for delay, Cooldown for action-gap, and Throttle for global rate.
 
 **Supersedes (prior versions).**
 - `Throttle#3b43`
 
 ---
 
-### TimeWarpLog#e26e
+### TimeWarpLog#2a10
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8900,7 +8955,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### Warmup#32d4
+### Warmup#7ad0
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8967,7 +9022,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ### Infrastructure/Verification (9)
 
-### AuditTrail#bf18
+### AuditTrail#b441
 
 `Infrastructure` · `Verification` · R1 · T1
 
@@ -9091,7 +9146,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### ExplainBeacon#2e40
+### ExplainBeacon#4676
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -9648,7 +9703,7 @@ _Note: §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb).
 
 ---
 
-### BreadthGovernor#c7ea
+### BreadthGovernor#5e8c
 
 `Mind` · `Inference` · R2 · T2
 
@@ -9831,7 +9886,7 @@ _Note: §3.1 rename validates — the old name literally said the opposite of th
 
 ---
 
-### ContextFirst#a0b6
+### ContextFirst#7550
 
 `Mind` · `Inference` · R0 · T1
 
@@ -9958,7 +10013,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### HackDetect#b7d7
+### HackDetect#a488
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10145,7 +10200,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### NormCheck#b3a0
+### NormCheck#5308
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10211,7 +10266,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### NormativeJudge#bd4e
+### NormativeJudge#4b39
 
 `Mind` · `Inference` · R0 · T1
 
@@ -10342,7 +10397,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ProphetFanOut#d47b
+### ProphetFanOut#b0f3
 
 `Mind` · `Inference` · R1 · T1
 
@@ -10406,7 +10461,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### RegimeSense#56ec
+### RegimeSense#430b
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10605,7 +10660,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SourceEvaluate#1f87
+### SourceEvaluate#f6b8
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10664,7 +10719,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### SurprisalUpdate#6169
+### SurprisalUpdate#41a9
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10794,7 +10849,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TemporalEnsembleForecasting#3cb6
+### TemporalEnsembleForecasting#8b0e
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10835,7 +10890,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TruthseekingProtocol#afc1
+### TruthseekingProtocol#d35b
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10878,7 +10933,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ### Mind/Memory (15)
 
-### BeliefTracking#6142
+### BeliefTracking#6f91
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11319,7 +11374,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### LocalizedLearning#1eec
+### LocalizedLearning#1450
 
 `Mind` · `Memory` · R1 · T2
 
@@ -11490,7 +11545,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### RetrievalAugment#7ca7
+### RetrievalAugment#046a
 
 `Mind` · `Memory` · R2 · T2
 
@@ -11734,7 +11789,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### TraceBelief#bdfa
+### TraceBelief#1881
 
 `Mind` · `Memory` · R2 · T2
 
@@ -12044,7 +12099,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### CiteBack#7785
+### CiteBack#17b1
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12177,7 +12232,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### CollaborativeWritingProtocol#8a1a
+### CollaborativeWritingProtocol#f5cb
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12218,7 +12273,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### ConceptualDecomposition#3cf2
+### ConceptualDecomposition#2cce
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12457,7 +12512,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### DecompositionGate#3a79
+### DecompositionGate#c4f7
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -12559,7 +12614,7 @@ _Note: §3.20 wires callers to ContextFirst — broad-use test confirms._
 
 ---
 
-### DeepResearch#a058
+### DeepResearch#e060
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -12762,7 +12817,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Estimate#28d2
+### Estimate#c6d2
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -12826,7 +12881,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### EthicalReasoningProtocol#e3a6
+### EthicalReasoningProtocol#6bf1
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -12990,7 +13045,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### Fermi#128b
+### Fermi#3325
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13105,7 +13160,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### FrameError#22e1
+### FrameError#f674
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13319,7 +13374,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### HumanEmulatorProtocol#261f
+### HumanEmulatorProtocol#faf1
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13663,7 +13718,7 @@ _Note: `DeepResearch` is Society/Protocols but is largely single-agent (or agent
 
 ---
 
-### MetaPrompt#db51
+### MetaPrompt#a665
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14056,7 +14111,7 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 
 ---
 
-### RecursionDive#7e67
+### RecursionDive#bd13
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14354,7 +14409,7 @@ _Note: `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate 
 
 ---
 
-### RequestFraming#8c6c
+### RequestFraming#e973
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -15688,7 +15743,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### BeamSearch#fc0a
+### BeamSearch#70d3
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -16015,7 +16070,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### Compose#57a9
+### Compose#4fa2
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -16267,7 +16322,7 @@ _Note: §4 of the audit flags Agent's layer placement as debatable. Broad-use sp
 
 ---
 
-### ContingencyPlan#c760
+### ContingencyPlan#e096
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -16631,7 +16686,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DepthGovernor#96cf
+### DepthGovernor#a3e9
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -16747,7 +16802,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### DiscoveryProtocol#7ada
+### DiscoveryProtocol#9958
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17282,7 +17337,7 @@ _Note: §3.18 converts Creative to `is_trait: true`. Broad-use confirms — the 
 
 ---
 
-### FractalIntelligence#5481
+### FractalIntelligence#1d79
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17761,7 +17816,7 @@ _Note: the user's v3-paper quote supersedes my earlier batch-17 sketch. FractalI
 
 ---
 
-### MarginalValueRule#eebb
+### MarginalValueRule#552f
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17962,7 +18017,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### MetaProtocols#3561
+### MetaProtocols#4885
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18125,7 +18180,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### OODA#c15f
+### OODA#2ba0
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -18441,7 +18496,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREBrainstorming#9ba1
+### PUREBrainstorming#c03a
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -18550,7 +18605,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PUREOptimization#89fe
+### PUREOptimization#3d63
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18805,7 +18860,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### PolymorphicSolver#272a
+### PolymorphicSolver#3653
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -18985,7 +19040,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ProblemFramer#2718
+### ProblemFramer#ea80
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19276,7 +19331,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Retry#79b6
+### Retry#9e17
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19284,7 +19339,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Mechanism.**
 
-> Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure—transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history—same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff—adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions—has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.
+> Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure—transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history—same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE {{backoff}}—adaptive based on failure type: transient uses {{exponential_backoff}}, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions—has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.
 
 **Invariants.**
 - {{backoff}} applied
@@ -19323,7 +19378,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Varies (descendant territory).** classification taxonomy (transient/persistent specifics), budget, circuit-breaker integration, retry-hint protocol, jitter strategy.
 
-**Extension shape.** `ExponentialRetry`, `JitteredRetry`, `BudgetedRetry`, `ClassifiedRetry`. The substrate-level "try same thing again" moves to `ReAttempt` in Physics/Primitives (§3.2).
+**Extension shape.** `JitteredRetry`, `BudgetedRetry`, `ClassifiedRetry`. The transient branch composes with `ExponentialBackoff`; the substrate-level "try same thing again" moves to `ReAttempt` in Physics/Primitives (§3.2).
 
 **Design tensions.**
 - Classification quality vs speed — classifying failures accurately requires work; cheap classification is often wrong.
@@ -19339,15 +19394,16 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Misclassifying transient as persistent (gives up too soon) is the dual failure.
 - Backoff calibration is caller-dependent and frequently wrong.
 
-**In the family.** Resilience primitive paired with Backoff (the delay discipline), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one.
+**In the family.** Resilience primitive paired with Backoff (the delay-policy family), ExponentialBackoff (the transient-failure strategy), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one.
 
 **Supersedes (prior versions).**
 - `Retry#d53d`
 - `Retry#07b7`
+- `Retry#79b6`
 
 ---
 
-### RigorousSolver#b75d
+### RigorousSolver#70d4
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19458,7 +19514,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### RootSolver#6d0d
+### RootSolver#750d
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19750,7 +19806,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Solver#04b5
+### Solver#b7f9
 
 `Mind` · `Strategy` · R0 · T0
 
@@ -19984,7 +20040,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### TensionHold#b084
+### TensionHold#326b
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -20352,7 +20408,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ### Society/Coordination (12)
 
-### Compromise#228b
+### Compromise#e980
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20403,7 +20459,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Consensus#45f4
+### Consensus#0526
 
 `Society` · `Coordination` · R0 · T1
 
@@ -20476,7 +20532,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ConsensusFinder#980a
+### ConsensusFinder#6535
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20534,7 +20590,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Delegate#78a8
+### Delegate#2d38
 
 `Society` · `Coordination` · R1 · T2
 
@@ -20608,7 +20664,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Disband#9953
+### Disband#d5f8
 
 `Society` · `Coordination` · R1 · T1
 
@@ -20679,7 +20735,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Elect#45ff
+### Elect#187a
 
 `Society` · `Coordination` · R2 · T1
 
@@ -20808,7 +20864,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### LazyConsensus#cb1b
+### LazyConsensus#1c07
 
 `Society` · `Coordination` · R0 · T2
 
@@ -20945,7 +21001,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Rally#48a0
+### Rally#bc5f
 
 `Society` · `Coordination` · R1 · T2
 
@@ -21087,7 +21143,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Vote#3b66
+### Vote#0aff
 
 `Society` · `Coordination` · R2 · T2
 
@@ -21153,7 +21209,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ### Society/Economics (10)
 
-### AtomicBid#33e1
+### AtomicBid#9c0c
 
 `Society` · `Economics` · R1 · T2
 
@@ -21214,7 +21270,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### AttentionMarkets#787e
+### AttentionMarkets#faf8
 
 `Society` · `Economics` · R1 · T1
 
@@ -21285,7 +21341,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Award#af8e
+### Award#6e69
 
 `Society` · `Economics` · R1 · T1
 
@@ -21343,7 +21399,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Bid#5c45
+### Bid#1eba
 
 `Society` · `Economics` · R1 · T1
 
@@ -21407,7 +21463,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### ContinuousResourceAuction#1553
+### ContinuousResourceAuction#8fe2
 
 `Society` · `Economics` · R1 · T1
 
@@ -21525,7 +21581,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Gardener#52f3
+### Gardener#3e18
 
 `Society` · `Economics` · R2 · T2
 
@@ -21708,15 +21764,15 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 ---
 
-### Yield#d802
+### Yield#d665
 
 `Society` · `Economics` · R1 · T2
 
-**Gloss.** Weighted negotiation backoff with deferred debt ledger
+**Gloss.** Weighted negotiation concession with deferred debt ledger
 
 **Mechanism.**
 
-> Negotiation {{backoff}}. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.
+> Negotiation concession. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.
 
 **Invariants.**
 - Yielder cannot reclaim.
@@ -21729,13 +21785,13 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 #### Design
 
-**Why it exists.** When Overlap fails, explicit concession with weighted importance resolves. Yield names this structured backoff. Without the pattern, negotiation stalls.
+**Why it exists.** When Overlap fails, explicit concession with weighted importance resolves. Yield names this structured concession. Without the pattern, negotiation stalls.
 
-**Why Society.** weighted-negotiation backoff
+**Why Society.** weighted negotiation concession
 
 **Can it be removed?** Removable — other negotiation patterns work. The Flex/Weight declaration is the key discipline.
 
-**Intended use.** negotiation backoff on Overlap failure — lower-weighted preference cedes.
+**Intended use.** negotiation concession on Overlap failure — lower-weighted preference cedes.
 
 **Future uses.** any weighted-concession-and-debt-ledger mechanism.
 
@@ -21753,7 +21809,7 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 - Hard constraints indistinguishable from strategic intransigence.
 
 **Tradeoffs.**
-- Gains: structured negotiation backoff.
+- Gains: structured negotiation concession.
 - Gives up: simplicity.
 
 **Critique (diagnostic, not contract requirements).**
@@ -21765,12 +21821,13 @@ _Note: this is the economic counterpart to ComputeBudget — both stop runaway c
 
 **Supersedes (prior versions).**
 - `Yield#7eaf`
+- `Yield#d802`
 
 ---
 
 ### Society/Governance (8)
 
-### AnchorDrop#695e
+### AnchorDrop#4196
 
 `Society` · `Governance` · R0 · T1
 
@@ -21893,7 +21950,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### DocumentedOverride#4054
+### DocumentedOverride#17d3
 
 `Society` · `Governance` · R1 · T2
 
@@ -21940,7 +21997,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Responsibility#8cf5
+### Responsibility#67f5
 
 `Society` · `Governance` · R1 · T1
 
@@ -22010,7 +22067,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### Role#3152
+### Role#9b2c
 
 `Society` · `Governance` · R1 · T1
 
@@ -22063,7 +22120,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### SolverTree#2e4c
+### SolverTree#0c3f
 
 `Society` · `Governance` · R1 · T1
 
@@ -22126,7 +22183,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### UniversalSolverTree#7361
+### UniversalSolverTree#0923
 
 `Society` · `Governance` · R1 · T1
 
@@ -22189,7 +22246,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### WorldTransparent#8440
+### WorldTransparent#4a70
 
 `Society` · `Governance` · R2 · T1
 
@@ -22394,7 +22451,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### AgentProtocol#e6b4
+### AgentProtocol#6297
 
 `Society` · `Protocols` · R1 · T2
 
@@ -22520,7 +22577,7 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 
 ---
 
-### AmbiguityResolution#4c6b
+### AmbiguityResolution#ede0
 
 `Society` · `Protocols` · R1 · T2
 
@@ -22936,7 +22993,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### CounterfactualAnchor#e7ac
+### CounterfactualAnchor#0d2b
 
 `Society` · `Protocols` · R1 · T2
 
@@ -23074,7 +23131,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### DeliberativeAlign#9fd3
+### DeliberativeAlign#1cf2
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23143,7 +23200,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### Deploy#1119
+### Deploy#9af9
 
 `Society` · `Protocols` · R1 · T1
 
@@ -23251,7 +23308,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### DissentSeek#ce78
+### DissentSeek#8378
 
 `Society` · `Protocols` · R2 · T1
 
@@ -23445,7 +23502,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### EjectionSeat#a164
+### EjectionSeat#e836
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23746,7 +23803,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### GenealogicalTrace#fa22
+### GenealogicalTrace#142e
 
 `Society` · `Protocols` · R2 · T2
 
@@ -23910,7 +23967,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### GracefulDegradation#8436
+### GracefulDegradation#1a82
 
 `Society` · `Protocols` · R0 · T1
 
@@ -23977,7 +24034,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### Handoff#4e0f
+### Handoff#d0e8
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24047,7 +24104,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### HeldRelease#533b
+### HeldRelease#10b0
 
 `Society` · `Protocols` · R0 · T1
 
@@ -24303,7 +24360,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### LatticeCommit#74db
+### LatticeCommit#6675
 
 `Society` · `Protocols` · R2 · T1
 
@@ -24366,7 +24423,7 @@ _Note: §3.18 converts to `is_trait: true`. Broad-use confirms — Global is a m
 
 ---
 
-### MemeticSeed#cf26
+### MemeticSeed#d351
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24496,7 +24553,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### MonotonicCounter#21c6
+### MonotonicCounter#3382
 
 `Society` · `Protocols` · R0 · T1
 
@@ -24561,7 +24618,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### Nucleate#457a
+### Nucleate#3763
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24629,7 +24686,7 @@ _Note: interesting economic pattern — "standards are adopted not because they 
 
 ---
 
-### OptimisticSolver#18c0
+### OptimisticSolver#a96f
 
 `Society` · `Protocols` · R1 · T2
 
@@ -24699,7 +24756,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### Oracle#32ff
+### Oracle#5614
 
 `Society` · `Protocols` · R1 · T1
 
@@ -24755,7 +24812,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### OrchestrationLoop#156f
+### OrchestrationLoop#2128
 
 `Society` · `Protocols` · R1 · T2
 
@@ -25200,7 +25257,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PromptChain#2543
+### PromptChain#5097
 
 `Society` · `Protocols` · R0 · T2
 
@@ -25260,7 +25317,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### PropheticQuorum#1091
+### PropheticQuorum#912b
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25323,7 +25380,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### QuorumPulse#809c
+### QuorumPulse#2fc2
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25389,7 +25446,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### RealizationProtocol#663b
+### RealizationProtocol#b4ce
 
 `Society` · `Protocols` · R1 · T2
 
@@ -25624,7 +25681,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### Rollout#8fc1
+### Rollout#84e2
 
 `Society` · `Protocols` · R1 · T1
 
@@ -25959,7 +26016,7 @@ _Note: §3.14's layer retention is confirmed by broad-use — every legitimate c
 
 ---
 
-### SolverNode#fd50
+### SolverNode#4529
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26140,7 +26197,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### StateLock#7cd8
+### StateLock#8bde
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26171,9 +26228,9 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 **Broad-use contexts.** two-phase commit, escrow key pairs, multi-signature wallets, joint-authorship protocols, collaborative editing locks, diplomatic joint statements.
 
-**Broad-use intersection (review hypothesis).** state subset, two (or more) actors, temporary fusion, both-sign-to-write, Backoff/Cooldown on contention.
+**Broad-use intersection (review hypothesis).** state subset, two actors, temporary fusion, both-sign-to-write, and a contention response.
 
-**Varies (descendant territory).** multi-party extension, timeout policy, revocation.
+**Varies (descendant territory).** selected Backoff policy, multi-party extension, timeout policy, and revocation.
 
 **Extension shape.** `TwoPhaseStateLock`, `MultisigStateLock`, `DiplomaticStateLock`.
 
@@ -26188,15 +26245,16 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 - Backoff+Cooldown composition buys contention handling at the cost of lock-family dependency — StateLock doesn't stand alone operationally.
 
 **Critique (diagnostic, not contract requirements).**
-- Zero invariants listed. For a pattern that carries atomicity semantics, this is a significant gap — at minimum: Both-Signed (changes require both sigs), Symmetric (neither party has unilateral release), Auto-Dissolve-On-Timeout, Signature-Integrity (sigs bind to the specific state subset).
-- The three failure modes are correct but partial — missing: Key Compromise (one party's signing key stolen mid-lock), Sig Replay (old signature reused against new state), State-Scope Drift (the 'subset of writable state' changes meaning mid-lock).
+- Atomicity obligations currently live in the mechanism rather than a separate invariant list. Any future contract should first prove that it holds across every two-party StateLock context rather than treating field count as the defect.
+- Key compromise, signature replay, and state-scope drift are relevant diagnostics for cryptographic deployments, but their mitigations depend on identity and storage descendants rather than belonging automatically in the broad parent hash.
 - 'Temporary fusion' is evocative but operationally vague. What counts as fusion? Is it a third-party escrow? A merged state object? A shared access-control list? The pattern is underdetermined — implementers will pick different mechanisms that claim to be the same pattern.
 
-**In the family.** The two-party cross-actor specialization of the Lock family, placed in Society because the mechanism structurally requires a counterparty. Pairs with `Backoff` and `Cooldown` for contention behavior and with `AtomicBid` for multi-agent coordination. Where `Mutex` is one-holder exclusion, `StateLock` is two-party agreement.
+**In the family.** The two-party cross-actor specialization of the Lock family, placed in Society because the mechanism structurally requires a counterparty. Pairs with a selected `Backoff` policy and `Cooldown` for contention behavior, and with `AtomicBid` for multi-agent coordination. Where `Mutex` is one-holder exclusion, `StateLock` is two-party agreement.
 
 **Supersedes (prior versions).**
 - `StateLock#774b`
 - `StateLock#b91b`
+- `StateLock#7cd8`
 
 ---
 
@@ -26320,7 +26378,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### SynergisticMode#02f9
+### SynergisticMode#2463
 
 `Society` · `Protocols` · R2 · T2
 
@@ -26380,7 +26438,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### Taper#83db
+### Taper#8dc5
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26439,7 +26497,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### ThreeLevelCollision#f9f9
+### ThreeLevelCollision#92b1
 
 `Society` · `Protocols` · R2 · T1
 
@@ -26572,7 +26630,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### ToolDiscovery#4b60
+### ToolDiscovery#bf67
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26711,7 +26769,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### UniqueHandle#88da
+### UniqueHandle#58f9
 
 `Society` · `Protocols` · R0 · T1
 
@@ -26905,7 +26963,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### WorkerMode#5a39
+### WorkerMode#fa5a
 
 `Society` · `Protocols` · R2 · T1
 
@@ -26975,7 +27033,7 @@ _Note: SomaticMarker's mechanism "utilizes Task" is an odd wiring claim — Task
 
 ---
 
-### Workflow#6de0
+### Workflow#982b
 
 `Society` · `Protocols` · R0 · T1
 

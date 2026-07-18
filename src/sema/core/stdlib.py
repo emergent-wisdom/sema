@@ -67,7 +67,7 @@ class SpectralTune(SemaPattern):
 
 class StateLock(SemaPattern):
     """
-    Handle: StateLock#7cd8
+    Handle: StateLock#8bde
     Invariant: State S cannot be modified without Sign(A) + Sign(B)
     """
 
@@ -132,7 +132,7 @@ class GateParsimony(SemaPattern):
 
 class ProphetFanOut(SemaPattern):
     """
-    Handle: ProphetFanOut#d47b
+    Handle: ProphetFanOut#b0f3
     Invariant: Entropy(Timelines) > Threshold
     """
 

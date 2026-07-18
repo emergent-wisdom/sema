@@ -1,47 +1,22 @@
 {
   "handle": "Backoff",
-  "mechanism": "Exponential Delay: On failure, wait delay D before retry. On repeated failure, D *= multiplier (typically 2). Add jitter to prevent thundering herd. Cap at maximum delay. Reset on success.",
-  "gloss": "Exponential delay to reduce contention",
-  "failure_modes": [
-    "Starvation: Unlucky agents keep backing off while others succeed, never getting a slot."
-  ],
-  "invariants": [
-    "Retry budget must be finite (max_attempts set before first attempt)."
-  ],
-  "parameters": [
-    {
-      "name": "base_delay",
-      "type": "Duration",
-      "range": "[100ms, 10s]",
-      "description": "Initial wait before retry"
-    },
-    {
-      "name": "jitter_factor",
-      "type": "Float",
-      "range": "[0.0, 0.5]",
-      "description": "Randomization to prevent thundering herd"
-    },
-    {
-      "name": "max_retries",
-      "type": "Integer",
-      "range": "[1, 10]",
-      "description": "Attempts before permanent failure"
-    }
-  ],
+  "mechanism": "After an attempt encounters failure, rejection, or contention and a caller elects to try again, defer the next eligible attempt according to a delay policy. The policy may derive the delay from attempt count, failure history, feedback, or external conditions. Backoff supplies spacing; retry eligibility and retry budgets remain caller policy.",
+  "gloss": "Delay subsequent attempts after failure or contention",
   "_meta": {
     "tier": 2,
     "ring": 0,
     "supersedes": [
-      "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60"
+      "sema:Backoff#mh:SHA-256:315a36ef873a63c30740ce89b1aeb542836a068ef0d81a6e3aaaec062d70bc60",
+      "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
-  "sema_ref": "Backoff#16c2",
-  "sema_stub": "16c2",
+  "sema_id": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
+  "sema_ref": "Backoff#9e59",
+  "sema_stub": "9e59",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

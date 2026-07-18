@@ -25,15 +25,15 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:7ca744ce28611156f415add4da95e3dc93006d92061a05139e17b70d3882e848",
-  "sema_ref": "RetrievalAugment#7ca7",
-  "sema_stub": "7ca7",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63",
+  "sema_ref": "RetrievalAugment#046a",
+  "sema_stub": "046a",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
       "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
       "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "context_first": "sema:ContextFirst#mh:SHA-256:a0b6432a809a0c73841202d1802a83018f3db9d5938893415218a383ce151d6a",
+      "context_first": "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
       "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
       "prompt": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97"
     }

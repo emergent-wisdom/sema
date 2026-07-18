@@ -39,9 +39,9 @@
       "Strategy"
     ]
   },
-  "sema_ref": "TensionHold#b084",
-  "sema_id": "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e",
-  "sema_stub": "b084",
+  "sema_ref": "TensionHold#326b",
+  "sema_id": "sema:TensionHold#mh:SHA-256:326ba75d2fff31c8efe9d52c2a34d72a38c11e932dbe9a8db344b5a76004caaa",
+  "sema_stub": "326b",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
@@ -49,7 +49,7 @@
       "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     },
     "yields": {
-      "tension": "sema:Tension#mh:SHA-256:547a74e52a7d1be70c14efcd8565adc2fae6a2c98d9bb7915a9b9164d578cfee"
+      "tension": "sema:Tension#mh:SHA-256:5dceec4a426933ddcf7aaf66bb92b6f5a2a55b8590033a49145a8e23000c3ad5"
     }
   },
   "sema_layer": "Mind",

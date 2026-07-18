@@ -20,13 +20,13 @@ allowed-tools: |
 
 # Speak in Sema
 
-Sema is a **content-addressed vocabulary protocol**. ~450 patterns that give you precise, shared words for concepts that would otherwise require paragraphs of re-explanation. Each pattern has a handle (e.g. `StateLock#7cd8`) that is a cryptographic commitment to its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a **content-addressed vocabulary protocol**. ~450 patterns that give you precise, shared words for concepts that would otherwise require paragraphs of re-explanation. Each pattern has a handle (e.g. `StateLock#8bde`) that is a cryptographic commitment to its definition — two agents using the same handle are provably talking about the same thing.
 
 Before defining a concept from scratch, check if sema already has a word:
 
 1. `sema_search` with the idea
 2. `sema_resolve` to read mechanism and invariants
-3. Use the handle as a load-bearing noun in your text: *"This uses `StateLock#7cd8` to prevent concurrent mutation"*
+3. Use the handle as a load-bearing noun in your text: *"This uses `StateLock#8bde` to prevent concurrent mutation"*
 
 Not footnotes — actual words you think with.
 
@@ -152,7 +152,7 @@ sema_mint({
 
 Use sema handles as load-bearing nouns — not footnotes, actual words you think with:
 
-> "This uses `StateLock#7cd8` to prevent concurrent mutation"
+> "This uses `StateLock#8bde` to prevent concurrent mutation"
 
 Wrap handles in backticks for readability. When you encounter a handle you don't recognize, resolve it before proceeding.
 
@@ -161,7 +161,7 @@ Wrap handles in backticks for readability. When you encounter a handle you don't
 When two agents (or an agent and a human) need to agree on meaning:
 
 ```javascript
-sema_handshake({ ref: "StateLock#7cd8" })
+sema_handshake({ ref: "StateLock#8bde" })
 // → canonical stub. Compare against your local value, then:
 sema_handshake({ ref: "StateLock", your_hash: "774b" })
 // PROCEED (match) or HALT (drift). No silent misunderstandings.

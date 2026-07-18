@@ -140,10 +140,10 @@ registry = RegistryManager()
 pattern = registry.get_pattern("StateLock")
 
 # Look up the canonical reference
-print(pattern["sema_ref"])  # StateLock#7cd8
+print(pattern["sema_ref"])  # StateLock#8bde
 
 # Verify an inline reference before relying on it
-assert pattern["sema_ref"] == "StateLock#7cd8"
+assert pattern["sema_ref"] == "StateLock#8bde"
 ```
 
 ### Try the Protocol (No API Keys Needed)
@@ -165,7 +165,7 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Cooperative: sema_handshake("StateLock#7cd8")
+Cooperative: sema_handshake("StateLock#8bde")
              -> PROCEED with assurance="prefix", or HALT
 
 Strict:      sema_handshake("StateLock", "<full 64-char hash>", strict=true)
@@ -194,7 +194,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | Tool | Description |
 |------|-------------|
 | `sema_search` | Search patterns by name, description, or meaning |
-| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#7cd8`) |
+| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#8bde`) |
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
@@ -267,7 +267,7 @@ claude mcp add ug   -- npx -y understanding-graph mcp
 
 With both installed, an agent can:
 
-1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#7cd8`) so the meaning of the primitive can never drift.
+1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#8bde`) so the meaning of the primitive can never drift.
 2. Use `graph_semantic_search` to find all past graph nodes that reference a given sema pattern — hash-stable history, not keyword matching.
 3. Call `sema_handshake` *before* writing a decision that depends on a shared concept; if it returns `HALT`, the agent writes a `tension` node instead and stops, preventing silent divergence.
 

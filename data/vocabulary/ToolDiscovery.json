@@ -38,19 +38,19 @@
       "Protocols"
     ]
   },
-  "sema_ref": "ToolDiscovery#4b60",
-  "sema_id": "sema:ToolDiscovery#mh:SHA-256:4b608d9d78051bf0f7bd10120d145dd6664c416fc0c52969156f9a31d171d45b",
-  "sema_stub": "4b60",
+  "sema_ref": "ToolDiscovery#bf67",
+  "sema_id": "sema:ToolDiscovery#mh:SHA-256:bf677acdeda8699deafb4398efa1f605dea89de112873e9a7bb838a41adbffd6",
+  "sema_stub": "bf67",
   "dependencies": {
     "composes_with": {
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:011f50770f2599f5017df648ad5920ddb732f7681a9a3b7576cdcf3798ce6baa"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
       "card": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
-      "context_first": "sema:ContextFirst#mh:SHA-256:a0b6432a809a0c73841202d1802a83018f3db9d5938893415218a383ce151d6a",
+      "context_first": "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
       "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
       "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },

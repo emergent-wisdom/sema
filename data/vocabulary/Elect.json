@@ -36,13 +36,13 @@
       "Coordination"
     ]
   },
-  "sema_id": "sema:Elect#mh:SHA-256:45ff98aaa03731e8e490293d799edba62f98b40669828f2d32b436a0ecd4b6ca",
-  "sema_ref": "Elect#45ff",
-  "sema_stub": "45ff",
+  "sema_id": "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
+  "sema_ref": "Elect#187a",
+  "sema_stub": "187a",
   "dependencies": {
     "accepts": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "ballot": "sema:Ballot#mh:SHA-256:43ebc85e8e87e132698c59536402d1ba715b0dbad9e6c116f97a056c60da4577"
+      "ballot": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"

@@ -50,14 +50,14 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:02f9f7de69042f961cc0662098cb379cf03e3d384c05147e9fb986de301021b7",
-  "sema_ref": "SynergisticMode#02f9",
-  "sema_stub": "02f9",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:2463b5f3a7da2c5aa518c3e5e356bb04b0b72cb64a9e99b7f9984c8a44aeec97",
+  "sema_ref": "SynergisticMode#2463",
+  "sema_stub": "2463",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "compose": "sema:Compose#mh:SHA-256:57a9ff741d662d36173ef6bf5c5ecf2db16972e5ee9b7bae9559ce1fa24775fa",
+      "compose": "sema:Compose#mh:SHA-256:4fa274d804d83c00006408b8f436aa8c3a6cd60f23c0b3c56ca0ba4a50ff3c23",
       "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e",
       "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",

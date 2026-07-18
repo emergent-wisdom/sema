@@ -35,12 +35,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
-  "sema_ref": "FailClosed#4088",
-  "sema_stub": "4088",
+  "sema_id": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
+  "sema_ref": "FailClosed#eae7",
+  "sema_stub": "eae7",
   "dependencies": {
     "references": {
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:840fee4c2a300c1e17bd44e55debdf58d250ab62f79760f59c0189ca7d485824",
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
       "output_guard": "sema:OutputGuard#mh:SHA-256:32b0ffd08f916d61a677af7d82c53feb8a4019baab1bd86622a853aafa91ed2f",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

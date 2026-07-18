@@ -13,7 +13,8 @@
     "caution": "Exclusive state access \u2014 misuse enables denial of service via lock starvation.",
     "supersedes": [
       "sema:StateLock#mh:SHA-256:774b674f80993c49b0a348c384397f80027af319faa3440813d9d53b3eaa6a14",
-      "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a"
+      "sema:StateLock#mh:SHA-256:b91b68adbca94d80103e153ae63a987cbd7fb3a29463a5c8e6d88132b85cfa9a",
+      "sema:StateLock#mh:SHA-256:7cd86a9de68522b752366ef04de32f743b57ef16232866522ccdafb1f35c6da9"
     ],
     "path": [
       "Society",
@@ -23,14 +24,16 @@
   "signature": [
     "Lock(State)"
   ],
-  "sema_ref": "StateLock#7cd8",
-  "sema_id": "sema:StateLock#mh:SHA-256:7cd86a9de68522b752366ef04de32f743b57ef16232866522ccdafb1f35c6da9",
-  "sema_stub": "7cd8",
+  "sema_ref": "StateLock#8bde",
+  "sema_id": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78",
+  "sema_stub": "8bde",
   "dependencies": {
+    "composes_with": {
+      "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
+      "cooldown": "sema:Cooldown#mh:SHA-256:6f56ea214e52eab81c0592d4b17ed3da9dc6cbcf3a496a512088c9bc63006f3b"
+    },
     "references": {
       "actor": "sema:Actor#mh:SHA-256:1ecd855bdf9fc33f99840af8b53729d917355fb151d36ff21947885fac5c5907",
-      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
-      "cooldown": "sema:Cooldown#mh:SHA-256:878c03997b0670f8f217d6f26b6d2a583d15bf11e702346b4e317827dc7cb687",
       "lock": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }

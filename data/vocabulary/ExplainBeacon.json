@@ -19,14 +19,14 @@
       "Verification"
     ]
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:2e403d47af0e3914841b5e03a4b9531b479ae05b2a54f402c24e99232f45b38a",
-  "sema_ref": "ExplainBeacon#2e40",
-  "sema_stub": "2e40",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887",
+  "sema_ref": "ExplainBeacon#4676",
+  "sema_stub": "4676",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
       "greet": "sema:Greet#mh:SHA-256:58542bc100077ab85299c99424fa0ca7ea8559890678461a0d7f7aaba927c74f",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:c36fe65a4b171559a33cb36f37ec448dce8ad7092c665426bfabee3dbeb6d1c1",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
       "stream": "sema:Stream#mh:SHA-256:6b47aafa55e0339455fa2d82d2077ffbf2c2dea744bd7034a99a3b77cfacfaec"
     }
   },

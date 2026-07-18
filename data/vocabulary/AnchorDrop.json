@@ -30,13 +30,13 @@
       "Governance"
     ]
   },
-  "sema_id": "sema:AnchorDrop#mh:SHA-256:695ed5829808e8da3d42e7a5110adf1ec1656bba6b9798566f037c8367b9a16a",
-  "sema_ref": "AnchorDrop#695e",
-  "sema_stub": "695e",
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:4196dd5918edf55c99ed25b195f117741d53ba8dd4e7f508e0703df2b4620c54",
+  "sema_ref": "AnchorDrop#4196",
+  "sema_stub": "4196",
   "dependencies": {
     "references": {
-      "consensus": "sema:Consensus#mh:SHA-256:45f490890803e907aa12e85c4751fed8e7f7273f4530fa35f5bd1713a46e3630",
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "consensus": "sema:Consensus#mh:SHA-256:05264b8eb7ea117841041f266bf2882404e981604258205e5621acb816a7e708",
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

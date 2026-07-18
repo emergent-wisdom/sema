@@ -45,12 +45,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5",
-  "sema_ref": "HeldRelease#533b",
-  "sema_stub": "533b",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:10b0ae36dabba68fe8aad67adf8075ce5a5f0b2a3bb602c7bd3380b0dd0117d9",
+  "sema_ref": "HeldRelease#10b0",
+  "sema_stub": "10b0",
   "dependencies": {
     "accepts": {
-      "unique_handle": "sema:UniqueHandle#mh:SHA-256:88da37fb134c04632530db979115adbb3ca558bdc4f60111df03e9282de8cd3a"
+      "unique_handle": "sema:UniqueHandle#mh:SHA-256:58f9595fc08f62825f3dc959f10533558f459760a1c63ef2bc72b6da615ff37b"
     },
     "references": {
       "commitment_device": "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4",

@@ -34,14 +34,14 @@
   "signature": [
     "Combine(PromptChain)"
   ],
-  "sema_id": "sema:Compose#mh:SHA-256:57a9ff741d662d36173ef6bf5c5ecf2db16972e5ee9b7bae9559ce1fa24775fa",
-  "sema_ref": "Compose#57a9",
-  "sema_stub": "57a9",
+  "sema_id": "sema:Compose#mh:SHA-256:4fa274d804d83c00006408b8f436aa8c3a6cd60f23c0b3c56ca0ba4a50ff3c23",
+  "sema_ref": "Compose#4fa2",
+  "sema_stub": "4fa2",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
       "combine": "sema:Combine#mh:SHA-256:c465eb2ec32d4de2329827dbd943672f5f0b675716af0aca501ce9d157e309b9",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:2543cc5972f02b5a21d776643ba485beda876462c57a10c8949d0072e54bd620"
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6"
     }
   },
   "sema_layer": "Mind",

@@ -31,17 +31,17 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Handoff#mh:SHA-256:4e0fac0fb6328d9aa18ea61e3dc4c7eb01d3ac1b8a6a4705c3e897811f5bd52a",
-  "sema_ref": "Handoff#4e0f",
-  "sema_stub": "4e0f",
+  "sema_id": "sema:Handoff#mh:SHA-256:d0e812d3e31c77524365e14ddb3c2c07182836b54ab514b3f1c995d1bddb1918",
+  "sema_ref": "Handoff#d0e8",
+  "sema_stub": "d0e8",
   "dependencies": {
     "accepts": {
       "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "responsibility": "sema:Responsibility#mh:SHA-256:8cf5bbf5ca36a65aad611647fd512c76522e56f2342b87a110784ba166662972",
+      "responsibility": "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f",
       "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },
     "composes_with": {
-      "delegate": "sema:Delegate#mh:SHA-256:78a8da9a060a24531bde6d3673a4bfc3123b72adce8ff4e95e244937715f150d"
+      "delegate": "sema:Delegate#mh:SHA-256:2d38b629a5905a4f7cc549b75fe7a553852dccb08066e62db3f0a98642c441a3"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
