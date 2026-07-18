@@ -26,14 +26,14 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095",
-  "sema_ref": "ProphetFanOut#d47b",
-  "sema_stub": "d47b",
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:b0f338cae3235461586e3303452b74e696b33b77e971e9a0c34b1b7e3b0292f6",
+  "sema_ref": "ProphetFanOut#b0f3",
+  "sema_stub": "b0f3",
   "dependencies": {
     "references": {
       "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
       "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957"
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
     }
   },
   "sema_layer": "Mind",

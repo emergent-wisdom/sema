@@ -24,17 +24,17 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026",
-  "sema_ref": "MarginalValueRule#eebb",
-  "sema_stub": "eebb",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d",
+  "sema_ref": "MarginalValueRule#552f",
+  "sema_stub": "552f",
   "signature": [
     "Budget(RecursionDive)"
   ],
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "estimate": "sema:Estimate#mh:SHA-256:28d2e9662fc904a5d5662b8b532a2c14a7ed47f8cda950a58875e07f249207df",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:7e67260837bfb3fd46b514f9ddfe0b6e6f62657e8af2a626a14e29f77ada285d"
+      "estimate": "sema:Estimate#mh:SHA-256:c6d21a9be2f862c3c4e46172f155ec129350e6dff03d18d658d694edcc34c9b7",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921"
     }
   },
   "sema_layer": "Mind",

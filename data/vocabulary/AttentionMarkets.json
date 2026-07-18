@@ -33,12 +33,12 @@
       "Economics"
     ]
   },
-  "sema_id": "sema:AttentionMarkets#mh:SHA-256:787e196833bbf6e6f914b37f1097fe555e6d4197a71afe9de60a6772cc41e593",
-  "sema_ref": "AttentionMarkets#787e",
-  "sema_stub": "787e",
+  "sema_id": "sema:AttentionMarkets#mh:SHA-256:faf81f5f0d5d6d9bf0b6ac33732c08fb90d5574d168377c5c908295f978fcf13",
+  "sema_ref": "AttentionMarkets#faf8",
+  "sema_stub": "faf8",
   "dependencies": {
     "composes_with": {
-      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:15530861d00609a281c40ecd368dda8f2a8e15181bef54b2532752f50348e290"
+      "continuous_resource_auction": "sema:ContinuousResourceAuction#mh:SHA-256:8fe283f5ae6bd9adcf164ba848bcc731863b0f232f2dbc4fa8c389f70eb8184c"
     },
     "references": {
       "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",

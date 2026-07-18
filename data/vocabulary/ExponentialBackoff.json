@@ -1,0 +1,59 @@
+{
+  "handle": "ExponentialBackoff",
+  "derived_from": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
+  "mechanism": "A {{backoff}} delay policy whose unjittered delay grows geometrically across consecutive unsuccessful attempts: base_delay * multiplier^attempt_index. A configurable jitter factor may perturb the candidate delay to decorrelate concurrent attempts, after which the scheduled delay is clamped to max_delay. The caller defines retry eligibility, retry budget, and when the attempt sequence resets.",
+  "gloss": "Geometrically increasing capped retry delay",
+  "invariants": [
+    "Scheduled delay is greater than zero and does not exceed max_delay.",
+    "Before jitter, delay is non-decreasing with attempt_index until max_delay is reached."
+  ],
+  "parameters": [
+    {
+      "name": "base_delay",
+      "type": "Duration",
+      "range": "> 0",
+      "description": "Delay before the first subsequent attempt"
+    },
+    {
+      "name": "multiplier",
+      "type": "Float",
+      "range": "(1, unbounded)",
+      "description": "Geometric growth factor applied per unsuccessful attempt"
+    },
+    {
+      "name": "max_delay",
+      "type": "Duration",
+      "range": "[base_delay, unbounded)",
+      "description": "Upper bound applied after optional jitter"
+    },
+    {
+      "name": "jitter_factor",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Proportional randomization of the candidate delay"
+    }
+  ],
+  "failure_modes": [
+    "Synchronized retries when jitter is zero or correlated across callers.",
+    "Excessive recovery delay when the multiplier or cap is too large.",
+    "Retry amplification when callers use the delay policy without a retry budget."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ]
+  },
+  "sema_id": "sema:ExponentialBackoff#mh:SHA-256:a543a38722a0dfe96cf4bc7ccdaa615195ac058b5029651dc26d5cce1cd43128",
+  "sema_ref": "ExponentialBackoff#a543",
+  "sema_stub": "a543",
+  "dependencies": {
+    "references": {
+      "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

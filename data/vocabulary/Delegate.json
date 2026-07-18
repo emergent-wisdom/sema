@@ -39,15 +39,15 @@
       "Coordination"
     ]
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:78a8da9a060a24531bde6d3673a4bfc3123b72adce8ff4e95e244937715f150d",
-  "sema_ref": "Delegate#78a8",
-  "sema_stub": "78a8",
+  "sema_id": "sema:Delegate#mh:SHA-256:2d38b629a5905a4f7cc549b75fe7a553852dccb08066e62db3f0a98642c441a3",
+  "sema_ref": "Delegate#2d38",
+  "sema_stub": "2d38",
   "dependencies": {
     "accepts": {
       "holographic_shard": "sema:HolographicShard#mh:SHA-256:7eb7beec35ed149646d3e9631303f4dbf706daec5ccc0d186d0d6158cd7b5203"
     },
     "composes_with": {
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:c36fe65a4b171559a33cb36f37ec448dce8ad7092c665426bfabee3dbeb6d1c1",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
       "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8"
     },
     "references": {

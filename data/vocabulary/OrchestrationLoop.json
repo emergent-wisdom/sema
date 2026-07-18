@@ -28,17 +28,17 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:156fbc2f8630fe24a957a3c9a9938a02ce3494b9858d7e939d882430e96e23e9",
-  "sema_ref": "OrchestrationLoop#156f",
-  "sema_stub": "156f",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:212895d134c09e50af6ec4a668c23ffc4a92604b61c411aaa5f12b7b93b75d1e",
+  "sema_ref": "OrchestrationLoop#2128",
+  "sema_stub": "2128",
   "signature": [
     "Workflow(Rollout)"
   ],
   "dependencies": {
     "composes_with": {
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:8c6cf10e82ea7b80e3902d6947dca62be9ae0d7494787c6c4ca84113653e26e6",
-      "rollout": "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996"
+      "request_framing": "sema:RequestFraming#mh:SHA-256:e9739d11444b84d2d5cf63a9a878db9b17ba68598a2ee2bd5c4e85a0e9fdb76c",
+      "rollout": "sema:Rollout#mh:SHA-256:84e234d9616bde2b394074e3d082e85c7ee74068d65f2aa8642a5e3a64f97c26"
     },
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
@@ -46,7 +46,7 @@
       "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
       "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28",
-      "workflow": "sema:Workflow#mh:SHA-256:6de060aa8b0e98b2042b10aa6465125ca877a41d8d10859a8d4a7f2f9ea5fcc6"
+      "workflow": "sema:Workflow#mh:SHA-256:982bc58d26f2d57c21420514e03f33d68e10ca20b01eae9953927cb95b437042"
     }
   },
   "sema_layer": "Society",

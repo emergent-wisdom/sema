@@ -18,13 +18,13 @@
       "Strategy"
     ]
   },
-  "sema_ref": "PUREBrainstorming#9ba1",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:9ba126fc9e0dde8ae526e775831ea41e84e9dd70c1e4b6f9f9a498e9ea42c3b2",
-  "sema_stub": "9ba1",
+  "sema_ref": "PUREBrainstorming#c03a",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:c03aa5e0e413c5d3c8a25732d183277e0701fbde90d2e30fe3c12903a14b1cbb",
+  "sema_stub": "c03a",
   "dependencies": {
     "composes_with": {
       "pure_check": "sema:PURECheck#mh:SHA-256:e27797e99add1f808b06cc5422fb2fc586af89af2e7fc7c955eaf8d79f563250",
-      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:89feb6383295f0b6e42d37b6e704c7d02ba63c58d6e4482d801e27a63f299bfd"
+      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:3d637c2dc4c764b0a31aea124872527644ed3df12462d3b4f81878d644ee29a3"
     },
     "references": {
       "p_u_r_e": "sema:PURE#mh:SHA-256:7ed435750dde79d334021535d6fefcf015d68db51189c90bedbcc14743757436"

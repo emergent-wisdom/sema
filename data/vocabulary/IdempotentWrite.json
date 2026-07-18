@@ -30,14 +30,14 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:IdempotentWrite#mh:SHA-256:ebf5e8d3d5a4802033179f871bf4dfd0be7c611ab7534ab8b8e07e5f21eab7d0",
-  "sema_ref": "IdempotentWrite#ebf5",
-  "sema_stub": "ebf5",
+  "sema_id": "sema:IdempotentWrite#mh:SHA-256:e919903ac4044c9761bbdae612c360150f12e679dcc608ee7389f793debda186",
+  "sema_ref": "IdempotentWrite#e919",
+  "sema_stub": "e919",
   "dependencies": {
     "references": {
       "cache": "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5",
       "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "state_lock": "sema:StateLock#mh:SHA-256:7cd86a9de68522b752366ef04de32f743b57ef16232866522ccdafb1f35c6da9"
+      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78"
     }
   },
   "sema_layer": "Infrastructure",

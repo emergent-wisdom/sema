@@ -1,6 +1,6 @@
 {
   "handle": "Retry",
-  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE backoff\u2014adaptive based on failure type: transient uses exponential+jitter, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
+  "mechanism": "Intelligent re-attempt of failed coordination with failure-informed strategy. After BREAK + COMPENSATE, agent evaluates: (1) CLASSIFY failure\u2014transient (timeout, rate-limit, network blip) vs persistent (capability gap, protocol mismatch, explicit rejection). (2) CHECK retry_hint from BREAK (partner may say 'don't retry' or 'wait 30s'). (3) CONSULT failure_history\u2014same error repeating? {{circuit_breaker}} threshold reached? (4) COMPUTE {{backoff}}\u2014adaptive based on failure type: transient uses {{exponential_backoff}}, persistent uses longer fixed delay or triggers abort. (5) VERIFY changed_conditions\u2014has something changed that makes retry worthwhile? (6) EXECUTE retry if within budget and conditions favor success, else ABORT with retry_exhausted status. Retry CARRIES FORWARD: failure context, partner state observations, environmental data. Retry RESETS: coordination state (fresh start, don't resume mid-stream). It handles transient failures by re-queuing the task, distinguishing them from terminal failures that trigger {{break}} and {{compensate}}.",
   "gloss": "Classified re-attempt with backoff conditioned on failure type",
   "failure_modes": [
     "Misclassifying persistent failure as transient (wastes retry budget).",
@@ -24,27 +24,31 @@
   "_meta": {
     "tier": 1,
     "related": [
-      "sema:Backoff#mh:SHA-256:14b48b9a05b8b47aea8484dbd426cc39dcff0c2c293010415a233ce23fccab9c"
+      "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72"
     ],
     "ring": 1,
     "supersedes": [
       "sema:Retry#mh:SHA-256:d53d7b3af592e07dfb4d8f4cb3d74472da4514f0954d2138f2148e81bd55882a",
-      "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091"
+      "sema:Retry#mh:SHA-256:07b7eedd84065dbf822183e0ae1512edb92caa0867bf7c9225b85371721d0091",
+      "sema:Retry#mh:SHA-256:79b69773b2fdd6fc81b1205d1088e9df841db683a982e079fc2dca97f4818804"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Retry#mh:SHA-256:79b69773b2fdd6fc81b1205d1088e9df841db683a982e079fc2dca97f4818804",
-  "sema_ref": "Retry#79b6",
-  "sema_stub": "79b6",
+  "sema_id": "sema:Retry#mh:SHA-256:9e178c29dd1aa774432d8eb6e87fb2e93ab5b1a6db9582f737ad60e9ddf56053",
+  "sema_ref": "Retry#9e17",
+  "sema_stub": "9e17",
   "dependencies": {
+    "composes_with": {
+      "exponential_backoff": "sema:ExponentialBackoff#mh:SHA-256:a543a38722a0dfe96cf4bc7ccdaa615195ac058b5029651dc26d5cce1cd43128"
+    },
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
+      "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
       "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:840fee4c2a300c1e17bd44e55debdf58d250ab62f79760f59c0189ca7d485824",
-      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2"
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
+      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9"
     }
   },
   "sema_layer": "Mind",

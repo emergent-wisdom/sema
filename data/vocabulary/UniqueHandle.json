@@ -23,14 +23,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:UniqueHandle#mh:SHA-256:88da37fb134c04632530db979115adbb3ca558bdc4f60111df03e9282de8cd3a",
-  "sema_ref": "UniqueHandle#88da",
-  "sema_stub": "88da",
+  "sema_id": "sema:UniqueHandle#mh:SHA-256:58f9595fc08f62825f3dc959f10533558f459760a1c63ef2bc72b6da615ff37b",
+  "sema_ref": "UniqueHandle#58f9",
+  "sema_stub": "58f9",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
       "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "state_lock": "sema:StateLock#mh:SHA-256:7cd86a9de68522b752366ef04de32f743b57ef16232866522ccdafb1f35c6da9"
+      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78"
     }
   },
   "sema_layer": "Society",

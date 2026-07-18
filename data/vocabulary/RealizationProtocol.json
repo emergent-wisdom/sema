@@ -35,21 +35,21 @@
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:663bfe23868f8e0897c443f113a37ea2a5565df6a61dec7f4110ea855e1db0d8",
-  "sema_ref": "RealizationProtocol#663b",
-  "sema_stub": "663b",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:b4ceb8c0d477cba4ef053db0fa8f6e6b677327fba3fb6a48f9ee9d71f9af6cbb",
+  "sema_ref": "RealizationProtocol#b4ce",
+  "sema_stub": "b4ce",
   "dependencies": {
     "composes_with": {
       "interpret": "sema:Interpret#mh:SHA-256:ff6daf0b5967deb7da11c1a2ea74ce7e6ab9baf6362a53045bff656b0c5671dc",
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
-      "rollout": "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996"
+      "rollout": "sema:Rollout#mh:SHA-256:84e234d9616bde2b394074e3d082e85c7ee74068d65f2aa8642a5e3a64f97c26"
     },
     "references": {
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:4342d3162e552fdbfcde1d594a4156ca6f2e0e42fcb20a9be2bc5ba54a4af0d0",
       "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
       "realizable": "sema:Realizable#mh:SHA-256:42f8270af6b0361a440bf86d1ece23a0117d34f504d9db576f30f67cf04815b3",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:2e4c0e7dce54bfdddd61b9ec1a19715036eb916f979695719b7b8987dce72057"
+      "solver_tree": "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce"
     },
     "yields": {
       "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683"

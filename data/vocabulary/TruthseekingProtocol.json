@@ -15,13 +15,13 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a",
-  "sema_ref": "TruthseekingProtocol#afc1",
-  "sema_stub": "afc1",
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:d35b9e4131150929fcc3e447f1b8c57c65796e03c8c814a5b00fa95995778f53",
+  "sema_ref": "TruthseekingProtocol#d35b",
+  "sema_stub": "d35b",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:3cf20e30a632b0a7ab64a7fb2984fe64b106ba7819af458fa5e260aa89853b1d",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d"
     },
     "references": {
       "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"

@@ -53,9 +53,9 @@
       "Coordination"
     ]
   },
-  "sema_id": "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430",
-  "sema_ref": "Rally#48a0",
-  "sema_stub": "48a0",
+  "sema_id": "sema:Rally#mh:SHA-256:bc5fb9825570d17d2869a85f4162c0bee1a152b56b9816b9735c90484dc8b2ff",
+  "sema_ref": "Rally#bc5f",
+  "sema_stub": "bc5f",
   "dependencies": {
     "accepts": {
       "selection_criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
@@ -65,9 +65,9 @@
     },
     "references": {
       "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "elect": "sema:Elect#mh:SHA-256:45ff98aaa03731e8e490293d799edba62f98b40669828f2d32b436a0ecd4b6ca",
+      "elect": "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
       "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
       "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
     }
   },

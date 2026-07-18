@@ -47,12 +47,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
-  "sema_ref": "Quorum#c6a5",
-  "sema_stub": "c6a5",
+  "sema_id": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
+  "sema_ref": "Quorum#d634",
+  "sema_stub": "d634",
   "dependencies": {
     "accepts": {
-      "ballot": "sema:Ballot#mh:SHA-256:43ebc85e8e87e132698c59536402d1ba715b0dbad9e6c116f97a056c60da4577"
+      "ballot": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497"
     }
   },
   "sema_layer": "Infrastructure",

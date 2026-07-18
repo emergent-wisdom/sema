@@ -15,12 +15,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:7ada4e77d2edac145f6ae3387e2da68202cb9de87588ded01f929be507e7796c",
-  "sema_ref": "DiscoveryProtocol#7ada",
-  "sema_stub": "7ada",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:9958e873e5aa29dc046965443b256ee00d53f69befc0c9e573ba3b165e7487db",
+  "sema_ref": "DiscoveryProtocol#9958",
+  "sema_stub": "9958",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:3cf20e30a632b0a7ab64a7fb2984fe64b106ba7819af458fa5e260aa89853b1d",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
       "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     },
     "references": {

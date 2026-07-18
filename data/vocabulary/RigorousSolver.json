@@ -19,16 +19,16 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:b75d4b063fc8f90f4a1361ef08c8dac02fbf147f0c8f122ca390fdbde74d39cd",
-  "sema_ref": "RigorousSolver#b75d",
-  "sema_stub": "b75d",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:70d41b35ddab10c9575b6feed8022935cb266f3d81fce659cfb6b8b9c2d4dc94",
+  "sema_ref": "RigorousSolver#70d4",
+  "sema_stub": "70d4",
   "dependencies": {
     "composes_with": {
       "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
       "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8"
     },
     "references": {
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
       "socratic_loop": "sema:SocraticLoop#mh:SHA-256:7d528905a96b5774a2e16f7cb7b9fa50845c3bdb03549a2322889d7560d17f8e"
     }
   },

@@ -35,9 +35,9 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
-  "sema_ref": "NormativeJudge#bd4e",
-  "sema_stub": "bd4e",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:4b394d0d33f4d6f7e8fa2566ffa4d8cc17090b55c49c69fe7dbc66dc82b2057c",
+  "sema_ref": "NormativeJudge#4b39",
+  "sema_stub": "4b39",
   "signature": [
     "Judge(Value)"
   ],
@@ -52,7 +52,7 @@
       "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
       "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
       "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }

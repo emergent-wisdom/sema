@@ -21,20 +21,20 @@
       "Economics"
     ]
   },
-  "sema_ref": "Award#af8e",
-  "sema_id": "sema:Award#mh:SHA-256:af8e239d97dd719c5e42fbc977e8b3a67a0aa31bd3f788883dea1475098ef976",
-  "sema_stub": "af8e",
+  "sema_ref": "Award#6e69",
+  "sema_id": "sema:Award#mh:SHA-256:6e6927d595e808597bf98b0955dab81ee889122e4c2e2bbb0c094697969f57c9",
+  "sema_stub": "6e69",
   "dependencies": {
     "accepts": {
-      "bid": "sema:Bid#mh:SHA-256:5c45e9bd8858829e5a5cde5ad4f3ab26f4bb6937f88c1ddde40798b58799a266"
+      "bid": "sema:Bid#mh:SHA-256:1ebadf0e232c35605addcb43f2c2ceab124a7f710c0471cefb989189661c8d3a"
     },
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
-      "held_release": "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5",
+      "held_release": "sema:HeldRelease#mh:SHA-256:10b0ae36dabba68fe8aad67adf8075ce5a5f0b2a3bb602c7bd3380b0dd0117d9",
       "sign": "sema:Sign#mh:SHA-256:d89a18b44321e4b9ba9aada7ac698f69ef9f24a2b0d92e0906168554604a301c"
     },
     "references": {
-      "solver": "sema:Solver#mh:SHA-256:04b58c815005971905e3d430112a06fb76b727882204a80fe58ace79b066a1d6",
+      "solver": "sema:Solver#mh:SHA-256:b7f9e18fec50d288ea829a21a59de02f65cf1ffe3eef07142389d659bd421d02",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },

@@ -43,9 +43,9 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:BreadthGovernor#mh:SHA-256:c7ea1965d69acf5735eb3e6bc1cb21a2d8308b8b115d115c443dfc4bb949e719",
-  "sema_ref": "BreadthGovernor#c7ea",
-  "sema_stub": "c7ea",
+  "sema_id": "sema:BreadthGovernor#mh:SHA-256:5e8cc0b3df0dc29c7a5586040b965e5beb4d49d578145ae799f895f4dcf0d193",
+  "sema_ref": "BreadthGovernor#5e8c",
+  "sema_stub": "5e8c",
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
@@ -53,7 +53,7 @@
       "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
       "parallel": "sema:Parallel#mh:SHA-256:e799c1986d62c4a052090842aabe144193587f8a4d8dd23617d027b2e9b85098",
       "parsimony": "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351",
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:b0f338cae3235461586e3303452b74e696b33b77e971e9a0c34b1b7e3b0292f6",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

@@ -6,15 +6,17 @@ The following cards show the \textbf{canonical hashed content} for each pattern.
 Only semantic fields are included---these are the exact fields that produce the Merkle root hash.
 Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emph{not} part of the hash.
 
-\subsection{sema:StateLock\#mh:SHA-256:7cd86a9de68522b752366ef04de32f743b57ef16232866522ccdafb1f35c6da9}
+\subsection{sema:StateLock\#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78}
 
 \begin{lstlisting}
 {
   "dependencies": {
+    "composes_with": {
+      "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
+      "cooldown": "sema:Cooldown#mh:SHA-256:6f56ea214e52eab81c0592d4b17ed3da9dc6cbcf3a496a512088c9bc63006f3b"
+    },
     "references": {
       "actor": "sema:Actor#mh:SHA-256:1ecd855bdf9fc33f99840af8b53729d917355fb151d36ff21947885fac5c5907",
-      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
-      "cooldown": "sema:Cooldown#mh:SHA-256:878c03997b0670f8f217d6f26b6d2a583d15bf11e702346b4e317827dc7cb687",
       "lock": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
@@ -32,21 +34,21 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
 }
 \end{lstlisting}
 
-\subsection{sema:FractalIntelligence\#mh:SHA-256:54810782124d5c716d1204d83ed1c40a16d66201c884c5e70473623898b4b40d}
+\subsection{sema:FractalIntelligence\#mh:SHA-256:1d79fe6b35dc95d7c11f8ca7d105e73e9b7d318a30d3d27b9cccae4330ef1076}
 
 \begin{lstlisting}
 {
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:3cf20e30a632b0a7ab64a7fb2984fe64b106ba7819af458fa5e260aa89853b1d",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:1eec33d8fc081000b2c5927b7cfc2d4e6a8835fc9e0d46e051bb7ee34541cbdf",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
-      "problem_framer": "sema:ProblemFramer#mh:SHA-256:271894d4cdcba54a6c1f4c85f1983d05f86c18c7b12948ef19619addebc4a70f",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
+      "problem_framer": "sema:ProblemFramer#mh:SHA-256:ea80628660b357af41d6877843b44f7898d1677171c0a13c5e258d59639469f1",
       "reason": "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:7e67260837bfb3fd46b514f9ddfe0b6e6f62657e8af2a626a14e29f77ada285d",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921",
       "reframe": "sema:Reframe#mh:SHA-256:573733f86a965e0db34ce77c54bada908c9561248a7d5a9b76652dba71e1565a",
-      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:53b2f1c57a571f308d8ce1686edf0fbbbc178bf35d96b2a445bcebeda01208aa",
+      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:5791e43fad7e1f42cb7451eec53c6bfa9fef567b30a14d05be269116203e5848",
       "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     },
     "references": {
@@ -57,7 +59,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
       "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
       "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:7361e8ea2303b8cd0970fe167548cbf9c86f7f418f175424906f563db22729ae"
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:0923a89effa56135175d1404578641c31d6f2d63716745aba054d7143ad0d6f9"
     }
   },
   "signature": [
@@ -181,7 +183,7 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
 }
 \end{lstlisting}
 
-\subsection{sema:OptimisticSolver\#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77}
+\subsection{sema:OptimisticSolver\#mh:SHA-256:a96fd56ca17c012b3ee75a4a37061e2592ed742cd75175540537b5fb68136880}
 
 \textbf{Note}: This pattern was downgraded to \textbf{Tier~2} following adversarial analysis.
 
@@ -190,16 +192,16 @@ Metadata fields (\texttt{handle}, \texttt{\_meta}, \texttt{tier}, etc.) are \emp
 {
   "dependencies": {
     "composes_with": {
-      "atomic_bid": "sema:AtomicBid#mh:SHA-256:33e1d5689a56922e56ffedb768c82621a62e207160fc4f97228e5dddac588d65",
-      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2",
+      "atomic_bid": "sema:AtomicBid#mh:SHA-256:9c0c78d25ef587cbb5802e4e9243055062fa27a45f30d46896d464c840a35fcd",
+      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",
       "reflexion": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83"
     },
     "references": {
       "parallel": "sema:Parallel#mh:SHA-256:e799c1986d62c4a052090842aabe144193587f8a4d8dd23617d027b2e9b85098",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
-      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:b75d4b063fc8f90f4a1361ef08c8dac02fbf147f0c8f122ca390fdbde74d39cd"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
+      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:70d41b35ddab10c9575b6feed8022935cb266f3d81fce659cfb6b8b9c2d4dc94"
     }
   },
   "mechanism": "A high-velocity implementation of {{polymorphic_solver}} designed for efficient multi-agent coordination. Requires a {{parallel}} runtime (Actor Model with Mailboxes) to prevent serial deadlock. It explicitly couples the standard Solver lifecycle (Reason -> Solution) with the {{atomic_bid}} protocol. Unlike the base abstraction, this pattern MANDATES that the agent plan and execute in a single turn. It relies on {{reflexion}} and {{compensate}} for error correction rather than pre-action permission. Use {{compute_budget}} to bound resource consumption. Contrast with {{rigorous_solver}} which prioritizes safety over speed. A {{pathway_memory}} accumulates across runs so the optimistic route-selection converges on strategies that historically succeeded under similar conditions.",

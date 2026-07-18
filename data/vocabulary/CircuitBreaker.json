@@ -51,12 +51,12 @@
       "Primitives"
     ]
   },
-  "sema_ref": "CircuitBreaker#840f",
-  "sema_id": "sema:CircuitBreaker#mh:SHA-256:840fee4c2a300c1e17bd44e55debdf58d250ab62f79760f59c0189ca7d485824",
-  "sema_stub": "840f",
+  "sema_ref": "CircuitBreaker#3caa",
+  "sema_id": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
+  "sema_stub": "3caa",
   "dependencies": {
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
+      "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

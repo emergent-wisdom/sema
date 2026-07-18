@@ -43,15 +43,15 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Throttle#mh:SHA-256:dc1439d0fbf64ac81ebea3d7570e55d7b94802d028061470a2e5681bc3c1d5f6",
-  "sema_ref": "Throttle#dc14",
-  "sema_stub": "dc14",
+  "sema_id": "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8",
+  "sema_ref": "Throttle#2486",
+  "sema_stub": "2486",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
     },
     "composes_with": {
-      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6"
+      "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72"
     }
   },
   "sema_layer": "Infrastructure",

@@ -40,9 +40,9 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:b3a0c556a3b52cdd3b366f6494e2d93b3a105434f18f5b913f53164d02868424",
-  "sema_ref": "NormCheck#b3a0",
-  "sema_stub": "b3a0",
+  "sema_id": "sema:NormCheck#mh:SHA-256:53087eaa90c2c9b379ecc0cfe7cd67bcc02e42deb7022e8fc300a87fa75c092b",
+  "sema_ref": "NormCheck#5308",
+  "sema_stub": "5308",
   "signature": [
     "Check(Value)"
   ],
@@ -50,9 +50,9 @@
     "references": {
       "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
       "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "normative_judge": "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095",
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:4b394d0d33f4d6f7e8fa2566ffa4d8cc17090b55c49c69fe7dbc66dc82b2057c",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:b0f338cae3235461586e3303452b74e696b33b77e971e9a0c34b1b7e3b0292f6",
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

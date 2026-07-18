@@ -18,13 +18,13 @@
       "Protocols"
     ]
   },
-  "sema_ref": "AmbiguityResolution#4c6b",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:4c6b0db38986110f6518c3cca2657cc627ffeb0bde5986fa7ad84bcfab868424",
-  "sema_stub": "4c6b",
+  "sema_ref": "AmbiguityResolution#ede0",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:ede07da7ba005a40e31635c0f168f38e16f569a84bb1a57d8ca16555af403220",
+  "sema_stub": "ede0",
   "dependencies": {
     "composes_with": {
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:31cfc8a45ee0ea7751661386771342dc841503e4f1af65400f1f6bb95f9cd9b7",
-      "vote": "sema:Vote#mh:SHA-256:3b66510363464c335c95a843247ddd37bbb98616a17f6a8d4bb17b1ac91bd41c"
+      "vote": "sema:Vote#mh:SHA-256:0affbbc722d42218027f581176be08d0a66c9a3dc99adbf94d411ef9fc38786c"
     }
   },
   "sema_layer": "Society",

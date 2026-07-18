@@ -909,39 +909,73 @@
   },
   "Backoff": {
     "motivation": {
-      "why_this_layer": "exponential delay — mechanical primitive",
-      "why_it_exists": "Contention reduction as a typed primitive — every retry loop needs exponential delay with jitter and a cap, and reinventing it per call site produces inconsistent behavior (different multipliers, missing jitter, unbounded growth). Backoff pins the minimum mechanism so every retry loop in the library inherits the same shape.",
-      "removability": "No. Referenced by Retry, ReAttempt, StateLock, Mutex, Lock, Throttle, and every other pattern that has to handle contention. Removing would force each site to re-declare the delay mechanics."
+      "why_this_layer": "failure-responsive delay — mechanical primitive",
+      "why_it_exists": "Retry and contention mechanisms need a shared name for deferring a subsequent attempt without pretending that exponential growth, Fibonacci growth, feedback adaptation, jitter, caps, reset rules, or retry budgets are universal. Backoff pins that reusable family intersection.",
+      "removability": "No. Retry, ReAttempt, CircuitBreaker, StateLock, and Throttle use the shared delay concept. Removing it would force each caller to re-declare the family-level spacing semantics."
     },
     "usage": {
-      "intended": "exponential delay to reduce contention — multiplier growth + jitter + cap.",
-      "future": "exponential retry-delay variants with different caps, jitter distributions, and reset policies.",
+      "intended": "defer a subsequent attempt after failure, rejection, or contention according to a delay policy.",
+      "future": "shared parent for exponential, Fibonacci, fixed, feedback-adaptive, and externally signaled delay strategies.",
       "broad_contexts": "retry backoff, thundering-herd prevention, rate-limit recovery, connection retry, TCP congestion, SaaS API integration.",
-      "every_context_needs": "initial delay, multiplier, jitter, cap.",
-      "varies": "multiplier value, jitter distribution, cap value, reset-on-success semantic, per-target vs global.",
-      "extensions": "`JitteredExponentialBackoff`, `CappedExponentialBackoff`; a generic `Backoff` parent with `ExponentialBackoff`, `FibonacciBackoff`, and `AdaptiveBackoff` children requires a migration.",
+      "every_context_needs": "a triggering failure, rejection, or contention outcome; a caller-selected subsequent attempt; and a policy-derived delay before eligibility.",
+      "varies": "delay progression, feedback inputs, jitter, cap, reset boundary, scope, and retry budget.",
+      "extensions": "`ExponentialBackoff`, `FibonacciBackoff`, `AdaptiveBackoff`, and domain-specific feedback policies.",
       "notes": [
-        "The published hash is specifically exponential despite the general handle; the commentary no longer presents non-exponential strategies as honest descendants of that definition."
+        "The former published definition was specifically exponential. That strategy now lives in `ExponentialBackoff`; the short parent handle contains only the broad-use intersection."
       ]
     },
     "design": {
       "tensions": [
-        "Deterministic policy vs jitter: the mechanism mandates jitter to prevent thundering herd, which is inherently non-deterministic. Callers who need reproducibility have to seed or disable jitter — the pattern doesn't expose the seed.",
-        "Exponential growth vs cap: unbounded growth is catastrophic; bounded growth degrades the 'exponential' property at the cap. The pattern requires the cap but doesn't say what value is reasonable.",
-        "Reset-on-success vs sticky state: the mechanism says reset on success. Some production systems want to keep the backoff growing across independent operations on the same resource (adaptive throttling). That is a descendant concern."
+        "Load reduction vs liveness: longer spacing protects a contested target but delays recovery after conditions improve.",
+        "Local history vs external feedback: some policies derive delay from attempt count while others consume server hints or observed load; the parent must admit both.",
+        "Shared policy vs caller ownership: Backoff determines spacing, while the decision to retry and the retry budget remain with the caller."
       ],
       "tradeoffs": [
-        "Exponential buys rapid contention reduction at the cost of slow recovery from transient failures (a single failed attempt takes exponential time to retry).",
-        "Jitter buys herd prevention at the cost of predictability — the precise retry times are randomized.",
-        "Finite retry budget buys crash-loop prevention at the cost of surrendering on persistent failures that would eventually resolve."
+        "A shared parent makes retry strategies substitutable at the cost of leaving concrete scheduling guarantees to descendants.",
+        "Deferral reduces repeated pressure at the cost of progress latency and possible starvation under unfair contention."
       ],
       "critique": [
-        "The short parent handle squats on the general concept while the hash pins exponential growth, mandatory jitter, reset-on-success, a finite retry budget, and arbitrary numeric ranges.",
-        "`FibonacciBackoff` and `AdaptiveBackoff` cannot honestly derive from this definition because they violate its mechanism. The clean fix is a generic `Backoff` parent plus an `ExponentialBackoff` child, not more contracts on the current parent.",
-        "That split affects the paper's parameter example and a wide dependent subtree, so it is recorded as a dedicated migration rather than silently weakened in this batch. Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain relevant family risks."
+        "The parent is intentionally mechanism-light: adding a multiplier, jitter, cap, reset rule, or finite budget here would again exclude legitimate family members.",
+        "The time-delay mechanism excludes negotiation concession and other metaphorical uses of the English word 'backoff'; those belong to different patterns.",
+        "Starvation, synchronized retries, exhaustion before recovery, and retry amplification remain family-level review risks, but their mitigations depend on the selected descendant and caller policy."
       ]
     },
-    "family_discussion": "The contention-reduction primitive for every retry loop in the library. Composed with `Cooldown` (minimum inter-event gap), `Throttle` (rate cap), and `Hysteresis` (asymmetric thresholds). Used by `Lock`, `Mutex`, `StateLock`, `Retry`, `ReAttempt`, `CircuitBreaker` at the contention layer."
+    "family_discussion": "The parent of concrete delay policies such as `ExponentialBackoff`. Composes with `Cooldown` (minimum inter-event gap), `Throttle` (aggregate rate cap), and retry callers such as `Retry`, `ReAttempt`, and `CircuitBreaker`."
+  },
+  "ExponentialBackoff": {
+    "motivation": {
+      "why_this_layer": "geometrically increasing delay — mechanical strategy",
+      "why_it_exists": "Geometric delay growth is common enough to deserve a precise child instead of occupying the generic Backoff handle. It lets callers request multiplier growth, a cap, and optional jitter without imposing those choices on Fibonacci or feedback-adaptive policies.",
+      "removability": "Removable in capability terms because callers can implement the formula directly, but retaining it gives transient Retry paths an honest, reusable dependency."
+    },
+    "usage": {
+      "intended": "capped geometric delay growth across consecutive unsuccessful attempts.",
+      "future": "exponential retry-delay variants with different multipliers, caps, and jitter factors.",
+      "broad_contexts": "service retries, lock contention, connection recovery, rate-limit recovery, and thundering-herd mitigation.",
+      "every_context_needs": "positive base delay, multiplier greater than one, attempt index, and maximum delay.",
+      "varies": "base delay, multiplier, cap, jitter factor, reset boundary, and caller-owned retry budget.",
+      "extensions": "`DecorrelatedJitterBackoff`, `SeededExponentialBackoff`, and protocol-specific capped variants.",
+      "notes": [
+        "Retry eligibility, finite budgets, and reset conditions are caller policy rather than identity requirements of the delay strategy."
+      ]
+    },
+    "design": {
+      "tensions": [
+        "Rapid load shedding vs recovery latency: geometric growth quickly protects a failing target but can delay useful probes.",
+        "Jitter vs reproducibility: randomization reduces synchronized retries but complicates deterministic schedules and tests.",
+        "Cap vs geometric progression: clamping is operationally necessary but ends pure exponential growth once reached."
+      ],
+      "tradeoffs": [
+        "Geometric growth buys fast contention reduction at the cost of potentially long recovery delays.",
+        "Optional jitter admits both decorrelated production schedules and deterministic callers, so herd prevention is not guaranteed by the child alone."
+      ],
+      "critique": [
+        "A zero jitter factor is valid but leaves synchronized callers exposed; concurrency-heavy callers should select nonzero or decorrelated jitter.",
+        "The formula does not decide whether another attempt is justified. Pair it with Retry, CircuitBreaker, or another caller that owns eligibility and budget.",
+        "Reset policy is deliberately outside the hash; callers must make the sequence boundary explicit when state spans operations."
+      ]
+    },
+    "family_discussion": "A concrete child of `Backoff`, alongside future Fibonacci and feedback-adaptive strategies. Retry selects it specifically for transient failures and may use other Backoff descendants for persistent failures."
   },
   "BackwardChain": {
     "motivation": {
@@ -1979,7 +2013,7 @@
         "False positives from transient blips are the most common production complaint and the pattern offers no built-in debouncing; that's a caller concern."
       ]
     },
-    "family_discussion": "The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (what calls it), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points."
+    "family_discussion": "The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (the delay discipline for recovery probes), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points."
   },
   "CiteBack": {
     "motivation": {
@@ -10266,7 +10300,7 @@
     "design": {
       "tensions": [
         "Uncapped reattempts (named failure) vs transient recovery — without caps, amplification into DoS.",
-        "Missing jitter (named failure) — thundering herd on shared resources.",
+        "Concurrent callers vs synchronized reattempts — jitter or another decorrelation strategy belongs in the selected Backoff policy or caller.",
         "Same-call semantics vs parameter variation — ReAttempt is strict same-args; Retry allows variation, and the line is easy to blur."
       ],
       "tradeoffs": [
@@ -10275,7 +10309,7 @@
       ],
       "critique": [
         "Uncapped reattempts are the dominant production failure; the pattern names the failure without prescribing caps.",
-        "Missing jitter is well-known; the pattern acknowledges without built-in jitter mechanism.",
+        "The thundering-herd risk is real, but mandatory jitter would over-specify this substrate primitive; select a jittered Backoff descendant where concurrent callers require it.",
         "The ReAttempt/Retry split is subtle and often ignored; in practice callers often conflate."
       ]
     },
@@ -10962,7 +10996,7 @@
       "broad_contexts": "network failures, rate-limit recovery, API error handling, coordination breaks, verification retries, LLM completion retries, workflow step retries.",
       "every_context_needs": "failure classification, retry decision, backoff computation.",
       "varies": "classification taxonomy (transient/persistent specifics), budget, circuit-breaker integration, retry-hint protocol, jitter strategy.",
-      "extensions": "`ExponentialRetry`, `JitteredRetry`, `BudgetedRetry`, `ClassifiedRetry`. The substrate-level \"try same thing again\" moves to `ReAttempt` in Physics/Primitives (§3.2).",
+      "extensions": "`JitteredRetry`, `BudgetedRetry`, `ClassifiedRetry`. The transient branch composes with `ExponentialBackoff`; the substrate-level \"try same thing again\" moves to `ReAttempt` in Physics/Primitives (§3.2).",
       "notes": []
     },
     "design": {
@@ -10981,7 +11015,7 @@
         "Backoff calibration is caller-dependent and frequently wrong."
       ]
     },
-    "family_discussion": "Resilience primitive paired with Backoff (the delay discipline), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one."
+    "family_discussion": "Resilience primitive paired with Backoff (the delay-policy family), ExponentialBackoff (the transient-failure strategy), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one."
   },
   "Reversibility": {
     "motivation": {
@@ -12720,8 +12754,8 @@
       "intended": "atomic coordination via temporary state fusion — both actors' signatures required.",
       "future": "any \"two-party write agreement\" coordination primitive.",
       "broad_contexts": "two-phase commit, escrow key pairs, multi-signature wallets, joint-authorship protocols, collaborative editing locks, diplomatic joint statements.",
-      "every_context_needs": "state subset, two (or more) actors, temporary fusion, both-sign-to-write, Backoff/Cooldown on contention.",
-      "varies": "multi-party extension, timeout policy, revocation.",
+      "every_context_needs": "state subset, two actors, temporary fusion, both-sign-to-write, and a contention response.",
+      "varies": "selected Backoff policy, multi-party extension, timeout policy, and revocation.",
       "extensions": "`TwoPhaseStateLock`, `MultisigStateLock`, `DiplomaticStateLock`.",
       "notes": []
     },
@@ -12737,12 +12771,12 @@
         "Backoff+Cooldown composition buys contention handling at the cost of lock-family dependency — StateLock doesn't stand alone operationally."
       ],
       "critique": [
-        "Zero invariants listed. For a pattern that carries atomicity semantics, this is a significant gap — at minimum: Both-Signed (changes require both sigs), Symmetric (neither party has unilateral release), Auto-Dissolve-On-Timeout, Signature-Integrity (sigs bind to the specific state subset).",
-        "The three failure modes are correct but partial — missing: Key Compromise (one party's signing key stolen mid-lock), Sig Replay (old signature reused against new state), State-Scope Drift (the 'subset of writable state' changes meaning mid-lock).",
+        "Atomicity obligations currently live in the mechanism rather than a separate invariant list. Any future contract should first prove that it holds across every two-party StateLock context rather than treating field count as the defect.",
+        "Key compromise, signature replay, and state-scope drift are relevant diagnostics for cryptographic deployments, but their mitigations depend on identity and storage descendants rather than belonging automatically in the broad parent hash.",
         "'Temporary fusion' is evocative but operationally vague. What counts as fusion? Is it a third-party escrow? A merged state object? A shared access-control list? The pattern is underdetermined — implementers will pick different mechanisms that claim to be the same pattern."
       ]
     },
-    "family_discussion": "The two-party cross-actor specialization of the Lock family, placed in Society because the mechanism structurally requires a counterparty. Pairs with `Backoff` and `Cooldown` for contention behavior and with `AtomicBid` for multi-agent coordination. Where `Mutex` is one-holder exclusion, `StateLock` is two-party agreement."
+    "family_discussion": "The two-party cross-actor specialization of the Lock family, placed in Society because the mechanism structurally requires a counterparty. Pairs with a selected `Backoff` policy and `Cooldown` for contention behavior, and with `AtomicBid` for multi-agent coordination. Where `Mutex` is one-holder exclusion, `StateLock` is two-party agreement."
   },
   "StateSnapshot": {
     "motivation": {
@@ -13778,7 +13812,7 @@
   "Throttle": {
     "motivation": {
       "why_this_layer": "engineered rate-limiter primitive",
-      "why_it_exists": "Rate limiting as a named primitive — bounded events per time window. Essential for API contracts, queue drainage, and load protection. Different from Backoff (per-failure exponential) and Cooldown (per-action minimum gap): Throttle bounds aggregate rate across many events.",
+      "why_it_exists": "Rate limiting as a named primitive — bounded events per time window. Essential for API contracts, queue drainage, and load protection. Different from Backoff (failure-responsive spacing) and Cooldown (per-action minimum gap): Throttle bounds aggregate rate across many events.",
       "removability": "No. Rate-limiting is a universal concern with enough structure (window, cap, action scope, burst allowance, drop policy) that a shared pattern avoids re-invention. Removing collapses throttling into ad-hoc Cooldown chains."
     },
     "usage": {
@@ -13807,7 +13841,7 @@
         "No priority story — all throttled requests are treated equally; priority-aware throttling needs a different pattern."
       ]
     },
-    "family_discussion": "Completes the rate-control family: `Backoff` (per-retry exponential delay), `Cooldown` (per-action minimum gap), `Throttle` (rate cap per window). The three compose: a retry loop can use Backoff for delay, Cooldown for action-gap, and Throttle for global rate."
+    "family_discussion": "Completes the rate-control family: `Backoff` (failure-responsive attempt spacing), `Cooldown` (per-action minimum gap), and `Throttle` (rate cap per window). The three compose: a retry loop can select a Backoff strategy for delay, Cooldown for action-gap, and Throttle for global rate."
   },
   "TieredAccess": {
     "motivation": {
@@ -15040,12 +15074,12 @@
   },
   "Yield": {
     "motivation": {
-      "why_this_layer": "weighted-negotiation backoff",
-      "why_it_exists": "When Overlap fails, explicit concession with weighted importance resolves. Yield names this structured backoff. Without the pattern, negotiation stalls.",
+      "why_this_layer": "weighted negotiation concession",
+      "why_it_exists": "When Overlap fails, explicit concession with weighted importance resolves. Yield names this structured concession. Without the pattern, negotiation stalls.",
       "removability": "Removable — other negotiation patterns work. The Flex/Weight declaration is the key discipline."
     },
     "usage": {
-      "intended": "negotiation backoff on Overlap failure — lower-weighted preference cedes.",
+      "intended": "negotiation concession on Overlap failure — lower-weighted preference cedes.",
       "future": "any weighted-concession-and-debt-ledger mechanism.",
       "broad_contexts": "labor negotiations, coalition politics, family decision-making, resource sharing, dispute resolution in DAOs, diplomatic negotiation.",
       "every_context_needs": "Flex (concession) declaration, Weight (importance) declaration, Yield-Ratio computation, debt-recording in Ledger.",
@@ -15060,7 +15094,7 @@
         "Hard constraints indistinguishable from strategic intransigence."
       ],
       "tradeoffs": [
-        "Gains: structured negotiation backoff.",
+        "Gains: structured negotiation concession.",
         "Gives up: simplicity."
       ],
       "critique": [

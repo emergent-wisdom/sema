@@ -29,9 +29,9 @@
       "Strategy"
     ]
   },
-  "sema_ref": "PUREOptimization#89fe",
-  "sema_id": "sema:PUREOptimization#mh:SHA-256:89feb6383295f0b6e42d37b6e704c7d02ba63c58d6e4482d801e27a63f299bfd",
-  "sema_stub": "89fe",
+  "sema_ref": "PUREOptimization#3d63",
+  "sema_id": "sema:PUREOptimization#mh:SHA-256:3d637c2dc4c764b0a31aea124872527644ed3df12462d3b4f81878d644ee29a3",
+  "sema_stub": "3d63",
   "dependencies": {
     "accepts": {
       "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
@@ -39,7 +39,7 @@
     "composes_with": {
       "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
       "optimize": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
       "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     },
     "references": {

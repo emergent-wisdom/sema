@@ -1,7 +1,7 @@
 {
   "handle": "Yield",
-  "mechanism": "Negotiation {{backoff}}. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.",
-  "gloss": "Weighted negotiation backoff with deferred debt ledger",
+  "mechanism": "Negotiation concession. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.",
+  "gloss": "Weighted negotiation concession with deferred debt ledger",
   "failure_modes": [
     "Weight inflation (mitigated by historical consistency tracking).",
     "Gaming ledger with trivial yields.",
@@ -15,19 +15,19 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0"
+      "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
+      "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_id": "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf",
-  "sema_ref": "Yield#d802",
-  "sema_stub": "d802",
+  "sema_id": "sema:Yield#mh:SHA-256:d665e9a8a91a9ec23f8b338f875b05f1f7fe7844b8f21361b06bdd065bd78a02",
+  "sema_ref": "Yield#d665",
+  "sema_stub": "d665",
   "dependencies": {
     "references": {
-      "backoff": "sema:Backoff#mh:SHA-256:16c2d636281df44ed78ef3bce341e7a349fd37cbd675706e2e395172c1dccae6",
       "defer": "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa",
       "overlap": "sema:Overlap#mh:SHA-256:d70c8e5e00064f385853d70213d03d8ba547a1156024f826c4f782c4b677cefd",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"

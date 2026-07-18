@@ -27,12 +27,12 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:77855c554890913b6c7c61f5a947a502b47171f04f333ab4bcfc72e136bfd30b",
-  "sema_ref": "CiteBack#7785",
-  "sema_stub": "7785",
+  "sema_id": "sema:CiteBack#mh:SHA-256:17b1ece87db4152c4a241754f84c4722fe9dde9fa8c00c1e122e4e6139196b86",
+  "sema_ref": "CiteBack#17b1",
+  "sema_stub": "17b1",
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:7ca744ce28611156f415add4da95e3dc93006d92061a05139e17b70d3882e848"
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63"
     }
   },
   "sema_layer": "Mind",

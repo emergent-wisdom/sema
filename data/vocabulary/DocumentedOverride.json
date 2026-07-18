@@ -21,15 +21,15 @@
       "Governance"
     ]
   },
-  "sema_id": "sema:DocumentedOverride#mh:SHA-256:40548ac167ea414f493054543303e74dac28a64510aa55ea8d1807ea52a6a5c6",
-  "sema_ref": "DocumentedOverride#4054",
-  "sema_stub": "4054",
+  "sema_id": "sema:DocumentedOverride#mh:SHA-256:17d333bda6bfc9f98ef85e9d09dd8cf84a8d8f13f13fb4e5de767bc4c8e75a54",
+  "sema_ref": "DocumentedOverride#17d3",
+  "sema_stub": "17d3",
   "dependencies": {
     "accepts": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4"
     },
     "composes_with": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:e26edd5011e4842730b23fb11a2d5efaff9a52112e8081f5856893c9c4ce99ff"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269"
     },
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"

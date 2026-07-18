@@ -49,14 +49,14 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:e26edd5011e4842730b23fb11a2d5efaff9a52112e8081f5856893c9c4ce99ff",
-  "sema_ref": "TimeWarpLog#e26e",
-  "sema_stub": "e26e",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269",
+  "sema_ref": "TimeWarpLog#2a10",
+  "sema_stub": "2a10",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "causal_barrier": "sema:CausalBarrier#mh:SHA-256:39b3168c5b9bad18505b7af584fbb24b80ba7c5bf90e6ff0611fc2cd405f0178",
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:21c63e6bc594106fb6bd773e2d91a2ecb0aebb43e550d55cfbe901e6a38628a3",
+      "causal_barrier": "sema:CausalBarrier#mh:SHA-256:9e178f07d754eefadad17a92a84f76badce58bd00571dca64b37e83176a57e94",
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:33824eaaf148d996cbc3ccd7521b62dbba087070d23b5421918a446df3f01c8b",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
       "world_reversible": "sema:WorldReversible#mh:SHA-256:a8e0699d7dcce24a267c2e8db351fbe4edc60323c458931e1071858c0c6c1acb"

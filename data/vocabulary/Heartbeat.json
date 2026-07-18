@@ -41,15 +41,15 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Heartbeat#mh:SHA-256:c36fe65a4b171559a33cb36f37ec448dce8ad7092c665426bfabee3dbeb6d1c1",
-  "sema_ref": "Heartbeat#c36f",
-  "sema_stub": "c36f",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
+  "sema_ref": "Heartbeat#d0e6",
+  "sema_stub": "d0e6",
   "dependencies": {
     "accepts": {
       "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
     },
     "composes_with": {
-      "quorum": "sema:Quorum#mh:SHA-256:c6a5b21dbe9b2c1fa46e5e67505041c92048a0a687f5703efa45486b51c56957"
+      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
     },
     "references": {
       "monitor": "sema:Monitor#mh:SHA-256:72e04554c76cd2e06afaeb7284aaab96f37499b0ab3d58c76612819136447f2e"

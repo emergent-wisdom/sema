@@ -57,12 +57,12 @@
       }
     }
   },
-  "sema_ref": "Ballot#43eb",
-  "sema_id": "sema:Ballot#mh:SHA-256:43ebc85e8e87e132698c59536402d1ba715b0dbad9e6c116f97a056c60da4577",
-  "sema_stub": "43eb",
+  "sema_ref": "Ballot#84c3",
+  "sema_id": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497",
+  "sema_stub": "84c3",
   "dependencies": {
     "references": {
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:21c63e6bc594106fb6bd773e2d91a2ecb0aebb43e550d55cfbe901e6a38628a3",
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:33824eaaf148d996cbc3ccd7521b62dbba087070d23b5421918a446df3f01c8b",
       "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
     }
   },

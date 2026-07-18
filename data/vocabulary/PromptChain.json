@@ -36,9 +36,9 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:PromptChain#mh:SHA-256:2543cc5972f02b5a21d776643ba485beda876462c57a10c8949d0072e54bd620",
-  "sema_ref": "PromptChain#2543",
-  "sema_stub": "2543",
+  "sema_id": "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6",
+  "sema_ref": "PromptChain#5097",
+  "sema_stub": "5097",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
@@ -48,7 +48,7 @@
       "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
       "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
       "input_guard": "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
-      "retry": "sema:Retry#mh:SHA-256:79b69773b2fdd6fc81b1205d1088e9df841db683a982e079fc2dca97f4818804",
+      "retry": "sema:Retry#mh:SHA-256:9e178c29dd1aa774432d8eb6e87fb2e93ab5b1a6db9582f737ad60e9ddf56053",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:011f50770f2599f5017df648ad5920ddb732f7681a9a3b7576cdcf3798ce6baa"
     }

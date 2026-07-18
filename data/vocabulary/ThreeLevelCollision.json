@@ -30,12 +30,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:f9f90f76329b4b07ba1de142f14fcab8f9c5e7d901e9268a0fa03f86258a5459",
-  "sema_ref": "ThreeLevelCollision#f9f9",
-  "sema_stub": "f9f9",
+  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:92b1063ea9ba8b193942d71837f055a897ace9ec4391348f56e6b1e6e11cde93",
+  "sema_ref": "ThreeLevelCollision#92b1",
+  "sema_stub": "92b1",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
       "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
     }
   },

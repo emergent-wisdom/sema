@@ -34,9 +34,9 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996",
-  "sema_ref": "Rollout#8fc1",
-  "sema_stub": "8fc1",
+  "sema_id": "sema:Rollout#mh:SHA-256:84e234d9616bde2b394074e3d082e85c7ee74068d65f2aa8642a5e3a64f97c26",
+  "sema_ref": "Rollout#84e2",
+  "sema_stub": "84e2",
   "signature": [
     "Act(ExecutionManifest)"
   ],
@@ -46,9 +46,9 @@
     },
     "composes_with": {
       "canary": "sema:Canary#mh:SHA-256:bda6d48ae1b1895bb1ce0fe6012c6fed5baaff392755f2ed802b400481522b5f",
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:840fee4c2a300c1e17bd44e55debdf58d250ab62f79760f59c0189ca7d485824",
-      "compensate": "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:a164bf13e2782b724df3bfd0f3a53c11933d0881a4c1ff0cbef9fd738a871ba4"
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
+      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:e8361ca7c2ffb506b32cd36f16addc253ecbc51350f98b983db9c122bb51f106"
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",

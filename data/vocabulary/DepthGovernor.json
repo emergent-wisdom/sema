@@ -37,9 +37,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:96cf874e588e4260c67abf3b8cdca5a0234d9b6a637e1c7981b7f77025668c93",
-  "sema_ref": "DepthGovernor#96cf",
-  "sema_stub": "96cf",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:a3e937d651c99333315d333034b3a3be136376bfc1a5139cc758f218640cfc87",
+  "sema_ref": "DepthGovernor#a3e9",
+  "sema_stub": "a3e9",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
@@ -48,7 +48,7 @@
       "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
       "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
       "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:7e67260837bfb3fd46b514f9ddfe0b6e6f62657e8af2a626a14e29f77ada285d"
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921"
     }
   },
   "sema_layer": "Mind",

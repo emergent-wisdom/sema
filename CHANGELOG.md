@@ -12,6 +12,9 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Added
 
+- `ExponentialBackoff`, a concrete child for capped geometric delay growth
+  with configurable jitter. Retry eligibility, budgets, and reset policy remain
+  caller-owned rather than requirements of the delay strategy.
 - Lean 4 formal-verification pilot for the handshake decision kernel and
   canonicalization type-tag domain separation. Proofs are pinned to Lean
   4.30.0, checked without `sorry`, independently rechecked by `leanchecker`,
@@ -23,6 +26,14 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Changed
 
+- `Backoff` now defines the general failure-responsive delay family instead of
+  requiring exponential growth, jitter, reset-on-success, and a retry budget.
+  `Retry` explicitly selects `ExponentialBackoff` for transient failures,
+  `StateLock` composes with the generic policy family, and `Yield` no longer
+  links technical retry delay to negotiation concession.
+  The vocabulary now contains 453 patterns and its root changes from
+  `b7c42bc564f5a8d2ac3cb6140430e9d98feb82a8f9b943f550f554e9ba6360b5`
+  to `901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa`.
 - The shorthand vocabulary reference is now generated on demand instead of
   tracked and silently staged by the pre-commit hook. Its exporter uses the
   current `_meta.path` taxonomy and the database remains the source of truth.

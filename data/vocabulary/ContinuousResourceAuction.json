@@ -66,15 +66,15 @@
       "Economics"
     ]
   },
-  "sema_ref": "ContinuousResourceAuction#1553",
-  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:15530861d00609a281c40ecd368dda8f2a8e15181bef54b2532752f50348e290",
-  "sema_stub": "1553",
+  "sema_ref": "ContinuousResourceAuction#8fe2",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:8fe283f5ae6bd9adcf164ba848bcc731863b0f232f2dbc4fa8c389f70eb8184c",
+  "sema_stub": "8fe2",
   "dependencies": {
     "accepts": {
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "composes_with": {
-      "state_lock": "sema:StateLock#mh:SHA-256:7cd86a9de68522b752366ef04de32f743b57ef16232866522ccdafb1f35c6da9"
+      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78"
     },
     "references": {
       "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db"

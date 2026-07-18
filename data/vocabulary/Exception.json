@@ -43,13 +43,13 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Exception#mh:SHA-256:054ce28455dfd0a13bce0b5a23e048429a58a1b7e6c9082252bc3f815fe6be21",
-  "sema_ref": "Exception#054c",
-  "sema_stub": "054c",
+  "sema_id": "sema:Exception#mh:SHA-256:39fb7ba646e5c1dc91699ae4b3dc0887f4ec476fe6bf29970b83aaaca025f686",
+  "sema_ref": "Exception#39fb",
+  "sema_stub": "39fb",
   "dependencies": {
     "references": {
-      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:840fee4c2a300c1e17bd44e55debdf58d250ab62f79760f59c0189ca7d485824",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:408814ddae0d3fa2b4022f997c1feab5eef743a155cdedeba75bc42d26e467ac",
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

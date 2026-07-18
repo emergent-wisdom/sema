@@ -28,12 +28,12 @@
   "signature": [
     "State(Snapshot)"
   ],
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:53b2f1c57a571f308d8ce1686edf0fbbbc178bf35d96b2a445bcebeda01208aa",
-  "sema_ref": "StateSnapshot#53b2",
-  "sema_stub": "53b2",
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:5791e43fad7e1f42cb7451eec53c6bfa9fef567b30a14d05be269116203e5848",
+  "sema_ref": "StateSnapshot#5791",
+  "sema_stub": "5791",
   "dependencies": {
     "references": {
-      "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:ebf5e8d3d5a4802033179f871bf4dfd0be7c611ab7534ab8b8e07e5f21eab7d0",
+      "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:e919903ac4044c9761bbdae612c360150f12e679dcc608ee7389f793debda186",
       "snapshot": "sema:Snapshot#mh:SHA-256:390d2ec2934136d534f969b4039e6b899d2ed3956ddd8aa0ca4754068ed8d133",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
