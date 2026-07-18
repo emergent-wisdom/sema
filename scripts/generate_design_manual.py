@@ -156,9 +156,8 @@ themselves; rewrite them around the semantic risk and run the placement test.
 def load_patterns(vocab_dir: Path, staging_dir: Path | None = None) -> dict[str, dict]:
     """Load pattern specs, preferring staging/<Handle>.json when present.
 
-    Staging contains in-progress edits not yet applied to taxonomy.db /
-    data/vocabulary/. The manual reflects current work-in-progress by
-    preferring staging entries over vocabulary for any handle that has both.
+    Staging contains in-progress edits and new patterns not yet applied to
+    taxonomy.db / data/vocabulary/. The manual reflects both kinds of work.
     """
     staged_count = 0
     out: dict[str, dict] = {}
@@ -169,23 +168,26 @@ def load_patterns(vocab_dir: Path, staging_dir: Path | None = None) -> dict[str,
             print(f"warning: failed to parse {fp.name}: {e}", file=sys.stderr)
             continue
         handle = pat.get("handle") or fp.stem
-        # If staging has a copy, prefer it.
-        if staging_dir and staging_dir.exists():
-            staged_fp = staging_dir / f"{handle}.json"
-            if staged_fp.exists():
-                try:
-                    staged_pat = json.loads(staged_fp.read_text(encoding="utf-8"))
-                    # Preserve the vocabulary's sema_id/ref/stub if staging lacks them
-                    for k in ("sema_id", "sema_ref", "sema_stub"):
-                        if k not in staged_pat and k in pat:
-                            staged_pat[k] = pat[k]
-                    pat = staged_pat
-                    staged_count += 1
-                except Exception as e:  # noqa: BLE001
-                    print(
-                        f"warning: failed to parse staging {staged_fp.name}: {e}", file=sys.stderr
-                    )
         out[handle] = pat
+
+    if staging_dir and staging_dir.exists():
+        for staged_fp in sorted(staging_dir.glob("*.json")):
+            try:
+                staged_pat = json.loads(staged_fp.read_text(encoding="utf-8"))
+            except Exception as e:  # noqa: BLE001
+                print(f"warning: failed to parse staging {staged_fp.name}: {e}", file=sys.stderr)
+                continue
+
+            handle = staged_pat.get("handle") or staged_fp.stem
+            existing = out.get(handle, {})
+            # An edited staging copy may omit generated identity fields. Keep
+            # them for a useful pre-apply heading; new patterns have none yet.
+            for key in ("sema_id", "sema_ref", "sema_stub"):
+                if key not in staged_pat and key in existing:
+                    staged_pat[key] = existing[key]
+            out[handle] = staged_pat
+            staged_count += 1
+
     if staged_count:
         print(f"info: rendering {staged_count} staged pattern(s) (prefer staging over vocabulary)")
     return out
@@ -222,10 +224,19 @@ def _safe_list(xs) -> list[str]:
     return [str(x) for x in xs]
 
 
+def _pattern_location(pattern: dict) -> tuple[str, str]:
+    meta = pattern.get("_meta") or {}
+    path = meta.get("path") or []
+    layer = path[0] if path else meta.get("layer") or pattern.get("sema_layer") or "?"
+    category = (
+        path[1] if len(path) > 1 else meta.get("category") or pattern.get("sema_category") or ""
+    )
+    return layer, category
+
+
 def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
     meta = pattern.get("_meta") or {}
-    layer = meta.get("layer") or pattern.get("sema_layer") or "?"
-    category = meta.get("category") or pattern.get("sema_category") or ""
+    layer, category = _pattern_location(pattern)
     tier = meta.get("tier")
     ring = meta.get("ring")
     gloss = (pattern.get("gloss") or "").strip()
@@ -417,9 +428,8 @@ def render_manual(patterns: dict[str, dict], sidecar: dict[str, dict]) -> str:
     by_layer: dict[str, dict[str, list[str]]] = {layer: {} for layer in LAYER_ORDER}
     unknown: list[str] = []
     for handle, pat in patterns.items():
-        meta = pat.get("_meta") or {}
-        layer = meta.get("layer") or pat.get("sema_layer") or ""
-        category = meta.get("category") or pat.get("sema_category") or "(uncategorized)"
+        layer, category = _pattern_location(pat)
+        category = category or "(uncategorized)"
         if layer not in by_layer:
             unknown.append(handle)
             continue
