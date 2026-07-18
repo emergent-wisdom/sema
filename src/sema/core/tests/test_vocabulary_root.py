@@ -13,8 +13,12 @@ because the user specifically asked to make sure the handshake works.
 
 import hashlib
 import json
+from pathlib import Path
 
-from sema.core.hashing import vocabulary_root
+import pytest
+
+from sema.core.hashing import vocabulary_info, vocabulary_root
+from sema.core.workspace import GraphWorkspace, WorkspaceSource
 
 
 class TestVocabularyRootAlgorithm:
@@ -51,6 +55,21 @@ class TestVocabularyRootAlgorithm:
         hashes = ["11" * 32, "22" * 32, "33" * 32]
         expected = hashlib.sha256(("11" * 32 + "22" * 32 + "33" * 32).encode()).hexdigest()
         assert vocabulary_root(hashes) == expected
+
+
+class TestVocabularyRootImplementations:
+    def test_workspace_root_matches_db_fingerprint_for_checked_in_catalog(self):
+        repo_root = Path(__file__).resolve().parents[4]
+        db_path = repo_root / "data" / "taxonomy.db"
+        if not db_path.exists():
+            pytest.skip("checked-in taxonomy.db not available")
+
+        workspace = GraphWorkspace(WorkspaceSource(db_path=str(db_path)))
+        workspace_root = workspace.vocabulary_root()
+        db_fingerprint = vocabulary_info(str(db_path))
+
+        assert workspace_root["hash"] == db_fingerprint["root"]
+        assert workspace_root["pattern_count"] == db_fingerprint["pattern_count"]
 
 
 class TestMCPVocabRootAndHandshake:

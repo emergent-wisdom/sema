@@ -1,4 +1,4 @@
-"""
+r"""
 Update Paper Hashes
 Updates inline \sema{}{} references and Handle#Stub references in the paper
 to match the current vocabulary hashes.
@@ -10,28 +10,30 @@ import json
 import os
 import re
 
-VOCAB_DIR = 'data/vocabulary'
-PAPER_PATH = 'paper/sema.tex'
+VOCAB_DIR = "data/vocabulary"
+PAPER_PATH = "paper/sema.tex"
+
 
 def load_vocab():
     vocab = {}
     full_hashes = {}
     for filename in os.listdir(VOCAB_DIR):
-        if filename.endswith('.json'):
+        if filename.endswith(".json"):
             with open(os.path.join(VOCAB_DIR, filename)) as f:
                 data = json.load(f)
-                handle = data.get('handle')
-                sema_id = data.get('sema_id')
+                handle = data.get("handle")
+                sema_id = data.get("sema_id")
                 if handle and sema_id:
                     # Extract hash: sema:Handle#mh:SHA-256:HASH
                     try:
-                        if 'SHA-256:' in sema_id:
-                            full_hash = sema_id.split('SHA-256:')[1]
-                            vocab[handle] = full_hash[:4] # 4-char stub
+                        if "SHA-256:" in sema_id:
+                            full_hash = sema_id.split("SHA-256:")[1]
+                            vocab[handle] = full_hash[:4]  # 4-char stub
                             full_hashes[handle] = full_hash
                     except IndexError:
                         pass
     return vocab, full_hashes
+
 
 def update_paper():
     if not os.path.exists(PAPER_PATH):
@@ -45,7 +47,7 @@ def update_paper():
         content = f.read()
 
     # Regex for \sema{Handle}{Stub}
-    regex_sema = r'\\sema\{(\w+)\}\{([a-f0-9]{4})\}'
+    regex_sema = r"\\sema\{(\w+)\}\{([a-f0-9]{4})\}"
 
     def replace_sema_cmd(match):
         handle = match.group(1)
@@ -60,7 +62,7 @@ def update_paper():
     print(f"Updated {n1} \\sema{{}}{{}} references.")
 
     # Regex for Handle#Stub
-    regex_inline = r'\b(\w+)#([a-f0-9]{4})\b'
+    regex_inline = r"\b(\w+)#([a-f0-9]{4})\b"
 
     def replace_inline_ref(match):
         handle = match.group(1)
@@ -68,14 +70,14 @@ def update_paper():
         if handle in vocab:
             new_stub = vocab[handle]
             if old_stub != new_stub:
-                 return f"{handle}#{new_stub}"
+                return f"{handle}#{new_stub}"
         return match.group(0)
 
     content, n2 = re.subn(regex_inline, replace_inline_ref, content)
     print(f"Updated {n2} inline Handle#Stub references.")
 
     # Regex for Full IDs in code blocks
-    regex_full = r'sema:(\w+)#mh:SHA-256:([a-f0-9\.]{4,70})'
+    regex_full = r"sema:(\w+)#mh:SHA-256:([a-f0-9\.]{4,70})"
 
     def replace_full_id(match):
         handle = match.group(1)
@@ -88,7 +90,7 @@ def update_paper():
     print(f"Updated {n3} full sema_id references.")
 
     # Regex for Escaped Handle\#Stub (LaTeX)
-    regex_escaped = r'\b(\w+)\\\#([a-f0-9]{4})\b'
+    regex_escaped = r"\b(\w+)\\\#([a-f0-9]{4})\b"
 
     def replace_escaped_ref(match):
         handle = match.group(1)
@@ -96,16 +98,17 @@ def update_paper():
         if handle in vocab:
             new_stub = vocab[handle]
             if old_stub != new_stub:
-                 return f"{handle}\\#{new_stub}"
+                return f"{handle}\\#{new_stub}"
         return match.group(0)
 
     content, n4 = re.subn(regex_escaped, replace_escaped_ref, content)
     print(f"Updated {n4} escaped Handle\\#Stub references.")
 
-    with open(PAPER_PATH, 'w') as f:
+    with open(PAPER_PATH, "w") as f:
         f.write(content)
 
     print("Done.")
+
 
 if __name__ == "__main__":
     update_paper()

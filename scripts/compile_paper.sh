@@ -10,21 +10,35 @@ echo "Using project root: $PROJECT_ROOT"
 # Ensure we are in the project root for python imports to work if needed
 cd "$PROJECT_ROOT"
 
+PYTHON="${PYTHON:-python3}"
+if [ -x "$PROJECT_ROOT/.venv/bin/python" ]; then
+    PYTHON="$PROJECT_ROOT/.venv/bin/python"
+fi
+
+run_python_step() {
+    "$PYTHON" "$@"
+    local status=$?
+    if [ "$status" -ne 0 ]; then
+        echo "ERROR: Python step failed: $*"
+        exit "$status"
+    fi
+}
+
 # 1. Generate Tables (outputs .tex files for \input)
 echo "Generating tables..."
-python3 scripts/generate_paper_tables.py
+run_python_step scripts/generate_paper_tables.py
 
 # 2. Generate Pattern Cards (outputs pattern_cards.tex for appendix)
 echo "Generating pattern cards..."
-python3 scripts/generate_pattern_cards.py
+run_python_step scripts/generate_pattern_cards.py
 
 # 3. Update Paper Hashes
 echo "Updating paper hashes..."
-python3 scripts/update_paper_hashes.py
+run_python_step scripts/update_paper_hashes.py
 
 # 4. Calculate Stats (Optional)
 echo "Calculating stats..."
-python3 scripts/calculate_graph_stats.py
+run_python_step scripts/calculate_graph_stats.py
 
 # 5. Compile Paper (pdflatex -> bibtex -> pdflatex x2)
 # Clean stale aux to force fresh resolution after hash updates
