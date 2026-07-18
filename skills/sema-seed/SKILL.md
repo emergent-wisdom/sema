@@ -66,9 +66,9 @@ Process:
 2. Resolve any handle whose mechanism you're unsure about (`sema_resolve`).
 3. Then write the reasoning. Multiple paragraphs. Examples of the right texture:
 
-   *"At first this looks like a `Loop#984a` of `Observe#xxxx` against `Decay#ed25` — but the loop here doesn't restore state, it accumulates a `Trace#314d` that itself becomes the `Signal#2ac0`. That's a different mechanism than `Heartbeat#c36f`, which just confirms presence..."*
+   *"At first this looks like a `Loop#984a` of `Observe#xxxx` against `Decay#ed25` — but the loop here doesn't restore state, it accumulates a `Trace#314d` that itself becomes the `Signal#2ac0`. That's a different mechanism than `Heartbeat#d0e6`, which just confirms presence..."*
 
-   *"The `Tension#547a` here is between `Care#4137` (non-transactional maintenance) and `OpportunityCost#xxxx` (the work foregone). Most agents collapse this to one side. The word names the holding of both — a `TensionHold#xxxx`-like posture but applied to..."*
+   *"The `Tension#5dce` here is between `Care#4137` (non-transactional maintenance) and `OpportunityCost#xxxx` (the work foregone). Most agents collapse this to one side. The word names the holding of both — a `TensionHold#xxxx`-like posture but applied to..."*
 
 4. Each paragraph should compose handles, compare mechanisms, surface tensions, identify what existing patterns get right and wrong about the concept.
 
