@@ -3,6 +3,7 @@
   "version": "0.3.0",
   "description": "Content-addressed vocabulary protocol \u2014 shared meaning for AI agents",
   "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
   "mcpServers": {
     "sema": {
       "command": "uvx",

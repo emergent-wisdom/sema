@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${SEMA_PYTHON:-python3}\" \"${CLAUDE_PLUGIN_ROOT}/hooks/ref_gate.py\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Agent|Task|SendMessage",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${SEMA_PYTHON:-python3}\" \"${CLAUDE_PLUGIN_ROOT}/hooks/ref_gate.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
