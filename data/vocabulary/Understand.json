@@ -6,9 +6,7 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b",
-      "sema:Understand#mh:SHA-256:5d7084e766e9cddac3c84dd8b291b31ab2b539a1ddadfbd5013e3ae32e79fe26",
-      "sema:Understand#mh:SHA-256:0e78945e9808539158f969be47b38093ed6998dd0ac5a3bed1166fd87d279b01"
+      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
     ],
     "path": [
       "Mind",

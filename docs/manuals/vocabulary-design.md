@@ -14204,8 +14204,6 @@ _Note: §3.18 moves Society → Mind since this is single-agent cognitive hygien
 **Supersedes (prior versions).**
 - `Refine#38d9`
 - `Refine#8c9b`
-- `Refine#2809`
-- `Refine#ffec`
 
 ---
 
@@ -15288,8 +15286,6 @@ _Note: §3.18 and §3.19 confirmed that Synthesis-as-Noun (the combined whole) i
 
 **Supersedes (prior versions).**
 - `Understand#96d4`
-- `Understand#5d70`
-- `Understand#0e78`
 
 ---
 
@@ -22051,8 +22047,6 @@ _Note: §3.19 flagged AnchorDrop as having no current callers in the library. Br
 - `Role#6877`
 - `Role#9896`
 - `Role#1401`
-- `Role#b612`
-- `Role#d064`
 
 ---
 

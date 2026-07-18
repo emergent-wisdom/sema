@@ -45,6 +45,10 @@ This file records vocabulary-level changes between versions — additions, renam
   deterministic rebuild compares against its pre-rebuild input snapshot. This
   avoids stale installed-package hashes and false drift reports on intentional
   uncommitted vocabulary edits.
+- Vocabulary audits now validate current `path`/`ring`/`tier` metadata and
+  report missing contract fields as advisory coverage rather than structural
+  problems. Broad primitives are no longer labeled defective merely because
+  their contracts are intentionally absent.
 
 ---
 

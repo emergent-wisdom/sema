@@ -14,12 +14,11 @@ def audit_rigor():
         "with_invariants": 0,
         "with_preconditions": 0,
         "with_postconditions": 0,
-        "fully_rigorous": 0,  # Has all 3
-        "naked": 0,  # Has none
+        "with_all_contract_fields": 0,
+        "without_explicit_contracts": 0,
     }
 
-    # Categories of naked patterns (guess based on name)
-    naked_examples = []
+    patterns_without_contracts = []
 
     for sol_id, data in solutions:
         has_inv = False
@@ -47,16 +46,18 @@ def audit_rigor():
             stats["with_postconditions"] += 1
 
         if has_inv and has_pre and has_post:
-            stats["fully_rigorous"] += 1
+            stats["with_all_contract_fields"] += 1
 
         if not (has_inv or has_pre or has_post):
-            stats["naked"] += 1
-            if len(naked_examples) < 15:
-                naked_examples.append(data["text"])
+            stats["without_explicit_contracts"] += 1
+            if len(patterns_without_contracts) < 15:
+                patterns_without_contracts.append(data["text"])
 
     print(json.dumps(stats, indent=2))
-    print("\nSample 'Naked' Patterns (No strict logic):")
-    for ex in naked_examples:
+    print(
+        "\nSample patterns without explicit contracts (review only; omission may be intentional):"
+    )
+    for ex in patterns_without_contracts:
         print(f"- {ex}")
 
 

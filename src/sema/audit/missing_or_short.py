@@ -3,7 +3,7 @@
 Audit Missing or Short Fields
 
 Analyzes patterns in data/vocabulary/ for:
-1. Missing essential fields (handle, gloss, mechanism, tier, category).
+1. Missing essential fields (handle, gloss, mechanism, path, ring, tier).
 2. Very short content in gloss or mechanism, indicating potential low quality.
 """
 
@@ -58,7 +58,7 @@ def audit_patterns():
         if not meta:
             missing.append("_meta")
         else:
-            for field in ["tier", "layer", "category"]:
+            for field in ["path", "ring", "tier"]:
                 if field not in meta or meta[field] is None:
                     missing.append(f"_meta.{field}")
 
