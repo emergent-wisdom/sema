@@ -11,6 +11,21 @@ from sema.core.registry import RegistryManager  # noqa: E402
 OUTPUT_FILE = "data/shorthand/all_patterns_short.md"
 
 
+def pattern_path(pattern):
+    """Return the canonical taxonomy path, with legacy metadata fallback."""
+    meta = pattern.get("_meta", {})
+    path = meta.get("path")
+    if path:
+        return tuple(path)
+
+    legacy_path = [meta.get("layer"), meta.get("category")]
+    return tuple(part for part in legacy_path if part) or ("Unclassified",)
+
+
+def pattern_sort_key(pattern):
+    return pattern_path(pattern), pattern.get("handle", "")
+
+
 def load_patterns():
     """Load all patterns from the registry (DB is source of truth)."""
     db_path = os.environ.get("SEMA_DB_PATH", "data/taxonomy.db")
@@ -88,7 +103,16 @@ def shorten_text(text, id_lookup, handle_lookup, handle_to_short):
 
 def shorten_obj(obj, id_lookup, handle_lookup, handle_to_short, key_context=None):
     # Skip these keys entirely - don't modify them
-    SKIP_KEYS = {"handle", "sema_id", "sema_ref", "sema_stub", "layer", "category", "ring"}
+    SKIP_KEYS = {
+        "handle",
+        "sema_id",
+        "sema_ref",
+        "sema_stub",
+        "path",
+        "layer",
+        "category",
+        "ring",
+    }
 
     # Keys where we should only replace full sema IDs, not bare handle names
     # This prevents "AcceptSpec defines..." from becoming "AcceptSpec#6a50 defines..."
@@ -136,27 +160,22 @@ def main():
     patterns = load_patterns()
     id_lookup, handle_lookup, handle_to_short = build_lookup(patterns)
 
-    patterns.sort(
-        key=lambda x: (
-            x.get("_meta", {}).get("layer", "Z"),
-            x.get("_meta", {}).get("category", "Z"),
-            x.get("handle", ""),
-        )
-    )
+    patterns.sort(key=pattern_sort_key)
 
-    with open(OUTPUT_FILE, "w") as f:
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write("# Sema Vocabulary (Short Hand JSON)\n\n")
         f.write(f"**Total Patterns:** {len(patterns)}\n")
         f.write("**Format:** JSON with short-hand references.\n\n")
         f.write("---\n\n")
 
-        current_layer = ""
+        current_path = ()
 
         for p in patterns:
-            layer = p.get("_meta", {}).get("layer", "Unclassified")
-            if layer != current_layer:
-                f.write(f"# Layer: {layer}\n\n")
-                current_layer = layer
+            path = pattern_path(p)
+            if path != current_path:
+                f.write(f"# Path: {' / '.join(path)}\n\n")
+                current_path = path
 
             handle = p.get("handle", "Unknown")
             short_p = shorten_obj(p, id_lookup, handle_lookup, handle_to_short)

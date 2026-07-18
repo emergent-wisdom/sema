@@ -19,13 +19,11 @@ cd "$REPO_ROOT"
 
 # Run the script
 python3 scripts/vocabulary_merkle_root.py
-python3 scripts/export/export_short_hand.py
 
 # Add the updated docs to the commit
 git add docs/information/vocabulary_information.md
-git add data/shorthand/all_patterns_short.md
 
-echo "✅ Merkle Root & Reference updated."
+echo "✅ Merkle Root updated."
 EOF
 
 chmod +x "$PRE_COMMIT"

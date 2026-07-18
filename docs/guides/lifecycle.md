@@ -114,15 +114,26 @@ This exports every pattern from `taxonomy.db` into individual JSON files under `
 
 **Key point:** `taxonomy.db` → `data/vocabulary/*.json` is the canonical direction. The vocabulary files are exports, not sources.
 
+### Optional shorthand export
+
+For a compact, locally generated view of the vocabulary, run:
+
+```bash
+python3 scripts/export/export_short_hand.py
+```
+
+This writes `data/shorthand/all_patterns_short.md`. The file is disposable,
+ignored by Git, and not included in distributions. Regenerate it after database
+changes when you need it; `taxonomy.db` remains the source of truth.
+
 ## 6. Pre-commit Hooks
 
 The repository includes a pre-commit hook (installed via `scripts/setup_hooks.sh`) that automatically:
 
 1. Recalculates the **Merkle root** over the entire vocabulary (`scripts/vocabulary_merkle_root.py`)
-2. Regenerates the **shorthand reference** (`scripts/export/export_short_hand.py`)
-3. Stages the updated `docs/information/vocabulary_information.md` and `data/shorthand/all_patterns_short.md`
+2. Stages the updated `docs/information/vocabulary_information.md`
 
-This ensures that every commit reflects the true state of the database.
+This keeps the committed vocabulary root synchronized with the database.
 
 ```bash
 # One-time setup
