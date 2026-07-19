@@ -161,9 +161,9 @@ Wrap handles in backticks for readability. When you encounter a handle you don't
 When two agents (or an agent and a human) need to agree on meaning:
 
 ```javascript
-sema_handshake({ ref: "StateLock#8bde" })
-// → canonical stub. Compare against your local value, then:
-sema_handshake({ ref: "StateLock", your_hash: "774b" })
+const challenge = sema_handshake({ ref: "StateLock" })
+// → PROVIDE_HASH with the canonical stub. Compare against your local value, then:
+sema_handshake({ ref: "StateLock", your_hash: challenge.canonical_stub })
 // PROCEED (match) or HALT (drift). No silent misunderstandings.
 ```
 
@@ -174,10 +174,10 @@ For bulk verification of a specific shared set, use `sema_verify_context`.
 When two agents need to confirm they have the *same entire vocabulary* — not just one pattern — pass `ref="vocab"`:
 
 ```javascript
-sema_handshake({ ref: "vocab" })
-// → { verdict: "PROVIDE_HASH", canonical_stub: "46e651aeeb832fdc", pattern_count: 452 }
+const challenge = sema_handshake({ ref: "vocab" })
+// → { verdict: "PROVIDE_HASH", canonical_stub, pattern_count }
 
-sema_handshake({ ref: "vocab", your_hash: "46e651aeeb832fdc" })
+sema_handshake({ ref: "vocab", your_hash: challenge.canonical_stub })
 // → PROCEED if byte-identical, HALT if any pattern's hash differs
 ```
 
