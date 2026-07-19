@@ -157,7 +157,7 @@ separation, so structurally different values can never share a hash
 
 Reference implementations: `src/sema/core/hashing.py` (library) and
 `scripts/test_hash_verification.py` (dependency-free independent verifier —
-all 452 bundled patterns must verify from their JSON files alone).
+all bundled patterns must verify from their JSON files alone).
 
 **The ID Format:**
 `sema:<Handle>#mh:SHA-256:<RootHash>`

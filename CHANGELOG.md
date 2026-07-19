@@ -60,6 +60,15 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- Vocabulary information statistics now derive layer and category from the
+  canonical `_meta.path` instead of classifying every current pattern as
+  unclassified.
+- The generated design manual no longer embeds the current date, keeping its
+  CI freshness check stable across calendar days.
+- CI now lints and format-checks the manual and vocabulary-information
+  generators enforced by the canonical verification workflow.
+- Handshake examples no longer embed stale pattern or vocabulary hashes; they
+  reuse the canonical challenge response returned by `sema_handshake`.
 - Deterministic rebuilds isolate temporary `sema init` registry writes instead
   of modifying the developer's real `~/.config/sema` registry.
 - Updating an existing pattern now replaces superseded schema edges and removes

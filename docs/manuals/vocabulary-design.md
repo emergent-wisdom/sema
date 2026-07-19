@@ -5,7 +5,6 @@
      in `data/vocabulary/*.json` and design commentary in
      `data/design_critique.json`. -->
 
-_Generated: 2026-07-18_
 _Patterns covered: 453 (from `data/vocabulary/`)_
 _Commentary entries in sidecar: 453 (from `data/design_critique.json`)_
 

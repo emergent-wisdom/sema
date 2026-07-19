@@ -64,3 +64,12 @@ def test_load_patterns_overlays_edits_and_includes_new_staging_patterns(tmp_path
         "Infrastructure",
         "Primitives",
     )
+
+
+def test_render_manual_has_no_wall_clock_content():
+    manual = load_manual_module()
+
+    rendered = manual.render_manual({}, {})
+
+    assert "_Generated:" not in rendered
+    assert "_Patterns covered: 0" in rendered

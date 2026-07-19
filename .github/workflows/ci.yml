@@ -84,12 +84,16 @@ jobs:
         run: >-
           ruff check
           src/
+          scripts/generate_design_manual.py
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
+          scripts/vocabulary_merkle_root.py
 
       - name: Format check
         run: >-
           ruff format --check
           src/
+          scripts/generate_design_manual.py
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
+          scripts/vocabulary_merkle_root.py

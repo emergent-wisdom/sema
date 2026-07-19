@@ -96,8 +96,13 @@ def calculate_stats(patterns: list[dict[str, Any]]) -> dict[str, dict[str, int]]
 
     for p in patterns:
         meta = p.get("_meta", {})
-        layer = meta.get("layer", "Unclassified")
-        category = meta.get("category", "Uncategorized")
+        path = meta.get("path")
+        if isinstance(path, list) and path:
+            layer = path[0]
+            category = path[1] if len(path) > 1 else "Uncategorized"
+        else:
+            layer = meta.get("layer", "Unclassified")
+            category = meta.get("category", "Uncategorized")
         stats[layer][category] += 1
 
     return stats
