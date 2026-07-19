@@ -14,9 +14,10 @@ Exit 2 makes Claude Code block the action and feed stderr back to the
 model, so the block always carries the repair instruction (canonical
 stub + handshake/pull guidance).
 
-Toggles (for A/B experiments):
-  SEMA_REF_GATE=off   disable entirely
-  SEMA_REF_GATE=warn  detect and report, never block (voluntary mode)
+Modes (SEMA_REF_GATE):
+  off      disable entirely
+  warn     detect and report as model-visible context, never block (default)
+  enforce  block STALE refs (exit 2) with the repair message
 
 This is prototype glue. The scan/verdict logic belongs upstream as
 `sema check`; when that lands this file becomes a thin wrapper around it.
@@ -29,7 +30,7 @@ import sys
 
 REF_RE = re.compile(r"\b([A-Z][A-Za-z0-9]*)#([0-9a-f]{4})\b")
 
-MODE = os.environ.get("SEMA_REF_GATE", "enforce").lower()
+MODE = os.environ.get("SEMA_REF_GATE", "warn").lower()
 
 
 def _string_values(node):
