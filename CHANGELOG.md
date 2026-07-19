@@ -20,6 +20,13 @@ This file records vocabulary-level changes between versions — additions, renam
 - `ExponentialBackoff`, a concrete child for capped geometric delay growth
   with configurable jitter. Retry eligibility, budgets, and reset policy remain
   caller-owned rather than requirements of the delay strategy.
+- Claude Code ref-gate hook (`hooks/ref_gate.py`), registered by the Claude
+  Code plugin on `UserPromptSubmit` and `PreToolUse` (`Agent|Task|SendMessage`).
+  Scans inbound messages for content-addressed refs (`Handle#stub`) and
+  verdicts them against the active registry: stale refs are reported as
+  model-visible context by default (`SEMA_REF_GATE=warn`) or blocked with a
+  repair message in opt-in enforce mode. Unknown handles never block; the gate
+  fails open if the registry is unavailable. See `hooks/README.md`.
 - Lean 4 formal-verification pilot for the handshake decision kernel and
   canonicalization type-tag domain separation. Proofs are pinned to Lean
   4.30.0, checked without `sorry`, independently rechecked by `leanchecker`,
