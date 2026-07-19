@@ -27,6 +27,12 @@ This file records vocabulary-level changes between versions — additions, renam
   model-visible context by default (`SEMA_REF_GATE=warn`) or blocked with a
   repair message in opt-in enforce mode. Unknown handles never block; the gate
   fails open if the registry is unavailable. See `hooks/README.md`.
+- `sema check`: verdict content-addressed refs in stdin text against the
+  active registry (`--db` override, `--json` for the versioned verdict
+  document; exit 0 clean, 3 stale, 1 registry error). The scan/verdict
+  logic lives in `sema.core.check` and is shared by harness shims — the
+  Claude Code ref-gate hook is now a thin adapter over it. Ships with a
+  conformance fixture set that any future harness shim replays.
 - Lean 4 formal-verification pilot for the handshake decision kernel and
   canonicalization type-tag domain separation. Proofs are pinned to Lean
   4.30.0, checked without `sorry`, independently rechecked by `leanchecker`,

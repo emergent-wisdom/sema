@@ -1,0 +1,101 @@
+[
+  {
+    "name": "plain_known",
+    "payload": "Implement per InclusivePaymentThreshold#{CANON}.",
+    "expected": {
+      "known": [
+        "InclusivePaymentThreshold#{CANON}"
+      ],
+      "stale": [],
+      "unknown": []
+    }
+  },
+  {
+    "name": "plain_stale",
+    "payload": "Implement per InclusivePaymentThreshold#{STALE}.",
+    "expected": {
+      "known": [],
+      "stale": [
+        "InclusivePaymentThreshold#{STALE}"
+      ],
+      "unknown": []
+    }
+  },
+  {
+    "name": "non_sema_unknown",
+    "payload": "Fix regression from PR#12ab please.",
+    "expected": {
+      "known": [],
+      "stale": [],
+      "unknown": [
+        "PR#12ab"
+      ]
+    }
+  },
+  {
+    "name": "json_line_start_stale",
+    "payload": "{\"session_id\": \"x\", \"prompt\": \"Authoritative pattern:\\nInclusivePaymentThreshold#{STALE}\\nImplement accordingly.\"}",
+    "expected": {
+      "known": [],
+      "stale": [
+        "InclusivePaymentThreshold#{STALE}"
+      ],
+      "unknown": []
+    }
+  },
+  {
+    "name": "nested_json_stale",
+    "payload": "{\"tool_input\": {\"prompt\": [\"step one\\nrelay InclusivePaymentThreshold#{STALE}\"], \"depth\": 2}}",
+    "expected": {
+      "known": [],
+      "stale": [
+        "InclusivePaymentThreshold#{STALE}"
+      ],
+      "unknown": []
+    }
+  },
+  {
+    "name": "no_refs",
+    "payload": "No refs anywhere in this payload.",
+    "expected": {
+      "known": [],
+      "stale": [],
+      "unknown": []
+    }
+  },
+  {
+    "name": "mixed_known_stale_unknown",
+    "payload": "Use InclusivePaymentThreshold#{CANON} not InclusivePaymentThreshold#{STALE}; also see PR#12ab.",
+    "expected": {
+      "known": [
+        "InclusivePaymentThreshold#{CANON}"
+      ],
+      "stale": [
+        "InclusivePaymentThreshold#{STALE}"
+      ],
+      "unknown": [
+        "PR#12ab"
+      ]
+    }
+  },
+  {
+    "name": "near_miss_syntax",
+    "payload": "foo#abcd Handle#abc Handle#abcde Handle#ABCD",
+    "expected": {
+      "known": [],
+      "stale": [],
+      "unknown": []
+    }
+  },
+  {
+    "name": "dedup_same_ref_twice",
+    "payload": "First InclusivePaymentThreshold#{CANON} then again InclusivePaymentThreshold#{CANON}.",
+    "expected": {
+      "known": [
+        "InclusivePaymentThreshold#{CANON}"
+      ],
+      "stale": [],
+      "unknown": []
+    }
+  }
+]

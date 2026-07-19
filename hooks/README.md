@@ -67,11 +67,13 @@ The gate scans **decoded JSON string values**, not raw payload bytes: hook
 payloads are JSON, so a ref at a line start arrives as `\nHandle#stub`, and
 the escaped `\n` destroys the regex word boundary (found live in the pilot).
 
-Longer term the scan/verdict logic belongs upstream as a `sema check`
-primitive with a stable verdict schema, so every harness shim (this one,
-and equivalents for other harnesses) stays a thin adapter: run `sema check`,
-map verdict to the harness's block mechanism. This hook is the first such
-shim, with the logic inlined until `sema check` lands.
+The scan/verdict logic lives in `sema.core.check` (also exposed as the
+`sema check` CLI, with a versioned verdict document and exit codes
+0 clean / 3 stale / 1 error), so every harness shim — this one, and
+equivalents for other harnesses — stays a thin adapter: feed the payload
+to check, map the verdict to the harness's block mechanism. A shim claims
+support for a harness by passing the shared conformance fixture set in
+`src/sema/core/tests/fixtures/refcheck_conformance.json`.
 
 Tests: [`tests/test_ref_gate.py`](./tests/test_ref_gate.py) (in the root
 pytest run).
