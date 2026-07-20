@@ -23,20 +23,64 @@ Modes (SEMA_REF_GATE):
 import json
 import os
 import sys
+from pathlib import Path
+
+# A git-installed plugin contains the package source but does not install it
+# into the system ``python3`` used by command hooks. Prefer this plugin's source
+# over any unrelated globally installed Sema version.
+PLUGIN_SRC = Path(__file__).resolve().parent.parent / "src"
+if PLUGIN_SRC.is_dir():
+    sys.path.insert(0, str(PLUGIN_SRC))
 
 try:
     from sema.core.check import REF_RE  # noqa: F401
 except ImportError:  # sema not importable: main() fails open, so must import too
     REF_RE = None
 
-MODE = os.environ.get("SEMA_REF_GATE", "warn").lower()
+MODE = os.environ.get("SEMA_REF_GATE", "warn")
+VALID_MODES = {"off", "warn", "enforce"}
+
+
+def _normalized_mode(value: str) -> str:
+    mode = value.strip().lower()
+    return mode if mode in VALID_MODES else "warn"
+
+
+def _hook_event_name(raw: str) -> str | None:
+    try:
+        event = json.loads(raw)
+    except json.JSONDecodeError:
+        return None
+    if not isinstance(event, dict):
+        return None
+    event_name = event.get("hook_event_name")
+    return event_name if isinstance(event_name, str) else None
+
+
+def _emit_context(event_name: str | None, message: str) -> None:
+    """Emit context in the format Claude Code expects for this event."""
+    if event_name in {"UserPromptSubmit", "PreToolUse"}:
+        print(
+            json.dumps(
+                {
+                    "hookSpecificOutput": {
+                        "hookEventName": event_name,
+                        "additionalContext": message,
+                    }
+                }
+            )
+        )
+    else:
+        print(message)
 
 
 def main() -> int:
-    if MODE == "off":
+    mode = _normalized_mode(MODE)
+    if mode == "off":
         return 0
 
     raw = sys.stdin.read()
+    event_name = _hook_event_name(raw)
 
     try:
         from sema.core.check import check_text, extract_refs, load_registry
@@ -57,11 +101,11 @@ def main() -> int:
                 f.write(
                     json.dumps(
                         {
-                            "mode": MODE,
+                            "mode": mode,
                             "refs": [f"{h}#{s}" for h, s in refs],
                             "stale": [r["ref"] for r in doc["stale"]],
                             "unknown": [r["ref"] for r in doc["unknown"]],
-                            "blocked": bool(doc["stale"]) and MODE == "enforce",
+                            "blocked": bool(doc["stale"]) and mode == "enforce",
                         }
                     )
                     + "\n"
@@ -69,10 +113,10 @@ def main() -> int:
         except OSError:
             pass
 
+    context_messages = []
     unknown_ref_strings = [r["ref"] for r in doc["unknown"]]
     if unknown_ref_strings:
-        # stdout on exit 0 becomes model-visible context on UserPromptSubmit
-        print(
+        context_messages.append(
             "sema-ref-gate: unrecognized refs (not in the active vocabulary): "
             + ", ".join(unknown_ref_strings)
             + ". If these are sema refs, verify with sema_handshake before relying on them."
@@ -80,11 +124,13 @@ def main() -> int:
 
     if doc["stale"]:
         message = "sema-ref-gate: " + doc["repair"]
-        if MODE == "warn":
-            print(message)
-            return 0
-        print(message, file=sys.stderr)
-        return 2
+        if mode == "enforce":
+            print(message, file=sys.stderr)
+            return 2
+        context_messages.append(message)
+
+    if context_messages:
+        _emit_context(event_name, "\n".join(context_messages))
 
     return 0
 

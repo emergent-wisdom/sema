@@ -7,7 +7,7 @@ equivalent). Claiming that a shim "supports harness X" means it passes this
 conformance set — not that it reimplements extraction or verdict logic.
 
 Placeholders ``{CANON}`` and ``{STALE}`` stand in for the content-hash stub of
-the session-minted InclusivePaymentThreshold pattern and a deliberately wrong
+the test-hashed InclusivePaymentThreshold pattern and a deliberately wrong
 4-hex stub; the suite substitutes them at runtime so the fixture stays
 authorable without knowing the hash ahead of time.
 """
@@ -15,6 +15,7 @@ authorable without knowing the hash ahead of time.
 from __future__ import annotations
 
 import json
+import sqlite3
 from pathlib import Path
 
 import pytest
@@ -22,12 +23,13 @@ import pytest
 from sema.core.check import (
     CHECK_SCHEMA_VERSION,
     REF_RE,
+    RefRegistry,
+    RegistryUnavailableError,
     check_text,
     extract_refs,
+    load_registry,
 )
-from sema.core.mint import mint_pattern
-from sema.core.registry import RegistryManager
-from sema.taxonomy_graph.graph_store import GraphStore
+from sema.core.hashing import generate_sema_hash
 
 HANDLE = "InclusivePaymentThreshold"
 
@@ -75,15 +77,41 @@ def _subst(text: str, canon: str, stale: str) -> str:
     return text.replace("{CANON}", canon).replace("{STALE}", stale)
 
 
+def _canonical_pattern() -> dict:
+    hash_info = generate_sema_hash(PATTERN)
+    return {
+        **PATTERN,
+        "sema_id": hash_info["full_id"],
+        "sema_ref": hash_info["reference"],
+        "sema_stub": hash_info["stub"],
+    }
+
+
+def _create_registry_db(path: Path, patterns: list[dict] | None = None) -> None:
+    connection = sqlite3.connect(path)
+    try:
+        connection.execute(
+            "CREATE TABLE nodes ("
+            "id TEXT PRIMARY KEY, node_type TEXT NOT NULL, text TEXT NOT NULL, "
+            "metadata TEXT DEFAULT '{}', embedding BLOB)"
+        )
+        for index, pattern in enumerate(patterns or []):
+            connection.execute(
+                "INSERT INTO nodes (id, node_type, text, metadata) VALUES (?, 'PATTERN', ?, ?)",
+                (str(index), pattern["handle"], json.dumps({"pattern": pattern})),
+            )
+        connection.commit()
+    finally:
+        connection.close()
+
+
 @pytest.fixture(scope="session")
-def check_registry(tmp_path_factory):
-    """Mint one real pattern into a temp DB; return (registry, canon, stale)."""
-    db_path = tmp_path_factory.mktemp("refcheck") / "canon.db"
-    result = mint_pattern(PATTERN, GraphStore(str(db_path)))
-    assert result.success, result.errors
-    canon = result.sema_ref.split("#")[1]
+def check_registry():
+    """Return a minimal registry with an honestly content-hashed pattern."""
+    pattern = _canonical_pattern()
+    canon = pattern["sema_stub"]
     stale = "0000" if canon != "0000" else "0001"
-    registry = RegistryManager(db_path=str(db_path))
+    registry = RefRegistry({HANDLE: pattern}, Path("<memory>"))
     return registry, canon, stale
 
 
@@ -161,3 +189,34 @@ def test_verdict_canonical_fields(check_registry):
     assert by_verdict["STALE"]["stub"] == stale
     assert by_verdict["UNKNOWN"]["canonical"] is None
     assert by_verdict["UNKNOWN"]["ref"] == "PR#12ab"
+
+
+def test_load_registry_reads_valid_database(tmp_path):
+    pattern = _canonical_pattern()
+    db_path = tmp_path / "registry.db"
+    _create_registry_db(db_path, [pattern])
+
+    registry = load_registry(str(db_path))
+
+    assert registry.count() == 1
+    assert registry.get_pattern(HANDLE)["sema_stub"] == pattern["sema_stub"]
+
+
+def test_load_registry_accepts_valid_empty_database(tmp_path):
+    db_path = tmp_path / "empty.db"
+    _create_registry_db(db_path)
+
+    assert load_registry(str(db_path)).count() == 0
+
+
+def test_load_registry_rejects_missing_database(tmp_path):
+    with pytest.raises(RegistryUnavailableError, match="does not exist"):
+        load_registry(str(tmp_path / "missing.db"))
+
+
+def test_load_registry_rejects_malformed_database(tmp_path):
+    db_path = tmp_path / "malformed.db"
+    db_path.write_bytes(b"not a sqlite database")
+
+    with pytest.raises(RegistryUnavailableError, match="cannot read registry database"):
+        load_registry(str(db_path))

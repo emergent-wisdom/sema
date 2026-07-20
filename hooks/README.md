@@ -39,15 +39,20 @@ Environment variables, resolved per invocation:
 
 | Variable            | Default          | Purpose                                        |
 | ------------------- | ---------------- | ---------------------------------------------- |
-| `SEMA_REF_GATE`     | `warn`           | `off` \| `warn` \| `enforce`                   |
+| `SEMA_REF_GATE`     | `warn`           | `off` \| `warn` \| `enforce`; invalid values warn |
 | `SEMA_REF_GATE_DB`  | default registry | path to an alternate registry DB               |
 | `SEMA_REF_GATE_LOG` | unset            | append per-invocation verdict JSON to this file |
-| `SEMA_PYTHON`       | `python3`        | interpreter with the `sema` package importable |
+| `SEMA_PYTHON`       | `python3`        | Python 3.10+ interpreter for the bundled hook   |
 
 The default is `warn` so installing the plugin never surprises anyone with a
 blocked action; teams that want drift stopped rather than reported opt in
 with `SEMA_REF_GATE=enforce` (e.g. in a project `.claude/settings.json` `env`
 block, or exported in the shell).
+
+The hook loads the plugin's own `src/` tree and reads the active registry with
+Python's standard library, so installing `sema` into the system interpreter is
+not required. Warnings use Claude Code's structured `additionalContext` output
+for both prompt submission and pre-tool relay events.
 
 ## Why enforce exists
 

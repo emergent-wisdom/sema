@@ -2,9 +2,9 @@
 
 The gate runs as a standalone script, so it is loaded here via importlib and
 driven in-process: stdin is monkeypatched with a hook payload, MODE with the
-gate mode, and the registry is a temp DB with one pattern minted through the
-real mint pipeline — the canonical stub is an honest content hash, not a
-hardcoded fixture.
+gate mode, and the registry is a temp DB with one honestly content-hashed
+pattern. The fixture uses only SQLite and hashing, so these tests remain
+offline and deterministic.
 
 Covers:
 - verdict behavior per mode (KNOWN pass, STALE block/warn, UNKNOWN note)
@@ -18,6 +18,9 @@ Covers:
 import importlib.util
 import io
 import json
+import os
+import sqlite3
+import subprocess
 import sys
 from pathlib import Path
 
@@ -66,14 +69,32 @@ PATTERN = {
 
 @pytest.fixture(scope="session")
 def registry(tmp_path_factory):
-    """Temp registry DB with PATTERN minted; returns (db_path, canonical_stub)."""
-    from sema.core.mint import mint_pattern
-    from sema.taxonomy_graph.graph_store import GraphStore
+    """Temp registry DB with an honestly content-hashed canonical pattern."""
+    from sema.core.hashing import generate_sema_hash
 
     db_path = tmp_path_factory.mktemp("ref-gate") / "canon.db"
-    result = mint_pattern(PATTERN, GraphStore(str(db_path)))
-    assert result.success, result.errors
-    stub = result.sema_ref.split("#")[1]
+    hash_info = generate_sema_hash(PATTERN)
+    pattern = {
+        **PATTERN,
+        "sema_id": hash_info["full_id"],
+        "sema_ref": hash_info["reference"],
+        "sema_stub": hash_info["stub"],
+    }
+    connection = sqlite3.connect(db_path)
+    try:
+        connection.execute(
+            "CREATE TABLE nodes ("
+            "id TEXT PRIMARY KEY, node_type TEXT NOT NULL, text TEXT NOT NULL, "
+            "metadata TEXT DEFAULT '{}', embedding BLOB)"
+        )
+        connection.execute(
+            "INSERT INTO nodes (id, node_type, text, metadata) VALUES ('1', 'PATTERN', ?, ?)",
+            (HANDLE, json.dumps({"pattern": pattern})),
+        )
+        connection.commit()
+    finally:
+        connection.close()
+    stub = hash_info["stub"]
     return db_path, stub
 
 
@@ -82,10 +103,17 @@ def stale_stub(canonical: str) -> str:
     return "0000" if canonical != "0000" else "0001"
 
 
-def payload_with(prompt: str) -> str:
-    return json.dumps(
-        {"session_id": "test", "hook_event_name": "UserPromptSubmit", "prompt": prompt}
-    )
+def payload_with(prompt: str, event_name: str = "UserPromptSubmit") -> str:
+    if event_name == "PreToolUse":
+        return json.dumps(
+            {
+                "session_id": "test",
+                "hook_event_name": event_name,
+                "tool_name": "Agent",
+                "tool_input": {"prompt": prompt},
+            }
+        )
+    return json.dumps({"session_id": "test", "hook_event_name": event_name, "prompt": prompt})
 
 
 def run_gate(monkeypatch, capsys, stdin_text, mode, db=None, log=None):
@@ -99,6 +127,12 @@ def run_gate(monkeypatch, capsys, stdin_text, mode, db=None, log=None):
     code = ref_gate.main()
     captured = capsys.readouterr()
     return code, captured.out, captured.err
+
+
+def context_from(out: str) -> tuple[str, str]:
+    payload = json.loads(out)
+    hook_output = payload["hookSpecificOutput"]
+    return hook_output["hookEventName"], hook_output["additionalContext"]
 
 
 class TestVerdicts:
@@ -129,7 +163,25 @@ class TestVerdicts:
             monkeypatch, capsys, payload_with(f"Implement per {HANDLE}#{bad}."), "warn", db=db
         )
         assert code == 0
-        assert "STALE" in out  # stdout: model-visible context, never a block
+        event_name, context = context_from(out)
+        assert event_name == "UserPromptSubmit"
+        assert "STALE" in context
+        assert err == ""
+
+    def test_stale_ref_warns_in_pre_tool_context(self, registry, monkeypatch, capsys):
+        db, stub = registry
+        bad = stale_stub(stub)
+        code, out, err = run_gate(
+            monkeypatch,
+            capsys,
+            payload_with(f"Relay {HANDLE}#{bad}.", event_name="PreToolUse"),
+            "warn",
+            db=db,
+        )
+        assert code == 0
+        event_name, context = context_from(out)
+        assert event_name == "PreToolUse"
+        assert "STALE" in context
         assert err == ""
 
     def test_off_mode_never_blocks(self, registry, monkeypatch, capsys):
@@ -151,7 +203,8 @@ class TestVerdicts:
             db=db,
         )
         assert code == 0
-        assert "PR#12ab" in out  # noted as unrecognized, never blocked
+        _, context = context_from(out)
+        assert "PR#12ab" in context  # noted as unrecognized, never blocked
         assert err == ""
 
     def test_no_refs_is_a_noop(self, registry, monkeypatch, capsys):
@@ -161,6 +214,17 @@ class TestVerdicts:
         )
         assert code == 0
         assert out == "" and err == ""
+
+    def test_invalid_mode_falls_back_to_warn(self, registry, monkeypatch, capsys):
+        db, stub = registry
+        bad = stale_stub(stub)
+        code, out, err = run_gate(
+            monkeypatch, capsys, payload_with(f"Implement per {HANDLE}#{bad}."), "war", db=db
+        )
+        assert code == 0
+        _, context = context_from(out)
+        assert "STALE" in context
+        assert err == ""
 
 
 class TestPayloadDecoding:
@@ -200,12 +264,44 @@ class TestFailureModes:
     def test_registry_unavailable_fails_open(self, registry, monkeypatch, capsys):
         db, stub = registry
         bad = stale_stub(stub)
-        monkeypatch.setitem(sys.modules, "sema.core.registry", None)  # forces ImportError
         code, out, err = run_gate(
-            monkeypatch, capsys, payload_with(f"per {HANDLE}#{bad}"), "enforce", db=db
+            monkeypatch,
+            capsys,
+            payload_with(f"per {HANDLE}#{bad}"),
+            "enforce",
+            db=db.parent / "missing.db",
         )
         assert code == 0  # never brick the harness over gate infrastructure
+        assert out == ""
         assert "registry unavailable" in err
+
+    def test_plugin_source_bootstraps_without_installed_package(self, tmp_path):
+        from sema.core.check import load_registry
+
+        bundled_db = GATE_PATH.parent.parent / "data" / "taxonomy.db"
+        pattern = load_registry(str(bundled_db)).get_pattern("StateLock")
+        stub = pattern["sema_stub"]
+        bad = stale_stub(stub)
+        env = {
+            **os.environ,
+            "SEMA_REF_GATE": "enforce",
+            "HOME": str(tmp_path),
+        }
+        for variable in ("PYTHONPATH", "SEMA_DB_PATH", "SEMA_REF_GATE_DB"):
+            env.pop(variable, None)
+
+        result = subprocess.run(
+            [sys.executable, "-I", str(GATE_PATH)],
+            input=payload_with(f"per StateLock#{bad}"),
+            text=True,
+            capture_output=True,
+            env=env,
+            check=False,
+        )
+
+        assert result.returncode == 2
+        assert "STALE" in result.stderr
+        assert "No module named" not in result.stderr
 
 
 class TestVerdictLog:
