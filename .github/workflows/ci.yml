@@ -88,6 +88,7 @@ jobs:
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
           scripts/vocabulary_merkle_root.py
+          hooks/
 
       - name: Format check
         run: >-
@@ -97,3 +98,4 @@ jobs:
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
           scripts/vocabulary_merkle_root.py
+          hooks/

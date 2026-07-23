@@ -479,6 +479,37 @@ def show_pattern(handle):
     return pattern
 
 
+def check_refs_stdin(db, as_json):
+    from ..core.check import EXIT_STALE, check_text, load_registry
+
+    text = sys.stdin.read()
+    try:
+        registry = load_registry(db)
+    except Exception as e:
+        print(f"sema check: registry unavailable ({e})", file=sys.stderr)
+        sys.exit(1)
+
+    doc = check_text(text, registry)
+
+    if as_json:
+        print(json.dumps(doc))
+    elif doc["refs"]:
+        for r in doc["refs"]:
+            ref = r["ref"]
+            if r["verdict"] == "STALE":
+                print(f"STALE  {ref} -> canonical #{r['canonical']}")
+            elif r["verdict"] == "KNOWN":
+                print(f"KNOWN  {ref}")
+            else:
+                print(f"UNKNOWN  {ref}")
+        if doc["stale"]:
+            print()
+            print(doc["repair"])
+
+    if doc["stale"]:
+        sys.exit(EXIT_STALE)
+
+
 def show_skeleton():
     manager = get_registry()
     print("🕸️  Graph Skeleton:")
@@ -1818,6 +1849,16 @@ def main():
     )
     show.add_argument("handle")
 
+    # Check - verdict content-addressed refs in stdin text
+    check_cmd = subparsers.add_parser(
+        "check",
+        help="Verdict content-addressed refs in stdin text against the registry",
+    )
+    check_cmd.add_argument("--db", help="Registry DB path override")
+    check_cmd.add_argument(
+        "--json", action="store_true", help="Emit the full verdict document as JSON"
+    )
+
     # Skeleton
     subparsers.add_parser("skeleton", help="Show the graph skeleton")
 
@@ -1930,7 +1971,7 @@ def main():
 
     # Mutating/stateful subcommands return a bool; propagate False as exit 1
     # so CI pipelines and shell scripts can detect failure. Read-only commands
-    # (search, show, resolve, skeleton, list, serve, mcp) manage their own
+    # (search, show, resolve, check, skeleton, list, serve, mcp) manage their own
     # exit codes or don't need one.
     ok: bool | None = None
     if args.command == "apply":
@@ -1943,6 +1984,8 @@ def main():
         resolve_graph(args.handle)
     elif args.command == "show":
         show_pattern(args.handle)
+    elif args.command == "check":
+        check_refs_stdin(args.db, args.json)
     elif args.command == "skeleton":
         show_skeleton()
     elif args.command == "init":
