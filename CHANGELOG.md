@@ -83,6 +83,15 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- `update_doc_refs.py` no longer overwrites refs that are cited precisely
+  because they are not current. `docs/specification/versioning.md` illustrates
+  stub divergence by contrasting a superseded version with the one that replaced
+  it, and the rewriter overwrote both sides with the current stub — so both
+  illustrations ended up quoting the same stub twice, which cannot demonstrate
+  stubs differing. A region fenced with `<!-- doc-refs: pinned -->` is now left
+  alone, and refs outside the fence in the same file are still refreshed. Both
+  examples in the versioning spec are repaired and now cite real members of
+  `PropheticQuorum`'s supersession chain.
 - `sema apply --check` now refuses a dependency cycle instead of passing it.
   The topological sort dropped every edge leaving the batch, so a cycle between
   a staged pattern and an already-committed one was invisible to it, and the

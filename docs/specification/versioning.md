@@ -66,10 +66,12 @@ Two things are true at once:
 
 ## 4. `sema_handshake` semantics across versions
 
+<!-- doc-refs: pinned -->
 `sema_handshake` is strict by design: it verifies byte-level agreement
 on a specific definition. Agents that pin to `PropheticQuorum#912b`
-continue to resolve that exact definition forever, even if a newer
-`PropheticQuorum#912b` exists.
+continue to resolve that exact definition forever, even though
+`PropheticQuorum#91f6` has since superseded it.
+<!-- doc-refs: end -->
 
 Agents that want "the latest PropheticQuorum" query the bare handle,
 get back whichever hash is current, and *then* handshake against that
@@ -101,10 +103,12 @@ breaking lookups by hash.
 
 ## 6. Short stubs identify versions, not handles
 
+<!-- doc-refs: pinned -->
 A 4-hex stub like `PropheticQuorum#912b` identifies one specific
 version of a handle. When the handle is refined, the new version gets
-a different stub: `PropheticQuorum#912b`. Stubs are therefore
+a different stub: `PropheticQuorum#91f6`. Stubs are therefore
 **version-identifying**, not handle-identifying.
+<!-- doc-refs: end -->
 
 This is a feature, not a quirk. It lets prose distinguish
 "PropheticQuorum as of March 2026" from "PropheticQuorum as of June
@@ -114,20 +118,26 @@ load-bearing information: the two parties are referring to different
 artefacts, and pretending otherwise would silently corrupt
 coordination.
 
-## What v0.1.3 ships and what it defers
+## What ships and what is still deferred
 
-This release ships:
+Shipped:
 
 - The policy in this document.
 - A schema hook accepting `_meta.supersedes` as a valid optional list
-  of `sema_id` strings, so future patterns can record successor
-  intent without further schema work.
+  of `sema_id` strings, so patterns can record successor intent without
+  further schema work. Patterns use it: `PropheticQuorum` carries three
+  superseded versions.
 
-This release does **not** yet ship:
+Still not shipped, as of 0.3.0:
 
 - Walking supersession chains in `sema_handshake`.
 - A `sema latest <handle>` command.
 - A `sema deprecated` filter on `sema search`.
 
-Those are deferred to v0.2.0 so that the policy gets some user testing
-before it grows tooling around it.
+These were originally deferred to v0.2.0 so the policy could get some
+user testing first. Two releases later the policy has had that testing
+and the tooling has not arrived, which is worth stating plainly rather
+than leaving a deferral note that reads as a plan. Nothing depends on
+them: supersession is a metadata claim by design (Section 3), so a
+consumer that wants to walk a chain can read `_meta.supersedes`
+directly, and hash lookups never needed the tooling.
