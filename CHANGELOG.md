@@ -41,6 +41,16 @@ This file records vocabulary-level changes between versions — additions, renam
   production implementations, conformance tests, and explicit assumptions.
 - `sema_handshake(..., strict=true)` mode. Only the full 64-character hash can
   produce `PROCEED`; a matching truncated stub returns `REQUIRE_FULL_HASH`.
+- `scripts/apply_vocabulary_change.py`, running apply, export, rehash and
+  re-export in the one order that works, stopping at the first failure. The
+  order matters because `rebuild_vocabulary.py` reads the exports while
+  `sema apply` writes the database, so rebuilding before exporting rehashes the
+  previous state.
+- `scripts/audit/dangling_handles.py`, reporting CapitalisedNames in pattern
+  text that resolve to no pattern, with the instance count against
+  `MintWhenFriction`'s three-instance bar. Covers backticked names and
+  multi-part CamelCase; its docstring records why single bare capitalised words
+  are not detectable in this corpus.
 
 ### Changed
 
@@ -73,6 +83,20 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- `sema apply --check` now refuses a dependency cycle instead of passing it.
+  The topological sort dropped every edge leaving the batch, so a cycle between
+  a staged pattern and an already-committed one was invisible to it, and the
+  sort ran after `--check` had already returned. A mutual `references` pair —
+  a dependency one way and a citation back — is a cycle and is now reported
+  with its path. Only cycles containing a pattern being added are reported, so
+  a pre-existing cycle elsewhere cannot block an unrelated change.
+- `rebuild_vocabulary.py --replace` no longer discards the vocabulary when the
+  rebuild fails. It kept the freshly created database and deleted the backup on
+  the failure path, and a failed rebuild has no rebuilt database to keep — only
+  an empty one — so the next export wrote zero patterns over `data/vocabulary/`.
+  `--replace` is now honoured only on success, `--check` never keeps its empty
+  database, and backups are timestamped so a later run cannot overwrite the
+  backup an earlier one took.
 - Vocabulary information statistics now derive layer and category from the
   canonical `_meta.path` instead of classifying every current pattern as
   unclassified.
