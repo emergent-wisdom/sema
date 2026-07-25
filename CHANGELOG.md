@@ -92,6 +92,15 @@ This file records vocabulary-level changes between versions — additions, renam
   alone, and refs outside the fence in the same file are still refreshed. Both
   examples in the versioning spec are repaired and now cite real members of
   `PropheticQuorum`'s supersession chain.
+- `rebuild_vocabulary.py --replace` keeps the rebuilt database when it reports
+  hash drift. Drift means the stored hashes were stale — typically a dependency
+  changed and its dependents were never rehashed — and the rebuild has just
+  corrected them in place, so the database it built is the better copy.
+  Restoring the backup discarded that correction, and because a caller
+  re-exports afterwards, the stale hashes were written straight back and the
+  next rebuild found the same files again. Observed looping on a 207-dependent
+  cascade. The exit code is still non-zero so the finding stays visible, and the
+  message now says the hashes were corrected rather than lost.
 - `sema apply --check` now refuses a dependency cycle instead of passing it.
   The topological sort dropped every edge leaving the batch, so a cycle between
   a staged pattern and an already-committed one was invisible to it, and the

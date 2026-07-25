@@ -41,10 +41,16 @@ def python_executable() -> str:
     return sys.executable
 
 
-def step(label: str, cmd: list[str]) -> str:
+def step(label: str, cmd: list[str], allow_drift: bool = False) -> str:
     print(f"\n── {label}")
     proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
     output = proc.stdout + proc.stderr
+    drift_only = allow_drift and "HASH DRIFT" in proc.stdout
+    if drift_only:
+        for line in output.splitlines():
+            if line.strip():
+                print(f"   {line}")
+        return output
     if proc.returncode != 0 or "❌" in proc.stdout:
         print(output.rstrip())
         print(f"\nFAILED at: {label}")
@@ -88,8 +94,14 @@ def main() -> int:
     step("export database to data/vocabulary", [py, "scripts/export/export_sema.py"])
 
     # Rehash so dependents of an edited pattern carry its new hash. Reads the
-    # exports, which is why it has to come after the export above.
-    step("rehash dependents", [py, "scripts/rebuild_vocabulary.py", "--replace"])
+    # exports, which is why it must come after the export above.
+    #
+    # A rebuild that reports HASH DRIFT has still done its job: the stored hashes
+    # were stale — usually because a dependency changed and its dependents were
+    # never rehashed — and the rebuild corrected them in place. It exits non-zero so
+    # the finding is visible, and under --replace it keeps the corrected database,
+    # so the export below writes the corrected hashes rather than the stale ones.
+    step("rehash dependents", [py, "scripts/rebuild_vocabulary.py", "--replace"], allow_drift=True)
     step("re-export after rehash", [py, "scripts/export/export_sema.py"])
 
     if not args.keep_staging:

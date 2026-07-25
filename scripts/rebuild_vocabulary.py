@@ -56,7 +56,7 @@ def backup_path_for(db_path: str, stamp: str | None = None) -> str:
 
 
 def restore_plan(
-    *, replace: bool, rebuild_succeeded: bool, check_only_run: bool
+    *, replace: bool, rebuild_succeeded: bool, check_only_run: bool, db_valid: bool = False
 ) -> tuple[bool, str]:
     """Decide whether to keep the rebuilt DB, and what to say about it.
 
@@ -69,6 +69,12 @@ def restore_plan(
     """
     if replace and rebuild_succeeded and not check_only_run:
         return True, "Kept rebuilt DB (--replace)"
+    # Hash drift is the one failure where the rebuilt database is still the better
+    # copy: the apply completed, and the corrected hashes are the right ones.
+    # Restoring here discards the correction, and a caller that re-exports
+    # afterwards writes the stale hashes back — which loops forever.
+    if replace and db_valid and not check_only_run:
+        return True, "Kept rebuilt DB (--replace) — hashes were corrected, not lost"
     if not replace:
         return False, "Restored original DB"
     if check_only_run:
@@ -137,6 +143,7 @@ def main():
     print(f"Backed up DB to {backup_path}")
     rebuild_succeeded = False
     check_only_run = False
+    db_valid = False
 
     # Cold mode: nuke embedding cache
     embed_cache_path = get_embedding_cache_path()
@@ -181,6 +188,10 @@ def main():
         # Count added
         added = out.count("✓ Added")
         print(f"Added {added}/{json_count} patterns in {elapsed:.1f}s")
+        # The rebuild produced a complete database from the JSON. Hash drift below
+        # is a finding about the *inputs*, not a failure of this rebuild, so the
+        # database it just built is valid and is the better copy.
+        db_valid = True
 
         if args.check:
             print("\n--check mode: no JSON files were modified")
@@ -197,6 +208,11 @@ def main():
             print(f"\n❌ HASH DRIFT DETECTED — {len(changed_files)} files changed:")
             for name in changed_files[:10]:
                 print(f"  data/vocabulary/{name}")
+            print(
+                "\nThe rebuilt hashes are the correct ones — the stored ones were stale, "
+                "usually\nbecause a dependency changed and its dependents were never rehashed. "
+                "The JSON\nfiles above have been corrected in place."
+            )
             sys.exit(1)
         else:
             print("\n✅ All hashes stable — zero diff on vocabulary JSON files")
@@ -209,6 +225,7 @@ def main():
             replace=args.replace,
             rebuild_succeeded=rebuild_succeeded,
             check_only_run=check_only_run,
+            db_valid=db_valid,
         )
         if keep:
             os.remove(backup_path)
