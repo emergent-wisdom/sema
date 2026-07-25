@@ -28,8 +28,36 @@ Read these before editing patterns:
 
 The database is authoritative. Copy exported JSON from `data/vocabulary/` into
 `data/staging/`, edit staging, update `data/design_critique.json`, preview the
-manual, apply through `sema apply`, export from `data/taxonomy.db`, and remove
-the staging file. Never edit canonical vocabulary exports directly.
+manual, then apply. Never edit canonical vocabulary exports directly.
+
+To apply, prefer:
+
+```bash
+python scripts/apply_vocabulary_change.py
+```
+
+It runs the four steps in the only order that works and stops at the first
+failure. The order is load-bearing: `sema apply` writes the database,
+`export_sema.py` writes `data/vocabulary/` from the database, and
+`rebuild_vocabulary.py` reads `data/vocabulary/` to recompute hashes so that
+dependents of an edited pattern pick up its new hash. Rebuilding before
+exporting rehashes the previous state instead, which once let a dependency cycle
+survive a fix that had already been applied.
+
+Validation refuses a cycle before anything is written, including a cycle between
+a staged pattern and an already-committed one, and including one formed by a
+`references` edge in each direction. Where the reverse edge already exists the
+relationship is in the graph from the side that does not cycle, so name the other
+pattern in prose rather than adding the edge. `rebuild_vocabulary.py --replace`
+keeps the rebuilt database only when the rebuild succeeded; a failed rebuild
+restores the backup, and backups are timestamped so a later run cannot destroy an
+earlier one.
+
+`scripts/audit/dangling_handles.py` reports CapitalisedNames in pattern text that
+resolve to no pattern. It covers backticked names and multi-part CamelCase; single
+bare capitalised words are not detectable, for reasons measured in its docstring.
+Resolving a name is mechanical, but deciding whether to mint, redirect or
+lowercase is not — that is Henrik's call.
 
 General handles contain only the broad-use intersection. Put qualitatively
 different strategies in descendants, quantitative identity axes in parameters,

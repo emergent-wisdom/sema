@@ -3,7 +3,7 @@ Sema Dependency Resolution and Topological Sorting.
 Extracts dependency graph from patterns and enforces acyclic ordering.
 """
 
-from collections import defaultdict
+from collections import defaultdict, deque
 
 from .validator import clean_handle
 
@@ -115,6 +115,95 @@ def find_cycle_path(adj: dict[str, set[str]], nodes: set[str]) -> list[str] | No
             if res:
                 return res
     return None
+
+
+def build_dependency_adjacency(
+    patterns_dict: dict[str, dict], existing_patterns: dict[str, dict] | None = None
+) -> dict[str, set[str]]:
+    """
+    Return {dependent: {dependencies}} over the merged corpus.
+
+    Patterns in patterns_dict win over same-handle entries in existing_patterns,
+    because an add replaces the committed version. Edges to handles outside the
+    merged corpus are dropped — they cannot participate in a cycle here.
+    """
+    merged = dict(existing_patterns or {})
+    merged.update(patterns_dict)
+
+    adj: dict[str, set[str]] = defaultdict(set)
+    for handle, p in merged.items():
+        for dep in get_dependencies_handles(p):
+            if dep in merged and dep != handle:
+                adj[handle].add(dep)
+    return adj
+
+
+def find_cycle_through(adj: dict[str, set[str]], start: str) -> list[str] | None:
+    """
+    Return a cycle path [start, ..., start] if `start` lies on one, else None.
+
+    Breadth-first from start's dependencies, so each node is visited once and the
+    walk is linear in the graph. A depth-first enumeration of paths would be
+    exponential on a dense corpus.
+    """
+    parent: dict[str, str] = {}
+    queue = deque()
+    for v in sorted(adj.get(start, ())):
+        parent[v] = start
+        queue.append(v)
+
+    while queue:
+        u = queue.popleft()
+        for v in sorted(adj.get(u, ())):
+            if v == start:
+                chain = [u]
+                while chain[-1] != start:
+                    chain.append(parent[chain[-1]])
+                chain.reverse()
+                return chain + [start]
+            if v not in parent:
+                parent[v] = u
+                queue.append(v)
+    return None
+
+
+def validate_acyclic(
+    patterns_dict: dict[str, dict], existing_patterns: dict[str, dict] | None = None
+) -> None:
+    """
+    Raise ValueError if any pattern being added lies on a dependency cycle.
+
+    `topological_sort` sees only the batch, so its `dep in patterns_dict` filter
+    silently drops every edge to a committed pattern. A mutual `references` pair
+    between a staged pattern and a committed one is therefore invisible to it,
+    and `sema apply --check` passed exactly that case — the full rebuild then
+    rejected it, after having already replaced the database.
+
+    Only cycles containing a pattern from the batch are reported. A cycle wholly
+    inside the committed corpus is a pre-existing condition and must not block an
+    unrelated change.
+
+    Args:
+        patterns_dict: New patterns being added {handle: pattern_data}
+        existing_patterns: Already-committed patterns. Dependencies are stored as
+            graph edges rather than on the node, so a caller reading from a
+            GraphStore must supply {handle: {"dependencies": <edge deps>}}.
+
+    Raises:
+        ValueError: If a cycle through one of the added patterns is found.
+    """
+    adj = build_dependency_adjacency(patterns_dict, existing_patterns)
+
+    for handle in sorted(patterns_dict):
+        cycle = find_cycle_through(adj, handle)
+        if cycle:
+            raise ValueError(
+                "Cycle detected in dependencies.\n"
+                f"Cycle Path: {' --> '.join(cycle)}\n"
+                "A dependency in one direction and a reference back is still a cycle. "
+                "Where the reverse edge already exists, the relationship is in the graph "
+                "from the side that does not cycle — name the other pattern in prose."
+            )
 
 
 def topological_sort(patterns_dict: dict[str, dict]) -> list[str]:

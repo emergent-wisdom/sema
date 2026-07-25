@@ -45,6 +45,37 @@ def changed_vocabulary_files(before: dict[str, bytes], vocab_dir=VOCAB_DIR) -> l
     )
 
 
+def backup_path_for(db_path: str, stamp: str | None = None) -> str:
+    """Timestamped backup name.
+
+    A fixed name meant a second rebuild overwrote the backup taken by the first,
+    so running the verify script after a failed rebuild destroyed the only copy of
+    the good database.
+    """
+    return f"{db_path}.rebuild_bak.{stamp or time.strftime('%Y%m%d-%H%M%S')}"
+
+
+def restore_plan(
+    *, replace: bool, rebuild_succeeded: bool, check_only_run: bool
+) -> tuple[bool, str]:
+    """Decide whether to keep the rebuilt DB, and what to say about it.
+
+    --replace means "keep the rebuilt DB". A failed rebuild produced no rebuilt DB
+    to keep — only a fresh empty one, or a partially applied one — and a --check
+    run applies nothing at all. Honouring --replace in either case discarded the
+    vocabulary outright: the kept database was empty, the backup was deleted in
+    the same branch, and the next export wrote zero patterns over
+    data/vocabulary/.
+    """
+    if replace and rebuild_succeeded and not check_only_run:
+        return True, "Kept rebuilt DB (--replace)"
+    if not replace:
+        return False, "Restored original DB"
+    if check_only_run:
+        return False, "Restored original DB — --check applies nothing, so there was nothing to keep"
+    return False, "Restored original DB — rebuild failed, so there was nothing to keep"
+
+
 def run(cmd, **kwargs):
     """Run a command, return (returncode, stdout, stderr).
 
@@ -101,9 +132,11 @@ def main():
     print(f"Rebuilding {json_count} patterns from {VOCAB_DIR}")
 
     # 1. Back up
-    backup_path = DB_PATH + ".rebuild_bak"
+    backup_path = backup_path_for(DB_PATH)
     shutil.copy2(DB_PATH, backup_path)
     print(f"Backed up DB to {backup_path}")
+    rebuild_succeeded = False
+    check_only_run = False
 
     # Cold mode: nuke embedding cache
     embed_cache_path = get_embedding_cache_path()
@@ -151,6 +184,9 @@ def main():
 
         if args.check:
             print("\n--check mode: no JSON files were modified")
+            # A check run applies with --check, so the fresh DB holds nothing.
+            # Never keep it, whatever --replace says.
+            check_only_run = True
             return
 
         # 4. Compare against the exact inputs to this rebuild. Using `git
@@ -165,14 +201,20 @@ def main():
         else:
             print("\n✅ All hashes stable — zero diff on vocabulary JSON files")
 
+        rebuild_succeeded = True
+
     finally:
-        # 5. Restore DB
-        if args.replace:
+        # 5. Keep the rebuilt DB or restore the backup — see restore_plan.
+        keep, message = restore_plan(
+            replace=args.replace,
+            rebuild_succeeded=rebuild_succeeded,
+            check_only_run=check_only_run,
+        )
+        if keep:
             os.remove(backup_path)
-            print("Kept rebuilt DB (--replace)")
         else:
             shutil.move(backup_path, DB_PATH)
-            print("Restored original DB")
+        print(message)
 
         # Restore embedding cache
         if embed_cache_backup and os.path.exists(embed_cache_backup):

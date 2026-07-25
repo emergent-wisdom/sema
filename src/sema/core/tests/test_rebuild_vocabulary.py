@@ -41,3 +41,50 @@ def test_isolated_registry_environment_replaces_home_without_losing_environment(
 
     assert env["HOME"] == str(tmp_path)
     assert all(env.get(key) == value for key, value in os.environ.items() if key != "HOME")
+
+
+def test_replace_is_honoured_only_when_there_is_a_rebuild_to_keep():
+    """Regression: --replace on a failed rebuild kept an empty DB and deleted the backup.
+
+    The next export then wrote zero patterns over data/vocabulary/, and a verify
+    run afterwards overwrote the fixed-name backup, so the good database was gone.
+    """
+    rebuild = load_rebuild_module()
+
+    keep, message = rebuild.restore_plan(
+        replace=True, rebuild_succeeded=True, check_only_run=False
+    )
+    assert keep is True
+    assert "Kept rebuilt DB" in message
+
+    keep, message = rebuild.restore_plan(
+        replace=True, rebuild_succeeded=False, check_only_run=False
+    )
+    assert keep is False
+    assert "rebuild failed" in message
+
+    # --check applies nothing, so the fresh DB is empty whatever --replace says.
+    keep, message = rebuild.restore_plan(
+        replace=True, rebuild_succeeded=False, check_only_run=True
+    )
+    assert keep is False
+    assert "--check applies nothing" in message
+
+    keep, message = rebuild.restore_plan(
+        replace=False, rebuild_succeeded=True, check_only_run=False
+    )
+    assert keep is False
+    assert message == "Restored original DB"
+
+
+def test_backup_path_is_unique_per_run(tmp_path):
+    """A fixed backup name let a later run destroy an earlier run's only backup."""
+    rebuild = load_rebuild_module()
+    db = str(tmp_path / "taxonomy.db")
+
+    first = rebuild.backup_path_for(db, stamp="20260725-120000")
+    second = rebuild.backup_path_for(db, stamp="20260725-120500")
+
+    assert first != second
+    assert first.startswith(db)
+    assert not first.endswith(".rebuild_bak")

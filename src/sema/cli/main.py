@@ -160,6 +160,29 @@ def apply_changes(
                     f"Include '{user}' in --remove or supply updated version in --add."
                 )
 
+    # 1d. Acyclic check across the batch AND the committed corpus.
+    # Phase 2 also sorts topologically, but that sort sees only the batch, and it
+    # runs after --check has already returned. A mutual reference between a staged
+    # pattern and a committed one therefore passed --check and was caught only by
+    # a full rebuild, which by then had replaced the database.
+    if add_patterns and not errors:
+        from ..core.dependencies import validate_acyclic
+
+        # Dependencies live on edges, not on the node, so read them from edges.
+        # Patterns being removed are excluded: a cycle through one of them is
+        # about to stop existing.
+        committed = {}
+        for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+            h = data.get("text")
+            if not h or h in remove_handles:
+                continue
+            committed[h] = {"dependencies": store.get_dependencies_from_edges(h)}
+
+        try:
+            validate_acyclic({p[1]["handle"]: p[1] for p in add_patterns}, committed)
+        except ValueError as e:
+            errors.append(f"Dependency error: {e}")
+
     if not errors:
         print("  ✓ Validation passed")
 
@@ -194,6 +217,15 @@ def apply_changes(
         # Check layer direction (Rule 7.6)
         # Applies only to hard dependency buckets (accepts, composes_with).
         # yields and references are exempt — see dependencies._LAYER_CHECKED_BUCKETS.
+        #
+        # KNOWN GAP, deliberately not fixed here: pattern nodes carry the handle in
+        # data["text"], not data["handle"], so the filter below discards every row
+        # and existing_patterns is always empty. Layer direction is therefore checked
+        # only within a batch, never against committed patterns. Correcting the key
+        # would begin enforcing Rule 7.6 across all 453 patterns at once and could
+        # refuse applies that succeed today, so it needs its own change and its own
+        # review of whatever it surfaces. Dependencies also live on edges rather than
+        # on the node — see the acyclic check in Phase 1 for how to read them.
         try:
             from ..core.dependencies import validate_layer_direction
 
