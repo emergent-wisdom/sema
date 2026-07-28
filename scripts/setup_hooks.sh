@@ -9,9 +9,9 @@ echo "Installing pre-commit hook to $PRE_COMMIT..."
 cat > "$PRE_COMMIT" << 'EOF'
 #!/bin/bash
 # Sema Pre-Commit Hook
-# Calculates Merkle Root and updates docs
+# Calculates aggregate roots and updates docs
 
-echo "🔄 Running Sema Merkle Root Calculator..."
+echo "🔄 Running Sema aggregate-root calculator..."
 
 # Navigate to repo root
 REPO_ROOT=$(git rev-parse --show-toplevel)
@@ -23,7 +23,7 @@ python3 scripts/vocabulary_merkle_root.py
 # Add the updated docs to the commit
 git add docs/information/vocabulary_information.md
 
-echo "✅ Merkle Root updated."
+echo "✅ Aggregate roots updated."
 EOF
 
 chmod +x "$PRE_COMMIT"

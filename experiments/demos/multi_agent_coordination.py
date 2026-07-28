@@ -81,12 +81,16 @@ def main():
     agent_log("A", "PROPOSE CONTEXT", f"Patterns: {context_patterns}")
     proposal = json.loads(sema_propose_context(context_patterns))
     context_hash = proposal["context_hash"]
+    context_scheme = proposal["root_scheme"]
     print(f"  Context hash: {context_hash}")
+    print(f"  Root scheme: {context_scheme}")
     print(f"  Patterns: {proposal['patterns']}")
-    print(f"  → Sending hash to Engineer...")
+    print(f"  → Sending hash and scheme to Engineer...")
 
     agent_log("B", "VERIFY CONTEXT", f"Received hash: {context_hash}")
-    verification = json.loads(sema_verify_context(context_patterns, context_hash))
+    verification = json.loads(
+        sema_verify_context(context_patterns, context_hash, context_scheme)
+    )
     print(f"  Verdict: {verification['verdict']}")
     if verification["verdict"] == "PROCEED":
         print(f"  ✅ Context verified. Both agents share exact same definitions.")
@@ -213,12 +217,16 @@ def main():
     agent_log("B", "PROPOSE CONTEXT", f"Adding LoadTest to shared context")
     new_proposal = json.loads(sema_propose_context(expanded_context))
     new_hash = new_proposal["context_hash"]
+    new_scheme = new_proposal["root_scheme"]
     print(f"  New context hash: {new_hash}")
+    print(f"  Root scheme: {new_scheme}")
     print(f"  (Old hash was: {context_hash})")
-    print(f"  → Hash changed because context expanded. Sending to Architect...")
+    print(f"  → Context changed because it expanded. Sending hash and scheme to Architect...")
 
     agent_log("A", "VERIFY CONTEXT", f"Received new hash: {new_hash}")
-    new_verification = json.loads(sema_verify_context(expanded_context, new_hash))
+    new_verification = json.loads(
+        sema_verify_context(expanded_context, new_hash, new_scheme)
+    )
     print(f"  Verdict: {new_verification['verdict']}")
     if new_verification["verdict"] == "PROCEED":
         print(f"  ✅ Expanded context verified. Both agents aligned on {new_verification['count']} patterns.")

@@ -8,6 +8,7 @@ wide registry globals directly.
 from __future__ import annotations
 
 import json
+import os
 from collections import defaultdict
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
@@ -15,7 +16,12 @@ from threading import RLock
 from typing import Any
 
 from .handshake import HandshakeMode, HandshakeVerdict, decide_handshake
-from .hashing import HASH_ALGO, vocabulary_root
+from .hashing import (
+    HASH_ALGO,
+    pattern_hash_from_sema_id,
+    vocabulary_info,
+    vocabulary_roots,
+)
 from .registry import RegistryManager
 from .validator import validate_pattern
 
@@ -107,6 +113,11 @@ class GraphWorkspace:
             "pattern_count": len(self.registry),
             "vocabulary_root": root["hash"],
             "vocabulary_root_stub": root["stub"],
+            "vocabulary_root_scheme": root["root_scheme"],
+            "catalog_root": root["catalog_root"],
+            "catalog_root_stub": root["catalog_root_stub"],
+            "catalog_root_scheme": root["catalog_root_scheme"],
+            "definition_count": root["definition_count"],
             "metadata": self.source.metadata,
         }
 
@@ -286,14 +297,25 @@ class GraphWorkspace:
 
     def vocabulary_root(self) -> dict[str, Any]:
         self.refresh()
-        rows = []
+
+        # A RegistryManager dictionary is a convenient read model, not a
+        # complete catalog proof: its loader may omit malformed rows and a
+        # dict cannot represent duplicate handles. Fingerprint the database
+        # rows directly whenever a materialized database is available.
+        if self.db_path and os.path.isfile(self.db_path):
+            return vocabulary_info(self.db_path)
+        if self.db_path and isinstance(self.registry_manager, RegistryManager):
+            raise FileNotFoundError(f"workspace database not found: {self.db_path}")
+
+        bindings = []
         for handle, data in self.registry.items():
-            sema_id = data.get("sema_id", "")
-            if "#mh:SHA-256:" in sema_id:
-                rows.append((handle, sema_id.split("#mh:SHA-256:")[1]))
-        rows.sort(key=lambda row: row[0])
-        root = vocabulary_root([hash_value for _, hash_value in rows])
-        return {"hash": root, "stub": root[:16], "pattern_count": len(rows)}
+            sema_id = data.get("sema_id")
+            try:
+                pattern_hash = pattern_hash_from_sema_id(sema_id, expected_handle=handle)
+            except ValueError as exc:
+                raise ValueError(f"pattern {handle!r} has an invalid sema_id: {exc}") from exc
+            bindings.append((handle, pattern_hash))
+        return vocabulary_roots(bindings)
 
     def root_payload(self) -> dict[str, Any]:
         root = self.vocabulary_root()
@@ -301,20 +323,82 @@ class GraphWorkspace:
             "full_sema_id": f"sema:vocab#mh:{HASH_ALGO}:{root['hash']}",
             "stub": root["stub"],
             "hash": root["hash"],
+            "root_scheme": root["root_scheme"],
+            "semantic_root": root["semantic_root"],
+            "semantic_root_scheme": root["semantic_root_scheme"],
+            "catalog_full_sema_id": (f"sema:catalog#mh:{HASH_ALGO}:{root['catalog_root']}"),
+            "catalog_root": root["catalog_root"],
+            "catalog_root_stub": root["catalog_root_stub"],
+            "catalog_root_scheme": root["catalog_root_scheme"],
             "pattern_count": root["pattern_count"],
+            "definition_count": root["definition_count"],
             "db_path": self.db_path,
         }
 
     def handshake(
-        self, ref: str, your_hash: str | None = None, *, strict: bool = False
+        self,
+        ref: str,
+        your_hash: str | None = None,
+        *,
+        strict: bool = False,
+        your_scheme: str | None = None,
     ) -> dict[str, Any]:
         mode = HandshakeMode.STRICT if strict else HandshakeMode.COOPERATIVE
-        if ref.strip().lower() == "vocab":
+        aggregate_scope = ref.strip().lower()
+        if aggregate_scope in {"vocab", "catalog"}:
             root = self.vocabulary_root()
-            canonical_hash = root["hash"]
-            canonical_stub = root["stub"]
-            canonical_ref = f"sema:vocab#mh:{HASH_ALGO}:{canonical_hash}"
+            if aggregate_scope == "catalog":
+                canonical_hash = root["catalog_root"]
+                canonical_stub = root["catalog_root_stub"]
+                canonical_scheme = root["catalog_root_scheme"]
+                canonical_ref = f"sema:catalog#mh:{HASH_ALGO}:{canonical_hash}"
+                count_name = "pattern_count"
+                count = root["pattern_count"]
+                alignment_name = "Catalog"
+            else:
+                canonical_hash = root["semantic_root"]
+                canonical_stub = root["semantic_root_stub"]
+                canonical_scheme = root["semantic_root_scheme"]
+                canonical_ref = f"sema:vocab#mh:{HASH_ALGO}:{canonical_hash}"
+                count_name = "definition_count"
+                count = root["definition_count"]
+                alignment_name = "Semantic-set"
+
+            common = {
+                "scope": aggregate_scope,
+                "root_scheme": canonical_scheme,
+                count_name: count,
+                "pattern_count": root["pattern_count"],
+            }
+
             presented_hash = None if your_hash is None else your_hash.strip().lower()
+            if presented_hash and your_scheme is None:
+                return {
+                    "verdict": HandshakeVerdict.HALT.value,
+                    **common,
+                    "reason": "ROOT SCHEME REQUIRED",
+                    "canonical_ref": canonical_ref,
+                    "action": (
+                        "DO NOT PROCEED. Supply the root_scheme that accompanied "
+                        "the remote root; a digest alone does not identify the "
+                        "aggregate construction."
+                    ),
+                }
+
+            if presented_hash and your_scheme != canonical_scheme:
+                return {
+                    "verdict": HandshakeVerdict.HALT.value,
+                    **common,
+                    "your_scheme": your_scheme,
+                    "reason": "ROOT SCHEME MISMATCH",
+                    "canonical_ref": canonical_ref,
+                    "action": (
+                        "DO NOT PROCEED. Upgrade both Sema installations to a version "
+                        "that uses the same root scheme; pulling pattern data cannot "
+                        "repair an aggregate-algorithm mismatch."
+                    ),
+                }
+
             verdict = decide_handshake(
                 available=True,
                 presented_hash=presented_hash,
@@ -326,14 +410,14 @@ class GraphWorkspace:
             if verdict is HandshakeVerdict.PROVIDE_HASH:
                 return {
                     "verdict": verdict.value,
-                    "scope": "vocab",
+                    **common,
                     "canonical_stub": canonical_stub,
                     "canonical_ref": canonical_ref,
                     "full_sema_id": canonical_ref,
-                    "pattern_count": root["pattern_count"],
                     "action": (
-                        "Compare this vocabulary root with yours. Call again "
-                        "with your_hash (16-char stub or 64-char full hash) to verify."
+                        f"Compare this {aggregate_scope} root and root_scheme with yours. "
+                        "Call again with your_hash (16-char stub or 64-char full hash) "
+                        "and your_scheme to verify."
                     ),
                 }
 
@@ -341,43 +425,40 @@ class GraphWorkspace:
                 assurance = "full_hash" if presented_hash == canonical_hash else "prefix"
                 return {
                     "verdict": verdict.value,
-                    "scope": "vocab",
+                    **common,
                     "verified_ref": canonical_ref,
                     "assurance": assurance,
                     "mode": mode.value,
-                    "pattern_count": root["pattern_count"],
-                    "message": "Vocabulary alignment confirmed. Safe to coordinate.",
+                    "message": f"{alignment_name} alignment confirmed. Safe to coordinate.",
                 }
 
             if verdict is HandshakeVerdict.REQUIRE_FULL_HASH:
                 return {
                     "verdict": verdict.value,
-                    "scope": "vocab",
+                    **common,
                     "canonical_stub": canonical_stub,
                     "canonical_ref": canonical_ref,
                     "full_sema_id": canonical_ref,
-                    "pattern_count": root["pattern_count"],
                     "mode": mode.value,
                     "action": (
-                        "The vocabulary prefix matches, but strict verification requires "
+                        f"The {aggregate_scope} prefix matches, but strict verification requires "
                         "the full 64-character hash. Call again with the full hash."
                     ),
                 }
 
             return {
                 "verdict": verdict.value,
-                "scope": "vocab",
+                **common,
                 "your_hash": your_hash,
                 "canonical_stub": canonical_stub,
-                "reason": "VOCABULARY DRIFT DETECTED",
+                "reason": f"{alignment_name.upper()} DRIFT DETECTED",
                 "action": (
-                    "DO NOT PROCEED. Your vocabulary root differs. At least one "
-                    "pattern's definition or the set of patterns itself differs "
-                    "between you. Run `sema pull` to converge, or use "
-                    "`sema_propose_context` on a shared subset instead."
+                    f"DO NOT PROCEED. Your {aggregate_scope} root differs. First verify "
+                    f"that both sides use root_scheme={canonical_scheme!r}. If schemes "
+                    "match, run `sema pull` to converge pattern data or use "
+                    "`sema_propose_context` on a known-shared subset."
                 ),
                 "canonical_ref": canonical_ref,
-                "pattern_count": root["pattern_count"],
             }
 
         self.refresh()

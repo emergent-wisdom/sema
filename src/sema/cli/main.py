@@ -517,35 +517,16 @@ def show_skeleton():
 
 
 def _compute_active_vocabulary_root(db_path: str) -> tuple[str, int]:
-    """Return (root_hash, pattern_count) for the given DB path.
+    """Return (semantic_root, pattern_count) for the given DB path."""
+    from ..core.hashing import vocabulary_info
 
-    Hashes are collected in ascending-by-handle order so two DBs with the
-    same pattern set always produce the same root regardless of insertion
-    order.
-    """
-    from ..core.hashing import vocabulary_root
-    from ..taxonomy_graph.graph_store import GraphStore, NodeType
-
-    store = GraphStore(db_path)
-    rows = []
-    for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
-        handle = data.get("text")
-        pattern = data.get("metadata", {}).get("pattern", {})
-        sema_id = pattern.get("sema_id", "")
-        if handle and "#mh:SHA-256:" in sema_id:
-            rows.append((handle, sema_id.split("#mh:SHA-256:")[1]))
-    rows.sort(key=lambda r: r[0])
-    hashes = [h for _, h in rows]
-    return vocabulary_root(hashes), len(hashes)
+    info = vocabulary_info(db_path)
+    return info["semantic_root"], info["pattern_count"]
 
 
 def vocab_root(short: bool = False) -> bool:
-    """Compute and print the vocabulary-wide Merkle root for the active DB.
-
-    Same algorithm as `scripts/vocabulary_merkle_root.py` — SHA-256 over
-    the concatenation of every pattern's hash, sorted by handle.
-    """
-    from ..core.hashing import HASH_ALGO
+    """Compute and print both aggregate roots for the active DB."""
+    from ..core.hashing import HASH_ALGO, vocabulary_info
 
     db = get_default_db_path()
     if not db:
@@ -556,16 +537,20 @@ def vocab_root(short: bool = False) -> bool:
         return False
 
     try:
-        root, count = _compute_active_vocabulary_root(db)
+        info = vocabulary_info(db)
     except Exception as e:
         print(f"❌ Failed to compute vocabulary root: {e}")
         return False
 
     if short:
-        print(root[:16])
+        print(f"{info['semantic_root_scheme']}:{info['semantic_root'][:16]}")
     else:
-        print(f"sema:vocab#mh:{HASH_ALGO}:{root}")
-        print(f"patterns: {count}")
+        print(f"sema:vocab#mh:{HASH_ALGO}:{info['semantic_root']}")
+        print(f"scheme: {info['semantic_root_scheme']}")
+        print(f"sema:catalog#mh:{HASH_ALGO}:{info['catalog_root']}")
+        print(f"catalog scheme: {info['catalog_root_scheme']}")
+        print(f"patterns: {info['pattern_count']}")
+        print(f"definitions: {info['definition_count']}")
         print(f"db: {db}")
     return True
 
@@ -660,11 +645,16 @@ def update_db(
 
     Returns a structured dict with success flag, counts, full handle lists for
     each category (added/updated/skipped/cascaded_user/superseded_removed/
-    superseded_kept_orphan/upstream_removed), and vocabulary_root_before /
-    vocabulary_root_after so MCP callers can act on the outcome programmatically.
+    superseded_kept_orphan/upstream_removed), vocabulary_root_before /
+    vocabulary_root_after, and vocabulary_root_scheme so MCP callers can act
+    on the outcome programmatically.
     """
     from ..core.dependencies import topological_sort
-    from ..core.hashing import extract_handle_from_ref, vocabulary_info
+    from ..core.hashing import (
+        SEMANTIC_ROOT_SCHEME,
+        extract_handle_from_ref,
+        vocabulary_info,
+    )
     from ..core.mint import mint_pattern
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -680,6 +670,7 @@ def update_db(
         "upstream_removed": [],
         "vocabulary_root_before": None,
         "vocabulary_root_after": None,
+        "vocabulary_root_scheme": SEMANTIC_ROOT_SCHEME,
     }
 
     target_db = get_default_db_path()
@@ -1068,6 +1059,23 @@ def update_db(
                 if dep not in upstream_patterns:
                     cascaded_user.add(dep)
 
+        # Verification is part of the atomic pull, not post-success
+        # reporting. If either aggregate-root collection or optional
+        # bottom-up hash verification fails, the exception path below
+        # restores the pre-pull backup before any backup is promoted.
+        try:
+            post_pull_root = vocabulary_info(target_db).get("root")
+        except Exception as exc:
+            raise RuntimeError(f"Post-pull aggregate-root verification failed: {exc}") from exc
+
+        if verify:
+            invalid = _verify_hashes(target_db)
+            if invalid:
+                outcome["invalid_hashes"] = list(invalid)
+                raise RuntimeError(f"Hash validity check failed: {len(invalid)} invalid pattern(s)")
+            print("✓ Hash validity verified.")
+            outcome["verified"] = True
+
     except (Exception, KeyboardInterrupt) as e:
         # Roll back: restore the DB from backup via SQLite's backup API
         # (safe with WAL mode, unlike shutil.move). Use closing() so the
@@ -1252,22 +1260,7 @@ def update_db(
         (h, list(n), list(d)) for h, n, d in superseded_kept_orphan
     ]
     outcome["upstream_removed"] = list(upstream_removed)
-    try:
-        outcome["vocabulary_root_after"] = vocabulary_info(target_db).get("root")
-    except Exception:
-        pass
-
-    if verify:
-        invalid = _verify_hashes(target_db)
-        if invalid:
-            print(f"\n❌ Hash validity check failed: {len(invalid)} invalid patterns")
-            for h in invalid[:5]:
-                print(f"    {h}")
-            outcome["error"] = f"{len(invalid)} pattern(s) failed hash verification"
-            outcome["invalid_hashes"] = list(invalid)
-            return outcome
-        print("✓ Hash validity verified.")
-        outcome["verified"] = True
+    outcome["vocabulary_root_after"] = post_pull_root
 
     outcome["success"] = True
     return outcome

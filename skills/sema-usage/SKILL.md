@@ -59,17 +59,29 @@ If `sema_use` MCP tool is unavailable (older server version), the MCP server can
 
 ## Vocabulary fingerprint — `sema_root`
 
-Every active DB has a single scalar identity: a SHA-256 digest over every pattern's hash, in handle-sorted order. It's the "git rev-parse HEAD" of the vocabulary.
+Every active DB exposes two versioned identities:
 
-- `sema_root()` — returns `{ full_sema_id, stub, hash, pattern_count, db_path }`
-- CLI: `sema root` (full), `sema root --short` (16-char stub only)
+- **Semantic-set root** (`sema-semantic-set-v1`): the unordered set of unique
+  pattern-definition hashes. Use this to compare definition sets. Under
+  canonicalization v2, renaming a referenced target can also rehash its
+  dependents because structured references still contain target handles.
+- **Catalog root** (`sema-catalog-v1`): the exact handle → definition bindings.
+  Use this when both parties must resolve the same names.
+
+Both use domain-separated canonical binary Merkle trees. `sema_root()` returns
+both roots, both scheme labels, `pattern_count`, `definition_count`, and the DB
+path. CLI `sema root` prints both; `sema root --short` prints the semantic-set
+scheme and 16-character stub together.
 
 Use it when:
 - The user asks "which version of the vocabulary are we on?"
 - You need a one-shot check before a multi-step operation that depends on the vocab being stable
 - The user is comparing two DBs and wants a fast equality probe
 
-This is the same number that `scripts/vocabulary_merkle_root.py` writes into `docs/information/vocabulary_information.md` — so if the user references a root hash from the docs, you can verify alignment directly.
+The semantic-set root is the same value that
+`scripts/vocabulary_merkle_root.py` writes into
+`docs/information/vocabulary_information.md`, so a root from the docs can be
+verified directly when its scheme accompanies it.
 
 ## Keeping the vocabulary fresh (`sema_pull` / `sema pull`)
 
@@ -82,7 +94,7 @@ sema_pull({ preserve_superseded: true }) // keep old handles alongside new
 sema_pull({ exclude: ["SomeHandle"] })   // ad-hoc skip
 ```
 
-The tool returns structured JSON: `added`, `updated`, `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after`. Read those fields rather than re-parsing the human log.
+The tool returns structured JSON: `added`, `updated`, `superseded_removed`, `superseded_kept_orphan`, `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after`, and `vocabulary_root_scheme`. Read those fields rather than re-parsing the human log.
 
 **When to suggest pull unprompted:**
 - A `sema_handshake` returns HALT against a handle the user expected to know — the upstream definition may have evolved.
@@ -167,21 +179,36 @@ sema_handshake({ ref: "StateLock", your_hash: challenge.canonical_stub })
 // PROCEED (match) or HALT (drift). No silent misunderstandings.
 ```
 
-For bulk verification of a specific shared set, use `sema_verify_context`.
+For bulk verification of a specific handle-selected set, call
+`sema_propose_context`, then pass both its `context_hash` and `root_scheme` to
+`sema_verify_context`. Context roots use the catalog scheme so every selected
+handle remains bound to its definition.
 
 ### Vocabulary-wide handshake
 
-When two agents need to confirm they have the *same entire vocabulary* — not just one pattern — pass `ref="vocab"`:
+When two agents need a cooperative definition-set drift check, pass
+`ref="vocab"` and echo both the root and scheme:
 
 ```javascript
 const challenge = sema_handshake({ ref: "vocab" })
-// → { verdict: "PROVIDE_HASH", canonical_stub, pattern_count }
+// → { verdict: "PROVIDE_HASH", full_sema_id, root_scheme, definition_count }
 
-sema_handshake({ ref: "vocab", your_hash: challenge.canonical_stub })
-// → PROCEED if byte-identical, HALT if any pattern's hash differs
+sema_handshake({
+  ref: "vocab",
+  your_hash: challenge.full_sema_id.split(":").at(-1),
+  your_scheme: challenge.root_scheme,
+  strict: true
+})
+// → PROCEED with full_hash assurance, or a non-proceeding verdict
 ```
 
-This is equivalent to comparing `sema_root()` outputs but returns a verdict instead of raw numbers. Use it as a cheap drift check before coordinating on anything complex — if vocabs diverge, `sema pull` converges them or `sema_propose_context` can scope agreement to a known-shared subset.
+The full hash with `strict: true` is the identity check; a prefix is only
+cooperative drift detection. Use `ref="catalog"` in the same workflow when
+handle bindings must also match.
+If equal schemes have different roots, `sema pull` may converge their data or
+`sema_propose_context` can scope agreement to a known-shared subset. If schemes
+differ, upgrade the older Sema installation: pulling identical pattern leaves
+cannot repair an aggregate-algorithm mismatch.
 
 ## Think with sema, don't just cite it
 

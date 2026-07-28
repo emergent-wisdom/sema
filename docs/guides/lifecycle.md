@@ -130,10 +130,11 @@ changes when you need it; `taxonomy.db` remains the source of truth.
 
 The repository includes a pre-commit hook (installed via `scripts/setup_hooks.sh`) that automatically:
 
-1. Recalculates the **Merkle root** over the entire vocabulary (`scripts/vocabulary_merkle_root.py`)
+1. Recalculates the versioned **semantic-set and catalog roots** over the
+   entire vocabulary (`scripts/vocabulary_merkle_root.py`)
 2. Stages the updated `docs/information/vocabulary_information.md`
 
-This keeps the committed vocabulary root synchronized with the database.
+This keeps both committed aggregate roots synchronized with the database.
 
 ```bash
 # One-time setup

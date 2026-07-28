@@ -1,7 +1,6 @@
-import hashlib
-
 import pytest
 
+from sema.core.hashing import catalog_root, vocabulary_root
 from sema.core.workspace import (
     GraphWorkspace,
     WorkspaceCatalog,
@@ -135,15 +134,25 @@ def test_validate_reports_missing_workspace_dependency():
     assert any("Missing" in error for error in result["errors"])
 
 
-def test_vocabulary_root_sorts_by_handle():
+def test_vocabulary_root_exposes_semantic_and_catalog_commitments():
     workspace = make_workspace()
-    expected = hashlib.sha256((("a" * 64) + ("b" * 64)).encode()).hexdigest()
+    expected = vocabulary_root(["a" * 64, "b" * 64])
+    expected_catalog = catalog_root([("Alpha", "a" * 64), ("Task", "b" * 64)])
 
     root = workspace.vocabulary_root()
 
     assert root["hash"] == expected
     assert root["stub"] == expected[:16]
+    assert root["catalog_root"] == expected_catalog
     assert root["pattern_count"] == 2
+
+
+def test_vocabulary_root_rejects_hashless_registry_entry():
+    workspace = make_workspace()
+    del workspace.registry_manager.registry["Alpha"]["sema_id"]
+
+    with pytest.raises(ValueError, match="Alpha.*invalid sema_id"):
+        workspace.vocabulary_root()
 
 
 def test_handshake_is_scoped_to_workspace():

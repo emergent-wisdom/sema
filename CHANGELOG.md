@@ -12,6 +12,11 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Added
 
+- Two explicit aggregate commitments: `sema-semantic-set-v1` for the
+  unordered set of unique definition digests, and `sema-catalog-v1` for exact
+  handle-to-definition bindings. Both use domain-separated leaves and the
+  RFC 9162 Merkle Tree Hash construction. `sema_root()` exposes both;
+  `sema_handshake(ref="catalog")` verifies the namespace mapping.
 - Canonical `scripts/verify_vocabulary_change.py` workflow for contributors and
   CI. It refreshes or non-destructively checks the design manual, audit,
   vocabulary root, documentation hash references, database/export parity,
@@ -44,12 +49,26 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Changed
 
+- **Breaking aggregate-root migration (semahash 0.4.0):** the semantic vocabulary root is now
+  `62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c`
+  and the catalog root is
+  `c7ce079ec169999fe7f77dff0122e20bde7d3f22151fc0108e5d5197ea92e5af`
+  for the 453-pattern checkout. Pattern IDs are unchanged. Root payloads now
+  carry their scheme; clients with identical leaves but different schemes
+  must upgrade because `sema pull` cannot reconcile an algorithm mismatch.
+  Root producers also fail closed on missing or malformed pattern IDs.
+- Context negotiation now derives its set commitment from stored pattern
+  identities using the catalog Merkle construction, rather than a second
+  hand-written JSON hash path. This binds every requested handle to its
+  definition, so swapped name mappings cannot falsely agree. The MCP tool
+  still returns an eight-hex-character cooperative drift prefix, and
+  verification now requires its scheme.
 - `Backoff` now defines the general failure-responsive delay family instead of
   requiring exponential growth, jitter, reset-on-success, and a retry budget.
   `Retry` explicitly selects `ExponentialBackoff` for transient failures,
   `StateLock` composes with the generic policy family, and `Yield` no longer
   links technical retry delay to negotiation concession.
-  The vocabulary now contains 453 patterns and its root changes from
+  The vocabulary now contains 453 patterns and its legacy flat root changed from
   `b7c42bc564f5a8d2ac3cb6140430e9d98feb82a8f9b943f550f554e9ba6360b5`
   to `901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa`.
 - The shorthand vocabulary reference is now generated on demand instead of

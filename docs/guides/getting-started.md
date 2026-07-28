@@ -124,7 +124,7 @@ the exclusion list and version-pinning options.
 | `sema_tree()` | Browse the taxonomy tree |
 | `sema_handshake(ref, your_hash, strict)` | Detect drift by prefix, or require full-hash identity with `strict=true` |
 | `sema_lookup(ref)` | Get pattern by exact reference |
-| `sema_root()` | Vocabulary fingerprint — one hash for the whole DB |
+| `sema_root()` | Semantic-set and handle-binding fingerprints for the DB |
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |
