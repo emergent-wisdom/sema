@@ -92,6 +92,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- MCP extras now exclude the incompatible 2.x SDK line, which removed the
+  `mcp.server.fastmcp` API used by the server.
 - Vocabulary information statistics now derive layer and category from the
   canonical `_meta.path` instead of classifying every current pattern as
   unclassified.

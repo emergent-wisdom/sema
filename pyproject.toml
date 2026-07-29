@@ -43,10 +43,10 @@ dependencies = [
 full = [
   "fastapi>=0.100",
   "uvicorn>=0.20",
-  "mcp>=1.0",
+  "mcp>=1.0,<2",
 ]
 mcp = [
-  "mcp>=1.0",
+  "mcp>=1.0,<2",
 ]
 api = [
   "fastapi>=0.100",
