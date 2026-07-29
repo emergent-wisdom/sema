@@ -122,7 +122,7 @@ the exclusion list and version-pinning options.
 | `sema_search(query)` | Find patterns by concept |
 | `sema_resolve(handle)` | Full definition with dependencies |
 | `sema_tree()` | Browse the taxonomy tree |
-| `sema_handshake(ref, your_hash, strict)` | Detect drift by prefix, or require full-hash identity with `strict=true` |
+| `sema_handshake(ref, your_hash, strict, your_scheme)` | Detect drift by prefix; aggregate roots also require their scheme, and `strict=true` requires full-hash identity |
 | `sema_lookup(ref)` | Get pattern by exact reference |
 | `sema_root()` | Semantic-set and handle-binding fingerprints for the DB |
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
