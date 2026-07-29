@@ -677,10 +677,10 @@ class GraphStore:
                 # Carry the previous hash fields through this first write.
                 # The fresh hash is only computed (and written) after the
                 # dependency edges exist; without the carry-over, a crash in
-                # between leaves a hashless pattern that vocabulary_root()
-                # silently skips — two differing vocabularies could then
-                # produce identical roots (false PROCEED on the vocab
-                # handshake). A stale hash fails closed instead.
+                # between leaves a hashless pattern. Aggregate-root producers
+                # now reject that state, so the vocabulary would be unavailable
+                # for handshakes until repaired. Carrying the prior identity
+                # preserves a complete, stale-but-detectable snapshot instead.
                 for hash_field in ("sema_id", "sema_ref", "sema_stub"):
                     if hash_field not in stored_pattern and hash_field in previous_pattern:
                         stored_pattern[hash_field] = previous_pattern[hash_field]

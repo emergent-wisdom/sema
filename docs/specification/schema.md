@@ -164,3 +164,79 @@ all bundled patterns must verify from their JSON files alone).
 
 * **Handle:** Human-readable name (e.g., `StateLock`).
 * **RootHash:** The cryptographic proof of definition.
+
+### 4.1 The canonicalization-v2 rename boundary
+
+Excluding `handle` means that renaming a pattern does not change **that
+pattern's own** digest. It does not yet make the whole Merkle DAG
+name-independent. Canonicalization v2 retains target handles in structured
+semantic references: dependency keys and values contain them, and
+`derived_from` stores a full Sema ID. Renaming a referenced target can
+therefore change the hashes of both dependents and derived descendants.
+
+Removing target handles safely is a separate, breaking canonicalization
+migration. It must define how local dependency aliases remain bound to
+mechanism placeholders while projecting target identities to digests, and it
+must normalize `derived_from` under the same policy. The exact v3
+representation is a design decision; changing only the aggregate-root
+algorithm cannot repair this property.
+
+## 5. Aggregate Vocabulary Roots
+
+A pattern digest identifies one definition. A vocabulary snapshot has two
+different identities, because these questions are not equivalent:
+
+1. **Semantic-set root:** do both parties hold the same set of definitions?
+2. **Catalog root:** do the same handles resolve to the same definitions?
+
+Both schemes use SHA-256 and the Merkle Tree Hash (MTH) construction from
+[RFC 9162 §2.1.1](https://www.rfc-editor.org/rfc/rfc9162.html#section-2.1.1):
+
+- `MTH([]) = SHA-256("")`
+- `MTH([d]) = SHA-256(0x00 || d)`
+- for `n > 1`, split at the largest power of two `k < n`, then
+  `MTH(D) = SHA-256(0x01 || MTH(D[0:k]) || MTH(D[k:n]))`
+
+The recursive split is normative. It uniquely determines non-power-of-two
+trees and never duplicates an unpaired final node.
+
+### 5.1 Semantic-set scheme: `sema-semantic-set-v1`
+
+1. Validate every pattern digest as exactly 64 lowercase hexadecimal
+   characters and decode it to 32 raw bytes.
+2. Deduplicate the raw digests (set semantics).
+3. Sort them in ascending unsigned bytewise lexicographic order.
+4. For each digest `h`, use this MTH entry:
+   `ASCII("sema-semantic-set-v1") || 0x00 || h`.
+5. Apply MTH to the resulting ordered entries.
+
+The sorting rule belongs to Sema; Certificate Transparency itself commits an
+already ordered log. Sorting by handle, locale text, traversal order, encoded
+hex case, or post-leaf hashes is non-conforming.
+
+### 5.2 Catalog scheme: `sema-catalog-v1`
+
+1. Validate each binding as a unique ASCII handle matching
+   `[A-Za-z][A-Za-z0-9_-]*` and one canonical 32-byte pattern digest.
+2. Sort bindings by ascending raw handle bytes.
+3. For handle bytes `name` and digest `h`, use this MTH entry:
+   `ASCII("sema-catalog-v1") || 0x00 || uint32be(len(name)) || name || h`.
+4. Apply MTH to the resulting ordered entries.
+
+Two handles may bind to the same digest. They contribute one semantic
+definition but two catalog bindings, so root payloads publish both
+`definition_count` and `pattern_count`.
+
+`sema root` and `sema_root()` expose both roots and their scheme labels.
+`sema_handshake(ref="vocab")` compares the semantic-set root;
+`sema_handshake(ref="catalog")` compares exact name bindings. A root digest
+without its scheme is incomplete protocol state, and a comparison that omits
+the scheme must not return `PROCEED`. Pattern data can converge same-scheme
+drift via `sema pull`; a scheme mismatch requires a software upgrade and
+cannot be repaired by pulling identical leaves.
+
+Database- and catalog-facing aggregate-root producers fail closed if any
+catalog pattern lacks a canonical full Sema ID. The low-level root functions
+instead accept already-validated digest or binding inputs. Silently skipping a
+malformed catalog entry could make two different catalogs produce a false
+match.

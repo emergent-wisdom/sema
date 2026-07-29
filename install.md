@@ -49,7 +49,7 @@ You should see results like `Consensus#0526`, `Vote#0aff`, `StateLock#8bde`.
 | `sema_tree()` | Browse the taxonomy tree |
 | `sema_handshake(ref)` | Verify two agents share the same definition |
 | `sema_lookup(ref)` | Get pattern by exact reference |
-| `sema_root()` | Vocabulary fingerprint — one hash for the whole DB |
+| `sema_root()` | Semantic-set and handle-binding fingerprints for the DB |
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |

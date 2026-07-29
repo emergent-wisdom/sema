@@ -41,7 +41,7 @@ The long-term goal is cryptographically enforced safety constraints on agent-to-
 
 ## Reference
 
-- **[Vocabulary Information](information/vocabulary_information.md):** Cryptographic Merkle root and statistical breakdown of the current vocabulary.
+- **[Vocabulary Information](information/vocabulary_information.md):** Versioned semantic-set and catalog roots plus the current vocabulary's statistical breakdown.
 
 ## Getting Started
 

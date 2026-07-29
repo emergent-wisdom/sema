@@ -2,25 +2,37 @@
 
 ## System Status
 
-- **Merkle Root**: `901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa`
+- **Semantic-set Root**: `62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c`
+- **Semantic-set Scheme**: `sema-semantic-set-v1`
+- **Catalog Root**: `c7ce079ec169999fe7f77dff0122e20bde7d3f22151fc0108e5d5197ea92e5af`
+- **Catalog Scheme**: `sema-catalog-v1`
 - **Pattern Count**: 453
-- **Verified Against Root**: `901130d88dab244c…`
+- **Unique Definition Count**: 453
+- **Verified Against Semantic Root**: `62d9253829798a6e…`
 
 ## Usage
 
 ### Handshake Protocol
 
-Agents use the Merkle root for fail-closed semantic verification:
+Agents use the semantic-set root to compare canonical-v2 definition sets and
+the catalog root when exact handle-to-definition bindings must also agree.
+Because canonicalization v2 hashes target handles in structured references,
+a target rename can also change dependent definition digests:
 
 ```python
-# Agent A shares vocabulary root
-R_context_A = "901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa"
+import json
 
-# Agent B computes their vocabulary root
-R_context_B = compute_vocabulary_merkle_root()
+# Agent A shares semantic-set root + scheme
+semantic_root_A = "62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c"
+scheme_A = "sema-semantic-set-v1"
 
-if R_context_A == R_context_B:
-    print("✅ PROCEED - Shared semantics verified")
+# Agent B independently reads its local versioned roots
+local = json.loads(sema_root())
+semantic_root_B = local["semantic_root"]
+scheme_B = local["semantic_root_scheme"]
+
+if scheme_A == scheme_B and semantic_root_A == semantic_root_B:
+    print("✅ PROCEED - Definition sets match")
 else:
     print("🚫 HALT - Vocabulary mismatch")
 ```

@@ -442,8 +442,13 @@ def get_hosted_workspace(workspace_id: str):
         "ref",
         "read_only",
         "pattern_count",
+        "definition_count",
         "vocabulary_root",
         "vocabulary_root_stub",
+        "vocabulary_root_scheme",
+        "catalog_root",
+        "catalog_root_stub",
+        "catalog_root_scheme",
     )
     return {field: description[field] for field in public_fields}
 

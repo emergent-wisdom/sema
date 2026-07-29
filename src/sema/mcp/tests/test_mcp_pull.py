@@ -79,13 +79,13 @@ class TestSemaPullOutput(unittest.TestCase):
 
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
-    def _add_pattern(self, db_path, handle, supersedes=None):
+    def _add_pattern(self, db_path, handle, supersedes=None, mechanism="mechanism text"):
         from sema.taxonomy_graph.graph_store import GraphStore
 
         store = GraphStore(db_path)
         pattern = {
             "handle": handle,
-            "mechanism": "mechanism text",
+            "mechanism": mechanism,
             "gloss": f"Gloss for {handle}",
             "_meta": {
                 "path": ["Infrastructure", "Primitives"],
@@ -140,6 +140,7 @@ class TestSemaPullOutput(unittest.TestCase):
             "upstream_removed",
             "vocabulary_root_before",
             "vocabulary_root_after",
+            "vocabulary_root_scheme",
         }
         self.assertLessEqual(
             expected_keys,
@@ -154,6 +155,60 @@ class TestSemaPullOutput(unittest.TestCase):
         old_h, new_handles = superseded[0]
         self.assertEqual(old_h, "OldHandle")
         self.assertIn("NewHandle", new_handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_post_pull_root_failure_cannot_report_success(
+        self,
+        mock_bundled_check,
+        mock_bundled,
+        mock_db,
+    ):
+        import numpy as np
+
+        from sema.core import hashing
+        from sema.mcp.server import _sema_pull
+
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        real_vocabulary_info = hashing.vocabulary_info
+        call_count = 0
+
+        def fail_post_pull_fingerprint(db_path):
+            nonlocal call_count
+            call_count += 1
+            if call_count == 3:
+                raise ValueError("malformed post-pull catalog")
+            return real_vocabulary_info(db_path)
+
+        zero_embedding = np.zeros(384, dtype=np.float32)
+        with patch(
+            "sema.taxonomy_graph.embedding_service.EmbeddingService.get_embedding",
+            return_value=zero_embedding,
+        ):
+            self._add_pattern(self.user_db, "Existing")
+            before_id = self._sema_id(self.user_db, "Existing")
+            self._add_pattern(
+                self.upstream_db,
+                "Existing",
+                mechanism="changed upstream mechanism",
+            )
+
+            with patch.object(
+                hashing,
+                "vocabulary_info",
+                side_effect=fail_post_pull_fingerprint,
+            ):
+                result = json.loads(_sema_pull(source=self.upstream_db))
+
+        self.assertFalse(result["success"])
+        self.assertIsNone(result["vocabulary_root_after"])
+        self.assertIn("Post-pull aggregate-root verification failed", result["error"])
+        self.assertEqual(self._sema_id(self.user_db, "Existing"), before_id)
+        self.assertFalse(os.path.exists(self.user_db + ".pull_bak"))
 
     @patch("sema.cli.main.get_default_db_path")
     @patch("sema.cli.main.get_bundled_db_path")
