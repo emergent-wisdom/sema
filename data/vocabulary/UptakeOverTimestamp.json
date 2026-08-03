@@ -30,13 +30,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:feecee56cf87c358193c7c4abb6acfa2860ffb805b910b5ce3f5f2b394cc5781",
-  "sema_ref": "UptakeOverTimestamp#feec",
-  "sema_stub": "feec",
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:54445c60697025211f92b959746d4469418d7d343e673ca20f0f00fcf7937b3d",
+  "sema_ref": "UptakeOverTimestamp#5444",
+  "sema_stub": "5444",
   "dependencies": {
     "references": {
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:038ceecb648f08a4f6782bf5ba83a5b2db0eb17fe8086521d79e80f88ba212f4"
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:82ef7e5f4f6b7c4ca5162ddcfbb54ac311ad2c5d0d3d1a69442380ad2293ef06"
     }
   },
   "sema_layer": "Society",

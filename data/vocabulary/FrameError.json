@@ -22,14 +22,14 @@
       "sema:FrameError#mh:SHA-256:f67433d411f7ce3c8582a6685e6fc43285c2e96680b404acb8f399a74198fe4b"
     ]
   },
-  "sema_id": "sema:FrameError#mh:SHA-256:c98287daa5cdfef011246e8510023d2598397cc1dcf33617e39822074a6cf92a",
-  "sema_ref": "FrameError#c982",
-  "sema_stub": "c982",
+  "sema_id": "sema:FrameError#mh:SHA-256:53e33befdcaffe1885b8604f77b4a1b508db41bd80cbd440c5d1fe6452336e40",
+  "sema_ref": "FrameError#53e3",
+  "sema_stub": "53e3",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "compensate": "sema:Compensate#mh:SHA-256:47973ce8d6d546927dc224da79919bcb2b32b05d0c5a6361ff9d8befbee84d1b",
-      "retry": "sema:Retry#mh:SHA-256:7bbf52f676d16e927cf79c9660a37bd28a05f9599e934aa5b52db7b2f0ca01b2"
+      "compensate": "sema:Compensate#mh:SHA-256:447fb91007e09d8674d66ab2698189026a2e9f70a2b66fbaaed406006fb8b8eb",
+      "retry": "sema:Retry#mh:SHA-256:5e7921bf0dc8d896f922c3e163156be786471af8cfdfbfc8ec22dd5e0e68ab2a"
     }
   },
   "sema_layer": "Mind",

@@ -27,9 +27,9 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:HeuristicSnap#mh:SHA-256:f7ccd96fafbe6daff186fdced5bc814b4885f08212dc2126b67d44b350a27e6b",
-  "sema_ref": "HeuristicSnap#f7cc",
-  "sema_stub": "f7cc",
+  "sema_id": "sema:HeuristicSnap#mh:SHA-256:cecf8021678cd9c00da018591b1e1c81b09bd532198e49176cd776621a75f4f4",
+  "sema_ref": "HeuristicSnap#cecf",
+  "sema_stub": "cecf",
   "failure_modes": [
     "False recognition: a {{problem}} scores above the confidence floor while differing structurally from the cached case, so the cached {{decision}} is imported with assumptions that do not hold. Similarity is not {{equivalence}}."
   ],
@@ -37,7 +37,7 @@
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
       "cache": "sema:Cache#mh:SHA-256:55e2dfe59df3e261e74c0ecdafa7216cf6fea44e60692125499924c7a8104771",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2",
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
       "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08"

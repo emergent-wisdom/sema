@@ -24,7 +24,8 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437"
+      "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437",
+      "sema:EpistemicCalibrate#mh:SHA-256:a9024e32f3f2d5b1ff0e5bf7361b951acacdc7a359afc8c4ad5823b59738cf65"
     ],
     "path": [
       "Mind",

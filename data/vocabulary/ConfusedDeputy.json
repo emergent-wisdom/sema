@@ -33,14 +33,14 @@
       "Protocols"
     ]
   },
-  "sema_ref": "ConfusedDeputy#db98",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:db983796ef438f8d81fb436c1788fba181809134ce7fe045cce23ab7a18dc490",
-  "sema_stub": "db98",
+  "sema_ref": "ConfusedDeputy#bddf",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:bddfd921448570d015aedc6112828de15d44e9ec662f009cf81b989e3d77c47c",
+  "sema_stub": "bddf",
   "dependencies": {
     "references": {
       "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8",
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "permission": "sema:Permission#mh:SHA-256:72bb65a446f98797211ff1a764349148cbef3a10bdd8174ba5fee13e4198e794"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "permission": "sema:Permission#mh:SHA-256:9c2fc31f5e31473c03834463095e4390750f7fda11f5a1aed2502f855a65dbcf"
     }
   },
   "sema_layer": "Society",

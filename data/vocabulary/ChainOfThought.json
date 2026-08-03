@@ -22,15 +22,15 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9",
-  "sema_ref": "ChainOfThought#a23a",
-  "sema_stub": "a23a",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2",
+  "sema_ref": "ChainOfThought#5fb2",
+  "sema_stub": "5fb2",
   "signature": [
     "Think(Chain)"
   ],
   "dependencies": {
     "composes_with": {
-      "reflexion": "sema:Reflexion#mh:SHA-256:acb68502b3f5bf0f8430e2adaa46b88b631385db91b30c674c3f745dfc1f0263",
+      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3",
       "step_back": "sema:StepBack#mh:SHA-256:f3457758c4422538953f065b630718b766104ce13d0979c573fe55e5d1ad27b1"
     },
     "references": {

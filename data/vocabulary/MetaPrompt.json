@@ -31,9 +31,9 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:b83af9ce33a46535050d19516680e42a1d69afd7863d8d314aa131cad18f5e0b",
-  "sema_ref": "MetaPrompt#b83a",
-  "sema_stub": "b83a",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:f99473d1cac3cde3e39a0428c73a91c366925a3845747631a8f89a01137b582d",
+  "sema_ref": "MetaPrompt#f994",
+  "sema_stub": "f994",
   "signature": [
     "Meta(Prompt)"
   ],
@@ -41,7 +41,7 @@
     "references": {
       "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
       "prompt": "sema:Prompt#mh:SHA-256:1b04d34a0c55d6d2c6fea4f1df4f517073ede2f20f1f8d1d149419010b440a0e",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:0285d2d38ca1729da891b4a9ed0a2d2e6fccd452e0f354662dac9b4b20c7e508",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:5df25fb4edb7f8f3575a0b45a7c203f7f5ef1b66a5f83d9ec1049b5548cdf975",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },

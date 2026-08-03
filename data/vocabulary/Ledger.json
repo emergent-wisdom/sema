@@ -18,9 +18,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Ledger#mh:SHA-256:b70ec9727955abe5a230bcf043aa703a9c8ff4134a4ed040611b0fad0137c8b9",
-  "sema_ref": "Ledger#b70e",
-  "sema_stub": "b70e",
+  "sema_id": "sema:Ledger#mh:SHA-256:625250939255c79bdf29aa6a7b455f0e339f63fd45dcc4222e765005a1db1c28",
+  "sema_ref": "Ledger#6252",
+  "sema_stub": "6252",
   "data_schema": {
     "type": "object",
     "required": [
@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

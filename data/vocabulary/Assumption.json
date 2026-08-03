@@ -13,6 +13,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Assumption#mh:SHA-256:46479820ecd594cd6c789bae96a1eb67b14d6b04d2e4371913852292c0a402a0"
     ]
   },
   "data_schema": {

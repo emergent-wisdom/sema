@@ -20,6 +20,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7"
     ]
   },
   "sema_id": "sema:Step#mh:SHA-256:fa207e6f70e14a67e3baa7e4ad4df9ece59ba4d07083fbbcc992332959e1520a",

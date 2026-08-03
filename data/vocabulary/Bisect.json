@@ -12,7 +12,8 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:Bisect#mh:SHA-256:88b3085fd8a158f3fa253cbc18eb121c6ea858a1b0fd8045fd4452ae00a81901"
+      "sema:Bisect#mh:SHA-256:88b3085fd8a158f3fa253cbc18eb121c6ea858a1b0fd8045fd4452ae00a81901",
+      "sema:Bisect#mh:SHA-256:419f063fbfe7ac5ecab0b0097fb72b2884685ad6c6fda01a7920be71b69cc8f8"
     ],
     "path": [
       "Mind",

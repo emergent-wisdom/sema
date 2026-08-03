@@ -35,15 +35,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:61fb3908e52b55e7bf5b0a2c505ea9f71a72a790153305f2ee51429286252ae2",
-  "sema_ref": "SteelmanFirst#61fb",
-  "sema_stub": "61fb",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:c6afe488ca9d892a8219f66dcb7bbf4a1f5623079eff34fc4e55865d8c398381",
+  "sema_ref": "SteelmanFirst#c6af",
+  "sema_stub": "c6af",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:a3751589f3c4ae8bef8b516350726551aad5c9ec9421d56f57dd43b0ad30faf0"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:7611548d64d5fb63c0e09723c53192121c4846ab4ea85531da0b51ad712f3c75"
     }
   },
   "sema_layer": "Mind",

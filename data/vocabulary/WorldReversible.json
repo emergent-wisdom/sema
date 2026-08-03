@@ -21,6 +21,9 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "supersedes": [
+      "sema:WorldReversible#mh:SHA-256:a8e0699d7dcce24a267c2e8db351fbe4edc60323c458931e1071858c0c6c1acb"
     ]
   },
   "sema_id": "sema:WorldReversible#mh:SHA-256:462e0937acf2ebdd37d4da4048487b92495b86cb663ec5badb91c747c3373566",

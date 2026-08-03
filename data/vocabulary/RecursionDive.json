@@ -18,9 +18,9 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:RecursionDive#mh:SHA-256:fb5a2250a43ea78552a7ce76fbca473e5eb6df3126d2473a56007ba9f28b79b8",
-  "sema_ref": "RecursionDive#fb5a",
-  "sema_stub": "fb5a",
+  "sema_id": "sema:RecursionDive#mh:SHA-256:3cb8f2f1f21a09dbc4f4a6de995284bf406c2462d3a861d6215e935205ccfbe2",
+  "sema_ref": "RecursionDive#3cb8",
+  "sema_stub": "3cb8",
   "postconditions": [
     "Either child {{solver_node}}s exist, or the node is marked atomic"
   ],
@@ -33,8 +33,8 @@
       "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926"
     },
     "references": {
-      "solver_node": "sema:SolverNode#mh:SHA-256:b7f04fc5205ad8a07faed4f6c62b58b742be8be7dc7d4ffb57c7433a6531bf22",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:a3219241581669c1a67898ed12c7eeccf392a0fac168bd4c27e004e6bf908965"
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:6ba9d3f525e2bd5ab309fbb872eb0e59159eed571cd7d5dd87b81e4f58e01407"
     }
   },
   "sema_layer": "Mind",

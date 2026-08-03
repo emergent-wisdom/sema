@@ -6,7 +6,8 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc"
+      "sema:Causation#mh:SHA-256:63e1089ee47f39bb6e2aeb8de41bb1f5a36666053833d0f198be91aea7d58dbc",
+      "sema:Causation#mh:SHA-256:e47b8f36ae5e8b43d3e3f521fc75c2a70f0355cbe062f794ecbe93a4c608921c"
     ],
     "path": [
       "Physics",

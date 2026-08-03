@@ -39,18 +39,18 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:3194bbfedde12a55fa41623cf4e581bc7881dc66822a9d160492191a35c3194b",
-  "sema_ref": "DepthGovernor#3194",
-  "sema_stub": "3194",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:8ffa2c512f4ac7e6b51a53adf4e8208e6dff587c4d954294b0f4cc35ab8f9e89",
+  "sema_ref": "DepthGovernor#8ffa",
+  "sema_stub": "8ffa",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
       "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926",
       "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
       "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:fb5a2250a43ea78552a7ce76fbca473e5eb6df3126d2473a56007ba9f28b79b8"
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:3cb8f2f1f21a09dbc4f4a6de995284bf406c2462d3a861d6215e935205ccfbe2"
     }
   },
   "sema_layer": "Mind",

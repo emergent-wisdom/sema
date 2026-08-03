@@ -47,16 +47,16 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:2ffb99e4f56675abaa0178a4bf7f0be0583ff1432eaa0928c80f4d0a51711096",
-  "sema_ref": "CounterfactualAnchor#2ffb",
-  "sema_stub": "2ffb",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:47beed0df44f67298c1280151c25ed6f396e18dea5665ad650c5493501d8f548",
+  "sema_ref": "CounterfactualAnchor#47be",
+  "sema_stub": "47be",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:a4c74ab236ddd0939db90b2d2dab9c21527bb7b488344339f434c0a5fd4c50c9"
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f"
     }
   },
   "sema_layer": "Society",

@@ -15,22 +15,23 @@
     "supersedes": [
       "sema:GenealogicalTrace#mh:SHA-256:0e89c456c9e33d0e5e018d64df4e347c76a5d08a6cced893ec3d1a84e28d877a",
       "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f",
-      "sema:GenealogicalTrace#mh:SHA-256:fa22d007e06944e15621967431b41dad0c282fa75266656f8088396d11f48c9f"
+      "sema:GenealogicalTrace#mh:SHA-256:fa22d007e06944e15621967431b41dad0c282fa75266656f8088396d11f48c9f",
+      "sema:GenealogicalTrace#mh:SHA-256:142ebf20a69208c3a278427a4f4ed0f2bc78fcac1134e97d2dbbe57b283bba62"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:49454f356b1e9fd133e4b05b2c267e7af096563e089e4e89527d379c0a58bfb7",
-  "sema_ref": "GenealogicalTrace#4945",
-  "sema_stub": "4945",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:f30f3e798d7f6a8e56ae29f4b365fc0230308b207cfc3722129f5371e201a86b",
+  "sema_ref": "GenealogicalTrace#f30f",
+  "sema_stub": "f30f",
   "dependencies": {
     "references": {
-      "cite_back": "sema:CiteBack#mh:SHA-256:bdc204d57908d89fa4d4476b3aa342deaa73c02280f12c5e7daad9614f4f1963",
+      "cite_back": "sema:CiteBack#mh:SHA-256:1efb70d67a59234fe9d375bc29308c73b945a743554a0af9a334f86827af6f74",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
-      "trace_belief": "sema:TraceBelief#mh:SHA-256:639c35d9a0dc9b5c87dc14b75763c56632c478576c90f7b1387552993a8a725b"
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:c4dbe34abd29de43ef700846dff9cc1e02aa9d255320c2029ae4640444207346"
     }
   },
   "sema_layer": "Society",

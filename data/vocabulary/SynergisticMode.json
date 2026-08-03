@@ -52,18 +52,18 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:c6feefdf3988b234aef4ad5fd64e509575163ff7247abeecd244dd11da88f04e",
-  "sema_ref": "SynergisticMode#c6fe",
-  "sema_stub": "c6fe",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:6fd87952020856cfa868104a4c125089a8438cc5420f9f70a68b8985d162a0b7",
+  "sema_ref": "SynergisticMode#6fd8",
+  "sema_stub": "6fd8",
   "dependencies": {
     "composes_with": {
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235"
     },
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "compose": "sema:Compose#mh:SHA-256:bbc7e8d662b549822e608aad9d2e4cc5af54f117d2b7cb9bdfd5352de5811e56",
-      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "compose": "sema:Compose#mh:SHA-256:70edc4a274d8de877d96b273051c029d9fd706789d785914895132488d5a41fd",
+      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

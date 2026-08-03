@@ -41,20 +41,20 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:d77df0a856e9491599d730801364787e32983edcc6aa8ea659901f4d6656e7e1",
-  "sema_ref": "DeliberativeAlign#d77d",
-  "sema_stub": "d77d",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:c7f2ced8d35a67fe364db103532bd7e521388dbce4c36307461e2154a3d1f336",
+  "sema_ref": "DeliberativeAlign#c7f2",
+  "sema_stub": "c7f2",
   "dependencies": {
     "accepts": {
-      "constitution": "sema:Constitution#mh:SHA-256:33f6d086338b43868fff261229a31518f19809cb214fa8ce55727cc0baa9ab0c",
+      "constitution": "sema:Constitution#mh:SHA-256:bc929fc4bb51ad66d6ceb04ed4ef23ae56e6abd86515f7d171b117c2f41a6aaf",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:534f0732181541a00cc070bdf48758b0c052138380fb0e6979e551f95518604e",
-      "solver_node": "sema:SolverNode#mh:SHA-256:b7f04fc5205ad8a07faed4f6c62b58b742be8be7dc7d4ffb57c7433a6531bf22",
-      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Society",

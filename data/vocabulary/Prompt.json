@@ -6,7 +6,8 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107"
+      "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+      "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97"
     ],
     "path": [
       "Infrastructure",

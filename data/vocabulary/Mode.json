@@ -59,12 +59,12 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496",
-  "sema_ref": "Mode#5bf1",
-  "sema_stub": "5bf1",
+  "sema_id": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
+  "sema_ref": "Mode#9b1a",
+  "sema_stub": "9b1a",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "transition": "sema:Transition#mh:SHA-256:9b62398c6edcd43ad2af8ec1df8186ece2b4f697772b3872227f4d9d8390e328"
     }

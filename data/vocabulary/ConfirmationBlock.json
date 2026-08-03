@@ -32,7 +32,8 @@
       "DissentSeek"
     ],
     "supersedes": [
-      "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf"
+      "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",
+      "sema:ConfirmationBlock#mh:SHA-256:dc3f1d88759b024b4b5730dada9c5586759b31503d5d1dd779ca24b9fcff5c07"
     ],
     "path": [
       "Mind",

@@ -33,13 +33,13 @@
       "Coordination"
     ]
   },
-  "sema_ref": "LazyConsensus#5a35",
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:5a3553a032711d2dacc2408301e2cd42a2e93ecc74324a024fa00c5e82634d60",
-  "sema_stub": "5a35",
+  "sema_ref": "LazyConsensus#efa9",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:efa93926a2943a952c01702ccf4aae37ca7246d83767ccd17a05a55011892c92",
+  "sema_stub": "efa9",
   "dependencies": {
     "references": {
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:807069d3d0824a92fae89a1be6b098ee19f6f270e71b404bacb95704b7d2a94e"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:7fd7d546477d4389a8c63cde58b1d4a02d20e8a44ac22f7975fa77292c595790"
     }
   },
   "sema_layer": "Society",

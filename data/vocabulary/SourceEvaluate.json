@@ -13,24 +13,25 @@
     "ring": 2,
     "supersedes": [
       "sema:SourceEvaluate#mh:SHA-256:ceb14e641fee7940e36ad6c28b096bcf8bf90b50bee79a243d2b8eba788f0ba7",
-      "sema:SourceEvaluate#mh:SHA-256:1f872d60b4c820afb0647a6a756dd53a2e9c44e65f69864456e968aff5860dd4"
+      "sema:SourceEvaluate#mh:SHA-256:1f872d60b4c820afb0647a6a756dd53a2e9c44e65f69864456e968aff5860dd4",
+      "sema:SourceEvaluate#mh:SHA-256:f6b838b5472497f911d3684d4ecfd77a999963ccc056036f1d22a7d36cd3f7aa"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:SourceEvaluate#mh:SHA-256:71624de7ac8d270d961c0ab019e9854575411fded1db79c36c5d8878a39bdea6",
-  "sema_ref": "SourceEvaluate#7162",
-  "sema_stub": "7162",
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:da254ebe76ff00750a1b482847cdde8532ab240b7ac0dabf313bdecb371ef2ff",
+  "sema_ref": "SourceEvaluate#da25",
+  "sema_stub": "da25",
   "signature": [
     "Judge(Agent)"
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "cite_back": "sema:CiteBack#mh:SHA-256:bdc204d57908d89fa4d4476b3aa342deaa73c02280f12c5e7daad9614f4f1963",
-      "judge": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "cite_back": "sema:CiteBack#mh:SHA-256:1efb70d67a59234fe9d375bc29308c73b945a743554a0af9a334f86827af6f74",
+      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13"
     }
   },
   "sema_layer": "Mind",

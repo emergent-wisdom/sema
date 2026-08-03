@@ -17,6 +17,9 @@
     "path": [
       "Mind",
       "Memory"
+    ],
+    "supersedes": [
+      "sema:Scratchpad#mh:SHA-256:e805c332532cf4a435c48cc87d4db771e1645bb52c47d00dce318e2619ca6749"
     ]
   },
   "sema_id": "sema:Scratchpad#mh:SHA-256:626c5a0a716ab29b51e68429d41e99619201af48d17975d89636b55b8dc852f5",

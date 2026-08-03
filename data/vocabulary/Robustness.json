@@ -17,6 +17,9 @@
     "path": [
       "Society",
       "Protocols"
+    ],
+    "supersedes": [
+      "sema:Robustness#mh:SHA-256:1fa393f9475d2418957334a1802dd65a159d3e680673a0d10874a97e915da7bf"
     ]
   },
   "sema_id": "sema:Robustness#mh:SHA-256:5304c7824b76c6f308bb1a33ba6171d41fd061a5b104f21710bbb6c7a7c85b43",

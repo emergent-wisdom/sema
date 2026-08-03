@@ -43,12 +43,12 @@
       "Time"
     ]
   },
-  "sema_id": "sema:CausalBarrier#mh:SHA-256:f6c4632e68c9cb8f4ae5eed57c61acf1bf2769fab0aaf83442c3bd60b120d69d",
-  "sema_ref": "CausalBarrier#f6c4",
-  "sema_stub": "f6c4",
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:a6d8167a05ffab8cf5fda4da7a81e2c196de8a182f0673b9a8a5cbf189222dfc",
+  "sema_ref": "CausalBarrier#a6d8",
+  "sema_stub": "a6d8",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "state_lock": "sema:StateLock#mh:SHA-256:c9c2809bdf97bb6ac17a8ffe428d4aa9a28294b99d64cc8a336a239d26a8afb8"
     }
   },

@@ -12,6 +12,9 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707"
     ]
   },
   "sema_id": "sema:Induction#mh:SHA-256:1b39044c28c83bf79a7bfe108d0edaf616724b3cc0e9fec93086913101fc1530",

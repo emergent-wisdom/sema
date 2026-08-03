@@ -38,21 +38,21 @@
       "Verification"
     ]
   },
-  "sema_ref": "AuditTrail#b1a6",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:b1a63dcbc10461386a22b842fbc5949087b7026663a8ef04f4efca64da1bd7b5",
-  "sema_stub": "b1a6",
+  "sema_ref": "AuditTrail#46f7",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:46f73da14d15073869646008bafb50651a875287b559885fda3ae578c8ebbaa9",
+  "sema_stub": "46f7",
   "dependencies": {
     "composes_with": {
       "snapshot": "sema:Snapshot#mh:SHA-256:390d2ec2934136d534f969b4039e6b899d2ed3956ddd8aa0ca4754068ed8d133"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
       "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
-      "ledger": "sema:Ledger#mh:SHA-256:b70ec9727955abe5a230bcf043aa703a9c8ff4134a4ed040611b0fad0137c8b9",
+      "ledger": "sema:Ledger#mh:SHA-256:625250939255c79bdf29aa6a7b455f0e339f63fd45dcc4222e765005a1db1c28",
       "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:d0d3ce256be4bc080a29eab7fda36381a4352a280d9a12d59179c60e71cf9bd0",
       "sign": "sema:Sign#mh:SHA-256:b2020447ec4c2725a139c6117c764cf464643e6e83379e86263267f95e4965ee",
-      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Infrastructure",

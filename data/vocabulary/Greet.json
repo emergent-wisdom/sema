@@ -22,15 +22,15 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
-  "sema_ref": "Greet#acc7",
-  "sema_stub": "acc7",
+  "sema_id": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
+  "sema_ref": "Greet#b2f0",
+  "sema_stub": "b2f0",
   "dependencies": {
     "composes_with": {
       "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:7f70838f05f3aad069b89dcbc705283872f66fde4bc95c6bfa0dc917955e050d"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093"
     }
   },

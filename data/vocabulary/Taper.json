@@ -43,18 +43,18 @@
       "Protocols"
     ]
   },
-  "sema_ref": "Taper#a9aa",
-  "sema_id": "sema:Taper#mh:SHA-256:a9aa9196ea4b10976db8d6d89f162cfdd0995451a718194de46b983ce42536b8",
-  "sema_stub": "a9aa",
+  "sema_ref": "Taper#bde1",
+  "sema_id": "sema:Taper#mh:SHA-256:bde1970317c7758a43f0ba62f15f06f13004a83a6fd40e1a46eb7b439591307c",
+  "sema_stub": "bde1",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a",
-      "tri_gate": "sema:TriGate#mh:SHA-256:3bd948f6f10253187dbe3f2291d7ba6f9589812ea35cbbb922c6c3a947dd9fbb"
+      "tri_gate": "sema:TriGate#mh:SHA-256:5156704e5f174e347d58e312f42f3398b975266ff48cfce0d302b7d88abad7f8"
     },
     "references": {
       "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
-      "depth_governor": "sema:DepthGovernor#mh:SHA-256:3194bbfedde12a55fa41623cf4e581bc7881dc66822a9d160492191a35c3194b"
+      "depth_governor": "sema:DepthGovernor#mh:SHA-256:8ffa2c512f4ac7e6b51a53adf4e8208e6dff587c4d954294b0f4cc35ab8f9e89"
     }
   },
   "sema_layer": "Society",

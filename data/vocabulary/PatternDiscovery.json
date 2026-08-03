@@ -31,13 +31,13 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:5a4c0ef17d87f8a061f67ac4bd33f1fc2ba149e3bd9bd806f892ff5eadc9e700",
-  "sema_ref": "PatternDiscovery#5a4c",
-  "sema_stub": "5a4c",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:8ff484bd61105aee7eb4e3e24475faf27e55c0b76faf4388907734110d914023",
+  "sema_ref": "PatternDiscovery#8ff4",
+  "sema_stub": "8ff4",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
-      "novelty": "sema:Novelty#mh:SHA-256:84d45c25a3c35037b26c001e5cce4ed973cc0accea54436552c8a735640a2527",
+      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
       "search": "sema:Search#mh:SHA-256:1da96800031333016d0be31b6721f15867df62aa9cd93d2a10102efb7d4841a7"
     },
     "yields": {

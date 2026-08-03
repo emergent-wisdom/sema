@@ -42,15 +42,15 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Dialectic#mh:SHA-256:92d9645bd1975c9f6649949089375bb27f7c1a64bc788b88da96df113e9bdc3e",
-  "sema_ref": "Dialectic#92d9",
-  "sema_stub": "92d9",
+  "sema_id": "sema:Dialectic#mh:SHA-256:6eda97b37a3b5c219371d54b34532ffe19f5cb965307c68fbb54ce77f56dfcef",
+  "sema_ref": "Dialectic#6eda",
+  "sema_stub": "6eda",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:a3751589f3c4ae8bef8b516350726551aad5c9ec9421d56f57dd43b0ad30faf0"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:7611548d64d5fb63c0e09723c53192121c4846ab4ea85531da0b51ad712f3c75"
     },
     "references": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:b2d85f2746f5a8186df8b91ce8cfa80008d6c808d7e11d9defb78e43bc1b6662",
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:1ac4207e5ceed18ed9b5674c8da3b3cd06c85562b567d3a33b17e877b74e4903",
       "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
     }
   },

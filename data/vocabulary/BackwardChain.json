@@ -32,13 +32,13 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:72007bf6aed22d636c5eca89b508c504caf8c2dfc1a0c73479a9472041dc3ab8",
-  "sema_ref": "BackwardChain#7200",
-  "sema_stub": "7200",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:9ff877cde5b5de2a850c5fade17d56a9da5fd5330cbba29f59953e6934de8cde",
+  "sema_ref": "BackwardChain#9ff8",
+  "sema_stub": "9ff8",
   "dependencies": {
     "references": {
       "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2",
       "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
       "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd"
     }

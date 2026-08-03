@@ -14,7 +14,8 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6"
+      "sema:ExchangeRate#mh:SHA-256:be292881aae1af318995e3c0617ed90f9871d2d7e1c6c64e8083fa9a1b3b94f6",
+      "sema:ExchangeRate#mh:SHA-256:eadb7e9b1d80ab8649e81786e787373fd234ae5f949fd84525795ddd5525b729"
     ],
     "path": [
       "Society",

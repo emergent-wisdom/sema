@@ -46,17 +46,17 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:CapacityPressure#mh:SHA-256:e106aca6f779b44160c4dbbb75e8d976a61900cdf9538a3c772a28b48c92310b",
-  "sema_ref": "CapacityPressure#e106",
-  "sema_stub": "e106",
+  "sema_id": "sema:CapacityPressure#mh:SHA-256:ddfe060f9e631802ed2f7bfa256168f4f32d590f509de7afa36e1f84e8f56e07",
+  "sema_ref": "CapacityPressure#ddfe",
+  "sema_stub": "ddfe",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:c9f1c23deebd8806b9d43bd624de9d23f75474d15bbf7bafebe55dfde599d925",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
       "context_compress": "sema:ContextCompress#mh:SHA-256:0bf5ce89d0ad9cac74bb69f253f06331989714d3c34bb0b385f9674439ce30b0",
-      "generalize": "sema:Generalize#mh:SHA-256:8e66f102c49d97eb7cdf559a82fd47e5cb0929717b65f5172fe9ce2c83396d9a"
+      "generalize": "sema:Generalize#mh:SHA-256:251f07a282bc1b83a737977141d164311e3334d50b555400970928758153289d"
     }
   },
   "sema_layer": "Mind",

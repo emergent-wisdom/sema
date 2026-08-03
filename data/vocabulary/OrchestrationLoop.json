@@ -30,24 +30,25 @@
     "supersedes": [
       "sema:OrchestrationLoop#mh:SHA-256:fd5ef68be3fdf8bec5e5bb4544153e5029e22626212e2267edeb26881ce9a94a",
       "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e",
-      "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374"
+      "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374",
+      "sema:OrchestrationLoop#mh:SHA-256:212895d134c09e50af6ec4a668c23ffc4a92604b61c411aaa5f12b7b93b75d1e"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:ca2fdffbc4d7f6e93168af17158f67faac00622c44756fcbf534d658ace204e5",
-  "sema_ref": "OrchestrationLoop#ca2f",
-  "sema_stub": "ca2f",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:119060a70a92ceca5b05c02983b7711ca7f3079df78b22d60ecde319bf7600cc",
+  "sema_ref": "OrchestrationLoop#1190",
+  "sema_stub": "1190",
   "signature": [
     "Workflow(Rollout)"
   ],
   "dependencies": {
     "composes_with": {
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:534f0732181541a00cc070bdf48758b0c052138380fb0e6979e551f95518604e",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:172fa9c473b3d6dff3316186642f749e8d3b1a891263631b202f585eb7c1a066",
-      "rollout": "sema:Rollout#mh:SHA-256:aeb533ed84e26120d553b15257d04b2d4516f9c53555847448d0ffb332db521a"
+      "request_framing": "sema:RequestFraming#mh:SHA-256:cbba3845e6ea72f42025daac2f75e15e8ff7550e292634957ba7c5e5013a8234",
+      "rollout": "sema:Rollout#mh:SHA-256:e4717541319b2a51a4b78b1278fc14a1b3fd4f6daf6719eb70c08c7193dfb629"
     },
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
@@ -55,7 +56,7 @@
       "frame_spec": "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631",
       "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10",
-      "workflow": "sema:Workflow#mh:SHA-256:87df54858a8e58f87613ec072a8bdbc0ee457548e1071f7e79d6440dc7e2867d"
+      "workflow": "sema:Workflow#mh:SHA-256:2b8a81eecc3c3656b624d8cbe2b8b2bbf115b1d045d1b98b277f24a7e94ebdf1"
     }
   },
   "sema_layer": "Society",

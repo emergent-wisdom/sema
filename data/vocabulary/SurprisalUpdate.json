@@ -50,14 +50,14 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:a4c74ab236ddd0939db90b2d2dab9c21527bb7b488344339f434c0a5fd4c50c9",
-  "sema_ref": "SurprisalUpdate#a4c7",
-  "sema_stub": "a4c7",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f",
+  "sema_ref": "SurprisalUpdate#b2f1",
+  "sema_stub": "b2f1",
   "dependencies": {
     "references": {
       "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:7b6393c9e9cc8e3294a612b9c92f5a6f88b4cce82ec590577a24cada19811672",
       "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:7e4b3c62497fbaa2e9ebb1646dc3c3e3d0b00ae41267fdb805b2eab8e543e805"
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:78eb98733d417ff23bf44f527a4bc2ed225100b4d4b182f0cbed36df7b36c687"
     }
   },
   "sema_layer": "Mind",

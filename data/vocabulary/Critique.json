@@ -11,9 +11,9 @@
     "Feedback must be descriptive, not just scalar.",
     "Must reference specific criteria."
   ],
-  "sema_id": "sema:Critique#mh:SHA-256:0541d11be536bd1fc1c0600452c80c5b9ef36b4217943dcb65d54fbd79c8521f",
-  "sema_ref": "Critique#0541",
-  "sema_stub": "0541",
+  "sema_id": "sema:Critique#mh:SHA-256:77f2544f9e6978b453ac8eaec66c792304025fb778a78bf0c4dac39cae28d074",
+  "sema_ref": "Critique#77f2",
+  "sema_stub": "77f2",
   "_meta": {
     "tier": 1,
     "ring": 1,
@@ -32,7 +32,7 @@
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "yields": {
-      "assessment": "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d"
+      "assessment": "sema:Assessment#mh:SHA-256:9b49ac10f27af91620b7f6d9feee2c39d4977a89c5da5b93f03c4e9a4a0aa664"
     }
   },
   "sema_layer": "Mind",

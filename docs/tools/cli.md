@@ -157,7 +157,7 @@ handle with a stub (`Handle#stub`).
 
 ```bash
 sema resolve <Handle>
-sema resolve 'Stigmergy#a0f0'
+sema resolve 'Stigmergy#f433'
 ```
 
 ### show - Print Pattern Definition

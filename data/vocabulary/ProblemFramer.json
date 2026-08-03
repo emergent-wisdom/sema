@@ -23,18 +23,18 @@
       "Strategy"
     ]
   },
-  "sema_ref": "ProblemFramer#c092",
-  "sema_id": "sema:ProblemFramer#mh:SHA-256:c0924af5beaf5ffe6818ab5175096ed97c46b1d363cb2e44ec8e9c8107b9bc76",
-  "sema_stub": "c092",
+  "sema_ref": "ProblemFramer#aa76",
+  "sema_id": "sema:ProblemFramer#mh:SHA-256:aa76586cc357d7348cc5f550c45a03f41a3ba8dc002f4c8de984cbb9714634c7",
+  "sema_stub": "aa76",
   "dependencies": {
     "composes_with": {
       "interpret": "sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa",
       "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:172fa9c473b3d6dff3316186642f749e8d3b1a891263631b202f585eb7c1a066"
+      "request_framing": "sema:RequestFraming#mh:SHA-256:cbba3845e6ea72f42025daac2f75e15e8ff7550e292634957ba7c5e5013a8234"
     },
     "references": {
-      "root_solver": "sema:RootSolver#mh:SHA-256:d9dbb02a8a424a8cbac2040586aa347eb9d7ca7db63cc02043002ed4a550f6c0",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:37081da716b7e4d4f1760eac0eafa31b34775b4f8853d4d0661379360cce5589"
+      "root_solver": "sema:RootSolver#mh:SHA-256:332edbdd0535c4895116d911fbdc4dfeb1ccefc3266d56f413b39f418f66f31b",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:a6cba3ba713ffd1c7f97e090ec45e5f1389f55a280847a1b62c56dbe7707106a"
     },
     "yields": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5"

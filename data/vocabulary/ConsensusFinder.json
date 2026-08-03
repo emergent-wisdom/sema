@@ -12,22 +12,23 @@
     "supersedes": [
       "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
       "sema:ConsensusFinder#mh:SHA-256:c6fa491bb64048866873baff4398d1519ec3ac4fd40db0b1e281196c1482bcd9",
-      "sema:ConsensusFinder#mh:SHA-256:980a543f6683878c7800e1d4db41bad49017a47f33b924a63e52e1115c7a06dd"
+      "sema:ConsensusFinder#mh:SHA-256:980a543f6683878c7800e1d4db41bad49017a47f33b924a63e52e1115c7a06dd",
+      "sema:ConsensusFinder#mh:SHA-256:653580f6d5afd5099c8c8d86a5d14c7656b0b9d363ed30291e56bdc48de79099"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:ConsensusFinder#mh:SHA-256:8642dad76b25fccaea2d87b603b07828ae23075c9f718e57dc78a6383d44eb79",
-  "sema_ref": "ConsensusFinder#8642",
-  "sema_stub": "8642",
+  "sema_id": "sema:ConsensusFinder#mh:SHA-256:d4066820a61095195d1231c4352b7559b0dcd495018a28e9c070018695da0bb7",
+  "sema_ref": "ConsensusFinder#d406",
+  "sema_stub": "d406",
   "signature": [
     "Discover(Consensus)"
   ],
   "dependencies": {
     "references": {
-      "consensus": "sema:Consensus#mh:SHA-256:5402e1452d1291ec161bac8e41a3a9f3fdbd6953e078b05e73c8c16f820d8e02",
+      "consensus": "sema:Consensus#mh:SHA-256:ec3034a2309a89ac077741967abce0cc1301ec49028d96203c9b6403348f1540",
       "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "resonate": "sema:Resonate#mh:SHA-256:786d8bf55b013d0405e49f2cab6a084e45fdc4507f7394fd6cff99354bc87aad"

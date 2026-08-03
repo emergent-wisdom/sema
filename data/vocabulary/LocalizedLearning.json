@@ -24,9 +24,9 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:LocalizedLearning#mh:SHA-256:fad38a43b1db2da58966a2420d59a372db389c5972a615f6f9054d774265f97c",
-  "sema_ref": "LocalizedLearning#fad3",
-  "sema_stub": "fad3",
+  "sema_id": "sema:LocalizedLearning#mh:SHA-256:d85eb389650b50414a74e396d61b86ed0966e9777b85ff05d3c8f3b69208aa17",
+  "sema_ref": "LocalizedLearning#d85e",
+  "sema_stub": "d85e",
   "signature": [
     "Act(FeedbackSignal)"
   ],
@@ -36,7 +36,7 @@
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:41a8d7ace24e348dcb0a86eb9b725cc115021d1ff1ed9f980ca378ba44396bf1"
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:15bc956376ad5741a0838b7a2a7e825df1f30849a484900dd42f0873b9059a92"
     }
   },
   "sema_layer": "Mind",

@@ -13,6 +13,9 @@
     "path": [
       "Physics",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Equilibrium#mh:SHA-256:bc8538ba0df944bb075946160a4b75f60a3a74b434090952b23ee718805ce88c"
     ]
   },
   "sema_id": "sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2",

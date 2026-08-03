@@ -32,12 +32,12 @@
       "Primitives"
     ]
   },
-  "sema_ref": "NegativeProof#ca5e",
-  "sema_id": "sema:NegativeProof#mh:SHA-256:ca5e132ca2671ea3ea3584d2df1e5a4cb59ea51e0945b84a181c8e46405559b2",
-  "sema_stub": "ca5e",
+  "sema_ref": "NegativeProof#57af",
+  "sema_id": "sema:NegativeProof#mh:SHA-256:57af3122aaf64cc4e983e0d4068ce89be598c71a51e29fb0ef596b93d79d9244",
+  "sema_stub": "57af",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }

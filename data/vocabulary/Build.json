@@ -34,9 +34,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Build#mh:SHA-256:57a899b4ab4b9bbd5232603a7c0fd8a99f4d0b9b3d6c34b568b6c57495380e72",
-  "sema_ref": "Build#57a8",
-  "sema_stub": "57a8",
+  "sema_id": "sema:Build#mh:SHA-256:779891ac7847940250f7a8a7cb1610f190862df7af2e5b2fd680b0d89dc42bf2",
+  "sema_ref": "Build#7798",
+  "sema_stub": "7798",
   "signature": [
     "Act(Artifact)"
   ],
@@ -54,7 +54,7 @@
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:60d25b8cdc6b65f67da3636d0493c73fc328ee0e01c2af1b4bfc7e71d7af204f",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80",
       "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
       "prototype": "sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b"
     },

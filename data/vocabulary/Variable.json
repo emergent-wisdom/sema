@@ -33,6 +33,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Variable#mh:SHA-256:f488e278141238c50584777b751863d84b094229e4568205e9ba54a9121c3aa5"
     ]
   },
   "sema_id": "sema:Variable#mh:SHA-256:5333c0009a269825753bf5470554844285c46920c32e3d46ed71403090224dc7",

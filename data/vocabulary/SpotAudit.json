@@ -19,7 +19,8 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d"
+      "sema:SpotAudit#mh:SHA-256:66730b2af0aece3adb72ca9e81b48085fc3654642b14cf82f3d8d2ae4890396d",
+      "sema:SpotAudit#mh:SHA-256:c00cb4b5955cf4cefc126978f1c4f06d5f1a9b505ff0b92f50af1b047b82c3dc"
     ],
     "path": [
       "Infrastructure",

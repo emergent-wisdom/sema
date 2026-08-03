@@ -21,6 +21,9 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "supersedes": [
+      "sema:SurvivorCorrect#mh:SHA-256:6c9093fc93158cdc0e8e81af7cd3dbc29b9998b609d3a490a18142ae96179aea"
     ]
   },
   "sema_id": "sema:SurvivorCorrect#mh:SHA-256:37802a37d7e4bc9080836e17c5fbf7c170bce0942ed40d8a4960c46f6ca2407c",

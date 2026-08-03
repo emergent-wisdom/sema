@@ -38,13 +38,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:2855342d12e966613bfeb00d71c085e825c83f2dcf5182c6d39b474cb17e89ee",
-  "sema_ref": "SacrificialProbe#2855",
-  "sema_stub": "2855",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:350f4c88bc6dfea05a4374a3face788a8dcf11422b3fa47aa4911aaf5a2eed40",
+  "sema_ref": "SacrificialProbe#350f",
+  "sema_stub": "350f",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
       "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
       "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",

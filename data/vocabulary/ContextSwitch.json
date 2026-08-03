@@ -14,9 +14,9 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:9f3676a109a1879f0525dbcd7be5d86b067921fbfd8edc6ff1a3770e2f3c60c9",
-  "sema_ref": "ContextSwitch#9f36",
-  "sema_stub": "9f36",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:f8c3d5f265624d0ff6af28dc26f6f347ae6286a04bde02398818e9bb12d761db",
+  "sema_ref": "ContextSwitch#f8c3",
+  "sema_stub": "f8c3",
   "invariants": [
     "The switch is signalled explicitly; it is never inferred from content.",
     "Revert pops the most recent switch, not an arbitrary one.",
@@ -31,8 +31,8 @@
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678"
     }
   },
   "sema_layer": "Society",

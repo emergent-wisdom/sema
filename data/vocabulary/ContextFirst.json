@@ -22,20 +22,20 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:ContextFirst#mh:SHA-256:e02406c0ef30bb62df90e4c29f32e1a64129da68c324f6a2d929a831602a7176",
-  "sema_ref": "ContextFirst#e024",
-  "sema_stub": "e024",
+  "sema_id": "sema:ContextFirst#mh:SHA-256:9b48f9c973c2cac1a00e7f2d23a97f43e6df3a35caf90294856114633a7a596e",
+  "sema_ref": "ContextFirst#9b48",
+  "sema_stub": "9b48",
   "signature": [
     "Prioritize(Context)"
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "prioritize": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd",
-      "solver_node": "sema:SolverNode#mh:SHA-256:b7f04fc5205ad8a07faed4f6c62b58b742be8be7dc7d4ffb57c7433a6531bf22",
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "warmup": "sema:Warmup#mh:SHA-256:c3869f1c889a86386f7583a7f5f13399e3964b69a6bdb239a0df3c8ee46f7063"
+      "warmup": "sema:Warmup#mh:SHA-256:316ee053b8fda86e03974bb8baaf6c82b4de0b07ea7e55fa38d337309cfe25de"
     }
   },
   "sema_layer": "Mind",

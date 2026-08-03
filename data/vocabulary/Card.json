@@ -60,16 +60,16 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Card#mh:SHA-256:39f7f9ebde6429be53f51f65aa710c4e9f5137010c175c73af2bea809b141512",
-  "sema_ref": "Card#39f7",
-  "sema_stub": "39f7",
+  "sema_id": "sema:Card#mh:SHA-256:ed287a652085f4e54a58e1b76a59016d74fa7edf51f918730d0338698aca979d",
+  "sema_ref": "Card#ed28",
+  "sema_stub": "ed28",
   "dependencies": {
     "composes_with": {
       "select": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "greet": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
       "latent_attachment": "sema:LatentAttachment#mh:SHA-256:992d55f53109cbc5050a8ed96afe91121a85a664c6178ad136358e792ecbfa20",
       "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224"
     }

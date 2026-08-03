@@ -44,13 +44,13 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:051c39d5ea3b4c4d17865f46e0e29dca744c24e3a6e7b55859e066723a1ef24b",
-  "sema_ref": "ScopeFreeze#051c",
-  "sema_stub": "051c",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:a5fba4646fccc10c48b48fd440def9dc483ddd9c143d2468181c1063103ca707",
+  "sema_ref": "ScopeFreeze#a5fb",
+  "sema_stub": "a5fb",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926",
       "satisfice": "sema:Satisfice#mh:SHA-256:29ce1b5967705cc8c613f750d35c2481d311a1c9308c1959cfd812635e2faf0e",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",

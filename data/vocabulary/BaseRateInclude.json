@@ -27,6 +27,9 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "supersedes": [
+      "sema:BaseRateInclude#mh:SHA-256:8636331d386b5d9b9f7b6177fa3d3486699c5cc486e823cafb7065ae7554b5a5"
     ]
   },
   "sema_id": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",

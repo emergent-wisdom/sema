@@ -45,9 +45,9 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:9ef77d9fc26e2deb274f5f8d273cd8e06004a7ef3859863226920b7f06bb71f8",
-  "sema_ref": "Belief#9ef7",
-  "sema_stub": "9ef7",
+  "sema_id": "sema:Belief#mh:SHA-256:675c86db12fcc346e8a95dbf0c49c6a28a7bf81cc65915bdcb695bf291123524",
+  "sema_ref": "Belief#675c",
+  "sema_stub": "675c",
   "invariants": [
     "Names the {{agent}} holding it; a claim with no holder is an assertion, not a Belief.",
     "Carries a pointer to its supporting {{evidence}}, or records that it has none."
@@ -57,7 +57,7 @@
       "evidence": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

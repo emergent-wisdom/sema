@@ -19,23 +19,24 @@
     "ring": 1,
     "supersedes": [
       "sema:MemeticSeed#mh:SHA-256:491b0bb4623d78df04ab196ef7809daa2fad14bccb130fcb9d2f0e8dffd485c3",
-      "sema:MemeticSeed#mh:SHA-256:cf265f710af42a9db9e5e61327679e4a3ef1b0e1b9a8c842ea990c92fa806415"
+      "sema:MemeticSeed#mh:SHA-256:cf265f710af42a9db9e5e61327679e4a3ef1b0e1b9a8c842ea990c92fa806415",
+      "sema:MemeticSeed#mh:SHA-256:d351f7e25df8a86d6f3517255945c9a196d95417ce4d70afb024a8a63cee97a5"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:5b5f4e8c26c3c01fc6ec58c573c3da6a42f6be075403764b166630bdec2c966f",
-  "sema_ref": "MemeticSeed#5b5f",
-  "sema_stub": "5b5f",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:0b265a4820b792b2b0fdadbd65c0157b038f8e6ee2c46955d3e49602e09a327d",
+  "sema_ref": "MemeticSeed#0b26",
+  "sema_stub": "0b26",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:b68a440990dea3d4c3f2269aad22893f180ec9bc3a0bf7f29698e2866f579c0f",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:f19d57e7ac647af13fd04aef42323fefc60544a4191e0dacfadd5b5c6bf2d1ed",
       "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
       "translation_proxy": "sema:TranslationProxy#mh:SHA-256:d0e389e96f8b3c7b1c73a6c7055c4ca6ad78c6b6bd78ae6884ea92e01d32fc0f",
-      "yield": "sema:Yield#mh:SHA-256:1ed995525cf727838afc414b692739d54767cc136aa751b1e6226df13c01fe23"
+      "yield": "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c"
     }
   },
   "sema_layer": "Society",

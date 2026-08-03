@@ -39,13 +39,13 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:16417c1b56bbe7af96221cced72d1f65537d020128892b98225eab609dfb31e0",
-  "sema_ref": "BayesUpdate#1641",
-  "sema_stub": "1641",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:879afc8b39356ead46edabbc3f4f098d9e7e5995a516d573574427dcb669fa3a",
+  "sema_ref": "BayesUpdate#879a",
+  "sema_stub": "879a",
   "dependencies": {
     "references": {
       "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",
-      "belief": "sema:Belief#mh:SHA-256:9ef77d9fc26e2deb274f5f8d273cd8e06004a7ef3859863226920b7f06bb71f8",
+      "belief": "sema:Belief#mh:SHA-256:675c86db12fcc346e8a95dbf0c49c6a28a7bf81cc65915bdcb695bf291123524",
       "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96"
     }
   },

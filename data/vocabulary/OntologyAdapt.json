@@ -29,9 +29,9 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:1e76f3538b85dfa31e5124cdfff3388281cde0f0ee89637fc9120506f913099f",
-  "sema_ref": "OntologyAdapt#1e76",
-  "sema_stub": "1e76",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:29970914a1bd217ceff29e9a39109832e0102eeb3576cb8fe2ac7a43271e8842",
+  "sema_ref": "OntologyAdapt#2997",
+  "sema_stub": "2997",
   "parameters": [
     {
       "name": "fit_threshold",
@@ -42,7 +42,7 @@
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "anomaly": "sema:Anomaly#mh:SHA-256:459522f7c0225dc99953dbd5cd6c9cbb558d914abbd9d4d979e103984e0739cc",
       "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696",
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",

@@ -26,16 +26,16 @@
       "Economics"
     ]
   },
-  "sema_id": "sema:Yield#mh:SHA-256:1ed995525cf727838afc414b692739d54767cc136aa751b1e6226df13c01fe23",
-  "sema_ref": "Yield#1ed9",
-  "sema_stub": "1ed9",
+  "sema_id": "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c",
+  "sema_ref": "Yield#eb2f",
+  "sema_stub": "eb2f",
   "preconditions": [
     "A durable {{ledger}} is available to record the debt"
   ],
   "dependencies": {
     "references": {
       "defer": "sema:Defer#mh:SHA-256:c09fcb90c93ac496f6f5daf9732163b3abe1c3ec3b3923705052c2188253cec8",
-      "ledger": "sema:Ledger#mh:SHA-256:b70ec9727955abe5a230bcf043aa703a9c8ff4134a4ed040611b0fad0137c8b9",
+      "ledger": "sema:Ledger#mh:SHA-256:625250939255c79bdf29aa6a7b455f0e339f63fd45dcc4222e765005a1db1c28",
       "overlap": "sema:Overlap#mh:SHA-256:c7019daf2905344a1f3ca2232d74eea272fd284fbe14523e5aa33caa1b46c18e",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

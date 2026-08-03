@@ -11,23 +11,24 @@
     "supersedes": [
       "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d",
       "sema:Refine#mh:SHA-256:78b79a62b1ecf8a4a00537a19db4a71e06039fb5bd2792a497b9ccf16fbe8cee",
-      "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845"
+      "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
+      "sema:Refine#mh:SHA-256:29562908643e0cfc62b4f9b75a83c76bd40e2afd818c40edf669f9de15297bc0"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Refine#mh:SHA-256:e62e11d8fc7f03fdabdbbdd4a4b6ebe73c3ce501eeb89f02aae6e67595cdfc16",
-  "sema_ref": "Refine#e62e",
-  "sema_stub": "e62e",
+  "sema_id": "sema:Refine#mh:SHA-256:7d98a6ca93e100943d190a77d7ec75916532843899c293c3e269e0b1c02c5808",
+  "sema_ref": "Refine#7d98",
+  "sema_stub": "7d98",
   "dependencies": {
     "accepts": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5"
     },
     "composes_with": {
-      "critique": "sema:Critique#mh:SHA-256:0541d11be536bd1fc1c0600452c80c5b9ef36b4217943dcb65d54fbd79c8521f"
+      "critique": "sema:Critique#mh:SHA-256:77f2544f9e6978b453ac8eaec66c792304025fb778a78bf0c4dac39cae28d074"
     },
     "yields": {
       "successor_artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"

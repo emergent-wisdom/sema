@@ -40,13 +40,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:InvariantFilter#mh:SHA-256:b9099153498090ee51ae3253c33cf59ba054572d7b49c5287d69028411df44b9",
-  "sema_ref": "InvariantFilter#b909",
-  "sema_stub": "b909",
+  "sema_id": "sema:InvariantFilter#mh:SHA-256:5e4da90216dd412c9acc3258da818ffe31965d54ba79cbd966a193563e9c2329",
+  "sema_ref": "InvariantFilter#5e4d",
+  "sema_stub": "5e4d",
   "dependencies": {
     "accepts": {
       "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",
-      "predicates": "sema:RuleSet#mh:SHA-256:99953d6d1ab64af573bd12cc1b023893499aa29842dad7bc64f31c09c874b497"
+      "predicates": "sema:RuleSet#mh:SHA-256:8395e6e9e6a221bbfe200335ad0dd145fc2bdaf7f1815704444ad05e08f9b363"
     },
     "references": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",

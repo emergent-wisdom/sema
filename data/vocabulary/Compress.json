@@ -13,6 +13,9 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627"
     ]
   },
   "sema_id": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",

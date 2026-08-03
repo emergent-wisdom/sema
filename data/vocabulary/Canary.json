@@ -34,14 +34,14 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Canary#mh:SHA-256:0fc6e266f2fb90ace39ed27f088f6bbe4f8544fe78169caa9ac66c642762c759",
-  "sema_ref": "Canary#0fc6",
-  "sema_stub": "0fc6",
+  "sema_id": "sema:Canary#mh:SHA-256:d7fc49dec224a25b326fefaa0e7f0d3ac70c7b5ae0bfb5af6763d4280f576dbb",
+  "sema_ref": "Canary#d7fc",
+  "sema_stub": "d7fc",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "greet": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
-      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
+      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
       "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224",
       "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }

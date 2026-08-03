@@ -32,14 +32,14 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:HolographicShard#mh:SHA-256:dc57765d7aedf935a4d1bab538425d798a18d579cd477d9bac1ae21a1117e144",
-  "sema_ref": "HolographicShard#dc57",
-  "sema_stub": "dc57",
+  "sema_id": "sema:HolographicShard#mh:SHA-256:23fe4cc87c15465bff08338037f4ca2a74a78c417dbd762a5a6fdcafdd3f2664",
+  "sema_ref": "HolographicShard#23fe",
+  "sema_stub": "23fe",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
-      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:53dc08c730170ca7a287304f2bcf1f1e04edad2da73998180cf722009d309b74"
+      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:c05779de54bf98bf74d926045c5bf864af5002a00aea3012b15553e345c5e9b3"
     }
   },
   "sema_layer": "Mind",

@@ -11,6 +11,9 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:MonitorReport#mh:SHA-256:e239e925f7a7aea755f1f1ee2c2b97245ef628ca9647726fc8995ee6e96afa0b"
     ]
   },
   "sema_id": "sema:MonitorReport#mh:SHA-256:ef8eb14dc742f1f936915d8d17899e35cb0a400968f7e8c6a150a84fe35422f3",

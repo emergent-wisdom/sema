@@ -15,20 +15,21 @@
     "supersedes": [
       "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e",
       "sema:Deploy#mh:SHA-256:2adf31981783f19de75dfdd1ebf2dab527b06adf703a61e649cdc28b99760815",
-      "sema:Deploy#mh:SHA-256:1119a1844362113a6df1acb77aeb863d67922c60a600ebba232cd66da0c2f825"
+      "sema:Deploy#mh:SHA-256:1119a1844362113a6df1acb77aeb863d67922c60a600ebba232cd66da0c2f825",
+      "sema:Deploy#mh:SHA-256:9af9d0b68e63b674f8edd17f3edcaac5a16b5cf612ddb802c1b6e2d6b6a86826"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "Deploy#aed4",
-  "sema_id": "sema:Deploy#mh:SHA-256:aed45002df2d62f51c13d9822889b5e69b27c97423f12207981fee340487065c",
-  "sema_stub": "aed4",
+  "sema_ref": "Deploy#c476",
+  "sema_id": "sema:Deploy#mh:SHA-256:c4763a3410818960397ce2eae10600dbece842f6b80fd3e7f45298d999da7950",
+  "sema_stub": "c476",
   "dependencies": {
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "rollout": "sema:Rollout#mh:SHA-256:aeb533ed84e26120d553b15257d04b2d4516f9c53555847448d0ffb332db521a"
+      "rollout": "sema:Rollout#mh:SHA-256:e4717541319b2a51a4b78b1278fc14a1b3fd4f6daf6719eb70c08c7193dfb629"
     }
   },
   "sema_layer": "Society",

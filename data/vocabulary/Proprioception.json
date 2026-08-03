@@ -38,17 +38,17 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:6071f4455c151b05844cf9d01311ece8fbf6ab17cc45b07f694d1d41da591205",
-  "sema_ref": "Proprioception#6071",
-  "sema_stub": "6071",
+  "sema_id": "sema:Proprioception#mh:SHA-256:33337af3c2616cf01b7ceaf3725c094d76c3643e6b89bbff130ea7536e91ad9b",
+  "sema_ref": "Proprioception#3333",
+  "sema_stub": "3333",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "somatic_marker": "sema:SomaticMarker#mh:SHA-256:25c9f71e623cfc2114e71c853ddea757abbfc319880ab654d2b875feec99973a",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
-      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Mind",

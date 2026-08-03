@@ -8,6 +8,9 @@
     "path": [
       "Society",
       "Protocols"
+    ],
+    "supersedes": [
+      "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959"
     ]
   },
   "sema_id": "sema:Global#mh:SHA-256:330166f5c16b13500d92d26d0e58ad24657bebccbe295ff8108f363d3539034d",

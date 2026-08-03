@@ -8,6 +8,9 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "supersedes": [
+      "sema:Creative#mh:SHA-256:c7e4f6515c3f0708fbccb3610a70abed0d2e4eb4f5d41eeb337941992e1caff1"
     ]
   },
   "sema_id": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",

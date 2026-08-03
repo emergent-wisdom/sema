@@ -45,12 +45,12 @@
       "Reasoning"
     ]
   },
-  "sema_ref": "StrategicReading#6069",
-  "sema_id": "sema:StrategicReading#mh:SHA-256:6069aa5b604d829ce8ff01549c1c004bf58fd759ad8e7ff4757524f8a1892e28",
-  "sema_stub": "6069",
+  "sema_ref": "StrategicReading#1790",
+  "sema_id": "sema:StrategicReading#mh:SHA-256:1790c7c097b39837089025ff6056a9ca3ffb0ad53473b82faee983a071761d47",
+  "sema_stub": "1790",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",

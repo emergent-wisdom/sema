@@ -47,13 +47,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Crystallize#mh:SHA-256:b17e901763a0e68ab296b5ce5586f680a2f7b65e05d868832dcc81ef088d5199",
-  "sema_ref": "Crystallize#b17e",
-  "sema_stub": "b17e",
+  "sema_id": "sema:Crystallize#mh:SHA-256:ec1cf3687c7f901b33ddb218a70bebe3ebd7a57de0eeb3d516a9938642730d01",
+  "sema_ref": "Crystallize#ec1c",
+  "sema_stub": "ec1c",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "constitution": "sema:Constitution#mh:SHA-256:33f6d086338b43868fff261229a31518f19809cb214fa8ce55727cc0baa9ab0c",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "constitution": "sema:Constitution#mh:SHA-256:bc929fc4bb51ad66d6ceb04ed4ef23ae56e6abd86515f7d171b117c2f41a6aaf",
       "dampen": "sema:Dampen#mh:SHA-256:c07e9b7b22cbda8523effcfd455f554578e47081f0d07bf9001e45f2a871b831",
       "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:a1369712d823417e257e4306f53aa63a5dcd83b34a8f4093823578a2196eec56",

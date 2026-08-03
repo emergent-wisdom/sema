@@ -15,16 +15,17 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:HumanEmulatorProtocol#mh:SHA-256:261f38f4e5344f759765e4ceb351f59f3bcd543414672d8826b8fa33517ec896"
+      "sema:HumanEmulatorProtocol#mh:SHA-256:261f38f4e5344f759765e4ceb351f59f3bcd543414672d8826b8fa33517ec896",
+      "sema:HumanEmulatorProtocol#mh:SHA-256:faf142ed0dc6369843880fccdd40c3785fbdbfc370122833f660da53a2c9c9cc"
     ]
   },
-  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:e9f8fbf07e31a3cf4bfb974b9b4dfe3702203ecaf2da9a09e0c1876437cbda65",
-  "sema_ref": "HumanEmulatorProtocol#e9f8",
-  "sema_stub": "e9f8",
+  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:9ba03398875aca91b2fb60b8f10a7241ac86aaf293f243dec5f883425e07f5c2",
+  "sema_ref": "HumanEmulatorProtocol#9ba0",
+  "sema_stub": "9ba0",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:1ea3c89d008397a1b2ddff513377d14dc2c8446227d325177ebc8601326f3f97",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:60d25b8cdc6b65f67da3636d0493c73fc328ee0e01c2af1b4bfc7e71d7af204f"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
     }
   },
   "sema_layer": "Mind",

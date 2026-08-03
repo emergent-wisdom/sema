@@ -48,22 +48,23 @@
     "supersedes": [
       "sema:Workflow#mh:SHA-256:36b2e9b976f4c8995977ea44277a6c0d2d6fba5c61e8bac80b13d4f9695e1dd9",
       "sema:Workflow#mh:SHA-256:c08269a947e9c4b5dc11979a504aa791196de2cea81245bfb45ede8c781a2586",
-      "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728"
+      "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728",
+      "sema:Workflow#mh:SHA-256:982bc58d26f2d57c21420514e03f33d68e10ca20b01eae9953927cb95b437042"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:87df54858a8e58f87613ec072a8bdbc0ee457548e1071f7e79d6440dc7e2867d",
-  "sema_ref": "Workflow#87df",
-  "sema_stub": "87df",
+  "sema_id": "sema:Workflow#mh:SHA-256:2b8a81eecc3c3656b624d8cbe2b8b2bbf115b1d045d1b98b277f24a7e94ebdf1",
+  "sema_ref": "Workflow#2b8a",
+  "sema_stub": "2b8a",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "role": "sema:Role#mh:SHA-256:262ab6d2c03de5beab24c98cb3168948a3bb043a6a81b68237ab53919d153999",
-      "solver": "sema:Solver#mh:SHA-256:cf430f516045514bc99f146c0fd155e863457c767aa1872794fa79fd89f8cf20",
+      "solver": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
       "step": "sema:Step#mh:SHA-256:fa207e6f70e14a67e3baa7e4ad4df9ece59ba4d07083fbbcc992332959e1520a"
     }
   },

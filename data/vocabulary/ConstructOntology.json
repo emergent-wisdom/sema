@@ -42,13 +42,13 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:bc0c12a91142f68ef73d5f890eefe0360d1b061641c92d0d71a69778cae172c2",
-  "sema_ref": "ConstructOntology#bc0c",
-  "sema_stub": "bc0c",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:3e7d931cb931e2a7cd8d29786a05c61a68d67a83cbbb9d879de8d259dcef2766",
+  "sema_ref": "ConstructOntology#3e7d",
+  "sema_stub": "3e7d",
   "dependencies": {
     "references": {
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:52bc4ebfac9e856917332bee7595507b27bac3a59cdbe571cacc07dfdc6626b2",
-      "first_principles": "sema:FirstPrinciples#mh:SHA-256:5c3ddecc7001e7277ebd9208c52b2d17650d5ddeed7feea12abd48b46b4c7468",
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:aaf9288a5aa63817fd3cfd1143068dcf639e41fb3de1ac9d28a7e4959c1b90c5",
+      "first_principles": "sema:FirstPrinciples#mh:SHA-256:8cf87ac255bd98d0a8707915742e57de6b4523ef8dffc33e735cdb75c38d642b",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235"
     }
   },

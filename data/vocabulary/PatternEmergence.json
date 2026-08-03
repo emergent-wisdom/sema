@@ -30,13 +30,13 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:0c3ad91eecb0de6749d5c3aa32484526d990c630704a547a3bb87c1d11934c10",
-  "sema_ref": "PatternEmergence#0c3a",
-  "sema_stub": "0c3a",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:cd8a9d7ed19c4aff92f6617ad198799ec57d497e54a44af46948ade08e577f2a",
+  "sema_ref": "PatternEmergence#cd8a",
+  "sema_stub": "cd8a",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "generalize": "sema:Generalize#mh:SHA-256:8e66f102c49d97eb7cdf559a82fd47e5cb0929717b65f5172fe9ce2c83396d9a",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "generalize": "sema:Generalize#mh:SHA-256:251f07a282bc1b83a737977141d164311e3334d50b555400970928758153289d",
       "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

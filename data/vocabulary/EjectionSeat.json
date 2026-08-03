@@ -25,12 +25,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:EjectionSeat#mh:SHA-256:56a7a4f555af824dd10654c166d0595835ef25c94971a1c8016ff689ba158ccd",
-  "sema_ref": "EjectionSeat#56a7",
-  "sema_stub": "56a7",
+  "sema_id": "sema:EjectionSeat#mh:SHA-256:1f37d50620e134a8db931872b20fc7e112a087df7ab21f479ed104ece4efe6c5",
+  "sema_ref": "EjectionSeat#1f37",
+  "sema_stub": "1f37",
   "dependencies": {
     "references": {
-      "compensate": "sema:Compensate#mh:SHA-256:47973ce8d6d546927dc224da79919bcb2b32b05d0c5a6361ff9d8befbee84d1b",
+      "compensate": "sema:Compensate#mh:SHA-256:447fb91007e09d8674d66ab2698189026a2e9f70a2b66fbaaed406006fb8b8eb",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },

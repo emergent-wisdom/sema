@@ -17,9 +17,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Solver#mh:SHA-256:cf430f516045514bc99f146c0fd155e863457c767aa1872794fa79fd89f8cf20",
-  "sema_ref": "Solver#cf43",
-  "sema_stub": "cf43",
+  "sema_id": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
+  "sema_ref": "Solver#a9ec",
+  "sema_stub": "a9ec",
   "invariants": [
     "Every surface it declares is callable; Manifest and Execute are mandatory.",
     "A declared surface reports its own unavailability rather than failing silently."
@@ -29,9 +29,9 @@
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:be837e9e98098d9c44897bbed758ca06e7d57df35492145976233b5c406f31b8",
-      "trait": "sema:Trait#mh:SHA-256:98ddeef4d3b32a4cfb1e3e766fce42daa527d3bed5b3352e834790dfc39464ac"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:0f41b62437d210e1bf814dd145961f1ccd95661deaffa567989334ad298fdffb",
+      "trait": "sema:Trait#mh:SHA-256:13adbfa9f48babf1c2de572b4eb72454879cbb1d76404fd65aee70400a72e2b7"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"

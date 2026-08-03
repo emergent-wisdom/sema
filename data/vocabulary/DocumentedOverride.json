@@ -24,15 +24,15 @@
       "sema:DocumentedOverride#mh:SHA-256:17d333bda6bfc9f98ef85e9d09dd8cf84a8d8f13f13fb4e5de767bc4c8e75a54"
     ]
   },
-  "sema_id": "sema:DocumentedOverride#mh:SHA-256:c3e33e2a7b5def9199ec8327a82b057b1209f7bacc95f678c86ddfdeb2b5f8c2",
-  "sema_ref": "DocumentedOverride#c3e3",
-  "sema_stub": "c3e3",
+  "sema_id": "sema:DocumentedOverride#mh:SHA-256:2b7763b4dab9fefa6b60e2b2ffd3849509a9b5af43a4ab3604973d55916f6dc4",
+  "sema_ref": "DocumentedOverride#2b77",
+  "sema_stub": "2b77",
   "dependencies": {
     "accepts": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5"
     },
     "composes_with": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:807069d3d0824a92fae89a1be6b098ee19f6f270e71b404bacb95704b7d2a94e"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:7fd7d546477d4389a8c63cde58b1d4a02d20e8a44ac22f7975fa77292c595790"
     },
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"

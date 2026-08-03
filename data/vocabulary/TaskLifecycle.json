@@ -43,15 +43,15 @@
       "Primitives"
     ]
   },
-  "sema_ref": "TaskLifecycle#e37f",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:e37f460bd75ec3d2395cca5b19f5ee5345846a5e9183e7c0962d85bc75ddc8e1",
-  "sema_stub": "e37f",
+  "sema_ref": "TaskLifecycle#6fdd",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:6fdd40efd45e106daf0135bb05976d13856a62e681099cfe9b465bf13bd1260d",
+  "sema_stub": "6fdd",
   "dependencies": {
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:bdc0c1988a26e15a4e90bb79b214e4bebe630bc53f758ca67c6e1148aa802686"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "event": "sema:Event#mh:SHA-256:36757bd8344e1fd7161bd2f23d6588180fbaaf9cff5ef8be8a205effbf4438b6",
       "exception": "sema:Exception#mh:SHA-256:61e41a9f4e26dad1ab09516b35640c6204e99e7d1df29ce0899bcbb24a126e1d",
       "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",

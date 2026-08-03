@@ -38,25 +38,26 @@
     "supersedes": [
       "sema:PropheticQuorum#mh:SHA-256:192eabb9f8aa32fddb88760964cb4266afa565c1ab94e1091395712764293741",
       "sema:PropheticQuorum#mh:SHA-256:c5d889696c7dab154033eb64aa8858bdd88171cfb5d45a85dbbe806b7f1d8641",
-      "sema:PropheticQuorum#mh:SHA-256:1091d4dbc1638dc67cda263e645f50bda77352363ce4ea5dbf24c281781401ba"
+      "sema:PropheticQuorum#mh:SHA-256:1091d4dbc1638dc67cda263e645f50bda77352363ce4ea5dbf24c281781401ba",
+      "sema:PropheticQuorum#mh:SHA-256:912b31f437a93df19ecb7ced4f0a9d11f3fe1d659d63edcb3ddef13a5e409056"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:PropheticQuorum#mh:SHA-256:baab4fb637c55515c1691de77bc000f964ed9f3b062137d4b5f87693eccd86d0",
-  "sema_ref": "PropheticQuorum#baab",
-  "sema_stub": "baab",
+  "sema_id": "sema:PropheticQuorum#mh:SHA-256:83cc35fdf3dbd331b9c44c9c7d34a0db335d339ecd75d62ad5923fb83e9b7503",
+  "sema_ref": "PropheticQuorum#83cc",
+  "sema_stub": "83cc",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "normative_judge": "sema:NormativeJudge#mh:SHA-256:e7d20e07b7a320f194efc1af7ecc1db97b36d057fad2187cfe281241de17c87f",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:598646fa29fe22ba89f08763b692861d081c6e76f3531d63a8b644623e4f722e",
       "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
-      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:3843d09c76e035511f02987c7cfc9069fbaf0838283d70dc1d3fec7fcb57c292",
+      "simulation_trace": "sema:SimulationTrace#mh:SHA-256:efded93ef0b1b96bb3e16e794e463895d2d5955827dac3476852b3f4413c62b5",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8",
-      "vote": "sema:Vote#mh:SHA-256:b9a9a5140ecaf1cbae162e691bf0a23c5d2b55b633030c20abfee27d518c8641"
+      "vote": "sema:Vote#mh:SHA-256:d3cbfb3d419b84397dff409d2f83271e9bcb1b6c16b79b0b3629cbe72bd7f3a8"
     }
   },
   "sema_layer": "Society",

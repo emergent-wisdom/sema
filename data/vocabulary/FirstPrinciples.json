@@ -22,14 +22,14 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:5c3ddecc7001e7277ebd9208c52b2d17650d5ddeed7feea12abd48b46b4c7468",
-  "sema_ref": "FirstPrinciples#5c3d",
-  "sema_stub": "5c3d",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:8cf87ac255bd98d0a8707915742e57de6b4523ef8dffc33e735cdb75c38d642b",
+  "sema_ref": "FirstPrinciples#8cf8",
+  "sema_stub": "8cf8",
   "dependencies": {
     "references": {
       "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
       "axiom": "sema:Axiom#mh:SHA-256:8b1ca0bfefdb4954778b4074a3164934cb3a7e01be32aeb488b284dd81e5879c",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2"
     }
   },
   "sema_layer": "Mind",

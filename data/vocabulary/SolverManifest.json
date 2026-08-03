@@ -25,9 +25,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:SolverManifest#mh:SHA-256:41a8d7ace24e348dcb0a86eb9b725cc115021d1ff1ed9f980ca378ba44396bf1",
-  "sema_ref": "SolverManifest#41a8",
-  "sema_stub": "41a8",
+  "sema_id": "sema:SolverManifest#mh:SHA-256:15bc956376ad5741a0838b7a2a7e825df1f30849a484900dd42f0873b9059a92",
+  "sema_ref": "SolverManifest#15bc",
+  "sema_stub": "15bc",
   "data_schema": {
     "type": "object",
     "description": "Typed solver identity + capabilities.",
@@ -72,7 +72,7 @@
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "solver": "sema:Solver#mh:SHA-256:cf430f516045514bc99f146c0fd155e863457c767aa1872794fa79fd89f8cf20"
+      "solver": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054"
     }
   },
   "sema_layer": "Infrastructure",

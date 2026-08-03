@@ -6,16 +6,17 @@
     "Non-Interference: The Oracle reports on reality but does not alter it.",
     "Consistency: Answers to the same query at the same time must be identical."
   ],
-  "sema_id": "sema:Oracle#mh:SHA-256:f0dbf481371089692326adc4452b0e0e85553d77655a4e7741b61b5345d748bd",
-  "sema_ref": "Oracle#f0db",
-  "sema_stub": "f0db",
+  "sema_id": "sema:Oracle#mh:SHA-256:161827ddd788c11d6b2409919de665622f1c1586e932a2d60d05ca486072d7ff",
+  "sema_ref": "Oracle#1618",
+  "sema_stub": "1618",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
       "sema:Oracle#mh:SHA-256:0dffb25a0d877e3d718f2546a595eb574d5733d86ed71f1f37462955db421249",
       "sema:Oracle#mh:SHA-256:1537b697dabd1dcda5ae750a5e90a58fe151c322522f511a0b0c26ceb38d6ca3",
-      "sema:Oracle#mh:SHA-256:32ff9960b130bb765f24046c85fcc3fc3f8d6dabef21da9e0804280cc626023f"
+      "sema:Oracle#mh:SHA-256:32ff9960b130bb765f24046c85fcc3fc3f8d6dabef21da9e0804280cc626023f",
+      "sema:Oracle#mh:SHA-256:5614dedfed7d990d6c413d7492798b66b7caa97f155a74bfe3147ac5a78c945a"
     ],
     "path": [
       "Society",
@@ -24,7 +25,7 @@
   },
   "dependencies": {
     "references": {
-      "held_release": "sema:HeldRelease#mh:SHA-256:3c78f779bc127d5c412af0dcc2a504b01f1a3838751879bcdf08b64249324c34"
+      "held_release": "sema:HeldRelease#mh:SHA-256:08506ccf6d4e8e46131ed3766b8d6f70feb878ffdfa9284e01b367418f06fa95"
     }
   },
   "sema_layer": "Society",

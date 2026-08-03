@@ -51,16 +51,16 @@
       "Data Structures"
     ]
   },
-  "sema_ref": "Permission#72bb",
-  "sema_id": "sema:Permission#mh:SHA-256:72bb65a446f98797211ff1a764349148cbef3a10bdd8174ba5fee13e4198e794",
-  "sema_stub": "72bb",
+  "sema_ref": "Permission#9c2f",
+  "sema_id": "sema:Permission#mh:SHA-256:9c2fc31f5e31473c03834463095e4390750f7fda11f5a1aed2502f855a65dbcf",
+  "sema_stub": "9c2f",
   "invariants": [
     "Authorises only what it names: the {{agent}}, and the {{act}} or {{artifact}} identified."
   ],
   "dependencies": {
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     }
   },

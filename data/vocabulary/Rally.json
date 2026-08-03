@@ -48,7 +48,8 @@
     "supersedes": [
       "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
       "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
-      "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430"
+      "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430",
+      "sema:Rally#mh:SHA-256:bc5fb9825570d17d2869a85f4162c0bee1a152b56b9816b9735c90484dc8b2ff"
     ],
     "path": [
       "Society",

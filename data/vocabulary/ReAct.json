@@ -34,9 +34,9 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ReAct#mh:SHA-256:027f4d0db5a10de4738b05f90100f96decf0e0cc02294b79470200a152fea6d9",
-  "sema_ref": "ReAct#027f",
-  "sema_stub": "027f",
+  "sema_id": "sema:ReAct#mh:SHA-256:5281c82a8338b19ed33253f3447b6e845a967e6a28acb8c3efb63a6ab24ff308",
+  "sema_ref": "ReAct#5281",
+  "sema_stub": "5281",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
@@ -45,7 +45,7 @@
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:aafcc41012592030d7d1e83e91115fbaff1d238b5fc88827efda1649c7a7b502"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603"

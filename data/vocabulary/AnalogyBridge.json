@@ -28,12 +28,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:14fe5d542a1044a898aecdb3747495891bdd442e9657f4747bf1e4598b46c39a",
-  "sema_ref": "AnalogyBridge#14fe",
-  "sema_stub": "14fe",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:19ca8985125c0763648986dace3b85d15138e46a05819dec683a651c461ef0bf",
+  "sema_ref": "AnalogyBridge#19ca",
+  "sema_stub": "19ca",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "latent_attachment": "sema:LatentAttachment#mh:SHA-256:992d55f53109cbc5050a8ed96afe91121a85a664c6178ad136358e792ecbfa20",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
       "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"

@@ -1,6 +1,6 @@
 {
   "handle": "Branch",
-  "mechanism": "Conditional fork: if C then A else B. Mutual exclusion.",
+  "mechanism": "Conditional fork: if C then A else B. Exactly one arm runs. Distinct from a {{gate}}, which decides whether a single payload is admitted: a Branch dispatches to alternative continuations, both of which are defined.",
   "gloss": "Conditional flow",
   "_meta": {
     "tier": 1,
@@ -8,11 +8,19 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Branch#mh:SHA-256:f46dda4eb763c7f60ed646fa3d0eee2c32e6a5decbb721e61412eb112dd90f29"
     ]
   },
-  "sema_id": "sema:Branch#mh:SHA-256:f46dda4eb763c7f60ed646fa3d0eee2c32e6a5decbb721e61412eb112dd90f29",
-  "sema_ref": "Branch#f46d",
-  "sema_stub": "f46d",
+  "sema_id": "sema:Branch#mh:SHA-256:b4aa8694de2b0da0d33b87e2ad99d1d64741a8d67437ab400a829f566f2ce80d",
+  "sema_ref": "Branch#b4aa",
+  "sema_stub": "b4aa",
+  "dependencies": {
+    "references": {
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15"
+    }
+  },
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

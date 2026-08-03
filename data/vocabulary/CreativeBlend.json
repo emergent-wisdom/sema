@@ -21,9 +21,9 @@
       "Strategy"
     ]
   },
-  "sema_ref": "CreativeBlend#1cb8",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:1cb85d43d9acc10d1f9dfab4de8eb9f2eb81cfa79045ac21cf035afe06553535",
-  "sema_stub": "1cb8",
+  "sema_ref": "CreativeBlend#038c",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:038cc66c1989c7c850b0e1a514502124f3748cfd89fc3bdae33457432eb90a08",
+  "sema_stub": "038c",
   "extends": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",
   "dependencies": {
     "accepts": {
@@ -31,10 +31,10 @@
     },
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:c9f1c23deebd8806b9d43bd624de9d23f75474d15bbf7bafebe55dfde599d925"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb"
     },
     "references": {
-      "novelty": "sema:Novelty#mh:SHA-256:84d45c25a3c35037b26c001e5cce4ed973cc0accea54436552c8a735640a2527",
+      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
       "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },

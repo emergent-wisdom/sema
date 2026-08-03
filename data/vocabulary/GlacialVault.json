@@ -12,7 +12,8 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:GlacialVault#mh:SHA-256:f521c96b7e3037f39724b9a723f707ec195074f3099f6b0db122271de96d5677"
+      "sema:GlacialVault#mh:SHA-256:f521c96b7e3037f39724b9a723f707ec195074f3099f6b0db122271de96d5677",
+      "sema:GlacialVault#mh:SHA-256:2b9fb3dcc823fcfb25fcf08b01812ecb31a9f584670c9978d0b81e3537ad578c"
     ],
     "path": [
       "Society",

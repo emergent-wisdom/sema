@@ -6,13 +6,13 @@
     "ring": 1,
     "tier": 1,
     "path": [
-      "Society",
-      "Protocols"
+      "Mind",
+      "Reasoning"
     ]
   },
   "sema_id": "sema:Axiom#mh:SHA-256:8b1ca0bfefdb4954778b4074a3164934cb3a7e01be32aeb488b284dd81e5879c",
   "sema_ref": "Axiom#8b1c",
   "sema_stub": "8b1c",
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

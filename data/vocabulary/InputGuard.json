@@ -11,7 +11,8 @@
     "ring": 0,
     "caution": "Validation boundary \u2014 bypass enables injection or unexpected state.",
     "supersedes": [
-      "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+      "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb",
+      "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be"
     ],
     "path": [
       "Infrastructure",

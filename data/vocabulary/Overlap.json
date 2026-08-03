@@ -48,7 +48,8 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb"
+      "sema:Overlap#mh:SHA-256:bcfa7595ad18e8227f2019bedc717a67f3ffca1871ab9abfd02ff9cbf18cdfbb",
+      "sema:Overlap#mh:SHA-256:d70c8e5e00064f385853d70213d03d8ba547a1156024f826c4f782c4b677cefd"
     ],
     "path": [
       "Infrastructure",

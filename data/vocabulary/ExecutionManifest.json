@@ -15,7 +15,8 @@
       "Rollout"
     ],
     "supersedes": [
-      "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538"
+      "sema:ExecutionManifest#mh:SHA-256:a0d9a0d0ec40b83b5b05044e38d37098ebdabf1c63a4e623031458f0896e5538",
+      "sema:ExecutionManifest#mh:SHA-256:4342d3162e552fdbfcde1d594a4156ca6f2e0e42fcb20a9be2bc5ba54a4af0d0"
     ],
     "path": [
       "Infrastructure",

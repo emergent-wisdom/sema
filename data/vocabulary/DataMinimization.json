@@ -31,13 +31,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:DataMinimization#mh:SHA-256:2a025348e025dba5ae646bc8db77c958a9d65be473802d57d8ff62fad332b70d",
-  "sema_ref": "DataMinimization#2a02",
-  "sema_stub": "2a02",
+  "sema_id": "sema:DataMinimization#mh:SHA-256:402b69918ea04f9625ad93eb4c142be88bf561f04fdc04ed03880f48d1cf9c6f",
+  "sema_ref": "DataMinimization#402b",
+  "sema_stub": "402b",
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "context_compress": "sema:ContextCompress#mh:SHA-256:0bf5ce89d0ad9cac74bb69f253f06331989714d3c34bb0b385f9674439ce30b0",
       "correlation": "sema:Correlation#mh:SHA-256:3bd8ecb518efc816c4c986e434afb9b2c3d3801b8099e008c15b70e305bd3043",

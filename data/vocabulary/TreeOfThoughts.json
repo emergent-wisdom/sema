@@ -31,15 +31,15 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:29705439c773f84baa5d411e0ac7889cfa01aec17b691fa81ad3c951d1c97c05",
-  "sema_ref": "TreeOfThoughts#2970",
-  "sema_stub": "2970",
+  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:2abaddf003c5d94d9f39eec376a7de8adfd1c7f5c8e2cd8a82cae9c2ead3e53b",
+  "sema_ref": "TreeOfThoughts#2aba",
+  "sema_stub": "2aba",
   "signature": [
     "Think(Tree)"
   ],
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025",
       "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }

@@ -21,27 +21,28 @@
     "supersedes": [
       "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab",
       "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4",
-      "sema:PhasedRefinement#mh:SHA-256:56f079ec75061b35f56d543d1ab12c7c4822b1e0f5816cf342a796104756642c"
+      "sema:PhasedRefinement#mh:SHA-256:56f079ec75061b35f56d543d1ab12c7c4822b1e0f5816cf342a796104756642c",
+      "sema:PhasedRefinement#mh:SHA-256:537d912308d8a01e95f50f5434bed908f353d05268f4f214ae60ac0d100d37b3"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "PhasedRefinement#51cc",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:51ccf76fd969374b336f58a6c36d93dd7dee0253dd8454d4a7a4c16a3ce45dfb",
-  "sema_stub": "51cc",
+  "sema_ref": "PhasedRefinement#15e3",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:15e32d98507c6af62fd1a76e42163affa5a0e45cf54f2292f234bb40560ff9a8",
+  "sema_stub": "15e3",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
-      "refine": "sema:Refine#mh:SHA-256:e62e11d8fc7f03fdabdbbdd4a4b6ebe73c3ce501eeb89f02aae6e67595cdfc16",
+      "refine": "sema:Refine#mh:SHA-256:7d98a6ca93e100943d190a77d7ec75916532843899c293c3e269e0b1c02c5808",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a"
     },
     "references": {
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:93422e99f0d4cfa77ca8a74014f8364b3f224de54364ca1b3f02402a6f8f5258",
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:a65e795b90ed206a92837c2b7fda0cd7c544754185fd85240fc8eb1193ceb425",
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
-      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:f7cfbe594a726c0974c8daf91693e56f53af60c0fad54d0a0c9c4021812efee7"
+      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:4ff96ca1719333260b90e8fe2c451e1e5e707568ae6c1cf6b8f6f10fef2fce67"
     }
   },
   "sema_layer": "Society",

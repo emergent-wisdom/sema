@@ -13,6 +13,9 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "supersedes": [
+      "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824"
     ]
   },
   "sema_id": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",

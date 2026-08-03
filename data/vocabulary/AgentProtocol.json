@@ -19,18 +19,18 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentProtocol#mh:SHA-256:ca6ee9ee5ef59249015cebc8c13caa1767c1115d9ea759224a005e7850f2b5e6",
-  "sema_ref": "AgentProtocol#ca6e",
-  "sema_stub": "ca6e",
+  "sema_id": "sema:AgentProtocol#mh:SHA-256:6f3c8e1257ffc2d771bf895b75f48e7461ae87d1c220b49f46d7a192c948d247",
+  "sema_ref": "AgentProtocol#6f3c",
+  "sema_stub": "6f3c",
   "signature": [
     "Agent(Protocol)"
   ],
   "dependencies": {
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "fail_closed": "sema:FailClosed#mh:SHA-256:ac1b0e4a6452ffc852d32a25914ef7907a49428004765f92e68ac7d232530ad0",
-      "greet": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
       "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",

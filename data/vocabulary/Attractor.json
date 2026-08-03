@@ -13,6 +13,9 @@
     "path": [
       "Physics",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Attractor#mh:SHA-256:8c2d9daace2e9ba3e4b061e43c7ac213c185639763e7b36d53bfca4cdc97a0ea"
     ]
   },
   "sema_id": "sema:Attractor#mh:SHA-256:0036dca019fa8b7f87cc5982f7ad0267561a99daf3f1c489963c27854f1475a6",

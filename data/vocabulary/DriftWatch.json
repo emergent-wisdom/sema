@@ -50,13 +50,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:0fb1f63de700de039ea88aea20c284e4252c5e33a9240c80c8f5bd9e2992efa2",
-  "sema_ref": "DriftWatch#0fb1",
-  "sema_stub": "0fb1",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:37cf935687877e2a31c4cd75287e2bc7c814b49a3569203021854988f39abe9e",
+  "sema_ref": "DriftWatch#37cf",
+  "sema_stub": "37cf",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "aggregate": "sema:Aggregate#mh:SHA-256:ed4ae7898449926cd24777fff8cd9911e78eac398d19961d70456aea60c45606",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "aggregate": "sema:Aggregate#mh:SHA-256:d1d523ccf371305ebfbd971b5b6630a517bfcb0217ff4639d2db12a01bc181a8",
       "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893"
     }
   },

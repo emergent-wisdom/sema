@@ -47,7 +47,8 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d"
+      "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d",
+      "sema:ScoringFunction#mh:SHA-256:932eb89612c9b1e99ca1d6d66adf15bd8544505bc46059da946cb71aa52e23ec"
     ],
     "path": [
       "Infrastructure",

@@ -8,7 +8,8 @@
     "supersedes": [
       "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782",
       "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
-      "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800"
+      "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
+      "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7"
     ],
     "path": [
       "Mind",
@@ -23,9 +24,9 @@
     "Interface Non-Compliance: Solver omits Manifest or Execute, or advertises an optional Consult, Verify, or Feedback surface it cannot provide.",
     "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
   ],
-  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:a3ffd6b5ac2548677786ab6e1de6ce62a9a4f7e4dd6cab6c62af6da3b57971b1",
-  "sema_ref": "PolymorphicSolver#a3ff",
-  "sema_stub": "a3ff",
+  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
+  "sema_ref": "PolymorphicSolver#1362",
+  "sema_stub": "1362",
   "signature": [
     "Solver(Task)"
   ],
@@ -37,16 +38,16 @@
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
       "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
-      "reflexion": "sema:Reflexion#mh:SHA-256:acb68502b3f5bf0f8430e2adaa46b88b631385db91b30c674c3f745dfc1f0263",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:164a354143fa172c0f34a2502433b914a3af03eed6c2af3dd79d5aa24c675967",
+      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:e96688452f2c5ff80fee6c3326d694f1e32b051acc62176e7f2d1de61565da6e",
       "tool_invoke": "sema:ToolInvoke#mh:SHA-256:aafcc41012592030d7d1e83e91115fbaff1d238b5fc88827efda1649c7a7b502"
     },
     "references": {
-      "card": "sema:Card#mh:SHA-256:39f7f9ebde6429be53f51f65aa710c4e9f5137010c175c73af2bea809b141512",
-      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:be837e9e98098d9c44897bbed758ca06e7d57df35492145976233b5c406f31b8",
-      "solver": "sema:Solver#mh:SHA-256:cf430f516045514bc99f146c0fd155e863457c767aa1872794fa79fd89f8cf20",
-      "solver_node": "sema:SolverNode#mh:SHA-256:b7f04fc5205ad8a07faed4f6c62b58b742be8be7dc7d4ffb57c7433a6531bf22",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:37081da716b7e4d4f1760eac0eafa31b34775b4f8853d4d0661379360cce5589",
+      "card": "sema:Card#mh:SHA-256:ed287a652085f4e54a58e1b76a59016d74fa7edf51f918730d0338698aca979d",
+      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:0f41b62437d210e1bf814dd145961f1ccd95661deaffa567989334ad298fdffb",
+      "solver": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:a6cba3ba713ffd1c7f97e090ec45e5f1389f55a280847a1b62c56dbe7707106a",
       "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     },
     "yields": {

@@ -18,7 +18,8 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74"
+      "sema:Reversibility#mh:SHA-256:049f5fd98135ec288888fa61056f65a7e46067b06eaa5e7cee7a7bd3bfef2f74",
+      "sema:Reversibility#mh:SHA-256:af6fad316d76d324d6c2ac02a69fc1f2f095bfc69a48c33578e599c431e9598e"
     ],
     "path": [
       "Physics",

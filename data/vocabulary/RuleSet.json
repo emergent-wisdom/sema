@@ -35,15 +35,15 @@
       }
     }
   },
-  "sema_ref": "RuleSet#9995",
-  "sema_id": "sema:RuleSet#mh:SHA-256:99953d6d1ab64af573bd12cc1b023893499aa29842dad7bc64f31c09c874b497",
-  "sema_stub": "9995",
+  "sema_ref": "RuleSet#8395",
+  "sema_id": "sema:RuleSet#mh:SHA-256:8395e6e9e6a221bbfe200335ad0dd145fc2bdaf7f1815704444ad05e08f9b363",
+  "sema_stub": "8395",
   "invariants": [
     "Immutable once bound: a change is a new RuleSet, not an edit to the one already committed to."
   ],
   "dependencies": {
     "references": {
-      "constitution": "sema:Constitution#mh:SHA-256:33f6d086338b43868fff261229a31518f19809cb214fa8ce55727cc0baa9ab0c",
+      "constitution": "sema:Constitution#mh:SHA-256:bc929fc4bb51ad66d6ceb04ed4ef23ae56e6abd86515f7d171b117c2f41a6aaf",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"
     }
   },

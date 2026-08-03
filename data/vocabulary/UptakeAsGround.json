@@ -29,12 +29,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:038ceecb648f08a4f6782bf5ba83a5b2db0eb17fe8086521d79e80f88ba212f4",
-  "sema_ref": "UptakeAsGround#038c",
-  "sema_stub": "038c",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:82ef7e5f4f6b7c4ca5162ddcfbb54ac311ad2c5d0d3d1a69442380ad2293ef06",
+  "sema_ref": "UptakeAsGround#82ef",
+  "sema_stub": "82ef",
   "dependencies": {
     "references": {
-      "modest_claim": "sema:ModestClaim#mh:SHA-256:f6a380c6dfd92c2c2a1aca44babfb8e6bc63a43780e7a8c6c07837c8c3f5a837",
+      "modest_claim": "sema:ModestClaim#mh:SHA-256:83170b25cf7d22ac3c44226af9fe056368fdafd337735a34132b4c33ef28f100",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },

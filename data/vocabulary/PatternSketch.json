@@ -28,12 +28,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:cf2c6ada0a49756e241ee3a0b402316fdb3bdf35272e909442a8bfb8a2ac8fc1",
-  "sema_ref": "PatternSketch#cf2c",
-  "sema_stub": "cf2c",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:99d424d292ce9761fe55113ebe07e37a036916c73c3c95238f8116947acd033d",
+  "sema_ref": "PatternSketch#99d4",
+  "sema_stub": "99d4",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:35d3671e38652973a5da46a25d33015b7b84e2321a65f5958a19b833d88c3dcc"
     }
   },

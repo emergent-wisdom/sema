@@ -9,7 +9,8 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57"
+      "sema:StateTransition#mh:SHA-256:3737f955afcae13b398c1961722ee8511ea8f737aca133329938de5cfb91bb57",
+      "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2"
     ],
     "path": [
       "Infrastructure",

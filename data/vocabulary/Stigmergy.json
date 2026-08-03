@@ -15,16 +15,17 @@
     ],
     "ring": 0,
     "supersedes": [
-      "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed"
+      "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
+      "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Stigmergy#mh:SHA-256:a0f0728b796ba209007deec2c2d4b9cef330b39b899b03cb6f608d5fcf2ec296",
-  "sema_ref": "Stigmergy#a0f0",
-  "sema_stub": "a0f0",
+  "sema_id": "sema:Stigmergy#mh:SHA-256:f4336a6aa0e65a271e259d979bc6d5ad84312f6ba85f1262d61504730ed5a1a8",
+  "sema_ref": "Stigmergy#f433",
+  "sema_stub": "f433",
   "failure_modes": [
     "Trace pollution: too many traces, and the signal is lost among them.",
     "Namespace collision: unrelated agents mark the same medium and read each other's traces as their own.",
@@ -35,7 +36,7 @@
   "dependencies": {
     "references": {
       "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
-      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Society",

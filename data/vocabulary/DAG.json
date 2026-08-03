@@ -42,16 +42,16 @@
     "Rooted: exactly one node has no predecessor, named by `root_id`.",
     "Nodes with no directed path between them may run concurrently."
   ],
-  "sema_id": "sema:DAG#mh:SHA-256:b6e7164578e28551e0d193c82f2a3a5b828bf53c73fcdd40ac45b2b1ec70aace",
-  "sema_ref": "DAG#b6e7",
-  "sema_stub": "b6e7",
+  "sema_id": "sema:DAG#mh:SHA-256:cb54c9360f063d839412e33158dc205c02af684d85132f6a982caba17274f253",
+  "sema_ref": "DAG#cb54",
+  "sema_stub": "cb54",
   "failure_modes": [
     "Cycle on insert: an added edge closes a loop, which the acyclicity invariant forbids and which must be detected at insertion rather than at traversal.",
     "False precedence: an edge asserts a dependency that does not exist, serialising work that could have run concurrently."
   ],
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:8c3111560f3dfc0494627bd053d42f650dc0a2bf8a36ed7163efd00a38a3b154",
+      "parallelize": "sema:Parallelize#mh:SHA-256:5b4bc9d0ea71c6b181cb02a81dd64c7767e5ccbd0769277ce5a841fe5c2c9b0d",
       "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },

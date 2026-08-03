@@ -20,15 +20,15 @@
       "sema:EthicalReasoningProtocol#mh:SHA-256:6bf11b38a4352c7e0a99c002b75437cdc66d8a1a809ee353c11dec7a88c10998"
     ]
   },
-  "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:1a73464888afb117ccc5161f44900cd88f295a02863d0e5d76220769544cbcce",
-  "sema_ref": "EthicalReasoningProtocol#1a73",
-  "sema_stub": "1a73",
+  "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:8e7bda8878e1d77c14f93c10f31422b635d2ce79511a0360322d01e35577ce56",
+  "sema_ref": "EthicalReasoningProtocol#8e7b",
+  "sema_stub": "8e7b",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:1ea3c89d008397a1b2ddff513377d14dc2c8446227d325177ebc8601326f3f97"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be"
     },
     "references": {
-      "deliberative_align": "sema:DeliberativeAlign#mh:SHA-256:d77df0a856e9491599d730801364787e32983edcc6aa8ea659901f4d6656e7e1"
+      "deliberative_align": "sema:DeliberativeAlign#mh:SHA-256:c7f2ced8d35a67fe364db103532bd7e521388dbce4c36307461e2154a3d1f336"
     }
   },
   "sema_layer": "Mind",

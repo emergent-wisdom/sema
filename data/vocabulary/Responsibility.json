@@ -41,14 +41,14 @@
       "Governance"
     ]
   },
-  "sema_id": "sema:Responsibility#mh:SHA-256:7958e757c6bc9f57d685123040d1240232df6272e3bc6b0883eb2698013aa779",
-  "sema_ref": "Responsibility#7958",
-  "sema_stub": "7958",
+  "sema_id": "sema:Responsibility#mh:SHA-256:2971ff7d56b454fcfb23b77ea826c16cf8040b95edfad2abf39fb6a5c9559cb5",
+  "sema_ref": "Responsibility#2971",
+  "sema_stub": "2971",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
-      "oath_bind": "sema:OathBind#mh:SHA-256:bada7df16950f70db3126b95f62870e2c905aafe7bac54d0c1c196b601a61a28",
+      "oath_bind": "sema:OathBind#mh:SHA-256:7bc93d8ea77a477a8b124b671425a99ee2d7fccebe7bad87f5397e3ba5af888c",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"

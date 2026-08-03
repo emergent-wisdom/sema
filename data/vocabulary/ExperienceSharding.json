@@ -59,12 +59,12 @@
       "Memory"
     ]
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:d1c3411bc6ed9e7ea240f4bd3fe5fa05b76a74990a9fc968f5beafbf002eca2f",
-  "sema_ref": "ExperienceSharding#d1c3",
-  "sema_stub": "d1c3",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:5b42f1a5f5bb2a81220deba6845460081eff9834fe3e176181f7774310f821cd",
+  "sema_ref": "ExperienceSharding#5b42",
+  "sema_stub": "5b42",
   "dependencies": {
     "references": {
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:a89f0cf0d0a0fa5c81fbebb622147d42c73c8e3737660b542b51a83e76891b93",
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:2a85510f0a4d2505b0c577817b3e116dc203db4a2ff2755778ec9000c8e3cefc",
       "shard": "sema:Shard#mh:SHA-256:0c7f0ca5c9169b77bacc5825c072dcb9eef3ff7ceee76a4a2bdbc9ebedaceaa3"
     }
   },

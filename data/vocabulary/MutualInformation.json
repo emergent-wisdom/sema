@@ -16,12 +16,16 @@
       "Primitives"
     ],
     "supersedes": [
-      "sema:MutualInformation#mh:SHA-256:03a0a79a3c3433e42aa63a97157c7b376adf0aa3d06c28103b63229a458dcb07"
+      "sema:MutualInformation#mh:SHA-256:03a0a79a3c3433e42aa63a97157c7b376adf0aa3d06c28103b63229a458dcb07",
+      "sema:MutualInformation#mh:SHA-256:40369b10e6cf188b12f1922452d4ebc9184b8e398a765dd857bb4efd0a13589b"
     ]
   },
-  "sema_id": "sema:MutualInformation#mh:SHA-256:40369b10e6cf188b12f1922452d4ebc9184b8e398a765dd857bb4efd0a13589b",
-  "sema_ref": "MutualInformation#4036",
-  "sema_stub": "4036",
+  "sema_id": "sema:MutualInformation#mh:SHA-256:e714024fcd78de043d4d86021d907157d7f44f7a9c719b1d760f5810dd762a8b",
+  "sema_ref": "MutualInformation#e714",
+  "sema_stub": "e714",
+  "failure_modes": [
+    "Estimator conflation: reading a finite-sample estimate of zero as proof of independence. Zero-iff-independent is a property of the population quantity, not of an estimate."
+  ],
   "dependencies": {
     "references": {
       "entropy": "sema:Entropy#mh:SHA-256:d5f7482e6c06a1e48eadbf28e6dca0cc0eb176bf75c70e7e467284f656d20bae"

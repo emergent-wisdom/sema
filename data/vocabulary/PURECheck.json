@@ -26,9 +26,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:73990cbd96e7b81639cde0872f05a79c8a483364306a498d83436f33f7fdcc27",
-  "sema_ref": "PURECheck#7399",
-  "sema_stub": "7399",
+  "sema_id": "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0",
+  "sema_ref": "PURECheck#24b9",
+  "sema_stub": "24b9",
   "dependencies": {
     "accepts": {
       "expansive_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
@@ -39,13 +39,13 @@
     },
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "expansive": "sema:Expansive#mh:SHA-256:23f60fbacf1e70ebda008f9b356b15813d17ce3dbb6c33e01c8d3359a3ad961b",
-      "novelty": "sema:Novelty#mh:SHA-256:84d45c25a3c35037b26c001e5cce4ed973cc0accea54436552c8a735640a2527",
-      "parsimony": "sema:Parsimony#mh:SHA-256:2c0af021ae1ba6b11c042b6d7253e7f37f2aa42e2b57a675862643f32a5f3438",
-      "realizable": "sema:Realizable#mh:SHA-256:f7d70197798bc3720a676749c890727589f994b82aad6efc0752f73c43c01c5f"
+      "expansive": "sema:Expansive#mh:SHA-256:a8c4748462be3574ee2162aed256e0827afbad28e635e352d1742da97ef2e98f",
+      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
+      "parsimony": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3",
+      "realizable": "sema:Realizable#mh:SHA-256:e8e3932e8d9cc73bbf9c5aff5ef6bc0014b2c357c6ddb9b0e4e2868ca41dd455"
     },
     "references": {
-      "p_u_r_e": "sema:PURE#mh:SHA-256:d66d0d7a705f8c5d86d3a367212e07f8a1e01b94a7cfc3ea7dc1978ac1dcfeef"
+      "p_u_r_e": "sema:PURE#mh:SHA-256:d7c9f0803b0d38cb60969e5b0349420da0ffdf4071ad85a42d22ddbeb75288f8"
     },
     "yields": {
       "aggregate_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",

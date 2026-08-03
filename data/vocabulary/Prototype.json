@@ -45,6 +45,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Prototype#mh:SHA-256:f849be90ab4568d076b595b2edb408b2795a6aced9f82dac8510f53449f68a09"
     ]
   },
   "sema_id": "sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b",

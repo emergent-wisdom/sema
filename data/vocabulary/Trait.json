@@ -49,12 +49,12 @@
       }
     }
   },
-  "sema_id": "sema:Trait#mh:SHA-256:98ddeef4d3b32a4cfb1e3e766fce42daa527d3bed5b3352e834790dfc39464ac",
-  "sema_ref": "Trait#98dd",
-  "sema_stub": "98dd",
+  "sema_id": "sema:Trait#mh:SHA-256:13adbfa9f48babf1c2de572b4eb72454879cbb1d76404fd65aee70400a72e2b7",
+  "sema_ref": "Trait#13ad",
+  "sema_stub": "13ad",
   "dependencies": {
     "references": {
-      "contract": "sema:Contract#mh:SHA-256:2cf56ed46fd6dc1b5ff82225f618ace1199170ebc70980aafa4b0617b34fe737",
+      "contract": "sema:Contract#mh:SHA-256:bf33d6b0b29a7d4c2daa50ec3ab94c09818c67af367567f2b76976a433e5e00f",
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
     }
   },

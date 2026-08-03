@@ -18,12 +18,12 @@
       "sema:DiscoveryProtocol#mh:SHA-256:9958e873e5aa29dc046965443b256ee00d53f69befc0c9e573ba3b165e7487db"
     ]
   },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:e65d63bb8a786f5aa53cceef3ebd79191f130b5ab28a982932fab2eff41c423f",
-  "sema_ref": "DiscoveryProtocol#e65d",
-  "sema_stub": "e65d",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:fcb4dad4156b21566caa731b1600183e6d2a5101fc92957f4b40bb6999991d1a",
+  "sema_ref": "DiscoveryProtocol#fcb4",
+  "sema_stub": "fcb4",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:1ea3c89d008397a1b2ddff513377d14dc2c8446227d325177ebc8601326f3f97",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
       "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
     },
     "references": {

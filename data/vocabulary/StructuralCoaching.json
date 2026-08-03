@@ -27,13 +27,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:StructuralCoaching#mh:SHA-256:f7cfbe594a726c0974c8daf91693e56f53af60c0fad54d0a0c9c4021812efee7",
-  "sema_ref": "StructuralCoaching#f7cf",
-  "sema_stub": "f7cf",
+  "sema_id": "sema:StructuralCoaching#mh:SHA-256:4ff96ca1719333260b90e8fe2c451e1e5e707568ae6c1cf6b8f6f10fef2fce67",
+  "sema_ref": "StructuralCoaching#4ff9",
+  "sema_stub": "4ff9",
   "dependencies": {
     "references": {
       "creative": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",
-      "critique": "sema:Critique#mh:SHA-256:0541d11be536bd1fc1c0600452c80c5b9ef36b4217943dcb65d54fbd79c8521f",
+      "critique": "sema:Critique#mh:SHA-256:77f2544f9e6978b453ac8eaec66c792304025fb778a78bf0c4dac39cae28d074",
       "feedback": "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae",
       "invert": "sema:Invert#mh:SHA-256:f60f8f97375b6fe9a0f9dd2aab5cd5775b156f44135ab398f0ebd08a6009ff72"
     }

@@ -54,15 +54,15 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:6de87cf87e19a9ba8ed08da7e11e078ac7f3b336ebbe37e2215a6524505d1ed2",
-  "sema_ref": "MentalSim#6de8",
-  "sema_stub": "6de8",
+  "sema_id": "sema:MentalSim#mh:SHA-256:9ddd892c32849bd213ec101cbce9c51f127634ba81f79c4186ae1b67196fdbef",
+  "sema_ref": "MentalSim#9ddd",
+  "sema_stub": "9ddd",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:0be73a7000edac19c184040f6b1479e76d0b312d59e9b948eccc5f0f52943e4e",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:d1da527c28217842fbdb7333e85fb95d70c54672ed8a2f37325cde3c5d32d5a5",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
-      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:f7ccd96fafbe6daff186fdced5bc814b4885f08212dc2126b67d44b350a27e6b",
+      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:cecf8021678cd9c00da018591b1e1c81b09bd532198e49176cd776621a75f4f4",
       "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"

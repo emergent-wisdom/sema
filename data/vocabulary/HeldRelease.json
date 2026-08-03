@@ -27,22 +27,23 @@
     "supersedes": [
       "sema:HeldRelease#mh:SHA-256:49566d2180cf09f70f2d9972dddd190dfb23c4cda4ff69ccab97b76930a34585",
       "sema:HeldRelease#mh:SHA-256:3ed68df815a35cd4f70e51c3504036ced51f92529b82c4ac9bb4fa2e1d5c5436",
-      "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5"
+      "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5",
+      "sema:HeldRelease#mh:SHA-256:10b0ae36dabba68fe8aad67adf8075ce5a5f0b2a3bb602c7bd3380b0dd0117d9"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:HeldRelease#mh:SHA-256:3c78f779bc127d5c412af0dcc2a504b01f1a3838751879bcdf08b64249324c34",
-  "sema_ref": "HeldRelease#3c78",
-  "sema_stub": "3c78",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:08506ccf6d4e8e46131ed3766b8d6f70feb878ffdfa9284e01b367418f06fa95",
+  "sema_ref": "HeldRelease#0850",
+  "sema_stub": "0850",
   "dependencies": {
     "accepts": {
       "unique_handle": "sema:UniqueHandle#mh:SHA-256:185337050ca62b46cf88be534139cf31c2313c660f845daa395507c7faebcb1c"
     },
     "references": {
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:f61d8e05ef8467904005de47e9a67777d0db40b8f5897926f725e7e0f3261e8a",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:20c61d9f8e5d3bf08dd0a6e31a240db9e9652fde2aca997e86d8062f1002e9b0",
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"

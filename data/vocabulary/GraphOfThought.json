@@ -21,12 +21,12 @@
   "signature": [
     "Think(DAG)"
   ],
-  "sema_id": "sema:GraphOfThought#mh:SHA-256:1417fc5478fe393c4ab5f3344500c516b43fe348afa140e7c2fd66cdeff8a043",
-  "sema_ref": "GraphOfThought#1417",
-  "sema_stub": "1417",
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:d1d584dba2c12ecbe922171f0519cc97d54fd4b04ffe8d2810122480e64c38b9",
+  "sema_ref": "GraphOfThought#d1d5",
+  "sema_stub": "d1d5",
   "dependencies": {
     "composes_with": {
-      "d_a_g": "sema:DAG#mh:SHA-256:b6e7164578e28551e0d193c82f2a3a5b828bf53c73fcdd40ac45b2b1ec70aace",
+      "d_a_g": "sema:DAG#mh:SHA-256:cb54c9360f063d839412e33158dc205c02af684d85132f6a982caba17274f253",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }
   },

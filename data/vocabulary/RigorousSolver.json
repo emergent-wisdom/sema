@@ -12,25 +12,26 @@
     "supersedes": [
       "sema:RigorousSolver#mh:SHA-256:169f46575554787f8f6be182014bd4f008264153fb30c33ddfd03da1c5dea507",
       "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
-      "sema:RigorousSolver#mh:SHA-256:b75d4b063fc8f90f4a1361ef08c8dac02fbf147f0c8f122ca390fdbde74d39cd"
+      "sema:RigorousSolver#mh:SHA-256:b75d4b063fc8f90f4a1361ef08c8dac02fbf147f0c8f122ca390fdbde74d39cd",
+      "sema:RigorousSolver#mh:SHA-256:70d41b35ddab10c9575b6feed8022935cb266f3d81fce659cfb6b8b9c2d4dc94"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:9d78d9d3dedfd418f14e2ef682d27534fa5ced9d77a8dd3434b27df2fad01bd5",
-  "sema_ref": "RigorousSolver#9d78",
-  "sema_stub": "9d78",
-  "extends": "sema:PolymorphicSolver#mh:SHA-256:a3ffd6b5ac2548677786ab6e1de6ce62a9a4f7e4dd6cab6c62af6da3b57971b1",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:1275832b5bb4e2ad2e682f32326f8a02f105df57d582be23afd1fb1a7cfae921",
+  "sema_ref": "RigorousSolver#1275",
+  "sema_stub": "1275",
+  "extends": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
   "dependencies": {
     "composes_with": {
       "feedback": "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae",
       "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224"
     },
     "references": {
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:a3ffd6b5ac2548677786ab6e1de6ce62a9a4f7e4dd6cab6c62af6da3b57971b1",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:164a354143fa172c0f34a2502433b914a3af03eed6c2af3dd79d5aa24c675967"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:e96688452f2c5ff80fee6c3326d694f1e32b051acc62176e7f2d1de61565da6e"
     }
   },
   "sema_layer": "Mind",

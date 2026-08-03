@@ -9,7 +9,8 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e"
+      "sema:StateAudit#mh:SHA-256:ce13ca0864f9b2658c7101e34eb86670079a96eba47499450f5b6105ba54925e",
+      "sema:StateAudit#mh:SHA-256:2747b8fd941dcd5a3980556d108b22f376bb3ac0ac6de1561215ad836bf5ed17"
     ],
     "path": [
       "Infrastructure",

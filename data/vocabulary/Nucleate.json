@@ -24,24 +24,25 @@
     "supersedes": [
       "sema:Nucleate#mh:SHA-256:4ea1bbb47979e47bc617c7b635ee2ce9d3315ac952012984aa62b18a479dc6f1",
       "sema:Nucleate#mh:SHA-256:32c03e8bf26291ab9297e0fad910d8ffdd470c4d40d90e2482abd4c0372435a7",
-      "sema:Nucleate#mh:SHA-256:457ad2d5b65ad6400dfe7b8708047890890aaf9d1428bede19029858af0b7155"
+      "sema:Nucleate#mh:SHA-256:457ad2d5b65ad6400dfe7b8708047890890aaf9d1428bede19029858af0b7155",
+      "sema:Nucleate#mh:SHA-256:3763228a0a84b215c71888983568ca343aa8938634b1858d2e31fd303aa7c4fc"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Nucleate#mh:SHA-256:e6c9434b5d818660d9a213a2a9623c585c9e22c40999472ecc921f011fc7dd03",
-  "sema_ref": "Nucleate#e6c9",
-  "sema_stub": "e6c9",
+  "sema_id": "sema:Nucleate#mh:SHA-256:914ad0126d24043c0c3b5f4a579b2faddce1c289d78a4b3ec3aa811efced4cd3",
+  "sema_ref": "Nucleate#914a",
+  "sema_stub": "914a",
   "dependencies": {
     "references": {
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
-      "crystallize": "sema:Crystallize#mh:SHA-256:b17e901763a0e68ab296b5ce5586f680a2f7b65e05d868832dcc81ef088d5199",
+      "crystallize": "sema:Crystallize#mh:SHA-256:ec1cf3687c7f901b33ddb218a70bebe3ebd7a57de0eeb3d516a9938642730d01",
       "phase_transition": "sema:PhaseTransition#mh:SHA-256:b7752342dcc7b20033400fc4ec1befd4bc3a31532493d6acdce763293e81c1d7",
       "rally": "sema:Rally#mh:SHA-256:f2d67002a3d5ca0f6e0e61343ba41b800d3211249f3ab513984af2699df7d8d5",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Society",

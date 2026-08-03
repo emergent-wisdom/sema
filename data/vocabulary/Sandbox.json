@@ -12,7 +12,8 @@
     ],
     "caution": "Escape vectors may exist in unaudited system call surfaces.",
     "supersedes": [
-      "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0"
+      "sema:Sandbox#mh:SHA-256:2be7b830454b430d8008cb54622a5c1a6434a6e076d7bbdaca4d2a5b1a1dadf0",
+      "sema:Sandbox#mh:SHA-256:64c9d03cda865610bcc3792d3aa8f6c80c8b347e6ee1f6d7bb01479a0a38231d"
     ],
     "path": [
       "Infrastructure",

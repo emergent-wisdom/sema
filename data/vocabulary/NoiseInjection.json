@@ -35,9 +35,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:5140a5782572d792aa892ba5cb00e0bc4f8e2bd1aea4578e37e7006cc0635061",
-  "sema_ref": "NoiseInjection#5140",
-  "sema_stub": "5140",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:f5b2aad2ea08ff2b8d5973e184e8e296023989f7ccf4f5fa73727fbf68e943c4",
+  "sema_ref": "NoiseInjection#f5b2",
+  "sema_stub": "f5b2",
   "parameters": [
     {
       "name": "temperature",
@@ -60,8 +60,8 @@
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "card": "sema:Card#mh:SHA-256:39f7f9ebde6429be53f51f65aa710c4e9f5137010c175c73af2bea809b141512",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "card": "sema:Card#mh:SHA-256:ed287a652085f4e54a58e1b76a59016d74fa7edf51f918730d0338698aca979d",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",

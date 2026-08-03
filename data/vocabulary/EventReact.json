@@ -29,13 +29,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:a967ffcad6e59e1268fd6ce4f74ba786a5cf6b75edf2630a9c8c44376ce8e9da",
-  "sema_ref": "EventReact#a967",
-  "sema_stub": "a967",
+  "sema_id": "sema:EventReact#mh:SHA-256:6f43ed9daa820d62cf2701cd394d4853d5a9d0e527270d11edd8748d624e27a5",
+  "sema_ref": "EventReact#6f43",
+  "sema_stub": "6f43",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "re_act": "sema:ReAct#mh:SHA-256:027f4d0db5a10de4738b05f90100f96decf0e0cc02294b79470200a152fea6d9"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "re_act": "sema:ReAct#mh:SHA-256:5281c82a8338b19ed33253f3447b6e845a967e6a28acb8c3efb63a6ab24ff308"
     }
   },
   "sema_layer": "Mind",

@@ -32,13 +32,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:7b03ae99062ecdeee0f4d2784b7b7c1c5373541bbb9ed563f1c1c8860d4d4bbb",
-  "sema_ref": "MintWhenFriction#7b03",
-  "sema_stub": "7b03",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:8c036e4a8a072c10afb0925b17c73b31cac64b1384145d7e2dfe77b645029b75",
+  "sema_ref": "MintWhenFriction#8c03",
+  "sema_stub": "8c03",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
-      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:5a4c0ef17d87f8a061f67ac4bd33f1fc2ba149e3bd9bd806f892ff5eadc9e700"
+      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:8ff484bd61105aee7eb4e3e24475faf27e55c0b76faf4388907734110d914023"
     },
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"

@@ -56,7 +56,7 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#5402`, `Vote#b9a9`, `StateLock#c9c2`.
+You should see results like `Consensus#ec30`, `Vote#d3cb`, `StateLock#c9c2`.
 
 ## Use handles as words
 

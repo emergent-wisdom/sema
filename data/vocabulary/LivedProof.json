@@ -32,13 +32,13 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:9c6585c38eaddeb7376220abcc27c685f1bd57e84ca25b99f9bb401c59b1bc28",
-  "sema_ref": "LivedProof#9c65",
-  "sema_stub": "9c65",
+  "sema_id": "sema:LivedProof#mh:SHA-256:85c2bf6aa7edaae45deb73f17b96d6917079f831b66e15b9b19840e26f711b64",
+  "sema_ref": "LivedProof#85c2",
+  "sema_stub": "85c2",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:cc91364dc376a01db75f66a049c2ea3135b08b40cbb9b1825a6cd5f3e03dc0a4",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:2825a19d555f390373975f1aa8306d64a9694b192a3ec60d47a94b71f4e565b9",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },

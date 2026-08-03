@@ -21,12 +21,12 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:a21130e7838717f2eafa677bd7e75b2386bc76fcbb5aa1cd09535b450ad5f76a",
-  "sema_ref": "RepresentationSwap#a211",
-  "sema_stub": "a211",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:52ffc66f64ca80e155be3febd152c51811ecee8d3d4e2739125b090f301c0d3d",
+  "sema_ref": "RepresentationSwap#52ff",
+  "sema_stub": "52ff",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:c9f1c23deebd8806b9d43bd624de9d23f75474d15bbf7bafebe55dfde599d925"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb"
     }
   },
   "sema_layer": "Mind",

@@ -26,16 +26,17 @@
     "ring": 2,
     "supersedes": [
       "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
-      "sema:DeepResearch#mh:SHA-256:a0583250bce8e627c58247bd2dba4de9d9fb9ffabf0a36c66eceb7ddebee4577"
+      "sema:DeepResearch#mh:SHA-256:a0583250bce8e627c58247bd2dba4de9d9fb9ffabf0a36c66eceb7ddebee4577",
+      "sema:DeepResearch#mh:SHA-256:e060e22da824f730c3b21f232e087babd447395ed3190509aab22101f4480d86"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:f72c9475cc2618f0f889a5360cb84e9028b8a8c3145c64a83b324deec01478db",
-  "sema_ref": "DeepResearch#f72c",
-  "sema_stub": "f72c",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:52e2fdc1ac8c86d03f7ef1fb0c85eb3903d8c5f3769af094a61e6f028055ce0b",
+  "sema_ref": "DeepResearch#52e2",
+  "sema_stub": "52e2",
   "signature": [
     "Deep(Discover)"
   ],
@@ -44,7 +45,7 @@
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
       "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:38b5f79327ae49c0c27ad01c0a136bb1c995d319c69ef55ca6283dab4cfba627",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:95fc6c4071bdede8f9e366e3d268cba27459256c62d4510359c916c80018d85e",
       "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
     }
   },

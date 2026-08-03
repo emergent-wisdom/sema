@@ -19,9 +19,9 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:2c0af021ae1ba6b11c042b6d7253e7f37f2aa42e2b57a675862643f32a5f3438",
-  "sema_ref": "Parsimony#2c0a",
-  "sema_stub": "2c0a",
+  "sema_id": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3",
+  "sema_ref": "Parsimony#6f4d",
+  "sema_stub": "6f4d",
   "gloss": "Complexity justification via Occams Razor",
   "failure_modes": [
     "Joint necessity missed: a set individually redundant and jointly required passes component-wise ablation.",
@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4",
+      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13",
       "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },

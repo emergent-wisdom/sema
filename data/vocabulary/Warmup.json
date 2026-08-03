@@ -48,12 +48,12 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Warmup#mh:SHA-256:c3869f1c889a86386f7583a7f5f13399e3964b69a6bdb239a0df3c8ee46f7063",
-  "sema_ref": "Warmup#c386",
-  "sema_stub": "c386",
+  "sema_id": "sema:Warmup#mh:SHA-256:316ee053b8fda86e03974bb8baaf6c82b4de0b07ea7e55fa38d337309cfe25de",
+  "sema_ref": "Warmup#316e",
+  "sema_stub": "316e",
   "dependencies": {
     "references": {
-      "greet": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
       "throttle": "sema:Throttle#mh:SHA-256:dd626ad2479e5377339f44e77b61a0264591ed21a906556f020fccb98450fe55"
     }

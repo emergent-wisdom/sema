@@ -59,21 +59,21 @@
       }
     }
   },
-  "sema_id": "sema:RootSolver#mh:SHA-256:d9dbb02a8a424a8cbac2040586aa347eb9d7ca7db63cc02043002ed4a550f6c0",
-  "sema_ref": "RootSolver#d9db",
-  "sema_stub": "d9db",
+  "sema_id": "sema:RootSolver#mh:SHA-256:332edbdd0535c4895116d911fbdc4dfeb1ccefc3266d56f413b39f418f66f31b",
+  "sema_ref": "RootSolver#332e",
+  "sema_stub": "332e",
   "dependencies": {
     "composes_with": {
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5"
     },
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "frame_error": "sema:FrameError#mh:SHA-256:c98287daa5cdfef011246e8510023d2598397cc1dcf33617e39822074a6cf92a",
+      "frame_error": "sema:FrameError#mh:SHA-256:53e33befdcaffe1885b8604f77b4a1b508db41bd80cbd440c5d1fe6452336e40",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
       "problem_space": "sema:ProblemSpace#mh:SHA-256:927aaa472dd0daacb3668cd4c21b82591f4530428f75f88a7d5386e65b072719",
       "result": "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127",
       "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
-      "solver_node": "sema:SolverNode#mh:SHA-256:b7f04fc5205ad8a07faed4f6c62b58b742be8be7dc7d4ffb57c7433a6531bf22",
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }

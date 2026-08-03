@@ -15,16 +15,17 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:CollaborativeWritingProtocol#mh:SHA-256:8a1a98d844e31dcb7abdefc974d73d7dab771de960324cf8258684ad60946a6c"
+      "sema:CollaborativeWritingProtocol#mh:SHA-256:8a1a98d844e31dcb7abdefc974d73d7dab771de960324cf8258684ad60946a6c",
+      "sema:CollaborativeWritingProtocol#mh:SHA-256:f5cba7a26166a0a3f048cf7f5a451d3bf3dc48c70549e54598cdea9d5401a564"
     ]
   },
-  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:7081ddfc73b24b6dd8c0aeba6eb892b46af7553a8a660853e4f51a6537ab7042",
-  "sema_ref": "CollaborativeWritingProtocol#7081",
-  "sema_stub": "7081",
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:4d6ac289b1a80ecb3b5ed9f9f7e9fd737e5cd96eea0bfa55b34300f5c9603498",
+  "sema_ref": "CollaborativeWritingProtocol#4d6a",
+  "sema_stub": "4d6a",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:1ea3c89d008397a1b2ddff513377d14dc2c8446227d325177ebc8601326f3f97",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:60d25b8cdc6b65f67da3636d0493c73fc328ee0e01c2af1b4bfc7e71d7af204f"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
     }
   },
   "sema_layer": "Mind",

@@ -30,7 +30,8 @@
     ],
     "ring": 0,
     "supersedes": [
-      "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0"
+      "sema:Decay#mh:SHA-256:a1d4b9d5a517a5a8e942a9bedaafdd004b3d7d5bf2e02bd4018af16350bb64f0",
+      "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
     ],
     "path": [
       "Physics",

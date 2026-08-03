@@ -43,16 +43,16 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:8a310b8d793d6f682fd4480c846d46ef89483102587f5a42bb192cb3009d1886",
-  "sema_ref": "EmpathySim#8a31",
-  "sema_stub": "8a31",
+  "sema_id": "sema:EmpathySim#mh:SHA-256:87963fa098676195ed42fdf8804d0378ee74d8aad85830f327aa3925d35a47ef",
+  "sema_ref": "EmpathySim#8796",
+  "sema_stub": "8796",
   "dependencies": {
     "accepts": {
-      "target_profile": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe"
+      "target_profile": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:0be73a7000edac19c184040f6b1479e76d0b312d59e9b948eccc5f0f52943e4e",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:d1da527c28217842fbdb7333e85fb95d70c54672ed8a2f37325cde3c5d32d5a5",
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",

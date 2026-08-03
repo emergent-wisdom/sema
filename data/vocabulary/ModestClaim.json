@@ -28,12 +28,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:ModestClaim#mh:SHA-256:f6a380c6dfd92c2c2a1aca44babfb8e6bc63a43780e7a8c6c07837c8c3f5a837",
-  "sema_ref": "ModestClaim#f6a3",
-  "sema_stub": "f6a3",
+  "sema_id": "sema:ModestClaim#mh:SHA-256:83170b25cf7d22ac3c44226af9fe056368fdafd337735a34132b4c33ef28f100",
+  "sema_ref": "ModestClaim#8317",
+  "sema_stub": "8317",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a",
       "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",

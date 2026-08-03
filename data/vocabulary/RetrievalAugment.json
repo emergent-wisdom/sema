@@ -17,21 +17,22 @@
     "ring": 2,
     "supersedes": [
       "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
-      "sema:RetrievalAugment#mh:SHA-256:7ca744ce28611156f415add4da95e3dc93006d92061a05139e17b70d3882e848"
+      "sema:RetrievalAugment#mh:SHA-256:7ca744ce28611156f415add4da95e3dc93006d92061a05139e17b70d3882e848",
+      "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:38b5f79327ae49c0c27ad01c0a136bb1c995d319c69ef55ca6283dab4cfba627",
-  "sema_ref": "RetrievalAugment#38b5",
-  "sema_stub": "38b5",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:95fc6c4071bdede8f9e366e3d268cba27459256c62d4510359c916c80018d85e",
+  "sema_ref": "RetrievalAugment#95fc",
+  "sema_stub": "95fc",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
-      "context_first": "sema:ContextFirst#mh:SHA-256:e02406c0ef30bb62df90e4c29f32e1a64129da68c324f6a2d929a831602a7176"
+      "context_first": "sema:ContextFirst#mh:SHA-256:9b48f9c973c2cac1a00e7f2d23a97f43e6df3a35caf90294856114633a7a596e"
     }
   },
   "sema_layer": "Mind",

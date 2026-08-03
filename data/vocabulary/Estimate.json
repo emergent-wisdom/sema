@@ -21,16 +21,17 @@
     "ring": 1,
     "supersedes": [
       "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449",
-      "sema:Estimate#mh:SHA-256:28d2e9662fc904a5d5662b8b532a2c14a7ed47f8cda950a58875e07f249207df"
+      "sema:Estimate#mh:SHA-256:28d2e9662fc904a5d5662b8b532a2c14a7ed47f8cda950a58875e07f249207df",
+      "sema:Estimate#mh:SHA-256:c6d21a9be2f862c3c4e46172f155ec129350e6dff03d18d658d694edcc34c9b7"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "Estimate#16c1",
-  "sema_id": "sema:Estimate#mh:SHA-256:16c111845e76b926eaa3b42c0c3fe033fb10d4f526eedf690b191a037bed72a3",
-  "sema_stub": "16c1",
+  "sema_ref": "Estimate#ae72",
+  "sema_id": "sema:Estimate#mh:SHA-256:ae720093041b7c69a7131328b912157311dc43e4491a2125c5da449482c77b94",
+  "sema_stub": "ae72",
   "parameters": [
     {
       "name": "estimation_allowance",
@@ -54,12 +55,12 @@
     },
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:f7ccd96fafbe6daff186fdced5bc814b4885f08212dc2126b67d44b350a27e6b",
+      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:cecf8021678cd9c00da018591b1e1c81b09bd532198e49176cd776621a75f4f4",
       "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "bid": "sema:Bid#mh:SHA-256:f71c30c9be1533af249a7c08421bfe13f802f42c6226cdfe1d7d1a3364f99698"
+      "bid": "sema:Bid#mh:SHA-256:f083ba4d6bda1e6f41425819a11da70828e6ee6dbe843ada68ef1e0696b9bf17"
     }
   },
   "sema_layer": "Mind",

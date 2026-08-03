@@ -43,12 +43,12 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:53dc08c730170ca7a287304f2bcf1f1e04edad2da73998180cf722009d309b74",
-  "sema_ref": "FabricSharding#53dc",
-  "sema_stub": "53dc",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:c05779de54bf98bf74d926045c5bf864af5002a00aea3012b15553e345c5e9b3",
+  "sema_ref": "FabricSharding#c057",
+  "sema_stub": "c057",
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:8c3111560f3dfc0494627bd053d42f650dc0a2bf8a36ed7163efd00a38a3b154",
+      "parallelize": "sema:Parallelize#mh:SHA-256:5b4bc9d0ea71c6b181cb02a81dd64c7767e5ccbd0769277ce5a841fe5c2c9b0d",
       "shard": "sema:Shard#mh:SHA-256:0c7f0ca5c9169b77bacc5825c072dcb9eef3ff7ceee76a4a2bdbc9ebedaceaa3",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }

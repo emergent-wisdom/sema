@@ -20,9 +20,9 @@
       "Verification"
     ]
   },
-  "sema_ref": "OathBind#bada",
-  "sema_id": "sema:OathBind#mh:SHA-256:bada7df16950f70db3126b95f62870e2c905aafe7bac54d0c1c196b601a61a28",
-  "sema_stub": "bada",
+  "sema_ref": "OathBind#7bc9",
+  "sema_id": "sema:OathBind#mh:SHA-256:7bc93d8ea77a477a8b124b671425a99ee2d7fccebe7bad87f5397e3ba5af888c",
+  "sema_stub": "7bc9",
   "failure_modes": [
     "Penalty severity decoupled from deviation severity.",
     "{{rule_set}} ambiguity triggers an unintended penalty.",
@@ -31,7 +31,7 @@
   "dependencies": {
     "references": {
       "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8",
-      "rule_set": "sema:RuleSet#mh:SHA-256:99953d6d1ab64af573bd12cc1b023893499aa29842dad7bc64f31c09c874b497",
+      "rule_set": "sema:RuleSet#mh:SHA-256:8395e6e9e6a221bbfe200335ad0dd145fc2bdaf7f1815704444ad05e08f9b363",
       "spot_audit": "sema:SpotAudit#mh:SHA-256:d3a9df6a57f06278d581310ad3f0cb57941311ced0fb7360a5041e9093231b8a"
     }
   },
