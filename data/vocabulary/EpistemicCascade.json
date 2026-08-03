@@ -1,0 +1,44 @@
+{
+  "handle": "EpistemicCascade",
+  "gloss": "A conclusion inherits the verification status of its weakest load-bearing premise.",
+  "mechanism": "Before an assertion crosses a boundary (a message, a commit, an irreversible action), enumerate the premises it load-bears on and mark each one: independently verified, verified only by the process that produced it, or unverified ({{assumption}}). The assertion's status is the minimum over that closure; reasoning quality above a weak premise cannot raise it. To upgrade, select the premise with the highest ratio of downstream cost to checking cost and apply {{verification}} using a method independent of the one that produced the premise, then re-derive. Where no check is possible before the boundary, the assertion carries its status explicitly instead of borrowing confidence from fluency ({{epistemic_calibrate}}), and {{belief_tracking}} records the pending premises so later evidence can settle them.",
+  "invariants": [
+    "Status(conclusion) never exceeds min(Status(premise)) over its load-bearing premises.",
+    "A premise checked only by the process that produced it counts as unverified; an upgrade requires an independent method.",
+    "Status changes only through verification events, never through repetition or restatement."
+  ],
+  "preconditions": [
+    "The assertion's load-bearing premises can be enumerated.",
+    "The boundary crossing is identifiable before it happens."
+  ],
+  "postconditions": [
+    "Every boundary-crossing assertion carries an explicit status.",
+    "The weakest load-bearing premise is either verified or declared."
+  ],
+  "failure_modes": [
+    "Polishing reasoning downstream of a weak premise: rigor above does not repair status below.",
+    "Verifying the cheapest premise instead of the most load-bearing one.",
+    "Confidence laundering: an assertion crosses a boundary and the reader assigns it a status it never earned."
+  ],
+  "_meta": {
+    "ring": 2,
+    "tier": 1,
+    "path": [
+      "Mind",
+      "Reasoning"
+    ]
+  },
+  "sema_id": "sema:EpistemicCascade#mh:SHA-256:7054164a311ba47d6894610f66125fffcaeebb1aeed116984758469119b00177",
+  "sema_ref": "EpistemicCascade#7054",
+  "sema_stub": "7054",
+  "dependencies": {
+    "references": {
+      "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
+      "belief_tracking": "sema:BeliefTracking#mh:SHA-256:1ae45fb5af911a83c09d9acc4a007b9147dd46c979ae0febc0bee6754f8a224e",
+      "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a",
+      "verification": "sema:Verification#mh:SHA-256:81fe83ebcbd898595f7969762d70b562ad6bcab08141fc1e88d65f21376600dd"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

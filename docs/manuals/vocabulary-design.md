@@ -5,8 +5,8 @@
      in `data/vocabulary/*.json` and design commentary in
      `data/design_critique.json`. -->
 
-_Patterns covered: 456 (from `data/vocabulary/`)_
-_Commentary entries in sidecar: 456 (from `data/design_critique.json`)_
+_Patterns covered: 457 (from `data/vocabulary/`)_
+_Commentary entries in sidecar: 457 (from `data/design_critique.json`)_
 
 This manual is the design reference for the Sema Bootstrap Library. For each pattern, it shows the machine-checkable spec (mechanism, invariants, pre/postconditions, failure modes) alongside the design commentary: why it exists, why it sits where it does, whether it could be removed, how it's used across contexts, its design tensions and tradeoffs, critique, and where it sits in its family.
 
@@ -10472,7 +10472,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-## Mind (180)
+## Mind (181)
 
 ### Mind/Inference (22)
 
@@ -12869,7 +12869,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### Mind/Reasoning (62)
+### Mind/Reasoning (63)
 
 ### Abduction#b62e
 
@@ -13930,6 +13930,73 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 **Supersedes (prior versions).**
 - `Eliminate#43ea`
 - `Eliminate#9ed8`
+
+---
+
+### EpistemicCascade#7054
+
+`Mind` · `Reasoning` · R2 · T1
+
+**Gloss.** A conclusion inherits the verification status of its weakest load-bearing premise.
+
+**Mechanism.**
+
+> Before an assertion crosses a boundary (a message, a commit, an irreversible action), enumerate the premises it load-bears on and mark each one: independently verified, verified only by the process that produced it, or unverified ({{assumption}}). The assertion's status is the minimum over that closure; reasoning quality above a weak premise cannot raise it. To upgrade, select the premise with the highest ratio of downstream cost to checking cost and apply {{verification}} using a method independent of the one that produced the premise, then re-derive. Where no check is possible before the boundary, the assertion carries its status explicitly instead of borrowing confidence from fluency ({{epistemic_calibrate}}), and {{belief_tracking}} records the pending premises so later evidence can settle them.
+
+**Invariants.**
+- Status(conclusion) never exceeds min(Status(premise)) over its load-bearing premises.
+- A premise checked only by the process that produced it counts as unverified; an upgrade requires an independent method.
+- Status changes only through verification events, never through repetition or restatement.
+
+**Preconditions.**
+- The assertion's load-bearing premises can be enumerated.
+- The boundary crossing is identifiable before it happens.
+
+**Postconditions.**
+- Every boundary-crossing assertion carries an explicit status.
+- The weakest load-bearing premise is either verified or declared.
+
+**Failure modes.**
+- Polishing reasoning downstream of a weak premise: rigor above does not repair status below.
+- Verifying the cheapest premise instead of the most load-bearing one.
+- Confidence laundering: an assertion crosses a boundary and the reader assigns it a status it never earned.
+
+#### Design
+
+**Why it exists.** Agents assert conclusions whose premises were never verified, and the assertion's fluency stands in for status. The pattern names the discipline that certainty propagates like content-addressed identity: a conclusion includes what it depends on, so its status is the minimum over its load-bearing premises. Four observed failure classes in real agent sessions reduce to its absence: single-method counts asserted as fact, self-verified claims contradicted by direct checks, status inflation at report boundaries, and unverified premises upgraded to positions by fluent restatement.
+
+**Why Mind.** status propagation through a reasoning closure requires judgment about what a claim load-bears on; a single reasoner suffices
+
+**Can it be removed?** Removable where assertions never cross a boundary (pure scratch work) or where a harness independently verifies every claim. For agents that report, commit, or hand off, the pattern is load-bearing: without it, downstream consumers inherit confidence that was never earned.
+
+**Intended use.** status-qualify an assertion before it crosses a boundary (message, commit, publication, irreversible action).
+
+**Future uses.** any certainty-provenance mechanism; harness-enforced verification gates over agent claims.
+
+**Broad-use contexts.** agent handoffs, code-review claims, research summaries, incident reports, long-horizon sessions across context compaction, multi-agent shared conclusions.
+
+**Broad-use intersection (review hypothesis).** enumerable load-bearing premises, a per-premise status marking, a boundary definition, minimum-propagation of status.
+
+**Varies (descendant territory).** status vocabulary granularity, verification-cost budget, which boundaries count, whether the harness blocks or annotates.
+
+**Extension shape.** `IndependentVerification` (method-independence as its own discipline), `BoundaryGate` (harness enforcement of status at crossing).
+
+_Note: Minted 2026-08-03 from a delegated review session; the four failure classes in why_it_exists are documented session incidents, not hypotheticals._
+
+**Design tensions.**
+- Verification cost vs boundary latency — checking the most load-bearing premise can be expensive, and the pattern orders by downstream-cost-to-check-cost ratio rather than capping effort.
+- Explicit status vs reader trust — carrying 'unverified' across a boundary is honest but invites discount; laundering the label is the named failure.
+- Minimum-propagation is conservative by design — one weak premise marks the whole conclusion, which can under-sell well-supported work.
+
+**Tradeoffs.**
+- Enumerating load-bearing premises costs effort on every boundary crossing; the pattern buys auditability at that price.
+- Independent-method verification doubles tooling paths for claims that a single method would settle cheaply.
+
+**Critique (diagnostic, not contract requirements).**
+- Minted with mechanism analogy ('certainty propagates like content-addressed identity') moved here from the card per the payload principle: the operational steps are the contract, the analogy is for readers.
+- Signature omitted rather than guessed: the library's signature convention (constructor-style list) has no documented form for a status-propagation check, and absence is legitimate per the placement rules.
+
+**In the family.** Epistemic sibling of EpistemicCalibrate (confidence decay over horizon) and BeliefTracking (belief revision substrate); consumes Verification as its upgrade event and Assumption as its unverified-premise marker. Compare SteelmanCheck, which attacks a conclusion's content adversarially — EpistemicCascade attacks its pedigree: a conclusion can survive steelmanning and still fail here because its premises were never checked.
 
 ---
 
