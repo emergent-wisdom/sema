@@ -50,6 +50,24 @@ HASH_REF = re.compile(r"(?P<handle>[A-Z][A-Za-z0-9]+)#(?P<stub>[a-f0-9]{4,8})\b"
 GENERATED_MANUAL = REPO_ROOT / "docs" / "manuals" / "vocabulary-design.md"
 HISTORICAL_MANUAL_HEADINGS = {"**Supersedes (prior versions).**"}
 
+# Hand-written prose sometimes cites a ref precisely because it is NOT current —
+# an example contrasting a superseded version with the one that replaced it. This
+# script cannot tell that from a stale citation, and rewriting both sides to the
+# current stub destroys the distinction the example exists to make. That happened
+# to docs/specification/versioning.md, where the two illustrations of stub
+# divergence ended up quoting the same stub twice.
+#
+# Fence such a region:
+#
+#     <!-- doc-refs: pinned -->
+#     ... prose whose refs are deliberately historical ...
+#     <!-- doc-refs: end -->
+#
+# Keep the region as small as the example. Anything outside a fence is still
+# rewritten, so a file with one pinned example keeps its other refs fresh.
+PIN_OPEN = "<!-- doc-refs: pinned -->"
+PIN_CLOSE = "<!-- doc-refs: end -->"
+
 
 def load_current_stubs() -> dict[str, str]:
     stubs = {}
@@ -94,25 +112,42 @@ def rewrite(text: str, current: dict[str, str]) -> tuple[str, list[tuple[str, st
 def rewrite_doc(
     path: Path, text: str, current: dict[str, str]
 ) -> tuple[str, list[tuple[str, str, str]]]:
-    """Rewrite current refs while preserving historical refs in the generated manual."""
-    if path != GENERATED_MANUAL:
-        return rewrite(text, current)
+    """Rewrite refs, leaving deliberately-historical ones alone.
 
+    Two kinds are preserved: the generated manual's "Supersedes (prior versions)"
+    blocks, and any region a doc fences with `<!-- doc-refs: pinned -->`.
+    """
     chunks = []
     all_changes = []
     in_historical_block = False
+    in_pinned_block = False
+    is_manual = path == GENERATED_MANUAL
 
     for line in text.splitlines(keepends=True):
         stripped = line.strip()
-        if stripped in HISTORICAL_MANUAL_HEADINGS:
-            in_historical_block = True
+
+        if stripped == PIN_OPEN:
+            in_pinned_block = True
             chunks.append(line)
             continue
-        if in_historical_block:
+        if stripped == PIN_CLOSE:
+            in_pinned_block = False
             chunks.append(line)
-            if not stripped:
-                in_historical_block = False
             continue
+        if in_pinned_block:
+            chunks.append(line)
+            continue
+
+        if is_manual:
+            if stripped in HISTORICAL_MANUAL_HEADINGS:
+                in_historical_block = True
+                chunks.append(line)
+                continue
+            if in_historical_block:
+                chunks.append(line)
+                if not stripped:
+                    in_historical_block = False
+                continue
 
         new_line, changes = rewrite(line, current)
         chunks.append(new_line)

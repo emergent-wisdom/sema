@@ -1,13 +1,13 @@
 {
   "handle": "WorldReversible",
-  "mechanism": "A safety constraint where the agent must design the system such that every action can be perfectly inverted at low cost. This forces the use of immutable logs, versioning, and 'soft deletes' instead of destructive updates.",
+  "mechanism": "A safety constraint where the agent must design the system such that every action can be perfectly inverted, and its inverse located. This forces the use of immutable logs, versioning, and 'soft deletes' instead of destructive updates.",
   "gloss": "Designing for zero-cost undo",
   "failure_modes": [
     "Storage explosion (keeping all history)."
   ],
   "invariants": [
-    "Lossless Undo: {{state}}(T) can be fully restored from {{state}}(T+1)",
-    "Low Friction: Cost(Undo) ~ Cost(Do)"
+    "Lossless undo: {{state}}(T) can be fully restored from {{state}}(T+1).",
+    "Every action has a discoverable inverse; an action whose undo cannot be located is not reversible."
   ],
   "preconditions": [
     "Storage is sufficient for history"
@@ -23,9 +23,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:WorldReversible#mh:SHA-256:a8e0699d7dcce24a267c2e8db351fbe4edc60323c458931e1071858c0c6c1acb",
-  "sema_ref": "WorldReversible#a8e0",
-  "sema_stub": "a8e0",
+  "sema_id": "sema:WorldReversible#mh:SHA-256:462e0937acf2ebdd37d4da4048487b92495b86cb663ec5badb91c747c3373566",
+  "sema_ref": "WorldReversible#462e",
+  "sema_stub": "462e",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"

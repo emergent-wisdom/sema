@@ -1,36 +1,40 @@
 {
   "handle": "Interpret",
   "gloss": "Deriving semantic meaning from raw signal",
-  "mechanism": "The cognitive {{think}} act of applying a semantic {{context}} to a raw {{datum}} or {{signal}} to extract {{value}}. Unlike `Translate` (which changes form), Interpret changes the abstraction level, moving from syntax to semantics.",
+  "mechanism": "The cognitive {{think}} act of applying a semantic {{context}} to a raw {{datum}} or {{signal}} to extract {{value}}. Unlike `Translate`, which changes form, Interpret changes the abstraction level. Operational test: a translation is reversible from its output, an interpretation is not without its context.",
   "signature": [
     "Think(Value)"
   ],
   "invariants": [
-    "Context Dependency: Meaning(Signal) depends on Context.",
-    "Non-Destructive: The original signal is preserved."
+    "An interpretation names the {{context}} it was made under.",
+    "Non-Destructive: the original signal is preserved."
   ],
   "_meta": {
     "tier": 0,
     "ring": 0,
     "supersedes": [
-      "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f"
+      "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
+      "sema:Interpret#mh:SHA-256:ff6daf0b5967deb7da11c1a2ea74ce7e6ab9baf6362a53045bff656b0c5671dc"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "Interpret#ff6d",
-  "sema_id": "sema:Interpret#mh:SHA-256:ff6daf0b5967deb7da11c1a2ea74ce7e6ab9baf6362a53045bff656b0c5671dc",
-  "sema_stub": "ff6d",
+  "sema_ref": "Interpret#1d56",
+  "sema_id": "sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa",
+  "sema_stub": "1d56",
+  "failure_modes": [
+    "Context drift: a stored interpretation stays fixed while the {{context}} it was made under changes, so a stale {{value}} reads as current."
+  ],
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     },
     "composes_with": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     },
     "yields": {
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"

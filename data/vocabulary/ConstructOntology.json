@@ -1,13 +1,14 @@
 {
   "handle": "ConstructOntology",
-  "mechanism": "A primitive for building a structured set of concepts and relationships (an ontology) from raw data or seed axioms. It defines the 'physics' or 'rules' of a domain. This is the constructive counterpart to 'Adversarial Ontology Construction' (which is a methodology using this primitive). It builds the semantic graph from {{first_principles}}, validating edge coherence via {{adversarial_steel}} and establishing shared context through {{ontology_handshake}}.",
+  "mechanism": "A primitive for building a structured set of concepts and relationships (an ontology) from raw data or seed axioms. It defines the 'physics' or 'rules' of a domain. This is the primitive itself, not a methodology for applying it. It builds the semantic graph from {{first_principles}}, validating edge coherence via {{adversarial_steel}} and establishing shared context through {{ontology_handshake}}.",
   "gloss": "Building a structured conceptual framework",
   "failure_modes": [
     "Incoherence: Contradictory axioms or definitions."
   ],
   "invariants": [
-    "Completeness: All referenced terms are defined",
-    "Consistency: No contradictions within the ontology"
+    "Every referenced term is defined.",
+    "No contradictions within the ontology.",
+    "Grounded in {{first_principles}} rather than in borrowed vocabulary."
   ],
   "preconditions": [
     "Seed concepts or data available"
@@ -33,21 +34,22 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8"
+      "sema:ConstructOntology#mh:SHA-256:b59ea97d742c1e307e029f1a05ef0f17c8d30f14f1c9167ef37a0147bc0e1af8",
+      "sema:ConstructOntology#mh:SHA-256:9407f844acd036cc6eef2be1957467d4eac7aed577266a88648ecc8876849b2f"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ConstructOntology#mh:SHA-256:9407f844acd036cc6eef2be1957467d4eac7aed577266a88648ecc8876849b2f",
-  "sema_ref": "ConstructOntology#9407",
-  "sema_stub": "9407",
+  "sema_id": "sema:ConstructOntology#mh:SHA-256:bc0c12a91142f68ef73d5f890eefe0360d1b061641c92d0d71a69778cae172c2",
+  "sema_ref": "ConstructOntology#bc0c",
+  "sema_stub": "bc0c",
   "dependencies": {
     "references": {
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:5e05f6b505964cc5058f75a14b715fb3b78ad0aa96babd91dd9e5b488e471db4",
-      "first_principles": "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e"
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:52bc4ebfac9e856917332bee7595507b27bac3a59cdbe571cacc07dfdc6626b2",
+      "first_principles": "sema:FirstPrinciples#mh:SHA-256:5c3ddecc7001e7277ebd9208c52b2d17650d5ddeed7feea12abd48b46b4c7468",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235"
     }
   },
   "sema_layer": "Mind",

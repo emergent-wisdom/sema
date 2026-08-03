@@ -1,19 +1,19 @@
 {
   "handle": "SteelmanFirst",
-  "mechanism": "Reasoning Heuristic. Before proposing a solution, the agent actively constructs the strongest possible version of the opposing argument or constraint. It ensures the critique phase of {{steelman_check}} is populated with high-quality data, not strawmen. Utilizes {{steelman_check}}.",
+  "mechanism": "Before proposing a solution, the agent actively constructs the strongest possible version of the opposing argument or constraint. It ensures the critique phase of {{steelman_check}} is populated with high-quality data, not strawmen.",
   "gloss": "Ordering rule: steelman opposing view before proposing, so SteelmanCheck has real targets",
   "failure_modes": [
     "Performative Steelman: {{agent}} lists weak counter-arguments to appear unbiased.",
     "{{cognitive_bias}} Leakage: {{agent}} frames the counter-argument in a way that makes it easy to defeat."
   ],
   "invariants": [
-    "Prioritization: Counter-argument generation must precede Proposal generation in the chain."
+    "Counter-argument generation precedes proposal generation in the chain."
   ],
   "preconditions": [
     "{{problem}} statement defined"
   ],
   "postconditions": [
-    "Strongest counter-argument cached"
+    "Counter-argument retained for {{steelman_check}}"
   ],
   "parameters": [
     {
@@ -27,22 +27,23 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:SteelmanFirst#mh:SHA-256:6069f5780eae1053b3d2a2bfb37be0df1340e1be9801d774697c57f16b26c62e"
+      "sema:SteelmanFirst#mh:SHA-256:6069f5780eae1053b3d2a2bfb37be0df1340e1be9801d774697c57f16b26c62e",
+      "sema:SteelmanFirst#mh:SHA-256:894f05de5a5bec506b3c87eda3718ac9fc9a1d34185e0b0d929fec1b9d40d13e"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:SteelmanFirst#mh:SHA-256:894f05de5a5bec506b3c87eda3718ac9fc9a1d34185e0b0d929fec1b9d40d13e",
-  "sema_ref": "SteelmanFirst#894f",
-  "sema_stub": "894f",
+  "sema_id": "sema:SteelmanFirst#mh:SHA-256:61fb3908e52b55e7bf5b0a2c505ea9f71a72a790153305f2ee51429286252ae2",
+  "sema_ref": "SteelmanFirst#61fb",
+  "sema_stub": "61fb",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003"
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:a3751589f3c4ae8bef8b516350726551aad5c9ec9421d56f57dd43b0ad30faf0"
     }
   },
   "sema_layer": "Mind",

@@ -4,7 +4,8 @@
     "type": "object",
     "required": [
       "prototype_id",
-      "fidelity"
+      "fidelity",
+      "question"
     ],
     "properties": {
       "prototype_id": {
@@ -29,6 +30,10 @@
           "type": "string"
         },
         "description": "What was learned from this prototype"
+      },
+      "question": {
+        "type": "string",
+        "description": "What building this is meant to settle. Known before construction, which is why it is required while `learnings` is not."
       }
     }
   },
@@ -42,9 +47,17 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Prototype#mh:SHA-256:f849be90ab4568d076b595b2edb408b2795a6aced9f82dac8510f53449f68a09",
-  "sema_ref": "Prototype#f849",
-  "sema_stub": "f849",
+  "sema_id": "sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b",
+  "sema_ref": "Prototype#1c44",
+  "sema_stub": "1c44",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "invariants": [
+    "Declares the question it was built to answer.",
+    "Records the answer, or that none was reached, before it is retired or promoted."
+  ],
+  "failure_modes": [
+    "Promoted by inertia: kept because it works well enough, so choices made for cheap learning become load-bearing.",
+    "Built without a question: produces an artifact and no answer, which is the waste case rather than a cheap experiment."
+  ]
 }

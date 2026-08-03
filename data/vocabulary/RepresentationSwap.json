@@ -13,19 +13,20 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:RepresentationSwap#mh:SHA-256:1409e377e3904e4d36d64389fe7d8735975a2d526a9f0812005f2403f81348c3"
+      "sema:RepresentationSwap#mh:SHA-256:1409e377e3904e4d36d64389fe7d8735975a2d526a9f0812005f2403f81348c3",
+      "sema:RepresentationSwap#mh:SHA-256:68abf1cec2d1903c2a0b5a7ccb525695a0b4277b849efbed15967903101d29ca"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:RepresentationSwap#mh:SHA-256:68abf1cec2d1903c2a0b5a7ccb525695a0b4277b849efbed15967903101d29ca",
-  "sema_ref": "RepresentationSwap#68ab",
-  "sema_stub": "68ab",
+  "sema_id": "sema:RepresentationSwap#mh:SHA-256:a21130e7838717f2eafa677bd7e75b2386bc76fcbb5aa1cd09535b450ad5f76a",
+  "sema_ref": "RepresentationSwap#a211",
+  "sema_stub": "a211",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:c9f1c23deebd8806b9d43bd624de9d23f75474d15bbf7bafebe55dfde599d925"
     }
   },
   "sema_layer": "Mind",

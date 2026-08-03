@@ -7,7 +7,7 @@
     "Speed over Accuracy: Latency must be < Threshold"
   ],
   "preconditions": [
-    "{{problem}} is familiar (exists in cache)"
+    "A {{cache}} of past experience exists and is queryable"
   ],
   "postconditions": [
     "{{decision}} made instantly"
@@ -19,23 +19,28 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329"
+      "sema:HeuristicSnap#mh:SHA-256:cece62377b8243be6d0ec0c4722f30e61aac251b2f9f3ee5cd30b06456ff2329",
+      "sema:HeuristicSnap#mh:SHA-256:bd4b7e8369088accfeed1c366851705638d34d00eb947daa0d02935a60ebceb3"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:HeuristicSnap#mh:SHA-256:bd4b7e8369088accfeed1c366851705638d34d00eb947daa0d02935a60ebceb3",
-  "sema_ref": "HeuristicSnap#bd4b",
-  "sema_stub": "bd4b",
+  "sema_id": "sema:HeuristicSnap#mh:SHA-256:f7ccd96fafbe6daff186fdced5bc814b4885f08212dc2126b67d44b350a27e6b",
+  "sema_ref": "HeuristicSnap#f7cc",
+  "sema_stub": "f7cc",
+  "failure_modes": [
+    "False recognition: a {{problem}} scores above the confidence floor while differing structurally from the cached case, so the cached {{decision}} is imported with assumptions that do not hold. Similarity is not {{equivalence}}."
+  ],
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "cache": "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de"
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "cache": "sema:Cache#mh:SHA-256:55e2dfe59df3e261e74c0ecdafa7216cf6fea44e60692125499924c7a8104771",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9",
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08"
     }
   },
   "sema_layer": "Mind",

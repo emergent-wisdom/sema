@@ -4,8 +4,7 @@
     "type": "object",
     "required": [
       "option_id",
-      "description",
-      "predicted_outcome"
+      "description"
     ],
     "properties": {
       "option_id": {
@@ -38,9 +37,13 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Option#mh:SHA-256:b099a885b070faa10168a2edff0671cd773d31c0cc5fb0e775521a12444c1135",
-  "sema_ref": "Option#b099",
-  "sema_stub": "b099",
+  "sema_id": "sema:Option#mh:SHA-256:134bea703754281f36b52e9e6901090a3db9ce84f0d843a8e1d18151c0c5beb0",
+  "sema_ref": "Option#134b",
+  "sema_stub": "134b",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "invariants": [
+    "Fully specified: an Option is executable as written, not a direction requiring further choice.",
+    "Mutually exclusive: selecting one Option in a set excludes the others in that set."
+  ]
 }

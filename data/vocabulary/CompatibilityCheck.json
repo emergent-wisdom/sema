@@ -1,10 +1,10 @@
 {
   "handle": "CompatibilityCheck",
-  "mechanism": "A binary verification process that compares the definition hashes or schema of two entities (agents, {{artifact}}s, or protocols) to determine if they can interact without translation.",
+  "mechanism": "A binary verification process comparing the definition hashes or schema of two entities (agents, {{artifact}}s, or protocols) to determine whether they can interact without translation. The result is directional: hash equality is mutual, but schema compatibility need not be \u2014 a reader of a later version may accept earlier data while the reverse fails.",
   "gloss": "Schema compatibility verification",
   "invariants": [
-    "Determinism: Identical inputs always yield the same compatibility result.",
-    "Symmetry: If A is compatible with B, B is compatible with A."
+    "Determinism: identical inputs always yield the same result.",
+    "Directional: the result states which entity can consume which. Mutual compatibility is a separate claim, established by checking both directions."
   ],
   "_meta": {
     "tier": 1,
@@ -12,14 +12,20 @@
     "path": [
       "Infrastructure",
       "Verification"
+    ],
+    "supersedes": [
+      "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727"
     ]
   },
-  "sema_ref": "CompatibilityCheck#62b2",
-  "sema_id": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
-  "sema_stub": "62b2",
+  "sema_ref": "CompatibilityCheck#7f70",
+  "sema_id": "sema:CompatibilityCheck#mh:SHA-256:7f70838f05f3aad069b89dcbc705283872f66fde4bc95c6bfa0dc917955e050d",
+  "sema_stub": "7f70",
+  "failure_modes": [
+    "Symmetry assumed: a one-way result is read as mutual, so a producer is cleared to consume from a partner it can only send to."
+  ],
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     }
   },
   "sema_layer": "Infrastructure",

@@ -6,23 +6,24 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b"
+      "sema:Understand#mh:SHA-256:96d4533c4539cdd5036beadb506908d384e8f417449e02bbf8e6175e5bafc39b",
+      "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a",
-  "sema_ref": "Understand#4cab",
-  "sema_stub": "4cab",
+  "sema_id": "sema:Understand#mh:SHA-256:f1fc5d9393f995d27a648ad6a8e4bcd81c7d117e5d64c535da706feac7e87334",
+  "sema_ref": "Understand#f1fc",
+  "sema_stub": "f1fc",
   "signature": [
     "Think(Context)"
   ],
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }
   },
   "sema_layer": "Mind",

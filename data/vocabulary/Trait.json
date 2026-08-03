@@ -1,0 +1,63 @@
+{
+  "handle": "Trait",
+  "gloss": "Named surface set that implementers must provide",
+  "mechanism": "A marker interface: a named set of surfaces a pattern requires of anything claiming it, so a caller can invoke across implementations without knowing which one it holds. A Trait has no instances of its own \u2014 it is claimed by other patterns, which supply the surfaces it names. Distinct from {{protocol}}, which is a Trait whose exchange must hold between two or more parties, and from {{contract}}, which is a signed agreement rather than a type claim.",
+  "invariants": [
+    "Names the surfaces an implementer must provide, and which of them are mandatory.",
+    "Non-instantiable: a Trait is claimed by another pattern and has no standalone instance.",
+    "Says nothing about how the surfaces are implemented."
+  ],
+  "failure_modes": [
+    "Claimed without provision: a pattern declares the Trait and omits a mandatory surface, so callers dispatch to something that cannot answer.",
+    "Surface set widened after adoption: adding a mandatory surface breaks every existing claimant, which is why the set is part of the Trait's identity."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 0,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "surfaces",
+      "mandatory"
+    ],
+    "properties": {
+      "surfaces": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Surfaces an implementer must be able to answer."
+      },
+      "mandatory": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "The subset without which a claim to this Trait is void. Solver's is Manifest and Execute of five."
+      },
+      "claimants": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Patterns declaring this Trait, where the library tracks them."
+      }
+    }
+  },
+  "sema_id": "sema:Trait#mh:SHA-256:98ddeef4d3b32a4cfb1e3e766fce42daa527d3bed5b3352e834790dfc39464ac",
+  "sema_ref": "Trait#98dd",
+  "sema_stub": "98dd",
+  "dependencies": {
+    "references": {
+      "contract": "sema:Contract#mh:SHA-256:2cf56ed46fd6dc1b5ff82225f618ace1199170ebc70980aafa4b0617b34fe737",
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

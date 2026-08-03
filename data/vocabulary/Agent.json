@@ -11,7 +11,7 @@
   "invariants": [
     "Agency: Must possess an explicit objective function.",
     "Autonomy: Must be capable of selection (choosing between >1 options).",
-    "{{identity}} Persistence: The agent maintains a consistent identity (ID/Memory) across time steps."
+    "{{identity}} Persistence: The agent holds a stable {{identity}} for the whole of its own execution. Persistence beyond a single execution distinguishes recurrent agents from one-shot ones and is not required of agency."
   ],
   "preconditions": [
     "Environment is instantiated",
@@ -26,30 +26,31 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073"
+      "sema:Agent#mh:SHA-256:aaec2a5607aaf2793622b522fa30ab36bf81cbefdb241b51e7d4d9c42f143073",
+      "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "Agent#6765",
-  "sema_id": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-  "sema_stub": "6765",
+  "sema_ref": "Agent#6087",
+  "sema_id": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+  "sema_stub": "6087",
   "dependencies": {
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
-      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871",
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
+      "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     },
     "references": {
-      "actor": "sema:Actor#mh:SHA-256:1ecd855bdf9fc33f99840af8b53729d917355fb151d36ff21947885fac5c5907",
-      "goal": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c",
+      "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8",
+      "goal": "sema:Goal#mh:SHA-256:b011159e6135b97ac191b4a06846af58c55af37a977aaf58c1e3556457538808",
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
     }
   },
   "sema_layer": "Mind",

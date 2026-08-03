@@ -7,8 +7,8 @@
     "Threshold Gaming: {{agent}} optimizes for passing threshold rather than actual quality"
   ],
   "invariants": [
-    "Range Bound: Score must be between 0.0 and 1.0 inclusive.",
-    "Determinism: Same input context yields same score."
+    "Scores on [0.0, 1.0]. An accepted {{scoring_function}} declaring a different range is normalised, and the normalisation is stated.",
+    "Determinism: the same input context yields the same score."
   ],
   "parameters": [
     {
@@ -22,30 +22,31 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56"
+      "sema:Judge#mh:SHA-256:d84f449a90c6cdbe8e9bf7a8dcecd7369bb87cdab6880a1faa0dfe949584ae56",
+      "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-  "sema_ref": "Judge#2401",
-  "sema_stub": "2401",
+  "sema_id": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4",
+  "sema_ref": "Judge#6906",
+  "sema_stub": "6906",
   "dependencies": {
     "accepts": {
-      "scoring_function": "sema:ScoringFunction#mh:SHA-256:932eb89612c9b1e99ca1d6d66adf15bd8544505bc46059da946cb71aa52e23ec",
-      "subject": "sema:Subject#mh:SHA-256:7aaa0d310dda5a0ab3ba4c5fa3ed122af604aafe3e7666a808071760b1292587"
+      "scoring_function": "sema:ScoringFunction#mh:SHA-256:c6042940db8c3238b948c7851aa315defbe31e1639dba718fcce0e38523e8d50",
+      "subject": "sema:Subject#mh:SHA-256:433d8e6354d25b4350f39a8c2b06f29beac943adb62b677efa3bbb9bb5d0802c"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
-      "gradient": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
-      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
+      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     },
     "yields": {
-      "score": "sema:Score#mh:SHA-256:1eb7224390e512763a0f15779460ca94f1832b15030253b4be185021d35459b1"
+      "score": "sema:Score#mh:SHA-256:bb1228afa932e0908754faf55d782b4f0b14c9c95f124481774ea2ccbe44470c"
     }
   },
   "sema_layer": "Infrastructure",

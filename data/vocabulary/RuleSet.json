@@ -7,7 +7,8 @@
     "tier": 1,
     "supersedes": [
       "sema:RuleSet#mh:SHA-256:8d85afc9e1f879dc43aaf8c92bd280aa8f1c81ece7dd1bd6f36c6ab47ddc0ecf",
-      "sema:RuleSet#mh:SHA-256:e91d3830512ca5aa5a8cf7f50ad7d186de4b82aeced94c8cb106258a8663e482"
+      "sema:RuleSet#mh:SHA-256:e91d3830512ca5aa5a8cf7f50ad7d186de4b82aeced94c8cb106258a8663e482",
+      "sema:RuleSet#mh:SHA-256:29462fee548f58cad67908506e4d68676b5a73ab4a60ca36e0cd71cd01412563"
     ],
     "path": [
       "Infrastructure",
@@ -17,7 +18,8 @@
   "data_schema": {
     "type": "object",
     "required": [
-      "constraints"
+      "constraints",
+      "invariants"
     ],
     "properties": {
       "constraints": {
@@ -26,15 +28,22 @@
           "type": "string"
         },
         "description": "List of constraint hashes"
+      },
+      "invariants": {
+        "type": "array",
+        "description": "Invariants the set asserts, alongside its constraints. Named in the mechanism and previously absent."
       }
     }
   },
-  "sema_ref": "RuleSet#2946",
-  "sema_id": "sema:RuleSet#mh:SHA-256:29462fee548f58cad67908506e4d68676b5a73ab4a60ca36e0cd71cd01412563",
-  "sema_stub": "2946",
+  "sema_ref": "RuleSet#9995",
+  "sema_id": "sema:RuleSet#mh:SHA-256:99953d6d1ab64af573bd12cc1b023893499aa29842dad7bc64f31c09c874b497",
+  "sema_stub": "9995",
+  "invariants": [
+    "Immutable once bound: a change is a new RuleSet, not an edit to the one already committed to."
+  ],
   "dependencies": {
     "references": {
-      "constitution": "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b",
+      "constitution": "sema:Constitution#mh:SHA-256:33f6d086338b43868fff261229a31518f19809cb214fa8ce55727cc0baa9ab0c",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"
     }
   },

@@ -25,6 +25,10 @@ This file records vocabulary-level changes between versions — additions, renam
 - `ExponentialBackoff`, a concrete child for capped geometric delay growth
   with configurable jitter. Retry eligibility, budgets, and reset policy remain
   caller-owned rather than requirements of the delay strategy.
+- `MetricReading`, a definition-bound quantitative value with optional
+  observation context and dimensions. It references the Metric definition that
+  supplies its derivation rule and value schema; it does not declare `extends`
+  because a reading is an output under a definition, not a kind of definition.
 - Claude Code ref-gate hook (`hooks/ref_gate.py`), registered by the Claude
   Code plugin on `UserPromptSubmit` and `PreToolUse` (`Agent|Task|SendMessage`).
   Scans inbound messages for content-addressed refs (`Handle#stub`) and
@@ -46,17 +50,139 @@ This file records vocabulary-level changes between versions — additions, renam
   production implementations, conformance tests, and explicit assumptions.
 - `sema_handshake(..., strict=true)` mode. Only the full 64-character hash can
   produce `PROCEED`; a matching truncated stub returns `REQUIRE_FULL_HASH`.
+- `scripts/apply_vocabulary_change.py`, running apply, export, rehash and
+  re-export in the one order that works, stopping at the first failure. The
+  order matters because `rebuild_vocabulary.py` reads the exports while
+  `sema apply` writes the database, so rebuilding before exporting rehashes the
+  previous state.
+- `scripts/audit/dangling_handles.py`, reporting CapitalisedNames in pattern
+  text that resolve to no pattern, with the instance count used by this
+  repository's declared three-instance authoring policy. Covers backticked
+  names and multi-part CamelCase; its docstring records why single bare
+  capitalised words are not detectable in this corpus.
 
 ### Changed
 
-- **Breaking aggregate-root migration (semahash 0.4.0):** the semantic vocabulary root is now
-  `62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c`
-  and the catalog root is
-  `c7ce079ec169999fe7f77dff0122e20bde7d3f22151fc0108e5d5197ea92e5af`
-  for the 453-pattern checkout. Pattern IDs are unchanged. Root payloads now
-  carry their scheme; clients with identical leaves but different schemes
-  must upgrade because `sema pull` cannot reconcile an algorithm mismatch.
-  Root producers also fail closed on missing or malformed pattern IDs.
+- `Role` now defines a bearer-independent contextual function rather than an
+  already assigned permission/responsibility bundle. Every role declares its
+  expected contribution; authority and obligation identifiers remain optional
+  facets, while assignment, occupancy, enforcement, and conflict resolution
+  stay with descendants or callers. Because canonical `Permission` and
+  `Responsibility` are already Agent-bound instances, the broad parent no
+  longer claims either as a component. The authored definition moves from
+  `Society/Governance` to `Infrastructure/Data Structures`; only `Workflow` and
+  `OrchestrationLoop` receive dependency-hash cascades. Its supersession
+  metadata now lists all six distinct Role identities shipped from v0.1.18
+  through v0.3.0 and excludes an unreleased rebuild identity.
+- `Refine` now operates on immutable artifact versions: it accepts the current
+  `Artifact` and a caller-defined `Condition`, composes `Critique`, and yields a
+  successor `Artifact` for return or another pass. It no longer requires an
+  external-state `Act` or narrows every revision target to an `Incongruity`.
+  `PhasedRefinement` no longer requires a mutable artifact; its other contract
+  and placement questions remain explicitly open for its own review. The
+  semantic change cascades only to `StyleSpec`, and both edited cards now cite
+  their exact public v0.1, v0.2, and v0.3 identities.
+- `ProphetFanOut` now defines bounded, causally traceable generation of
+  multiple distinct scenarios from a contemplated action and starting context.
+  Binary branching is valid; computational abundance, a fixed three-scenario
+  output, entropy thresholds, mandatory tail weighting, desirability
+  judgments, aggregation, and quorum policy are no longer universal
+  requirements. `BreadthGovernor` no longer claims that `ProphetFanOut`
+  pre-scores or prunes candidates: generation remains upstream, while the
+  governor owns prioritization and reduction. The semantic change cascades
+  only to `NormCheck`.
+- `UniqueHandle` now makes authority linear without claiming that a digital
+  representation cannot be copied. One authoritative holder-generation pair
+  governs use and transfer; the representation alone grants nothing, a
+  conditional transfer has one commit point and one winner, stale generations
+  fail closed, and an unobserved result must be resolved before use or retry.
+  The false `Break` recovery link and implementation-specific `StateLock` and
+  `Agent` requirements are removed; `Resource` is now the sole conceptual
+  dependency. The change cascades through `HeldRelease`, `Award`, and `Oracle`
+  without altering their payloads, and all four cards now cite exact public
+  v0.3 supersession IDs.
+- `Rollout` now executes the approved `ExecutionManifest.operation_sequence`
+  rather than treating prototype-only `Build` as a production executor. A
+  durable `RolloutManifest` write-ahead record precedes each canary or forward
+  action; only Canary `proceed` authorizes wider execution, while non-proceed,
+  inverse-admission failure, and breaker paths emit `Break`, compensate, record,
+  freeze, and require a new Rollout. `EjectionSeat` mode takes precedence,
+  including PAUSE remaining open and EMERGENCY promising neither cleanup nor a
+  final write. The false `WorldReversible` and `MonitorReport` promises are
+  removed. The semantic rewrite cascades to
+  `Deploy`, `OrchestrationLoop`, and `RealizationProtocol`; their payloads are
+  unchanged and their supersession metadata now cites exact public v0.3 IDs.
+- `Rally` now selects responders before MUSTER, counts only confirmed selected
+  participants, terminates both phases at one deadline, and always yields an
+  identified formed-or-dissolved `Outcome`. Its participant bounds match
+  `Select`, while ballot-specific `Quorum`, optional leadership, authentication,
+  and contextual selection policy no longer masquerade as parent requirements.
+  `Delegate` now transfers an existing `Task` only after explicit acceptance,
+  preserves single ownership across refusal and failure, and treats `Break` as
+  an invoked protocol; auction, probing, holographic inheritance, and unsupported
+  dependency/cycle enforcement remain caller or descendant policy. The semantic
+  rewrites cascade to `Handoff` and `Nucleate`.
+- `Work` now requires only `effort_cost`; `timestamp` remains an optional
+  provenance property. Directed resource expenditure is therefore still Work
+  when a context cannot or need not record a clock reading, while descendants
+  remain free to require one. The release-scale dependency cascade changes 272
+  of 455 pattern identities. `RolloutWatch`, `OptimisticSolver`, and
+  `RigorousSolver` were independently reviewed before their exact `extends`
+  pins were retargeted to the resulting `Monitor` and `PolymorphicSolver`
+  identities; no authored contract on either parent or any child changed.
+- `Metric` now defines quantitative meaning rather than conflating that
+  definition with one timestamped observation. Its required fields are the
+  target property, derivation rule, and quantitative value schema; observed
+  values move to `MetricReading`. `Feedback` and `Result` now consume readings,
+  while `Optimize` retains the Metric objective and compares baseline and
+  candidate readings. `Score` is explicitly an evaluative result rather than a
+  generic measurement. The batched split changes 251 of 456 identities,
+  including independently reviewed retargets of `OptimisticSolver` and
+  `RigorousSolver` to the resulting `PolymorphicSolver` identity.
+- Seven independently reviewed consistency repairs preserve broad parents while
+  making their enforceable boundaries explicit. `Workflow` now requires only
+  steps and directed prerequisites; typed edge data, acceptance specifications,
+  role bindings, recursion, and daemon semantics remain declared options.
+  `RetrievalAugment` is neutral across vector, index, graph, and other stores,
+  with selection policy delegated to callers or descendants. `CreativeBlend`
+  owns novelty/value admission without universally invoking `NoiseInjection` or
+  duplicating its temperature. `RealizationProtocol` now composes the actual
+  FrameSpec producer, judges an ExecutionManifest against a Budget and Criteria
+  before Rollout, distinguishes RolloutManifest from Outcome, and delegates
+  iteration to `OrchestrationLoop`; that loop now has an explicit per-run
+  `iteration_limit`. `MutualInformation` uses the general KL definition and
+  scopes its entropy bound, while `Compare` permits declared cross-type rules.
+  The batch changes 16 of 456 identities through seven authored definitions and
+  nine ordinary dependency cascades; no exact specialization pin moves.
+- `Critique` now remains the reasoning operation over a target and declared
+  criteria, while its yielded `Assessment` remains the authoritative output
+  record. The duplicate output-shaped `Critique.data_schema` is removed
+  without deciding Assessment's separate schema questions. The repair changes
+  51 of 456 identities through the ordinary dependency closure; the two exact
+  `PolymorphicSolver` children were reviewed and retargeted without changing
+  their authored contracts.
+- **Breaking aggregate-root migration (semahash 0.4.0):** aggregate identities
+  now use two domain-separated RFC 9162 schemes: `sema-semantic-set-v1` for the
+  unordered set of unique definitions and `sema-catalog-v1` for exact
+  handle-to-definition bindings. Root payloads carry their scheme; malformed
+  inputs and scheme mismatches fail closed. The aggregate migration itself does
+  not change pattern IDs; reviewed card edits in this release do. The final
+  456-pattern snapshot commits semantic-set root
+  `1b90a7b9f4756e60457dcf88e6d5117e6a35affbf387a5a572cca585d08e532b`
+  and catalog root
+  `44427e40b46c728fd2e929b3816aab3f22661f2bae5d2729d01e294a0069b484`.
+- `extends` replaces `derived_from` for new specialization claims. It is
+  hashed, pins the exact full Sema ID of the parent definition, emits `IS_A`,
+  and does not silently follow later definitions sharing the handle.
+- `sema apply` preserves exact `extends` pins by default. In the current
+  single-version workspace, an unresolved pin or a parent edit that would
+  strand a child fails preflight before mutation. After reviewing the
+  relationship, stage the child and pass `--retarget-extends`; only staged
+  claims move. Pull and direct minting enforce the same boundary.
+- Pre-0.4 cards using `derived_from` remain readable and hash-verifiable under
+  their original key. The key is not normalized to `extends`, does not acquire
+  `IS_A`, ordering, or active-parent semantics, and cannot coexist with
+  `extends`; explicit migration mints a new identity.
 - Context negotiation now derives its set commitment from stored pattern
   identities using the catalog Merkle construction, rather than a second
   hand-written JSON hash path. This binds every requested handle to its
@@ -68,9 +194,6 @@ This file records vocabulary-level changes between versions — additions, renam
   `Retry` explicitly selects `ExponentialBackoff` for transient failures,
   `StateLock` composes with the generic policy family, and `Yield` no longer
   links technical retry delay to negotiation concession.
-  The vocabulary now contains 453 patterns and its legacy flat root changed from
-  `b7c42bc564f5a8d2ac3cb6140430e9d98feb82a8f9b943f550f554e9ba6360b5`
-  to `901130d88dab244cc0d4afc149c5e6eeb9c9565e117c468a8e5326287be8fefa`.
 - The shorthand vocabulary reference is now generated on demand instead of
   tracked and silently staged by the pre-commit hook. Its exporter uses the
   current `_meta.path` taxonomy and the database remains the source of truth.
@@ -92,6 +215,57 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- `PolymorphicSolver` no longer calls all five Solver surfaces mandatory in its
+  Interface Non-Compliance failure mode. Manifest and Execute remain mandatory;
+  Consult, Verify, and Feedback fail conformance only when advertised but not
+  provided.
+- The design manual now describes `Lock` as the K=1 mutual-exclusion contract
+  its payload actually defines. Following the base-lock semantics used by Linux,
+  starvation and convoying remain queue-discipline concerns for descendants
+  rather than universal Lock failure modes.
+- The canonical vocabulary-apply wrapper now forwards the reviewed
+  `--retarget-extends` option and pins both the database and Python imports to
+  its own checkout. An isolated worktree can no longer silently execute an
+  editable `sema` installation from a sibling checkout while mutating the
+  local database.
+- Supersession metadata for `OptimalStop`, `PURE`, `PURECheck`, `ParetoFront`,
+  `PatternDiscovery`, `PatternEmergence`, `MintWhenFriction`, `PreMortem`,
+  `ProphetFanOut`, and `BreadthGovernor` now lists the distinct exact
+  identities shipped in v0.1, v0.2, and v0.3 and excludes unreleased rebuild
+  identities. Eight of these corrections are metadata-only and therefore do
+  not alter the patterns' semantic hashes.
+- `update_doc_refs.py` no longer overwrites refs that are cited precisely
+  because they are not current. `docs/specification/versioning.md` illustrates
+  stub divergence by contrasting a superseded version with the one that replaced
+  it, and the rewriter overwrote both sides with the current stub — so both
+  illustrations ended up quoting the same stub twice, which cannot demonstrate
+  stubs differing. A region fenced with `<!-- doc-refs: pinned -->` is now left
+  alone, and refs outside the fence in the same file are still refreshed. Both
+  examples in the versioning spec are repaired and now cite real members of
+  `PropheticQuorum`'s supersession chain.
+- `rebuild_vocabulary.py --replace` keeps the rebuilt database when it reports
+  hash drift. Drift means the stored hashes were stale — typically a dependency
+  changed and its dependents were never rehashed — and the rebuild has just
+  corrected them in place, so the database it built is the better copy.
+  Restoring the backup discarded that correction, and because a caller
+  re-exports afterwards, the stale hashes were written straight back and the
+  next rebuild found the same files again. Observed looping on a 207-dependent
+  cascade. The exit code is still non-zero so the finding stays visible, and the
+  message now says the hashes were corrected rather than lost.
+- `sema apply --check` now refuses a dependency cycle instead of passing it.
+  The topological sort dropped every edge leaving the batch, so a cycle between
+  a staged pattern and an already-committed one was invisible to it, and the
+  sort ran after `--check` had already returned. A mutual `references` pair —
+  a dependency one way and a citation back — is a cycle and is now reported
+  with its path. Only cycles containing a pattern being added are reported, so
+  a pre-existing cycle elsewhere cannot block an unrelated change.
+- `rebuild_vocabulary.py --replace` no longer discards the vocabulary when the
+  rebuild fails. It kept the freshly created database and deleted the backup on
+  the failure path, and a failed rebuild has no rebuilt database to keep — only
+  an empty one — so the next export wrote zero patterns over `data/vocabulary/`.
+  `--replace` is now honoured only on success, `--check` never keeps its empty
+  database, and backups are timestamped so a later run cannot overwrite the
+  backup an earlier one took.
 - MCP extras now exclude the incompatible 2.x SDK line, which removed the
   `mcp.server.fastmcp` API used by the server.
 - Vocabulary information statistics now derive layer and category from the

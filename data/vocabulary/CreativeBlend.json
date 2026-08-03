@@ -1,54 +1,45 @@
 {
   "handle": "CreativeBlend",
-  "derived_from": "sema:Creative#mh:SHA-256:557440d0f12d6169d83249769ab27aee03e1d662d53c58ae91589c1a6ad4c151",
-  "gloss": "Full creative pipeline: ConceptBlend + NoiseInjection with novelty/value gates",
+  "gloss": "Concept blending with novelty and value acceptance",
   "signature": [
     "Strategy(Artifact)"
   ],
-  "mechanism": "A generative {{strategy}} that produces an {{artifact}} by identifying orthogonal concepts in the {{context}} and fusing them via {{concept_blend}}. It applies {{noise_injection}} to the seed inputs to escape local optima. The output is filtered through a rigorous dual-{{check}} against {{novelty}} and {{value}}. Only artifacts passing both gates are yielded.",
+  "mechanism": "A generative {{strategy}} that selects separated seed concepts from the {{context}} and fuses them via {{concept_blend}} into a candidate {{artifact}}. It runs two declared acceptance conditions through {{check}}: one derives from {{novelty}} relative to the seed inputs and one derives from {{value}}. The candidate is yielded only when both checks return Verified. Seed selection, candidate-generation tactics, and check criteria remain caller- or descendant-defined.",
   "invariants": [
-    "Divergence: Output similarity to input < Threshold.",
-    "Utility: Must maintain structural coherence (not pure noise)."
-  ],
-  "parameters": [
-    {
-      "name": "temperature",
-      "type": "Float",
-      "range": "[0.7, 1.5]",
-      "description": "Randomness injection level"
-    }
+    "Dual Acceptance: The declared {{novelty}} and {{value}} checks both return Verified for every yielded {{artifact}}."
   ],
   "_meta": {
     "ring": 1,
     "tier": 2,
     "supersedes": [
       "sema:CreativeBlend#mh:SHA-256:624687c31005bc40986fbd3ace62e3e42c931c01ab4c1b082abe319a54372515",
-      "sema:CreativeBlend#mh:SHA-256:cc9130dd92520118a4b6047b2544fa67126e7bf2c81285c792a2f9c6433c3e75"
+      "sema:CreativeBlend#mh:SHA-256:cc9130dd92520118a4b6047b2544fa67126e7bf2c81285c792a2f9c6433c3e75",
+      "sema:CreativeBlend#mh:SHA-256:0f9f6100502896dd51cd366abc5fe4fc163a32c09d79dd4f35eef9c7c92f39a8"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "CreativeBlend#0f9f",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:0f9f6100502896dd51cd366abc5fe4fc163a32c09d79dd4f35eef9c7c92f39a8",
-  "sema_stub": "0f9f",
+  "sema_ref": "CreativeBlend#1cb8",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:1cb85d43d9acc10d1f9dfab4de8eb9f2eb81cfa79045ac21cf035afe06553535",
+  "sema_stub": "1cb8",
+  "extends": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",
   "dependencies": {
     "accepts": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "composes_with": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:c9f1c23deebd8806b9d43bd624de9d23f75474d15bbf7bafebe55dfde599d925"
     },
     "references": {
-      "noise_injection": "sema:NoiseInjection#mh:SHA-256:9cd5f963bf3ac7a08578bef9db1086179a6e7ea274cdf5ed8b7e2fc98dfa29d4",
-      "novelty": "sema:Novelty#mh:SHA-256:262f2a36b4fb3ef6b2589307d7eb751cfec6e32548a444535c6e5db2d5c6c1a0",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
+      "novelty": "sema:Novelty#mh:SHA-256:84d45c25a3c35037b26c001e5cce4ed973cc0accea54436552c8a735640a2527",
+      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     }
   },
   "sema_layer": "Mind",

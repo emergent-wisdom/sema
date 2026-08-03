@@ -8,9 +8,10 @@
     "Treating the provisional hypothesis as proven in downstream reasoning."
   ],
   "invariants": [
-    "Explanation must cover all observed anomalies in the input.",
-    "Simplicity heuristic (Occam's Razor) applied when comparing candidates of similar scope.",
-    "Output is flagged provisional, never asserted as proven."
+    "At least two candidate explanations are compared.",
+    "The explanation covers every observed anomaly in the input.",
+    "Occam's Razor decides between candidates of similar scope.",
+    "The output is flagged provisional, never asserted as proven."
   ],
   "preconditions": [
     "Set of observations, at least one unexplained by existing model.",
@@ -26,25 +27,26 @@
     "caution": "Best-guess inference \u2014 always provisional. Must be composed with a verification step in high-stakes domains.",
     "supersedes": [
       "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
-      "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b"
+      "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b",
+      "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841",
-  "sema_ref": "Abduction#645a",
-  "sema_stub": "645a",
+  "sema_id": "sema:Abduction#mh:SHA-256:c30079ac9ed638f50c5bd4099e19364551a6595a2a1ae68a0f815d3782d0425e",
+  "sema_ref": "Abduction#c300",
+  "sema_stub": "c300",
   "dependencies": {
     "composes_with": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9"
     },
     "references": {
       "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
-      "induction": "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707",
-      "rank": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104"
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
+      "induction": "sema:Induction#mh:SHA-256:1b39044c28c83bf79a7bfe108d0edaf616724b3cc0e9fec93086913101fc1530",
+      "rank": "sema:Rank#mh:SHA-256:67c6fb568c5fdcfbd0de64b8a5413e943378d421dee9d5614c827e3c539bde3f"
     }
   },
   "sema_layer": "Mind",

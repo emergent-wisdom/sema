@@ -16,19 +16,20 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825"
+      "sema:BearerToken#mh:SHA-256:e5bda2f4295b37f411e5a32026a12b31d0f80308f19d077012cf519a16b11825",
+      "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad",
-  "sema_ref": "BearerToken#a682",
-  "sema_stub": "a682",
+  "sema_id": "sema:BearerToken#mh:SHA-256:190a706b87eb5e59dea9d23a06f8f13f45081dec847572be38dfb398cf201112",
+  "sema_ref": "BearerToken#190a",
+  "sema_stub": "190a",
   "dependencies": {
     "references": {
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093"
     }
   },
   "sema_layer": "Society",

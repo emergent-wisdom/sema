@@ -155,3 +155,73 @@ class TestDependencyAliasCanonicalization:
         refs = resolved["references"]["gate"]
         assert isinstance(refs, list) and len(refs) == 2
         assert all(r == f"sema:Gate#mh:SHA-256:{'e' * 64}" for r in refs)
+
+
+class TestSpecializationCompatibility:
+    def test_legacy_derived_from_key_remains_in_hash_input(self):
+        parent = f"sema:Parent#mh:SHA-256:{'a' * 64}"
+        pattern = {"handle": "Child", "mechanism": "m", "derived_from": parent}
+
+        expected, _ = merkle_hash({"mechanism": "m", "derived_from": parent})
+
+        assert generate_sema_hash(pattern)["hash"] == expected
+
+    def test_shipped_pre_04_card_keeps_its_frozen_identity(self):
+        bounded_task = {
+            "handle": "BoundedTask",
+            "mechanism": (
+                "A specialized {{task}} enforcing {{budget}} and {{accept_spec}} to ensure "
+                "economic and quality boundaries."
+            ),
+            "gloss": "Economically constrained task",
+            "invariants": [
+                "Budget Enclosure: total cost across all child tasks, retries, and recursions "
+                "must stay within the declared {{budget}}.",
+                "Quality Gate: output must pass the declared {{accept_spec}} before the task "
+                "is marked complete.",
+            ],
+            "derived_from": (
+                "sema:Task#mh:SHA-256:"
+                "b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c"
+            ),
+            "dependencies": {
+                "references": {
+                    "accept_spec": (
+                        "sema:AcceptSpec#mh:SHA-256:"
+                        "c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4"
+                    ),
+                    "budget": (
+                        "sema:Budget#mh:SHA-256:"
+                        "f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4"
+                    ),
+                    "task": (
+                        "sema:Task#mh:SHA-256:"
+                        "f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+                    ),
+                }
+            },
+        }
+
+        assert generate_sema_hash(bounded_task)["hash"] == (
+            "a1c2e4a17bc123e0a6737a3cb20fc958a953df7c953586f0fda00e5407e13c4f"
+        )
+
+    def test_rename_to_extends_mints_a_new_identity(self):
+        parent = f"sema:Parent#mh:SHA-256:{'a' * 64}"
+        legacy = generate_sema_hash({"handle": "Child", "mechanism": "m", "derived_from": parent})
+        current = generate_sema_hash({"handle": "Child", "mechanism": "m", "extends": parent})
+
+        assert legacy["hash"] != current["hash"]
+
+    def test_both_specialization_fields_fail_closed(self):
+        parent = f"sema:Parent#mh:SHA-256:{'a' * 64}"
+
+        with pytest.raises(ValueError, match="cannot contain both"):
+            generate_sema_hash(
+                {
+                    "handle": "Child",
+                    "mechanism": "m",
+                    "extends": parent,
+                    "derived_from": parent,
+                }
+            )

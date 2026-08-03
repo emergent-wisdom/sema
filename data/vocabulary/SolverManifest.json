@@ -8,32 +8,34 @@
     "Missing Constraint: Manifest omits a critical limitation."
   ],
   "invariants": [
-    "Accuracy: Manifest must truthfully reflect solver capabilities.",
-    "Completeness: All relevant capabilities and constraints must be listed.",
-    "Immutability: Manifest is versioned; changes require new version.",
-    "Identity Lock: Must specify a distinct persona/system prompt.",
-    "Capability Bound: Must explicitly list available tools."
+    "Claims, not proofs: listed capabilities are assertions the solver has not demonstrated.",
+    "Lists the tools available to the solver, and its cost model.",
+    "Versioned: a change of capabilities is a new version, not an edit.",
+    "Specifies a distinct persona or system prompt."
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b"
+      "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
+      "sema:SolverManifest#mh:SHA-256:47aef05958dec89d4a0ccb6d8965d2bbd812dd8a3c10ef265f3150cfebee0384"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:SolverManifest#mh:SHA-256:47aef05958dec89d4a0ccb6d8965d2bbd812dd8a3c10ef265f3150cfebee0384",
-  "sema_ref": "SolverManifest#47ae",
-  "sema_stub": "47ae",
+  "sema_id": "sema:SolverManifest#mh:SHA-256:41a8d7ace24e348dcb0a86eb9b725cc115021d1ff1ed9f980ca378ba44396bf1",
+  "sema_ref": "SolverManifest#41a8",
+  "sema_stub": "41a8",
   "data_schema": {
     "type": "object",
     "description": "Typed solver identity + capabilities.",
     "required": [
       "solver_id",
-      "capabilities"
+      "capabilities",
+      "tools",
+      "cost_model"
     ],
     "properties": {
       "solver_id": {
@@ -56,13 +58,21 @@
         "items": {
           "type": "string"
         }
+      },
+      "tools": {
+        "type": "array",
+        "description": "Actions the solver can take."
+      },
+      "cost_model": {
+        "type": "object",
+        "description": "What invoking it costs."
       }
     }
   },
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "solver": "sema:Solver#mh:SHA-256:b7f9e18fec50d288ea829a21a59de02f65cf1ffe3eef07142389d659bd421d02"
+      "solver": "sema:Solver#mh:SHA-256:cf430f516045514bc99f146c0fd155e863457c767aa1872794fa79fd89f8cf20"
     }
   },
   "sema_layer": "Infrastructure",

@@ -34,11 +34,12 @@
     "Requires both agents to support commit-reveal protocol."
   ],
   "invariants": [
-    "Private regions respected",
-    "Shared region contains agreed facts"
+    "Accept-sets are hash-committed before any is revealed.",
+    "Selection is from the intersection only.",
+    "Expansion is bounded; at the expansion limit the protocol ends without agreement."
   ],
   "preconditions": [
-    "Two ontologies/datasets"
+    "Two parties, each able to declare an accept-set"
   ],
   "postconditions": [
     "Intersection identified"
@@ -54,12 +55,12 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Overlap#mh:SHA-256:d70c8e5e00064f385853d70213d03d8ba547a1156024f826c4f782c4b677cefd",
-  "sema_ref": "Overlap#d70c",
-  "sema_stub": "d70c",
+  "sema_id": "sema:Overlap#mh:SHA-256:c7019daf2905344a1f3ca2232d74eea272fd284fbe14523e5aa33caa1b46c18e",
+  "sema_ref": "Overlap#c701",
+  "sema_stub": "c701",
   "dependencies": {
     "references": {
-      "mece": "sema:MECE#mh:SHA-256:da19e78dcf447f07e12eca8703f1992fe96f3b0d9b06d42dc349e11dad4ad23f"
+      "mece": "sema:MECE#mh:SHA-256:ae1975b15fa25939a85a231371adec3b2431658837ad7ada72315f64b849cb78"
     }
   },
   "sema_layer": "Infrastructure",

@@ -44,3 +44,16 @@ def test_exporter_prioritizes_checkout_source():
     assert Path(export_sema.generate_sema_hash.__code__.co_filename).resolve() == (
         repo_root / "src" / "sema" / "core" / "hashing.py"
     )
+
+
+def test_exporter_prefers_explicit_database_environment(monkeypatch, tmp_path):
+    export_sema = load_export_module()
+    explicit_db = tmp_path / "taxonomy.db"
+    monkeypatch.setenv("SEMA_DB_PATH", str(explicit_db))
+
+    def unexpected_get_config():
+        raise AssertionError("profile config should not be read")
+
+    monkeypatch.setattr(export_sema, "get_config", unexpected_get_config)
+
+    assert export_sema.get_db_path() == str(explicit_db)

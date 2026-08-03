@@ -16,25 +16,26 @@
     "ring": 1,
     "supersedes": [
       "sema:AtomicBid#mh:SHA-256:0e6bf533854e1938c010cf2ce28ede3fe1642b56115e626ceb4bd652691a9edc",
-      "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1"
+      "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1",
+      "sema:AtomicBid#mh:SHA-256:9c0c78d25ef587cbb5802e4e9243055062fa27a45f30d46896d464c840a35fcd"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_ref": "AtomicBid#9c0c",
-  "sema_id": "sema:AtomicBid#mh:SHA-256:9c0c78d25ef587cbb5802e4e9243055062fa27a45f30d46896d464c840a35fcd",
-  "sema_stub": "9c0c",
+  "sema_ref": "AtomicBid#7b51",
+  "sema_id": "sema:AtomicBid#mh:SHA-256:7b5101ac7a17b57257eeac29ab7cdfe7c189d0522e67f8fe99f74a1e621da680",
+  "sema_stub": "7b51",
   "dependencies": {
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
-      "bid": "sema:Bid#mh:SHA-256:1ebadf0e232c35605addcb43f2c2ceab124a7f710c0471cefb989189661c8d3a",
-      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9"
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
+      "bid": "sema:Bid#mh:SHA-256:f71c30c9be1533af249a7c08421bfe13f802f42c6226cdfe1d7d1a3364f99698",
+      "compensate": "sema:Compensate#mh:SHA-256:47973ce8d6d546927dc224da79919bcb2b32b05d0c5a6361ff9d8befbee84d1b"
     },
     "references": {
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
-      "lazy_consensus": "sema:LazyConsensus#mh:SHA-256:1c07589188212ac8d7519eb64501c0e6c21d9028fc6a4026adf572b5b2db77ab"
+      "lazy_consensus": "sema:LazyConsensus#mh:SHA-256:5a3553a032711d2dacc2408301e2cd42a2e93ecc74324a024fa00c5e82634d60"
     }
   },
   "sema_layer": "Society",

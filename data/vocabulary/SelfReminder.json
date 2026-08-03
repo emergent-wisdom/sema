@@ -16,21 +16,22 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832"
+      "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832",
+      "sema:SelfReminder#mh:SHA-256:d04dd574dad96c08ba4d8969d30fa19ba51820e0c91e14094d8b41e7c36894c6"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:SelfReminder#mh:SHA-256:d04dd574dad96c08ba4d8969d30fa19ba51820e0c91e14094d8b41e7c36894c6",
-  "sema_ref": "SelfReminder#d04d",
-  "sema_stub": "d04d",
+  "sema_id": "sema:SelfReminder#mh:SHA-256:e1b0161b278f470cca80d150e2bb8162a6823033d6396d03f7bb6fd33b3a4b72",
+  "sema_ref": "SelfReminder#e1b0",
+  "sema_stub": "e1b0",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
     }
   },
   "sema_layer": "Mind",

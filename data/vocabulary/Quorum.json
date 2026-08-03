@@ -21,16 +21,16 @@
   ],
   "parameters": [
     {
-      "name": "threshold",
-      "type": "Float",
-      "range": "[0.5, 1.0]",
-      "description": "Fraction required for consensus"
+      "name": "k",
+      "type": "Integer",
+      "range": "[1, total_members]",
+      "description": "Required count of affirmative {{ballot}}s. A count, matching the invariant and preconditions. Sub-majority values are legitimate \u2014 an any-one-approves gate is a quorum of 1."
     },
     {
       "name": "total_members",
       "type": "Integer",
       "range": "[3, 100]",
-      "description": "Size of voting pool"
+      "description": "Eligible participants (N)"
     }
   ],
   "_meta": {
@@ -40,19 +40,20 @@
     ],
     "ring": 0,
     "supersedes": [
-      "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d"
+      "sema:Quorum#mh:SHA-256:29b46f238f70cc3f2126e8bd35ff531aa7ae65e0d3ab1d7d7cc794fa7155127d",
+      "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
-  "sema_ref": "Quorum#d634",
-  "sema_stub": "d634",
+  "sema_id": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
+  "sema_ref": "Quorum#2a33",
+  "sema_stub": "2a33",
   "dependencies": {
     "accepts": {
-      "ballot": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497"
+      "ballot": "sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c"
     }
   },
   "sema_layer": "Infrastructure",

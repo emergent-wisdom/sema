@@ -2,25 +2,43 @@
   "handle": "ContextCompress",
   "mechanism": "A memory management primitive that uses {{compress}} to reduce the token footprint of a {{context}} while preserving critical {{state}}. It explicitly retains active {{constraint}}s and unresolved goals.",
   "gloss": "Semantic compression for long-running contexts",
-  "sema_id": "sema:ContextCompress#mh:SHA-256:81bff304fb7fe57e71c152ac04faa987e06787468369ea65ab3cd2339c8739cb",
-  "sema_ref": "ContextCompress#81bf",
-  "sema_stub": "81bf",
+  "sema_id": "sema:ContextCompress#mh:SHA-256:0bf5ce89d0ad9cac74bb69f253f06331989714d3c34bb0b385f9674439ce30b0",
+  "sema_ref": "ContextCompress#0bf5",
+  "sema_stub": "0bf5",
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817"
+      "sema:ContextCompress#mh:SHA-256:6dbdad39d305207e19f80a38fbb7622505d35259338335493053eb49cfe4d817",
+      "sema:ContextCompress#mh:SHA-256:81bff304fb7fe57e71c152ac04faa987e06787468369ea65ab3cd2339c8739cb"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
+  "invariants": [
+    "Reduces the {{context}}'s token footprint by at least `min_reduction`.",
+    "Retains every active {{constraint}} and every unresolved goal.",
+    "Re-evaluates which constraints are active and which goals unresolved on each pass."
+  ],
+  "parameters": [
+    {
+      "name": "min_reduction",
+      "type": "Ratio",
+      "range": "(0.0, 1.0)",
+      "description": "Share of the token footprint a pass must remove to count as a compression."
+    }
+  ],
+  "failure_modes": [
+    "Silent over-compression: a discarded {{constraint}} surfaces only when a later step violates it.",
+    "Stale activeness: a pass reuses an earlier pass's list of active constraints instead of recomputing it, so a lapsed constraint is preserved and a new one is dropped."
+  ],
   "dependencies": {
     "references": {
-      "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
+      "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

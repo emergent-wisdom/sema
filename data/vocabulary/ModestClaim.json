@@ -1,6 +1,6 @@
 {
   "handle": "ModestClaim",
-  "mechanism": "Epistemic {{reframe}}. Transforms assertions of '{{identity}}' (A == B means same meaning) into assertions of 'Divergence' (Hash(A) != Hash(B) means different meaning). This shifts the burden of proof from verifying universal truth to detecting local mismatch. It applies {{epistemic_calibrate}} to reduce the scope of assertions from 'Universal Truth' to 'Local Observation'.",
+  "mechanism": "Epistemic {{reframe}}. Transforms assertions of '{{equivalence}}' (A == B means same meaning) into assertions of 'Divergence' (Hash(A) != Hash(B) means different meaning). This shifts the burden of proof from verifying universal truth to detecting local mismatch. It applies {{epistemic_calibrate}} to reduce the scope of assertions from 'Universal Truth' to 'Local Observation'.",
   "gloss": "Defensible over ambitious",
   "failure_modes": [
     "Ontological Trap: Claiming the hash solves the Symbol Grounding {{problem}} (it doesn't).",
@@ -20,23 +20,24 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb"
+      "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb",
+      "sema:ModestClaim#mh:SHA-256:c00b37f51471b8820b17447d652af2a338ceebb1ca140fcdd216b52cd204cdc6"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ModestClaim#mh:SHA-256:c00b37f51471b8820b17447d652af2a338ceebb1ca140fcdd216b52cd204cdc6",
-  "sema_ref": "ModestClaim#c00b",
-  "sema_stub": "c00b",
+  "sema_id": "sema:ModestClaim#mh:SHA-256:f6a380c6dfd92c2c2a1aca44babfb8e6bc63a43780e7a8c6c07837c8c3f5a837",
+  "sema_ref": "ModestClaim#f6a3",
+  "sema_stub": "f6a3",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:a9024e32f3f2d5b1ff0e5bf7361b951acacdc7a359afc8c4ad5823b59738cf65",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "reframe": "sema:Reframe#mh:SHA-256:573733f86a965e0db34ce77c54bada908c9561248a7d5a9b76652dba71e1565a",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a",
+      "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

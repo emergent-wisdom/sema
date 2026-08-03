@@ -3,8 +3,8 @@
   "mechanism": "A composite artifact that binds a 'Target Design' (What to build) with an 'Operation Sequence' (How to build and rollout it). It acts as the atomic 'Release Candidate' for the execution phase.",
   "gloss": "Binding of Design and Procedure",
   "invariants": [
-    "Completeness: Must contain both Specification (Design) and Steps (Procedure).",
-    "Resource Bound: Total cost of Steps must be within budget."
+    "Carries both a target design and an operation sequence; neither may be absent.",
+    "States the cost it expects its steps to consume. Judging that against a budget is `Realizable`'s work."
   ],
   "_meta": {
     "ring": 0,
@@ -22,15 +22,16 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:ExecutionManifest#mh:SHA-256:4342d3162e552fdbfcde1d594a4156ca6f2e0e42fcb20a9be2bc5ba54a4af0d0",
-  "sema_ref": "ExecutionManifest#4342",
-  "sema_stub": "4342",
+  "sema_id": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1",
+  "sema_ref": "ExecutionManifest#fed5",
+  "sema_stub": "fed5",
   "data_schema": {
     "type": "object",
     "description": "Binds design with operation sequence.",
     "required": [
       "target_design",
-      "operation_sequence"
+      "operation_sequence",
+      "projected_cost"
     ],
     "properties": {
       "target_design": {
@@ -44,9 +45,17 @@
         "items": {
           "type": "string"
         }
+      },
+      "projected_cost": {
+        "type": "object",
+        "description": "Expected consumption of the operation sequence, in units the author states."
       }
     }
   },
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "failure_modes": [
+    "Nominal binding: both halves present and the procedure does not build that design.",
+    "Projection exceeded at execution."
+  ]
 }

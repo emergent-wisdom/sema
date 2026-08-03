@@ -1,6 +1,6 @@
 {
   "handle": "Parallel",
-  "mechanism": "Concurrent execution: A and B simultaneously. No ordering guarantee.",
+  "mechanism": "Concurrent execution of two or more branches under no ordering guarantee: a caller may not assume which branch runs, finishes, or observes state first. Genuine simultaneity and interleaving both satisfy it \u2014 the pattern is the contract, not the substrate.",
   "gloss": "Concurrent flow",
   "_meta": {
     "tier": 1,
@@ -13,9 +13,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Parallel#mh:SHA-256:e799c1986d62c4a052090842aabe144193587f8a4d8dd23617d027b2e9b85098",
-  "sema_ref": "Parallel#e799",
-  "sema_stub": "e799",
+  "sema_id": "sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5",
+  "sema_ref": "Parallel#d58d",
+  "sema_stub": "d58d",
   "data_schema": {
     "type": "object",
     "description": "A parallel topology \u2014 independent branches executed concurrently with a join point.",
@@ -33,6 +33,18 @@
         ],
         "description": "How branch results combine"
       }
+    },
+    "required": [
+      "branches"
+    ]
+  },
+  "invariants": [
+    "No result may depend on the order branches were entered or completed. A branch set with an order requirement is a {{chain}}.",
+    "Each declared branch is attempted. How outcomes combine is `join_semantics` and varies."
+  ],
+  "dependencies": {
+    "references": {
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb"
     }
   },
   "sema_layer": "Infrastructure",

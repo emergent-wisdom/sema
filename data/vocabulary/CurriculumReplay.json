@@ -20,21 +20,22 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:CurriculumReplay#mh:SHA-256:a8f76f8f131ce81e85201e2ce5ba85892274510bfd20d1bbdeb9581e61cf28af"
+      "sema:CurriculumReplay#mh:SHA-256:a8f76f8f131ce81e85201e2ce5ba85892274510bfd20d1bbdeb9581e61cf28af",
+      "sema:CurriculumReplay#mh:SHA-256:3ec21d0874761f9e9da74526e2e0ca3e9ac18ceb1fcc396b8715c0ae3baf1de1"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:3ec21d0874761f9e9da74526e2e0ca3e9ac18ceb1fcc396b8715c0ae3baf1de1",
-  "sema_ref": "CurriculumReplay#3ec2",
-  "sema_stub": "3ec2",
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:4e7d3645c493e594990f3fe76d202891112587f53963e0372b94faca0696c63e",
+  "sema_ref": "CurriculumReplay#4e7d",
+  "sema_stub": "4e7d",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:3be09a0c57f793ab33a1efbd6773feac4bd2fc1dda5ec3b6beb56a7230793188"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:d1c3411bc6ed9e7ea240f4bd3fe5fa05b76a74990a9fc968f5beafbf002eca2f"
     }
   },
   "sema_layer": "Mind",

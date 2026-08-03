@@ -20,7 +20,7 @@
         "type": "number",
         "minimum": -1,
         "maximum": 1,
-        "description": "Pearson correlation coefficient [-1, 1]"
+        "description": "Normalized correlation coefficient [-1, 1] under the selected method"
       },
       "p_value": {
         "type": "number",
@@ -32,26 +32,36 @@
       }
     }
   },
-  "mechanism": "Structural co-movement between two {{variable}}s without the directed edge that would make it {{causation}}: changes in one accompany changes in the other, but manipulating one does not necessarily alter the other. Characterized by a coefficient in [-1, 1]. The distinction is topological, not a consequence of the cum-hoc-ergo-propter-hoc fallacy \u2014 Correlation is defined by the structural absence of a directed causal edge.",
-  "gloss": "Co-movement between variables without directed causal edge \u2014 structurally distinct from Causation",
+  "mechanism": "A normalized measure of statistical association between two {{variable}}s under a selected correlation method. The coefficient lies in [-1, 1] and is interpreted according to that method. Correlation alone neither establishes nor rules out {{causation}}, its direction, or an intervention effect.",
+  "gloss": "Normalized statistical association; no causal conclusion by itself",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625"
+      "sema:Correlation#mh:SHA-256:091fbf1f3baec2028bbd64c9d2ff335ef41d9ec6ec992e1967c5bca02c777625",
+      "sema:Correlation#mh:SHA-256:3e6845523b8166fa55b82ef6ecd1ae129688fae1507fc6b4f92b9bc662936f42"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Correlation#mh:SHA-256:3e6845523b8166fa55b82ef6ecd1ae129688fae1507fc6b4f92b9bc662936f42",
-  "sema_ref": "Correlation#3e68",
-  "sema_stub": "3e68",
+  "invariants": [
+    "The coefficient lies in [-1, 1].",
+    "The correlation alone establishes neither the presence nor absence of {{causation}}, its direction, nor an intervention effect, regardless of coefficient magnitude."
+  ],
+  "failure_modes": [
+    "Causal overreach: the result alone is used to assert a causal relation, its absence or direction, or an intervention effect.",
+    "Source ambiguity: direct causation, reverse causation, confounding, and selection can produce similar coefficients, which correlation alone cannot distinguish.",
+    "Method blindness: dependence outside the selected method's sensitivity yields a weak coefficient that is read as independence."
+  ],
+  "sema_id": "sema:Correlation#mh:SHA-256:3bd8ecb518efc816c4c986e434afb9b2c3d3801b8099e008c15b70e305bd3043",
+  "sema_ref": "Correlation#3bd8",
+  "sema_stub": "3bd8",
   "dependencies": {
     "references": {
-      "causation": "sema:Causation#mh:SHA-256:e47b8f36ae5e8b43d3e3f521fc75c2a70f0355cbe062f794ecbe93a4c608921c",
-      "variable": "sema:Variable#mh:SHA-256:f488e278141238c50584777b751863d84b094229e4568205e9ba54a9121c3aa5"
+      "causation": "sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850",
+      "variable": "sema:Variable#mh:SHA-256:5333c0009a269825753bf5470554844285c46920c32e3d46ed71403090224dc7"
     }
   },
   "sema_layer": "Infrastructure",

@@ -2,9 +2,9 @@
   "handle": "StateTransition",
   "mechanism": "Finite State Machine. A {{transition}} is defined as T: S x Event -> S. Only valid transitions allowed. Current {{state}} determines available actions.",
   "gloss": "Explicit finite-state machine governance",
-  "sema_id": "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2",
-  "sema_ref": "StateTransition#fa0a",
-  "sema_stub": "fa0a",
+  "sema_id": "sema:StateTransition#mh:SHA-256:bdc0c1988a26e15a4e90bb79b214e4bebe630bc53f758ca67c6e1148aa802686",
+  "sema_ref": "StateTransition#bdc0",
+  "sema_stub": "bdc0",
   "_meta": {
     "ring": 0,
     "tier": 1,
@@ -16,10 +16,18 @@
       "Primitives"
     ]
   },
+  "invariants": [
+    "Only declared transitions are permitted; an event with no transition from the current {{state}} is refused, not improvised.",
+    "The available actions are a function of the current {{state}} alone."
+  ],
+  "failure_modes": [
+    "Undeclared event: an event arrives that the machine has no transition for, and a caller treats the refusal as a failure of the event rather than of the model.",
+    "Unreachable state: a state is declared with no transition leading to it."
+  ],
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "transition": "sema:Transition#mh:SHA-256:a7b4277599c68a617b43f1d0c52d807837717913731aec1463caccdcd568cfe3"
+      "transition": "sema:Transition#mh:SHA-256:9b62398c6edcd43ad2af8ec1df8186ece2b4f697772b3872227f4d9d8390e328"
     }
   },
   "sema_layer": "Infrastructure",

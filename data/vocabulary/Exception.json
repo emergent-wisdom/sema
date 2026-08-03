@@ -4,8 +4,7 @@
     "type": "object",
     "required": [
       "error_code",
-      "message",
-      "stack_trace"
+      "message"
     ],
     "properties": {
       "error_code": {
@@ -36,20 +35,29 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6"
+      "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6",
+      "sema:Exception#mh:SHA-256:39fb7ba646e5c1dc91699ae4b3dc0887f4ec476fe6bf29970b83aaaca025f686"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Exception#mh:SHA-256:39fb7ba646e5c1dc91699ae4b3dc0887f4ec476fe6bf29970b83aaaca025f686",
-  "sema_ref": "Exception#39fb",
-  "sema_stub": "39fb",
+  "sema_id": "sema:Exception#mh:SHA-256:61e41a9f4e26dad1ab09516b35640c6204e99e7d1df29ce0899bcbb24a126e1d",
+  "sema_ref": "Exception#61e4",
+  "sema_stub": "61e4",
+  "invariants": [
+    "Classifies the anomaly by `error_code`.",
+    "Must be handled by {{circuit_breaker}} or {{fail_closed}}, never merely observed."
+  ],
+  "failure_modes": [
+    "Swallowed: the signal is caught and discarded, so the invalid {{state}} continues unhandled.",
+    "Over-broad code: one `error_code` covers unrelated anomalies, so no handler can dispatch on it."
+  ],
   "dependencies": {
     "references": {
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:ac1b0e4a6452ffc852d32a25914ef7907a49428004765f92e68ac7d232530ad0",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

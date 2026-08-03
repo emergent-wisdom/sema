@@ -14,15 +14,18 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:ReAttempt#mh:SHA-256:be449bf89961efce218b58a985fd84f131b324655c10566a8815fceaa647ee06"
     ]
   },
-  "sema_id": "sema:ReAttempt#mh:SHA-256:be449bf89961efce218b58a985fd84f131b324655c10566a8815fceaa647ee06",
-  "sema_ref": "ReAttempt#be44",
-  "sema_stub": "be44",
+  "sema_id": "sema:ReAttempt#mh:SHA-256:326ca908be286fdae31d4e1ada219ce73517119b0aff6fa6b09f43713df72425",
+  "sema_ref": "ReAttempt#326c",
+  "sema_stub": "326c",
   "dependencies": {
     "references": {
       "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
-      "retry": "sema:Retry#mh:SHA-256:9e178c29dd1aa774432d8eb6e87fb2e93ab5b1a6db9582f737ad60e9ddf56053"
+      "retry": "sema:Retry#mh:SHA-256:7bbf52f676d16e927cf79c9660a37bd28a05f9599e934aa5b52db7b2f0ca01b2"
     }
   },
   "sema_layer": "Infrastructure",

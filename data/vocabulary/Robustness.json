@@ -7,7 +7,9 @@
     "False Robustness: Valid only under known stressors, fragile to black swans"
   ],
   "invariants": [
-    "Survival: Function({{state}} + Shock) == Function({{state}})"
+    "Names the stress envelope it holds under.",
+    "Names the validity criterion the {{system}} preserves within that envelope.",
+    "Function is preserved under stress, not improved by it."
   ],
   "_meta": {
     "tier": 1,
@@ -17,12 +19,11 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Robustness#mh:SHA-256:1fa393f9475d2418957334a1802dd65a159d3e680673a0d10874a97e915da7bf",
-  "sema_ref": "Robustness#1fa3",
-  "sema_stub": "1fa3",
+  "sema_id": "sema:Robustness#mh:SHA-256:5304c7824b76c6f308bb1a33ba6171d41fd061a5b104f21710bbb6c7a7c85b43",
+  "sema_ref": "Robustness#5304",
+  "sema_stub": "5304",
   "dependencies": {
     "references": {
-      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

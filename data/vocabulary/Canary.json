@@ -3,45 +3,47 @@
   "mechanism": "Expendable {{agent}} tests full coordination path before committing real resources. Spawn CANARY with: limited resources (bounded blast radius), defined scope, telemetry hooks. Canary executes FULL coordination path ({{greet}}\u2192{{probe}}\u2192negotiate\u2192partial-execute). Reports TELEMETRY: {path_viable, latency_profile, error_events, partner_behavior_observations, recommendation: proceed|caution|abort}. Lifecycle options: DESTROY (discard after test), RECYCLE (reset for another test), PROMOTE (canary becomes real {{agent}}, continues {{work}}), ABSORB (real {{agent}} inherits canary's progress). In adversarial environments, canary can run in STEALTH {{mode}} (indistinguishable from real {{agent}}) to prevent partners gaming the test. It extends the logic of a single {{probe}} into a full-lifecycle agent deployment with bounded blast radius.",
   "gloss": "Expendable agent tests the full coordination path before real commit",
   "failure_modes": [
-    "Canary treated differently than real agent would be (gaming).",
-    "Test conditions don't match production conditions.",
-    "Cost of canary exceeds benefit for simple paths.",
-    "Conditions change between canary test and real execution.",
-    "Canary success doesn't guarantee real success (non-deterministic paths)."
+    "Gaming: the canary is treated differently than a real {{agent}} would be. STEALTH {{mode}} raises the cost of detection without removing it.",
+    "Test conditions do not match production conditions.",
+    "Cost of the canary exceeds the benefit for simple paths.",
+    "Conditions change between the canary test and real execution.",
+    "Canary success does not guarantee real success on non-deterministic paths."
   ],
   "invariants": [
-    "Canary fails before main system",
-    "Failure signal is unambiguous"
+    "The canary completes before real resources are committed.",
+    "The canary exercises the real coordination path \u2014 {{greet}}, {{probe}}, negotiate, partial-execute \u2014 not a simulation.",
+    "Telemetry resolves to one of proceed, caution or abort."
   ],
   "preconditions": [
-    "Monitoring system active",
-    "Representative test case"
+    "Telemetry collection is in place before the canary is spawned",
+    "A case within the canary's declared scope"
   ],
   "postconditions": [
-    "Health status confirmed or alert triggered"
+    "A telemetry report carrying a recommendation, and the declared lifecycle step taken"
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
       "sema:Canary#mh:SHA-256:92d292bbdbb6aac871cdbff1b32a7878d1585750a76511870311159c39e0ee87",
-      "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2"
+      "sema:Canary#mh:SHA-256:e78e513e7df0ad5a179c62c69261c4ce0d763f18aff8da449b15562522f503e2",
+      "sema:Canary#mh:SHA-256:bda6d48ae1b1895bb1ce0fe6012c6fed5baaff392755f2ed802b400481522b5f"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Canary#mh:SHA-256:bda6d48ae1b1895bb1ce0fe6012c6fed5baaff392755f2ed802b400481522b5f",
-  "sema_ref": "Canary#bda6",
-  "sema_stub": "bda6",
+  "sema_id": "sema:Canary#mh:SHA-256:0fc6e266f2fb90ace39ed27f088f6bbe4f8544fe78169caa9ac66c642762c759",
+  "sema_ref": "Canary#0fc6",
+  "sema_stub": "0fc6",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "greet": "sema:Greet#mh:SHA-256:58542bc100077ab85299c99424fa0ca7ea8559890678461a0d7f7aaba927c74f",
-      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
-      "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "greet": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
+      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496",
+      "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224",
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Society",

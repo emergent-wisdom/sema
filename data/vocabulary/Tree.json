@@ -22,7 +22,7 @@
       }
     }
   },
-  "mechanism": "A branching {{topology}} where multiple lines of reasoning are explored simultaneously. Allows backtracking and pruning of unpromising branches (BFS/DFS). A Tree is the constrained form of a directed acyclic graph where each non-root node has exactly one parent.",
+  "mechanism": "A branching {{topology}} where multiple lines are explored simultaneously \u2014 lines of reasoning, of search, or of provenance. Allows backtracking and pruning of unpromising branches (BFS/DFS). A Tree is the constrained form of a directed acyclic graph where each non-root node has exactly one parent.",
   "gloss": "Branching reasoning topology",
   "invariants": [
     "Rootedness: All nodes descend from a single root.",
@@ -46,19 +46,20 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415"
+      "sema:Tree#mh:SHA-256:ddce179b1f23b64fe76513a37d8d3c9319e0460f191a5c124b3372b8c4d2f415",
+      "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_ref": "Tree#a8c4",
-  "sema_id": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543",
-  "sema_stub": "a8c4",
+  "sema_ref": "Tree#dd92",
+  "sema_id": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec",
+  "sema_stub": "dd92",
   "dependencies": {
     "references": {
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },
   "sema_layer": "Infrastructure",

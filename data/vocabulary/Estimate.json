@@ -1,49 +1,65 @@
 {
   "handle": "Estimate",
-  "mechanism": "The predictive {{think}} process of calculating the probable {{value}} cost of a {{task}} before execution. It produces a resource cost projection. It has two modes: 1. {{heuristic_snap}} for fast, rough estimates (pattern matching), 2. {{simulation}} for accurate, expensive estimates (mental execution). The output is a {{bid}} with confidence intervals. Estimation itself consumes budget and is subject to the Meta-Cap invariant.",
+  "mechanism": "The predictive {{think}} process of calculating the probable {{value}} cost of a {{task}} before execution. Two modes: {{heuristic_snap}} for fast rough estimates, {{simulation}} for accurate expensive ones. Outputs a {{bid}} carrying an interval, its coverage, and the reference class it was drawn from. Consumes {{budget}}.",
   "gloss": "Predictive resource costing",
   "signature": [
     "Think(Value)"
   ],
   "failure_modes": [
-    "Overconfidence: Narrow confidence intervals that don't reflect true uncertainty.",
-    "Anchoring: Estimates biased by irrelevant prior information.",
-    "Planning Fallacy: Systematic underestimation of time/cost.",
-    "Meta-Cost Explosion: Spending more on estimation than the task is worth."
+    "Overconfidence: intervals narrower than the evidence supports.",
+    "Anchoring: estimates biased by irrelevant prior information.",
+    "Planning Fallacy: systematic underestimation of time and cost.",
+    "Allowance exhausted: returns a wide interval a caller may read as a point estimate."
   ],
   "invariants": [
-    "Calibration: Over time, actual costs should fall within stated confidence intervals.",
-    "Meta-Bound: Estimation cost must be < 5% of estimated task cost.",
-    "Uncertainty Honesty: Wide intervals for novel tasks, narrow for familiar."
+    "The interval states the coverage it claims.",
+    "The estimate names its reference class, or records that it had none.",
+    "The estimator is given its allowance from {{budget}} before starting, and returns on reaching it."
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449"
+      "sema:Estimate#mh:SHA-256:bb3078fc4f974c17821e162f0034230b653c9ebd70c4655e86924d1292b1d449",
+      "sema:Estimate#mh:SHA-256:28d2e9662fc904a5d5662b8b532a2c14a7ed47f8cda950a58875e07f249207df"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "Estimate#c6d2",
-  "sema_id": "sema:Estimate#mh:SHA-256:c6d21a9be2f862c3c4e46172f155ec129350e6dff03d18d658d694edcc34c9b7",
-  "sema_stub": "c6d2",
+  "sema_ref": "Estimate#16c1",
+  "sema_id": "sema:Estimate#mh:SHA-256:16c111845e76b926eaa3b42c0c3fe033fb10d4f526eedf690b191a037bed72a3",
+  "sema_stub": "16c1",
+  "parameters": [
+    {
+      "name": "estimation_allowance",
+      "type": "Ratio",
+      "range": "(0.0, 1.0]",
+      "description": "Share of the task's budget the estimator may spend."
+    },
+    {
+      "name": "target_coverage",
+      "type": "Ratio",
+      "range": "(0.0, 1.0)",
+      "description": "Coverage the published interval claims, e.g. 0.8 or 0.95."
+    }
+  ],
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     },
     "references": {
-      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:bd4b7e8369088accfeed1c366851705638d34d00eb947daa0d02935a60ebceb3",
-      "simulation": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:f7ccd96fafbe6daff186fdced5bc814b4885f08212dc2126b67d44b350a27e6b",
+      "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "bid": "sema:Bid#mh:SHA-256:1ebadf0e232c35605addcb43f2c2ceab124a7f710c0471cefb989189661c8d3a"
+      "bid": "sema:Bid#mh:SHA-256:f71c30c9be1533af249a7c08421bfe13f802f42c6226cdfe1d7d1a3364f99698"
     }
   },
   "sema_layer": "Mind",

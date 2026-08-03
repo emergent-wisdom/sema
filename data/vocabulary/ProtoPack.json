@@ -24,20 +24,21 @@
       "Build"
     ],
     "supersedes": [
-      "sema:ProtoPack#mh:SHA-256:6597fa92b7426d373e1d05d6a7fd1f8c1416c00c78dfab8e35e5a6264c1453d6"
+      "sema:ProtoPack#mh:SHA-256:6597fa92b7426d373e1d05d6a7fd1f8c1416c00c78dfab8e35e5a6264c1453d6",
+      "sema:ProtoPack#mh:SHA-256:31f5f3d60bb4d26626e05c6fa6f903fef8ccda2371d149e7fc533f1a56e4db12"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:ProtoPack#mh:SHA-256:31f5f3d60bb4d26626e05c6fa6f903fef8ccda2371d149e7fc533f1a56e4db12",
-  "sema_ref": "ProtoPack#31f5",
-  "sema_stub": "31f5",
+  "sema_id": "sema:ProtoPack#mh:SHA-256:1e06217c0c49682367975c2e8c34b203bede700056aeb6779d2500ba51db3971",
+  "sema_ref": "ProtoPack#1e06",
+  "sema_stub": "1e06",
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "prototype": "sema:Prototype#mh:SHA-256:f849be90ab4568d076b595b2edb408b2795a6aced9f82dac8510f53449f68a09"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "prototype": "sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b"
     }
   },
   "sema_layer": "Infrastructure",

@@ -60,24 +60,25 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Bid#mh:SHA-256:cf07d1105de889786c1fbb618128ab03b34964fa4a7ab983c8d0f4d1d984b43e"
+      "sema:Bid#mh:SHA-256:cf07d1105de889786c1fbb618128ab03b34964fa4a7ab983c8d0f4d1d984b43e",
+      "sema:Bid#mh:SHA-256:1ebadf0e232c35605addcb43f2c2ceab124a7f710c0471cefb989189661c8d3a"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_ref": "Bid#1eba",
-  "sema_id": "sema:Bid#mh:SHA-256:1ebadf0e232c35605addcb43f2c2ceab124a7f710c0471cefb989189661c8d3a",
-  "sema_stub": "1eba",
+  "sema_ref": "Bid#f71c",
+  "sema_id": "sema:Bid#mh:SHA-256:f71c30c9be1533af249a7c08421bfe13f802f42c6226cdfe1d7d1a3364f99698",
+  "sema_stub": "f71c",
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
-      "solver": "sema:Solver#mh:SHA-256:b7f9e18fec50d288ea829a21a59de02f65cf1ffe3eef07142389d659bd421d02",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:f61d8e05ef8467904005de47e9a67777d0db40b8f5897926f725e7e0f3261e8a",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
+      "solver": "sema:Solver#mh:SHA-256:cf430f516045514bc99f146c0fd155e863457c767aa1872794fa79fd89f8cf20",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

@@ -168,11 +168,20 @@ Use the full `sema_id` as the dependency value. `sema_validate` and `sema_mint` 
 
 Only **semantic fields** are hashed — metadata and computed fields are excluded:
 
-**Hashed:** `mechanism`, `gloss`, `invariants`, `preconditions`, `postconditions`, `failure_modes`, `dependencies`, `signature`, `parameters`, `data_schema`, `derived_from`
+**Hashed:** `mechanism`, `gloss`, `invariants`, `preconditions`, `postconditions`, `failure_modes`, `dependencies`, `signature`, `parameters`, `data_schema`, `extends`
 
 **NOT hashed:** `handle`, `_meta`, `sema_id`, `sema_ref`, `sema_stub`
 
 This means: rename a pattern (change `handle`) and the hash stays the same. Change one invariant and you get a different hash. Same semantic content = same identity, guaranteed.
+
+`extends` pins one exact parent Sema ID. Do not replace it merely because a
+newer card has the same parent handle; retargeting is a reviewed semantic edit.
+The current workspace keeps one active version per handle and therefore rejects
+a parent edit that would strand a child. Stage reviewed children and use
+`sema apply --retarget-extends`; the option changes staged cards only.
+Pre-0.4 cards using `derived_from` remain readable and hash-verifiable, but the
+legacy field is not reinterpreted as `IS_A`. Migrating it to `extends` is an
+explicit semantic edit; new specialization claims must use `extends`.
 
 The hash uses a Merkle tree: strings are NFC-normalized, dicts are sorted by key, lists preserve order. The result is a SHA-256 digest truncated to a 4-char stub for human readability.
 
@@ -224,7 +233,7 @@ sema_validate({ pattern_json: JSON.stringify({
 
 // 4. Mint
 sema_mint({ pattern_json: "..." })
-// → { success: true, handle: "PreMortem", sema_ref: "PreMortem#4c7f", sema_id: "sema:PreMortem#mh:SHA-256:f69d..." }
+// → { success: true, handle: "PreMortem", sema_ref: "PreMortem#e4c2", sema_id: "sema:PreMortem#mh:SHA-256:e4c2..." }
 ```
 
 ## Common errors and fixes

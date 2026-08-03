@@ -1,13 +1,14 @@
 {
   "handle": "LatentAttachment",
   "mechanism": "Attaching a high-dimensional vector embedding (latent) to a symbolic pattern card. This allows agents to use 'Fuzzy Search' to find the card, while still using the 'Canonical Hash' for strict verification. It bridges the gap between LLM intuition and code execution. It binds a vector embedding to a {{concept_anchor}}, enabling semantic search without breaking the symbolic hash.",
-  "gloss": "Hybrid symbolic-neural identity",
+  "gloss": "Vector embedding bound to a card without entering its hash",
   "failure_modes": [
     "Model shift invalidates embeddings."
   ],
   "invariants": [
-    "{{identity}} Separation: Removing the Latent block MUST NOT change the Canonical Hash",
-    "Semantic Proximity: Distance(Symbolic, Latent) < Threshold"
+    "The latent block is outside the canonical form: removing it leaves the hash unchanged.",
+    "The embedding is derived from the card's own content.",
+    "Records which model produced it."
   ],
   "preconditions": [
     "Embedding model is fingerprinted/versioned"
@@ -19,20 +20,20 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4"
+      "sema:LatentAttachment#mh:SHA-256:ab684573c68d4eb05cab650f17e6970a22e65e7d989b53db3281422785fbfec4",
+      "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
-  "sema_ref": "LatentAttachment#611a",
-  "sema_stub": "611a",
+  "sema_id": "sema:LatentAttachment#mh:SHA-256:992d55f53109cbc5050a8ed96afe91121a85a664c6178ad136358e792ecbfa20",
+  "sema_ref": "LatentAttachment#992d",
+  "sema_stub": "992d",
   "dependencies": {
     "references": {
-      "concept_anchor": "sema:ConceptAnchor#mh:SHA-256:95cbc106b1950fc5848516078b0857ce0d98e15ccd3311a6a70ec1411b450f05",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
+      "concept_anchor": "sema:ConceptAnchor#mh:SHA-256:95cbc106b1950fc5848516078b0857ce0d98e15ccd3311a6a70ec1411b450f05"
     }
   },
   "sema_layer": "Mind",

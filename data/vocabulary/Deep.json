@@ -1,11 +1,11 @@
 {
   "handle": "Deep",
-  "mechanism": "The vertical dimension of search (Recursion/Detail). Recursively expanding a node to increase resolution, as opposed to Broad exploration.",
+  "mechanism": "The vertical axis of search and treatment: spending more to answer the same question at higher resolution, as against {{discover}}, which moves horizontally to find more things. Recursive node expansion is one form; escalating a heuristic to a formal method is another that produces no tree.",
   "gloss": "Vertical search dimension",
   "invariants": [
-    "Functional Equivalence: Target must answer the same question as Source.",
-    "Rigor Increase: Target must have higher compute/context cost than Source.",
-    "Resolution Increase: Child nodes must be more specific than parent."
+    "The deeper treatment answers the question the shallower one answered. It may raise new questions; answering a different one is a sideways move.",
+    "The deeper treatment costs more compute or context than the one it supersedes.",
+    "The deeper treatment is more specific than the one it supersedes."
   ],
   "_meta": {
     "tier": 1,
@@ -15,9 +15,14 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824",
-  "sema_ref": "Deep#12d3",
-  "sema_stub": "12d3",
+  "sema_id": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
+  "sema_ref": "Deep#16b0",
+  "sema_stub": "16b0",
+  "dependencies": {
+    "references": {
+      "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b"
+    }
+  },
   "sema_layer": "Mind",
   "sema_category": "Strategy"
 }

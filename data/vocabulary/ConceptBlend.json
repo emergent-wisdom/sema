@@ -3,8 +3,9 @@
   "mechanism": "Forcing the merger of two unrelated graph nodes to find a valid semantic path. Unlike analogy (A is like B), blending creates C (A + B). It extends {{analogy_bridge}} by not just mapping A to B, but fusing them to create C.",
   "gloss": "Atomic fusion of two unrelated concepts into a novel third",
   "invariants": [
-    "Orthogonality: Inputs must be semantically distant (> threshold {{distance}})",
-    "Validity: Output must pass a {{tri_gate}}({{realizable}}) check"
+    "Inputs are at least `min_distance` apart under {{distance}}.",
+    "The output is distinct from both inputs.",
+    "The output passes a {{tri_gate}}({{realizable}}) check."
   ],
   "_meta": {
     "tier": 3,
@@ -13,22 +14,35 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5"
+      "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
+      "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a",
-  "sema_ref": "ConceptBlend#6bdf",
-  "sema_stub": "6bdf",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:c9f1c23deebd8806b9d43bd624de9d23f75474d15bbf7bafebe55dfde599d925",
+  "sema_ref": "ConceptBlend#c9f1",
+  "sema_stub": "c9f1",
+  "parameters": [
+    {
+      "name": "min_distance",
+      "type": "Float",
+      "range": "unspecified",
+      "description": "Semantic separation the two inputs must exceed, in the units Distance measures."
+    }
+  ],
+  "failure_modes": [
+    "No valid path: the merger admits no coherent semantic reading, and the blend is nonsense.",
+    "Collapse to an input: the output is one of the two concepts with decoration, not a third."
+  ],
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:14fe5d542a1044a898aecdb3747495891bdd442e9657f4747bf1e4598b46c39a",
       "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893",
-      "realizable": "sema:Realizable#mh:SHA-256:42f8270af6b0361a440bf86d1ece23a0117d34f504d9db576f30f67cf04815b3",
-      "tri_gate": "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824"
+      "realizable": "sema:Realizable#mh:SHA-256:f7d70197798bc3720a676749c890727589f994b82aad6efc0752f73c43c01c5f",
+      "tri_gate": "sema:TriGate#mh:SHA-256:3bd948f6f10253187dbe3f2291d7ba6f9589812ea35cbbb922c6c3a947dd9fbb"
     }
   },
   "sema_layer": "Mind",

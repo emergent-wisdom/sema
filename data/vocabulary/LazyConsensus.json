@@ -7,8 +7,10 @@
     "Applied to irreversible external action (email sent, funds transferred, API called)\u2014rollback impossible, inconsistency permanent."
   ],
   "invariants": [
-    "Determinism: Conflict resolution function must be pure (same inputs -> same winner)",
-    "Rollback Safety: Reverting a transaction cannot corrupt unrelated state"
+    "Conflict resolution is pure: the same inputs always pick the same winner.",
+    "Reverting a transaction cannot corrupt unrelated state.",
+    "Applies only to reversible or low-stakes actions.",
+    "Conflicts are actively detected, not merely handled if noticed."
   ],
   "preconditions": [
     "Target operations are internally reversible (no irreversible external side-effects)",
@@ -23,20 +25,21 @@
     "ring": 0,
     "supersedes": [
       "sema:LazyConsensus#mh:SHA-256:4fc707a3608b99da4f2f0aa78d8662d3ea7056beb69e92a72be26e6085ecbfd9",
-      "sema:LazyConsensus#mh:SHA-256:81a36b7edd2128ea672990d4487c64770b4da347d359cd217564514017fa9032"
+      "sema:LazyConsensus#mh:SHA-256:81a36b7edd2128ea672990d4487c64770b4da347d359cd217564514017fa9032",
+      "sema:LazyConsensus#mh:SHA-256:1c07589188212ac8d7519eb64501c0e6c21d9028fc6a4026adf572b5b2db77ab"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_ref": "LazyConsensus#1c07",
-  "sema_id": "sema:LazyConsensus#mh:SHA-256:1c07589188212ac8d7519eb64501c0e6c21d9028fc6a4026adf572b5b2db77ab",
-  "sema_stub": "1c07",
+  "sema_ref": "LazyConsensus#5a35",
+  "sema_id": "sema:LazyConsensus#mh:SHA-256:5a3553a032711d2dacc2408301e2cd42a2e93ecc74324a024fa00c5e82634d60",
+  "sema_stub": "5a35",
   "dependencies": {
     "references": {
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269"
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:807069d3d0824a92fae89a1be6b098ee19f6f270e71b404bacb95704b7d2a94e"
     }
   },
   "sema_layer": "Society",

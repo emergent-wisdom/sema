@@ -6,20 +6,21 @@
     "ring": 2,
     "tier": 1,
     "supersedes": [
-      "sema:Roadmap#mh:SHA-256:0018ef2b157d795566b45e40f8a760ec90ac0d0b00d4ffd272556df824880b7c"
+      "sema:Roadmap#mh:SHA-256:0018ef2b157d795566b45e40f8a760ec90ac0d0b00d4ffd272556df824880b7c",
+      "sema:Roadmap#mh:SHA-256:0b5462ac9b1e19485b00034979890684ce7782ea71af6dc97f3db0bdf23f468e"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Roadmap#mh:SHA-256:0b5462ac9b1e19485b00034979890684ce7782ea71af6dc97f3db0bdf23f468e",
-  "sema_ref": "Roadmap#0b54",
-  "sema_stub": "0b54",
+  "sema_id": "sema:Roadmap#mh:SHA-256:062bd20d601f75cacd94049e8cc370b592fc937579bc200382801f2849cf6fd4",
+  "sema_ref": "Roadmap#062b",
+  "sema_stub": "062b",
   "dependencies": {
     "references": {
-      "goal": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
+      "goal": "sema:Goal#mh:SHA-256:b011159e6135b97ac191b4a06846af58c55af37a977aaf58c1e3556457538808",
+      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd"
     }
   },
   "sema_layer": "Mind",

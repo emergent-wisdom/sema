@@ -1,19 +1,20 @@
 {
   "handle": "Dialectic",
-  "mechanism": "Internal reasoning process where an agent pits a Thesis against an Antithesis to generate a {{synthesis}}. Unlike Socratic questioning (which queries the user), Dialectic queries a simulated Critic Persona within the agent's own context. It instantiates a {{perspective_ensemble}} where one voice acts as Thesis and another uses {{steelman_check}} to construct the Antithesis.",
+  "mechanism": "Internal reasoning process where an agent pits a thesis against an antithesis to generate a {{synthesis}}. Unlike Socratic questioning (which queries the user), Dialectic queries a simulated critic persona within the agent's own context. It instantiates a {{perspective_ensemble}} where one voice holds the thesis and another uses {{steelman_check}} to construct the antithesis.",
   "gloss": "Internal Thesis-Antithesis-Synthesis loop",
   "failure_modes": [
-    "Infinite Regress: Thesis and Antithesis loop without converging.",
-    "Strawman Critic: The generated Antithesis is too weak to improve the Thesis."
+    "Budget exhausted: the `rounds` cap is reached with neither a synthesis nor a refutation.",
+    "Strawman critic: the antithesis is too weak to improve the thesis. Low `temperature` produces this by setting."
   ],
   "invariants": [
-    "{{synthesis}} Quality: {{synthesis}} must resolve at least one contradiction found in Antithesis."
+    "Terminates in a {{synthesis}} naming the contradiction it resolves, or a refutation naming the one that defeated the thesis.",
+    "The antithesis identifies the specific claim of the thesis it contradicts."
   ],
   "preconditions": [
     "Initial Thesis generated"
   ],
   "postconditions": [
-    "Refined {{synthesis}} generated"
+    "Either a refined {{synthesis}} naming what it resolved, or a refutation naming what defeated the thesis"
   ],
   "parameters": [
     {
@@ -33,23 +34,24 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242"
+      "sema:Dialectic#mh:SHA-256:bc186b7126746e11187381e73aa67e712c6f0cfb87e47fd3ef9b090a60bee242",
+      "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1",
-  "sema_ref": "Dialectic#b5d0",
-  "sema_stub": "b5d0",
+  "sema_id": "sema:Dialectic#mh:SHA-256:92d9645bd1975c9f6649949089375bb27f7c1a64bc788b88da96df113e9bdc3e",
+  "sema_ref": "Dialectic#92d9",
+  "sema_stub": "92d9",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:a3751589f3c4ae8bef8b516350726551aad5c9ec9421d56f57dd43b0ad30faf0"
     },
     "references": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc",
-      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:b2d85f2746f5a8186df8b91ce8cfa80008d6c808d7e11d9defb78e43bc1b6662",
+      "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
     }
   },
   "sema_layer": "Mind",

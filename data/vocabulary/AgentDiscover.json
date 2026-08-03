@@ -23,24 +23,25 @@
     "ring": 1,
     "supersedes": [
       "sema:AgentDiscover#mh:SHA-256:34b6d87b981ecbdcbd082e7316de5a8b5b98899eb35dff4747a48bdaadbe5424",
-      "sema:AgentDiscover#mh:SHA-256:d88a7f9c1d65eda254b0cb54552da55832d849a23049c48a045059d9d24c2bf2"
+      "sema:AgentDiscover#mh:SHA-256:d88a7f9c1d65eda254b0cb54552da55832d849a23049c48a045059d9d24c2bf2",
+      "sema:AgentDiscover#mh:SHA-256:73ca095c570d4eae2bb90aa8f768e5aa3f332f8c97005980f3fdf330a63a1845"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentDiscover#mh:SHA-256:73ca095c570d4eae2bb90aa8f768e5aa3f332f8c97005980f3fdf330a63a1845",
-  "sema_ref": "AgentDiscover#73ca",
-  "sema_stub": "73ca",
+  "sema_id": "sema:AgentDiscover#mh:SHA-256:4c065023ac112f67110bb86da2fb04975fa8e923e7543b717e0bea6cca6d08eb",
+  "sema_ref": "AgentDiscover#4c06",
+  "sema_stub": "4c06",
   "signature": [
     "Discover(Agent)"
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "card": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
-      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "card": "sema:Card#mh:SHA-256:39f7f9ebde6429be53f51f65aa710c4e9f5137010c175c73af2bea809b141512",
+      "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b"
     }
   },
   "sema_layer": "Society",

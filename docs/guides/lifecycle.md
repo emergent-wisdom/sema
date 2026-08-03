@@ -44,7 +44,7 @@ If any check fails, nothing is applied. Fix and re-run.
 
 When validation passes, the system computes the pattern's identity via a **recursive Merkle tree** over 11 semantic fields:
 
-`mechanism`, `gloss`, `derived_from`, `dependencies` (recursive), `parameters`, `data_schema`, `signature`, `invariants`, `preconditions`, `postconditions`, `failure_modes`
+`mechanism`, `gloss`, `extends`, `dependencies` (recursive), `parameters`, `data_schema`, `signature`, `invariants`, `preconditions`, `postconditions`, `failure_modes`
 
 The result is a deterministic SHA-256 root hash:
 
@@ -63,6 +63,20 @@ sema apply --add data/staging/MyPattern.json
 ```
 
 This writes the pattern to `taxonomy.db`, the **single source of truth** for the vocabulary. The staging file can be deleted after a successful apply — the data now lives in the database.
+
+An `extends` reference is different from an ordinary dependency: it names the
+exact parent definition against which the child was authored. The current
+workspace stores one active definition per handle, so a parent update that
+would strand a child is rejected before any mutation. After review, stage the
+children you intend to move and retarget only those staged cards:
+
+```bash
+sema apply --add data/staging/ --retarget-extends
+```
+
+The protocol permits an older pin only while that full parent Sema ID remains
+resolvable. The current database does not retain historical definitions, so it
+cannot keep such a pin locally; durable historical storage is future work.
 
 Atomic add+remove is also supported for replacements:
 
@@ -270,7 +284,7 @@ You can also dry-run (`--dry-run`) or validate-only (`--check`).
 | Hash | (automatic during apply) | pattern fields | `sema_id` |
 | Apply | `sema apply --add` | staging JSON | `taxonomy.db` row |
 | Export | `scripts/export/export_sema.py` | `taxonomy.db` | `data/vocabulary/*.json` |
-| Hooks | `scripts/setup_hooks.sh` | DB state | updated Merkle root + reference |
+| Hooks | `scripts/setup_hooks.sh` | DB state | updated semantic-set root, catalog root, and references |
 | Distribute | `pip install semahash` / git | wheel / repo | user's local copy |
 | Pull | `sema pull` | registry | local `taxonomy.db` |
 | Rebuild | `scripts/rebuild_db.sh` | `data/vocabulary/*.json` | `taxonomy.db` |

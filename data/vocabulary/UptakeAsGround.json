@@ -21,20 +21,21 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead"
+      "sema:UptakeAsGround#mh:SHA-256:d5f3a2b2643f030c2290341c45c40cf86a29c7981e0dfcf097435a3a70b72ead",
+      "sema:UptakeAsGround#mh:SHA-256:c6caf6df2b735657fed6b551af0f9fb18896d24be03a45b384723951d06c672b"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:UptakeAsGround#mh:SHA-256:c6caf6df2b735657fed6b551af0f9fb18896d24be03a45b384723951d06c672b",
-  "sema_ref": "UptakeAsGround#c6ca",
-  "sema_stub": "c6ca",
+  "sema_id": "sema:UptakeAsGround#mh:SHA-256:038ceecb648f08a4f6782bf5ba83a5b2db0eb17fe8086521d79e80f88ba212f4",
+  "sema_ref": "UptakeAsGround#038c",
+  "sema_stub": "038c",
   "dependencies": {
     "references": {
-      "modest_claim": "sema:ModestClaim#mh:SHA-256:c00b37f51471b8820b17447d652af2a338ceebb1ca140fcdd216b52cd204cdc6",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "modest_claim": "sema:ModestClaim#mh:SHA-256:f6a380c6dfd92c2c2a1aca44babfb8e6bc63a43780e7a8c6c07837c8c3f5a837",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Society",

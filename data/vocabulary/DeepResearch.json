@@ -1,6 +1,6 @@
 {
   "handle": "DeepResearch",
-  "mechanism": "An autonomous research pipeline with four stages: (1) Planning - decompose query into research questions, (2) Multi-Round Search - iteratively search, identify gaps, refine queries, (3) {{synthesis}} - integrate findings across sources, resolve contradictions, (4) Report - generate comprehensive analytical report with citations. The agent loops between search and synthesis until coverage is sufficient. It chains {{discover}} for breadth and {{retrieval_augment}} for depth, orchestrated by the {{deep}} primitive to ensure rigor.",
+  "mechanism": "An autonomous research pipeline with four stages: (1) Planning - decompose query into research questions, (2) Multi-Round Search - iteratively search, identify gaps, refine queries, (3) {{synthesis}} - integrate findings across sources, resolve contradictions, (4) Report - generate an analytical report with citations. Loops between search and synthesis until a round surfaces nothing new or the round bound is reached. Chains {{discover}} for breadth and {{retrieval_augment}} for depth, orchestrated by {{deep}}.",
   "gloss": "Plan-search-synthesize-report research pipeline",
   "failure_modes": [
     "Source {{cognitive_bias}}: Over-relying on first sources found.",
@@ -8,41 +8,44 @@
     "Premature Closure: Stopping search before finding contradicting evidence."
   ],
   "invariants": [
-    "Information synthesized from multiple disparate sources",
-    "Search depth > 1"
+    "Findings are synthesized across sources that do not derive from one another.",
+    "More than one search round; the value is in the gap-detection between them.",
+    "Every claim in the report names the sources it rests on.",
+    "The loop ends on a dry round or the round bound, and which one is recorded."
   ],
   "preconditions": [
     "Access to external knowledge base",
-    "Broad user query"
+    "A question that one source cannot settle"
   ],
   "postconditions": [
-    "Citations included",
-    "Comprehensive report generated"
+    "A report in which each claim names its sources",
+    "The reason the loop stopped is recorded"
   ],
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d"
+      "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
+      "sema:DeepResearch#mh:SHA-256:a0583250bce8e627c58247bd2dba4de9d9fb9ffabf0a36c66eceb7ddebee4577"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:DeepResearch#mh:SHA-256:e060e22da824f730c3b21f232e087babd447395ed3190509aab22101f4480d86",
-  "sema_ref": "DeepResearch#e060",
-  "sema_stub": "e060",
+  "sema_id": "sema:DeepResearch#mh:SHA-256:f72c9475cc2618f0f889a5360cb84e9028b8a8c3145c64a83b324deec01478db",
+  "sema_ref": "DeepResearch#f72c",
+  "sema_stub": "f72c",
   "signature": [
     "Deep(Discover)"
   ],
   "dependencies": {
     "references": {
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "deep": "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824",
-      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63",
-      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
+      "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
+      "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:38b5f79327ae49c0c27ad01c0a136bb1c995d319c69ef55ca6283dab4cfba627",
+      "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
     }
   },
   "sema_layer": "Mind",

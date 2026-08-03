@@ -13,14 +13,16 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:MonitorReport#mh:SHA-256:e239e925f7a7aea755f1f1ee2c2b97245ef628ca9647726fc8995ee6e96afa0b",
-  "sema_ref": "MonitorReport#e239",
-  "sema_stub": "e239",
+  "sema_id": "sema:MonitorReport#mh:SHA-256:ef8eb14dc742f1f936915d8d17899e35cb0a400968f7e8c6a150a84fe35422f3",
+  "sema_ref": "MonitorReport#ef8e",
+  "sema_stub": "ef8e",
   "data_schema": {
     "type": "object",
     "required": [
       "manifest_ref",
-      "metrics"
+      "metrics",
+      "definition_of_done",
+      "deviation"
     ],
     "properties": {
       "manifest_ref": {
@@ -39,6 +41,20 @@
         "type": "object",
         "description": "Difference from expected state"
       }
+    }
+  },
+  "invariants": [
+    "Names the {{rollout_manifest}} whose deployment it reports on.",
+    "Carries the definition of done it compared against; a report with no criterion compares nothing.",
+    "States the deviation from expected state, empty if there is none."
+  ],
+  "failure_modes": [
+    "Criterion drift: the definition of done is rewritten after the metrics arrive, so the comparison always passes.",
+    "Silent success: an empty deviation is reported without recording which criteria were checked."
+  ],
+  "dependencies": {
+    "references": {
+      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10"
     }
   },
   "sema_layer": "Infrastructure",

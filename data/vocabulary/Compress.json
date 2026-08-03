@@ -1,10 +1,11 @@
 {
   "handle": "Compress",
-  "mechanism": "Reducing information size while preserving essential meaning.",
+  "mechanism": "Reducing the size of information while preserving the meaning that matters to its consumer. Which meaning matters is the caller's to state; whether the reduction can be undone is the compressor's to declare. No coder shrinks every input.",
   "gloss": "Lossy or lossless reduction",
   "invariants": [
-    "Size Reduction: Output size must be strictly less than Input size.",
-    "Reconstructability: (For lossless) Inverse(Output) == Input."
+    "States whether exact reconstruction of its input is available.",
+    "Where reconstruction is declared available, Inverse(Output) == Input bit-for-bit.",
+    "A compressor that cannot reduce an input reports that rather than emitting an expanded output as compressed."
   ],
   "_meta": {
     "tier": 1,
@@ -14,9 +15,9 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
-  "sema_ref": "Compress#b50f",
-  "sema_stub": "b50f",
+  "sema_id": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
+  "sema_ref": "Compress#b585",
+  "sema_stub": "b585",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

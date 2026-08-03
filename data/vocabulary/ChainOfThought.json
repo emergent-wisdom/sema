@@ -3,8 +3,8 @@
   "mechanism": "The canonical implementation of sequential reasoning. Instantiates the '{{think}}' primitive with a linear '{{chain}}' {{topology}}. Elicits a step-by-step derivation of the answer to improve accuracy and transparency. It implements the {{think}} primitive as a linear {{chain}}, optionally invoking {{step_back}} or {{reflexion}} to self-correct during the derivation.",
   "gloss": "Step-by-step reasoning (Macro for Think(Chain))",
   "invariants": [
-    "Inherits invariants from {{think}} and {{chain}}",
-    "Reasoning Before Answer: Intermediate steps must precede final conclusion"
+    "Reasoning before answer: intermediate steps precede the final conclusion.",
+    "Steps form a single linear chain; the topology does not branch."
   ],
   "_meta": {
     "tier": 2,
@@ -14,28 +14,29 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c"
+      "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
+      "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
-  "sema_ref": "ChainOfThought#c425",
-  "sema_stub": "c425",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:a23ad694e67d7f57a7150f1d1d4d7be21369472d24c9d49a0aad0768411bbff9",
+  "sema_ref": "ChainOfThought#a23a",
+  "sema_stub": "a23a",
   "signature": [
     "Think(Chain)"
   ],
   "dependencies": {
     "composes_with": {
-      "reflexion": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83",
-      "step_back": "sema:StepBack#mh:SHA-256:03a2c92c8a3ac767de7605363cb7948513e4a8a018f8995dc34176fa03794f00"
+      "reflexion": "sema:Reflexion#mh:SHA-256:acb68502b3f5bf0f8430e2adaa46b88b631385db91b30c674c3f745dfc1f0263",
+      "step_back": "sema:StepBack#mh:SHA-256:f3457758c4422538953f065b630718b766104ce13d0979c573fe55e5d1ad27b1"
     },
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },
   "sema_layer": "Mind",

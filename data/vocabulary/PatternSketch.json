@@ -20,20 +20,21 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:PatternSketch#mh:SHA-256:f8fd94a51759adfbabbf38b704d132e010071b3aceb6b3e2378be9a0823336d2"
+      "sema:PatternSketch#mh:SHA-256:f8fd94a51759adfbabbf38b704d132e010071b3aceb6b3e2378be9a0823336d2",
+      "sema:PatternSketch#mh:SHA-256:645a57786fb81774821f2236af08b0ef9b28de93a044d2a3ea48915c43be9f21"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:PatternSketch#mh:SHA-256:645a57786fb81774821f2236af08b0ef9b28de93a044d2a3ea48915c43be9f21",
-  "sema_ref": "PatternSketch#645a",
-  "sema_stub": "645a",
+  "sema_id": "sema:PatternSketch#mh:SHA-256:cf2c6ada0a49756e241ee3a0b402316fdb3bdf35272e909442a8bfb8a2ac8fc1",
+  "sema_ref": "PatternSketch#cf2c",
+  "sema_stub": "cf2c",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:d1de76d91f7ffcd0d27396b6b2e1cf638d5caab161280628d8254e00b5b6e60f"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "skeleton_of_thought": "sema:SkeletonOfThought#mh:SHA-256:35d3671e38652973a5da46a25d33015b7b84e2321a65f5958a19b833d88c3dcc"
     }
   },
   "sema_layer": "Society",

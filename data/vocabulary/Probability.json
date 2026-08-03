@@ -13,6 +13,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Probability#mh:SHA-256:850f439bbe870068f2129226975bb980e6714af43e55295a5b9dff7fed40f133"
     ]
   },
   "data_schema": {
@@ -21,12 +24,12 @@
     "maximum": 1,
     "description": "Probability value between 0 and 1"
   },
-  "sema_ref": "Probability#850f",
-  "sema_id": "sema:Probability#mh:SHA-256:850f439bbe870068f2129226975bb980e6714af43e55295a5b9dff7fed40f133",
-  "sema_stub": "850f",
+  "sema_ref": "Probability#d165",
+  "sema_id": "sema:Probability#mh:SHA-256:d16533629fc1edf3af11e947ff110077d224eae3176315e57732652ea8072102",
+  "sema_stub": "d165",
   "dependencies": {
     "references": {
-      "event": "sema:Event#mh:SHA-256:035497ae50cbbc61e245e1116f6e9b4a6e3c73aa41252052e8dd74a4dde35b96"
+      "event": "sema:Event#mh:SHA-256:36757bd8344e1fd7161bd2f23d6588180fbaaf9cff5ef8be8a205effbf4438b6"
     }
   },
   "sema_layer": "Infrastructure",

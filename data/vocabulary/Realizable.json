@@ -6,8 +6,9 @@
     "Judge(Value)"
   ],
   "invariants": [
-    "Causality: No step can precede its dependencies.",
-    "Grounding: All leaf nodes must terminate in known primitives."
+    "Causality: no {{step}} precedes its dependencies. Topological order, not sequence \u2014 independent steps may run concurrently.",
+    "Every leaf terminates in a primitive drawn from a stated set of what is available.",
+    "The verdict is rendered against a stated {{budget}} and names it."
   ],
   "failure_modes": [
     "Hidden Complexity: A step looks simple ('Draw the rest of the owl') but contains unsolved sub-problems.",
@@ -17,21 +18,23 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039"
+      "sema:Realizable#mh:SHA-256:cf006ab5a950cea6c7a9130ea7330c57d0a6b440f37d57f598ed71d84a4f3039",
+      "sema:Realizable#mh:SHA-256:42f8270af6b0361a440bf86d1ece23a0117d34f504d9db576f30f67cf04815b3"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "Realizable#42f8",
-  "sema_id": "sema:Realizable#mh:SHA-256:42f8270af6b0361a440bf86d1ece23a0117d34f504d9db576f30f67cf04815b3",
-  "sema_stub": "42f8",
+  "sema_ref": "Realizable#f7d7",
+  "sema_id": "sema:Realizable#mh:SHA-256:f7d70197798bc3720a676749c890727589f994b82aad6efc0752f73c43c01c5f",
+  "sema_stub": "f7d7",
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
-      "step": "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "judge": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4",
+      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
+      "step": "sema:Step#mh:SHA-256:fa207e6f70e14a67e3baa7e4ad4df9ece59ba4d07083fbbcc992332959e1520a",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

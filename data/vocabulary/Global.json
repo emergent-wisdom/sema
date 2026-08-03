@@ -1,6 +1,6 @@
 {
   "handle": "Global",
-  "mechanism": "Scope modifier indicating that a concept or operation applies to the entire system or context, rather than a local subset.",
+  "mechanism": "A marker interface. A pattern tagged 'Global' applies across the whole of the system or context that contains it, rather than to a subset \u2014 Global(Policy) binds every party, a local policy binds one. It marks SCOPE, not universality: what counts as 'the whole' is fixed by the containing context, so a Global tag inside one system says nothing about any other. Carried by descendants as a modifier; it is not instantiated on its own.",
   "gloss": "System-wide scope",
   "_meta": {
     "tier": 1,
@@ -10,9 +10,13 @@
       "Protocols"
     ]
   },
-  "sema_id": "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959",
-  "sema_ref": "Global#75a2",
-  "sema_stub": "75a2",
+  "sema_id": "sema:Global#mh:SHA-256:330166f5c16b13500d92d26d0e58ad24657bebccbe295ff8108f363d3539034d",
+  "sema_ref": "Global#3301",
+  "sema_stub": "3301",
   "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_category": "Protocols",
+  "invariants": [
+    "The extent of 'global' is the containing context's boundary, which must be identifiable.",
+    "Non-instantiable: Global tags another pattern and has no standalone instance."
+  ]
 }

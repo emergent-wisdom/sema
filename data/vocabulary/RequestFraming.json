@@ -1,6 +1,5 @@
 {
   "handle": "RequestFraming",
-  "derived_from": "sema:Interpret#mh:SHA-256:c9ee95cb7bd89112c0976c66c31f75cabf366786a388ff3c2b35145890a05c3f",
   "gloss": "Clarify intent and constraints before planning",
   "mechanism": "The initial state of workflow orchestration. It performs the act of {{interpret}} by accepting a {{message}} and using {{think}} to {{understand}} the 'real ask' within the given {{context}} before committing resources. The pattern enforces {{context_first}}: no resource commitment is permitted until the frame is resolved. It clarifies constraints, success criteria, and hidden assumptions, producing a {{frame_spec}} artifact. It acts as a semantic firewall against vague or dangerous instructions.",
   "signature": [
@@ -31,31 +30,33 @@
       "Decompose"
     ],
     "supersedes": [
-      "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e"
+      "sema:RequestFraming#mh:SHA-256:06954d95bc467b00eb0c969004db3174bff5dfc5c05733df2036605c835b6a5e",
+      "sema:RequestFraming#mh:SHA-256:e9739d11444b84d2d5cf63a9a878db9b17ba68598a2ee2bd5c4e85a0e9fdb76c"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:RequestFraming#mh:SHA-256:e9739d11444b84d2d5cf63a9a878db9b17ba68598a2ee2bd5c4e85a0e9fdb76c",
-  "sema_ref": "RequestFraming#e973",
-  "sema_stub": "e973",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:172fa9c473b3d6dff3316186642f749e8d3b1a891263631b202f585eb7c1a066",
+  "sema_ref": "RequestFraming#172f",
+  "sema_stub": "172f",
+  "extends": "sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa",
   "dependencies": {
     "accepts": {
-      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea"
+      "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237"
     },
     "composes_with": {
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5",
-      "understand": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a"
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025",
+      "understand": "sema:Understand#mh:SHA-256:f1fc5d9393f995d27a648ad6a8e4bcd81c7d117e5d64c535da706feac7e87334"
     },
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "context_first": "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
-      "interpret": "sema:Interpret#mh:SHA-256:ff6daf0b5967deb7da11c1a2ea74ce7e6ab9baf6362a53045bff656b0c5671dc"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "context_first": "sema:ContextFirst#mh:SHA-256:e02406c0ef30bb62df90e4c29f32e1a64129da68c324f6a2d929a831602a7176",
+      "interpret": "sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa"
     },
     "yields": {
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e"
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631"
     }
   },
   "sema_layer": "Mind",

@@ -1,13 +1,14 @@
 {
   "handle": "CommitmentDevice",
-  "mechanism": "Future Self Binding: Anticipate that future self will face temptation or weakness. Remove future options by present action. Examples: delete the app, announce publicly, create penalty for deviation. Cost of breaking commitment must exceed temptation value. It constructs an {{oath_bind}} contract that penalizes future deviation from the chosen path.",
+  "mechanism": "Anticipate that future self will face temptation or weakness. Remove future options by present action. Examples: delete the app, announce publicly, create penalty for deviation. Cost of breaking commitment must exceed temptation value. It constructs an {{oath_bind}} contract that penalizes future deviation from the chosen path.",
   "gloss": "Pre-commitment against hyperbolic discounting",
   "failure_modes": [
-    "Over-commitment: Binding too early locks out legitimate pivots when new information arrives."
+    "Over-commitment: Binding too early locks out legitimate pivots when new information arrives.",
+    "Silent lapse: the penalty was sufficient at binding time and is no longer \u2014 temptation grew, the penalty's value decayed, or the enforcing party stopped enforcing. Nothing in the device detects this, so a lapsed commitment continues to read as binding."
   ],
   "invariants": [
-    "Binding: Cost(Breaking) > Benefit(Breaking)",
-    "Irrevocability: {{agent}} cannot unilaterally remove the constraint"
+    "The cost of deviation is stated in advance and enforceable by a party other than the committer.",
+    "Irrevocability: {{agent}} cannot unilaterally remove the constraint."
   ],
   "preconditions": [
     "{{agent}} expects future preference reversal (hyperbolic discounting)"
@@ -21,16 +22,17 @@
     "caution": "Removes future options by design \u2014 can trap agent in suboptimal commitment.",
     "supersedes": [
       "sema:CommitmentDevice#mh:SHA-256:074b03c077f07b24dd1eb5427579069b4caaf6353759aa1c7affcdab79258ced",
-      "sema:CommitmentDevice#mh:SHA-256:b706eb4f41562594083392b3100c37ba37fa19524ac0fb409b289be8e483774b"
+      "sema:CommitmentDevice#mh:SHA-256:b706eb4f41562594083392b3100c37ba37fa19524ac0fb409b289be8e483774b",
+      "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4",
-  "sema_ref": "CommitmentDevice#dbdb",
-  "sema_stub": "dbdb",
+  "sema_id": "sema:CommitmentDevice#mh:SHA-256:f61d8e05ef8467904005de47e9a67777d0db40b8f5897926f725e7e0f3261e8a",
+  "sema_ref": "CommitmentDevice#f61d",
+  "sema_stub": "f61d",
   "data_schema": {
     "type": "object",
     "required": [
@@ -54,8 +56,8 @@
   },
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "oath_bind": "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "oath_bind": "sema:OathBind#mh:SHA-256:bada7df16950f70db3126b95f62870e2c905aafe7bac54d0c1c196b601a61a28"
     }
   },
   "sema_layer": "Mind",

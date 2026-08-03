@@ -4,7 +4,8 @@
     "type": "object",
     "required": [
       "root_set",
-      "subsets"
+      "subsets",
+      "completeness_proof"
     ],
     "properties": {
       "root_set": {
@@ -17,20 +18,25 @@
       },
       "completeness_proof": {
         "type": "string",
-        "description": "Logic ensuring exhaustiveness"
+        "description": "How exhaustiveness was established, including the disposition of edge cases. Required because an unevidenced exhaustiveness claim is what False Exclusivity below consists of."
+      },
+      "criterion": {
+        "type": "string",
+        "description": "The single dimension this level partitions along."
       }
     }
   },
-  "mechanism": "Exhaustive Partition: Divide problem space into categories that are Mutually Exclusive (no overlap) and Collectively Exhaustive (no gaps). Test: Can any item belong to two categories? Is any item uncategorized? Refine until both tests pass.",
+  "mechanism": "Exhaustive partition. Divide the problem space along one stated criterion into categories that are Mutually Exclusive (no overlap) and Collectively Exhaustive (no gaps). Test: can any item belong to two categories? Is any item uncategorized? Refine until both pass.",
   "gloss": "Mutually Exclusive, Collectively Exhaustive partitioning",
   "failure_modes": [
-    "The Other Bucket Trap: 'Misc' category exceeds threshold.",
-    "Dimensional Error: Partitioning criteria mixed (e.g., Color vs Origin).",
-    "False Exclusivity: Edge cases ignored to force fit."
+    "The Other Bucket Trap: 'Misc' exceeds `misc_tolerance`, so the partition covers the space without describing it.",
+    "Dimensional Error: partitioning criteria mixed, e.g. Colour beside Origin.",
+    "False Exclusivity: edge cases quietly assigned to force a fit."
   ],
   "invariants": [
-    "Exclusivity: Intersection(Subset_i, Subset_j) == NULL",
-    "Exhaustiveness: Union(Subsets) == UniversalSet"
+    "Exclusivity: Intersection(Subset_i, Subset_j) == NULL.",
+    "Exhaustiveness: Union(Subsets) == UniversalSet, with any 'Other' subset within `misc_tolerance`.",
+    "The subsets at a level partition along a single stated dimension."
   ],
   "parameters": [
     {
@@ -57,9 +63,9 @@
       "Data Structures"
     ]
   },
-  "sema_id": "sema:MECE#mh:SHA-256:da19e78dcf447f07e12eca8703f1992fe96f3b0d9b06d42dc349e11dad4ad23f",
-  "sema_ref": "MECE#da19",
-  "sema_stub": "da19",
+  "sema_id": "sema:MECE#mh:SHA-256:ae1975b15fa25939a85a231371adec3b2431658837ad7ada72315f64b849cb78",
+  "sema_ref": "MECE#ae19",
+  "sema_stub": "ae19",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

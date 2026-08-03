@@ -36,22 +36,23 @@
     "ring": 2,
     "supersedes": [
       "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991",
-      "sema:BeliefTracking#mh:SHA-256:65b5f43b911ac5cf11622c6e4c4fa89457541630ec72f1f387394d5ad8afff14"
+      "sema:BeliefTracking#mh:SHA-256:65b5f43b911ac5cf11622c6e4c4fa89457541630ec72f1f387394d5ad8afff14",
+      "sema:BeliefTracking#mh:SHA-256:6f91264f8bcb9a1eba37e37adf40c9fe779135fb88b8a7748de81c9f76c75c76"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:BeliefTracking#mh:SHA-256:6f91264f8bcb9a1eba37e37adf40c9fe779135fb88b8a7748de81c9f76c75c76",
-  "sema_ref": "BeliefTracking#6f91",
-  "sema_stub": "6f91",
+  "sema_id": "sema:BeliefTracking#mh:SHA-256:6b3779ede40f35044e0d8ae07cfcf2f4fee35a9ee4284a5cc11ddda5566c049b",
+  "sema_ref": "BeliefTracking#6b37",
+  "sema_stub": "6b37",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "belief": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "belief": "sema:Belief#mh:SHA-256:9ef77d9fc26e2deb274f5f8d273cd8e06004a7ef3859863226920b7f06bb71f8",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:41a9f896757eb4b0d7132604b60e0193eaba43329953359ef5e927f69112f8df"
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:a4c74ab236ddd0939db90b2d2dab9c21527bb7b488344339f434c0a5fd4c50c9"
     }
   },
   "sema_layer": "Mind",

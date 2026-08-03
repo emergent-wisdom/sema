@@ -19,13 +19,17 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Sandbox#mh:SHA-256:64c9d03cda865610bcc3792d3aa8f6c80c8b347e6ee1f6d7bb01479a0a38231d",
-  "sema_ref": "Sandbox#64c9",
-  "sema_stub": "64c9",
+  "sema_id": "sema:Sandbox#mh:SHA-256:7106e315b4bf7c5bd418fbab5c18e54be940367f77b8bde4756d1cb95beaa16b",
+  "sema_ref": "Sandbox#7106",
+  "sema_stub": "7106",
   "failure_modes": [
     "Unconstrained vector permits escape from the isolation boundary.",
     "Resource exhaustion within the sandbox affects the enclosing system."
   ],
   "sema_layer": "Infrastructure",
-  "sema_category": "Primitives"
+  "sema_category": "Primitives",
+  "invariants": [
+    "No effect crosses the isolation boundary except through a declared channel.",
+    "Resources consumed inside are bounded independently of the enclosing system."
+  ]
 }

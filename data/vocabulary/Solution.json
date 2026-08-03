@@ -9,7 +9,8 @@
   ],
   "invariants": [
     "Immutability: Once finalized, {{artifact}} and Provenance cannot be modified.",
-    "Traceability: Provenance must be cryptographically signed by the Creator."
+    "Provenance attributes the Solution to its Creator and the time of creation.",
+    "Where the Creator is untrusted, attribution is cryptographically signed."
   ],
   "preconditions": [
     "{{artifact}} generated",
@@ -18,19 +19,12 @@
   "postconditions": [
     "Solution sealed and ready for transport"
   ],
-  "parameters": [
-    {
-      "name": "confidence",
-      "type": "Probability",
-      "range": "[0.0, 1.0]",
-      "description": "Self-assessed reliability"
-    }
-  ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806"
+      "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
+      "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
     ],
     "path": [
       "Infrastructure",
@@ -85,18 +79,18 @@
       }
     }
   },
-  "sema_id": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-  "sema_ref": "Solution#4844",
-  "sema_stub": "4844",
+  "sema_id": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+  "sema_ref": "Solution#6bd0",
+  "sema_stub": "6bd0",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "tree": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
+      "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec",
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Infrastructure",

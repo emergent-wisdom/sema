@@ -1,15 +1,16 @@
 {
   "handle": "DepthGovernor",
-  "mechanism": "Entropy-Bounded Recursion: Decomposition depth is not fixed but governed by informational entropy. {{agent}} measures uncertainty of current {{plan}}. If entropy > action_cost_threshold, {{decompose}} further. If entropy < threshold, execute. Stop thinking when uncertainty drops below action cost. Depth is a function of ambiguity, not arbitrary limits. It acts as the termination {{condition}} for {{recursion_dive}}, halting descent when informational entropy drops below the threshold.",
+  "mechanism": "Entropy-Bounded Recursion: Decomposition depth is not fixed but governed by informational entropy. {{agent}} measures uncertainty of current {{plan}}. If entropy exceeds `entropy_threshold`, {{decompose}} further; below it, execute. Stop thinking when uncertainty drops below action cost. Depth is a function of ambiguity, bounded by `max_depth` only as a backstop. It acts as the termination {{condition}} for {{recursion_dive}}, halting descent when informational entropy drops below the threshold.",
   "gloss": "Entropy-based stopping condition for recursion",
   "failure_modes": [
-    "Ambiguity {{loop}}: Entropy never drops because the {{problem}} is inherently subjective (e.g., Write a good poem).",
-    "Miscalculating entropy leads to premature action.",
-    "Infinite regression on high-ambiguity paradoxes.",
-    "Entropy estimation itself has computational cost."
+    "Ambiguity {{loop}}: entropy never drops because the {{problem}} is inherently subjective, so descent runs to `max_depth` and acts on an unresolved plan.",
+    "Miscalculated entropy leads to premature action.",
+    "Estimation overhead: measuring entropy costs more than the decomposition it avoids."
   ],
   "invariants": [
-    "Governor cannot be bypassed."
+    "The governor cannot be bypassed.",
+    "Descends only while entropy exceeds `entropy_threshold`.",
+    "Never descends past `max_depth`, whatever the entropy."
   ],
   "parameters": [
     {
@@ -30,25 +31,26 @@
     "ring": 0,
     "supersedes": [
       "sema:DepthGovernor#mh:SHA-256:ea1ab9913430c0a8b04f517766edabfe7e29239eec6626731c69048d7334b480",
-      "sema:DepthGovernor#mh:SHA-256:54316ce66cc6934c617842a5453bfeccfb2f11d6eb7c337986c52d3d3050087e"
+      "sema:DepthGovernor#mh:SHA-256:54316ce66cc6934c617842a5453bfeccfb2f11d6eb7c337986c52d3d3050087e",
+      "sema:DepthGovernor#mh:SHA-256:a3e937d651c99333315d333034b3a3be136376bfc1a5139cc758f218640cfc87"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:DepthGovernor#mh:SHA-256:a3e937d651c99333315d333034b3a3be136376bfc1a5139cc758f218640cfc87",
-  "sema_ref": "DepthGovernor#a3e9",
-  "sema_stub": "a3e9",
+  "sema_id": "sema:DepthGovernor#mh:SHA-256:3194bbfedde12a55fa41623cf4e581bc7881dc66822a9d160492191a35c3194b",
+  "sema_ref": "DepthGovernor#3194",
+  "sema_stub": "3194",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
-      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921"
+      "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926",
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:fb5a2250a43ea78552a7ce76fbca473e5eb6df3126d2473a56007ba9f28b79b8"
     }
   },
   "sema_layer": "Mind",

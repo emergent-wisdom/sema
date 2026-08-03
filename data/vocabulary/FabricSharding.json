@@ -3,10 +3,13 @@
   "mechanism": "Applies {{shard}} across orthogonal dimensions (e.g., Spatial, Temporal, Semantic). Agents subscribe only to dimensions relevant to their function ('Slices'). It enables massive {{parallelize}} by decoupling {{state}} into orthogonal dimensions.",
   "gloss": "Interlocking state threads",
   "failure_modes": [
-    "Cross-thread coordination latency."
+    "Cross-thread coordination latency grows with the number of dimensions a read spans.",
+    "False orthogonality: two dimensions correlate, so partitioning by both buys no parallelism."
   ],
   "invariants": [
-    "Domain must be orderable or partitionable."
+    "The dimensions sharded across are orthogonal: a key in one does not determine a key in another.",
+    "An agent subscribes only to the dimensions its function needs.",
+    "Each dimension's domain is orderable or partitionable."
   ],
   "parameters": [
     {
@@ -32,20 +35,21 @@
     "tier": 2,
     "ring": 0,
     "supersedes": [
-      "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b"
+      "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b",
+      "sema:FabricSharding#mh:SHA-256:25d27106d786155e3fda6f31260d2a56bd2e936df771d7e5d755a65676f12248"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:25d27106d786155e3fda6f31260d2a56bd2e936df771d7e5d755a65676f12248",
-  "sema_ref": "FabricSharding#25d2",
-  "sema_stub": "25d2",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:53dc08c730170ca7a287304f2bcf1f1e04edad2da73998180cf722009d309b74",
+  "sema_ref": "FabricSharding#53dc",
+  "sema_stub": "53dc",
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf",
-      "shard": "sema:Shard#mh:SHA-256:328e51de920cace286a054e313321ff188e34a90d9e5dc8fca1eb2df24baded0",
+      "parallelize": "sema:Parallelize#mh:SHA-256:8c3111560f3dfc0494627bd053d42f650dc0a2bf8a36ed7163efd00a38a3b154",
+      "shard": "sema:Shard#mh:SHA-256:0c7f0ca5c9169b77bacc5825c072dcb9eef3ff7ceee76a4a2bdbc9ebedaceaa3",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

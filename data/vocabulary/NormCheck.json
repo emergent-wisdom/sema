@@ -33,26 +33,27 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:NormCheck#mh:SHA-256:82223036f2aa91c261189aa21bb0a61a98d10cfb6f613eaf760e8635af2e30e7"
+      "sema:NormCheck#mh:SHA-256:82223036f2aa91c261189aa21bb0a61a98d10cfb6f613eaf760e8635af2e30e7",
+      "sema:NormCheck#mh:SHA-256:b3a0c556a3b52cdd3b366f6494e2d93b3a105434f18f5b913f53164d02868424"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:NormCheck#mh:SHA-256:53087eaa90c2c9b379ecc0cfe7cd67bcc02e42deb7022e8fc300a87fa75c092b",
-  "sema_ref": "NormCheck#5308",
-  "sema_stub": "5308",
+  "sema_id": "sema:NormCheck#mh:SHA-256:41a9e64bf921f4edc845f80d372205e02b0762baaa968e46ee0ab557ef5ac163",
+  "sema_ref": "NormCheck#41a9",
+  "sema_stub": "41a9",
   "signature": [
     "Check(Value)"
   ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "normative_judge": "sema:NormativeJudge#mh:SHA-256:4b394d0d33f4d6f7e8fa2566ffa4d8cc17090b55c49c69fe7dbc66dc82b2057c",
-      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:b0f338cae3235461586e3303452b74e696b33b77e971e9a0c34b1b7e3b0292f6",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "judge": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4",
+      "normative_judge": "sema:NormativeJudge#mh:SHA-256:e7d20e07b7a320f194efc1af7ecc1db97b36d057fad2187cfe281241de17c87f",
+      "prophet_fan_out": "sema:ProphetFanOut#mh:SHA-256:8711a210c6c58ed39519c2b470b5dde7b20dc5175dd903764105ba37360776cc",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

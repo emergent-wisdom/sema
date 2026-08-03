@@ -6,9 +6,9 @@
     "Lossy Compression: Discarding critical low-level details (e.g., specific ID numbers) during the merge process."
   ],
   "invariants": [
-    "Chunk name must be meaningful.",
-    "{{conservation}} of information: Merged chunk retains key retrieval hooks of parts",
-    "Size {{constraint}}: Size(Merged) <= ContextWindowLimit"
+    "The chunk's name states the criterion by which its items were grouped.",
+    "The merged chunk retains a retrieval hook for each part.",
+    "The merged chunk fits within `max_chunk_size`."
   ],
   "preconditions": [
     "Input chunks share semantic topic"
@@ -17,23 +17,30 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351"
+      "sema:ChunkMerge#mh:SHA-256:ded6bbc1fcb067eaef0990ace28b3db2e0337744edac4e75c1da2ee1bbe3c351",
+      "sema:ChunkMerge#mh:SHA-256:e147d7618ec5f0a810d55c1671aefeda6a5ea31f0f33642660e715dd86404c68"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:ChunkMerge#mh:SHA-256:e147d7618ec5f0a810d55c1671aefeda6a5ea31f0f33642660e715dd86404c68",
-  "sema_ref": "ChunkMerge#e147",
-  "sema_stub": "e147",
+  "sema_id": "sema:ChunkMerge#mh:SHA-256:a89f0cf0d0a0fa5c81fbebb622147d42c73c8e3737660b542b51a83e76891b93",
+  "sema_ref": "ChunkMerge#a89f",
+  "sema_stub": "a89f",
+  "parameters": [
+    {
+      "name": "max_chunk_size",
+      "type": "PositiveInteger",
+      "range": "unspecified",
+      "description": "Largest merged chunk permitted, in the units the caller measures context by."
+    }
+  ],
   "dependencies": {
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
-      "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
-      "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
-      "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "hierarchy": "sema:Hierarchy#mh:SHA-256:80394d9e6f07112954f1c2d203eaf6095df4d4569a890a9c6ca8b9c9b534ba3d"
+      "aggregate": "sema:Aggregate#mh:SHA-256:ed4ae7898449926cd24777fff8cd9911e78eac398d19961d70456aea60c45606",
+      "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85"
     }
   },
   "sema_layer": "Mind",

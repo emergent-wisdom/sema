@@ -6,8 +6,9 @@
     "Infinite {{meta}}-Regress: Checking the checker that checks the checker, never terminating."
   ],
   "invariants": [
-    "Checker checks the checking process",
-    "Infinite regress avoided (max depth)"
+    "Pauses object-level work; the {{audit}} does not run alongside it.",
+    "The {{check}} is applied to the checking process itself, not only to the object-level work.",
+    "Recurses no deeper than `recursion_depth`."
   ],
   "preconditions": [
     "{{audit}} logic",
@@ -18,41 +19,42 @@
   ],
   "parameters": [
     {
-      "name": "consistency_required",
-      "type": "Float",
-      "range": "[0.8, 1.0]",
-      "description": "Agreement across meta-levels"
-    },
-    {
       "name": "recursion_depth",
       "type": "Integer",
       "range": "[1, 5]",
-      "description": "Levels of meta-verification"
+      "description": "Levels of meta-verification permitted before the audit must return."
+    },
+    {
+      "name": "consistency_required",
+      "type": "Float",
+      "range": "[0.8, 1.0]",
+      "description": "Agreement across meta-levels below which the audit reports an unresolved conflict."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:MetaCheck#mh:SHA-256:a228b1133c27b81db71a125234a13a0acac3464d6ac33fcc89d2e351b1bdb494"
+      "sema:MetaCheck#mh:SHA-256:a228b1133c27b81db71a125234a13a0acac3464d6ac33fcc89d2e351b1bdb494",
+      "sema:MetaCheck#mh:SHA-256:67872b0654d8a91ce849b6062e34cf8842bb315e77e7bf02cda64eb53ab4314a"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MetaCheck#mh:SHA-256:67872b0654d8a91ce849b6062e34cf8842bb315e77e7bf02cda64eb53ab4314a",
-  "sema_ref": "MetaCheck#6787",
-  "sema_stub": "6787",
+  "sema_id": "sema:MetaCheck#mh:SHA-256:1d2247851af407f6a4f6caae0d206b1904dbb28db9c4cfeefbe54f36d755ecb5",
+  "sema_ref": "MetaCheck#1d22",
+  "sema_stub": "1d22",
   "signature": [
     "Meta(Check)"
   ],
   "dependencies": {
     "references": {
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
       "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
-      "reflexion": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83"
+      "reflexion": "sema:Reflexion#mh:SHA-256:acb68502b3f5bf0f8430e2adaa46b88b631385db91b30c674c3f745dfc1f0263"
     }
   },
   "sema_layer": "Mind",

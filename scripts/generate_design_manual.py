@@ -44,6 +44,126 @@ than as history. All four are enforced or validated at mint time through
 `sema apply` checks and the pattern-authoring review workflow, with the design
 manual itself (this document) as the primary review surface.
 
+### A card is payload, not documentation
+
+Every hashed field on a pattern is loaded into the context of every agent that
+resolves it. An agent hydrating a twenty-pattern subgraph pays for all of that
+text, so length on a card is a cost charged to every consumer, forever. The design
+sidecar is free at runtime because nothing resolves it — it exists to be read by
+people and by reviewers.
+
+So the division is: **the card states what must hold, and this manual states why
+that is the right thing to require.** An invariant is a claim. If a sentence
+explains its own justification — *because*, *which is why*, *this is what makes X
+detectable* — it is addressed to a reader rather than to a consumer, and it
+belongs in the commentary.
+
+This is easy to get wrong while trying to be helpful. One review pass inflated 78
+patterns from 55,586 to 94,790 bytes of hashed text, 1.71x, with the worst card at
+9.8x — and the added prose was duplicated, because the same reasoning had already
+been written into the sidecar in the same pass. Growth itself is not the problem: a
+card that gains its first two invariants should get bigger. Justification on the
+card is the problem.
+
+### What the library is for (the seed criterion)
+
+The default library is a **seed**, not a finished ontology. Its purpose is to be the
+minimum vocabulary from which agents bootstrap and then mint their own concepts, and
+which other authors can extend or fork without consulting the original author. The paper
+states the same intent: the initial vocabulary is offered as a seed to be cultivated
+rather than a law to be obeyed, and no authority is claimed over which concepts exist.
+
+A good seed is, in priority order:
+
+1. **Usable** — the first question about any pattern, and about the library as a whole, is
+   whether someone can do something with it today. A seed that is elegant and unusable has
+   failed at the only thing a seed does. This outranks every other property here.
+2. **Extensible** — every concept a newcomer is likely to specialize has a reasonable
+   parent to derive from, so growth happens by descent rather than by replacement.
+3. **Absorbable** — a competent newcomer can read this policy and place a new pattern
+   correctly without asking the author.
+4. **Forkable** — the editorial reasoning is recorded rather than tacit, so a fork
+   inherits the judgment and not merely the artifact.
+
+At the level of a single pattern, usability has a concrete test. A pattern card is a
+**cached decomposition**: the mechanism states what the concept does, the invariants and
+conditions state its boundary, and the failure modes are a pre-derived account of how it
+goes wrong. An agent that resolves the pattern mid-task inherits that decomposition instead
+of rederiving it, and the practical value of the pattern is whatever it thereby forces into
+consideration that would otherwise have been glossed over. So ask of any pattern: if an
+agent resolved this while working, would it address something it would otherwise have
+skipped? A pattern whose contract fields would change no behaviour is not usable, whatever
+else is true of it. This is also the sharper reading of the structured-thinking criterion
+below.
+
+Usability implies **breadth at the canonical level**. The default library should cover
+enough conceptual ground that a newcomer arriving with a real problem finds relevant
+anchors rather than an empty shelf; specialization of those anchors is other authors' work,
+not the canonical library's. Breadth is therefore not bloat, and coverage is not evidence
+of over-minting. What breadth does cost is collision control: the wider the library, the
+greater the risk that two entries mean nearly the same thing, so near-synonym auditing is a
+load-bearing quality process rather than housekeeping. A consumer that wants less than all
+of it should be able to pull a subset, but the canonical library is not obliged to be
+small.
+
+The tests below serve that purpose and are subordinate to it. Where a placement question
+is genuinely balanced and the tests do not decide, prefer the option that keeps the parent
+extensible and leaves the newcomer unblocked. A seed's characteristic failure is not an
+imperfect pattern; it is a newcomer who cannot find or extend the right concept and mints
+a near-duplicate instead, silently forking the vocabulary. For the same reason, collisions
+in meaning are more damaging than gaps in coverage: a gap invites a mint, a collision
+invites divergence.
+
+Note also that the two minting criteria pull in opposite directions on size. Protocol
+consistency argues for a small set, containing only concepts whose exact semantics two
+parties must share. Structured thinking argues for breadth, since coverage is what makes
+the library a thinking instrument. Both are legitimate, so a pattern should be traceable
+to the criterion that earns it, and the protocol-consistency subset should remain
+identifiable on its own.
+
+### The stability obligation (generality follows fan-in)
+
+A seed is layered: what many patterns rest on must change least and mean most broadly,
+while what nothing rests on may be as specific as its purpose requires. The obligation is
+therefore not uniform across the library, and it is not a function of how foundational a
+pattern *feels*.
+
+State the obligation in terms of **fan-in**: the number of patterns that transitively
+depend on this one. Fan-in is mechanically computable from the dependency graph and spans
+three orders of magnitude across the library, which makes it the operative measure.
+
+- **High fan-in.** The hashed definition must admit every legitimate broad-use context of
+  every dependent. Tightening such a pattern is a library-wide event, because the cost of
+  an over-constrained ancestor is paid by every dependent, while the cost of an
+  under-specified leaf is paid once. Prefer adding a descendant, a parameter, or caller
+  policy over narrowing a load-bearing ancestor.
+- **Zero or low fan-in.** A leaf may and should pin a concrete strategy when that
+  specificity is what gives it value. Do not generalize a leaf on principle; nothing rests
+  on it.
+
+**Complexity accumulates outward; difficulty concentrates inward.** The two run in
+opposite directions, and conflating them misdirects review effort. A pattern far from the
+base is *composed*: it invokes several other patterns, so much of its meaning is carried by
+parts that were settled elsewhere, and its own contribution is the arrangement. A pattern
+at the base has nothing to lean on. Its whole definition is original work, it must be
+canonical enough that every dependent can accept it, and it must still have teeth, since a
+dependent gains nothing by invoking a concept that constrains nothing. Those two demands
+pull against each other, and an error made there is the most expensive kind: it propagates
+to every dependent and correcting it rehashes them all.
+
+Review attention should therefore follow fan-in rather than surface area. The high-fan-in
+core is where authoring is hardest and where most of this document's machinery — the
+identity test, the enumerated broad-use contexts, the requirement of breadth on the
+ancestry spine — is actually aimed. Leaves are comparatively cheap to author and cheap to
+correct.
+
+Two empirical notes about the present library, to calibrate rather than to prescribe.
+Fan-in peaks in **Infrastructure** rather than Physics: the structural nouns are the trunk,
+while substrate primitives are bedrock but narrow. And the `extends` hierarchy is
+almost flat, so the advice elsewhere in this document to push variance into descendants is
+policy with little uptake. Where a specialization would be the honest fix, minting the
+descendant is preferable to loosening the ancestor.
+
 ### The mechanism-sufficiency test (layer placement)
 
 A pattern's layer is determined by what its mechanism **structurally requires to
@@ -93,7 +213,7 @@ For each pattern, enumerate:
   enters the pattern's mechanism or contracts),
 - **what varies** (context-specific features that belong in descendants, not
   the parent pattern),
-- the **extension shape** (specific `derived_from` descendants that specialize
+- the **extension shape** (specific `extends` descendants that specialize
   along the varying axes).
 
 The discipline prevents two failure modes simultaneously: a mechanism overfit
@@ -246,7 +366,7 @@ def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
     failure_modes = _safe_list(pattern.get("failure_modes"))
     signature = _safe_list(pattern.get("signature"))
     supersedes = _safe_list((pattern.get("_meta") or {}).get("supersedes"))
-    derived_from = pattern.get("derived_from") or ""
+    extends = pattern.get("extends") or ""
 
     motivation = (commentary or {}).get("motivation") or {}
     usage = (commentary or {}).get("usage") or {}
@@ -375,9 +495,8 @@ def render_pattern_entry(pattern: dict, commentary: dict | None) -> str:
         lines.append("")
 
     # Lineage.
-    if derived_from:
-        parent_handle = derived_from.split("sema:")[-1].split("#")[0]
-        lines.append(f"**Derived from.** `{parent_handle}`")
+    if extends:
+        lines.append(f"**Extends (exact parent).** `{extends}`")
         lines.append("")
     if supersedes:
         lines.append("**Supersedes (prior versions).**")

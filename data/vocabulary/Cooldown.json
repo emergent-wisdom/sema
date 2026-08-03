@@ -34,19 +34,20 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Cooldown#mh:SHA-256:0cde8197149b258f1e6126f179b30468c12cb5e35352fcd0a8ae0bce0823c8ac"
+      "sema:Cooldown#mh:SHA-256:0cde8197149b258f1e6126f179b30468c12cb5e35352fcd0a8ae0bce0823c8ac",
+      "sema:Cooldown#mh:SHA-256:6f56ea214e52eab81c0592d4b17ed3da9dc6cbcf3a496a512088c9bc63006f3b"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Cooldown#mh:SHA-256:6f56ea214e52eab81c0592d4b17ed3da9dc6cbcf3a496a512088c9bc63006f3b",
-  "sema_ref": "Cooldown#6f56",
-  "sema_stub": "6f56",
+  "sema_id": "sema:Cooldown#mh:SHA-256:c288d88055cb0aae80c4b67ed62afcd3ebcc5de18749fc6efb15e9f8c529b9df",
+  "sema_ref": "Cooldown#c288",
+  "sema_stub": "c288",
   "dependencies": {
     "references": {
-      "throttle": "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8"
+      "throttle": "sema:Throttle#mh:SHA-256:dd626ad2479e5377339f44e77b61a0264591ed21a906556f020fccb98450fe55"
     }
   },
   "sema_layer": "Infrastructure",

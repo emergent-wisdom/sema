@@ -3,12 +3,8 @@
   "mechanism": "A primitive for Provenance and Lineage. Attaches a chronological history log to a target entity. Every modification to the target appends a new immutable record to its trace, enabling auditability, debugging, and causal reasoning.",
   "gloss": "Record the lineage or provenance of a target",
   "failure_modes": [
-    "Trace pollution (too many traces, signal lost in noise).",
-    "{{decay}} mismatch (too fast = lost, too slow = stale).",
-    "Namespace collision (unrelated actors confuse each other).",
-    "No accountability (cannot attribute trace to actor).",
-    "Semantic ambiguity (actors interpret same trace differently).",
-    "Feedback loops (reinforce bad traces, converge to local minimum)."
+    "Unattributable record: an entry cannot be tied to whoever produced it.",
+    "Unbounded growth: an append-only log only grows. Expiry would contradict Immutability, so truncation or archival is a separate concern."
   ],
   "invariants": [
     "Causality: Events must be logged in monotonic order.",
@@ -25,14 +21,9 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab",
-  "sema_ref": "Trace#314d",
-  "sema_stub": "314d",
-  "dependencies": {
-    "references": {
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
-    }
-  },
+  "sema_id": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb",
+  "sema_ref": "Trace#7af1",
+  "sema_stub": "7af1",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

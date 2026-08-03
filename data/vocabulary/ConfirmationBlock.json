@@ -6,20 +6,23 @@
     "Performative Doubt: Generating weak counter-evidence just to tick the box, without genuine intent to falsify."
   ],
   "invariants": [
-    "Evidence must be independently verifiable."
+    "The {{hypothesis}} names at least one observation that would tell against it.",
+    "Disconfirming evidence is weighted on its merits, not discounted for being disconfirming.",
+    "Evidence is independently verifiable.",
+    "Releases only once `disconfirmations_required` is met or `timeout` expires."
   ],
   "parameters": [
     {
       "name": "disconfirmations_required",
       "type": "Integer",
       "range": "[1, 100]",
-      "description": "Counter-evidence instances required before the block releases. The pattern's mechanism actively seeks disconfirming evidence; this parameter names the threshold accordingly."
+      "description": "Counter-evidence instances required before the block releases."
     },
     {
       "name": "timeout",
       "type": "Duration",
       "range": "[1s, 1h]",
-      "description": "Max wait for confirmations"
+      "description": "Longest the search for disconfirming evidence may run before the block releases."
     }
   ],
   "_meta": {
@@ -36,9 +39,14 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:dc3f1d88759b024b4b5730dada9c5586759b31503d5d1dd779ca24b9fcff5c07",
-  "sema_ref": "ConfirmationBlock#dc3f",
-  "sema_stub": "dc3f",
+  "sema_id": "sema:ConfirmationBlock#mh:SHA-256:dbe2e2c1125c1fe51410b304f52aaee60b477a4bd36f9a20f14463be0c9482e2",
+  "sema_ref": "ConfirmationBlock#dbe2",
+  "sema_stub": "dbe2",
+  "dependencies": {
+    "references": {
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14"
+    }
+  },
   "sema_layer": "Mind",
   "sema_category": "Inference"
 }

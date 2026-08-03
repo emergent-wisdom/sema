@@ -19,21 +19,22 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176"
+      "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
+      "sema:SemanticTabu#mh:SHA-256:3ef0848c060971ade66a53019ee5feec704b52432b5be543fda8ef4cac69d5fc"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:3ef0848c060971ade66a53019ee5feec704b52432b5be543fda8ef4cac69d5fc",
-  "sema_ref": "SemanticTabu#3ef0",
-  "sema_stub": "3ef0",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:b29c695ebb942e465ce0be2719fc37a61a0b02a4018d7a1b89ee0d044b33d050",
+  "sema_ref": "SemanticTabu#b29c",
+  "sema_stub": "b29c",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
     }
   },
   "sema_layer": "Mind",

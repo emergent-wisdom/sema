@@ -3,12 +3,13 @@
   "mechanism": "A definable ratio between two distinct {{value}} types or {{metric}}s at a specific point in time. It allows agents with orthogonal utility functions to transact.",
   "gloss": "Conversion ratio between value systems",
   "invariants": [
-    "Bijectivity: Rate(A->B) must equal 1 / Rate(B->A).",
-    "Time-Bound: Must include a timestamp or validity window."
+    "Names the source and target {{value}} types and the ratio between them.",
+    "Carries the timestamp or window over which the rate is valid.",
+    "Invertible where there is no spread: Rate(A\u2192B) equals 1 / Rate(B\u2192A)."
   ],
-  "sema_id": "sema:ExchangeRate#mh:SHA-256:eadb7e9b1d80ab8649e81786e787373fd234ae5f949fd84525795ddd5525b729",
-  "sema_ref": "ExchangeRate#eadb",
-  "sema_stub": "eadb",
+  "sema_id": "sema:ExchangeRate#mh:SHA-256:ac473b9c9dc4c536a76b952a76d7c7f1cbbf61ef8092404ae98f0f73ea66acfd",
+  "sema_ref": "ExchangeRate#ac47",
+  "sema_stub": "ac47",
   "_meta": {
     "ring": 1,
     "tier": 1,
@@ -20,9 +21,45 @@
       "Economics"
     ]
   },
+  "data_schema": {
+    "type": "object",
+    "description": "A rate between two value types, valid over a stated window.",
+    "properties": {
+      "source_type": {
+        "type": "string",
+        "description": "Value type being converted from."
+      },
+      "target_type": {
+        "type": "string",
+        "description": "Value type being converted to."
+      },
+      "ratio": {
+        "type": "number",
+        "description": "Units of target per unit of source."
+      },
+      "valid_from": {
+        "type": "string",
+        "description": "Start of the validity window."
+      },
+      "valid_until": {
+        "type": "string",
+        "description": "End of the validity window, if bounded."
+      }
+    },
+    "required": [
+      "source_type",
+      "target_type",
+      "ratio",
+      "valid_from"
+    ]
+  },
+  "failure_modes": [
+    "Stale rate: the window has expired and the ratio is applied anyway.",
+    "Assumed invertibility: a spread is present and the inverse rate is computed rather than quoted."
+  ],
   "dependencies": {
     "references": {
-      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c",
+      "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

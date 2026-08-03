@@ -25,26 +25,27 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f"
+      "sema:Reflexion#mh:SHA-256:51b91d2cdfeb6aed5ea3293154279d16af2c98b0c473e731066198b5d4d43e7f",
+      "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83",
-  "sema_ref": "Reflexion#4a46",
-  "sema_stub": "4a46",
+  "sema_id": "sema:Reflexion#mh:SHA-256:acb68502b3f5bf0f8430e2adaa46b88b631385db91b30c674c3f745dfc1f0263",
+  "sema_ref": "Reflexion#acb6",
+  "sema_stub": "acb6",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
-      "goal": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
-      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
-      "scratchpad": "sema:Scratchpad#mh:SHA-256:e805c332532cf4a435c48cc87d4db771e1645bb52c47d00dce318e2619ca6749"
+      "critique": "sema:Critique#mh:SHA-256:0541d11be536bd1fc1c0600452c80c5b9ef36b4217943dcb65d54fbd79c8521f",
+      "goal": "sema:Goal#mh:SHA-256:b011159e6135b97ac191b4a06846af58c55af37a977aaf58c1e3556457538808",
+      "outcome": "sema:Outcome#mh:SHA-256:ac55da2e51aaab185174d9e8edba137536b1ff90a2f6a1d6e1ab634bf7429ef0",
+      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
+      "scratchpad": "sema:Scratchpad#mh:SHA-256:626c5a0a716ab29b51e68429d41e99619201af48d17975d89636b55b8dc852f5"
     }
   },
   "sema_layer": "Mind",

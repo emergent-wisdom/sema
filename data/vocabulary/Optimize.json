@@ -1,6 +1,6 @@
 {
   "handle": "Optimize",
-  "mechanism": "The iterative process of adjusting parameters or structure to maximize (or minimize) a specific Objective Function defined by a {{metric}}. It involves generating candidate {{solution}}s, evaluating them against the metric, and selecting the best. It can be Local ({{gradient}} Descent) or {{global}} (Evolutionary).",
+  "mechanism": "The iterative process of adjusting parameters or structure to maximize (or minimize) a specific Objective Function defined by a {{metric}}. It generates candidate {{solution}}s, applies the definition to obtain comparable {{metric_reading}} values, and retains the best candidate. It can be Local ({{gradient}} Descent) or {{global}} (Evolutionary).",
   "gloss": "Maximize utility against a metric",
   "failure_modes": [
     "Overfitting: {{solution}} works perfectly on test data but fails in reality.",
@@ -9,17 +9,17 @@
     "Premature Optimization: Optimizing before the problem is fully understood."
   ],
   "invariants": [
-    "Monotonicity: Each step (or epoch) should ideally improve (or not degrade) the best-known {{solution}}.",
-    "Measurability: The Objective Function must be quantifiable via a {{metric}}."
+    "Monotonicity: no step degrades the best-known {{solution}}. A step that finds nothing better retains the incumbent.",
+    "Measurability: the Objective Function must be quantifiable via a {{metric}}."
   ],
   "preconditions": [
     "Objective Function is defined",
     "Candidate space is explorable",
-    "Baseline {{metric}} is known"
+    "Baseline {{metric_reading}} is known"
   ],
   "postconditions": [
     "Best Candidate {{solution}} found",
-    "{{metric}} improved over Baseline"
+    "Best observed {{metric_reading}} is at least as good as the Baseline reading"
   ],
   "_meta": {
     "tier": 1,
@@ -30,24 +30,26 @@
     ],
     "ring": 1,
     "supersedes": [
-      "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32"
+      "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
+      "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17",
-  "sema_ref": "Optimize#94e0",
-  "sema_stub": "94e0",
+  "sema_id": "sema:Optimize#mh:SHA-256:8a1d872b1e5019a0f4ef856d5f6c6809b87271838a50e55ef2ec21835839b7eb",
+  "sema_ref": "Optimize#8a1d",
+  "sema_stub": "8a1d",
   "dependencies": {
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
     },
     "references": {
-      "global": "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959",
-      "gradient": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
-      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c"
+      "global": "sema:Global#mh:SHA-256:330166f5c16b13500d92d26d0e58ad24657bebccbe295ff8108f363d3539034d",
+      "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
+      "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",
+      "metric_reading": "sema:MetricReading#mh:SHA-256:56a9f18faad70147312f12c1cdb1bcea9cb5d1d61042831d1fe6bfa11414ab26"
     }
   },
   "sema_layer": "Mind",

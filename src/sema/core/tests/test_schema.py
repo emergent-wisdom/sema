@@ -277,6 +277,58 @@ class TestSemaPattern:
         pattern = SemaPattern.model_validate(valid_pattern)
         assert pattern.dependencies.references == {"gate": gate_id}
 
+    def test_extends_accepts_full_sema_id(self, valid_pattern):
+        valid_pattern["extends"] = make_sema_id("Parent")
+
+        pattern = SemaPattern.model_validate(valid_pattern)
+
+        assert pattern.extends == make_sema_id("Parent")
+
+    def test_legacy_derived_from_remains_readable(self, valid_pattern):
+        valid_pattern["derived_from"] = "sema:RetiredParent"
+
+        pattern = SemaPattern.model_validate(valid_pattern)
+
+        assert pattern.derived_from == "sema:RetiredParent"
+
+    def test_specialization_fields_are_mutually_exclusive(self, valid_pattern):
+        valid_pattern["extends"] = make_sema_id("Parent")
+        valid_pattern["derived_from"] = make_sema_id("Parent")
+
+        with pytest.raises(ValueError, match="not both"):
+            SemaPattern.model_validate(valid_pattern)
+
+    def test_null_legacy_key_does_not_bypass_mutual_exclusion(self, valid_pattern):
+        valid_pattern["extends"] = make_sema_id("Parent")
+        valid_pattern["derived_from"] = None
+
+        with pytest.raises(ValueError, match="not both"):
+            SemaPattern.model_validate(valid_pattern)
+
+    @pytest.mark.parametrize(
+        "bad_ref",
+        [
+            "Parent",
+            "Parent#abcd",
+            "sema:Parent#mh:MD5:" + ("a" * 32),
+            "sema:Parent#mh:SHA-256:abcd",
+            " " + make_sema_id("Parent") + " ",
+            None,
+            42,
+        ],
+    )
+    def test_extends_rejects_non_full_reference(self, valid_pattern, bad_ref):
+        valid_pattern["extends"] = bad_ref
+
+        with pytest.raises(ValueError, match="Full Hash Standard"):
+            SemaPattern.model_validate(valid_pattern)
+
+    def test_extends_rejects_self_reference(self, valid_pattern):
+        valid_pattern["extends"] = make_sema_id(valid_pattern["handle"])
+
+        with pytest.raises(ValueError, match="cannot refer to the pattern itself"):
+            SemaPattern.model_validate(valid_pattern)
+
     def test_signature_valid(self, valid_pattern):
         """Valid signature syntax should pass with explicit wiring."""
         valid_pattern["mechanism"] = "Uses {{accept}}, {{token}}, {{emit}}, {{result}}."

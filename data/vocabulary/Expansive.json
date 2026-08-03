@@ -3,7 +3,10 @@
   "gloss": "Evaluates generalization potential",
   "mechanism": "A {{judge}} of generalization potential: does the mechanism or concept transfer beyond the original domain it was designed in? Applies wherever breadth-of-application is the evaluative question \u2014 scientific generality, platform reuse, pattern-library transferability, business model cross-market viability. The essential move is stress-testing the artifact against domains deliberately outside its origin (hostile-domain probe) rather than demonstrating it on familiar cases. Specific rating semantics belong on descendants or on the composing protocol. The signature Judge({{value}}) captures that the output is a {{value}}-graded breadth score rather than a binary transferable/not-transferable verdict.",
   "invariants": [
-    "Transfer: Must operate outside training distribution."
+    "Tested outside its origin domain, not demonstrated within it.",
+    "Names what the candidate already proves in its incumbent domain.",
+    "States the transfer hypothesis being tested.",
+    "Yields a {{value}}-graded breadth score, not a binary verdict."
   ],
   "signature": [
     "Judge(Value)"
@@ -12,19 +15,24 @@
     "ring": 2,
     "tier": 1,
     "supersedes": [
-      "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04"
+      "sema:Expansive#mh:SHA-256:c3b714ddf5d18f2ff6ff15d126f71cf79bd78ac170e83608d6d8bacee45dae04",
+      "sema:Expansive#mh:SHA-256:f246ad1edf07204d7df21541b5a563da9bea6d04e5a7dbfdca2d008642253744"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Expansive#mh:SHA-256:f246ad1edf07204d7df21541b5a563da9bea6d04e5a7dbfdca2d008642253744",
-  "sema_ref": "Expansive#f246",
-  "sema_stub": "f246",
+  "sema_id": "sema:Expansive#mh:SHA-256:23f60fbacf1e70ebda008f9b356b15813d17ce3dbb6c33e01c8d3359a3ad961b",
+  "sema_ref": "Expansive#23f6",
+  "sema_stub": "23f6",
+  "failure_modes": [
+    "Familiar-case demonstration: breadth is argued from examples inside the origin domain.",
+    "Unfalsifiable transfer: no hypothesis is stated, so no result can disconfirm the breadth claim."
+  ],
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "judge": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

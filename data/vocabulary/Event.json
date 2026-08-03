@@ -34,15 +34,18 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Event#mh:SHA-256:035497ae50cbbc61e245e1116f6e9b4a6e3c73aa41252052e8dd74a4dde35b96"
     ]
   },
-  "sema_id": "sema:Event#mh:SHA-256:035497ae50cbbc61e245e1116f6e9b4a6e3c73aa41252052e8dd74a4dde35b96",
-  "sema_ref": "Event#0354",
-  "sema_stub": "0354",
+  "sema_id": "sema:Event#mh:SHA-256:36757bd8344e1fd7161bd2f23d6588180fbaaf9cff5ef8be8a205effbf4438b6",
+  "sema_ref": "Event#3675",
+  "sema_stub": "3675",
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "stream": "sema:Stream#mh:SHA-256:6b47aafa55e0339455fa2d82d2077ffbf2c2dea744bd7034a99a3b77cfacfaec"
+      "stream": "sema:Stream#mh:SHA-256:ffa6e636cc2ca9f13c23f5862e60aceb0885a35686fb60f12da157316b159b53"
     }
   },
   "sema_layer": "Infrastructure",

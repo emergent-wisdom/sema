@@ -1,28 +1,30 @@
 {
   "handle": "Delegate",
-  "mechanism": "{{work}} distribution protocol with acceptance, tracking, and failure handling. Delegator sends 'DELEGATE' message. Delegatee responds 'ACCEPT' or 'REFUSE'. On accept, delegatee owns {{task}} and sends 'PROGRESS' via {{heartbeat}}. On completion, delegator receives result. On failure, delegatee sends {{break}}\u2014delegator decides: reassign, retry, or escalate. Broadcast delegation creates auction. It employs {{probe}} to verify capabilities. Inherits {{holographic_shard}}.",
+  "mechanism": "Delegation is a {{work}}-distribution protocol over an existing {{task}}. The delegator sends DELEGATE with the task and its scope; the delegatee replies ACCEPT or REFUSE. Until ACCEPT, the delegator retains ownership. On REFUSE, the delegator reassigns or escalates. On ACCEPT, ownership transfers to the delegatee, which reports PROGRESS via {{heartbeat}}. Completion returns a result. Failure invokes {{break}}; ownership returns to the delegator before retry, reassignment, or escalation.",
   "gloss": "Work handoff: delegate \u2192 accept/refuse \u2192 heartbeat \u2192 result-or-failure",
   "failure_modes": [
-    "No one accepts (all refuse or auction has no takers\u2014task orphaned).",
+    "No response: The candidate never replies; the delegator retains the task, but work stalls until an external timeout or reassignment policy acts.",
     "Capability mismatch (assigned to incapable agent\u2014fails late).",
     "Delegatee disappears (no progress updates\u2014need timeout).",
-    "Circular delegation (A\u2192B\u2192A\u2014detect and reject).",
+    "Circular delegation: A task returns to an earlier owner in its delegation chain.",
     "Overload (one agent accepts everything\u2014need load awareness).",
-    "Progress lies (reports complete when not\u2014need verification).",
-    "Dependency deadlock (A waits for B waits for A)."
+    "Progress lies (reports complete when not\u2014need verification)."
   ],
   "invariants": [
-    "Delegation is REQUEST not command (acceptance protocol unless pre-waived at RALLY). Refused tasks must be handled (reassign or escalate, not silently dropped). Progress must be trackable (delegatee reports status updates). Failure propagates (delegated task failure triggers {{break}} to delegator). Dependencies enforced (task blocked until dependencies complete). One owner per task (no ambiguous responsibility)."
+    "Delegation is a request, not a command: it is accepted or refused.",
+    "Ownership remains with the delegator until ACCEPT; REFUSE transfers nothing and triggers reassignment or escalation.",
+    "The delegatee reports progress; silence is not progress.",
+    "A failed accepted {{task}} invokes {{break}} and returns ownership to the delegator before the next disposition.",
+    "Exactly one owner per task."
   ],
   "preconditions": [
-    "Principal has authority.",
-    "Delegate capable.",
+    "Delegator owns the {{task}} and has authority to delegate it.",
+    "Delegatee is addressable.",
     "Scope of delegation defined."
   ],
   "postconditions": [
-    "Delegate acts within scope.",
-    "Principal notified of actions.",
-    "Revocation possible."
+    "On ACCEPT, ownership transfers to exactly one delegatee; completion returns a result, while failure invokes {{break}} and returns ownership to the delegator.",
+    "On REFUSE, the delegator retains ownership and reassigns or escalates the {{task}}."
   ],
   "_meta": {
     "tier": 2,
@@ -32,30 +34,27 @@
     "ring": 1,
     "supersedes": [
       "sema:Delegate#mh:SHA-256:e557d8268697e26743dc5d2cf191741e47b7bef0d986e8dbff3d86e5e9d9486e",
-      "sema:Delegate#mh:SHA-256:7e2aa7273061011208a1e1d26d4d616deed5499d29d5275ff3f09dc878e8bbc0"
+      "sema:Delegate#mh:SHA-256:7e2aa7273061011208a1e1d26d4d616deed5499d29d5275ff3f09dc878e8bbc0",
+      "sema:Delegate#mh:SHA-256:78a8da9a060a24531bde6d3673a4bfc3123b72adce8ff4e95e244937715f150d"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:2d38b629a5905a4f7cc549b75fe7a553852dccb08066e62db3f0a98642c441a3",
-  "sema_ref": "Delegate#2d38",
-  "sema_stub": "2d38",
+  "sema_id": "sema:Delegate#mh:SHA-256:5bfe3a460c78ff0bc411d27d6a542f43a4c3900209b13c3d395216e24b503bb8",
+  "sema_ref": "Delegate#5bfe",
+  "sema_stub": "5bfe",
   "dependencies": {
     "accepts": {
-      "holographic_shard": "sema:HolographicShard#mh:SHA-256:7eb7beec35ed149646d3e9631303f4dbf706daec5ccc0d186d0d6158cd7b5203"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
-      "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8"
+      "break": "sema:Break#mh:SHA-256:a2079c91fe88c52dd3ee657d50309cecd6aa628e76d6ab543dcd7102179479c1",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef"
     },
     "references": {
-      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
-    },
-    "yields": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Society",

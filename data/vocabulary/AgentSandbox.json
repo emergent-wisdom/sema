@@ -8,8 +8,10 @@
     "Log Blindness: Missing critical events in {{audit}} logs."
   ],
   "invariants": [
-    "Network egress whitelist-only",
-    "Sandboxed process cannot access host filesystem"
+    "Network egress is whitelist-only.",
+    "The sandboxed process cannot reach the host filesystem.",
+    "Declares resource quotas for CPU, memory and time.",
+    "Every action inside the {{sandbox}} is logged."
   ],
   "preconditions": [
     "Resource limits defined",
@@ -27,29 +29,30 @@
     ],
     "supersedes": [
       "sema:AgentSandbox#mh:SHA-256:ce7e2d28fa6aefffa0164d17cebc0266c4f7e422cdeb0a7043e078d5469c4be9",
-      "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6"
+      "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
+      "sema:AgentSandbox#mh:SHA-256:c092338ebd9e7025254ae45974d7a9854b21b12e5d2943f58f4c0e920f5e1fde"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentSandbox#mh:SHA-256:c092338ebd9e7025254ae45974d7a9854b21b12e5d2943f58f4c0e920f5e1fde",
-  "sema_ref": "AgentSandbox#c092",
-  "sema_stub": "c092",
+  "sema_id": "sema:AgentSandbox#mh:SHA-256:0be73a7000edac19c184040f6b1479e76d0b312d59e9b948eccc5f0f52943e4e",
+  "sema_ref": "AgentSandbox#0be7",
+  "sema_stub": "0be7",
   "signature": [
     "Sandbox(Agent)"
   ],
   "dependencies": {
     "composes_with": {
-      "input_guard": "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
-      "output_guard": "sema:OutputGuard#mh:SHA-256:32b0ffd08f916d61a677af7d82c53feb8a4019baab1bd86622a853aafa91ed2f"
+      "input_guard": "sema:InputGuard#mh:SHA-256:8c3e3319216468f86dc7e8baa97d91f18110bedc30643db39f9deb2ef52a8be9",
+      "output_guard": "sema:OutputGuard#mh:SHA-256:1396cd3b7d51a56b178382a521d22ae7f478d4681ea7e31d5af1d625857ad315"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "sandbox": "sema:Sandbox#mh:SHA-256:64c9d03cda865610bcc3792d3aa8f6c80c8b347e6ee1f6d7bb01479a0a38231d"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "sandbox": "sema:Sandbox#mh:SHA-256:7106e315b4bf7c5bd418fbab5c18e54be940367f77b8bde4756d1cb95beaa16b"
     }
   },
   "sema_layer": "Society",

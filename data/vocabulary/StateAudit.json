@@ -2,9 +2,9 @@
   "handle": "StateAudit",
   "mechanism": "A safety pattern where an agent performs an explicit {{audit}} of the {{state}} immediately after a write to ensure the {{state_transition}} occurred as expected. Catches silent API failures.",
   "gloss": "Verifying system state after an operation",
-  "sema_id": "sema:StateAudit#mh:SHA-256:2747b8fd941dcd5a3980556d108b22f376bb3ac0ac6de1561215ad836bf5ed17",
-  "sema_ref": "StateAudit#2747",
-  "sema_stub": "2747",
+  "sema_id": "sema:StateAudit#mh:SHA-256:63cfd2311667bd0cf3634a23d7c6bb15018d7903ec89e6f5453a827251d7a43c",
+  "sema_ref": "StateAudit#63cf",
+  "sema_stub": "63cf",
   "_meta": {
     "ring": 0,
     "tier": 1,
@@ -16,11 +16,19 @@
       "Primitives"
     ]
   },
+  "invariants": [
+    "Audit timestamp is later than the write it verifies.",
+    "Compares observed {{state}} against the {{state_transition}} that was expected, not merely that a write returned."
+  ],
+  "failure_modes": [
+    "Silent write failure: the write reported success and the {{state}} did not change. This is the case the pattern exists for.",
+    "Audit reads a stale replica, so a successful write looks silently failed."
+  ],
   "dependencies": {
     "references": {
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "state_transition": "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2"
+      "state_transition": "sema:StateTransition#mh:SHA-256:bdc0c1988a26e15a4e90bb79b214e4bebe630bc53f758ca67c6e1148aa802686"
     }
   },
   "sema_layer": "Infrastructure",

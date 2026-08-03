@@ -6,16 +6,17 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c"
+      "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
+      "sema:Aesthetics#mh:SHA-256:dec7fd021c6ea415d7c2faea038305f9455908626f07349582e24a8c6a6d51b8"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:dec7fd021c6ea415d7c2faea038305f9455908626f07349582e24a8c6a6d51b8",
-  "sema_ref": "Aesthetics#dec7",
-  "sema_stub": "dec7",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:93422e99f0d4cfa77ca8a74014f8364b3f224de54364ca1b3f02402a6f8f5258",
+  "sema_ref": "Aesthetics#9342",
+  "sema_stub": "9342",
   "data_schema": {
     "type": "object",
     "description": "An aesthetic assessment \u2014 a metric-shaped artifact capturing perceived beauty/quality on a defined scale.",
@@ -39,13 +40,27 @@
           }
         }
       }
-    }
+    },
+    "required": [
+      "axis",
+      "score",
+      "normalized_range"
+    ]
   },
+  "invariants": [
+    "Names the `axis` it scores.",
+    "Carries the `normalized_range` the score is expressed in.",
+    "Measures observer preference, not {{artifact}} quality."
+  ],
+  "failure_modes": [
+    "Objectivity mistake: a preference score is read as a quality measurement.",
+    "Prior mismatch: the observer whose priors were modelled is not the observer being served."
+  ],
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c",
-      "parsimony": "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",
+      "parsimony": "sema:Parsimony#mh:SHA-256:2c0af021ae1ba6b11c042b6d7253e7f37f2aa42e2b57a675862643f32a5f3438"
     }
   },
   "sema_layer": "Infrastructure",

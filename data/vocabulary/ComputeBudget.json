@@ -10,8 +10,7 @@
     "Risk of penny-wise pound-foolish: refusing decomposition on hard problems because estimate was wrong."
   ],
   "invariants": [
-    "Hard Ceiling: Total execution cost cannot exceed max_budget.",
-    "Meta-Cap: Estimation phase must consume < 1% of total budget."
+    "Hard ceiling: total execution cost cannot exceed `max_budget`."
   ],
   "preconditions": [
     "Current resource balance available",
@@ -26,19 +25,25 @@
       "name": "max_budget",
       "type": "PositiveInteger",
       "range": "unspecified",
-      "description": "Hard limit"
+      "description": "The ceiling, in `unit`. Deliberately uncapped."
     },
     {
-      "name": "risk_tolerance",
+      "name": "roi_threshold",
       "type": "Float",
       "range": "[0.1, 2.0]",
-      "description": "Willingness to overspend budget (1.0 = neutral, >1 = risk-seeking)"
+      "description": "Expected value required per unit spent before work proceeds. Scales how demanding the gate is; it does not license spending past the ceiling."
+    },
+    {
+      "name": "estimation_share",
+      "type": "Ratio",
+      "range": "(0.0, 0.5]",
+      "description": "Share of the budget estimation may consume before it must return."
     },
     {
       "name": "unit",
       "type": "Enum",
       "range": "{Tokens, USD, Ms}",
-      "description": "Default: Tokens"
+      "description": "Cost unit"
     }
   ],
   "_meta": {
@@ -50,21 +55,22 @@
       "TimeboxThink"
     ],
     "supersedes": [
-      "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1"
+      "sema:ComputeBudget#mh:SHA-256:3b9875661465a1a0cdc12e60774114d0ac69510b4fae677c81c47ea3a84b99b1",
+      "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "ComputeBudget#47c6",
-  "sema_id": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
-  "sema_stub": "47c6",
+  "sema_ref": "ComputeBudget#4091",
+  "sema_id": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
+  "sema_stub": "4091",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

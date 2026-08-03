@@ -1,10 +1,10 @@
 {
   "handle": "DecompositionGate",
-  "mechanism": "The four-test decomposition suite applied as a Gate over candidate decompositions. The tests: Necessity (removing any sub-concept collapses the parent), Independence (sub-concepts vary orthogonally), Universality (every instance of the parent contains every sub-concept), Completeness (addressing all sub-concepts reconstructs a functioning parent). A decomposition passes only if all four tests pass \u2014 non-compensatory. Yields a {{decision}}: on failure, the Decision carries a {{frame_error}} instructing the upstream planner to reframe rather than iterate within the current decomposition.",
+  "mechanism": "The four-test decomposition suite applied as a Gate over candidate decompositions. The tests: Necessity ({{parsimony}}'s ablation applied to the split \u2014 removing any sub-concept collapses the parent), Independence (sub-concepts vary orthogonally), Universality (every instance of the parent contains every sub-concept), Completeness (addressing all sub-concepts reconstructs a functioning parent). A decomposition passes only if all four tests pass \u2014 non-compensatory. Yields a {{decision}}: on failure, the Decision carries a {{frame_error}} instructing the upstream planner to reframe rather than iterate within the current decomposition.",
   "gloss": "Four-test gate for candidate decompositions: Necessity, Independence, Universality, Completeness",
   "invariants": [
     "Non-compensatory: a decomposition passes only if ALL four tests pass independently.",
-    "Universality is strict: prototype-shaped concepts failing universality are rejected by design (intentional crucible, per paper \u00a72)."
+    "Universality is strict: prototype-shaped concepts failing universality are rejected by design.."
   ],
   "failure_modes": [
     "Strict universality rejects legitimate prototype-shaped concepts that would succeed with family-resemblance semantics.",
@@ -16,17 +16,21 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730"
     ]
   },
-  "sema_id": "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730",
-  "sema_ref": "DecompositionGate#c4f7",
-  "sema_stub": "c4f7",
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:5d5b957ed74ab2e77f5dd0a81be3d1e6b99736fca74bac7fbb61310da98e8a21",
+  "sema_ref": "DecompositionGate#5d5b",
+  "sema_stub": "5d5b",
   "dependencies": {
     "references": {
-      "frame_error": "sema:FrameError#mh:SHA-256:f67433d411f7ce3c8582a6685e6fc43285c2e96680b404acb8f399a74198fe4b"
+      "frame_error": "sema:FrameError#mh:SHA-256:c98287daa5cdfef011246e8510023d2598397cc1dcf33617e39822074a6cf92a",
+      "parsimony": "sema:Parsimony#mh:SHA-256:2c0af021ae1ba6b11c042b6d7253e7f37f2aa42e2b57a675862643f32a5f3438"
     },
     "yields": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
     }
   },
   "sema_layer": "Mind",

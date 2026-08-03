@@ -3,36 +3,38 @@
   "mechanism": "The {{meta}}-process for adversarial verification. Instead of a single judgment, the {{system}} spawns a 'green advocate' (who constructs the strongest case FOR the idea) and a 'red advocate' (who constructs the strongest case AGAINST). A third {{judge}} {{agent}} renders the verdict only after reviewing both steelmanned arguments. It orchestrates {{steelman_check}} to generate the opposing arguments and employs {{compatibility_check}} to ensure the pro, con, and {{judge}} {{agent}}s share a precise definition of the {{criteria}} before debate begins.",
   "gloss": "Dual-advocate verdict generation",
   "failure_modes": [
-    "{{judge}} {{agent}} defaults to 'Both sides' compromise (Median Trap)."
+    "{{judge}} {{agent}} defaults to 'Both sides' compromise (Median Trap).",
+    "Shared blind spot: the {{system}} spawns both advocates, so a gap common to their origin appears in neither argument and reaches the {{judge}} as apparent consensus."
   ],
   "invariants": [
     "Dual Representation: Verdict cannot be rendered without Pro + Con arguments",
-    "Steelmanning: Red Argument strength > Weakest Link of Proposal"
+    "Targeted opposition: the red argument must identify the specific claim of the proposal it contradicts. An objection that cites no claim is a strawman and does not satisfy the con requirement."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "caution": "Spawned advocates share the same model \u2014 collusion risk.",
     "supersedes": [
-      "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234"
+      "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234",
+      "sema:AdversarialSteel#mh:SHA-256:5e05f6b505964cc5058f75a14b715fb3b78ad0aa96babd91dd9e5b488e471db4"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:5e05f6b505964cc5058f75a14b715fb3b78ad0aa96babd91dd9e5b488e471db4",
-  "sema_ref": "AdversarialSteel#5e05",
-  "sema_stub": "5e05",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:52bc4ebfac9e856917332bee7595507b27bac3a59cdbe571cacc07dfdc6626b2",
+  "sema_ref": "AdversarialSteel#52bc",
+  "sema_stub": "52bc",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:a3751589f3c4ae8bef8b516350726551aad5c9ec9421d56f57dd43b0ad30faf0"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
-      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:7f70838f05f3aad069b89dcbc705283872f66fde4bc95c6bfa0dc917955e050d",
+      "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "judge": "sema:Judge#mh:SHA-256:690650b5f6fb5177e0c4de4be2992df6d879113471ac6f572ae5cdf3fd2e47a4",
       "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

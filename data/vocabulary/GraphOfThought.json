@@ -13,18 +13,21 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:GraphOfThought#mh:SHA-256:ccee7b6c5ea42d243d5921a7dfbf074ef9aba5212cff0714e4ce9019077c907d"
     ]
   },
   "signature": [
     "Think(DAG)"
   ],
-  "sema_id": "sema:GraphOfThought#mh:SHA-256:ccee7b6c5ea42d243d5921a7dfbf074ef9aba5212cff0714e4ce9019077c907d",
-  "sema_ref": "GraphOfThought#ccee",
-  "sema_stub": "ccee",
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:1417fc5478fe393c4ab5f3344500c516b43fe348afa140e7c2fd66cdeff8a043",
+  "sema_ref": "GraphOfThought#1417",
+  "sema_stub": "1417",
   "dependencies": {
     "composes_with": {
-      "d_a_g": "sema:DAG#mh:SHA-256:ed81568cef305d3f4f39c7ef157bfc4c74ef721c8ad1e9001a2d11793ce936df",
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "d_a_g": "sema:DAG#mh:SHA-256:b6e7164578e28551e0d193c82f2a3a5b828bf53c73fcdd40ac45b2b1ec70aace",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }
   },
   "sema_layer": "Mind",

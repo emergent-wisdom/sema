@@ -1,37 +1,40 @@
 {
   "handle": "AgentProtocol",
-  "mechanism": "Pattern Bundle. Defines the standard suite of patterns required for basic {{agent}} {{protocol}} interoperability. Importing this bundle automatically imports the dependencies. It bundles {{task}} for {{work}} definition, {{fail_closed}} for safe halting, {{greet}} for handshake, {{accept_spec}} for validation, and {{solution}} for output standardization into a cohesive interaction suite.",
+  "mechanism": "Defines the standard suite of patterns required for basic {{agent}} {{protocol}} interoperability. Importing this bundle automatically imports the dependencies. It bundles {{task}} for {{work}} definition, {{fail_closed}} for safe halting, {{greet}} for handshake, {{accept_spec}} for validation, and {{solution}} for output standardization into a cohesive interaction suite.",
   "gloss": "Standard patterns for multi-agent coordination",
   "invariants": [
-    "Bundle Integrity: Importing this implies importing all contents."
+    "Includes at least {{task}}, {{fail_closed}}, {{greet}}, {{accept_spec}} and {{solution}}.",
+    "Importing it imports every member.",
+    "A change of membership is a new version, not an edit."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3"
+      "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3",
+      "sema:AgentProtocol#mh:SHA-256:6297fe3d5b335cbe8051e147ce3235c33d30bce2f4df5ad274b18ae98b502878"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentProtocol#mh:SHA-256:6297fe3d5b335cbe8051e147ce3235c33d30bce2f4df5ad274b18ae98b502878",
-  "sema_ref": "AgentProtocol#6297",
-  "sema_stub": "6297",
+  "sema_id": "sema:AgentProtocol#mh:SHA-256:ca6ee9ee5ef59249015cebc8c13caa1767c1115d9ea759224a005e7850f2b5e6",
+  "sema_ref": "AgentProtocol#ca6e",
+  "sema_stub": "ca6e",
   "signature": [
     "Agent(Protocol)"
   ],
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
-      "greet": "sema:Greet#mh:SHA-256:58542bc100077ab85299c99424fa0ca7ea8559890678461a0d7f7aaba927c74f",
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:ac1b0e4a6452ffc852d32a25914ef7907a49428004765f92e68ac7d232530ad0",
+      "greet": "sema:Greet#mh:SHA-256:acc7ea6a58059c41311e0055b897464e143d09cb71f1d7c6f38d0f73270c113a",
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Society",

@@ -13,9 +13,17 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Causation#mh:SHA-256:e47b8f36ae5e8b43d3e3f521fc75c2a70f0355cbe062f794ecbe93a4c608921c",
-  "sema_ref": "Causation#e47b",
-  "sema_stub": "e47b",
+  "sema_id": "sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850",
+  "sema_ref": "Causation#ed6c",
+  "sema_stub": "ed6c",
   "sema_layer": "Physics",
-  "sema_category": "Primitives"
+  "sema_category": "Primitives",
+  "invariants": [
+    "Intervention-responsive: an external change to the cause alters the effect.",
+    "Directed: intervening on the effect does not alter the cause along the same edge."
+  ],
+  "failure_modes": [
+    "Asserted without intervention: where no intervention is possible, the definitional property is claimed rather than tested.",
+    "Confounded: a third variable drives both, so intervening on the named cause would not move the effect."
+  ]
 }

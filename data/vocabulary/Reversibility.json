@@ -1,16 +1,17 @@
 {
   "handle": "Reversibility",
-  "mechanism": "Evaluates whether the post-state of an action allows a return to the pre-state with zero information loss (or within acceptable cost). Returns TRUE for Type 2 decisions (reversible), FALSE for Type 1 (one-way doors).",
+  "mechanism": "Evaluates whether the post-state of an action allows a return to the pre-state. Two tests in order: whether the information needed to reconstruct the pre-state still exists, and only then whether restoring it costs less than the caller's declared limit. Returns TRUE for Type 2 decisions (reversible) and FALSE for Type 1 (one-way doors).",
   "gloss": "Condition: Can this action be undone?",
   "invariants": [
-    "Entropy {{constraint}}: Reversal must not violate thermodynamic limits (e.g., cannot un-burn toast)."
+    "A post-state that destroyed the information yields FALSE at any cost limit.",
+    "The verdict names the cost limit and information-loss tolerance it was judged against, both {{constraint}}s supplied by the caller."
   ],
   "parameters": [
     {
       "name": "cost_limit",
       "type": "PositiveInteger",
       "range": "unspecified",
-      "description": "Maximum acceptable cost to reverse the action"
+      "description": "Maximum acceptable cost to reverse, in a unit the caller states."
     }
   ],
   "_meta": {
@@ -24,9 +25,13 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Reversibility#mh:SHA-256:af6fad316d76d324d6c2ac02a69fc1f2f095bfc69a48c33578e599c431e9598e",
-  "sema_ref": "Reversibility#af6f",
-  "sema_stub": "af6f",
+  "sema_id": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37",
+  "sema_ref": "Reversibility#cb35",
+  "sema_stub": "cb35",
+  "failure_modes": [
+    "False reversibility: the action created externalities the pre-action analysis omitted.",
+    "Cost drift: the tolerance was declared before the reversal is attempted."
+  ],
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"

@@ -3,13 +3,14 @@
   "mechanism": "Proving non-membership in a committed state set. An {{agent}} cryptographically commits to its full state (e.g., via Merkle tree), then uses a Zero-Knowledge Range Proof to demonstrate that a specific {{value}} or datum is NOT present in that committed set, without revealing what the set contains. Operates via exhaustive search over the committed domain, treating verified failure-to-find as proof of absence within that snapshot. The guarantee is bounded: it proves non-membership in the committed tree, not global non-possession\u2014the agent could hold uncommitted state elsewhere.",
   "gloss": "Proving non-membership in a committed state snapshot",
   "failure_modes": [
-    "Proving a negative is computationally expensive.",
-    "Agent commits incomplete state (hides data outside committed tree)\u2014proof is technically valid but practically meaningless.",
-    "Stale commitment: state changed after commitment but before verification."
+    "Incomplete commitment: state is held outside the committed tree, so the proof is valid and practically meaningless.",
+    "Stale commitment: the state changed between commitment and verification.",
+    "Cost: proving absence over a large domain is expensive, and the expense scales with the domain rather than with the {{value}} being checked."
   ],
   "invariants": [
-    "Absence of evidence is evidence of absence (under exhaustive search of committed set)",
-    "Search space fully covered within the commitment boundary"
+    "Proves non-membership in the committed set only, never global non-possession.",
+    "The search covers the whole committed domain.",
+    "Names the commitment it proves against, and when that commitment was made."
   ],
   "preconditions": [
     "Closed world assumption (over the committed state, not globally)",
@@ -23,20 +24,21 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:NegativeProof#mh:SHA-256:5225bbc358d41d3ef16f0466a4e33160d9c7d020132726c74c576eef5d399d4e"
+      "sema:NegativeProof#mh:SHA-256:5225bbc358d41d3ef16f0466a4e33160d9c7d020132726c74c576eef5d399d4e",
+      "sema:NegativeProof#mh:SHA-256:eedf70351b15a007c1350da5dd934d3340873451c9e670a553a45cdc2a45c019"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_ref": "NegativeProof#eedf",
-  "sema_id": "sema:NegativeProof#mh:SHA-256:eedf70351b15a007c1350da5dd934d3340873451c9e670a553a45cdc2a45c019",
-  "sema_stub": "eedf",
+  "sema_ref": "NegativeProof#ca5e",
+  "sema_id": "sema:NegativeProof#mh:SHA-256:ca5e132ca2671ea3ea3584d2df1e5a4cb59ea51e0945b84a181c8e46405559b2",
+  "sema_stub": "ca5e",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

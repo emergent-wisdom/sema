@@ -39,23 +39,24 @@
     "ring": 1,
     "supersedes": [
       "sema:CounterfactualAnchor#mh:SHA-256:f5845fee4dbe585ede4203b84b7eb46ae4e6ceb7a2a0edaae53471fad17d0ae5",
-      "sema:CounterfactualAnchor#mh:SHA-256:4d4acdb9ee21f5c41d45e40496a2879c5c8c79efcab7f389fb6f6f36588ac23c"
+      "sema:CounterfactualAnchor#mh:SHA-256:4d4acdb9ee21f5c41d45e40496a2879c5c8c79efcab7f389fb6f6f36588ac23c",
+      "sema:CounterfactualAnchor#mh:SHA-256:0d2b80d411934b06aeaca853ac89163d71f795c26aeff8e88766f18a829766b2"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:0d2b80d411934b06aeaca853ac89163d71f795c26aeff8e88766f18a829766b2",
-  "sema_ref": "CounterfactualAnchor#0d2b",
-  "sema_stub": "0d2b",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:2ffb99e4f56675abaa0178a4bf7f0be0583ff1432eaa0928c80f4d0a51711096",
+  "sema_ref": "CounterfactualAnchor#2ffb",
+  "sema_stub": "2ffb",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:41a9f896757eb4b0d7132604b60e0193eaba43329953359ef5e927f69112f8df"
+      "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:a4c74ab236ddd0939db90b2d2dab9c21527bb7b488344339f434c0a5fd4c50c9"
     }
   },
   "sema_layer": "Society",

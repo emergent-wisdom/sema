@@ -1,6 +1,6 @@
 {
   "handle": "DogfoodFirst",
-  "mechanism": "Validation {{protocol}}. Before releasing a tool or pattern, the creator must use it to solve a non-trivial problem in their own workflow. This generates 'Friction Logs' that identify usability gaps missed by theoretical design. It requires the creator to act as a {{canary}}, using the tool in production and generating a {{reflexion}} log of friction points.",
+  "mechanism": "Before releasing a tool or pattern, the creator must use it to solve a non-trivial problem in their own workflow. This generates 'Friction Logs' that identify usability gaps missed by theoretical design. It requires the creator to act as a {{canary}}, using the tool in production and generating a {{reflexion}} log of friction points.",
   "gloss": "Use your own tool before shipping",
   "failure_modes": [
     "Hello World Fallacy: Validating only on trivial 'demo' cases instead of production loads.",
@@ -23,7 +23,7 @@
       "name": "duration",
       "type": "Duration",
       "range": "unspecified",
-      "description": "Default: 1h"
+      "description": "Minimum time the creator must use the tool on real work. Default 1h."
     }
   ],
   "_meta": {
@@ -31,23 +31,23 @@
     "ring": 0,
     "supersedes": [
       "sema:DogfoodFirst#mh:SHA-256:3f2cc6a5a25c8127928db9d40defd1a022362de6f94ee44cbab9383134d4d9e3",
-      "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2"
+      "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2",
+      "sema:DogfoodFirst#mh:SHA-256:3b9da6c363098aeadf1147adde382db1dfc5af7e04faf68e7f361171f2495b51"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:3b9da6c363098aeadf1147adde382db1dfc5af7e04faf68e7f361171f2495b51",
-  "sema_ref": "DogfoodFirst#3b9d",
-  "sema_stub": "3b9d",
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:cc91364dc376a01db75f66a049c2ea3135b08b40cbb9b1825a6cd5f3e03dc0a4",
+  "sema_ref": "DogfoodFirst#cc91",
+  "sema_stub": "cc91",
   "dependencies": {
     "references": {
-      "canary": "sema:Canary#mh:SHA-256:bda6d48ae1b1895bb1ce0fe6012c6fed5baaff392755f2ed802b400481522b5f",
+      "canary": "sema:Canary#mh:SHA-256:0fc6e266f2fb90ace39ed27f088f6bbe4f8544fe78169caa9ac66c642762c759",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "reflexion": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83"
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+      "reflexion": "sema:Reflexion#mh:SHA-256:acb68502b3f5bf0f8430e2adaa46b88b631385db91b30c674c3f745dfc1f0263"
     }
   },
   "sema_layer": "Mind",

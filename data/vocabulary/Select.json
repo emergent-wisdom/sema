@@ -28,8 +28,8 @@
     {
       "name": "strategy",
       "type": "Enum",
-      "range": "{Filter, First, Random}",
-      "description": "Default: Filter"
+      "range": "{Filter, First}",
+      "description": "Default: Filter. Random sampling is excluded \u2014 it would violate the Determinism invariant."
     }
   ],
   "_meta": {
@@ -38,11 +38,14 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
     ]
   },
-  "sema_id": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6",
-  "sema_ref": "Select#2fa0",
-  "sema_stub": "2fa0",
+  "sema_id": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3",
+  "sema_ref": "Select#decf",
+  "sema_stub": "decf",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

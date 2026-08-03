@@ -2,14 +2,15 @@
   "handle": "Queue",
   "mechanism": "A linear container holding {{task}}s or {{message}}s under an explicit ordering discipline (FIFO, LIFO, or Priority). Consumers dequeue one element at a time; producers enqueue at the discipline-dictated position. Distinct from a {{stream}} (continuous, unbounded, with no single consumer) and from a plain list (no consumer semantics).",
   "gloss": "Ordered container with FIFO/LIFO/priority discipline and explicit dequeue semantics",
-  "sema_id": "sema:Queue#mh:SHA-256:52224702509927c0b69df5580e0554e4ca381f93d291a08d7b2e8d4eaf04cdb2",
-  "sema_ref": "Queue#5222",
-  "sema_stub": "5222",
+  "sema_id": "sema:Queue#mh:SHA-256:5689d2db87dd8752019da54910f7be96929ff84baf09cdadd2c6826b01ea5420",
+  "sema_ref": "Queue#5689",
+  "sema_stub": "5689",
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b"
+      "sema:Queue#mh:SHA-256:2ec3531a8c5711e281ab2913646d9f46dad05140fea7ceb6966bfa62d745bc9b",
+      "sema:Queue#mh:SHA-256:52224702509927c0b69df5580e0554e4ca381f93d291a08d7b2e8d4eaf04cdb2"
     ],
     "path": [
       "Infrastructure",
@@ -61,9 +62,9 @@
   },
   "dependencies": {
     "references": {
-      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
-      "stream": "sema:Stream#mh:SHA-256:6b47aafa55e0339455fa2d82d2077ffbf2c2dea744bd7034a99a3b77cfacfaec",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",
+      "stream": "sema:Stream#mh:SHA-256:ffa6e636cc2ca9f13c23f5862e60aceb0885a35686fb60f12da157316b159b53",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Infrastructure",

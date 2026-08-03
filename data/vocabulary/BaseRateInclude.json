@@ -1,16 +1,18 @@
 {
   "handle": "BaseRateInclude",
-  "mechanism": "Prior Probability Anchor: Before evaluating specific case, ask: \"How often does this happen in general?\" Start with base rate. Adjust for specific evidence. Vivid details don't change base rates. \"This startup feels special\" doesn't change 90% failure rate.",
+  "mechanism": "Prior probability anchor. Fix the reference class and its base rate before examining the specific case, then adjust for case-specific evidence. Vividness is not evidence. Evidence that places the case in a different reference class changes the prior by changing the class \u2014 a reclassification, not an adjustment.",
   "gloss": "Outside view over inside view",
   "failure_modes": [
-    "Reference Class Tennis: Gaming the output by cherry-picking a favorable reference class."
+    "Reference Class Tennis: cherry-picking a favourable class.",
+    "Stale prior: the class is right and its rate is out of date."
   ],
   "invariants": [
-    "Base rate source must be reference class relevant",
-    "Posterior probability must respect prior base rate"
+    "The reference class and its base rate are fixed before the case is examined.",
+    "The prior states its source; the posterior states the evidence that moved it.",
+    "A change of reference class is recorded as one, with the new base rate."
   ],
   "preconditions": [
-    "General population statistics",
+    "A reference class with a base rate \u2014 measured, or estimated and labelled as such",
     "Specific case evidence"
   ],
   "postconditions": [
@@ -27,9 +29,9 @@
       "Inference"
     ]
   },
-  "sema_id": "sema:BaseRateInclude#mh:SHA-256:8636331d386b5d9b9f7b6177fa3d3486699c5cc486e823cafb7065ae7554b5a5",
-  "sema_ref": "BaseRateInclude#8636",
-  "sema_stub": "8636",
+  "sema_id": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",
+  "sema_ref": "BaseRateInclude#1e63",
+  "sema_stub": "1e63",
   "sema_layer": "Mind",
   "sema_category": "Inference"
 }

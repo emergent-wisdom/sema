@@ -15,19 +15,20 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d"
+      "sema:SelfConsistency#mh:SHA-256:543df3dae7e7343a60ce588b0dac22883ec50c8ae0816ea6b25cb697f238cd7d",
+      "sema:SelfConsistency#mh:SHA-256:2095d12c9020575e57fc798f2f5b9d0a112bc8827e2c015e0d894a456427efbd"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "SelfConsistency#2095",
-  "sema_id": "sema:SelfConsistency#mh:SHA-256:2095d12c9020575e57fc798f2f5b9d0a112bc8827e2c015e0d894a456427efbd",
-  "sema_stub": "2095",
+  "sema_ref": "SelfConsistency#1a95",
+  "sema_id": "sema:SelfConsistency#mh:SHA-256:1a952f4e15d1935bb3c1d377ba75c0c9e3306778175cd0a94d25ac8f32be2ce1",
+  "sema_stub": "1a95",
   "dependencies": {
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b"
+      "aggregate": "sema:Aggregate#mh:SHA-256:ed4ae7898449926cd24777fff8cd9911e78eac398d19961d70456aea60c45606"
     }
   },
   "sema_layer": "Mind",

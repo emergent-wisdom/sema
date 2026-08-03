@@ -11,28 +11,29 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Summarize#mh:SHA-256:6a000fd570638ecd8dd239be23317cf6b004e2f5ed784822f41f6658ee669c2c"
+      "sema:Summarize#mh:SHA-256:6a000fd570638ecd8dd239be23317cf6b004e2f5ed784822f41f6658ee669c2c",
+      "sema:Summarize#mh:SHA-256:fd404c257777e046e61b8aa689fa0d12f227c0e660e5e92d2b3c1d64f3ee7ff8"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Summarize#mh:SHA-256:fd404c257777e046e61b8aa689fa0d12f227c0e660e5e92d2b3c1d64f3ee7ff8",
-  "sema_ref": "Summarize#fd40",
-  "sema_stub": "fd40",
+  "sema_id": "sema:Summarize#mh:SHA-256:34707d252c9e4c88b4e28266709663cbe45533a802b02c0c1941dea7edd68b70",
+  "sema_ref": "Summarize#3470",
+  "sema_stub": "3470",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
-      "translate": "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
+      "translate": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "summary": "sema:Summary#mh:SHA-256:7b63fff5bd05b2c584fcb5f0da4af60d5d6bf01baaf07c2e688054250c9e226e"
+      "summary": "sema:Summary#mh:SHA-256:105bfe88ac0e033c2e4ca8ecb4e748cec0d9716818329fdf40de9be0a06a0acf"
     }
   },
   "sema_layer": "Mind",

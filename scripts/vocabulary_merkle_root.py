@@ -186,7 +186,7 @@ Breakdown of patterns by Civilization Layer and Functional Category.
             content += f"| {cat} | {count} |\n"
         content += "\n"
 
-    return content
+    return content.rstrip() + "\n"
 
 
 def main():

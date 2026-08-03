@@ -7,25 +7,26 @@
     "ring": 2,
     "supersedes": [
       "sema:TraceBelief#mh:SHA-256:369d32aa6cf9d9eb0ae829b6c102dd7b5231f0d193980e81b2242d813fae99ee",
-      "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552"
+      "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
+      "sema:TraceBelief#mh:SHA-256:18811aa52ea8a0b4e10e500c10285ccd80d90bf294f3f86d04dbd0ebfd2e6a06"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:18811aa52ea8a0b4e10e500c10285ccd80d90bf294f3f86d04dbd0ebfd2e6a06",
-  "sema_ref": "TraceBelief#1881",
-  "sema_stub": "1881",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:639c35d9a0dc9b5c87dc14b75763c56632c478576c90f7b1387552993a8a725b",
+  "sema_ref": "TraceBelief#639c",
+  "sema_stub": "639c",
   "signature": [
     "Trace(Belief)"
   ],
   "dependencies": {
     "references": {
-      "belief": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:41a9f896757eb4b0d7132604b60e0193eaba43329953359ef5e927f69112f8df",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "belief": "sema:Belief#mh:SHA-256:9ef77d9fc26e2deb274f5f8d273cd8e06004a7ef3859863226920b7f06bb71f8",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:a4c74ab236ddd0939db90b2d2dab9c21527bb7b488344339f434c0a5fd4c50c9",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:807069d3d0824a92fae89a1be6b098ee19f6f270e71b404bacb95704b7d2a94e",
+      "trace": "sema:Trace#mh:SHA-256:7af13a2ae8e81b6860310e3308815f5e0443e9601bc8ec7bced72957d2e42bcb"
     }
   },
   "sema_layer": "Mind",

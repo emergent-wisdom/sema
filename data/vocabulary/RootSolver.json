@@ -1,6 +1,6 @@
 {
   "handle": "RootSolver",
-  "mechanism": "The apex node of a solver {{tree}} \u2014 the unique entry point where a {{problem}} (attached to a {{task}}) enters that tree. Its cognitive operation is triage: determining what kind of problem this is and routing it via a dispatch function conditioned on its {{pathway_memory}}. The RootSolver holds four unique authorities: Problem Framing (initial constraints and {{problem_space}}), Budget Allocation (cascading {{budget}} to child {{solver_node}}s), Ultimate Accountability (owning the final {{result}} or {{solution}}), and Pathway Memory maintenance (compounding learning about which routes work for which problem types). Every tree has exactly one RootSolver; sub-trees carry their own.",
+  "mechanism": "The apex node of a solver {{tree}} \u2014 the unique entry point where a {{problem}} (attached to a {{task}}) enters that tree. Its cognitive operation is triage: determining what kind of problem this is and routing it via a dispatch function conditioned on its {{pathway_memory}}. The RootSolver holds four unique authorities: Problem Framing (initial constraints and {{problem_space}}), Budget Allocation (cascading {{budget}} to child {{solver_node}}s), Ultimate Accountability (owning the final {{result}} or {{solution}}), and Pathway Memory maintenance (compounding learning about which routes work for which problem types). Every tree has exactly one RootSolver; sub-trees carry their own. A {{frame_error}} arriving from any descendant is the signal that reframing is required rather than retry; the RootSolver is its terminal consumer, since it alone holds Reframe Authority.",
   "gloss": "Apex triage node of a SolverTree, with Pathway Memory as its compounding learning site",
   "failure_modes": [
     "Bad Frame: problem framed incorrectly, unsolvable by downstream nodes.",
@@ -10,16 +10,17 @@
   ],
   "invariants": [
     "Singleton per tree: every SolverTree has exactly one RootSolver.",
-    "Ultimate Responsibility: the RootSolver owns the final success/failure of the root {{task}}.",
-    "Reframe Authority: only the RootSolver can reframe the original {{problem}}.",
-    "Pathway Memory writes are signed \u2014 integrity of the compounding surface is enforced."
+    "Owns the final success or failure of the root {{task}}.",
+    "Sole reframe authority, and terminal consumer of any {{frame_error}} raised beneath it.",
+    "{{pathway_memory}} writes name the node that wrote them."
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
       "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f",
-      "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1"
+      "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1",
+      "sema:RootSolver#mh:SHA-256:750d3992db274fa89e6bad275ad10c0fc6ea9969cc9e4ff9cd809c77f96a4d32"
     ],
     "path": [
       "Mind",
@@ -58,22 +59,23 @@
       }
     }
   },
-  "sema_id": "sema:RootSolver#mh:SHA-256:750d3992db274fa89e6bad275ad10c0fc6ea9969cc9e4ff9cd809c77f96a4d32",
-  "sema_ref": "RootSolver#750d",
-  "sema_stub": "750d",
+  "sema_id": "sema:RootSolver#mh:SHA-256:d9dbb02a8a424a8cbac2040586aa347eb9d7ca7db63cc02043002ed4a550f6c0",
+  "sema_ref": "RootSolver#d9db",
+  "sema_stub": "d9db",
   "dependencies": {
     "composes_with": {
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82"
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5"
     },
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "problem_space": "sema:ProblemSpace#mh:SHA-256:3d6d30545da39dcf29a6b27145e2d2ebc46159d4c783489ff8eeaf0d5d48f2b1",
-      "result": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
-      "tree": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543"
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "frame_error": "sema:FrameError#mh:SHA-256:c98287daa5cdfef011246e8510023d2598397cc1dcf33617e39822074a6cf92a",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:927aaa472dd0daacb3668cd4c21b82591f4530428f75f88a7d5386e65b072719",
+      "result": "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127",
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "solver_node": "sema:SolverNode#mh:SHA-256:b7f04fc5205ad8a07faed4f6c62b58b742be8be7dc7d4ffb57c7433a6531bf22",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
+      "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }
   },
   "sema_layer": "Mind",

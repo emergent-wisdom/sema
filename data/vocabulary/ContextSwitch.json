@@ -6,23 +6,33 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef"
+      "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef",
+      "sema:ContextSwitch#mh:SHA-256:67b2747f9e0dc041462f36df02e5b33540c2feb0d83bf40c580ea122d8f9ec06"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:67b2747f9e0dc041462f36df02e5b33540c2feb0d83bf40c580ea122d8f9ec06",
-  "sema_ref": "ContextSwitch#67b2",
-  "sema_stub": "67b2",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:9f3676a109a1879f0525dbcd7be5d86b067921fbfd8edc6ff1a3770e2f3c60c9",
+  "sema_ref": "ContextSwitch#9f36",
+  "sema_stub": "9f36",
+  "invariants": [
+    "The switch is signalled explicitly; it is never inferred from content.",
+    "Revert pops the most recent switch, not an arbitrary one.",
+    "Scoped to one conversation or channel, unlike an ambient {{mode}} change."
+  ],
+  "failure_modes": [
+    "Unbalanced stack: a switch is never reverted, so the ruleset outlives the exchange it was for.",
+    "Scope leak: messages outside the switched channel are interpreted under the new ruleset."
+  ],
   "dependencies": {
     "accepts": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b"
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496"
     }
   },
   "sema_layer": "Society",

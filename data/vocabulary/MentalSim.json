@@ -1,14 +1,15 @@
 {
   "handle": "MentalSim",
-  "mechanism": "{{system}} 2 {{simulation}}. {{agent}} constructs a causal graph of the target system. It executes a 'Dry Run' of the proposed plan within this graph to predict {{state}}(t+1). It executes a 'Dry Run' within an isolated {{agent_sandbox}}, toggling between fast {{heuristic_snap}} and rigorous {{deep}} simulation modes.",
+  "mechanism": "{{system}} 2 {{simulation}}. {{agent}} constructs a causal graph of the target system. It executes a 'Dry Run' of the proposed plan within that graph, inside an isolated {{agent_sandbox}}, to predict {{state}}(t+1) \u2014 toggling between fast {{heuristic_snap}} and rigorous {{deep}} simulation modes.",
   "gloss": "Predictive modeling of system dynamics",
   "failure_modes": [
     "Map-Territory Error: {{simulation}} diverges from reality (Hallucinated Physics).",
     "Overconfidence: {{agent}} trusts the simulation execution log more than real-world feedback."
   ],
   "invariants": [
-    "Read-Only Reality: {{simulation}} cannot produce side effects in Production context.",
-    "Simplification: Simulation_Cost << Execution_Cost (otherwise, just do it)."
+    "Builds a causal graph of the target {{system}} before running anything.",
+    "The {{simulation}} produces no side effects in the production context.",
+    "Costs at most `cost_fraction` of executing the plan for real."
   ],
   "preconditions": [
     "Causal model of target system available",
@@ -19,16 +20,22 @@
   ],
   "parameters": [
     {
+      "name": "cost_fraction",
+      "type": "Ratio",
+      "range": "(0.0, 0.5]",
+      "description": "Share of real execution cost the simulation may consume before simulating is not worth it."
+    },
+    {
       "name": "fidelity",
       "type": "Enum",
       "range": "{Low, High}",
-      "description": "Default: Low"
+      "description": "Whether the causal graph models coarse dynamics or detailed ones."
     },
     {
       "name": "steps",
       "type": "Integer",
       "range": "[1, 10]",
-      "description": "How far ahead to look"
+      "description": "How far ahead the dry run looks."
     }
   ],
   "_meta": {
@@ -39,23 +46,24 @@
     "ring": 2,
     "supersedes": [
       "sema:MentalSim#mh:SHA-256:5728b6db7446bf4b3dc0ce1998ddf5a2b724b09438efc15d68709c09ec93a26e",
-      "sema:MentalSim#mh:SHA-256:7212dad44c65f6241e70f0fc2e20440788e837a84cc644fea6bcc5f59e09f94e"
+      "sema:MentalSim#mh:SHA-256:7212dad44c65f6241e70f0fc2e20440788e837a84cc644fea6bcc5f59e09f94e",
+      "sema:MentalSim#mh:SHA-256:287471afbc4498472aca1185bd961b7338fb6d9f28e6f007f44a4f824e8bb520"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:287471afbc4498472aca1185bd961b7338fb6d9f28e6f007f44a4f824e8bb520",
-  "sema_ref": "MentalSim#2874",
-  "sema_stub": "2874",
+  "sema_id": "sema:MentalSim#mh:SHA-256:6de87cf87e19a9ba8ed08da7e11e078ac7f3b336ebbe37e2215a6524505d1ed2",
+  "sema_ref": "MentalSim#6de8",
+  "sema_stub": "6de8",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:c092338ebd9e7025254ae45974d7a9854b21b12e5d2943f58f4c0e920f5e1fde",
-      "deep": "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824",
-      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:bd4b7e8369088accfeed1c366851705638d34d00eb947daa0d02935a60ebceb3",
-      "simulation": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:0be73a7000edac19c184040f6b1479e76d0b312d59e9b948eccc5f0f52943e4e",
+      "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
+      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:f7ccd96fafbe6daff186fdced5bc814b4885f08212dc2126b67d44b350a27e6b",
+      "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

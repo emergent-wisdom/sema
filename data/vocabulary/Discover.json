@@ -1,27 +1,36 @@
 {
   "handle": "Discover",
-  "mechanism": "A distributed coordination protocol where an agent broadcasts a query to the network to locate external entities (Agents, Datasets, or Patterns) matching a {{criteria}}. Uses {{check}} to filter responses against the query. Unlike {{search}} (which scans internal memory or static data), Discover implies active solicitation of peers and handling of asynchronous {{signal}} responses.",
+  "mechanism": "A distributed coordination protocol where an agent broadcasts a query to locate external entities matching a {{criteria}}. Uses {{check}} to filter responses. Unlike {{search}}, which scans internal memory, Discover requires another party to answer.",
   "gloss": "Distributed query for external resources",
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc"
+      "sema:Discover#mh:SHA-256:afa14d67f5837d32ee70ae99c0b625d39864254bafd2b11b0ef690cc8fda5dbc",
+      "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
-  "sema_ref": "Discover#8895",
-  "sema_stub": "8895",
+  "sema_id": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
+  "sema_ref": "Discover#f6e0",
+  "sema_stub": "f6e0",
+  "invariants": [
+    "A Discover states when it stops waiting; responses arrive as asynchronous {{signal}}s with no completion of their own.",
+    "Responses pass {{check}} against the {{criteria}} before counting as matches."
+  ],
+  "failure_modes": [
+    "Silence read as absence: the window closed with no match, which licenses only that nothing answered.",
+    "Response flood: a broad {{criteria}} returns more than the caller can filter; the stop condition bounds time, not volume."
+  ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
-      "search": "sema:Search#mh:SHA-256:f41f1d3dadc786c5fba7f290a9fc10ae87a39c07d6bb66a8f4deb0b9e393fc85",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "search": "sema:Search#mh:SHA-256:1da96800031333016d0be31b6721f15867df62aa9cd93d2a10102efb7d4841a7",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },
   "sema_layer": "Society",

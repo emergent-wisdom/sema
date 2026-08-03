@@ -6,8 +6,7 @@
     "Analysis Paralysis: Infinite search for the perfect alternative prevents any action."
   ],
   "invariants": [
-    "Cost = {{value}} of best foregone alternative",
-    "Resources are finite"
+    "Cost includes the {{value}} of the best forgone alternative, not only the resources consumed."
   ],
   "preconditions": [
     "Choice set > 1",
@@ -20,19 +19,20 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e"
+      "sema:OpportunityCost#mh:SHA-256:1c66f1b8317b3a67b9b8d9f75aee7499244c105ab54012f7d7964af111da897e",
+      "sema:OpportunityCost#mh:SHA-256:ab1b4c48b8b40b35607e94fa11f1488c23b07b4c846daca0aef109b8a55cd357"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "OpportunityCost#ab1b",
-  "sema_id": "sema:OpportunityCost#mh:SHA-256:ab1b4c48b8b40b35607e94fa11f1488c23b07b4c846daca0aef109b8a55cd357",
-  "sema_stub": "ab1b",
+  "sema_ref": "OpportunityCost#7f52",
+  "sema_id": "sema:OpportunityCost#mh:SHA-256:7f526c52acf919aabffa14287cd4ed442fb4c419a6ad78cfe0de1cf19d6146da",
+  "sema_stub": "7f52",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

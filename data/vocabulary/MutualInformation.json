@@ -1,12 +1,12 @@
 {
   "handle": "MutualInformation",
-  "mechanism": "The substrate information-theoretic measure of shared entropy between two random variables: I(X; Y) = H(X) + H(Y) \u2212 H(X, Y), equivalently the reduction in {{entropy}} of one variable given knowledge of the other. Quantifies how much knowing X reduces uncertainty about Y (and symmetrically). Zero mutual information indicates statistical independence; high mutual information indicates strong coupling without specifying its form (linear, nonlinear, or arbitrary). Substrate property: exists wherever joint distributions exist, whether or not anyone estimates it. Distinct from correlation (which measures linear dependence only) and from mere co-occurrence.",
-  "gloss": "Substrate information-theoretic measure of shared entropy between two variables",
+  "mechanism": "The substrate information-theoretic measure of dependence between two random variables, defined generally as the Kullback-Leibler divergence between their joint distribution and the product of their marginals. When the relevant {{entropy}} terms are finite, I(X; Y) = H(X) + H(Y) \u2212 H(X, Y), equivalently the reduction in one variable's entropy from knowing the other. Zero mutual information indicates statistical independence; a positive value indicates dependence, but its unnormalized magnitude has no universal scale. The property exists whether or not anyone estimates it. Distinct from normalized correlation coefficients, whose sensitivity depends on the selected method, and from mere co-occurrence.",
+  "gloss": "Information-theoretic dependence between two variables",
   "invariants": [
     "Non-negativity: I(X; Y) \u2265 0 for all random variables X, Y.",
     "Symmetry: I(X; Y) = I(Y; X).",
     "Zero iff independent: I(X; Y) = 0 if and only if X and Y are statistically independent.",
-    "Bounded by entropy: I(X; Y) \u2264 min(H(X), H(Y))."
+    "Discrete entropy bound: for discrete X and Y with finite entropies, I(X; Y) \u2264 min(H(X), H(Y))."
   ],
   "_meta": {
     "tier": 1,
@@ -14,14 +14,17 @@
     "path": [
       "Physics",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:MutualInformation#mh:SHA-256:03a0a79a3c3433e42aa63a97157c7b376adf0aa3d06c28103b63229a458dcb07"
     ]
   },
-  "sema_id": "sema:MutualInformation#mh:SHA-256:03a0a79a3c3433e42aa63a97157c7b376adf0aa3d06c28103b63229a458dcb07",
-  "sema_ref": "MutualInformation#03a0",
-  "sema_stub": "03a0",
+  "sema_id": "sema:MutualInformation#mh:SHA-256:40369b10e6cf188b12f1922452d4ebc9184b8e398a765dd857bb4efd0a13589b",
+  "sema_ref": "MutualInformation#4036",
+  "sema_stub": "4036",
   "dependencies": {
     "references": {
-      "entropy": "sema:Entropy#mh:SHA-256:323fd687b530ceedeeb7b7399fc4227f8181da3193c85afab0d66e26914a3749"
+      "entropy": "sema:Entropy#mh:SHA-256:d5f7482e6c06a1e48eadbf28e6dca0cc0eb176bf75c70e7e467284f656d20bae"
     }
   },
   "sema_layer": "Physics",

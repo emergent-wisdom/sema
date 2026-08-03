@@ -3,14 +3,15 @@
   "mechanism": "A structured {{spec}} of the {{problem}} space, {{constraint}}s, and success criteria derived from a raw request via interpretation. It is an {{artifact}} that acts as the contract defining the boundaries for execution.",
   "gloss": "Structured problem definition artifact",
   "invariants": [
-    "Constraint Clarity: Must contain explicit, testable {{constraint}}s.",
-    "Success Definition: Must define unambiguous success criteria."
+    "Contains explicit, testable {{constraint}}s.",
+    "States success criteria that are testable \u2014 an observation that would show the work succeeded."
   ],
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75"
+      "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
+      "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e"
     ],
     "path": [
       "Infrastructure",
@@ -22,7 +23,8 @@
     "description": "Structured problem definition.",
     "required": [
       "problem_statement",
-      "constraints"
+      "constraints",
+      "success_criteria"
     ],
     "properties": {
       "problem_statement": {
@@ -51,15 +53,18 @@
   "signature": [
     "Artifact(Constraint)"
   ],
-  "sema_id": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
-  "sema_ref": "FrameSpec#c9bc",
-  "sema_stub": "c9bc",
+  "sema_id": "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631",
+  "sema_ref": "FrameSpec#7f9a",
+  "sema_stub": "7f9a",
+  "failure_modes": [
+    "Frozen contract, moved request: the request changed, the spec was not re-derived, and its {{constraint}}s stay authoritative."
+  ],
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "spec": "sema:Spec#mh:SHA-256:47f45e3174d8a28edf9c685f6ee8356386cb30cf24d3ba82ddb0738c0c9391cb"
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "spec": "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89"
     }
   },
   "sema_layer": "Infrastructure",

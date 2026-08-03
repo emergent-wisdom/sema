@@ -6,21 +6,22 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:Jester#mh:SHA-256:bc5045fce9b9265838e8e9e8df40d00bab11be85752235307be0dc403ee5abae"
+      "sema:Jester#mh:SHA-256:bc5045fce9b9265838e8e9e8df40d00bab11be85752235307be0dc403ee5abae",
+      "sema:Jester#mh:SHA-256:0c49122270f0f4e06d731097b2fdb8a60832060cb71f41399604c2df5e6d4c49"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Jester#mh:SHA-256:0c49122270f0f4e06d731097b2fdb8a60832060cb71f41399604c2df5e6d4c49",
-  "sema_ref": "Jester#0c49",
-  "sema_stub": "0c49",
+  "sema_id": "sema:Jester#mh:SHA-256:48911d26989b0448713eaa86f067d29e517b110f19c379f4c2c77a4e3c196ad5",
+  "sema_ref": "Jester#4891",
+  "sema_stub": "4891",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
-      "incongruity": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99"
+      "break": "sema:Break#mh:SHA-256:a2079c91fe88c52dd3ee657d50309cecd6aa628e76d6ab543dcd7102179479c1",
+      "critique": "sema:Critique#mh:SHA-256:0541d11be536bd1fc1c0600452c80c5b9ef36b4217943dcb65d54fbd79c8521f",
+      "incongruity": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc"
     }
   },
   "sema_layer": "Mind",

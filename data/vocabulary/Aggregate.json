@@ -1,6 +1,6 @@
 {
   "handle": "Aggregate",
-  "mechanism": "Mathematical Reduction. A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. When the caller supplies {{weights}} alongside the vector, the reduction becomes a weighted one. It serves as the computational backbone for consensus mechanisms.",
+  "mechanism": "A deterministic function that maps a {{vector}} of inputs to a single Scalar {{value}}. Implements standard statistical operations (Mean, Mode, Median) to compress signal bandwidth. When the caller supplies {{weights}} alongside the vector, the reduction becomes a weighted one. It serves as the computational backbone for consensus mechanisms.",
   "gloss": "Reduce a set to a summary statistic",
   "failure_modes": [
     "Type Mismatch: Input list contains incomparable types (e.g., Integers mixed with Strings).",
@@ -9,7 +9,7 @@
   ],
   "invariants": [
     "Determinism: F(Input) always yields the same Output.",
-    "Reduction: Size(Output) < Size(Input)."
+    "Yields one scalar {{value}} whatever the input length, including length one."
   ],
   "preconditions": [
     "All elements in list share a comparable type",
@@ -30,23 +30,24 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486"
+      "sema:Aggregate#mh:SHA-256:af54a8a31d6e7ed0c6d7bdfb51935655b0a66d299bddb352dbff9f4a789e7486",
+      "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
-  "sema_ref": "Aggregate#4861",
-  "sema_stub": "4861",
+  "sema_id": "sema:Aggregate#mh:SHA-256:ed4ae7898449926cd24777fff8cd9911e78eac398d19961d70456aea60c45606",
+  "sema_ref": "Aggregate#ed4a",
+  "sema_stub": "ed4a",
   "dependencies": {
     "accepts": {
-      "vector": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478",
-      "weights": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
+      "vector": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993",
+      "weights": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993"
     },
     "references": {
-      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b"
+      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496"
     },
     "yields": {
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"

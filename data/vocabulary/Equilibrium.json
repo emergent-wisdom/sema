@@ -3,9 +3,9 @@
   "mechanism": "A {{state}} of a dynamical system in which the system's time evolution under its own dynamics is stationary \u2014 once the system occupies the state it remains there absent external perturbation. Every dynamical system has equilibria (possibly empty), and they are classified by their response to perturbation: *stable* (small deviations decay back to the state), *unstable* (small deviations amplify away), *neutral* (deviations neither decay nor grow). Substrate property: equilibria are implied by a system's dynamics, not designed. Higher patterns test for equilibrium as a signal that a process has settled; some coordination protocols explicitly drive toward or away from a chosen equilibrium.",
   "gloss": "A dynamical system's stationary state \u2014 where the dynamics leave it unchanged",
   "invariants": [
-    "Stationarity: under its own dynamics, the system's time derivative at an equilibrium state is zero.",
-    "Stability class: every equilibrium is classifiable as stable, unstable, or neutral by perturbation response.",
-    "Multiplicity: a dynamical system may have zero, one, or many equilibria; occupancy depends on history and the basin the system entered."
+    "Stationary: under its own dynamics the system does not leave the {{state}}.",
+    "Classifiable as stable, unstable or neutral by its response to perturbation.",
+    "Not unique: occupying this equilibrium is a fact about history, not necessity."
   ],
   "_meta": {
     "tier": 1,
@@ -15,9 +15,13 @@
       "Primitives"
     ]
   },
-  "sema_id": "sema:Equilibrium#mh:SHA-256:bc8538ba0df944bb075946160a4b75f60a3a74b434090952b23ee718805ce88c",
-  "sema_ref": "Equilibrium#bc85",
-  "sema_stub": "bc85",
+  "sema_id": "sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2",
+  "sema_ref": "Equilibrium#4f03",
+  "sema_stub": "4f03",
+  "failure_modes": [
+    "Transient mistaken for equilibrium: a slow-moving state is read as settled.",
+    "Stability inferred from occupancy: the system sits here, so it is assumed to return here."
+  ],
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"

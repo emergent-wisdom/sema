@@ -8,7 +8,8 @@
     "Dictionary mismatch risks semantic errors."
   ],
   "invariants": [
-    "Term Consistency, Mapping Bijectivity"
+    "Every mapping states its cardinality: one-to-one, many-to-one, or one-to-many.",
+    "A term with no faithful mapping is flagged unmappable rather than coerced onto the nearest one."
   ],
   "preconditions": [
     "Both agents have ontologies.",
@@ -24,23 +25,24 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613"
+      "sema:OntologyHandshake#mh:SHA-256:ead055e44f108319ace229e30005ea5a3aaf8df540ccf1c1cf0f855aed45e613",
+      "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e",
-  "sema_ref": "OntologyHandshake#fc51",
-  "sema_stub": "fc51",
+  "sema_id": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235",
+  "sema_ref": "OntologyHandshake#a43c",
+  "sema_stub": "a43c",
   "dependencies": {
     "composes_with": {
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727"
+      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:7f70838f05f3aad069b89dcbc705283872f66fde4bc95c6bfa0dc917955e050d"
     },
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:cb58af48ff79c9623c01cbd6be1998eda0effeb791ca79e98d21022435911f05"
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:c0aab008d2cd2f653e56508356987477f9207b4cf6435f4416105b3f37bd544a"
     }
   },
   "sema_layer": "Society",

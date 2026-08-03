@@ -1,6 +1,6 @@
 {
   "handle": "DiscoveryProtocol",
-  "mechanism": "The paper's \u00a76.4 protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each bound to a maximally distinct cognitive mode via GeneratorSolvers), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generate-asked-by-many-parallel-Solvers, then reduce-asked-by-a-Solver-whose-faculty-is-evaluation-and-composition-rather-than-generation. The ReduceSolver routes among modes (AggregateSolver for ensembles, TournamentSolver for adversarial selection, PortfolioSolver for quality-diversity preservation, {{synthesis}}-based merging of compatible mechanisms). TaxonomistSolver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.",
+  "mechanism": "A protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each bound to a maximally distinct cognitive mode via GeneratorSolvers), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generate-asked-by-many-parallel-Solvers, then reduce-asked-by-a-Solver-whose-faculty-is-evaluation-and-composition-rather-than-generation. The ReduceSolver routes among modes (AggregateSolver for ensembles, TournamentSolver for adversarial selection, PortfolioSolver for quality-diversity preservation, {{synthesis}}-based merging of compatible mechanisms). TaxonomistSolver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.",
   "gloss": "Population-based discovery: Generate (parallel diverse solvers) + Reduce (composition-aware selection) behind hard boundaries",
   "invariants": [
     "Hard-boundary isolation: generators cannot see each other's outputs during generation; the reduction boundary is the first synthesis point.",
@@ -13,18 +13,21 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "supersedes": [
+      "sema:DiscoveryProtocol#mh:SHA-256:9958e873e5aa29dc046965443b256ee00d53f69befc0c9e573ba3b165e7487db"
     ]
   },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:9958e873e5aa29dc046965443b256ee00d53f69befc0c9e573ba3b165e7487db",
-  "sema_ref": "DiscoveryProtocol#9958",
-  "sema_stub": "9958",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:e65d63bb8a786f5aa53cceef3ebd79191f130b5ab28a982932fab2eff41c423f",
+  "sema_ref": "DiscoveryProtocol#e65d",
+  "sema_stub": "e65d",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
-      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:1ea3c89d008397a1b2ddff513377d14dc2c8446227d325177ebc8601326f3f97",
+      "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
     },
     "references": {
-      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104"
+      "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b"
     }
   },
   "sema_layer": "Mind",

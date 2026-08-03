@@ -11,25 +11,26 @@
     "ring": 2,
     "supersedes": [
       "sema:Gardener#mh:SHA-256:5d74a3fff3bfed7f1d584d7894efca02274223d478477ffb00a99df127453d48",
-      "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c"
+      "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c",
+      "sema:Gardener#mh:SHA-256:3e1820fb37b894a66e5fe3e664e15067abe2e7d70a55d6b4f9ef10e362d87b71"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:3e1820fb37b894a66e5fe3e664e15067abe2e7d70a55d6b4f9ef10e362d87b71",
-  "sema_ref": "Gardener#3e18",
-  "sema_stub": "3e18",
+  "sema_id": "sema:Gardener#mh:SHA-256:2546015f83ec3ecee2ed6904aa4235b17556ab6749ebd330e9a47b3d282123c7",
+  "sema_ref": "Gardener#2546",
+  "sema_stub": "2546",
   "signature": [
     "Stigmergy(Care)"
   ],
   "dependencies": {
     "references": {
-      "care": "sema:Care#mh:SHA-256:413702da5928490b73e9aad2760480d231f2c40cf4c30a7d298ab118581ff20c",
-      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
-      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:1a82403193308a36bfe7623bdbd9e98dd611761e086b0e038ced0655e8db0336",
-      "stigmergy": "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af"
+      "care": "sema:Care#mh:SHA-256:8b8f5e78e6b66790e450d7ff0ed3a757248423b4f63d00879d1b26c7ff333661",
+      "compensate": "sema:Compensate#mh:SHA-256:47973ce8d6d546927dc224da79919bcb2b32b05d0c5a6361ff9d8befbee84d1b",
+      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:f10808f46c43a5c56cc2c16b27de525604b7888f232240cb742f276e089d4781",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:a0f0728b796ba209007deec2c2d4b9cef330b39b899b03cb6f608d5fcf2ec296"
     }
   },
   "sema_layer": "Society",

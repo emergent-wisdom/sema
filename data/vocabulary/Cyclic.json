@@ -6,7 +6,8 @@
     "ring": 2,
     "tier": 1,
     "supersedes": [
-      "sema:Cyclic#mh:SHA-256:ac1335676817eaedd894da4a2d11671dec5a20dba76a8f5d55d1a6eed20e2051"
+      "sema:Cyclic#mh:SHA-256:ac1335676817eaedd894da4a2d11671dec5a20dba76a8f5d55d1a6eed20e2051",
+      "sema:Cyclic#mh:SHA-256:6d5fe05bc8d72bd3758ea9c644e8108ac47aa144dc60b6c3e0de3b0d85d941a0"
     ],
     "path": [
       "Infrastructure",
@@ -17,9 +18,9 @@
     "Recurrence: At least one path exists from a node to itself.",
     "Termination Condition: Must have a defined exit state to prevent infinite loops."
   ],
-  "sema_ref": "Cyclic#6d5f",
-  "sema_id": "sema:Cyclic#mh:SHA-256:6d5fe05bc8d72bd3758ea9c644e8108ac47aa144dc60b6c3e0de3b0d85d941a0",
-  "sema_stub": "6d5f",
+  "sema_ref": "Cyclic#a8f6",
+  "sema_id": "sema:Cyclic#mh:SHA-256:a8f6c907685f7a420ccdc584e4b9066b476aa82171a6d280eb1441fc2769b423",
+  "sema_stub": "a8f6",
   "data_schema": {
     "type": "object",
     "description": "A cyclic topology \u2014 nodes connected in a closed loop where traversal returns to origin.",
@@ -36,8 +37,8 @@
   },
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },
   "sema_layer": "Infrastructure",

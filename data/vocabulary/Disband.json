@@ -26,21 +26,22 @@
     "ring": 1,
     "supersedes": [
       "sema:Disband#mh:SHA-256:7cb883dd99a51f2408f92e5d48d69d4c3f077db9d49e3754a1f99af92126b0cf",
-      "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48"
+      "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48",
+      "sema:Disband#mh:SHA-256:d5f882cd8f4a4bcbe6eaa6ba11a0eeeca57472343564378f2e2e84f5eab3f647"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Disband#mh:SHA-256:d5f882cd8f4a4bcbe6eaa6ba11a0eeeca57472343564378f2e2e84f5eab3f647",
-  "sema_ref": "Disband#d5f8",
-  "sema_stub": "d5f8",
+  "sema_id": "sema:Disband#mh:SHA-256:fd54b1495e69d823cff63f281bf6f1090613bd75088bd6cf62225faa2b3aa1d6",
+  "sema_ref": "Disband#fd54",
+  "sema_stub": "fd54",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:e8361ca7c2ffb506b32cd36f16addc253ecbc51350f98b983db9c122bb51f106",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:56a7a4f555af824dd10654c166d0595835ef25c94971a1c8016ff689ba158ccd",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     },
     "yields": {

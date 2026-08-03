@@ -1,44 +1,45 @@
 {
   "handle": "Rally",
-  "mechanism": "Ad-Hoc Group Formation {{protocol}}. Initiator broadcasts a 'RALLY' signal with requirements defined by an {{accept_spec}} and a selection criteria. Responders submit 'ENLIST' messages. If count >= {{quorum}} by deadline, initiator executes {{select}} and sends 'MUSTER' to form a new cryptographic group {{context}}. It broadcasts a call to form a group, using {{quorum}} to validate critical mass and {{elect}} to formalize leadership. Respondents are filtered by the caller-supplied {{selection_criteria}} before acceptance, so the rally author controls which qualifying replies proceed to enlistment.",
+  "mechanism": "Ad-hoc group-formation {{protocol}}. An initiator broadcasts RALLY with group requirements encoded as an {{accept_spec}}, participant {{selection_criteria}}, `deadline`, `min_participants`, and `max_participants`. Responders submit tentative ENLIST messages. Before `deadline`, the initiator closes ENLIST intake, executes {{select}} over the responders using the participant criteria with `limit = max_participants`, sends MUSTER to those selected, and collects confirmations. Confirmation closes when every selected responder has replied or at `deadline`; only selected responders who confirm by then count toward `min_participants`. Rally then yields one {{outcome}} whose `outcome_id` identifies this Rally run. If fewer than `min_participants` confirmed, `outcome.value` records `{status: dissolved, confirmed_participants}` and no `context_id`. Otherwise the initiator mints a fresh `context_id`; `outcome.value` records `{status: formed, confirmed_participants, context_id}`, and every confirmed participant receives that same `context_id`.",
   "gloss": "Enable ad-hoc multi-party coordination",
   "failure_modes": [
-    "Echo Chamber: Rally attracts only homogenous agents, reducing diversity.",
-    "Flaking: Agents ENLIST tentatively but fail to show up for MUSTER.",
-    "Rally Spam: Low-quality initiators flooding the broadcast channel.",
-    "Not enough ENLISTs by deadline (group fails to form).",
-    "Too many ENLISTs makes selection political/contentious.",
-    "Initiator has too much power over selection (mitigated by transparent selection_criteria)."
+    "Flaking: Responders ENLIST tentatively but selected responders fail to confirm at MUSTER before `deadline`.",
+    "Under-quorum: Fewer than `min_participants` selected responders confirm before MUSTER confirmation closes, so no group forms."
   ],
   "invariants": [
-    "Binding: MUSTER message must include a shared ContextID for the new group.",
-    "{{quorum}}: If Enlist_Count < Min_Participants, Rally FAILS (Atomic Abort)."
+    "`2 <= min_participants <= max_participants <= 10000`.",
+    "Exactly one {{outcome}} is yielded per Rally run, and its `outcome_id` identifies that run.",
+    "`outcome.value.confirmed_participants` contains exactly the responders selected under {{selection_criteria}} who confirmed before MUSTER confirmation closed.",
+    "`outcome.value.status` is `formed` if and only if at least `min_participants` selected responders confirmed before confirmation closed.",
+    "A formed {{outcome}} carries exactly one `context_id`, fresh to that Rally run and shared with every confirmed participant; a dissolved outcome carries none."
   ],
   "preconditions": [
     "Broadcast channel available",
-    "Initiator has resources to pay for group {{context}}"
+    "Initiator can mint and communicate a shared group context identifier"
   ],
   "postconditions": [
-    "New GroupContextID minted OR Rally dissolved"
+    "A formed or dissolved {{outcome}} is yielded"
   ],
   "parameters": [
     {
       "name": "deadline",
       "type": "Duration",
-      "range": "unspecified",
-      "description": "Default: 5m"
+      "range": "(0s, unbounded)",
+      "description": "Duration from Rally start by which ENLIST intake, selection, and MUSTER confirmation complete",
+      "default": "5m"
     },
     {
       "name": "max_participants",
       "type": "PositiveInteger",
-      "range": "unspecified",
-      "description": "Default: 10"
+      "range": "[min_participants, 10000]",
+      "description": "Most responders that may be selected and confirmed",
+      "default": 10
     },
     {
       "name": "min_participants",
-      "type": "Integer",
-      "range": "[1, 50]",
-      "description": "Minimum agents required to proceed"
+      "type": "PositiveInteger",
+      "range": "[2, max_participants]",
+      "description": "Fewest selected responders who must confirm at MUSTER for group formation"
     }
   ],
   "_meta": {
@@ -46,29 +47,30 @@
     "ring": 1,
     "supersedes": [
       "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
-      "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5"
+      "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
+      "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Rally#mh:SHA-256:bc5fb9825570d17d2869a85f4162c0bee1a152b56b9816b9735c90484dc8b2ff",
-  "sema_ref": "Rally#bc5f",
-  "sema_stub": "bc5f",
+  "sema_id": "sema:Rally#mh:SHA-256:f2d67002a3d5ca0f6e0e61343ba41b800d3211249f3ab513984af2699df7d8d5",
+  "sema_ref": "Rally#f2d6",
+  "sema_stub": "f2d6",
   "dependencies": {
     "accepts": {
-      "selection_criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "selection_criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb"
     },
     "composes_with": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4"
+      "select": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3"
     },
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "elect": "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
-      "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
+    },
+    "yields": {
+      "outcome": "sema:Outcome#mh:SHA-256:ac55da2e51aaab185174d9e8edba137536b1ff90a2f6a1d6e1ab634bf7429ef0"
     }
   },
   "sema_layer": "Society",

@@ -30,23 +30,24 @@
     "ring": 2,
     "supersedes": [
       "sema:SacrificialProbe#mh:SHA-256:e235bde0b859ae1c6db86c1a89037765c45cdaae2bbcac7e3bae000063d65e99",
-      "sema:SacrificialProbe#mh:SHA-256:1e1674548e3438a28f913e340d956e5178aeb8710176e56251ef9370de28e544"
+      "sema:SacrificialProbe#mh:SHA-256:1e1674548e3438a28f913e340d956e5178aeb8710176e56251ef9370de28e544",
+      "sema:SacrificialProbe#mh:SHA-256:aca76b887e6c1c71ebc1549f2204c362657b7e141fc775f597471308b7f7f8ee"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:aca76b887e6c1c71ebc1549f2204c362657b7e141fc775f597471308b7f7f8ee",
-  "sema_ref": "SacrificialProbe#aca7",
-  "sema_stub": "aca7",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:2855342d12e966613bfeb00d71c085e825c83f2dcf5182c6d39b474cb17e89ee",
+  "sema_ref": "SacrificialProbe#2855",
+  "sema_stub": "2855",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
-      "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
+      "agent": "sema:Agent#mh:SHA-256:608721148ada52ecff38e26b370d911f00ca8e0de5a30c71fa9eae8c72a2c5fe",
+      "mode": "sema:Mode#mh:SHA-256:5bf1efa03113c16a0078c0ed095131c788a218c31aa1114cadbb57bc00095496",
+      "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
+      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

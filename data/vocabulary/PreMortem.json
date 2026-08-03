@@ -1,58 +1,36 @@
 {
   "handle": "PreMortem",
-  "mechanism": "Prospective Hindsight: Before executing {{task}} ({{plan}}), assume it has failed catastrophically. Ask: \"What went wrong?\" Generate failure scenarios without defensiveness. For each plausible failure, add mitigation to plan or reconsider approach entirely. It invokes {{recursive_root_cause}} on a hypothetical failure state, often employing {{steelman_check}} to ensure the disaster scenario is plausible.",
+  "mechanism": "For a contemplated course, state an unwanted outcome and reason as though it has already occurred. Ask what caused it and record course- and context-linked causal scenarios. Return those scenarios; selection, ranking, and response remain caller choices.",
   "gloss": "Simulating failure to identify hidden risks",
   "failure_modes": [
-    "Performative Doomerism: Listing generic catastrophes (e.g., Asteroid Strike) instead of specific, endogenous failure modes."
+    "Performative Doomerism: Recording generic disasters disconnected from the course or context."
   ],
   "invariants": [
-    "Future Perspective: Analysis must assume failure has ALREADY happened (Probability=1.0).",
-    "Specific Cause: Failure reasons must be actionable and endogenous, not generic bad luck."
+    "Prospective Hindsight: During scenario generation, the selected unwanted outcome is treated as already having occurred, without asserting its probability.",
+    "Causal Specificity: Each recorded scenario names a causal explanation linked to the course and context; generic bad luck alone is insufficient."
   ],
   "preconditions": [
-    "{{plan}} is fully specified"
+    "A contemplated course is identified."
   ],
   "postconditions": [
-    "{{plan}} robustified"
-  ],
-  "parameters": [
-    {
-      "name": "confidence_required",
-      "type": "Probability",
-      "range": "[0.7, 0.95]",
-      "description": "Certainty needed to dismiss risk"
-    },
-    {
-      "name": "failure_probability_floor",
-      "type": "Probability",
-      "range": "[0.01, 0.30]",
-      "description": "Min failure chance to investigate"
-    }
+    "Course-linked causal failure scenarios, or an explicit none-found result, recorded."
   ],
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5"
+      "sema:PreMortem#mh:SHA-256:f69d7ea1811d52c879c9d45e5546796ca328f8806e322fe42bd3ae2ebfc9dea5",
+      "sema:PreMortem#mh:SHA-256:6cc4fa30402760c632af25ea100c15fa3b0191b6a3beae343b84a8162d1123e2",
+      "sema:PreMortem#mh:SHA-256:4c7fe58aa4f9a9e7a319d8eb3ca56e449a390d6b0fa574b258f9cf7a32ef138e"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:PreMortem#mh:SHA-256:4c7fe58aa4f9a9e7a319d8eb3ca56e449a390d6b0fa574b258f9cf7a32ef138e",
-  "sema_ref": "PreMortem#4c7f",
-  "sema_stub": "4c7f",
-  "dependencies": {
-    "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
-    },
-    "references": {
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
-      "recursive_root_cause": "sema:RecursiveRootCause#mh:SHA-256:4df0a86d7cf4b453356bc364e8a4ccd1cde9722ecbb667ff0afd82a932512e1c",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003"
-    }
-  },
+  "sema_id": "sema:PreMortem#mh:SHA-256:e4c24813f33aa41fdb183e380d05707fe1fd813c46b4127602449a8988f47964",
+  "sema_ref": "PreMortem#e4c2",
+  "sema_stub": "e4c2",
   "sema_layer": "Mind",
   "sema_category": "Strategy"
 }

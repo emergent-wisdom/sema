@@ -32,6 +32,7 @@ The long-term goal is cryptographically enforced safety constraints on agent-to-
 
 - **[Pattern Lifecycle](guides/lifecycle.md):** The full loop: create, validate, hash, apply, export, distribute, pull, rebuild.
 - **[Pattern Authoring Guide](guides/authoring.md):** Step-by-step workflow for minting and modifying patterns.
+- **[Reviewing a Pattern Card](guides/review-method.md):** The judgment layer — how to decide whether a card is right, the defect classes that recur in practice, and the tools and theories already tried and abandoned.
 - **[CLI Reference](tools/cli.md):** The `sema` command — build, use, list, init, apply, search, resolve, show, pull, serve.
 
 ## Integrations
