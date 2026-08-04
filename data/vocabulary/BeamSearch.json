@@ -20,7 +20,8 @@
     "supersedes": [
       "sema:BeamSearch#mh:SHA-256:d2fb9185247c76aa1fd102c5dd6d8a425fa2de767fe9009bb50b71c6ead3d4a1",
       "sema:BeamSearch#mh:SHA-256:5a3460aa9dc10ab22ddf87f740cb0dc1166e96d7d07fd31bf312cf8b35b1e559",
-      "sema:BeamSearch#mh:SHA-256:70d31a67347fab104678e9d6038acfd4b42b5c46967c71d6090b443b0a27fd14"
+      "sema:BeamSearch#mh:SHA-256:70d31a67347fab104678e9d6038acfd4b42b5c46967c71d6090b443b0a27fd14",
+      "sema:BeamSearch#mh:SHA-256:fc0a0d78a67aeda031b4316da9d81b9918064f81e06ceeb198ebfd30976e9b0b"
     ],
     "path": [
       "Mind",

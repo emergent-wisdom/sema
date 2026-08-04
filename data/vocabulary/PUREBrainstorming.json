@@ -12,8 +12,7 @@
     "supersedes": [
       "sema:PUREBrainstorming#mh:SHA-256:5dada311c0b8343b4b7848a7a07a98f0369c8bb6e6701b1d0aef69655a51d412",
       "sema:PUREBrainstorming#mh:SHA-256:2e83f252cc40be9f0eb974bf5c6a70b62cad3a53c6f8a0589d60b0393995b6f5",
-      "sema:PUREBrainstorming#mh:SHA-256:9ba126fc9e0dde8ae526e775831ea41e84e9dd70c1e4b6f9f9a498e9ea42c3b2",
-      "sema:PUREBrainstorming#mh:SHA-256:c03aa5e0e413c5d3c8a25732d183277e0701fbde90d2e30fe3c12903a14b1cbb"
+      "sema:PUREBrainstorming#mh:SHA-256:9ba126fc9e0dde8ae526e775831ea41e84e9dd70c1e4b6f9f9a498e9ea42c3b2"
     ],
     "path": [
       "Mind",

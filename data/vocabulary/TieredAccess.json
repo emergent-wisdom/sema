@@ -35,7 +35,8 @@
     "ring": 0,
     "supersedes": [
       "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
-      "sema:TieredAccess#mh:SHA-256:f3f651c9ef144f5a78f1ba4539ff8af7d1b70c625ef9cc119cf31e8f7e5340dd"
+      "sema:TieredAccess#mh:SHA-256:f3f651c9ef144f5a78f1ba4539ff8af7d1b70c625ef9cc119cf31e8f7e5340dd",
+      "sema:TieredAccess#mh:SHA-256:805cff9b1016fb2e59af973679a456842d0d764359ffa1c0bc708e7633218334"
     ],
     "path": [
       "Society",

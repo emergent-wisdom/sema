@@ -33,8 +33,7 @@
     "ring": 2,
     "supersedes": [
       "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0",
-      "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e",
-      "sema:TensionHold#mh:SHA-256:326ba75d2fff31c8efe9d52c2a34d72a38c11e932dbe9a8db344b5a76004caaa"
+      "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e"
     ],
     "path": [
       "Mind",

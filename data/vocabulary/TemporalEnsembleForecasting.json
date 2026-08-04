@@ -15,7 +15,8 @@
       "Inference"
     ],
     "supersedes": [
-      "sema:TemporalEnsembleForecasting#mh:SHA-256:8b0ec1f4bad5cb4ba0e7ee1b6b7fa5d2425a1f3cea1fb7f7c53b98de0f81b7f5"
+      "sema:TemporalEnsembleForecasting#mh:SHA-256:8b0ec1f4bad5cb4ba0e7ee1b6b7fa5d2425a1f3cea1fb7f7c53b98de0f81b7f5",
+      "sema:TemporalEnsembleForecasting#mh:SHA-256:3cb65a94fad3ad3374c1a9583371e20c5463bc9726a0bd174293723eae485c05"
     ]
   },
   "sema_id": "sema:TemporalEnsembleForecasting#mh:SHA-256:091385859566db27675227728ed066880f3872133c7a281312cc55022933d7ec",

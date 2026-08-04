@@ -22,8 +22,7 @@
     "ring": 2,
     "supersedes": [
       "sema:DissentSeek#mh:SHA-256:bd28d5bd7fa2253411b69c586231a1a80b835cc56569439dc8834540dcefaf54",
-      "sema:DissentSeek#mh:SHA-256:ce789971353ca0b8c002250a6e0ced756de6099be34025af28cf5617e0d16273",
-      "sema:DissentSeek#mh:SHA-256:8378e078de73a8a8a69b7f9a45c8d0cf1d922c2b556b6ffdf9770c5b89e1c58e"
+      "sema:DissentSeek#mh:SHA-256:ce789971353ca0b8c002250a6e0ced756de6099be34025af28cf5617e0d16273"
     ],
     "path": [
       "Society",

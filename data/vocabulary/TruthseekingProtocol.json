@@ -15,8 +15,7 @@
       "Inference"
     ],
     "supersedes": [
-      "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a",
-      "sema:TruthseekingProtocol#mh:SHA-256:d35b9e4131150929fcc3e447f1b8c57c65796e03c8c814a5b00fa95995778f53"
+      "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a"
     ]
   },
   "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:e2d334636485fc094f00ec9849be6666150c73786e9a0e458520ac2a660ee29f",

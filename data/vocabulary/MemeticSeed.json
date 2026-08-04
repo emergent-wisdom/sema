@@ -19,8 +19,7 @@
     "ring": 1,
     "supersedes": [
       "sema:MemeticSeed#mh:SHA-256:491b0bb4623d78df04ab196ef7809daa2fad14bccb130fcb9d2f0e8dffd485c3",
-      "sema:MemeticSeed#mh:SHA-256:cf265f710af42a9db9e5e61327679e4a3ef1b0e1b9a8c842ea990c92fa806415",
-      "sema:MemeticSeed#mh:SHA-256:d351f7e25df8a86d6f3517255945c9a196d95417ce4d70afb024a8a63cee97a5"
+      "sema:MemeticSeed#mh:SHA-256:cf265f710af42a9db9e5e61327679e4a3ef1b0e1b9a8c842ea990c92fa806415"
     ],
     "path": [
       "Society",

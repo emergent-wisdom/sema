@@ -20,7 +20,8 @@
     "supersedes": [
       "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f",
       "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1",
-      "sema:RootSolver#mh:SHA-256:750d3992db274fa89e6bad275ad10c0fc6ea9969cc9e4ff9cd809c77f96a4d32"
+      "sema:RootSolver#mh:SHA-256:750d3992db274fa89e6bad275ad10c0fc6ea9969cc9e4ff9cd809c77f96a4d32",
+      "sema:RootSolver#mh:SHA-256:6d0d34bacbf2d51f0c8152acde51d1bcc1c3f2e93127d4e03ea037a87183980b"
     ],
     "path": [
       "Mind",

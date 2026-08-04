@@ -10,8 +10,7 @@
     "tier": 2,
     "supersedes": [
       "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
-      "sema:StyleSpec#mh:SHA-256:08003149b098fcb0c5dc93eda6111254cb101969d9576f5c592284286b12b3eb",
-      "sema:StyleSpec#mh:SHA-256:a12bcead7031b9b69dac620bfa8a6981fa03f19ef9de8ddc2d4bfee1785f0ecf"
+      "sema:StyleSpec#mh:SHA-256:08003149b098fcb0c5dc93eda6111254cb101969d9576f5c592284286b12b3eb"
     ],
     "path": [
       "Infrastructure",

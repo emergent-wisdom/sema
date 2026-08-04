@@ -34,7 +34,8 @@
     "supersedes": [
       "sema:DeliberativeAlign#mh:SHA-256:9b46ad02161136e6861e6f42f6c1f2edbaac4801032b652bfc82192a24e0bd1c",
       "sema:DeliberativeAlign#mh:SHA-256:b497c6ca668ab1c96d3efb07e257de8b3d41c82d08c08a32dbc82694841838e7",
-      "sema:DeliberativeAlign#mh:SHA-256:1cf2f0c643345bc990e6538e3a3966f0736b803ffdce5e6166a3f52be00f2ee7"
+      "sema:DeliberativeAlign#mh:SHA-256:1cf2f0c643345bc990e6538e3a3966f0736b803ffdce5e6166a3f52be00f2ee7",
+      "sema:DeliberativeAlign#mh:SHA-256:9fd3cbae8fddc6fb86a806e3c2d94515aaf40b96cf734a9d5141317b6813d8a7"
     ],
     "path": [
       "Society",

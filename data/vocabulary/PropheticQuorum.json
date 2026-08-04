@@ -38,8 +38,7 @@
     "supersedes": [
       "sema:PropheticQuorum#mh:SHA-256:192eabb9f8aa32fddb88760964cb4266afa565c1ab94e1091395712764293741",
       "sema:PropheticQuorum#mh:SHA-256:c5d889696c7dab154033eb64aa8858bdd88171cfb5d45a85dbbe806b7f1d8641",
-      "sema:PropheticQuorum#mh:SHA-256:1091d4dbc1638dc67cda263e645f50bda77352363ce4ea5dbf24c281781401ba",
-      "sema:PropheticQuorum#mh:SHA-256:912b31f437a93df19ecb7ced4f0a9d11f3fe1d659d63edcb3ddef13a5e409056"
+      "sema:PropheticQuorum#mh:SHA-256:1091d4dbc1638dc67cda263e645f50bda77352363ce4ea5dbf24c281781401ba"
     ],
     "path": [
       "Society",

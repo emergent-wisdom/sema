@@ -24,8 +24,7 @@
     "supersedes": [
       "sema:AnchorDrop#mh:SHA-256:bf63d7b42444f4b7d7f8c1efbf50574153743cc958b05dd96961f4d27ba799e8",
       "sema:AnchorDrop#mh:SHA-256:38786515e46deaaa0422906995589f847824b69ded3929b343939f8a8300554b",
-      "sema:AnchorDrop#mh:SHA-256:695ed5829808e8da3d42e7a5110adf1ec1656bba6b9798566f037c8367b9a16a",
-      "sema:AnchorDrop#mh:SHA-256:4196dd5918edf55c99ed25b195f117741d53ba8dd4e7f508e0703df2b4620c54"
+      "sema:AnchorDrop#mh:SHA-256:695ed5829808e8da3d42e7a5110adf1ec1656bba6b9798566f037c8367b9a16a"
     ],
     "path": [
       "Society",

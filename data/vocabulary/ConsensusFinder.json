@@ -12,8 +12,7 @@
     "supersedes": [
       "sema:ConsensusFinder#mh:SHA-256:1c5d954ef53633228e32d5e237a7c2d372d48e6fcaefda775589c952e457eafa",
       "sema:ConsensusFinder#mh:SHA-256:c6fa491bb64048866873baff4398d1519ec3ac4fd40db0b1e281196c1482bcd9",
-      "sema:ConsensusFinder#mh:SHA-256:980a543f6683878c7800e1d4db41bad49017a47f33b924a63e52e1115c7a06dd",
-      "sema:ConsensusFinder#mh:SHA-256:653580f6d5afd5099c8c8d86a5d14c7656b0b9d363ed30291e56bdc48de79099"
+      "sema:ConsensusFinder#mh:SHA-256:980a543f6683878c7800e1d4db41bad49017a47f33b924a63e52e1115c7a06dd"
     ],
     "path": [
       "Society",

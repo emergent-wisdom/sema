@@ -38,8 +38,7 @@
     "supersedes": [
       "sema:BreadthGovernor#mh:SHA-256:d22009d16f04fac6c9adfeb2ccfe15290aeb9def95ddd4328b21344555c21169",
       "sema:BreadthGovernor#mh:SHA-256:e924663e0589e01869b6403b59fc721b69a0250190a6019fa6130a225360080e",
-      "sema:BreadthGovernor#mh:SHA-256:c7ea1965d69acf5735eb3e6bc1cb21a2d8308b8b115d115c443dfc4bb949e719",
-      "sema:BreadthGovernor#mh:SHA-256:5e8cc0b3df0dc29c7a5586040b965e5beb4d49d578145ae799f895f4dcf0d193"
+      "sema:BreadthGovernor#mh:SHA-256:c7ea1965d69acf5735eb3e6bc1cb21a2d8308b8b115d115c443dfc4bb949e719"
     ],
     "path": [
       "Mind",

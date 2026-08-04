@@ -15,8 +15,7 @@
       "Strategy"
     ],
     "supersedes": [
-      "sema:MetaProtocols#mh:SHA-256:3561dab6b3e3d5d307a14f23031e29f122c76cbcc4ea1557a3cfdf02e3fe1195",
-      "sema:MetaProtocols#mh:SHA-256:488517ecd31d0dccd9948780277ddd3915ad53def0d955cff90d365b1a665db9"
+      "sema:MetaProtocols#mh:SHA-256:3561dab6b3e3d5d307a14f23031e29f122c76cbcc4ea1557a3cfdf02e3fe1195"
     ]
   },
   "sema_id": "sema:MetaProtocols#mh:SHA-256:4a4777972407b49b6c0b8bcdbca4a927169d0bb5202b4d4c9deefd5dadc072c9",

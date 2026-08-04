@@ -8,7 +8,8 @@
     "supersedes": [
       "sema:TraceBelief#mh:SHA-256:369d32aa6cf9d9eb0ae829b6c102dd7b5231f0d193980e81b2242d813fae99ee",
       "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
-      "sema:TraceBelief#mh:SHA-256:18811aa52ea8a0b4e10e500c10285ccd80d90bf294f3f86d04dbd0ebfd2e6a06"
+      "sema:TraceBelief#mh:SHA-256:18811aa52ea8a0b4e10e500c10285ccd80d90bf294f3f86d04dbd0ebfd2e6a06",
+      "sema:TraceBelief#mh:SHA-256:bdfa33f15f8f71e3fa221c802b6366c6922de402326dd447841d3258b97bf053"
     ],
     "path": [
       "Mind",

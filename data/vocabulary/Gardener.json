@@ -12,7 +12,8 @@
     "supersedes": [
       "sema:Gardener#mh:SHA-256:5d74a3fff3bfed7f1d584d7894efca02274223d478477ffb00a99df127453d48",
       "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c",
-      "sema:Gardener#mh:SHA-256:3e1820fb37b894a66e5fe3e664e15067abe2e7d70a55d6b4f9ef10e362d87b71"
+      "sema:Gardener#mh:SHA-256:3e1820fb37b894a66e5fe3e664e15067abe2e7d70a55d6b4f9ef10e362d87b71",
+      "sema:Gardener#mh:SHA-256:52f38862732f67f4fae97ec17422f694d4a03299edda23a8f91dc7d01a1bc716"
     ],
     "path": [
       "Society",

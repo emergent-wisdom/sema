@@ -31,7 +31,8 @@
     ],
     "supersedes": [
       "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c",
-      "sema:AuditTrail#mh:SHA-256:b4419b5e90a6a7c5433fe5bcb459ca9fbff9cbd7d48ccf9b44b0b64166959551"
+      "sema:AuditTrail#mh:SHA-256:b4419b5e90a6a7c5433fe5bcb459ca9fbff9cbd7d48ccf9b44b0b64166959551",
+      "sema:AuditTrail#mh:SHA-256:bf18738b25414c907d542cc6971b13ecf1fb7b415d10529f1c398a1e08109f92"
     ],
     "path": [
       "Infrastructure",

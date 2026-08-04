@@ -22,7 +22,8 @@
     "caution": "Grants capabilities beyond normal operating scope.",
     "supersedes": [
       "sema:PermissionEscalate#mh:SHA-256:744f4ce8439e69d9869b0fd5c260284e5f655861a97140d1487937165dc3deaa",
-      "sema:PermissionEscalate#mh:SHA-256:d4544d06098df4779b8fe2956c168d331ee3443b531f13eb81b6339ffafdeec6"
+      "sema:PermissionEscalate#mh:SHA-256:d4544d06098df4779b8fe2956c168d331ee3443b531f13eb81b6339ffafdeec6",
+      "sema:PermissionEscalate#mh:SHA-256:0ca59c3513edbad36bd4775b0fd6145bff74b809b75e23ae4b49f3a6a73da907"
     ],
     "path": [
       "Society",

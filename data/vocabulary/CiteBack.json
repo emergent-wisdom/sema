@@ -23,8 +23,7 @@
     "ring": 1,
     "supersedes": [
       "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
-      "sema:CiteBack#mh:SHA-256:77855c554890913b6c7c61f5a947a502b47171f04f333ab4bcfc72e136bfd30b",
-      "sema:CiteBack#mh:SHA-256:17b1ece87db4152c4a241754f84c4722fe9dde9fa8c00c1e122e4e6139196b86"
+      "sema:CiteBack#mh:SHA-256:77855c554890913b6c7c61f5a947a502b47171f04f333ab4bcfc72e136bfd30b"
     ],
     "path": [
       "Mind",

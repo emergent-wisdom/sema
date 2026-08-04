@@ -34,8 +34,7 @@
     "ring": 0,
     "supersedes": [
       "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
-      "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
-      "sema:NormativeJudge#mh:SHA-256:4b394d0d33f4d6f7e8fa2566ffa4d8cc17090b55c49c69fe7dbc66dc82b2057c"
+      "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1"
     ],
     "path": [
       "Mind",

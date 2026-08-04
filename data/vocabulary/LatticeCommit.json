@@ -21,7 +21,8 @@
     "ring": 2,
     "supersedes": [
       "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0",
-      "sema:LatticeCommit#mh:SHA-256:667592b99ed2c9b29b4e071b38ac960b911e36aa8f2ac73a8a3285d4e5277403"
+      "sema:LatticeCommit#mh:SHA-256:667592b99ed2c9b29b4e071b38ac960b911e36aa8f2ac73a8a3285d4e5277403",
+      "sema:LatticeCommit#mh:SHA-256:74db69a4c37ebbc4996db3ccd03a5cfcbd2ab54abecb6a408dbb7db5a36de30f"
     ],
     "path": [
       "Society",

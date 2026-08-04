@@ -15,8 +15,7 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:CollaborativeWritingProtocol#mh:SHA-256:8a1a98d844e31dcb7abdefc974d73d7dab771de960324cf8258684ad60946a6c",
-      "sema:CollaborativeWritingProtocol#mh:SHA-256:f5cba7a26166a0a3f048cf7f5a451d3bf3dc48c70549e54598cdea9d5401a564"
+      "sema:CollaborativeWritingProtocol#mh:SHA-256:8a1a98d844e31dcb7abdefc974d73d7dab771de960324cf8258684ad60946a6c"
     ]
   },
   "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:4d6ac289b1a80ecb3b5ed9f9f7e9fd737e5cd96eea0bfa55b34300f5c9603498",

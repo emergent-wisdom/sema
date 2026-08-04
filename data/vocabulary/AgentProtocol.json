@@ -12,7 +12,8 @@
     "ring": 1,
     "supersedes": [
       "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3",
-      "sema:AgentProtocol#mh:SHA-256:6297fe3d5b335cbe8051e147ce3235c33d30bce2f4df5ad274b18ae98b502878"
+      "sema:AgentProtocol#mh:SHA-256:6297fe3d5b335cbe8051e147ce3235c33d30bce2f4df5ad274b18ae98b502878",
+      "sema:AgentProtocol#mh:SHA-256:e6b4b936738cd1077a7a360a0c4f069590627d1676ee7c251a2f66e8d3a34ee9"
     ],
     "path": [
       "Society",

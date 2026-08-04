@@ -19,8 +19,7 @@
     "supersedes": [
       "sema:UniqueHandle#mh:SHA-256:11e7542d2b43ec0879ae24f91eeeaaf6380cb0c9ec067056eb2d1e4932c0468e",
       "sema:UniqueHandle#mh:SHA-256:9a006e6fd1ca395b18fa7f17f95124c432b111f15cba24fcec039142a3ca539b",
-      "sema:UniqueHandle#mh:SHA-256:88da37fb134c04632530db979115adbb3ca558bdc4f60111df03e9282de8cd3a",
-      "sema:UniqueHandle#mh:SHA-256:58f9595fc08f62825f3dc959f10533558f459760a1c63ef2bc72b6da615ff37b"
+      "sema:UniqueHandle#mh:SHA-256:88da37fb134c04632530db979115adbb3ca558bdc4f60111df03e9282de8cd3a"
     ],
     "path": [
       "Society",

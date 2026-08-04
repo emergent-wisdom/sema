@@ -16,7 +16,8 @@
       "Primitives"
     ],
     "supersedes": [
-      "sema:ReAttempt#mh:SHA-256:be449bf89961efce218b58a985fd84f131b324655c10566a8815fceaa647ee06"
+      "sema:ReAttempt#mh:SHA-256:be449bf89961efce218b58a985fd84f131b324655c10566a8815fceaa647ee06",
+      "sema:ReAttempt#mh:SHA-256:39a6d8dc35788fdba9bcb56064f39c16792f921d6db387dee99ebe049dc865ab"
     ]
   },
   "sema_id": "sema:ReAttempt#mh:SHA-256:51f049b421350628f058038e408e1836acaee0d68c0f60b881e2a283210149d6",

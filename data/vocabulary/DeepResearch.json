@@ -26,8 +26,7 @@
     "ring": 2,
     "supersedes": [
       "sema:DeepResearch#mh:SHA-256:cbe339d17080d67469ea0b220f5142dc63862ea423da4a2253a89011696e1f8d",
-      "sema:DeepResearch#mh:SHA-256:a0583250bce8e627c58247bd2dba4de9d9fb9ffabf0a36c66eceb7ddebee4577",
-      "sema:DeepResearch#mh:SHA-256:e060e22da824f730c3b21f232e087babd447395ed3190509aab22101f4480d86"
+      "sema:DeepResearch#mh:SHA-256:a0583250bce8e627c58247bd2dba4de9d9fb9ffabf0a36c66eceb7ddebee4577"
     ],
     "path": [
       "Mind",

@@ -21,7 +21,8 @@
     "supersedes": [
       "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def",
       "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81",
-      "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce"
+      "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce",
+      "sema:SolverTree#mh:SHA-256:2e4c0e7dce54bfdddd61b9ec1a19715036eb916f979695719b7b8987dce72057"
     ],
     "path": [
       "Society",
