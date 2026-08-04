@@ -3,9 +3,11 @@ name: Publish to PyPI
 on:
   release:
     types: [published]
+  workflow_dispatch:  # re-publish server.json without cutting a new release
 
 jobs:
   build-and-publish:
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     environment: pypi
     permissions:
@@ -44,6 +46,8 @@ jobs:
   publish-mcp-registry:
     name: Publish to MCP Registry
     needs: build-and-publish
+    # Runs after PyPI on a release; runs alone on manual dispatch.
+    if: always() && needs.build-and-publish.result != 'failure' && needs.build-and-publish.result != 'cancelled'
     runs-on: ubuntu-latest
     permissions:
       contents: read
