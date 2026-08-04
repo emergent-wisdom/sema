@@ -10,6 +10,13 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-04
+
+**The 0.4 reasoning pass re-mints 426 of 452 pattern identities (94%) relative to 0.3.0.** No canonicalization change: hashes move because definitions improved -- 324 patterns were reasoned through individually against the design manual (254 changed, 57 confirmed sound, 13 escalated and resolved) -- and cascades propagated the rest. Every identity-changed pattern carries the 0.3.0 `sema_id` in `_meta.supersedes`, so 0.3.0 consumers converge via `sema pull` instead of orphaning.
+
+452 -> 457 patterns. Aggregate roots under the schemes introduced below:
+semantic set `502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661`, catalog `146db4c0b6172432a0694baa74263a2e33edfce2c5ba7756c33622f7bc69e324`.
+
 ### Added
 
 - Two explicit aggregate commitments: `sema-semantic-set-v1` for the
@@ -60,6 +67,15 @@ This file records vocabulary-level changes between versions — additions, renam
   repository's declared three-instance authoring policy. Covers backticked
   names and multi-part CamelCase; its docstring records why single bare
   capitalised words are not detectable in this corpus.
+- `EpistemicCascade` (Mind/Reasoning): a conclusion inherits the verification
+  assurance of its weakest load-bearing premise. Assurance is graded by how a
+  premise was checked (Independent / Self / None); a `Check` yields a `Status`,
+  and this pattern grades what that outcome is worth given how it was obtained.
+  References `Verification`, `Assumption`, `EpistemicCalibrate`,
+  `BeliefTracking`, `Check`, `Status`.
+- New handles relative to 0.3.0, besides the above: `Equivalence` (from the
+  `Identity` untangling), `ExponentialBackoff` (split from generic `Backoff`),
+  `MetricReading` (readings separated from `Metric` definitions), and `Trait`.
 
 ### Changed
 
@@ -212,6 +228,28 @@ This file records vocabulary-level changes between versions — additions, renam
   Opaque tokens validated by lookup or introspection and structured tokens
   validated locally both satisfy the parent; signatures, expiry, revocation,
   and transfer policy are descendant or deployment choices.
+- The thirteen review questions left open by the reasoning pass are resolved,
+  each recorded with its governing principle in the external reasoning ledger:
+  `Trace` (fan-in 203) states best-effort coverage instead of promising that
+  every modification is recorded, with a Silent-gap failure mode; `Mutex` moves
+  Physics -> Society/Coordination and its `accepts` edge is corrected from
+  `task` to `actor`; `Axiom` moves Society -> Mind/Reasoning; `NormCheck` is
+  restated around what all three `action_on_detect` modes share; `Branch` is
+  kept rather than retired and now differentiates itself from `Gate` with a
+  reference edge; `Assessment`'s Reference invariant admits systemic scope;
+  `MutualInformation` gains an estimator-conflation failure mode; and
+  `SteelmanCheck`, `Translate`, `PromptChain`, `CreativeBlend`,
+  `RealizationProtocol`, `FailureTrace` and the `Solution` sidecar question are
+  closed without further hash changes.
+- Review method: when a parameter's values differ in what happens after an
+  invariant's property holds, the invariant was mis-scoped; restate it around
+  the property all values share (`docs/guides/review-method.md`, third
+  occurrence of the defect class).
+- Paper: the introduction now states the value proposition explicitly --
+  memory that survives summarization, the mechanism-scoped reasoning claim
+  with its boundary as a prediction, binding steps, the standard-library
+  framing, and why the gaps humans left in text are gaps in the model. Paper
+  builds go through `scripts/compile_paper.sh` (now an AGENTS.md rule).
 
 ### Fixed
 
@@ -294,6 +332,13 @@ This file records vocabulary-level changes between versions — additions, renam
   their contracts are intentionally absent.
 
 ---
+- 98 identity-changed patterns did not carry the published 0.3.0 `sema_id` in
+  `_meta.supersedes`, so `sema pull` could not map consumers' pinned hashes
+  forward -- they would have been orphaned rather than replaced. Backfilled per
+  `docs/guides/lifecycle.md`; all 426 identity-changed patterns now carry
+  complete chains. The field is unhashed, so the backfill cascaded nothing.
+- `docs/information/audit.md` had gone stale against the database, which is
+  what fails CI's vocabulary-workflow check (3.12 job only).
 
 ## [0.3.0] - 2026-07-06
 
