@@ -7,9 +7,9 @@ All audits below are **advisory**. Heuristic audits generate false positives; us
 Source: `sema.audit.hash_validity` (ok)
 
 ```text
-Checking hash validity for 456 patterns...
+Checking hash validity for 457 patterns...
 
-All 456 hashes valid.
+All 457 hashes valid.
 ```
 
 ## Missing or short fields
@@ -17,7 +17,7 @@ All 456 hashes valid.
 Source: `sema.audit.missing_or_short` (ok)
 
 ```text
-Auditing 456 patterns in data/vocabulary...
+Auditing 457 patterns in data/vocabulary...
 ✅ No issues found.
 ```
 
@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 2012 nodes and 3780 edges.
+Graph loaded with 2020 nodes and 3795 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -45,18 +45,17 @@ Source: `sema.audit.rigor` (ok)
 
 ```text
 {
-  "total": 456,
-  "with_invariants": 416,
-  "with_preconditions": 181,
-  "with_postconditions": 171,
-  "with_all_contract_fields": 168,
+  "total": 457,
+  "with_invariants": 417,
+  "with_preconditions": 182,
+  "with_postconditions": 172,
+  "with_all_contract_fields": 169,
   "without_explicit_contracts": 38
 }
 
 Sample patterns without explicit contracts (review only; omission may be intentional):
 - Axiom
 - Backoff
-- Branch
 - Category
 - Datum
 - Meta
@@ -69,6 +68,7 @@ Sample patterns without explicit contracts (review only; omission may be intenti
 - CognitiveBias
 - Identity
 - Entropy
+- Snapshot
 ```
 
 ## Potential missing dependency links
@@ -77,7 +77,7 @@ Source: `sema.audit.missing_links` (ok)
 
 ```text
 🔍 Scanning data/vocabulary for missing links...
-Loaded 456 patterns.
+Loaded 457 patterns.
 
 Found 373 potential missing links.
 
@@ -623,7 +623,7 @@ Found 373 potential missing links.
 Source: `sema.audit.unlinked_mentions` (ok)
 
 ```text
-Scanning 456 patterns for unlinked handle mentions...
+Scanning 457 patterns for unlinked handle mentions...
 
 ⚠️  Abduction:
    • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
@@ -1153,6 +1153,11 @@ Scanning 456 patterns for unlinked handle mentions...
    • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Status' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EpistemicCascade:
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Select' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  EpistemicROI:
    • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
@@ -1554,6 +1559,7 @@ Scanning 456 patterns for unlinked handle mentions...
 ⚠️  MutualInformation:
    • Mentions 'Correlation' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  NegativeProof:
@@ -2366,7 +2372,7 @@ Scanning 456 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 388 patterns.
+Scan complete. Found unlinked handle mentions in 389 patterns.
 ```
 
 ## Semantic similarity between patterns

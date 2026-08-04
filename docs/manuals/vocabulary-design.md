@@ -13933,33 +13933,33 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### EpistemicCascade#7054
+### EpistemicCascade#a489
 
 `Mind` · `Reasoning` · R2 · T1
 
-**Gloss.** A conclusion inherits the verification status of its weakest load-bearing premise.
+**Gloss.** A conclusion inherits the verification assurance of its weakest load-bearing premise.
 
 **Mechanism.**
 
-> Before an assertion crosses a boundary (a message, a commit, an irreversible action), enumerate the premises it load-bears on and mark each one: independently verified, verified only by the process that produced it, or unverified ({{assumption}}). The assertion's status is the minimum over that closure; reasoning quality above a weak premise cannot raise it. To upgrade, select the premise with the highest ratio of downstream cost to checking cost and apply {{verification}} using a method independent of the one that produced the premise, then re-derive. Where no check is possible before the boundary, the assertion carries its status explicitly instead of borrowing confidence from fluency ({{epistemic_calibrate}}), and {{belief_tracking}} records the pending premises so later evidence can settle them.
+> Before an assertion crosses a boundary (a message, a commit, an irreversible action), enumerate the premises it load-bears on and grade the assurance of each: Independent (a {{check}} by a method other than the one that produced the premise), Self (checked only by the producing process), or None ({{assumption}}). A {{check}} yields a {{status}}; this pattern grades what that outcome is worth given how it was obtained, so a Verified premise carrying only Self assurance does not raise the closure. The assertion's assurance is the minimum over that closure; reasoning quality above a weakly assured premise cannot raise it. To upgrade, select the premise with the highest ratio of downstream cost to checking cost and apply {{verification}} by an independent method, then re-derive. Where no check is possible before the boundary, the assertion carries its assurance explicitly instead of borrowing confidence from fluency ({{epistemic_calibrate}}), and {{belief_tracking}} records the pending premises so later evidence can settle them.
 
 **Invariants.**
-- Status(conclusion) never exceeds min(Status(premise)) over its load-bearing premises.
-- A premise checked only by the process that produced it counts as unverified; an upgrade requires an independent method.
-- Status changes only through verification events, never through repetition or restatement.
+- Assurance(conclusion) never exceeds min(Assurance(premise)) over its load-bearing premises.
+- A premise checked only by the process that produced it carries Self assurance at most; Independent requires a method that did not produce it.
+- Assurance changes only through verification events, never through repetition or restatement.
 
 **Preconditions.**
 - The assertion's load-bearing premises can be enumerated.
 - The boundary crossing is identifiable before it happens.
 
 **Postconditions.**
-- Every boundary-crossing assertion carries an explicit status.
-- The weakest load-bearing premise is either verified or declared.
+- Every boundary-crossing assertion carries an explicit assurance grade.
+- The weakest load-bearing premise is either independently verified or declared.
 
 **Failure modes.**
-- Polishing reasoning downstream of a weak premise: rigor above does not repair status below.
+- Polishing reasoning downstream of a weakly assured premise: rigor above does not repair assurance below.
 - Verifying the cheapest premise instead of the most load-bearing one.
-- Confidence laundering: an assertion crosses a boundary and the reader assigns it a status it never earned.
+- Confidence laundering: an assertion crosses a boundary and the reader assigns it an assurance it never earned.
 
 #### Design
 
@@ -13995,6 +13995,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Critique (diagnostic, not contract requirements).**
 - Minted with mechanism analogy ('certainty propagates like content-addressed identity') moved here from the card per the payload principle: the operational steps are the contract, the analogy is for readers.
 - Signature omitted rather than guessed: the library's signature convention (constructor-style list) has no documented form for a status-propagation check, and absence is legitimate per the placement rules.
+- CORRECTED 2026-08-04 before release. The unlinked-mention audit caught a near-duplicate in this card, which is the failure the manual calls a seed's characteristic one: Status#8e6f already names a graded verification outcome (Verified/Falsified/Unknown), and this card wrote Status(conclusion) in its invariants for a different axis entirely — how independently the check was obtained. Same word, different dimension, no edge. Renamed that axis to assurance (Independent / Self / None) and added reference edges to Check and Status, so the card now composes with the existing verification vocabulary rather than shadowing it: a Check yields a Status, and this pattern grades what that Status is worth. Worth recording that the card about verification pedigree was itself minted on an unverified premise about the library's contents.
 
 **In the family.** Epistemic sibling of EpistemicCalibrate (confidence decay over horizon) and BeliefTracking (belief revision substrate); consumes Verification as its upgrade event and Assumption as its unverified-premise marker. Compare SteelmanCheck, which attacks a conclusion's content adversarially — EpistemicCascade attacks its pedigree: a conclusion can survive steelmanning and still fail here because its premises were never checked.
 
