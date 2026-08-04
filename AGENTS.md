@@ -16,6 +16,13 @@ them from prompt context.
   staging service until Henrik explicitly approves production deployment.
 - Paper typography or stylesheet work must remain separate from semantic paper
   updates unless visual redesign is the stated scope.
+- Any change that touches `paper/` must be built with `scripts/compile_paper.sh`,
+  never bare `pdflatex`. The script regenerates the tables, the pattern-card
+  appendix, the prose hash references and the stats macros, then runs bibtex and
+  three pdflatex passes. Bare pdflatex leaves those stale: it once shipped 49
+  outdated hash stubs in the prose and a wrong pattern count, and a stale
+  generated `docs/information/audit.md` from the same class of mistake failed CI
+  on the 3.12 job, which is the only job that runs the vocabulary-workflow check.
 
 ## Vocabulary Changes
 
