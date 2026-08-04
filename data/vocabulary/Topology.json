@@ -27,7 +27,7 @@
       }
     }
   },
-  "mechanism": "Defines the node-edge structure of a reasoning process. Returns the 'Shape' of execution (e.g., Linear, Tree, DAG, Cyclic).",
+  "mechanism": "A marker interface. A pattern implementing 'Topology' MUST declare the node-edge shape of the structure it describes \u2014 Linear, Tree, DAG, Cyclic and so on. The shape is the claim: it fixes what traversals and what orderings are possible, independent of what the nodes hold. Applies to any node-edge structure, not only to reasoning.",
   "gloss": "Interface for reasoning structures",
   "_meta": {
     "tier": 1,
@@ -35,11 +35,14 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
     ]
   },
-  "sema_ref": "Topology#7562",
-  "sema_id": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c",
-  "sema_stub": "7562",
+  "sema_ref": "Topology#58ad",
+  "sema_id": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467",
+  "sema_stub": "58ad",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

@@ -1,59 +1,47 @@
 {
   "handle": "PatternDiscovery",
-  "mechanism": "Macro for {{search}}(Pattern). Vocabulary Hygiene {{protocol}}. Before minting a new pattern, the {{agent}} MUST execute a {{latent_attachment}}-backed semantic search against the existing registry. If a pattern with >85% semantic similarity is found, the {{agent}} MUST adopt the existing pattern or explicitly justify the divergence (Fork). It leverages {{search}} to scan the existing registry before triggering {{construct_ontology}} to mint a new definition.",
-  "gloss": "Finding patterns that already exist",
+  "mechanism": "Before a proposed pattern enters a declared registry, invoke {{search}} over a declared scope and method to retrieve plausible incumbents. Compare each candidate's mechanism and boundary with the proposal, using {{novelty}} to assess structural distinctness. Retrieval scores nominate candidates but do not establish coverage. Invoke {{gate}} on the dispositions and return its {{decision}}, candidates, deltas, unresolved comparisons, and search record. PatternDiscovery does not mint.",
+  "gloss": "Prior-art gate for adding patterns",
   "failure_modes": [
-    "Not Invented Here (NIH): {{agent}} ignores existing solutions to create a slightly worse custom version.",
-    "Keyword Miss: Search fails because the agent used different terminology for the same concept.",
-    "Fragmentation: Vocabulary floods with duplicate 'Micro-Patterns'."
+    "Retrieval Miss: Different terminology, representation, scope, or discovery method keeps a covering incumbent out of the candidate set.",
+    "False Merge: Surface resemblance or a retrieval score is treated as semantic coverage despite a material structural delta.",
+    "Fragmentation: A covering or unresolved candidate is ignored and an overlapping pattern enters the registry."
   ],
   "invariants": [
-    "Deduplication: If Similarity(New, Existing) > Threshold, Mint is blocked.",
-    "Pre-Mint {{check}}: Minting is forbidden without a prior Search log."
+    "Search Record: Scope, method, candidates, and dispositions are recorded; no-match means none found under that search, not global absence.",
+    "Semantic Gate: Halt if any candidate covers the proposal's mechanism and boundary. Proceed requires either no candidate under the declared search or, for every resolved candidate, evidence of a material structural delta it does not cover.",
+    "Uncertainty: An unresolved comparison yields halt or debt, never unqualified proceed."
   ],
   "preconditions": [
-    "Intent to define new concept",
-    "Registry access available"
+    "Proposed pattern, registry scope, and discovery method are available."
   ],
   "postconditions": [
-    "Existing Pattern Returned OR New Pattern Minted"
-  ],
-  "parameters": [
-    {
-      "name": "search_method",
-      "type": "Enum",
-      "range": "{Vector, Keyword, Hybrid}",
-      "description": "Default: Hybrid"
-    },
-    {
-      "name": "similarity_threshold",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Default: 0.85"
-    }
+    "Prior-art {{decision}} and supporting evidence returned."
   ],
   "_meta": {
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea"
+      "sema:PatternDiscovery#mh:SHA-256:f6678026193a09006dd0ced5877ca8bc97939b3df41d9cd71d7b59d969100cea",
+      "sema:PatternDiscovery#mh:SHA-256:abed85333f7639dc232f4bca888a78a9595059c67596331c6f6eeac73b7b3239",
+      "sema:PatternDiscovery#mh:SHA-256:f3a44176623cf57ec1cefc74f35944c2bd3fdbe658b31307755a8ae865532894"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:PatternDiscovery#mh:SHA-256:f3a44176623cf57ec1cefc74f35944c2bd3fdbe658b31307755a8ae865532894",
-  "sema_ref": "PatternDiscovery#f3a4",
-  "sema_stub": "f3a4",
+  "sema_id": "sema:PatternDiscovery#mh:SHA-256:8ff484bd61105aee7eb4e3e24475faf27e55c0b76faf4388907734110d914023",
+  "sema_ref": "PatternDiscovery#8ff4",
+  "sema_stub": "8ff4",
   "dependencies": {
-    "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "construct_ontology": "sema:ConstructOntology#mh:SHA-256:9407f844acd036cc6eef2be1957467d4eac7aed577266a88648ecc8876849b2f",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "search": "sema:Search#mh:SHA-256:f41f1d3dadc786c5fba7f290a9fc10ae87a39c07d6bb66a8f4deb0b9e393fc85"
+    "composes_with": {
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
+      "search": "sema:Search#mh:SHA-256:1da96800031333016d0be31b6721f15867df62aa9cd93d2a10102efb7d4841a7"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
     }
   },
   "sema_layer": "Mind",

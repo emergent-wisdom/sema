@@ -35,27 +35,28 @@
     "ring": 2,
     "supersedes": [
       "sema:EmpathySim#mh:SHA-256:86ab6c06ecf009fce40155d3c1aeadb76738060bcb7adbd88f9c15bd01a52f4c",
-      "sema:EmpathySim#mh:SHA-256:86e98d01cd322735f32c153f35f6d58c4d08ead468b5aa2fe07810483f9de445"
+      "sema:EmpathySim#mh:SHA-256:86e98d01cd322735f32c153f35f6d58c4d08ead468b5aa2fe07810483f9de445",
+      "sema:EmpathySim#mh:SHA-256:2f023002b64558552942ebd18f3b1bd76a76198a9bab3a98ef0b34e2dc1fb2de"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:EmpathySim#mh:SHA-256:2f023002b64558552942ebd18f3b1bd76a76198a9bab3a98ef0b34e2dc1fb2de",
-  "sema_ref": "EmpathySim#2f02",
-  "sema_stub": "2f02",
+  "sema_id": "sema:EmpathySim#mh:SHA-256:87963fa098676195ed42fdf8804d0378ee74d8aad85830f327aa3925d35a47ef",
+  "sema_ref": "EmpathySim#8796",
+  "sema_stub": "8796",
   "dependencies": {
     "accepts": {
-      "target_profile": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf"
+      "target_profile": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:c092338ebd9e7025254ae45974d7a9854b21b12e5d2943f58f4c0e920f5e1fde",
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:d1da527c28217842fbdb7333e85fb95d70c54672ed8a2f37325cde3c5d32d5a5",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "simulation": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

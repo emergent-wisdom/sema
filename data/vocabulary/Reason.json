@@ -3,22 +3,23 @@
   "mechanism": "Orchestrated cognition that chains multiple {{think}} steps using a specific {{topology}} (e.g., {{chain}} of Thought, {{tree}} of Thoughts). Transforms {{context}} into conclusions, plans, or decisions while respecting {{compute_budget}}. The bridge between atomic thinking and structured problem-solving.",
   "gloss": "Execute a cognitive topology",
   "failure_modes": [
-    "Analysis Paralysis: Spending too much compute on a decision with diminishing returns.",
-    "Circular Reasoning: The thought process loops back to the premise without progress.",
-    "Context Window Overflow: The reasoning trace exceeds memory capacity."
+    "Analysis Paralysis: too much compute on a decision with diminishing returns.",
+    "Circular Reasoning: the thought process loops back to the premise.",
+    "Context Window Overflow: the reasoning trace exceeds memory capacity.",
+    "Reasoning past the evidence: the {{context}} did not support a conclusion and one was produced."
   ],
   "invariants": [
-    "Bounded Execution: Must respect {{compute_budget}} (time/token limits).",
-    "Structure Adherence: Must follow the rules of the selected reasoning {{topology}}.",
-    "Side-Effect Free: Reasoning itself does not change the external world."
+    "Bounded Execution: must respect {{compute_budget}}.",
+    "Structure Adherence: must follow the rules of the selected reasoning {{topology}}.",
+    "A reasoning step does not change the world outside the agent; recording the trace is not such a change. World-changing steps are {{act}}s of the composing pattern."
   ],
   "preconditions": [
-    "{{context}} contains sufficient information",
+    "{{context}} is available and readable",
     "{{compute_budget}} is available"
   ],
   "postconditions": [
     "A conclusion, plan, or decision is generated",
-    "Reasoning trace is appended to History"
+    "The reasoning trace is recorded"
   ],
   "_meta": {
     "tier": 1,
@@ -28,28 +29,30 @@
       "TreeOfThoughts"
     ],
     "supersedes": [
-      "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846"
+      "sema:Reason#mh:SHA-256:3f246e05b685e54ff927fc1f0ccba1be64078d8aab649145440940a25ceed846",
+      "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed",
-  "sema_ref": "Reason#c2f2",
-  "sema_stub": "c2f2",
+  "sema_id": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
+  "sema_ref": "Reason#81ec",
+  "sema_stub": "81ec",
   "dependencies": {
     "accepts": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "composes_with": {
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     },
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c",
-      "tree": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543"
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467",
+      "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }
   },
   "sema_layer": "Mind",

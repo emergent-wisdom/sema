@@ -9,19 +9,24 @@
     ],
     "ring": 1,
     "supersedes": [
-      "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4"
+      "sema:Strategy#mh:SHA-256:47a4c030647570c7e911543e9d0feaa3d8f0917b6e20371e93c37fb5e85fb7d4",
+      "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
-  "sema_ref": "Strategy#0f2f",
-  "sema_stub": "0f2f",
+  "sema_id": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
+  "sema_ref": "Strategy#e357",
+  "sema_stub": "e357",
+  "invariants": [
+    "States what it optimises for, and what would count as having won.",
+    "States the observation that would cause it to be revised. A course with no revision trigger is a {{plan}}."
+  ],
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
+      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd"
     }
   },
   "sema_layer": "Mind",

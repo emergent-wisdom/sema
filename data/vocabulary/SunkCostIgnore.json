@@ -6,8 +6,7 @@
     "Loss Aversion {{loop}}: The agent re-frames stopping as a loss rather than a saving, preventing the fresh slate evaluation."
   ],
   "invariants": [
-    "{{decision}} based ONLY on future utility",
-    "Past investment excluded from calc"
+    "The {{decision}} is based only on future utility."
   ],
   "preconditions": [
     "{{decision}} point",
@@ -20,21 +19,22 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:SunkCostIgnore#mh:SHA-256:4dc35c44a5267415e5ddb5e07a802229242be890db74b697881178da91ccad8f"
+      "sema:SunkCostIgnore#mh:SHA-256:4dc35c44a5267415e5ddb5e07a802229242be890db74b697881178da91ccad8f",
+      "sema:SunkCostIgnore#mh:SHA-256:aa8559972a65a167ab809cf25348a534b82d3be52fef52cad6e2ab266fb1b4d3"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:SunkCostIgnore#mh:SHA-256:aa8559972a65a167ab809cf25348a534b82d3be52fef52cad6e2ab266fb1b4d3",
-  "sema_ref": "SunkCostIgnore#aa85",
-  "sema_stub": "aa85",
+  "sema_id": "sema:SunkCostIgnore#mh:SHA-256:c2e5392f7eee86aa652633c415404ce13a5f83f4e239ad02fd230c75b3c2313c",
+  "sema_ref": "SunkCostIgnore#c2e5",
+  "sema_stub": "c2e5",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:ab1b4c48b8b40b35607e94fa11f1488c23b07b4c846daca0aef109b8a55cd357"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:7f526c52acf919aabffa14287cd4ed442fb4c419a6ad78cfe0de1cf19d6146da"
     }
   },
   "sema_layer": "Mind",

@@ -10,19 +10,20 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:TradeOff#mh:SHA-256:769c61729ff84c1f887e3e075f3a94948094da3ecde8bd9ca9f5034717b1e0d0"
+      "sema:TradeOff#mh:SHA-256:769c61729ff84c1f887e3e075f3a94948094da3ecde8bd9ca9f5034717b1e0d0",
+      "sema:TradeOff#mh:SHA-256:dbb6229d95c7d568ee05870f5438a55116b2c824046fb76b832c3fcef151636f"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:TradeOff#mh:SHA-256:dbb6229d95c7d568ee05870f5438a55116b2c824046fb76b832c3fcef151636f",
-  "sema_ref": "TradeOff#dbb6",
-  "sema_stub": "dbb6",
+  "sema_id": "sema:TradeOff#mh:SHA-256:7ed66791e094b316654a0bc85ebcc2d2cfb20686013c7d6fd8f0a79aaea4c169",
+  "sema_ref": "TradeOff#7ed6",
+  "sema_stub": "7ed6",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
     }
   },
   "sema_layer": "Mind",

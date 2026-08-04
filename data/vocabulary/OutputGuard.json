@@ -9,7 +9,7 @@
   ],
   "invariants": [
     "Fail-Safe: If Scanner fails (timeout/error), Output is BLOCKED (not passed).",
-    "Privacy First: If PII detected, Redaction is mandatory."
+    "Privacy First: detected PII must not reach egress unmitigated. Which mitigation applies \u2014 redaction, blocking, or hashing \u2014 is the caller's `pii_mode` choice; what is mandatory is that one of them runs, since blocking is stronger than redaction where the content cannot be safely salvaged."
   ],
   "preconditions": [
     "Candidate solution generated",
@@ -42,23 +42,24 @@
     "tier": 2,
     "ring": 0,
     "supersedes": [
-      "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0"
+      "sema:OutputGuard#mh:SHA-256:eb44b7e751219a94f752bb8827843ede1045bc1a4195d9d0db3648f9ae097bb0",
+      "sema:OutputGuard#mh:SHA-256:32b0ffd08f916d61a677af7d82c53feb8a4019baab1bd86622a853aafa91ed2f"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_id": "sema:OutputGuard#mh:SHA-256:32b0ffd08f916d61a677af7d82c53feb8a4019baab1bd86622a853aafa91ed2f",
-  "sema_ref": "OutputGuard#32b0",
-  "sema_stub": "32b0",
+  "sema_id": "sema:OutputGuard#mh:SHA-256:1396cd3b7d51a56b178382a521d22ae7f478d4681ea7e31d5af1d625857ad315",
+  "sema_ref": "OutputGuard#1396",
+  "sema_stub": "1396",
   "dependencies": {
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
     },
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08"
     }
   },
   "sema_layer": "Infrastructure",

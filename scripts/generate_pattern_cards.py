@@ -58,7 +58,7 @@ def format_card_for_latex(data):
     Hashed fields (from hashing.py):
         dependencies, signature, data_schema, mechanism, gloss,
         invariants, preconditions, postconditions, parameters,
-        failure_modes, derived_from
+        failure_modes, extends (or the authored legacy derived_from key)
 
     NOT hashed: handle, _meta, sema_id, sema_ref, sema_stub, etc.
     """
@@ -74,13 +74,19 @@ def format_card_for_latex(data):
         "postconditions",
         "parameters",
         "failure_modes",
-        "derived_from",
+        "extends",
     ]
 
     card = {}
+    if "extends" in data and "derived_from" in data:
+        raise ValueError("Pattern cannot contain both extends and legacy derived_from")
     for field in semantic_fields:
         if field in data:
             card[field] = data[field]
+    if "derived_from" in data:
+        # Preserve the historical key verbatim; normalizing it to `extends`
+        # would display different content from the bytes that produced the ID.
+        card["derived_from"] = data["derived_from"]
 
     return json.dumps(card, indent=2)
 

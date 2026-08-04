@@ -8,47 +8,48 @@
     "Aggregation {{cognitive_bias}}: Merge {{strategy}} systematically favors certain outputs."
   ],
   "invariants": [
-    "Tasks are independent",
-    "Total time = Max(Task_i) + Overhead"
+    "Independence: no subtask reads another subtask's output.",
+    "Aggregation is chosen before fan-out, and subtasks are shaped to produce outputs it accepts."
   ],
   "preconditions": [
     "Batch of tasks",
     "Multiple workers"
   ],
   "postconditions": [
-    "All results aggregated"
+    "All results aggregated, or the unaggregatable ones reported as such"
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391"
+      "sema:Parallelize#mh:SHA-256:d6b4208180c697dc25cab65f9b3ed028aeb1beb6f871adf615266d9b5eaf5391",
+      "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf",
-  "sema_ref": "Parallelize#f2bb",
-  "sema_stub": "f2bb",
+  "sema_id": "sema:Parallelize#mh:SHA-256:5b4bc9d0ea71c6b181cb02a81dd64c7767e5ccbd0769277ce5a841fe5c2c9b0d",
+  "sema_ref": "Parallelize#5b4b",
+  "sema_stub": "5b4b",
   "signature": [
     "Parallel(Task)",
     "Aggregate(Result)"
   ],
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b"
+      "aggregate": "sema:Aggregate#mh:SHA-256:d1d523ccf371305ebfbd971b5b6630a517bfcb0217ff4639d2db12a01bc181a8"
     },
     "references": {
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
-      "parallel": "sema:Parallel#mh:SHA-256:e799c1986d62c4a052090842aabe144193587f8a4d8dd23617d027b2e9b85098",
-      "result": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
+      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
+      "parallel": "sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5",
+      "result": "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127",
+      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6"
     }
   },
   "sema_layer": "Mind",

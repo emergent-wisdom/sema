@@ -17,14 +17,15 @@
   "postconditions": [
     "Value retrieved significantly faster than source"
   ],
-  "sema_id": "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5",
-  "sema_ref": "Cache#30c9",
-  "sema_stub": "30c9",
+  "sema_id": "sema:Cache#mh:SHA-256:55e2dfe59df3e261e74c0ecdafa7216cf6fea44e60692125499924c7a8104771",
+  "sema_ref": "Cache#55e2",
+  "sema_stub": "55e2",
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073"
+      "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073",
+      "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5"
     ],
     "path": [
       "Infrastructure",
@@ -37,16 +38,20 @@
     "properties": {
       "key": {
         "type": "string",
-        "description": "Lookup key"
+        "description": "Lookup key. Required: a keyed store with no key is not a cache."
       },
       "value": {
-        "description": "Stored value"
+        "description": "Stored value returned on a hit."
       },
       "hit": {
         "type": "boolean",
         "description": "Whether the key was found on lookup"
       }
-    }
+    },
+    "required": [
+      "key",
+      "value"
+    ]
   },
   "dependencies": {
     "references": {

@@ -10,16 +10,17 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1"
+      "sema:Decision#mh:SHA-256:acfb3458cde8e55c378b2f51b44afc30687b58093f1777299f49caca475274a1",
+      "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-  "sema_ref": "Decision#7fdf",
-  "sema_stub": "7fdf",
+  "sema_id": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+  "sema_ref": "Decision#b140",
+  "sema_stub": "b140",
   "data_schema": {
     "type": "object",
     "description": "A committed choice \u2014 artifact recording which option was selected.",
@@ -45,8 +46,8 @@
   },
   "dependencies": {
     "references": {
-      "option": "sema:Option#mh:SHA-256:b099a885b070faa10168a2edff0671cd773d31c0cc5fb0e775521a12444c1135",
-      "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
+      "option": "sema:Option#mh:SHA-256:134bea703754281f36b52e9e6901090a3db9ce84f0d843a8e1d18151c0c5beb0",
+      "select": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3"
     }
   },
   "sema_layer": "Infrastructure",

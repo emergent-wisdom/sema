@@ -13,14 +13,17 @@
     "path": [
       "Physics",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96"
     ]
   },
-  "sema_id": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
-  "sema_ref": "Gradient#dcf0",
-  "sema_stub": "dcf0",
+  "sema_id": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
+  "sema_ref": "Gradient#ecfc",
+  "sema_stub": "ecfc",
   "dependencies": {
     "references": {
-      "entropy": "sema:Entropy#mh:SHA-256:323fd687b530ceedeeb7b7399fc4227f8181da3193c85afab0d66e26914a3749"
+      "entropy": "sema:Entropy#mh:SHA-256:d5f7482e6c06a1e48eadbf28e6dca0cc0eb176bf75c70e7e467284f656d20bae"
     }
   },
   "sema_layer": "Physics",

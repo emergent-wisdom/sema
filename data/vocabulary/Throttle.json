@@ -3,22 +3,16 @@
   "mechanism": "Rate Limiting: Maximum N {{task}}s per time window W. Excess requests rejected, queued, or delayed. Window can be sliding or fixed. Separate limits per action type or global. Utilizes {{backoff}}.",
   "gloss": "Rate-limiting to prevent resource exhaustion",
   "failure_modes": [
-    "Legitimate Denial: Throttle cannot distinguish attack traffic from legitimate burst."
+    "Unbounded queue: `excess_policy` is queue or delay and arrivals stay above the limit, so latency grows without anything being dropped or refused."
   ],
   "invariants": [
-    "Rate Limit: Output rate \u2264 MaxRate within any window (sliding or fixed).",
-    "Queue Bounding: Dropped requests > 0 if InputRate >> MaxRate."
+    "Rate limit: output rate \u2264 `rate_limit` within any `window`, sliding or fixed.",
+    "Excess is handled by the declared `excess_policy` \u2014 rejected, queued, or delayed. Only rejection drops."
   ],
   "preconditions": [
     "Token bucket or Leaky bucket state initialized"
   ],
   "parameters": [
-    {
-      "name": "burst_size",
-      "type": "Integer",
-      "range": "[1, 100]",
-      "description": "Temporary overflow allowance"
-    },
     {
       "name": "rate_limit",
       "type": "Integer",
@@ -30,25 +24,38 @@
       "type": "Duration",
       "range": "[1s, 1h]",
       "description": "Time window for rate calculation"
+    },
+    {
+      "name": "burst_size",
+      "type": "Integer",
+      "range": "[1, 100]",
+      "description": "Temporary overflow allowance"
+    },
+    {
+      "name": "excess_policy",
+      "type": "Enum",
+      "range": "{reject, queue, delay}",
+      "description": "What happens above the limit. Named in the intersection and previously expressible nowhere."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af"
+      "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
+      "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8",
-  "sema_ref": "Throttle#2486",
-  "sema_stub": "2486",
+  "sema_id": "sema:Throttle#mh:SHA-256:dd626ad2479e5377339f44e77b61a0264591ed21a906556f020fccb98450fe55",
+  "sema_ref": "Throttle#dd62",
+  "sema_stub": "dd62",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
       "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72"

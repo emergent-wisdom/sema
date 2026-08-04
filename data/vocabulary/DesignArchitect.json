@@ -10,26 +10,27 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775"
+      "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775",
+      "sema:DesignArchitect#mh:SHA-256:de8c02a7c8c3f29951d1df4265648ae84cea7039dc73f2c0e9403e8c1a199d04"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "DesignArchitect#de8c",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:de8c02a7c8c3f29951d1df4265648ae84cea7039dc73f2c0e9403e8c1a199d04",
-  "sema_stub": "de8c",
+  "sema_ref": "DesignArchitect#ac15",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:ac154160ca214e889cce53f96e35798b9f290a9b512217fbc567282948c491a7",
+  "sema_stub": "ac15",
   "dependencies": {
     "composes_with": {
-      "pre_mortem": "sema:PreMortem#mh:SHA-256:4c7fe58aa4f9a9e7a319d8eb3ca56e449a390d6b0fa574b258f9cf7a32ef138e",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
-      "summarize": "sema:Summarize#mh:SHA-256:fd404c257777e046e61b8aa689fa0d12f227c0e660e5e92d2b3c1d64f3ee7ff8",
-      "translate": "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e"
+      "pre_mortem": "sema:PreMortem#mh:SHA-256:e4c24813f33aa41fdb183e380d05707fe1fd813c46b4127602449a8988f47964",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:7611548d64d5fb63c0e09723c53192121c4846ab4ea85531da0b51ad712f3c75",
+      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
+      "summarize": "sema:Summarize#mh:SHA-256:34707d252c9e4c88b4e28266709663cbe45533a802b02c0c1941dea7edd68b70",
+      "translate": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400"
     },
     "yields": {
-      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:4c393bee5b1d67791b93e4e3612ead726dac3874739f83625333244ab3d5ac6b"
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:2f7a45b9f347ab3b11faf3ebf6351f61fcd23ce667951683247b0c0f6a700355"
     }
   },
   "sema_layer": "Mind",

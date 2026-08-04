@@ -20,22 +20,23 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Specialize#mh:SHA-256:0a0947c52834daad3a8c929cdafa2343ad43b044750fd6e27e233ff823005891"
+      "sema:Specialize#mh:SHA-256:0a0947c52834daad3a8c929cdafa2343ad43b044750fd6e27e233ff823005891",
+      "sema:Specialize#mh:SHA-256:c20731c405d9dad4d59f090c900f44c4d44ef8b6f3f432ac8876f9aeee826877"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Specialize#mh:SHA-256:c20731c405d9dad4d59f090c900f44c4d44ef8b6f3f432ac8876f9aeee826877",
-  "sema_ref": "Specialize#c207",
-  "sema_stub": "c207",
+  "sema_id": "sema:Specialize#mh:SHA-256:403a505880280df1f92d86310c2a9f9b4be1b0fa2fb13e3f8457c46d301a3485",
+  "sema_ref": "Specialize#403a",
+  "sema_stub": "403a",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
-      "generalize": "sema:Generalize#mh:SHA-256:78cbd8c531e0daa24d78be404ae40023b9ae598b6b0642e925756b1822145ccf"
+      "generalize": "sema:Generalize#mh:SHA-256:251f07a282bc1b83a737977141d164311e3334d50b555400970928758153289d"
     }
   },
   "sema_layer": "Mind",

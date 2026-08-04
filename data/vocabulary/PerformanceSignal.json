@@ -9,7 +9,7 @@
   ],
   "failure_modes": [
     "Sycophantic drift: evaluator shares the generator's blind spots and rubber-stamps weak outputs.",
-    "Signal poisoning in open commons: an untrusted consumer fabricates penalties to steal work (mitigated by the Receptivity Gate in \u00a77).",
+    "Signal poisoning in open commons: an untrusted consumer fabricates penalties to steal work (mitigated by {{receptivity_gate}}).",
     "Latency decay: the signal arrives long after the node has moved on, weakening the learning loop.",
     "Grade inflation: evaluators converge on 'good enough' scoring so all signals compress into a narrow band."
   ],
@@ -53,16 +53,20 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3"
     ]
   },
-  "sema_id": "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3",
-  "sema_ref": "PerformanceSignal#10af",
-  "sema_stub": "10af",
+  "sema_id": "sema:PerformanceSignal#mh:SHA-256:0f41b62437d210e1bf814dd145961f1ccd95661deaffa567989334ad298fdffb",
+  "sema_ref": "PerformanceSignal#0f41",
+  "sema_stub": "0f41",
   "dependencies": {
     "references": {
-      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
-      "frame_error": "sema:FrameError#mh:SHA-256:f67433d411f7ce3c8582a6685e6fc43285c2e96680b404acb8f399a74198fe4b",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82"
+      "feedback": "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae",
+      "frame_error": "sema:FrameError#mh:SHA-256:53e33befdcaffe1885b8604f77b4a1b508db41bd80cbd440c5d1fe6452336e40",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
+      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf"
     }
   },
   "sema_layer": "Infrastructure",

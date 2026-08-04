@@ -1,6 +1,6 @@
 # Getting Started
 
-Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#8bde`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#c9c2`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
 
 ## Install
 
@@ -56,15 +56,15 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#0526`, `Vote#0aff`, `StateLock#8bde`.
+You should see results like `Consensus#ec30`, `Vote#d3cb`, `StateLock#c9c2`.
 
 ## Use handles as words
 
 Sema handles are thinking tools, not footnotes:
 
-> "This uses `StateLock#8bde` to prevent concurrent mutation"
+> "This uses `StateLock#c9c2` to prevent concurrent mutation"
 
-> "Apply `Decompose#63f3` first, then `Prioritize#8028` the subproblems"
+> "Apply `Decompose#db21` first, then `Prioritize#99f0` the subproblems"
 
 ## Create your own vocabulary
 

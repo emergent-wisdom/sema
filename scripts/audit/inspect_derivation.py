@@ -24,7 +24,7 @@ def inspect_derivation():
         # Check explicit fields if they exist (unlikely based on schema, but worth checking)
         signals = []
         if 'origin' in meta or 'origin' in full_sol: signals.append('origin')
-        if 'derived_from' in meta or 'derived_from' in full_sol: signals.append('derived_from')
+        if 'extends' in meta or 'extends' in full_sol: signals.append('extends')
         if 'source' in meta or 'source' in full_sol: signals.append('source')
         
         # Check text content for "derived from" or "based on"

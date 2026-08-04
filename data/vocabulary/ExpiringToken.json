@@ -14,20 +14,21 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:ExpiringToken#mh:SHA-256:4e3cc3cee0de56a4eef0676629811cb4afa3383bc80bde227924d66a6af16f6e"
+      "sema:ExpiringToken#mh:SHA-256:4e3cc3cee0de56a4eef0676629811cb4afa3383bc80bde227924d66a6af16f6e",
+      "sema:ExpiringToken#mh:SHA-256:a1c3ec3a2dcab7d534072c42b3829b0bb654f8a593c63a71075a38e75bedf72d"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ExpiringToken#mh:SHA-256:a1c3ec3a2dcab7d534072c42b3829b0bb654f8a593c63a71075a38e75bedf72d",
-  "sema_ref": "ExpiringToken#a1c3",
-  "sema_stub": "a1c3",
+  "sema_id": "sema:ExpiringToken#mh:SHA-256:6ccee8101ea0c081947b221568ce55d3b727412df9015a4ac8e876dc956efcaf",
+  "sema_ref": "ExpiringToken#6cce",
+  "sema_stub": "6cce",
   "dependencies": {
     "references": {
-      "bearer_token": "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad",
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
+      "bearer_token": "sema:BearerToken#mh:SHA-256:190a706b87eb5e59dea9d23a06f8f13f45081dec847572be38dfb398cf201112",
+      "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a"
     }
   },
   "sema_layer": "Society",

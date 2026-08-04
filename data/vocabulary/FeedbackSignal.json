@@ -3,14 +3,15 @@
   "mechanism": "A structured packet containing the evaluation of a specific {{solution}} for a {{task}}. Carries outcome and details to the {{feedback}} mechanism.",
   "gloss": "Standardized learning feedback packet",
   "invariants": [
-    "Targeted: each signal cites the specific {{solution}} and {{task}} it evaluates.",
-    "Structured: payload conforms to the defined data_schema (solution_ref, task_ref, outcome \u2208 {success, failure, partial})."
+    "Names both the {{solution}} evaluated and the {{task}} it was produced for.",
+    "Carries an outcome; a packet with no outcome is a reference, not an evaluation."
   ],
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c"
+      "sema:FeedbackSignal#mh:SHA-256:f90478ac868a5f7cc8800278a412c19dfaf50e8edb7a93a06dce6c0ae41ae52c",
+      "sema:FeedbackSignal#mh:SHA-256:9e3ba0be96a8114f7546bc9e53a37d03b5df5b37dee26c4b0fae6f108cc856fc"
     ],
     "path": [
       "Infrastructure",
@@ -48,14 +49,14 @@
       }
     }
   },
-  "sema_id": "sema:FeedbackSignal#mh:SHA-256:9e3ba0be96a8114f7546bc9e53a37d03b5df5b37dee26c4b0fae6f108cc856fc",
-  "sema_ref": "FeedbackSignal#9e3b",
-  "sema_stub": "9e3b",
+  "sema_id": "sema:FeedbackSignal#mh:SHA-256:b17bc5487b9430d441e24c219f0c50395f59d45c3475e5f0260d1f46b8b49624",
+  "sema_ref": "FeedbackSignal#b17b",
+  "sema_stub": "b17b",
   "dependencies": {
     "references": {
-      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "feedback": "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae",
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Infrastructure",

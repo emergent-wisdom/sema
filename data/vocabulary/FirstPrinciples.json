@@ -6,27 +6,30 @@
     "Infinite Regress: Wasting resources proving 1+1=2 instead of solving the actual logistics problem."
   ],
   "invariants": [
-    "Axioms cannot be derived from other statements."
+    "{{axiom}}s cannot be derived from other statements.",
+    "Stripping stops at a stated axiom set, not at whatever feels self-evident.",
+    "The solution is rebuilt from those {{axiom}}s only; no inherited {{assumption}} is carried in."
   ],
   "_meta": {
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:FirstPrinciples#mh:SHA-256:c379f7e5629befb5ccbee33b6fccbc3c4f5ec181b2704c4f82064d5cdc810f61"
+      "sema:FirstPrinciples#mh:SHA-256:c379f7e5629befb5ccbee33b6fccbc3c4f5ec181b2704c4f82064d5cdc810f61",
+      "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb",
-  "sema_ref": "FirstPrinciples#4844",
-  "sema_stub": "4844",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:8cf87ac255bd98d0a8707915742e57de6b4523ef8dffc33e735cdb75c38d642b",
+  "sema_ref": "FirstPrinciples#8cf8",
+  "sema_stub": "8cf8",
   "dependencies": {
     "references": {
-      "assumption": "sema:Assumption#mh:SHA-256:46479820ecd594cd6c789bae96a1eb67b14d6b04d2e4371913852292c0a402a0",
+      "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
       "axiom": "sema:Axiom#mh:SHA-256:8b1ca0bfefdb4954778b4074a3164934cb3a7e01be32aeb488b284dd81e5879c",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2"
     }
   },
   "sema_layer": "Mind",

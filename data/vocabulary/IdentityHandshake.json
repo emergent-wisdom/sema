@@ -12,28 +12,29 @@
     "caution": "Trust boundary \u2014 failure enables impersonation.",
     "supersedes": [
       "sema:IdentityHandshake#mh:SHA-256:f2e812c10dde8b6eb942ab763f53a42d95fd797ac09ba951d4138119a2e813be",
-      "sema:IdentityHandshake#mh:SHA-256:3a336d82fa7e2ee48ba131781e470179d64be0f70915687a6adcc65fff2c05a9"
+      "sema:IdentityHandshake#mh:SHA-256:3a336d82fa7e2ee48ba131781e470179d64be0f70915687a6adcc65fff2c05a9",
+      "sema:IdentityHandshake#mh:SHA-256:03d291c384dc130830e6256de16edc22592c92f8ca433cf8675ea5aa02b19c66"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:IdentityHandshake#mh:SHA-256:03d291c384dc130830e6256de16edc22592c92f8ca433cf8675ea5aa02b19c66",
-  "sema_ref": "IdentityHandshake#03d2",
-  "sema_stub": "03d2",
+  "sema_id": "sema:IdentityHandshake#mh:SHA-256:80925e0ac01ac53d5728c016a489dcf638a432b303ca73960688e7958ebf0809",
+  "sema_ref": "IdentityHandshake#8092",
+  "sema_stub": "8092",
   "signature": [
     "Discover(Identity)"
   ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "mode": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
-      "nature": "sema:Nature#mh:SHA-256:4a310dd9a1eec556adf00b932a9f2abe6a7d33081845c29ff99544fef8f78f4a",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e",
-      "spectral_tune": "sema:SpectralTune#mh:SHA-256:cb58af48ff79c9623c01cbd6be1998eda0effeb791ca79e98d21022435911f05"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
+      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
+      "nature": "sema:Nature#mh:SHA-256:9ac1fd9a3449747d2f605067023df9e13d7a60c15e556d376272266f95cfaf37",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235",
+      "spectral_tune": "sema:SpectralTune#mh:SHA-256:c0aab008d2cd2f653e56508356987477f9207b4cf6435f4416105b3f37bd544a"
     }
   },
   "sema_layer": "Society",

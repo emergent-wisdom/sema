@@ -12,19 +12,20 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:GlacialVault#mh:SHA-256:f521c96b7e3037f39724b9a723f707ec195074f3099f6b0db122271de96d5677"
+      "sema:GlacialVault#mh:SHA-256:f521c96b7e3037f39724b9a723f707ec195074f3099f6b0db122271de96d5677",
+      "sema:GlacialVault#mh:SHA-256:2b9fb3dcc823fcfb25fcf08b01812ecb31a9f584670c9978d0b81e3537ad578c"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:GlacialVault#mh:SHA-256:2b9fb3dcc823fcfb25fcf08b01812ecb31a9f584670c9978d0b81e3537ad578c",
-  "sema_ref": "GlacialVault#2b9f",
-  "sema_stub": "2b9f",
+  "sema_id": "sema:GlacialVault#mh:SHA-256:17355c2dc0e9ce3adeaa9062efb0a49d7c4b4f44c6921e4ce103d8e9e9bfbc99",
+  "sema_ref": "GlacialVault#1735",
+  "sema_stub": "1735",
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
+      "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a"
     }
   },
   "sema_layer": "Society",

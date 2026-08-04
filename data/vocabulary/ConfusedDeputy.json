@@ -25,21 +25,22 @@
     "ring": 2,
     "supersedes": [
       "sema:ConfusedDeputy#mh:SHA-256:31db289ffbcd442a10cddc5c1d3460132fd073a680d436e364684e89c37a39c2",
-      "sema:ConfusedDeputy#mh:SHA-256:6eb586b85aa5ebf88afbd6b1e77c365c87e5f5d7ee3098479518066de00b331a"
+      "sema:ConfusedDeputy#mh:SHA-256:6eb586b85aa5ebf88afbd6b1e77c365c87e5f5d7ee3098479518066de00b331a",
+      "sema:ConfusedDeputy#mh:SHA-256:c6c91849305a72c909564056bd6940139ca01f2f127f83818cc3e844dfc8a165"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "ConfusedDeputy#c6c9",
-  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:c6c91849305a72c909564056bd6940139ca01f2f127f83818cc3e844dfc8a165",
-  "sema_stub": "c6c9",
+  "sema_ref": "ConfusedDeputy#bddf",
+  "sema_id": "sema:ConfusedDeputy#mh:SHA-256:bddfd921448570d015aedc6112828de15d44e9ec662f009cf81b989e3d77c47c",
+  "sema_stub": "bddf",
   "dependencies": {
     "references": {
-      "actor": "sema:Actor#mh:SHA-256:1ecd855bdf9fc33f99840af8b53729d917355fb151d36ff21947885fac5c5907",
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "permission": "sema:Permission#mh:SHA-256:f3470b4ff692d65cb74a12a52b69caffdf008e55e1ef0062a9927c6b72877005"
+      "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "permission": "sema:Permission#mh:SHA-256:9c2fc31f5e31473c03834463095e4390750f7fda11f5a1aed2502f855a65dbcf"
     }
   },
   "sema_layer": "Society",

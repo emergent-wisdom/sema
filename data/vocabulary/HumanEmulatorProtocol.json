@@ -1,6 +1,6 @@
 {
   "handle": "HumanEmulatorProtocol",
-  "mechanism": "The paper's \u00a76.2 protocol for responding to a person with variable depth: 'How should I respond to this person?' Decomposes via {{conceptual_decomposition}} into five sub-questions that suppress each other when entangled in a single context: situation (what is the context), emotion (what do they feel), intent (what do they actually need, distinct from what they say), response (what should I say), and boundary (what must I not do). Each sub-question is handled by its own Solver with its own typed outputs \u2014 SituationSolver reconstructs relational dynamics, EmotionSolver produces a structured emotional model rather than a sentiment label, IntentSolver distinguishes stated from latent need, a CalibrationSolver fits tone and register, a BoundarySolver enforces ethical constraints as a hard acceptance gate. These faculties are co-variant state monitors (not a relay race): an emotional spike changes the intent distribution; a resolved intent reframes the emotional reading. Depth scales with the stakes under {{marginal_value_rule}} \u2014 a trivial greeting resolves in one pass; a crisis triggers deep recursion into competing emotional hypotheses and latent-intent analysis.",
+  "mechanism": "A protocol for responding to a person with variable depth: 'How should I respond to this person?' Decomposes via {{conceptual_decomposition}} into five sub-questions that suppress each other when entangled in a single context: situation (what is the context), emotion (what do they feel), intent (what do they actually need, distinct from what they say), response (what should I say), and boundary (what must I not do). Each sub-question is handled by its own Solver with its own typed outputs \u2014 SituationSolver reconstructs relational dynamics, EmotionSolver produces a structured emotional model rather than a sentiment label, IntentSolver distinguishes stated from latent need, a CalibrationSolver fits tone and register, a BoundarySolver enforces ethical constraints as a hard acceptance gate. These faculties are co-variant state monitors (not a relay race): an emotional spike changes the intent distribution; a resolved intent reframes the emotional reading. Depth scales with the stakes under {{marginal_value_rule}} \u2014 a trivial greeting resolves in one pass; a crisis triggers deep recursion into competing emotional hypotheses and latent-intent analysis.",
   "gloss": "Decompose empathetic understanding into situation, emotion, intent, response, and boundary \u2014 variable-depth recursion tracks the stakes of the interaction",
   "invariants": [
     "Five-faculty orthogonal: the sub-concepts pass the four-test decomposition; entangling them in one context causes mutual interference.",
@@ -13,15 +13,19 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:HumanEmulatorProtocol#mh:SHA-256:261f38f4e5344f759765e4ceb351f59f3bcd543414672d8826b8fa33517ec896",
+      "sema:HumanEmulatorProtocol#mh:SHA-256:faf142ed0dc6369843880fccdd40c3785fbdbfc370122833f660da53a2c9c9cc"
     ]
   },
-  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:faf142ed0dc6369843880fccdd40c3785fbdbfc370122833f660da53a2c9c9cc",
-  "sema_ref": "HumanEmulatorProtocol#faf1",
-  "sema_stub": "faf1",
+  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:9ba03398875aca91b2fb60b8f10a7241ac86aaf293f243dec5f883425e07f5c2",
+  "sema_ref": "HumanEmulatorProtocol#9ba0",
+  "sema_stub": "9ba0",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
     }
   },
   "sema_layer": "Mind",

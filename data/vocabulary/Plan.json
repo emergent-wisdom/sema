@@ -9,6 +9,8 @@
     "type": "object",
     "required": [
       "plan_id",
+      "goal_ref",
+      "initial_state",
       "steps",
       "status"
     ],
@@ -43,6 +45,14 @@
       "created_at": {
         "type": "string",
         "format": "date-time"
+      },
+      "risks": {
+        "type": "array",
+        "description": "Attached {{risk}}s that may derail the plan."
+      },
+      "initial_state": {
+        "type": "object",
+        "description": "The state the plan transitions from."
       }
     }
   },
@@ -54,24 +64,25 @@
     "tier": 0,
     "ring": 0,
     "supersedes": [
-      "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc"
+      "sema:Plan#mh:SHA-256:64f273fc1710ca9d5b52a39758cf8e68279778d32856de4629a44ad7a7f5a4bc",
+      "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_ref": "Plan#02b6",
-  "sema_id": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
-  "sema_stub": "02b6",
+  "sema_ref": "Plan#d544",
+  "sema_id": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
+  "sema_stub": "d544",
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "goal": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
-      "risk": "sema:Risk#mh:SHA-256:329330b9f212869f983266b693b3b90a816506d6905501d682676af2dd281a30",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "goal": "sema:Goal#mh:SHA-256:b011159e6135b97ac191b4a06846af58c55af37a977aaf58c1e3556457538808",
+      "risk": "sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "step": "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7",
+      "step": "sema:Step#mh:SHA-256:fa207e6f70e14a67e3baa7e4ad4df9ece59ba4d07083fbbcc992332959e1520a",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

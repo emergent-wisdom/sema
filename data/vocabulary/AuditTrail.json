@@ -30,28 +30,29 @@
       "SpotAudit"
     ],
     "supersedes": [
-      "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c"
+      "sema:AuditTrail#mh:SHA-256:ff66d6d56fc4208d20e8bb1835ea9a04dc23269ced480e27c2cebb2f2fa6890c",
+      "sema:AuditTrail#mh:SHA-256:b4419b5e90a6a7c5433fe5bcb459ca9fbff9cbd7d48ccf9b44b0b64166959551"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_ref": "AuditTrail#b441",
-  "sema_id": "sema:AuditTrail#mh:SHA-256:b4419b5e90a6a7c5433fe5bcb459ca9fbff9cbd7d48ccf9b44b0b64166959551",
-  "sema_stub": "b441",
+  "sema_ref": "AuditTrail#46f7",
+  "sema_id": "sema:AuditTrail#mh:SHA-256:46f73da14d15073869646008bafb50651a875287b559885fda3ae578c8ebbaa9",
+  "sema_stub": "46f7",
   "dependencies": {
     "composes_with": {
       "snapshot": "sema:Snapshot#mh:SHA-256:390d2ec2934136d534f969b4039e6b899d2ed3956ddd8aa0ca4754068ed8d133"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "ledger": "sema:Ledger#mh:SHA-256:bc308b35d2c0be6d4a9159ebe2b3c4989e559628145ba9fccb970d8ec2264b04",
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:33824eaaf148d996cbc3ccd7521b62dbba087070d23b5421918a446df3f01c8b",
-      "sign": "sema:Sign#mh:SHA-256:d89a18b44321e4b9ba9aada7ac698f69ef9f24a2b0d92e0906168554604a301c",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
+      "ledger": "sema:Ledger#mh:SHA-256:625250939255c79bdf29aa6a7b455f0e339f63fd45dcc4222e765005a1db1c28",
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:d0d3ce256be4bc080a29eab7fda36381a4352a280d9a12d59179c60e71cf9bd0",
+      "sign": "sema:Sign#mh:SHA-256:b2020447ec4c2725a139c6117c764cf464643e6e83379e86263267f95e4965ee",
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Infrastructure",

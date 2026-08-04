@@ -131,8 +131,14 @@ SEMANTIC_FIELDS = [
     "postconditions",
     "parameters",
     "failure_modes",
-    "derived_from",
+    "extends",
 ]
+
+# 0.3 and earlier called the specialization field `derived_from`. Keep that
+# spelling readable and hash-verifiable so an upgraded client can still resolve
+# an existing content-addressed card. New cards use `extends`; carrying both is
+# ambiguous and rejected by generate_sema_hash and the schema.
+LEGACY_SPECIALIZATION_FIELD = "derived_from"
 
 
 def extract_handle_from_ref(ref: str) -> str:
@@ -215,6 +221,21 @@ def canonicalize_dependency_keys(deps: dict[str, Any]) -> dict[str, Any]:
     return normalized
 
 
+def resolve_ref_to_sema_id(ref: str, hash_lookup: callable) -> str:
+    """Rewrite one handle reference to the target's current full sema_id.
+
+    Returns the input unchanged when the handle does not resolve, so the failure
+    surfaces in validation rather than silently pointing at nothing.
+    """
+    if not isinstance(ref, str) or not ref:
+        return ref
+    clean_handle = extract_handle_from_ref(ref)
+    current_hash = hash_lookup(clean_handle)
+    if current_hash:
+        return f"sema:{clean_handle}#mh:{HASH_ALGO}:{current_hash}"
+    return ref
+
+
 def resolve_dependencies_to_sema_ids(deps: dict[str, Any], hash_lookup: callable) -> dict[str, Any]:
     """Resolve handle references to full sema IDs.
 
@@ -276,8 +297,15 @@ def generate_sema_hash(pattern: dict[str, Any], hash_lookup: callable = None) ->
             "hash": "abc123...",
         }
     """
-    # 1. Extract semantic fields only
+    if "extends" in pattern and LEGACY_SPECIALIZATION_FIELD in pattern:
+        raise ValueError("Pattern cannot contain both `extends` and legacy `derived_from`")
+
+    # 1. Extract semantic fields only. For a legacy card, retain the legacy key
+    # itself in the Merkle input: renaming it before hashing would change the ID
+    # that compatibility support exists to verify.
     content = {k: pattern[k] for k in SEMANTIC_FIELDS if k in pattern}
+    if LEGACY_SPECIALIZATION_FIELD in pattern:
+        content[LEGACY_SPECIALIZATION_FIELD] = pattern[LEGACY_SPECIALIZATION_FIELD]
 
     # 2. Canonicalize dependency keys for consistent hashing
     #    This ensures "base" -> "targethandle" normalization
@@ -494,13 +522,13 @@ def format_load_line(info: dict) -> str:
     context below (scannable).
 
     Example:
-        📚 sema:vocab#mh:SHA-256:62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c
-           453 patterns, sema-semantic-set-v1 (data/taxonomy.db)
+        📚 sema:vocab#mh:SHA-256:<64-character-root>
+           N patterns, sema-semantic-set-v1 (path/to/taxonomy.db)
 
     When a stamped version becomes available, it's appended inline to the
     second line without disturbing the root:
-        📚 sema:vocab#mh:SHA-256:62d9253829798a...
-           453 patterns, v0.4.0, sema-semantic-set-v1 (data/taxonomy.db)
+        📚 sema:vocab#mh:SHA-256:<64-character-root>
+           N patterns, v0.4.0, sema-semantic-set-v1 (path/to/taxonomy.db)
     """
     root = info.get("root", "") or "unknown"
     count = info.get("pattern_count", 0)

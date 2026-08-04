@@ -51,9 +51,22 @@ For the full rule set, see [Validation Rules](../specification/validation.md). F
 
 1.  **Copy**: Copy the pattern from `data/vocabulary/` to `data/staging/`.
 2.  **Edit**: Modify the file in `data/staging/`.
-3.  **Apply**: Run `sema apply --add data/staging/PatternName.json`.
-4.  **Commit**: Git commit your changes.
-5.  **Clean**: Delete the staging file.
+3.  **Check**: Run `sema apply --add data/staging/PatternName.json --check`.
+4.  **Apply**: Run `sema apply --add data/staging/PatternName.json`.
+5.  **Commit**: Git commit your changes.
+6.  **Clean**: Delete the staging file.
+
+If the edited pattern is the exact parent of an `extends` child, a changed hash
+will fail preflight rather than silently move that child. Copy every child whose
+claim you have reviewed into staging, then either write its new full parent ID or
+retarget the staged cards explicitly:
+
+```bash
+sema apply --add data/staging/ --retarget-extends
+```
+
+The option affects staged cards only. The current database has no historical
+version store, so keeping an old parent pin locally is not yet supported.
 
 ### Verification
 
@@ -89,6 +102,12 @@ Use **snake_case keys** for dependency references:
 
 ## Manual-Driven Refinement Loop
 
+> This section is the **mechanics** — staging, apply, cascade, verify. For the
+> **judgment** — how to decide whether a card is right, the defect classes that
+> recur in practice, and the tools and theories already tried and abandoned — see
+> [review-method.md](review-method.md). That document is maintained by the loop
+> that uses it.
+
 Editing the vocabulary is not a one-shot activity. Once the library exists, the way you improve it is to **read the design manual, act on what the analysis surfaces, and feed the result back into the manual**. The manual is both the review surface and the source of refinement pressure — it closes the loop.
 
 ### The Four Artifacts
@@ -100,7 +119,7 @@ Editing the vocabulary is not a one-shot activity. Once the library exists, the 
 | `data/design_critique.json` | Sidecar: per-pattern design commentary (editable source of the manual's per-pattern sections) |
 | `docs/manuals/vocabulary-design.md` | Rendered manual — the review surface |
 
-The sidecar and the manual are **not** part of the hash input. Editing commentary never changes a pattern's `sema_id`. Editing a pattern *does* change its hash and cascades through the DAG.
+The sidecar and the manual are **not** part of the hash input. Editing commentary never changes a pattern's `sema_id`. Editing a pattern *does* change its hash and cascades through ordinary dependency edges. Exact `extends` claims do not cascade: an affected child must be reviewed and staged explicitly.
 
 ### The Loop
 
@@ -137,8 +156,10 @@ The sidecar and the manual are **not** part of the hash input. Editing commentar
                             ▼
 ┌─────────────────────────────────────────────────────────────┐
 │ 5. APPLY: `sema apply --add data/staging/<Handle>.json`      │
-│    Patterns hash, cascade through dependents, export to      │
-│    data/vocabulary/. Before applying: if the edit changes    │
+│    Patterns hash, cascade through ordinary dependents, and   │
+│    export to data/vocabulary/. Exact `extends` children      │
+│    block a parent change unless reviewed and staged. Before  │
+│    applying: if the edit changes                             │
 │    the hash against the last public release, add the prior   │
 │    sema_id to `_meta.supersedes` — required for every        │
 │    change, not just renames. See Lifecycle §4 "Populating    │
@@ -178,7 +199,21 @@ running check mode again.
 
 ### Rules that hold across the loop
 
-- **Change + commentary move together.** Never edit a pattern without updating its sidecar entry in the same turn. The manual rendered from a stale sidecar is actively misleading — it looks authoritative but describes a pattern that no longer exists.
+- **Change + commentary move together — in every field that referred to what you changed, not just `critique`.** The sidecar has seven prose fields: `motivation.{why_this_layer, why_it_exists, removability}`, `design.{tensions, tradeoffs, critique}`, `usage.notes`, plus `family_discussion` and the `usage` lines. A manual rendered from a stale sidecar is actively misleading — it looks authoritative but describes a pattern that no longer exists.
+
+  This is easy to get wrong by doing half of it. A 2026-07 review pass edited
+  `design.critique` on 224 patterns and left the siblings alone; 62 of those cards
+  ended up with commentary naming an invariant that no longer existed, and the
+  measurement is a floor because it matched deleted invariant *labels* and not
+  paraphrases. The worst subset was `motivation.removability`, at 28 cards — that
+  field answers "should this pattern exist at all" and routinely answers by citing
+  an invariant, so a card whose cited invariant was deleted now justifies its own
+  existence by a contract that is gone.
+
+  Two checks worth running after a batch: does any sidecar field still name a
+  contract you removed, and does any `design.tensions` entry pose as live a tension
+  you just resolved? A resolved tension belongs in `critique`, described as
+  resolved.
 - **Staging is ephemeral.** The presence of a file in `data/staging/` means "edit in flight." Once applied, delete it. The staging-aware generator uses file presence as the signal for which version to render.
 - **Sidecar entries are keyed by handle, not sema_id.** Renames require moving the entry under the new handle and deleting the old one; pure content edits need no sidecar key change.
 - **Never edit the manual directly.** It's a rendered artifact. Edits to `vocabulary-design.md` will be overwritten on the next regeneration. Edit the sidecar instead.

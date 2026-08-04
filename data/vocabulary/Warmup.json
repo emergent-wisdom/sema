@@ -1,6 +1,6 @@
 {
   "handle": "Warmup",
-  "mechanism": "Gradual Capacity Ramp: On activation, start at reduced capacity C_min and increase to C_max over time T following a defined curve. Prevents 'thundering herd' overload on cold systems. Utilizes {{greet}}, {{throttle}}.",
+  "mechanism": "On activation, accept load at `initial_capacity` and raise the accepted-load cap to full over `ramp_duration`, following `curve`. This prevents a thundering herd against a cold system. What the ramp establishes is the cap, not readiness \u2014 a system whose cap has reached full may still be cold inside. Utilizes {{greet}}, {{throttle}}.",
   "gloss": "Gradual capacity increase to stabilize cold systems",
   "failure_modes": [
     "Premature Load: Traffic arrives before warmup completes.",
@@ -13,8 +13,8 @@
     "{{system}} state is inactive or reset"
   ],
   "postconditions": [
-    "Capacity limit equals C_max",
-    "{{system}} state is active"
+    "Accepted-load cap has reached full capacity",
+    "{{system}} is accepting load at full cap \u2014 readiness of internal state (caches, compiled paths) is a separate signal this pattern does not assert"
   ],
   "parameters": [
     {
@@ -40,21 +40,22 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb"
+      "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
+      "sema:Warmup#mh:SHA-256:7ad05d8c27bdabb565d72ce56d8a896af84e5c35d5bc56afb7bdecdac5b40551"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Warmup#mh:SHA-256:7ad05d8c27bdabb565d72ce56d8a896af84e5c35d5bc56afb7bdecdac5b40551",
-  "sema_ref": "Warmup#7ad0",
-  "sema_stub": "7ad0",
+  "sema_id": "sema:Warmup#mh:SHA-256:316ee053b8fda86e03974bb8baaf6c82b4de0b07ea7e55fa38d337309cfe25de",
+  "sema_ref": "Warmup#316e",
+  "sema_stub": "316e",
   "dependencies": {
     "references": {
-      "greet": "sema:Greet#mh:SHA-256:58542bc100077ab85299c99424fa0ca7ea8559890678461a0d7f7aaba927c74f",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "throttle": "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8"
+      "throttle": "sema:Throttle#mh:SHA-256:dd626ad2479e5377339f44e77b61a0264591ed21a906556f020fccb98450fe55"
     }
   },
   "sema_layer": "Infrastructure",

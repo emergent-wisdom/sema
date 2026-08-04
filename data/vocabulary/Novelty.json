@@ -2,7 +2,10 @@
   "handle": "Novelty",
   "mechanism": "A {{judge}} of structural distinctness: does this artifact introduce a genuinely new mechanism relative to a reference knowledge base, or is it a rename or incremental variation of something already there? Applies wherever originality needs to be separated from surface variety \u2014 scientific contribution, design proposals, creative work, trademark/patent review, pattern minting. The essential move is a structural comparison against the incumbent set rather than a similarity score on surface tokens. Specific rating semantics (binary, traffic-light, continuous distance) belong on descendants or on the composing protocol. The signature Judge({{value}}) places the result on a {{value}}-scale (how novel is this, on a measurable axis) rather than returning a binary yes/no.",
   "invariants": [
-    "Orthogonality: High novelty requires low embedding similarity to nearest neighbor."
+    "Compares structure against the incumbent set, not surface tokens.",
+    "Names the reference knowledge base it judged against.",
+    "Distinguishes a new mechanism from a rename or an incremental variation.",
+    "Yields a {{value}}-graded distinctness score, not a binary verdict."
   ],
   "signature": [
     "Judge(Value)"
@@ -12,19 +15,25 @@
     "ring": 2,
     "tier": 1,
     "supersedes": [
-      "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e"
+      "sema:Novelty#mh:SHA-256:51b5deec33d8a3e22d0e45e6890a6371984831112746dad9ba5f2c56c92c9f1e",
+      "sema:Novelty#mh:SHA-256:262f2a36b4fb3ef6b2589307d7eb751cfec6e32548a444535c6e5db2d5c6c1a0"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Novelty#mh:SHA-256:262f2a36b4fb3ef6b2589307d7eb751cfec6e32548a444535c6e5db2d5c6c1a0",
-  "sema_ref": "Novelty#262f",
-  "sema_stub": "262f",
+  "sema_id": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
+  "sema_ref": "Novelty#cdbd",
+  "sema_stub": "cdbd",
+  "failure_modes": [
+    "Surface novelty: renamed components read as new because their tokens differ.",
+    "Coverage gap: the reference base omits the prior art, so a known mechanism scores as novel.",
+    "Structural blindness: a genuinely new mechanism built from familiar parts scores as derivative."
+  ],
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
+      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

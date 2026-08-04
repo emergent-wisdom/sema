@@ -8,10 +8,9 @@
     "Blame Diffusion: Failures cannot be attributed to specific nodes."
   ],
   "invariants": [
-    "Budget Flow: Resources flow down; Results flow up.",
-    "Connectivity: All nodes must be traceable back to the {{root_solver}}.",
-    "Acyclicity: The structure must form a DAG or {{tree}}.",
-    "Origin: tree-like at decomposition time; fan-in and deduplication permitted at execution, so the runtime graph is a DAG."
+    "Budget flows down; results flow up.",
+    "All nodes are traceable back to the {{root_solver}}.",
+    "Acyclic in both phases: a {{tree}} at decomposition, a DAG at execution."
   ],
   "_meta": {
     "tier": 1,
@@ -21,7 +20,8 @@
     ],
     "supersedes": [
       "sema:SolverTree#mh:SHA-256:e1745bd33f58959bbcb14434efd8ae37e971e74a0fee1379ae600bbcdcbd2def",
-      "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81"
+      "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81",
+      "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce"
     ],
     "path": [
       "Society",
@@ -56,20 +56,20 @@
       }
     }
   },
-  "sema_ref": "SolverTree#0c3f",
-  "sema_id": "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce",
-  "sema_stub": "0c3f",
+  "sema_ref": "SolverTree#6ba9",
+  "sema_id": "sema:SolverTree#mh:SHA-256:6ba9d3f525e2bd5ab309fbb872eb0e59159eed571cd7d5dd87b81e4f58e01407",
+  "sema_stub": "6ba9",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
-      "root_solver": "sema:RootSolver#mh:SHA-256:750d3992db274fa89e6bad275ad10c0fc6ea9969cc9e4ff9cd809c77f96a4d32",
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c",
-      "tree": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543"
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:d85eb389650b50414a74e396d61b86ed0966e9777b85ff05d3c8f3b69208aa17",
+      "root_solver": "sema:RootSolver#mh:SHA-256:332edbdd0535c4895116d911fbdc4dfeb1ccefc3266d56f413b39f418f66f31b",
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467",
+      "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }
   },
   "sema_layer": "Society",

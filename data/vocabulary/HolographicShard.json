@@ -3,57 +3,43 @@
   "mechanism": "{{context}}-Preserving Slice: Sub-tasks contain a holographic reference to the global goal. Every shard includes: parent_goal_hash, intent_summary, and constraint_inheritance. The sub-agent can independently verify if its local action serves the global intent without querying the central node. It extends {{fabric_sharding}} by ensuring every fragment contains a recoverable 'seed' of the whole, enabling localized reconstruction.",
   "gloss": "Local action via global context embedding",
   "failure_modes": [
-    "{{context}} Bloat: The shard becomes larger than the task itself because it carries too much global history.",
-    "{{context}} overhead is expensive.",
-    "Shards become too heavy to transmit.",
-    "{{deep}} nesting creates exponential context bloat."
+    "{{context}} bloat: the shard carries so much global history that it outgrows the task it describes, and transmitting it costs more than the work.",
+    "{{deep}} nesting compounds the inheritance, so bloat grows with depth rather than staying flat.",
+    "Stale seed: the parent goal moves and the inherited summary still describes the old one."
   ],
   "invariants": [
-    "Distribution: Shards are stored on failure-independent nodes",
-    "Information Redundancy: Any K of N shards can reconstruct the Whole"
-  ],
-  "preconditions": [
-    "Data encoded with Erasure Code (e.g. Reed-Solomon)"
+    "Every shard carries parent_goal_hash, intent_summary and constraint_inheritance.",
+    "A sub-agent can check its local action against the global intent without querying the parent.",
+    "Carries the seed of the whole, not the whole: the shard stays smaller than the {{context}} it refers to."
   ],
   "parameters": [
     {
-      "name": "encoding",
-      "type": "Enum",
-      "range": "{ReedSolomon, Fountain, Simple}",
-      "description": "Error correction method"
-    },
-    {
-      "name": "reconstruction_threshold",
-      "type": "Float",
-      "range": "[0.3, 0.7]",
-      "description": "Min fragments for recovery"
-    },
-    {
-      "name": "redundancy_factor",
-      "type": "Integer",
-      "range": "[2, 5]",
-      "description": "Copies per datum"
+      "name": "seed_budget",
+      "type": "Ratio",
+      "range": "(0.0, 1.0)",
+      "description": "Share of the sub-task's size the inherited context may occupy."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f"
+      "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f",
+      "sema:HolographicShard#mh:SHA-256:7eb7beec35ed149646d3e9631303f4dbf706daec5ccc0d186d0d6158cd7b5203"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:HolographicShard#mh:SHA-256:7eb7beec35ed149646d3e9631303f4dbf706daec5ccc0d186d0d6158cd7b5203",
-  "sema_ref": "HolographicShard#7eb7",
-  "sema_stub": "7eb7",
+  "sema_id": "sema:HolographicShard#mh:SHA-256:23fe4cc87c15465bff08338037f4ca2a74a78c417dbd762a5a6fdcafdd3f2664",
+  "sema_ref": "HolographicShard#23fe",
+  "sema_stub": "23fe",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "deep": "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824",
-      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:25d27106d786155e3fda6f31260d2a56bd2e936df771d7e5d755a65676f12248"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
+      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:c05779de54bf98bf74d926045c5bf864af5002a00aea3012b15553e345c5e9b3"
     }
   },
   "sema_layer": "Mind",

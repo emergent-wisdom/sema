@@ -7,9 +7,9 @@ All audits below are **advisory**. Heuristic audits generate false positives; us
 Source: `sema.audit.hash_validity` (ok)
 
 ```text
-Checking hash validity for 453 patterns...
+Checking hash validity for 457 patterns...
 
-All 453 hashes valid.
+All 457 hashes valid.
 ```
 
 ## Missing or short fields
@@ -17,7 +17,7 @@ All 453 hashes valid.
 Source: `sema.audit.missing_or_short` (ok)
 
 ```text
-Auditing 453 patterns in data/vocabulary...
+Auditing 457 patterns in data/vocabulary...
 ✅ No issues found.
 ```
 
@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 1807 nodes and 3580 edges.
+Graph loaded with 2020 nodes and 3795 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -45,30 +45,30 @@ Source: `sema.audit.rigor` (ok)
 
 ```text
 {
-  "total": 453,
-  "with_invariants": 372,
-  "with_preconditions": 180,
-  "with_postconditions": 171,
+  "total": 457,
+  "with_invariants": 417,
+  "with_preconditions": 182,
+  "with_postconditions": 172,
   "with_all_contract_fields": 169,
-  "without_explicit_contracts": 80
+  "without_explicit_contracts": 38
 }
 
 Sample patterns without explicit contracts (review only; omission may be intentional):
 - Axiom
 - Backoff
-- Branch
 - Category
-- Causation
-- Creative
 - Datum
-- Global
-- Hypothesis
-- InputGuard
 - Meta
-- MonitorReport
-- Option
-- Parallel
 - Prompt
+- Sequence
+- System
+- Topology
+- FeatureFlag
+- Anomaly
+- CognitiveBias
+- Identity
+- Entropy
+- Snapshot
 ```
 
 ## Potential missing dependency links
@@ -77,9 +77,9 @@ Source: `sema.audit.missing_links` (ok)
 
 ```text
 🔍 Scanning data/vocabulary for missing links...
-Loaded 453 patterns.
+Loaded 457 patterns.
 
-Found 395 potential missing links.
+Found 373 potential missing links.
 
 🔹 AcceptSpec
    ❓ Mentions 'FrameError' but not linked.
@@ -94,14 +94,14 @@ Found 395 potential missing links.
 🔹 AdversarialProof
    ❓ Mentions 'RedTeam' but not linked.
    ❓ Mentions 'Search' but not linked.
-🔹 AdversarialSteel
-   ❓ Mentions 'Proposal' but not linked.
 🔹 Agent
    ❓ Mentions 'Goal' but not linked.
 🔹 AgentSandbox
    ❓ Mentions 'Resource' but not linked.
 🔹 Aggregate
    ❓ Mentions 'Mode' but not linked.
+🔹 AnalogyBridge
+   ❓ Mentions 'ConceptBlend' but not linked.
 🔹 Anomaly
    ❓ Mentions 'Datum' but not linked.
 🔹 AtomicBid
@@ -120,6 +120,8 @@ Found 395 potential missing links.
 🔹 BackwardChain
    ❓ Mentions 'Goal' but not linked.
    ❓ Mentions 'Step' but not linked.
+🔹 Ballot
+   ❓ Mentions 'Quorum' but not linked.
 🔹 BaseRateInclude
    ❓ Mentions 'Probability' but not linked.
 🔹 BeamSearch
@@ -136,9 +138,9 @@ Found 395 potential missing links.
    ❓ Mentions 'ProtoPack' but not linked.
 🔹 Cache
    ❓ Mentions 'Value' but not linked.
+🔹 Card
+   ❓ Mentions 'Verification' but not linked.
 🔹 Care
-   ❓ Mentions 'Entropy' but not linked.
-   ❓ Mentions 'Resource' but not linked.
    ❓ Mentions 'Work' but not linked.
 🔹 CausalBarrier
    ❓ Mentions 'Event' but not linked.
@@ -155,13 +157,10 @@ Found 395 potential missing links.
    ❓ Mentions 'Variable' but not linked.
 🔹 Combine
    ❓ Mentions 'Result' but not linked.
-🔹 Compose
-   ❓ Mentions 'DAG' but not linked.
 🔹 Compromise
    ❓ Mentions 'Protocol' but not linked.
 🔹 ComputeBudget
    ❓ Mentions 'Budget' but not linked.
-   ❓ Mentions 'Meta' but not linked.
    ❓ Mentions 'Risk' but not linked.
 🔹 ConceptualDecomposition
    ❓ Mentions 'Contract' but not linked.
@@ -170,6 +169,7 @@ Found 395 potential missing links.
 🔹 Condition
    ❓ Mentions 'Boolean' but not linked.
    ❓ Mentions 'Result' but not linked.
+   ❓ Mentions 'Trait' but not linked.
 🔹 ConfusedDeputy
    ❓ Mentions 'Prompt' but not linked.
 🔹 Constraint
@@ -177,15 +177,11 @@ Found 395 potential missing links.
 🔹 Context
    ❓ Mentions 'Agent' but not linked.
    ❓ Mentions 'Budget' but not linked.
-🔹 Correlation
-   ❓ Mentions 'Causation' but not linked.
-🔹 CreativeBlend
-   ❓ Mentions 'ConceptBlend' but not linked.
-   ❓ Mentions 'NoiseInjection' but not linked.
+🔹 Creative
+   ❓ Mentions 'Novelty' but not linked.
+   ❓ Mentions 'Value' but not linked.
 🔹 Critique
    ❓ Mentions 'Feedback' but not linked.
-🔹 Crystallize
-   ❓ Mentions 'Entropy' but not linked.
 🔹 Cyclic
    ❓ Mentions 'Condition' but not linked.
 🔹 DataMinimization
@@ -198,8 +194,6 @@ Found 395 potential missing links.
    ❓ Mentions 'Search' but not linked.
 🔹 Delegate
    ❓ Mentions 'Work' but not linked.
-🔹 DeliberativeAlign
-   ❓ Mentions 'Goal' but not linked.
 🔹 DepthGovernor
    ❓ Mentions 'Entropy' but not linked.
 🔹 DesignArchitect
@@ -208,30 +202,27 @@ Found 395 potential missing links.
    ❓ Mentions 'MechanisticDesignProposal' but not linked.
    ❓ Mentions 'PreMortem' but not linked.
 🔹 Dialectic
+   ❓ Mentions 'Budget' but not linked.
    ❓ Mentions 'Synthesis' but not linked.
+🔹 Discover
+   ❓ Mentions 'Silence' but not linked.
 🔹 DiscoveryProtocol
    ❓ Mentions 'Protocol' but not linked.
    ❓ Mentions 'Solver' but not linked.
 🔹 Distance
    ❓ Mentions 'Identity' but not linked.
    ❓ Mentions 'Metric' but not linked.
-🔹 DriftWatch
-   ❓ Mentions 'Distance' but not linked.
 🔹 Elect
    ❓ Mentions 'Result' but not linked.
 🔹 Eliminate
    ❓ Mentions 'Falsification' but not linked.
    ❓ Mentions 'Search' but not linked.
-🔹 EpistemicCalibrate
-   ❓ Mentions 'Event' but not linked.
-🔹 Estimate
-   ❓ Mentions 'Meta' but not linked.
 🔹 EvaluatorOptimizer
    ❓ Mentions 'Feedback' but not linked.
 🔹 EventReact
    ❓ Mentions 'Event' but not linked.
 🔹 ExecutionManifest
-   ❓ Mentions 'Resource' but not linked.
+   ❓ Mentions 'Realizable' but not linked.
    ❓ Mentions 'Sequence' but not linked.
 🔹 Expansive
    ❓ Mentions 'Judge' but not linked.
@@ -243,8 +234,6 @@ Found 395 potential missing links.
    ❓ Mentions 'Gate' but not linked.
    ❓ Mentions 'Identity' but not linked.
    ❓ Mentions 'Solver' but not linked.
-🔹 Falsification
-   ❓ Mentions 'Hypothesis' but not linked.
 🔹 Feedback
    ❓ Mentions 'Noise' but not linked.
 🔹 Forest
@@ -257,8 +246,6 @@ Found 395 potential missing links.
    ❓ Mentions 'Value' but not linked.
 🔹 FrameError
    ❓ Mentions 'Solver' but not linked.
-🔹 FrameSpec
-   ❓ Mentions 'Constraint' but not linked.
 🔹 Gate
    ❓ Mentions 'Decision' but not linked.
 🔹 Generalize
@@ -293,17 +280,13 @@ Found 395 potential missing links.
    ❓ Mentions 'Translate' but not linked.
 🔹 Invert
    ❓ Mentions 'Solution' but not linked.
-🔹 Judge
-   ❓ Mentions 'Score' but not linked.
 🔹 LatentAttachment
-   ❓ Mentions 'Distance' but not linked.
    ❓ Mentions 'Search' but not linked.
+   ❓ Mentions 'Vector' but not linked.
 🔹 LateralOptimization
    ❓ Mentions 'Optimize' but not linked.
    ❓ Mentions 'Reframe' but not linked.
    ❓ Mentions 'Translate' but not linked.
-🔹 LayeredCheck
-   ❓ Mentions 'Hierarchy' but not linked.
 🔹 LocalizedLearning
    ❓ Mentions 'Feedback' but not linked.
 🔹 Loop
@@ -316,13 +299,11 @@ Found 395 potential missing links.
    ❓ Mentions 'FrameSpec' but not linked.
    ❓ Mentions 'Resource' but not linked.
    ❓ Mentions 'Step' but not linked.
-🔹 MarginalValueRule
-   ❓ Mentions 'Budget' but not linked.
 🔹 Measurement
    ❓ Mentions 'Observe' but not linked.
 🔹 MechanisticDesignProposal
+   ❓ Mentions 'Correlation' but not linked.
    ❓ Mentions 'Dialectic' but not linked.
-   ❓ Mentions 'Novelty' but not linked.
 🔹 MemeticSeed
    ❓ Mentions 'Resource' but not linked.
 🔹 MetaCheck
@@ -331,12 +312,14 @@ Found 395 potential missing links.
    ❓ Mentions 'Contract' but not linked.
    ❓ Mentions 'Meta' but not linked.
    ❓ Mentions 'Tree' but not linked.
+🔹 MetricReading
+   ❓ Mentions 'Metric' but not linked.
+🔹 MonotonicCounter
+   ❓ Mentions 'Value' but not linked.
 🔹 Mutex
    ❓ Mentions 'Resource' but not linked.
    ❓ Mentions 'Sequence' but not linked.
 🔹 NegativeProof
-   ❓ Mentions 'Agent' but not linked.
-   ❓ Mentions 'Search' but not linked.
    ❓ Mentions 'State' but not linked.
 🔹 NormativeJudge
    ❓ Mentions 'Value' but not linked.
@@ -351,10 +334,6 @@ Found 395 potential missing links.
    ❓ Mentions 'State' but not linked.
 🔹 OpportunityCost
    ❓ Mentions 'Resource' but not linked.
-🔹 OptimalStop
-   ❓ Mentions 'Budget' but not linked.
-   ❓ Mentions 'Resource' but not linked.
-   ❓ Mentions 'Search' but not linked.
 🔹 OptimisticSolver
    ❓ Mentions 'Actor' but not linked.
    ❓ Mentions 'Message' but not linked.
@@ -394,23 +373,20 @@ Found 395 potential missing links.
    ❓ Mentions 'PURECheck' but not linked.
    ❓ Mentions 'Proposal' but not linked.
 🔹 PURECheck
-   ❓ Mentions 'Expansive' but not linked.
    ❓ Mentions 'PURE' but not linked.
-   ❓ Mentions 'Protocol' but not linked.
-   ❓ Mentions 'Realizable' but not linked.
 🔹 PUREOptimization
    ❓ Mentions 'PURE' but not linked.
    ❓ Mentions 'Parsimony' but not linked.
    ❓ Mentions 'Realizable' but not linked.
    ❓ Mentions 'Synthesis' but not linked.
-🔹 ParetoFront
-   ❓ Mentions 'ExchangeRate' but not linked.
 🔹 Parsimony
    ❓ Mentions 'Judge' but not linked.
 🔹 PathwayMemory
    ❓ Mentions 'RootSolver' but not linked.
    ❓ Mentions 'Solver' but not linked.
 🔹 PatternDiscovery
+   ❓ Mentions 'Compare' but not linked.
+   ❓ Mentions 'Gate' but not linked.
    ❓ Mentions 'Search' but not linked.
 🔹 PerformanceSignal
    ❓ Mentions 'Feedback' but not linked.
@@ -427,11 +403,8 @@ Found 395 potential missing links.
 🔹 PhasedRefinement
    ❓ Mentions 'Artifact' but not linked.
 🔹 PolymorphicSolver
-   ❓ Mentions 'Contract' but not linked.
    ❓ Mentions 'Feedback' but not linked.
    ❓ Mentions 'Solver' but not linked.
-🔹 PreMortem
-   ❓ Mentions 'Probability' but not linked.
 🔹 Prioritize
    ❓ Mentions 'Score' but not linked.
 🔹 Probe
@@ -450,7 +423,7 @@ Found 395 potential missing links.
 🔹 PromptChain
    ❓ Mentions 'Step' but not linked.
 🔹 ProphetFanOut
-   ❓ Mentions 'Entropy' but not linked.
+   ❓ Mentions 'Branch' but not linked.
 🔹 ProtoPack
    ❓ Mentions 'Prototype' but not linked.
 🔹 Protocol
@@ -467,24 +440,30 @@ Found 395 potential missing links.
    ❓ Mentions 'Judge' but not linked.
    ❓ Mentions 'Resource' but not linked.
 🔹 RealizationProtocol
-   ❓ Mentions 'Agent' but not linked.
-   ❓ Mentions 'Artifact' but not linked.
+   ❓ Mentions 'ExecutionManifest' but not linked.
    ❓ Mentions 'Interpret' but not linked.
-   ❓ Mentions 'Loop' but not linked.
+   ❓ Mentions 'Outcome' but not linked.
    ❓ Mentions 'Plan' but not linked.
-   ❓ Mentions 'Realizable' but not linked.
    ❓ Mentions 'Rollout' but not linked.
+   ❓ Mentions 'RolloutManifest' but not linked.
+   ❓ Mentions 'Value' but not linked.
 🔹 ReceptivityGate
    ❓ Mentions 'AcceptSpec' but not linked.
    ❓ Mentions 'Feedback' but not linked.
    ❓ Mentions 'Gate' but not linked.
    ❓ Mentions 'Solver' but not linked.
    ❓ Mentions 'Verification' but not linked.
+🔹 RecursionDive
+   ❓ Mentions 'DAG' but not linked.
+   ❓ Mentions 'DepthGovernor' but not linked.
+   ❓ Mentions 'MarginalValueRule' but not linked.
 🔹 RecursiveRootCause
    ❓ Mentions 'Chain' but not linked.
    ❓ Mentions 'Step' but not linked.
 🔹 RedTeam
    ❓ Mentions 'Goal' but not linked.
+🔹 Refine
+   ❓ Mentions 'Critique' but not linked.
 🔹 RegimeSense
    ❓ Mentions 'Score' but not linked.
 🔹 RequestFraming
@@ -499,7 +478,6 @@ Found 395 potential missing links.
    ❓ Mentions 'Solver' but not linked.
 🔹 Reversibility
    ❓ Mentions 'Condition' but not linked.
-   ❓ Mentions 'Entropy' but not linked.
 🔹 ReversibilityCheck
    ❓ Mentions 'Audit' but not linked.
    ❓ Mentions 'Check' but not linked.
@@ -515,7 +493,8 @@ Found 395 potential missing links.
 🔹 Risk
    ❓ Mentions 'Probability' but not linked.
 🔹 Rollout
-   ❓ Mentions 'Compensate' but not linked.
+   ❓ Mentions 'Audit' but not linked.
+   ❓ Mentions 'Canary' but not linked.
 🔹 RolloutWatch
    ❓ Mentions 'MonitorReport' but not linked.
    ❓ Mentions 'Rollout' but not linked.
@@ -523,7 +502,6 @@ Found 395 potential missing links.
    ❓ Mentions 'Budget' but not linked.
    ❓ Mentions 'Problem' but not linked.
    ❓ Mentions 'Reframe' but not linked.
-   ❓ Mentions 'Responsibility' but not linked.
    ❓ Mentions 'SolverTree' but not linked.
 🔹 Sandbox
    ❓ Mentions 'Resource' but not linked.
@@ -538,16 +516,14 @@ Found 395 potential missing links.
    ❓ Mentions 'Mode' but not linked.
 🔹 SemanticTabu
    ❓ Mentions 'Constraint' but not linked.
-🔹 Shard
-   ❓ Mentions 'Conservation' but not linked.
-   ❓ Mentions 'Decompose' but not linked.
-   ❓ Mentions 'Resource' but not linked.
 🔹 Skeleton
    ❓ Mentions 'Parallel' but not linked.
 🔹 SkeletonOfThought
    ❓ Mentions 'Parallel' but not linked.
    ❓ Mentions 'Skeleton' but not linked.
    ❓ Mentions 'Think' but not linked.
+🔹 SocraticLoop
+   ❓ Mentions 'Budget' but not linked.
 🔹 Solver
    ❓ Mentions 'Contract' but not linked.
    ❓ Mentions 'Feedback' but not linked.
@@ -555,10 +531,6 @@ Found 395 potential missing links.
    ❓ Mentions 'UniversalSolverTree' but not linked.
 🔹 SolverManifest
    ❓ Mentions 'Constraint' but not linked.
-   ❓ Mentions 'Identity' but not linked.
-   ❓ Mentions 'Lock' but not linked.
-🔹 SolverNode
-   ❓ Mentions 'Budget' but not linked.
 🔹 SolverTree
    ❓ Mentions 'Budget' but not linked.
    ❓ Mentions 'DAG' but not linked.
@@ -572,16 +544,15 @@ Found 395 potential missing links.
    ❓ Mentions 'Constraint' but not linked.
 🔹 State
    ❓ Mentions 'System' but not linked.
+🔹 StateAudit
+   ❓ Mentions 'Audit' but not linked.
 🔹 StateTransition
    ❓ Mentions 'Event' but not linked.
    ❓ Mentions 'State' but not linked.
 🔹 Status
    ❓ Mentions 'Boolean' but not linked.
    ❓ Mentions 'Decision' but not linked.
-🔹 SteelmanCheck
-   ❓ Mentions 'Score' but not linked.
 🔹 SteelmanFirst
-   ❓ Mentions 'Proposal' but not linked.
    ❓ Mentions 'SteelmanCheck' but not linked.
 🔹 StrategicReading
    ❓ Mentions 'Budget' but not linked.
@@ -595,8 +566,6 @@ Found 395 potential missing links.
 🔹 TensionHold
    ❓ Mentions 'Falsification' but not linked.
    ❓ Mentions 'Tension' but not linked.
-🔹 Throttle
-   ❓ Mentions 'Queue' but not linked.
 🔹 TieredAccess
    ❓ Mentions 'Distance' but not linked.
    ❓ Mentions 'Metric' but not linked.
@@ -613,8 +582,6 @@ Found 395 potential missing links.
    ❓ Mentions 'Cyclic' but not linked.
    ❓ Mentions 'DAG' but not linked.
    ❓ Mentions 'Tree' but not linked.
-🔹 Trace
-   ❓ Mentions 'Feedback' but not linked.
 🔹 TraceBelief
    ❓ Mentions 'Belief' but not linked.
 🔹 Transition
@@ -626,14 +593,10 @@ Found 395 potential missing links.
 🔹 TreeOfThoughts
    ❓ Mentions 'Think' but not linked.
    ❓ Mentions 'Tree' but not linked.
-🔹 TriGate
-   ❓ Mentions 'Ledger' but not linked.
 🔹 Uncertain
    ❓ Mentions 'Status' but not linked.
 🔹 Understand
    ❓ Mentions 'Deep' but not linked.
-🔹 UniqueHandle
-   ❓ Mentions 'Resource' but not linked.
 🔹 UniversalSolverTree
    ❓ Mentions 'Agent' but not linked.
    ❓ Mentions 'DAG' but not linked.
@@ -645,15 +608,14 @@ Found 395 potential missing links.
    ❓ Mentions 'Score' but not linked.
    ❓ Mentions 'Status' but not linked.
    ❓ Mentions 'Verification' but not linked.
+🔹 Variable
+   ❓ Mentions 'Identity' but not linked.
 🔹 WhyClimb
    ❓ Mentions 'Entropy' but not linked.
 🔹 Work
    ❓ Mentions 'Goal' but not linked.
 🔹 Workflow
-   ❓ Mentions 'Artifact' but not linked.
    ❓ Mentions 'Step' but not linked.
-🔹 Yield
-   ❓ Mentions 'Ledger' but not linked.
 ```
 
 ## Unlinked handle mentions
@@ -661,7 +623,7 @@ Found 395 potential missing links.
 Source: `sema.audit.unlinked_mentions` (ok)
 
 ```text
-Scanning 453 patterns for unlinked handle mentions...
+Scanning 457 patterns for unlinked handle mentions...
 
 ⚠️  Abduction:
    • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
@@ -692,9 +654,12 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  AdversarialSteel:
    • Mentions 'Compromise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Aesthetics:
+   • Mentions 'Measurement' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  AgentDiscover:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
@@ -713,7 +678,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  AnalogyBridge:
+   • Mentions 'ConceptBlend' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  AnchorDrop:
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
@@ -733,6 +700,11 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Reflexion' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Assumption:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Datum' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  AtomicBid:
    • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Bid' (unlinked). Should it be '{{{ghost}}}'?
@@ -775,9 +747,12 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  Ballot:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  BaseRateInclude:
    • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  BayesUpdate:
@@ -806,7 +781,6 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  BreadthGovernor:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Break:
    • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
@@ -842,6 +816,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Care:
+   • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Category:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  CausalBarrier:
@@ -851,6 +828,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Causation:
    • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Chain:
    • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ChainOfThought:
@@ -882,10 +860,13 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Combine:
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  CommitmentDevice:
    • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  CompatibilityCheck:
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Compensate:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -898,6 +879,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Compress:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Compromise:
    • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
@@ -929,8 +912,10 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  Condition:
    • Mentions 'Boolean' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Trait' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ConfidenceCalibrate:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ConfirmationBlock:
    • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
@@ -977,6 +962,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ContextCompress:
+   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ContextFirst:
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
@@ -995,20 +983,27 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Cooldown:
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Correlation:
+   • Mentions 'Causation' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Creative:
    • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Novelty' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CreativeBlend:
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Criteria:
    • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Critique:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Crystallize:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  CurriculumReplay:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
@@ -1017,9 +1012,15 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  Cyclic:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DAG:
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Dampen:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  DataMinimization:
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Decision:
@@ -1035,8 +1036,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Reframe' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Deep:
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  DeepResearch:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
@@ -1044,28 +1045,30 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  Defer:
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Delegate:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Deploy:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  DepthGovernor:
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  DesignArchitect:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Dialectic:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Synthesis' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Disband:
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
@@ -1075,7 +1078,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Vote' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Discover:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Silence' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  DiscoveryProtocol:
    • Mentions 'Creative' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
@@ -1106,9 +1111,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  DriftWatch:
-   • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  EbbFlowSync:
    • Mentions 'Dampen' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
@@ -1122,10 +1125,10 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Elect:
-   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Cooldown' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Disband' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
@@ -1147,8 +1150,14 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  EpistemicCalibrate:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Status' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  EpistemicCascade:
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Select' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  EpistemicROI:
    • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
@@ -1157,20 +1166,20 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Estimate:
-   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Equivalence:
+   • Mentions 'Compare' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  EthicalReasoningProtocol:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'PURE' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Think' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  EvaluatorOptimizer:
@@ -1193,14 +1202,18 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Expansive:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ExperienceSharding:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Shard' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Experiment:
+   • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ExpiringToken:
    • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ExploreExploit:
@@ -1216,6 +1229,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Think' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  FailClosed:
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  FailureTrace:
@@ -1229,6 +1243,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Falsification:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Measurement' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  FeatureFlag:
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Feedback:
@@ -1267,6 +1284,7 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  FrameSpec:
    • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Gardener:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
@@ -1276,7 +1294,6 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Route' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  GenealogicalTrace:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -1317,6 +1334,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Handoff:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Heartbeat:
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  HeldRelease:
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
@@ -1334,11 +1354,12 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  HolographicShard:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Shard' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Summary' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  HumanApprove:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
@@ -1370,9 +1391,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Hysteresis:
+   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  IdempotentWrite:
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Identity:
@@ -1389,6 +1410,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Interpret:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Translate' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Invert:
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
@@ -1416,6 +1438,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  LayeredCheck:
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  LazyConsensus:
@@ -1427,6 +1450,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Ledger:
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  LivedProof:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  LocalizedLearning:
@@ -1434,6 +1459,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
@@ -1444,7 +1470,6 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MECE:
-   • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Overlap' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
@@ -1471,6 +1496,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MechanisticDesignProposal:
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Correlation' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Dialectic' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
@@ -1501,9 +1527,13 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Metric:
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MetricReading:
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MintWhenFriction:
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Mode:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -1511,12 +1541,14 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MonitorReport:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MonotonicCounter:
+   • Mentions 'Compare' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Mutex:
    • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
@@ -1527,6 +1559,8 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  MutualInformation:
    • Mentions 'Correlation' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  NegativeProof:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -1537,8 +1571,11 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  NoiseInjection:
+   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  NormativeJudge:
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Novelty:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
@@ -1578,7 +1615,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  OptimalStop:
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  OptimisticSolver:
    • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -1593,7 +1630,6 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Optimize:
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
@@ -1615,6 +1651,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  OsmoticFilter:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
@@ -1633,25 +1670,23 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Compose' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Deep' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Deploy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Expansive' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Novelty' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'PUREBrainstorming' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'PURECheck' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'PUREOptimization' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Parsimony' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Realizable' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PUREBrainstorming:
    • Mentions 'PURE' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PURECheck:
-   • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'PURE' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Snapshot' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PUREOptimization:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
@@ -1661,16 +1696,12 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Synthesis' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Parallel:
+   • Mentions 'Branch' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Parallelize:
    • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  ParetoFront:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Metric' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'TradeOff' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Parsimony:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
@@ -1686,8 +1717,12 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PatternDiscovery:
-   • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Compare' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  PatternEmergence:
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PerformanceSignal:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Compress' (unlinked). Should it be '{{{ghost}}}'?
@@ -1728,7 +1763,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PreMortem:
-   • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Reason' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Prioritize:
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
@@ -1771,7 +1808,9 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ProphetFanOut:
-   • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Branch' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PropheticQuorum:
    • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
@@ -1789,16 +1828,21 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Protocol:
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Prototype:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Experiment' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  QuorumPulse:
    • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Rally:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Status' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Rank:
    • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ReAct:
@@ -1823,11 +1867,13 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RealizationProtocol:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'ExecutionManifest' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'RolloutManifest' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Reason:
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
@@ -1836,26 +1882,31 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  ReceptivityGate:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RecursionDive:
-   • Mentions 'Strategy' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'DepthGovernor' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'MarginalValueRule' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RecursiveRootCause:
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RedTeam:
    • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Refine:
+   • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Reflexion:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -1895,6 +1946,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Workflow' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Resonate:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Observe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Resource:
    • Mentions 'Mutex' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Subject' (unlinked). Should it be '{{{ghost}}}'?
@@ -1911,8 +1964,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Status' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RetrievalAugment:
-   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Vector' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Retry:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Break' (unlinked). Should it be '{{{ghost}}}'?
@@ -1946,8 +1998,16 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  Robustness:
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Rollout:
-   • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Compensate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Canary' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  RolloutWatch:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Plan' (unlinked). Should it be '{{{ghost}}}'?
@@ -1958,6 +2018,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Reframe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
@@ -1978,7 +2040,6 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Goal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Score:
-   • Mentions 'Measurement' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ScoringFunction:
@@ -2010,8 +2071,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Shard:
-   • Mentions 'Decompose' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ShoutWhisper:
    • Mentions 'Discover' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Sign:
@@ -2024,13 +2084,15 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Skeleton:
-   • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  SkeletonOfThought:
    • Mentions 'Parallel' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Snapshot:
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  SocraticLoop:
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Solution:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
@@ -2081,6 +2143,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StateAudit:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StateLock:
    • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
@@ -2090,6 +2153,7 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  StateTransition:
    • Mentions 'Event' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Status:
    • Mentions 'Boolean' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
@@ -2105,6 +2169,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Step:
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StepBack:
    • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Meta' (unlinked). Should it be '{{{ghost}}}'?
@@ -2112,7 +2178,8 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Stigmergy:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decay' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Interpret' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StrategicReading:
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
@@ -2138,6 +2205,8 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  SynergisticMode:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Mode' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Synthesis:
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Taper:
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Optimize' (unlinked). Should it be '{{{ghost}}}'?
@@ -2167,6 +2236,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Throttle:
    • Mentions 'Global' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  TieredAccess:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Distance' (unlinked). Should it be '{{{ghost}}}'?
@@ -2188,20 +2258,18 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Cyclic' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Trace:
-   • Mentions 'Actor' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Interpret' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  TraceBelief:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Trait:
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Translate:
    • Mentions 'Summarize' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  TranslationProxy:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Tree:
+   • Mentions 'Search' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  TreeOfThoughts:
    • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  TriGate:
@@ -2225,8 +2293,7 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  UniqueHandle:
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Variable' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  UniversalSolverTree:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'DAG' (unlinked). Should it be '{{{ghost}}}'?
@@ -2239,6 +2306,7 @@ Scanning 453 patterns for unlinked handle mentions...
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  UptakeOverTimestamp:
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Status' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Validate:
@@ -2252,25 +2320,26 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  ValuePeg:
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Variable:
+   • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Verification:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Vote:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Message' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Probe' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Quorum' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Rally' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Warmup:
    • Mentions 'Cache' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  WhyClimb:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
@@ -2288,8 +2357,9 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  WorkerMode:
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Workflow:
-   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Role' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Topology' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  WorldReversible:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
@@ -2302,7 +2372,7 @@ Scanning 453 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 370 patterns.
+Scan complete. Found unlinked handle mentions in 389 patterns.
 ```
 
 ## Semantic similarity between patterns

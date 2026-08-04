@@ -1,6 +1,6 @@
 {
   "handle": "TruthseekingProtocol",
-  "mechanism": "The paper's \u00a76.7 protocol for evaluating factual claims through layered epistemic decomposition, where each verified result persists as a content-addressed Sema pattern \u2014 the system gets smarter and verification gets cheaper with every use (the accretion loop). Unlike monolithic claim evaluation (which entangles source credibility, logical consistency, and cross-referencing in one pass, letting strong evidence on any one axis suppress scrutiny on the others), the protocol applies {{conceptual_decomposition}} to verification-depth, producing five layers governed by {{marginal_value_rule}}: Layer 0 cache (has this exact claim been verified?), Layer 1 structural coherence (does this contradict the verified cache?), Layer 2 epistemic decomposition (ClaimExtractorSolver isolates falsifiable statements, ProvenanceSolver evaluates source independent of content, CoherenceSolver checks internal consistency independent of source, CorrespondenceSolver queries external data, ContestabilitySolver constructs the strongest counter-case), Layer 3 cross-domain specialists in the Cognitive Commons, Layer 4 empirical verification via primary data gathering. Each layer's Solvers operate behind the contract, blind to the others' outputs until they compose at a typed boundary. Verified claims mint as new Sema patterns that enter the Layer 0 cache. Composes with {{validate}} at each layer boundary.",
+  "mechanism": "A protocol for evaluating factual claims through layered epistemic decomposition, where each verified result persists as a content-addressed Sema pattern \u2014 the system gets smarter and verification gets cheaper with every use (the accretion loop). Unlike monolithic claim evaluation (which entangles source credibility, logical consistency, and cross-referencing in one pass, letting strong evidence on any one axis suppress scrutiny on the others), the protocol applies {{conceptual_decomposition}} to verification-depth, producing five layers governed by {{marginal_value_rule}}: Layer 0 cache (has this exact claim been verified?), Layer 1 structural coherence (does this contradict the verified cache?), Layer 2 epistemic decomposition (ClaimExtractorSolver isolates falsifiable statements, ProvenanceSolver evaluates source independent of content, CoherenceSolver checks internal consistency independent of source, CorrespondenceSolver queries external data, ContestabilitySolver constructs the strongest counter-case), Layer 3 cross-domain specialists in the Cognitive Commons, Layer 4 empirical verification via primary data gathering. Each layer's Solvers operate behind the contract, blind to the others' outputs until they compose at a typed boundary. Verified claims mint as new Sema patterns that enter the Layer 0 cache. Composes with {{validate}} at each layer boundary.",
   "gloss": "Layered epistemic verification (cache \u2192 coherence \u2192 decomposition \u2192 specialists \u2192 empirical), with verified claims persisting as Sema patterns \u2014 the accretion loop",
   "invariants": [
     "Layer-blind composition: Solvers within a layer do not see each other's outputs until they compose at a typed boundary \u2014 no suppression of scrutiny by a strong signal on a parallel axis.",
@@ -13,18 +13,22 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "supersedes": [
+      "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a",
+      "sema:TruthseekingProtocol#mh:SHA-256:d35b9e4131150929fcc3e447f1b8c57c65796e03c8c814a5b00fa95995778f53"
     ]
   },
-  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:d35b9e4131150929fcc3e447f1b8c57c65796e03c8c814a5b00fa95995778f53",
-  "sema_ref": "TruthseekingProtocol#d35b",
-  "sema_stub": "d35b",
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:e2d334636485fc094f00ec9849be6666150c73786e9a0e458520ac2a660ee29f",
+  "sema_ref": "TruthseekingProtocol#e2d3",
+  "sema_stub": "e2d3",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
     },
     "references": {
-      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
+      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     }
   },
   "sema_layer": "Mind",

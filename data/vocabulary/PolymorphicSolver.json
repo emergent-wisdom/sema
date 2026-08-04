@@ -1,13 +1,15 @@
 {
   "handle": "PolymorphicSolver",
-  "mechanism": "A PolymorphicSolver is any entity \u2014 from a fleeting thought process to a complex swarm \u2014 that implements the five-surface Solver Contract (Manifest via {{card}}, Execute, Consult, Verify via {{validate}}, Feedback \u2014 emits a typed {{performance_signal}}). Manifest and Execute are mandatory; Consult/Verify/Feedback are optional but strongly recommended at hard seams. The pattern is named for its polymorphism: any substrate conforming to the contract qualifies \u2014 LLM, human, hybrid, tool-using agent, nested composition, or mechanical dispatcher \u2014 not just cognitive ones. It acts as a fractal node in the {{universal_solver_tree}}, accepting a {{task}} and using {{reason}} to orchestrate a lifecycle on a {{solver_node}}. It yields a {{solution}}, wrapping operations like {{tool_invoke}} with {{compute_budget}} checks, {{socratic_loop}} refinement, or {{reflexion}} for self-improvement. When operating as a dispatcher (routing sub-tasks to child solvers), it maintains a local {{pathway_memory}} so routing decisions compound as experience accumulates \u2014 the property that gives the fractal structure its learning dynamics.",
+  "mechanism": "A PolymorphicSolver is any entity \u2014 from a fleeting thought process to a complex swarm \u2014 that implements the five-surface contract {{solver}} specifies (Manifest via {{card}}, Execute, Consult, Verify via {{validate}}, Feedback \u2014 emits a typed {{performance_signal}}). Manifest and Execute are mandatory; Consult/Verify/Feedback are optional but strongly recommended at hard seams. The pattern is named for its polymorphism: any substrate conforming to the contract qualifies \u2014 LLM, human, hybrid, tool-using agent, nested composition, or mechanical dispatcher \u2014 not just cognitive ones. It acts as a fractal node in the {{universal_solver_tree}}, accepting a {{task}} and using {{reason}} to orchestrate a lifecycle on a {{solver_node}}. It yields a {{solution}}, wrapping operations like {{tool_invoke}} with {{compute_budget}} checks, {{socratic_loop}} refinement, or {{reflexion}} for self-improvement. When operating as a dispatcher (routing sub-tasks to child solvers), it maintains a local {{pathway_memory}} so routing decisions compound as experience accumulates \u2014 the property that gives the fractal structure its learning dynamics.",
   "gloss": "Solver implementing the five-surface contract (polymorphic across substrates)",
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
       "sema:CognitiveSolver#mh:SHA-256:30c8a18b41a5756020b39bf6d78a89331113e3a68c66fb3e2b0a28ddae8db782",
-      "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2"
+      "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
+      "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
+      "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7"
     ],
     "path": [
       "Mind",
@@ -19,34 +21,37 @@
     "Recursion: Solver must accept sub-tasks via the same Interface it exposes."
   ],
   "failure_modes": [
-    "Interface Non-Compliance: Solver fails to implement one of the 5 mandatory endpoints.",
+    "Interface Non-Compliance: Solver omits Manifest or Execute, or advertises an optional Consult, Verify, or Feedback surface it cannot provide.",
     "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
   ],
-  "derived_from": "sema:Solver#mh:SHA-256:b00a16afef5a9d3293955f36b44fe6fc0e0c4ce0fc118de4a7459f77fe7d98d7",
-  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
-  "sema_ref": "PolymorphicSolver#3653",
-  "sema_stub": "3653",
+  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
+  "sema_ref": "PolymorphicSolver#1362",
+  "sema_stub": "1362",
+  "signature": [
+    "Solver(Task)"
+  ],
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",
-      "reason": "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed",
-      "reflexion": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:7d528905a96b5774a2e16f7cb7b9fa50845c3bdb03549a2322889d7560d17f8e",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:011f50770f2599f5017df648ad5920ddb732f7681a9a3b7576cdcf3798ce6baa"
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
+      "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
+      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:e96688452f2c5ff80fee6c3326d694f1e32b051acc62176e7f2d1de61565da6e",
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:aafcc41012592030d7d1e83e91115fbaff1d238b5fc88827efda1649c7a7b502"
     },
     "references": {
-      "card": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
-      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3",
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:0923a89effa56135175d1404578641c31d6f2d63716745aba054d7143ad0d6f9",
-      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
+      "card": "sema:Card#mh:SHA-256:ed287a652085f4e54a58e1b76a59016d74fa7edf51f918730d0338698aca979d",
+      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:0f41b62437d210e1bf814dd145961f1ccd95661deaffa567989334ad298fdffb",
+      "solver": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
+      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:a6cba3ba713ffd1c7f97e090ec45e5f1389f55a280847a1b62c56dbe7707106a",
+      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
     }
   },
   "sema_layer": "Mind",

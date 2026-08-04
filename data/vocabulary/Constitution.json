@@ -1,16 +1,18 @@
 {
   "handle": "Constitution",
   "mechanism": "A structured document defining the fundamental principles, immutable rights, and automated penalty rules for a group of {{agent}}s. It serves as the static input for oath binding.",
-  "gloss": "Immutable rule set",
+  "gloss": "Ratified rule set, amendable only out of band",
   "invariants": [
-    "Clarity: Rules must be machine-verifiable.",
-    "Stability: Modifications require a formal out-of-band process, never runtime self-modification."
+    "Automated penalty rules are machine-verifiable. Principles bind interpretation without being mechanically checkable, and are not held to the same test.",
+    "Amendable only out of band: no runtime self-modification.",
+    "Names the parties who ratified it."
   ],
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9"
+      "sema:Constitution#mh:SHA-256:863bf057265f5f954e50385d6fdb5f59d2f0619e7927cb6e45d281603725efe9",
+      "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b"
     ],
     "path": [
       "Society",
@@ -22,7 +24,8 @@
     "required": [
       "constitution_id",
       "version",
-      "invariants"
+      "invariants",
+      "ratified_by"
     ],
     "properties": {
       "constitution_id": {
@@ -44,15 +47,19 @@
           "type": "string"
         },
         "description": "Guaranteed agent privileges"
+      },
+      "ratified_by": {
+        "type": "array",
+        "description": "Identities of the ratifying parties. Named in the intersection and previously absent."
       }
     }
   },
-  "sema_id": "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b",
-  "sema_ref": "Constitution#f749",
-  "sema_stub": "f749",
+  "sema_id": "sema:Constitution#mh:SHA-256:bc929fc4bb51ad66d6ceb04ed4ef23ae56e6abd86515f7d171b117c2f41a6aaf",
+  "sema_ref": "Constitution#bc92",
+  "sema_stub": "bc92",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191"
     }
   },
   "sema_layer": "Society",

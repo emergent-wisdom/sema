@@ -1,10 +1,11 @@
 {
   "handle": "Stigmergy",
-  "mechanism": "Agents MARK shared environment with structured traces instead of sending direct messages. Other agents SENSE traces and respond. Traces DECAY over time but can be REINFORCED by repeated marking. Coordination emerges from accumulated trace patterns without any agent-to-agent communication. (Formerly known as {{trace}}).",
+  "mechanism": "Agents MARK a shared environment with structured {{trace}}s instead of sending direct messages. Other agents SENSE traces and respond. Coordination emerges from accumulated trace patterns without any agent-to-agent communication. Persistence is either {{decay}} with reinforcement, or versioning \u2014 the scheme is declared, not assumed.",
   "gloss": "Indirect coordination via environment modification (Ant Colony)",
   "invariants": [
-    "{{decay}}: Signals must fade over time unless reinforced",
-    "Locality: Sensing is local to the agent's position"
+    "Persistence scheme is declared: either {{decay}} with reinforcement, or versioning.",
+    "Locality: sensing is local to the agent's position.",
+    "No direct channel: coordination passes through the environment, never agent to agent."
   ],
   "_meta": {
     "tier": 1,
@@ -14,20 +15,28 @@
     ],
     "ring": 0,
     "supersedes": [
-      "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed"
+      "sema:Stigmergy#mh:SHA-256:f624f79cc3860686d0278c28c17cfd0e746d8fb2300fa9590ba90f134fee82ed",
+      "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af",
-  "sema_ref": "Stigmergy#6282",
-  "sema_stub": "6282",
+  "sema_id": "sema:Stigmergy#mh:SHA-256:f4336a6aa0e65a271e259d979bc6d5ad84312f6ba85f1262d61504730ed5a1a8",
+  "sema_ref": "Stigmergy#f433",
+  "sema_stub": "f433",
+  "failure_modes": [
+    "Trace pollution: too many traces, and the signal is lost among them.",
+    "Namespace collision: unrelated agents mark the same medium and read each other's traces as their own.",
+    "Semantic ambiguity: agents interpret the same trace differently.",
+    "Persistence mismatch: traces fade before they coordinate, or persist after they mislead.",
+    "Unattributable trace: a mark cannot be tied to whoever left it."
+  ],
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
+      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     }
   },
   "sema_layer": "Society",

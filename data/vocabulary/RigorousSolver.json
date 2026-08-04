@@ -6,30 +6,32 @@
     "Lifecycle Completeness: Must complete all 5 stages including Verification.",
     "Mandatory Verification: Cannot skip Probe step."
   ],
-  "derived_from": "sema:PolymorphicSolver#mh:SHA-256:c28aa4f6deac2ac3a19630154520e9ba0a6dcd41d16a55c6bd0edc393140ca34",
   "_meta": {
     "ring": 2,
     "tier": 2,
     "supersedes": [
       "sema:RigorousSolver#mh:SHA-256:169f46575554787f8f6be182014bd4f008264153fb30c33ddfd03da1c5dea507",
-      "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268"
+      "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
+      "sema:RigorousSolver#mh:SHA-256:b75d4b063fc8f90f4a1361ef08c8dac02fbf147f0c8f122ca390fdbde74d39cd",
+      "sema:RigorousSolver#mh:SHA-256:70d41b35ddab10c9575b6feed8022935cb266f3d81fce659cfb6b8b9c2d4dc94"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:70d41b35ddab10c9575b6feed8022935cb266f3d81fce659cfb6b8b9c2d4dc94",
-  "sema_ref": "RigorousSolver#70d4",
-  "sema_stub": "70d4",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:1275832b5bb4e2ad2e682f32326f8a02f105df57d582be23afd1fb1a7cfae921",
+  "sema_ref": "RigorousSolver#1275",
+  "sema_stub": "1275",
+  "extends": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
   "dependencies": {
     "composes_with": {
-      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
-      "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8"
+      "feedback": "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae",
+      "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224"
     },
     "references": {
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:7d528905a96b5774a2e16f7cb7b9fa50845c3bdb03549a2322889d7560d17f8e"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:e96688452f2c5ff80fee6c3326d694f1e32b051acc62176e7f2d1de61565da6e"
     }
   },
   "sema_layer": "Mind",

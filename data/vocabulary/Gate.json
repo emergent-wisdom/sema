@@ -1,42 +1,43 @@
 {
   "handle": "Gate",
-  "mechanism": "Evaluates the truth-value of the target {{condition}} and yields a {{decision}}: proceed if the condition holds, halt if not, or debt (proceed with obligation recorded) when configured. Unlike a silent filter, a Gate produces a first-class Decision artifact that downstream systems can route on. If halted, the specific item stops while the broader system continues processing others (Fail-Safe/Filter).",
+  "mechanism": "Evaluates the truth-value of the target {{condition}} and yields a {{decision}}: proceed if the condition holds, halt if not, or debt (proceed with obligation recorded) when configured. Unlike a silent filter, a Gate produces a first-class Decision artifact that downstream systems can route on. Whether a halt stops only the item or the enclosing flow is a descendant's choice.",
   "gloss": "Filter payload if the target condition is not met",
   "failure_modes": [
     "Silent Loss: Important data dropped without alerting the operator."
   ],
   "invariants": [
     "Idempotent: Re-evaluating the gate with the same context yields the same result (within validity window).",
-    "Non-Blocking: A false condition must not halt the broader system, only the specific item."
+    "Every evaluation yields a first-class {{decision}}, including a false one."
   ],
   "parameters": [
     {
-      "name": "policy",
+      "name": "on_failure",
       "type": "Enum",
-      "range": "unspecified",
-      "description": "Behavior on condition failure (reject, queue, redirect)"
+      "range": "{halt, debt}",
+      "description": "What a false condition yields: halt, or debt where proceeding with a recorded obligation is configured. Both are {{decision}} values the mechanism names."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d"
+      "sema:Gate#mh:SHA-256:206dc9be76b20fcc7c96b06c6c9eb8ce243565d02ce064b4206caaa46871a96d",
+      "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-  "sema_ref": "Gate#bc63",
-  "sema_stub": "bc63",
+  "sema_id": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+  "sema_ref": "Gate#664d",
+  "sema_stub": "664d",
   "dependencies": {
     "references": {
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5"
     },
     "yields": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
     }
   },
   "sema_layer": "Infrastructure",

@@ -19,23 +19,24 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c"
+      "sema:AntifragileInversion#mh:SHA-256:6b0e65ef31a30941d43dd6af0708868326615ff610b5425aed564b306aae304c",
+      "sema:AntifragileInversion#mh:SHA-256:4d9e5201408d8057a26ec058a417233254d2e2873628c19a86bb97fe5de62fcc"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:AntifragileInversion#mh:SHA-256:4d9e5201408d8057a26ec058a417233254d2e2873628c19a86bb97fe5de62fcc",
-  "sema_ref": "AntifragileInversion#4d9e",
-  "sema_stub": "4d9e",
+  "sema_id": "sema:AntifragileInversion#mh:SHA-256:fad1f667d578d2590f3705a4160c300d9ba4f894e46771b3c587a217345c4f4b",
+  "sema_ref": "AntifragileInversion#fad1",
+  "sema_stub": "fad1",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "reframe": "sema:Reframe#mh:SHA-256:573733f86a965e0db34ce77c54bada908c9561248a7d5a9b76652dba71e1565a",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "variable": "sema:Variable#mh:SHA-256:f488e278141238c50584777b751863d84b094229e4568205e9ba54a9121c3aa5",
-      "vector": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
+      "variable": "sema:Variable#mh:SHA-256:5333c0009a269825753bf5470554844285c46920c32e3d46ed71403090224dc7",
+      "vector": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993"
     }
   },
   "sema_layer": "Mind",

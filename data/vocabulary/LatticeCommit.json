@@ -20,22 +20,23 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0"
+      "sema:LatticeCommit#mh:SHA-256:3c5d08275e421050d0fe9b753bd142328109463adbadc2beb50600bed0f2c9c0",
+      "sema:LatticeCommit#mh:SHA-256:667592b99ed2c9b29b4e071b38ac960b911e36aa8f2ac73a8a3285d4e5277403"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:LatticeCommit#mh:SHA-256:667592b99ed2c9b29b4e071b38ac960b911e36aa8f2ac73a8a3285d4e5277403",
-  "sema_ref": "LatticeCommit#6675",
-  "sema_stub": "6675",
+  "sema_id": "sema:LatticeCommit#mh:SHA-256:488aef6c5b623b424066249025e3d9fd441e6d232467ad8d5862337f6f092ba7",
+  "sema_ref": "LatticeCommit#488a",
+  "sema_stub": "488a",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
-      "state_transition": "sema:StateTransition#mh:SHA-256:fa0a59735c22f83a00a12fd79576ebf5cf8609c6cf6206b2b01a15958911c3d2",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
+      "state_transition": "sema:StateTransition#mh:SHA-256:bdc0c1988a26e15a4e90bb79b214e4bebe630bc53f758ca67c6e1148aa802686",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },
   "sema_layer": "Society",

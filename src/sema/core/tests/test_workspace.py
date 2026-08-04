@@ -134,6 +134,71 @@ def test_validate_reports_missing_workspace_dependency():
     assert any("Missing" in error for error in result["errors"])
 
 
+def test_validate_reports_missing_workspace_extends_parent():
+    workspace = make_workspace()
+    pattern = {
+        "handle": "Consumer",
+        "mechanism": "A specialised consumer.",
+        "gloss": "Specialised consumer",
+        "extends": "sema:Missing#mh:SHA-256:" + ("c" * 64),
+        "_meta": {"path": ["Mind", "Reasoning"], "ring": 1, "tier": 2},
+    }
+
+    result = workspace.validate_pattern(pattern)
+
+    assert result["valid"] is False
+    assert any("MISSING EXTENDS TARGET" in error for error in result["errors"])
+
+
+def test_validate_reports_unresolvable_workspace_extends_version():
+    workspace = make_workspace()
+    pattern = {
+        "handle": "Consumer",
+        "mechanism": "A specialised consumer.",
+        "gloss": "Specialised consumer",
+        "extends": "sema:Task#mh:SHA-256:" + ("c" * 64),
+        "_meta": {"path": ["Mind", "Reasoning"], "ring": 1, "tier": 2},
+    }
+
+    result = workspace.validate_pattern(pattern)
+
+    assert result["valid"] is False
+    assert any("UNRESOLVABLE SPECIALIZATION" in error for error in result["errors"])
+
+
+def test_validate_rejects_extends_parent_without_active_sema_id():
+    workspace = make_workspace()
+    del workspace.registry["Task"]["sema_id"]
+    pattern = {
+        "handle": "Consumer",
+        "mechanism": "A specialised consumer.",
+        "gloss": "Specialised consumer",
+        "extends": "sema:Task#mh:SHA-256:" + ("b" * 64),
+        "_meta": {"path": ["Mind", "Reasoning"], "ring": 1, "tier": 2},
+    }
+
+    result = workspace.validate_pattern(pattern)
+
+    assert result["valid"] is False
+    assert any("UNRESOLVABLE SPECIALIZATION" in error for error in result["errors"])
+
+
+def test_validate_keeps_legacy_derived_from_opaque():
+    workspace = make_workspace()
+    pattern = {
+        "handle": "LegacyConsumer",
+        "mechanism": "A pre-0.4 card.",
+        "gloss": "Legacy consumer",
+        "derived_from": "sema:RetiredParent",
+        "_meta": {"path": ["Mind", "Reasoning"], "ring": 1, "tier": 2},
+    }
+
+    result = workspace.validate_pattern(pattern)
+
+    assert result["valid"] is True
+    assert any("DEPRECATED FIELD" in warning for warning in result["warnings"])
+
+
 def test_vocabulary_root_exposes_semantic_and_catalog_commitments():
     workspace = make_workspace()
     expected = vocabulary_root(["a" * 64, "b" * 64])

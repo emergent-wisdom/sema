@@ -30,22 +30,23 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:HindsightBlock#mh:SHA-256:bdb602218783e07b6eb5e68e900635bcd80e7b6d2ff32ac26ec03e383837f363"
+      "sema:HindsightBlock#mh:SHA-256:bdb602218783e07b6eb5e68e900635bcd80e7b6d2ff32ac26ec03e383837f363",
+      "sema:HindsightBlock#mh:SHA-256:51fc6c6213db5ba4483123deb00c3ebfc2a05310434d308f6850c12e1b6aad46"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:HindsightBlock#mh:SHA-256:51fc6c6213db5ba4483123deb00c3ebfc2a05310434d308f6850c12e1b6aad46",
-  "sema_ref": "HindsightBlock#51fc",
-  "sema_stub": "51fc",
+  "sema_id": "sema:HindsightBlock#mh:SHA-256:0ba0f1520d64889425562a8fa226f5da04f0b64fd98e167383538cc0e9e653f2",
+  "sema_ref": "HindsightBlock#0ba0",
+  "sema_stub": "0ba0",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
-      "pre_mortem": "sema:PreMortem#mh:SHA-256:4c7fe58aa4f9a9e7a319d8eb3ca56e449a390d6b0fa574b258f9cf7a32ef138e"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13",
+      "outcome": "sema:Outcome#mh:SHA-256:ac55da2e51aaab185174d9e8edba137536b1ff90a2f6a1d6e1ab634bf7429ef0",
+      "pre_mortem": "sema:PreMortem#mh:SHA-256:e4c24813f33aa41fdb183e380d05707fe1fd813c46b4127602449a8988f47964"
     }
   },
   "sema_layer": "Mind",

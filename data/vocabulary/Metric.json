@@ -3,57 +3,45 @@
   "data_schema": {
     "type": "object",
     "required": [
-      "name",
-      "value",
-      "unit",
-      "timestamp"
+      "target_property",
+      "measurement_rule",
+      "value_schema"
     ],
     "properties": {
-      "name": {
-        "type": "string"
-      },
-      "value": {
-        "type": "number"
-      },
-      "unit": {
-        "type": "string"
-      },
-      "timestamp": {
+      "target_property": {
         "type": "string",
-        "format": "date-time"
+        "description": "Property or construct whose quantity the Metric defines"
       },
-      "dimensions": {
+      "measurement_rule": {
+        "type": "string",
+        "description": "Rule or procedure that derives a value from the target property"
+      },
+      "value_schema": {
         "type": "object",
-        "description": "Tags for filtering (e.g., {region: 'us-east', service: 'db'})"
-      },
-      "resolution": {
-        "type": "string",
-        "description": "Sampling interval (e.g., '1s', '1m')"
+        "description": "JSON Schema for quantitative outputs, including the units, range, or dimensions needed to interpret them"
       }
     }
   },
-  "mechanism": "A definable, quantifiable measure of a specific property within a {{system}} or {{state}}. It provides the signal for optimization and monitoring.",
-  "gloss": "Quantifiable measurement of a property, timestamped and optionally dimensioned",
+  "mechanism": "A definition of a quantitative property. It identifies the target property, the rule used to derive its values, and the value schema that makes those values interpretable. Applying the definition produces readings; observed values and their context are recorded separately rather than changing the definition.",
+  "gloss": "Definition of a quantitative property and its value semantics",
+  "invariants": [
+    "Quantitative Output: `value_schema` admits only numbers or finite structures whose leaves are numbers, and declares the units, range, or dimensions needed to interpret them."
+  ],
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29"
+      "sema:Metric#mh:SHA-256:8895c946c0d9728fb06563d2294bde3fe9a3be817d3d50ed1a587fd604bc6b29",
+      "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c",
-  "sema_ref": "Metric#977d",
-  "sema_stub": "977d",
-  "dependencies": {
-    "references": {
-      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
-    }
-  },
+  "sema_id": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",
+  "sema_ref": "Metric#aa99",
+  "sema_stub": "aa99",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

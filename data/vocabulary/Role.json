@@ -4,55 +4,60 @@
     "type": "object",
     "required": [
       "role_id",
-      "permissions"
+      "function"
     ],
     "properties": {
       "role_id": {
         "type": "string",
         "description": "Unique role identifier"
       },
+      "function": {
+        "type": "string",
+        "description": "Expected contribution of an occupant in context"
+      },
       "permissions": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "description": "Permission IDs granted by this role"
+        "description": "Authority identifiers associated with this role"
       },
       "responsibilities": {
         "type": "array",
         "items": {
           "type": "string"
         },
-        "description": "Responsibility IDs required by this role"
+        "description": "Obligation identifiers associated with this role"
       }
     }
   },
-  "mechanism": "A named collection of {{permission}}s and {{responsibility}}s assigned to an {{agent}}. Decouples {{identity}} from capability, allowing agents to switch contexts by adopting different roles.",
-  "gloss": "Bundle of permissions and responsibilities",
+  "mechanism": "An assignable definition of a contextual function, stated independently of any particular {{identity}}. It records the occupant's expected contribution and may include associated authorities or obligations; assignment and occupancy are caller operations.",
+  "gloss": "Assignable contextual function",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Role#mh:SHA-256:6877fadfd0ca68b67a16eb3378ff7bf9bdb92ecb7ef1ec0c99cafaac407f46fb",
       "sema:Role#mh:SHA-256:9896a85afde9651bef9f99eb9f8608d7be2046cb1355d158964ff22da4c5c973",
-      "sema:Role#mh:SHA-256:14013c8943992b44dc09aae9e21e975ac0c182e099ca5832ed133e9af14ccbae"
+      "sema:Role#mh:SHA-256:ec350b7eb604507b04321ca566e34f4da0007f203f1b465fe9ee2c836871caa8",
+      "sema:Role#mh:SHA-256:456d385ea60f9f4df82bdefec9bfc215acedb1ae7acff5bdf6d79730bc15d12a",
+      "sema:Role#mh:SHA-256:6877fadfd0ca68b67a16eb3378ff7bf9bdb92ecb7ef1ec0c99cafaac407f46fb",
+      "sema:Role#mh:SHA-256:80dff5a7dd9afaf02aeedfe83bf88eef0062d47b630f21b49c79ecac232363a4",
+      "sema:Role#mh:SHA-256:14013c8943992b44dc09aae9e21e975ac0c182e099ca5832ed133e9af14ccbae",
+      "sema:Role#mh:SHA-256:9b2c6ae96c7b02fae8fcc5c665a789974874e8818f2641c7bc55096d28a9dff6"
     ],
     "path": [
-      "Society",
-      "Governance"
+      "Infrastructure",
+      "Data Structures"
     ]
   },
-  "sema_ref": "Role#9b2c",
-  "sema_id": "sema:Role#mh:SHA-256:9b2c6ae96c7b02fae8fcc5c665a789974874e8818f2641c7bc55096d28a9dff6",
-  "sema_stub": "9b2c",
+  "sema_ref": "Role#262a",
+  "sema_id": "sema:Role#mh:SHA-256:262ab6d2c03de5beab24c98cb3168948a3bb043a6a81b68237ab53919d153999",
+  "sema_stub": "262a",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "permission": "sema:Permission#mh:SHA-256:f3470b4ff692d65cb74a12a52b69caffdf008e55e1ef0062a9927c6b72877005",
-      "responsibility": "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f"
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093"
     }
   },
-  "sema_layer": "Society",
-  "sema_category": "Governance"
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
 }

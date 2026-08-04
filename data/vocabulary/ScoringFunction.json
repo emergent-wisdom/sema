@@ -37,17 +37,18 @@
   "mechanism": "A deterministic logical unit that maps an input artifact to a scalar {{value}} (Score). Encapsulates ranking and evaluation criteria as a first-class Noun, so callers can pass the scoring logic as an input rather than embed it inline in their own mechanism.",
   "gloss": "Deterministic valuation logic",
   "invariants": [
-    "Determinism: Same input always yields same score.",
-    "Range: Output must be within [0.0, 1.0] or [-inf, +inf]."
+    "Determinism: same input always yields the same score.",
+    "Output falls within the declared `output_range`."
   ],
-  "sema_id": "sema:ScoringFunction#mh:SHA-256:932eb89612c9b1e99ca1d6d66adf15bd8544505bc46059da946cb71aa52e23ec",
-  "sema_ref": "ScoringFunction#932e",
-  "sema_stub": "932e",
+  "sema_id": "sema:ScoringFunction#mh:SHA-256:c6042940db8c3238b948c7851aa315defbe31e1639dba718fcce0e38523e8d50",
+  "sema_ref": "ScoringFunction#c604",
+  "sema_stub": "c604",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d"
+      "sema:ScoringFunction#mh:SHA-256:3de5b5abe572e4e8cd6c0d4ecc55889fd157f66fdab01b399c0eae0cbca0a99d",
+      "sema:ScoringFunction#mh:SHA-256:932eb89612c9b1e99ca1d6d66adf15bd8544505bc46059da946cb71aa52e23ec"
     ],
     "path": [
       "Infrastructure",

@@ -224,6 +224,17 @@ class GraphWorkspace:
             pattern,
             known_handles=set(self.registry.keys()),
         )
+        specialization = pattern.get("extends")
+        if specialization:
+            parent_handle = specialization.removeprefix("sema:").split("#", 1)[0]
+            parent = self.registry.get(parent_handle) or {}
+            active_parent_ref = parent.get("sema_id")
+            if parent_handle in self.registry and specialization != active_parent_ref:
+                errors.append(
+                    f"❌ UNRESOLVABLE SPECIALIZATION: {specialization!r} is not the active "
+                    f"definition of '{parent_handle}' in this workspace."
+                )
+                is_valid = False
         return {
             "valid": is_valid,
             "errors": errors,

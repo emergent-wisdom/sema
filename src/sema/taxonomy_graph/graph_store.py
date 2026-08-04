@@ -458,7 +458,11 @@ class GraphStore:
         return removed_ids
 
     def _reconcile_edges_of_type(
-        self, source_id: str, edge_type: EdgeType, desired_targets: set[str]
+        self,
+        source_id: str,
+        edge_type: EdgeType,
+        desired_targets: set[str],
+        edge_metadata: dict[str, Any] | None = None,
     ) -> None:
         """Replace one typed relationship set without disturbing parallel edges."""
         removed_edge_ids: list[str] = []
@@ -476,7 +480,25 @@ class GraphStore:
 
         for target_id in desired_targets:
             if not self.has_edge_of_type(source_id, target_id, edge_type):
-                self.create_edge(source_id, target_id, edge_type)
+                self.create_edge(source_id, target_id, edge_type, metadata=edge_metadata)
+            elif edge_metadata is not None:
+                # Some typed edges carry a version-specific claim even though the
+                # graph node is indexed by human handle. Keep that exact identity on
+                # the edge and refresh it when the authored claim changes.
+                for key, attrs in self._edge_keys_between(source_id, target_id):
+                    if attrs.get("edge_type") != edge_type:
+                        continue
+                    if attrs.get("metadata") == edge_metadata:
+                        continue
+                    attrs["metadata"] = edge_metadata
+                    edge_id = attrs.get("id") or key
+                    conn = self._connect()
+                    conn.execute(
+                        "UPDATE edges SET metadata = ? WHERE id = ?",
+                        (json.dumps(edge_metadata), edge_id),
+                    )
+                    conn.commit()
+                    conn.close()
 
     def _find_pattern_id(self, handle: str) -> str | None:
         """O(1) handle → node_id lookup for PATTERN nodes.
@@ -544,6 +566,33 @@ class GraphStore:
         return node_id, True
 
     # Required schema: field_name -> (NodeType, EdgeType)
+    #
+    # WHAT THIS ACTUALLY INDEXES, measured 2026-07-28 against the 455-card corpus:
+    # only `invariants`, `preconditions` and `postconditions`. Nothing else in this
+    # map produces a node, and the reasons differ:
+    #
+    #   - `core_mechanism` names a field no card has; cards carry `mechanism`. So the
+    #     corpus has 455 mechanisms and ZERO MECHANISM nodes, and any audit that looks
+    #     for redundant mechanisms via the graph is not finding few — it is looking at
+    #     nothing.
+    #   - `parameters` is a list of DICTS on every card, and the reconcile loop below
+    #     skips non-string items, so no PARAMETER node is ever created (108 cards).
+    #   - `data_schema` is not mapped at all (114 cards).
+    #   - `long_term_vision`, `design_principles`, `why_it_fails`, `why_it_works`,
+    #     `what_is_new`, `scenario`, `without_this`, `inputs` and `outputs` name fields
+    #     from an older card shape that no current card carries.
+    #
+    # Repairing this is NOT a one-line rename, and the blocker is not what it looks
+    # like. Renaming to `mechanism` is measured safe on its own — 60 sampled mechanisms
+    # give 0 of 1770 pairs at or above the 0.75 auto-link threshold (max 0.652, mean
+    # 0.231), so mechanisms are distinctive enough not to false-merge, unlike short
+    # invariant clauses which do collapse. But `parameters` and `data_schema` cannot be
+    # added without first deciding what text their node carries, and that decides what
+    # the node MEANS. Adding nodes also changes `get_graph_skeleton`, which walks the
+    # whole graph for degrees and Louvain communities, so it is a visible change to a
+    # shipped tool.
+    #
+    # Left as-is deliberately. See the review ledger's 2026-07-28 entries.
     REQUIRED_SCHEMA = {
         "core_mechanism": (NodeType.MECHANISM, EdgeType.USES_MECHANISM),
         "long_term_vision": (NodeType.OUTCOME, EdgeType.PRODUCES_OUTCOME),
@@ -567,6 +616,7 @@ class GraphStore:
         solution: dict[str, Any],
         field_mappings: dict[str, str] | None = None,
         skip_cascade: bool = False,
+        validated_extends_batch: bool = False,
     ) -> dict[str, Any]:
         """Add a pattern with strict enforcement that EVERY schema field is mapped.
 
@@ -586,12 +636,15 @@ class GraphStore:
                       Fields can be strings or lists of strings.
             field_mappings: Dict mapping field_name -> 'NEW' or existing node_id.
                            For list fields, this applies to ALL items (usually 'NEW').
+            validated_extends_batch: Permit moving a parent with inbound IS_A
+                claims only after a caller has validated the full projected batch.
 
         Returns:
             Dict with solution_id, created nodes, linked nodes
             On failure: {"success": False, "error": "..."}
         """
         from ..core.hashing import extract_handle_from_ref
+        from ..core.schema import FULL_SEMA_ID_PATTERN
 
         field_mappings = field_mappings or {}
 
@@ -604,10 +657,10 @@ class GraphStore:
         #    Dependencies are stored as graph edges, NOT in pattern JSON content
         #    Note: We use .get() not .pop() to preserve the original dict for callers
         input_deps = solution.get("dependencies", {})
+        existing_handles = set(self._handle_to_id)
 
         # 3. Validate all dependency references exist before creating edges
         if isinstance(input_deps, dict):
-            existing_handles = set(self._handle_to_id)
             for _, items in input_deps.items():
                 if isinstance(items, dict):
                     for _, ref in items.items():
@@ -618,6 +671,94 @@ class GraphStore:
                                     "success": False,
                                     "error": f"Missing dependency target: {dep_handle}",
                                 }
+
+        # `extends` is not stored in the dependency buckets, but it is equally
+        # load-bearing: silently omitting IS_A would leave the hashed card and
+        # graph disagreeing. The active parent handle must be minted first; the
+        # exact version claimed by the child is retained on the edge metadata.
+        # Legacy `derived_from` remains opaque for hash compatibility: pre-0.4
+        # did not validate it as a relation or emit an edge for it.
+        if "extends" in solution and "derived_from" in solution:
+            return {
+                "success": False,
+                "error": "Pattern cannot contain both extends and legacy derived_from",
+            }
+        extends_ref = solution.get("extends")
+        if "extends" in solution:
+            if not isinstance(extends_ref, str) or not FULL_SEMA_ID_PATTERN.fullmatch(extends_ref):
+                return {
+                    "success": False,
+                    "error": "Invalid extends reference: expected full sema_id",
+                }
+            parent_handle = extract_handle_from_ref(extends_ref)
+            if parent_handle == handle:
+                return {"success": False, "error": f"Pattern '{handle}' cannot extend itself"}
+            if parent_handle not in existing_handles:
+                return {
+                    "success": False,
+                    "error": f"Missing extends target: {parent_handle}",
+                }
+            parent_id = self._handle_to_id[parent_handle]
+            parent_pattern = (self.graph.nodes[parent_id].get("metadata") or {}).get(
+                "pattern"
+            ) or {}
+            active_parent_ref = parent_pattern.get("sema_id")
+            if extends_ref != active_parent_ref:
+                return {
+                    "success": False,
+                    "error": (
+                        f"Unresolvable extends target: {extends_ref} is not "
+                        f"the active definition of {parent_handle}. Preserve that exact parent "
+                        "in a version store before pinning it."
+                    ),
+                }
+
+            # Direct mint does not pass through apply's full-corpus cycle check.
+            # Validate the proposed specialization together with committed
+            # ordinary dependencies so mixed cycles (A references B; B extends A)
+            # cannot enter through the MCP path.
+            from ..core.dependencies import validate_acyclic
+
+            committed_patterns: dict[str, dict[str, Any]] = {}
+            for _node_id, node in self.get_nodes_by_type(NodeType.PATTERN):
+                committed_handle = node.get("text")
+                if not committed_handle:
+                    continue
+                committed = dict(((node.get("metadata") or {}).get("pattern")) or {})
+                committed_dependencies = self.get_dependencies_from_edges(committed_handle)
+                if committed_dependencies:
+                    committed["dependencies"] = committed_dependencies
+                committed_patterns[committed_handle] = committed
+            try:
+                validate_acyclic({handle: solution}, committed_patterns)
+            except ValueError as exc:
+                return {"success": False, "error": str(exc)}
+
+        # Direct mint callers do not have the CLI/pull projection. Prevent them
+        # from replacing an active parent while an exact IS_A child still pins its
+        # current definition. Batch callers may opt through only after validating
+        # the complete projected corpus and including every necessary child edit.
+        specializing_children = self.get_specializing_children(handle)
+        if specializing_children and not validated_extends_batch:
+            from ..core.hashing import generate_sema_hash
+
+            current_parent_ref = None
+            existing_parent_id = self._handle_to_id.get(handle)
+            if existing_parent_id:
+                current_parent = (self.graph.nodes[existing_parent_id].get("metadata") or {}).get(
+                    "pattern"
+                ) or {}
+                current_parent_ref = current_parent.get("sema_id")
+            prospective_parent_ref = generate_sema_hash(solution, self.get_pattern_hash)["full_id"]
+            if prospective_parent_ref != current_parent_ref:
+                return {
+                    "success": False,
+                    "error": (
+                        f"Parent update would strand exact `extends` claim(s) from: "
+                        f"{', '.join(sorted(specializing_children))}. Apply a validated "
+                        "batch containing reviewed child retargets."
+                    ),
+                }
 
         # 4. Validate all explicit link IDs exist and have correct type
         for field_name, link_id in field_mappings.items():
@@ -895,6 +1036,35 @@ class GraphStore:
                 if target_id:
                     desired_signature_targets.add(target_id)
         self._reconcile_edges_of_type(pattern_id, EdgeType.HAS_SIGNATURE, desired_signature_targets)
+
+        # C2. Specialisation (`extends` -> IS_A)
+        #
+        # Cannot ride the dep_map above: that iterates the dicts inside
+        # `dependencies`, and `extends` is a top-level string. This reconcile is
+        # modelled on the signature one directly above for that reason.
+        #
+        # Conformance to an abstract surface set is NOT this edge — it goes through
+        # `signature` and lands on HAS_SIGNATURE. IS_A means "is a kind of".
+        # Do not emit this edge for legacy `derived_from`; migration to `extends`
+        # is the explicit act that adopts the new relation semantics.
+        desired_parent_targets: set[str] = set()
+        extends_ref = solution.get("extends")
+        if isinstance(extends_ref, str) and extends_ref:
+            parent_handle = extract_handle_from_ref(extends_ref)
+            parent_id = self._handle_to_id.get(parent_handle)
+            if parent_id and parent_id != pattern_id:
+                desired_parent_targets.add(parent_id)
+        self._reconcile_edges_of_type(
+            pattern_id,
+            EdgeType.IS_A,
+            desired_parent_targets,
+            edge_metadata={
+                "parent_sema_id": extends_ref,
+                "source_field": "extends",
+            }
+            if desired_parent_targets
+            else None,
+        )
 
         # D. Related (Metadata links)
         related = meta_block.get("related", [])
@@ -1178,6 +1348,29 @@ class GraphStore:
                     dependents.append(pred_data["text"])
 
         return dependents
+
+    def get_specializing_children(self, handle: str) -> list[str]:
+        """Return patterns with an inbound exact `extends` / IS_A claim.
+
+        Specialization is intentionally separate from ``get_dependents`` because
+        parent updates do not hash-cascade through exact version pins. Callers that
+        remove a parent must nevertheless treat these children as blockers.
+        """
+        target_node_id = self._find_pattern_id(handle)
+        if not target_node_id:
+            return []
+
+        children = []
+        for pred in self.graph.predecessors(target_node_id):
+            pred_data = self.graph.nodes[pred]
+            if pred_data.get("node_type") != NodeType.PATTERN:
+                continue
+            if any(
+                edge.get("edge_type") == EdgeType.IS_A
+                for edge in self._edges_between(pred, target_node_id)
+            ):
+                children.append(pred_data["text"])
+        return children
 
     def get_dependencies_from_edges(self, handle: str) -> dict[str, dict[str, str]]:
         """Get dependencies for a pattern by reading graph edges.

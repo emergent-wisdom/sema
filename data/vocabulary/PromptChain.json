@@ -7,7 +7,7 @@
     "{{gate}} Brittleness: Valid intermediate outputs rejected by strict regex."
   ],
   "invariants": [
-    "Halt on Error: {{chain}} aborts if {{gate}}(N) returns False.",
+    "A {{chain}} never passes a step's output forward when its {{gate}} fails.",
     "Schema Continuity: Output(N) must satisfy InputSchema(N+1)."
   ],
   "parameters": [
@@ -29,28 +29,29 @@
     "ring": 0,
     "supersedes": [
       "sema:PromptChain#mh:SHA-256:c872aab6147376a3ad76fc0a062b08baf8492651a478308fbb96f261f903cce0",
-      "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008"
+      "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008",
+      "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6",
-  "sema_ref": "PromptChain#5097",
-  "sema_stub": "5097",
+  "sema_id": "sema:PromptChain#mh:SHA-256:5df25fb4edb7f8f3575a0b45a7c203f7f5ef1b66a5f83d9ec1049b5548cdf975",
+  "sema_ref": "PromptChain#5df2",
+  "sema_stub": "5df2",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "input_guard": "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
-      "retry": "sema:Retry#mh:SHA-256:9e178c29dd1aa774432d8eb6e87fb2e93ab5b1a6db9582f737ad60e9ddf56053",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+      "input_guard": "sema:InputGuard#mh:SHA-256:8c3e3319216468f86dc7e8baa97d91f18110bedc30643db39f9deb2ef52a8be9",
+      "retry": "sema:Retry#mh:SHA-256:5e7921bf0dc8d896f922c3e163156be786471af8cfdfbfc8ec22dd5e0e68ab2a",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:011f50770f2599f5017df648ad5920ddb732f7681a9a3b7576cdcf3798ce6baa"
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:aafcc41012592030d7d1e83e91115fbaff1d238b5fc88827efda1649c7a7b502"
     }
   },
   "sema_layer": "Society",

@@ -3,19 +3,19 @@
   "mechanism": "Establish leadership role with nomination, powers, term, and succession. Phase 1 NOMINATE: Members send NOMINATE: {nominee, nominator, reason}. Self-nomination allowed if configured. Nominees must satisfy {{accept_spec}} to appear on {{ballot}}\u2014cannot elect unwilling leader. Phase 2 VOTE: Standard VOTE mechanism among accepted nominees. Phase 3 INVEST: Winner receives {{solution}} (Election Result): {elected, powers[] (explicitly granted authorities), term (fixed|task|indefinite|renewable), succession_plan (automatic|re_elect|fallback)}. Leader exercises granted powers until term ends, resignation, or recall. On term end: succession triggers per plan. RECALL mechanism if enabled: member initiates RECALL_MOTION: {reason}, group VOTEs, if threshold met leader removed and succession triggers.",
   "gloss": "Leader nomination \u2192 vote \u2192 succession with term and authority bounds",
   "failure_modes": [
-    "No candidates (no one willing to lead\u2014group operates leaderless or incentivize).",
+    "No candidates: nobody eligible is willing to stand \u2014 the cost of the {{accept_spec}} consent gate.",
     "Election deadlock (no majority\u2014use runoff or plurality fallback).",
     "Leader abuse (exceeds granted powers\u2014recall or DISBAND).",
     "Succession failure (successor also unavailable\u2014chain or re-elect).",
     "Recall wars (constant removal attempts\u2014raise threshold or cooldown).",
-    "Power creep (leader accumulates ungrantled powers\u2014audit against ELECT_RESULT)."
+    "Power creep: authorities exercised beyond the powers[] recorded in the Election Result {{solution}}."
   ],
   "invariants": [
-    "One and only one leader selected per term",
-    "Selection process is verifiable"
+    "An office has exactly one occupant per term. A multi-seat body is this pattern composed once per seat.",
+    "Any member can confirm the announced outcome follows from the {{ballot}}s counted."
   ],
   "preconditions": [
-    "Candidate set",
+    "A defined set of members eligible for nomination",
     "Voting mechanism"
   ],
   "postconditions": [
@@ -29,23 +29,24 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3"
+      "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3",
+      "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
-  "sema_ref": "Elect#187a",
-  "sema_stub": "187a",
+  "sema_id": "sema:Elect#mh:SHA-256:c84fa9d3f7d3793f050b6ddc6a46efa35ccd433542fe45fc235aba8d8f36bd98",
+  "sema_ref": "Elect#c84f",
+  "sema_stub": "c84f",
   "dependencies": {
     "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "ballot": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "ballot": "sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
     }
   },
   "sema_layer": "Society",

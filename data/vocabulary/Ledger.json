@@ -1,6 +1,6 @@
 {
   "handle": "Ledger",
-  "mechanism": "An immutable record of {{value}} transfers, debts, and obligations between {{agent}}s. It serves as the shared memory for economic coordination.",
+  "mechanism": "An immutable record of {{value}} transfers, debts, and obligations between {{agent}}s, serving as the shared memory for economic coordination. Because entries are never edited, a wrong entry is corrected by appending an offsetting entry rather than by revision \u2014 the error and its correction both remain visible, which is the property an audit depends on.",
   "gloss": "Immutable transactional history",
   "invariants": [
     "Immutability: Past entries cannot be modified.",
@@ -10,16 +10,17 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910"
+      "sema:Ledger#mh:SHA-256:c363289733cce70a458481259762ae79a0419da4ed5c15ad942c4873181ba910",
+      "sema:Ledger#mh:SHA-256:bc308b35d2c0be6d4a9159ebe2b3c4989e559628145ba9fccb970d8ec2264b04"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Ledger#mh:SHA-256:bc308b35d2c0be6d4a9159ebe2b3c4989e559628145ba9fccb970d8ec2264b04",
-  "sema_ref": "Ledger#bc30",
-  "sema_stub": "bc30",
+  "sema_id": "sema:Ledger#mh:SHA-256:625250939255c79bdf29aa6a7b455f0e339f63fd45dcc4222e765005a1db1c28",
+  "sema_ref": "Ledger#6252",
+  "sema_stub": "6252",
   "data_schema": {
     "type": "object",
     "required": [
@@ -61,7 +62,7 @@
   },
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

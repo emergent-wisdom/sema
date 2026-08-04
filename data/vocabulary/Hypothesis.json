@@ -4,7 +4,7 @@
     "type": "object",
     "required": [
       "proposition",
-      "confidence"
+      "status"
     ],
     "properties": {
       "proposition": {
@@ -19,9 +19,10 @@
         "type": "string",
         "enum": [
           "Open",
-          "Proven",
+          "Corroborated",
           "Falsified"
-        ]
+        ],
+        "description": "Standing against evidence. No Proven state: surviving falsification attempts corroborates a hypothesis, it does not establish it."
       }
     }
   },
@@ -31,16 +32,21 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812"
+      "sema:Hypothesis#mh:SHA-256:e95b94f3066236d1b543330c46d177a5e2e590ea5bdd97953f589226a9f11812",
+      "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
-  "sema_ref": "Hypothesis#e13b",
-  "sema_stub": "e13b",
+  "sema_id": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
+  "sema_ref": "Hypothesis#0989",
+  "sema_stub": "0989",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "invariants": [
+    "Names at least one observation that, if made, would tell against it.",
+    "Evidence can falsify or corroborate a Hypothesis, never establish it."
+  ]
 }

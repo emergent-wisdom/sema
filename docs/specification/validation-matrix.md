@@ -1,6 +1,8 @@
 # Validation Matrix
 
-This document specifies all validation rules that the Sema compiler/ingester must enforce to accept a new pattern. Each rule includes its current implementation status.
+This document maps the validation rules currently enforced by Sema's schema,
+GraphStore, apply, and pull paths. It is a maintained coverage map rather than a
+formal proof that no validator exists outside the table.
 
 ---
 
@@ -82,7 +84,7 @@ This document specifies all validation rules that the Sema compiler/ingester mus
 | 7.1 | **Acyclicity (DAG)** | New pattern must not create circular dependency chain | YES |
 | 7.2 | **Self-Reference Ban** | Pattern cannot depend on itself (A → A) | YES |
 | 7.3 | **Transitive Cycle Detection** | Detects A → B → C → A cycles with path reporting | YES |
-| 7.4 | **Dangling Reference Prevention** | Cannot remove pattern if others depend on it | YES |
+| 7.4 | **Dangling Reference Prevention** | Cannot remove pattern if ordinary dependents or exact `extends` children would be stranded | YES |
 | 7.5 | **Topological Sort** | Patterns added in dependency order (leaf → root) | YES |
 | 7.6 | **Dependency Direction (Rule G)** | Dependencies flow specific → general (lower layers don't depend on higher) | YES |
 
@@ -92,11 +94,12 @@ This document specifies all validation rules that the Sema compiler/ingester mus
 
 | # | Rule | Description | Implemented |
 |---|------|-------------|-------------|
-| 8.1 | **Validation-First** | All validation happens BEFORE any changes (atomic rollback) | YES |
+| 8.1 | **Apply Preflight** | `sema apply` validates the projected batch before any changes | YES |
 | 8.2 | **File Existence** | Pattern files must exist and be readable | YES |
 | 8.3 | **Directory Support** | Can add all `*.json` files from a directory | YES |
 | 8.4 | **Round-Trip Preservation** | Export → Remove → Add preserves all metadata and hashes | YES |
-| 8.5 | **Atomic Remove+Add** | Combined remove/add operations are atomic (rename scenario) | YES |
+| 8.5 | **Combined Remove+Add Preflight** | A replacement's removals and additions are validated as one projected batch | YES |
+| 8.6 | **Pull Rollback** | Pull restores its pre-write SQLite backup on mutation or verification failure | YES |
 
 ---
 
@@ -108,21 +111,25 @@ This document specifies all validation rules that the Sema compiler/ingester mus
 | 9.2 | **Forbidden Extra Fields** | Only allowed top-level fields permitted (extra='forbid' in Pydantic) | YES |
 | 9.3 | **Whitespace Normalization** | Strings are NFC normalized and whitespace-collapsed before hashing | YES |
 | 9.4 | **Novelty Check** | Mechanism similarity > 0.92 triggers duplicate warning | YES |
-| 9.5 | **Merkle DAG Cascade** | Updating a pattern cascades hash updates to all dependents | YES |
+| 9.5 | **Merkle DAG Cascade** | Updating a pattern cascades hash updates through ordinary dependency edges; exact specialization pins do not move implicitly | YES |
 | 9.6 | **Handle Extraction** | Correctly extracts handle from `sema:Handle#mh:SHA-256:...` format | YES |
 
 ---
 
-## Summary
+## 10. Specialization and Legacy Compatibility
 
-| Status | Count | Percentage |
-|--------|-------|------------|
-| **YES** | 42 | 100% |
-| **PARTIAL** | 0 | 0% |
-| **NO** | 0 | 0% |
-| **Total** | 42 | 100% |
+| # | Rule | Description | Implemented |
+|---|------|-------------|-------------|
+| 10.1 | **Exclusive Keys** | A card cannot contain both `extends` and legacy `derived_from`, even when one value is null | YES |
+| 10.2 | **Exact Format** | `extends` must contain a full Sema ID | YES |
+| 10.3 | **Active Resolution** | The exact parent definition named by `extends` must be active in the current single-version workspace | YES |
+| 10.4 | **Graph Projection** | `extends` emits `IS_A` and participates in ordering and cycle checks | YES |
+| 10.5 | **No Silent Retarget** | Parent edits that would strand a child fail before mutation | YES |
+| 10.6 | **Reviewed Retarget** | `--retarget-extends` changes staged cards only | YES |
+| 10.7 | **Legacy Dual Read** | `derived_from` remains hash-verifiable under its authored key but gains no `IS_A`, ordering, or active-parent semantics | YES |
 
-All validation rules are now implemented.
+Every rule listed above has an implemented enforcement point. The executable
+tests and source remain authoritative when this coverage map drifts.
 
 ---
 

@@ -23,20 +23,22 @@
     "ring": 0,
     "supersedes": [
       "sema:AnchorDrop#mh:SHA-256:bf63d7b42444f4b7d7f8c1efbf50574153743cc958b05dd96961f4d27ba799e8",
-      "sema:AnchorDrop#mh:SHA-256:38786515e46deaaa0422906995589f847824b69ded3929b343939f8a8300554b"
+      "sema:AnchorDrop#mh:SHA-256:38786515e46deaaa0422906995589f847824b69ded3929b343939f8a8300554b",
+      "sema:AnchorDrop#mh:SHA-256:695ed5829808e8da3d42e7a5110adf1ec1656bba6b9798566f037c8367b9a16a",
+      "sema:AnchorDrop#mh:SHA-256:4196dd5918edf55c99ed25b195f117741d53ba8dd4e7f508e0703df2b4620c54"
     ],
     "path": [
       "Society",
       "Governance"
     ]
   },
-  "sema_id": "sema:AnchorDrop#mh:SHA-256:4196dd5918edf55c99ed25b195f117741d53ba8dd4e7f508e0703df2b4620c54",
-  "sema_ref": "AnchorDrop#4196",
-  "sema_stub": "4196",
+  "sema_id": "sema:AnchorDrop#mh:SHA-256:669f22a5ac2926cd9cd17dce91c6023c1eed1ba644cfc43be6442724fc7acb66",
+  "sema_ref": "AnchorDrop#669f",
+  "sema_stub": "669f",
   "dependencies": {
     "references": {
-      "consensus": "sema:Consensus#mh:SHA-256:05264b8eb7ea117841041f266bf2882404e981604258205e5621acb816a7e708",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
+      "consensus": "sema:Consensus#mh:SHA-256:ec3034a2309a89ac077741967abce0cc1301ec49028d96203c9b6403348f1540",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

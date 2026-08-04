@@ -166,7 +166,7 @@ export function WorkspaceDemoPage() {
     ]
   }, [authUser?.email, authUser?.login, authUser?.name, collaborators, hasRealGithubUser])
   const sourceLabel = authUser?.login ? `@${authUser.login}` : isDemoWorkspace ? 'Demo GitHub linked' : 'Not linked'
-  const rootValue = published ? '62d9253829798a6e · semantic-set-v1' : 'Not published'
+  const rootValue = published ? 'Workspace snapshot · semantic-set-v1' : 'Not published'
   const metricValues = isDemoWorkspace && libraryReady
     ? { patterns: '24', drafts: '4', proposals: '3' }
     : { patterns: '0', drafts: '0', proposals: '0' }
@@ -735,7 +735,7 @@ function StepPanel({
           <div>
             <p className="text-sm font-medium text-zinc-200">Vocabulary root</p>
             <code className="mt-2 block break-all text-xs text-zinc-500">
-              sema:vocab#mh:SHA-256:62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c
+              {published ? 'Generated for this workspace' : 'Generated on publish'}
             </code>
             <p className="mt-1 text-xs text-zinc-600">Scheme: sema-semantic-set-v1</p>
           </div>

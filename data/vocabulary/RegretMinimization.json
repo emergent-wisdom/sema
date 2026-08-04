@@ -13,20 +13,21 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:RegretMinimization#mh:SHA-256:4a570e1a52413390bf1d3773f73317af065ce06c807764ab0d1958aa77f1260a"
+      "sema:RegretMinimization#mh:SHA-256:4a570e1a52413390bf1d3773f73317af065ce06c807764ab0d1958aa77f1260a",
+      "sema:RegretMinimization#mh:SHA-256:67cf65e0135da11b92eb57178fd5d9270aae532c4a9c3964c2d7adc4f60c1e0a"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:RegretMinimization#mh:SHA-256:67cf65e0135da11b92eb57178fd5d9270aae532c4a9c3964c2d7adc4f60c1e0a",
-  "sema_ref": "RegretMinimization#67cf",
-  "sema_stub": "67cf",
+  "sema_id": "sema:RegretMinimization#mh:SHA-256:134e31b7a7bbaa07777f1cd7f8a9eafe0c367a4ea287a93a4d9b6caf61c24ab2",
+  "sema_ref": "RegretMinimization#134e",
+  "sema_stub": "134e",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:ab1b4c48b8b40b35607e94fa11f1488c23b07b4c846daca0aef109b8a55cd357"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "opportunity_cost": "sema:OpportunityCost#mh:SHA-256:7f526c52acf919aabffa14287cd4ed442fb4c419a6ad78cfe0de1cf19d6146da"
     }
   },
   "sema_layer": "Mind",

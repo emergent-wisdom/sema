@@ -21,21 +21,22 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:QuorumPulse#mh:SHA-256:2c18907e5670bc0e5eff0a26fceee4ae5f5faac5fbb1b086ceb2dd17e015b13a"
+      "sema:QuorumPulse#mh:SHA-256:2c18907e5670bc0e5eff0a26fceee4ae5f5faac5fbb1b086ceb2dd17e015b13a",
+      "sema:QuorumPulse#mh:SHA-256:2fc270db6e8b532f6983bcabcdd33ace1cc40a026ed8828b5d52cca6a01ffc0e"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:QuorumPulse#mh:SHA-256:2fc270db6e8b532f6983bcabcdd33ace1cc40a026ed8828b5d52cca6a01ffc0e",
-  "sema_ref": "QuorumPulse#2fc2",
-  "sema_stub": "2fc2",
+  "sema_id": "sema:QuorumPulse#mh:SHA-256:15db29bbca17a27d707e309f281c97cf66f9840bb907cbe9f53f90a40236b34e",
+  "sema_ref": "QuorumPulse#15db",
+  "sema_stub": "15db",
   "dependencies": {
     "references": {
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

@@ -7,39 +7,39 @@
     "Staged Demo: The process looks like enactment but is actually a pre-canned script (loss of genuineness)."
   ],
   "invariants": [
-    "{{identity}}: Process == Evidence.",
-    "Real-Time: The demonstration must occur during the current execution context, not historically.",
-    "Traceability: Output artifacts must cryptographically reference their generation trace."
+    "The process that produced the output is the evidence offered for it.",
+    "The demonstration occurs in the current execution context, not historically.",
+    "Output artifacts cryptographically reference their generation trace."
   ],
   "preconditions": [
     "{{agent}} has capability to execute the process",
     "Thesis allows for enactment"
   ],
   "postconditions": [
-    "Epistemic Confidence set to MAX",
-    "Performative Consistency verified"
+    "Generation trace attached to the output",
+    "Performative consistency verified"
   ],
   "_meta": {
     "tier": 2,
     "ring": 2,
     "supersedes": [
       "sema:LivedProof#mh:SHA-256:5df54febd99338ca42e2d25983cdc0b1785a6f19a553be9b998b169041c7a828",
-      "sema:LivedProof#mh:SHA-256:ae2df3c960792c30d022bff87745721b39d9384ddc511993d610b68b6b526183"
+      "sema:LivedProof#mh:SHA-256:ae2df3c960792c30d022bff87745721b39d9384ddc511993d610b68b6b526183",
+      "sema:LivedProof#mh:SHA-256:64226e5300ccfc6a1b94cc3b1524077ce7da1bc8c7893f9d3679423153da2fa2"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:64226e5300ccfc6a1b94cc3b1524077ce7da1bc8c7893f9d3679423153da2fa2",
-  "sema_ref": "LivedProof#6422",
-  "sema_stub": "6422",
+  "sema_id": "sema:LivedProof#mh:SHA-256:85c2bf6aa7edaae45deb73f17b96d6917079f831b66e15b9b19840e26f711b64",
+  "sema_ref": "LivedProof#85c2",
+  "sema_stub": "85c2",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:3b9da6c363098aeadf1147adde382db1dfc5af7e04faf68e7f361171f2495b51",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:2825a19d555f390373975f1aa8306d64a9694b192a3ec60d47a94b71f4e565b9",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },
   "sema_layer": "Mind",

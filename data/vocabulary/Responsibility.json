@@ -33,24 +33,25 @@
     "ring": 1,
     "supersedes": [
       "sema:Responsibility#mh:SHA-256:4148bdd8ae994620d37dbc788d066a307725d43bc5a88de4134dadf88ca1dff6",
-      "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31"
+      "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31",
+      "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f"
     ],
     "path": [
       "Society",
       "Governance"
     ]
   },
-  "sema_id": "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f",
-  "sema_ref": "Responsibility#67f5",
-  "sema_stub": "67f5",
+  "sema_id": "sema:Responsibility#mh:SHA-256:2971ff7d56b454fcfb23b77ea826c16cf8040b95edfad2abf39fb6a5c9559cb5",
+  "sema_ref": "Responsibility#2971",
+  "sema_stub": "2971",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
-      "oath_bind": "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
+      "oath_bind": "sema:OathBind#mh:SHA-256:7bc93d8ea77a477a8b124b671425a99ee2d7fccebe7bad87f5397e3ba5af888c",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Society",

@@ -3,8 +3,9 @@
   "mechanism": "The logical act of proving a {{hypothesis}} false by {{observe}}ing an {{incongruity}} between prediction and observation. It creates specific knowledge by eliminating possibilities.",
   "gloss": "Proof of falsehood",
   "invariants": [
-    "Logical Negation: If Prediction implies Observation, and not-Observation, then not-Hypothesis.",
-    "Empirical Grounding: Requires observational evidence."
+    "Modus tollens: prediction implies observation; observation fails; therefore not the {{hypothesis}}.",
+    "The prediction follows from the {{hypothesis}} alone, not from auxiliary assumptions.",
+    "Requires an {{observe}}d {{incongruity}}, not an argued one."
   ],
   "_meta": {
     "ring": 1,
@@ -13,21 +14,26 @@
       "sema:HypothesisLadder#mh:SHA-256:1e4cd70cfbf442861d0a8d486cc67a7d916354b29b20925cbee2606418c84701"
     ],
     "supersedes": [
-      "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929"
+      "sema:Falsification#mh:SHA-256:3e368a58febe7fc02de81df5c2f1ae163c7bfe543200cb2dcbeb7cde50609929",
+      "sema:Falsification#mh:SHA-256:e44f4a50368282b2da7ea5465d1368ca095c1dce2c970f23d5ce39cf1461ce7f"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Falsification#mh:SHA-256:e44f4a50368282b2da7ea5465d1368ca095c1dce2c970f23d5ce39cf1461ce7f",
-  "sema_ref": "Falsification#e44f",
-  "sema_stub": "e44f",
+  "sema_id": "sema:Falsification#mh:SHA-256:354338d40b319138cd6dc0f9ab5a8a5610ec832afe762f007463bb9d08363b51",
+  "sema_ref": "Falsification#3543",
+  "sema_stub": "3543",
+  "failure_modes": [
+    "Auxiliary blame: the prediction rested on a background assumption, so the failed observation falsifies the bundle rather than the hypothesis.",
+    "Bad observation: the measurement was wrong, and a sound hypothesis is discarded."
+  ],
   "dependencies": {
     "references": {
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
-      "incongruity": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99",
-      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871"
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
+      "incongruity": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc",
+      "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96"
     }
   },
   "sema_layer": "Mind",

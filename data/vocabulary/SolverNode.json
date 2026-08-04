@@ -3,17 +3,18 @@
   "mechanism": "An active runtime container that wraps a static {{solver_manifest}} with dynamic state. It handles a specific {{problem_space}}, tracks {{budget}} expenditure, and maintains communication with its parent node. The node is the unit of Blame\u2014when it fails, {{responsibility}} is attributed here for {{localized_learning}}. It holds the current partial {{solution}}, accumulated cost, and status.",
   "gloss": "Stateful container for a running solver instance",
   "invariants": [
-    "Statefulness: Must hold a status (Pending, Active, Solved, Failed).",
-    "Linkage: Must maintain pointers to Parent and Children (if any).",
-    "Accountability: Failures must be traceable to this node for blame attribution.",
-    "Budget Tracking: Must track resources spent vs. allocated."
+    "Holds a status: Pending, Active, Solved or Failed.",
+    "Carries `parent` and `children` links, either of which may be empty.",
+    "Identified by `node_id`, so a failure here is distinguishable from one in a sibling sharing its manifest.",
+    "Tracks `budget_spent` against `budget_allocated`, which every node declares."
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
       "sema:SolverNode#mh:SHA-256:a834074d946b975927f4daa85da4ab4826235c49eecfa7fc5b72ce55e41774a2",
-      "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf"
+      "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
+      "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a"
     ],
     "path": [
       "Society",
@@ -24,9 +25,11 @@
     "type": "object",
     "description": "Schema for SolverNode",
     "required": [
+      "node_id",
       "manifest_id",
       "status",
-      "budget_spent"
+      "budget_spent",
+      "budget_allocated"
     ],
     "properties": {
       "manifest_id": {
@@ -50,20 +53,32 @@
       "budget_allocated": {
         "type": "number",
         "description": "Resources allocated by parent"
+      },
+      "node_id": {
+        "type": "string",
+        "description": "Identity of this node, distinct from its manifest."
+      },
+      "parent": {
+        "type": "string",
+        "description": "Node that allocated this node's budget. Absent at the root."
+      },
+      "children": {
+        "type": "array",
+        "description": "Nodes this node delegated to. Absent at a leaf."
       }
     }
   },
-  "sema_ref": "SolverNode#4529",
-  "sema_id": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-  "sema_stub": "4529",
+  "sema_ref": "SolverNode#0d0e",
+  "sema_id": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+  "sema_stub": "0d0e",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
-      "problem_space": "sema:ProblemSpace#mh:SHA-256:3d6d30545da39dcf29a6b27145e2d2ebc46159d4c783489ff8eeaf0d5d48f2b1",
-      "responsibility": "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:47aef05958dec89d4a0ccb6d8965d2bbd812dd8a3c10ef265f3150cfebee0384"
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:d85eb389650b50414a74e396d61b86ed0966e9777b85ff05d3c8f3b69208aa17",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:927aaa472dd0daacb3668cd4c21b82591f4530428f75f88a7d5386e65b072719",
+      "responsibility": "sema:Responsibility#mh:SHA-256:2971ff7d56b454fcfb23b77ea826c16cf8040b95edfad2abf39fb6a5c9559cb5",
+      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:15bc956376ad5741a0838b7a2a7e825df1f30849a484900dd42f0873b9059a92"
     }
   },
   "sema_layer": "Society",

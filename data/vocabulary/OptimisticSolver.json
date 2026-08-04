@@ -20,29 +20,31 @@
     "caution": "Executes without pre-action verification. Ensure irreversible actions have compensation or sandboxing, or use RigorousSolver at those boundaries.",
     "supersedes": [
       "sema:OptimisticSolver#mh:SHA-256:ee29600346db4594152f7d653a9700b4682402249775f5b7f765fbf1759e592d",
-      "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8"
+      "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8",
+      "sema:OptimisticSolver#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77",
+      "sema:OptimisticSolver#mh:SHA-256:a96fd56ca17c012b3ee75a4a37061e2592ed742cd75175540537b5fb68136880"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "derived_from": "sema:Solver#mh:SHA-256:b00a16afef5a9d3293955f36b44fe6fc0e0c4ce0fc118de4a7459f77fe7d98d7",
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:a96fd56ca17c012b3ee75a4a37061e2592ed742cd75175540537b5fb68136880",
-  "sema_ref": "OptimisticSolver#a96f",
-  "sema_stub": "a96f",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:f664c4e84cbf04e0c16b1fcac7c2662b4b35f4b474b76a2a47e129b36a3dc639",
+  "sema_ref": "OptimisticSolver#f664",
+  "sema_stub": "f664",
+  "extends": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
   "dependencies": {
     "composes_with": {
-      "atomic_bid": "sema:AtomicBid#mh:SHA-256:9c0c78d25ef587cbb5802e4e9243055062fa27a45f30d46896d464c840a35fcd",
-      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",
-      "reflexion": "sema:Reflexion#mh:SHA-256:4a467a44a1172f5d7d2119e3a4c3646e36a5f8dea4cdca2fa85bea6f92619d83"
+      "atomic_bid": "sema:AtomicBid#mh:SHA-256:820c7c2788d8bfc50cb80d142201f63fc726823c60e34e1c8567e4f66c72c8c1",
+      "compensate": "sema:Compensate#mh:SHA-256:447fb91007e09d8674d66ab2698189026a2e9f70a2b66fbaaed406006fb8b8eb",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
+      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3"
     },
     "references": {
-      "parallel": "sema:Parallel#mh:SHA-256:e799c1986d62c4a052090842aabe144193587f8a4d8dd23617d027b2e9b85098",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
-      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:70d41b35ddab10c9575b6feed8022935cb266f3d81fce659cfb6b8b9c2d4dc94"
+      "parallel": "sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
+      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:1275832b5bb4e2ad2e682f32326f8a02f105df57d582be23afd1fb1a7cfae921"
     }
   },
   "sema_layer": "Society",

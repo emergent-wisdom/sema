@@ -25,7 +25,7 @@
       }
     }
   },
-  "mechanism": "Structured capability advertisement enabling agent discovery before contact. {{agent}} creates CARD: {agent_id (unique), endpoint (how to reach), protocols[] (compatibility), capabilities[] (what agent claims to do), constraints (availability, rate limits, requirements), metadata (version, ttl, published timestamp)}. {{agent}} PUBLISHES card via registry, broadcast, DHT, or well-known endpoint (mechanism-agnostic). Discovering agents QUERY using {{latent_attachment}} for semantic capability matching alongside exact protocol_match. Query returns ranked CARD list. Discoverer selects promising CARDs, then GREETs at card.endpoint to establish channel. CARDs have TTL \u2014 agents must REFRESH periodically to maintain visibility. CARD capabilities are CLAIMS not proofs: verification happens via {{probe}} after GREET establishes channel. It enables discovery via {{select}} queries against the registry, filtering candidates by capability and protocol compatibility.",
+  "mechanism": "Structured capability advertisement enabling agent discovery before contact. {{agent}} creates CARD: {agent_id (unique), endpoint (how to reach), protocols[] (compatibility), capabilities[] (what agent claims to do), constraints (availability, rate limits, requirements), metadata (version, ttl, published timestamp)}. {{agent}} PUBLISHES card via registry, broadcast, DHT, or well-known endpoint (mechanism-agnostic). Discovering agents QUERY using {{latent_attachment}} for semantic capability matching alongside exact protocol_match. Query returns ranked CARD list. Discoverer selects promising CARDs, then {{greet}}s at card.endpoint to establish channel. CARDs have TTL \u2014 agents maintain visibility by PUBLISHING a replacement card before the previous one expires, never by editing the one already issued. CARD capabilities are CLAIMS not proofs: verification happens via {{probe}} after GREET establishes channel. It enables discovery via {{select}} queries against the registry, filtering candidates by capability and protocol compatibility.",
   "gloss": "Structured capability advertisement: agent_id, endpoint, protocols, capabilities, metadata",
   "parameters": [
     {
@@ -44,31 +44,34 @@
     "Version skew (CARD protocol version differs from actual\u2014GREET catches this)."
   ],
   "invariants": [
-    "Card immutable after issue."
+    "Immutable after issue: a Card is never edited. A change of endpoint, protocol or capability is published as a new Card superseding the old, which is what lets a discoverer tell a current claim from a stale one rather than trusting a mutable record.",
+    "Claims, not proofs: the capabilities a Card advertises are assertions the issuer has not demonstrated. Verification is the discoverer's, via {{probe}} after {{greet}} opens a channel."
   ],
   "_meta": {
     "tier": 2,
     "ring": 0,
     "supersedes": [
       "sema:Card#mh:SHA-256:e307b9bce7530dd5d86a1e6e4cd2252765f4154b6e3e6c1f1f1ac3e544666495",
-      "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626"
+      "sema:Card#mh:SHA-256:c9f028ecd6e890702f25417a076aed7d352790d1c02fd9656488daea00db2626",
+      "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
-  "sema_ref": "Card#84b7",
-  "sema_stub": "84b7",
+  "sema_id": "sema:Card#mh:SHA-256:ed287a652085f4e54a58e1b76a59016d74fa7edf51f918730d0338698aca979d",
+  "sema_ref": "Card#ed28",
+  "sema_stub": "ed28",
   "dependencies": {
     "composes_with": {
-      "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
+      "select": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
-      "probe": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:992d55f53109cbc5050a8ed96afe91121a85a664c6178ad136358e792ecbfa20",
+      "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224"
     }
   },
   "sema_layer": "Infrastructure",

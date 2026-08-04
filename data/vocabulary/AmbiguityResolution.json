@@ -11,20 +11,21 @@
     "ring": 1,
     "supersedes": [
       "sema:AmbiguityResolution#mh:SHA-256:aee6c8844ad85d09c8ce0fe0819c5359ba2b52e84bc56b23837c9b156b4fa0f1",
-      "sema:AmbiguityResolution#mh:SHA-256:60315fece3de182c70627c9275d03be549416ef41af8112637019dc37ba2c4b9"
+      "sema:AmbiguityResolution#mh:SHA-256:60315fece3de182c70627c9275d03be549416ef41af8112637019dc37ba2c4b9",
+      "sema:AmbiguityResolution#mh:SHA-256:ede07da7ba005a40e31635c0f168f38e16f569a84bb1a57d8ca16555af403220"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "AmbiguityResolution#ede0",
-  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:ede07da7ba005a40e31635c0f168f38e16f569a84bb1a57d8ca16555af403220",
-  "sema_stub": "ede0",
+  "sema_ref": "AmbiguityResolution#445e",
+  "sema_id": "sema:AmbiguityResolution#mh:SHA-256:445eda6a53e2071d3c7bc5c3986e3dd2500da5d3bd2c1a2e553c9cfc683519ee",
+  "sema_stub": "445e",
   "dependencies": {
     "composes_with": {
-      "entropy_pump": "sema:EntropyPump#mh:SHA-256:31cfc8a45ee0ea7751661386771342dc841503e4f1af65400f1f6bb95f9cd9b7",
-      "vote": "sema:Vote#mh:SHA-256:0affbbc722d42218027f581176be08d0a66c9a3dc99adbf94d411ef9fc38786c"
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:a1369712d823417e257e4306f53aa63a5dcd83b34a8f4093823578a2196eec56",
+      "vote": "sema:Vote#mh:SHA-256:d3cbfb3d419b84397dff409d2f83271e9bcb1b6c16b79b0b3629cbe72bd7f3a8"
     }
   },
   "sema_layer": "Society",

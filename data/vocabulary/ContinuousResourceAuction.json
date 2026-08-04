@@ -10,9 +10,9 @@
     "Monopoly Lockout: Wealthy agents can permanently rent-seek if the holding cost is too low relative to their capital."
   ],
   "invariants": [
-    "Circulation Pressure: The cost of holding the resource must be non-zero (HoldingCost > 0) to prevent infinite hoarding.",
-    "Price Discovery: Price must dynamically adjust to Demand or Time.",
-    "Clearance: The auction must resolve to a winner or reset within T_cycle."
+    "Holding the resource costs more than nothing, at `holding_cost_rate`.",
+    "Price adjusts to demand or to time.",
+    "Resolves to a winner or resets within `cycle_time`."
   ],
   "parameters": [
     {
@@ -30,8 +30,8 @@
     {
       "name": "holding_cost_rate",
       "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Per-cycle cost of holding a resource without using it"
+      "range": "(0.0, 1.0]",
+      "description": "Cost per cycle of continuing to hold the resource. Cannot be zero."
     }
   ],
   "data_schema": {
@@ -49,7 +49,12 @@
       "next_cycle_start": {
         "type": "integer"
       }
-    }
+    },
+    "required": [
+      "resource_id",
+      "current_price",
+      "next_cycle_start"
+    ]
   },
   "_meta": {
     "tier": 1,
@@ -59,25 +64,26 @@
     ],
     "supersedes": [
       "sema:ContinuousResourceAuction#mh:SHA-256:babf1b41f451b6df2220129e0c0a05483abfc8f8aa8b4bfd3f7fd543ac9e009f",
-      "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08"
+      "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08",
+      "sema:ContinuousResourceAuction#mh:SHA-256:8fe283f5ae6bd9adcf164ba848bcc731863b0f232f2dbc4fa8c389f70eb8184c"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_ref": "ContinuousResourceAuction#8fe2",
-  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:8fe283f5ae6bd9adcf164ba848bcc731863b0f232f2dbc4fa8c389f70eb8184c",
-  "sema_stub": "8fe2",
+  "sema_ref": "ContinuousResourceAuction#c725",
+  "sema_id": "sema:ContinuousResourceAuction#mh:SHA-256:c725833053eec6c59a6e1cc307abb8176a0efe407e512bf718cf0f1e60a66815",
+  "sema_stub": "c725",
   "dependencies": {
     "accepts": {
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "composes_with": {
-      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78"
+      "state_lock": "sema:StateLock#mh:SHA-256:c9c2809bdf97bb6ac17a8ffe428d4aa9a28294b99d64cc8a336a239d26a8afb8"
     },
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db"
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
     }
   },
   "sema_layer": "Society",

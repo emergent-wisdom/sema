@@ -3,10 +3,13 @@
   "mechanism": "Track Record Alignment: For claims rated 70% confident, ~70% should be true. Track predictions vs outcomes. If 90% claims are right only 60% of time, you are overconfident\u2014widen uncertainty. If 90% claims are right 99% of time, you are underconfident\u2014tighten. It adjusts the internal probability model using {{bayes_update}} on historical accuracy data, ensuring {{base_rate_include}} is respected.",
   "gloss": "Aligning subjective confidence with objective frequency",
   "failure_modes": [
-    "Over-correction: {{agent}} becomes under-confident to avoid being wrong, refusing to act on strong signals."
+    "Over-correction: the {{agent}} becomes under-confident to avoid being wrong, refusing to act on strong signals.",
+    "Thin record: calibrating across `bin_count` bins on too few predictions fits noise, not bias."
   ],
   "invariants": [
-    "Post-calibration monotonicity: the adjusted confidence\u2192frequency mapping must be monotonic non-decreasing (higher stated confidence implies higher or equal actual frequency). The observed pre-calibration curve may be non-monotonic; the pattern's job is to produce a monotonic output."
+    "Calibrates against a recorded track record of predictions and their outcomes.",
+    "Expected calibration error stays within `calibration_target`.",
+    "The adjusted confidence-to-frequency mapping is monotonic non-decreasing."
   ],
   "parameters": [
     {
@@ -26,21 +29,22 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60"
+      "sema:ConfidenceCalibrate#mh:SHA-256:0ae5f1a670925e132d49a7d8fd9abc773a598b53dbd0cb734d8081d23e5cdc60",
+      "sema:ConfidenceCalibrate#mh:SHA-256:7b1a65d6e8cf7c3b9a796eda44de5cd87a557ea5286586c62a154555572d75af"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:7b1a65d6e8cf7c3b9a796eda44de5cd87a557ea5286586c62a154555572d75af",
-  "sema_ref": "ConfidenceCalibrate#7b1a",
-  "sema_stub": "7b1a",
+  "sema_id": "sema:ConfidenceCalibrate#mh:SHA-256:2145c5873b279328a11295f73c44fe0953b563304f90855ba7e87dea27ab1c91",
+  "sema_ref": "ConfidenceCalibrate#2145",
+  "sema_stub": "2145",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:8636331d386b5d9b9f7b6177fa3d3486699c5cc486e823cafb7065ae7554b5a5",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:3d1ba13d30f25ea87acd410653f8e4477e280d0f5a204cd1eacf96de4013f7db"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:879afc8b39356ead46edabbc3f4f098d9e7e5995a516d573574427dcb669fa3a"
     }
   },
   "sema_layer": "Mind",

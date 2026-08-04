@@ -1,6 +1,6 @@
 {
   "handle": "Forest",
-  "mechanism": "A topology consisting of two or more independently-rooted {{tree}}s with no shared apex. Each constituent tree can be traversed standalone; the Forest is the named collection. Distinct from a single tree with many branches: a Forest has *no shared root*, so removing any one tree does not affect the others. Found in random-forest ensembles (ML), disjoint-set forests (union-find CS), process forests (OS sessions), multi-repo organizations (git), federated solver trees across organizations (FI \u00a77.2 Knowledge Sharing), and biological forests (where cross-tree links exist but do not create a shared apex). Variation across descendants concerns whether the trees are strictly disjoint or share substrate (mycorrhizal biology, content-addressed commons) and whether merge/split operations are supported (union-find).",
+  "mechanism": "A topology consisting of two or more independently-rooted {{tree}}s with no shared apex. Each constituent tree can be traversed standalone; the Forest is the named collection. Distinct from a single tree with many branches: a Forest has *no shared root*, so removing any one tree does not affect the others. Found in random-forest ensembles (ML), disjoint-set forests (union-find CS), process forests (OS sessions), multi-repo organizations (git), federated solver trees across organizations, and biological forests (where cross-tree links exist but do not create a shared apex). Variation across descendants concerns whether the trees are strictly disjoint or share substrate (mycorrhizal biology, content-addressed commons) and whether merge/split operations are supported (union-find).",
   "gloss": "Topology of N independently-rooted trees with no shared apex",
   "invariants": [
     "Multiplicity: a Forest contains at least two {{tree}}s; a single tree is not a forest.",
@@ -32,14 +32,17 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Forest#mh:SHA-256:f19016a949d3a4a756dbe9a2a1001bb4eee77c6eabb3678fca9d594c27967bbe"
     ]
   },
-  "sema_id": "sema:Forest#mh:SHA-256:f19016a949d3a4a756dbe9a2a1001bb4eee77c6eabb3678fca9d594c27967bbe",
-  "sema_ref": "Forest#f190",
-  "sema_stub": "f190",
+  "sema_id": "sema:Forest#mh:SHA-256:8432cd0407a2c1a964493f3864d6fd2a8fcb075c70bb46823edfd112489fcdc7",
+  "sema_ref": "Forest#8432",
+  "sema_stub": "8432",
   "dependencies": {
     "references": {
-      "tree": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543"
+      "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }
   },
   "sema_layer": "Infrastructure",

@@ -1,12 +1,13 @@
 {
   "handle": "BayesUpdate",
-  "mechanism": "Likelihood Weighting: Hold prior probability P(H). {{observe}} evidence E. Compute likelihood ratio P(E|H)/P(E|\u00acH). Multiply prior by ratio to get posterior. Large ratio = strong update. Ratio near 1 = weak evidence. Never update to 0 or 1. It explicitly incorporates {{base_rate_include}} into the prior probability calculation to prevent base-rate neglect.",
+  "mechanism": "Likelihood Weighting: Hold prior probability P(H). {{observe}} evidence E. Compute likelihood ratio P(E|H)/P(E|\u00acH). Convert the prior to odds, multiply by the ratio, convert back to a probability. Large ratio = strong update. Ratio near 1 = weak evidence. Never update to 0 or 1. It explicitly incorporates {{base_rate_include}} into the prior probability calculation to prevent base-rate neglect.",
   "gloss": "Mathematically rigorous belief revision",
   "failure_modes": [
     "Prior Dogmatism: Setting a prior of 1.0 or 0.0 prevents any future updating, regardless of evidence."
   ],
   "invariants": [
-    "Posterior \u2208 (0,1): never update to absolute certainty."
+    "The posterior odds are the prior odds scaled by the likelihood ratio P(E|H)/P(E|not H).",
+    "Prior and posterior both stay at least `clamp` away from 0 and 1."
   ],
   "preconditions": [
     "Prior probability defined in (0,1)",
@@ -16,41 +17,36 @@
   "postconditions": [
     "Posterior probability in (0,1)",
     "{{belief}} updated proportional to evidence strength.",
-    "Prior recoverable given likelihood."
+    "Prior recoverable from the posterior and the ratio, unless the posterior was clamped."
   ],
   "parameters": [
     {
-      "name": "prior_confidence",
+      "name": "clamp",
       "type": "Probability",
-      "range": "[0.1, 0.9]",
-      "description": "Certainty in prior belief before evidence"
-    },
-    {
-      "name": "update_threshold",
-      "type": "Probability",
-      "range": "[0.6, 0.95]",
-      "description": "Minimum confidence shift to trigger action"
+      "range": "(0.0, 0.5)",
+      "description": "Distance from 0 and 1 that no probability may cross, so evidence can always move it."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487"
+      "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
+      "sema:BayesUpdate#mh:SHA-256:3d1ba13d30f25ea87acd410653f8e4477e280d0f5a204cd1eacf96de4013f7db"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:3d1ba13d30f25ea87acd410653f8e4477e280d0f5a204cd1eacf96de4013f7db",
-  "sema_ref": "BayesUpdate#3d1b",
-  "sema_stub": "3d1b",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:879afc8b39356ead46edabbc3f4f098d9e7e5995a516d573574427dcb669fa3a",
+  "sema_ref": "BayesUpdate#879a",
+  "sema_stub": "879a",
   "dependencies": {
     "references": {
-      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:8636331d386b5d9b9f7b6177fa3d3486699c5cc486e823cafb7065ae7554b5a5",
-      "belief": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
-      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871"
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",
+      "belief": "sema:Belief#mh:SHA-256:675c86db12fcc346e8a95dbf0c49c6a28a7bf81cc65915bdcb695bf291123524",
+      "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96"
     }
   },
   "sema_layer": "Mind",

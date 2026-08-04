@@ -42,7 +42,7 @@ class SemaPattern:
 
 class SpectralTune(SemaPattern):
     """
-    Handle: SpectralTune#cb58
+    Handle: SpectralTune#c0aa
     Invariant: Receiver.context_hash == Sender.context_hash
     """
 
@@ -67,7 +67,7 @@ class SpectralTune(SemaPattern):
 
 class StateLock(SemaPattern):
     """
-    Handle: StateLock#8bde
+    Handle: StateLock#c9c2
     Invariant: State S cannot be modified without Sign(A) + Sign(B)
     """
 
@@ -132,8 +132,8 @@ class GateParsimony(SemaPattern):
 
 class ProphetFanOut(SemaPattern):
     """
-    Handle: ProphetFanOut#b0f3
-    Invariant: Entropy(Timelines) > Threshold
+    Handle: ProphetFanOut#8711
+    Invariant: generation obeys the declared breadth or stopping rule
     """
 
     HANDLE = "ProphetFanOut"

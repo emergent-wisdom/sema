@@ -17,7 +17,7 @@ from ..core.registry import (
     set_active_db,
 )
 from ..core.utils import compact_dict
-from ..core.validator import validate_pattern
+from ..core.validator import clean_handle, validate_pattern
 
 # Initialize Registry (Lazy Load)
 _registry_manager = None
@@ -30,8 +30,97 @@ def get_registry():
     return _registry_manager
 
 
+def _specialization_projection_errors(
+    store,
+    staged_patterns: dict[str, dict],
+    *,
+    remove_handles: set[str] | None = None,
+    retarget_extends: bool = False,
+) -> tuple[list[str], list[str]]:
+    """Validate exact `extends` targets against a projected post-write corpus.
+
+    The current GraphStore keeps one active version per handle. Recompute the
+    projected ordinary Merkle cascade in memory so a parent update cannot make an
+    existing exact specialization target disappear. Legacy `derived_from` remains
+    opaque and deliberately does not participate.
+    """
+    from ..core.hashing import generate_sema_hash, resolve_ref_to_sema_id
+    from ..taxonomy_graph.graph_store import NodeType
+
+    removed = remove_handles or set()
+    projected_patterns: dict[str, dict] = {}
+    existing_handles: set[str] = set()
+    for _nid, node in store.get_nodes_by_type(NodeType.PATTERN):
+        handle = node.get("text")
+        if not handle or handle in removed:
+            continue
+        existing_handles.add(handle)
+        current = dict(((node.get("metadata") or {}).get("pattern")) or {})
+        dependencies = store.get_dependencies_from_edges(handle)
+        if dependencies:
+            current["dependencies"] = dependencies
+        projected_patterns[handle] = current
+    projected_patterns.update(staged_patterns)
+
+    try:
+        validation_order = topological_sort(projected_patterns)
+    except ValueError as exc:
+        return [f"Dependency error: {exc}"], []
+
+    current_hashes = store.get_all_pattern_hashes()
+    expected_hashes: dict[str, str] = {}
+    normalized_projection: dict[str, dict] = {}
+    errors: list[str] = []
+    for handle in validation_order:
+        candidate = dict(projected_patterns[handle])
+        specialization = candidate.get("extends")
+        if specialization and handle in staged_patterns and retarget_extends:
+            candidate["extends"] = resolve_ref_to_sema_id(specialization, expected_hashes.get)
+        normalized_projection[handle] = candidate
+        try:
+            expected_hashes[handle] = generate_sema_hash(candidate, expected_hashes.get)["hash"]
+        except ValueError as exc:
+            errors.append(f"Cannot hash projected pattern {handle}: {exc}")
+
+    if errors:
+        return errors, validation_order
+
+    moved = {
+        handle
+        for handle in existing_handles
+        if current_hashes.get(handle) != expected_hashes.get(handle)
+    }
+    for child_handle, candidate in normalized_projection.items():
+        specialization = candidate.get("extends")
+        if not specialization:
+            continue
+        parent = clean_handle(specialization)
+        parent_hash = expected_hashes.get(parent)
+        expected_ref = f"sema:{parent}#mh:SHA-256:{parent_hash}" if parent_hash else None
+        if specialization == expected_ref:
+            continue
+        if parent in moved:
+            errors.append(
+                f"Parent update would strand {child_handle}'s `extends` pin at "
+                f"{specialization}. Include a reviewed {child_handle} definition "
+                "retargeted to the projected parent; this workspace does not retain "
+                "the old parent definition."
+            )
+        else:
+            errors.append(
+                f"Unresolvable specialization target in {child_handle}: "
+                f"{specialization!r} is not the active definition of {parent!r}. "
+                "The current workspace has no historical store for that exact parent "
+                "version."
+            )
+    return errors, validation_order
+
+
 def apply_changes(
-    remove_handles: list[str] = None, add_files: list[str] = None, check_only: bool = False
+    remove_handles: list[str] = None,
+    add_files: list[str] = None,
+    check_only: bool = False,
+    retarget_extends: bool = False,
 ):
     """Atomic apply operation: validate everything, then execute all changes.
 
@@ -41,6 +130,9 @@ def apply_changes(
         remove_handles: List of pattern handles to remove
         add_files: List of files/directories to add
         check_only: If True, only validate without applying changes
+        retarget_extends: If True, rewrite `extends` on staged cards to the
+            current parent Sema ID. The default preserves the exact authored
+            parent version.
     """
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -70,6 +162,7 @@ def apply_changes(
     # ============ PHASE 1: VALIDATION ============
     print("Validating...")
     errors = []
+    projected_order: list[str] = []
 
     # 1a. Validate removals exist
     remove_node_ids = {}
@@ -117,6 +210,33 @@ def apply_changes(
         handles_str = ", ".join(p[1]["handle"] for p in add_patterns)
         print(f"  ✓ {len(add_patterns)} patterns to add: {handles_str}")
 
+    # Validate every staged relation target against the projected handle set so
+    # --check catches a missing target before any mutation. A target staged in
+    # the same batch is valid and will be minted first by the topological sort.
+    # `extends` is top-level; ordinary dependencies live in four named buckets.
+    if add_patterns and not errors:
+        committed_handles = {
+            data["text"] for _nid, data in store.get_nodes_by_type(NodeType.PATTERN)
+        }
+        available_handles = (committed_handles - set(remove_handles)) | add_handles
+        for file_path, pattern in add_patterns:
+            parent = clean_handle(pattern.get("extends"))
+            if parent and parent not in available_handles:
+                errors.append(
+                    f"Missing `extends` target in {file_path}: '{parent}' does not exist "
+                    "in the committed vocabulary or staged batch."
+                )
+            dependencies = pattern.get("dependencies") or {}
+            for dependency_type in ("accepts", "yields", "composes_with", "references"):
+                for alias, dependency_ref in (dependencies.get(dependency_type) or {}).items():
+                    dependency = clean_handle(dependency_ref)
+                    if dependency and dependency not in available_handles:
+                        errors.append(
+                            f"Missing dependency target in {file_path}: "
+                            f"'{alias}' refers to '{dependency}', which does not exist "
+                            "in the committed vocabulary or staged batch."
+                        )
+
     # 1c. Dependency graph check
     # Patterns being removed must not be referenced by patterns staying
     # (unless those references are also being re-added)
@@ -141,6 +261,10 @@ def apply_changes(
                     if dep_handle not in dependents:
                         dependents[dep_handle] = []
                     dependents[dep_handle].append(h)
+            pattern = ((data.get("metadata") or {}).get("pattern")) or {}
+            parent = clean_handle(pattern.get("extends"))
+            if parent:
+                dependents.setdefault(parent, []).append(h)
 
         # Check each pattern being removed
         for handle in remove_handles:
@@ -159,6 +283,42 @@ def apply_changes(
                     f"Cannot remove '{handle}': pattern '{user}' depends on it. "
                     f"Include '{user}' in --remove or supply updated version in --add."
                 )
+
+    # 1d. Acyclic check across the batch AND the committed corpus.
+    # Phase 2 also sorts topologically, but that sort sees only the batch, and it
+    # runs after --check has already returned. A mutual reference between a staged
+    # pattern and a committed one therefore passed --check and was caught only by
+    # a full rebuild, which by then had replaced the database.
+    if add_patterns and not errors:
+        from ..core.dependencies import validate_acyclic
+
+        # Dependencies live on edges, not on the node, so read them from edges.
+        # Patterns being removed are excluded: a cycle through one of them is
+        # about to stop existing.
+        committed = {}
+        for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+            h = data.get("text")
+            if not h or h in remove_handles:
+                continue
+            committed[h] = {"dependencies": store.get_dependencies_from_edges(h)}
+
+        try:
+            validate_acyclic({p[1]["handle"]: p[1] for p in add_patterns}, committed)
+        except ValueError as e:
+            errors.append(f"Dependency error: {e}")
+
+    # 1e. Project the full post-apply graph before any mutation. A handle match
+    # is not enough for a content-addressed specialization claim, and an
+    # unstaged parent can move through the ordinary dependency cascade.
+    if add_patterns and not errors:
+        staged_patterns = {pattern["handle"]: pattern for _path, pattern in add_patterns}
+        projection_errors, projected_order = _specialization_projection_errors(
+            store,
+            staged_patterns,
+            remove_handles=set(remove_handles),
+            retarget_extends=retarget_extends,
+        )
+        errors.extend(projection_errors)
 
     if not errors:
         print("  ✓ Validation passed")
@@ -185,15 +345,23 @@ def apply_changes(
     # deleted and nothing added — irreversible partial state.
     if add_patterns:
         patterns_dict = {p[1]["handle"]: p[1] for p in add_patterns}
-        try:
-            sorted_handles = topological_sort(patterns_dict)
-        except ValueError as e:
-            print(f"  ❌ Dependency error: {e}")
-            return False
+        # Filter the full projected order rather than sorting the staged batch in
+        # isolation. An unstaged parent can move through an ordinary cascade; the
+        # full order keeps its staged descendants after the edit that moves it.
+        sorted_handles = [handle for handle in projected_order if handle in patterns_dict]
 
         # Check layer direction (Rule 7.6)
         # Applies only to hard dependency buckets (accepts, composes_with).
         # yields and references are exempt — see dependencies._LAYER_CHECKED_BUCKETS.
+        #
+        # KNOWN GAP, deliberately not fixed here: pattern nodes carry the handle in
+        # data["text"], not data["handle"], so the filter below discards every row
+        # and existing_patterns is always empty. Layer direction is therefore checked
+        # only within a batch, never against committed patterns. Correcting the key
+        # would begin enforcing Rule 7.6 across all 453 patterns at once and could
+        # refuse applies that succeed today, so it needs its own change and its own
+        # review of whatever it surfaces. Dependencies also live on edges rather than
+        # on the node — see the acyclic check in Phase 1 for how to read them.
         try:
             from ..core.dependencies import validate_layer_direction
 
@@ -225,10 +393,24 @@ def apply_changes(
             return False
 
     # 2c. Add patterns via mint_pattern
+    from ..core.hashing import resolve_ref_to_sema_id
+
+    # Children explicitly retargeted by this invocation. Merely staging a card
+    # does not authorize changing which immutable parent definition it extends.
+    extends_retargeted: list[str] = []
     from ..core.mint import mint_pattern
 
     for file_path, data in sorted_patterns:
-        mint_result = mint_pattern(data, store)
+        # `extends` names an exact immutable parent definition. Preserve that
+        # authored identifier unless the caller explicitly opts into retargeting.
+        # The batch is topo-sorted, so an explicitly selected parent has its final
+        # hash before the child is minted.
+        if retarget_extends and data.get("extends"):
+            _before = data["extends"]
+            data["extends"] = resolve_ref_to_sema_id(_before, store.get_pattern_hash)
+            if data["extends"] != _before:
+                extends_retargeted.append(data["handle"])
+        mint_result = mint_pattern(data, store, validated_extends_batch=True)
         if mint_result.success:
             print(f"  ✓ Added {mint_result.sema_ref}")
 
@@ -239,12 +421,14 @@ def apply_changes(
             # source files stop being independently verifiable (stored
             # sema_id can't be recomputed from the file alone).
             try:
-                if isinstance(data.get("dependencies"), dict):
-                    from ..core.hashing import resolve_dependencies_to_sema_ids
+                from ..core.hashing import resolve_dependencies_to_sema_ids
 
+                if isinstance(data.get("dependencies"), dict):
                     data["dependencies"] = resolve_dependencies_to_sema_ids(
                         data["dependencies"], store.get_pattern_hash
                     )
+                # `extends` is already the authored exact ID, or was explicitly
+                # retargeted before minting above.
                 with open(file_path, "w") as f:
                     json.dump(data, f, indent=2)
             except Exception as e:
@@ -253,6 +437,12 @@ def apply_changes(
             err_msg = "; ".join(mint_result.errors)
             print(f"  ❌ Failed to add {data['handle']}: {err_msg}")
             return False
+
+    if extends_retargeted:
+        print(
+            f"\n  ↻ Retargeted {len(extends_retargeted)} staged `extends` claim(s) "
+            "by explicit request."
+        )
 
     # ============ POST-APPLY SWEEP ============
     # Topological sort orders by hard dependencies; _meta.related is a
@@ -652,7 +842,6 @@ def update_db(
     from ..core.dependencies import topological_sort
     from ..core.hashing import (
         SEMANTIC_ROOT_SCHEME,
-        extract_handle_from_ref,
         vocabulary_info,
     )
     from ..core.mint import mint_pattern
@@ -766,26 +955,18 @@ def update_db(
     while True:
         round_pruned = set()
         for h, p in list(upstream_patterns.items()):
-            for items in p.get("dependencies", {}).values():
-                if not isinstance(items, dict):
-                    continue
-                for ref in items.values():
-                    if not isinstance(ref, str):
-                        continue
-                    target_handle = extract_handle_from_ref(ref)
-                    # Self-references are implicitly safe: h is still in
-                    # upstream_patterns at this point, so target_handle == h
-                    # passes the third check. We also leave the loop running
-                    # even when `excluded` is empty — it doubles as a
-                    # protector against malformed upstream graphs that ship
-                    # with dangling refs.
-                    if (
-                        target_handle not in target_handles
-                        and target_handle not in upstream_patterns
-                    ):
-                        round_pruned.add(h)
-                        break
-                if h in round_pruned:
+            # Includes the top-level `extends` parent as well as dependency
+            # buckets. An excluded/missing parent makes the child unmintable
+            # for the same reason an excluded ordinary dependency does.
+            for target_handle in get_dependencies_handles(p):
+                # Self-references are implicitly safe: h is still in
+                # upstream_patterns at this point, so target_handle == h
+                # passes the second check. We also leave the loop running
+                # even when `excluded` is empty — it doubles as a
+                # protector against malformed upstream graphs that ship
+                # with dangling refs.
+                if target_handle not in target_handles and target_handle not in upstream_patterns:
+                    round_pruned.add(h)
                     break
         if not round_pruned:
             break
@@ -799,6 +980,19 @@ def update_db(
     # Use the unfiltered upstream set so excluded handles aren't falsely
     # reported as "upstream removed".
     upstream_removed = sorted(target_handles - upstream_all_handles)
+
+    def _supersession_user_dependents(handle: str) -> list[str]:
+        """Return user-only patterns that make supersession removal unsafe."""
+        return sorted(
+            {
+                dep
+                for dep in (
+                    target_store.get_dependents(handle)
+                    + target_store.get_specializing_children(handle)
+                )
+                if dep not in upstream_patterns
+            }
+        )
 
     print(f"\nUpstream: {len(upstream_patterns)} patterns")
     print(f"Target:   {len(target_handles)} patterns")
@@ -826,6 +1020,17 @@ def update_db(
         outcome["error"] = f"Dependency cycle in upstream: {e}"
         return outcome
 
+    specialization_errors, _projected_order = _specialization_projection_errors(
+        target_store,
+        upstream_patterns,
+    )
+    if specialization_errors:
+        print("\n❌ Pull preflight failed:")
+        for error in specialization_errors:
+            print(f"  {error}")
+        outcome["error"] = "; ".join(specialization_errors)
+        return outcome
+
     if dry_run:
         print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
         if upstream_removed:
@@ -851,7 +1056,17 @@ def update_db(
                     and local_handle
                     and local_handle not in upstream_patterns
                 ):
-                    outcome["superseded_removed"].append((local_handle, preview[local_sid]))
+                    successors = preview[local_sid]
+                    user_dependents = _supersession_user_dependents(local_handle)
+                    if user_dependents:
+                        outcome["superseded_kept_orphan"].append(
+                            (local_handle, successors, user_dependents)
+                        )
+                    else:
+                        outcome["superseded_removed"].append((local_handle, successors))
+            if outcome["superseded_removed"]:
+                removed_now = {handle for handle, _successors in outcome["superseded_removed"]}
+                outcome["upstream_removed"] = sorted(set(outcome["upstream_removed"]) - removed_now)
         outcome["success"] = True
         return outcome
 
@@ -946,7 +1161,12 @@ def update_db(
                     skipped.append(handle)
                     continue
 
-            result = mint_pattern(pattern, target_store, skip_cascade=True)
+            result = mint_pattern(
+                pattern,
+                target_store,
+                skip_cascade=True,
+                validated_extends_batch=True,
+            )
             if result.success:
                 if existed:
                     updated.append(handle)
@@ -1024,11 +1244,7 @@ def update_db(
 
             for nid, old_h, successors in to_remove:
                 # Orphan guard: user-only dependents of this pattern?
-                user_dependents = [
-                    dep
-                    for dep in target_store.get_dependents(old_h)
-                    if dep not in upstream_patterns
-                ]
+                user_dependents = _supersession_user_dependents(old_h)
                 if user_dependents:
                     superseded_kept_orphan.append((old_h, successors, user_dependents))
                     continue
@@ -1815,6 +2031,11 @@ def main():
     apply_cmd.add_argument(
         "--check", "-c", action="store_true", help="Validate only, don't apply changes"
     )
+    apply_cmd.add_argument(
+        "--retarget-extends",
+        action="store_true",
+        help="Retarget `extends` on staged cards to each parent's current Sema ID",
+    )
 
     # Search
     search = subparsers.add_parser("search", help="Search the registry")
@@ -1968,7 +2189,12 @@ def main():
     # exit codes or don't need one.
     ok: bool | None = None
     if args.command == "apply":
-        ok = apply_changes(remove_handles=args.remove, add_files=args.add, check_only=args.check)
+        ok = apply_changes(
+            remove_handles=args.remove,
+            add_files=args.add,
+            check_only=args.check,
+            retarget_extends=args.retarget_extends,
+        )
     elif args.command == "search":
         search_patterns(
             args.query, use_semantic=not args.keyword_only, verbose=args.verbose, as_json=args.json

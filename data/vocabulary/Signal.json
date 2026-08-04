@@ -29,7 +29,7 @@
   "gloss": "Raw information emission",
   "invariants": [
     "Broadcast: Signal is available to any observer in the medium.",
-    "Information: Must distinguish itself from noise."
+    "Distinguishability: the emission is separable from the medium background by an observer. Relevance is the receiver's judgment, not the emitter's."
   ],
   "_meta": {
     "tier": 1,
@@ -37,11 +37,14 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
     ]
   },
-  "sema_id": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
-  "sema_ref": "Signal#2ac0",
-  "sema_stub": "2ac0",
+  "sema_id": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
+  "sema_ref": "Signal#6eaf",
+  "sema_stub": "6eaf",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

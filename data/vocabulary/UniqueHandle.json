@@ -1,36 +1,38 @@
 {
   "handle": "UniqueHandle",
-  "mechanism": "A cryptographic pointer to a singular, rivalrous resource (e.g., a specific file, a hardware port, a unique role). Unlike a copyable variable, a UniqueHandle obeys Linear Logic: it can be Transferred but not Copied. If {{agent}} A sends the Handle to {{agent}} B, {{agent}} A loses access immediately. Attempts to use a transferred Handle result in a capability fault. Utilizes {{state_lock}}.",
-  "gloss": "Transferable ownership of a singular resource",
+  "mechanism": "An authority-bearing reference to one singular rivalrous {{resource}}. An authoritative ownership state records `(resource_id, current_holder, generation)`. A representation may be copied, but the representation alone grants no authority: use or transfer is accepted only when its holder and generation match that state and the requester establishes current-holder control; stale or unverified representations fail closed. Transfer from A at generation g to B conditionally replaces `(A, g)` with `(B, g+1)` at one logical commit point. It either commits completely or leaves `(A, g)` unchanged, and at most one concurrent transfer from g commits. If the result is unobserved, the caller resolves the authoritative state before using or retrying the handle.",
+  "gloss": "Single current authority over a transferable resource reference",
   "failure_modes": [
-    "Orphaned Resource: If the Handle is deleted or lost, the underlying resource remains locked forever (requires a '{{break}} Glass' expiration or Admin override)."
+    "Orphaned authority: The current holder loses the substrate-specific means of proving control, leaving the resource inaccessible until an external recovery policy advances the generation.",
+    "Authority-state unavailability: Currency cannot be established, so access and transfer fail closed.",
+    "Authority-state fork: Different validators accept different holder-generation pairs as current, violating singular authority."
   ],
   "invariants": [
-    "Exclusivity: Access(Resource) requires Proof(Handle)",
-    "Linear Logic: Transfer(A -> B) implies A loses access immediately",
-    "Linearity: Count(Handle) == 1 always",
-    "Non-Duplication: Handle cannot be copied, only moved"
+    "Single current authority: Exactly one `(holder, generation)` pair is current for each bound {{resource}}; copying a representation does not create authority.",
+    "Current-only authority: Use or transfer is accepted only when the presented holder and generation match the authoritative ownership state and current-holder control is established; the representation alone is insufficient.",
+    "Atomic transfer: A transfer conditioned on `(A, g)` either commits `(B, g+1)` completely or leaves `(A, g)` unchanged; at most one transfer from the same generation commits.",
+    "Unknown outcome: A caller that did not observe the transfer result resolves the authoritative state before using or retrying the handle."
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
       "sema:UniqueHandle#mh:SHA-256:11e7542d2b43ec0879ae24f91eeeaaf6380cb0c9ec067056eb2d1e4932c0468e",
-      "sema:UniqueHandle#mh:SHA-256:9a006e6fd1ca395b18fa7f17f95124c432b111f15cba24fcec039142a3ca539b"
+      "sema:UniqueHandle#mh:SHA-256:9a006e6fd1ca395b18fa7f17f95124c432b111f15cba24fcec039142a3ca539b",
+      "sema:UniqueHandle#mh:SHA-256:88da37fb134c04632530db979115adbb3ca558bdc4f60111df03e9282de8cd3a",
+      "sema:UniqueHandle#mh:SHA-256:58f9595fc08f62825f3dc959f10533558f459760a1c63ef2bc72b6da615ff37b"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:UniqueHandle#mh:SHA-256:58f9595fc08f62825f3dc959f10533558f459760a1c63ef2bc72b6da615ff37b",
-  "sema_ref": "UniqueHandle#58f9",
-  "sema_stub": "58f9",
+  "sema_id": "sema:UniqueHandle#mh:SHA-256:185337050ca62b46cf88be534139cf31c2313c660f845daa395507c7faebcb1c",
+  "sema_ref": "UniqueHandle#1853",
+  "sema_stub": "1853",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78"
+      "resource": "sema:Resource#mh:SHA-256:0e5e5e6735fa9ee49f7e623029d977e435625b8ad05b28f83f962683a0ebb19b"
     }
   },
   "sema_layer": "Society",

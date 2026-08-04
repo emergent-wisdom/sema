@@ -2,7 +2,7 @@
   "handle": "Parsimony",
   "mechanism": "A {{judge}} of structural necessity (Occam's Razor): does the minimum-complexity form of the artifact still perform its function? Applies wherever a definition, model, design, or decomposition needs to be tested for excess parts. The essential move is ablation \u2014 remove a component and see if the whole collapses \u2014 which works on theories, codebases, system designs, and cognitive schemas alike. Specific rating semantics (binary pass/fail, traffic-light ranges, ordinal ablation scores) belong on descendants or on the composing protocol; Parsimony itself names only the question and the ablation discipline. The signature Judge({{topology}}) reflects that the question operates over structural shape rather than quantitative score; an ablation is itself a topology operation, removing nodes and seeing whether the remaining shape still performs.",
   "invariants": [
-    "Necessity: Every component must have a causal link to the outcome."
+    "A component is necessary when removing it stops the whole performing its function."
   ],
   "signature": [
     "Judge(Topology)"
@@ -11,21 +11,26 @@
     "ring": 2,
     "tier": 1,
     "supersedes": [
-      "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c"
+      "sema:Parsimony#mh:SHA-256:1dd3e7108871db29b025e6266ad9f1ad39ba1d005a2d25a010be18e57f0f879c",
+      "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351",
-  "sema_ref": "Parsimony#bbc6",
-  "sema_stub": "bbc6",
+  "sema_id": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3",
+  "sema_ref": "Parsimony#6f4d",
+  "sema_stub": "6f4d",
   "gloss": "Complexity justification via Occams Razor",
+  "failure_modes": [
+    "Joint necessity missed: a set individually redundant and jointly required passes component-wise ablation.",
+    "Ablation without a stated function: the test reports on whatever the observer exercised."
+  ],
   "dependencies": {
     "references": {
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
+      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },
   "sema_layer": "Mind",

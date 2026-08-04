@@ -4,7 +4,7 @@
   "gloss": "Default-deny policy for uncertain states",
   "failure_modes": [
     "Availability Hit: {{system}} shuts down during minor outages (False Positive Denial).",
-    "Dependency Deadlock: If a non-critical dependency fails, the whole system locks up."
+    "Dependency Deadlock: a non-critical dependency fails and the system locks up; compounds along a chain of fail-closed dependencies."
   ],
   "invariants": [
     "Default Deny: Ambiguity == Rejection.",
@@ -20,28 +20,35 @@
     {
       "name": "timeout_action",
       "type": "Enum",
-      "range": "{Reject, Retry, Fallback}",
-      "description": "Default: Reject"
+      "range": "{Reject, BoundedRetry}",
+      "description": "Default: Reject. BoundedRetry defers the denial, it does not replace it. A fallback route on error is excluded \u2014 that is bypass-on-error."
+    },
+    {
+      "name": "retry_limit",
+      "type": "PositiveInteger",
+      "range": "[1, 10]",
+      "description": "Attempts before Rejecting when timeout_action is BoundedRetry."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1"
+      "sema:FailClosed#mh:SHA-256:ae79e8e091ca9f68f749936a99d55a386fba49254f9e7e958806b16b860332a1",
+      "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
-  "sema_ref": "FailClosed#eae7",
-  "sema_stub": "eae7",
+  "sema_id": "sema:FailClosed#mh:SHA-256:ac1b0e4a6452ffc852d32a25914ef7907a49428004765f92e68ac7d232530ad0",
+  "sema_ref": "FailClosed#ac1b",
+  "sema_stub": "ac1b",
   "dependencies": {
     "references": {
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
-      "output_guard": "sema:OutputGuard#mh:SHA-256:32b0ffd08f916d61a677af7d82c53feb8a4019baab1bd86622a853aafa91ed2f",
+      "output_guard": "sema:OutputGuard#mh:SHA-256:1396cd3b7d51a56b178382a521d22ae7f478d4681ea7e31d5af1d625857ad315",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

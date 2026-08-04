@@ -1,25 +1,14 @@
 {
   "handle": "ParetoFront",
-  "mechanism": "A decision primitive for explicitly balancing competing {{axes}} (Tradeoff Space). Instead of optimizing a single metric, the agent identifies the frontier curve where improving axis A necessitates degrading axis B. The goal is to move the system state TO the frontier (efficiency) and then slide ALONG the frontier (preference). It uses {{rank}} to order solutions by dominance, discarding those strictly inferior on all axes.",
-  "gloss": "Explicitly balancing competing constraints",
+  "mechanism": "Given an input candidate set and declared axes, use {{compare}} under each axis's no-worse relation. Candidate X dominates Y when X is no worse than Y on every axis and, on at least one axis, Y is not no worse than X. Return every input candidate not dominated by another input candidate. Ordering or selecting among returned candidates is caller policy.",
+  "gloss": "Nondominated candidates across declared axes",
   "invariants": [
-    "Efficiency: {{state}} is optimal if no metric can improve without another degrading",
-    "Tradeoff Rate: Gain(A) * ExchangeRate > Loss(B)"
+    "Dominance: X dominates Y iff X is no worse than Y on every declared axis and there is at least one axis on which Y is not no worse than X.",
+    "Frontier Completeness: Every undominated input candidate is returned, and no dominated input candidate is returned."
   ],
   "preconditions": [
-    "Metrics are conflicting",
-    "Metrics are quantifiable"
-  ],
-  "postconditions": [
-    "Selected solution lies on the Pareto Frontier"
-  ],
-  "parameters": [
-    {
-      "name": "resolution",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Granularity of the curve"
-    }
+    "At least two axes are declared.",
+    "Each axis supplies a reflexive, transitive no-worse relation applicable to every candidate pair."
   ],
   "_meta": {
     "tier": 1,
@@ -29,25 +18,23 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822"
+      "sema:ParetoFront#mh:SHA-256:9091ffbe5c96a8da82e0aba315ad4bc9191b92a69656df4ffe18706a954bf822",
+      "sema:ParetoFront#mh:SHA-256:c1fb20ece1fc1f524f90d03106f76a4fcbb7107640a6258153bb273177d654be",
+      "sema:ParetoFront#mh:SHA-256:10a7d315172e2163bed132c3943b3008d5a566e5b4b4941af614838dcbecffe0"
     ],
     "path": [
-      "Mind",
-      "Strategy"
+      "Infrastructure",
+      "Primitives"
     ]
   },
-  "sema_id": "sema:ParetoFront#mh:SHA-256:10a7d315172e2163bed132c3943b3008d5a566e5b4b4941af614838dcbecffe0",
-  "sema_ref": "ParetoFront#10a7",
-  "sema_stub": "10a7",
+  "sema_id": "sema:ParetoFront#mh:SHA-256:e6f5d6269118c342b52699a99154c79dc1e7b39e04c12bafc2f605805c0dfd02",
+  "sema_ref": "ParetoFront#e6f5",
+  "sema_stub": "e6f5",
   "dependencies": {
-    "accepts": {
-      "axes": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
-    },
-    "references": {
-      "rank": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104",
-      "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
+    "composes_with": {
+      "compare": "sema:Compare#mh:SHA-256:15a079e73bd3c280efbe2b35ab4b082b2302ab65e5dd5eb1c4fba1a5f554cebe"
     }
   },
-  "sema_layer": "Mind",
-  "sema_category": "Strategy"
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
 }

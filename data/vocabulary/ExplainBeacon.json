@@ -6,28 +6,32 @@
     "Beacon Drift: The explanation diverges from the actual code execution (the {{agent}} says I am sleeping while deleting files)."
   ],
   "invariants": [
-    "Beacon cannot be suppressed."
+    "Emits a human-readable narrative alongside the machine-readable log.",
+    "Emitted before an irreversible action, not after.",
+    "The narrative names the action actually taken.",
+    "Cannot be suppressed."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530"
+      "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
+      "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887",
-  "sema_ref": "ExplainBeacon#4676",
-  "sema_stub": "4676",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:f19d57e7ac647af13fd04aef42323fefc60544a4191e0dacfadd5b5c6bf2d1ed",
+  "sema_ref": "ExplainBeacon#f19d",
+  "sema_stub": "f19d",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "greet": "sema:Greet#mh:SHA-256:58542bc100077ab85299c99424fa0ca7ea8559890678461a0d7f7aaba927c74f",
-      "heartbeat": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
-      "stream": "sema:Stream#mh:SHA-256:6b47aafa55e0339455fa2d82d2077ffbf2c2dea744bd7034a99a3b77cfacfaec"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
+      "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
+      "stream": "sema:Stream#mh:SHA-256:ffa6e636cc2ca9f13c23f5862e60aceb0885a35686fb60f12da157316b159b53"
     }
   },
   "sema_layer": "Infrastructure",

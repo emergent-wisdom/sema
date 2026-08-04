@@ -3,12 +3,17 @@
   "mechanism": "A purely normative {{judge}} module that evaluates static world-states against a weighted {{value}} function. The caller supplies the {{weights}} that shape the value function, so preference structure is visible to the evaluator rather than hidden inside it. To mitigate Goodhart's Law, this pattern should be deployed as an ENSEMBLE (Jury), where multiple judges with slightly perturbed {{value}} constitutions reach {{quorum}} on the {{outcome}}. It aggregates {{value}}s via {{perspective_ensemble}}, optionally escalating to {{human_approve}} for ambiguous edge cases.",
   "gloss": "Value-based state evaluation",
   "failure_modes": [
-    "Goodhart's Law (optimizing for the metric, not the intent).",
-    "Collusion between Proposer and {{judge}}."
+    "Goodhart's Law: the {{weights}} are optimised for rather than the intent behind them.",
+    "Collusion between proposer and {{judge}}.",
+    "Correlated ensemble: the perturbations are too small, so the {{quorum}} agrees for the same reason a single judge would.",
+    "Unescalated ambiguity: an edge case the ensemble splits on proceeds without {{human_approve}}."
   ],
   "invariants": [
-    "Explicit Weights: Trade-offs between values must be logged",
-    "{{outcome}} Focus: Evaluation is f({{state}}), not f(Action)"
+    "Evaluates the {{state}}, not the action that produced it.",
+    "The caller supplies the {{weights}}; the value function holds no hidden preference.",
+    "Logs the trade-offs the {{weights}} imply.",
+    "Deployed as an ensemble whose members' {{value}} constitutions differ.",
+    "The ensemble reaches `consensus_threshold` on the {{outcome}} before it stands."
   ],
   "preconditions": [
     "{{state}} S_prime is descriptively complete"
@@ -28,31 +33,33 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a"
+      "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
+      "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
+      "sema:NormativeJudge#mh:SHA-256:4b394d0d33f4d6f7e8fa2566ffa4d8cc17090b55c49c69fe7dbc66dc82b2057c"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:4b394d0d33f4d6f7e8fa2566ffa4d8cc17090b55c49c69fe7dbc66dc82b2057c",
-  "sema_ref": "NormativeJudge#4b39",
-  "sema_stub": "4b39",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:598646fa29fe22ba89f08763b692861d081c6e76f3531d63a8b644623e4f722e",
+  "sema_ref": "NormativeJudge#5986",
+  "sema_stub": "5986",
   "signature": [
     "Judge(Value)"
   ],
   "dependencies": {
     "accepts": {
-      "weights": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
+      "weights": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993"
     },
     "composes_with": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:1ac4207e5ceed18ed9b5674c8da3b3cd06c85562b567d3a33b17e877b74e4903"
     },
     "references": {
-      "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:5d0d6a006d1f45cbb1708798d609a4d08bca0a9086218c434e83877f2c2993f6",
+      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13",
+      "outcome": "sema:Outcome#mh:SHA-256:ac55da2e51aaab185174d9e8edba137536b1ff90a2f6a1d6e1ab634bf7429ef0",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }

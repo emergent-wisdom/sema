@@ -10,14 +10,15 @@
     "Conservation: Output set is a subset of Input set.",
     "Monotonicity: For all i, Score(Output[i]) >= Score(Output[i+1])."
   ],
-  "sema_id": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104",
-  "sema_ref": "Rank#44ff",
-  "sema_stub": "44ff",
+  "sema_id": "sema:Rank#mh:SHA-256:67c6fb568c5fdcfbd0de64b8a5413e943378d421dee9d5614c827e3c539bde3f",
+  "sema_ref": "Rank#67c6",
+  "sema_stub": "67c6",
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f"
+      "sema:Rank#mh:SHA-256:cb98b1357a2b6e14ff1e76bca44014fabffb0936b453ba88c3ad4561a63d3c2f",
+      "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104"
     ],
     "path": [
       "Infrastructure",
@@ -26,10 +27,10 @@
   },
   "dependencies": {
     "accepts": {
-      "scoring_function": "sema:ScoringFunction#mh:SHA-256:932eb89612c9b1e99ca1d6d66adf15bd8544505bc46059da946cb71aa52e23ec"
+      "scoring_function": "sema:ScoringFunction#mh:SHA-256:c6042940db8c3238b948c7851aa315defbe31e1639dba718fcce0e38523e8d50"
     },
     "composes_with": {
-      "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
+      "select": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3"
     }
   },
   "sema_layer": "Infrastructure",

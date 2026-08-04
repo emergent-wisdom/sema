@@ -39,24 +39,25 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:EbbFlowSync#mh:SHA-256:b4a07e620d27785381b12c3853380f0cef04bc9832acc1bd0b73f72a97b21de6"
+      "sema:EbbFlowSync#mh:SHA-256:b4a07e620d27785381b12c3853380f0cef04bc9832acc1bd0b73f72a97b21de6",
+      "sema:EbbFlowSync#mh:SHA-256:7c073d208eeb2c9cf8f7b69f56e0adc042c1400e6ef9f75e71cdc3dea67f9687"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:EbbFlowSync#mh:SHA-256:7c073d208eeb2c9cf8f7b69f56e0adc042c1400e6ef9f75e71cdc3dea67f9687",
-  "sema_ref": "EbbFlowSync#7c07",
-  "sema_stub": "7c07",
+  "sema_id": "sema:EbbFlowSync#mh:SHA-256:c68ee6aee66d266b40bf18152658a65d26e210aac458011629d39b131f3461f7",
+  "sema_ref": "EbbFlowSync#c68e",
+  "sema_stub": "c68e",
   "dependencies": {
     "references": {
-      "global": "sema:Global#mh:SHA-256:75a2c7ca14f8dda81f7ee6a935f59e9a921d1467a038545dd78a3a04ade95959",
-      "hysteresis": "sema:Hysteresis#mh:SHA-256:f1dfdb23e9c63915250dc6ff0b8447d728649aa00a69a0f57b6ce9d0c6f534a7",
+      "global": "sema:Global#mh:SHA-256:330166f5c16b13500d92d26d0e58ad24657bebccbe295ff8108f363d3539034d",
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:c2d174f3fa513ed81bcd5b731aa651a3e4662a671748e514d758582657a5bf9a",
       "lock": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "transition": "sema:Transition#mh:SHA-256:a7b4277599c68a617b43f1d0c52d807837717913731aec1463caccdcd568cfe3"
+      "transition": "sema:Transition#mh:SHA-256:9b62398c6edcd43ad2af8ec1df8186ece2b4f697772b3872227f4d9d8390e328"
     }
   },
   "sema_layer": "Society",

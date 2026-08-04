@@ -1,13 +1,14 @@
 {
   "handle": "LayeredCheck",
-  "mechanism": "A {{check}} strategy that evaluates constraints in a strict {{hierarchy}} of abstraction (e.g., existence -> {{validate}} (schema) -> {{understand}} (semantics)). It uses a {{sequence}} of {{gate}}s where lower-level failures halt execution immediately, preventing resource waste on higher-level checks for fundamentally broken inputs.",
+  "mechanism": "A {{check}} strategy that evaluates constraints in a declared {{hierarchy}}, cheapest first (e.g., existence -> {{validate}} (schema) -> {{understand}} (semantics), which is also increasing abstraction in the common case). It uses a {{sequence}} of {{gate}}s where lower-level failures halt execution immediately, preventing resource waste on higher-level checks for fundamentally broken inputs.",
   "gloss": "Hierarchical verification strategy",
   "signature": [
     "Check(Hierarchy)"
   ],
   "invariants": [
-    "Fail-Fast: If Layer(N) fails, Layer(N+1) is NOT executed.",
-    "Hierarchy Obedience: Checks are strictly ordered by abstraction level."
+    "A lower layer's failure stops the {{sequence}}; the next layer does not run.",
+    "Layers run in their declared order, cheapest first.",
+    "Each layer declares whether a finding is a failure or a warning."
   ],
   "_meta": {
     "ring": 2,
@@ -16,26 +17,31 @@
       "PURECheck"
     ],
     "supersedes": [
-      "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0"
+      "sema:LayeredCheck#mh:SHA-256:3fad5e7a1a45108d71e962e4186b7ad170660f00d4cfca98d272238c3ad5d3d0",
+      "sema:LayeredCheck#mh:SHA-256:6a86ad58c1141b1555efe8596df42dfaae516abed5c05a41092a3db7e5602aaa"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_ref": "LayeredCheck#6a86",
-  "sema_id": "sema:LayeredCheck#mh:SHA-256:6a86ad58c1141b1555efe8596df42dfaae516abed5c05a41092a3db7e5602aaa",
-  "sema_stub": "6a86",
+  "sema_ref": "LayeredCheck#3204",
+  "sema_id": "sema:LayeredCheck#mh:SHA-256:32044e5d4fc4f4220e4d91e116d232010f83e13582413309e2b4700a0e7d21f7",
+  "sema_stub": "3204",
+  "failure_modes": [
+    "Misordered layers: an expensive check sits below a cheap one, so the halt saves nothing.",
+    "Warning inflation: findings are classed as warnings to keep the {{sequence}} running, which defeats the halt."
+  ],
   "dependencies": {
     "composes_with": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a"
     },
     "references": {
-      "hierarchy": "sema:Hierarchy#mh:SHA-256:80394d9e6f07112954f1c2d203eaf6095df4d4569a890a9c6ca8b9c9b534ba3d",
-      "understand": "sema:Understand#mh:SHA-256:4cabfb83049b7770e707c9b1c57e902818e74d8c6b98eed2e8fd40a2b2aca55a",
-      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85",
+      "understand": "sema:Understand#mh:SHA-256:f1fc5d9393f995d27a648ad6a8e4bcd81c7d117e5d64c535da706feac7e87334",
+      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     }
   },
   "sema_layer": "Mind",

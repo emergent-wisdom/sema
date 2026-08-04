@@ -27,6 +27,10 @@ from sema.taxonomy_graph.graph_store import GraphStore, NodeType  # noqa: E402
 
 
 def get_db_path():
+    env_db = os.environ.get("SEMA_DB_PATH")
+    if env_db:
+        return os.path.abspath(os.path.expanduser(env_db))
+
     cfg = get_config()
     profile = cfg.get_active_profile()
     # Default to data/taxonomy.db relative to project_root

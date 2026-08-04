@@ -13,24 +13,25 @@
     "ring": 2,
     "tier": 2,
     "supersedes": [
-      "sema:InternalConsistency#mh:SHA-256:862f24b8dcbc229acfc3d2ced93ceec3b6abf982a0de4cd63b4960c077c1c7e7"
+      "sema:InternalConsistency#mh:SHA-256:862f24b8dcbc229acfc3d2ced93ceec3b6abf982a0de4cd63b4960c077c1c7e7",
+      "sema:InternalConsistency#mh:SHA-256:5e8f63a779b9918f3d1c75a4ea5b8988b025218f0f67aed0b7d6198deadf57d9"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "InternalConsistency#5e8f",
-  "sema_id": "sema:InternalConsistency#mh:SHA-256:5e8f63a779b9918f3d1c75a4ea5b8988b025218f0f67aed0b7d6198deadf57d9",
-  "sema_stub": "5e8f",
+  "sema_ref": "InternalConsistency#6f33",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:6f33a1418829c1f1fe761bd533eaa78daeca78c25bdbef94d03db04fe5b10ef7",
+  "sema_stub": "6f33",
   "dependencies": {
     "composes_with": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     }
   },
   "sema_layer": "Society",

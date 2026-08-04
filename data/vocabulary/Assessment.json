@@ -4,17 +4,20 @@
   "gloss": "Structured qualitative feedback",
   "invariants": [
     "Actionability: Must contain at least one specific recommendation.",
-    "Reference: Must cite specific parts of the target artifact."
+    "Reference: every weakness and recommendation identifies what it applies to \u2014 a specific part of the target artifact or its declared whole."
   ],
-  "sema_id": "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d",
-  "sema_ref": "Assessment#39df",
-  "sema_stub": "39df",
+  "sema_id": "sema:Assessment#mh:SHA-256:9b49ac10f27af91620b7f6d9feee2c39d4977a89c5da5b93f03c4e9a4a0aa664",
+  "sema_ref": "Assessment#9b49",
+  "sema_stub": "9b49",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d"
     ]
   },
   "data_schema": {

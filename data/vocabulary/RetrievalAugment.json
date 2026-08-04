@@ -1,15 +1,13 @@
 {
   "handle": "RetrievalAugment",
-  "mechanism": "Before generating a response, the {{agent}} queries an external knowledge store via {{latent_attachment}}-backed retrieval (vector database, search index, knowledge graph) to surface relevant {{context}}. The retrieval obeys {{context_first}}: no generation fires before the external lookup completes. Retrieved documents are injected into the {{prompt}}, grounding the response in external facts rather than relying solely on parametric memory. The canonical RAG (Retrieval-Augmented Generation) pattern. It injects external {{context}} into the {{chain_of_thought}}, grounding the reasoning process in retrieved facts.",
+  "mechanism": "Before generating a response, the {{agent}} queries an external knowledge store to retrieve material relevant to the current {{context}}. The retrieval follows {{context_first}}: the lookup completes before generation begins, and the retrieved material is supplied as context for the response. The store, retrieval method, selection policy, and response process remain caller- or descendant-defined.",
   "gloss": "Ground responses in retrieved external knowledge",
   "failure_modes": [
-    "Retrieval Poisoning: Malicious or incorrect documents in the index contaminate responses.",
-    "{{context}} Stuffing: Too many retrieved chunks exceed {{context}} window, causing truncation of critical information."
+    "Retrieval Poisoning: Malicious or incorrect material returned by the store contaminates responses.",
+    "{{context}} Stuffing: Retrieved material exceeds the available {{context}} capacity, causing critical information to be omitted or truncated."
   ],
   "invariants": [
-    "Citation: Retrieved sources should be traceable in the output",
-    "Query Before Generate: Retrieval must precede response generation",
-    "Relevance Threshold: Only documents above similarity threshold are included"
+    "Query Before Generate: Retrieval must precede response generation"
   ],
   "_meta": {
     "tier": 2,
@@ -18,24 +16,23 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241"
+      "sema:RetrievalAugment#mh:SHA-256:ca586b1cfff0f1d6db36de4ef419b29d21e55e8382db24b435fe9bb00ad32241",
+      "sema:RetrievalAugment#mh:SHA-256:7ca744ce28611156f415add4da95e3dc93006d92061a05139e17b70d3882e848",
+      "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63",
-  "sema_ref": "RetrievalAugment#046a",
-  "sema_stub": "046a",
+  "sema_id": "sema:RetrievalAugment#mh:SHA-256:95fc6c4071bdede8f9e366e3d268cba27459256c62d4510359c916c80018d85e",
+  "sema_ref": "RetrievalAugment#95fc",
+  "sema_stub": "95fc",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "context_first": "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
-      "prompt": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97"
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "context_first": "sema:ContextFirst#mh:SHA-256:9b48f9c973c2cac1a00e7f2d23a97f43e6df3a35caf90294856114633a7a596e"
     }
   },
   "sema_layer": "Mind",

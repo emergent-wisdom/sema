@@ -1,19 +1,17 @@
 {
   "handle": "Crystallize",
-  "mechanism": "Formalize implicit resonance. {{agent}} A proposes crystallization based on history history_t. {{agent}} B validates perception. On consensus, implicit behaviors are codified into explicit obligations. It transforms soft {{resonate}} signals into hard {{constitution}} rules, contingent on low entropy conditions maintained by {{dampen}} and {{entropy_pump}}, preventing premature {{decay}}.",
+  "mechanism": "Formalize implicit resonance. {{agent}} A proposes crystallization based on history_t. {{agent}} B validates perception. On consensus, implicit behaviors are codified into explicit obligations. It transforms soft {{resonate}} signals into hard {{constitution}} rules, contingent on low entropy conditions maintained by {{dampen}} and {{entropy_pump}}, preventing premature {{decay}}.",
   "gloss": "Phase transition from implicit resonance to explicit contract",
   "failure_modes": [
-    "Illusory Resonance: Agents misinterpreted random noise as synchronization.",
-    "Premature Crystallization: Attempting to lock state while Entropy > Threshold.",
-    "Illusory resonance (parties perceived differently, crystallization exposes this).",
-    "Perception mismatch on alignment dimensions.",
-    "Gaming (agent fakes resonance metrics).",
-    "Premature crystallization (not enough resonance history).",
-    "Trust inflation (claiming more trust than resonance justifies)."
+    "Illusory resonance: random noise is read as synchronization, or the parties perceived the alignment differently and crystallization is what exposes it.",
+    "Premature crystallization: the lock is attempted above `entropy_threshold`, or on less history than `resonance_period`.",
+    "Gaming: an {{agent}} fakes resonance metrics to force crystallization.",
+    "Trust inflation: the codified obligations claim more than the observed resonance justifies."
   ],
   "invariants": [
-    "Atomic {{transition}}: {{state}} moves from Fluid -> Solid in one transaction.",
-    "Entropy Limit: Crystallization forbidden if System_Entropy > entropy_threshold."
+    "The {{state}} moves from Fluid to Solid in one {{transition}}; there is no partial crystal.",
+    "Forbidden while system entropy exceeds `entropy_threshold`.",
+    "Requires at least `resonance_period` of observed history."
   ],
   "preconditions": [
     "Active implicit resonance channel exists",
@@ -21,7 +19,7 @@
   ],
   "postconditions": [
     "Explicit coordination channel established",
-    "{{state}} marked immutable/contractual"
+    "{{state}} marked contractual"
   ],
   "parameters": [
     {
@@ -41,26 +39,27 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede"
+      "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede",
+      "sema:Crystallize#mh:SHA-256:d187e3c8bb361f0535c474617ef67e5c38f09b5a6e5613b9e327146bb831da98"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Crystallize#mh:SHA-256:d187e3c8bb361f0535c474617ef67e5c38f09b5a6e5613b9e327146bb831da98",
-  "sema_ref": "Crystallize#d187",
-  "sema_stub": "d187",
+  "sema_id": "sema:Crystallize#mh:SHA-256:ec1cf3687c7f901b33ddb218a70bebe3ebd7a57de0eeb3d516a9938642730d01",
+  "sema_ref": "Crystallize#ec1c",
+  "sema_stub": "ec1c",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "constitution": "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b",
-      "dampen": "sema:Dampen#mh:SHA-256:5edd829087aefc086843183dd2361355777d5c2237456e2de72f315e45ffc3a4",
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552",
-      "entropy_pump": "sema:EntropyPump#mh:SHA-256:31cfc8a45ee0ea7751661386771342dc841503e4f1af65400f1f6bb95f9cd9b7",
-      "resonate": "sema:Resonate#mh:SHA-256:70c7680619d6b0158d3bddfaf9fb17e4e4bfb135995d9425fd7b1e6eb410c3d3",
+      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "constitution": "sema:Constitution#mh:SHA-256:bc929fc4bb51ad66d6ceb04ed4ef23ae56e6abd86515f7d171b117c2f41a6aaf",
+      "dampen": "sema:Dampen#mh:SHA-256:c07e9b7b22cbda8523effcfd455f554578e47081f0d07bf9001e45f2a871b831",
+      "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
+      "entropy_pump": "sema:EntropyPump#mh:SHA-256:a1369712d823417e257e4306f53aa63a5dcd83b34a8f4093823578a2196eec56",
+      "resonate": "sema:Resonate#mh:SHA-256:786d8bf55b013d0405e49f2cab6a084e45fdc4507f7394fd6cff99354bc87aad",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "transition": "sema:Transition#mh:SHA-256:a7b4277599c68a617b43f1d0c52d807837717913731aec1463caccdcd568cfe3"
+      "transition": "sema:Transition#mh:SHA-256:9b62398c6edcd43ad2af8ec1df8186ece2b4f697772b3872227f4d9d8390e328"
     }
   },
   "sema_layer": "Mind",

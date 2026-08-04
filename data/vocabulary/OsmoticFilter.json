@@ -29,23 +29,24 @@
     "ring": 2,
     "supersedes": [
       "sema:OsmoticFilter#mh:SHA-256:5cf61dc7a3adf65d0ff6dab7a022402fd79095fe4e1cb420c0fbad1401b84f52",
-      "sema:OsmoticFilter#mh:SHA-256:36b5f762c178f196095cc38a5183326ac9183a3fe351b4b3e9dfeb44a2fac587"
+      "sema:OsmoticFilter#mh:SHA-256:36b5f762c178f196095cc38a5183326ac9183a3fe351b4b3e9dfeb44a2fac587",
+      "sema:OsmoticFilter#mh:SHA-256:d437b78f521165fd6c5dd408a22170e7ca0b75b43842fb70111f321c92be11ed"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:OsmoticFilter#mh:SHA-256:d437b78f521165fd6c5dd408a22170e7ca0b75b43842fb70111f321c92be11ed",
-  "sema_ref": "OsmoticFilter#d437",
-  "sema_stub": "d437",
+  "sema_id": "sema:OsmoticFilter#mh:SHA-256:f37de2d27a053113f433bb0db36f7d4f4ee92c1486e8cc79d0d0efd1a7d1514b",
+  "sema_ref": "OsmoticFilter#f37d",
+  "sema_stub": "f37d",
   "dependencies": {
     "accepts": {
-      "accepted_solvents": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
+      "accepted_solvents": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb"
     },
     "references": {
-      "canary": "sema:Canary#mh:SHA-256:bda6d48ae1b1895bb1ce0fe6012c6fed5baaff392755f2ed802b400481522b5f",
-      "hysteresis": "sema:Hysteresis#mh:SHA-256:f1dfdb23e9c63915250dc6ff0b8447d728649aa00a69a0f57b6ce9d0c6f534a7"
+      "canary": "sema:Canary#mh:SHA-256:d7fc49dec224a25b326fefaa0e7f0d3ac70c7b5ae0bfb5af6763d4280f576dbb",
+      "hysteresis": "sema:Hysteresis#mh:SHA-256:c2d174f3fa513ed81bcd5b731aa651a3e4662a671748e514d758582657a5bf9a"
     }
   },
   "sema_layer": "Society",

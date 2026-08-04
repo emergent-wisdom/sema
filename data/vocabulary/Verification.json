@@ -1,6 +1,6 @@
 {
   "handle": "Verification",
-  "mechanism": "The cognitive process of confirming that a claim or {{artifact}} adheres to its {{spec}} or reality. Unlike open-ended inquiry, Verification yields a binary Truth value regarding an existing assertion via a {{check}}.",
+  "mechanism": "The cognitive process of confirming that a claim or {{artifact}} adheres to its {{spec}} or to reality, regarding an assertion that already exists. Runs via a {{check}}, which may return Unknown. Distinct from {{validate}}, which is syntactic conformance to a schema; Verification is semantic and may reference reality rather than a document.",
   "gloss": "Confirming alignment with truth or spec",
   "failure_modes": [
     "False positive: artifact accepted despite not meeting spec.",
@@ -11,21 +11,28 @@
     "tier": 1,
     "supersedes": [
       "sema:Verification#mh:SHA-256:eb2838e42803a176654d6c11812568ed34b73f9e6d4a49d3e86e571354ec437c",
-      "sema:Verification#mh:SHA-256:9c1ee918c6b8b8d7b787f5ef7ae908aa2ca37b1f9b5dace80fcf261a9c961001"
+      "sema:Verification#mh:SHA-256:9c1ee918c6b8b8d7b787f5ef7ae908aa2ca37b1f9b5dace80fcf261a9c961001",
+      "sema:Verification#mh:SHA-256:99a57c2cef1d442480417b63b008e656f2b67f586886666234a41bc9251a4956"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "Verification#99a5",
-  "sema_id": "sema:Verification#mh:SHA-256:99a57c2cef1d442480417b63b008e656f2b67f586886666234a41bc9251a4956",
-  "sema_stub": "99a5",
+  "sema_ref": "Verification#81fe",
+  "sema_id": "sema:Verification#mh:SHA-256:81fe83ebcbd898595f7969762d70b562ad6bcab08141fc1e88d65f21376600dd",
+  "sema_stub": "81fe",
+  "invariants": [
+    "A verification states what it was checked against \u2014 which {{spec}}, or which observation.",
+    "Where the underlying {{check}} yields Unknown, the verification reports Unknown.",
+    "The assertion under verification exists before the verification runs."
+  ],
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "spec": "sema:Spec#mh:SHA-256:47f45e3174d8a28edf9c685f6ee8356386cb30cf24d3ba82ddb0738c0c9391cb"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "spec": "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89",
+      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
     }
   },
   "sema_layer": "Mind",

@@ -6,20 +6,29 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204"
+      "sema:Dampen#mh:SHA-256:ff89ddbb26a7021d281d787f24c4fc91f28b438591e0133a0439675f7eab4204",
+      "sema:Dampen#mh:SHA-256:5edd829087aefc086843183dd2361355777d5c2237456e2de72f315e45ffc3a4"
     ],
     "path": [
       "Physics",
       "Primitives"
     ]
   },
-  "sema_ref": "Dampen#5edd",
-  "sema_id": "sema:Dampen#mh:SHA-256:5edd829087aefc086843183dd2361355777d5c2237456e2de72f315e45ffc3a4",
-  "sema_stub": "5edd",
+  "sema_ref": "Dampen#c07e",
+  "sema_id": "sema:Dampen#mh:SHA-256:c07e9b7b22cbda8523effcfd455f554578e47081f0d07bf9001e45f2a871b831",
+  "sema_stub": "c07e",
+  "invariants": [
+    "Attenuation does not decrease as the resistance or {{noise}} that triggered it increases.",
+    "A Dampen never increases the {{signal}} it is applied to."
+  ],
+  "failure_modes": [
+    "Signal lost with the noise: the trigger is {{noise}} and the response is on magnitude, so an undiscriminating Dampen attenuates the {{value}} too.",
+    "Damping the correction: applied to the control signal rather than the disturbance, it stabilises at the wrong value."
+  ],
   "dependencies": {
     "references": {
-      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
+      "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

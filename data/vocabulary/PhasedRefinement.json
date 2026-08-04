@@ -10,7 +10,7 @@
     "Monotonic Quality: The artifact's quality score should not decrease after a pass."
   ],
   "preconditions": [
-    "Artifact exists and is mutable"
+    "A current {{artifact}} version exists"
   ],
   "postconditions": [
     "Artifact satisfies the acceptance criteria of the final phase"
@@ -19,27 +19,30 @@
     "ring": 2,
     "tier": 2,
     "supersedes": [
-      "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab"
+      "sema:PhasedRefinement#mh:SHA-256:4a907b2f7eef78e6ec51ce04c266cade4b5cbaf17c75085c5f7809a64b99b8ab",
+      "sema:PhasedRefinement#mh:SHA-256:e4d0bb624a02ea5535fc945ed9e50e46460a9aaef89b7f92106451f1767b1cf4",
+      "sema:PhasedRefinement#mh:SHA-256:56f079ec75061b35f56d543d1ab12c7c4822b1e0f5816cf342a796104756642c",
+      "sema:PhasedRefinement#mh:SHA-256:537d912308d8a01e95f50f5434bed908f353d05268f4f214ae60ac0d100d37b3"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "PhasedRefinement#537d",
-  "sema_id": "sema:PhasedRefinement#mh:SHA-256:537d912308d8a01e95f50f5434bed908f353d05268f4f214ae60ac0d100d37b3",
-  "sema_stub": "537d",
+  "sema_ref": "PhasedRefinement#15e3",
+  "sema_id": "sema:PhasedRefinement#mh:SHA-256:15e32d98507c6af62fd1a76e42163affa5a0e45cf54f2292f234bb40560ff9a8",
+  "sema_stub": "15e3",
   "dependencies": {
     "composes_with": {
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "refine": "sema:Refine#mh:SHA-256:29562908643e0cfc62b4f9b75a83c76bd40e2afd818c40edf669f9de15297bc0",
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+      "refine": "sema:Refine#mh:SHA-256:7d98a6ca93e100943d190a77d7ec75916532843899c293c3e269e0b1c02c5808",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a"
     },
     "references": {
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:dec7fd021c6ea415d7c2faea038305f9455908626f07349582e24a8c6a6d51b8",
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "reason": "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed",
-      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:63bb74ec91e4203ff5337192785a5c1b0cc27d3be6b39be59a8043a1f97488ff"
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:a65e795b90ed206a92837c2b7fda0cd7c544754185fd85240fc8eb1193ceb425",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
+      "structural_coaching": "sema:StructuralCoaching#mh:SHA-256:4ff96ca1719333260b90e8fe2c451e1e5e707568ae6c1cf6b8f6f10fef2fce67"
     }
   },
   "sema_layer": "Society",

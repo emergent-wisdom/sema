@@ -1,6 +1,6 @@
 {
   "handle": "Mutex",
-  "mechanism": "Exclusive access token. Lifecycle: ACQUIRE {{task}} -> GRANT/QUEUE -> HOLD -> RELEASE/YIELD. Token represents a unique handle ({{resource}}). Sequence increments on transfer. Priority queue prevents starvation. Fencing tokens handle revocation. It manages exclusive access by enforcing a strict queue via delegation or throttling, often isolating the critical section.",
+  "mechanism": "Exclusive access token. Lifecycle: an {{actor}} requests ACQUIRE -> GRANT/QUEUE -> HOLD -> RELEASE/YIELD. Token represents a unique handle ({{resource}}). Sequence increments on transfer. Priority queue prevents starvation. Fencing tokens handle revocation. It manages exclusive access by enforcing a strict queue via delegation or throttling, often isolating the critical section.",
   "gloss": "Physical possession token",
   "failure_modes": [
     "Totem loss (requires regeneration protocol).",
@@ -29,27 +29,29 @@
     "ring": 0,
     "caution": "Exclusive access \u2014 starvation enables denial of service.",
     "supersedes": [
-      "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7"
+      "sema:Mutex#mh:SHA-256:0586e1f0cdc4324c2c846715464a128e9d07dd27312d56828739153ec826a8c7",
+      "sema:Mutex#mh:SHA-256:58bad5fd876ab54e26c1bb6882ca10aadc55681be7b443a0fb89239b184a6866",
+      "sema:Mutex#mh:SHA-256:8dd85c0416d43c4ab968b319b446b7c5d4ff388f01e672d2557658009540772c"
     ],
     "path": [
-      "Physics",
-      "Primitives"
+      "Society",
+      "Coordination"
     ]
   },
-  "derived_from": "sema:Lock#mh:SHA-256:051cd882b7775ef88bb6dde8864de2749543af6813ec01703e8bc3bccd775de4",
-  "sema_id": "sema:Mutex#mh:SHA-256:58bad5fd876ab54e26c1bb6882ca10aadc55681be7b443a0fb89239b184a6866",
-  "sema_ref": "Mutex#58ba",
-  "sema_stub": "58ba",
+  "sema_id": "sema:Mutex#mh:SHA-256:d9da0ec55a6d14140ae31a4e65652489310350cc52caca6a61258e42abc6b204",
+  "sema_ref": "Mutex#d9da",
+  "sema_stub": "d9da",
+  "extends": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8"
     },
     "references": {
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
       "lock": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
-      "resource": "sema:Resource#mh:SHA-256:f18a2d66448ccb0cc712adcc06c5344a6f3c38ba927fd5d642d5e50dbfdca898"
+      "resource": "sema:Resource#mh:SHA-256:0e5e5e6735fa9ee49f7e623029d977e435625b8ad05b28f83f962683a0ebb19b"
     }
   },
-  "sema_layer": "Physics",
-  "sema_category": "Primitives"
+  "sema_layer": "Society",
+  "sema_category": "Coordination"
 }

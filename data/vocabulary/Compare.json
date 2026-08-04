@@ -3,9 +3,10 @@
   "mechanism": "Evaluate relation between two values: Equal, Less, Greater, Incomparable.",
   "gloss": "Relational check",
   "invariants": [
-    "Reflexivity: A == A is always True.",
-    "Symmetry: If A == B, then B == A.",
-    "Transitivity: If A == B and B == C, then A == C."
+    "Single outcome: Compare(A, B) returns exactly one of Equal, Less, Greater, or Incomparable.",
+    "Reflexive: A equals A.",
+    "Operand reversal: Compare(B, A) preserves Equal and Incomparable, and swaps Less with Greater.",
+    "Exact equality is transitive; a tolerance-based Equal does not carry this guarantee."
   ],
   "_meta": {
     "tier": 1,
@@ -13,11 +14,18 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Compare#mh:SHA-256:ebab280da9048edf2cc508cf0e554b153e3afd516056b4c2ae51ca85ec6ad2e1"
     ]
   },
-  "sema_id": "sema:Compare#mh:SHA-256:ebab280da9048edf2cc508cf0e554b153e3afd516056b4c2ae51ca85ec6ad2e1",
-  "sema_ref": "Compare#ebab",
-  "sema_stub": "ebab",
+  "failure_modes": [
+    "Tolerance chaining: under near-equality A\u2248B and B\u2248C without A\u2248C, so grouping by equality becomes order-dependent.",
+    "Undeclared coercion: values are converted by a rule the comparator did not declare, producing Equal, Less, or Greater where its declared relation would return Incomparable."
+  ],
+  "sema_id": "sema:Compare#mh:SHA-256:15a079e73bd3c280efbe2b35ab4b082b2302ab65e5dd5eb1c4fba1a5f554cebe",
+  "sema_ref": "Compare#15a0",
+  "sema_stub": "15a0",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

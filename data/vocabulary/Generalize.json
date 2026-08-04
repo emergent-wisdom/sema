@@ -3,11 +3,13 @@
   "mechanism": "Pattern Extraction: Given multiple instances, identify shared structure. Replace specific values with variables. {{state}} the invariant that holds across all instances. Test: does pattern predict behavior of new instances? Refine until predictive. The canonical form of {{induction}} in sema's reasoning taxonomy \u2014 probable conclusions from specific observations. It employs {{analogy_bridge}} to map specific instances to abstract schemata, validating the invariant across the set.",
   "gloss": "Inductive pattern extraction",
   "failure_modes": [
-    "Overfitting: extracting a pattern that includes noise/coincidence."
+    "Overfitting: the extracted pattern includes noise or coincidence from the instances it was drawn from.",
+    "Over-generalisation: the rule covers the instances and also cases it should exclude."
   ],
   "invariants": [
-    "Abstract rule covers all specific examples",
-    "Information loss minimized"
+    "The abstract rule covers every instance it was drawn from.",
+    "Drawn from at least `min_instances` instances.",
+    "Tested against instances not used to form it."
   ],
   "preconditions": [
     "Set of specific instances"
@@ -22,20 +24,29 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941"
+      "sema:Generalize#mh:SHA-256:17c94171f5f8f82695fc6dfb89eac6aad8adedf46545e3d48e799056ec132941",
+      "sema:Generalize#mh:SHA-256:78cbd8c531e0daa24d78be404ae40023b9ae598b6b0642e925756b1822145ccf"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:78cbd8c531e0daa24d78be404ae40023b9ae598b6b0642e925756b1822145ccf",
-  "sema_ref": "Generalize#78cb",
-  "sema_stub": "78cb",
+  "sema_id": "sema:Generalize#mh:SHA-256:251f07a282bc1b83a737977141d164311e3334d50b555400970928758153289d",
+  "sema_ref": "Generalize#251f",
+  "sema_stub": "251f",
+  "parameters": [
+    {
+      "name": "min_instances",
+      "type": "PositiveInteger",
+      "range": "[2, 100]",
+      "description": "Instances required before a shared structure counts as a pattern."
+    }
+  ],
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
-      "induction": "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707",
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:19ca8985125c0763648986dace3b85d15138e46a05819dec683a651c461ef0bf",
+      "induction": "sema:Induction#mh:SHA-256:1b39044c28c83bf79a7bfe108d0edaf616724b3cc0e9fec93086913101fc1530",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

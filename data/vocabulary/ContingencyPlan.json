@@ -21,20 +21,21 @@
     "ring": 2,
     "supersedes": [
       "sema:ContingencyPlan#mh:SHA-256:61d396e94e514a1e01842936992d29b0402f1f4010b00fabd77373bf810497b5",
-      "sema:ContingencyPlan#mh:SHA-256:e01d0ff2e474a647a76dcae213bd0d47673f3bf3826372c4f62f313492868da4"
+      "sema:ContingencyPlan#mh:SHA-256:e01d0ff2e474a647a76dcae213bd0d47673f3bf3826372c4f62f313492868da4",
+      "sema:ContingencyPlan#mh:SHA-256:e096baa7b38820b79c62355576dce883e36d91242599c7f5a41c75edf8eed293"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:ContingencyPlan#mh:SHA-256:e096baa7b38820b79c62355576dce883e36d91242599c7f5a41c75edf8eed293",
-  "sema_ref": "ContingencyPlan#e096",
-  "sema_stub": "e096",
+  "sema_id": "sema:ContingencyPlan#mh:SHA-256:8bc3b81f87a95e7df06eb1e43e9dc9483d4b1852f86693599685ffd2356207de",
+  "sema_ref": "ContingencyPlan#8bc3",
+  "sema_stub": "8bc3",
   "dependencies": {
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d",
-      "retry": "sema:Retry#mh:SHA-256:9e178c29dd1aa774432d8eb6e87fb2e93ab5b1a6db9582f737ad60e9ddf56053"
+      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
+      "retry": "sema:Retry#mh:SHA-256:5e7921bf0dc8d896f922c3e163156be786471af8cfdfbfc8ec22dd5e0e68ab2a"
     }
   },
   "sema_layer": "Mind",

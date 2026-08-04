@@ -3,13 +3,13 @@
   "mechanism": "A designated working memory region where the agent can write intermediate calculations, partial results, and notes-to-self during multi-step reasoning. Unlike the main output, scratchpad content is explicitly for the agent's own use and may be hidden from the final response. Prevents context pollution while enabling complex reasoning. It provides the persistence layer for chain-of-thought, storing the intermediate states of the reasoning process.",
   "gloss": "Working memory for intermediate reasoning steps",
   "failure_modes": [
-    "Scratchpad Leak: Internal working notes accidentally included in user-facing output.",
-    "Memory Overflow: Scratchpad grows unboundedly, consuming context window."
+    "Scratchpad leak: internal working notes reach user-facing output.",
+    "Bound reached mid-reasoning: content must be dropped or summarised to continue, so earlier working is lost while the reasoning that depended on it continues."
   ],
   "invariants": [
-    "Bounded: Maximum scratchpad size is enforced",
-    "Persistence: Contents survive across reasoning steps within a task",
-    "Separation: Scratchpad content is distinct from final output"
+    "Bounded by `max_size`, which every scratchpad declares.",
+    "Persistence: contents survive across reasoning steps within a task.",
+    "Separation: scratchpad content is distinct from final output."
   ],
   "_meta": {
     "tier": 2,
@@ -17,15 +17,19 @@
     "path": [
       "Mind",
       "Memory"
+    ],
+    "supersedes": [
+      "sema:Scratchpad#mh:SHA-256:e805c332532cf4a435c48cc87d4db771e1645bb52c47d00dce318e2619ca6749"
     ]
   },
-  "sema_id": "sema:Scratchpad#mh:SHA-256:e805c332532cf4a435c48cc87d4db771e1645bb52c47d00dce318e2619ca6749",
-  "sema_ref": "Scratchpad#e805",
-  "sema_stub": "e805",
+  "sema_id": "sema:Scratchpad#mh:SHA-256:626c5a0a716ab29b51e68429d41e99619201af48d17975d89636b55b8dc852f5",
+  "sema_ref": "Scratchpad#626c",
+  "sema_stub": "626c",
   "data_schema": {
     "type": "object",
     "required": [
-      "content"
+      "content",
+      "max_size"
     ],
     "properties": {
       "content": {

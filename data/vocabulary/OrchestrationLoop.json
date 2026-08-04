@@ -5,13 +5,21 @@
   "failure_modes": [
     "Bureaucracy: Blindly following the full lifecycle for trivial tasks (using a cannon for a mosquito).",
     "Loop Stalling: Getting stuck in Plan/Rollout cycles without shipping.",
-    "Artifact Rejection Cascade: Overly strict AcceptSpecs cause infinite loops.",
+    "Artifact Rejection Cascade: Overly strict AcceptSpecs repeatedly send work to earlier phases until `iteration_limit` is exhausted.",
     "Seam Leakage: Untyped data bypasses the artifact boundaries."
   ],
   "invariants": [
     "Artifact Mediation: All phase transitions MUST pass through typed artifacts.",
     "Non-Compensatory Gates: Each AcceptSpec is binary pass/fail.",
-    "Iteration Bound: Maximum loop iterations before escalation."
+    "Bounded Iteration: Within one run, the loop MUST NOT re-enter an earlier phase more than `iteration_limit` times; the next failed gate escalates."
+  ],
+  "parameters": [
+    {
+      "name": "iteration_limit",
+      "type": "PositiveInteger",
+      "range": "unspecified",
+      "description": "Maximum number of failed-gate re-entries within one run before escalation"
+    }
   ],
   "_meta": {
     "tier": 2,
@@ -21,32 +29,34 @@
     ],
     "supersedes": [
       "sema:OrchestrationLoop#mh:SHA-256:fd5ef68be3fdf8bec5e5bb4544153e5029e22626212e2267edeb26881ce9a94a",
-      "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e"
+      "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e",
+      "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374",
+      "sema:OrchestrationLoop#mh:SHA-256:212895d134c09e50af6ec4a668c23ffc4a92604b61c411aaa5f12b7b93b75d1e"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:212895d134c09e50af6ec4a668c23ffc4a92604b61c411aaa5f12b7b93b75d1e",
-  "sema_ref": "OrchestrationLoop#2128",
-  "sema_stub": "2128",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:119060a70a92ceca5b05c02983b7711ca7f3079df78b22d60ecde319bf7600cc",
+  "sema_ref": "OrchestrationLoop#1190",
+  "sema_stub": "1190",
   "signature": [
     "Workflow(Rollout)"
   ],
   "dependencies": {
     "composes_with": {
-      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:e9739d11444b84d2d5cf63a9a878db9b17ba68598a2ee2bd5c4e85a0e9fdb76c",
-      "rollout": "sema:Rollout#mh:SHA-256:84e234d9616bde2b394074e3d082e85c7ee74068d65f2aa8642a5e3a64f97c26"
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:534f0732181541a00cc070bdf48758b0c052138380fb0e6979e551f95518604e",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:cbba3845e6ea72f42025daac2f75e15e8ff7550e292634957ba7c5e5013a8234",
+      "rollout": "sema:Rollout#mh:SHA-256:e4717541319b2a51a4b78b1278fc14a1b3fd4f6daf6719eb70c08c7193dfb629"
     },
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:4342d3162e552fdbfcde1d594a4156ca6f2e0e42fcb20a9be2bc5ba54a4af0d0",
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
-      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
-      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28",
-      "workflow": "sema:Workflow#mh:SHA-256:982bc58d26f2d57c21420514e03f33d68e10ca20b01eae9953927cb95b437042"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1",
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631",
+      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf",
+      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10",
+      "workflow": "sema:Workflow#mh:SHA-256:2b8a81eecc3c3656b624d8cbe2b8b2bbf115b1d045d1b98b277f24a7e94ebdf1"
     }
   },
   "sema_layer": "Society",

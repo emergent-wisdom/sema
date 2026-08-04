@@ -3,11 +3,13 @@
   "mechanism": "Recursive Assembly: Given solved subproblems, {{combine}} solutions respecting interfaces. {{check}}: does combined solution satisfy original problem constraints? If interaction effects emerge, add coordination layer or revise decomposition. It often employs {{prompt_chain}} to sequentially feed sub-solutions into the integration step.",
   "gloss": "Building complex behavior from simple primitives",
   "failure_modes": [
-    "Interface Mismatch: Component outputs do not match expected inputs of downstream components."
+    "Interface Mismatch: component outputs do not match the expected inputs of downstream components.",
+    "Emergent interaction: every interface matches and the whole still fails the original constraints."
   ],
   "invariants": [
-    "Type Safety: Component outputs must match downstream inputs.",
-    "Acyclicity: Composition graph must be a DAG."
+    "Component outputs match downstream inputs.",
+    "The composition graph is acyclic.",
+    "Verified against the original problem, not only against its interfaces."
   ],
   "preconditions": [
     "Subproblem solutions available.",
@@ -24,7 +26,8 @@
     "ring": 2,
     "supersedes": [
       "sema:Compose#mh:SHA-256:10b7e69d6548c3d79dcf5ccb356bb0196fe7535d273a885cbe6a2c20b9e73a11",
-      "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14"
+      "sema:Compose#mh:SHA-256:4f8d280dc89d59ae0f607b30e2bec64f2fac86fddd58fda4cde4737667c00e14",
+      "sema:Compose#mh:SHA-256:4fa274d804d83c00006408b8f436aa8c3a6cd60f23c0b3c56ca0ba4a50ff3c23"
     ],
     "path": [
       "Mind",
@@ -34,14 +37,14 @@
   "signature": [
     "Combine(PromptChain)"
   ],
-  "sema_id": "sema:Compose#mh:SHA-256:4fa274d804d83c00006408b8f436aa8c3a6cd60f23c0b3c56ca0ba4a50ff3c23",
-  "sema_ref": "Compose#4fa2",
-  "sema_stub": "4fa2",
+  "sema_id": "sema:Compose#mh:SHA-256:70edc4a274d8de877d96b273051c029d9fd706789d785914895132488d5a41fd",
+  "sema_ref": "Compose#70ed",
+  "sema_stub": "70ed",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "combine": "sema:Combine#mh:SHA-256:c465eb2ec32d4de2329827dbd943672f5f0b675716af0aca501ce9d157e309b9",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "combine": "sema:Combine#mh:SHA-256:5f8bc7d0ef143d4edeeea1ed81c4864a9cde7ded3b3eec2be25db3e9c3f51dc6",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:5df25fb4edb7f8f3575a0b45a7c203f7f5ef1b66a5f83d9ec1049b5548cdf975"
     }
   },
   "sema_layer": "Mind",

@@ -6,7 +6,8 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311"
+      "sema:Problem#mh:SHA-256:5baa4b94e48686c15413bc92447c72917fb2f77109436b4a57aae6ee982fd311",
+      "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de"
     ],
     "path": [
       "Infrastructure",
@@ -17,7 +18,8 @@
     "type": "object",
     "required": [
       "current_state",
-      "desired_state"
+      "desired_state",
+      "cost_of_inaction"
     ],
     "properties": {
       "current_state": {
@@ -43,16 +45,23 @@
       },
       "root_cause_hypothesis": {
         "type": "string"
+      },
+      "cost_of_inaction": {
+        "type": "string",
+        "description": "What leaving the gap open costs. Non-zero is what makes the gap a Problem rather than a difference."
       }
     }
   },
-  "sema_id": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-  "sema_ref": "Problem#9d2c",
-  "sema_stub": "9d2c",
+  "sema_id": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+  "sema_ref": "Problem#2580",
+  "sema_stub": "2580",
+  "invariants": [
+    "Cost of inaction is non-zero: a gap that costs nothing to leave open is a difference, not a Problem."
+  ],
   "dependencies": {
     "references": {
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Infrastructure",

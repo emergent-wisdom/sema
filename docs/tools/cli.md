@@ -112,7 +112,18 @@ sema apply --remove <Handle>
 
 # Atomic add + remove (e.g., replacing a pattern)
 sema apply --add NewPattern.json --remove OldPattern
+
+# Explicitly retarget `extends` on staged cards to current parent IDs
+sema apply --add reviewed-children/ --retarget-extends
 ```
+
+`extends` is version-pinned by default. Updating a parent does not silently
+change a child's hashed specialization claim. Because the current workspace
+stores only one active definition per handle, apply fails before mutation if a
+parent update would strand a child. Stage each reviewed child and use
+`--retarget-extends` only when you intend to change its parent definition; the
+option affects staged cards only. Keeping an older pin requires a historical
+content store, which the current database does not yet provide.
 
 **Note:** `apply` refuses to modify the bundled (pip-installed) vocabulary — it
 is read-only and gets overwritten on upgrade. Run `sema build` + `sema use`
@@ -146,7 +157,7 @@ handle with a stub (`Handle#stub`).
 
 ```bash
 sema resolve <Handle>
-sema resolve 'Stigmergy#6282'
+sema resolve 'Stigmergy#f433'
 ```
 
 ### show - Print Pattern Definition
@@ -157,7 +168,7 @@ read-path for "give me the definition behind this inline ref."
 
 ```bash
 sema show <Handle>
-sema show 'StateLock#8bde'
+sema show 'StateLock#c9c2'
 ```
 
 ### skeleton - Graph Overview

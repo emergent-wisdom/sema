@@ -2,13 +2,13 @@
 
 ## System Status
 
-- **Semantic-set Root**: `62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c`
+- **Semantic-set Root**: `502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661`
 - **Semantic-set Scheme**: `sema-semantic-set-v1`
-- **Catalog Root**: `c7ce079ec169999fe7f77dff0122e20bde7d3f22151fc0108e5d5197ea92e5af`
+- **Catalog Root**: `146db4c0b6172432a0694baa74263a2e33edfce2c5ba7756c33622f7bc69e324`
 - **Catalog Scheme**: `sema-catalog-v1`
-- **Pattern Count**: 453
-- **Unique Definition Count**: 453
-- **Verified Against Semantic Root**: `62d9253829798a6e…`
+- **Pattern Count**: 457
+- **Unique Definition Count**: 457
+- **Verified Against Semantic Root**: `502d7f981a29a4a1…`
 
 ## Usage
 
@@ -23,7 +23,7 @@ a target rename can also change dependent definition digests:
 import json
 
 # Agent A shares semantic-set root + scheme
-semantic_root_A = "62d9253829798a6ee8f51393c9154560a0a4c06d370d997a39968fda85e48d9c"
+semantic_root_A = "502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661"
 scheme_A = "sema-semantic-set-v1"
 
 # Agent B independently reads its local versioned roots
@@ -41,36 +41,35 @@ else:
 
 Breakdown of patterns by Civilization Layer and Functional Category.
 
-### Physics (17)
+### Physics (16)
 
 | Category | Count |
 | :--- | :---: |
-| Primitives | 16 |
+| Primitives | 15 |
 | Time | 1 |
 
-### Mind (178)
+### Mind (181)
 
 | Category | Count |
 | :--- | :---: |
 | Strategy | 81 |
-| Reasoning | 60 |
+| Reasoning | 63 |
 | Inference | 22 |
 | Memory | 15 |
 
-### Society (106)
+### Society (103)
 
 | Category | Count |
 | :--- | :---: |
-| Protocols | 76 |
-| Coordination | 12 |
-| Economics | 10 |
-| Governance | 8 |
+| Protocols | 74 |
+| Coordination | 13 |
+| Economics | 9 |
+| Governance | 7 |
 
-### Infrastructure (152)
+### Infrastructure (157)
 
 | Category | Count |
 | :--- | :---: |
-| Data Structures | 93 |
-| Primitives | 50 |
+| Data Structures | 96 |
+| Primitives | 52 |
 | Verification | 9 |
-

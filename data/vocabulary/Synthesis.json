@@ -1,24 +1,30 @@
 {
   "handle": "Synthesis",
-  "mechanism": "The process of combining separate elements into a unified whole. The opposite of {{critique}} or Analysis. It constructs new meaning from parts.",
+  "mechanism": "The process of combining separate elements into a unified whole \u2014 the inverse of {{decompose}}. The result asserts something that no single part asserts on its own.",
   "gloss": "Combining elements",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797"
+      "sema:Synthesis#mh:SHA-256:3252f9a67ea7200bf8eea5adadba88dd1716d47c30a37e534cadcbfdc62ac797",
+      "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea",
-  "sema_ref": "Synthesis#46b9",
-  "sema_stub": "46b9",
+  "sema_id": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1",
+  "sema_ref": "Synthesis#e349",
+  "sema_stub": "e349",
+  "invariants": [
+    "Names the parts it combined.",
+    "Yields one artifact, not a collection of the parts.",
+    "The whole asserts something no single part asserts."
+  ],
   "dependencies": {
     "references": {
-      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237"
+      "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926"
     }
   },
   "sema_layer": "Mind",
