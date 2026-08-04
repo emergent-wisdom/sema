@@ -153,8 +153,11 @@ ok "GitHub release created — PyPI publish workflow should now be running"
 echo "  Watch:  gh run list --workflow publish.yml --limit 3"
 
 # ── Phase 4: MCP Registry ─────────────────────────────────────────────────
-bold "▸ Publish server.json to MCP Registry"
-if ! command -v mcp-publisher >/dev/null 2>&1; then
+bold "▸ MCP Registry"
+echo "  Published by CI: .github/workflows/publish.yml, job publish-mcp-registry,"
+echo "  authenticating as this repository via GitHub OIDC. Nothing to do here."
+echo "  Watch:  gh run list --workflow publish.yml --limit 3"
+if false; then
     echo "  ⚠️  mcp-publisher not found on PATH — skipping."
     echo "     Install (Homebrew): brew install mcp-publisher"
     echo "     Or build from: https://github.com/modelcontextprotocol/registry"
