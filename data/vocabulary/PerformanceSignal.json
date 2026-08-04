@@ -55,7 +55,8 @@
       "Data Structures"
     ],
     "supersedes": [
-      "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3"
+      "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3",
+      "sema:PerformanceSignal#mh:SHA-256:7dea9b2784b3fa72856ba2b90eedc79ceb7c0b499b1c2a2bfdac205a5dbc27bf"
     ]
   },
   "sema_id": "sema:PerformanceSignal#mh:SHA-256:0f41b62437d210e1bf814dd145961f1ccd95661deaffa567989334ad298fdffb",

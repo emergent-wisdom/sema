@@ -28,8 +28,7 @@
     "ring": 2,
     "supersedes": [
       "sema:Fermi#mh:SHA-256:1e06d04bfff04954ad09852a7a4b1b583acc76c431dc926b4afe3cce5abfe210",
-      "sema:Fermi#mh:SHA-256:128b7131810fba03748bcc5dce657248d5547beeb23e87750cd76e6e59a80bd5",
-      "sema:Fermi#mh:SHA-256:3325308001815324796cd17f1aa534abbd32be73cdfbbd59cb5fa75d2f1b7d13"
+      "sema:Fermi#mh:SHA-256:128b7131810fba03748bcc5dce657248d5547beeb23e87750cd76e6e59a80bd5"
     ],
     "path": [
       "Mind",

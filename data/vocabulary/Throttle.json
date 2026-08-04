@@ -43,7 +43,8 @@
     "ring": 0,
     "supersedes": [
       "sema:Throttle#mh:SHA-256:3b435aa8eded864eadf7d8eec80d395fd7f4e6c2749d33880cbf8c4593f926af",
-      "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8"
+      "sema:Throttle#mh:SHA-256:24860a38fb19f46f0cd620ada5ec2abadef4377dc6c0459f14180e4ce7aed7c8",
+      "sema:Throttle#mh:SHA-256:dc1439d0fbf64ac81ebea3d7570e55d7b94802d028061470a2e5681bc3c1d5f6"
     ],
     "path": [
       "Infrastructure",

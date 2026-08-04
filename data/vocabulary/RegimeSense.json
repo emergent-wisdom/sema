@@ -38,7 +38,8 @@
     "ring": 2,
     "supersedes": [
       "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
-      "sema:RegimeSense#mh:SHA-256:430bf5a5fcfe1796a400eda12608fed3600ecb00ec50ef3f4c8934db5065a2a0"
+      "sema:RegimeSense#mh:SHA-256:430bf5a5fcfe1796a400eda12608fed3600ecb00ec50ef3f4c8934db5065a2a0",
+      "sema:RegimeSense#mh:SHA-256:56eccdcf5c9e28545cb3ad569f86ec1bf3dec5e2eb4f9620f980da72b11937cf"
     ],
     "path": [
       "Mind",

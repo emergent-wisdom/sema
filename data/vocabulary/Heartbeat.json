@@ -36,7 +36,8 @@
     "ring": 0,
     "supersedes": [
       "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
-      "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2"
+      "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
+      "sema:Heartbeat#mh:SHA-256:c36fe65a4b171559a33cb36f37ec448dce8ad7092c665426bfabee3dbeb6d1c1"
     ],
     "path": [
       "Infrastructure",

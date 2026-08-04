@@ -40,8 +40,7 @@
     "supersedes": [
       "sema:Rollout#mh:SHA-256:42389087ff9ffd73d3de5c71f8509cf2cd974795babc71e862ec139c92ad5c78",
       "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb",
-      "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996",
-      "sema:Rollout#mh:SHA-256:84e234d9616bde2b394074e3d082e85c7ee74068d65f2aa8642a5e3a64f97c26"
+      "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996"
     ],
     "path": [
       "Society",

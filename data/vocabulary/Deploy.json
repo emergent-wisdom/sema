@@ -15,8 +15,7 @@
     "supersedes": [
       "sema:Deploy#mh:SHA-256:41ac544f72a060dfa499b905773a67051aad5005bcdae81318ad3a830254903e",
       "sema:Deploy#mh:SHA-256:2adf31981783f19de75dfdd1ebf2dab527b06adf703a61e649cdc28b99760815",
-      "sema:Deploy#mh:SHA-256:1119a1844362113a6df1acb77aeb863d67922c60a600ebba232cd66da0c2f825",
-      "sema:Deploy#mh:SHA-256:9af9d0b68e63b674f8edd17f3edcaac5a16b5cf612ddb802c1b6e2d6b6a86826"
+      "sema:Deploy#mh:SHA-256:1119a1844362113a6df1acb77aeb863d67922c60a600ebba232cd66da0c2f825"
     ],
     "path": [
       "Society",

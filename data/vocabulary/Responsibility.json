@@ -34,7 +34,8 @@
     "supersedes": [
       "sema:Responsibility#mh:SHA-256:4148bdd8ae994620d37dbc788d066a307725d43bc5a88de4134dadf88ca1dff6",
       "sema:Responsibility#mh:SHA-256:26e6d6083226a3c96476214079dcb364b077cb662596f723262f060528fe8e31",
-      "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f"
+      "sema:Responsibility#mh:SHA-256:67f5917d4f6fbc362e1aa3af89fd6cdff8e2ad3e983075b92693ad0c25adb87f",
+      "sema:Responsibility#mh:SHA-256:8cf5bbf5ca36a65aad611647fd512c76522e56f2342b87a110784ba166662972"
     ],
     "path": [
       "Society",

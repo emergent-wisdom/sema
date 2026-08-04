@@ -20,7 +20,8 @@
     "ring": 2,
     "supersedes": [
       "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977",
-      "sema:WorldTransparent#mh:SHA-256:4a70f373c5298ed905d1e3afc59372689b205775e3cb6898c94a6bb076c0f64e"
+      "sema:WorldTransparent#mh:SHA-256:4a70f373c5298ed905d1e3afc59372689b205775e3cb6898c94a6bb076c0f64e",
+      "sema:WorldTransparent#mh:SHA-256:8440e780396b6f32b6f0f5157c33379961fce250cca368611ef283706a0c77be"
     ],
     "path": [
       "Society",

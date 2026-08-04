@@ -21,8 +21,7 @@
     "supersedes": [
       "sema:OptimisticSolver#mh:SHA-256:ee29600346db4594152f7d653a9700b4682402249775f5b7f765fbf1759e592d",
       "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8",
-      "sema:OptimisticSolver#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77",
-      "sema:OptimisticSolver#mh:SHA-256:a96fd56ca17c012b3ee75a4a37061e2592ed742cd75175540537b5fb68136880"
+      "sema:OptimisticSolver#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77"
     ],
     "path": [
       "Society",

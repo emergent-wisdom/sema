@@ -25,7 +25,8 @@
     "supersedes": [
       "sema:HackDetect#mh:SHA-256:c89cffb0b0f44031d64b88c435c8f992ec540dd94a8993ecd5f5f6bbb557ff83",
       "sema:HackDetect#mh:SHA-256:105da91807253d1d7ab96a53bb46ab7f60e1cd3fa83cd78affc96e887951116e",
-      "sema:HackDetect#mh:SHA-256:a488f5c7cc85b98461fd84fe650423ece6a96ad1d64a9a0dd6a10856d34ed87b"
+      "sema:HackDetect#mh:SHA-256:a488f5c7cc85b98461fd84fe650423ece6a96ad1d64a9a0dd6a10856d34ed87b",
+      "sema:HackDetect#mh:SHA-256:b7d777a40cff7df013903736c7cd026d53e89b50088d32ebc33bce7a352c23e3"
     ],
     "path": [
       "Mind",

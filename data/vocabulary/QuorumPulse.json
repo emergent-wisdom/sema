@@ -22,7 +22,8 @@
     "ring": 2,
     "supersedes": [
       "sema:QuorumPulse#mh:SHA-256:2c18907e5670bc0e5eff0a26fceee4ae5f5faac5fbb1b086ceb2dd17e015b13a",
-      "sema:QuorumPulse#mh:SHA-256:2fc270db6e8b532f6983bcabcdd33ace1cc40a026ed8828b5d52cca6a01ffc0e"
+      "sema:QuorumPulse#mh:SHA-256:2fc270db6e8b532f6983bcabcdd33ace1cc40a026ed8828b5d52cca6a01ffc0e",
+      "sema:QuorumPulse#mh:SHA-256:809c26bb26f1138742b2ea0cd0b41be34af1cc39aedbcd4d6ecb77a602a3b201"
     ],
     "path": [
       "Society",

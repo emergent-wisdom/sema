@@ -27,7 +27,8 @@
     "supersedes": [
       "sema:AttentionMarkets#mh:SHA-256:923679ce8222a914dc75a55824b91d403220b0b3f8943cf0d0d9fc0512c0d20b",
       "sema:AttentionMarkets#mh:SHA-256:45c58856dcc5f1dd258552665a7a9a7c16ee4792d43085bb698223de0494daba",
-      "sema:AttentionMarkets#mh:SHA-256:faf81f5f0d5d6d9bf0b6ac33732c08fb90d5574d168377c5c908295f978fcf13"
+      "sema:AttentionMarkets#mh:SHA-256:faf81f5f0d5d6d9bf0b6ac33732c08fb90d5574d168377c5c908295f978fcf13",
+      "sema:AttentionMarkets#mh:SHA-256:787e196833bbf6e6f914b37f1097fe555e6d4197a71afe9de60a6772cc41e593"
     ],
     "path": [
       "Society",

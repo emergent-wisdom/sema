@@ -23,7 +23,8 @@
     "ring": 2,
     "supersedes": [
       "sema:ThreeLevelCollision#mh:SHA-256:5db438e5f38882afa181ea527d06b673f64139f42390b9e795cf2ecc9efa29af",
-      "sema:ThreeLevelCollision#mh:SHA-256:92b1063ea9ba8b193942d71837f055a897ace9ec4391348f56e6b1e6e11cde93"
+      "sema:ThreeLevelCollision#mh:SHA-256:92b1063ea9ba8b193942d71837f055a897ace9ec4391348f56e6b1e6e11cde93",
+      "sema:ThreeLevelCollision#mh:SHA-256:f9f90f76329b4b07ba1de142f14fcab8f9c5e7d901e9268a0fa03f86258a5459"
     ],
     "path": [
       "Society",

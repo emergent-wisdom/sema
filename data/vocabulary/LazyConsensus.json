@@ -26,7 +26,8 @@
     "supersedes": [
       "sema:LazyConsensus#mh:SHA-256:4fc707a3608b99da4f2f0aa78d8662d3ea7056beb69e92a72be26e6085ecbfd9",
       "sema:LazyConsensus#mh:SHA-256:81a36b7edd2128ea672990d4487c64770b4da347d359cd217564514017fa9032",
-      "sema:LazyConsensus#mh:SHA-256:1c07589188212ac8d7519eb64501c0e6c21d9028fc6a4026adf572b5b2db77ab"
+      "sema:LazyConsensus#mh:SHA-256:1c07589188212ac8d7519eb64501c0e6c21d9028fc6a4026adf572b5b2db77ab",
+      "sema:LazyConsensus#mh:SHA-256:cb1be5ea25df833482f581771c52a12c2f24b1865b13306e18f6423a99fa94f0"
     ],
     "path": [
       "Society",

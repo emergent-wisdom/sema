@@ -65,7 +65,8 @@
     "supersedes": [
       "sema:ContinuousResourceAuction#mh:SHA-256:babf1b41f451b6df2220129e0c0a05483abfc8f8aa8b4bfd3f7fd543ac9e009f",
       "sema:ContinuousResourceAuction#mh:SHA-256:46f6f567beca632d55d7b03ad3572d292d56b887f45d18eaec50a0c073a1cf08",
-      "sema:ContinuousResourceAuction#mh:SHA-256:8fe283f5ae6bd9adcf164ba848bcc731863b0f232f2dbc4fa8c389f70eb8184c"
+      "sema:ContinuousResourceAuction#mh:SHA-256:8fe283f5ae6bd9adcf164ba848bcc731863b0f232f2dbc4fa8c389f70eb8184c",
+      "sema:ContinuousResourceAuction#mh:SHA-256:15530861d00609a281c40ecd368dda8f2a8e15181bef54b2532752f50348e290"
     ],
     "path": [
       "Society",

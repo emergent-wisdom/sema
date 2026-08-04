@@ -37,7 +37,8 @@
     "supersedes": [
       "sema:BeliefTracking#mh:SHA-256:e02e3c597330e2769854a6cbee467a000ef8aaf8275256973482fce6aaf9c991",
       "sema:BeliefTracking#mh:SHA-256:65b5f43b911ac5cf11622c6e4c4fa89457541630ec72f1f387394d5ad8afff14",
-      "sema:BeliefTracking#mh:SHA-256:6f91264f8bcb9a1eba37e37adf40c9fe779135fb88b8a7748de81c9f76c75c76"
+      "sema:BeliefTracking#mh:SHA-256:6f91264f8bcb9a1eba37e37adf40c9fe779135fb88b8a7748de81c9f76c75c76",
+      "sema:BeliefTracking#mh:SHA-256:6142b1c96257501505d4af3e9985e1845d80257b9db3d60e7892765373cca398"
     ],
     "path": [
       "Mind",

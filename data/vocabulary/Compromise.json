@@ -7,7 +7,8 @@
     "ring": 1,
     "supersedes": [
       "sema:Compromise#mh:SHA-256:39cc701b1389e8827a263f5180a40cea2993edf2ef94c9906553d48e9507c59f",
-      "sema:Compromise#mh:SHA-256:e9805676dd932da2df8070224cecf39aed41c672abfd8ccbd2734c246c760645"
+      "sema:Compromise#mh:SHA-256:e9805676dd932da2df8070224cecf39aed41c672abfd8ccbd2734c246c760645",
+      "sema:Compromise#mh:SHA-256:228b2583a138a2eefc86eda678d6449b0501c7db93f51e046d39e8910c421042"
     ],
     "path": [
       "Society",

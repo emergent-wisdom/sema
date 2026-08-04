@@ -24,8 +24,7 @@
     "supersedes": [
       "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa",
       "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
-      "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095",
-      "sema:ProphetFanOut#mh:SHA-256:b0f338cae3235461586e3303452b74e696b33b77e971e9a0c34b1b7e3b0292f6"
+      "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095"
     ],
     "path": [
       "Mind",

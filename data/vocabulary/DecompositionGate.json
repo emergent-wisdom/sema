@@ -18,7 +18,8 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730"
+      "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730",
+      "sema:DecompositionGate#mh:SHA-256:3a799c865e76fa9ed63862cac1abd08ed5d98a570ab18fdbbe36af34fabdc63f"
     ]
   },
   "sema_id": "sema:DecompositionGate#mh:SHA-256:19de14eba6eeaf11e6a769b95600b5f70628e5197d56ca3d842c5b3196e79444",

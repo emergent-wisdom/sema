@@ -17,7 +17,8 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:EthicalReasoningProtocol#mh:SHA-256:6bf11b38a4352c7e0a99c002b75437cdc66d8a1a809ee353c11dec7a88c10998"
+      "sema:EthicalReasoningProtocol#mh:SHA-256:6bf11b38a4352c7e0a99c002b75437cdc66d8a1a809ee353c11dec7a88c10998",
+      "sema:EthicalReasoningProtocol#mh:SHA-256:e3a615cd44b5441b404a2ae0c83d273fdeb6e18335e5de8380fd0f2e8f70149f"
     ]
   },
   "sema_id": "sema:EthicalReasoningProtocol#mh:SHA-256:8e7bda8878e1d77c14f93c10f31422b635d2ce79511a0360322d01e35577ce56",

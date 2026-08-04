@@ -30,7 +30,8 @@
     "supersedes": [
       "sema:PromptChain#mh:SHA-256:c872aab6147376a3ad76fc0a062b08baf8492651a478308fbb96f261f903cce0",
       "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008",
-      "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6"
+      "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6",
+      "sema:PromptChain#mh:SHA-256:2543cc5972f02b5a21d776643ba485beda876462c57a10c8949d0072e54bd620"
     ],
     "path": [
       "Society",

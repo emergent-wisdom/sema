@@ -1089,6 +1089,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - `CausalBarrier#0904`
 - `CausalBarrier#d1b2`
 - `CausalBarrier#9e17`
+- `CausalBarrier#39b3`
 
 ---
 
@@ -1572,6 +1573,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 **Supersedes (prior versions).**
 - `Ballot#f1d7`
 - `Ballot#84c3`
+- `Ballot#43eb`
 
 ---
 
@@ -2790,6 +2792,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 **Supersedes (prior versions).**
 - `Exception#bcdc`
 - `Exception#39fb`
+- `Exception#054c`
 
 ---
 
@@ -4041,6 +4044,7 @@ Deliberately NOT an invariant. Requiring a signature that covers the trace's con
 
 **Supersedes (prior versions).**
 - `PerformanceSignal#10af`
+- `PerformanceSignal#7dea`
 
 ---
 
@@ -4917,7 +4921,6 @@ _Note: Resolved in Workflow's full review: its open-parent schema now exposes op
 - `Role#6877`
 - `Role#80df`
 - `Role#1401`
-- `Role#9b2c`
 
 ---
 
@@ -5562,6 +5565,7 @@ This answer used to call those the 'truth-in-advertising properties', citing Acc
 **Supersedes (prior versions).**
 - `SolverManifest#67ac`
 - `SolverManifest#47ae`
+- `SolverManifest#47d4`
 
 ---
 
@@ -5884,7 +5888,6 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 **Supersedes (prior versions).**
 - `StyleSpec#ec7b`
 - `StyleSpec#0800`
-- `StyleSpec#a12b`
 
 ---
 
@@ -6150,7 +6153,6 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 **Supersedes (prior versions).**
 - `Tension#5493`
 - `Tension#547a`
-- `Tension#5dce`
 
 ---
 
@@ -7161,6 +7163,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 
 **Supersedes (prior versions).**
 - `CircuitBreaker#4162`
+- `CircuitBreaker#840f`
 
 ---
 
@@ -7355,6 +7358,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 - `Compensate#269d`
 - `Compensate#81a5`
 - `Compensate#e23b`
+- `Compensate#9b3b`
 
 ---
 
@@ -7479,6 +7483,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 **Supersedes (prior versions).**
 - `Cooldown#0cde`
 - `Cooldown#6f56`
+- `Cooldown#878c`
 
 ---
 
@@ -7730,6 +7735,7 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 **Supersedes (prior versions).**
 - `FailClosed#ae79`
 - `FailClosed#eae7`
+- `FailClosed#4088`
 
 ---
 
@@ -8045,6 +8051,7 @@ TWO CORRECTIONS to how this blocker was described. The three-outcome mismatch is
 **Supersedes (prior versions).**
 - `Heartbeat#7f88`
 - `Heartbeat#d0e6`
+- `Heartbeat#c36f`
 
 ---
 
@@ -8174,6 +8181,7 @@ TWO CORRECTIONS to how this blocker was described. The three-outcome mismatch is
 - `IdempotentWrite#6c55`
 - `IdempotentWrite#9b95`
 - `IdempotentWrite#e919`
+- `IdempotentWrite#ebf5`
 
 ---
 
@@ -8822,6 +8830,7 @@ Both were revised in the 2026-07 review and the revisions point in opposite dire
 **Supersedes (prior versions).**
 - `Quorum#29b4`
 - `Quorum#d634`
+- `Quorum#c6a5`
 
 ---
 
@@ -8926,6 +8935,7 @@ Both were revised in the 2026-07 review and the revisions point in opposite dire
 
 **Supersedes (prior versions).**
 - `ReAttempt#be44`
+- `ReAttempt#39a6`
 
 ---
 
@@ -9372,6 +9382,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `StateSnapshot#9ffc`
 - `StateSnapshot#17a5`
 - `StateSnapshot#5791`
+- `StateSnapshot#53b2`
 
 ---
 
@@ -9503,6 +9514,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Supersedes (prior versions).**
 - `TaskLifecycle#ecd8`
 - `TaskLifecycle#3a3e`
+- `TaskLifecycle#d935`
 
 ---
 
@@ -9567,6 +9579,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Supersedes (prior versions).**
 - `Throttle#3b43`
 - `Throttle#2486`
+- `Throttle#dc14`
 
 ---
 
@@ -9634,6 +9647,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `TimeWarpLog#d938`
 - `TimeWarpLog#c609`
 - `TimeWarpLog#2a10`
+- `TimeWarpLog#e26e`
 
 ---
 
@@ -9892,6 +9906,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Supersedes (prior versions).**
 - `Warmup#28c4`
 - `Warmup#7ad0`
+- `Warmup#32d4`
 
 ---
 
@@ -9967,6 +9982,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Supersedes (prior versions).**
 - `AuditTrail#ff66`
 - `AuditTrail#b441`
+- `AuditTrail#bf18`
 
 ---
 
@@ -10085,6 +10101,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Supersedes (prior versions).**
 - `ExplainBeacon#6ced`
 - `ExplainBeacon#4676`
+- `ExplainBeacon#2e40`
 
 ---
 
@@ -10685,7 +10702,6 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `BreadthGovernor#d220`
 - `BreadthGovernor#e924`
 - `BreadthGovernor#c7ea`
-- `BreadthGovernor#5e8c`
 
 ---
 
@@ -10875,6 +10891,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `ContextFirst#2878`
 - `ContextFirst#ae72`
 - `ContextFirst#7550`
+- `ContextFirst#a0b6`
 
 ---
 
@@ -11013,6 +11030,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `HackDetect#c89c`
 - `HackDetect#105d`
 - `HackDetect#a488`
+- `HackDetect#b7d7`
 
 ---
 
@@ -11206,7 +11224,6 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 **Supersedes (prior versions).**
 - `NormCheck#8222`
 - `NormCheck#b3a0`
-- `NormCheck#5308`
 
 ---
 
@@ -11280,7 +11297,6 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 **Supersedes (prior versions).**
 - `NormativeJudge#2316`
 - `NormativeJudge#bd4e`
-- `NormativeJudge#4b39`
 
 ---
 
@@ -11423,7 +11439,6 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `ProphetFanOut#2d81`
 - `ProphetFanOut#54ee`
 - `ProphetFanOut#d47b`
-- `ProphetFanOut#b0f3`
 
 ---
 
@@ -11497,6 +11512,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `RegimeSense#3e24`
 - `RegimeSense#430b`
+- `RegimeSense#56ec`
 
 ---
 
@@ -11690,7 +11706,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `SourceEvaluate#ceb1`
 - `SourceEvaluate#1f87`
-- `SourceEvaluate#f6b8`
 
 ---
 
@@ -11764,6 +11779,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `SurprisalUpdate#8eb2`
 - `SurprisalUpdate#6ef1`
 - `SurprisalUpdate#41a9`
+- `SurprisalUpdate#6169`
 
 ---
 
@@ -11873,6 +11889,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Supersedes (prior versions).**
 - `TemporalEnsembleForecasting#8b0e`
+- `TemporalEnsembleForecasting#3cb6`
 
 ---
 
@@ -11918,7 +11935,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Supersedes (prior versions).**
 - `TruthseekingProtocol#afc1`
-- `TruthseekingProtocol#d35b`
 
 ---
 
@@ -11992,6 +12008,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `BeliefTracking#e02e`
 - `BeliefTracking#65b5`
 - `BeliefTracking#6f91`
+- `BeliefTracking#6142`
 
 ---
 
@@ -12448,6 +12465,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `LocalizedLearning#69bb`
 - `LocalizedLearning#1450`
+- `LocalizedLearning#1eec`
 
 ---
 
@@ -12621,7 +12639,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `RetrievalAugment#ca58`
 - `RetrievalAugment#7ca7`
-- `RetrievalAugment#046a`
 
 ---
 
@@ -12866,6 +12883,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `TraceBelief#369d`
 - `TraceBelief#cee3`
 - `TraceBelief#1881`
+- `TraceBelief#bdfa`
 
 ---
 
@@ -13244,7 +13262,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `CiteBack#d09c`
 - `CiteBack#7785`
-- `CiteBack#17b1`
 
 ---
 
@@ -13359,7 +13376,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Supersedes (prior versions).**
 - `CollaborativeWritingProtocol#8a1a`
-- `CollaborativeWritingProtocol#f5cb`
 
 ---
 
@@ -13414,6 +13430,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Supersedes (prior versions).**
 - `ConceptualDecomposition#2cce`
+- `ConceptualDecomposition#3cf2`
 
 ---
 
@@ -13657,6 +13674,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 **Supersedes (prior versions).**
 - `DecompositionGate#c4f7`
+- `DecompositionGate#3a79`
 
 ---
 
@@ -13792,7 +13810,6 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 **Supersedes (prior versions).**
 - `DeepResearch#cbe3`
 - `DeepResearch#a058`
-- `DeepResearch#e060`
 
 ---
 
@@ -14066,7 +14083,6 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Supersedes (prior versions).**
 - `Estimate#bb30`
 - `Estimate#28d2`
-- `Estimate#c6d2`
 
 ---
 
@@ -14114,6 +14130,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Supersedes (prior versions).**
 - `EthicalReasoningProtocol#6bf1`
+- `EthicalReasoningProtocol#e3a6`
 
 ---
 
@@ -14306,7 +14323,6 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Supersedes (prior versions).**
 - `Fermi#1e06`
 - `Fermi#128b`
-- `Fermi#3325`
 
 ---
 
@@ -14416,6 +14432,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Supersedes (prior versions).**
 - `FrameError#f674`
+- `FrameError#22e1`
 
 ---
 
@@ -14641,7 +14658,6 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Supersedes (prior versions).**
 - `HumanEmulatorProtocol#261f`
-- `HumanEmulatorProtocol#faf1`
 
 ---
 
@@ -15034,6 +15050,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `MetaPrompt#7a3a`
 - `MetaPrompt#a606`
 - `MetaPrompt#a665`
+- `MetaPrompt#db51`
 
 ---
 
@@ -15509,6 +15526,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `RecursionDive#cda8`
 - `RecursionDive#962f`
 - `RecursionDive#bd13`
+- `RecursionDive#7e67`
 
 ---
 
@@ -15629,7 +15647,6 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Refine#38d9`
 - `Refine#78b7`
 - `Refine#8c9b`
-- `Refine#2956`
 
 ---
 
@@ -15841,6 +15858,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 **Supersedes (prior versions).**
 - `RequestFraming#0695`
 - `RequestFraming#e973`
+- `RequestFraming#8c6c`
 
 ---
 
@@ -17194,6 +17212,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `BeamSearch#d2fb`
 - `BeamSearch#5a34`
 - `BeamSearch#70d3`
+- `BeamSearch#fc0a`
 
 ---
 
@@ -17544,6 +17563,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Compose#10b7`
 - `Compose#4f8d`
 - `Compose#4fa2`
+- `Compose#57a9`
 
 ---
 
@@ -17804,6 +17824,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `ContingencyPlan#61d3`
 - `ContingencyPlan#e01d`
 - `ContingencyPlan#e096`
+- `ContingencyPlan#c760`
 
 ---
 
@@ -18193,6 +18214,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DepthGovernor#ea1a`
 - `DepthGovernor#5431`
 - `DepthGovernor#a3e9`
+- `DepthGovernor#96cf`
 
 ---
 
@@ -18294,6 +18316,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **Supersedes (prior versions).**
 - `DiscoveryProtocol#9958`
+- `DiscoveryProtocol#7ada`
 
 ---
 
@@ -18870,7 +18893,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `FractalIntelligence#9c13`
 - `FractalIntelligence#9b28`
 - `FractalIntelligence#5481`
-- `FractalIntelligence#1d79`
 
 ---
 
@@ -19361,7 +19383,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `MarginalValueRule#a46a`
 - `MarginalValueRule#314d`
 - `MarginalValueRule#eebb`
-- `MarginalValueRule#552f`
 
 ---
 
@@ -19548,7 +19569,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **Supersedes (prior versions).**
 - `MetaProtocols#3561`
-- `MetaProtocols#4885`
 
 ---
 
@@ -19838,6 +19858,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 **Supersedes (prior versions).**
 - `OODA#f3be`
 - `OODA#2ba0`
+- `OODA#c15f`
 
 ---
 
@@ -20144,7 +20165,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREBrainstorming#5dad`
 - `PUREBrainstorming#2e83`
 - `PUREBrainstorming#9ba1`
-- `PUREBrainstorming#c03a`
 
 ---
 
@@ -20273,7 +20293,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREOptimization#279a`
 - `PUREOptimization#d1f9`
 - `PUREOptimization#89fe`
-- `PUREOptimization#3d63`
 
 ---
 
@@ -20464,7 +20483,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `CognitiveSolver#30c8`
 - `CognitiveSolver#42e5`
 - `PolymorphicSolver#272a`
-- `PolymorphicSolver#3653`
 
 ---
 
@@ -20662,6 +20680,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `ProblemFramer#8b24`
 - `ProblemFramer#ecc1`
 - `ProblemFramer#ea80`
+- `ProblemFramer#2718`
 
 ---
 
@@ -21034,7 +21053,6 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `RigorousSolver#169f`
 - `RigorousSolver#f041`
 - `RigorousSolver#b75d`
-- `RigorousSolver#70d4`
 
 ---
 
@@ -21142,6 +21160,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `SolverRoot#d31b`
 - `SolverRoot#8a84`
 - `RootSolver#750d`
+- `RootSolver#6d0d`
 
 ---
 
@@ -21454,6 +21473,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 **Supersedes (prior versions).**
 - `Solver#1c9b`
 - `Solver#b7f9`
+- `Solver#04b5`
 
 ---
 
@@ -21712,7 +21732,6 @@ That property is narrower than it used to read here, and the narrowing matters. 
 **Supersedes (prior versions).**
 - `TensionHold#cca2`
 - `TensionHold#b084`
-- `TensionHold#326b`
 
 ---
 
@@ -22073,6 +22092,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 **Supersedes (prior versions).**
 - `Compromise#39cc`
 - `Compromise#e980`
+- `Compromise#228b`
 
 ---
 
@@ -22147,7 +22167,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Consensus#7216`
 - `Consensus#b862`
 - `Consensus#45f4`
-- `Consensus#0526`
 
 ---
 
@@ -22207,7 +22226,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `ConsensusFinder#1c5d`
 - `ConsensusFinder#c6fa`
 - `ConsensusFinder#980a`
-- `ConsensusFinder#6535`
 
 ---
 
@@ -22286,7 +22304,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Delegate#e557`
 - `Delegate#7e2a`
 - `Delegate#78a8`
-- `Delegate#2d38`
 
 ---
 
@@ -22359,6 +22376,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Disband#7cb8`
 - `Disband#86c6`
 - `Disband#d5f8`
+- `Disband#9953`
 
 ---
 
@@ -22435,6 +22453,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 **Supersedes (prior versions).**
 - `Elect#4042`
 - `Elect#187a`
+- `Elect#45ff`
 
 ---
 
@@ -22565,6 +22584,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `LazyConsensus#4fc7`
 - `LazyConsensus#81a3`
 - `LazyConsensus#1c07`
+- `LazyConsensus#cb1b`
 
 ---
 
@@ -22789,7 +22809,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Rally#8d04`
 - `Rally#c284`
 - `Rally#48a0`
-- `Rally#bc5f`
 
 ---
 
@@ -22933,6 +22952,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Vote#30d0`
 - `Vote#05a7`
 - `Vote#0aff`
+- `Vote#3b66`
 
 ---
 
@@ -22998,6 +23018,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `AtomicBid#0e6b`
 - `AtomicBid#cc36`
 - `AtomicBid#9c0c`
+- `AtomicBid#33e1`
 
 ---
 
@@ -23070,6 +23091,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `AttentionMarkets#9236`
 - `AttentionMarkets#45c5`
 - `AttentionMarkets#faf8`
+- `AttentionMarkets#787e`
 
 ---
 
@@ -23129,7 +23151,6 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Award#7bf0`
 - `Award#cfe2`
 - `Award#af8e`
-- `Award#6e69`
 
 ---
 
@@ -23195,6 +23216,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 **Supersedes (prior versions).**
 - `Bid#cf07`
 - `Bid#1eba`
+- `Bid#5c45`
 
 ---
 
@@ -23259,6 +23281,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `ContinuousResourceAuction#babf`
 - `ContinuousResourceAuction#46f6`
 - `ContinuousResourceAuction#8fe2`
+- `ContinuousResourceAuction#1553`
 
 ---
 
@@ -23379,6 +23402,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Gardener#5d74`
 - `Gardener#b002`
 - `Gardener#3e18`
+- `Gardener#52f3`
 
 ---
 
@@ -23576,7 +23600,6 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AnchorDrop#bf63`
 - `AnchorDrop#3878`
 - `AnchorDrop#695e`
-- `AnchorDrop#4196`
 
 ---
 
@@ -23687,6 +23710,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 **Supersedes (prior versions).**
 - `DocumentedOverride#17d3`
+- `DocumentedOverride#4054`
 
 ---
 
@@ -23758,6 +23782,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `Responsibility#4148`
 - `Responsibility#26e6`
 - `Responsibility#67f5`
+- `Responsibility#8cf5`
 
 ---
 
@@ -23821,6 +23846,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `SolverTree#e174`
 - `SolverTree#84e2`
 - `SolverTree#0c3f`
+- `SolverTree#2e4c`
 
 ---
 
@@ -23886,6 +23912,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `UniversalSolverTree#2340`
 - `UniversalSolverTree#f683`
 - `UniversalSolverTree#0923`
+- `UniversalSolverTree#7361`
 
 ---
 
@@ -23951,6 +23978,7 @@ One check that passed and is worth recording: this card's commentary describes O
 **Supersedes (prior versions).**
 - `WorldTransparent#0212`
 - `WorldTransparent#4a70`
+- `WorldTransparent#8440`
 
 ---
 
@@ -24153,6 +24181,7 @@ One check that passed and is worth recording: this card's commentary describes O
 **Supersedes (prior versions).**
 - `AgentProtocol#5a7f`
 - `AgentProtocol#6297`
+- `AgentProtocol#e6b4`
 
 ---
 
@@ -24283,6 +24312,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AmbiguityResolution#aee6`
 - `AmbiguityResolution#6031`
 - `AmbiguityResolution#ede0`
+- `AmbiguityResolution#4c6b`
 
 ---
 
@@ -24684,6 +24714,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `CounterfactualAnchor#f584`
 - `CounterfactualAnchor#4d4a`
 - `CounterfactualAnchor#0d2b`
+- `CounterfactualAnchor#e7ac`
 
 ---
 
@@ -24826,6 +24857,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `DeliberativeAlign#9b46`
 - `DeliberativeAlign#b497`
 - `DeliberativeAlign#1cf2`
+- `DeliberativeAlign#9fd3`
 
 ---
 
@@ -24884,7 +24916,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `Deploy#41ac`
 - `Deploy#2adf`
 - `Deploy#1119`
-- `Deploy#9af9`
 
 ---
 
@@ -25014,7 +25045,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `DissentSeek#bd28`
 - `DissentSeek#ce78`
-- `DissentSeek#8378`
 
 ---
 
@@ -25218,6 +25248,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `EjectionSeat#6ff7`
 - `EjectionSeat#ef8d`
 - `EjectionSeat#e836`
+- `EjectionSeat#a164`
 
 ---
 
@@ -25349,6 +25380,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `ExpiringToken#4e3c`
 - `ExpiringToken#a1c3`
+- `ExpiringToken#b0e8`
 
 ---
 
@@ -25526,7 +25558,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `GenealogicalTrace#0e89`
 - `GenealogicalTrace#7cf1`
 - `GenealogicalTrace#fa22`
-- `GenealogicalTrace#142e`
 
 ---
 
@@ -25711,6 +25742,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `GracefulDegradation#f6d7`
 - `GracefulDegradation#1a82`
+- `GracefulDegradation#8436`
 
 ---
 
@@ -25782,7 +25814,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `Handoff#3877`
 - `Handoff#648a`
 - `Handoff#4e0f`
-- `Handoff#d0e8`
 
 ---
 
@@ -25848,7 +25879,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `HeldRelease#4956`
 - `HeldRelease#3ed6`
 - `HeldRelease#533b`
-- `HeldRelease#10b0`
 
 ---
 
@@ -26109,6 +26139,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `LatticeCommit#3c5d`
 - `LatticeCommit#6675`
+- `LatticeCommit#74db`
 
 ---
 
@@ -26174,7 +26205,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `MemeticSeed#491b`
 - `MemeticSeed#cf26`
-- `MemeticSeed#d351`
 
 ---
 
@@ -26308,6 +26338,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `MonotonicCounter#f5a3`
 - `MonotonicCounter#4096`
 - `MonotonicCounter#3382`
+- `MonotonicCounter#21c6`
 
 ---
 
@@ -26377,7 +26408,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `Nucleate#4ea1`
 - `Nucleate#32c0`
 - `Nucleate#457a`
-- `Nucleate#3763`
 
 ---
 
@@ -26452,7 +26482,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `OptimisticSolver#ee29`
 - `OptimisticSolver#0074`
 - `OptimisticSolver#18c0`
-- `OptimisticSolver#a96f`
 
 ---
 
@@ -26510,7 +26539,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `Oracle#0dff`
 - `Oracle#1537`
 - `Oracle#32ff`
-- `Oracle#5614`
 
 ---
 
@@ -26578,7 +26606,6 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `OrchestrationLoop#fd5e`
 - `OrchestrationLoop#f6f4`
 - `OrchestrationLoop#2d63`
-- `OrchestrationLoop#2128`
 
 ---
 
@@ -26772,6 +26799,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `PermissionEscalate#744f`
 - `PermissionEscalate#d454`
+- `PermissionEscalate#0ca5`
 
 ---
 
@@ -26840,7 +26868,6 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `PhasedRefinement#4a90`
 - `PhasedRefinement#e4d0`
 - `PhasedRefinement#56f0`
-- `PhasedRefinement#537d`
 
 ---
 
@@ -26966,6 +26993,7 @@ OPEN: under `gate_mode: Skip` the skipped step produces no output, so Schema Con
 - `PromptChain#c872`
 - `PromptChain#4ad5`
 - `PromptChain#5097`
+- `PromptChain#2543`
 
 ---
 
@@ -27030,7 +27058,6 @@ OPEN: under `gate_mode: Skip` the skipped step produces no output, so Schema Con
 - `PropheticQuorum#192e`
 - `PropheticQuorum#c5d8`
 - `PropheticQuorum#1091`
-- `PropheticQuorum#912b`
 
 ---
 
@@ -27098,6 +27125,7 @@ OPEN: under `gate_mode: Skip` the skipped step produces no output, so Schema Con
 **Supersedes (prior versions).**
 - `QuorumPulse#2c18`
 - `QuorumPulse#2fc2`
+- `QuorumPulse#809c`
 
 ---
 
@@ -27175,7 +27203,6 @@ OPEN: under `gate_mode: Skip` the skipped step produces no output, so Schema Con
 - `RealizationProtocol#ce28`
 - `RealizationProtocol#2459`
 - `RealizationProtocol#663b`
-- `RealizationProtocol#b4ce`
 
 ---
 
@@ -27445,7 +27472,6 @@ This answer previously located the value in a Survival invariant reading `Functi
 - `Rollout#4238`
 - `Rollout#54d7`
 - `Rollout#8fc1`
-- `Rollout#84e2`
 
 ---
 
@@ -27776,6 +27802,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `SolverNode#a834`
 - `SolverNode#058e`
 - `SolverNode#4529`
+- `SolverNode#fd50`
 
 ---
 
@@ -28160,6 +28187,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `SynergisticMode#e7d9`
 - `SynergisticMode#7985`
 - `SynergisticMode#2463`
+- `SynergisticMode#02f9`
 
 ---
 
@@ -28220,6 +28248,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `Taper#9687`
 - `Taper#2044`
 - `Taper#8dc5`
+- `Taper#83db`
 
 ---
 
@@ -28291,6 +28320,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 **Supersedes (prior versions).**
 - `ThreeLevelCollision#5db4`
 - `ThreeLevelCollision#92b1`
+- `ThreeLevelCollision#f9f9`
 
 ---
 
@@ -28357,6 +28387,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 **Supersedes (prior versions).**
 - `TieredAccess#2a28`
 - `TieredAccess#f3f6`
+- `TieredAccess#805c`
 
 ---
 
@@ -28430,6 +28461,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `ToolDiscovery#548f`
 - `ToolDiscovery#0ff1`
 - `ToolDiscovery#bf67`
+- `ToolDiscovery#4b60`
 
 ---
 
@@ -28564,7 +28596,6 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `UniqueHandle#11e7`
 - `UniqueHandle#9a00`
 - `UniqueHandle#88da`
-- `UniqueHandle#58f9`
 
 ---
 
@@ -28770,6 +28801,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `WorkerMode#a3ab`
 - `WorkerMode#9599`
 - `WorkerMode#fa5a`
+- `WorkerMode#5a39`
 
 ---
 
@@ -28835,7 +28867,6 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `Workflow#36b2`
 - `Workflow#c082`
 - `Workflow#e8ce`
-- `Workflow#982b`
 
 ---
 

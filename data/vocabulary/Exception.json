@@ -36,7 +36,8 @@
     "tier": 1,
     "supersedes": [
       "sema:Exception#mh:SHA-256:bcdc11a8b6e4c1af2def02029ab03bf24c1480bd827ee3d570e374096cfccdc6",
-      "sema:Exception#mh:SHA-256:39fb7ba646e5c1dc91699ae4b3dc0887f4ec476fe6bf29970b83aaaca025f686"
+      "sema:Exception#mh:SHA-256:39fb7ba646e5c1dc91699ae4b3dc0887f4ec476fe6bf29970b83aaaca025f686",
+      "sema:Exception#mh:SHA-256:054ce28455dfd0a13bce0b5a23e048429a58a1b7e6c9082252bc3f815fe6be21"
     ],
     "path": [
       "Infrastructure",

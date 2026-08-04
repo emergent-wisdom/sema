@@ -16,8 +16,7 @@
     "supersedes": [
       "sema:FractalIntelligence#mh:SHA-256:9c13919670cac402fbc76a2baf0c172a2d1097dec5a7957a8e80123272753ec3",
       "sema:FractalIntelligence#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01",
-      "sema:FractalIntelligence#mh:SHA-256:54810782124d5c716d1204d83ed1c40a16d66201c884c5e70473623898b4b40d",
-      "sema:FractalIntelligence#mh:SHA-256:1d79fe6b35dc95d7c11f8ca7d105e73e9b7d318a30d3d27b9cccae4330ef1076"
+      "sema:FractalIntelligence#mh:SHA-256:54810782124d5c716d1204d83ed1c40a16d66201c884c5e70473623898b4b40d"
     ],
     "path": [
       "Mind",

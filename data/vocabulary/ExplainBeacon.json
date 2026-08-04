@@ -16,7 +16,8 @@
     "ring": 1,
     "supersedes": [
       "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
-      "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887"
+      "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887",
+      "sema:ExplainBeacon#mh:SHA-256:2e403d47af0e3914841b5e03a4b9531b479ae05b2a54f402c24e99232f45b38a"
     ],
     "path": [
       "Infrastructure",

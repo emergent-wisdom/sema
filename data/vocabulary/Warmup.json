@@ -41,7 +41,8 @@
     "ring": 0,
     "supersedes": [
       "sema:Warmup#mh:SHA-256:28c434be6a4de607158375965b76e4cb67d742481b6b6fb840326a7610703ceb",
-      "sema:Warmup#mh:SHA-256:7ad05d8c27bdabb565d72ce56d8a896af84e5c35d5bc56afb7bdecdac5b40551"
+      "sema:Warmup#mh:SHA-256:7ad05d8c27bdabb565d72ce56d8a896af84e5c35d5bc56afb7bdecdac5b40551",
+      "sema:Warmup#mh:SHA-256:32d4b559fc99f4dfa7a154487385194fe1c4f5cd3589a5910d2ee35eadc38fff"
     ],
     "path": [
       "Infrastructure",

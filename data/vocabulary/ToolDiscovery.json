@@ -32,7 +32,8 @@
     "supersedes": [
       "sema:ToolDiscovery#mh:SHA-256:548fb253447d270bee9b28ee7fe125135ce45ab54fbd2744fcc70e6b7d9b6de8",
       "sema:ToolDiscovery#mh:SHA-256:0ff16794954587c168bc694f00a723973be11ddfeb3a15c73770ab660bd439d8",
-      "sema:ToolDiscovery#mh:SHA-256:bf677acdeda8699deafb4398efa1f605dea89de112873e9a7bb838a41adbffd6"
+      "sema:ToolDiscovery#mh:SHA-256:bf677acdeda8699deafb4398efa1f605dea89de112873e9a7bb838a41adbffd6",
+      "sema:ToolDiscovery#mh:SHA-256:4b608d9d78051bf0f7bd10120d145dd6664c416fc0c52969156f9a31d171d45b"
     ],
     "path": [
       "Society",

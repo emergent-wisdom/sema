@@ -48,8 +48,7 @@
     "supersedes": [
       "sema:Workflow#mh:SHA-256:36b2e9b976f4c8995977ea44277a6c0d2d6fba5c61e8bac80b13d4f9695e1dd9",
       "sema:Workflow#mh:SHA-256:c08269a947e9c4b5dc11979a504aa791196de2cea81245bfb45ede8c781a2586",
-      "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728",
-      "sema:Workflow#mh:SHA-256:982bc58d26f2d57c21420514e03f33d68e10ca20b01eae9953927cb95b437042"
+      "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728"
     ],
     "path": [
       "Society",

@@ -17,7 +17,8 @@
     "supersedes": [
       "sema:AtomicBid#mh:SHA-256:0e6bf533854e1938c010cf2ce28ede3fe1642b56115e626ceb4bd652691a9edc",
       "sema:AtomicBid#mh:SHA-256:cc36510b810f2246c501fcec2b9319fe638d3ad15fb809e99b9e190121f6a0b1",
-      "sema:AtomicBid#mh:SHA-256:9c0c78d25ef587cbb5802e4e9243055062fa27a45f30d46896d464c840a35fcd"
+      "sema:AtomicBid#mh:SHA-256:9c0c78d25ef587cbb5802e4e9243055062fa27a45f30d46896d464c840a35fcd",
+      "sema:AtomicBid#mh:SHA-256:33e1d5689a56922e56ffedb768c82621a62e207160fc4f97228e5dddac588d65"
     ],
     "path": [
       "Society",

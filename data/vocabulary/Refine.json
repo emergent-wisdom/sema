@@ -11,8 +11,7 @@
     "supersedes": [
       "sema:Refine#mh:SHA-256:38d97579c85cbeb7c482df7f4ae6266cd92e70b0174057eeb6530570009f139d",
       "sema:Refine#mh:SHA-256:78b79a62b1ecf8a4a00537a19db4a71e06039fb5bd2792a497b9ccf16fbe8cee",
-      "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845",
-      "sema:Refine#mh:SHA-256:29562908643e0cfc62b4f9b75a83c76bd40e2afd818c40edf669f9de15297bc0"
+      "sema:Refine#mh:SHA-256:8c9ba16a79958359760a9eade3390377d424c59d8a29955813202282c2bab845"
     ],
     "path": [
       "Mind",

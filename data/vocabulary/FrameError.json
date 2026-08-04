@@ -19,7 +19,8 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:FrameError#mh:SHA-256:f67433d411f7ce3c8582a6685e6fc43285c2e96680b404acb8f399a74198fe4b"
+      "sema:FrameError#mh:SHA-256:f67433d411f7ce3c8582a6685e6fc43285c2e96680b404acb8f399a74198fe4b",
+      "sema:FrameError#mh:SHA-256:22e143610af8d9d6296b9497ad462eb71a3933aa6d77488f6a1e2226f81c45fc"
     ]
   },
   "sema_id": "sema:FrameError#mh:SHA-256:53e33befdcaffe1885b8604f77b4a1b508db41bd80cbd440c5d1fe6452336e40",

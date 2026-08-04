@@ -12,7 +12,8 @@
     "supersedes": [
       "sema:AmbiguityResolution#mh:SHA-256:aee6c8844ad85d09c8ce0fe0819c5359ba2b52e84bc56b23837c9b156b4fa0f1",
       "sema:AmbiguityResolution#mh:SHA-256:60315fece3de182c70627c9275d03be549416ef41af8112637019dc37ba2c4b9",
-      "sema:AmbiguityResolution#mh:SHA-256:ede07da7ba005a40e31635c0f168f38e16f569a84bb1a57d8ca16555af403220"
+      "sema:AmbiguityResolution#mh:SHA-256:ede07da7ba005a40e31635c0f168f38e16f569a84bb1a57d8ca16555af403220",
+      "sema:AmbiguityResolution#mh:SHA-256:4c6b0db38986110f6518c3cca2657cc627ffeb0bde5986fa7ad84bcfab868424"
     ],
     "path": [
       "Society",

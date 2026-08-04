@@ -21,7 +21,8 @@
       "Governance"
     ],
     "supersedes": [
-      "sema:DocumentedOverride#mh:SHA-256:17d333bda6bfc9f98ef85e9d09dd8cf84a8d8f13f13fb4e5de767bc4c8e75a54"
+      "sema:DocumentedOverride#mh:SHA-256:17d333bda6bfc9f98ef85e9d09dd8cf84a8d8f13f13fb4e5de767bc4c8e75a54",
+      "sema:DocumentedOverride#mh:SHA-256:40548ac167ea414f493054543303e74dac28a64510aa55ea8d1807ea52a6a5c6"
     ]
   },
   "sema_id": "sema:DocumentedOverride#mh:SHA-256:2b7763b4dab9fefa6b60e2b2ffd3849509a9b5af43a4ab3604973d55916f6dc4",

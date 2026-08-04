@@ -30,7 +30,8 @@
     "ring": 2,
     "supersedes": [
       "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3",
-      "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38"
+      "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
+      "sema:Elect#mh:SHA-256:45ff98aaa03731e8e490293d799edba62f98b40669828f2d32b436a0ecd4b6ca"
     ],
     "path": [
       "Society",

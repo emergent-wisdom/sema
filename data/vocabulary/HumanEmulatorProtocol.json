@@ -15,8 +15,7 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:HumanEmulatorProtocol#mh:SHA-256:261f38f4e5344f759765e4ceb351f59f3bcd543414672d8826b8fa33517ec896",
-      "sema:HumanEmulatorProtocol#mh:SHA-256:faf142ed0dc6369843880fccdd40c3785fbdbfc370122833f660da53a2c9c9cc"
+      "sema:HumanEmulatorProtocol#mh:SHA-256:261f38f4e5344f759765e4ceb351f59f3bcd543414672d8826b8fa33517ec896"
     ]
   },
   "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:9ba03398875aca91b2fb60b8f10a7241ac86aaf293f243dec5f883425e07f5c2",

@@ -29,7 +29,8 @@
     "ring": 1,
     "supersedes": [
       "sema:OODA#mh:SHA-256:f3bea02806503fe8a7c72a9fd3f3cdfccbae6c9519eb3bf8b25b35badc9545f7",
-      "sema:OODA#mh:SHA-256:2ba0f7a9e4405b1310c229508f60a66290f8616fce92af7d1e9796cf3210b90e"
+      "sema:OODA#mh:SHA-256:2ba0f7a9e4405b1310c229508f60a66290f8616fce92af7d1e9796cf3210b90e",
+      "sema:OODA#mh:SHA-256:c15f818b1324490d5a833f2646f83c4e7f7ac33cbef0637ea076e32ce024be70"
     ],
     "path": [
       "Mind",
