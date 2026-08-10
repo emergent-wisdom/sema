@@ -10,6 +10,15 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+- Verified third-party vocabulary installation through `sema install <library.json>`,
+  name-based selection with `sema use <name>`, and explicit `sema update <name>`.
+  Releases carry one JSON file per pattern in a checksummed ZIP, declare semantic
+  and catalog roots, and compile to an immutable local SQLite snapshot; an
+  optional compatible prebuilt database is accepted only after full JSON and
+  database verification. The bundled vocabulary remains the offline default.
+
 ## [0.4.0] - 2026-08-04
 
 **The 0.4 reasoning pass re-mints 426 of 452 pattern identities (94%) relative to 0.3.0.** No canonicalization change: hashes move because definitions improved -- 324 patterns were reasoned through individually against the design manual (254 changed, 57 confirmed sound, 13 escalated and resolved) -- and cascades propagated the rest. Every identity-changed pattern carries the 0.3.0 `sema_id` in `_meta.supersedes`, so 0.3.0 consumers converge via `sema pull` instead of orphaning.

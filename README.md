@@ -131,6 +131,20 @@ registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
 contribution path and [docs/specification/versioning.md](docs/specification/versioning.md) for the
 refinement and supersession policy.
 
+Sema also supports a manifest-driven flow for installing a published,
+read-only vocabulary by name:
+
+```bash
+sema install https://github.com/acme/sema-defi/releases/latest/download/library.json
+sema use defi
+sema update defi
+```
+
+It installs one verified snapshot at a time rather than merging vocabularies;
+the bundled vocabulary remains the default. See the
+[remote vocabulary library contract](docs/guides/libraries.md) for the exact
+manifest and GitHub release layout.
+
 ### Use in Python
 
 ```python

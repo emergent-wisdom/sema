@@ -11,10 +11,15 @@ from ..core.registry import (
     RegistryManager,
     get_bundled_db_path,
     get_default_db_path,
+    get_registered_db,
+    get_registered_db_by_path,
     is_bundled_db,
+    is_managed_db,
+    is_read_only_db,
     list_dbs,
     register_db,
     set_active_db,
+    validate_registry_db,
 )
 from ..core.utils import compact_dict
 from ..core.validator import clean_handle, validate_pattern
@@ -144,8 +149,9 @@ def apply_changes(
         return False
 
     db_path = get_default_db_path()
-    if is_bundled_db(db_path):
-        print("❌ Cannot modify the bundled vocabulary — it gets overwritten on upgrade.")
+    if is_read_only_db(db_path):
+        label = "installed library" if is_managed_db(db_path) else "bundled vocabulary"
+        print(f"❌ Cannot modify the {label} — it is a read-only snapshot.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
         return False
     store = GraphStore(db_path)
@@ -757,6 +763,10 @@ def undo_pull() -> bool:
     if not target_db:
         print("❌ No active database.")
         return False
+    if is_bundled_db(target_db) or is_read_only_db(target_db):
+        label = "installed library" if is_managed_db(target_db) else "bundled vocabulary"
+        print(f"❌ Cannot restore over the {label} — it is a read-only snapshot.")
+        return False
 
     previous_path = target_db + ".pull_previous"
     if not os.path.exists(previous_path):
@@ -868,10 +878,11 @@ def update_db(
         outcome["error"] = "No active database. Run `sema build` or `sema use` first."
         return outcome
 
-    if is_bundled_db(target_db):
-        print("❌ Cannot pull into bundled DB — it's read-only.")
+    if is_bundled_db(target_db) or is_read_only_db(target_db):
+        label = "installed library" if is_managed_db(target_db) else "bundled vocabulary"
+        print(f"❌ Cannot pull into the {label} — it is a read-only snapshot.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
-        outcome["error"] = "Cannot pull into bundled DB — it's read-only."
+        outcome["error"] = f"Cannot pull into the {label} — it is read-only."
         return outcome
 
     source_db = source or get_bundled_db_path()
@@ -1542,12 +1553,55 @@ def _verify_hashes(db_path: str) -> list[str]:
     return mismatches
 
 
+def install_remote_library(manifest_source: str) -> bool:
+    """Install a verified library release without changing the active DB."""
+    from ..core.libraries import LibraryError, install_library
+
+    try:
+        record = install_library(manifest_source)
+    except (LibraryError, OSError, ValueError) as exc:
+        print(f"❌ Library installation failed: {exc}")
+        return False
+
+    print(
+        f"✅ Installed {record['name']} v{record['version']} ({record['pattern_count']} patterns)"
+    )
+    print(f"   semantic root: {record['semantic_root']}")
+    print(f"   catalog root:  {record['catalog_root']}")
+    print(f"   runtime DB:    {record['path']} ({record['database_source']})")
+    print(f"   Activate with: sema use {record['name']}")
+    return True
+
+
+def update_remote_library(name: str) -> bool:
+    """Explicitly update one installed library through its recorded pointer."""
+    from ..core.libraries import LibraryError, update_library
+
+    try:
+        record, changed = update_library(name)
+    except (LibraryError, OSError, ValueError) as exc:
+        print(f"❌ Library update failed: {exc}")
+        return False
+
+    if not changed:
+        print(f"✅ {record['name']} is already at v{record['version']}")
+        return True
+    print(f"✅ Updated {record['name']} to v{record['version']}")
+    print(f"   catalog root: {record['catalog_root']}")
+    print(f"   runtime DB:   {record['path']}")
+    if os.environ.get("SEMA_DB_PATH"):
+        print("⚠️  SEMA_DB_PATH still takes priority; unset it to use the updated managed release.")
+    return True
+
+
 def use_db(path: str = None, default: bool = False):
     """Switch the active DB or reset to default."""
     if default:
         set_active_db(None)
         bundled = get_bundled_db_path()
         print(f"✅ Switched to default vocabulary ({bundled})")
+        if os.environ.get("SEMA_DB_PATH"):
+            print(f"⚠️  SEMA_DB_PATH is still overriding the default: {os.environ['SEMA_DB_PATH']}")
         return True
 
     if not path:
@@ -1559,9 +1613,26 @@ def use_db(path: str = None, default: bool = False):
             print(f"Using: {db}")
         return True
 
-    resolved = Path(path).expanduser().resolve()
+    # A registered name wins over a same-named cwd entry. Prefix a path with
+    # `./` (or use an absolute path) when selecting a colliding local file.
+    selected_record = get_registered_db(path)
+    candidate = Path(path).expanduser()
+    if selected_record is not None:
+        resolved = Path(selected_record["path"]).expanduser().resolve()
+    elif candidate.exists():
+        resolved = candidate.resolve()
+        selected_record = get_registered_db_by_path(resolved)
+    else:
+        print(f"❌ Database path or installed library not found: {path}")
+        return False
     if not resolved.exists():
         print(f"❌ Database not found: {resolved}")
+        return False
+
+    try:
+        validate_registry_db(resolved)
+    except ValueError as exc:
+        print(f"❌ Invalid Sema database: {exc}")
         return False
 
     if is_bundled_db(str(resolved)):
@@ -1569,10 +1640,26 @@ def use_db(path: str = None, default: bool = False):
         print("   Run `sema build my.db --preset full` to create your own copy.")
         return False
 
+    if selected_record and selected_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(selected_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            print(f"❌ Installed library verification failed: {exc}")
+            return False
+
     set_active_db(str(resolved))
-    register_db(str(resolved))
+    if selected_record is None:
+        register_db(str(resolved))
     count = RegistryManager(db_path=str(resolved)).count()
-    print(f"✅ Switched to {resolved} ({count} patterns)")
+    label = selected_record.get("name") if selected_record else str(resolved)
+    version = (
+        f" v{selected_record['version']}"
+        if selected_record and selected_record.get("version")
+        else ""
+    )
+    print(f"✅ Switched to {label}{version} ({count} patterns) — {resolved}")
 
     # Banner: show the vocabulary fingerprint right after the switch, so
     # users can verify at a glance which state they just pointed at.
@@ -1614,8 +1701,9 @@ def categorize_pattern(handle: str, path_str: str) -> bool:
         return False
 
     db_path = get_default_db_path()
-    if is_bundled_db(db_path):
-        print("❌ Cannot modify the bundled vocabulary.")
+    if is_read_only_db(db_path):
+        label = "an installed library" if is_managed_db(db_path) else "the bundled vocabulary"
+        print(f"❌ Cannot modify {label}; it is read-only.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
         return False
 
@@ -1680,8 +1768,9 @@ def list_databases():
         status = ""
         if not db["exists"]:
             status = " (missing)"
-        elif db["bundled"]:
+        elif db.get("read_only"):
             status = " (read-only)"
+        version = f" v{db['version']}" if db.get("version") else ""
 
         if db["exists"]:
             try:
@@ -1690,11 +1779,11 @@ def list_databases():
                     "SELECT COUNT(*) FROM nodes WHERE node_type='PATTERN'"
                 ).fetchone()[0]
                 conn.close()
-                print(f"{marker}{db['name']}: {db['path']} ({count} patterns){status}")
+                print(f"{marker}{db['name']}{version}: {db['path']} ({count} patterns){status}")
             except sqlite3.Error:
-                print(f"{marker}{db['name']}: {db['path']} (corrupted){status}")
+                print(f"{marker}{db['name']}{version}: {db['path']} (corrupted){status}")
         else:
-            print(f"{marker}{db['name']}: {db['path']}{status}")
+            print(f"{marker}{db['name']}{version}: {db['path']}{status}")
 
 
 def _get_presets_dir() -> Path:
@@ -2149,12 +2238,26 @@ def main():
     )
     build_cmd.add_argument("--source", help="Source DB (default: bundled vocabulary)")
 
+    # Install - verify and register a published library
+    install_cmd = subparsers.add_parser(
+        "install",
+        help="Install a verified library from a file or HTTPS library.json",
+    )
+    install_cmd.add_argument("manifest", help="Path or HTTPS URL to library.json")
+
+    # Update - explicitly replace a managed library with a verified release
+    update_cmd = subparsers.add_parser(
+        "update",
+        help="Update an installed library through its recorded update URL",
+    )
+    update_cmd.add_argument("name", help="Installed library name")
+
     # Use - switch active DB
     use_cmd = subparsers.add_parser(
         "use",
-        help="Switch active vocabulary DB (or show current)",
+        help="Switch active vocabulary by installed name or DB path (or show current)",
     )
-    use_cmd.add_argument("path", nargs="?", default=None, help="Path to DB (omit to show current)")
+    use_cmd.add_argument("path", nargs="?", default=None, help="Installed library name or DB path")
     use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
 
     # Categorize - move a pattern to a different taxonomy path
@@ -2215,6 +2318,10 @@ def main():
         ok = build_db(
             args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source
         )
+    elif args.command == "install":
+        ok = install_remote_library(args.manifest)
+    elif args.command == "update":
+        ok = update_remote_library(args.name)
     elif args.command == "use":
         ok = use_db(path=args.path, default=args.default)
     elif args.command == "list":

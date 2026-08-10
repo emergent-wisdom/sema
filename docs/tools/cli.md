@@ -66,6 +66,24 @@ sema build my_project.db --preset full --source other.db
 Transitive dependencies are resolved automatically — the resulting DB is
 self-contained. After building, switch to it with `sema use my_project.db`.
 
+### install - Install a Remote Library
+
+The remote-library MVP installs and verifies the release named by a strict
+`library.json` index:
+
+```bash
+sema install https://github.com/acme/sema-defi/releases/latest/download/library.json
+```
+
+Installation downloads the declared pattern ZIP, validates every Pattern Card
+and the complete dependency closure, builds a local read-only database, and
+checks the pattern count plus semantic and catalog roots before registering the
+library by name. A compatible optional prebuilt database may be used as a
+verified fast path; JSON remains authoritative.
+
+See [Remote Vocabulary Libraries](../guides/libraries.md) for the exact
+manifest, artifact, verification, and trust contract.
+
 ### use - Switch Active Vocabulary
 
 Switches which vocabulary database all `sema` commands read from.
@@ -73,6 +91,9 @@ Switches which vocabulary database all `sema` commands read from.
 ```bash
 # Switch to a project database
 sema use my_project.db
+
+# Switch to an installed remote library
+sema use defi
 
 # Show current active database
 sema use
@@ -83,6 +104,13 @@ sema use --default
 
 The active DB is stored in `~/.config/sema/active_db`. If `SEMA_DB_PATH`
 is set in the environment, it takes priority over `sema use`.
+
+An installed library name selects that library's verified snapshot; it does not
+compose or merge it with the currently active vocabulary. `sema use --default`
+resets the configured selection to the bundled vocabulary (an explicit
+`SEMA_DB_PATH` still takes priority). Registered names take precedence over
+same-named files in the current directory; use an explicit path such as `./defi`
+when that collision is intentional.
 
 ### list - List Known Databases
 
@@ -179,11 +207,29 @@ Displays the graph skeleton (layers, categories, counts).
 sema skeleton
 ```
 
+### update - Update an Installed Library
+
+Checks the installed library's recorded `update_url` and explicitly replaces
+its local snapshot with the newly declared release after full verification:
+
+```bash
+sema update defi
+```
+
+Updates are never automatic and never merge vocabularies. If verification
+fails, the installed release and the active vocabulary remain unchanged. See
+[Remote Vocabulary Libraries](../guides/libraries.md) for the release and
+verification contract.
+
 ### pull - Sync Vocabulary from Upstream
 
 Walks the upstream DAG in topological order and updates the active database
 in place. Custom patterns the user added locally are preserved. Hashes
 cascade automatically when their upstream deps change.
+
+`pull` reconciles one local database with another local upstream database. It
+is distinct from `sema update <name>`, which installs a complete, verified
+remote release snapshot.
 
 ```bash
 # Basic pull (bundled DB → active DB)
