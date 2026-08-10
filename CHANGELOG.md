@@ -10,14 +10,27 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-08-10
+
 ### Added
 
 - Verified third-party vocabulary installation through `sema install <library.json>`,
   name-based selection with `sema use <name>`, and explicit `sema update <name>`.
   Releases carry one JSON file per pattern in a checksummed ZIP, declare semantic
-  and catalog roots, and compile to an immutable local SQLite snapshot; an
-  optional compatible prebuilt database is accepted only after full JSON and
-  database verification. The bundled vocabulary remains the offline default.
+  and catalog roots, and compile to an immutable local SQLite snapshot. The
+  bundled vocabulary remains the offline default.
+- Deterministic official-bootstrap release packaging. Each tool release attaches
+  a generated `library.json` and versioned pattern ZIP whose identities and roots
+  are verified against the bundled database, allowing the bootstrap vocabulary
+  to be installed through the same public contract as a third-party library.
+
+### Security
+
+- Remote libraries cannot supply executable or precompiled database state. Sema
+  accepts only the bounded JSON pattern archive and always builds its own local
+  read model. Managed-database verification now also rejects missing runtime
+  indexes, unknown node or edge types, malformed metadata, missing endpoints,
+  and invalid embedding payloads before activation.
 
 ## [0.4.0] - 2026-08-04
 

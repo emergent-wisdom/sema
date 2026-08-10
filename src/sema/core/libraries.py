@@ -1,8 +1,8 @@
 """Verified installation of independently published Sema libraries.
 
 The portable release is JSON: one pattern per file inside a small, bounded ZIP.
-SQLite remains the local runtime format, but is either verified as an optional
-compiled artifact or rebuilt from the canonical JSON without rewriting it.
+SQLite remains a locally compiled runtime format and is never accepted from an
+untrusted library release.
 """
 
 from __future__ import annotations
@@ -46,8 +46,6 @@ from .validator import clean_handle, validate_pattern
 
 MANIFEST_SCHEMA = 1
 PATTERN_ARCHIVE_FORMAT = "sema-patterns-zip-v1"
-DATABASE_FORMAT = "sema-sqlite-v1"
-DATABASE_SCHEMA_VERSION = 1
 
 MAX_MANIFEST_BYTES = 256 * 1024
 MAX_ARCHIVE_BYTES = 256 * 1024 * 1024
@@ -106,23 +104,6 @@ class LibraryRoots(_StrictModel):
     catalog: RootDescriptor
 
 
-class DatabaseArtifact(_StrictModel):
-    # Unknown future formats/versions are valid declarations but are not consumed
-    # by this client; installation falls back to canonical JSON.
-    format: str = Field(min_length=1)
-    schema_version: int = Field(ge=1)
-    url: str = Field(min_length=1)
-    sha256: str
-    size_bytes: int = Field(gt=0, le=MAX_ARCHIVE_BYTES)
-
-    @field_validator("sha256")
-    @classmethod
-    def validate_sha256(cls, value: str) -> str:
-        if not _SHA256_RE.fullmatch(value):
-            raise ValueError("must be exactly 64 lowercase hexadecimal characters")
-        return value
-
-
 class LibraryManifest(_StrictModel):
     manifest_schema: Literal[1]
     name: str
@@ -131,7 +112,6 @@ class LibraryManifest(_StrictModel):
     patterns: PatternArtifact
     roots: LibraryRoots
     pattern_count: int = Field(gt=0, le=MAX_PATTERN_COUNT)
-    database: DatabaseArtifact | None = None
 
     @field_validator("name")
     @classmethod
@@ -330,11 +310,6 @@ def _load_manifest(
         _source_url(manifest.update_url, base=final_url),
     ):
         _validate_source_url(candidate, manifest_scheme=manifest_scheme)
-    if manifest.database:
-        _validate_source_url(
-            _source_url(manifest.database.url, base=final_url),
-            manifest_scheme=manifest_scheme,
-        )
     return manifest, raw, requested_url, final_url
 
 
@@ -571,6 +546,62 @@ def _database_patterns(path: Path) -> dict[str, dict]:
         if not {"id", "source_id", "target_id", "edge_type", "alias", "metadata"} <= edge_columns:
             raise LibraryError("Compiled database has incompatible edge columns")
 
+        indexes = {
+            row[0]
+            for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='index'"
+            ).fetchall()
+        }
+        required_indexes = {"idx_nodes_type", "idx_edges_source", "idx_edges_target"}
+        missing_indexes = sorted(required_indexes - indexes)
+        if missing_indexes:
+            raise LibraryError(
+                "Compiled database is missing required indexes: " + ", ".join(missing_indexes)
+            )
+
+        # GraphStore loads every node and edge, not just Pattern Cards. Validate
+        # the complete read model so a damaged local snapshot cannot pass corpus
+        # verification and then fail only after it becomes active.
+        from ..taxonomy_graph.graph_store import EdgeType, NodeType
+
+        valid_node_types = {member.value for member in NodeType}
+        valid_edge_types = {member.value for member in EdgeType}
+        node_ids: set[str] = set()
+        for node_id, node_type, metadata_json, embedding in connection.execute(
+            "SELECT id, node_type, metadata, embedding FROM nodes"
+        ).fetchall():
+            if not isinstance(node_id, str) or not node_id:
+                raise LibraryError("Compiled database contains an invalid node ID")
+            if node_id in node_ids:
+                raise LibraryError(f"Compiled database contains duplicate node ID {node_id!r}")
+            node_ids.add(node_id)
+            if node_type not in valid_node_types:
+                raise LibraryError(f"Compiled database contains unknown node type {node_type!r}")
+            try:
+                metadata = json.loads(metadata_json)
+            except (TypeError, json.JSONDecodeError) as exc:
+                raise LibraryError(f"Compiled node {node_id!r} has invalid metadata") from exc
+            if not isinstance(metadata, dict):
+                raise LibraryError(f"Compiled node {node_id!r} metadata must be an object")
+            if embedding is not None and len(embedding) % 4:
+                raise LibraryError(f"Compiled node {node_id!r} has an invalid embedding")
+
+        for edge_id, source_id, target_id, edge_type, metadata_json in connection.execute(
+            "SELECT id, source_id, target_id, edge_type, metadata FROM edges"
+        ).fetchall():
+            if not isinstance(edge_id, str) or not edge_id:
+                raise LibraryError("Compiled database contains an invalid edge ID")
+            if source_id not in node_ids or target_id not in node_ids:
+                raise LibraryError(f"Compiled edge {edge_id!r} has a missing endpoint")
+            if edge_type not in valid_edge_types:
+                raise LibraryError(f"Compiled database contains unknown edge type {edge_type!r}")
+            try:
+                metadata = json.loads(metadata_json)
+            except (TypeError, json.JSONDecodeError) as exc:
+                raise LibraryError(f"Compiled edge {edge_id!r} has invalid metadata") from exc
+            if not isinstance(metadata, dict):
+                raise LibraryError(f"Compiled edge {edge_id!r} metadata must be an object")
+
         rows = connection.execute(
             "SELECT id, text, metadata FROM nodes WHERE node_type='PATTERN'"
         ).fetchall()
@@ -767,7 +798,6 @@ def _same_version_release_changed(existing: dict[str, Any], manifest: LibraryMan
         "catalog_root": manifest.roots.catalog.sha256,
         "artifact_sha256": manifest.patterns.sha256,
         "pattern_count": manifest.pattern_count,
-        "database_artifact_sha256": manifest.database.sha256 if manifest.database else None,
     }
     return any(existing.get(field) != value for field, value in expected.items())
 
@@ -806,8 +836,6 @@ def _install_loaded_manifest(
     staging_dir = Path(
         tempfile.mkdtemp(prefix=f".install-{uuid.uuid4().hex[:8]}-", dir=releases_dir)
     )
-    database_source = "generated"
-
     try:
         (staging_dir / "library.json").write_bytes(manifest_bytes)
         archive_path = staging_dir / "patterns.zip"
@@ -834,39 +862,7 @@ def _install_loaded_manifest(
         verified = verify_library_patterns(patterns, manifest)
 
         db_path = staging_dir / "taxonomy.db"
-        database = manifest.database
-        compatible_db = (
-            database is not None
-            and database.format == DATABASE_FORMAT
-            and database.schema_version == DATABASE_SCHEMA_VERSION
-        )
-        if compatible_db and database:
-            downloaded_db = staging_dir / "taxonomy.download"
-            db_url = _source_url(database.url, base=final_manifest_url)
-            try:
-                db_size, db_digest, _ = _fetch_to_path(
-                    db_url,
-                    downloaded_db,
-                    max_bytes=min(MAX_ARCHIVE_BYTES, database.size_bytes),
-                    client=client,
-                )
-            except SourceUnavailableError:
-                downloaded_db.unlink(missing_ok=True)
-            else:
-                if db_size != database.size_bytes:
-                    raise LibraryError(
-                        f"Database artifact size mismatch: expected {database.size_bytes}, got {db_size}"
-                    )
-                if db_digest != database.sha256:
-                    raise LibraryError(
-                        f"Database artifact SHA-256 mismatch: expected {database.sha256}, got {db_digest}"
-                    )
-                verify_library_database(downloaded_db, verified, manifest)
-                os.replace(downloaded_db, db_path)
-                database_source = "prebuilt"
-
-        if not db_path.exists():
-            build_library_database(verified, db_path)
+        build_library_database(verified, db_path)
         verify_library_database(db_path, verified, manifest)
         for path in paths:
             if path.read_bytes() != source_bytes[path.name]:
@@ -883,13 +879,12 @@ def _install_loaded_manifest(
             "requested_manifest_url": requested_url,
             "update_url": update_url,
             "artifact_sha256": manifest.patterns.sha256,
-            "database_artifact_sha256": manifest.database.sha256 if manifest.database else None,
             "semantic_root": verified.roots["semantic_root"],
             "semantic_root_scheme": verified.roots["semantic_root_scheme"],
             "catalog_root": verified.roots["catalog_root"],
             "catalog_root_scheme": verified.roots["catalog_root_scheme"],
             "pattern_count": len(verified.patterns),
-            "database_source": database_source,
+            "database_source": "generated",
         }
         (staging_dir / "install.json").write_text(
             json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8"

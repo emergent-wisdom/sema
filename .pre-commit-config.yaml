@@ -32,7 +32,7 @@ repos:
 
       - id: sync-release-metadata
         name: sync-release-metadata
-        entry: bash -c 'python3 scripts/sync_release_metadata.py && git add .claude-plugin/plugin.json server.json'
+        entry: bash -c 'python3 scripts/sync_release_metadata.py && git add src/sema/__init__.py src/sema/mcp/__init__.py .claude-plugin/plugin.json server.json uv.lock'
         language: system
         pass_filenames: false
-        files: '(pyproject\.toml|data/taxonomy\.db|\.claude-plugin/plugin\.json|server\.json)'
+        files: '(pyproject\.toml|data/taxonomy\.db|src/sema/(mcp/)?__init__\.py|\.claude-plugin/plugin\.json|server\.json|uv\.lock)'

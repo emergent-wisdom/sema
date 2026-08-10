@@ -135,13 +135,14 @@ Sema also supports a manifest-driven flow for installing a published,
 read-only vocabulary by name:
 
 ```bash
-sema install https://github.com/acme/sema-defi/releases/latest/download/library.json
-sema use defi
-sema update defi
+sema install https://github.com/emergent-wisdom/sema/releases/latest/download/library.json
+sema use bootstrap
+sema update bootstrap
 ```
 
 It installs one verified snapshot at a time rather than merging vocabularies;
-the bundled vocabulary remains the default. See the
+the bundled vocabulary remains the offline default. Third-party libraries use
+the same command with their own manifest URL. See the
 [remote vocabulary library contract](docs/guides/libraries.md) for the exact
 manifest and GitHub release layout.
 

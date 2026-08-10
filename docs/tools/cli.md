@@ -72,14 +72,14 @@ The remote-library MVP installs and verifies the release named by a strict
 `library.json` index:
 
 ```bash
-sema install https://github.com/acme/sema-defi/releases/latest/download/library.json
+sema install https://github.com/emergent-wisdom/sema/releases/latest/download/library.json
 ```
 
 Installation downloads the declared pattern ZIP, validates every Pattern Card
 and the complete dependency closure, builds a local read-only database, and
 checks the pattern count plus semantic and catalog roots before registering the
-library by name. A compatible optional prebuilt database may be used as a
-verified fast path; JSON remains authoritative.
+library by name. Sema always compiles its local read model from the verified
+JSON rather than accepting a publisher-supplied database.
 
 See [Remote Vocabulary Libraries](../guides/libraries.md) for the exact
 manifest, artifact, verification, and trust contract.
@@ -93,7 +93,7 @@ Switches which vocabulary database all `sema` commands read from.
 sema use my_project.db
 
 # Switch to an installed remote library
-sema use defi
+sema use bootstrap
 
 # Show current active database
 sema use

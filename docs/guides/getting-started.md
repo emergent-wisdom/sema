@@ -94,16 +94,16 @@ The remote-library MVP defines a manifest-driven flow for installing a named,
 read-only vocabulary snapshot:
 
 ```bash
-sema install https://github.com/acme/sema-defi/releases/latest/download/library.json
-sema use defi
-sema update defi
+sema install https://github.com/emergent-wisdom/sema/releases/latest/download/library.json
+sema use bootstrap
+sema update bootstrap
 ```
 
 Installing a library does not merge it with the bundled vocabulary or another
 library. The bundled vocabulary remains the default, and `sema use --default`
 returns to it. The [remote vocabulary library guide](libraries.md) specifies
-the strict `library.json`, pattern ZIP, optional database fast path, and GitHub
-release workflow.
+the strict `library.json`, pattern ZIP, and GitHub release workflow. Third-party
+libraries use the same commands with their own manifest URL.
 
 ## CLI
 

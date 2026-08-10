@@ -5,9 +5,10 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-import shutil
 import sqlite3
 import stat
+import subprocess
+import sys
 import zipfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -16,17 +17,17 @@ import httpx
 import pytest
 from pydantic import ValidationError
 
+from sema import __version__ as sema_version
 from sema.cli.main import install_remote_library, undo_pull, update_remote_library, use_db
 from sema.core.hashing import (
     CATALOG_ROOT_SCHEME,
     SEMANTIC_ROOT_SCHEME,
     generate_sema_hash,
     pattern_hash_from_sema_id,
+    vocabulary_info,
     vocabulary_roots,
 )
 from sema.core.libraries import (
-    DATABASE_FORMAT,
-    DATABASE_SCHEMA_VERSION,
     LibraryError,
     LibraryManifest,
     install_library,
@@ -124,7 +125,6 @@ def _write_release(
     version: str = "1.0.0",
     patterns: dict[str, dict] | None = None,
     update_path: Path | None = None,
-    database: dict | None = None,
     extra_members: dict[str, bytes] | None = None,
 ) -> Release:
     directory.mkdir(parents=True, exist_ok=True)
@@ -165,8 +165,6 @@ def _write_release(
         },
         "pattern_count": len(patterns),
     }
-    if database is not None:
-        manifest["database"] = database
     manifest_path.write_bytes(_json_bytes(manifest))
     return Release(manifest_path, archive_path, patterns, pattern_bytes, roots)
 
@@ -227,6 +225,50 @@ def test_file_install_preserves_source_and_active_and_can_use_by_name(
 
     assert use_db("defi")
     assert get_configured_active_db() == record["path"]
+
+
+def test_bootstrap_release_is_deterministic_root_equivalent_and_installable(
+    tmp_path: Path, library_environment: dict[str, Path]
+) -> None:
+    repository = Path(__file__).resolve().parents[4]
+    script = repository / "scripts" / "build_bootstrap_release.py"
+    first_dir = tmp_path / "first"
+    second_dir = tmp_path / "second"
+    for output_dir in (first_dir, second_dir):
+        subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "--version",
+                sema_version,
+                "--output-dir",
+                str(output_dir),
+            ],
+            cwd=repository,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    first_manifest = first_dir / "library.json"
+    second_manifest = second_dir / "library.json"
+    first_archive = first_dir / f"sema-bootstrap-{sema_version}.zip"
+    second_archive = second_dir / f"sema-bootstrap-{sema_version}.zip"
+    manifest = json.loads(first_manifest.read_text())
+    bundled = vocabulary_info(str(repository / "data" / "taxonomy.db"))
+    assert first_archive.read_bytes() == second_archive.read_bytes()
+    assert first_manifest.read_bytes() == second_manifest.read_bytes()
+    assert manifest["pattern_count"] == bundled["pattern_count"]
+    assert manifest["roots"]["semantic"]["sha256"] == bundled["semantic_root"]
+    assert manifest["roots"]["catalog"]["sha256"] == bundled["catalog_root"]
+
+    active_before = library_environment["active_file"].read_bytes()
+    record = install_library(first_manifest, data_dir=library_environment["data_dir"])
+    assert record["name"] == "bootstrap"
+    assert record["version"] == sema_version
+    assert record["semantic_root"] == manifest["roots"]["semantic"]["sha256"]
+    assert record["catalog_root"] == manifest["roots"]["catalog"]["sha256"]
+    assert library_environment["active_file"].read_bytes() == active_before
 
 
 def test_https_latest_release_redirect_installs_relative_artifact(
@@ -417,29 +459,20 @@ def test_same_version_republication_is_rejected(
     assert library_environment["active_file"].read_bytes() == active_before
 
 
-@pytest.mark.parametrize("database_state", ["missing", "incompatible"])
-def test_optional_database_falls_back_to_json(
-    tmp_path: Path,
-    library_environment: dict[str, Path],
-    database_state: str,
-) -> None:
-    missing_database = tmp_path / database_state / "missing-taxonomy.db"
-    database = {
-        "format": DATABASE_FORMAT,
-        "schema_version": (
-            DATABASE_SCHEMA_VERSION if database_state == "missing" else DATABASE_SCHEMA_VERSION + 1
-        ),
-        "url": missing_database.resolve().as_uri(),
+def test_manifest_rejects_prebuilt_database_artifact(tmp_path: Path) -> None:
+    release = _write_release(tmp_path / "prebuilt-declaration")
+    manifest = json.loads(release.manifest_path.read_text())
+    manifest["database"] = {
+        "format": "sema-sqlite-v1",
+        "schema_version": 1,
+        "url": "taxonomy.db",
         "sha256": "0" * 64,
         "size_bytes": 1,
     }
-    release = _write_release(tmp_path / database_state, database=database)
+    release.manifest_path.write_bytes(_json_bytes(manifest))
 
-    record = install_library(release.manifest_path, data_dir=library_environment["data_dir"])
-
-    assert record["database_source"] == "generated"
-    assert Path(record["path"]).is_file()
-    assert verify_installed_library(record)["catalog_root"] == release.roots["catalog_root"]
+    with pytest.raises(LibraryError, match="Invalid library manifest"):
+        install_library(release.manifest_path, data_dir=tmp_path / "installed")
 
 
 def test_zip_traversal_is_rejected_before_activation(
@@ -500,61 +533,32 @@ def test_invalid_file_and_pull_undo_cannot_replace_active_managed_library(
     assert Path(record["path"]).read_bytes() == db_before
 
 
-def test_prebuilt_database_rejects_embedded_handle_mismatch(
+def test_managed_database_missing_runtime_index_is_rejected(
     tmp_path: Path, library_environment: dict[str, Path]
 ) -> None:
-    source_release = _write_release(tmp_path / "prebuilt-source")
-    source_record = install_library(
-        source_release.manifest_path, data_dir=library_environment["data_dir"]
-    )
-    prebuilt = tmp_path / "tampered-prebuilt.db"
-    shutil.copy2(source_record["path"], prebuilt)
-    prebuilt.chmod(0o644)
-    with sqlite3.connect(prebuilt) as connection:
-        metadata_json = connection.execute(
-            "SELECT metadata FROM nodes WHERE node_type='PATTERN' AND text='AssetPrice'"
-        ).fetchone()[0]
-        metadata = json.loads(metadata_json)
-        metadata["pattern"]["handle"] = "WrongHandle"
+    release = _write_release(tmp_path / "missing-index")
+    record = install_library(release.manifest_path, data_dir=library_environment["data_dir"])
+    database = Path(record["path"])
+    database.chmod(0o644)
+    with sqlite3.connect(database) as connection:
+        connection.execute("DROP INDEX idx_nodes_type")
+
+    with pytest.raises(LibraryError, match="missing required indexes"):
+        verify_installed_library(record)
+
+
+def test_managed_database_unknown_ancillary_row_is_rejected(
+    tmp_path: Path, library_environment: dict[str, Path]
+) -> None:
+    release = _write_release(tmp_path / "unknown-row")
+    record = install_library(release.manifest_path, data_dir=library_environment["data_dir"])
+    database = Path(record["path"])
+    database.chmod(0o644)
+    with sqlite3.connect(database) as connection:
         connection.execute(
-            "UPDATE nodes SET metadata=? WHERE node_type='PATTERN' AND text='AssetPrice'",
-            (json.dumps(metadata),),
+            "INSERT INTO nodes (id, node_type, text, metadata) VALUES (?, ?, ?, ?)",
+            ("unknown-node", "UNKNOWN", "broken", "{}"),
         )
 
-    library_environment["registry_file"].unlink()
-    database = {
-        "format": DATABASE_FORMAT,
-        "schema_version": DATABASE_SCHEMA_VERSION,
-        "url": prebuilt.resolve().as_uri(),
-        "sha256": hashlib.sha256(prebuilt.read_bytes()).hexdigest(),
-        "size_bytes": prebuilt.stat().st_size,
-    }
-    release = _write_release(tmp_path / "prebuilt-release", database=database)
-
-    with pytest.raises(LibraryError, match="embeds handle"):
-        install_library(release.manifest_path, data_dir=tmp_path / "prebuilt-install")
-
-
-def test_compatible_prebuilt_database_is_used(
-    tmp_path: Path, library_environment: dict[str, Path]
-) -> None:
-    source_release = _write_release(tmp_path / "valid-prebuilt-source")
-    source_record = install_library(
-        source_release.manifest_path, data_dir=library_environment["data_dir"]
-    )
-    prebuilt = tmp_path / "valid-prebuilt.db"
-    shutil.copy2(source_record["path"], prebuilt)
-    library_environment["registry_file"].unlink()
-    database = {
-        "format": DATABASE_FORMAT,
-        "schema_version": DATABASE_SCHEMA_VERSION,
-        "url": prebuilt.resolve().as_uri(),
-        "sha256": hashlib.sha256(prebuilt.read_bytes()).hexdigest(),
-        "size_bytes": prebuilt.stat().st_size,
-    }
-    release = _write_release(tmp_path / "valid-prebuilt-release", database=database)
-
-    record = install_library(release.manifest_path, data_dir=tmp_path / "valid-prebuilt-install")
-
-    assert record["database_source"] == "prebuilt"
-    assert verify_installed_library(record)["catalog_root"] == release.roots["catalog_root"]
+    with pytest.raises(LibraryError, match="unknown node type"):
+        verify_installed_library(record)
