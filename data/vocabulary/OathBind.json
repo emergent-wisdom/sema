@@ -13,16 +13,17 @@
     "supersedes": [
       "sema:OathBind#mh:SHA-256:fc9cec2803eb8062d0f7ea99212c62c8a19bb3455b7dd176a7df8c0a78c80036",
       "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509",
-      "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e"
+      "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e",
+      "sema:OathBind#mh:SHA-256:7bc93d8ea77a477a8b124b671425a99ee2d7fccebe7bad87f5397e3ba5af888c"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_ref": "OathBind#7bc9",
-  "sema_id": "sema:OathBind#mh:SHA-256:7bc93d8ea77a477a8b124b671425a99ee2d7fccebe7bad87f5397e3ba5af888c",
-  "sema_stub": "7bc9",
+  "sema_ref": "OathBind#a573",
+  "sema_id": "sema:OathBind#mh:SHA-256:a573c2d71a61bdce661f5df9bcc53f862866d98448682d87f69a687e1a496f5d",
+  "sema_stub": "a573",
   "failure_modes": [
     "Penalty severity decoupled from deviation severity.",
     "{{rule_set}} ambiguity triggers an unintended penalty.",
@@ -31,7 +32,7 @@
   "dependencies": {
     "references": {
       "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8",
-      "rule_set": "sema:RuleSet#mh:SHA-256:8395e6e9e6a221bbfe200335ad0dd145fc2bdaf7f1815704444ad05e08f9b363",
+      "rule_set": "sema:RuleSet#mh:SHA-256:7ebf36ad0634307d189aa0545d3424f0d0783bf2a0df04dfafdecf64e0cc9146",
       "spot_audit": "sema:SpotAudit#mh:SHA-256:d3a9df6a57f06278d581310ad3f0cb57941311ced0fb7360a5041e9093231b8a"
     }
   },

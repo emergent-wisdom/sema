@@ -10,7 +10,8 @@
     "tier": 2,
     "supersedes": [
       "sema:StyleSpec#mh:SHA-256:ec7bae21530d0d22601723e69b9a9a5d0a0cbe26ad8814539a10c800bec37928",
-      "sema:StyleSpec#mh:SHA-256:08003149b098fcb0c5dc93eda6111254cb101969d9576f5c592284286b12b3eb"
+      "sema:StyleSpec#mh:SHA-256:08003149b098fcb0c5dc93eda6111254cb101969d9576f5c592284286b12b3eb",
+      "sema:StyleSpec#mh:SHA-256:225dbf07d4721115a98a58a1db740455b8307ec45d54df3934f52d59e39aa64a"
     ],
     "path": [
       "Infrastructure",
@@ -38,14 +39,14 @@
       }
     }
   },
-  "sema_ref": "StyleSpec#225d",
-  "sema_id": "sema:StyleSpec#mh:SHA-256:225dbf07d4721115a98a58a1db740455b8307ec45d54df3934f52d59e39aa64a",
-  "sema_stub": "225d",
+  "sema_ref": "StyleSpec#ee8f",
+  "sema_id": "sema:StyleSpec#mh:SHA-256:ee8fe8b71b71c5612c93edeb3718786076458eab061989fc99ba0335909275b1",
+  "sema_stub": "ee8f",
   "dependencies": {
     "references": {
-      "aesthetics": "sema:Aesthetics#mh:SHA-256:a65e795b90ed206a92837c2b7fda0cd7c544754185fd85240fc8eb1193ceb425",
-      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:15e32d98507c6af62fd1a76e42163affa5a0e45cf54f2292f234bb40560ff9a8",
-      "spec": "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89"
+      "aesthetics": "sema:Aesthetics#mh:SHA-256:6f6de47c2320dbffb7fb264ddeddbedaed8017e8601a6ffd50826e10e5d24a67",
+      "phased_refinement": "sema:PhasedRefinement#mh:SHA-256:a263384b14c029d80cb3cc3c0b7a8a87b2c63f6307a55ac2c0f82ad2f86779e4",
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7"
     }
   },
   "sema_layer": "Infrastructure",

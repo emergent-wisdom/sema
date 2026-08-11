@@ -23,19 +23,20 @@
     "ring": 1,
     "supersedes": [
       "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
-      "sema:CiteBack#mh:SHA-256:77855c554890913b6c7c61f5a947a502b47171f04f333ab4bcfc72e136bfd30b"
+      "sema:CiteBack#mh:SHA-256:77855c554890913b6c7c61f5a947a502b47171f04f333ab4bcfc72e136bfd30b",
+      "sema:CiteBack#mh:SHA-256:1efb70d67a59234fe9d375bc29308c73b945a743554a0af9a334f86827af6f74"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:1efb70d67a59234fe9d375bc29308c73b945a743554a0af9a334f86827af6f74",
-  "sema_ref": "CiteBack#1efb",
-  "sema_stub": "1efb",
+  "sema_id": "sema:CiteBack#mh:SHA-256:8be76800c2df7055947d33ae0cb8fed8fd8b8ea52c50d03c5da2bdbe816efcad",
+  "sema_ref": "CiteBack#8be7",
+  "sema_stub": "8be7",
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:95fc6c4071bdede8f9e366e3d268cba27459256c62d4510359c916c80018d85e"
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:9c601193335e19b27f2b94ee1fe6c324e6db3278af4d408d6f594f6ff3ef7d15"
     }
   },
   "sema_layer": "Mind",

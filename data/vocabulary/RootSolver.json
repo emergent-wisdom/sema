@@ -21,7 +21,8 @@
       "sema:SolverRoot#mh:SHA-256:d31bfa55e755ef10526cf18631128ba7fa9f77afbc6417a07bb5c0700f7a671f",
       "sema:SolverRoot#mh:SHA-256:8a84b7a912568866ea4b75faf00eb272cb9611b5c96648c073ddcf5a4d687ba1",
       "sema:RootSolver#mh:SHA-256:750d3992db274fa89e6bad275ad10c0fc6ea9969cc9e4ff9cd809c77f96a4d32",
-      "sema:RootSolver#mh:SHA-256:6d0d34bacbf2d51f0c8152acde51d1bcc1c3f2e93127d4e03ea037a87183980b"
+      "sema:RootSolver#mh:SHA-256:6d0d34bacbf2d51f0c8152acde51d1bcc1c3f2e93127d4e03ea037a87183980b",
+      "sema:RootSolver#mh:SHA-256:332edbdd0535c4895116d911fbdc4dfeb1ccefc3266d56f413b39f418f66f31b"
     ],
     "path": [
       "Mind",
@@ -60,21 +61,21 @@
       }
     }
   },
-  "sema_id": "sema:RootSolver#mh:SHA-256:332edbdd0535c4895116d911fbdc4dfeb1ccefc3266d56f413b39f418f66f31b",
-  "sema_ref": "RootSolver#332e",
-  "sema_stub": "332e",
+  "sema_id": "sema:RootSolver#mh:SHA-256:29d798d343e265e5a0e7de0f84917106067fdaf958476eb9128c5b271a711acb",
+  "sema_ref": "RootSolver#29d7",
+  "sema_stub": "29d7",
   "dependencies": {
     "composes_with": {
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5"
     },
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "frame_error": "sema:FrameError#mh:SHA-256:53e33befdcaffe1885b8604f77b4a1b508db41bd80cbd440c5d1fe6452336e40",
+      "frame_error": "sema:FrameError#mh:SHA-256:1d0ac501f011a053fde50bef6bc2a781c2f916014f4b2b74de955f6d84db9c5d",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
-      "problem_space": "sema:ProblemSpace#mh:SHA-256:927aaa472dd0daacb3668cd4c21b82591f4530428f75f88a7d5386e65b072719",
-      "result": "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127",
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
-      "solver_node": "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "problem_space": "sema:ProblemSpace#mh:SHA-256:b4ae92d26c5092dadcbba687e1e591960dfbf7689b04ef9cc5617f21b780ff28",
+      "result": "sema:Result#mh:SHA-256:c02a8d6817c2f0e14d5a9360824240f135905e8be25fd659feb76d1f44e274c6",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
+      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }

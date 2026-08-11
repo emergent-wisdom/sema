@@ -37,30 +37,31 @@
     "supersedes": [
       "sema:TaskLifecycle#mh:SHA-256:ecd8d6da7668a91bd65d1b20beaf58e8e300f418cb40d00a3453535dfb4bedda",
       "sema:TaskLifecycle#mh:SHA-256:3a3ece262c27914b8ff68afdf259cff4f046bf495558a190a43e32d6ee7dd5b8",
-      "sema:TaskLifecycle#mh:SHA-256:d935155779f500df5554666848f4360d5eba80b106a40b7a4580ce848f420d33"
+      "sema:TaskLifecycle#mh:SHA-256:d935155779f500df5554666848f4360d5eba80b106a40b7a4580ce848f420d33",
+      "sema:TaskLifecycle#mh:SHA-256:6fdd40efd45e106daf0135bb05976d13856a62e681099cfe9b465bf13bd1260d"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_ref": "TaskLifecycle#6fdd",
-  "sema_id": "sema:TaskLifecycle#mh:SHA-256:6fdd40efd45e106daf0135bb05976d13856a62e681099cfe9b465bf13bd1260d",
-  "sema_stub": "6fdd",
+  "sema_ref": "TaskLifecycle#efdc",
+  "sema_id": "sema:TaskLifecycle#mh:SHA-256:efdc92e2f37217c2a4e04fc94850993dfb6dc3b68458abedd2be1d0c68897cd6",
+  "sema_stub": "efdc",
   "dependencies": {
     "composes_with": {
       "state_transition": "sema:StateTransition#mh:SHA-256:bdc0c1988a26e15a4e90bb79b214e4bebe630bc53f758ca67c6e1148aa802686"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "event": "sema:Event#mh:SHA-256:36757bd8344e1fd7161bd2f23d6588180fbaaf9cff5ef8be8a205effbf4438b6",
-      "exception": "sema:Exception#mh:SHA-256:61e41a9f4e26dad1ab09516b35640c6204e99e7d1df29ce0899bcbb24a126e1d",
+      "exception": "sema:Exception#mh:SHA-256:7c68ca1c9f4cae08d081d6fd31a667fa16a67d2de79eae1a96b196ad69bb9869",
       "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
       "risk": "sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "yields": {
-      "result": "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127"
+      "result": "sema:Result#mh:SHA-256:c02a8d6817c2f0e14d5a9360824240f135905e8be25fd659feb76d1f44e274c6"
     }
   },
   "sema_layer": "Infrastructure",

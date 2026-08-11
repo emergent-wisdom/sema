@@ -18,26 +18,27 @@
     "supersedes": [
       "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
       "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
-      "sema:LocalizedLearning#mh:SHA-256:1eec33d8fc081000b2c5927b7cfc2d4e6a8835fc9e0d46e051bb7ee34541cbdf"
+      "sema:LocalizedLearning#mh:SHA-256:1eec33d8fc081000b2c5927b7cfc2d4e6a8835fc9e0d46e051bb7ee34541cbdf",
+      "sema:LocalizedLearning#mh:SHA-256:d85eb389650b50414a74e396d61b86ed0966e9777b85ff05d3c8f3b69208aa17"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:LocalizedLearning#mh:SHA-256:d85eb389650b50414a74e396d61b86ed0966e9777b85ff05d3c8f3b69208aa17",
-  "sema_ref": "LocalizedLearning#d85e",
-  "sema_stub": "d85e",
+  "sema_id": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
+  "sema_ref": "LocalizedLearning#868b",
+  "sema_stub": "868b",
   "signature": [
     "Act(FeedbackSignal)"
   ],
   "dependencies": {
     "accepts": {
-      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:b17bc5487b9430d441e24c219f0c50395f59d45c3475e5f0260d1f46b8b49624"
+      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:69647a84ed114fda3cc3c10c14161dac2adee6010792b293d20b9c36ec1c6a18"
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:15bc956376ad5741a0838b7a2a7e825df1f30849a484900dd42f0873b9059a92"
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:da6d0d4755028b576f0c8c53affe23afc54ac32221142e5cc79dedfab753b2f9"
     }
   },
   "sema_layer": "Mind",

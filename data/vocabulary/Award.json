@@ -15,32 +15,33 @@
     "supersedes": [
       "sema:Award#mh:SHA-256:7bf0f52b1dd71eae4d352bfb4c2c17bf4513dbe905299f3b950222e508c90244",
       "sema:Award#mh:SHA-256:cfe24da55c73b4046503716821d17f42264ac98b8a7e5f0289582b01dbb604ed",
-      "sema:Award#mh:SHA-256:af8e239d97dd719c5e42fbc977e8b3a67a0aa31bd3f788883dea1475098ef976"
+      "sema:Award#mh:SHA-256:af8e239d97dd719c5e42fbc977e8b3a67a0aa31bd3f788883dea1475098ef976",
+      "sema:Award#mh:SHA-256:c5ac316d6c4293e58d8b00f6a06fb81dea3765be9facba3ee394854db2be77d4"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_ref": "Award#c5ac",
-  "sema_id": "sema:Award#mh:SHA-256:c5ac316d6c4293e58d8b00f6a06fb81dea3765be9facba3ee394854db2be77d4",
-  "sema_stub": "c5ac",
+  "sema_ref": "Award#2c46",
+  "sema_id": "sema:Award#mh:SHA-256:2c46bf53513b87e9e04823ad727af1a48e39fed75398ecc8edc63554edbe962c",
+  "sema_stub": "2c46",
   "dependencies": {
     "accepts": {
-      "bid": "sema:Bid#mh:SHA-256:f083ba4d6bda1e6f41425819a11da70828e6ee6dbe843ada68ef1e0696b9bf17"
+      "bid": "sema:Bid#mh:SHA-256:79cf8292cd6dc35c67b9a91f5a9f31962b12efc5ceb36ec84e1876142bce90ef"
     },
     "composes_with": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "held_release": "sema:HeldRelease#mh:SHA-256:08506ccf6d4e8e46131ed3766b8d6f70feb878ffdfa9284e01b367418f06fa95",
+      "held_release": "sema:HeldRelease#mh:SHA-256:ce65cfd49c0f96fa291163b563d1a0ad78e09059fdd4889f571cba8d101b721f",
       "sign": "sema:Sign#mh:SHA-256:b2020447ec4c2725a139c6117c764cf464643e6e83379e86263267f95e4965ee"
     },
     "references": {
-      "solver": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
+      "solver": "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {
-      "contract": "sema:Contract#mh:SHA-256:bf33d6b0b29a7d4c2daa50ec3ab94c09818c67af367567f2b76976a433e5e00f"
+      "contract": "sema:Contract#mh:SHA-256:0a175c6f4a8622b98f611614e42401c4dc4778178a438269bf5dd388006397e0"
     }
   },
   "sema_layer": "Society",

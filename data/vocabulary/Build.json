@@ -27,16 +27,17 @@
     "ring": 1,
     "supersedes": [
       "sema:Build#mh:SHA-256:00f3e2cc017af17d5de5a121ddd38017635736aa54c5ef23ee43c84abe5ddab6",
-      "sema:Build#mh:SHA-256:24b99d995cd2d544f447f9f71a3e33cc19667b89ba33591e32c70d2ab2e0f9b0"
+      "sema:Build#mh:SHA-256:24b99d995cd2d544f447f9f71a3e33cc19667b89ba33591e32c70d2ab2e0f9b0",
+      "sema:Build#mh:SHA-256:779891ac7847940250f7a8a7cb1610f190862df7af2e5b2fd680b0d89dc42bf2"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Build#mh:SHA-256:779891ac7847940250f7a8a7cb1610f190862df7af2e5b2fd680b0d89dc42bf2",
-  "sema_ref": "Build#7798",
-  "sema_stub": "7798",
+  "sema_id": "sema:Build#mh:SHA-256:8c12768e582bf408aedc62adf2f68ebc0caba12e53191af37a35fc61befc1704",
+  "sema_ref": "Build#8c12",
+  "sema_stub": "8c12",
   "signature": [
     "Act(Artifact)"
   ],
@@ -50,12 +51,12 @@
   ],
   "dependencies": {
     "accepts": {
-      "spec": "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89"
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7"
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80",
-      "plan": "sema:Plan#mh:SHA-256:d544bbb525f0decdfc92cf7b1ef61cadfd1f335d56ba1cbed0734a63c25140cd",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b",
+      "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32",
       "prototype": "sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b"
     },
     "yields": {

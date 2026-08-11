@@ -52,20 +52,21 @@
     "ring": 0,
     "supersedes": [
       "sema:ExperienceSharding#mh:SHA-256:d9208f9cae52b448379b20118d47ed597e138e0a1015adc03598d65699d2dd8f",
-      "sema:ExperienceSharding#mh:SHA-256:3be09a0c57f793ab33a1efbd6773feac4bd2fc1dda5ec3b6beb56a7230793188"
+      "sema:ExperienceSharding#mh:SHA-256:3be09a0c57f793ab33a1efbd6773feac4bd2fc1dda5ec3b6beb56a7230793188",
+      "sema:ExperienceSharding#mh:SHA-256:5b42f1a5f5bb2a81220deba6845460081eff9834fe3e176181f7774310f821cd"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:ExperienceSharding#mh:SHA-256:5b42f1a5f5bb2a81220deba6845460081eff9834fe3e176181f7774310f821cd",
-  "sema_ref": "ExperienceSharding#5b42",
-  "sema_stub": "5b42",
+  "sema_id": "sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153",
+  "sema_ref": "ExperienceSharding#c8a1",
+  "sema_stub": "c8a1",
   "dependencies": {
     "references": {
-      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:2a85510f0a4d2505b0c577817b3e116dc203db4a2ff2755778ec9000c8e3cefc",
-      "shard": "sema:Shard#mh:SHA-256:0c7f0ca5c9169b77bacc5825c072dcb9eef3ff7ceee76a4a2bdbc9ebedaceaa3"
+      "chunk_merge": "sema:ChunkMerge#mh:SHA-256:a7a32d00372fcda30401ab77dbcb3a3b53fd3c4f013a2c9a5346e8b49ed76285",
+      "shard": "sema:Shard#mh:SHA-256:4d41232416e3d414c714e0892e8559c2180899b4c21c25af29984372220f8704"
     }
   },
   "sema_layer": "Mind",

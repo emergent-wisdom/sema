@@ -25,21 +25,22 @@
     "ring": 0,
     "supersedes": [
       "sema:HolographicShard#mh:SHA-256:13529590ca2770a776edbe88e378a084a228c0e4d23e5d1266f284697fa2a22f",
-      "sema:HolographicShard#mh:SHA-256:7eb7beec35ed149646d3e9631303f4dbf706daec5ccc0d186d0d6158cd7b5203"
+      "sema:HolographicShard#mh:SHA-256:7eb7beec35ed149646d3e9631303f4dbf706daec5ccc0d186d0d6158cd7b5203",
+      "sema:HolographicShard#mh:SHA-256:23fe4cc87c15465bff08338037f4ca2a74a78c417dbd762a5a6fdcafdd3f2664"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:HolographicShard#mh:SHA-256:23fe4cc87c15465bff08338037f4ca2a74a78c417dbd762a5a6fdcafdd3f2664",
-  "sema_ref": "HolographicShard#23fe",
-  "sema_stub": "23fe",
+  "sema_id": "sema:HolographicShard#mh:SHA-256:6e067dcfaca5b7d656f6de48b083cd44862ea18b45c1daa5cfa3eccd751f0d02",
+  "sema_ref": "HolographicShard#6e06",
+  "sema_stub": "6e06",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
-      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:c05779de54bf98bf74d926045c5bf864af5002a00aea3012b15553e345c5e9b3"
+      "fabric_sharding": "sema:FabricSharding#mh:SHA-256:96e1a90c65365b0297a3090f67f2fc88422596a6efb4ecb2ad980c3d365d4216"
     }
   },
   "sema_layer": "Mind",

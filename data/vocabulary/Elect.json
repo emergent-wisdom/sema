@@ -31,23 +31,24 @@
     "supersedes": [
       "sema:Elect#mh:SHA-256:4042f6af9faaf5b85a276ec88bddf7accacf63be9c7a917bfb4ff16bbf7e74a3",
       "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
-      "sema:Elect#mh:SHA-256:45ff98aaa03731e8e490293d799edba62f98b40669828f2d32b436a0ecd4b6ca"
+      "sema:Elect#mh:SHA-256:45ff98aaa03731e8e490293d799edba62f98b40669828f2d32b436a0ecd4b6ca",
+      "sema:Elect#mh:SHA-256:c84fa9d3f7d3793f050b6ddc6a46efa35ccd433542fe45fc235aba8d8f36bd98"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Elect#mh:SHA-256:c84fa9d3f7d3793f050b6ddc6a46efa35ccd433542fe45fc235aba8d8f36bd98",
-  "sema_ref": "Elect#c84f",
-  "sema_stub": "c84f",
+  "sema_id": "sema:Elect#mh:SHA-256:53902a96572579889fc19d4c0100e7876fe566fba4cc846241e6b209b00bf52f",
+  "sema_ref": "Elect#5390",
+  "sema_stub": "5390",
   "dependencies": {
     "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
       "ballot": "sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Society",

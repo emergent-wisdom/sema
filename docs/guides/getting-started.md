@@ -56,7 +56,7 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#ec30`, `Vote#d3cb`, `StateLock#c9c2`.
+You should see results like `Consensus#b9a5`, `Vote#8493`, `StateLock#c9c2`.
 
 ## Use handles as words
 
@@ -64,7 +64,7 @@ Sema handles are thinking tools, not footnotes:
 
 > "This uses `StateLock#c9c2` to prevent concurrent mutation"
 
-> "Apply `Decompose#db21` first, then `Prioritize#99f0` the subproblems"
+> "Apply `Decompose#6994` first, then `Prioritize#99f0` the subproblems"
 
 ## Create your own vocabulary
 

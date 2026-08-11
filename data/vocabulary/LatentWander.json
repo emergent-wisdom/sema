@@ -14,24 +14,25 @@
     "ring": 2,
     "supersedes": [
       "sema:LatentWander#mh:SHA-256:7495cf0cb91d6ab477df1c7a2e207ff79b63fda9f173e8473f3f8c2d3a2a2cdc",
-      "sema:LatentWander#mh:SHA-256:6e05bb981a6714f25dc0d5b2fca34054afdf721bec2e202c569cd96fb40a1a47"
+      "sema:LatentWander#mh:SHA-256:6e05bb981a6714f25dc0d5b2fca34054afdf721bec2e202c569cd96fb40a1a47",
+      "sema:LatentWander#mh:SHA-256:56dead268c6d318f7d711de29fe9f57bf52a7cb86650037f78017156e38c7906"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:LatentWander#mh:SHA-256:56dead268c6d318f7d711de29fe9f57bf52a7cb86650037f78017156e38c7906",
-  "sema_ref": "LatentWander#56de",
-  "sema_stub": "56de",
+  "sema_id": "sema:LatentWander#mh:SHA-256:74c7ccbd21cf403b737b653da04a5c45fdc8b2825c7748630b5c6f9c2912f0d0",
+  "sema_ref": "LatentWander#74c7",
+  "sema_stub": "74c7",
   "dependencies": {
     "references": {
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb",
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:4e1a8d331a266c5ff283faba9b1c0d65c943dfa3b0f96f4b7deb5a76f9a171c6",
       "latent_attachment": "sema:LatentAttachment#mh:SHA-256:992d55f53109cbc5050a8ed96afe91121a85a664c6178ad136358e792ecbfa20",
       "silence": "sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f"
     },
     "yields": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:19ca8985125c0763648986dace3b85d15138e46a05819dec683a651c461ef0bf"
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:cf62f5ead4f1aaa93a26feb06a9546035a93d1103cca1fccb1d4de5f08babc4a"
     }
   },
   "sema_layer": "Mind",

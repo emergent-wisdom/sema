@@ -15,22 +15,23 @@
     "ring": 2,
     "supersedes": [
       "sema:ChainOfThought#mh:SHA-256:620185e6502cb8b2ac69fcdd94243e5ccfa2f54d3d34524dcf26a1c81662294c",
-      "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06"
+      "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
+      "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2",
-  "sema_ref": "ChainOfThought#5fb2",
-  "sema_stub": "5fb2",
+  "sema_id": "sema:ChainOfThought#mh:SHA-256:27ad1f2386f58e1f9e1983c97f6dbeb8f1345e1d9b9e00af30871b97d21e0c95",
+  "sema_ref": "ChainOfThought#27ad",
+  "sema_stub": "27ad",
   "signature": [
     "Think(Chain)"
   ],
   "dependencies": {
     "composes_with": {
-      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3",
+      "reflexion": "sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8",
       "step_back": "sema:StepBack#mh:SHA-256:f3457758c4422538953f065b630718b766104ce13d0979c573fe55e5d1ad27b1"
     },
     "references": {

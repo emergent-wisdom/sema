@@ -22,23 +22,24 @@
     "supersedes": [
       "sema:HypothesisLadder#mh:SHA-256:e739d24ffb9b7c57bf309404838cdd21a4c39d6aa48b72e6565c98a8767f9fa7",
       "sema:HypothesisLadder#mh:SHA-256:b8cd4534d34515209818259fc96a079f2813f4673326b4b844d53780a3f5c4e1",
-      "sema:HypothesisLadder#mh:SHA-256:5f0c04b152f81423c0ed9daa5433cd2d0be8413c6d5790c4cee54ea54ab488b5"
+      "sema:HypothesisLadder#mh:SHA-256:5f0c04b152f81423c0ed9daa5433cd2d0be8413c6d5790c4cee54ea54ab488b5",
+      "sema:HypothesisLadder#mh:SHA-256:fac9530cb1134c155f1ef116fd84ee6d4f8b076222be67f7292384efce8e4381"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:fac9530cb1134c155f1ef116fd84ee6d4f8b076222be67f7292384efce8e4381",
-  "sema_ref": "HypothesisLadder#fac9",
-  "sema_stub": "fac9",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:cbd75b0550a7903a8d7a8a24d9b06bbb61b52d52035608ba89617b42330ba9fe",
+  "sema_ref": "HypothesisLadder#cbd7",
+  "sema_stub": "cbd7",
   "dependencies": {
     "composes_with": {
-      "experiment": "sema:Experiment#mh:SHA-256:08165b6c52dae531b39b4a900df552aff0987e341eec30108d6013bb80410a41"
+      "experiment": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748"
     },
     "references": {
-      "abduction": "sema:Abduction#mh:SHA-256:b62e330c794af8e7e3990c4fe74b75fc944f31df213835a5fba0f792904f4863",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:879afc8b39356ead46edabbc3f4f098d9e7e5995a516d573574427dcb669fa3a",
+      "abduction": "sema:Abduction#mh:SHA-256:e738d3035534bba0a6b165325ba64818abb897a0f6b9848bc00c7c17ca146921",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:11d261e6588f2923517c746a910aa2a60e6f3998852e109ea533d7199ecd4db8",
       "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14"
     }
   },

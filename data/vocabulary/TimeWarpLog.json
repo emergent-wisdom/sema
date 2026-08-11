@@ -44,20 +44,21 @@
       "sema:TimeWarpLog#mh:SHA-256:d9386c726ba1c96bfae61549b82b16d1137d59b1f2129a19a24568f3117a4720",
       "sema:TimeWarpLog#mh:SHA-256:c60901d1796a1284a17cd5c97604718bd08428a7a9691a7f225c57195efe0a96",
       "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269",
-      "sema:TimeWarpLog#mh:SHA-256:e26edd5011e4842730b23fb11a2d5efaff9a52112e8081f5856893c9c4ce99ff"
+      "sema:TimeWarpLog#mh:SHA-256:e26edd5011e4842730b23fb11a2d5efaff9a52112e8081f5856893c9c4ce99ff",
+      "sema:TimeWarpLog#mh:SHA-256:7fd7d546477d4389a8c63cde58b1d4a02d20e8a44ac22f7975fa77292c595790"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:TimeWarpLog#mh:SHA-256:7fd7d546477d4389a8c63cde58b1d4a02d20e8a44ac22f7975fa77292c595790",
-  "sema_ref": "TimeWarpLog#7fd7",
-  "sema_stub": "7fd7",
+  "sema_id": "sema:TimeWarpLog#mh:SHA-256:755f480a60517d8e99807da674019db06ab0b7b2edabcc806d833947da4446e4",
+  "sema_ref": "TimeWarpLog#755f",
+  "sema_stub": "755f",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "causal_barrier": "sema:CausalBarrier#mh:SHA-256:a6d8167a05ffab8cf5fda4da7a81e2c196de8a182f0673b9a8a5cbf189222dfc",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "causal_barrier": "sema:CausalBarrier#mh:SHA-256:cf54b35c9236d8fd2db3ca4f35ab5bdaac79c17052d9095aaa5fa6f143507809",
       "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:d0d3ce256be4bc080a29eab7fda36381a4352a280d9a12d59179c60e71cf9bd0",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",

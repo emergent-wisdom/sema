@@ -32,22 +32,23 @@
     "supersedes": [
       "sema:DogfoodFirst#mh:SHA-256:3f2cc6a5a25c8127928db9d40defd1a022362de6f94ee44cbab9383134d4d9e3",
       "sema:DogfoodFirst#mh:SHA-256:b595a866612b5006a8f7d1c8f1ae208271e15f9cf999271aa172116ed476a2d2",
-      "sema:DogfoodFirst#mh:SHA-256:3b9da6c363098aeadf1147adde382db1dfc5af7e04faf68e7f361171f2495b51"
+      "sema:DogfoodFirst#mh:SHA-256:3b9da6c363098aeadf1147adde382db1dfc5af7e04faf68e7f361171f2495b51",
+      "sema:DogfoodFirst#mh:SHA-256:2825a19d555f390373975f1aa8306d64a9694b192a3ec60d47a94b71f4e565b9"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:DogfoodFirst#mh:SHA-256:2825a19d555f390373975f1aa8306d64a9694b192a3ec60d47a94b71f4e565b9",
-  "sema_ref": "DogfoodFirst#2825",
-  "sema_stub": "2825",
+  "sema_id": "sema:DogfoodFirst#mh:SHA-256:76eea0e77af92abe85e0dda7c20710ca3f9b2dd0e243f2f08c3468b6c1d96204",
+  "sema_ref": "DogfoodFirst#76ee",
+  "sema_stub": "76ee",
   "dependencies": {
     "references": {
-      "canary": "sema:Canary#mh:SHA-256:d7fc49dec224a25b326fefaa0e7f0d3ac70c7b5ae0bfb5af6763d4280f576dbb",
+      "canary": "sema:Canary#mh:SHA-256:d38cd019553857aa7518559542b5400b658f87eb08e6f4dae9be4fd496ce691e",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
-      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3"
+      "reflexion": "sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8"
     }
   },
   "sema_layer": "Mind",

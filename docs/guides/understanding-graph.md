@@ -16,7 +16,7 @@ reasoning commons that survives across sessions and across agents.
 
 > **A note on the hashes in this doc.** The examples below use live canonical
 > hashes from the current sema vocabulary (`StateLock#c9c2`,
-> `MechanisticDesignProposal#2f7a`). Refinement can change a hash. If a
+> `MechanisticDesignProposal#e36f`). Refinement can change a hash. If a
 > handshake returns `HALT` instead of `PROCEED`, run `sema show <handle>`
 > to see the current canonical stub — that's the fail-closed protocol
 > working as designed, not a doc bug.
@@ -102,7 +102,7 @@ history about the *same* `StateLock`, not a renamed or drifted version.
 
 ```markdown
 1. graph_skeleton() to orient.
-2. Before posting a design, sema_handshake on MechanisticDesignProposal#2f7a.
+2. Before posting a design, sema_handshake on MechanisticDesignProposal#e36f.
 3. If PROCEED, write a `decision` node via graph_batch, citing the hash.
 4. If HALT, write a `tension` node and stop.
 ```

@@ -19,16 +19,17 @@
     "supersedes": [
       "sema:MarginalValueRule#mh:SHA-256:a46a39374cd046def6d2457b87ce2a426fe1e4b957494ff4a5b62d28665e159e",
       "sema:MarginalValueRule#mh:SHA-256:314d8f02234530572de34b8f0616021e51e166f2341b9a5c40491e81f7ce5201",
-      "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026"
+      "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026",
+      "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80",
-  "sema_ref": "MarginalValueRule#48c4",
-  "sema_stub": "48c4",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b",
+  "sema_ref": "MarginalValueRule#ffe1",
+  "sema_stub": "ffe1",
   "signature": [
     "Budget(RecursionDive)"
   ],
@@ -43,8 +44,8 @@
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "estimate": "sema:Estimate#mh:SHA-256:ae720093041b7c69a7131328b912157311dc43e4491a2125c5da449482c77b94",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:3cb8f2f1f21a09dbc4f4a6de995284bf406c2462d3a861d6215e935205ccfbe2",
+      "estimate": "sema:Estimate#mh:SHA-256:0f4428479417ff278eec7ffe9149e65049956fe2f4bfd5d3f8ebdd0b708428fd",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:54763d3b1a9745e7f4a13d34b68355866c9cad797d786c8c43cb0306a37e78d3",
       "sunk_cost_ignore": "sema:SunkCostIgnore#mh:SHA-256:c2e5392f7eee86aa652633c415404ce13a5f83f4e239ad02fd230c75b3c2313c"
     }
   },

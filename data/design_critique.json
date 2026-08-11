@@ -605,11 +605,11 @@
   "Assessment": {
     "motivation": {
       "why_this_layer": "structured record of evaluation — data",
-      "why_it_exists": "Critique that doesn't yield action is theater. Assessment names the structured output — strengths, weaknesses, specific recommendations, references — that makes a critique load-bearing in a reflexion/refinement loop. Without the structure, 'feedback' is a grab bag; with it, downstream callers can route, prioritize, and act.",
+      "why_it_exists": "Critique that doesn't yield action is theater. Assessment names the structured output — at least one specific recommendation tied to the target, with strengths and weaknesses where useful — that makes critique load-bearing in reflexion and refinement loops. Without this structure, feedback is a grab bag; with it, downstream callers can route, prioritize, and act.",
       "removability": "Could be replaced by free-text Critique, which is what many simpler systems use. The structured form earns its weight when the output flows into automated loops (Reflexion, Refine) that need to extract actionable items. In one-shot human-consumed settings, the structure adds friction without payoff."
     },
     "usage": {
-      "intended": "structured qualitative evaluation — strengths, weaknesses, recommendations.",
+      "intended": "structured qualitative evaluation with at least one target-specific recommendation; strengths and weaknesses where applicable.",
       "future": "any structured-qualitative-feedback artifact.",
       "broad_contexts": "performance reviews, academic assessments, code review artifacts, medical assessments, risk assessments, peer reviews.",
       "every_context_needs": "structured evaluation, at least one actionable recommendation, and an identified target for every weakness and recommendation. Strengths and weaknesses lists are optional: a purely corrective review is still an Assessment.",
@@ -619,22 +619,21 @@
     },
     "design": {
       "tensions": [
-        "Actionability invariant (at least one recommendation) vs honest evaluation — sometimes the right assessment is 'this is fundamentally broken, no recommendation will fix it,' which the invariant forbids.",
-        "Reference invariant (cite specific parts) vs systemic critique — some assessments target global properties (architecture, stance, premise) that don't map to a specific line.",
+        "Actionability vs descriptiveness — requiring a recommendation makes Assessment useful to downstream loops, but excludes a purely descriptive diagnosis even when no repair is warranted.",
+        "Specific targeting vs declared-whole findings — allowing the declared whole admits legitimate systemic critique but also gives vague recommendations an easy escape from part-level specificity.",
         "Comprehensiveness vs focus — a thorough assessment surfaces many issues; a focused one drives action. The pattern doesn't say which to prefer."
       ],
       "tradeoffs": [
         "Gains: structured, parseable evaluations that feed refinement loops; explicit linkage from critique to recommendation to reference.",
-        "Gives up: the option of 'this is beyond repair' — the actionability invariant forces a constructive framing even when destruction is the honest recommendation."
+        "Gives up purely descriptive verdicts: even an assessment that recommends abandonment must state that action specifically."
       ],
       "critique": [
         "The 'at least one specific recommendation' invariant is almost always satisfied vacuously — 'rewrite this' counts, but doesn't help. The pattern doesn't mandate recommendation quality.",
         "No mechanism for weighting or prioritizing across strengths/weaknesses — a pile of mixed points without a ranking is as hard to act on as unstructured critique.",
-        "The 'strengths' requirement is often performative — assessors pad with surface praise to satisfy the shape, diluting the signal.",
-        "RESOLVED 2026-08-03 (delegated): three decisions. Strengths and weaknesses stay optional, since an assessment that only corrects is still an assessment (identity test). The Reference invariant is widened to admit systemic scope — a whole-artifact finding could not cite a specific part and was excluded by the old wording, though systemic review is a legitimate broad-use context. And direct edges are reserved for consumers whose mechanism names the Assessment record as input or output; adding an edge redistributes obligation across the graph, so casual feedback users do not get one."
+        "REVISED 2026-08-11: the 0.4 decision correctly made strengths and weaknesses optional and admitted whole-artifact findings, but the hashed mechanism still described both lists as universal and the schema did not enforce its one required recommendation. The mechanism, `minItems` constraint, and sidecar now agree. Direct edges remain reserved for mechanisms that actually consume or yield this record."
       ]
     },
-    "family_discussion": "Produced by Critique (the verb) and consumed by Reflexion, Refine, and Judge. Sibling of Evaluation (generic scoring) and Review (peer or adversarial critique). The 'input for reflexion and refinement loops' framing places Assessment at the feedback-loop junction — the spot where cognitive work becomes process work."
+    "family_discussion": "`Critique` produces Assessment. `Refine` explicitly uses Critique's actionable assessment; `Reflexion` uses linguistic self-critique without importing this record directly. `Judge` is a sibling that yields a scalar score rather than descriptive advice. Assessment is where cognitive critique becomes structured process input."
   },
   "Assumption": {
     "motivation": {
@@ -874,7 +873,7 @@
   },
   "Axiom": {
     "motivation": {
-      "why_this_layer": "community-accepted starting premise",
+      "why_this_layer": "foundational premise adopted within a single reasoner's logic frame",
       "why_it_exists": "Every formal system needs a base case. Without a named primitive for 'accepted without proof within this frame,' the agent has no way to distinguish a derived claim from a foundational one, and attempts at proof eventually either loop or regress infinitely.",
       "removability": "Removable only if you accept that no claim is foundational, which collapses deductive reasoning. More practically: you could fold Axiom into Assumption, but you'd lose the signal that these particular assumptions are non-negotiable within the current logic frame rather than provisionally adopted to proceed."
     },
@@ -1385,7 +1384,7 @@
     "motivation": {
       "why_this_layer": "engineered conditional-fork primitive — authored, not substrate",
       "why_it_exists": "The two-way conditional fork is a mechanical primitive — if-else. Making it a pattern avoids reinvention and establishes a shared handle for 'exactly two mutually exclusive paths,' distinct from Route (N-way classifier) and Gate (conditional halt with Decision output).",
-      "removability": "Probably yes at the library level — Branch is semantically equivalent to a Gate yielding a two-option Decision. The library keeps it as its own pattern because 'if C then A else B' is so universally recognized that the abstraction cost of routing it through Gate would hurt readability. A pragmatic retention rather than a necessity."
+      "removability": "Operationally expressible with Gate plus a two-option Decision, but conceptually distinct: Branch dispatches between alternative continuations, while Gate admits or rejects one payload. The familiar handle prevents that distinction from being rediscovered as a near-duplicate."
     },
     "usage": {
       "intended": "conditional fork — if C then A else B (mutual exclusion).",
@@ -3328,7 +3327,7 @@
         "Seed-separation judgment is itself a hard problem the pattern relies on — finding sufficiently distant concepts in context can be most of the work, and the parent delegates the metric and threshold to ConceptBlend.",
         "The two Checks are observational and do not alter control flow themselves. CreativeBlend owns the enforceable policy: it yields an artifact only when both return Verified.",
         "CORRECTED 2026-08-03 after independent review. The former parent applied NoiseInjection on every run and carried a second, incompatible temperature range, while NoiseInjection permits perturbation only after detected repetition. Both the universal dependency and duplicate parameter are removed. A descendant may compose NoiseInjection when its trigger and own temperature contract apply; the open parent does not require that tactic.",
-        "REFRAMED 2026-08-03: `extends Creative` is now an exact taxonomic claim that emits IS_A, not a promise of inherited contracts. Because Creative is a structurally light cognitive mode while CreativeBlend is a strategy, the edge still carries little information beyond classification. Whether that taxonomy is useful enough to keep, or belongs only in `_meta.related`, remains a separate design decision."
+        "RESOLVED 2026-08-11: keep exact `extends Creative` as a taxonomic classification. It records that CreativeBlend is a Creative mode while importing none of the parent's contracts; `_meta.related` would lose that explicit IS_A claim."
       ]
     },
     "family_discussion": "Generative-strategy pattern paired with ConceptBlend (the fusion primitive), Check (the observational verifier), and Creative (the umbrella mode). NoiseInjection is an optional descendant tactic when its repetition trigger applies, not part of the parent contract. Compare with AnalogyBridge — AnalogyBridge maps one domain onto another; CreativeBlend fuses them."
@@ -5335,28 +5334,28 @@
   },
   "FailureTrace": {
     "motivation": {
-      "why_this_layer": "structured proof artifact",
-      "why_it_exists": "A structured, verifiable proof that a rejection is grounded in specific AcceptSpec violations rather than generic dissatisfaction. Without FailureTrace, a rejected Solution carries 'doesn't meet bar' — the upstream Solver has no actionable information. With FailureTrace, the upstream can route on the specific clause and invoke that clause's reframing hint.",
+      "why_this_layer": "signed rejection-evidence record — typed data artifact",
+      "why_it_exists": "A clause-specific rejection record whose signed payload binds evaluator, clause, evidence, and signing time. Without FailureTrace, a rejected Solution carries only 'doesn't meet bar'; with it, the upstream Solver gets actionable and attributable evidence. The signature authenticates the unaltered record, but does not prove that the cited evidence entails the claimed violation.",
       "removability": "No. Without it, ReceptivityGate has nothing to verify, and PathwayMemory has no structured signal to learn from. The AcceptSpec→FailureTrace→ReceptivityGate chain is the library's poison-resistant feedback path — each link is load-bearing."
     },
     "usage": {
-      "intended": "",
-      "future": "",
-      "broad_contexts": "",
-      "every_context_needs": "",
-      "varies": "",
-      "extensions": "",
+      "intended": "signed, clause-specific evidence for a claimed AcceptSpec violation.",
+      "future": "any rejection channel that needs attributable, tamper-evident feedback.",
+      "broad_contexts": "solver feedback, contract rejection, compliance findings, peer evaluation, and adversarial open-commons review.",
+      "every_context_needs": "AcceptSpec reference, one violated clause, cited artifact evidence, evaluator identity, signing time, and a signature bound to the complete trace payload.",
+      "varies": "signature representation, key-validity policy, severity vocabulary, deduplication, and substantive entailment review.",
+      "extensions": "`EntailmentCheckedFailureTrace`, `AnonymousCredentialFailureTrace`, `DeduplicatedFailureTrace`.",
       "notes": []
     },
     "design": {
       "tensions": [
         "Evidence-bound vs evidence-weight: the invariant requires citeable evidence from the artifact, but doesn't say how much evidence or of what kind. An evaluator citing a single-word snippet as 'evidence' passes the letter but not the spirit.",
-        "Signed vs anonymous peer review: signatures bind the evaluator's identity, which is necessary for adversarial settings but a cost in contexts (academic peer review, anonymous feedback) that want unsigned critique.",
+        "Attribution vs anonymity: a content-bound evaluator signature supports adversarial verification but excludes unsigned anonymous review; anonymous credentials require a descendant with a different identity proof.",
         "One-clause-per-violation vs compound failures: the invariant says exactly one clause per violation. Real failures often violate multiple clauses simultaneously — requiring multiple FailureTraces is cleaner per-clause but awkward when the violations are correlated."
       ],
       "tradeoffs": [
         "Clause-specificity buys actionable feedback at the cost of evaluator work — naming the exact clause is harder than saying 'doesn't meet bar.'",
-        "Signed identity buys fraud-resistance at the cost of the identity infrastructure (keys, revocation, authority).",
+        "Content-bound attribution prevents altered-payload identity replay at the cost of identity and signature infrastructure; freshness and duplicate suppression remain external.",
         "Evidence-bound invariant prevents fabricated rejections but constrains evaluators to only rejecting what they can cite — truly subjective rejections fall outside the spec."
       ],
       "critique": [
@@ -5366,8 +5365,8 @@
         "The Evidence Insufficiency the first critique point wants is now a failure mode rather than an invariant, and deliberately so. 'Too weak to support the claim' is not decidable, which is exactly why the pattern cannot carry a minimum-strength check — the first tension makes the same point about a single-word snippet passing the letter. What the card can do is state the limit of what its three invariants establish: that citations resolve, not that they entail. It is the same hole named on `ReceptivityGate` from the verifier's side, and it belongs on both, because the third critique point is right that a FailureTrace can be consumed by something other than the gate.",
         "The third critique point cannot be fixed the way it implies. It asks for the ReceptivityGate relationship to be enforced rather than described, but ReceptivityGate already references `{{failure_trace}}`, so an edge back would be a cycle. The direction is correct as it stands: a verifier names what it verifies, and an artifact cannot name its verifier without inverting that. Fifth time in this pass that checking the reverse edge changed the action.",
         "One-clause-per-violation stays. The third tension calls multiple traces for correlated violations 'awkward' rather than wrong, and the invariant already permits several traces for several violations.",
-        "RECLASSIFIED 2026-07-28. I listed this as release blocker 3 — 'contracts cryptographic verifiability its schema cannot deliver' — and that was WRONG. The evidence: `evaluator_ref` is described as 'Signed identity of the evaluator', not a bare reference; `signed_at` exists; and `ReceptivityGate`, the consumer, contracts 'Signature-verified: the evaluator's identity must be cryptographically valid'. All three invalidity conditions the mechanism names are verifiable by the thing that contracts to verify them — clause existence by schema lookup, evidence by the verifier holding the artifact, identity by signature check. The card never promised trace-content integrity, so this is an unaddressed attack, not a false contract, and by the release criterion it is NOT A BLOCKER. Three blockers, not four.\n\nThe gap is real and is now named. `evaluator_ref` carries a signed IDENTITY, and nothing binds that signature to this trace's contents — `Sign`'s own invariant 'Invalidates if the {{artifact}} changes' is the property that would, and it is not invoked here. So a genuine evaluator's signed identity can be lifted onto a fabricated trace and pass ReceptivityGate's Signature-verified check. Added as a failure mode in this card's own idiom for stating the limit of its invariants, which is exactly what it already does for evidence weakness ('All three invariants pass — they establish that citations resolve, not that they entail').\n\nDeliberately NOT an invariant. Requiring a signature that covers the trace's contents would be designing a scheme, and the instruction was not to invent one. FOR HENRIK: whether a content-bound signature becomes required is a design decision on a pattern whose declared purpose is fraud resistance, with 49 transitive dependents.",
-        "RESOLVED 2026-08-03 (delegated): the Signed-and-timed invariant is kept as repaired. Checking the signing time against the evaluator key's validity window is deployment policy, not parent contract: the window is caller-supplied and the placement test puts it in callers."
+        "The 0.4 review added signing time and correctly kept evidence entailment outside this structural record, but it left content binding undecided. That distinction exposed the remaining attack: a genuine evaluator's signed identity could be attached to fabricated trace content. The 0.5 follow-up below resolves that gap through the existing Sign abstraction without claiming freshness or substantive entailment.",
+        "REVISED 2026-08-11: the 0.4 decision answered key-validity policy but not the original content-binding question. Existing `Sign` already supplies the required abstraction, so requiring a signature over this trace is not inventing a cryptographic scheme. `trace_signature` now binds evaluator identity to every other trace field; `signed_at` remains a covered assertion whose trusted-time and key-validity policy is caller-supplied. Unchanged-trace replay and evidence entailment remain explicit limits."
       ]
     },
     "family_discussion": "The structured-evidence half of the feedback chain. Produced by evaluators at rejection; verified by ReceptivityGate before entering PathwayMemory. Pairs with AcceptSpec as the (spec, violation-evidence) pair. The trace is what makes 'why was this rejected' first-class data rather than narrative."
@@ -8091,38 +8090,38 @@
   },
   "Mutex": {
     "motivation": {
-      "why_this_layer": "specialised Lock — same substrate-atomicity floor",
-      "why_it_exists": "The K=1 specialization of Lock with operational machinery the parent leaves abstract — fencing tokens for revocation, sequence numbers for transfer, priority queues for starvation prevention. Mutex is the pattern callers actually invoke; its exact `extends` value records Lock as a taxonomic parent, while Mutex states its own binding contracts.",
-      "removability": "Yes, in theory — could be expressed as `Lock(K=1)` if Lock carried K as a parameter. In practice the fencing/sequence/queue machinery is enough additional structure that a named specialization reads more naturally than a parameterized parent. The library chose the named-specialization path."
+      "why_this_layer": "authored ownership-based synchronization primitive — mechanically executable without cognition or independent-party semantics",
+      "why_it_exists": "Lock states the abstract single-holder exclusion guarantee. Mutex gives that guarantee an ownership-bearing acquire/hold/release interface: the acquirer becomes owner and ordinary release is owner-only. Queueing, fencing, and leases remain specialization or deployment choices; owner-death recovery requires a separate related protocol unless Lock is broadened.",
+      "removability": "It could be folded into Lock, but doing so would lose both the familiar discovery term and the explicit ownership contract. Mutex earns a separate handle by making acquirer ownership and owner-only ordinary release binding."
     },
     "usage": {
-      "intended": "exclusive-access token with lifecycle (ACQUIRE → GRANT/QUEUE → HOLD → RELEASE/YIELD).",
-      "future": "any single-holder-at-a-time primitive with explicit token.",
-      "broad_contexts": "OS mutexes, distributed locks with tokens, hardware locks, leadership tokens in distributed systems, single-writer-principle enforcement.",
-      "every_context_needs": "lifecycle, token representation, priority queue for contention, fencing tokens for revocation.",
-      "varies": "token material, queue discipline, fencing implementation, reentrancy support.",
+      "intended": "ownership-bearing mutual exclusion with acquire-before-access and owner-only ordinary release.",
+      "future": "any ownership-enforced mutex over a shared resource.",
+      "broad_contexts": "thread mutexes, process mutexes, process-shared mutexes, database advisory mutexes, and distributed mutexes that preserve owner-bound release.",
+      "every_context_needs": "shared resource, one mutex identity, at most one owner, acquire-before-access, and owner-only ordinary release.",
+      "varies": "blocking versus try-acquire, contender order and fairness, reentrancy, timeouts or leases, and distributed fencing that preserves owner-only release.",
       "extensions": "`FencingMutex`, `ReentrantMutex`, `DistributedMutex`."
     },
     "design": {
       "tensions": [
-        "Fencing-token requirement vs trust assumption: fencing tokens solve split-brain only if downstream storage honors the token check. Many real storage systems don't — the pattern assumes a cooperating substrate.",
-        "Priority queue vs simple FIFO: the pattern mandates a priority queue to prevent starvation, but priority is a caller concern (which priority function?). Mutex defines the structure without defining the policy.",
-        "Conservation-of-totem invariant vs distributed operation: 'uniqueness of the fencing totem' is provable locally but requires coordination in distributed settings — a regeneration protocol exists but adds another failure surface."
+        "Strict ownership vs recovery: this exact Lock specialization permits no takeover without release; owner-death recovery requires a separate related protocol or a future parent change.",
+        "Fairness vs throughput: contention order is deliberately unspecified; fair queues reduce starvation but may reduce throughput.",
+        "Local state vs distributed fencing: a local mutex can enforce ownership in one state authority, while a distributed descendant needs fencing or another stale-owner defense."
       ],
       "tradeoffs": [
-        "Fencing + sequence + queue buys robustness at the cost of a heavier protocol than a bare Lock — every acquire pays the token overhead.",
-        "Heartbeat + expires_at buys crash recovery (orphan token detection) at the cost of false preemption when the network is slow but the holder is alive.",
-        "The explicit failure-mode catalog buys operator clarity at the cost of pattern complexity — Mutex enumerates six mitigations rather than stating the clean core."
+        "Ownership makes invalid release detectable at the cost of tracking the acquirer.",
+        "Leaving fairness unspecified and recovery outside the parent keeps the ownership contract coherent at the cost of no liveness guarantee after owner failure.",
+        "The familiar Mutex handle improves discovery, while its separate card adds ontology weight beside the more abstract Lock parent."
       ],
       "critique": [
-        "The invariants list has only one item ('Uniqueness, conservation of the fencing totem'). For a pattern this operational, richer invariants are warranted: Monotonic Sequence, Single-Holder, Release-Ownership (only the current holder can release), Token Validity.",
-        "The 'critical section' concept is named but not specified — callers must already know what a critical section is. A minimal spec of 'the protected region is the code path between acquire and release' would ground the term.",
-        "Failure modes restructured — the previous list contained a nested \"Failure modes:\" sub-list header with numbered items spread across separate entries. Now rendered as atomic items with inline mitigations.",
+        "The 0.4 payload exposed ownership only indirectly through a fencing totem and left single-holder, acquire-before-access, owner-only release, and release-after-use uncontracted. Those are now the generic Mutex invariants.",
+        "The protected section is now grounded operationally as the region the owner may enter after acquisition and must leave before release.",
+        "Failure modes are now stated as atomic ownership failures; fairness and fencing mitigations remain caller or descendant policy, while owner-death recovery requires a separate related protocol unless Lock is broadened.",
         "Historical review note: §3.3 originally added `derived_from Lock` to Mutex after the broad-use test confirmed the specialization. The current card expresses that decision as an exact `extends` claim, which emits IS_A but does not import Lock's contracts.",
-        "RESOLVED 2026-08-03 (delegated): moved from Physics/Primitives to Society/Coordination. Its own preconditions require at least two contending, communicating agents, and its failure modes name Byzantine holders and split brain, so the mechanism structurally requires a second party with separate state. Independently, fencing tokens and priority queues are authored machinery rather than substrate givens, so Physics fails on the mechanism-sufficiency test either way. The accepts edge is corrected from task to actor: a holder acquires a mutex, and work cannot hold anything. The mechanism's {{task}} placeholder moves with it. Note for the record that the reviewing ledger described a derived_from Lock edge; the card carries a references edge to Lock, not a derivation, so no derivation survives or is broken here."
+        "REVISED 2026-08-11: the 0.4 layer decision faithfully classified an over-specialized distributed payload, but that payload violated the Occupancy Test for the general `Mutex` handle. The parent is now the ownership-bearing specialization of Lock; fencing, priority queues, and leases move to prospective descendants or deployment policy, while owner-death recovery remains a related protocol unless Lock is broadened. The mechanism needs no cognition or independent-party semantics, so the card moves to Infrastructure/Primitives. Actor, Lock, and Resource remain; the no-longer-invoked Conservation edge is removed."
       ]
     },
-    "family_discussion": "Exact `extends Lock` claim — the K=1 specialization with fencing and token mechanics, with its own contracts stated locally. `Semaphore` (K>1 counting), `ReadWriteLock` (shared/exclusive) and `DistributedLock` (lease-based) are conceptual siblings rather than asserted current IS_A peers. Paired with `Backoff` and `Cooldown` at the contention-behavior layer."
+    "family_discussion": "Exact `extends Lock` claim: Lock states the abstract single-holder guarantee, while Mutex states the ownership-bearing acquire/hold/release interface. `Semaphore` (K>1 counting) and `ReadWriteLock` (shared/exclusive) are sibling families. Fencing and distributed forms may be descendants only when they preserve ordinary owner-release semantics; otherwise they are related recovery protocols rather than Mutex subtypes."
   },
   "MutualInformation": {
     "motivation": {
@@ -8150,7 +8149,7 @@
         "Non-negativity is trivial but uninformative — the pattern has no 'characteristic scale' to compare against, so 'MI = 0.3' is hard to interpret without further context."
       ],
       "critique": [
-        "No failure modes. Missing: Finite-Sample Bias (estimator bias for small N), Discretization Error (continuous distributions discretized for estimation), Non-Identifiability (MI is invariant under invertible transformations — X vs f(X) have the same MI for any bijection f).",
+        "Estimator conflation is now explicit for the zero-iff-independent theorem. Discretization error, estimator bias beyond that case, and invariance under invertible transformations remain caller or future-estimator concerns.",
         "The entropy identity now states its finite-term domain and points to Entropy for H; the general definition uses divergence between the joint distribution and product of marginals so continuous or infinite cases are not defined through an indeterminate entropy subtraction.",
         "Substrate placement defensible but the ENTIRELY EMPIRICAL domain (computed from data) is a cognitive activity — the substrate is the information relationship, the measurement is Mind.",
         "Corrected 2026-07-26. The mechanism's claim that correlation measures linear dependence only was true of Pearson, not of the Correlation parent whose declared variants include Spearman and lagged methods. It now contrasts mutual information with method-sensitive normalized coefficients rather than treating all correlation as Pearson.",
@@ -8297,15 +8296,15 @@
   "NormCheck": {
     "motivation": {
       "why_this_layer": "detection of value-laden facts",
-      "why_it_exists": "Descriptive output that smuggles in normative adjectives ('dangerous,' 'unfair') corrupts the is-ought separation the EthicalReasoningProtocol depends on. NormCheck names the filter that catches and strips these. Without it, prediction output contaminates with judgment, and the protocol's architectural boundary leaks.",
+      "why_it_exists": "Descriptive output that smuggles in normative adjectives ('dangerous,' 'unfair') corrupts the is-ought separation the EthicalReasoningProtocol depends on. NormCheck detects these terms and applies a declared Flag, Rewrite, or Reject response. Without it, prediction output contaminates with judgment and the protocol's architectural boundary leaks.",
       "removability": "Non-removable for systems using EthicalReasoningProtocol. The pattern is specifically the enforcement mechanism for the is-ought boundary; remove it and the boundary becomes aspirational."
     },
     "usage": {
       "intended": "detect value-laden normative adjectives masquerading as objective facts.",
       "future": "any \"is-vs-ought separation\" filter.",
       "broad_contexts": "journalism bias detection, scientific-writing neutrality checks, legal-writing objectivity filters, LLM output bias detection, policy-analysis tone filters.",
-      "every_context_needs": "input text, normative-word detection, rewrite to strip biases.",
-      "varies": "normative-word lexicon, context sensitivity (some adjectives are factual in some contexts), rewrite strictness.",
+      "every_context_needs": "input text, normative-language detection, and a declared Flag, Rewrite, or Reject response.",
+      "varies": "normative-word lexicon, context sensitivity, selected response, and rewrite strictness when Rewrite is chosen.",
       "extensions": "`JournalisticNormCheck`, `ScientificNormCheck`, `PolicyNormCheck`.",
       "notes": []
     },
@@ -8313,7 +8312,7 @@
       "tensions": [
         "Fact Preservation (invariant) vs normative stripping — rewriting must preserve causal claims; 'dangerous' has normative weight and a factual correlate ('causes harm'), and stripping conflates them. The named failure of removing real safety warnings is this tension's cost, not a separate hazard.",
         "Count(NormativeAdjectives) == 0 invariant vs hidden normativity — adjectives aren't the only vector; noun choice, framing, and selection all carry normative weight. The invariant is exactly measurable and exactly insufficient.",
-        "Both invariants presuppose a rewrite that two of the three declared modes do not perform — `action_on_detect` offers Flag and Reject, and under Flag the output still contains the adjectives, so 'Count(NormativeAdjectives) == 0' is false of it. The mechanism says the pattern 'forces a rewrite', which contradicts the same parameter. Present since the initial commit, and unresolved: it turns on whether this is a check with a configurable response (as the handle, the opening clause and the {{check}} dependency all say) or a rewriter (as one mechanism sentence and both invariants say). OPEN."
+        "Detection vs intervention: Flag preserves the original text for review, Rewrite transforms it while preserving factual content, and Reject halts it. The shared contract is that detected language never passes as certified descriptive without the declared response."
       ],
       "tradeoffs": [
         "Gains: structural is-ought boundary enforcement, explicit normative-adjective filter.",
@@ -8698,7 +8697,8 @@
         "`derived_from` reparented from Solver to PolymorphicSolver. Solver is the abstract five-surface contract; PolymorphicSolver is the concrete implementer. A velocity specialisation specialises an implementer, not a contract, and OptimisticSolver satisfies PolymorphicSolver's two invariants. Its own mechanism, its own family note, and PolymorphicSolver's removability argument all already said PolymorphicSolver; only the hashed field disagreed.",
         "Reviewed 2026-08-03 for exact `extends` retarget after Work's timestamp requirement was loosened. PolymorphicSolver's authored contract is unchanged; only its ordinary dependency closure and identity move. OptimisticSolver still narrows that contract through its parallel-runtime, turn-atomic, non-blocking constraints, so the retarget is mechanical rather than a new semantic claim.",
         "Reviewed again 2026-08-03 for the Metric tranche. PolymorphicSolver's Metric dependency moves through Agent, and its Interface Non-Compliance failure wording is corrected to match the existing mandatory/optional surface split. Neither change weakens or contradicts the parent contracts OptimisticSolver narrows, so this exact retarget remains valid.",
-        "Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and OptimisticSolver continues to narrow it."
+        "Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and OptimisticSolver continues to narrow it.",
+        "Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. OptimisticSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim."
       ]
     },
     "family_discussion": "The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery."
@@ -9973,15 +9973,15 @@
       "intended": "fixed-sequence of LLM calls with AcceptSpec validation between steps.",
       "future": "any sequential-LLM pipeline with gates.",
       "broad_contexts": "LangChain-style sequential chains, multi-step LLM pipelines, editorial pipelines (write → edit → polish), research workflows.",
-      "every_context_needs": "sequence of LLM calls, AcceptSpec per edge, InputGuard + Retry per step.",
-      "varies": "chain length, per-step timeout, parallel chain branches, error handling.",
+      "every_context_needs": "sequence of LLM calls, AcceptSpec validation at each boundary, no forwarding of failed output, and a bounded re-attempt count whose exhaustion halts the chain.",
+      "varies": "chain length, per-step timeout, re-attempt budget, validation strictness, and step definitions.",
       "extensions": "`EditorialPromptChain`, `ResearchPromptChain`, `ParallelPromptChain`.",
       "notes": []
     },
     "design": {
       "tensions": [
         "A fixed sequence vs adaptive branching — the chain is linear by construction, and real tasks often need branches. `Parallelize` is the concurrent sibling; neither offers conditional structure.",
-        "Halt-versus-recover is settled by `gate_mode` rather than balanced — Strict, Retry and Skip are the three declared answers, and what the invariant guarantees across all of them is only that a failed step's output is not passed on. Under Skip that leaves the next step's input unspecified.",
+        "Halt vs bounded recovery — zero retries aborts on the first failed validation, while a positive budget spends more time attempting to produce a valid intermediate output.",
         "Strict gates reject valid intermediate outputs — the gate is what makes intermediate validation worth having, and calibrating it against real model output is continuous rework. Every step added multiplies the false-rejection surface."
       ],
       "tradeoffs": [
@@ -9989,11 +9989,11 @@
         "Gives up: flexibility and accuracy trade-off. More steps = more gate brittleness = more false rejections."
       ],
       "critique": [
-        "Error Propagation (named failure) — step N failure corrupts N+1 — is structural unless Halt on Error fires early.",
-        "Gate Brittleness is endemic in strict-schema gates; calibrating them is constant rework.",
+        "Undetected error propagation remains structural: an invalid intermediate output that the AcceptSpec mistakenly admits can still corrupt the next step.",
+        "Validation brittleness is endemic in narrow intermediate specifications; calibrating them is constant rework.",
         "Schema Continuity is a strong invariant; evolving schemas across chain versions is a known headache.",
-        "Applied 2026-07-26 from a full read. 'Halt on Error: chain aborts if gate(N) returns False' could not hold for two of the three declared values of `gate_mode` — under Retry the chain retries and under Skip it continues, and `max_retries_per_step` exists precisely to support Retry. Restated to the property that holds under all three: a failed step's output is not passed forward, and `gate_mode` decides what happens instead. This is the third instance of a parameter value under which an invariant cannot hold, and unlike NormCheck and SteelmanCheck it was fixable rather than purpose-deciding, because all three enumerated values are coherent with one restated invariant.\n\nOPEN: under `gate_mode: Skip` the skipped step produces no output, so Schema Continuity has no defined input for step N+1. The card does not say what feeds it.",
-        "CORRECTED 2026-07-26 after review by Codex. The restated invariant ended '`gate_mode` decides what follows', which is a pointer rather than a contract — it gives a reader no executable semantics. Dropped; the enum's own value descriptions carry that. The Skip problem stays OPEN, and note that this critique's earlier bullets still argue against 'Halt on Error', an invariant this review removed — they are kept as the record of what the card used to claim."
+        "The 0.4 review correctly narrowed the invariant to no failed-output forwarding, but it also exposed an undefined continuation: Skip supplied no input for step N+1. The 0.5 follow-up below removes that incoherent path instead of weakening Schema Continuity.",
+        "REVISED 2026-08-11: the 0.4 scoping repair exposed but did not solve Skip, which supplied no input to the next step. `gate_mode` is now removed entirely: `max_retries_per_step = 0` expresses strict halt, a positive value expresses bounded recovery, and exhaustion always halts before the next step. InputGuard, ReAttempt, and ToolInvoke are classified as invoked subroutines rather than passive references; the richer failure-classifying Retry strategy is not claimed."
       ]
     },
     "family_discussion": "Workflow primitive paired with Chain (the substrate), AcceptSpec (the gate), and ChainOfThought (the cognitive analogue). Compare with Parallelize — PromptChain is serial; Parallelize is concurrent. Both decompose tasks, on different execution axes."
@@ -10576,25 +10576,25 @@
   "ReceptivityGate": {
     "motivation": {
       "why_this_layer": "guards feedback from external sender",
-      "why_it_exists": "Guards a Solver's Feedback surface against poisoned or hallucinated rejections. In adversarial or open-commons settings, downstream agents can fabricate rejections to extract resources or bias learning. ReceptivityGate verifies every incoming FailureTrace — clause exists, evidence matches artifact, signature valid — before the signal reaches PathwayMemory.",
+      "why_it_exists": "Guards a Solver's Feedback surface against poisoned or hallucinated rejections. In adversarial or open-commons settings, downstream agents can fabricate rejections to extract resources or bias learning. ReceptivityGate verifies every incoming FailureTrace — clause exists, evidence is present, and this evaluator signed this exact trace payload — before the signal reaches PathwayMemory.",
       "removability": "No, if you deploy in anything beyond a fully-trusted environment. A trusted deployment could short-circuit ReceptivityGate, but the pattern is the mechanism by which feedback channels become trustworthy. Removing would expose PathwayMemory directly to evaluator inputs — which in open commons is a direct poisoning vector."
     },
     "usage": {
-      "intended": "",
-      "future": "",
-      "broad_contexts": "",
-      "every_context_needs": "",
-      "varies": "",
-      "extensions": ""
+      "intended": "verify rejection records before they enter a Solver's learning path.",
+      "future": "any feedback boundary that must separate structural integrity from substantive adjudication.",
+      "broad_contexts": "solver feedback, open-agent marketplaces, peer evaluation, policy-compliance reporting, and untrusted learning signals.",
+      "every_context_needs": "typed FailureTrace, clause lookup, evidence-presence check, content-bound signature verification, and drop-on-fail behavior.",
+      "varies": "verification budget, deduplication, entailment adjudication, and whether rejected traces are additionally quarantined outside PathwayMemory.",
+      "extensions": "`EntailmentReceptivityGate`, `QuarantineReceptivityGate`, `RateLimitedReceptivityGate`."
     },
     "design": {
       "tensions": [
         "Over-strict vs under-strict: the two named failure modes are symmetric. Tuning the gate involves deployment context the pattern doesn't know — too strict starves the Solver of real feedback; too lax lets poison through.",
-        "Clause existence + evidence verification vs content quality: the gate verifies structural integrity (clause exists, evidence present, signed). It does NOT verify that the evaluator's reasoning is correct — a structurally-valid but substantively-wrong FailureTrace passes.",
+        "Citation and attribution integrity vs substantive correctness: the gate verifies real referents and an unaltered evaluator-signed payload, but does not decide whether the evidence entails the violation.",
         "Bypass by privileged peer: the pattern acknowledges that high-trust evaluators can skip the gate. That's pragmatic but opens a backdoor — the privileged peer is a single point of compromise."
       ],
       "tradeoffs": [
-        "Structural verification buys cheap defense against obvious attacks at the cost of accepting substantively-wrong but structurally-valid feedback.",
+        "Content-bound structural verification rejects altered or unattributable traces at the cost of signature work, while still accepting substantively wrong but well-formed feedback.",
         "Typed FailureTrace requirement raises the bar for rejection (you can't just say no) at the cost of making legitimate-but-unstructured feedback inadmissible.",
         "Society layer placement reflects the multi-party assumption — single-agent deployments pay for machinery they don't strictly need."
       ],
@@ -10602,7 +10602,7 @@
         "'Bypass by privileged peer' is a named failure with no mitigation. If the library wants trust-tier scoping, it should be a pattern — not a caveat in this spec.",
         "The gate is binary: accept or reject the entire FailureTrace. A richer gate could quarantine (accept but flag) suspect traces; not offered.",
         "'Malformed traces that pass checks still corrupt pathway memory' names a failure but doesn't specify what 'malformed-but-passing' means — if the trace passes the invariants, is it corrupt or is the invariant set incomplete?",
-        "Gloss and mechanism narrowed to what the contract delivers. The five invariants establish that a rejection's citations RESOLVE — the clause exists, the evidence is present, the signature is valid — and none establishes that the cited evidence ENTAILS a violation. An adversary holding the artifact and the public AcceptSpec can cite a real clause, quote real evidence, sign validly and assert a violation that does not hold; all five checks pass. So the previous claim to be 'the structural defense that keeps the commons from degenerating into epistemic garbage' overstated the contract. The hole is now named as a failure mode, and entailment adjudication is identified as a descendant concern because it requires a judge. 'Bypass by privileged peer' was left in place: whether it is deployment-contingent or structural to gates is a balanced call, and churning it buys nothing."
+        "REVISED 2026-08-11: FailureTrace now requires a content-bound signature, and this gate verifies it against the exact trace payload rather than accepting identity-only proof. The evidence boundary remains unchanged: the five checks establish citation and attribution integrity, not entailment. An evaluator can still sign a substantively wrong claim, so a Judge-backed descendant is required for that stronger conclusion."
       ]
     },
     "family_discussion": "The Feedback-channel guard at Solver boundaries. Consumed by the Feedback surface before any FailureTrace reaches PathwayMemory. Specialization of `Gate` (in Society because the multi-party poisoning context is structural). Pairs with AcceptSpec and FailureTrace as the three-pattern feedback-integrity chain."
@@ -11291,7 +11291,8 @@
         "`derived_from` fixed: previously had an all-zeros placeholder hash for PolymorphicSolver (never filled in); now the current sema_id.",
         "Reviewed 2026-08-03 for exact `extends` retarget after Work's timestamp requirement was loosened. PolymorphicSolver's authored contract is unchanged; only its ordinary dependency closure and identity move. RigorousSolver continues to strengthen the parent with all five solver surfaces, mandatory Probe and non-compensatory gates, so the retarget is mechanical.",
         "Reviewed again 2026-08-03 for the Metric tranche. PolymorphicSolver's Metric dependency moves through Agent, and its Interface Non-Compliance failure wording is corrected to match the existing mandatory/optional surface split. RigorousSolver already requires all five surfaces and therefore continues to strengthen the corrected parent without contradiction.",
-        "Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and RigorousSolver continues to narrow it."
+        "Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and RigorousSolver continues to narrow it.",
+        "Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. RigorousSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim."
       ]
     },
     "family_discussion": "The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer."
@@ -12512,11 +12513,11 @@
   "Solution": {
     "motivation": {
       "why_this_layer": "typed output artifact — data",
-      "why_it_exists": "The paired output type for Task — every Solver yields a Solution, so the library has a single shared handle for 'the artifact produced by execution, with provenance and recursive sub-solution structure.' Without Solution, each Solver family would invent its own output shape and the (Task, Solution) transaction boundary would fragment.",
-      "removability": "No. Solution is the yields-type in the Solver contract and the recursion substrate for sub-solutions (children in the solver tree). Removing would break every Solver's output typing and the auditability property (Provenance signatures, Chain of Custody)."
+      "why_it_exists": "The paired output type for Task — every Solver yields a Solution, so the library has one shared handle for an execution artifact with provenance. Composite Solutions additionally preserve their sub-solution structure, while leaf Solutions remain valid without an empty tree. Without Solution, each Solver family would invent its own output shape and the (Task, Solution) transaction boundary would fragment.",
+      "removability": "No. Solution is the yields-type in the Solver contract and, for composite work, the recursion substrate for sub-solutions. Removing it would break every Solver's output typing and the provenance boundary shared by leaf and composite outputs."
     },
     "usage": {
-      "intended": "verifiable output container for a Task — provenance + artifact + sub-solution tree.",
+      "intended": "verifiable Task-output container with provenance and a component tree for composite work; omission of the tree denotes a leaf.",
       "future": "any \"this problem is solved\" artifact.",
       "broad_contexts": "solver outputs, problem-solving workflows, scientific findings, engineering solutions, legal rulings, medical treatments.",
       "every_context_needs": "output artifact, provenance (creator, time), acceptance-criteria validation. A component tree is present only for composite solutions; an absent tree denotes a leaf.",
@@ -12526,21 +12527,21 @@
     "design": {
       "tensions": [
         "Immutability vs evolution: Once finalized, Solution is frozen. But long-running solvers may want to refine or stream partial outputs. The spec accepts this as a boundary — refinement becomes a new Solution instance with explicit provenance or version linkage, not in-place mutation. Pattern-card `extends` is not an instance-lineage mechanism.",
-        "Recursive structure vs caller simplicity: Solution carries a Component tree of sub-solutions. For callers that only want the final artifact, the tree is overhead. For callers that audit provenance, it is essential.",
-        "Creator identity: Provenance requires cryptographic signing by the Creator. That commits the library to an identity model (signing keys) the Solver contract itself does not define — the anchor lives outside the pattern."
+        "Composite auditability vs leaf simplicity: composite Solutions carry a Component tree for auditability, while leaves omit it rather than carrying an empty tree.",
+        "Creator identity: every Solution records creator and creation time, while only untrusted creators require cryptographic signing. Trust policy and key infrastructure remain outside the pattern."
       ],
       "tradeoffs": [
-        "Provenance + signature buy auditability at the cost of a key infrastructure. Solvers operating in unsigned environments must stub the signature field or bypass the invariant.",
+        "Provenance buys attribution for every Solution; cryptographic assurance for untrusted creators additionally costs key infrastructure.",
         "Immutability buys referenceability (a Solution's hash can be cited forever) at the cost of expressivity for streaming or incremental outputs.",
-        "Sub-solution tree preserves composition history but inflates Solution size — a deep tree carries every ancestor's sub-artifacts."
+        "A composite tree preserves composition history but inflates Solution size; leaf Solutions avoid that cost."
       ],
       "critique": [
         "'Finalized' is the trigger for Immutability but is not explicitly defined as a state transition — the spec does not say who flips it, when, or whether an un-finalized Solution is a valid partial artifact.",
-        "Traceability invariant requires cryptographic signing by Creator but does not specify the signature scheme, key lifecycle, or revocation semantics. These live outside the pattern.",
+        "Signing for an untrusted Creator does not specify the signature scheme, key lifecycle, or revocation semantics. These remain caller or descendant concerns.",
         "Schema Violation is listed as a failure mode but the acceptance-criteria-check is implicit in the Task type; the pattern doesn't say whether Solution validation is the Solver's responsibility or the caller's.",
         "'Traceability: Provenance must be cryptographically signed by the Creator' mandated one implementation of provenance — the same defect class as Identity's public_key. This entry's own every_context_needs asks for 'provenance (creator, time)' with no signature, and varies names 'provenance detail' as the varying axis. Relaxed to attribution, with cryptographic signing named as the form required where the Creator is untrusted.",
-        "Applied 2026-07-28, first of the release blockers. TWO rule-grounded fixes, both hashed.\n\n`confidence` was declared as a PARAMETER and as a schema property at once. As a parameter it asserts that two Solutions with different confidence are DIFFERENT PATTERNS, and being hashed it sat in the identity for nothing. schema.md's own rule: 'A value that differs between two invocations of the same pattern is instance data and belongs in data_schema … Modes and thresholds are usually parameters; measurements and readings are not.' A self-assessed reliability reading is a reading, and it was already correctly in the schema with minimum 0 and maximum 1. The parameter is deleted rather than emptied, because Rule D rejects an empty container left where a key should be absent. `Result`'s mechanism independently treats a confidence score as one of its metrics, which is the same reading.\n\nThe Traceability invariant was 270 characters, fifth longest in the corpus, and carried its own rationale — 'How strongly attribution is bound … is a descendant and caller concern'. That clause is addressed to a reviewer. Split into two invariants rather than one plus prose, so BOTH guarantees stay contractual: attribution to Creator and time, and cryptographic signing where the Creator is untrusted. Applying the Rollout lesson — moving a guarantee into prose stops it binding, and the untrusted-Creator requirement is a conditional contract, not commentary.\n\nSTILL OPEN, and Henrik's call: `every_context_needs` lists 'component tree (sub-solutions used)' as needed in every context while `data_schema.required` makes `component_tree` optional. That disagreement is the question of whether every Solution is a solver-tree node — which decides whether the handle is broader than the concept. Not touched here.",
-        "RESOLVED 2026-08-03 (delegated): the standing disagreement between every_context_needs (component tree needed in every context) and data_schema.required (tree optional) is settled in favour of the card. Leaf solutions exist and are still solutions, so requiring the tree fails the identity test; at fan-in 257 the broader reading is also the safer one. Corrected here rather than in the hash: the sidecar intersection was a hypothesis and this is the hypothesis being wrong. No cascade."
+        "The 0.4 repair correctly moved per-instance confidence out of pattern parameters and narrowed mandatory signing to untrusted creators. It also identified, but deferred, the disagreement between a universal component-tree description and an optional schema field. The 0.5 follow-up below resolves that scope question in favor of valid leaf Solutions.",
+        "REVISED 2026-08-11: the 0.4 decision correctly admitted leaf Solutions, but correcting only the sidecar left the hashed mechanism and paper universalizing the component tree. The mechanism now makes the tree composite-only; the schema makes a present tree non-empty; and nested provenance requirements witness the universal creator-and-time contract. This intentionally pays the release-scale cascade that the incomplete sidecar-only repair avoided."
       ]
     },
     "family_discussion": "Output half of the (Task, Solution) transaction. Every Solver yields a Solution typed against the Task's acceptance criteria. `FrameError` is the alternative yield when a hard seam triggers restructuring rather than production. `PerformanceSignal` is the Feedback-surface signal that attaches to Solution for downstream learning (Pathway Memory)."
@@ -13078,15 +13079,15 @@
   "SteelmanCheck": {
     "motivation": {
       "why_this_layer": "post-decision adversarial check",
-      "why_it_exists": "A structured counter-argument generation requirement before finalizing decisions — forces the agent to construct the strongest opposition to its own conclusion rather than ignoring or weakly representing it. Makes the 'steelman vs strawman' distinction a procedural requirement, not just intellectual hygiene.",
+      "why_it_exists": "A structured counter-argument requirement before finalizing decisions: the agent must construct claim-specific opposition that meets a declared adequacy threshold rather than ignoring or weakly representing it. This makes the steelman-versus-strawman distinction procedural rather than aspirational.",
       "removability": "Probably retain. The pattern names a discipline that improves output quality; without the pattern it lives as advice. The discipline is valuable enough that making it a first-class pattern helps adoption."
     },
     "usage": {
-      "intended": "mandatory counter-argument generation — generate strongest argument against own conclusion.",
+      "intended": "qualify a counter-argument for adequacy, then release only if the challenged conclusion remains robust.",
       "future": "any adversarial-self-test mechanism.",
       "broad_contexts": "epistemic hygiene before publishing, pre-meeting preparation, red-team-of-self, test-of-decision robustness, bias-resistance discipline.",
-      "every_context_needs": "current decision/output, counter-argument generation, validity threshold, revise-on-strong-counter.",
-      "varies": "counter-argument generation method, threshold calibration, revision strategy on failure.",
+      "every_context_needs": "current decision or output, claim-specific counter-argument, Judge-backed adequacy threshold, and a separate Check of decision robustness.",
+      "varies": "counter-argument generation method, adequacy-threshold calibration, strengthening strategy, and review procedure for Unknown.",
       "extensions": "`AdversarialSteelmanCheck`, `BayesianSteelmanCheck`, `RigorousSteelmanCheck`.",
       "notes": []
     },
@@ -13094,11 +13095,11 @@
       "tensions": [
         "Same-agent steelman vs adversarial separation — the Collusion failure mode is structural: if the Critic is the same entity as the Proposer, counter-arguments can be deliberately weak.",
         "And separately, the grader is also the proposer — `strength_threshold` [0.7, 0.95] requires the counter-argument to be non-trivial by some metric, and the metric is applied by the agent whose conclusion is under attack. Delegating generation would not fix this; self-grading survives an independent critic.",
-        "`strength_threshold` is doing two incompatible jobs — the parameter describes itself as the minimum strength to pass as a steelman (a quality bar on the exercise), while the mechanism says a counter-argument exceeding its validity threshold means the decision is discarded or revised (a verdict on the argument). If those are one number, then producing an adequate steelman automatically defeats your own conclusion, and no decision can ever be released. A prior pass replaced the hard-coded 0.7 with the parameter, which made the two roles harder to see rather than easier. Resolving it decides whether this pattern adjudicates or only requires the exercise. OPEN."
+        "Adequate opposition vs a robust conclusion — the Judge can confirm that a counter-argument is strong while the separate Check still finds the conclusion robust. Keeping the two judgments distinct is load-bearing."
       ],
       "tradeoffs": [
         "Mandatory counter-argument buys intellectual honesty at the cost of tokens and wall time.",
-        "Score-threshold invariant buys non-trivial opposition at the cost of measuring non-triviality with the same agent's judgment.",
+        "The Judge-backed threshold buys non-trivial opposition at the cost of trusting a quality score that may still come from the proposer.",
         "Tier 2 placement (honesty-dependent) buys accurate classification at the cost of excluding adversarial contexts — callers in those must reach for AdversarialSteel."
       ],
       "critique": [
@@ -13106,10 +13107,10 @@
         "'Strongest Counter: must address the core claim, not weak points' was undecidable, and `AdversarialSteel` had the identical defect and was repaired earlier in this pass with a citation requirement. Reusing it means the two adversarial patterns now demand the same checkable thing.",
         "'Topical Relevance: EmbeddingDistance(Counter, Claim) < Threshold' is dropped rather than parameterised, because the citation requirement subsumes it: a counter that identifies the claim it contradicts cannot be off-topic. The varies line agrees that the calibration is descendant territory — it lists 'threshold calibration' — so adding a parameter would have fixed the wrong end of the problem.",
         "The precondition '{{agent}} must be alignment-seeking; use adversarial steelmanning for adversarial/untrusted contexts' was two things in a state-condition slot: an undecidable property of the agent, and a routing note pointing at a sibling pattern. Preconditions now state the condition the operation needs — that there is a decision to challenge. The routing note is real and useful, and lives here: when the context is adversarial or untrusted, `AdversarialSteel` is the pattern to reach for, because a single agent playing both proposer and critic is this card's own named Collusion failure.",
-        "RESOLVED 2026-08-03 (delegated): strength_threshold stays a parameter and no further edit is made. It is an intrinsic quantitative axis, which the placement test assigns to parameters rather than to invariants or descendants; calibration guidance belongs here and in varies."
+        "REVISED 2026-08-11: the 0.4 resolution kept `strength_threshold` but did not answer its incompatible dual role. The card now separates the judgments: Judge establishes whether the counter-argument meets the declared steelman-quality threshold; Check then determines whether the decision remains robust. Adequacy no longer automatically defeats the conclusion, and the irrelevant multi-party CompatibilityCheck edge is removed."
       ]
     },
-    "family_discussion": "The single-agent rigorous-self-critique pattern. Paired with `AdversarialSteel` (separate green/red advocates — the Tier 1 adversarial-safe specialization) and `RedTeam` (hostile adversarial review). Uses `Check` for robustness evaluation and `Critique` for belief interrogation."
+    "family_discussion": "The single-agent rigorous-self-critique pattern. `Critique` constructs the opposition, `Judge` qualifies its adequacy, and `Check` evaluates the conclusion's robustness. Paired with `AdversarialSteel` (separate green/red advocates and a third judge) and `RedTeam` (hostile adversarial review)."
   },
   "SteelmanFirst": {
     "motivation": {
@@ -14255,16 +14256,16 @@
       "intended": "record lineage/provenance — append chronological history log to a target.",
       "future": "any provenance-tracking mechanism.",
       "broad_contexts": "distributed tracing, git history, event sourcing, data lineage, scientific provenance, supply-chain tracking, medical record history.",
-      "every_context_needs": "target entity, immutable append log, ordered records, declared coverage.",
+      "every_context_needs": "target entity, immutable append log, ordered records, and no completeness guarantee.",
       "varies": "log storage medium, record detail, retention policy, index-for-query, cross-entity linking.",
       "extensions": "`DistributedTrace`, `CausalTrace`, `QueryableTrace`, `CompressedTrace`.",
       "notes": []
     },
     "design": {
       "tensions": [
-        "Trace pollution (named failure) — too many traces, signal lost.",
-        "Decay mismatch (named failure) — wrong decay timing.",
-        "Namespace collision (named failure) — unrelated actors confuse each other."
+        "Observability vs completeness: a trace makes included events auditable but cannot prove that no event was omitted.",
+        "Immutability vs retention: append-only history preserves evidence while requiring archival or external retention policy as it grows.",
+        "Attribution vs lightweight logging: tying every record to its producer improves accountability at additional identity and storage cost."
       ],
       "tradeoffs": [
         "Gains: provenance and lineage.",
@@ -14275,7 +14276,7 @@
         "Moved rather than deleted. Stigmergy had no failure modes at all and already references `{{trace}}`, so all five now sit where they describe the mechanism.",
         "'{{decay}} mismatch (too fast = lost, too slow = stale)' contradicted this card's own Immutability invariant — an append-only log does not expire — and the `decay` dependency existed only to support it. Both are gone. What replaces it is the honest cost of Immutability: an append-only log only grows, and truncation or archival is a separate concern rather than something expiry can provide.",
         "'No accountability (cannot attribute trace to actor)' was the one failure mode genuinely about this pattern and is kept, restated as an unattributable record.",
-        "RESOLVED 2026-08-03 (delegated): the mechanism promised that every modification appends a record, but no contract required completeness and completeness is not decidable from inside the log. At fan-in 203 the stability obligation forbids tightening the ancestor, so the parent now states best-effort coverage and carries a Silent gap failure mode. Complete provenance is descendant territory (a TotalProvenance specialisation) when a consumer needs it. Note also that the tensions list still names 'Decay mismatch' from the removed decay dependency; stale, kept only as review history."
+        "REVISED 2026-08-11: the 0.4 repair correctly rejected universal completeness but replaced it with 'coverage is declared' without any field or invariant carrying that declaration. The parent now says only what it can guarantee: coverage may be partial, records present are ordered and immutable, and a Silent gap remains possible. Complete provenance is descendant territory when an external capture mechanism can enforce it."
       ]
     },
     "family_discussion": "Provenance primitive paired with AuditTrail (structured variant), History (the accumulated content), and Lineage (genealogical variant). Compare with AuditTrail — Trace is general-purpose; AuditTrail is verification-specific."
@@ -14410,7 +14411,8 @@
         "Hallucination is the LLM-era canonical failure.",
         "Semantic Equivalence is aspirational.",
         "Applied 2026-07-26 from a full read. 'Semantic Equivalence: Meaning(Source) == Meaning(Target)' asserted what this card's own tradeoff calls impossible — 'gives up perfect fidelity' — and what its own Lossy Translation failure names. Split into the two decidable halves that add up to the same discipline: nothing added, which is the `Interpret` boundary and the Hallucination failure, and nothing dropped by design, which is the `Summarize` boundary. The removability argument still rests on Semantic Equivalence and now rests on both halves of it. The round-trip invariant was hedged twice, 'in ideal cases' and 'should', so it names the channel instead: the conversion declares whether it inverts. `Summarize` stays a quoted name rather than a placeholder, deliberately — Summarize already references Translate, so the reverse edge would cycle, and AGENTS.md's rule is to name the other pattern in prose from the side that would cycle.",
-        "CORRECTED 2026-07-26 after review by Codex. The note above claimed the two decidable halves 'add up to the same discipline' as Semantic Equivalence. They do not: they are necessary conditions, and nothing on the card rules out accidental loss or distortion. The third invariant, 'declares whether the conversion round-trips', named a declaration for which the card has no field — removed, and {{reversibility}} now sits in the mechanism as the place to look. And removability still rested on 'the Semantic Equivalence invariant', which that same pass had deleted: I wrote the note saying it now rests on both halves and did not edit the field."
+        "CORRECTED 2026-07-26 after review by Codex. The note above claimed the two decidable halves 'add up to the same discipline' as Semantic Equivalence. They do not: they are necessary conditions, and nothing on the card rules out accidental loss or distortion. The third invariant, 'declares whether the conversion round-trips', named a declaration for which the card has no field — removed, and {{reversibility}} now sits in the mechanism as the place to look. And removability still rested on 'the Semantic Equivalence invariant', which that same pass had deleted: I wrote the note saying it now rests on both halves and did not edit the field.",
+        "RESOLVED 2026-08-11: keep `Summarize` as a quoted contrast rather than a dependency. Summarize already references Translate, so a reverse edge would create a cycle; the relationship is present from the side that can state it without inverting the graph."
       ]
     },
     "family_discussion": "Conversion primitive paired with Interpret (abstraction-level change), Compress (size-reduction), and RepresentationSwap (orthogonal-modality variant). Compare with Interpret — Translate preserves abstraction; Interpret changes it."

@@ -11,16 +11,17 @@
     "supersedes": [
       "sema:Experiment#mh:SHA-256:c62fce3980caa782eba602ce44307edf9c4cb3f52eeab85523689348dd0db51e",
       "sema:Experiment#mh:SHA-256:40e5e923ead8721b039cd6afa4e49c864a5022483e1c3ff58a12d57fe9a87499",
-      "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b"
+      "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b",
+      "sema:Experiment#mh:SHA-256:08165b6c52dae531b39b4a900df552aff0987e341eec30108d6013bb80410a41"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Experiment#mh:SHA-256:08165b6c52dae531b39b4a900df552aff0987e341eec30108d6013bb80410a41",
-  "sema_ref": "Experiment#0816",
-  "sema_stub": "0816",
+  "sema_id": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748",
+  "sema_ref": "Experiment#421e",
+  "sema_stub": "421e",
   "invariants": [
     "Control and treatment differ in the variable under test; every other difference is eliminated or written down.",
     "The design commits in advance to learning from either outcome."
@@ -32,10 +33,10 @@
   "dependencies": {
     "references": {
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
-      "verification": "sema:Verification#mh:SHA-256:81fe83ebcbd898595f7969762d70b562ad6bcab08141fc1e88d65f21376600dd"
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Mind",

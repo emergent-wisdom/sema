@@ -62,23 +62,24 @@
     "supersedes": [
       "sema:Bid#mh:SHA-256:cf07d1105de889786c1fbb618128ab03b34964fa4a7ab983c8d0f4d1d984b43e",
       "sema:Bid#mh:SHA-256:1ebadf0e232c35605addcb43f2c2ceab124a7f710c0471cefb989189661c8d3a",
-      "sema:Bid#mh:SHA-256:5c45e9bd8858829e5a5cde5ad4f3ab26f4bb6937f88c1ddde40798b58799a266"
+      "sema:Bid#mh:SHA-256:5c45e9bd8858829e5a5cde5ad4f3ab26f4bb6937f88c1ddde40798b58799a266",
+      "sema:Bid#mh:SHA-256:f083ba4d6bda1e6f41425819a11da70828e6ee6dbe843ada68ef1e0696b9bf17"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_ref": "Bid#f083",
-  "sema_id": "sema:Bid#mh:SHA-256:f083ba4d6bda1e6f41425819a11da70828e6ee6dbe843ada68ef1e0696b9bf17",
-  "sema_stub": "f083",
+  "sema_ref": "Bid#79cf",
+  "sema_id": "sema:Bid#mh:SHA-256:79cf8292cd6dc35c67b9a91f5a9f31962b12efc5ceb36ec84e1876142bce90ef",
+  "sema_stub": "79cf",
   "dependencies": {
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:20c61d9f8e5d3bf08dd0a6e31a240db9e9652fde2aca997e86d8062f1002e9b0",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:548b0a08b4956329e458f4e9bd150ea3d40c1867ca99e04b3e4f1bb31c9c6278",
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
-      "solver": "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
+      "solver": "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }

@@ -16,19 +16,20 @@
     "ring": 2,
     "supersedes": [
       "sema:Invert#mh:SHA-256:d1b9169d5b598e4f7f3d4d58bc2feea0f45c7830b32445fa6ab2666db271fa42",
-      "sema:Invert#mh:SHA-256:5a62fd17178c18fa3a2d3b9aa070f8776f1ad47418b4830dcc685e435eba02d8"
+      "sema:Invert#mh:SHA-256:5a62fd17178c18fa3a2d3b9aa070f8776f1ad47418b4830dcc685e435eba02d8",
+      "sema:Invert#mh:SHA-256:f60f8f97375b6fe9a0f9dd2aab5cd5775b156f44135ab398f0ebd08a6009ff72"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Invert#mh:SHA-256:f60f8f97375b6fe9a0f9dd2aab5cd5775b156f44135ab398f0ebd08a6009ff72",
-  "sema_ref": "Invert#f60f",
-  "sema_stub": "f60f",
+  "sema_id": "sema:Invert#mh:SHA-256:b4be11e1b303c002e83da7be8a0c122e4a894008fd72e71e982b00e9242d73a1",
+  "sema_ref": "Invert#b4be",
+  "sema_stub": "b4be",
   "dependencies": {
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     },
     "references": {
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",

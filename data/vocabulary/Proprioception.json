@@ -31,24 +31,25 @@
     "ring": 2,
     "supersedes": [
       "sema:Proprioception#mh:SHA-256:2fbfba79d07478050b86020f08cb42f18c93e896052dccba0311db0168b549a0",
-      "sema:Proprioception#mh:SHA-256:b2d70e4416d6b55a8b9f1fe6e9b462855a6efb710eab02138b493aa047424001"
+      "sema:Proprioception#mh:SHA-256:b2d70e4416d6b55a8b9f1fe6e9b462855a6efb710eab02138b493aa047424001",
+      "sema:Proprioception#mh:SHA-256:33337af3c2616cf01b7ceaf3725c094d76c3643e6b89bbff130ea7536e91ad9b"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:Proprioception#mh:SHA-256:33337af3c2616cf01b7ceaf3725c094d76c3643e6b89bbff130ea7536e91ad9b",
-  "sema_ref": "Proprioception#3333",
-  "sema_stub": "3333",
+  "sema_id": "sema:Proprioception#mh:SHA-256:d0e9504515812dc3406f58619c71e240ae407b847bb740d529cd91efaba4930f",
+  "sema_ref": "Proprioception#d0e9",
+  "sema_stub": "d0e9",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "somatic_marker": "sema:SomaticMarker#mh:SHA-256:25c9f71e623cfc2114e71c853ddea757abbfc319880ab654d2b875feec99973a",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
-      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },
   "sema_layer": "Mind",

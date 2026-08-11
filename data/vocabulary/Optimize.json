@@ -31,19 +31,20 @@
     "ring": 1,
     "supersedes": [
       "sema:Optimize#mh:SHA-256:30759374ede0314268d795a5a9878ac68876d0695c4ce0847e615da2b9fedf32",
-      "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17"
+      "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17",
+      "sema:Optimize#mh:SHA-256:8a1d872b1e5019a0f4ef856d5f6c6809b87271838a50e55ef2ec21835839b7eb"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Optimize#mh:SHA-256:8a1d872b1e5019a0f4ef856d5f6c6809b87271838a50e55ef2ec21835839b7eb",
-  "sema_ref": "Optimize#8a1d",
-  "sema_stub": "8a1d",
+  "sema_id": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674",
+  "sema_ref": "Optimize#3877",
+  "sema_stub": "3877",
   "dependencies": {
     "accepts": {
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     },
     "references": {
       "global": "sema:Global#mh:SHA-256:330166f5c16b13500d92d26d0e58ad24657bebccbe295ff8108f363d3539034d",

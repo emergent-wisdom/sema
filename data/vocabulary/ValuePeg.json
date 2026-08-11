@@ -13,19 +13,20 @@
     "ring": 1,
     "supersedes": [
       "sema:ValuePeg#mh:SHA-256:073fde121fc20973de3aaa17aab1af3f37f50370df31a0030cdef095095a4e5c",
-      "sema:ValuePeg#mh:SHA-256:dfa99490cd445a146ed9992bc1b3d34fcfc893ee96112e5b852a90dc5e5bcd59"
+      "sema:ValuePeg#mh:SHA-256:dfa99490cd445a146ed9992bc1b3d34fcfc893ee96112e5b852a90dc5e5bcd59",
+      "sema:ValuePeg#mh:SHA-256:1f869ac27c920a8b0a6a7b595d17ef5c576f0fce27ece538ab2e69a1bb3d66b0"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_id": "sema:ValuePeg#mh:SHA-256:1f869ac27c920a8b0a6a7b595d17ef5c576f0fce27ece538ab2e69a1bb3d66b0",
-  "sema_ref": "ValuePeg#1f86",
-  "sema_stub": "1f86",
+  "sema_id": "sema:ValuePeg#mh:SHA-256:e4409fa4a0947af3497c4c4e059fe147be6a92415c18751aa12baa5983b3fea6",
+  "sema_ref": "ValuePeg#e440",
+  "sema_stub": "e440",
   "dependencies": {
     "references": {
-      "optimize": "sema:Optimize#mh:SHA-256:8a1d872b1e5019a0f4ef856d5f6c6809b87271838a50e55ef2ec21835839b7eb",
+      "optimize": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {

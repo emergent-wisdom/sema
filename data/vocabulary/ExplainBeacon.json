@@ -17,20 +17,21 @@
     "supersedes": [
       "sema:ExplainBeacon#mh:SHA-256:6ced8ee08e54722b06a3be6cbf6403580a90d3543b2122cbbfc815799f150530",
       "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887",
-      "sema:ExplainBeacon#mh:SHA-256:2e403d47af0e3914841b5e03a4b9531b479ae05b2a54f402c24e99232f45b38a"
+      "sema:ExplainBeacon#mh:SHA-256:2e403d47af0e3914841b5e03a4b9531b479ae05b2a54f402c24e99232f45b38a",
+      "sema:ExplainBeacon#mh:SHA-256:f19d57e7ac647af13fd04aef42323fefc60544a4191e0dacfadd5b5c6bf2d1ed"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_id": "sema:ExplainBeacon#mh:SHA-256:f19d57e7ac647af13fd04aef42323fefc60544a4191e0dacfadd5b5c6bf2d1ed",
-  "sema_ref": "ExplainBeacon#f19d",
-  "sema_stub": "f19d",
+  "sema_id": "sema:ExplainBeacon#mh:SHA-256:2ae591c2bb79c9a8e037722f368f68b0e6a507503cfc74ab09b9bb1d43fa1856",
+  "sema_ref": "ExplainBeacon#2ae5",
+  "sema_stub": "2ae5",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "greet": "sema:Greet#mh:SHA-256:b2f05855f3edec9d36341a4e3fb946b16771c55e4625f1dfe05cbbe53c58ef36",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "greet": "sema:Greet#mh:SHA-256:bcb066aa62cec1c03e3fac07b1b199fa8b12ab059d4faaf49374bf4a400941bd",
       "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
       "stream": "sema:Stream#mh:SHA-256:ffa6e636cc2ca9f13c23f5862e60aceb0885a35686fb60f12da157316b159b53"
     }

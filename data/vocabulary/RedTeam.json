@@ -23,19 +23,20 @@
     "ring": 2,
     "supersedes": [
       "sema:RedTeam#mh:SHA-256:7a8d8a9c68f25e1a8b23a1b57db4a3083709aec4b6904138a0e8d439d2781a5c",
-      "sema:RedTeam#mh:SHA-256:15c5dab94155cf6aae97872b5d2c47103194805e0cf76ee31eb75cf630ceac8b"
+      "sema:RedTeam#mh:SHA-256:15c5dab94155cf6aae97872b5d2c47103194805e0cf76ee31eb75cf630ceac8b",
+      "sema:RedTeam#mh:SHA-256:8d522c890e039e516600956d77ebf942202f04a89bdae0098ec50b088e987363"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:RedTeam#mh:SHA-256:8d522c890e039e516600956d77ebf942202f04a89bdae0098ec50b088e987363",
-  "sema_ref": "RedTeam#8d52",
-  "sema_stub": "8d52",
+  "sema_id": "sema:RedTeam#mh:SHA-256:fce8c277aa6188393a0f33fef5c3cd18de5ab7c6a4712df1c0958ab3f3bbb9e8",
+  "sema_ref": "RedTeam#fce8",
+  "sema_stub": "fce8",
   "dependencies": {
     "references": {
-      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:aaf9288a5aa63817fd3cfd1143068dcf639e41fb3de1ac9d28a7e4959c1b90c5"
+      "adversarial_steel": "sema:AdversarialSteel#mh:SHA-256:ed5ea5a0048acf8703754159e2fc2fb516a23033316f2dcb58a7d77e7df71603"
     }
   },
   "sema_layer": "Mind",

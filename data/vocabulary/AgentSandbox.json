@@ -30,26 +30,27 @@
     "supersedes": [
       "sema:AgentSandbox#mh:SHA-256:ce7e2d28fa6aefffa0164d17cebc0266c4f7e422cdeb0a7043e078d5469c4be9",
       "sema:AgentSandbox#mh:SHA-256:06f29db915e1bbe17ebf20bab2964279a58c949bc61d386ab20de84749331fe6",
-      "sema:AgentSandbox#mh:SHA-256:c092338ebd9e7025254ae45974d7a9854b21b12e5d2943f58f4c0e920f5e1fde"
+      "sema:AgentSandbox#mh:SHA-256:c092338ebd9e7025254ae45974d7a9854b21b12e5d2943f58f4c0e920f5e1fde",
+      "sema:AgentSandbox#mh:SHA-256:d1da527c28217842fbdb7333e85fb95d70c54672ed8a2f37325cde3c5d32d5a5"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentSandbox#mh:SHA-256:d1da527c28217842fbdb7333e85fb95d70c54672ed8a2f37325cde3c5d32d5a5",
-  "sema_ref": "AgentSandbox#d1da",
-  "sema_stub": "d1da",
+  "sema_id": "sema:AgentSandbox#mh:SHA-256:41df2a0465da388dd7ecc55842ea08850e6d9e069c47c6d93e80ba13a0445084",
+  "sema_ref": "AgentSandbox#41df",
+  "sema_stub": "41df",
   "signature": [
     "Sandbox(Agent)"
   ],
   "dependencies": {
     "composes_with": {
-      "input_guard": "sema:InputGuard#mh:SHA-256:8c3e3319216468f86dc7e8baa97d91f18110bedc30643db39f9deb2ef52a8be9",
-      "output_guard": "sema:OutputGuard#mh:SHA-256:1396cd3b7d51a56b178382a521d22ae7f478d4681ea7e31d5af1d625857ad315"
+      "input_guard": "sema:InputGuard#mh:SHA-256:f33c7c914e869216a9cd3dcf182648cc9363c46b40d46fc45621145c8878134b",
+      "output_guard": "sema:OutputGuard#mh:SHA-256:fa36290c5575e62bc35a5196e93536286575b2c6dbeb13db64e000bbd487e8d3"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "sandbox": "sema:Sandbox#mh:SHA-256:7106e315b4bf7c5bd418fbab5c18e54be940367f77b8bde4756d1cb95beaa16b"

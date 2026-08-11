@@ -25,20 +25,21 @@
     "supersedes": [
       "sema:MintWhenFriction#mh:SHA-256:d48d58e14fdd17707bd90aaeab196fc13189a2d39b37aaa8b086c4e03356ff57",
       "sema:MintWhenFriction#mh:SHA-256:b259809f0e4675aa3f38df2353b6fdb18537f6cb66b62b145e7f7dc210849e30",
-      "sema:MintWhenFriction#mh:SHA-256:76ce47097df09b4f89d8cb28d034a234cb659b9f5db6c1708930731586bb9c5e"
+      "sema:MintWhenFriction#mh:SHA-256:76ce47097df09b4f89d8cb28d034a234cb659b9f5db6c1708930731586bb9c5e",
+      "sema:MintWhenFriction#mh:SHA-256:8c036e4a8a072c10afb0925b17c73b31cac64b1384145d7e2dfe77b645029b75"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MintWhenFriction#mh:SHA-256:8c036e4a8a072c10afb0925b17c73b31cac64b1384145d7e2dfe77b645029b75",
-  "sema_ref": "MintWhenFriction#8c03",
-  "sema_stub": "8c03",
+  "sema_id": "sema:MintWhenFriction#mh:SHA-256:727e0e935cdf1f807e543d3a0da374c3a496b4b819913347e2623058e51d5371",
+  "sema_ref": "MintWhenFriction#727e",
+  "sema_stub": "727e",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
-      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:8ff484bd61105aee7eb4e3e24475faf27e55c0b76faf4388907734110d914023"
+      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:742a4d59a47458bf5ba632097b9cc410228dbedc941a561e7cfa70f2c63cd602"
     },
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"

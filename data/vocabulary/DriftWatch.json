@@ -43,20 +43,21 @@
     "ring": 0,
     "supersedes": [
       "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
-      "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5"
+      "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5",
+      "sema:DriftWatch#mh:SHA-256:37cf935687877e2a31c4cd75287e2bc7c814b49a3569203021854988f39abe9e"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:37cf935687877e2a31c4cd75287e2bc7c814b49a3569203021854988f39abe9e",
-  "sema_ref": "DriftWatch#37cf",
-  "sema_stub": "37cf",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:b696959258eb3c48ce11055634b107451d5a500bc8ba19693db4c30b5f5033bf",
+  "sema_ref": "DriftWatch#b696",
+  "sema_stub": "b696",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "aggregate": "sema:Aggregate#mh:SHA-256:d1d523ccf371305ebfbd971b5b6630a517bfcb0217ff4639d2db12a01bc181a8",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "aggregate": "sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077",
       "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893"
     }
   },

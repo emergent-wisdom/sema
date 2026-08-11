@@ -7,16 +7,17 @@
     "tier": 1,
     "supersedes": [
       "sema:ContextSwitch#mh:SHA-256:42cd102f1c3a2cba8029abd03d5949fb5b75b3df128016ef8bcb97f9304d8aef",
-      "sema:ContextSwitch#mh:SHA-256:67b2747f9e0dc041462f36df02e5b33540c2feb0d83bf40c580ea122d8f9ec06"
+      "sema:ContextSwitch#mh:SHA-256:67b2747f9e0dc041462f36df02e5b33540c2feb0d83bf40c580ea122d8f9ec06",
+      "sema:ContextSwitch#mh:SHA-256:f8c3d5f265624d0ff6af28dc26f6f347ae6286a04bde02398818e9bb12d761db"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ContextSwitch#mh:SHA-256:f8c3d5f265624d0ff6af28dc26f6f347ae6286a04bde02398818e9bb12d761db",
-  "sema_ref": "ContextSwitch#f8c3",
-  "sema_stub": "f8c3",
+  "sema_id": "sema:ContextSwitch#mh:SHA-256:aa928020743949b151e03433b563540eaf1bb56dad262297d2907bd0473931e2",
+  "sema_ref": "ContextSwitch#aa92",
+  "sema_stub": "aa92",
   "invariants": [
     "The switch is signalled explicitly; it is never inferred from content.",
     "Revert pops the most recent switch, not an arbitrary one.",
@@ -31,8 +32,8 @@
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "mode": "sema:Mode#mh:SHA-256:29d368514a2a815e9790a384c2aec12bd20a30e1ee06288e0aa59fdcffea0800"
     }
   },
   "sema_layer": "Society",

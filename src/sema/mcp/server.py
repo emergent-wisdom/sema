@@ -162,7 +162,7 @@ def sema_lookup(ref: str) -> str:
     """Lookup a pattern by its Sema reference (Handle#stub).
 
     Args:
-        ref: Pattern reference like "ChainOfThought#5fb2" or just "ChainOfThought"
+        ref: Pattern reference like "ChainOfThought#27ad" or just "ChainOfThought"
 
     Returns:
         Full pattern JSON

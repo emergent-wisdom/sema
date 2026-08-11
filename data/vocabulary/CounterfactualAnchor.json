@@ -41,23 +41,24 @@
       "sema:CounterfactualAnchor#mh:SHA-256:f5845fee4dbe585ede4203b84b7eb46ae4e6ceb7a2a0edaae53471fad17d0ae5",
       "sema:CounterfactualAnchor#mh:SHA-256:4d4acdb9ee21f5c41d45e40496a2879c5c8c79efcab7f389fb6f6f36588ac23c",
       "sema:CounterfactualAnchor#mh:SHA-256:0d2b80d411934b06aeaca853ac89163d71f795c26aeff8e88766f18a829766b2",
-      "sema:CounterfactualAnchor#mh:SHA-256:e7accd6c44e6cfb43cb51af464c4b2edaef05e7405ec8dd5d417fe62a00ef28d"
+      "sema:CounterfactualAnchor#mh:SHA-256:e7accd6c44e6cfb43cb51af464c4b2edaef05e7405ec8dd5d417fe62a00ef28d",
+      "sema:CounterfactualAnchor#mh:SHA-256:47beed0df44f67298c1280151c25ed6f396e18dea5665ad650c5493501d8f548"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:47beed0df44f67298c1280151c25ed6f396e18dea5665ad650c5493501d8f548",
-  "sema_ref": "CounterfactualAnchor#47be",
-  "sema_stub": "47be",
+  "sema_id": "sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf",
+  "sema_ref": "CounterfactualAnchor#b8c3",
+  "sema_stub": "b8c3",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f"
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408"
     }
   },
   "sema_layer": "Society",

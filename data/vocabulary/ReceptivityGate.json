@@ -1,12 +1,12 @@
 {
   "handle": "ReceptivityGate",
-  "mechanism": "A Gate that guards a Solver's Feedback surface against malformed and unattributable evaluation. When a downstream orchestrator rejects an artifact, it must submit a typed {{failure_trace}} naming the violated {{accept_spec}} clause. The upstream Solver's ReceptivityGate runs {{validate}} on the trace before accepting it: it checks that the cited clause exists, that the cited evidence is present in the artifact, and that the evaluator's signature is valid. Invalid traces are dropped rather than absorbed into {{pathway_memory}}. What the gate establishes is citation integrity \u2014 that a rejection refers to real things and comes from a known party. It does not adjudicate whether the cited evidence actually violates the cited clause; that requires a judge, and belongs to a descendant.",
-  "gloss": "Verification gate that checks a rejection's citations resolve before the Solver absorbs it",
+  "mechanism": "A Gate that guards a Solver's Feedback surface against malformed and unattributable evaluation. When a downstream orchestrator rejects an artifact, it must submit a typed {{failure_trace}} naming the violated {{accept_spec}} clause. The upstream Solver's ReceptivityGate runs {{validate}} before accepting it: it checks that the cited clause exists, that the cited evidence is present in the artifact, and that `trace_signature` verifies under `evaluator_ref` for this exact FailureTrace payload. Invalid traces are dropped rather than absorbed into {{pathway_memory}}. What the gate establishes is citation and attribution integrity \u2014 that a rejection refers to real things and that this evaluator signed this unaltered trace. It does not adjudicate whether the cited evidence actually violates the cited clause; that requires a judge and belongs to a descendant.",
+  "gloss": "Verification gate for signed, clause-specific rejection records",
   "invariants": [
     "Trace-required: no rejection is accepted without a well-formed {{failure_trace}}.",
     "Clause-verified: the cited AcceptSpec clause must exist.",
     "Evidence-verified: the cited evidence must be present in the rejected artifact.",
-    "Signature-verified: the evaluator's identity must be cryptographically valid.",
+    "Content-signature-verified: `trace_signature` must verify under `evaluator_ref` for this exact {{failure_trace}} payload; identity-only proof is insufficient.",
     "Drop-on-fail: invalid traces produce no update to {{pathway_memory}} rather than partial absorption."
   ],
   "failure_modes": [
@@ -25,19 +25,20 @@
       "Protocols"
     ],
     "supersedes": [
-      "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096"
+      "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
+      "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf"
     ]
   },
-  "sema_id": "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf",
-  "sema_ref": "ReceptivityGate#8e74",
-  "sema_stub": "8e74",
+  "sema_id": "sema:ReceptivityGate#mh:SHA-256:56672e19478b968dacc6ffdaaf69627f85e5fedf06ee1256993b641a4380b571",
+  "sema_ref": "ReceptivityGate#5667",
+  "sema_stub": "5667",
   "dependencies": {
     "composes_with": {
-      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     },
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "failure_trace": "sema:FailureTrace#mh:SHA-256:967649a371e7b5262536ec16d0556dde9447070001b841eab18734a93a8a0dbd",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
+      "failure_trace": "sema:FailureTrace#mh:SHA-256:8085febc5bf923c52ce1856893c7739e5d9be3bdc021767766ad949f717a974e",
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5"
     }
   },

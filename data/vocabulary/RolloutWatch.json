@@ -31,16 +31,17 @@
     ],
     "supersedes": [
       "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1",
-      "sema:RolloutWatch#mh:SHA-256:fb6e194752fe142c36efd550427b0aa6e0041bb15a44ca95c94e85c297be15eb"
+      "sema:RolloutWatch#mh:SHA-256:fb6e194752fe142c36efd550427b0aa6e0041bb15a44ca95c94e85c297be15eb",
+      "sema:RolloutWatch#mh:SHA-256:fc5f0e53396d2c563d81bf111215849186491ba12e06c909296c76f7ec9a6772"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:RolloutWatch#mh:SHA-256:fc5f0e53396d2c563d81bf111215849186491ba12e06c909296c76f7ec9a6772",
-  "sema_ref": "RolloutWatch#fc5f",
-  "sema_stub": "fc5f",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:e8baa1d88901961450ea3e254e2da79075e8c8eb27d8e1d1de0a8f14f4f8ebfa",
+  "sema_ref": "RolloutWatch#e8ba",
+  "sema_stub": "e8ba",
   "extends": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f",
   "dependencies": {
     "accepts": {
@@ -52,7 +53,7 @@
     },
     "references": {
       "monitor": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f",
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     },

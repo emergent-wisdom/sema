@@ -8,24 +8,25 @@
     "supersedes": [
       "sema:Compromise#mh:SHA-256:39cc701b1389e8827a263f5180a40cea2993edf2ef94c9906553d48e9507c59f",
       "sema:Compromise#mh:SHA-256:e9805676dd932da2df8070224cecf39aed41c672abfd8ccbd2734c246c760645",
-      "sema:Compromise#mh:SHA-256:228b2583a138a2eefc86eda678d6449b0501c7db93f51e046d39e8910c421042"
+      "sema:Compromise#mh:SHA-256:228b2583a138a2eefc86eda678d6449b0501c7db93f51e046d39e8910c421042",
+      "sema:Compromise#mh:SHA-256:5a4465e273ee2e050cb7cffd81ed3efda6c485955d20478e600c06ad7c1b5afa"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_ref": "Compromise#5a44",
-  "sema_id": "sema:Compromise#mh:SHA-256:5a4465e273ee2e050cb7cffd81ed3efda6c485955d20478e600c06ad7c1b5afa",
-  "sema_stub": "5a44",
+  "sema_ref": "Compromise#f25f",
+  "sema_id": "sema:Compromise#mh:SHA-256:f25faa26653b11458535137532cbad87182ed5e5415ec590bc174877d51f985c",
+  "sema_stub": "f25f",
   "dependencies": {
     "composes_with": {
       "dampen": "sema:Dampen#mh:SHA-256:c07e9b7b22cbda8523effcfd455f554578e47081f0d07bf9001e45f2a871b831"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "yield": "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c"
+      "yield": "sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50"
     }
   },
   "sema_layer": "Society",

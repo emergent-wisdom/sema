@@ -17,16 +17,17 @@
     "ring": 0,
     "supersedes": [
       "sema:Feedback#mh:SHA-256:9b5c7eee86ff79389e6fc9a4cd4e318296ff3e74e3e67514f8193a45be917e15",
-      "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37"
+      "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
+      "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Feedback#mh:SHA-256:af70f56a4143af711facdbbe5f5c75387a45b522708609c988de2ceba4bf4cae",
-  "sema_ref": "Feedback#af70",
-  "sema_stub": "af70",
+  "sema_id": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d",
+  "sema_ref": "Feedback#8821",
+  "sema_stub": "8821",
   "signature": [
     "Signal(Incongruity)"
   ],
@@ -37,7 +38,7 @@
     "references": {
       "incongruity": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc",
       "metric_reading": "sema:MetricReading#mh:SHA-256:56a9f18faad70147312f12c1cdb1bcea9cb5d1d61042831d1fe6bfa11414ab26",
-      "result": "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127"
+      "result": "sema:Result#mh:SHA-256:c02a8d6817c2f0e14d5a9360824240f135905e8be25fd659feb76d1f44e274c6"
     }
   },
   "sema_layer": "Infrastructure",

@@ -48,19 +48,20 @@
     "supersedes": [
       "sema:Rally#mh:SHA-256:8d0401a21776e9a4d44b60bd1c7a8d7af1c9d275c3d209ef12432c892f435cec",
       "sema:Rally#mh:SHA-256:c284735a8954e84a3b4ce89a685b304490cac103dc3abaf14f9d7a035a3e2dc5",
-      "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430"
+      "sema:Rally#mh:SHA-256:48a037eb8da9aa05db6d44c4827ed1a243eb07ff0be810b8b8792b05e0419430",
+      "sema:Rally#mh:SHA-256:f2d67002a3d5ca0f6e0e61343ba41b800d3211249f3ab513984af2699df7d8d5"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Rally#mh:SHA-256:f2d67002a3d5ca0f6e0e61343ba41b800d3211249f3ab513984af2699df7d8d5",
-  "sema_ref": "Rally#f2d6",
-  "sema_stub": "f2d6",
+  "sema_id": "sema:Rally#mh:SHA-256:9ee797cd797df62b9883ead618c35eb8d8a5e86c171630cdc8f8ecc6066d6a89",
+  "sema_ref": "Rally#9ee7",
+  "sema_stub": "9ee7",
   "dependencies": {
     "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
       "selection_criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb"
     },
     "composes_with": {
@@ -70,7 +71,7 @@
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
     },
     "yields": {
-      "outcome": "sema:Outcome#mh:SHA-256:ac55da2e51aaab185174d9e8edba137536b1ff90a2f6a1d6e1ab634bf7429ef0"
+      "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03"
     }
   },
   "sema_layer": "Society",

@@ -20,7 +20,8 @@
       "sema:StateSnapshot#mh:SHA-256:9ffc9d057109f26717249d3a4c46dfaa52a944d10a363034bca187b83305f39f",
       "sema:StateSnapshot#mh:SHA-256:17a545e1632273e11d37315e7ad7e7e355c38bb6decf379ce9091129f80a06f9",
       "sema:StateSnapshot#mh:SHA-256:5791e43fad7e1f42cb7451eec53c6bfa9fef567b30a14d05be269116203e5848",
-      "sema:StateSnapshot#mh:SHA-256:53b2f1c57a571f308d8ce1686edf0fbbbc178bf35d96b2a445bcebeda01208aa"
+      "sema:StateSnapshot#mh:SHA-256:53b2f1c57a571f308d8ce1686edf0fbbbc178bf35d96b2a445bcebeda01208aa",
+      "sema:StateSnapshot#mh:SHA-256:56fe3bd8ddf82906d7a28b5e978207b6224227f51a6a2c6dfcdc14fafdd5f05b"
     ],
     "path": [
       "Infrastructure",
@@ -30,15 +31,15 @@
   "signature": [
     "State(Snapshot)"
   ],
-  "sema_id": "sema:StateSnapshot#mh:SHA-256:56fe3bd8ddf82906d7a28b5e978207b6224227f51a6a2c6dfcdc14fafdd5f05b",
-  "sema_ref": "StateSnapshot#56fe",
-  "sema_stub": "56fe",
+  "sema_id": "sema:StateSnapshot#mh:SHA-256:0a0fee933e452552f3128e0f5491a74cdb132c8417dfc3cf2e6f1e2141e0b21b",
+  "sema_ref": "StateSnapshot#0a0f",
+  "sema_stub": "0a0f",
   "dependencies": {
     "references": {
       "idempotent_write": "sema:IdempotentWrite#mh:SHA-256:fb8b8f05286097c6456e4273ad99a144d856554828ef15b9bd351cfcb45ae8a3",
       "snapshot": "sema:Snapshot#mh:SHA-256:390d2ec2934136d534f969b4039e6b899d2ed3956ddd8aa0ca4754068ed8d133",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },
   "sema_layer": "Infrastructure",

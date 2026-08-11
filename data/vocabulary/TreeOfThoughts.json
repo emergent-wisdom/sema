@@ -24,22 +24,23 @@
     "ring": 2,
     "supersedes": [
       "sema:TreeOfThoughts#mh:SHA-256:581a1251e9eb48d2d2d5871c6c94ea26094c4ec99c2aea33ab22d30d0a351ded",
-      "sema:TreeOfThoughts#mh:SHA-256:a86a20f5654f270627909d673ca57344cf1a84eb866d38d8424e650e4d18806d"
+      "sema:TreeOfThoughts#mh:SHA-256:a86a20f5654f270627909d673ca57344cf1a84eb866d38d8424e650e4d18806d",
+      "sema:TreeOfThoughts#mh:SHA-256:2abaddf003c5d94d9f39eec376a7de8adfd1c7f5c8e2cd8a82cae9c2ead3e53b"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:2abaddf003c5d94d9f39eec376a7de8adfd1c7f5c8e2cd8a82cae9c2ead3e53b",
-  "sema_ref": "TreeOfThoughts#2aba",
-  "sema_stub": "2aba",
+  "sema_id": "sema:TreeOfThoughts#mh:SHA-256:8b8c49c9d68b7b09e89b3c4f98d1c66d20dce23c0f2838ba90633aa51114ef9b",
+  "sema_ref": "TreeOfThoughts#8b8c",
+  "sema_stub": "8b8c",
   "signature": [
     "Think(Tree)"
   ],
   "dependencies": {
     "references": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:27ad1f2386f58e1f9e1983c97f6dbeb8f1345e1d9b9e00af30871b97d21e0c95",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025",
       "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }

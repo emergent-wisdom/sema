@@ -55,25 +55,26 @@
     "ring": 1,
     "supersedes": [
       "sema:Contract#mh:SHA-256:06241d8925a848e07b8b7afab2c37767b126c3f2363faba11bcc455ebb6a4d04",
-      "sema:Contract#mh:SHA-256:9e78730155e2edf5c5a6c8eeec52557d4db784b376957bdfffa1e0fe785b77f6"
+      "sema:Contract#mh:SHA-256:9e78730155e2edf5c5a6c8eeec52557d4db784b376957bdfffa1e0fe785b77f6",
+      "sema:Contract#mh:SHA-256:bf33d6b0b29a7d4c2daa50ec3ab94c09818c67af367567f2b76976a433e5e00f"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Contract#mh:SHA-256:bf33d6b0b29a7d4c2daa50ec3ab94c09818c67af367567f2b76976a433e5e00f",
-  "sema_ref": "Contract#bf33",
-  "sema_stub": "bf33",
+  "sema_id": "sema:Contract#mh:SHA-256:0a175c6f4a8622b98f611614e42401c4dc4778178a438269bf5dd388006397e0",
+  "sema_ref": "Contract#0a17",
+  "sema_stub": "0a17",
   "dependencies": {
     "accepts": {
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5"
     },
     "references": {
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:20c61d9f8e5d3bf08dd0a6e31a240db9e9652fde2aca997e86d8062f1002e9b0",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:548b0a08b4956329e458f4e9bd150ea3d40c1867ca99e04b3e4f1bb31c9c6278",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
-      "judge": "sema:Judge#mh:SHA-256:74de8ea8c2fb87fe5b8591a08d17bcd5658149b2f29d2133ccd3f47f212ffe13",
+      "judge": "sema:Judge#mh:SHA-256:704cbb71588d7a3bafa08b71c863005e31ec4400860b9cb8b094e660da9c7c6c",
       "sign": "sema:Sign#mh:SHA-256:b2020447ec4c2725a139c6117c764cf464643e6e83379e86263267f95e4965ee"
     }
   },

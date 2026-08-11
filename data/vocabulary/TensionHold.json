@@ -33,24 +33,25 @@
     "ring": 2,
     "supersedes": [
       "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0",
-      "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e"
+      "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e",
+      "sema:TensionHold#mh:SHA-256:ee6ff4d56abe608f928e89556e344a901b59a24afd511db625aaccb001105017"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "TensionHold#ee6f",
-  "sema_id": "sema:TensionHold#mh:SHA-256:ee6ff4d56abe608f928e89556e344a901b59a24afd511db625aaccb001105017",
-  "sema_stub": "ee6f",
+  "sema_ref": "TensionHold#9fb9",
+  "sema_id": "sema:TensionHold#mh:SHA-256:9fb9a1e99253fed3c57921cf020b9868adfb26e15103e5417d78e9aa8e6d0419",
+  "sema_stub": "9fb9",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "dialectic": "sema:Dialectic#mh:SHA-256:6eda97b37a3b5c219371d54b34532ffe19f5cb965307c68fbb54ce77f56dfcef",
-      "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "dialectic": "sema:Dialectic#mh:SHA-256:ae5e838272a716687f09d85a399840d9af330e7c17ae21426bcd0176b50afd54",
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },
     "yields": {
-      "tension": "sema:Tension#mh:SHA-256:c7008633a28095a54d70d9a4a208562a8263848f126732a7a2db4ca1b0cd6074"
+      "tension": "sema:Tension#mh:SHA-256:57321a5553f0c0dd43019cd5bb2b47ec3c96242657c9069d643d064175d83f0b"
     }
   },
   "sema_layer": "Mind",

@@ -19,23 +19,24 @@
     "supersedes": [
       "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
       "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf",
-      "sema:Yield#mh:SHA-256:d665e9a8a91a9ec23f8b338f875b05f1f7fe7844b8f21361b06bdd065bd78a02"
+      "sema:Yield#mh:SHA-256:d665e9a8a91a9ec23f8b338f875b05f1f7fe7844b8f21361b06bdd065bd78a02",
+      "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_id": "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c",
-  "sema_ref": "Yield#eb2f",
-  "sema_stub": "eb2f",
+  "sema_id": "sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50",
+  "sema_ref": "Yield#336a",
+  "sema_stub": "336a",
   "preconditions": [
     "A durable {{ledger}} is available to record the debt"
   ],
   "dependencies": {
     "references": {
-      "defer": "sema:Defer#mh:SHA-256:c09fcb90c93ac496f6f5daf9732163b3abe1c3ec3b3923705052c2188253cec8",
-      "ledger": "sema:Ledger#mh:SHA-256:625250939255c79bdf29aa6a7b455f0e339f63fd45dcc4222e765005a1db1c28",
+      "defer": "sema:Defer#mh:SHA-256:7c32a314cc801adf391bbf775b29c5d15e3e230aa80c38290231f1ca897bf0f7",
+      "ledger": "sema:Ledger#mh:SHA-256:4ddaf2792fd7283ceea0d6b9b01ddfff9b7274dfb1cea2bf23147c21520774e5",
       "overlap": "sema:Overlap#mh:SHA-256:c7019daf2905344a1f3ca2232d74eea272fd284fbe14523e5aa33caa1b46c18e",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

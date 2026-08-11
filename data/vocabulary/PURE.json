@@ -23,18 +23,19 @@
     ],
     "supersedes": [
       "sema:PURE#mh:SHA-256:a5776a4bf504ba6c9a8d9874af1c0b6efa9f08a63b694696a760e9097db8ba23",
-      "sema:PURE#mh:SHA-256:7ed435750dde79d334021535d6fefcf015d68db51189c90bedbcc14743757436"
+      "sema:PURE#mh:SHA-256:7ed435750dde79d334021535d6fefcf015d68db51189c90bedbcc14743757436",
+      "sema:PURE#mh:SHA-256:d7c9f0803b0d38cb60969e5b0349420da0ffdf4071ad85a42d22ddbeb75288f8"
     ]
   },
-  "sema_id": "sema:PURE#mh:SHA-256:d7c9f0803b0d38cb60969e5b0349420da0ffdf4071ad85a42d22ddbeb75288f8",
-  "sema_ref": "PURE#d7c9",
-  "sema_stub": "d7c9",
+  "sema_id": "sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd",
+  "sema_ref": "PURE#b65a",
+  "sema_stub": "b65a",
   "dependencies": {
     "composes_with": {
-      "expansive": "sema:Expansive#mh:SHA-256:a8c4748462be3574ee2162aed256e0827afbad28e635e352d1742da97ef2e98f",
-      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
-      "parsimony": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3",
-      "realizable": "sema:Realizable#mh:SHA-256:e8e3932e8d9cc73bbf9c5aff5ef6bc0014b2c357c6ddb9b0e4e2868ca41dd455"
+      "expansive": "sema:Expansive#mh:SHA-256:49a7bf9576c5a3c81c4287bf5be190e00f99b3a7bab94608ff441da0dc8018b3",
+      "novelty": "sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a",
+      "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e",
+      "realizable": "sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622"
     }
   },
   "sema_layer": "Mind",

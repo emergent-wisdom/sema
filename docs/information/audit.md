@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 2020 nodes and 3795 edges.
+Graph loaded with 2023 nodes and 3798 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -79,7 +79,7 @@ Source: `sema.audit.missing_links` (ok)
 🔍 Scanning data/vocabulary for missing links...
 Loaded 457 patterns.
 
-Found 373 potential missing links.
+Found 368 potential missing links.
 
 🔹 AcceptSpec
    ❓ Mentions 'FrameError' but not linked.
@@ -231,8 +231,6 @@ Found 373 potential missing links.
 🔹 FailureTrace
    ❓ Mentions 'AcceptSpec' but not linked.
    ❓ Mentions 'Feedback' but not linked.
-   ❓ Mentions 'Gate' but not linked.
-   ❓ Mentions 'Identity' but not linked.
    ❓ Mentions 'Solver' but not linked.
 🔹 Feedback
    ❓ Mentions 'Noise' but not linked.
@@ -316,9 +314,6 @@ Found 373 potential missing links.
    ❓ Mentions 'Metric' but not linked.
 🔹 MonotonicCounter
    ❓ Mentions 'Value' but not linked.
-🔹 Mutex
-   ❓ Mentions 'Resource' but not linked.
-   ❓ Mentions 'Sequence' but not linked.
 🔹 NegativeProof
    ❓ Mentions 'State' but not linked.
 🔹 NormativeJudge
@@ -420,8 +415,6 @@ Found 373 potential missing links.
    ❓ Mentions 'Verification' but not linked.
 🔹 Prompt
    ❓ Mentions 'Message' but not linked.
-🔹 PromptChain
-   ❓ Mentions 'Step' but not linked.
 🔹 ProphetFanOut
    ❓ Mentions 'Branch' but not linked.
 🔹 ProtoPack
@@ -449,6 +442,7 @@ Found 373 potential missing links.
    ❓ Mentions 'Value' but not linked.
 🔹 ReceptivityGate
    ❓ Mentions 'AcceptSpec' but not linked.
+   ❓ Mentions 'FailureTrace' but not linked.
    ❓ Mentions 'Feedback' but not linked.
    ❓ Mentions 'Gate' but not linked.
    ❓ Mentions 'Solver' but not linked.
@@ -1235,12 +1229,10 @@ Scanning 457 patterns for unlinked handle mentions...
 ⚠️  FailureTrace:
    • Mentions 'AcceptSpec' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Critique' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Identity' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Solver' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Trace' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Falsification:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Assumption' (unlinked). Should it be '{{{ghost}}}'?
@@ -1550,12 +1542,6 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Consensus' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
-⚠️  Mutex:
-   • Mentions 'Heartbeat' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Queue' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Yield' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MutualInformation:
    • Mentions 'Correlation' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
@@ -1805,8 +1791,10 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  PromptChain:
-   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ProphetFanOut:
    • Mentions 'Branch' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -1883,6 +1871,7 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Budget' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'FailureTrace' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Judge' (unlinked). Should it be '{{{ghost}}}'?
@@ -2096,6 +2085,8 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Solution:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Tree' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Solver:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -2163,7 +2154,9 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  SteelmanCheck:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Robustness' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  SteelmanFirst:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Constraint' (unlinked). Should it be '{{{ghost}}}'?
@@ -2372,7 +2365,7 @@ Scanning 457 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 389 patterns.
+Scan complete. Found unlinked handle mentions in 388 patterns.
 ```
 
 ## Semantic similarity between patterns

@@ -12,26 +12,27 @@
     "supersedes": [
       "sema:PUREBrainstorming#mh:SHA-256:5dada311c0b8343b4b7848a7a07a98f0369c8bb6e6701b1d0aef69655a51d412",
       "sema:PUREBrainstorming#mh:SHA-256:2e83f252cc40be9f0eb974bf5c6a70b62cad3a53c6f8a0589d60b0393995b6f5",
-      "sema:PUREBrainstorming#mh:SHA-256:9ba126fc9e0dde8ae526e775831ea41e84e9dd70c1e4b6f9f9a498e9ea42c3b2"
+      "sema:PUREBrainstorming#mh:SHA-256:9ba126fc9e0dde8ae526e775831ea41e84e9dd70c1e4b6f9f9a498e9ea42c3b2",
+      "sema:PUREBrainstorming#mh:SHA-256:c5347d68b4b555f4e114eec4f7288c79743ef5b7d9f39d9f34a04d7da50f1c6b"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "PUREBrainstorming#c534",
-  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:c5347d68b4b555f4e114eec4f7288c79743ef5b7d9f39d9f34a04d7da50f1c6b",
-  "sema_stub": "c534",
+  "sema_ref": "PUREBrainstorming#856f",
+  "sema_id": "sema:PUREBrainstorming#mh:SHA-256:856fb3ca265e03969be3c968cb73c7fb9554d26e8e417c1d4d9276b4b87b141c",
+  "sema_stub": "856f",
   "dependencies": {
     "composes_with": {
-      "pure_check": "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0",
-      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:418000f8d7278a1d1b0aceacb02df522417a2591e3f54da9ff8f8b85d9857fa3"
+      "pure_check": "sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e",
+      "pure_optimization": "sema:PUREOptimization#mh:SHA-256:ba53c7c867fde23274506fb80eb0e1913404bc902054cb2b46d0817ebe6a5a0d"
     },
     "references": {
-      "p_u_r_e": "sema:PURE#mh:SHA-256:d7c9f0803b0d38cb60969e5b0349420da0ffdf4071ad85a42d22ddbeb75288f8"
+      "p_u_r_e": "sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd"
     },
     "yields": {
-      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:2f7a45b9f347ab3b11faf3ebf6351f61fcd23ce667951683247b0c0f6a700355"
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:e36fcadd8c29f9e55375e8bf3085dbc9b4feecd2f0f3bd96918b3663af109cc6"
     }
   },
   "sema_layer": "Mind",

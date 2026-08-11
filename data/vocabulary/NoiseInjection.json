@@ -28,16 +28,17 @@
     "supersedes": [
       "sema:NoiseInjection#mh:SHA-256:685ee3801da377f7760a3d28085a68bc01665c3ae0783e1de26ad1041096094d",
       "sema:NoiseInjection#mh:SHA-256:08547db652ddf20462b64c7a0824173b7ccc1612c5fb2537a9785d8fb517fc49",
-      "sema:NoiseInjection#mh:SHA-256:9cd5f963bf3ac7a08578bef9db1086179a6e7ea274cdf5ed8b7e2fc98dfa29d4"
+      "sema:NoiseInjection#mh:SHA-256:9cd5f963bf3ac7a08578bef9db1086179a6e7ea274cdf5ed8b7e2fc98dfa29d4",
+      "sema:NoiseInjection#mh:SHA-256:f5b2aad2ea08ff2b8d5973e184e8e296023989f7ccf4f5fa73727fbf68e943c4"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:f5b2aad2ea08ff2b8d5973e184e8e296023989f7ccf4f5fa73727fbf68e943c4",
-  "sema_ref": "NoiseInjection#f5b2",
-  "sema_stub": "f5b2",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:99582fc78556fdadc8df343c9a670df7abb87c0030f668f30d6252a182cef083",
+  "sema_ref": "NoiseInjection#9958",
+  "sema_stub": "9958",
   "parameters": [
     {
       "name": "temperature",
@@ -60,12 +61,12 @@
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "card": "sema:Card#mh:SHA-256:ed287a652085f4e54a58e1b76a59016d74fa7edf51f918730d0338698aca979d",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "card": "sema:Card#mh:SHA-256:e4b2ca76f43a691e7bd7932362512a5e929c62efc6c3d2eb4a9369e5108fa074",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
-      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6"
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef"
     }
   },
   "sema_layer": "Mind",

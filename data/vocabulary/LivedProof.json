@@ -25,20 +25,21 @@
     "supersedes": [
       "sema:LivedProof#mh:SHA-256:5df54febd99338ca42e2d25983cdc0b1785a6f19a553be9b998b169041c7a828",
       "sema:LivedProof#mh:SHA-256:ae2df3c960792c30d022bff87745721b39d9384ddc511993d610b68b6b526183",
-      "sema:LivedProof#mh:SHA-256:64226e5300ccfc6a1b94cc3b1524077ce7da1bc8c7893f9d3679423153da2fa2"
+      "sema:LivedProof#mh:SHA-256:64226e5300ccfc6a1b94cc3b1524077ce7da1bc8c7893f9d3679423153da2fa2",
+      "sema:LivedProof#mh:SHA-256:85c2bf6aa7edaae45deb73f17b96d6917079f831b66e15b9b19840e26f711b64"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:LivedProof#mh:SHA-256:85c2bf6aa7edaae45deb73f17b96d6917079f831b66e15b9b19840e26f711b64",
-  "sema_ref": "LivedProof#85c2",
-  "sema_stub": "85c2",
+  "sema_id": "sema:LivedProof#mh:SHA-256:4aa129d6bda1cedb369494469cce917dd75411ccb662860ab2ab467489f16c5e",
+  "sema_ref": "LivedProof#4aa1",
+  "sema_stub": "4aa1",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:2825a19d555f390373975f1aa8306d64a9694b192a3ec60d47a94b71f4e565b9",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "dogfood_first": "sema:DogfoodFirst#mh:SHA-256:76eea0e77af92abe85e0dda7c20710ca3f9b2dd0e243f2f08c3468b6c1d96204",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },

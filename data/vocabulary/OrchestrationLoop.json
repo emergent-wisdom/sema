@@ -30,32 +30,33 @@
     "supersedes": [
       "sema:OrchestrationLoop#mh:SHA-256:fd5ef68be3fdf8bec5e5bb4544153e5029e22626212e2267edeb26881ce9a94a",
       "sema:OrchestrationLoop#mh:SHA-256:f6f4621352b2120682c035e18bf79704abfaea356a6a3e70221dbefde01adb2e",
-      "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374"
+      "sema:OrchestrationLoop#mh:SHA-256:2d637ac17bf4488368e941ca8e754442b7c08e6118a8f29e546ff9d2a1d6e374",
+      "sema:OrchestrationLoop#mh:SHA-256:119060a70a92ceca5b05c02983b7711ca7f3079df78b22d60ecde319bf7600cc"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:119060a70a92ceca5b05c02983b7711ca7f3079df78b22d60ecde319bf7600cc",
-  "sema_ref": "OrchestrationLoop#1190",
-  "sema_stub": "1190",
+  "sema_id": "sema:OrchestrationLoop#mh:SHA-256:56675014ff21d45be3f8f0343756a79a8051dbedffdeb4e749942105d548f70a",
+  "sema_ref": "OrchestrationLoop#5667",
+  "sema_stub": "5667",
   "signature": [
     "Workflow(Rollout)"
   ],
   "dependencies": {
     "composes_with": {
-      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:534f0732181541a00cc070bdf48758b0c052138380fb0e6979e551f95518604e",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:cbba3845e6ea72f42025daac2f75e15e8ff7550e292634957ba7c5e5013a8234",
-      "rollout": "sema:Rollout#mh:SHA-256:e4717541319b2a51a4b78b1278fc14a1b3fd4f6daf6719eb70c08c7193dfb629"
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:29e7de7891c89438daa553fa0771ab246c4cea23df77f24b516ca1a806940a4d",
+      "rollout": "sema:Rollout#mh:SHA-256:ea8c8bdf3303e53d240d6393a776de33ff7c0980a269539d6eb22a8b35e430b4"
     },
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1",
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631",
-      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf",
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42",
+      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:56672e19478b968dacc6ffdaaf69627f85e5fedf06ee1256993b641a4380b571",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10",
-      "workflow": "sema:Workflow#mh:SHA-256:2b8a81eecc3c3656b624d8cbe2b8b2bbf115b1d045d1b98b277f24a7e94ebdf1"
+      "workflow": "sema:Workflow#mh:SHA-256:092d027e1770222c8e2420fd7c893f6b0b1ea34042bc9283bce826925e12d3a2"
     }
   },
   "sema_layer": "Society",

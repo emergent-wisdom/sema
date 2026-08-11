@@ -24,16 +24,17 @@
     "ring": 2,
     "supersedes": [
       "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2",
-      "sema:EvaluatorOptimizer#mh:SHA-256:8ebdbab9207af96a57c670d2d3786bc01528f4ef645df1e3a225365ff161ff7e"
+      "sema:EvaluatorOptimizer#mh:SHA-256:8ebdbab9207af96a57c670d2d3786bc01528f4ef645df1e3a225365ff161ff7e",
+      "sema:EvaluatorOptimizer#mh:SHA-256:2c3612741de2b6be3b4baad30b500db3bbd29fc518c40fd61987cce728aa4ecc"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:2c3612741de2b6be3b4baad30b500db3bbd29fc518c40fd61987cce728aa4ecc",
-  "sema_ref": "EvaluatorOptimizer#2c36",
-  "sema_stub": "2c36",
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:ae098f2db7c18e00fa1dea16a305133a0778bd157652d5ee42b65f3bf86eef83",
+  "sema_ref": "EvaluatorOptimizer#ae09",
+  "sema_stub": "ae09",
   "signature": [
     "Optimize(Loop)"
   ],
@@ -42,8 +43,8 @@
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
       "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
-      "meta_check": "sema:MetaCheck#mh:SHA-256:d437056b9e87784e6202204ac626e2445af1eee8bf49b81dff49c33c05c8d6c6",
-      "optimize": "sema:Optimize#mh:SHA-256:8a1d872b1e5019a0f4ef856d5f6c6809b87271838a50e55ef2ec21835839b7eb"
+      "meta_check": "sema:MetaCheck#mh:SHA-256:5ac54fce5c9e81842e2bd859f8e2aa50182082d1340e2ab9a8144067a205fe5e",
+      "optimize": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674"
     }
   },
   "sema_layer": "Society",

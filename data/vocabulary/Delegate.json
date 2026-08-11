@@ -35,22 +35,23 @@
     "supersedes": [
       "sema:Delegate#mh:SHA-256:e557d8268697e26743dc5d2cf191741e47b7bef0d986e8dbff3d86e5e9d9486e",
       "sema:Delegate#mh:SHA-256:7e2aa7273061011208a1e1d26d4d616deed5499d29d5275ff3f09dc878e8bbc0",
-      "sema:Delegate#mh:SHA-256:78a8da9a060a24531bde6d3673a4bfc3123b72adce8ff4e95e244937715f150d"
+      "sema:Delegate#mh:SHA-256:78a8da9a060a24531bde6d3673a4bfc3123b72adce8ff4e95e244937715f150d",
+      "sema:Delegate#mh:SHA-256:ec0575e98f94ecb05d6ead258b92737219d2d9c091164e5d86a380783b286b7b"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Delegate#mh:SHA-256:ec0575e98f94ecb05d6ead258b92737219d2d9c091164e5d86a380783b286b7b",
-  "sema_ref": "Delegate#ec05",
-  "sema_stub": "ec05",
+  "sema_id": "sema:Delegate#mh:SHA-256:00fabbb5e33ec9b95dce20eb8c03e6dd3578e59b041dcf0d6a28b8908763ca45",
+  "sema_ref": "Delegate#00fa",
+  "sema_stub": "00fa",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "break": "sema:Break#mh:SHA-256:c4d3f005992445b2307564e2fc00d684500c2b4239a9f06d4a17e302c8b039ff",
+      "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
       "heartbeat": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef"
     },
     "references": {

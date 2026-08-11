@@ -18,7 +18,8 @@
       "sema:SynergisticMode#mh:SHA-256:e7d9822f9bb0e4199bdafb21e4be993bbe3a0f04bba680804068c0b2bfe2306b",
       "sema:SynergisticMode#mh:SHA-256:7985e5ea5240d2fb0824c435f505c4a8f6e25b6b0c7561d49f8f68faabb3b167",
       "sema:SynergisticMode#mh:SHA-256:2463b5f3a7da2c5aa518c3e5e356bb04b0b72cb64a9e99b7f9984c8a44aeec97",
-      "sema:SynergisticMode#mh:SHA-256:02f9f7de69042f961cc0662098cb379cf03e3d384c05147e9fb986de301021b7"
+      "sema:SynergisticMode#mh:SHA-256:02f9f7de69042f961cc0662098cb379cf03e3d384c05147e9fb986de301021b7",
+      "sema:SynergisticMode#mh:SHA-256:6fd87952020856cfa868104a4c125089a8438cc5420f9f70a68b8985d162a0b7"
     ],
     "path": [
       "Society",
@@ -53,18 +54,18 @@
       }
     }
   },
-  "sema_id": "sema:SynergisticMode#mh:SHA-256:6fd87952020856cfa868104a4c125089a8438cc5420f9f70a68b8985d162a0b7",
-  "sema_ref": "SynergisticMode#6fd8",
-  "sema_stub": "6fd8",
+  "sema_id": "sema:SynergisticMode#mh:SHA-256:dfb23712167e7be27b13e00163ff62e334f5bc6f2c1245e7bc9fc0abec21ad11",
+  "sema_ref": "SynergisticMode#dfb2",
+  "sema_stub": "dfb2",
   "dependencies": {
     "composes_with": {
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235"
     },
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:a72492b72aac16bd5598ec5bfb9e0dffd7a53039c3217105996fa5cf062568f5",
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "compose": "sema:Compose#mh:SHA-256:70edc4a274d8de877d96b273051c029d9fd706789d785914895132488d5a41fd",
-      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "compose": "sema:Compose#mh:SHA-256:8c858e91a65a3e1cae80abff8fb909394d69e29dec9e2d9b0c13f6e62903e810",
+      "mode": "sema:Mode#mh:SHA-256:29d368514a2a815e9790a384c2aec12bd20a30e1ee06288e0aa59fdcffea0800",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

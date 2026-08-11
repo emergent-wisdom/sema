@@ -12,16 +12,17 @@
     "supersedes": [
       "sema:Verification#mh:SHA-256:eb2838e42803a176654d6c11812568ed34b73f9e6d4a49d3e86e571354ec437c",
       "sema:Verification#mh:SHA-256:9c1ee918c6b8b8d7b787f5ef7ae908aa2ca37b1f9b5dace80fcf261a9c961001",
-      "sema:Verification#mh:SHA-256:99a57c2cef1d442480417b63b008e656f2b67f586886666234a41bc9251a4956"
+      "sema:Verification#mh:SHA-256:99a57c2cef1d442480417b63b008e656f2b67f586886666234a41bc9251a4956",
+      "sema:Verification#mh:SHA-256:81fe83ebcbd898595f7969762d70b562ad6bcab08141fc1e88d65f21376600dd"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_ref": "Verification#81fe",
-  "sema_id": "sema:Verification#mh:SHA-256:81fe83ebcbd898595f7969762d70b562ad6bcab08141fc1e88d65f21376600dd",
-  "sema_stub": "81fe",
+  "sema_ref": "Verification#c8de",
+  "sema_id": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778",
+  "sema_stub": "c8de",
   "invariants": [
     "A verification states what it was checked against \u2014 which {{spec}}, or which observation.",
     "Where the underlying {{check}} yields Unknown, the verification reports Unknown.",
@@ -31,8 +32,8 @@
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "spec": "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89",
-      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7",
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     }
   },
   "sema_layer": "Mind",

@@ -12,25 +12,26 @@
     "supersedes": [
       "sema:HypothesisEngine#mh:SHA-256:dc69956150dc53b0ecfa132dc3ab6a50008569ed82c9bd5de16ffecb9ea405d8",
       "sema:HypothesisEngine#mh:SHA-256:dec9b5fd325c2c8649b3447c1e927559b952451b1cea7a7429dd8f4b62366731",
-      "sema:HypothesisEngine#mh:SHA-256:2dae2c4a5a5ac90f2616f43a451a8f86b9c7e5f2df3b9c1b3a034c4870e1389d"
+      "sema:HypothesisEngine#mh:SHA-256:2dae2c4a5a5ac90f2616f43a451a8f86b9c7e5f2df3b9c1b3a034c4870e1389d",
+      "sema:HypothesisEngine#mh:SHA-256:8aa62e3a7f8cd0f4837c31e58b828b18b84edbc9f0cac2e22915d26179098c94"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:HypothesisEngine#mh:SHA-256:8aa62e3a7f8cd0f4837c31e58b828b18b84edbc9f0cac2e22915d26179098c94",
-  "sema_ref": "HypothesisEngine#8aa6",
-  "sema_stub": "8aa6",
+  "sema_id": "sema:HypothesisEngine#mh:SHA-256:f9e8f765ed6e5bca5355567747f7ea9acf4c9836a8f287df8831a9e18c179e3e",
+  "sema_ref": "HypothesisEngine#f9e8",
+  "sema_stub": "f9e8",
   "dependencies": {
     "references": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
       "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
       "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
-      "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
-      "stigmergy": "sema:Stigmergy#mh:SHA-256:f4336a6aa0e65a271e259d979bc6d5ad84312f6ba85f1262d61504730ed5a1a8",
-      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8",
-      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
+      "simulation": "sema:Simulation#mh:SHA-256:1058e7090079e846251ed480d7afec0328809d22bebb6b205425b2de614787c3",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:dd4f5a60a12b6dbe6e4a9a051189088dc0a73ef18b5ef4d9ecc361215e9551cb",
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9",
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     }
   },
   "sema_layer": "Mind",
