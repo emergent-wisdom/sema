@@ -142,6 +142,10 @@ def generate_pattern_cards():
                 "\\textbf{Tier~2} following adversarial analysis.\n"
             )
 
+        # Keep the full-ID heading with the opening lines of its card. These
+        # headings often wrap, so ordinary section widow protection is not
+        # enough near a page boundary.
+        lines.append("\\Needspace{7\\baselineskip}")
         lines.append(f"\\subsection{{{title}}}")
         if tier_note:
             lines.append(tier_note)
