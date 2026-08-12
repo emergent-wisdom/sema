@@ -15,6 +15,7 @@ The long-term goal is cryptographically enforced safety constraints on agent-to-
 ## Orientation
 
 - **[Overview](README.md):** You are here.
+- **[Getting Started](guides/getting-started.md):** Install Sema, select a vocabulary, and use the core tools.
 - **[Core Philosophy](core/philosophy.md):** Why Sema exists — content-addressing, "Text is Code", the Civilization Stack.
 
 ## The Pattern Card
@@ -32,8 +33,9 @@ The long-term goal is cryptographically enforced safety constraints on agent-to-
 
 - **[Pattern Lifecycle](guides/lifecycle.md):** The full loop: create, validate, hash, apply, export, distribute, pull, rebuild.
 - **[Pattern Authoring Guide](guides/authoring.md):** Step-by-step workflow for minting and modifying patterns.
+- **[Publishing and Installing Vocabulary Libraries](guides/libraries.md):** Build a DeFi-style library, package and verify it, publish GitHub Release assets, and install or update the result.
 - **[Reviewing a Pattern Card](guides/review-method.md):** The judgment layer — how to decide whether a card is right, the defect classes that recur in practice, and the tools and theories already tried and abandoned.
-- **[CLI Reference](tools/cli.md):** The `sema` command — build, use, list, init, apply, search, resolve, show, pull, serve.
+- **[CLI Reference](tools/cli.md):** The `sema` command — build, package, install, update, use, list, root, apply, search, resolve, show, pull, and serve.
 
 ## Integrations
 
@@ -50,6 +52,10 @@ The long-term goal is cryptographically enforced safety constraints on agent-to-
 # Install
 pip install semahash
 
+# Create and select a writable project vocabulary
+sema build my-project.db --preset full
+sema use ./my-project.db
+
 # Add a pattern (validates before applying)
 sema apply --add MyPattern.json
 
@@ -58,6 +64,9 @@ sema apply --check --add MyPattern.json
 
 # Search the vocabulary
 sema search "coordination"
+
+# Inspect the active vocabulary's aggregate identities
+sema root
 
 # Start the MCP server for AI integration
 sema mcp

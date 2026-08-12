@@ -121,30 +121,44 @@ Build a private registry from scratch — no PR or maintainer in the loop:
 
 ```bash
 sema init ./mylib.db
-export SEMA_DB_PATH=$(pwd)/mylib.db
+sema use ./mylib.db
 sema apply --add path/to/MyPattern.json
 sema search "..."
 ```
 
 Subsequent `sema` commands (including `sema mcp`) read from your private
-registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
+registry. (`SEMA_DB_PATH`, if set, overrides `sema use`.) See
+[CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
 contribution path and [docs/specification/versioning.md](docs/specification/versioning.md) for the
 refinement and supersession policy.
 
-Sema also supports a manifest-driven flow for installing a published,
-read-only vocabulary by name:
+Package a project database as a verified, standalone library release:
 
 ```bash
-sema install https://github.com/emergent-wisdom/sema/releases/latest/download/library.json
-sema use bootstrap
-sema update bootstrap
+sema package ./mylib.db \
+  --name mylib \
+  --version 1.0.0 \
+  --output-dir dist/mylib-1.0.0 \
+  --github-repo acme/sema-mylib
+```
+
+Publish the generated `library.json` and versioned ZIP as assets on the
+corresponding published GitHub Release. Consumers install the Release asset URL
+for `library.json`—not the repository URL or a branch:
+
+```bash
+sema install https://github.com/acme/sema-mylib/releases/latest/download/library.json
+sema use mylib
+sema list
+sema root
 ```
 
 It installs one verified snapshot at a time rather than merging vocabularies;
-the bundled vocabulary remains the offline default. Third-party libraries use
-the same command with their own manifest URL. See the
-[remote vocabulary library contract](docs/guides/libraries.md) for the exact
-manifest and GitHub release layout.
+the bundled vocabulary remains the offline default. Use `sema update mylib` to
+follow the installed library's recorded release pointer. See
+[Publishing and Installing Vocabulary Libraries](docs/guides/libraries.md) for
+the complete DeFi authoring, dependency-closure, packaging, GitHub Release, and
+update workflow.
 
 ### Use in Python
 

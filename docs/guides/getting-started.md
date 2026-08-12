@@ -90,20 +90,22 @@ Dependencies are resolved automatically.
 
 ## Install a published vocabulary
 
-The remote-library MVP defines a manifest-driven flow for installing a named,
+Published libraries use a manifest-driven flow for installing a named,
 read-only vocabulary snapshot:
 
 ```bash
 sema install https://github.com/emergent-wisdom/sema/releases/latest/download/library.json
 sema use bootstrap
-sema update bootstrap
+sema list
+sema root
 ```
 
 Installing a library does not merge it with the bundled vocabulary or another
 library. The bundled vocabulary remains the default, and `sema use --default`
 returns to it. The [remote vocabulary library guide](libraries.md) specifies
-the strict `library.json`, pattern ZIP, and GitHub release workflow. Third-party
-libraries use the same commands with their own manifest URL.
+how to author and package a library, publish both files as GitHub Release
+assets, and install it. The install target is the Release asset URL for
+`library.json`, not the repository URL or a branch.
 
 ## CLI
 
@@ -114,15 +116,20 @@ sema resolve Vote
 sema build my.db --preset standard
 sema use my.db
 sema list
+sema root
 ```
 
-## Stay updated
+## Keep the selected vocabulary updated
 
-After upgrading the package (`pip install -U semahash`) or whenever a new
-vocabulary release ships, sync your active DB:
+There are two deliberately different update operations.
+
+For a **writable project database**, `pull` reconciles patterns from another
+database—by default, the bundled database installed with the package—while
+preserving user-only patterns:
 
 ```bash
-sema pull             # apply upstream changes to your active DB
+pip install -U semahash
+sema pull             # bundled DB -> active writable project DB
 sema pull --dry-run   # preview without writing
 ```
 
@@ -131,6 +138,17 @@ sema pull --dry-run   # preview without writing
 operation is atomic (rolls back on failure). See
 [CLI reference](../tools/cli.md#pull---sync-vocabulary-from-upstream) for
 the exclusion list and version-pinning options.
+
+For an **installed read-only library**, use its recorded remote update pointer:
+
+```bash
+sema update bootstrap
+```
+
+`update` downloads and verifies a complete replacement release. It does not
+merge that release with the bundled vocabulary or another library. See the
+[library publishing and installation guide](libraries.md) for the full
+distinction.
 
 ## Tools available via MCP
 
