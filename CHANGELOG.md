@@ -10,7 +10,7 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
-## [0.5.0] - 2026-08-11
+## [0.5.0] - 2026-08-12
 
 457 -> 457 patterns. Aggregate roots: semantic set
 `5b6be2ac2db98eedbc89b1c240fe3660db5d01784db5bbb1177b1d7a76c05f64`,
@@ -27,6 +27,12 @@ catalog `87a541595288b870daa23487a44feeb46517e9eca0416f46dc61ebe43da36064`.
   a generated `library.json` and versioned pattern ZIP whose identities and roots
   are verified against the bundled database, allowing the bootstrap vocabulary
   to be installed through the same public contract as a third-party library.
+- Self-service third-party publishing through `sema package`. The command exports
+  a project database as one JSON file per pattern, creates a deterministic ZIP,
+  computes its checksum and both aggregate roots, writes `library.json`, and then
+  recompiles and verifies a fresh local read model before exposing the release
+  files. GitHub shorthand generates a stable manifest URL and a version-pinned
+  artifact URL.
 
 ### Changed
 
@@ -46,6 +52,9 @@ catalog `87a541595288b870daa23487a44feeb46517e9eca0416f46dc61ebe43da36064`.
   267 of 457 identities: eight repaired definitions, two explicitly reviewed
   exact-parent retargets, and 257 transitive dependency updates. Every changed
   pattern records its public 0.4 identity in `_meta.supersedes`.
+- `sema build --source` accepts an installed library name as well as a database
+  path. Managed sources are reverified before copying, and the resulting project
+  database is writable even though installed releases remain read-only.
 
 ### Security
 

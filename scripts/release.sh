@@ -165,9 +165,37 @@ confirm "Create GitHub release for $TAG?"
 # Use a temp file for notes so multi-line content survives shell quoting.
 echo "$RELEASE_NOTES" > "$NOTES_FILE"
 run "gh release create '$TAG' '$RELEASE_DIR/library.json' '$BOOTSTRAP_ARCHIVE' --draft --title '$TAG' --notes-file '$NOTES_FILE'"
-run "gh release edit '$TAG' --draft=false"
+run "gh release edit '$TAG' --draft=false --latest"
 ok "GitHub release published with bootstrap assets — publish workflow should now be running"
 echo "  Watch:  gh run list --workflow publish.yml --limit 3"
+
+# Exercise the same stable manifest URL and version-pinned asset URL that consumers
+# use. GitHub may take a few seconds to move the `latest` pointer after a draft
+# is published, so retry briefly and require byte-for-byte equality with the
+# artifacts verified before tagging.
+bold "▸ Smoke-test public bootstrap assets"
+PUBLIC_MANIFEST_URL="https://github.com/emergent-wisdom/sema/releases/latest/download/library.json"
+PUBLIC_ARCHIVE_URL="https://github.com/emergent-wisdom/sema/releases/download/$TAG/$(basename "$BOOTSTRAP_ARCHIVE")"
+if [[ $DRY_RUN -eq 1 ]]; then
+    printf '  (dry-run) fetch and compare %s\n' "$PUBLIC_MANIFEST_URL"
+    printf '  (dry-run) fetch and compare %s\n' "$PUBLIC_ARCHIVE_URL"
+else
+    public_manifest="$RELEASE_DIR/public-library.json"
+    public_archive="$RELEASE_DIR/public-$(basename "$BOOTSTRAP_ARCHIVE")"
+    public_ok=0
+    for _attempt in {1..12}; do
+        if curl -fsSL "$PUBLIC_MANIFEST_URL" -o "$public_manifest" \
+            && curl -fsSL "$PUBLIC_ARCHIVE_URL" -o "$public_archive" \
+            && cmp -s "$RELEASE_DIR/library.json" "$public_manifest" \
+            && cmp -s "$BOOTSTRAP_ARCHIVE" "$public_archive"; then
+            public_ok=1
+            break
+        fi
+        sleep 5
+    done
+    [[ $public_ok -eq 1 ]] || fail "Published bootstrap assets failed the public URL smoke test."
+fi
+ok "public library.json and pattern ZIP match the verified release bytes"
 
 # ── Phase 4: Verify ───────────────────────────────────────────────────────
 echo
