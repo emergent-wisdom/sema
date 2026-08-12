@@ -22,20 +22,21 @@
     "ring": 2,
     "supersedes": [
       "sema:AdversarialProof#mh:SHA-256:2a0f68fabd8276b169195d0f4d502049e0690343fbb6d7dd1e3d6b6f487581e9",
-      "sema:AdversarialProof#mh:SHA-256:80dd24874000f0095c6bbfb987d088a14db80022a5ea1950679f9ae8118cb731"
+      "sema:AdversarialProof#mh:SHA-256:80dd24874000f0095c6bbfb987d088a14db80022a5ea1950679f9ae8118cb731",
+      "sema:AdversarialProof#mh:SHA-256:5a48a377246a3e731f3a7a0a7c6f477fec6822ffdd5fedc23837b7e38ebbd9bd"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AdversarialProof#mh:SHA-256:5a48a377246a3e731f3a7a0a7c6f477fec6822ffdd5fedc23837b7e38ebbd9bd",
-  "sema_ref": "AdversarialProof#5a48",
-  "sema_stub": "5a48",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:dce72db8bf7158256418e2a4cfd10b51553df52c158e06738b18c9eeb48d7d59",
+  "sema_ref": "AdversarialProof#dce7",
+  "sema_stub": "dce7",
   "dependencies": {
     "composes_with": {
-      "negative_proof": "sema:NegativeProof#mh:SHA-256:57af3122aaf64cc4e983e0d4068ce89be598c71a51e29fb0ef596b93d79d9244",
-      "red_team": "sema:RedTeam#mh:SHA-256:8d522c890e039e516600956d77ebf942202f04a89bdae0098ec50b088e987363"
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:1184ac0ee80295c5617be9d08bc656197f7d6f5d38dfee4baee466555bf517b2",
+      "red_team": "sema:RedTeam#mh:SHA-256:fce8c277aa6188393a0f33fef5c3cd18de5ab7c6a4712df1c0958ab3f3bbb9e8"
     },
     "references": {
       "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14"

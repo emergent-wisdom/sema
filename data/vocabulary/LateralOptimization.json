@@ -27,30 +27,31 @@
     "ring": 1,
     "supersedes": [
       "sema:LateralOptimization#mh:SHA-256:5350ae13501544830ea8db150d55264a15e06ac1d231c16d02207ae0b48eadba",
-      "sema:LateralOptimization#mh:SHA-256:2bdbd09ab93650640efab3e086f47aa1caaeaa95eb789a7f39e6e89400637d6f"
+      "sema:LateralOptimization#mh:SHA-256:2bdbd09ab93650640efab3e086f47aa1caaeaa95eb789a7f39e6e89400637d6f",
+      "sema:LateralOptimization#mh:SHA-256:348a71d7d19a098a80f35cd8787e42ad1291e850c9f932e5b352e89bbe8da938"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:348a71d7d19a098a80f35cd8787e42ad1291e850c9f932e5b352e89bbe8da938",
-  "sema_ref": "LateralOptimization#348a",
-  "sema_stub": "348a",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:c2da6f1b0e7cd05f1cac28da758ce5d1b505cc7bc3308abb12e7658c5faeff2f",
+  "sema_ref": "LateralOptimization#c2da",
+  "sema_stub": "c2da",
   "signature": [
     "Think(Creative)",
     "Optimize(Global)"
   ],
   "dependencies": {
     "composes_with": {
-      "optimize": "sema:Optimize#mh:SHA-256:8a1d872b1e5019a0f4ef856d5f6c6809b87271838a50e55ef2ec21835839b7eb",
+      "optimize": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674",
       "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
       "translate": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400"
     },
     "references": {
       "creative": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",
       "global": "sema:Global#mh:SHA-256:330166f5c16b13500d92d26d0e58ad24657bebccbe295ff8108f363d3539034d",
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }

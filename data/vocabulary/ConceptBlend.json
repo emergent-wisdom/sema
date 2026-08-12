@@ -15,16 +15,17 @@
     "ring": 2,
     "supersedes": [
       "sema:ConceptBlend#mh:SHA-256:22f28543dbe747212dc9f189bcd5b5b7b352eb540f8dbb92e8ac40181e8a7ae5",
-      "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a"
+      "sema:ConceptBlend#mh:SHA-256:6bdf54a2bb0b2e87c01be210c61ed6ccb5521a3ec090969d615d7f2669dda23a",
+      "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb",
-  "sema_ref": "ConceptBlend#5d26",
-  "sema_stub": "5d26",
+  "sema_id": "sema:ConceptBlend#mh:SHA-256:4e1a8d331a266c5ff283faba9b1c0d65c943dfa3b0f96f4b7deb5a76f9a171c6",
+  "sema_ref": "ConceptBlend#4e1a",
+  "sema_stub": "4e1a",
   "parameters": [
     {
       "name": "min_distance",
@@ -39,10 +40,10 @@
   ],
   "dependencies": {
     "references": {
-      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:19ca8985125c0763648986dace3b85d15138e46a05819dec683a651c461ef0bf",
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:cf62f5ead4f1aaa93a26feb06a9546035a93d1103cca1fccb1d4de5f08babc4a",
       "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893",
-      "realizable": "sema:Realizable#mh:SHA-256:e8e3932e8d9cc73bbf9c5aff5ef6bc0014b2c357c6ddb9b0e4e2868ca41dd455",
-      "tri_gate": "sema:TriGate#mh:SHA-256:5156704e5f174e347d58e312f42f3398b975266ff48cfce0d302b7d88abad7f8"
+      "realizable": "sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622",
+      "tri_gate": "sema:TriGate#mh:SHA-256:04a9a7cc17d29dab76ee781b7d7a3f557f68d528788da12620a320ce53d6b44c"
     }
   },
   "sema_layer": "Mind",

@@ -21,29 +21,30 @@
     "supersedes": [
       "sema:OptimisticSolver#mh:SHA-256:ee29600346db4594152f7d653a9700b4682402249775f5b7f765fbf1759e592d",
       "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8",
-      "sema:OptimisticSolver#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77"
+      "sema:OptimisticSolver#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77",
+      "sema:OptimisticSolver#mh:SHA-256:f664c4e84cbf04e0c16b1fcac7c2662b4b35f4b474b76a2a47e129b36a3dc639"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:f664c4e84cbf04e0c16b1fcac7c2662b4b35f4b474b76a2a47e129b36a3dc639",
-  "sema_ref": "OptimisticSolver#f664",
-  "sema_stub": "f664",
-  "extends": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:0dcabc92d9b6bbac524d5e7445ecd0590872956e3e392304e6de24655dbea4f7",
+  "sema_ref": "OptimisticSolver#0dca",
+  "sema_stub": "0dca",
+  "extends": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
   "dependencies": {
     "composes_with": {
-      "atomic_bid": "sema:AtomicBid#mh:SHA-256:820c7c2788d8bfc50cb80d142201f63fc726823c60e34e1c8567e4f66c72c8c1",
-      "compensate": "sema:Compensate#mh:SHA-256:447fb91007e09d8674d66ab2698189026a2e9f70a2b66fbaaed406006fb8b8eb",
+      "atomic_bid": "sema:AtomicBid#mh:SHA-256:005abad4abe486ee0be82fdf09f7e4787c05ae1bc7326442bf8834cca4856cd3",
+      "compensate": "sema:Compensate#mh:SHA-256:4b87623f38564fcc95b87d2cbf5df2f5ff41ef27e617ccafd76c7b7896b144e7",
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
-      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3"
+      "reflexion": "sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8"
     },
     "references": {
       "parallel": "sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
-      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:1275832b5bb4e2ad2e682f32326f8a02f105df57d582be23afd1fb1a7cfae921"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
+      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:93b824003c5454397626a8c2afe22a03c0b5dae890b8a7bc2158f8139825bd96"
     }
   },
   "sema_layer": "Society",

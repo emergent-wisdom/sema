@@ -14,16 +14,17 @@
     "supersedes": [
       "sema:CreativeBlend#mh:SHA-256:624687c31005bc40986fbd3ace62e3e42c931c01ab4c1b082abe319a54372515",
       "sema:CreativeBlend#mh:SHA-256:cc9130dd92520118a4b6047b2544fa67126e7bf2c81285c792a2f9c6433c3e75",
-      "sema:CreativeBlend#mh:SHA-256:0f9f6100502896dd51cd366abc5fe4fc163a32c09d79dd4f35eef9c7c92f39a8"
+      "sema:CreativeBlend#mh:SHA-256:0f9f6100502896dd51cd366abc5fe4fc163a32c09d79dd4f35eef9c7c92f39a8",
+      "sema:CreativeBlend#mh:SHA-256:038cc66c1989c7c850b0e1a514502124f3748cfd89fc3bdae33457432eb90a08"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "CreativeBlend#038c",
-  "sema_id": "sema:CreativeBlend#mh:SHA-256:038cc66c1989c7c850b0e1a514502124f3748cfd89fc3bdae33457432eb90a08",
-  "sema_stub": "038c",
+  "sema_ref": "CreativeBlend#95a0",
+  "sema_id": "sema:CreativeBlend#mh:SHA-256:95a09b1e3b6dc3dc18895c69b9bd0194b328f32c8ed683e41fb641e47c3f8c16",
+  "sema_stub": "95a0",
   "extends": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",
   "dependencies": {
     "accepts": {
@@ -31,11 +32,11 @@
     },
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "concept_blend": "sema:ConceptBlend#mh:SHA-256:5d261347cdc6f1bc0f810f215d78f7e997c5c25a934abe5a6ea278ea4abe99fb"
+      "concept_blend": "sema:ConceptBlend#mh:SHA-256:4e1a8d331a266c5ff283faba9b1c0d65c943dfa3b0f96f4b7deb5a76f9a171c6"
     },
     "references": {
-      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
-      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
+      "novelty": "sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a",
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {

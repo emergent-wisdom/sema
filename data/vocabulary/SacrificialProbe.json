@@ -31,23 +31,24 @@
     "supersedes": [
       "sema:SacrificialProbe#mh:SHA-256:e235bde0b859ae1c6db86c1a89037765c45cdaae2bbcac7e3bae000063d65e99",
       "sema:SacrificialProbe#mh:SHA-256:1e1674548e3438a28f913e340d956e5178aeb8710176e56251ef9370de28e544",
-      "sema:SacrificialProbe#mh:SHA-256:aca76b887e6c1c71ebc1549f2204c362657b7e141fc775f597471308b7f7f8ee"
+      "sema:SacrificialProbe#mh:SHA-256:aca76b887e6c1c71ebc1549f2204c362657b7e141fc775f597471308b7f7f8ee",
+      "sema:SacrificialProbe#mh:SHA-256:350f4c88bc6dfea05a4374a3face788a8dcf11422b3fa47aa4911aaf5a2eed40"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:SacrificialProbe#mh:SHA-256:350f4c88bc6dfea05a4374a3face788a8dcf11422b3fa47aa4911aaf5a2eed40",
-  "sema_ref": "SacrificialProbe#350f",
-  "sema_stub": "350f",
+  "sema_id": "sema:SacrificialProbe#mh:SHA-256:e90170affcabeb97b9a1bcac9a9350b17fecf3eba173169bf2d46696a589b412",
+  "sema_ref": "SacrificialProbe#e901",
+  "sema_stub": "e901",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "mode": "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "mode": "sema:Mode#mh:SHA-256:29d368514a2a815e9790a384c2aec12bd20a30e1ee06288e0aa59fdcffea0800",
       "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224",
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
-      "strategy": "sema:Strategy#mh:SHA-256:e3579dd6c91b02a1e00837926422e6fd724e692544d2447540759ac637fd38c6",
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

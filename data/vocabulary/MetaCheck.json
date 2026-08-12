@@ -36,16 +36,17 @@
     "ring": 1,
     "supersedes": [
       "sema:MetaCheck#mh:SHA-256:a228b1133c27b81db71a125234a13a0acac3464d6ac33fcc89d2e351b1bdb494",
-      "sema:MetaCheck#mh:SHA-256:67872b0654d8a91ce849b6062e34cf8842bb315e77e7bf02cda64eb53ab4314a"
+      "sema:MetaCheck#mh:SHA-256:67872b0654d8a91ce849b6062e34cf8842bb315e77e7bf02cda64eb53ab4314a",
+      "sema:MetaCheck#mh:SHA-256:d437056b9e87784e6202204ac626e2445af1eee8bf49b81dff49c33c05c8d6c6"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MetaCheck#mh:SHA-256:d437056b9e87784e6202204ac626e2445af1eee8bf49b81dff49c33c05c8d6c6",
-  "sema_ref": "MetaCheck#d437",
-  "sema_stub": "d437",
+  "sema_id": "sema:MetaCheck#mh:SHA-256:5ac54fce5c9e81842e2bd859f8e2aa50182082d1340e2ab9a8144067a205fe5e",
+  "sema_ref": "MetaCheck#5ac5",
+  "sema_stub": "5ac5",
   "signature": [
     "Meta(Check)"
   ],
@@ -54,7 +55,7 @@
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
       "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
-      "reflexion": "sema:Reflexion#mh:SHA-256:b2b59e0b162b7c5f91b36d991ffb143331568be2d1dbc56218ccfccafd40dfc3"
+      "reflexion": "sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8"
     }
   },
   "sema_layer": "Mind",

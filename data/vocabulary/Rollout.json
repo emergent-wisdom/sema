@@ -40,16 +40,17 @@
     "supersedes": [
       "sema:Rollout#mh:SHA-256:42389087ff9ffd73d3de5c71f8509cf2cd974795babc71e862ec139c92ad5c78",
       "sema:Rollout#mh:SHA-256:54d7bac8171164fb66054c97570c030967e0d5f568763a69a103eec26ac0aeeb",
-      "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996"
+      "sema:Rollout#mh:SHA-256:8fc16ddf8f7add799ac8b49f7894f508be0b8378f995e57540cab8ec028eb996",
+      "sema:Rollout#mh:SHA-256:e4717541319b2a51a4b78b1278fc14a1b3fd4f6daf6719eb70c08c7193dfb629"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Rollout#mh:SHA-256:e4717541319b2a51a4b78b1278fc14a1b3fd4f6daf6719eb70c08c7193dfb629",
-  "sema_ref": "Rollout#e471",
-  "sema_stub": "e471",
+  "sema_id": "sema:Rollout#mh:SHA-256:ea8c8bdf3303e53d240d6393a776de33ff7c0980a269539d6eb22a8b35e430b4",
+  "sema_ref": "Rollout#ea8c",
+  "sema_stub": "ea8c",
   "signature": [
     "Act(ExecutionManifest)"
   ],
@@ -58,11 +59,11 @@
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1"
     },
     "composes_with": {
-      "break": "sema:Break#mh:SHA-256:c4d3f005992445b2307564e2fc00d684500c2b4239a9f06d4a17e302c8b039ff",
-      "canary": "sema:Canary#mh:SHA-256:d7fc49dec224a25b326fefaa0e7f0d3ac70c7b5ae0bfb5af6763d4280f576dbb",
+      "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
+      "canary": "sema:Canary#mh:SHA-256:d38cd019553857aa7518559542b5400b658f87eb08e6f4dae9be4fd496ce691e",
       "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
-      "compensate": "sema:Compensate#mh:SHA-256:447fb91007e09d8674d66ab2698189026a2e9f70a2b66fbaaed406006fb8b8eb",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:1f37d50620e134a8db931872b20fc7e112a087df7ab21f479ed104ece4efe6c5"
+      "compensate": "sema:Compensate#mh:SHA-256:4b87623f38564fcc95b87d2cbf5df2f5ff41ef27e617ccafd76c7b7896b144e7",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:a9d5ef5e3e70e5e4732543c2732e312f1efbd881a991b1521594e3b66257a8cb"
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455"

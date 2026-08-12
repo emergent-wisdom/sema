@@ -23,20 +23,21 @@
     "supersedes": [
       "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0",
       "sema:PatternEmergence#mh:SHA-256:8eaa2ad1a9a8465f278536f20f2d3dad3ce579dab2fb28f23da8ae9d2c5ecf69",
-      "sema:PatternEmergence#mh:SHA-256:2816103e8793806e339d12e1cd3ebff008f296a85bc3c0cd27ca13dda55d8541"
+      "sema:PatternEmergence#mh:SHA-256:2816103e8793806e339d12e1cd3ebff008f296a85bc3c0cd27ca13dda55d8541",
+      "sema:PatternEmergence#mh:SHA-256:cd8a9d7ed19c4aff92f6617ad198799ec57d497e54a44af46948ade08e577f2a"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:cd8a9d7ed19c4aff92f6617ad198799ec57d497e54a44af46948ade08e577f2a",
-  "sema_ref": "PatternEmergence#cd8a",
-  "sema_stub": "cd8a",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:c36a27715a030ff0eb89f29c6149a1e756bf7c24fc759ac21162d3edcf58152c",
+  "sema_ref": "PatternEmergence#c36a",
+  "sema_stub": "c36a",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "generalize": "sema:Generalize#mh:SHA-256:251f07a282bc1b83a737977141d164311e3334d50b555400970928758153289d",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "generalize": "sema:Generalize#mh:SHA-256:29f133fe83dfe2cd7d2b432390f59e3a64a84866b964a2ca6199f8134ba64e7e",
       "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }

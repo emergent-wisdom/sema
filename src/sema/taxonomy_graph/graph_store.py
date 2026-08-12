@@ -132,9 +132,10 @@ class GraphStore:
 
     SIMILARITY_THRESHOLD = 0.75  # For auto-linking (novelty rejection uses 0.92)
 
-    def __init__(self, db_path: str = "taxonomy.db"):
+    def __init__(self, db_path: str = "taxonomy.db", enable_embeddings: bool = True):
         self.db_path = db_path
-        self.embedding_service = EmbeddingService(db_path)
+        self.enable_embeddings = enable_embeddings
+        self.embedding_service = EmbeddingService(db_path) if enable_embeddings else None
         # MultiDiGraph: a pattern can have multiple typed edges to the same
         # target (e.g. `accepts: Task` AND `yields: Task`). DiGraph would
         # silently collapse them to one edge.
@@ -329,9 +330,10 @@ class GraphStore:
 
         embedding = None
         embedding_blob = None
-        if compute_embedding:
+        if compute_embedding and self.enable_embeddings:
             # Use specific embedding text if provided, else label text
             content = embedding_text or text
+            assert self.embedding_service is not None
             embedding = self.embedding_service.get_embedding(content)
             embedding_blob = embedding.tobytes()
 
@@ -525,7 +527,14 @@ class GraphStore:
         Returns:
             (node_id, similarity) if found above threshold, else None
         """
+        if not self.enable_embeddings:
+            for node_id, data in self.get_nodes_by_type(node_type):
+                if data.get("text") == text:
+                    return node_id, 1.0
+            return None
+
         threshold = threshold or self.SIMILARITY_THRESHOLD
+        assert self.embedding_service is not None
         query_embedding = self.embedding_service.get_embedding(text)
 
         candidates = []
@@ -837,6 +846,7 @@ class GraphStore:
                 # otherwise semantic search keeps ranking the pattern by its
                 # pre-update gloss/mechanism indefinitely.
                 embedding_blob = None
+                embedding_changed = False
                 old_text = (
                     f"{handle}: {previous_pattern.get('gloss', '')} "
                     f"{previous_pattern.get('mechanism', '')}"
@@ -846,14 +856,20 @@ class GraphStore:
                     f"{stored_pattern.get('mechanism', '')}"
                 )
                 if new_text != old_text:
-                    embedding = self.embedding_service.get_embedding(new_text)
-                    if embedding is not None:
-                        embedding_blob = embedding.tobytes()
-                        data["embedding"] = embedding
+                    if self.enable_embeddings:
+                        assert self.embedding_service is not None
+                        embedding = self.embedding_service.get_embedding(new_text)
+                        if embedding is not None:
+                            embedding_changed = True
+                            embedding_blob = embedding.tobytes()
+                            data["embedding"] = embedding
+                    else:
+                        embedding_changed = True
+                        data["embedding"] = None
 
                 # Persist metadata (and embedding, if refreshed)
                 conn = self._connect()
-                if embedding_blob is not None:
+                if embedding_changed:
                     conn.execute(
                         "UPDATE nodes SET metadata = ?, embedding = ? WHERE id = ?",
                         (json.dumps(data["metadata"]), embedding_blob, existing_nid),

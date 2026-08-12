@@ -28,19 +28,20 @@
     "supersedes": [
       "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
       "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b",
-      "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841"
+      "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841",
+      "sema:Abduction#mh:SHA-256:b62e330c794af8e7e3990c4fe74b75fc944f31df213835a5fba0f792904f4863"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Abduction#mh:SHA-256:b62e330c794af8e7e3990c4fe74b75fc944f31df213835a5fba0f792904f4863",
-  "sema_ref": "Abduction#b62e",
-  "sema_stub": "b62e",
+  "sema_id": "sema:Abduction#mh:SHA-256:e738d3035534bba0a6b165325ba64818abb897a0f6b9848bc00c7c17ca146921",
+  "sema_ref": "Abduction#e738",
+  "sema_stub": "e738",
   "dependencies": {
     "composes_with": {
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:27ad1f2386f58e1f9e1983c97f6dbeb8f1345e1d9b9e00af30871b97d21e0c95"
     },
     "references": {
       "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",

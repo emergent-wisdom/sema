@@ -15,21 +15,22 @@
     "ring": 2,
     "supersedes": [
       "sema:FirstPrinciples#mh:SHA-256:c379f7e5629befb5ccbee33b6fccbc3c4f5ec181b2704c4f82064d5cdc810f61",
-      "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb"
+      "sema:FirstPrinciples#mh:SHA-256:4844b2a6e6d0199f1833caaeba9ae1ffdad7be8cb88a012bb42cf2310d609bbb",
+      "sema:FirstPrinciples#mh:SHA-256:8cf87ac255bd98d0a8707915742e57de6b4523ef8dffc33e735cdb75c38d642b"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:FirstPrinciples#mh:SHA-256:8cf87ac255bd98d0a8707915742e57de6b4523ef8dffc33e735cdb75c38d642b",
-  "sema_ref": "FirstPrinciples#8cf8",
-  "sema_stub": "8cf8",
+  "sema_id": "sema:FirstPrinciples#mh:SHA-256:337221accd9aac33800d03f92127e0eeec9573b81902046b9b2fd447c731067b",
+  "sema_ref": "FirstPrinciples#3372",
+  "sema_stub": "3372",
   "dependencies": {
     "references": {
       "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
       "axiom": "sema:Axiom#mh:SHA-256:8b1ca0bfefdb4954778b4074a3164934cb3a7e01be32aeb488b284dd81e5879c",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:5fb21bf5ca8f6193bcc920b7e045bc816fe7f56ea2ed66fe7e26460094dcfac2"
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:27ad1f2386f58e1f9e1983c97f6dbeb8f1345e1d9b9e00af30871b97d21e0c95"
     }
   },
   "sema_layer": "Mind",

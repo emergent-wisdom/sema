@@ -11,7 +11,8 @@
     "tier": 1,
     "supersedes": [
       "sema:FrameSpec#mh:SHA-256:d5b8e71aa9d57b941df3f914b941bfb8fe6c58f62d6c6db28532defcd2237d75",
-      "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e"
+      "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e",
+      "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631"
     ],
     "path": [
       "Infrastructure",
@@ -53,9 +54,9 @@
   "signature": [
     "Artifact(Constraint)"
   ],
-  "sema_id": "sema:FrameSpec#mh:SHA-256:7f9a34c3950770be588ba74b062bf9d3d998f0d15db7ba60a8c82e6baa4fd631",
-  "sema_ref": "FrameSpec#7f9a",
-  "sema_stub": "7f9a",
+  "sema_id": "sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42",
+  "sema_ref": "FrameSpec#3c20",
+  "sema_stub": "3c20",
   "failure_modes": [
     "Frozen contract, moved request: the request changed, the spec was not re-derived, and its {{constraint}}s stay authoritative."
   ],
@@ -64,7 +65,7 @@
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
-      "spec": "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89"
+      "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7"
     }
   },
   "sema_layer": "Infrastructure",

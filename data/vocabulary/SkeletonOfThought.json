@@ -10,22 +10,23 @@
     "ring": 2,
     "supersedes": [
       "sema:SkeletonOfThought#mh:SHA-256:d99ac47fca9164a2de7b43196ce9c8455ab430b31b1c34928bddba952002cda4",
-      "sema:SkeletonOfThought#mh:SHA-256:d1de76d91f7ffcd0d27396b6b2e1cf638d5caab161280628d8254e00b5b6e60f"
+      "sema:SkeletonOfThought#mh:SHA-256:d1de76d91f7ffcd0d27396b6b2e1cf638d5caab161280628d8254e00b5b6e60f",
+      "sema:SkeletonOfThought#mh:SHA-256:35d3671e38652973a5da46a25d33015b7b84e2321a65f5958a19b833d88c3dcc"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:35d3671e38652973a5da46a25d33015b7b84e2321a65f5958a19b833d88c3dcc",
-  "sema_ref": "SkeletonOfThought#35d3",
-  "sema_stub": "35d3",
+  "sema_id": "sema:SkeletonOfThought#mh:SHA-256:546fddc8b06269b0fbc3c38475df6e688242ac0f6d586bd597bf20655413f874",
+  "sema_ref": "SkeletonOfThought#546f",
+  "sema_stub": "546f",
   "signature": [
     "Think(Skeleton)"
   ],
   "dependencies": {
     "references": {
-      "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926",
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
       "skeleton": "sema:Skeleton#mh:SHA-256:d9508eade0664b98581ab94a0f86b22d9e6b4cb39c33838097592c2e6c1cb285",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }

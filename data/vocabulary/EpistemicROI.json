@@ -23,24 +23,25 @@
     "supersedes": [
       "sema:EpistemicROI#mh:SHA-256:82a2da9aee8241835a3b8f370816bdd2d1e4e019cd28b52b285244ffe306b7da",
       "sema:EpistemicROI#mh:SHA-256:742adc7d76282f41c66582e1e780930e5f83f792084fa83ac9b01f510ecaf5b0",
-      "sema:EpistemicROI#mh:SHA-256:d48670433cb6617e8e1914f9d062939bb852ef2b7188e17a1cbb1803b81dad1e"
+      "sema:EpistemicROI#mh:SHA-256:d48670433cb6617e8e1914f9d062939bb852ef2b7188e17a1cbb1803b81dad1e",
+      "sema:EpistemicROI#mh:SHA-256:7b6393c9e9cc8e3294a612b9c92f5a6f88b4cce82ec590577a24cada19811672"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:EpistemicROI#mh:SHA-256:7b6393c9e9cc8e3294a612b9c92f5a6f88b4cce82ec590577a24cada19811672",
-  "sema_ref": "EpistemicROI#7b63",
-  "sema_stub": "7b63",
+  "sema_id": "sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7",
+  "sema_ref": "EpistemicROI#b0d8",
+  "sema_stub": "b0d8",
   "dependencies": {
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
-      "experiment": "sema:Experiment#mh:SHA-256:08165b6c52dae531b39b4a900df552aff0987e341eec30108d6013bb80410a41",
-      "outcome": "sema:Outcome#mh:SHA-256:ac55da2e51aaab185174d9e8edba137536b1ff90a2f6a1d6e1ab634bf7429ef0",
+      "experiment": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748",
+      "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }

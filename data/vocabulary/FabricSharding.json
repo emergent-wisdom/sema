@@ -36,20 +36,21 @@
     "ring": 0,
     "supersedes": [
       "sema:FabricSharding#mh:SHA-256:7399195af56d8e2d611c2e3b004b990de8c838788156755bfeba1397080b125b",
-      "sema:FabricSharding#mh:SHA-256:25d27106d786155e3fda6f31260d2a56bd2e936df771d7e5d755a65676f12248"
+      "sema:FabricSharding#mh:SHA-256:25d27106d786155e3fda6f31260d2a56bd2e936df771d7e5d755a65676f12248",
+      "sema:FabricSharding#mh:SHA-256:c05779de54bf98bf74d926045c5bf864af5002a00aea3012b15553e345c5e9b3"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:FabricSharding#mh:SHA-256:c05779de54bf98bf74d926045c5bf864af5002a00aea3012b15553e345c5e9b3",
-  "sema_ref": "FabricSharding#c057",
-  "sema_stub": "c057",
+  "sema_id": "sema:FabricSharding#mh:SHA-256:96e1a90c65365b0297a3090f67f2fc88422596a6efb4ecb2ad980c3d365d4216",
+  "sema_ref": "FabricSharding#96e1",
+  "sema_stub": "96e1",
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:5b4bc9d0ea71c6b181cb02a81dd64c7767e5ccbd0769277ce5a841fe5c2c9b0d",
-      "shard": "sema:Shard#mh:SHA-256:0c7f0ca5c9169b77bacc5825c072dcb9eef3ff7ceee76a4a2bdbc9ebedaceaa3",
+      "parallelize": "sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1",
+      "shard": "sema:Shard#mh:SHA-256:4d41232416e3d414c714e0892e8559c2180899b4c21c25af29984372220f8704",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

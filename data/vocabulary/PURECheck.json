@@ -19,16 +19,17 @@
     "supersedes": [
       "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
       "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
-      "sema:PURECheck#mh:SHA-256:e27797e99add1f808b06cc5422fb2fc586af89af2e7fc7c955eaf8d79f563250"
+      "sema:PURECheck#mh:SHA-256:e27797e99add1f808b06cc5422fb2fc586af89af2e7fc7c955eaf8d79f563250",
+      "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0",
-  "sema_ref": "PURECheck#24b9",
-  "sema_stub": "24b9",
+  "sema_id": "sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e",
+  "sema_ref": "PURECheck#574b",
+  "sema_stub": "574b",
   "dependencies": {
     "accepts": {
       "expansive_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
@@ -39,13 +40,13 @@
     },
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "expansive": "sema:Expansive#mh:SHA-256:a8c4748462be3574ee2162aed256e0827afbad28e635e352d1742da97ef2e98f",
-      "novelty": "sema:Novelty#mh:SHA-256:cdbde463b0044cb2937386c83a10e9c87630c9dbb3e8bfd29af41030de5ca36f",
-      "parsimony": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3",
-      "realizable": "sema:Realizable#mh:SHA-256:e8e3932e8d9cc73bbf9c5aff5ef6bc0014b2c357c6ddb9b0e4e2868ca41dd455"
+      "expansive": "sema:Expansive#mh:SHA-256:49a7bf9576c5a3c81c4287bf5be190e00f99b3a7bab94608ff441da0dc8018b3",
+      "novelty": "sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a",
+      "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e",
+      "realizable": "sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622"
     },
     "references": {
-      "p_u_r_e": "sema:PURE#mh:SHA-256:d7c9f0803b0d38cb60969e5b0349420da0ffdf4071ad85a42d22ddbeb75288f8"
+      "p_u_r_e": "sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd"
     },
     "yields": {
       "aggregate_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",

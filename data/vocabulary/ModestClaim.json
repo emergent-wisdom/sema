@@ -21,19 +21,20 @@
     "ring": 2,
     "supersedes": [
       "sema:ModestClaim#mh:SHA-256:f6e6d7b2e1f7025ac355d62791d22e9fa71af38e2d4e17e15994da6e4134f6bb",
-      "sema:ModestClaim#mh:SHA-256:c00b37f51471b8820b17447d652af2a338ceebb1ca140fcdd216b52cd204cdc6"
+      "sema:ModestClaim#mh:SHA-256:c00b37f51471b8820b17447d652af2a338ceebb1ca140fcdd216b52cd204cdc6",
+      "sema:ModestClaim#mh:SHA-256:83170b25cf7d22ac3c44226af9fe056368fdafd337735a34132b4c33ef28f100"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ModestClaim#mh:SHA-256:83170b25cf7d22ac3c44226af9fe056368fdafd337735a34132b4c33ef28f100",
-  "sema_ref": "ModestClaim#8317",
-  "sema_stub": "8317",
+  "sema_id": "sema:ModestClaim#mh:SHA-256:05f3ff05ede05012b3552a1aef48a9102e1abc4b4170c72ce885944cd7f92e8c",
+  "sema_ref": "ModestClaim#05f3",
+  "sema_stub": "05f3",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a",
       "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",

@@ -1,10 +1,10 @@
 {
   "handle": "Solution",
-  "mechanism": "Recursive {{work}} Unit. Encapsulates the output {{artifact}}, its Provenance (Creator, Time), and the Component {{tree}} of sub-solutions used to generate it. It serves as the verifiable output container for a {{task}}, validated against the acceptance criteria.",
+  "mechanism": "A recursive {{work}} unit that contains an output {{artifact}}, provenance identifying its creator and creation time, and a reference to its originating {{task}}. Composite solutions also record a component {{tree}} of the sub-solutions used to generate them; omission of that tree denotes a leaf. It is the verifiable output container validated against the task's acceptance criteria.",
   "gloss": "The fractal unit of completed work",
   "failure_modes": [
     "Orphaned {{artifact}}: Solution does not reference a valid {{task}} ID.",
-    "Broken Lineage: Sub-solution verification failed ({{chain}} of Custody broken).",
+    "Broken Lineage: a composite Solution references a sub-solution whose verification fails ({{chain}} of custody broken).",
     "Schema Violation: {{artifact}} data does not match acceptance criteria type."
   ],
   "invariants": [
@@ -24,7 +24,8 @@
     "ring": 0,
     "supersedes": [
       "sema:Solution#mh:SHA-256:7186aebe86145a01476542042ab77b7eda5c54033e6dccf62a97e8fa6b94e806",
-      "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
+      "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
     ],
     "path": [
       "Infrastructure",
@@ -44,6 +45,10 @@
       },
       "provenance": {
         "type": "object",
+        "required": [
+          "creator_id",
+          "timestamp"
+        ],
         "properties": {
           "creator_id": {
             "type": "string"
@@ -63,10 +68,11 @@
       },
       "component_tree": {
         "type": "array",
+        "minItems": 1,
         "items": {
           "type": "string"
         },
-        "description": "Sub-solutions used"
+        "description": "Sub-solutions used by a composite solution; omit for a leaf"
       },
       "confidence": {
         "type": "number",
@@ -79,9 +85,9 @@
       }
     }
   },
-  "sema_id": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae",
-  "sema_ref": "Solution#6bd0",
-  "sema_stub": "6bd0",
+  "sema_id": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
+  "sema_ref": "Solution#8d55",
+  "sema_stub": "8d55",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"

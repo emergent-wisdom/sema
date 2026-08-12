@@ -39,23 +39,24 @@
     "supersedes": [
       "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
       "sema:RegimeSense#mh:SHA-256:430bf5a5fcfe1796a400eda12608fed3600ecb00ec50ef3f4c8934db5065a2a0",
-      "sema:RegimeSense#mh:SHA-256:56eccdcf5c9e28545cb3ad569f86ec1bf3dec5e2eb4f9620f980da72b11937cf"
+      "sema:RegimeSense#mh:SHA-256:56eccdcf5c9e28545cb3ad569f86ec1bf3dec5e2eb4f9620f980da72b11937cf",
+      "sema:RegimeSense#mh:SHA-256:78eb98733d417ff23bf44f527a4bc2ed225100b4d4b182f0cbed36df7b36c687"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:78eb98733d417ff23bf44f527a4bc2ed225100b4d4b182f0cbed36df7b36c687",
-  "sema_ref": "RegimeSense#78eb",
-  "sema_stub": "78eb",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07",
+  "sema_ref": "RegimeSense#5039",
+  "sema_stub": "5039",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "break": "sema:Break#mh:SHA-256:c4d3f005992445b2307564e2fc00d684500c2b4239a9f06d4a17e302c8b039ff",
-      "drift_watch": "sema:DriftWatch#mh:SHA-256:37cf935687877e2a31c4cd75287e2bc7c814b49a3569203021854988f39abe9e",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
+      "drift_watch": "sema:DriftWatch#mh:SHA-256:b696959258eb3c48ce11055634b107451d5a500bc8ba19693db4c30b5f5033bf",
       "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
-      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:29970914a1bd217ceff29e9a39109832e0102eeb3576cb8fe2ac7a43271e8842",
+      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:a541f46f3c1ffe236a27dfaafaffd0d3dc76bf7c3fa086b5e9bcf1a945c85e63",
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744"
     }
   },

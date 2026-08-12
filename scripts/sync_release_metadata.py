@@ -6,10 +6,13 @@ Sources of truth:
   - Pattern count: data/taxonomy.db (patterns in the active vocabulary)
 
 Targets kept in sync:
+  - src/sema/__init__.py          — `__version__`
+  - src/sema/mcp/__init__.py      — `__version__`
   - .claude-plugin/plugin.json   — `version`
   - server.json                  — `version`, `packages[].version`, and the
                                    pattern-count number embedded in the
                                    `description` string
+  - uv.lock                      — editable `semahash` package version
 
 Usage:
   scripts/sync_release_metadata.py          # fix drift in place
@@ -32,6 +35,9 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PYPROJECT = REPO_ROOT / "pyproject.toml"
 PLUGIN_JSON = REPO_ROOT / ".claude-plugin" / "plugin.json"
 SERVER_JSON = REPO_ROOT / "server.json"
+PYTHON_INIT = REPO_ROOT / "src" / "sema" / "__init__.py"
+MCP_INIT = REPO_ROOT / "src" / "sema" / "mcp" / "__init__.py"
+UV_LOCK = REPO_ROOT / "uv.lock"
 TAXONOMY_DB = REPO_ROOT / "data" / "taxonomy.db"
 
 
@@ -61,6 +67,39 @@ def _dump_json(path: Path, data: dict) -> None:
     # tooling produces. Don't reorder keys — readers expect the file to
     # stay stable.
     path.write_text(json.dumps(data, indent=2) + "\n")
+
+
+def sync_python_init(path: Path, version: str) -> bool:
+    text = path.read_text()
+    updated, count = re.subn(
+        r'^__version__\s*=\s*"[^"]+"',
+        f'__version__ = "{version}"',
+        text,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    if count != 1:
+        sys.exit(f"sync_release_metadata: could not find __version__ in {path}")
+    if updated == text:
+        return False
+    path.write_text(updated)
+    return True
+
+
+def sync_uv_lock(version: str) -> bool:
+    text = UV_LOCK.read_text()
+    updated, count = re.subn(
+        r'(\[\[package\]\]\nname = "semahash"\nversion = ")[^"]+("\n)',
+        rf"\g<1>{version}\g<2>",
+        text,
+        count=1,
+    )
+    if count != 1:
+        sys.exit(f"sync_release_metadata: could not find editable semahash entry in {UV_LOCK}")
+    if updated == text:
+        return False
+    UV_LOCK.write_text(updated)
+    return True
 
 
 def sync_plugin_json(version: str) -> bool:
@@ -126,10 +165,16 @@ def main() -> int:
     pattern_count = read_pattern_count(TAXONOMY_DB)
 
     changes: list[str] = []
+    if sync_python_init(PYTHON_INIT, version):
+        changes.append(f"  src/sema/__init__.py → version={version}")
+    if sync_python_init(MCP_INIT, version):
+        changes.append(f"  src/sema/mcp/__init__.py → version={version}")
     if sync_plugin_json(version):
         changes.append(f"  .claude-plugin/plugin.json → version={version}")
     if sync_server_json(version, pattern_count):
         changes.append(f"  server.json → version={version}, pattern_count={pattern_count}")
+    if sync_uv_lock(version):
+        changes.append(f"  uv.lock → version={version}")
 
     if args.check and changes:
         print("sync_release_metadata: drift detected", file=sys.stderr)

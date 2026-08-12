@@ -16,16 +16,17 @@
     ],
     "supersedes": [
       "sema:DiscoveryProtocol#mh:SHA-256:9958e873e5aa29dc046965443b256ee00d53f69befc0c9e573ba3b165e7487db",
-      "sema:DiscoveryProtocol#mh:SHA-256:7ada4e77d2edac145f6ae3387e2da68202cb9de87588ded01f929be507e7796c"
+      "sema:DiscoveryProtocol#mh:SHA-256:7ada4e77d2edac145f6ae3387e2da68202cb9de87588ded01f929be507e7796c",
+      "sema:DiscoveryProtocol#mh:SHA-256:fcb4dad4156b21566caa731b1600183e6d2a5101fc92957f4b40bb6999991d1a"
     ]
   },
-  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:fcb4dad4156b21566caa731b1600183e6d2a5101fc92957f4b40bb6999991d1a",
-  "sema_ref": "DiscoveryProtocol#fcb4",
-  "sema_stub": "fcb4",
+  "sema_id": "sema:DiscoveryProtocol#mh:SHA-256:cc288bdd90e35df22dcd79bff8650ad11931c16a1bc9b17b45f5f9459e5f4714",
+  "sema_ref": "DiscoveryProtocol#cc28",
+  "sema_stub": "cc28",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
-      "synthesis": "sema:Synthesis#mh:SHA-256:e349f2af3d2ff45d12d3469badb4f0ae64c5fbdf49aac2eb73cf578f5b7281b1"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },
     "references": {
       "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b"

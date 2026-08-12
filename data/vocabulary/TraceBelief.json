@@ -9,25 +9,26 @@
       "sema:TraceBelief#mh:SHA-256:369d32aa6cf9d9eb0ae829b6c102dd7b5231f0d193980e81b2242d813fae99ee",
       "sema:TraceBelief#mh:SHA-256:cee3b463a6d9fd24c625fc88077cedb48cd5dc40086c079ce61439a7b6413552",
       "sema:TraceBelief#mh:SHA-256:18811aa52ea8a0b4e10e500c10285ccd80d90bf294f3f86d04dbd0ebfd2e6a06",
-      "sema:TraceBelief#mh:SHA-256:bdfa33f15f8f71e3fa221c802b6366c6922de402326dd447841d3258b97bf053"
+      "sema:TraceBelief#mh:SHA-256:bdfa33f15f8f71e3fa221c802b6366c6922de402326dd447841d3258b97bf053",
+      "sema:TraceBelief#mh:SHA-256:c4dbe34abd29de43ef700846dff9cc1e02aa9d255320c2029ae4640444207346"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:TraceBelief#mh:SHA-256:c4dbe34abd29de43ef700846dff9cc1e02aa9d255320c2029ae4640444207346",
-  "sema_ref": "TraceBelief#c4db",
-  "sema_stub": "c4db",
+  "sema_id": "sema:TraceBelief#mh:SHA-256:7cccb4842ddb57f7925e00d89af759c7f8ab7e97d49b589dbdf1ddf677cc099d",
+  "sema_ref": "TraceBelief#7ccc",
+  "sema_stub": "7ccc",
   "signature": [
     "Trace(Belief)"
   ],
   "dependencies": {
     "references": {
-      "belief": "sema:Belief#mh:SHA-256:675c86db12fcc346e8a95dbf0c49c6a28a7bf81cc65915bdcb695bf291123524",
-      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:7fd7d546477d4389a8c63cde58b1d4a02d20e8a44ac22f7975fa77292c595790",
-      "trace": "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
+      "belief": "sema:Belief#mh:SHA-256:e160f5d3c82f6a64902c8619ec411f1c33eb0a4d031aea46bddb0f0776d5f150",
+      "surprisal_update": "sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408",
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:755f480a60517d8e99807da674019db06ab0b7b2edabcc806d833947da4446e4",
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },
   "sema_layer": "Mind",

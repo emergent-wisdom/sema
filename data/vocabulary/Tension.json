@@ -11,16 +11,17 @@
     "tier": 1,
     "supersedes": [
       "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5",
-      "sema:Tension#mh:SHA-256:547a74e52a7d1be70c14efcd8565adc2fae6a2c98d9bb7915a9b9164d578cfee"
+      "sema:Tension#mh:SHA-256:547a74e52a7d1be70c14efcd8565adc2fae6a2c98d9bb7915a9b9164d578cfee",
+      "sema:Tension#mh:SHA-256:c7008633a28095a54d70d9a4a208562a8263848f126732a7a2db4ca1b0cd6074"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Tension#mh:SHA-256:c7008633a28095a54d70d9a4a208562a8263848f126732a7a2db4ca1b0cd6074",
-  "sema_ref": "Tension#c700",
-  "sema_stub": "c700",
+  "sema_id": "sema:Tension#mh:SHA-256:57321a5553f0c0dd43019cd5bb2b47ec3c96242657c9069d643d064175d83f0b",
+  "sema_ref": "Tension#5732",
+  "sema_stub": "5732",
   "data_schema": {
     "type": "object",
     "required": [
@@ -58,8 +59,8 @@
   },
   "dependencies": {
     "references": {
-      "dialectic": "sema:Dialectic#mh:SHA-256:6eda97b37a3b5c219371d54b34532ffe19f5cb965307c68fbb54ce77f56dfcef",
-      "yield": "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c"
+      "dialectic": "sema:Dialectic#mh:SHA-256:ae5e838272a716687f09d85a399840d9af330e7c17ae21426bcd0176b50afd54",
+      "yield": "sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50"
     }
   },
   "sema_layer": "Infrastructure",

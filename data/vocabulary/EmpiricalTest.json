@@ -14,20 +14,21 @@
     "ring": 1,
     "supersedes": [
       "sema:EmpiricalTest#mh:SHA-256:8f92bb36b1520f702ecd4b4e9313c31dbaa7e3933a4a6c9b4690e3de25e32e28",
-      "sema:EmpiricalTest#mh:SHA-256:0938d0bea620c354c20f62a261e31f786fb919369a9c307d1a2ab1f0aaa125e2"
+      "sema:EmpiricalTest#mh:SHA-256:0938d0bea620c354c20f62a261e31f786fb919369a9c307d1a2ab1f0aaa125e2",
+      "sema:EmpiricalTest#mh:SHA-256:14c78d893eac34f4031b231a52c44e4129d1620e7f60e6195256c510a06d6dc6"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:EmpiricalTest#mh:SHA-256:14c78d893eac34f4031b231a52c44e4129d1620e7f60e6195256c510a06d6dc6",
-  "sema_ref": "EmpiricalTest#14c7",
-  "sema_stub": "14c7",
+  "sema_id": "sema:EmpiricalTest#mh:SHA-256:75ae9b3629a0075fc40a64b8615e553fc25e5866c8c276e682790e2069fefd39",
+  "sema_ref": "EmpiricalTest#75ae",
+  "sema_stub": "75ae",
   "dependencies": {
     "references": {
       "falsification": "sema:Falsification#mh:SHA-256:354338d40b319138cd6dc0f9ab5a8a5610ec832afe762f007463bb9d08363b51",
-      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     }
   },
   "sema_layer": "Mind",

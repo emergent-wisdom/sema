@@ -2,6 +2,7 @@ import json
 import os
 import re
 import sqlite3
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -33,44 +34,243 @@ def _get_active_db_config() -> str | None:
     return None
 
 
+def get_configured_active_db() -> str | None:
+    """Return the configured active DB, without applying environment overrides."""
+    return _get_active_db_config()
+
+
 def set_active_db(path: str | None):
-    """Write the active DB path to ~/.config/sema/active_db."""
+    """Atomically write the active DB path to ~/.config/sema/active_db."""
     config_dir = Path.home() / ".config" / "sema"
     config_dir.mkdir(parents=True, exist_ok=True)
     config_file = config_dir / "active_db"
     if path is None:
         config_file.unlink(missing_ok=True)
     else:
-        config_file.write_text(str(Path(path).expanduser().resolve()))
+        temp_path: Path | None = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                encoding="utf-8",
+                dir=config_dir,
+                prefix=".active_db.",
+                suffix=".tmp",
+                delete=False,
+            ) as temp_file:
+                temp_path = Path(temp_file.name)
+                temp_file.write(str(Path(path).expanduser().resolve()))
+                temp_file.flush()
+                os.fsync(temp_file.fileno())
+            os.replace(temp_path, config_file)
+        except Exception:
+            if temp_path is not None:
+                temp_path.unlink(missing_ok=True)
+            raise
 
 
 def _get_db_registry_path() -> Path:
     return Path.home() / ".config" / "sema" / "databases.json"
 
 
-def register_db(path: str, name: str | None = None):
-    """Register a DB in the known databases list."""
+def _load_db_registry() -> dict[str, object]:
+    """Load the database registry, tolerating missing or legacy-invalid files."""
+    registry_file = _get_db_registry_path()
+    if not registry_file.exists():
+        return {}
+    try:
+        dbs = json.loads(registry_file.read_text())
+    except (json.JSONDecodeError, ValueError):
+        return {}
+    return dbs if isinstance(dbs, dict) else {}
+
+
+def _write_db_registry(dbs: dict[str, object]) -> None:
+    """Atomically replace the database registry."""
     registry_file = _get_db_registry_path()
     registry_file.parent.mkdir(parents=True, exist_ok=True)
+    temp_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=registry_file.parent,
+            prefix=f".{registry_file.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as temp_file:
+            temp_path = Path(temp_file.name)
+            json.dump(dbs, temp_file, indent=2)
+            temp_file.write("\n")
+            temp_file.flush()
+            os.fsync(temp_file.fileno())
+        os.replace(temp_path, registry_file)
+    except Exception:
+        if temp_path is not None:
+            temp_path.unlink(missing_ok=True)
+        raise
 
-    dbs = {}
-    if registry_file.exists():
-        try:
-            dbs = json.loads(registry_file.read_text())
-        except (json.JSONDecodeError, ValueError):
-            dbs = {}
 
+def _record_for_path(path: str, info: object) -> dict | None:
+    """Return a normalized copy of a path-keyed registry record."""
+    if not isinstance(info, dict):
+        return None
     resolved = str(Path(path).expanduser().resolve())
-    if not name:
-        name = Path(resolved).stem
+    record = dict(info)
+    record["path"] = resolved
+    record.setdefault("name", Path(resolved).stem)
+    return record
 
-    dbs[resolved] = {"name": name, "path": resolved}
-    registry_file.write_text(json.dumps(dbs, indent=2))
+
+def _is_managed_record(record: object) -> bool:
+    return isinstance(record, dict) and record.get("kind") == "installed-library"
+
+
+def register_db(path: str, name: str | None = None):
+    """Register a DB while preserving any metadata already stored for it."""
+    dbs = _load_db_registry()
+    resolved = str(Path(path).expanduser().resolve())
+    existing = dbs.get(resolved)
+    record = dict(existing) if isinstance(existing, dict) else {}
+    if name:
+        record["name"] = name
+    elif not record.get("name"):
+        record["name"] = Path(resolved).stem
+    record["path"] = resolved
+    dbs[resolved] = record
+    _write_db_registry(dbs)
+
+
+def get_registered_db(name: str) -> dict | None:
+    """Return the first registered DB whose name matches case-insensitively."""
+    if not isinstance(name, str) or not name.strip():
+        return None
+
+    query = name.strip().casefold()
+    matches: list[dict] = []
+    for path, info in _load_db_registry().items():
+        record = _record_for_path(path, info)
+        if record is not None and str(record.get("name", "")).casefold() == query:
+            matches.append(record)
+
+    if not matches:
+        return None
+    for record in matches:
+        if record.get("name") == name:
+            return record
+    return matches[0]
+
+
+def get_registered_db_by_path(path: str | os.PathLike) -> dict | None:
+    """Return a registered DB record by its resolved filesystem path."""
+    resolved = str(Path(path).expanduser().resolve())
+    return _record_for_path(resolved, _load_db_registry().get(resolved))
+
+
+def validate_registry_db(path: str | os.PathLike) -> None:
+    """Reject non-files and malformed SQLite files before activating them."""
+    resolved = Path(path).expanduser().resolve()
+    if not resolved.is_file():
+        raise ValueError(f"Database is not a regular file: {resolved}")
+    uri = f"{resolved.as_uri()}?mode=ro"
+    try:
+        connection = sqlite3.connect(uri, uri=True)
+        try:
+            quick_check = connection.execute("PRAGMA quick_check").fetchone()
+            if not quick_check or quick_check[0] != "ok":
+                raise ValueError(f"Database integrity check failed: {quick_check}")
+            tables = {
+                row[0]
+                for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table'"
+                ).fetchall()
+            }
+            if not {"nodes", "edges"} <= tables:
+                raise ValueError("Database does not contain the Sema nodes and edges tables")
+        finally:
+            connection.close()
+    except sqlite3.Error as exc:
+        raise ValueError(f"Not a valid Sema SQLite database: {exc}") from exc
+
+
+def register_library(record: dict) -> dict:
+    """Validate and atomically register an installed, read-only library."""
+    if not isinstance(record, dict):
+        raise TypeError("library record must be a dictionary")
+
+    normalized = dict(record)
+    for field in ("name", "version", "catalog_root"):
+        value = normalized.get(field)
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(f"library record requires a non-empty {field}")
+
+    path = normalized.get("path")
+    if not isinstance(path, str | os.PathLike) or not str(path).strip():
+        raise ValueError("library record requires a non-empty path")
+    if normalized.get("kind", "installed-library") != "installed-library":
+        raise ValueError("library record kind must be 'installed-library'")
+    if "read_only" in normalized and normalized["read_only"] is not True:
+        raise ValueError("installed-library records must be read-only")
+
+    normalized["name"] = normalized["name"].strip()
+    normalized["version"] = normalized["version"].strip()
+    normalized["catalog_root"] = normalized["catalog_root"].strip()
+    normalized["path"] = str(Path(path).expanduser().resolve())
+    normalized["kind"] = "installed-library"
+    normalized["read_only"] = True
+
+    dbs = _load_db_registry()
+    old_keys: list[str] = []
+    for old_path, old_info in dbs.items():
+        if not isinstance(old_info, dict):
+            continue
+        old_name = old_info.get("name")
+        if not isinstance(old_name, str) or old_name.casefold() != normalized["name"].casefold():
+            continue
+        if not _is_managed_record(old_info):
+            raise ValueError(
+                f"a local database is already registered with the name {normalized['name']!r}"
+            )
+        if (
+            old_info.get("version") == normalized["version"]
+            and old_info.get("catalog_root") != normalized["catalog_root"]
+        ):
+            raise ValueError(
+                "an installed library with this name and version has a different catalog_root"
+            )
+        old_keys.append(old_path)
+
+    for old_path in old_keys:
+        del dbs[old_path]
+    dbs[normalized["path"]] = normalized
+    _write_db_registry(dbs)
+    return dict(normalized)
+
+
+def get_library(name: str) -> dict | None:
+    """Return an installed-library record by case-insensitive name."""
+    if not isinstance(name, str) or not name.strip():
+        return None
+    query = name.strip().casefold()
+    for path, info in _load_db_registry().items():
+        if not _is_managed_record(info):
+            continue
+        record = _record_for_path(path, info)
+        if record is not None and str(record.get("name", "")).casefold() == query:
+            return record
+    return None
+
+
+def is_managed_db(path: str | None) -> bool:
+    """Return whether path is registered as an installed library."""
+    if not path:
+        return False
+    resolved = str(Path(path).expanduser().resolve())
+    info = _load_db_registry().get(resolved)
+    return _is_managed_record(info)
 
 
 def list_dbs() -> list[dict]:
     """List all known databases with their status."""
-    registry_file = _get_db_registry_path()
     active = _get_active_db_config()
     bundled = get_bundled_db_path()
 
@@ -86,27 +286,44 @@ def list_dbs() -> list[dict]:
             {
                 "name": "default",
                 "path": bundled,
-                "active": active is None and not env_db,
+                "active": env_db == bundled or (active is None and not env_db),
                 "bundled": True,
+                "kind": "bundled",
+                "read_only": is_bundled_db(bundled),
                 "exists": Path(bundled).exists(),
             }
         )
 
-    if registry_file.exists():
-        try:
-            dbs = json.loads(registry_file.read_text())
-        except (json.JSONDecodeError, ValueError):
-            dbs = {}
-        for path, info in dbs.items():
-            results.append(
-                {
-                    "name": info.get("name", Path(path).stem),
-                    "path": path,
-                    "active": active == path or env_db == path,
-                    "bundled": False,
-                    "exists": Path(path).exists(),
-                }
-            )
+    for path, info in _load_db_registry().items():
+        record = _record_for_path(path, info)
+        if record is None:
+            continue
+        record.update(
+            {
+                "active": (env_db == record["path"] if env_db else active == record["path"]),
+                "bundled": False,
+                "exists": Path(record["path"]).exists(),
+            }
+        )
+        if _is_managed_record(record):
+            record["read_only"] = True
+        else:
+            record.setdefault("read_only", False)
+        results.append(record)
+
+    known_paths = {record["path"] for record in results}
+    if env_db and env_db not in known_paths:
+        results.append(
+            {
+                "name": Path(env_db).stem or "environment",
+                "path": env_db,
+                "active": True,
+                "bundled": False,
+                "kind": "environment",
+                "read_only": is_read_only_db(env_db),
+                "exists": Path(env_db).exists(),
+            }
+        )
 
     return results
 
@@ -135,6 +352,19 @@ def is_bundled_db(path: str | None) -> bool:
         except OSError:
             pass
     return str(resolved) == str(_PKG_DB.resolve())
+
+
+def is_read_only_db(path: str | None) -> bool:
+    """Return whether path is bundled or registered as read-only."""
+    if not path:
+        return False
+    if is_bundled_db(path):
+        return True
+    resolved = str(Path(path).expanduser().resolve())
+    info = _load_db_registry().get(resolved)
+    if _is_managed_record(info):
+        return True
+    return isinstance(info, dict) and info.get("read_only") is True
 
 
 def get_default_db_path() -> str | None:

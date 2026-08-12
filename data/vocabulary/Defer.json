@@ -22,21 +22,22 @@
     "ring": 2,
     "supersedes": [
       "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3",
-      "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa"
+      "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa",
+      "sema:Defer#mh:SHA-256:c09fcb90c93ac496f6f5daf9732163b3abe1c3ec3b3923705052c2188253cec8"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Defer#mh:SHA-256:c09fcb90c93ac496f6f5daf9732163b3abe1c3ec3b3923705052c2188253cec8",
-  "sema_ref": "Defer#c09f",
-  "sema_stub": "c09f",
+  "sema_id": "sema:Defer#mh:SHA-256:7c32a314cc801adf391bbf775b29c5d15e3e230aa80c38290231f1ca897bf0f7",
+  "sema_ref": "Defer#7c32",
+  "sema_stub": "7c32",
   "dependencies": {
     "references": {
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
-      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:7b6393c9e9cc8e3294a612b9c92f5a6f88b4cce82ec590577a24cada19811672",
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7",
       "prioritize": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"

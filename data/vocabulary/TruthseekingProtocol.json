@@ -15,19 +15,20 @@
       "Inference"
     ],
     "supersedes": [
-      "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a"
+      "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a",
+      "sema:TruthseekingProtocol#mh:SHA-256:e2d334636485fc094f00ec9849be6666150c73786e9a0e458520ac2a660ee29f"
     ]
   },
-  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:e2d334636485fc094f00ec9849be6666150c73786e9a0e458520ac2a660ee29f",
-  "sema_ref": "TruthseekingProtocol#e2d3",
-  "sema_stub": "e2d3",
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:0113cc785baf80552fb83dae96a2d543aeb0685143ce64a938531f71b04ce225",
+  "sema_ref": "TruthseekingProtocol#0113",
+  "sema_stub": "0113",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b"
     },
     "references": {
-      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     }
   },
   "sema_layer": "Mind",

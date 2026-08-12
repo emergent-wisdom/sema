@@ -10,9 +10,63 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-08-12
+
+457 -> 457 patterns. Aggregate roots: semantic set
+`5b6be2ac2db98eedbc89b1c240fe3660db5d01784db5bbb1177b1d7a76c05f64`,
+catalog `87a541595288b870daa23487a44feeb46517e9eca0416f46dc61ebe43da36064`.
+
+### Added
+
+- Verified third-party vocabulary installation through `sema install <library.json>`,
+  name-based selection with `sema use <name>`, and explicit `sema update <name>`.
+  Releases carry one JSON file per pattern in a checksummed ZIP, declare semantic
+  and catalog roots, and compile to an immutable local SQLite snapshot. The
+  bundled vocabulary remains the offline default.
+- Deterministic official-bootstrap release packaging. Each tool release attaches
+  a generated `library.json` and versioned pattern ZIP whose identities and roots
+  are verified against the bundled database, allowing the bootstrap vocabulary
+  to be installed through the same public contract as a third-party library.
+- Self-service third-party publishing through `sema package`. The command exports
+  a project database as one JSON file per pattern, creates a deterministic ZIP,
+  computes its checksum and both aggregate roots, writes `library.json`, and then
+  recompiles and verifies a fresh local read model before exposing the release
+  files. GitHub shorthand generates a stable manifest URL and a version-pinned
+  artifact URL.
+
+### Changed
+
+- A follow-up audit of the 0.4 delegated decisions corrected decisions that
+  were incomplete or left the durable record and hashed card in disagreement.
+  `Assessment` now makes strengths and weaknesses optional while requiring a
+  non-empty recommendation list; `Solution` makes component trees conditional
+  on composite outputs and requires creator and creation time within provenance;
+  `Mutex` is an ownership-based `Lock` specialization in Infrastructure rather
+  than a distributed-fencing protocol; `SteelmanCheck` separates
+  counter-argument adequacy (`Judge`) from decision robustness (`Check`);
+  `PromptChain` replaces the undefined Skip path with bounded retry-or-halt
+  semantics; and `FailureTrace` binds evaluator, clause, evidence, and signing
+  time in a content signature that `ReceptivityGate` verifies over the exact
+  payload. `Trace` now states partial coverage directly. These are semantic
+  corrections; canonicalization is unchanged. The canonical rebuild changes
+  267 of 457 identities: eight repaired definitions, two explicitly reviewed
+  exact-parent retargets, and 257 transitive dependency updates. Every changed
+  pattern records its public 0.4 identity in `_meta.supersedes`.
+- `sema build --source` accepts an installed library name as well as a database
+  path. Managed sources are reverified before copying, and the resulting project
+  database is writable even though installed releases remain read-only.
+
+### Security
+
+- Remote libraries cannot supply executable or precompiled database state. Sema
+  accepts only the bounded JSON pattern archive and always builds its own local
+  read model. Managed-database verification now also rejects missing runtime
+  indexes, unknown node or edge types, malformed metadata, missing endpoints,
+  and invalid embedding payloads before activation.
+
 ## [0.4.0] - 2026-08-04
 
-**The 0.4 reasoning pass re-mints 426 of 452 pattern identities (94%) relative to 0.3.0.** No canonicalization change: hashes move because definitions improved -- 324 patterns were reasoned through individually against the design manual (254 changed, 57 confirmed sound, 13 escalated and resolved) -- and cascades propagated the rest. Every identity-changed pattern carries the 0.3.0 `sema_id` in `_meta.supersedes`, so 0.3.0 consumers converge via `sema pull` instead of orphaning.
+**The 0.4 reasoning pass re-mints 426 of 452 pattern identities (94%) relative to 0.3.0.** No canonicalization change: hashes move because definitions improved -- 324 patterns were reasoned through individually against the design manual (254 changed, 57 confirmed sound, and 13 OPEN pattern verdicts subsequently adjudicated; a separate sidecar question on `Solution` was also decided) -- and cascades propagated the rest. Every identity-changed pattern carries the 0.3.0 `sema_id` in `_meta.supersedes`, so 0.3.0 consumers converge via `sema pull` instead of orphaning.
 
 452 -> 457 patterns. Aggregate roots under the schemes introduced below:
 semantic set `502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661`, catalog `146db4c0b6172432a0694baa74263a2e33edfce2c5ba7756c33622f7bc69e324`.
@@ -228,10 +282,11 @@ semantic set `502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661`,
   Opaque tokens validated by lookup or introspection and structured tokens
   validated locally both satisfy the parent; signatures, expiry, revocation,
   and transfer policy are descendant or deployment choices.
-- The thirteen review questions left open by the reasoning pass are resolved,
-  each recorded with its governing principle in the external reasoning ledger:
-  `Trace` (fan-in 203) states best-effort coverage instead of promising that
-  every modification is recorded, with a Silent-gap failure mode; `Mutex` moves
+- The thirteen OPEN pattern verdicts left by the reasoning pass, plus a
+  separate `Solution` sidecar question, were adjudicated, each with its
+  governing principle recorded in the external reasoning ledger: `Trace`
+  (fan-in 203) states best-effort coverage instead of promising that every
+  modification is recorded, with a Silent-gap failure mode; `Mutex` moves
   Physics -> Society/Coordination and its `accepts` edge is corrected from
   `task` to `actor`; `Axiom` moves Society -> Mind/Reasoning; `NormCheck` is
   restated around what all three `action_on_detect` modes share; `Branch` is
@@ -239,8 +294,10 @@ semantic set `502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661`,
   reference edge; `Assessment`'s Reference invariant admits systemic scope;
   `MutualInformation` gains an estimator-conflation failure mode; and
   `SteelmanCheck`, `Translate`, `PromptChain`, `CreativeBlend`,
-  `RealizationProtocol`, `FailureTrace` and the `Solution` sidecar question are
-  closed without further hash changes.
+  `RealizationProtocol`, and `FailureTrace` were adjudicated without further
+  hash changes at release time. The separate `Solution` sidecar question was
+  likewise recorded without a hash change. Follow-up corrections are
+  documented under 0.5.0.
 - Review method: when a parameter's values differ in what happens after an
   invariant's property holds, the invariant was mis-scoped; restate it around
   the property all values share (`docs/guides/review-method.md`, third

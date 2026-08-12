@@ -21,21 +21,22 @@
     "ring": 2,
     "supersedes": [
       "sema:CurriculumReplay#mh:SHA-256:a8f76f8f131ce81e85201e2ce5ba85892274510bfd20d1bbdeb9581e61cf28af",
-      "sema:CurriculumReplay#mh:SHA-256:3ec21d0874761f9e9da74526e2e0ca3e9ac18ceb1fcc396b8715c0ae3baf1de1"
+      "sema:CurriculumReplay#mh:SHA-256:3ec21d0874761f9e9da74526e2e0ca3e9ac18ceb1fcc396b8715c0ae3baf1de1",
+      "sema:CurriculumReplay#mh:SHA-256:589d2d325987c8acd19de7b7d390748518b1b41f35703be867492f0eab0e90c4"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:CurriculumReplay#mh:SHA-256:589d2d325987c8acd19de7b7d390748518b1b41f35703be867492f0eab0e90c4",
-  "sema_ref": "CurriculumReplay#589d",
-  "sema_stub": "589d",
+  "sema_id": "sema:CurriculumReplay#mh:SHA-256:0ef657942a69bcc9b32e05656bd6b5b4ca9de556c6e634174363c1c9e4c93723",
+  "sema_ref": "CurriculumReplay#0ef6",
+  "sema_stub": "0ef6",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:5b42f1a5f5bb2a81220deba6845460081eff9834fe3e176181f7774310f821cd"
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153"
     }
   },
   "sema_layer": "Mind",

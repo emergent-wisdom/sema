@@ -15,15 +15,16 @@
       "Strategy"
     ],
     "supersedes": [
-      "sema:MetaProtocols#mh:SHA-256:3561dab6b3e3d5d307a14f23031e29f122c76cbcc4ea1557a3cfdf02e3fe1195"
+      "sema:MetaProtocols#mh:SHA-256:3561dab6b3e3d5d307a14f23031e29f122c76cbcc4ea1557a3cfdf02e3fe1195",
+      "sema:MetaProtocols#mh:SHA-256:4a4777972407b49b6c0b8bcdbca4a927169d0bb5202b4d4c9deefd5dadc072c9"
     ]
   },
-  "sema_id": "sema:MetaProtocols#mh:SHA-256:4a4777972407b49b6c0b8bcdbca4a927169d0bb5202b4d4c9deefd5dadc072c9",
-  "sema_ref": "MetaProtocols#4a47",
-  "sema_stub": "4a47",
+  "sema_id": "sema:MetaProtocols#mh:SHA-256:1af2f5cac4a74c7d4760619f6c86555d779d142d196eae03c62c08bb00f38619",
+  "sema_ref": "MetaProtocols#1af2",
+  "sema_stub": "1af2",
   "dependencies": {
     "composes_with": {
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b"
     },
     "references": {
       "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",

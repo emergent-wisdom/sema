@@ -7,16 +7,17 @@
     "ring": 0,
     "supersedes": [
       "sema:Aesthetics#mh:SHA-256:0be2872e5fb0b634fca2f99bbba9349d658f95bdae5c2e1106f67a0f2a1e918c",
-      "sema:Aesthetics#mh:SHA-256:dec7fd021c6ea415d7c2faea038305f9455908626f07349582e24a8c6a6d51b8"
+      "sema:Aesthetics#mh:SHA-256:dec7fd021c6ea415d7c2faea038305f9455908626f07349582e24a8c6a6d51b8",
+      "sema:Aesthetics#mh:SHA-256:a65e795b90ed206a92837c2b7fda0cd7c544754185fd85240fc8eb1193ceb425"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Aesthetics#mh:SHA-256:a65e795b90ed206a92837c2b7fda0cd7c544754185fd85240fc8eb1193ceb425",
-  "sema_ref": "Aesthetics#a65e",
-  "sema_stub": "a65e",
+  "sema_id": "sema:Aesthetics#mh:SHA-256:6f6de47c2320dbffb7fb264ddeddbedaed8017e8601a6ffd50826e10e5d24a67",
+  "sema_ref": "Aesthetics#6f6d",
+  "sema_stub": "6f6d",
   "data_schema": {
     "type": "object",
     "description": "An aesthetic assessment \u2014 a metric-shaped artifact capturing perceived beauty/quality on a defined scale.",
@@ -60,7 +61,7 @@
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",
-      "parsimony": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3"
+      "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e"
     }
   },
   "sema_layer": "Infrastructure",

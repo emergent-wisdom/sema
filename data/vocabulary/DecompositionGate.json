@@ -19,16 +19,17 @@
     ],
     "supersedes": [
       "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730",
-      "sema:DecompositionGate#mh:SHA-256:3a799c865e76fa9ed63862cac1abd08ed5d98a570ab18fdbbe36af34fabdc63f"
+      "sema:DecompositionGate#mh:SHA-256:3a799c865e76fa9ed63862cac1abd08ed5d98a570ab18fdbbe36af34fabdc63f",
+      "sema:DecompositionGate#mh:SHA-256:19de14eba6eeaf11e6a769b95600b5f70628e5197d56ca3d842c5b3196e79444"
     ]
   },
-  "sema_id": "sema:DecompositionGate#mh:SHA-256:19de14eba6eeaf11e6a769b95600b5f70628e5197d56ca3d842c5b3196e79444",
-  "sema_ref": "DecompositionGate#19de",
-  "sema_stub": "19de",
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:bd17249e6886e85f3b10f4abbf631e89a1585f24c56cc72123ebd3ad0cea3d83",
+  "sema_ref": "DecompositionGate#bd17",
+  "sema_stub": "bd17",
   "dependencies": {
     "references": {
-      "frame_error": "sema:FrameError#mh:SHA-256:53e33befdcaffe1885b8604f77b4a1b508db41bd80cbd440c5d1fe6452336e40",
-      "parsimony": "sema:Parsimony#mh:SHA-256:6f4d4c0144ddc4f86a73c0acaaa293e26a5e60f57ec5a292bb7b6735eaf4c8f3"
+      "frame_error": "sema:FrameError#mh:SHA-256:1d0ac501f011a053fde50bef6bc2a781c2f916014f4b2b74de955f6d84db9c5d",
+      "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e"
     },
     "yields": {
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"

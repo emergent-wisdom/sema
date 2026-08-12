@@ -162,7 +162,7 @@ def sema_lookup(ref: str) -> str:
     """Lookup a pattern by its Sema reference (Handle#stub).
 
     Args:
-        ref: Pattern reference like "ChainOfThought#5fb2" or just "ChainOfThought"
+        ref: Pattern reference like "ChainOfThought#27ad" or just "ChainOfThought"
 
     Returns:
         Full pattern JSON
@@ -217,7 +217,15 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
     global REGISTRY_MGR, DEFAULT_DB_PATH
     from pathlib import Path
 
-    from ..core.registry import get_bundled_db_path, is_bundled_db, register_db, set_active_db
+    from ..core.registry import (
+        get_bundled_db_path,
+        get_registered_db,
+        get_registered_db_by_path,
+        is_bundled_db,
+        register_db,
+        set_active_db,
+        validate_registry_db,
+    )
 
     if default:
         bundled = get_bundled_db_path()
@@ -247,9 +255,22 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             indent=2,
         )
 
-    resolved = Path(db_path).expanduser().resolve()
+    selected_record = get_registered_db(db_path)
+    candidate = Path(db_path).expanduser()
+    if selected_record is not None:
+        resolved = Path(selected_record["path"]).expanduser().resolve()
+    elif candidate.exists():
+        resolved = candidate.resolve()
+        selected_record = get_registered_db_by_path(resolved)
+    else:
+        return json.dumps({"error": f"Database path or installed library not found: {db_path}"})
     if not resolved.exists():
         return json.dumps({"error": f"Database not found: {resolved}"})
+
+    try:
+        validate_registry_db(resolved)
+    except ValueError as exc:
+        return json.dumps({"error": f"Invalid Sema database: {exc}"})
 
     if is_bundled_db(str(resolved)):
         return json.dumps(
@@ -259,10 +280,19 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             }
         )
 
+    if selected_record and selected_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(selected_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            return json.dumps({"error": f"Installed library verification failed: {exc}"})
+
     DEFAULT_DB_PATH = str(resolved)
     REGISTRY_MGR = RegistryManager(db_path=str(resolved))
     set_active_db(str(resolved))
-    register_db(str(resolved))
+    if selected_record is None:
+        register_db(str(resolved))
     _served_patterns.clear()
 
     return json.dumps(
@@ -270,7 +300,10 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             "success": True,
             "db_path": str(resolved),
             "total_patterns": len(REGISTRY_MGR.registry),
-            "message": f"Switched to {resolved} ({len(REGISTRY_MGR.registry)} patterns)",
+            "message": (
+                f"Switched to {selected_record.get('name') if selected_record else resolved} "
+                f"({len(REGISTRY_MGR.registry)} patterns)"
+            ),
         },
         indent=2,
     )
@@ -386,15 +419,16 @@ def _sema_mint(pattern_json: str) -> str:
         JSON with the minted pattern's sema_id, or validation errors.
     """
     from ..core.mint import mint_pattern
-    from ..core.registry import is_bundled_db
+    from ..core.registry import is_managed_db, is_read_only_db
     from ..taxonomy_graph.graph_store import GraphStore
 
-    if is_bundled_db(DEFAULT_DB_PATH):
+    if is_read_only_db(DEFAULT_DB_PATH):
+        label = "installed library" if is_managed_db(DEFAULT_DB_PATH) else "bundled vocabulary"
         return json.dumps(
             {
                 "success": False,
                 "errors": [
-                    "Cannot mint into the bundled vocabulary — it gets overwritten on upgrade. "
+                    f"Cannot mint into the {label} — it is a read-only snapshot. "
                     "Run `sema build my.db --preset full` then `sema use my.db` to create your own vocabulary first."
                 ],
             }

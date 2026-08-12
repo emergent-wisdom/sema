@@ -15,18 +15,19 @@
       "Reasoning"
     ],
     "supersedes": [
-      "sema:GraphOfThought#mh:SHA-256:ccee7b6c5ea42d243d5921a7dfbf074ef9aba5212cff0714e4ce9019077c907d"
+      "sema:GraphOfThought#mh:SHA-256:ccee7b6c5ea42d243d5921a7dfbf074ef9aba5212cff0714e4ce9019077c907d",
+      "sema:GraphOfThought#mh:SHA-256:d1d584dba2c12ecbe922171f0519cc97d54fd4b04ffe8d2810122480e64c38b9"
     ]
   },
   "signature": [
     "Think(DAG)"
   ],
-  "sema_id": "sema:GraphOfThought#mh:SHA-256:d1d584dba2c12ecbe922171f0519cc97d54fd4b04ffe8d2810122480e64c38b9",
-  "sema_ref": "GraphOfThought#d1d5",
-  "sema_stub": "d1d5",
+  "sema_id": "sema:GraphOfThought#mh:SHA-256:aff044b7909bc26511c42ece0cf090bd4d1f82431a5728e94fedcd2ad9733160",
+  "sema_ref": "GraphOfThought#aff0",
+  "sema_stub": "aff0",
   "dependencies": {
     "composes_with": {
-      "d_a_g": "sema:DAG#mh:SHA-256:cb54c9360f063d839412e33158dc205c02af684d85132f6a982caba17274f253",
+      "d_a_g": "sema:DAG#mh:SHA-256:ed5b6bdbe8d785f1dceb6cc1c7020d9c2340be7b507a3678da2da58211e455aa",
       "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     }
   },

@@ -40,20 +40,21 @@
     "ring": 1,
     "supersedes": [
       "sema:Crystallize#mh:SHA-256:af6880166731e858e42937cb02d1b4517272853e6f6a2e1e98301fc4f2f0bede",
-      "sema:Crystallize#mh:SHA-256:d187e3c8bb361f0535c474617ef67e5c38f09b5a6e5613b9e327146bb831da98"
+      "sema:Crystallize#mh:SHA-256:d187e3c8bb361f0535c474617ef67e5c38f09b5a6e5613b9e327146bb831da98",
+      "sema:Crystallize#mh:SHA-256:ec1cf3687c7f901b33ddb218a70bebe3ebd7a57de0eeb3d516a9938642730d01"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Crystallize#mh:SHA-256:ec1cf3687c7f901b33ddb218a70bebe3ebd7a57de0eeb3d516a9938642730d01",
-  "sema_ref": "Crystallize#ec1c",
-  "sema_stub": "ec1c",
+  "sema_id": "sema:Crystallize#mh:SHA-256:0642166a22e385c83630c6648dc0ce2487257939856188895c85030eecf5bfb1",
+  "sema_ref": "Crystallize#0642",
+  "sema_stub": "0642",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "constitution": "sema:Constitution#mh:SHA-256:bc929fc4bb51ad66d6ceb04ed4ef23ae56e6abd86515f7d171b117c2f41a6aaf",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "constitution": "sema:Constitution#mh:SHA-256:3deb8d31b8ace640b29c0a4d547191eebbcdedb46548f6c09711860be3af4645",
       "dampen": "sema:Dampen#mh:SHA-256:c07e9b7b22cbda8523effcfd455f554578e47081f0d07bf9001e45f2a871b831",
       "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a",
       "entropy_pump": "sema:EntropyPump#mh:SHA-256:a1369712d823417e257e4306f53aa63a5dcd83b34a8f4093823578a2196eec56",

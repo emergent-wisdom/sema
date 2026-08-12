@@ -22,20 +22,21 @@
     "supersedes": [
       "sema:EventReact#mh:SHA-256:7db170eab2eaf5a1764ee61af391ab290db9e83835f6ca3107305d2a709554fe",
       "sema:EventReact#mh:SHA-256:a0ef747d97aabc453629d237c4d625d02c26d22515a3f958c1ab261c156a3b56",
-      "sema:EventReact#mh:SHA-256:d2e17a1a86ecdfab6743565083d7b92c41df3bc9515560ee73dba34b2a62bedd"
+      "sema:EventReact#mh:SHA-256:d2e17a1a86ecdfab6743565083d7b92c41df3bc9515560ee73dba34b2a62bedd",
+      "sema:EventReact#mh:SHA-256:6f43ed9daa820d62cf2701cd394d4853d5a9d0e527270d11edd8748d624e27a5"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:EventReact#mh:SHA-256:6f43ed9daa820d62cf2701cd394d4853d5a9d0e527270d11edd8748d624e27a5",
-  "sema_ref": "EventReact#6f43",
-  "sema_stub": "6f43",
+  "sema_id": "sema:EventReact#mh:SHA-256:f71a4aacd1cedf16a425dea52ea0e712de4617c7d527798e5cd1d0aabf678d17",
+  "sema_ref": "EventReact#f71a",
+  "sema_stub": "f71a",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "re_act": "sema:ReAct#mh:SHA-256:5281c82a8338b19ed33253f3447b6e845a967e6a28acb8c3efb63a6ab24ff308"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "re_act": "sema:ReAct#mh:SHA-256:23310635be1d832c320f40f2f954751ec909e9fc7ed85314946ccbb85ef8b524"
     }
   },
   "sema_layer": "Mind",

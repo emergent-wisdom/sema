@@ -37,19 +37,20 @@
       "sema:CausalBarrier#mh:SHA-256:0904e3eb6ac5a36cfa3ec9d1c3fe374ad4eb817e1da35375ce8d32d8272b6128",
       "sema:CausalBarrier#mh:SHA-256:d1b20d964f273174495ad103b4c7b31ae747e4ad56de14d9e935ca1705088c5d",
       "sema:CausalBarrier#mh:SHA-256:9e178f07d754eefadad17a92a84f76badce58bd00571dca64b37e83176a57e94",
-      "sema:CausalBarrier#mh:SHA-256:39b3168c5b9bad18505b7af584fbb24b80ba7c5bf90e6ff0611fc2cd405f0178"
+      "sema:CausalBarrier#mh:SHA-256:39b3168c5b9bad18505b7af584fbb24b80ba7c5bf90e6ff0611fc2cd405f0178",
+      "sema:CausalBarrier#mh:SHA-256:a6d8167a05ffab8cf5fda4da7a81e2c196de8a182f0673b9a8a5cbf189222dfc"
     ],
     "path": [
       "Physics",
       "Time"
     ]
   },
-  "sema_id": "sema:CausalBarrier#mh:SHA-256:a6d8167a05ffab8cf5fda4da7a81e2c196de8a182f0673b9a8a5cbf189222dfc",
-  "sema_ref": "CausalBarrier#a6d8",
-  "sema_stub": "a6d8",
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:cf54b35c9236d8fd2db3ca4f35ab5bdaac79c17052d9095aaa5fa6f143507809",
+  "sema_ref": "CausalBarrier#cf54",
+  "sema_stub": "cf54",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "state_lock": "sema:StateLock#mh:SHA-256:c9c2809bdf97bb6ac17a8ffe428d4aa9a28294b99d64cc8a336a239d26a8afb8"
     }
   },

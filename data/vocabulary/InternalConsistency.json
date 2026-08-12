@@ -14,20 +14,21 @@
     "tier": 2,
     "supersedes": [
       "sema:InternalConsistency#mh:SHA-256:862f24b8dcbc229acfc3d2ced93ceec3b6abf982a0de4cd63b4960c077c1c7e7",
-      "sema:InternalConsistency#mh:SHA-256:5e8f63a779b9918f3d1c75a4ea5b8988b025218f0f67aed0b7d6198deadf57d9"
+      "sema:InternalConsistency#mh:SHA-256:5e8f63a779b9918f3d1c75a4ea5b8988b025218f0f67aed0b7d6198deadf57d9",
+      "sema:InternalConsistency#mh:SHA-256:6f33a1418829c1f1fe761bd533eaa78daeca78c25bdbef94d03db04fe5b10ef7"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "InternalConsistency#6f33",
-  "sema_id": "sema:InternalConsistency#mh:SHA-256:6f33a1418829c1f1fe761bd533eaa78daeca78c25bdbef94d03db04fe5b10ef7",
-  "sema_stub": "6f33",
+  "sema_ref": "InternalConsistency#35d2",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:35d2b8f7b3eaa3a769b3a85a455729f7460b780a726ac5306e88affc04a19750",
+  "sema_stub": "35d2",
   "dependencies": {
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
-      "validate": "sema:Validate#mh:SHA-256:bd940dda8b0a752e49b4fe86b8f0d8ce077eb47cc93c54e39989ace4969ea4eb"
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     },
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",

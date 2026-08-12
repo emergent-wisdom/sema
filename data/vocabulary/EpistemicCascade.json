@@ -26,19 +26,22 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:EpistemicCascade#mh:SHA-256:a4895b4b9ee695aa277d757aac2bed96e7a9b9ecbaba4936300296aa143185d2"
     ]
   },
-  "sema_id": "sema:EpistemicCascade#mh:SHA-256:a4895b4b9ee695aa277d757aac2bed96e7a9b9ecbaba4936300296aa143185d2",
-  "sema_ref": "EpistemicCascade#a489",
-  "sema_stub": "a489",
+  "sema_id": "sema:EpistemicCascade#mh:SHA-256:5deb0cd3e65bed8943c6bd6bc78d9abd6edfb8ea6652a9d85adb9521a38789cc",
+  "sema_ref": "EpistemicCascade#5deb",
+  "sema_stub": "5deb",
   "dependencies": {
     "references": {
       "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
-      "belief_tracking": "sema:BeliefTracking#mh:SHA-256:1ae45fb5af911a83c09d9acc4a007b9147dd46c979ae0febc0bee6754f8a224e",
+      "belief_tracking": "sema:BeliefTracking#mh:SHA-256:890a705eecf03acd88de6614e0225f4f910eaf6c5bf19f8852aa0b238d1ab513",
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
       "epistemic_calibrate": "sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a",
       "status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",
-      "verification": "sema:Verification#mh:SHA-256:81fe83ebcbd898595f7969762d70b562ad6bcab08141fc1e88d65f21376600dd"
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
     }
   },
   "sema_layer": "Mind",

@@ -294,32 +294,28 @@ safety-abort contract. `ContinuousResourceAuction` required `HoldingCost > 0` wi
 parameter the axis the invariant permits rather than to delete it.
 
 Check the other direction too — **a declared parameter value under which an
-invariant cannot hold at all.** `NormCheck`'s `action_on_detect` offers Flag, and
-under Flag nothing is rewritten, so "Count(NormativeAdjectives) == 0" is simply
-false of the output; its mechanism separately says the pattern "forces a rewrite",
-contradicting the same parameter. `SteelmanCheck` is worse, because one parameter
-carries two incompatible jobs: `strength_threshold` describes itself as the bar for
-a counter-argument to count as a steelman, while the mechanism treats exceeding it
-as the verdict that the decision must be discarded — so producing an adequate
-steelman defeats your own conclusion and nothing can ever be released. Neither is
-a scoping slip to be patched: both decide what the pattern *does*, so both are
-OPEN rather than fixed. And note how the second was hidden — an earlier pass in
-this review replaced a hard-coded `0.7` with the parameter, which made the two
-roles read alike and harder to see, not easier.
+invariant cannot hold at all.** The repair depends on the shape of the conflict.
+`NormCheck` was the common-property case: Flag, Rewrite, and Reject differ in what
+happens after detection, so the invariant was narrowed to what all three modes
+share and fact preservation was scoped to Rewrite.
 
-Third instance, and it splits the class in two. `PromptChain`'s `gate_mode` is
-`{Strict, Retry, Skip}` against "Halt on Error: chain aborts if gate(N) returns
-False" — the invariant could not hold for two of its own three declared values, and
-`max_retries_per_step` exists precisely to support Retry. But unlike the two above,
-this one was **fixable rather than purpose-deciding**, because all three enumerated
-values are coherent with one restated invariant: a failed step's output is not
-passed forward, and `gate_mode` decides what happens instead.
+`SteelmanCheck` was the two-judgment case. Its `strength_threshold` simultaneously
+qualified a counter-argument as an adequate steelman and treated that same score
+as the verdict that the original decision must be discarded. The repair separates
+the questions: Judge scores counter-argument adequacy, then Check evaluates whether
+the conclusion remains robust. One number no longer answers two different
+questions.
 
-So when a parameter value breaks an invariant, ask which kind you have. If the
-declared values differ in *what happens after* the property holds, the invariant was
-under-scoped and can be restated to the property common to all of them. If they
-differ in *whether* the property holds at all, the parameter is carrying two
-purposes and the card has to decide which pattern it is — OPEN, not a rewording.
+`PromptChain` exposed a third case. Its Skip mode never defined the input to the
+next step, so weakening the invariant could not create an executable continuation.
+The mode was removed. Zero retries now means strict halt; a positive retry budget
+means bounded recovery; exhaustion always halts before the next step.
+
+So when a parameter value breaks an invariant, ask three questions in order. Do
+all modes share a narrower property that still identifies the pattern? If one
+parameter performs two judgments, should those judgments be separated? If a mode
+cannot define the next state or input, remove it or fully specify that transition;
+do not save it with weaker prose.
 
 ### The missing contract was already in the intersection
 
@@ -528,14 +524,14 @@ population no author touches. Yesterday's manual verification of the `extends`
 warning confirmed the case it handled; nothing about it could reveal the case it
 missed.
 
-**This applies to verdicts, not only to code.** `NormCheck` was recorded SOUND —
-and it carries an invariant that is false under one of its own declared parameter
-values, present since the initial commit. The verdict was sound *against what
-nominated the card*, which was a circular-precondition check, and nothing about
-clearing that check speaks to the rest of the card. A SOUND verdict inherits the
-scope of whatever put the card in front of you, so record what was examined, not
-just the conclusion. Where a card arrived via a targeted sweep rather than a full
-read, SOUND means "this nomination was a false positive".
+**This applies to verdicts, not only to code.** The earlier, pre-repair
+`NormCheck` was recorded SOUND even though one invariant was false under a declared
+parameter value. The verdict was sound *against what nominated the card*, which
+was a circular-precondition check, and nothing about clearing that check spoke to
+the rest of the card. The card was subsequently repaired; the lesson remains that
+a SOUND verdict inherits the scope of whatever put the card in front of you. Record
+what was examined, not just the conclusion. Where a card arrived via a targeted
+sweep rather than a full read, SOUND means "this nomination was a false positive".
 
 **A mechanical check for the misnamed-quantity class does not work.** Three
 instances in one batch made it look detectable, so

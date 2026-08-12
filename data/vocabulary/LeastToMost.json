@@ -26,23 +26,24 @@
     "ring": 2,
     "supersedes": [
       "sema:LeastToMost#mh:SHA-256:bd389eddb2f1b893221ab2a7479cb0293f1808057a52ef702b3ff6228509db26",
-      "sema:LeastToMost#mh:SHA-256:e36229927e2982850f762d59fad1f992fb982fdd387415003aa562f9ca3d4b2d"
+      "sema:LeastToMost#mh:SHA-256:e36229927e2982850f762d59fad1f992fb982fdd387415003aa562f9ca3d4b2d",
+      "sema:LeastToMost#mh:SHA-256:3d71cf61a60f4dcbd1d56abb5a563f70281f451fc6c76596697eb1e0a4510701"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:LeastToMost#mh:SHA-256:3d71cf61a60f4dcbd1d56abb5a563f70281f451fc6c76596697eb1e0a4510701",
-  "sema_ref": "LeastToMost#3d71",
-  "sema_stub": "3d71",
+  "sema_id": "sema:LeastToMost#mh:SHA-256:942de8e9b154190e8a85a88d74c46350b5b9c936d4d463d33e697297f02ba0e3",
+  "sema_ref": "LeastToMost#942d",
+  "sema_stub": "942d",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "decompose": "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926",
-      "solution": "sema:Solution#mh:SHA-256:6bd046a617cb877ba6d0cd898bd1a87287d902621693230a291d80db16314fae"
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Mind",

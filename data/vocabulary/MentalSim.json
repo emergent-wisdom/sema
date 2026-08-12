@@ -47,23 +47,24 @@
     "supersedes": [
       "sema:MentalSim#mh:SHA-256:5728b6db7446bf4b3dc0ce1998ddf5a2b724b09438efc15d68709c09ec93a26e",
       "sema:MentalSim#mh:SHA-256:7212dad44c65f6241e70f0fc2e20440788e837a84cc644fea6bcc5f59e09f94e",
-      "sema:MentalSim#mh:SHA-256:287471afbc4498472aca1185bd961b7338fb6d9f28e6f007f44a4f824e8bb520"
+      "sema:MentalSim#mh:SHA-256:287471afbc4498472aca1185bd961b7338fb6d9f28e6f007f44a4f824e8bb520",
+      "sema:MentalSim#mh:SHA-256:9ddd892c32849bd213ec101cbce9c51f127634ba81f79c4186ae1b67196fdbef"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MentalSim#mh:SHA-256:9ddd892c32849bd213ec101cbce9c51f127634ba81f79c4186ae1b67196fdbef",
-  "sema_ref": "MentalSim#9ddd",
-  "sema_stub": "9ddd",
+  "sema_id": "sema:MentalSim#mh:SHA-256:1ca02743f4d01cc9740234943b92ad700825c2a4c918a4f7b1248872e4aa4e1f",
+  "sema_ref": "MentalSim#1ca0",
+  "sema_stub": "1ca0",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:2176a4b78e81b63053bfa7afe60bfa2439b8d69a2270f9bf38b7fda5e1bd8191",
-      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:d1da527c28217842fbdb7333e85fb95d70c54672ed8a2f37325cde3c5d32d5a5",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "agent_sandbox": "sema:AgentSandbox#mh:SHA-256:41df2a0465da388dd7ecc55842ea08850e6d9e069c47c6d93e80ba13a0445084",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
-      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:cecf8021678cd9c00da018591b1e1c81b09bd532198e49176cd776621a75f4f4",
-      "simulation": "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9",
+      "heuristic_snap": "sema:HeuristicSnap#mh:SHA-256:b95f0c545045368c2e9f2dfe897f1172f718827a7fe4b0db67dddbd56d8b8ff0",
+      "simulation": "sema:Simulation#mh:SHA-256:1058e7090079e846251ed480d7afec0328809d22bebb6b205425b2de614787c3",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
