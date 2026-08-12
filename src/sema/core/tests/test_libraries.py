@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
 import sqlite3
 import stat
 import subprocess
@@ -18,7 +19,13 @@ import pytest
 from pydantic import ValidationError
 
 from sema import __version__ as sema_version
-from sema.cli.main import install_remote_library, undo_pull, update_remote_library, use_db
+from sema.cli.main import (
+    install_remote_library,
+    package_library_release,
+    undo_pull,
+    update_remote_library,
+    use_db,
+)
 from sema.core.hashing import (
     CATALOG_ROOT_SCHEME,
     SEMANTIC_ROOT_SCHEME,
@@ -30,9 +37,12 @@ from sema.core.hashing import (
 from sema.core.libraries import (
     LibraryError,
     LibraryManifest,
+    github_release_urls,
     install_library,
+    package_library,
     update_library,
     verify_installed_library,
+    verify_library_package,
     verify_library_patterns,
 )
 from sema.core.registry import get_configured_active_db, get_library, set_active_db
@@ -92,9 +102,25 @@ def _defi_patterns(*, guard_revision: str = "") -> dict[str, dict]:
         },
         hashes,
     )
+    strict_liquidation_guard, hashes["StrictLiquidationGuard"] = _with_identity(
+        {
+            "handle": "StrictLiquidationGuard",
+            "gloss": "Require a conservative liquidation margin",
+            "mechanism": "Specializes liquidation guarding with a conservative safety margin.",
+            "invariants": ["The safety margin is positive and declared before evaluation."],
+            "extends": liquidation_guard["sema_id"],
+            "_meta": {
+                "path": ["Society", "Economics"],
+                "ring": 1,
+                "tier": 1,
+            },
+        },
+        hashes,
+    )
     return {
         "AssetPrice": asset_price,
         "LiquidationGuard": liquidation_guard,
+        "StrictLiquidationGuard": strict_liquidation_guard,
     }
 
 
@@ -167,6 +193,21 @@ def _write_release(
     }
     manifest_path.write_bytes(_json_bytes(manifest))
     return Release(manifest_path, archive_path, patterns, pattern_bytes, roots)
+
+
+def _project_database(directory: Path) -> tuple[Path, dict[str, dict]]:
+    """Compile the focused DeFi fixture into the same SQLite shape users package."""
+    patterns = _defi_patterns()
+    manifest_release = _write_release(directory / "source-release", patterns=patterns)
+    manifest = LibraryManifest.model_validate(
+        json.loads(manifest_release.manifest_path.read_text())
+    )
+    verified = verify_library_patterns(patterns, manifest)
+    database = directory / "project.db"
+    from sema.core.libraries import build_library_database
+
+    build_library_database(verified, database)
+    return database, patterns
 
 
 @pytest.fixture
@@ -261,14 +302,200 @@ def test_bootstrap_release_is_deterministic_root_equivalent_and_installable(
     assert manifest["pattern_count"] == bundled["pattern_count"]
     assert manifest["roots"]["semantic"]["sha256"] == bundled["semantic_root"]
     assert manifest["roots"]["catalog"]["sha256"] == bundled["catalog_root"]
+    assert manifest["patterns"]["url"] == (
+        f"https://github.com/emergent-wisdom/sema/releases/download/v{sema_version}/"
+        f"sema-bootstrap-{sema_version}.zip"
+    )
 
     active_before = library_environment["active_file"].read_bytes()
-    record = install_library(first_manifest, data_dir=library_environment["data_dir"])
+    archive_bytes = first_archive.read_bytes()
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if str(request.url) == manifest["patterns"]["url"]:
+            return httpx.Response(200, content=archive_bytes, request=request)
+        return httpx.Response(404, request=request)
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        record = install_library(
+            first_manifest,
+            data_dir=library_environment["data_dir"],
+            http_client=client,
+        )
     assert record["name"] == "bootstrap"
     assert record["version"] == sema_version
     assert record["semantic_root"] == manifest["roots"]["semantic"]["sha256"]
     assert record["catalog_root"] == manifest["roots"]["catalog"]["sha256"]
     assert library_environment["active_file"].read_bytes() == active_before
+
+
+def test_package_library_is_deterministic_and_round_trips_through_consumer_verifier(
+    tmp_path: Path,
+) -> None:
+    database, patterns = _project_database(tmp_path)
+    update_url = "https://github.com/acme/sema-defi/releases/latest/download/library.json"
+    artifact_url = (
+        "https://github.com/acme/sema-defi/releases/download/v1.2.3/defi-patterns-1.2.3.zip"
+    )
+    first = package_library(
+        database,
+        tmp_path / "first",
+        name="defi",
+        version="1.2.3",
+        update_url=update_url,
+        artifact_url=artifact_url,
+    )
+    second = package_library(
+        database,
+        tmp_path / "second",
+        name="defi",
+        version="1.2.3",
+        update_url=update_url,
+        artifact_url=artifact_url,
+    )
+
+    assert first.archive_path.name == "defi-patterns-1.2.3.zip"
+    assert first.archive_path.read_bytes() == second.archive_path.read_bytes()
+    assert first.manifest_path.read_bytes() == second.manifest_path.read_bytes()
+    manifest = json.loads(first.manifest_path.read_text())
+    assert manifest["patterns"]["url"] == artifact_url
+    assert manifest["update_url"] == update_url
+    assert manifest["pattern_count"] == len(patterns)
+    assert (
+        manifest["patterns"]["sha256"]
+        == hashlib.sha256(first.archive_path.read_bytes()).hexdigest()
+    )
+
+    verified = verify_library_package(first.manifest_path, first.archive_path)
+    assert set(verified.patterns) == set(patterns)
+    assert verified.roots["semantic_root"] == first.semantic_root
+    assert verified.roots["catalog_root"] == first.catalog_root
+
+    with zipfile.ZipFile(first.archive_path) as archive:
+        assert archive.namelist() == [f"patterns/{handle}.json" for handle in sorted(patterns)]
+        assert all(member.date_time == (1980, 1, 1, 0, 0, 0) for member in archive.infolist())
+
+
+def test_github_release_urls_are_absolute_and_cli_package_uses_them(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    database, _patterns = _project_database(tmp_path)
+    update_url, artifact_url = github_release_urls("acme/sema-defi", "defi", "2.0.0")
+    assert update_url == ("https://github.com/acme/sema-defi/releases/latest/download/library.json")
+    assert artifact_url == (
+        "https://github.com/acme/sema-defi/releases/download/v2.0.0/defi-patterns-2.0.0.zip"
+    )
+
+    output = tmp_path / "cli-package"
+    assert package_library_release(
+        str(database),
+        str(output),
+        name="defi",
+        version="2.0.0",
+        github_repo="acme/sema-defi",
+    )
+    manifest = json.loads((output / "library.json").read_text())
+    assert manifest["update_url"] == update_url
+    assert manifest["patterns"]["url"] == artifact_url
+    assert "verified a fresh local read model" in capsys.readouterr().out
+
+
+def test_package_library_rejects_overwrite_and_incomplete_explicit_urls(
+    tmp_path: Path,
+) -> None:
+    database, _patterns = _project_database(tmp_path)
+    output = tmp_path / "release"
+    kwargs = {
+        "name": "defi",
+        "version": "1.0.0",
+        "update_url": "https://example.test/releases/latest/download/library.json",
+        "artifact_url": "https://example.test/releases/v1/defi-patterns-1.0.0.zip",
+    }
+    package_library(database, output, **kwargs)
+    with pytest.raises(LibraryError, match="Refusing to overwrite"):
+        package_library(database, output, **kwargs)
+
+    assert not package_library_release(
+        str(database),
+        str(tmp_path / "incomplete"),
+        name="defi",
+        version="1.0.0",
+        update_url=kwargs["update_url"],
+    )
+
+
+@pytest.mark.parametrize(
+    ("update_url", "artifact_url"),
+    [
+        ("file:///tmp/library.json", "file:///tmp/defi-patterns-1.0.0.zip"),
+        ("https:///library.json", "https:///defi-patterns-1.0.0.zip"),
+        (
+            "https://example.test/releases/latest/library.json",
+            "https:///defi-patterns-1.0.0.zip",
+        ),
+        ("https://example.test/releases/latest/library.json", "/defi-patterns-1.0.0.zip"),
+        ("https://example.test/releases/latest/library.json", "defi-patterns-1.0.0.zip"),
+    ],
+)
+def test_package_library_requires_publishable_https_urls(
+    tmp_path: Path,
+    update_url: str,
+    artifact_url: str,
+) -> None:
+    database, _patterns = _project_database(tmp_path)
+    with pytest.raises(LibraryError, match="absolute HTTPS URL"):
+        package_library(
+            database,
+            tmp_path / "release",
+            name="defi",
+            version="1.0.0",
+            update_url=update_url,
+            artifact_url=artifact_url,
+        )
+
+
+def test_package_library_finalizes_the_release_directory_atomically(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    database, _patterns = _project_database(tmp_path)
+    output = tmp_path / "release"
+
+    def fail_rename(_source: Path, _destination: Path) -> None:
+        raise OSError("injected finalization failure")
+
+    monkeypatch.setattr(os, "rename", fail_rename)
+    with pytest.raises(LibraryError, match="Could not finalize package directory"):
+        package_library(
+            database,
+            output,
+            name="defi",
+            version="1.0.0",
+            update_url="https://example.test/releases/latest/download/library.json",
+            artifact_url="https://example.test/releases/v1/defi-patterns-1.0.0.zip",
+        )
+
+    assert not output.exists()
+    assert not (tmp_path / ".release.sema-package.lock").exists()
+    assert not list(tmp_path.glob(".release.sema-package-*"))
+
+
+def test_package_library_refuses_a_concurrent_output_reservation(tmp_path: Path) -> None:
+    database, _patterns = _project_database(tmp_path)
+    output = tmp_path / "release"
+    lock = tmp_path / ".release.sema-package.lock"
+    lock.mkdir()
+
+    with pytest.raises(LibraryError, match="Another package operation"):
+        package_library(
+            database,
+            output,
+            name="defi",
+            version="1.0.0",
+            update_url="https://example.test/releases/latest/download/library.json",
+            artifact_url="https://example.test/releases/v1/defi-patterns-1.0.0.zip",
+        )
+
+    assert not output.exists()
 
 
 def test_https_latest_release_redirect_installs_relative_artifact(
@@ -302,6 +529,52 @@ def test_https_latest_release_redirect_installs_relative_artifact(
         )
 
     assert record["manifest_url"] == ("https://github.test/releases/download/v1.0.0/library.json")
+    assert record["update_url"] == ("https://github.test/releases/latest/download/library.json")
+    assert verify_installed_library(record)["catalog_root"] == release.roots["catalog_root"]
+
+
+def test_github_cdn_redirect_installs_absolute_release_artifact(
+    tmp_path: Path, library_environment: dict[str, Path]
+) -> None:
+    release = _write_release(tmp_path / "github-cdn-release")
+    manifest = json.loads(release.manifest_path.read_text())
+    manifest["update_url"] = "https://github.test/releases/latest/download/library.json"
+    manifest["patterns"]["url"] = "https://github.test/releases/download/v1.0.0/patterns.zip"
+    manifest_bytes = _json_bytes(manifest)
+    archive_bytes = release.archive_path.read_bytes()
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        routes = {
+            "/releases/latest/download/library.json": (
+                302,
+                "https://github.test/releases/download/v1.0.0/library.json",
+            ),
+            "/releases/download/v1.0.0/library.json": (
+                302,
+                "https://objects.test/assets/library.json?token=manifest",
+            ),
+            "/releases/download/v1.0.0/patterns.zip": (
+                302,
+                "https://objects.test/assets/patterns.zip?token=archive",
+            ),
+        }
+        if request.url.host == "github.test" and request.url.path in routes:
+            status, location = routes[request.url.path]
+            return httpx.Response(status, headers={"location": location}, request=request)
+        if request.url.host == "objects.test" and request.url.path == "/assets/library.json":
+            return httpx.Response(200, content=manifest_bytes, request=request)
+        if request.url.host == "objects.test" and request.url.path == "/assets/patterns.zip":
+            return httpx.Response(200, content=archive_bytes, request=request)
+        return httpx.Response(404, request=request)
+
+    with httpx.Client(transport=httpx.MockTransport(handler)) as client:
+        record = install_library(
+            "https://github.test/releases/latest/download/library.json",
+            data_dir=library_environment["data_dir"],
+            http_client=client,
+        )
+
+    assert record["manifest_url"] == ("https://objects.test/assets/library.json?token=manifest")
     assert record["update_url"] == ("https://github.test/releases/latest/download/library.json")
     assert verify_installed_library(record)["catalog_root"] == release.roots["catalog_root"]
 

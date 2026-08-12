@@ -1573,6 +1573,71 @@ def install_remote_library(manifest_source: str) -> bool:
     return True
 
 
+def package_library_release(
+    source_db: str,
+    output_dir: str,
+    *,
+    name: str,
+    version: str,
+    github_repo: str | None = None,
+    update_url: str | None = None,
+    artifact_url: str | None = None,
+) -> bool:
+    """Build and verify an upload-ready library release from a project DB."""
+    from ..core.libraries import LibraryError, github_release_urls, package_library
+
+    source = Path(source_db).expanduser().resolve()
+    try:
+        validate_registry_db(source)
+    except ValueError as exc:
+        print(f"❌ Library packaging failed: {exc}")
+        return False
+    source_record = get_registered_db_by_path(source)
+    if is_read_only_db(str(source)):
+        print("❌ Library packaging requires a writable project database, not a managed snapshot.")
+        if source_record and source_record.get("kind") == "installed-library":
+            print(
+                "   Run `sema build my-library.db --preset full "
+                f"--source {source_record['name']}` and package that database."
+            )
+        else:
+            print("   Run `sema build my-library.db --preset full` and package that database.")
+        return False
+
+    try:
+        if github_repo:
+            if update_url or artifact_url:
+                raise LibraryError(
+                    "Use either --github-repo or the --update-url/--artifact-url pair"
+                )
+            update_url, artifact_url = github_release_urls(github_repo, name, version)
+        elif not update_url or not artifact_url:
+            raise LibraryError("Explicit publication requires both --update-url and --artifact-url")
+
+        release = package_library(
+            source,
+            output_dir,
+            name=name,
+            version=version,
+            update_url=update_url,
+            artifact_url=artifact_url,
+        )
+    except (LibraryError, OSError, ValueError) as exc:
+        print(f"❌ Library packaging failed: {exc}")
+        return False
+
+    print(
+        f"✅ Packaged {name} v{version} ({release.pattern_count} patterns) "
+        "and verified a fresh local read model"
+    )
+    print(f"   Manifest:      {release.manifest_path}")
+    print(f"   Pattern ZIP:   {release.archive_path}")
+    print(f"   semantic root: {release.semantic_root}")
+    print(f"   catalog root:  {release.catalog_root}")
+    print("   Upload both files to the declared release without changing their bytes.")
+    return True
+
+
 def update_remote_library(name: str) -> bool:
     """Explicitly update one installed library through its recorded pointer."""
     from ..core.libraries import LibraryError, update_library
@@ -1829,15 +1894,38 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
         print(f"❌ {dest_path} already exists. Remove it first to rebuild.")
         return False
 
-    source_db_path = source_db or get_bundled_db_path()
+    source_record = get_registered_db(source_db) if source_db else None
+    if source_db and source_record is None:
+        source_path = Path(source_db).expanduser()
+        if source_path.exists():
+            source_record = get_registered_db_by_path(source_path)
+    if source_record and source_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(source_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            print(f"❌ Installed library verification failed: {exc}")
+            return False
+        source_db_path = source_record["path"]
+    else:
+        source_db_path = source_db or get_bundled_db_path()
     if not source_db_path or not Path(source_db_path).exists():
         print("❌ Source DB not found. Run `sema pull` first.")
+        return False
+    try:
+        validate_registry_db(source_db_path)
+    except ValueError as exc:
+        print(f"❌ Invalid source database: {exc}")
         return False
 
     if preset:
         if preset == "full":
             dest_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source_db_path, dest_path)
+            # Installed release snapshots are intentionally mode 0444. A project
+            # copy must be writable even when its source is managed/read-only.
+            dest_path.chmod(dest_path.stat().st_mode | 0o200)
             count = RegistryManager(db_path=str(dest_path)).count()
             print(f"✅ Built {dest_path} (full: {count} patterns)")
             register_db(str(dest_path))
@@ -2236,7 +2324,34 @@ def main():
     build_group.add_argument(
         "--from", dest="from_file", help="Path to patterns file (one handle per line)"
     )
-    build_cmd.add_argument("--source", help="Source DB (default: bundled vocabulary)")
+    build_cmd.add_argument(
+        "--source",
+        help="Installed library name or source DB path (default: bundled vocabulary)",
+    )
+
+    # Package - export and verify a portable third-party library release
+    package_cmd = subparsers.add_parser(
+        "package",
+        help="Package a project DB as a verified library.json and pattern ZIP",
+    )
+    package_cmd.add_argument("source", help="Writable project database to package")
+    package_cmd.add_argument("--output-dir", required=True, help="New directory for release files")
+    package_cmd.add_argument("--name", required=True, help="Lowercase library slug")
+    package_cmd.add_argument("--version", required=True, help="Release version (MAJOR.MINOR.PATCH)")
+    publication = package_cmd.add_mutually_exclusive_group(required=True)
+    publication.add_argument(
+        "--github-repo",
+        metavar="OWNER/REPOSITORY",
+        help="Derive URLs for GitHub tag v<version>",
+    )
+    publication.add_argument(
+        "--update-url",
+        help="Stable HTTPS URL from which users fetch future library.json releases",
+    )
+    package_cmd.add_argument(
+        "--artifact-url",
+        help="Version-pinned HTTPS URL at which the generated pattern ZIP will be published",
+    )
 
     # Install - verify and register a published library
     install_cmd = subparsers.add_parser(
@@ -2317,6 +2432,16 @@ def main():
     elif args.command == "build":
         ok = build_db(
             args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source
+        )
+    elif args.command == "package":
+        ok = package_library_release(
+            args.source,
+            args.output_dir,
+            name=args.name,
+            version=args.version,
+            github_repo=args.github_repo,
+            update_url=args.update_url,
+            artifact_url=args.artifact_url,
         )
     elif args.command == "install":
         ok = install_remote_library(args.manifest)

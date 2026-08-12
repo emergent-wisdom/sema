@@ -42,6 +42,10 @@ DEFAULT_PATTERN_DIR = REPO_ROOT / "data" / "vocabulary"
 DEFAULT_DATABASE = REPO_ROOT / "data" / "taxonomy.db"
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "dist" / "bootstrap"
 DEFAULT_UPDATE_URL = "https://github.com/emergent-wisdom/sema/releases/latest/download/library.json"
+DEFAULT_ARTIFACT_URL = (
+    "https://github.com/emergent-wisdom/sema/releases/download/"
+    "v{version}/sema-bootstrap-{version}.zip"
+)
 FIXED_ZIP_TIME = (1980, 1, 1, 0, 0, 0)
 
 
@@ -100,6 +104,7 @@ def build_bootstrap_release(
     pattern_dir: Path = DEFAULT_PATTERN_DIR,
     database_path: Path = DEFAULT_DATABASE,
     update_url: str = DEFAULT_UPDATE_URL,
+    artifact_url: str | None = None,
 ) -> BootstrapRelease:
     """Build and verify ``library.json`` plus the deterministic pattern ZIP."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -116,6 +121,7 @@ def build_bootstrap_release(
     ]
     roots = vocabulary_roots(bindings)
     archive_bytes = archive_path.read_bytes()
+    artifact_url = artifact_url or DEFAULT_ARTIFACT_URL.format(version=version)
     manifest_data = {
         "manifest_schema": 1,
         "name": "bootstrap",
@@ -123,7 +129,10 @@ def build_bootstrap_release(
         "update_url": update_url,
         "patterns": {
             "format": "sema-patterns-zip-v1",
-            "url": archive_path.name,
+            # GitHub serves release assets through a CDN redirect. A relative URL
+            # would resolve against that final CDN URL rather than this release,
+            # so the public manifest always carries the version-pinned absolute URL.
+            "url": artifact_url,
             "sha256": hashlib.sha256(archive_bytes).hexdigest(),
             "size_bytes": len(archive_bytes),
         },

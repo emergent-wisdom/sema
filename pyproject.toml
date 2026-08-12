@@ -92,8 +92,8 @@ include = [
   "data/presets/",
   ".claude-plugin/",
   "skills/",
-  "README.md",
-  "LICENSE",
+  "/README.md",
+  "/LICENSE",
 ]
 
 [tool.ruff]

@@ -300,7 +300,7 @@ def list_dbs() -> list[dict]:
             continue
         record.update(
             {
-                "active": active == record["path"] or env_db == record["path"],
+                "active": (env_db == record["path"] if env_db else active == record["path"]),
                 "bundled": False,
                 "exists": Path(record["path"]).exists(),
             }

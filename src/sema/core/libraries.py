@@ -18,6 +18,7 @@ import stat
 import tempfile
 import uuid
 import zipfile
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
 from urllib.parse import unquote, urljoin, urlparse
@@ -59,6 +60,9 @@ _SHA256_RE = re.compile(r"[0-9a-f]{64}")
 _LIBRARY_NAME_RE = re.compile(r"[a-z][a-z0-9-]{0,63}")
 _VERSION_RE = re.compile(r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)")
 _HANDLE_RE = re.compile(r"[A-Z][A-Za-z0-9]+")
+_GITHUB_REPOSITORY_RE = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")
+_ARCHIVE_FILENAME_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*\.zip", re.IGNORECASE)
+_FIXED_ZIP_TIME = (1980, 1, 1, 0, 0, 0)
 
 
 class LibraryError(RuntimeError):
@@ -135,6 +139,17 @@ class VerifiedLibrary:
         self.patterns = patterns
         self.order = order
         self.roots = roots
+
+
+@dataclass(frozen=True)
+class LibraryPackage:
+    """A locally verified, upload-ready portable library release."""
+
+    manifest_path: Path
+    archive_path: Path
+    semantic_root: str
+    catalog_root: str
+    pattern_count: int
 
 
 def library_data_dir(override: str | Path | None = None) -> Path:
@@ -294,23 +309,30 @@ def _load_manifest(
     requested_url = _source_url(source)
     _validate_source_url(requested_url)
     raw, final_url = _fetch_bytes(requested_url, max_bytes=MAX_MANIFEST_BYTES, client=client)
-    try:
-        manifest = LibraryManifest.model_validate(_strict_json(raw, label="library manifest"))
-    except ValidationError as exc:
-        raise LibraryError(f"Invalid library manifest: {exc}") from exc
+    manifest = _parse_manifest(raw)
 
     manifest_scheme = urlparse(final_url).scheme
-    if manifest.roots.semantic.scheme != SEMANTIC_ROOT_SCHEME:
-        raise LibraryError(f"Unsupported semantic root scheme: {manifest.roots.semantic.scheme}")
-    if manifest.roots.catalog.scheme != CATALOG_ROOT_SCHEME:
-        raise LibraryError(f"Unsupported catalog root scheme: {manifest.roots.catalog.scheme}")
-
     for candidate in (
         _source_url(manifest.patterns.url, base=final_url),
         _source_url(manifest.update_url, base=final_url),
     ):
         _validate_source_url(candidate, manifest_scheme=manifest_scheme)
     return manifest, raw, requested_url, final_url
+
+
+def _parse_manifest(raw: bytes) -> LibraryManifest:
+    """Parse and validate strict manifest bytes without fetching any artifacts."""
+    if len(raw) > MAX_MANIFEST_BYTES:
+        raise LibraryError(f"Library manifest exceeds the {MAX_MANIFEST_BYTES}-byte limit")
+    try:
+        manifest = LibraryManifest.model_validate(_strict_json(raw, label="library manifest"))
+    except ValidationError as exc:
+        raise LibraryError(f"Invalid library manifest: {exc}") from exc
+    if manifest.roots.semantic.scheme != SEMANTIC_ROOT_SCHEME:
+        raise LibraryError(f"Unsupported semantic root scheme: {manifest.roots.semantic.scheme}")
+    if manifest.roots.catalog.scheme != CATALOG_ROOT_SCHEME:
+        raise LibraryError(f"Unsupported catalog root scheme: {manifest.roots.catalog.scheme}")
+    return manifest
 
 
 def _is_unsafe_zip_name(name: str) -> bool:
@@ -783,6 +805,244 @@ def _manifest_for_verified(verified: VerifiedLibrary) -> LibraryManifest:
                 scheme=CATALOG_ROOT_SCHEME, sha256=verified.roots["catalog_root"]
             ),
         ),
+        pattern_count=len(verified.patterns),
+    )
+
+
+def github_release_urls(repository: str, name: str, version: str) -> tuple[str, str]:
+    """Return the stable manifest and version-pinned artifact URLs for a GitHub release."""
+    repository = repository.strip().strip("/")
+    if not _GITHUB_REPOSITORY_RE.fullmatch(repository):
+        raise LibraryError("GitHub repository must use OWNER/REPOSITORY form")
+    if any(part in {".", ".."} for part in repository.split("/")):
+        raise LibraryError("GitHub repository contains an unsafe path segment")
+    if not _LIBRARY_NAME_RE.fullmatch(name):
+        raise LibraryError("Library name must be a lowercase path-safe slug, such as 'defi'")
+    if not _VERSION_RE.fullmatch(version):
+        raise LibraryError("Library version must use MAJOR.MINOR.PATCH, such as '1.0.0'")
+
+    archive_name = f"{name}-patterns-{version}.zip"
+    base = f"https://github.com/{repository}/releases"
+    return (
+        f"{base}/latest/download/library.json",
+        f"{base}/download/v{version}/{archive_name}",
+    )
+
+
+def _publication_archive_name(update_url: str, artifact_url: str) -> str:
+    """Validate publication URLs and return the artifact's local filename."""
+    parsed_update = urlparse(update_url)
+    if parsed_update.scheme != "https" or not parsed_update.hostname:
+        raise LibraryError("Publication update URL must be an absolute HTTPS URL")
+    _validate_source_url(update_url)
+    parsed_artifact = urlparse(artifact_url)
+    if parsed_artifact.scheme != "https" or not parsed_artifact.hostname:
+        raise LibraryError("Publication artifact URL must be an absolute HTTPS URL")
+    _validate_source_url(artifact_url, manifest_scheme=parsed_update.scheme)
+    archive_name = Path(unquote(parsed_artifact.path)).name
+    if not _ARCHIVE_FILENAME_RE.fullmatch(archive_name):
+        raise LibraryError(
+            "Pattern artifact URL must end in a path-safe .zip filename, "
+            "such as 'defi-patterns-1.0.0.zip'"
+        )
+    return archive_name
+
+
+def _release_json_bytes(value: dict[str, Any]) -> bytes:
+    """Serialize portable release JSON deterministically."""
+    return (json.dumps(value, indent=2, ensure_ascii=False, sort_keys=True) + "\n").encode("utf-8")
+
+
+def _write_pattern_archive(path: Path, pattern_bytes: dict[str, bytes]) -> None:
+    """Write one deterministic, portable ZIP member per pattern."""
+    with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_STORED) as archive:
+        for handle, raw in sorted(pattern_bytes.items()):
+            info = zipfile.ZipInfo(f"patterns/{handle}.json", date_time=_FIXED_ZIP_TIME)
+            info.create_system = 3
+            info.compress_type = zipfile.ZIP_STORED
+            info.external_attr = (stat.S_IFREG | 0o644) << 16
+            archive.writestr(info, raw)
+
+
+def verify_library_package(
+    manifest_path: str | Path,
+    archive_path: str | Path | None = None,
+) -> VerifiedLibrary:
+    """Verify local release files through the same corpus/compiler path as install.
+
+    A publisher normally declares an HTTPS artifact URL that is not live until
+    after upload. ``archive_path`` lets the producer verify those exact local
+    bytes before publication without weakening or rewriting the manifest.
+    """
+    manifest_file = Path(manifest_path).expanduser().resolve()
+    if not manifest_file.is_file():
+        raise LibraryError(f"Library manifest not found: {manifest_file}")
+    manifest = _parse_manifest(manifest_file.read_bytes())
+    _publication_archive_name(manifest.update_url, manifest.patterns.url)
+
+    if archive_path is None:
+        declared = _source_url(manifest.patterns.url, base=manifest_file.as_uri())
+        if urlparse(declared).scheme != "file":
+            raise LibraryError("archive_path is required when the manifest declares a remote URL")
+        archive_file = _file_path_from_url(declared)
+    else:
+        archive_file = Path(archive_path).expanduser().resolve()
+    if not archive_file.is_file():
+        raise LibraryError(f"Pattern artifact not found: {archive_file}")
+
+    size = archive_file.stat().st_size
+    if size > MAX_ARCHIVE_BYTES:
+        raise LibraryError(f"Pattern artifact exceeds the {MAX_ARCHIVE_BYTES}-byte limit")
+    if size != manifest.patterns.size_bytes:
+        raise LibraryError(
+            f"Pattern artifact size mismatch: expected {manifest.patterns.size_bytes}, got {size}"
+        )
+    digest = hashlib.sha256(archive_file.read_bytes()).hexdigest()
+    if digest != manifest.patterns.sha256:
+        raise LibraryError(
+            f"Pattern artifact SHA-256 mismatch: expected {manifest.patterns.sha256}, got {digest}"
+        )
+
+    with tempfile.TemporaryDirectory(prefix="sema-verify-package-") as temporary:
+        root = Path(temporary)
+        pattern_dir = root / "patterns"
+        paths = _extract_patterns(archive_file, pattern_dir, manifest.pattern_count)
+        source_bytes = {path.name: path.read_bytes() for path in paths}
+        patterns = _load_pattern_files(paths)
+        verified = verify_library_patterns(patterns, manifest)
+        database = root / "taxonomy.db"
+        build_library_database(verified, database)
+        verify_library_database(database, verified, manifest)
+        for path in paths:
+            if path.read_bytes() != source_bytes[path.name]:
+                raise LibraryError(f"Compiler modified canonical source file {path.name}")
+    return verified
+
+
+def package_library(
+    source_db: str | Path,
+    output_dir: str | Path,
+    *,
+    name: str,
+    version: str,
+    update_url: str,
+    artifact_url: str,
+) -> LibraryPackage:
+    """Export a project DB as a deterministic, locally verified library release."""
+    source = Path(source_db).expanduser().resolve()
+    if not source.is_file():
+        raise LibraryError(f"Source database not found: {source}")
+    archive_name = _publication_archive_name(update_url, artifact_url)
+    patterns = _database_patterns(source)
+    if not patterns:
+        raise LibraryError("Cannot package an empty vocabulary")
+
+    pattern_bytes = {
+        handle: _release_json_bytes(pattern) for handle, pattern in sorted(patterns.items())
+    }
+    try:
+        bindings = [
+            (
+                handle,
+                pattern_hash_from_sema_id(pattern["sema_id"], expected_handle=handle),
+            )
+            for handle, pattern in sorted(patterns.items())
+        ]
+    except (KeyError, TypeError, ValueError) as exc:
+        raise LibraryError(f"Source database contains an invalid pattern identity: {exc}") from exc
+    roots = vocabulary_roots(bindings)
+
+    destination = Path(output_dir).expanduser().resolve()
+    if destination.exists():
+        raise LibraryError(f"Refusing to overwrite existing output directory: {destination}")
+    try:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise LibraryError(f"Could not create output parent {destination.parent}: {exc}") from exc
+
+    lock_path = destination.parent / f".{destination.name}.sema-package.lock"
+    try:
+        lock_path.mkdir()
+    except FileExistsError as exc:
+        raise LibraryError(
+            f"Another package operation is using {destination}, or a stale lock remains at "
+            f"{lock_path}"
+        ) from exc
+    except OSError as exc:
+        raise LibraryError(f"Could not reserve output directory {destination}: {exc}") from exc
+
+    final_manifest = destination / "library.json"
+    final_archive = destination / archive_name
+    staging: Path | None = None
+    try:
+        # Recheck after taking the reservation so concurrent package commands
+        # cannot both proceed from the same initial absence check.
+        if destination.exists():
+            raise LibraryError(f"Refusing to overwrite existing output directory: {destination}")
+        staging = Path(
+            tempfile.mkdtemp(
+                prefix=f".{destination.name}.sema-package-",
+                dir=destination.parent,
+            )
+        )
+        staged_archive = staging / archive_name
+        _write_pattern_archive(staged_archive, pattern_bytes)
+        archive_bytes = staged_archive.read_bytes()
+        manifest_data = {
+            "manifest_schema": MANIFEST_SCHEMA,
+            "name": name,
+            "version": version,
+            "update_url": update_url,
+            "patterns": {
+                "format": PATTERN_ARCHIVE_FORMAT,
+                "url": artifact_url,
+                "sha256": hashlib.sha256(archive_bytes).hexdigest(),
+                "size_bytes": len(archive_bytes),
+            },
+            "roots": {
+                "semantic": {
+                    "scheme": SEMANTIC_ROOT_SCHEME,
+                    "sha256": roots["semantic_root"],
+                },
+                "catalog": {
+                    "scheme": CATALOG_ROOT_SCHEME,
+                    "sha256": roots["catalog_root"],
+                },
+            },
+            "pattern_count": len(patterns),
+        }
+        staged_manifest = staging / "library.json"
+        staged_manifest.write_bytes(_release_json_bytes(manifest_data))
+
+        # This re-reads the ZIP, recomputes identities/roots, compiles a fresh
+        # SQLite read model, and verifies that model exactly as installation does.
+        verified = verify_library_package(staged_manifest, staged_archive)
+        try:
+            # The complete directory becomes visible in one same-filesystem
+            # rename, so readers never observe a mismatched manifest/ZIP pair.
+            os.rename(staging, destination)
+        except OSError as exc:
+            raise LibraryError(
+                f"Could not finalize package directory {destination}: {exc}"
+            ) from exc
+        staging = None
+    finally:
+        if staging is not None:
+            shutil.rmtree(staging, ignore_errors=True)
+        try:
+            lock_path.rmdir()
+        except FileNotFoundError:
+            pass
+        except OSError:
+            # A stale reservation is safer than allowing a concurrent writer to
+            # interleave another release with an uncertain finalization state.
+            pass
+
+    return LibraryPackage(
+        manifest_path=final_manifest,
+        archive_path=final_archive,
+        semantic_root=verified.roots["semantic_root"],
+        catalog_root=verified.roots["catalog_root"],
         pattern_count=len(verified.patterns),
     )
 
