@@ -1,0 +1,192 @@
+% emergentwisdom-preprint.sty --- compact, arXiv-oriented Emergent Wisdom papers.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{emergentwisdom-preprint}[2026/08/14 v1.0 Emergent Wisdom compact preprint]
+
+\newif\ifew@longtitle
+\ew@longtitlefalse
+\DeclareOption{longtitle}{\ew@longtitletrue}
+\ProcessOptions\relax
+
+% Conventional preprint typography: Times-like text, Helvetica sans, and
+% Computer Modern mathematics/monospace.
+\RequirePackage[T1]{fontenc}
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{phv}
+
+\RequirePackage[letterpaper]{geometry}
+\AtBeginDocument{%
+  \newgeometry{%
+    textheight=9in,
+    textwidth=6.5in,
+    top=1in,
+    headheight=14pt,
+    headsep=25pt,
+    footskip=30pt
+  }%
+  \@ifpackageloaded{hyperref}{\hypersetup{hidelinks}}{}%
+}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+\sloppy
+
+\providecommand{\headeright}{A Preprint}
+\providecommand{\undertitle}{A Preprint}
+\providecommand{\shorttitle}{\@title}
+
+\RequirePackage{fancyhdr}
+\fancyhf{}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyheadoffset{0pt}
+\rhead{\scshape\footnotesize \headeright}
+\chead{\shorttitle}
+\cfoot{\thepage}
+
+\newcommand{\ewpublicationdate}[1]{\date{#1}}
+\newcommand{\ewreviseddates}[2]{\date{#1\\\small Revised: #2}}
+\newcommand{\ewrevisedtoday}[1]{\date{#1\\\small Revised: \today}}
+
+% Visible keywords are part of the compact profile.
+\def\keywordname{{\bfseries\emph{Keywords}}}%
+\def\keywords#1{\par\addvspace\medskipamount{\rightskip=0pt plus1cm
+\def\and{\ifhmode\unskip\nobreak\fi\ $\cdot$\ }
+\noindent\keywordname\enspace\ignorespaces#1\par}}
+
+% Compact 10/11 body typography.
+\renewcommand{\normalsize}{%
+  \@setfontsize\normalsize\@xpt\@xipt
+  \abovedisplayskip      7\p@ \@plus 2\p@ \@minus 5\p@
+  \abovedisplayshortskip \z@ \@plus 3\p@
+  \belowdisplayskip      \abovedisplayskip
+  \belowdisplayshortskip 4\p@ \@plus 3\p@ \@minus 3\p@
+}
+\normalsize
+\renewcommand{\small}{%
+  \@setfontsize\small\@ixpt\@xpt
+  \abovedisplayskip      6\p@ \@plus 1.5\p@ \@minus 4\p@
+  \abovedisplayshortskip \z@ \@plus 2\p@
+  \belowdisplayskip      \abovedisplayskip
+  \belowdisplayshortskip 3\p@ \@plus 2\p@ \@minus 2\p@
+}
+\renewcommand{\footnotesize}{\@setfontsize\footnotesize\@ixpt\@xpt}
+\renewcommand{\scriptsize}{\@setfontsize\scriptsize\@viipt\@viiipt}
+\renewcommand{\tiny}{\@setfontsize\tiny\@vipt\@viipt}
+\renewcommand{\large}{\@setfontsize\large\@xiipt{14}}
+\renewcommand{\Large}{\@setfontsize\Large\@xivpt{16}}
+\renewcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{20}}
+\renewcommand{\huge}{\@setfontsize\huge\@xxpt{23}}
+\renewcommand{\Huge}{\@setfontsize\Huge\@xxvpt{28}}
+
+% Compact section hierarchy.
+\renewcommand{\section}{%
+  \@startsection{section}{1}{\z@}%
+                {-2.0ex \@plus -0.5ex \@minus -0.2ex}%
+                {1.5ex \@plus 0.3ex \@minus 0.2ex}%
+                {\large\bfseries\raggedright}%
+}
+\renewcommand{\subsection}{%
+  \@startsection{subsection}{2}{\z@}%
+                {-1.8ex \@plus -0.5ex \@minus -0.2ex}%
+                {0.8ex \@plus 0.2ex}%
+                {\normalsize\bfseries\raggedright}%
+}
+\renewcommand{\subsubsection}{%
+  \@startsection{subsubsection}{3}{\z@}%
+                {-1.5ex \@plus -0.5ex \@minus -0.2ex}%
+                {0.5ex \@plus 0.2ex}%
+                {\normalsize\bfseries\raggedright}%
+}
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{\z@}%
+                {1.5ex \@plus 0.5ex \@minus 0.2ex}%
+                {-1em}%
+                {\normalsize\bfseries}%
+}
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{\z@}%
+                {1.5ex \@plus 0.5ex \@minus 0.2ex}%
+                {-1em}%
+                {\normalsize\bfseries}%
+}
+
+% Float and caption placement.
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.4}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
+\newlength{\ew@abovecaptionskip}
+\newlength{\ew@belowcaptionskip}
+\setlength{\ew@abovecaptionskip}{7\p@}
+\setlength{\ew@belowcaptionskip}{\z@}
+\setlength{\abovecaptionskip}{\ew@abovecaptionskip}
+\setlength{\belowcaptionskip}{\ew@belowcaptionskip}
+
+\renewenvironment{table}
+  {\setlength{\abovecaptionskip}{\ew@belowcaptionskip}%
+   \setlength{\belowcaptionskip}{\ew@abovecaptionskip}%
+   \@float{table}}
+  {\end@float}
+
+% Footnotes, paragraphs, and lists.
+\setlength{\footnotesep}{6.65\p@}
+\setlength{\skip\footins}{9\p@ \@plus 4\p@ \@minus 2\p@}
+\renewcommand{\footnoterule}{\kern-3\p@ \hrule width 12pc \kern 2.6\p@}
+\setcounter{footnote}{0}
+\setlength{\parindent}{\z@}
+\setlength{\parskip}{5.5\p@}
+\setlength{\topsep}{4\p@ \@plus 1\p@ \@minus 2\p@}
+\setlength{\partopsep}{1\p@ \@plus 0.5\p@ \@minus 0.5\p@}
+\setlength{\itemsep}{2\p@ \@plus 1\p@ \@minus 0.5\p@}
+\setlength{\parsep}{2\p@ \@plus 1\p@ \@minus 0.5\p@}
+
+% The title is always one typographic level. The longtitle option reduces the
+% whole title uniformly so the editorial two-row maximum can be respected.
+\newcommand{\ew@titlefont}{\ifew@longtitle\Large\else\LARGE\fi}
+\newcommand{\ew@toptitlebar}{%
+  \hrule height 2\p@
+  \vskip 0.25in
+  \vskip -\parskip
+}
+\newcommand{\ew@bottomtitlebar}{%
+  \vskip 0.29in
+  \vskip -\parskip
+  \hrule height 2\p@
+  \vskip 0.09in
+}
+
+\renewcommand{\maketitle}{%
+  \par
+  \begingroup
+    \renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+    \long\def\@makefntext##1{%
+      \parindent 1em\noindent
+      \hbox to 1.8em{\hss $\m@th ^{\@thefnmark}$}##1}%
+    \thispagestyle{empty}%
+    \vbox{%
+      \hsize\textwidth
+      \linewidth\hsize
+      \vskip 0.1in
+      \ew@toptitlebar
+      \centering
+      {\ew@titlefont\scshape \@title\par}%
+      \ew@bottomtitlebar
+      \textsc{\undertitle}\\
+      \vskip 0.1in
+      \begin{tabular}[t]{c}\bfseries\rule{\z@}{24\p@}\@author\end{tabular}\par
+      \vskip 0.4in \@minus 0.1in
+      {\centering\@date\par}
+      \vskip 0.2in
+    }%
+    \@thanks
+  \endgroup
+  \let\maketitle\relax
+  \let\thanks\relax
+}
+
+\renewenvironment{abstract}
+  {\centerline{\large\bfseries\scshape Abstract}\begin{quote}}
+  {\end{quote}}
+
+\endinput

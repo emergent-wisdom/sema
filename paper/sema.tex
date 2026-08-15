@@ -2,8 +2,6 @@
 
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{booktabs}
@@ -14,12 +12,19 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{arxiv}
+\usepackage{emergentwisdom-preprint}
 \usepackage{microtype}  % Improved typography
 \usepackage{tikz}       % For diagrams
 \usepackage{needspace}  % Keep generated taxonomy headings with their first item
 \usepackage{placeins}   % Keep explanatory text behind its associated floats
 \usepackage{hyperref}   % Load last so float and section anchors use their final definitions
+\hypersetup{
+  hidelinks,
+  pdftitle={Sema: When the Hash Is the Word},
+  pdfauthor={Henrik Westerberg},
+  pdfsubject={Content-addressed semantics for verifiable multi-agent coordination},
+  pdfkeywords={content-addressed semantics, multi-agent systems, verifiable references, semantic coordination, Merkle commitments, agent vocabularies, pattern cards}
+}
 \usetikzlibrary{positioning, shapes, arrows.meta, calc, shadows}
 
 \newtheorem{proposition}{Proposition}
@@ -55,8 +60,9 @@
 \newcommand{\vocab}{\mathcal{V}}
 
 \title{Sema: When the Hash Is the Word}
+\renewcommand{\shorttitle}{Sema: When the Hash Is the Word}
 \author{Henrik Westerberg\\Emergent Wisdom\\\texttt{henrik.westerberg@emergentwisdom.org}}
-\date{April 7, 2026\\\small Revised August 11, 2026}
+\ewrevisedtoday{April 7, 2026}
 
 \begin{document}
 
@@ -65,10 +71,12 @@
 \begin{abstract}
 Autonomous agents often reason and coordinate through labels that do not reveal which external information they denote. We present Sema, a content-addressed reference system for reasoning and communication that creates what we call \emph{verifiable words}: participants encode and hash information under an agreed representation, then reuse the resulting content address as a term, optionally paired with a human-readable handle. Sema is designed to be extensible across representations: any representation can be used as long as participants agree on how content is encoded, hashed, resolved, and decoded. This paper develops one concrete realization based on canonicalized JSON-compatible objects, field-level Merkle commitments, explicit identity rules, and content-addressed references. Full-reference verification establishes identity of the resolved hashed content, while semantic equivalence, correctness, and compliance remain separate questions.
 
-Using this realization, Pattern Cards provide one concrete schema for formalizing deliberate, System~2-style thinking. They express reasoning moves that models often skip as explicit, checkable contracts covering mechanisms, conditions, invariants, typed dependencies, and failure modes. The same content-addressed definitions support coordination: agents can verify that they are working from the same resolved definitions; when enforced in strict mode, the handshake halts on mismatch.
+As a worked application of the Sema primitive, we introduce Pattern Cards, a concrete schema for expressing deliberate, System~2-style reasoning. They express reasoning moves that models often skip as explicit, checkable contracts covering mechanisms, conditions, invariants, typed dependencies, and failure modes. The same content-addressed definitions support coordination: agents can verify that they are working from the same resolved definitions; when enforced in strict mode, the handshake halts on mismatch.
 
 A bootstrap library of \semaPatternCount~cards demonstrates the design. Its contract fields averaged \semaLibCompRatio~times the tokens of short wire references---a transmission-compression result, not an inference-token saving, because definitions were hydrated before use. Illustrative agent demonstrations examine coordination behavior. The same primitive could support a Living Taxonomy of Thought; its utility, evolution, and governance remain open questions.
 \end{abstract}
+
+\keywords{Content-Addressed Semantics, Multi-Agent Systems, Verifiable References, Semantic Coordination, Merkle Commitments, Agent Vocabularies, Pattern Cards}
 
 %==============================================================================
 \section{Introduction}
@@ -87,6 +95,8 @@ We are entering the era of the \emph{Agent Web}, where autonomous AI systems neg
 
 \item[The Granularity Problem.] A generic report that ``the coordination failed'' provides no diagnostic utility, whereas ``the Lock Invariant in \sema{StateLock}{c9c2} was violated at $t=3.2$s'' isolates the exact failure mode. Human natural language evolved for humans; autonomous systems require a vocabulary layer designed specifically for agents.
 \end{description}
+
+Natural language gives compact names to only a small subset of reusable procedures because each additional term must be learned and remembered. A resolvable agent vocabulary relaxes that constraint: detailed definitions can be expanded on demand, allowing recurring procedures to become precise, composable terms.
 
 Sema\footnote{The name ``Sema'' (Greek \textit{s\={e}ma}, ``sign'') was chosen in December 2025. An unrelated system also named SEMA~\cite{feng2026sema}, addressing multi-turn jailbreak attacks on LLMs, appeared at ICLR 2026. The two systems share only the acronym and operate at different layers (definition-identity verification vs.\ attack methodology).} is a communication primitive: hash information under an agreed representation and carry the resulting content address directly in communication. Its agent-coordination instantiation assumes a low-trust environment where agents may hallucinate, drift, or actively deceive. The accompanying bootstrap library is organized not as a passive ``Library Catalog'' but as a ``Constitution for a Digital City,'' with Pattern Cards such as \sema{LatticeCommit}{488a} and \sema{ReceptivityGate}{5667} specifying integrity mechanisms.
 
@@ -1083,8 +1093,9 @@ Sema holds no authority over what information may be addressed or how vocabulari
 \textit{Same verified digest, same hashed content. Different verified digest, halt and clarify.}
 \end{center}
 
-\Needspace{3\baselineskip}
-\noindent The vocabulary, interactive graph, and source code are available at \url{https://semahash.org}.\footnote{Source code: \url{https://github.com/emergent-wisdom/sema}.}
+\section*{Code and Artifact Availability}
+
+The vocabulary and interactive graph are available at \url{https://semahash.org}. Code, paper source, vocabulary data, and release artifacts are available at \url{https://github.com/emergent-wisdom/sema}. The installable package is published at \url{https://pypi.org/project/semahash/}, and its MCP Registry entry is at \url{https://registry.modelcontextprotocol.io/servers/io.github.emergent-wisdom/semahash}. The version series is archived at \href{https://doi.org/10.5281/zenodo.19548971}{doi:10.5281/zenodo.19548971}.
 
 %==============================================================================
 \appendix
