@@ -10,6 +10,12 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Fixed
+
+- MCP now advertises the conditionally exposed write tools under their documented
+  public names, `sema_mint` and `sema_pull`, instead of underscore-prefixed
+  implementation names that clients could not call.
+
 ## [0.5.0] - 2026-08-12
 
 457 -> 457 patterns. Aggregate roots: semantic set
