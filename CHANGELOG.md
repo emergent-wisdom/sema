@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.1] - 2026-08-20
+
 ### Fixed
 
 - MCP now advertises the conditionally exposed write tools under their documented
