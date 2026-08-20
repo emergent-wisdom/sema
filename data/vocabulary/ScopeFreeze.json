@@ -36,25 +36,27 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:ScopeFreeze#mh:SHA-256:d8c15a8a91ccbfcdb54d00cb1c4a386969867716b402ae638e5822742cd1d2d4"
+      "sema:ScopeFreeze#mh:SHA-256:d8c15a8a91ccbfcdb54d00cb1c4a386969867716b402ae638e5822742cd1d2d4",
+      "sema:ScopeFreeze#mh:SHA-256:939dd7b6c88e74dc272db73678bb54612061126969e3a08a960c45189b1a7cfd",
+      "sema:ScopeFreeze#mh:SHA-256:a5fba4646fccc10c48b48fd440def9dc483ddd9c143d2468181c1063103ca707"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:ScopeFreeze#mh:SHA-256:939dd7b6c88e74dc272db73678bb54612061126969e3a08a960c45189b1a7cfd",
-  "sema_ref": "ScopeFreeze#939d",
-  "sema_stub": "939d",
+  "sema_id": "sema:ScopeFreeze#mh:SHA-256:548e48a88048b5383250dbf480e0b52ed61ed9cc2fd947d89fac68edc9737d21",
+  "sema_ref": "ScopeFreeze#548e",
+  "sema_stub": "548e",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
-      "satisfice": "sema:Satisfice#mh:SHA-256:ac34d966be2982e055c21bdd09f05f7f341c21f6d4f1f3966b11f443abf2af40",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
-      "timebox_think": "sema:TimeboxThink#mh:SHA-256:1f05e3beff8f73831abe43998f43256a75d0fda80217e7d78afec6a857e5f8ab",
-      "transition": "sema:Transition#mh:SHA-256:a7b4277599c68a617b43f1d0c52d807837717913731aec1463caccdcd568cfe3"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "satisfice": "sema:Satisfice#mh:SHA-256:29ce1b5967705cc8c613f750d35c2481d311a1c9308c1959cfd812635e2faf0e",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
+      "timebox_think": "sema:TimeboxThink#mh:SHA-256:20182c7afcb60ec0d13507de50123012afb9c590297d0e3b650ccfcdd58bfaf3",
+      "transition": "sema:Transition#mh:SHA-256:9b62398c6edcd43ad2af8ec1df8186ece2b4f697772b3872227f4d9d8390e328"
     }
   },
   "sema_layer": "Mind",

@@ -43,21 +43,26 @@
     "caution": "Authorization boundary \u2014 misconfigured grants enable unauthorized action.",
     "supersedes": [
       "sema:Permission#mh:SHA-256:7f7d69e56a0b6bd65577a7fd6e8602f5bb694a647b3493a55823de851a32676f",
-      "sema:Permission#mh:SHA-256:4ee0362513125ffdfa6589c4848eb078ac9906acf26057520e000fc070c8cf6d"
+      "sema:Permission#mh:SHA-256:4ee0362513125ffdfa6589c4848eb078ac9906acf26057520e000fc070c8cf6d",
+      "sema:Permission#mh:SHA-256:f3470b4ff692d65cb74a12a52b69caffdf008e55e1ef0062a9927c6b72877005",
+      "sema:Permission#mh:SHA-256:9c2fc31f5e31473c03834463095e4390750f7fda11f5a1aed2502f855a65dbcf"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_ref": "Permission#f347",
-  "sema_id": "sema:Permission#mh:SHA-256:f3470b4ff692d65cb74a12a52b69caffdf008e55e1ef0062a9927c6b72877005",
-  "sema_stub": "f347",
+  "sema_ref": "Permission#dd1d",
+  "sema_id": "sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23",
+  "sema_stub": "dd1d",
+  "invariants": [
+    "Authorises only what it names: the {{agent}}, and the {{act}} or {{artifact}} identified."
+  ],
   "dependencies": {
     "references": {
-      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     }
   },
   "sema_layer": "Infrastructure",

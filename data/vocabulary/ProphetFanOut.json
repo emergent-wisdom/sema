@@ -1,41 +1,39 @@
 {
   "handle": "ProphetFanOut",
-  "mechanism": "A purely descriptive module that utilizes computational abundance to generate multiple branching future timelines resulting from a proposed action. Unlike standard {{chain}}-of-Thought which follows one likely path (mimicking human laziness), the Prophet forces exploration of low-probability but high-impact tails. It feeds into {{quorum}} by generating the diverse timeline candidates required for the {{aggregate}}.",
-  "gloss": "High-fanout causal simulation",
+  "mechanism": "Given a contemplated action, its starting context, and a declared breadth or stopping rule, branch on alternative assumptions, events, or responses to generate multiple future scenarios. Record each branch's assumptions and causal path. Return the scenario set without explicit value judgment, desirability ranking, recommendation, or aggregation; those operations are downstream.",
+  "gloss": "Branching future-scenario generation",
   "failure_modes": [
-    "Fan-out explosion (generating too many irrelevant futures)."
+    "Fan-out Explosion: The breadth or stopping rule admits more branches than available resources can examine.",
+    "False Diversity: Scenarios differ only in wording or surface detail while preserving the same causal path."
   ],
   "invariants": [
-    "Descriptive Only: Output must contain zero normative judgment",
-    "Diversity: Entropy(Timelines) > Threshold (Must explore distinct futures)"
+    "Descriptive Separation: Scenarios record possible states and causal paths without explicit value judgment, desirability ranking, or action recommendation.",
+    "Causal Traceability: Each scenario records the starting context, branch assumptions, and causal path from the contemplated action to its resulting states.",
+    "Branch Distinction: Every scenario differs from every other in at least one recorded causal assumption, event, or transition.",
+    "Bounded Generation: Generation obeys the declared breadth or stopping rule."
   ],
   "preconditions": [
-    "Action A is well-defined"
+    "A contemplated action, starting context, and breadth or stopping rule are declared."
   ],
   "postconditions": [
-    "At least 3 distinct futures generated"
+    "Either two or more causally distinct future scenarios are returned with branch assumptions and paths, or an explicit result records why no second causally distinct branch was found under the declared rule."
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa"
+      "sema:ProphetFanOut#mh:SHA-256:2d8110366b23afc261111d62bb567f6b88fc45f1019b9ba96b249ded6f6232fa",
+      "sema:ProphetFanOut#mh:SHA-256:54eeea3c9e18631b46237c2d099934261af0b849d52d9d7cdc9ca7938bf9afdf",
+      "sema:ProphetFanOut#mh:SHA-256:d47b1a26c9627e3a31433c130549fcbc96ac37bca1bd17536a15230f94dd5095"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:ProphetFanOut#mh:SHA-256:b0f338cae3235461586e3303452b74e696b33b77e971e9a0c34b1b7e3b0292f6",
-  "sema_ref": "ProphetFanOut#b0f3",
-  "sema_stub": "b0f3",
-  "dependencies": {
-    "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
-    }
-  },
+  "sema_id": "sema:ProphetFanOut#mh:SHA-256:8711a210c6c58ed39519c2b470b5dde7b20dc5175dd903764105ba37360776cc",
+  "sema_ref": "ProphetFanOut#8711",
+  "sema_stub": "8711",
   "sema_layer": "Mind",
   "sema_category": "Inference"
 }

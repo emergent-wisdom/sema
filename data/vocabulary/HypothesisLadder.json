@@ -21,24 +21,26 @@
     "ring": 2,
     "supersedes": [
       "sema:HypothesisLadder#mh:SHA-256:e739d24ffb9b7c57bf309404838cdd21a4c39d6aa48b72e6565c98a8767f9fa7",
-      "sema:HypothesisLadder#mh:SHA-256:b8cd4534d34515209818259fc96a079f2813f4673326b4b844d53780a3f5c4e1"
+      "sema:HypothesisLadder#mh:SHA-256:b8cd4534d34515209818259fc96a079f2813f4673326b4b844d53780a3f5c4e1",
+      "sema:HypothesisLadder#mh:SHA-256:5f0c04b152f81423c0ed9daa5433cd2d0be8413c6d5790c4cee54ea54ab488b5",
+      "sema:HypothesisLadder#mh:SHA-256:fac9530cb1134c155f1ef116fd84ee6d4f8b076222be67f7292384efce8e4381"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:HypothesisLadder#mh:SHA-256:5f0c04b152f81423c0ed9daa5433cd2d0be8413c6d5790c4cee54ea54ab488b5",
-  "sema_ref": "HypothesisLadder#5f0c",
-  "sema_stub": "5f0c",
+  "sema_id": "sema:HypothesisLadder#mh:SHA-256:cbd75b0550a7903a8d7a8a24d9b06bbb61b52d52035608ba89617b42330ba9fe",
+  "sema_ref": "HypothesisLadder#cbd7",
+  "sema_stub": "cbd7",
   "dependencies": {
     "composes_with": {
-      "experiment": "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b"
+      "experiment": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748"
     },
     "references": {
-      "abduction": "sema:Abduction#mh:SHA-256:645a69eb0efc448f5d305213a42abac7e1158f9b59825c5f22fbd6e60d6d5841",
-      "bayes_update": "sema:BayesUpdate#mh:SHA-256:3d1ba13d30f25ea87acd410653f8e4477e280d0f5a204cd1eacf96de4013f7db",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71"
+      "abduction": "sema:Abduction#mh:SHA-256:e738d3035534bba0a6b165325ba64818abb897a0f6b9848bc00c7c17ca146921",
+      "bayes_update": "sema:BayesUpdate#mh:SHA-256:11d261e6588f2923517c746a910aa2a60e6f3998852e109ea533d7199ecd4db8",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14"
     }
   },
   "sema_layer": "Mind",

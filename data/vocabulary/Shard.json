@@ -24,10 +24,10 @@
       }
     }
   },
-  "mechanism": "The fundamental primitive of distribution. It deterministically partitions a Resource, {{state}}, or {{vector}} into disjoint subsets (Shards) based on a Key (e.g., ID, Hash, Time). Unlike `Decompose` (which splits complexity), `Shard` splits volume/load.",
+  "mechanism": "The fundamental primitive of distribution. It deterministically partitions a {{resource}}, {{state}}, or {{vector}} into disjoint subsets (Shards) based on a Key (e.g., ID, Hash, Time). Unlike {{decompose}}, which splits complexity, Shard splits volume and load.",
   "gloss": "Deterministic partitioning of state",
   "invariants": [
-    "Conservation: Sum(Shards) == Total.",
+    "{{conservation}}: Sum(Shards) == Total.",
     "Disjointness: Intersection(Shard_A, Shard_B) == Empty.",
     "Determinism: Key K always routes to Shard S."
   ],
@@ -51,15 +51,27 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Shard#mh:SHA-256:328e51de920cace286a054e313321ff188e34a90d9e5dc8fca1eb2df24baded0",
+      "sema:Shard#mh:SHA-256:0c7f0ca5c9169b77bacc5825c072dcb9eef3ff7ceee76a4a2bdbc9ebedaceaa3"
     ]
   },
-  "sema_id": "sema:Shard#mh:SHA-256:328e51de920cace286a054e313321ff188e34a90d9e5dc8fca1eb2df24baded0",
-  "sema_ref": "Shard#328e",
-  "sema_stub": "328e",
+  "sema_id": "sema:Shard#mh:SHA-256:4d41232416e3d414c714e0892e8559c2180899b4c21c25af29984372220f8704",
+  "sema_ref": "Shard#4d41",
+  "sema_stub": "4d41",
+  "failure_modes": [
+    "Hot shard: skewed keys concentrate load on one partition \u2014 a consequence of Determinism.",
+    "Rebinding on resize: changing the partition count invalidates every routing decision taken under the old count.",
+    "Cross-shard operation: spanning shards requires coordination, because Disjointness guarantees no shard holds another's data."
+  ],
   "dependencies": {
     "references": {
+      "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "resource": "sema:Resource#mh:SHA-256:0e5e5e6735fa9ee49f7e623029d977e435625b8ad05b28f83f962683a0ebb19b",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "vector": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
+      "vector": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993"
     }
   },
   "sema_layer": "Infrastructure",

@@ -11,10 +11,10 @@
     "Proxy Failure: Passing the quiz does not guarantee performance on the job."
   ],
   "invariants": [
-    "Ground Truth: Probe result reflects actual state at time of query.",
-    "Repeatability: Same probe on unchanged state returns same result.",
-    "Cost Bound: Probe execution must complete within specified resource limits.",
-    "Non-Destructive: Production state must remain invariant."
+    "Reflects the target's state at the instant of the query, not when the result is read.",
+    "Repeatability: the same probe on unchanged state returns the same result.",
+    "Completes within `timeout_ms`.",
+    "A probe that perturbs its target runs in a {{sandbox}}."
   ],
   "preconditions": [
     "Response timeout defined",
@@ -49,19 +49,20 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa"
+      "sema:Probe#mh:SHA-256:9f2bf351c42ae5107e43cced5947ba813d8c1f7bc9f469a2551cbc0425637dfa",
+      "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Probe#mh:SHA-256:5392242c37d0e87c203a1cfdfd6a4f15e2e8eed3bd8c7a22db63e07ce48939d8",
-  "sema_ref": "Probe#5392",
-  "sema_stub": "5392",
+  "sema_id": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224",
+  "sema_ref": "Probe#2bb8",
+  "sema_stub": "2bb8",
   "dependencies": {
     "references": {
-      "sandbox": "sema:Sandbox#mh:SHA-256:64c9d03cda865610bcc3792d3aa8f6c80c8b347e6ee1f6d7bb01479a0a38231d"
+      "sandbox": "sema:Sandbox#mh:SHA-256:7106e315b4bf7c5bd418fbab5c18e54be940367f77b8bde4756d1cb95beaa16b"
     }
   },
   "sema_layer": "Infrastructure",

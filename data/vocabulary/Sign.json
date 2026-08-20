@@ -1,16 +1,18 @@
 {
   "handle": "Sign",
-  "mechanism": "The {{act}} of attaching a verifiable {{identity}} proof to an {{artifact}}, asserting authorship, approval, or agreement. Unlike a raw {{signal}}, a Sign action creates a non-repudiable link between the entity and the data. Used to validate contracts or authorize actions.",
+  "mechanism": "The {{act}} of attaching a verifiable {{identity}} proof to an {{artifact}}, asserting authorship, approval, or agreement. Unlike a raw {{signal}}, a Sign action creates a link between the entity and the data that a third party can verify without the entity's cooperation. Used to validate contracts or authorize actions.",
   "gloss": "Attest to authorship or agreement",
   "invariants": [
-    "Non-Repudiation: The signer cannot later deny having signed it.",
-    "Integrity: The signature invalidates if the artifact changes."
+    "Binds the signing {{identity}} to the {{artifact}}.",
+    "Verifiable by a third party without the signer's cooperation.",
+    "Invalidates if the {{artifact}} changes."
   ],
   "_meta": {
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba"
+      "sema:Sign#mh:SHA-256:1fb991fd538b93a9e2566b3f2a4c69f67a6b101d0577d911f50a4e194c1dc6ba",
+      "sema:Sign#mh:SHA-256:d89a18b44321e4b9ba9aada7ac698f69ef9f24a2b0d92e0906168554604a301c"
     ],
     "path": [
       "Infrastructure",
@@ -20,19 +22,24 @@
   "signature": [
     "Act(Identity)"
   ],
-  "sema_id": "sema:Sign#mh:SHA-256:d89a18b44321e4b9ba9aada7ac698f69ef9f24a2b0d92e0906168554604a301c",
-  "sema_ref": "Sign#d89a",
-  "sema_stub": "d89a",
+  "sema_id": "sema:Sign#mh:SHA-256:b2020447ec4c2725a139c6117c764cf464643e6e83379e86263267f95e4965ee",
+  "sema_ref": "Sign#b202",
+  "sema_stub": "b202",
+  "failure_modes": [
+    "Legitimate retraction: a signature is permanent, so a signer who changes their mind cannot unsign.",
+    "Brittle integrity: a typo fix invalidates the signature along with the substantive change.",
+    "Legal gap: technical non-repudiation is not legal non-repudiation, which has separate requirements."
+  ],
   "dependencies": {
     "accepts": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     },
     "composes_with": {
-      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d"
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455"
     },
     "references": {
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },
   "sema_layer": "Infrastructure",

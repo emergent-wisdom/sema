@@ -3,8 +3,8 @@
   "mechanism": "An automated binding mechanism where an {{actor}} cryptographically commits to a {{rule_set}}. This creates a self-enforcing constraint where deviation triggers an automatic penalty (defined in the rules) via {{spot_audit}}.",
   "gloss": "Pre-commitment to penalties",
   "invariants": [
-    "Automated Justice: Penalty execution depends solely on cryptographic evidence.",
-    "Immutability: Rules cannot be changed after signing."
+    "Penalty execution requires cryptographic evidence of the deviation.",
+    "Immutability: rules cannot be changed after signing."
   ],
   "_meta": {
     "tier": 2,
@@ -12,25 +12,28 @@
     "caution": "Automated penalties \u2014 misconfigured rules cause cascading harm.",
     "supersedes": [
       "sema:OathBind#mh:SHA-256:fc9cec2803eb8062d0f7ea99212c62c8a19bb3455b7dd176a7df8c0a78c80036",
-      "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509"
+      "sema:OathBind#mh:SHA-256:d4e580b1ff7ae2fdb55c4b99a970de1d506e5ec515d29c1d33a3d565e10b6509",
+      "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e",
+      "sema:OathBind#mh:SHA-256:7bc93d8ea77a477a8b124b671425a99ee2d7fccebe7bad87f5397e3ba5af888c"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_ref": "OathBind#e5ab",
-  "sema_id": "sema:OathBind#mh:SHA-256:e5ab61d18a73e5037f5a412f2d99de3e870ee0b28195c6154741a9e620926b0e",
-  "sema_stub": "e5ab",
+  "sema_ref": "OathBind#a573",
+  "sema_id": "sema:OathBind#mh:SHA-256:a573c2d71a61bdce661f5df9bcc53f862866d98448682d87f69a687e1a496f5d",
+  "sema_stub": "a573",
   "failure_modes": [
     "Penalty severity decoupled from deviation severity.",
-    "Rule set ambiguity triggers unintended penalty."
+    "{{rule_set}} ambiguity triggers an unintended penalty.",
+    "No path to contest: evidence is sound and the rule it proves a breach of was misconfigured, so an automated penalty executes correctly and wrongly."
   ],
   "dependencies": {
     "references": {
-      "actor": "sema:Actor#mh:SHA-256:1ecd855bdf9fc33f99840af8b53729d917355fb151d36ff21947885fac5c5907",
-      "rule_set": "sema:RuleSet#mh:SHA-256:29462fee548f58cad67908506e4d68676b5a73ab4a60ca36e0cd71cd01412563",
-      "spot_audit": "sema:SpotAudit#mh:SHA-256:c00cb4b5955cf4cefc126978f1c4f06d5f1a9b505ff0b92f50af1b047b82c3dc"
+      "actor": "sema:Actor#mh:SHA-256:86fc0930b97ffb4fe85d4820af8e17a43166b745d181895f576edf39edde6aa8",
+      "rule_set": "sema:RuleSet#mh:SHA-256:7ebf36ad0634307d189aa0545d3424f0d0783bf2a0df04dfafdecf64e0cc9146",
+      "spot_audit": "sema:SpotAudit#mh:SHA-256:d3a9df6a57f06278d581310ad3f0cb57941311ced0fb7360a5041e9093231b8a"
     }
   },
   "sema_layer": "Infrastructure",

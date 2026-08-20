@@ -34,23 +34,26 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff"
+      "sema:TieredAccess#mh:SHA-256:2a28f25bd2e1e991a4c9250d85a478f2b16bf57a9191dbb61c944a29b14559ff",
+      "sema:TieredAccess#mh:SHA-256:f3f651c9ef144f5a78f1ba4539ff8af7d1b70c625ef9cc119cf31e8f7e5340dd",
+      "sema:TieredAccess#mh:SHA-256:805cff9b1016fb2e59af973679a456842d0d764359ffa1c0bc708e7633218334",
+      "sema:TieredAccess#mh:SHA-256:c826df24049123ff8ab6e64130fd19b23bc56afb1efd386abe61eb28ba094606"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:TieredAccess#mh:SHA-256:f3f651c9ef144f5a78f1ba4539ff8af7d1b70c625ef9cc119cf31e8f7e5340dd",
-  "sema_ref": "TieredAccess#f3f6",
-  "sema_stub": "f3f6",
+  "sema_id": "sema:TieredAccess#mh:SHA-256:48871e4baf0a2f4a54892bf6c25765ca648696f391f569b02afaefb8b4af9a5b",
+  "sema_ref": "TieredAccess#4887",
+  "sema_stub": "4887",
   "dependencies": {
     "composes_with": {
-      "bearer_token": "sema:BearerToken#mh:SHA-256:a682c6c4c3503f4180e0eed88045b7d58d15d4fc5e5dfe6456e65768bf4d0aad"
+      "bearer_token": "sema:BearerToken#mh:SHA-256:190a706b87eb5e59dea9d23a06f8f13f45081dec847572be38dfb398cf201112"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "identity": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093"
     }
   },
   "sema_layer": "Society",

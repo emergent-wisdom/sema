@@ -1,6 +1,6 @@
 {
   "handle": "CollaborativeWritingProtocol",
-  "mechanism": "The paper's \u00a76.1 protocol for producing textual (or any structured) output that must meet a quality standard. Decomposes the concept of quality-constrained production into five orthogonal dimensions via {{conceptual_decomposition}}: substance (what material must the artifact contain), structure (how does it organize), generation (produce freely with evaluation elsewhere), evaluation (does it meet the standard across independent quality dimensions), and refinement (surface quality on a structurally complete artifact). Two parallel mechanisms run together: a structural pipeline (ScopeDiscoverySolver \u2192 SequencingCoherenceSolver \u2192 UnitConstraintSolver \u2192 StructuralVerificationSolver \u2192 VoiceRefinementSolver) that separates generation from evaluation, and concurrent ObserverSolvers (RepetitionSolver, ContradictionSolver, IntentSolver, AudienceReceptionSolver) that externalize the silent evaluative thinking a solo writer does with interference. The protocol transfers beyond writing to any domain where something must be produced to a standard (music composition, interface design).",
+  "mechanism": "A protocol for producing textual (or any structured) output that must meet a quality standard. Decomposes the concept of quality-constrained production into five orthogonal dimensions via {{conceptual_decomposition}}: substance (what material must the artifact contain), structure (how does it organize), generation (produce freely with evaluation elsewhere), evaluation (does it meet the standard across independent quality dimensions), and refinement (surface quality on a structurally complete artifact). Two parallel mechanisms run together: a structural pipeline (ScopeDiscoverySolver \u2192 SequencingCoherenceSolver \u2192 UnitConstraintSolver \u2192 StructuralVerificationSolver \u2192 VoiceRefinementSolver) that separates generation from evaluation, and concurrent ObserverSolvers (RepetitionSolver, ContradictionSolver, IntentSolver, AudienceReceptionSolver) that externalize the silent evaluative thinking a solo writer does with interference. The protocol transfers beyond writing to any domain where something must be produced to a standard (music composition, interface design).",
   "gloss": "Decompose quality-constrained production into substance, structure, generation, evaluation, and refinement \u2014 the five orthogonal dimensions a producer must address",
   "invariants": [
     "Dimension-orthogonal: the five sub-concepts pass the four-test decomposition ({{conceptual_decomposition}}); an observer checking repetition does not generate, a generator does not self-censor toward criteria it lacks.",
@@ -13,15 +13,19 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:CollaborativeWritingProtocol#mh:SHA-256:8a1a98d844e31dcb7abdefc974d73d7dab771de960324cf8258684ad60946a6c",
+      "sema:CollaborativeWritingProtocol#mh:SHA-256:4d6ac289b1a80ecb3b5ed9f9f7e9fd737e5cd96eea0bfa55b34300f5c9603498"
     ]
   },
-  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:f5cba7a26166a0a3f048cf7f5a451d3bf3dc48c70549e54598cdea9d5401a564",
-  "sema_ref": "CollaborativeWritingProtocol#f5cb",
-  "sema_stub": "f5cb",
+  "sema_id": "sema:CollaborativeWritingProtocol#mh:SHA-256:1305029e2bf8d4629bf571c1276d50ec0097d4e3707cb209e0ced76d852985c1",
+  "sema_ref": "CollaborativeWritingProtocol#1305",
+  "sema_stub": "1305",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b"
     }
   },
   "sema_layer": "Mind",

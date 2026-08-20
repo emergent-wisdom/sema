@@ -2,19 +2,13 @@
   "handle": "Belief",
   "mechanism": "A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting {{evidence}}. Unlike a Fact, a Belief is subjective and mutable.",
   "gloss": "A subjective claim with confidence and evidence",
-  "parameters": [
-    {
-      "name": "confidence",
-      "type": "Probability",
-      "range": "[0.0, 1.0]",
-      "description": "Subjective probability that this belief is true"
-    }
-  ],
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df"
+      "sema:Belief#mh:SHA-256:5ad9a529582c153a8fcf44db3b2d15f68040049729f13121c484bc8fa9c241df",
+      "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
+      "sema:Belief#mh:SHA-256:675c86db12fcc346e8a95dbf0c49c6a28a7bf81cc65915bdcb695bf291123524"
     ],
     "path": [
       "Infrastructure",
@@ -25,7 +19,8 @@
     "type": "object",
     "required": [
       "proposition",
-      "confidence"
+      "confidence",
+      "supporting_evidence"
     ],
     "properties": {
       "proposition": {
@@ -51,15 +46,19 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
-  "sema_ref": "Belief#7d83",
-  "sema_stub": "7d83",
+  "sema_id": "sema:Belief#mh:SHA-256:e160f5d3c82f6a64902c8619ec411f1c33eb0a4d031aea46bddb0f0776d5f150",
+  "sema_ref": "Belief#e160",
+  "sema_stub": "e160",
+  "invariants": [
+    "Names the {{agent}} holding it; a claim with no holder is an assertion, not a Belief.",
+    "Carries a pointer to its supporting {{evidence}}, or records that it has none."
+  ],
   "dependencies": {
     "accepts": {
-      "evidence": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
+      "evidence": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

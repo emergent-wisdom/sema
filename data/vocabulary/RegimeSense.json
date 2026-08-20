@@ -1,6 +1,6 @@
 {
   "handle": "RegimeSense",
-  "mechanism": "An anomaly detector that continuously tracks divergence between the agent's internal model predictions and observed reality. It calculates a Regime Stability Score (RSS) as the rolling average of prediction accuracy over a window. High surprisal (low accuracy) indicates regime instability. When RSS drops below threshold, it signals that the underlying generative process has changed and triggers OntologicalAccommodation. It continuously monitors prediction error via {{drift_watch}}, triggering {{ontology_adapt}} or {{quorum}} if the error signal crosses the regime-change threshold.",
+  "mechanism": "An anomaly detector that continuously tracks divergence between the agent's internal model predictions and observed reality. It calculates a Regime Stability Score (RSS) as the rolling average of prediction accuracy over a window. High surprisal (low accuracy) indicates regime instability. When RSS drops below threshold, it signals that the underlying generative process has changed. It continuously monitors prediction error via {{drift_watch}}, triggering {{ontology_adapt}} or {{quorum}} if the error signal crosses the regime-change threshold.",
   "gloss": "Detecting structural breaks in reality",
   "failure_modes": [
     "False Positives: {{noise}} spikes triggering unnecessary accommodations.",
@@ -8,8 +8,8 @@
     "Threshold Gaming: Setting threshold too high causes missed shifts; too low causes constant alerts."
   ],
   "invariants": [
-    "Stability {{break}}: If RSS < Threshold for N consecutive observations, trigger OntologicalAccommodation",
-    "Window Integrity: RSS calculation uses fixed window size, not cherry-picked ranges"
+    "Stability {{break}}: RSS below `stability_threshold` across the window signals a regime break.",
+    "The RSS window is `window_size` observations, fixed in advance rather than chosen per evaluation."
   ],
   "preconditions": [
     "{{agent}} has a predictive model generating expectations",
@@ -37,24 +37,27 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead"
+      "sema:RegimeSense#mh:SHA-256:3e24672befbaea7607da15aa4b7c75517cb16f68a055fda352841e76469e4ead",
+      "sema:RegimeSense#mh:SHA-256:430bf5a5fcfe1796a400eda12608fed3600ecb00ec50ef3f4c8934db5065a2a0",
+      "sema:RegimeSense#mh:SHA-256:56eccdcf5c9e28545cb3ad569f86ec1bf3dec5e2eb4f9620f980da72b11937cf",
+      "sema:RegimeSense#mh:SHA-256:78eb98733d417ff23bf44f527a4bc2ed225100b4d4b182f0cbed36df7b36c687"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:RegimeSense#mh:SHA-256:430bf5a5fcfe1796a400eda12608fed3600ecb00ec50ef3f4c8934db5065a2a0",
-  "sema_ref": "RegimeSense#430b",
-  "sema_stub": "430b",
+  "sema_id": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07",
+  "sema_ref": "RegimeSense#5039",
+  "sema_stub": "5039",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "drift_watch": "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5",
-      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
-      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:1390c9f564ffb7480453ab134ed09247c75651e3512ea113371e29c1d3e95387",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
+      "drift_watch": "sema:DriftWatch#mh:SHA-256:b696959258eb3c48ce11055634b107451d5a500bc8ba19693db4c30b5f5033bf",
+      "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
+      "ontology_adapt": "sema:OntologyAdapt#mh:SHA-256:a541f46f3c1ffe236a27dfaafaffd0d3dc76bf7c3fa086b5e9bcf1a945c85e63",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744"
     }
   },
   "sema_layer": "Mind",

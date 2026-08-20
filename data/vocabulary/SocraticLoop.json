@@ -3,21 +3,20 @@
   "mechanism": "Ambiguity detection loop. If Confidence({{prompt}}) < Threshold, {{agent}} pauses execution to query the user. {{loop}} continues until intent is disambiguated or max_questions reached. It engages the user in a {{dialectic}} exchange to progressively narrow the ambiguity space.",
   "gloss": "Clarification before generation",
   "failure_modes": [
-    "User Fatigue: Too many questions cause user to abandon session.",
-    "Premature Stop: {{agent}} accepts vague answer without fully resolving ambiguity.",
-    "Annoying the user with too many questions."
+    "Premature stop: a vague answer is accepted and the ambiguity treated as resolved.",
+    "Budget spent without resolution: `max_questions` reached having clarified nothing.",
+    "Clarification the user cannot give: the question is well-aimed and unanswerable."
   ],
   "invariants": [
-    "Information Gain: Each Question(N) must reduce entropy of UserIntent.",
-    "Diminishing Returns: Entropy_Delta(Question_N) must be < Entropy_Delta(Question_N-1).",
-    "Termination: {{loop}} halts when Confidence > Threshold OR Iterations >= Limit."
+    "Each question names the specific ambiguity it is asked to resolve.",
+    "The {{loop}} halts when confidence exceeds `ambiguity_threshold` or questions reach `max_questions`, and which one ended it is recorded."
   ],
   "preconditions": [
     "Ambiguity detected",
     "User prompt received"
   ],
   "postconditions": [
-    "User intent disambiguated OR fallback to best-guess"
+    "Either intent is disambiguated, or the bound was reached and the remaining ambiguities are stated with the best-guess fallback"
   ],
   "parameters": [
     {
@@ -37,22 +36,24 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0"
+      "sema:SocraticLoop#mh:SHA-256:70fcba46b7510f6f8714fc119564272f465c3aa17d49785d57a97c9b5294a6c0",
+      "sema:SocraticLoop#mh:SHA-256:7d528905a96b5774a2e16f7cb7b9fa50845c3bdb03549a2322889d7560d17f8e",
+      "sema:SocraticLoop#mh:SHA-256:e96688452f2c5ff80fee6c3326d694f1e32b051acc62176e7f2d1de61565da6e"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SocraticLoop#mh:SHA-256:7d528905a96b5774a2e16f7cb7b9fa50845c3bdb03549a2322889d7560d17f8e",
-  "sema_ref": "SocraticLoop#7d52",
-  "sema_stub": "7d52",
+  "sema_id": "sema:SocraticLoop#mh:SHA-256:fd221588fb9a754e02033f9d09f86423f60e67aeea1914fa5088cb20d8699e5e",
+  "sema_ref": "SocraticLoop#fd22",
+  "sema_stub": "fd22",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "dialectic": "sema:Dialectic#mh:SHA-256:b5d0c3323ef5308f052db0f1393e1779e954248178a8365a2c3f754d149528e1",
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "prompt": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "dialectic": "sema:Dialectic#mh:SHA-256:ae5e838272a716687f09d85a399840d9af330e7c17ae21426bcd0176b50afd54",
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "prompt": "sema:Prompt#mh:SHA-256:1b04d34a0c55d6d2c6fea4f1df4f517073ede2f20f1f8d1d149419010b440a0e"
     }
   },
   "sema_layer": "Mind",

@@ -2,7 +2,6 @@
   "handle": "AdversarialProof",
   "mechanism": "Cognitively-enriched {{negative_proof}} that invokes {{red_team}} logic to exhaustively search for prohibited data. The adversarial mindset ensures blind spots are probed. Treats failure-to-find-despite-adversarial-effort as high-confidence proof of absence.",
   "gloss": "Adversarial proof of absence",
-  "derived_from": "sema:NegativeProof#mh:SHA-256:144e656c95cf71dc477873753891623a8868d4c0b1db64567591d7b892590cad",
   "failure_modes": [
     "Sympathetic Attacker: RedTeam shares assumptions with defenders, missing the same blind spots.",
     "Computational expense of adversarial exhaustive search."
@@ -22,23 +21,25 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:AdversarialProof#mh:SHA-256:2a0f68fabd8276b169195d0f4d502049e0690343fbb6d7dd1e3d6b6f487581e9"
+      "sema:AdversarialProof#mh:SHA-256:2a0f68fabd8276b169195d0f4d502049e0690343fbb6d7dd1e3d6b6f487581e9",
+      "sema:AdversarialProof#mh:SHA-256:80dd24874000f0095c6bbfb987d088a14db80022a5ea1950679f9ae8118cb731",
+      "sema:AdversarialProof#mh:SHA-256:5a48a377246a3e731f3a7a0a7c6f477fec6822ffdd5fedc23837b7e38ebbd9bd"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AdversarialProof#mh:SHA-256:80dd24874000f0095c6bbfb987d088a14db80022a5ea1950679f9ae8118cb731",
-  "sema_ref": "AdversarialProof#80dd",
-  "sema_stub": "80dd",
+  "sema_id": "sema:AdversarialProof#mh:SHA-256:dce72db8bf7158256418e2a4cfd10b51553df52c158e06738b18c9eeb48d7d59",
+  "sema_ref": "AdversarialProof#dce7",
+  "sema_stub": "dce7",
   "dependencies": {
     "composes_with": {
-      "negative_proof": "sema:NegativeProof#mh:SHA-256:eedf70351b15a007c1350da5dd934d3340873451c9e670a553a45cdc2a45c019",
-      "red_team": "sema:RedTeam#mh:SHA-256:15c5dab94155cf6aae97872b5d2c47103194805e0cf76ee31eb75cf630ceac8b"
+      "negative_proof": "sema:NegativeProof#mh:SHA-256:1184ac0ee80295c5617be9d08bc656197f7d6f5d38dfee4baee466555bf517b2",
+      "red_team": "sema:RedTeam#mh:SHA-256:fce8c277aa6188393a0f33fef5c3cd18de5ab7c6a4712df1c0958ab3f3bbb9e8"
     },
     "references": {
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71"
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14"
     }
   },
   "sema_layer": "Society",

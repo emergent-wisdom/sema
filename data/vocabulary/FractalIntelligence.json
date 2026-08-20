@@ -15,38 +15,40 @@
     "ring": 1,
     "supersedes": [
       "sema:FractalIntelligence#mh:SHA-256:9c13919670cac402fbc76a2baf0c172a2d1097dec5a7957a8e80123272753ec3",
-      "sema:FractalIntelligence#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01"
+      "sema:FractalIntelligence#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01",
+      "sema:FractalIntelligence#mh:SHA-256:54810782124d5c716d1204d83ed1c40a16d66201c884c5e70473623898b4b40d",
+      "sema:FractalIntelligence#mh:SHA-256:7fad1c373b574e80fc260f64c6903f9690688887ff90f96aae2f5d6587431c1a"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:1d79fe6b35dc95d7c11f8ca7d105e73e9b7d318a30d3d27b9cccae4330ef1076",
-  "sema_ref": "FractalIntelligence#1d79",
-  "sema_stub": "1d79",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:22a03a3c350a73162e27b441004659f4540eaf1a7cb3a6ca01fce15c43af869c",
+  "sema_ref": "FractalIntelligence#22a0",
+  "sema_stub": "22a0",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:3653f233738b26efaa02e0750c25ee0e743a32e0bce28afafde84b74f42b87f7",
-      "problem_framer": "sema:ProblemFramer#mh:SHA-256:ea80628660b357af41d6877843b44f7898d1677171c0a13c5e258d59639469f1",
-      "reason": "sema:Reason#mh:SHA-256:c2f279f6def8869e4a54ce61f4cd8b646eaeb6dbaea89c7d9dfd05c6c2bb78ed",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921",
-      "reframe": "sema:Reframe#mh:SHA-256:573733f86a965e0db34ce77c54bada908c9561248a7d5a9b76652dba71e1565a",
-      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:5791e43fad7e1f42cb7451eec53c6bfa9fef567b30a14d05be269116203e5848",
-      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
+      "problem_framer": "sema:ProblemFramer#mh:SHA-256:27c36c446e3590bab1651a989dbcb9013966eceaf554ced75bfd9cf1642a8996",
+      "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:54763d3b1a9745e7f4a13d34b68355866c9cad797d786c8c43cb0306a37e78d3",
+      "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
+      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:0a0fee933e452552f3128e0f5491a74cdb132c8417dfc3cf2e6f1e2141e0b21b",
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
-      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:3be09a0c57f793ab33a1efbd6773feac4bd2fc1dda5ec3b6beb56a7230793188",
-      "specialize": "sema:Specialize#mh:SHA-256:c20731c405d9dad4d59f090c900f44c4d44ef8b6f3f432ac8876f9aeee826877",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c",
+      "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153",
+      "specialize": "sema:Specialize#mh:SHA-256:916a25154459e500447146456a53cf4bc39641c120f8323554b53561be571d77",
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:0923a89effa56135175d1404578641c31d6f2d63716745aba054d7143ad0d6f9"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:32f92696f93c53120145b8dc786a24571f0114d90ffe472f6484998451553258"
     }
   },
   "sema_layer": "Mind",

@@ -8,8 +8,8 @@
     "Knowledge Silos: Agent-local trees fail to sync with the universal tree."
   ],
   "invariants": [
-    "Singularity: There is logically only one Universal {{tree}} containing all knowledge.",
-    "Coherence: Contradictions must eventually be resolved via synthesis or rejection.",
+    "One namespace: two agents referring to the same {{solver_node}} refer to the same node.",
+    "A detected contradiction is recorded as one. Resolution by synthesis or rejection may be deferred.",
     "Runtime shape is a DAG: fan-in and deduplication are permitted at execution even though decomposition is tree-like."
   ],
   "_meta": {
@@ -17,7 +17,10 @@
     "ring": 1,
     "supersedes": [
       "sema:UniversalSolverTree#mh:SHA-256:2340e9a8e2dd2a7e65fac41f070eba571fd0bc5d835223913b1b94f67789e9d1",
-      "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f"
+      "sema:UniversalSolverTree#mh:SHA-256:f683011e9a55df676212d339a7f787edfc9e35185b79446454f493a0b26a8f3f",
+      "sema:UniversalSolverTree#mh:SHA-256:0923a89effa56135175d1404578641c31d6f2d63716745aba054d7143ad0d6f9",
+      "sema:UniversalSolverTree#mh:SHA-256:7361e8ea2303b8cd0970fe167548cbf9c86f7f418f175424906f563db22729ae",
+      "sema:UniversalSolverTree#mh:SHA-256:a6cba3ba713ffd1c7f97e090ec45e5f1389f55a280847a1b62c56dbe7707106a"
     ],
     "path": [
       "Society",
@@ -46,17 +49,17 @@
       }
     }
   },
-  "sema_ref": "UniversalSolverTree#0923",
-  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:0923a89effa56135175d1404578641c31d6f2d63716745aba054d7143ad0d6f9",
-  "sema_stub": "0923",
+  "sema_ref": "UniversalSolverTree#32f9",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:32f92696f93c53120145b8dc786a24571f0114d90ffe472f6484998451553258",
+  "sema_stub": "32f9",
   "dependencies": {
     "references": {
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce",
-      "tree": "sema:Tree#mh:SHA-256:a8c4c04005dec32b56be8ea4a31f369e821d3c87f2705d1dae5d58ed53760543"
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
+      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:c5ccedcd3754efcfe7ebf463837f50698be1fe7dc62e65620a8270c27d240771",
+      "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }
   },
   "sema_layer": "Society",

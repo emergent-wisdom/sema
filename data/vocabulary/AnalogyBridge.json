@@ -1,16 +1,17 @@
 {
   "handle": "AnalogyBridge",
-  "mechanism": "To solve a novel {{problem}}, the {{agent}} uses {{latent_attachment}} to search its embedding space for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. It merges the structural properties of the source and target domains, identifying the isomorphic mapping.",
+  "mechanism": "To solve a novel {{problem}}, the {{agent}} uses {{latent_attachment}} to search its embedding space for a structural analogy in a different domain (e.g., 'This architecture problem is like an ant colony'). It maps the {{solution}} from the source domain to the target domain. The result is a mapping from source onto target, not a fusion of the two \u2014 fusing them into a third concept is a different operation, `ConceptBlend`.",
   "gloss": "Mapping to known solutions",
   "failure_modes": [
     "False analogy (mapping superficial similarities)."
   ],
   "invariants": [
-    "Attribute Independence: Object attributes (color, size) are ignored",
-    "Structure Mapping: Relations in Source must map to Relations in Target"
+    "The mapping pairs relations with relations; shared object attributes are not evidence of analogy.",
+    "Every relation the transferred {{solution}} depends on is paired with a relation in the target.",
+    "The correspondence is written down, relation by relation."
   ],
   "preconditions": [
-    "Isomorphism exists"
+    "A searchable body of past {{solution}}s in other domains"
   ],
   "postconditions": [
     "Inference transferred"
@@ -19,22 +20,24 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef"
+      "sema:AnalogyBridge#mh:SHA-256:bff72aff9bf79cea5090f67c99e353f967ccbd4a0069173748a043efc6ab14ef",
+      "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
+      "sema:AnalogyBridge#mh:SHA-256:19ca8985125c0763648986dace3b85d15138e46a05819dec683a651c461ef0bf"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:AnalogyBridge#mh:SHA-256:31ef9513c732f2ce013404c38449ddeda5a7d406cf906322faaea0e10b3bd83f",
-  "sema_ref": "AnalogyBridge#31ef",
-  "sema_stub": "31ef",
+  "sema_id": "sema:AnalogyBridge#mh:SHA-256:cf62f5ead4f1aaa93a26feb06a9546035a93d1103cca1fccb1d4de5f08babc4a",
+  "sema_ref": "AnalogyBridge#cf62",
+  "sema_stub": "cf62",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:611a3563ef0da0825b34325dec6aef6ae050620c68436dacbb126bc98f97d4e6",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "latent_attachment": "sema:LatentAttachment#mh:SHA-256:992d55f53109cbc5050a8ed96afe91121a85a664c6178ad136358e792ecbfa20",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Mind",

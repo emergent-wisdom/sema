@@ -14,22 +14,24 @@
     "ring": 2,
     "supersedes": [
       "sema:GenealogicalTrace#mh:SHA-256:0e89c456c9e33d0e5e018d64df4e347c76a5d08a6cced893ec3d1a84e28d877a",
-      "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f"
+      "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f",
+      "sema:GenealogicalTrace#mh:SHA-256:fa22d007e06944e15621967431b41dad0c282fa75266656f8088396d11f48c9f",
+      "sema:GenealogicalTrace#mh:SHA-256:f30f3e798d7f6a8e56ae29f4b365fc0230308b207cfc3722129f5371e201a86b"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:142ebf20a69208c3a278427a4f4ed0f2bc78fcac1134e97d2dbbe57b283bba62",
-  "sema_ref": "GenealogicalTrace#142e",
-  "sema_stub": "142e",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:ee20e20b3781db94517530eae0e6d7b24eecba674de8860be5b70f3724761950",
+  "sema_ref": "GenealogicalTrace#ee20",
+  "sema_stub": "ee20",
   "dependencies": {
     "references": {
-      "cite_back": "sema:CiteBack#mh:SHA-256:17b1ece87db4152c4a241754f84c4722fe9dde9fa8c00c1e122e4e6139196b86",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "deep": "sema:Deep#mh:SHA-256:12d38ea71c013360157896fb4bcd9ff94ea07e3f49fe2164b35e14754f400824",
-      "trace_belief": "sema:TraceBelief#mh:SHA-256:18811aa52ea8a0b4e10e500c10285ccd80d90bf294f3f86d04dbd0ebfd2e6a06"
+      "cite_back": "sema:CiteBack#mh:SHA-256:8be76800c2df7055947d33ae0cb8fed8fd8b8ea52c50d03c5da2bdbe816efcad",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:7cccb4842ddb57f7925e00d89af759c7f8ab7e97d49b589dbdf1ddf677cc099d"
     }
   },
   "sema_layer": "Society",

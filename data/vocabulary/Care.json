@@ -3,28 +3,34 @@
   "mechanism": "The application of {{work}} to reduce a target's {{entropy}} without an explicit {{value}} extraction. It creates a buffer against volatility.",
   "gloss": "Non-transactional maintenance energy",
   "invariants": [
-    "Entropy Reduction: Action reduces local disorder.",
-    "Resource Consumption: Care requires Work."
+    "Reduces the target's {{entropy}}.",
+    "Requires {{work}}; it is not free.",
+    "Extracts no {{value}} from the target in return."
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Care#mh:SHA-256:cdfae572389ee7b84aa847b9320c072053f25827a7b06891cb08cd8d18aef40b"
+      "sema:Care#mh:SHA-256:cdfae572389ee7b84aa847b9320c072053f25827a7b06891cb08cd8d18aef40b",
+      "sema:Care#mh:SHA-256:413702da5928490b73e9aad2760480d231f2c40cf4c30a7d298ab118581ff20c"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Care#mh:SHA-256:413702da5928490b73e9aad2760480d231f2c40cf4c30a7d298ab118581ff20c",
-  "sema_ref": "Care#4137",
-  "sema_stub": "4137",
+  "sema_id": "sema:Care#mh:SHA-256:8b8f5e78e6b66790e450d7ff0ed3a757248423b4f63d00879d1b26c7ff333661",
+  "sema_ref": "Care#8b8f",
+  "sema_stub": "8b8f",
+  "failure_modes": [
+    "Transactional drift: the carer begins expecting return, which makes it an exchange rather than care.",
+    "Unsustainable upkeep: entropy is reduced at a Work cost the carer cannot maintain."
+  ],
   "dependencies": {
     "references": {
-      "entropy": "sema:Entropy#mh:SHA-256:323fd687b530ceedeeb7b7399fc4227f8181da3193c85afab0d66e26914a3749",
+      "entropy": "sema:Entropy#mh:SHA-256:d5f7482e6c06a1e48eadbf28e6dca0cc0eb176bf75c70e7e467284f656d20bae",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Infrastructure",

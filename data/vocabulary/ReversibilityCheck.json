@@ -10,25 +10,26 @@
     "ring": 2,
     "supersedes": [
       "sema:ReversibilityCheck#mh:SHA-256:9cd69a4237e0e505309795a879387b04d42a0e21d43a4177d8552ec844ef6157",
-      "sema:ReversibilityCheck#mh:SHA-256:574b1afaee6cd675d04e2b9e3484ddfba1490b19121c881832865d3d31a8a2ee"
+      "sema:ReversibilityCheck#mh:SHA-256:574b1afaee6cd675d04e2b9e3484ddfba1490b19121c881832865d3d31a8a2ee",
+      "sema:ReversibilityCheck#mh:SHA-256:b8b78fe5b2d7869094d2cd61f2178cfaed3b9482a36ae3f346c7b02cdd892117"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:b8b78fe5b2d7869094d2cd61f2178cfaed3b9482a36ae3f346c7b02cdd892117",
-  "sema_ref": "ReversibilityCheck#b8b7",
-  "sema_stub": "b8b7",
+  "sema_id": "sema:ReversibilityCheck#mh:SHA-256:dc25e5a2d9883ce70e187ea25e91efeac3453f850b925d97d3baaef2dd5d9ddf",
+  "sema_ref": "ReversibilityCheck#dc25",
+  "sema_stub": "dc25",
   "signature": [
     "Check(Reversibility)"
   ],
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "human_approve": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
-      "reversibility": "sema:Reversibility#mh:SHA-256:af6fad316d76d324d6c2ac02a69fc1f2f095bfc69a48c33578e599c431e9598e",
-      "world_reversible": "sema:WorldReversible#mh:SHA-256:a8e0699d7dcce24a267c2e8db351fbe4edc60323c458931e1071858c0c6c1acb"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:5d0d6a006d1f45cbb1708798d609a4d08bca0a9086218c434e83877f2c2993f6",
+      "reversibility": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37",
+      "world_reversible": "sema:WorldReversible#mh:SHA-256:462e0937acf2ebdd37d4da4048487b92495b86cb663ec5badb91c747c3373566"
     }
   },
   "sema_layer": "Society",

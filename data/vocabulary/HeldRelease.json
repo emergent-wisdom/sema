@@ -9,28 +9,16 @@
     "Oracle dependency: If condition requires external verification, oracle becomes trust point."
   ],
   "invariants": [
-    "Atomic {{state}}: Funds are either Locked, Released, or Returned (no partial states)",
-    "Release atomic.",
-    "Timeout Guarantee: Funds return to Sender if {{condition}} is not met by T"
+    "Exactly one of Empty, Held, Released or Returned; no partial {{state}}.",
+    "Releases only on a preimage whose hash matches the committed {{condition}}.",
+    "Returns to the sender if the condition is unmet by `hold_duration`."
   ],
   "parameters": [
     {
       "name": "hold_duration",
       "type": "Duration",
       "range": "[1s, 24h]",
-      "description": "Minimum hold time before release"
-    },
-    {
-      "name": "overflow_policy",
-      "type": "Enum",
-      "range": "{Queue, Drop, Reject}",
-      "description": "When capacity exceeded"
-    },
-    {
-      "name": "release_trigger",
-      "type": "Enum",
-      "range": "{Timer, Signal, Condition}",
-      "description": "What triggers release"
+      "description": "Longest the value stays held before it returns to the sender."
     }
   ],
   "_meta": {
@@ -38,22 +26,24 @@
     "ring": 0,
     "supersedes": [
       "sema:HeldRelease#mh:SHA-256:49566d2180cf09f70f2d9972dddd190dfb23c4cda4ff69ccab97b76930a34585",
-      "sema:HeldRelease#mh:SHA-256:3ed68df815a35cd4f70e51c3504036ced51f92529b82c4ac9bb4fa2e1d5c5436"
+      "sema:HeldRelease#mh:SHA-256:3ed68df815a35cd4f70e51c3504036ced51f92529b82c4ac9bb4fa2e1d5c5436",
+      "sema:HeldRelease#mh:SHA-256:533b77d8341545dd80bd5a940492f028059ee8105cf523b26e4c16736ced46a5",
+      "sema:HeldRelease#mh:SHA-256:08506ccf6d4e8e46131ed3766b8d6f70feb878ffdfa9284e01b367418f06fa95"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:HeldRelease#mh:SHA-256:10b0ae36dabba68fe8aad67adf8075ce5a5f0b2a3bb602c7bd3380b0dd0117d9",
-  "sema_ref": "HeldRelease#10b0",
-  "sema_stub": "10b0",
+  "sema_id": "sema:HeldRelease#mh:SHA-256:ce65cfd49c0f96fa291163b563d1a0ad78e09059fdd4889f571cba8d101b721f",
+  "sema_ref": "HeldRelease#ce65",
+  "sema_stub": "ce65",
   "dependencies": {
     "accepts": {
-      "unique_handle": "sema:UniqueHandle#mh:SHA-256:58f9595fc08f62825f3dc959f10533558f459760a1c63ef2bc72b6da615ff37b"
+      "unique_handle": "sema:UniqueHandle#mh:SHA-256:185337050ca62b46cf88be534139cf31c2313c660f845daa395507c7faebcb1c"
     },
     "references": {
-      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:dbdbd8b26ed1104714cdfb072d548747682e428e086e9ea0b9c963b79f9877d4",
+      "commitment_device": "sema:CommitmentDevice#mh:SHA-256:548b0a08b4956329e458f4e9bd150ea3d40c1867ca99e04b3e4f1bb31c9c6278",
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"

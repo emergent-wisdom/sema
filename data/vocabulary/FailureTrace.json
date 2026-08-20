@@ -1,17 +1,19 @@
 {
   "handle": "FailureTrace",
-  "mechanism": "A structured, verifiable proof that a downstream consumer's rejection of an artifact is grounded in a specific clause of the {{accept_spec}} it was measured against. When a consumer returns a rejection through a Solver's Feedback surface, the rejection must carry a FailureTrace naming the violated clause, citing the evidence, and identifying the evaluator. The upstream Solver uses this trace to distinguish genuine structural feedback from fabricated penalties or hallucinated critique. Trace invalidity (a cited clause that does not exist, evidence that does not match the artifact, or a forged evaluator identity) causes the feedback to be dropped rather than absorbed.",
-  "gloss": "Structured proof of which AcceptSpec clause a rejected artifact violated \u2014 the evidence the Receptivity Gate verifies",
+  "mechanism": "A structured, verifiable record of a downstream consumer's claim that an artifact violates a specific clause of the {{accept_spec}} it was measured against. When a consumer returns a rejection through a Solver's Feedback surface, the rejection carries a FailureTrace naming the clause, citing evidence, identifying the evaluator, and carrying a {{sign}} proof bound to the trace's content. The upstream Solver can therefore distinguish attributable, unaltered feedback from anonymous, forged, or modified traces. Invalid clause or evidence references, or a signature that does not verify for this trace, cause the feedback to be dropped. The record proves attribution and content integrity, not that the cited evidence entails the claimed violation.",
+  "gloss": "Signed, clause-specific rejection evidence",
   "invariants": [
     "Clause-specific: the trace names exactly one {{accept_spec}} clause per violation, not a generic 'doesn't meet bar'.",
     "Evidence-bound: the violation claim is paired with citeable evidence from the artifact.",
-    "Signed: the trace carries the evaluator's cryptographic identity so fabricated traces are detectable."
+    "Content-bound and timed: the trace carries the evaluator's identity, a signing-time assertion, and a {{sign}} proof over every other field; altering any covered field invalidates the proof."
   ],
   "failure_modes": [
-    "Ghost clauses: the trace cites an AcceptSpec clause that does not exist (easy to detect via schema lookup).",
+    "Ghost clauses: the trace cites an AcceptSpec clause that does not exist (detectable via schema lookup).",
     "Evidence fabrication: the trace cites evidence the artifact does not contain (detectable via content hash).",
-    "Identity spoofing: the evaluator signature is invalid (detectable via standard signature verification).",
-    "Clause-dancing: the consumer rejects for clause A but the real objection is to clause B they did not invoke \u2014 structural honesty failure that no trace schema can catch by itself."
+    "Signature failure: the evaluator identity is forged or a valid signature is attached to different trace content (detectable because the signature must verify for this trace).",
+    "Duplicate replay: an unchanged, valid trace is resubmitted; content binding provides integrity, not freshness or deduplication.",
+    "Clause-dancing: the consumer rejects for clause A while the real objection is clause B they did not invoke \u2014 no trace schema catches this by itself.",
+    "Evidence too weak to entail: the cited evidence exists and does not establish the violation. All three invariants pass \u2014 they establish that citations resolve, not that they entail."
   ],
   "data_schema": {
     "type": "object",
@@ -19,7 +21,9 @@
       "accept_spec_ref",
       "violated_clause",
       "evidence",
-      "evaluator_ref"
+      "evaluator_ref",
+      "signed_at",
+      "trace_signature"
     ],
     "properties": {
       "accept_spec_ref": {
@@ -36,7 +40,7 @@
       },
       "evaluator_ref": {
         "type": "string",
-        "description": "Signed identity of the evaluator asserting the violation"
+        "description": "Evaluator identity and verification-key reference"
       },
       "severity": {
         "type": "string",
@@ -45,6 +49,15 @@
           "advisory"
         ],
         "description": "Whether the violation halts progress or is informational"
+      },
+      "signed_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Evaluator-asserted signing time covered by trace_signature; key-validity and trusted-time policy are caller-supplied"
+      },
+      "trace_signature": {
+        "type": "string",
+        "description": "A {{sign}} proof binding evaluator_ref to every other field in this FailureTrace; changing any other field invalidates the proof"
       }
     }
   },
@@ -54,14 +67,19 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:FailureTrace#mh:SHA-256:416b450eb20e20b2b24b71d19b0bd43da9e9a7c0249dbdc2973797f68deb392f",
+      "sema:FailureTrace#mh:SHA-256:967649a371e7b5262536ec16d0556dde9447070001b841eab18734a93a8a0dbd"
     ]
   },
-  "sema_id": "sema:FailureTrace#mh:SHA-256:416b450eb20e20b2b24b71d19b0bd43da9e9a7c0249dbdc2973797f68deb392f",
-  "sema_ref": "FailureTrace#416b",
-  "sema_stub": "416b",
+  "sema_id": "sema:FailureTrace#mh:SHA-256:8085febc5bf923c52ce1856893c7739e5d9be3bdc021767766ad949f717a974e",
+  "sema_ref": "FailureTrace#8085",
+  "sema_stub": "8085",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
+      "sign": "sema:Sign#mh:SHA-256:b2020447ec4c2725a139c6117c764cf464643e6e83379e86263267f95e4965ee"
     }
   },
   "sema_layer": "Infrastructure",

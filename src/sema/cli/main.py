@@ -11,13 +11,18 @@ from ..core.registry import (
     RegistryManager,
     get_bundled_db_path,
     get_default_db_path,
+    get_registered_db,
+    get_registered_db_by_path,
     is_bundled_db,
+    is_managed_db,
+    is_read_only_db,
     list_dbs,
     register_db,
     set_active_db,
+    validate_registry_db,
 )
 from ..core.utils import compact_dict
-from ..core.validator import validate_pattern
+from ..core.validator import clean_handle, validate_pattern
 
 # Initialize Registry (Lazy Load)
 _registry_manager = None
@@ -30,8 +35,97 @@ def get_registry():
     return _registry_manager
 
 
+def _specialization_projection_errors(
+    store,
+    staged_patterns: dict[str, dict],
+    *,
+    remove_handles: set[str] | None = None,
+    retarget_extends: bool = False,
+) -> tuple[list[str], list[str]]:
+    """Validate exact `extends` targets against a projected post-write corpus.
+
+    The current GraphStore keeps one active version per handle. Recompute the
+    projected ordinary Merkle cascade in memory so a parent update cannot make an
+    existing exact specialization target disappear. Legacy `derived_from` remains
+    opaque and deliberately does not participate.
+    """
+    from ..core.hashing import generate_sema_hash, resolve_ref_to_sema_id
+    from ..taxonomy_graph.graph_store import NodeType
+
+    removed = remove_handles or set()
+    projected_patterns: dict[str, dict] = {}
+    existing_handles: set[str] = set()
+    for _nid, node in store.get_nodes_by_type(NodeType.PATTERN):
+        handle = node.get("text")
+        if not handle or handle in removed:
+            continue
+        existing_handles.add(handle)
+        current = dict(((node.get("metadata") or {}).get("pattern")) or {})
+        dependencies = store.get_dependencies_from_edges(handle)
+        if dependencies:
+            current["dependencies"] = dependencies
+        projected_patterns[handle] = current
+    projected_patterns.update(staged_patterns)
+
+    try:
+        validation_order = topological_sort(projected_patterns)
+    except ValueError as exc:
+        return [f"Dependency error: {exc}"], []
+
+    current_hashes = store.get_all_pattern_hashes()
+    expected_hashes: dict[str, str] = {}
+    normalized_projection: dict[str, dict] = {}
+    errors: list[str] = []
+    for handle in validation_order:
+        candidate = dict(projected_patterns[handle])
+        specialization = candidate.get("extends")
+        if specialization and handle in staged_patterns and retarget_extends:
+            candidate["extends"] = resolve_ref_to_sema_id(specialization, expected_hashes.get)
+        normalized_projection[handle] = candidate
+        try:
+            expected_hashes[handle] = generate_sema_hash(candidate, expected_hashes.get)["hash"]
+        except ValueError as exc:
+            errors.append(f"Cannot hash projected pattern {handle}: {exc}")
+
+    if errors:
+        return errors, validation_order
+
+    moved = {
+        handle
+        for handle in existing_handles
+        if current_hashes.get(handle) != expected_hashes.get(handle)
+    }
+    for child_handle, candidate in normalized_projection.items():
+        specialization = candidate.get("extends")
+        if not specialization:
+            continue
+        parent = clean_handle(specialization)
+        parent_hash = expected_hashes.get(parent)
+        expected_ref = f"sema:{parent}#mh:SHA-256:{parent_hash}" if parent_hash else None
+        if specialization == expected_ref:
+            continue
+        if parent in moved:
+            errors.append(
+                f"Parent update would strand {child_handle}'s `extends` pin at "
+                f"{specialization}. Include a reviewed {child_handle} definition "
+                "retargeted to the projected parent; this workspace does not retain "
+                "the old parent definition."
+            )
+        else:
+            errors.append(
+                f"Unresolvable specialization target in {child_handle}: "
+                f"{specialization!r} is not the active definition of {parent!r}. "
+                "The current workspace has no historical store for that exact parent "
+                "version."
+            )
+    return errors, validation_order
+
+
 def apply_changes(
-    remove_handles: list[str] = None, add_files: list[str] = None, check_only: bool = False
+    remove_handles: list[str] = None,
+    add_files: list[str] = None,
+    check_only: bool = False,
+    retarget_extends: bool = False,
 ):
     """Atomic apply operation: validate everything, then execute all changes.
 
@@ -41,6 +135,9 @@ def apply_changes(
         remove_handles: List of pattern handles to remove
         add_files: List of files/directories to add
         check_only: If True, only validate without applying changes
+        retarget_extends: If True, rewrite `extends` on staged cards to the
+            current parent Sema ID. The default preserves the exact authored
+            parent version.
     """
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -52,8 +149,9 @@ def apply_changes(
         return False
 
     db_path = get_default_db_path()
-    if is_bundled_db(db_path):
-        print("❌ Cannot modify the bundled vocabulary — it gets overwritten on upgrade.")
+    if is_read_only_db(db_path):
+        label = "installed library" if is_managed_db(db_path) else "bundled vocabulary"
+        print(f"❌ Cannot modify the {label} — it is a read-only snapshot.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
         return False
     store = GraphStore(db_path)
@@ -70,6 +168,7 @@ def apply_changes(
     # ============ PHASE 1: VALIDATION ============
     print("Validating...")
     errors = []
+    projected_order: list[str] = []
 
     # 1a. Validate removals exist
     remove_node_ids = {}
@@ -117,6 +216,33 @@ def apply_changes(
         handles_str = ", ".join(p[1]["handle"] for p in add_patterns)
         print(f"  ✓ {len(add_patterns)} patterns to add: {handles_str}")
 
+    # Validate every staged relation target against the projected handle set so
+    # --check catches a missing target before any mutation. A target staged in
+    # the same batch is valid and will be minted first by the topological sort.
+    # `extends` is top-level; ordinary dependencies live in four named buckets.
+    if add_patterns and not errors:
+        committed_handles = {
+            data["text"] for _nid, data in store.get_nodes_by_type(NodeType.PATTERN)
+        }
+        available_handles = (committed_handles - set(remove_handles)) | add_handles
+        for file_path, pattern in add_patterns:
+            parent = clean_handle(pattern.get("extends"))
+            if parent and parent not in available_handles:
+                errors.append(
+                    f"Missing `extends` target in {file_path}: '{parent}' does not exist "
+                    "in the committed vocabulary or staged batch."
+                )
+            dependencies = pattern.get("dependencies") or {}
+            for dependency_type in ("accepts", "yields", "composes_with", "references"):
+                for alias, dependency_ref in (dependencies.get(dependency_type) or {}).items():
+                    dependency = clean_handle(dependency_ref)
+                    if dependency and dependency not in available_handles:
+                        errors.append(
+                            f"Missing dependency target in {file_path}: "
+                            f"'{alias}' refers to '{dependency}', which does not exist "
+                            "in the committed vocabulary or staged batch."
+                        )
+
     # 1c. Dependency graph check
     # Patterns being removed must not be referenced by patterns staying
     # (unless those references are also being re-added)
@@ -141,6 +267,10 @@ def apply_changes(
                     if dep_handle not in dependents:
                         dependents[dep_handle] = []
                     dependents[dep_handle].append(h)
+            pattern = ((data.get("metadata") or {}).get("pattern")) or {}
+            parent = clean_handle(pattern.get("extends"))
+            if parent:
+                dependents.setdefault(parent, []).append(h)
 
         # Check each pattern being removed
         for handle in remove_handles:
@@ -159,6 +289,42 @@ def apply_changes(
                     f"Cannot remove '{handle}': pattern '{user}' depends on it. "
                     f"Include '{user}' in --remove or supply updated version in --add."
                 )
+
+    # 1d. Acyclic check across the batch AND the committed corpus.
+    # Phase 2 also sorts topologically, but that sort sees only the batch, and it
+    # runs after --check has already returned. A mutual reference between a staged
+    # pattern and a committed one therefore passed --check and was caught only by
+    # a full rebuild, which by then had replaced the database.
+    if add_patterns and not errors:
+        from ..core.dependencies import validate_acyclic
+
+        # Dependencies live on edges, not on the node, so read them from edges.
+        # Patterns being removed are excluded: a cycle through one of them is
+        # about to stop existing.
+        committed = {}
+        for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+            h = data.get("text")
+            if not h or h in remove_handles:
+                continue
+            committed[h] = {"dependencies": store.get_dependencies_from_edges(h)}
+
+        try:
+            validate_acyclic({p[1]["handle"]: p[1] for p in add_patterns}, committed)
+        except ValueError as e:
+            errors.append(f"Dependency error: {e}")
+
+    # 1e. Project the full post-apply graph before any mutation. A handle match
+    # is not enough for a content-addressed specialization claim, and an
+    # unstaged parent can move through the ordinary dependency cascade.
+    if add_patterns and not errors:
+        staged_patterns = {pattern["handle"]: pattern for _path, pattern in add_patterns}
+        projection_errors, projected_order = _specialization_projection_errors(
+            store,
+            staged_patterns,
+            remove_handles=set(remove_handles),
+            retarget_extends=retarget_extends,
+        )
+        errors.extend(projection_errors)
 
     if not errors:
         print("  ✓ Validation passed")
@@ -185,15 +351,23 @@ def apply_changes(
     # deleted and nothing added — irreversible partial state.
     if add_patterns:
         patterns_dict = {p[1]["handle"]: p[1] for p in add_patterns}
-        try:
-            sorted_handles = topological_sort(patterns_dict)
-        except ValueError as e:
-            print(f"  ❌ Dependency error: {e}")
-            return False
+        # Filter the full projected order rather than sorting the staged batch in
+        # isolation. An unstaged parent can move through an ordinary cascade; the
+        # full order keeps its staged descendants after the edit that moves it.
+        sorted_handles = [handle for handle in projected_order if handle in patterns_dict]
 
         # Check layer direction (Rule 7.6)
         # Applies only to hard dependency buckets (accepts, composes_with).
         # yields and references are exempt — see dependencies._LAYER_CHECKED_BUCKETS.
+        #
+        # KNOWN GAP, deliberately not fixed here: pattern nodes carry the handle in
+        # data["text"], not data["handle"], so the filter below discards every row
+        # and existing_patterns is always empty. Layer direction is therefore checked
+        # only within a batch, never against committed patterns. Correcting the key
+        # would begin enforcing Rule 7.6 across all 453 patterns at once and could
+        # refuse applies that succeed today, so it needs its own change and its own
+        # review of whatever it surfaces. Dependencies also live on edges rather than
+        # on the node — see the acyclic check in Phase 1 for how to read them.
         try:
             from ..core.dependencies import validate_layer_direction
 
@@ -225,10 +399,24 @@ def apply_changes(
             return False
 
     # 2c. Add patterns via mint_pattern
+    from ..core.hashing import resolve_ref_to_sema_id
+
+    # Children explicitly retargeted by this invocation. Merely staging a card
+    # does not authorize changing which immutable parent definition it extends.
+    extends_retargeted: list[str] = []
     from ..core.mint import mint_pattern
 
     for file_path, data in sorted_patterns:
-        mint_result = mint_pattern(data, store)
+        # `extends` names an exact immutable parent definition. Preserve that
+        # authored identifier unless the caller explicitly opts into retargeting.
+        # The batch is topo-sorted, so an explicitly selected parent has its final
+        # hash before the child is minted.
+        if retarget_extends and data.get("extends"):
+            _before = data["extends"]
+            data["extends"] = resolve_ref_to_sema_id(_before, store.get_pattern_hash)
+            if data["extends"] != _before:
+                extends_retargeted.append(data["handle"])
+        mint_result = mint_pattern(data, store, validated_extends_batch=True)
         if mint_result.success:
             print(f"  ✓ Added {mint_result.sema_ref}")
 
@@ -239,12 +427,14 @@ def apply_changes(
             # source files stop being independently verifiable (stored
             # sema_id can't be recomputed from the file alone).
             try:
-                if isinstance(data.get("dependencies"), dict):
-                    from ..core.hashing import resolve_dependencies_to_sema_ids
+                from ..core.hashing import resolve_dependencies_to_sema_ids
 
+                if isinstance(data.get("dependencies"), dict):
                     data["dependencies"] = resolve_dependencies_to_sema_ids(
                         data["dependencies"], store.get_pattern_hash
                     )
+                # `extends` is already the authored exact ID, or was explicitly
+                # retargeted before minting above.
                 with open(file_path, "w") as f:
                     json.dump(data, f, indent=2)
             except Exception as e:
@@ -253,6 +443,12 @@ def apply_changes(
             err_msg = "; ".join(mint_result.errors)
             print(f"  ❌ Failed to add {data['handle']}: {err_msg}")
             return False
+
+    if extends_retargeted:
+        print(
+            f"\n  ↻ Retargeted {len(extends_retargeted)} staged `extends` claim(s) "
+            "by explicit request."
+        )
 
     # ============ POST-APPLY SWEEP ============
     # Topological sort orders by hard dependencies; _meta.related is a
@@ -517,35 +713,16 @@ def show_skeleton():
 
 
 def _compute_active_vocabulary_root(db_path: str) -> tuple[str, int]:
-    """Return (root_hash, pattern_count) for the given DB path.
+    """Return (semantic_root, pattern_count) for the given DB path."""
+    from ..core.hashing import vocabulary_info
 
-    Hashes are collected in ascending-by-handle order so two DBs with the
-    same pattern set always produce the same root regardless of insertion
-    order.
-    """
-    from ..core.hashing import vocabulary_root
-    from ..taxonomy_graph.graph_store import GraphStore, NodeType
-
-    store = GraphStore(db_path)
-    rows = []
-    for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
-        handle = data.get("text")
-        pattern = data.get("metadata", {}).get("pattern", {})
-        sema_id = pattern.get("sema_id", "")
-        if handle and "#mh:SHA-256:" in sema_id:
-            rows.append((handle, sema_id.split("#mh:SHA-256:")[1]))
-    rows.sort(key=lambda r: r[0])
-    hashes = [h for _, h in rows]
-    return vocabulary_root(hashes), len(hashes)
+    info = vocabulary_info(db_path)
+    return info["semantic_root"], info["pattern_count"]
 
 
 def vocab_root(short: bool = False) -> bool:
-    """Compute and print the vocabulary-wide Merkle root for the active DB.
-
-    Same algorithm as `scripts/vocabulary_merkle_root.py` — SHA-256 over
-    the concatenation of every pattern's hash, sorted by handle.
-    """
-    from ..core.hashing import HASH_ALGO
+    """Compute and print both aggregate roots for the active DB."""
+    from ..core.hashing import HASH_ALGO, vocabulary_info
 
     db = get_default_db_path()
     if not db:
@@ -556,16 +733,20 @@ def vocab_root(short: bool = False) -> bool:
         return False
 
     try:
-        root, count = _compute_active_vocabulary_root(db)
+        info = vocabulary_info(db)
     except Exception as e:
         print(f"❌ Failed to compute vocabulary root: {e}")
         return False
 
     if short:
-        print(root[:16])
+        print(f"{info['semantic_root_scheme']}:{info['semantic_root'][:16]}")
     else:
-        print(f"sema:vocab#mh:{HASH_ALGO}:{root}")
-        print(f"patterns: {count}")
+        print(f"sema:vocab#mh:{HASH_ALGO}:{info['semantic_root']}")
+        print(f"scheme: {info['semantic_root_scheme']}")
+        print(f"sema:catalog#mh:{HASH_ALGO}:{info['catalog_root']}")
+        print(f"catalog scheme: {info['catalog_root_scheme']}")
+        print(f"patterns: {info['pattern_count']}")
+        print(f"definitions: {info['definition_count']}")
         print(f"db: {db}")
     return True
 
@@ -581,6 +762,10 @@ def undo_pull() -> bool:
     target_db = get_default_db_path()
     if not target_db:
         print("❌ No active database.")
+        return False
+    if is_bundled_db(target_db) or is_read_only_db(target_db):
+        label = "installed library" if is_managed_db(target_db) else "bundled vocabulary"
+        print(f"❌ Cannot restore over the {label} — it is a read-only snapshot.")
         return False
 
     previous_path = target_db + ".pull_previous"
@@ -660,11 +845,15 @@ def update_db(
 
     Returns a structured dict with success flag, counts, full handle lists for
     each category (added/updated/skipped/cascaded_user/superseded_removed/
-    superseded_kept_orphan/upstream_removed), and vocabulary_root_before /
-    vocabulary_root_after so MCP callers can act on the outcome programmatically.
+    superseded_kept_orphan/upstream_removed), vocabulary_root_before /
+    vocabulary_root_after, and vocabulary_root_scheme so MCP callers can act
+    on the outcome programmatically.
     """
     from ..core.dependencies import topological_sort
-    from ..core.hashing import extract_handle_from_ref, vocabulary_info
+    from ..core.hashing import (
+        SEMANTIC_ROOT_SCHEME,
+        vocabulary_info,
+    )
     from ..core.mint import mint_pattern
     from ..taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -680,6 +869,7 @@ def update_db(
         "upstream_removed": [],
         "vocabulary_root_before": None,
         "vocabulary_root_after": None,
+        "vocabulary_root_scheme": SEMANTIC_ROOT_SCHEME,
     }
 
     target_db = get_default_db_path()
@@ -688,10 +878,11 @@ def update_db(
         outcome["error"] = "No active database. Run `sema build` or `sema use` first."
         return outcome
 
-    if is_bundled_db(target_db):
-        print("❌ Cannot pull into bundled DB — it's read-only.")
+    if is_bundled_db(target_db) or is_read_only_db(target_db):
+        label = "installed library" if is_managed_db(target_db) else "bundled vocabulary"
+        print(f"❌ Cannot pull into the {label} — it is a read-only snapshot.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
-        outcome["error"] = "Cannot pull into bundled DB — it's read-only."
+        outcome["error"] = f"Cannot pull into the {label} — it is read-only."
         return outcome
 
     source_db = source or get_bundled_db_path()
@@ -775,26 +966,18 @@ def update_db(
     while True:
         round_pruned = set()
         for h, p in list(upstream_patterns.items()):
-            for items in p.get("dependencies", {}).values():
-                if not isinstance(items, dict):
-                    continue
-                for ref in items.values():
-                    if not isinstance(ref, str):
-                        continue
-                    target_handle = extract_handle_from_ref(ref)
-                    # Self-references are implicitly safe: h is still in
-                    # upstream_patterns at this point, so target_handle == h
-                    # passes the third check. We also leave the loop running
-                    # even when `excluded` is empty — it doubles as a
-                    # protector against malformed upstream graphs that ship
-                    # with dangling refs.
-                    if (
-                        target_handle not in target_handles
-                        and target_handle not in upstream_patterns
-                    ):
-                        round_pruned.add(h)
-                        break
-                if h in round_pruned:
+            # Includes the top-level `extends` parent as well as dependency
+            # buckets. An excluded/missing parent makes the child unmintable
+            # for the same reason an excluded ordinary dependency does.
+            for target_handle in get_dependencies_handles(p):
+                # Self-references are implicitly safe: h is still in
+                # upstream_patterns at this point, so target_handle == h
+                # passes the second check. We also leave the loop running
+                # even when `excluded` is empty — it doubles as a
+                # protector against malformed upstream graphs that ship
+                # with dangling refs.
+                if target_handle not in target_handles and target_handle not in upstream_patterns:
+                    round_pruned.add(h)
                     break
         if not round_pruned:
             break
@@ -808,6 +991,19 @@ def update_db(
     # Use the unfiltered upstream set so excluded handles aren't falsely
     # reported as "upstream removed".
     upstream_removed = sorted(target_handles - upstream_all_handles)
+
+    def _supersession_user_dependents(handle: str) -> list[str]:
+        """Return user-only patterns that make supersession removal unsafe."""
+        return sorted(
+            {
+                dep
+                for dep in (
+                    target_store.get_dependents(handle)
+                    + target_store.get_specializing_children(handle)
+                )
+                if dep not in upstream_patterns
+            }
+        )
 
     print(f"\nUpstream: {len(upstream_patterns)} patterns")
     print(f"Target:   {len(target_handles)} patterns")
@@ -835,6 +1031,17 @@ def update_db(
         outcome["error"] = f"Dependency cycle in upstream: {e}"
         return outcome
 
+    specialization_errors, _projected_order = _specialization_projection_errors(
+        target_store,
+        upstream_patterns,
+    )
+    if specialization_errors:
+        print("\n❌ Pull preflight failed:")
+        for error in specialization_errors:
+            print(f"  {error}")
+        outcome["error"] = "; ".join(specialization_errors)
+        return outcome
+
     if dry_run:
         print(f"\nWould apply {len(sorted_handles)} patterns in topological order.")
         if upstream_removed:
@@ -860,7 +1067,17 @@ def update_db(
                     and local_handle
                     and local_handle not in upstream_patterns
                 ):
-                    outcome["superseded_removed"].append((local_handle, preview[local_sid]))
+                    successors = preview[local_sid]
+                    user_dependents = _supersession_user_dependents(local_handle)
+                    if user_dependents:
+                        outcome["superseded_kept_orphan"].append(
+                            (local_handle, successors, user_dependents)
+                        )
+                    else:
+                        outcome["superseded_removed"].append((local_handle, successors))
+            if outcome["superseded_removed"]:
+                removed_now = {handle for handle, _successors in outcome["superseded_removed"]}
+                outcome["upstream_removed"] = sorted(set(outcome["upstream_removed"]) - removed_now)
         outcome["success"] = True
         return outcome
 
@@ -955,7 +1172,12 @@ def update_db(
                     skipped.append(handle)
                     continue
 
-            result = mint_pattern(pattern, target_store, skip_cascade=True)
+            result = mint_pattern(
+                pattern,
+                target_store,
+                skip_cascade=True,
+                validated_extends_batch=True,
+            )
             if result.success:
                 if existed:
                     updated.append(handle)
@@ -1033,11 +1255,7 @@ def update_db(
 
             for nid, old_h, successors in to_remove:
                 # Orphan guard: user-only dependents of this pattern?
-                user_dependents = [
-                    dep
-                    for dep in target_store.get_dependents(old_h)
-                    if dep not in upstream_patterns
-                ]
+                user_dependents = _supersession_user_dependents(old_h)
                 if user_dependents:
                     superseded_kept_orphan.append((old_h, successors, user_dependents))
                     continue
@@ -1067,6 +1285,23 @@ def update_db(
             for dep in cascade.get("updated", []):
                 if dep not in upstream_patterns:
                     cascaded_user.add(dep)
+
+        # Verification is part of the atomic pull, not post-success
+        # reporting. If either aggregate-root collection or optional
+        # bottom-up hash verification fails, the exception path below
+        # restores the pre-pull backup before any backup is promoted.
+        try:
+            post_pull_root = vocabulary_info(target_db).get("root")
+        except Exception as exc:
+            raise RuntimeError(f"Post-pull aggregate-root verification failed: {exc}") from exc
+
+        if verify:
+            invalid = _verify_hashes(target_db)
+            if invalid:
+                outcome["invalid_hashes"] = list(invalid)
+                raise RuntimeError(f"Hash validity check failed: {len(invalid)} invalid pattern(s)")
+            print("✓ Hash validity verified.")
+            outcome["verified"] = True
 
     except (Exception, KeyboardInterrupt) as e:
         # Roll back: restore the DB from backup via SQLite's backup API
@@ -1252,22 +1487,7 @@ def update_db(
         (h, list(n), list(d)) for h, n, d in superseded_kept_orphan
     ]
     outcome["upstream_removed"] = list(upstream_removed)
-    try:
-        outcome["vocabulary_root_after"] = vocabulary_info(target_db).get("root")
-    except Exception:
-        pass
-
-    if verify:
-        invalid = _verify_hashes(target_db)
-        if invalid:
-            print(f"\n❌ Hash validity check failed: {len(invalid)} invalid patterns")
-            for h in invalid[:5]:
-                print(f"    {h}")
-            outcome["error"] = f"{len(invalid)} pattern(s) failed hash verification"
-            outcome["invalid_hashes"] = list(invalid)
-            return outcome
-        print("✓ Hash validity verified.")
-        outcome["verified"] = True
+    outcome["vocabulary_root_after"] = post_pull_root
 
     outcome["success"] = True
     return outcome
@@ -1333,12 +1553,120 @@ def _verify_hashes(db_path: str) -> list[str]:
     return mismatches
 
 
+def install_remote_library(manifest_source: str) -> bool:
+    """Install a verified library release without changing the active DB."""
+    from ..core.libraries import LibraryError, install_library
+
+    try:
+        record = install_library(manifest_source)
+    except (LibraryError, OSError, ValueError) as exc:
+        print(f"❌ Library installation failed: {exc}")
+        return False
+
+    print(
+        f"✅ Installed {record['name']} v{record['version']} ({record['pattern_count']} patterns)"
+    )
+    print(f"   semantic root: {record['semantic_root']}")
+    print(f"   catalog root:  {record['catalog_root']}")
+    print(f"   runtime DB:    {record['path']} ({record['database_source']})")
+    print(f"   Activate with: sema use {record['name']}")
+    return True
+
+
+def package_library_release(
+    source_db: str,
+    output_dir: str,
+    *,
+    name: str,
+    version: str,
+    github_repo: str | None = None,
+    update_url: str | None = None,
+    artifact_url: str | None = None,
+) -> bool:
+    """Build and verify an upload-ready library release from a project DB."""
+    from ..core.libraries import LibraryError, github_release_urls, package_library
+
+    source = Path(source_db).expanduser().resolve()
+    try:
+        validate_registry_db(source)
+    except ValueError as exc:
+        print(f"❌ Library packaging failed: {exc}")
+        return False
+    source_record = get_registered_db_by_path(source)
+    if is_read_only_db(str(source)):
+        print("❌ Library packaging requires a writable project database, not a managed snapshot.")
+        if source_record and source_record.get("kind") == "installed-library":
+            print(
+                "   Run `sema build my-library.db --preset full "
+                f"--source {source_record['name']}` and package that database."
+            )
+        else:
+            print("   Run `sema build my-library.db --preset full` and package that database.")
+        return False
+
+    try:
+        if github_repo:
+            if update_url or artifact_url:
+                raise LibraryError(
+                    "Use either --github-repo or the --update-url/--artifact-url pair"
+                )
+            update_url, artifact_url = github_release_urls(github_repo, name, version)
+        elif not update_url or not artifact_url:
+            raise LibraryError("Explicit publication requires both --update-url and --artifact-url")
+
+        release = package_library(
+            source,
+            output_dir,
+            name=name,
+            version=version,
+            update_url=update_url,
+            artifact_url=artifact_url,
+        )
+    except (LibraryError, OSError, ValueError) as exc:
+        print(f"❌ Library packaging failed: {exc}")
+        return False
+
+    print(
+        f"✅ Packaged {name} v{version} ({release.pattern_count} patterns) "
+        "and verified a fresh local read model"
+    )
+    print(f"   Manifest:      {release.manifest_path}")
+    print(f"   Pattern ZIP:   {release.archive_path}")
+    print(f"   semantic root: {release.semantic_root}")
+    print(f"   catalog root:  {release.catalog_root}")
+    print("   Upload both files to the declared release without changing their bytes.")
+    return True
+
+
+def update_remote_library(name: str) -> bool:
+    """Explicitly update one installed library through its recorded pointer."""
+    from ..core.libraries import LibraryError, update_library
+
+    try:
+        record, changed = update_library(name)
+    except (LibraryError, OSError, ValueError) as exc:
+        print(f"❌ Library update failed: {exc}")
+        return False
+
+    if not changed:
+        print(f"✅ {record['name']} is already at v{record['version']}")
+        return True
+    print(f"✅ Updated {record['name']} to v{record['version']}")
+    print(f"   catalog root: {record['catalog_root']}")
+    print(f"   runtime DB:   {record['path']}")
+    if os.environ.get("SEMA_DB_PATH"):
+        print("⚠️  SEMA_DB_PATH still takes priority; unset it to use the updated managed release.")
+    return True
+
+
 def use_db(path: str = None, default: bool = False):
     """Switch the active DB or reset to default."""
     if default:
         set_active_db(None)
         bundled = get_bundled_db_path()
         print(f"✅ Switched to default vocabulary ({bundled})")
+        if os.environ.get("SEMA_DB_PATH"):
+            print(f"⚠️  SEMA_DB_PATH is still overriding the default: {os.environ['SEMA_DB_PATH']}")
         return True
 
     if not path:
@@ -1350,9 +1678,26 @@ def use_db(path: str = None, default: bool = False):
             print(f"Using: {db}")
         return True
 
-    resolved = Path(path).expanduser().resolve()
+    # A registered name wins over a same-named cwd entry. Prefix a path with
+    # `./` (or use an absolute path) when selecting a colliding local file.
+    selected_record = get_registered_db(path)
+    candidate = Path(path).expanduser()
+    if selected_record is not None:
+        resolved = Path(selected_record["path"]).expanduser().resolve()
+    elif candidate.exists():
+        resolved = candidate.resolve()
+        selected_record = get_registered_db_by_path(resolved)
+    else:
+        print(f"❌ Database path or installed library not found: {path}")
+        return False
     if not resolved.exists():
         print(f"❌ Database not found: {resolved}")
+        return False
+
+    try:
+        validate_registry_db(resolved)
+    except ValueError as exc:
+        print(f"❌ Invalid Sema database: {exc}")
         return False
 
     if is_bundled_db(str(resolved)):
@@ -1360,10 +1705,26 @@ def use_db(path: str = None, default: bool = False):
         print("   Run `sema build my.db --preset full` to create your own copy.")
         return False
 
+    if selected_record and selected_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(selected_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            print(f"❌ Installed library verification failed: {exc}")
+            return False
+
     set_active_db(str(resolved))
-    register_db(str(resolved))
+    if selected_record is None:
+        register_db(str(resolved))
     count = RegistryManager(db_path=str(resolved)).count()
-    print(f"✅ Switched to {resolved} ({count} patterns)")
+    label = selected_record.get("name") if selected_record else str(resolved)
+    version = (
+        f" v{selected_record['version']}"
+        if selected_record and selected_record.get("version")
+        else ""
+    )
+    print(f"✅ Switched to {label}{version} ({count} patterns) — {resolved}")
 
     # Banner: show the vocabulary fingerprint right after the switch, so
     # users can verify at a glance which state they just pointed at.
@@ -1405,8 +1766,9 @@ def categorize_pattern(handle: str, path_str: str) -> bool:
         return False
 
     db_path = get_default_db_path()
-    if is_bundled_db(db_path):
-        print("❌ Cannot modify the bundled vocabulary.")
+    if is_read_only_db(db_path):
+        label = "an installed library" if is_managed_db(db_path) else "the bundled vocabulary"
+        print(f"❌ Cannot modify {label}; it is read-only.")
         print("   Run `sema build my.db --preset full` then `sema use my.db` first.")
         return False
 
@@ -1471,8 +1833,9 @@ def list_databases():
         status = ""
         if not db["exists"]:
             status = " (missing)"
-        elif db["bundled"]:
+        elif db.get("read_only"):
             status = " (read-only)"
+        version = f" v{db['version']}" if db.get("version") else ""
 
         if db["exists"]:
             try:
@@ -1481,11 +1844,11 @@ def list_databases():
                     "SELECT COUNT(*) FROM nodes WHERE node_type='PATTERN'"
                 ).fetchone()[0]
                 conn.close()
-                print(f"{marker}{db['name']}: {db['path']} ({count} patterns){status}")
+                print(f"{marker}{db['name']}{version}: {db['path']} ({count} patterns){status}")
             except sqlite3.Error:
-                print(f"{marker}{db['name']}: {db['path']} (corrupted){status}")
+                print(f"{marker}{db['name']}{version}: {db['path']} (corrupted){status}")
         else:
-            print(f"{marker}{db['name']}: {db['path']}{status}")
+            print(f"{marker}{db['name']}{version}: {db['path']}{status}")
 
 
 def _get_presets_dir() -> Path:
@@ -1531,15 +1894,38 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
         print(f"❌ {dest_path} already exists. Remove it first to rebuild.")
         return False
 
-    source_db_path = source_db or get_bundled_db_path()
+    source_record = get_registered_db(source_db) if source_db else None
+    if source_db and source_record is None:
+        source_path = Path(source_db).expanduser()
+        if source_path.exists():
+            source_record = get_registered_db_by_path(source_path)
+    if source_record and source_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(source_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            print(f"❌ Installed library verification failed: {exc}")
+            return False
+        source_db_path = source_record["path"]
+    else:
+        source_db_path = source_db or get_bundled_db_path()
     if not source_db_path or not Path(source_db_path).exists():
         print("❌ Source DB not found. Run `sema pull` first.")
+        return False
+    try:
+        validate_registry_db(source_db_path)
+    except ValueError as exc:
+        print(f"❌ Invalid source database: {exc}")
         return False
 
     if preset:
         if preset == "full":
             dest_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source_db_path, dest_path)
+            # Installed release snapshots are intentionally mode 0444. A project
+            # copy must be writable even when its source is managed/read-only.
+            dest_path.chmod(dest_path.stat().st_mode | 0o200)
             count = RegistryManager(db_path=str(dest_path)).count()
             print(f"✅ Built {dest_path} (full: {count} patterns)")
             register_db(str(dest_path))
@@ -1822,6 +2208,11 @@ def main():
     apply_cmd.add_argument(
         "--check", "-c", action="store_true", help="Validate only, don't apply changes"
     )
+    apply_cmd.add_argument(
+        "--retarget-extends",
+        action="store_true",
+        help="Retarget `extends` on staged cards to each parent's current Sema ID",
+    )
 
     # Search
     search = subparsers.add_parser("search", help="Search the registry")
@@ -1933,14 +2324,55 @@ def main():
     build_group.add_argument(
         "--from", dest="from_file", help="Path to patterns file (one handle per line)"
     )
-    build_cmd.add_argument("--source", help="Source DB (default: bundled vocabulary)")
+    build_cmd.add_argument(
+        "--source",
+        help="Installed library name or source DB path (default: bundled vocabulary)",
+    )
+
+    # Package - export and verify a portable third-party library release
+    package_cmd = subparsers.add_parser(
+        "package",
+        help="Package a project DB as a verified library.json and pattern ZIP",
+    )
+    package_cmd.add_argument("source", help="Writable project database to package")
+    package_cmd.add_argument("--output-dir", required=True, help="New directory for release files")
+    package_cmd.add_argument("--name", required=True, help="Lowercase library slug")
+    package_cmd.add_argument("--version", required=True, help="Release version (MAJOR.MINOR.PATCH)")
+    publication = package_cmd.add_mutually_exclusive_group(required=True)
+    publication.add_argument(
+        "--github-repo",
+        metavar="OWNER/REPOSITORY",
+        help="Derive URLs for GitHub tag v<version>",
+    )
+    publication.add_argument(
+        "--update-url",
+        help="Stable HTTPS URL from which users fetch future library.json releases",
+    )
+    package_cmd.add_argument(
+        "--artifact-url",
+        help="Version-pinned HTTPS URL at which the generated pattern ZIP will be published",
+    )
+
+    # Install - verify and register a published library
+    install_cmd = subparsers.add_parser(
+        "install",
+        help="Install a verified library from a file or HTTPS library.json",
+    )
+    install_cmd.add_argument("manifest", help="Path or HTTPS URL to library.json")
+
+    # Update - explicitly replace a managed library with a verified release
+    update_cmd = subparsers.add_parser(
+        "update",
+        help="Update an installed library through its recorded update URL",
+    )
+    update_cmd.add_argument("name", help="Installed library name")
 
     # Use - switch active DB
     use_cmd = subparsers.add_parser(
         "use",
-        help="Switch active vocabulary DB (or show current)",
+        help="Switch active vocabulary by installed name or DB path (or show current)",
     )
-    use_cmd.add_argument("path", nargs="?", default=None, help="Path to DB (omit to show current)")
+    use_cmd.add_argument("path", nargs="?", default=None, help="Installed library name or DB path")
     use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
 
     # Categorize - move a pattern to a different taxonomy path
@@ -1975,7 +2407,12 @@ def main():
     # exit codes or don't need one.
     ok: bool | None = None
     if args.command == "apply":
-        ok = apply_changes(remove_handles=args.remove, add_files=args.add, check_only=args.check)
+        ok = apply_changes(
+            remove_handles=args.remove,
+            add_files=args.add,
+            check_only=args.check,
+            retarget_extends=args.retarget_extends,
+        )
     elif args.command == "search":
         search_patterns(
             args.query, use_semantic=not args.keyword_only, verbose=args.verbose, as_json=args.json
@@ -1996,6 +2433,20 @@ def main():
         ok = build_db(
             args.dest, preset=args.preset, patterns_file=args.from_file, source_db=args.source
         )
+    elif args.command == "package":
+        ok = package_library_release(
+            args.source,
+            args.output_dir,
+            name=args.name,
+            version=args.version,
+            github_repo=args.github_repo,
+            update_url=args.update_url,
+            artifact_url=args.artifact_url,
+        )
+    elif args.command == "install":
+        ok = install_remote_library(args.manifest)
+    elif args.command == "update":
+        ok = update_remote_library(args.name)
     elif args.command == "use":
         ok = use_db(path=args.path, default=args.default)
     elif args.command == "list":

@@ -44,7 +44,7 @@ def merkle_hash(obj: Any) -> tuple[str, Any]:
         norm = normalize_string(obj)
         return _sha256(_TAG_STR + norm.encode('utf-8')), norm
 
-    elif isinstance(obj, (int, float, bool, type(None))):
+    elif isinstance(obj, int | float | bool | type(None)):
         canon = canonical_json(obj)
         return _sha256(_TAG_PRIMITIVE + canon), obj
 
@@ -130,11 +130,19 @@ def test_pattern_hash(pattern_path: str):
     semantic_fields = [
         "dependencies", "signature", "data_schema", "mechanism",
         "gloss", "invariants", "preconditions", "postconditions",
-        "parameters", "failure_modes", "derived_from"
+        "parameters", "failure_modes", "extends"
     ]
+
+    if "extends" in pattern and "derived_from" in pattern:
+        print("ERROR: Pattern contains both extends and legacy derived_from")
+        return False
 
     # Extract only semantic content
     content = {k: pattern[k] for k in semantic_fields if k in pattern}
+    # Preserve the pre-0.4 key verbatim so historical card identities remain
+    # independently verifiable after the field was renamed to `extends`.
+    if "derived_from" in pattern:
+        content["derived_from"] = pattern["derived_from"]
 
     # Dependency aliases are canonicalized before hashing (see hash spec).
     # The JSON stores resolved dep refs, so no registry lookup is needed —

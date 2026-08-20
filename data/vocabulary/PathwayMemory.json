@@ -49,14 +49,17 @@
     "path": [
       "Mind",
       "Memory"
+    ],
+    "supersedes": [
+      "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82"
     ]
   },
-  "sema_id": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82",
-  "sema_ref": "PathwayMemory#b6a0",
-  "sema_stub": "b6a0",
+  "sema_id": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
+  "sema_ref": "PathwayMemory#b15f",
+  "sema_stub": "b15f",
   "dependencies": {
     "references": {
-      "cache": "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5"
+      "cache": "sema:Cache#mh:SHA-256:55e2dfe59df3e261e74c0ecdafa7216cf6fea44e60692125499924c7a8104771"
     }
   },
   "sema_layer": "Mind",

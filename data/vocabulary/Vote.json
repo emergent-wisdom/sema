@@ -1,6 +1,6 @@
 {
   "handle": "Vote",
-  "mechanism": "N-agent decision mechanism with configurable rules and integrity guarantees. Initiator sends 'VOTE_CALL' with question, options, and {{quorum}} requirement. Eligible agents respond 'CAST' via {{ballot}}. {{system}} enforces: one vote per agent, deadline, and {{quorum}} check. After deadline: compute result. Broadcast 'VOTE_RESULT'. Simple case optimization: binary decisions use lightweight 2-message flow. Utilizes {{break}}, {{aggregate}}, {{elect}}.",
+  "mechanism": "N-agent decision mechanism with configurable rules and integrity guarantees. Initiator sends 'VOTE_CALL' with question, options, and {{quorum}} requirement. Eligible agents respond 'CAST' via {{ballot}}. {{system}} enforces: one vote per agent, deadline, and {{quorum}} check. After deadline: compute result. Broadcast 'VOTE_RESULT'. Simple case optimization: binary decisions use lightweight 2-message flow. Tallying is performed by {{aggregate}}; a vote that selects a leader hands off to {{elect}}; a vote that fails its quorum announces that coordination failure via {{break}}.",
   "gloss": "Provide standard decision mechanism with integrity guarantees",
   "failure_modes": [
     "{{quorum}} not met (insufficient participation, decision invalid).",
@@ -11,7 +11,10 @@
     "Mechanism mismatch (wrong mechanism for decision type, e.g., plurality for binary)."
   ],
   "invariants": [
-    "Votes immutable after cast."
+    "Votes immutable after cast.",
+    "One vote per eligible agent.",
+    "Casts arriving after the deadline are not counted.",
+    "Declares a tie-breaker."
   ],
   "parameters": [
     {
@@ -41,27 +44,30 @@
     "ring": 2,
     "supersedes": [
       "sema:Vote#mh:SHA-256:30d0f73565ea6b9b3ec56cac26b7a54ae4533e9db9ea47b6a79691c5b9e69264",
-      "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9"
+      "sema:Vote#mh:SHA-256:05a759ba011ca83244099099274c4e69bac4b368000810fdb3096f8e740be1d9",
+      "sema:Vote#mh:SHA-256:0affbbc722d42218027f581176be08d0a66c9a3dc99adbf94d411ef9fc38786c",
+      "sema:Vote#mh:SHA-256:3b66510363464c335c95a843247ddd37bbb98616a17f6a8d4bb17b1ac91bd41c",
+      "sema:Vote#mh:SHA-256:d3cbfb3d419b84397dff409d2f83271e9bcb1b6c16b79b0b3629cbe72bd7f3a8"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Vote#mh:SHA-256:0affbbc722d42218027f581176be08d0a66c9a3dc99adbf94d411ef9fc38786c",
-  "sema_ref": "Vote#0aff",
-  "sema_stub": "0aff",
+  "sema_id": "sema:Vote#mh:SHA-256:84935dbc846bcd8fe2da01e9e04401f190769e87d0354e00c0986e43e414f300",
+  "sema_ref": "Vote#8493",
+  "sema_stub": "8493",
   "dependencies": {
     "accepts": {
-      "ballot": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497"
+      "ballot": "sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c"
     },
     "composes_with": {
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744"
     },
     "references": {
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
-      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-      "elect": "sema:Elect#mh:SHA-256:187a9d1996e3ad1fcb86b8dfe1207efb6473f2488bbf2741e5d77207b9dcdd38",
+      "aggregate": "sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077",
+      "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
+      "elect": "sema:Elect#mh:SHA-256:53902a96572579889fc19d4c0100e7876fe566fba4cc846241e6b209b00bf52f",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

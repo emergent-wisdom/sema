@@ -10,7 +10,9 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5"
+      "sema:Spec#mh:SHA-256:436efd7df8ed376f693362923a024b4096265b9de32c7a980297b078112c75b5",
+      "sema:Spec#mh:SHA-256:47f45e3174d8a28edf9c685f6ee8356386cb30cf24d3ba82ddb0738c0c9391cb",
+      "sema:Spec#mh:SHA-256:16ecdeb3e4462a7aed4ab93d7f67dd4ace5b25249db1c8d2f0295fe62de3cd89"
     ],
     "path": [
       "Infrastructure",
@@ -25,22 +27,26 @@
         "type": "array",
         "items": {
           "type": "string"
-        }
+        },
+        "description": "The testable requirements the target must satisfy. Required: a Spec with none defines nothing."
       },
       "constraints": {
         "type": "object"
       }
-    }
+    },
+    "required": [
+      "requirements"
+    ]
   },
-  "sema_ref": "Spec#47f4",
-  "sema_id": "sema:Spec#mh:SHA-256:47f45e3174d8a28edf9c685f6ee8356386cb30cf24d3ba82ddb0738c0c9391cb",
-  "sema_stub": "47f4",
+  "sema_ref": "Spec#c953",
+  "sema_id": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7",
+  "sema_stub": "c953",
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "goal": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
+      "goal": "sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70",
+      "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32"
     }
   },
   "sema_layer": "Infrastructure",

@@ -6,26 +6,28 @@
     "Budget Enclosure: total cost across all child tasks, retries, and recursions must stay within the declared {{budget}}.",
     "Quality Gate: output must pass the declared {{accept_spec}} before the task is marked complete."
   ],
-  "derived_from": "sema:Task#mh:SHA-256:b32808db164555a0b65e7eedb2437f0165206f6582b207a5dfd6b4bb90d9a04c",
   "_meta": {
     "ring": 2,
     "tier": 2,
     "supersedes": [
-      "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543"
+      "sema:BoundedTask#mh:SHA-256:06a6eab9f36242682b865ee828dc14f40c449301eed224727c1a801851333543",
+      "sema:BoundedTask#mh:SHA-256:a1c2e4a17bc123e0a6737a3cb20fc958a953df7c953586f0fda00e5407e13c4f",
+      "sema:BoundedTask#mh:SHA-256:fa244964d226df0e40249825ff0a0787af1b1bb05de74cad6099f458e05404db"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:BoundedTask#mh:SHA-256:a1c2e4a17bc123e0a6737a3cb20fc958a953df7c953586f0fda00e5407e13c4f",
-  "sema_ref": "BoundedTask#a1c2",
-  "sema_stub": "a1c2",
+  "sema_id": "sema:BoundedTask#mh:SHA-256:86dd552006f7636198f5d54e1beec2c5fa82b1f19aaf41ad8b45eecf9089b8fc",
+  "sema_ref": "BoundedTask#86dd",
+  "sema_stub": "86dd",
+  "extends": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Society",

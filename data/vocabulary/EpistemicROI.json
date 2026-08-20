@@ -7,8 +7,8 @@
     "Underestimation of Cost: Ignoring the time/compute cost of the experiment itself."
   ],
   "invariants": [
-    "{{decision}} Delta: {{experiment}} must have at least two {{outcome}}s leading to different Actions",
-    "Positive {{result}}: ExpectedValue(Info) > Cost(Acquisition)"
+    "The {{experiment}} has at least two {{outcome}}s leading to different actions.",
+    "Expected value of the information exceeds the cost of acquiring it."
   ],
   "preconditions": [
     "Cost of experiment is estimable",
@@ -22,26 +22,27 @@
     "ring": 2,
     "supersedes": [
       "sema:EpistemicROI#mh:SHA-256:82a2da9aee8241835a3b8f370816bdd2d1e4e019cd28b52b285244ffe306b7da",
-      "sema:EpistemicROI#mh:SHA-256:742adc7d76282f41c66582e1e780930e5f83f792084fa83ac9b01f510ecaf5b0"
+      "sema:EpistemicROI#mh:SHA-256:742adc7d76282f41c66582e1e780930e5f83f792084fa83ac9b01f510ecaf5b0",
+      "sema:EpistemicROI#mh:SHA-256:d48670433cb6617e8e1914f9d062939bb852ef2b7188e17a1cbb1803b81dad1e",
+      "sema:EpistemicROI#mh:SHA-256:7b6393c9e9cc8e3294a612b9c92f5a6f88b4cce82ec590577a24cada19811672"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:EpistemicROI#mh:SHA-256:d48670433cb6617e8e1914f9d062939bb852ef2b7188e17a1cbb1803b81dad1e",
-  "sema_ref": "EpistemicROI#d486",
-  "sema_stub": "d486",
+  "sema_id": "sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7",
+  "sema_ref": "EpistemicROI#b0d8",
+  "sema_stub": "b0d8",
   "dependencies": {
     "references": {
-      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "compute_budget": "sema:ComputeBudget#mh:SHA-256:47c6eb12f7537f418cdfa9358a501b394d3b4460dd2f8c85560687b1e782b8c2",
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "experiment": "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b",
-      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
-      "result": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
+      "compute_budget": "sema:ComputeBudget#mh:SHA-256:4091ac7c6677342920dc53808d02830e35c5849f2af1bb9ba7749c576d37478e",
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "experiment": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748",
+      "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

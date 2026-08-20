@@ -19,22 +19,24 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4"
+      "sema:StructuralCoaching#mh:SHA-256:3da94d81638b577c42981039f4399705519db8a102dd8e16b7b51cbd6695b0b4",
+      "sema:StructuralCoaching#mh:SHA-256:63bb74ec91e4203ff5337192785a5c1b0cc27d3be6b39be59a8043a1f97488ff",
+      "sema:StructuralCoaching#mh:SHA-256:4ff96ca1719333260b90e8fe2c451e1e5e707568ae6c1cf6b8f6f10fef2fce67"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:StructuralCoaching#mh:SHA-256:63bb74ec91e4203ff5337192785a5c1b0cc27d3be6b39be59a8043a1f97488ff",
-  "sema_ref": "StructuralCoaching#63bb",
-  "sema_stub": "63bb",
+  "sema_id": "sema:StructuralCoaching#mh:SHA-256:4552c90190484bb0ec782a05f03f6259c37610dca851ba165a9ab4074f0ede51",
+  "sema_ref": "StructuralCoaching#4552",
+  "sema_stub": "4552",
   "dependencies": {
     "references": {
-      "creative": "sema:Creative#mh:SHA-256:c7e4f6515c3f0708fbccb3610a70abed0d2e4eb4f5d41eeb337941992e1caff1",
-      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
-      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
-      "invert": "sema:Invert#mh:SHA-256:5a62fd17178c18fa3a2d3b9aa070f8776f1ad47418b4830dcc685e435eba02d8"
+      "creative": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",
+      "critique": "sema:Critique#mh:SHA-256:646b71acb10a6b7f0874f3d5c7977c44d253f29f9c1231c974d85c7fba131980",
+      "feedback": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d",
+      "invert": "sema:Invert#mh:SHA-256:b4be11e1b303c002e83da7be8a0c122e4a894008fd72e71e982b00e9242d73a1"
     }
   },
   "sema_layer": "Society",

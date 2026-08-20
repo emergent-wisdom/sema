@@ -9,8 +9,8 @@
     "Stale Data: Observing a cached state that no longer reflects reality."
   ],
   "invariants": [
-    "Read-Only: Observation must not modify the observed state (Side-effect free).",
-    "Truthfulness: The observation must accurately reflect the input signal (no internal distortion)."
+    "Does not modify the observed state. An active query may still consume quota and leave a record at the source; what it may not do is change what is being observed.",
+    "Discloses its filtering: the observation records what was excluded by attention."
   ],
   "preconditions": [
     "Sensors/Tools are active",
@@ -28,19 +28,20 @@
     ],
     "ring": 0,
     "supersedes": [
-      "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f"
+      "sema:Observe#mh:SHA-256:8ebdc058f13dc14e6ed22cd000bc6eb89507e3b6b507cc393c88a8209c65122f",
+      "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871",
-  "sema_ref": "Observe#db88",
-  "sema_stub": "db88",
+  "sema_id": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96",
+  "sema_ref": "Observe#4a04",
+  "sema_stub": "4a04",
   "dependencies": {
     "yields": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
     }
   },
   "sema_layer": "Infrastructure",

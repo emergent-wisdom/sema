@@ -10,6 +10,7 @@ from unittest.mock import patch
 import numpy as np
 
 from sema.cli.main import _validate_pattern_file, apply_changes
+from sema.core.hashing import generate_sema_hash
 from sema.taxonomy_graph.graph_store import EdgeType, GraphStore, NodeType
 
 
@@ -1003,6 +1004,234 @@ class TestFullRoundTrip(unittest.TestCase):
         self.assertEqual(restored.get("sema_id"), original.get("sema_id"))
         self.assertEqual(restored.get("sema_ref"), original.get("sema_ref"))
         self.assertEqual(restored.get("sema_stub"), original.get("sema_stub"))
+
+
+class TestExtendsVersionPins(unittest.TestCase):
+    """`extends` names an exact immutable parent definition.
+
+    Parent edits may move the active handle through an ordinary dependency cascade,
+    but they must not silently retarget a child's specialization claim. Apply rejects
+    a stranded pin before mutation; an author can explicitly retarget staged children
+    after review.
+    """
+
+    def setUp(self):
+        self.temp_dir = tempfile.mkdtemp()
+        self.db_path = os.path.join(self.temp_dir, "test_taxonomy.db")
+        self.patterns_dir = os.path.join(self.temp_dir, "patterns")
+        os.makedirs(self.patterns_dir)
+        self.store = GraphStore(self.db_path)
+
+    def tearDown(self):
+        import shutil
+
+        shutil.rmtree(self.temp_dir, ignore_errors=True)
+
+    def _card(self, handle, mechanism="Test mechanism", deps=None, extends=None):
+        pattern = {
+            "handle": handle,
+            "mechanism": mechanism,
+            "gloss": "Test gloss",
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+        if deps:
+            pattern["dependencies"] = deps
+        if extends:
+            pattern["extends"] = extends
+        return pattern
+
+    def _commit(self, *patterns):
+        """Put patterns in the DB the way apply would, in the given order."""
+        for pattern in patterns:
+            path = Path(self.patterns_dir) / f"{pattern['handle']}.json"
+            path.write_text(json.dumps(pattern))
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            self.assertTrue(apply_changes(add_files=[self.patterns_dir]))
+        for pattern in patterns:
+            (Path(self.patterns_dir) / f"{pattern['handle']}.json").unlink()
+
+    def _stage_and_run(self, *patterns, retarget_extends=False):
+        for pattern in patterns:
+            path = Path(self.patterns_dir) / f"{pattern['handle']}.json"
+            path.write_text(json.dumps(pattern))
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            with patch("builtins.print") as printed:
+                result = apply_changes(
+                    add_files=[self.patterns_dir],
+                    retarget_extends=retarget_extends,
+                )
+        output = "\n".join(str(c.args[0]) for c in printed.call_args_list if c.args)
+        return result, output
+
+    def _active_ref(self, handle):
+        current_hash = GraphStore(self.db_path).get_pattern_hash(handle)
+        return f"sema:{handle}#mh:SHA-256:{current_hash}"
+
+    def test_check_rejects_missing_extends_parent(self):
+        child = self._card("Child", extends=make_sema_id("MissingParent"))
+        path = Path(self.patterns_dir) / "Child.json"
+        path.write_text(json.dumps(child))
+
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            self.assertFalse(apply_changes(add_files=[str(path)], check_only=True))
+
+    def test_parent_in_same_batch_satisfies_extends_target_check(self):
+        parent = self._card("Parent")
+        authored_parent_ref = generate_sema_hash(parent)["full_id"]
+        child = self._card("Child", extends=authored_parent_ref)
+        for pattern in (parent, child):
+            path = Path(self.patterns_dir) / f"{pattern['handle']}.json"
+            path.write_text(json.dumps(pattern))
+
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            self.assertTrue(apply_changes(add_files=[self.patterns_dir]))
+
+        fresh = GraphStore(self.db_path)
+        child_id = fresh._find_pattern_id("Child")
+        parent_id = fresh._find_pattern_id("Parent")
+        self.assertTrue(fresh.has_edge_of_type(child_id, parent_id, EdgeType.IS_A))
+        is_a_edges = [
+            edge
+            for edge in fresh._edges_between(child_id, parent_id)
+            if edge.get("edge_type") == EdgeType.IS_A
+        ]
+        self.assertEqual(is_a_edges[0]["metadata"]["parent_sema_id"], authored_parent_ref)
+
+    def test_batch_apply_preserves_authored_parent_version_by_default(self):
+        parent = self._card("Parent")
+        authored_parent_ref = generate_sema_hash(parent)["full_id"]
+        child = self._card("Child", extends=authored_parent_ref)
+        for pattern in (parent, child):
+            path = Path(self.patterns_dir) / f"{pattern['handle']}.json"
+            path.write_text(json.dumps(pattern))
+
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            self.assertTrue(apply_changes(add_files=[self.patterns_dir]))
+
+        stored_child = json.loads((Path(self.patterns_dir) / "Child.json").read_text())
+        self.assertEqual(stored_child["extends"], authored_parent_ref)
+
+    def test_existing_handle_does_not_make_fabricated_parent_version_resolvable(self):
+        self._commit(self._card("Parent"))
+        child = self._card("Child", extends=make_sema_id("Parent", "b"))
+        path = Path(self.patterns_dir) / "Child.json"
+        path.write_text(json.dumps(child))
+
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            self.assertFalse(apply_changes(add_files=[str(path)], check_only=True))
+
+    def test_retarget_requires_explicit_option(self):
+        parent = self._card("Parent")
+        authored_parent_ref = make_sema_id("Parent", "b")
+        child = self._card("Child", extends=authored_parent_ref)
+        for pattern in (parent, child):
+            path = Path(self.patterns_dir) / f"{pattern['handle']}.json"
+            path.write_text(json.dumps(pattern))
+
+        with patch("sema.cli.main.get_default_db_path", return_value=self.db_path):
+            self.assertTrue(apply_changes(add_files=[self.patterns_dir], retarget_extends=True))
+
+        fresh = GraphStore(self.db_path)
+        stored_child = json.loads((Path(self.patterns_dir) / "Child.json").read_text())
+        current_parent_ref = f"sema:Parent#mh:SHA-256:{fresh.get_pattern_hash('Parent')}"
+        self.assertEqual(stored_child["extends"], current_parent_ref)
+
+    def test_parent_edit_is_rejected_before_stranding_unstaged_child(self):
+        self._commit(self._card("Parent"))
+        self._commit(self._card("Child", extends=self._active_ref("Parent")))
+        before = GraphStore(self.db_path).get_pattern_hash("Parent")
+
+        result, out = self._stage_and_run(self._card("Parent", mechanism="Rewritten mechanism"))
+
+        self.assertFalse(result)
+        self.assertIn("would strand Child", out)
+        self.assertEqual(GraphStore(self.db_path).get_pattern_hash("Parent"), before)
+
+    def test_cascade_is_rejected_before_stranding_unstaged_child(self):
+        """Grandparent -> Parent -> Child. Staging only the grandparent moves Parent's
+        active hash through the ordinary dependency cascade. Child remains pinned and
+        the parent editor is told about the choice. Nothing else is staged.
+        """
+        self._commit(self._card("Grandparent"))
+        self._commit(
+            self._card(
+                "Parent",
+                mechanism="Uses {{grandparent}} internally",
+                deps={"composes_with": {"grandparent": self._active_ref("Grandparent")}},
+            )
+        )
+        self._commit(self._card("Child", extends=self._active_ref("Parent")))
+        before = GraphStore(self.db_path).get_pattern_hash("Grandparent")
+
+        result, out = self._stage_and_run(
+            self._card("Grandparent", mechanism="Rewritten grandparent mechanism")
+        )
+
+        self.assertFalse(result)
+        self.assertIn("would strand Child", out)
+        self.assertEqual(GraphStore(self.db_path).get_pattern_hash("Grandparent"), before)
+
+    def test_retarget_runs_after_indirectly_moved_unstaged_parent(self):
+        self._commit(self._card("Grandparent"))
+        self._commit(
+            self._card(
+                "Parent",
+                mechanism="Uses {{grandparent}} internally",
+                deps={"composes_with": {"grandparent": self._active_ref("Grandparent")}},
+            )
+        )
+        self._commit(self._card("Child", extends=self._active_ref("Parent")))
+        child = self._card("Child", extends=self._active_ref("Parent"))
+
+        result, _out = self._stage_and_run(
+            child,
+            self._card("Grandparent", mechanism="Rewritten grandparent mechanism"),
+            retarget_extends=True,
+        )
+
+        self.assertTrue(result)
+        stored_child = json.loads((Path(self.patterns_dir) / "Child.json").read_text())
+        self.assertEqual(stored_child["extends"], self._active_ref("Parent"))
+
+    @patch(
+        "sema.taxonomy_graph.embedding_service.EmbeddingService.get_embedding",
+        return_value=np.zeros(384, dtype=np.float32),
+    )
+    def test_retarget_with_missing_ordinary_dependency_fails_before_parent_moves(
+        self, _mock_embedding
+    ):
+        self._commit(self._card("Parent", mechanism="Parent version one"))
+        original_parent_ref = self._active_ref("Parent")
+        self._commit(self._card("Child", extends=original_parent_ref))
+        reviewed_child = self._card(
+            "Child",
+            mechanism="Uses {{missing}}.",
+            deps={"references": {"missing": make_sema_id("Missing")}},
+            extends=original_parent_ref,
+        )
+
+        result, out = self._stage_and_run(
+            self._card("Parent", mechanism="Parent version two"),
+            reviewed_child,
+            retarget_extends=True,
+        )
+
+        self.assertFalse(result)
+        self.assertIn("Missing dependency target", out)
+        self.assertNotIn("Applying...", out)
+        self.assertEqual(self._active_ref("Parent"), original_parent_ref)
+        fresh = GraphStore(self.db_path)
+        stored_child = fresh.graph.nodes[fresh._find_pattern_id("Child")]["metadata"]["pattern"]
+        self.assertEqual(stored_child["extends"], original_parent_ref)
+
+    def test_silent_when_no_extends_parent_moved(self):
+        self._commit(self._card("Parent"))
+        self._commit(self._card("Child", extends=self._active_ref("Parent")))
+
+        result, out = self._stage_and_run(self._card("Unrelated"))
+
+        self.assertTrue(result)
+        self.assertNotIn("would strand", out)
 
 
 if __name__ == "__main__":

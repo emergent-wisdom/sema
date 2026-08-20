@@ -28,7 +28,9 @@
     "ring": 2,
     "tier": 1,
     "supersedes": [
-      "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f"
+      "sema:DAG#mh:SHA-256:ed37a1e0310857feba371491e4652f9a142905af341adbc67e6386c5b3c1672f",
+      "sema:DAG#mh:SHA-256:ed81568cef305d3f4f39c7ef157bfc4c74ef721c8ad1e9001a2d11793ce936df",
+      "sema:DAG#mh:SHA-256:cb54c9360f063d839412e33158dc205c02af684d85132f6a982caba17274f253"
     ],
     "path": [
       "Infrastructure",
@@ -36,16 +38,22 @@
     ]
   },
   "invariants": [
-    "Acyclicity: No path exists from Node(A) to itself.",
-    "Directedness: Edges have a single direction."
+    "Acyclic: no path leads from a node back to itself.",
+    "Edges are directed.",
+    "Rooted: exactly one node has no predecessor, named by `root_id`.",
+    "Nodes with no directed path between them may run concurrently."
   ],
-  "sema_id": "sema:DAG#mh:SHA-256:ed81568cef305d3f4f39c7ef157bfc4c74ef721c8ad1e9001a2d11793ce936df",
-  "sema_ref": "DAG#ed81",
-  "sema_stub": "ed81",
+  "sema_id": "sema:DAG#mh:SHA-256:ed5b6bdbe8d785f1dceb6cc1c7020d9c2340be7b507a3678da2da58211e455aa",
+  "sema_ref": "DAG#ed5b",
+  "sema_stub": "ed5b",
+  "failure_modes": [
+    "Cycle on insert: an added edge closes a loop, which the acyclicity invariant forbids and which must be detected at insertion rather than at traversal.",
+    "False precedence: an edge asserts a dependency that does not exist, serialising work that could have run concurrently."
+  ],
   "dependencies": {
     "references": {
-      "parallelize": "sema:Parallelize#mh:SHA-256:f2bb19914f4cd3913989e6ca37275db8c50b7af50b4733184cf07fabca4a66bf",
-      "topology": "sema:Topology#mh:SHA-256:7562ae8b1220306a7f04988216cfd33026bc6f04d8a2b3fc51f3a2b6153d5e4c"
+      "parallelize": "sema:Parallelize#mh:SHA-256:c1c795defd6f4f9cab2823cf832ae91f5f0651bef082108bb494047d91be04a1",
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
     }
   },
   "sema_layer": "Infrastructure",

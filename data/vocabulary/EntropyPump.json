@@ -10,21 +10,35 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63"
+      "sema:EntropyPump#mh:SHA-256:b9aefca2154e0e2912d1e64bb50a9db80b188c2aeceb385cf3350e4b4c7cdd63",
+      "sema:EntropyPump#mh:SHA-256:31cfc8a45ee0ea7751661386771342dc841503e4f1af65400f1f6bb95f9cd9b7"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:EntropyPump#mh:SHA-256:31cfc8a45ee0ea7751661386771342dc841503e4f1af65400f1f6bb95f9cd9b7",
-  "sema_ref": "EntropyPump#31cf",
-  "sema_stub": "31cf",
+  "sema_id": "sema:EntropyPump#mh:SHA-256:a1369712d823417e257e4306f53aa63a5dcd83b34a8f4093823578a2196eec56",
+  "sema_ref": "EntropyPump#a136",
+  "sema_stub": "a136",
+  "invariants": [
+    "Names the target it injects {{noise}} into.",
+    "Injects at most `max_injection`, so a productive {{equilibrium}} survives the perturbation.",
+    "Runs as a standing counterbalance to convergence, not on a detected stall."
+  ],
+  "parameters": [
+    {
+      "name": "max_injection",
+      "type": "Ratio",
+      "range": "(0.0, 1.0]",
+      "description": "Largest share of the target's state a single injection may perturb."
+    }
+  ],
   "dependencies": {
     "references": {
-      "entropy": "sema:Entropy#mh:SHA-256:323fd687b530ceedeeb7b7399fc4227f8181da3193c85afab0d66e26914a3749",
-      "equilibrium": "sema:Equilibrium#mh:SHA-256:bc8538ba0df944bb075946160a4b75f60a3a74b434090952b23ee718805ce88c",
-      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c"
+      "entropy": "sema:Entropy#mh:SHA-256:d5f7482e6c06a1e48eadbf28e6dca0cc0eb176bf75c70e7e467284f656d20bae",
+      "equilibrium": "sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2",
+      "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569"
     }
   },
   "sema_layer": "Infrastructure",

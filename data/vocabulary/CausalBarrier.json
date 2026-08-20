@@ -12,22 +12,22 @@
   ],
   "parameters": [
     {
-      "name": "on_violation",
+      "name": "on_undeliverable",
       "type": "Enum",
-      "range": "{Block, Warn, Reorder}",
-      "description": "Response to causality breach"
+      "range": "{block, drop, escalate}",
+      "description": "What happens to a buffered message whose dependencies never arrive. The barrier never releases it out of order \u2014 that would breach causal ordering \u2014 so the choice is how long to hold it and what to do instead."
     },
     {
       "name": "party_count",
       "type": "Integer",
       "range": "[2, 100]",
-      "description": "Required causal predecessors"
+      "description": "Participants tracked"
     },
     {
       "name": "timeout",
       "type": "Duration",
       "range": "[1s, 1h]",
-      "description": "Max wait for causal completion"
+      "description": "How long a message waits before on_undeliverable applies"
     }
   ],
   "_meta": {
@@ -35,20 +35,23 @@
     "ring": 0,
     "supersedes": [
       "sema:CausalBarrier#mh:SHA-256:0904e3eb6ac5a36cfa3ec9d1c3fe374ad4eb817e1da35375ce8d32d8272b6128",
-      "sema:CausalBarrier#mh:SHA-256:d1b20d964f273174495ad103b4c7b31ae747e4ad56de14d9e935ca1705088c5d"
+      "sema:CausalBarrier#mh:SHA-256:d1b20d964f273174495ad103b4c7b31ae747e4ad56de14d9e935ca1705088c5d",
+      "sema:CausalBarrier#mh:SHA-256:9e178f07d754eefadad17a92a84f76badce58bd00571dca64b37e83176a57e94",
+      "sema:CausalBarrier#mh:SHA-256:39b3168c5b9bad18505b7af584fbb24b80ba7c5bf90e6ff0611fc2cd405f0178",
+      "sema:CausalBarrier#mh:SHA-256:a6d8167a05ffab8cf5fda4da7a81e2c196de8a182f0673b9a8a5cbf189222dfc"
     ],
     "path": [
       "Physics",
       "Time"
     ]
   },
-  "sema_id": "sema:CausalBarrier#mh:SHA-256:9e178f07d754eefadad17a92a84f76badce58bd00571dca64b37e83176a57e94",
-  "sema_ref": "CausalBarrier#9e17",
-  "sema_stub": "9e17",
+  "sema_id": "sema:CausalBarrier#mh:SHA-256:cf54b35c9236d8fd2db3ca4f35ab5bdaac79c17052d9095aaa5fa6f143507809",
+  "sema_ref": "CausalBarrier#cf54",
+  "sema_stub": "cf54",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "state_lock": "sema:StateLock#mh:SHA-256:c9c2809bdf97bb6ac17a8ffe428d4aa9a28294b99d64cc8a336a239d26a8afb8"
     }
   },
   "sema_layer": "Physics",

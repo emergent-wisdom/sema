@@ -1,21 +1,27 @@
 {
   "handle": "Incongruity",
   "mechanism": "A misalignment between expectation and reality. The difference between the predicted {{state}} and the observed {{state}}, often serving as a {{signal}} for learning, humor, or paradox.",
-  "gloss": "The root of Humor and Paradox",
+  "gloss": "Mismatch between predicted and observed state",
   "_meta": {
     "tier": 1,
     "ring": 0,
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99"
     ]
   },
-  "sema_id": "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99",
-  "sema_ref": "Incongruity#a00d",
-  "sema_stub": "a00d",
+  "sema_id": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc",
+  "sema_ref": "Incongruity#479e",
+  "sema_stub": "479e",
+  "invariants": [
+    "Names both the prediction and the observation; without both there is no mismatch to report."
+  ],
   "dependencies": {
     "references": {
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

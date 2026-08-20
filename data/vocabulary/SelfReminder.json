@@ -16,21 +16,23 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832"
+      "sema:SelfReminder#mh:SHA-256:c8963a9fcc7250cec588a332bb96f1b988b64909c47b788c288c30a3a9cad832",
+      "sema:SelfReminder#mh:SHA-256:d04dd574dad96c08ba4d8969d30fa19ba51820e0c91e14094d8b41e7c36894c6",
+      "sema:SelfReminder#mh:SHA-256:44b5752240f75dae8a7afb97aa3bff87a4727e7b91d12001ee3d8fb33f5d150a"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:SelfReminder#mh:SHA-256:d04dd574dad96c08ba4d8969d30fa19ba51820e0c91e14094d8b41e7c36894c6",
-  "sema_ref": "SelfReminder#d04d",
-  "sema_stub": "d04d",
+  "sema_id": "sema:SelfReminder#mh:SHA-256:d7ea6ade4df9ca4285e3aefb5e995a34292412e1f715f1fa3646a2aa528694fd",
+  "sema_ref": "SelfReminder#d7ea",
+  "sema_stub": "d7ea",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },
   "sema_layer": "Mind",

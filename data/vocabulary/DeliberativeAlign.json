@@ -8,8 +8,9 @@
     "{{context}} Overflow: Long constitutions truncated, causing rules to be ignored."
   ],
   "invariants": [
-    "Policy Supremacy: If Policy forbids X, and Goal requires X, {{agent}} must ABORT.",
-    "Pre-Action {{check}}: SafetyTrace must be generated BEFORE any ToolCall."
+    "The safety {{trace}} is generated before any tool call.",
+    "A plan that violates policy is revised.",
+    "A goal that cannot be pursued without violating policy is abandoned, not revised."
   ],
   "preconditions": [
     "Policy definitions loaded",
@@ -24,7 +25,7 @@
       "name": "strictness",
       "type": "Enum",
       "range": "{Strict, Permissive}",
-      "description": "Default: Strict"
+      "description": "Whether an ambiguous case counts as a violation. Strict treats it as one. Neither setting permits proceeding past a clear violation."
     }
   ],
   "_meta": {
@@ -32,28 +33,30 @@
     "ring": 2,
     "supersedes": [
       "sema:DeliberativeAlign#mh:SHA-256:9b46ad02161136e6861e6f42f6c1f2edbaac4801032b652bfc82192a24e0bd1c",
-      "sema:DeliberativeAlign#mh:SHA-256:b497c6ca668ab1c96d3efb07e257de8b3d41c82d08c08a32dbc82694841838e7"
+      "sema:DeliberativeAlign#mh:SHA-256:b497c6ca668ab1c96d3efb07e257de8b3d41c82d08c08a32dbc82694841838e7",
+      "sema:DeliberativeAlign#mh:SHA-256:1cf2f0c643345bc990e6538e3a3966f0736b803ffdce5e6166a3f52be00f2ee7",
+      "sema:DeliberativeAlign#mh:SHA-256:9fd3cbae8fddc6fb86a806e3c2d94515aaf40b96cf734a9d5141317b6813d8a7",
+      "sema:DeliberativeAlign#mh:SHA-256:c7f2ced8d35a67fe364db103532bd7e521388dbce4c36307461e2154a3d1f336"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:1cf2f0c643345bc990e6538e3a3966f0736b803ffdce5e6166a3f52be00f2ee7",
-  "sema_ref": "DeliberativeAlign#1cf2",
-  "sema_stub": "1cf2",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:31c61cd06924faa3006e5e40441e85b5e5647d25ab82152c34c78a12cbd9ae20",
+  "sema_ref": "DeliberativeAlign#31c6",
+  "sema_stub": "31c6",
   "dependencies": {
     "accepts": {
-      "constitution": "sema:Constitution#mh:SHA-256:f7493951346cb89fc465d4fcd93448a63c5fd9ac0d734ec28a5aeff4914f4f1b",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "constitution": "sema:Constitution#mh:SHA-256:3deb8d31b8ace640b29c0a4d547191eebbcdedb46548f6c09711860be3af4645",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
+      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },
   "sema_layer": "Society",

@@ -23,24 +23,26 @@
     "ring": 1,
     "supersedes": [
       "sema:Nucleate#mh:SHA-256:4ea1bbb47979e47bc617c7b635ee2ce9d3315ac952012984aa62b18a479dc6f1",
-      "sema:Nucleate#mh:SHA-256:32c03e8bf26291ab9297e0fad910d8ffdd470c4d40d90e2482abd4c0372435a7"
+      "sema:Nucleate#mh:SHA-256:32c03e8bf26291ab9297e0fad910d8ffdd470c4d40d90e2482abd4c0372435a7",
+      "sema:Nucleate#mh:SHA-256:457ad2d5b65ad6400dfe7b8708047890890aaf9d1428bede19029858af0b7155",
+      "sema:Nucleate#mh:SHA-256:914ad0126d24043c0c3b5f4a579b2faddce1c289d78a4b3ec3aa811efced4cd3"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Nucleate#mh:SHA-256:3763228a0a84b215c71888983568ca343aa8938634b1858d2e31fd303aa7c4fc",
-  "sema_ref": "Nucleate#3763",
-  "sema_stub": "3763",
+  "sema_id": "sema:Nucleate#mh:SHA-256:3e4bd57346a1c76316d3a58b729ff6a667a58c48c4c6f47f94017a3954d61783",
+  "sema_ref": "Nucleate#3e4b",
+  "sema_stub": "3e4b",
   "dependencies": {
     "references": {
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
-      "crystallize": "sema:Crystallize#mh:SHA-256:d187e3c8bb361f0535c474617ef67e5c38f09b5a6e5613b9e327146bb831da98",
+      "crystallize": "sema:Crystallize#mh:SHA-256:0642166a22e385c83630c6648dc0ce2487257939856188895c85030eecf5bfb1",
       "phase_transition": "sema:PhaseTransition#mh:SHA-256:b7752342dcc7b20033400fc4ec1befd4bc3a31532493d6acdce763293e81c1d7",
-      "rally": "sema:Rally#mh:SHA-256:bc5fb9825570d17d2869a85f4162c0bee1a152b56b9816b9735c90484dc8b2ff",
+      "rally": "sema:Rally#mh:SHA-256:9ee797cd797df62b9883ead618c35eb8d8a5e86c171630cdc8f8ecc6066d6a89",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab"
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },
   "sema_layer": "Society",

@@ -38,6 +38,11 @@ GENERATED_STEPS = (
         (REPO_ROOT / "docs" / "manuals" / "vocabulary-design.md",),
     ),
     Step(
+        "paper pattern-card appendix",
+        (sys.executable, "scripts/generate_pattern_cards.py"),
+        (REPO_ROOT / "paper" / "generated_pattern_cards.tex",),
+    ),
+    Step(
         "vocabulary information",
         (sys.executable, "scripts/vocabulary_merkle_root.py"),
         (REPO_ROOT / "docs" / "information" / "vocabulary_information.md",),

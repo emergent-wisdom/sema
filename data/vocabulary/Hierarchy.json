@@ -21,22 +21,27 @@
       }
     }
   },
-  "mechanism": "The vertical ranking of {{category}}s or objects. Defines Upper vs. Lower relationships, inheritance, and authority.",
+  "mechanism": "The vertical ranking of {{category}}s or objects: every pair related by the ranking stands in an Upper/Lower relation. What the ranking *carries* varies by kind \u2014 a class hierarchy carries inheritance, an organisational one carries authority, a containment one carries neither \u2014 so those are implementer concerns rather than part of the ranking itself.",
   "gloss": "Vertical rank ordering with Upper/Lower relations, inheritance, and authority",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c"
+      "sema:Hierarchy#mh:SHA-256:aa9bec7346dca2ce2e83a70fc352825aa78c907cd82a8306f7e6856e42ef245c",
+      "sema:Hierarchy#mh:SHA-256:80394d9e6f07112954f1c2d203eaf6095df4d4569a890a9c6ca8b9c9b534ba3d"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Hierarchy#mh:SHA-256:80394d9e6f07112954f1c2d203eaf6095df4d4569a890a9c6ca8b9c9b534ba3d",
-  "sema_ref": "Hierarchy#8039",
-  "sema_stub": "8039",
+  "sema_id": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85",
+  "sema_ref": "Hierarchy#5951",
+  "sema_stub": "5951",
+  "invariants": [
+    "Acyclicity: no node is above itself, directly or transitively \u2014 a cycle leaves the ranking undefined.",
+    "Antisymmetry: if A is Upper to B then B is not Upper to A."
+  ],
   "dependencies": {
     "references": {
       "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"

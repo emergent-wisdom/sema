@@ -1,10 +1,10 @@
 {
   "handle": "TriGate",
-  "mechanism": "A generic {{gate}} traffic-light enforcement primitive. Wraps a {{judge}} or {{condition}} that returns a Trinary status (Red/Yellow/Green). Enforces standard flow control: Red -> CLOSE (Halt execution). Yellow -> DEBT (Proceed with obligation recorded to {{ledger}}). Green -> OPEN (Proceed).",
+  "mechanism": "A generic {{gate}} traffic-light enforcement primitive. Wraps a {{judge}} or {{condition}} that returns a trinary status (Red/Yellow/Green) and yields a {{decision}}: Red -> CLOSE (halt execution). Yellow -> DEBT (proceed with the obligation recorded to {{ledger}}). Green -> OPEN (proceed).",
   "gloss": "Generic Red/Yellow/Green flow control",
   "invariants": [
     "Fail-Closed: Red triggers immediate halt.",
-    "Debt Awareness: Yellow must append a remediation item to the context and record obligation in Ledger."
+    "Yellow appends a remediation item and records the obligation to {{ledger}}. An unrecorded Yellow is a Green."
   ],
   "signature": [
     "Gate(Judge)"
@@ -13,22 +13,33 @@
     "ring": 0,
     "tier": 1,
     "supersedes": [
-      "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c"
+      "sema:TriGate#mh:SHA-256:07fcf444936e65c3cf14c77b8c7c3a1ca5d105462ea67ad26a970965ecfbc18c",
+      "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824",
+      "sema:TriGate#mh:SHA-256:5156704e5f174e347d58e312f42f3398b975266ff48cfce0d302b7d88abad7f8"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_ref": "TriGate#c182",
-  "sema_id": "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824",
-  "sema_stub": "c182",
+  "sema_ref": "TriGate#04a9",
+  "sema_id": "sema:TriGate#mh:SHA-256:04a9a7cc17d29dab76ee781b7d7a3f557f68d528788da12620a320ce53d6b44c",
+  "sema_stub": "04a9",
+  "failure_modes": [
+    "Yellow read as Green: both states proceed, so the obligation exists only in the {{ledger}}.",
+    "Debt accumulating unread: the obligation is recorded and nothing consumes it."
+  ],
   "dependencies": {
+    "composes_with": {
+      "ledger": "sema:Ledger#mh:SHA-256:4ddaf2792fd7283ceea0d6b9b01ddfff9b7274dfb1cea2bf23147c21520774e5"
+    },
     "references": {
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5",
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
-      "judge": "sema:Judge#mh:SHA-256:24016b1994d525fa1ff75ec9066fc2044284a90a1fe1b6336898bc79237e7f90",
-      "ledger": "sema:Ledger#mh:SHA-256:bc308b35d2c0be6d4a9159ebe2b3c4989e559628145ba9fccb970d8ec2264b04"
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
+      "judge": "sema:Judge#mh:SHA-256:704cbb71588d7a3bafa08b71c863005e31ec4400860b9cb8b094e660da9c7c6c"
+    },
+    "yields": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
     }
   },
   "sema_layer": "Infrastructure",

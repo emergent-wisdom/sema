@@ -7,11 +7,11 @@
     "Role Drift: Personas lose their specific stance over long {{context}} windows."
   ],
   "invariants": [
-    "Semantic Distance: CosineSimilarity(Persona_A_Output, Persona_B_Output) < 0.6",
+    "Semantic Distance, every round: CosineSimilarity(Persona_A_Output, Persona_B_Output) < 0.6 for each round, not only the first. Checked once, it prevents early collapse; checked continuously, it is also what detects a persona drifting off its stance.",
     "Independence: Personas cannot see peer outputs in Round 1"
   ],
   "preconditions": [
-    "{{agent}} must be alignment-seeking (Tier 2 Limitation)"
+    "A persona set with pre-defined, mutually distinct viewpoints"
   ],
   "parameters": [
     {
@@ -31,25 +31,27 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a"
+      "sema:PerspectiveEnsemble#mh:SHA-256:29278b27ffaedd3e264c1b241a103e5eaaca421356865f2af4a0df924f8dc26a",
+      "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc",
+      "sema:PerspectiveEnsemble#mh:SHA-256:1ac4207e5ceed18ed9b5674c8da3b3cd06c85562b567d3a33b17e877b74e4903"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:3f70fd1a89585e7431fcbcbd84dccf45496f429fabf12aa236a41a5796b831cc",
-  "sema_ref": "PerspectiveEnsemble#3f70",
-  "sema_stub": "3f70",
+  "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:fe96be721ddafdb6b2f52252780b914391b17b1de9c8372f4bd8403682ea526c",
+  "sema_ref": "PerspectiveEnsemble#fe96",
+  "sema_stub": "fe96",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
-      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "aggregate": "sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077",
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf",
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     }
   },
   "sema_layer": "Mind",

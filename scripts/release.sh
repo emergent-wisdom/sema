@@ -6,9 +6,9 @@
 #   1. Pre-flight  — on main, clean tree, up-to-date, tests green, sync script
 #                    reports no drift.
 #   2. Tag + push  — git tag vX.Y.Z, push to origin.
-#   3. GitHub release — gh release create (triggers publish.yml → PyPI).
-#   4. MCP Registry — mcp-publisher publish server.json.
-#   5. Verify      — print the URLs to confirm everything landed.
+#   3. GitHub release — publish a draft containing the verified bootstrap
+#                      artifacts (triggers publish.yml → PyPI + MCP Registry).
+#   4. Verify      — print the URLs to confirm everything landed.
 #
 # Version is read from pyproject.toml (single source of truth). Release notes
 # body is auto-extracted from the matching CHANGELOG.md section.
@@ -80,7 +80,7 @@ ok "up to date with origin/main"
 if ! python3 scripts/sync_release_metadata.py --check >/dev/null 2>&1; then
     fail "Release metadata out of sync. Run: python3 scripts/sync_release_metadata.py && git commit --amend --no-edit"
 fi
-ok "plugin.json + server.json + pyproject in sync"
+ok "release metadata in sync"
 
 bold "▸ Running tests"
 if [[ $DRY_RUN -eq 1 ]]; then
@@ -119,6 +119,22 @@ if [[ -z "$(echo "$RELEASE_NOTES" | tr -d '[:space:]')" ]]; then
 fi
 ok "release notes extracted from CHANGELOG.md"
 
+# Build the public bootstrap-library assets before any tag or release is
+# created. The builder verifies that the portable JSON release has exactly the
+# same identities and roots as the bundled database.
+RELEASE_DIR="$(mktemp -d)"
+NOTES_FILE="$(mktemp)"
+cleanup() {
+    rm -rf "$RELEASE_DIR"
+    rm -f "$NOTES_FILE"
+}
+trap cleanup EXIT
+python3 scripts/build_bootstrap_release.py --version "$VERSION" --output-dir "$RELEASE_DIR"
+BOOTSTRAP_ARCHIVE="$RELEASE_DIR/sema-bootstrap-$VERSION.zip"
+[[ -f "$RELEASE_DIR/library.json" && -f "$BOOTSTRAP_ARCHIVE" ]] || \
+    fail "Bootstrap release assets were not created"
+ok "bootstrap library assets verified"
+
 # ── Show plan ─────────────────────────────────────────────────────────────
 echo
 bold "▸ Release plan"
@@ -128,6 +144,8 @@ cat <<EOF
   PyPI:          semahash (auto via .github/workflows/publish.yml on release)
   MCP Registry:  io.github.emergent-wisdom/semahash
   Docs landing:  https://semahash.org
+  Library index: library.json
+  Pattern ZIP:   $(basename "$BOOTSTRAP_ARCHIVE")
 
   Release notes preview (first 20 lines):
 $(echo "$RELEASE_NOTES" | head -20 | sed 's/^/    /')
@@ -142,34 +160,44 @@ run "git push origin '$TAG'"
 ok "tag pushed"
 
 # ── Phase 3: GitHub release ───────────────────────────────────────────────
-bold "▸ Create GitHub release (triggers PyPI publish)"
+bold "▸ Create GitHub release (triggers PyPI + MCP Registry publish)"
 confirm "Create GitHub release for $TAG?"
 # Use a temp file for notes so multi-line content survives shell quoting.
-NOTES_FILE="$(mktemp)"
-trap 'rm -f "$NOTES_FILE"' EXIT
 echo "$RELEASE_NOTES" > "$NOTES_FILE"
-run "gh release create '$TAG' --title '$TAG' --notes-file '$NOTES_FILE'"
-ok "GitHub release created — PyPI publish workflow should now be running"
+run "gh release create '$TAG' '$RELEASE_DIR/library.json' '$BOOTSTRAP_ARCHIVE' --draft --title '$TAG' --notes-file '$NOTES_FILE'"
+run "gh release edit '$TAG' --draft=false --latest"
+ok "GitHub release published with bootstrap assets — publish workflow should now be running"
 echo "  Watch:  gh run list --workflow publish.yml --limit 3"
 
-# ── Phase 4: MCP Registry ─────────────────────────────────────────────────
-bold "▸ Publish server.json to MCP Registry"
-if ! command -v mcp-publisher >/dev/null 2>&1; then
-    echo "  ⚠️  mcp-publisher not found on PATH — skipping."
-    echo "     Install (Homebrew): brew install mcp-publisher"
-    echo "     Or build from: https://github.com/modelcontextprotocol/registry"
-    echo "     Then rerun: mcp-publisher login && mcp-publisher publish server.json"
+# Exercise the same stable manifest URL and version-pinned asset URL that consumers
+# use. GitHub may take a few seconds to move the `latest` pointer after a draft
+# is published, so retry briefly and require byte-for-byte equality with the
+# artifacts verified before tagging.
+bold "▸ Smoke-test public bootstrap assets"
+PUBLIC_MANIFEST_URL="https://github.com/emergent-wisdom/sema/releases/latest/download/library.json"
+PUBLIC_ARCHIVE_URL="https://github.com/emergent-wisdom/sema/releases/download/$TAG/$(basename "$BOOTSTRAP_ARCHIVE")"
+if [[ $DRY_RUN -eq 1 ]]; then
+    printf '  (dry-run) fetch and compare %s\n' "$PUBLIC_MANIFEST_URL"
+    printf '  (dry-run) fetch and compare %s\n' "$PUBLIC_ARCHIVE_URL"
 else
-    confirm "Run 'mcp-publisher publish server.json'? (requires GitHub OAuth on first run)"
-    if [[ $DRY_RUN -eq 0 ]]; then
-        # First-time auth is idempotent and cached; let it no-op if already logged in.
-        mcp-publisher login 2>/dev/null || true
-    fi
-    run "mcp-publisher publish server.json"
-    ok "MCP Registry update submitted"
+    public_manifest="$RELEASE_DIR/public-library.json"
+    public_archive="$RELEASE_DIR/public-$(basename "$BOOTSTRAP_ARCHIVE")"
+    public_ok=0
+    for _attempt in {1..12}; do
+        if curl -fsSL "$PUBLIC_MANIFEST_URL" -o "$public_manifest" \
+            && curl -fsSL "$PUBLIC_ARCHIVE_URL" -o "$public_archive" \
+            && cmp -s "$RELEASE_DIR/library.json" "$public_manifest" \
+            && cmp -s "$BOOTSTRAP_ARCHIVE" "$public_archive"; then
+            public_ok=1
+            break
+        fi
+        sleep 5
+    done
+    [[ $public_ok -eq 1 ]] || fail "Published bootstrap assets failed the public URL smoke test."
 fi
+ok "public library.json and pattern ZIP match the verified release bytes"
 
-# ── Phase 5: Verify ───────────────────────────────────────────────────────
+# ── Phase 4: Verify ───────────────────────────────────────────────────────
 echo
 bold "▸ Verify (manual — give PyPI ~2 min, MCP Registry ~instant)"
 cat <<EOF

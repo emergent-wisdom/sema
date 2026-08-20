@@ -9,22 +9,24 @@
   ],
   "invariants": [
     "Testability: Given a Result, Goal satisfaction must be decidable.",
-    "Stability: Goal should not change during a single execution cycle."
+    "Explicit revision: a Goal may change only by explicit re-declaration, never silently. An execution whose Goal differs from the one it began under, with no re-declaration recorded, has no decidable satisfaction condition."
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a"
+      "sema:Goal#mh:SHA-256:456a8a283dc469d46b3307147a853e4be7d07f0d6c4477d789b8ab14aa33b02a",
+      "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
+      "sema:Goal#mh:SHA-256:b011159e6135b97ac191b4a06846af58c55af37a977aaf58c1e3556457538808"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Goal#mh:SHA-256:10766784445e66efafa393ed841ebfc1b68b763269f1a144fe7457478fcdb422",
-  "sema_ref": "Goal#1076",
-  "sema_stub": "1076",
+  "sema_id": "sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70",
+  "sema_ref": "Goal#986b",
+  "sema_stub": "986b",
   "data_schema": {
     "type": "object",
     "required": [
@@ -73,8 +75,8 @@
   },
   "dependencies": {
     "references": {
-      "result": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "result": "sema:Result#mh:SHA-256:c02a8d6817c2f0e14d5a9360824240f135905e8be25fd659feb76d1f44e274c6",
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Infrastructure",

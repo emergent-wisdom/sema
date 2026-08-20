@@ -4,7 +4,8 @@
     "type": "object",
     "required": [
       "mode_id",
-      "constraints"
+      "constraints",
+      "conflicts_with"
     ],
     "properties": {
       "mode_id": {
@@ -25,6 +26,10 @@
       "active": {
         "type": "boolean",
         "description": "Whether this mode is currently engaged"
+      },
+      "conflicts_with": {
+        "type": "array",
+        "description": "Modes that cannot be held alongside this one. A hybrid stance is a Mode declaring no conflict with its partners, not an exception to exclusivity."
       }
     }
   },
@@ -35,8 +40,8 @@
     "Mode Confusion: {{agent}} mixes behaviors from conflicting modes."
   ],
   "invariants": [
-    "Stability: A Mode persists until an explicit {{transition}} event.",
-    "Exclusivity: {{agent}} cannot be in two conflicting Modes simultaneously (unless explicitly designed as Hybrid)."
+    "Stability: a Mode persists until an explicit {{transition}} event.",
+    "Declares which Modes it conflicts with; an {{agent}} may hold any set of mutually non-conflicting Modes."
   ],
   "_meta": {
     "tier": 1,
@@ -46,21 +51,23 @@
       "SynergisticMode"
     ],
     "supersedes": [
-      "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826"
+      "sema:Mode#mh:SHA-256:53e0b9650e76b57a1217da26c91dac514674d87b0f92c1c13b770e7ae2b6c826",
+      "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
+      "sema:Mode#mh:SHA-256:9b1aa32d63748d22e394698cfd207f41b0a054583c73dcffca92b42615ac2678"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Mode#mh:SHA-256:081fc72c357b65d52cc697735a860ca98ce2b0ac13892dd94699ef8b08a04a2b",
-  "sema_ref": "Mode#081f",
-  "sema_stub": "081f",
+  "sema_id": "sema:Mode#mh:SHA-256:29d368514a2a815e9790a384c2aec12bd20a30e1ee06288e0aa59fdcffea0800",
+  "sema_ref": "Mode#29d3",
+  "sema_stub": "29d3",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "transition": "sema:Transition#mh:SHA-256:a7b4277599c68a617b43f1d0c52d807837717913731aec1463caccdcd568cfe3"
+      "transition": "sema:Transition#mh:SHA-256:9b62398c6edcd43ad2af8ec1df8186ece2b4f697772b3872227f4d9d8390e328"
     }
   },
   "sema_layer": "Infrastructure",

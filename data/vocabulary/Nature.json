@@ -19,11 +19,6 @@
       "substrate": {
         "type": "string",
         "description": "More specific substrate details"
-      },
-      "immutable": {
-        "type": "boolean",
-        "default": true,
-        "description": "Whether this nature can change"
       }
     }
   },
@@ -35,14 +30,20 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Nature#mh:SHA-256:4a310dd9a1eec556adf00b932a9f2abe6a7d33081845c29ff99544fef8f78f4a"
     ]
   },
-  "sema_id": "sema:Nature#mh:SHA-256:4a310dd9a1eec556adf00b932a9f2abe6a7d33081845c29ff99544fef8f78f4a",
-  "sema_ref": "Nature#4a31",
-  "sema_stub": "4a31",
+  "sema_id": "sema:Nature#mh:SHA-256:9ac1fd9a3449747d2f605067023df9e13d7a60c15e556d376272266f95cfaf37",
+  "sema_ref": "Nature#9ac1",
+  "sema_stub": "9ac1",
+  "invariants": [
+    "A Nature assignment is not revisable: reclassification mints a new Nature rather than mutating the existing one."
+  ],
   "dependencies": {
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db"
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
     }
   },
   "sema_layer": "Infrastructure",

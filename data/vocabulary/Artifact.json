@@ -16,17 +16,19 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
     ]
   },
-  "sema_id": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-  "sema_ref": "Artifact#379a",
-  "sema_stub": "379a",
+  "sema_id": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+  "sema_ref": "Artifact#b533",
+  "sema_stub": "b533",
   "data_schema": {
     "type": "object",
     "required": [
       "hash",
-      "content_type",
-      "uri"
+      "content_type"
     ],
     "properties": {
       "hash": {

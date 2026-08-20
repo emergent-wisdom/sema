@@ -161,13 +161,18 @@ class TestRegistryLoadsDependenciesFromEdges(unittest.TestCase):
         self.assertIn("references", deps)
         self.assertIn("composes_with", deps)
 
-        # Should reference the PURE judges
+        # PURE is descriptive context; the check and axis judges are executed.
         ref_values = list(deps["references"].values())
         ref_handles = [v.split("#")[0] for v in ref_values]
-        self.assertIn("Parsimony", ref_handles)
-        self.assertIn("Novelty", ref_handles)
-        self.assertIn("Realizable", ref_handles)
-        self.assertIn("Expansive", ref_handles)
+        self.assertIn("PURE", ref_handles)
+
+        composed_values = list(deps["composes_with"].values())
+        composed_handles = [v.split("#")[0] for v in composed_values]
+        self.assertIn("Check", composed_handles)
+        self.assertIn("Parsimony", composed_handles)
+        self.assertIn("Novelty", composed_handles)
+        self.assertIn("Realizable", composed_handles)
+        self.assertIn("Expansive", composed_handles)
 
     def test_trigate_has_dependencies(self):
         """TriGate should have its dependencies loaded."""

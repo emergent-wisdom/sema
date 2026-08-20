@@ -1,6 +1,6 @@
 {
   "handle": "Result",
-  "mechanism": "The canonical output of an operation (often a {{solution}}). It encapsulates success/failure status, the artifact produced, and associated {{metric}}s such as time taken, resources consumed, and confidence score. It serves as the bridge between execution and evaluation.",
+  "mechanism": "The canonical output of an operation (often a {{solution}}). It encapsulates success/failure status, the artifact produced, and associated {{metric_reading}} records such as time taken, resources consumed, and confidence score. It serves as the bridge between execution and evaluation.",
   "gloss": "The output of agentic transformation",
   "failure_modes": [
     "Partial Result: Output is incomplete but presented as complete.",
@@ -16,16 +16,18 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef"
+      "sema:Result#mh:SHA-256:8ed9ca66a8508e8603e8da74b545f03b832f7e8b8d4e2fd56c496dcc29afb2ef",
+      "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
+      "sema:Result#mh:SHA-256:2e8b4c350c26159633f9480ff455eb850e50a86669bfd39424d670ba7ef95127"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Result#mh:SHA-256:255a9798867e3718968ae4ecaf7c48b0a773d87ce4a45ca1d86b10a3238c9c7d",
-  "sema_ref": "Result#255a",
-  "sema_stub": "255a",
+  "sema_id": "sema:Result#mh:SHA-256:c02a8d6817c2f0e14d5a9360824240f135905e8be25fd659feb76d1f44e274c6",
+  "sema_ref": "Result#c02a",
+  "sema_stub": "c02a",
   "data_schema": {
     "type": "object",
     "required": [
@@ -71,14 +73,15 @@
         }
       },
       "metrics": {
-        "type": "object"
+        "type": "object",
+        "description": "MetricReading records associated with the operation"
       }
     }
   },
   "dependencies": {
     "references": {
-      "metric": "sema:Metric#mh:SHA-256:977d146c13043ccc85b4521399937dd3f3a067bfcc7c2cfdd446082b6d13ee2c",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "metric_reading": "sema:MetricReading#mh:SHA-256:56a9f18faad70147312f12c1cdb1bcea9cb5d1d61042831d1fe6bfa11414ab26",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Infrastructure",

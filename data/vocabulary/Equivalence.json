@@ -1,0 +1,33 @@
+{
+  "handle": "Equivalence",
+  "gloss": "Sameness decided by canonical content rather than by label",
+  "mechanism": "Two artifacts are the same thing when their canonical content is identical, regardless of the name each party uses for them. Equivalence is therefore always stated relative to a canonicalization: the normalization that decides which differences are incidental (whitespace, key order, encoding) and which are semantic. Distinct from equality of reference (the same object) and from similarity (near, on some metric): Equivalence is exact, and it is exact about content. This is what lets two parties who never coordinated determine whether they hold the same definition or merely the same word, and it is what makes a name mismatch recoverable while a content mismatch is not.",
+  "invariants": [
+    "Reflexivity: every artifact is equivalent to itself under any canonicalization.",
+    "Symmetry: if A is equivalent to B then B is equivalent to A.",
+    "Transitivity: if A is equivalent to B and B to C, then A is equivalent to C.",
+    "Canonicalization-relative: an equivalence claim holds only under a stated canonical form; the same pair may be equivalent under one and distinct under another."
+  ],
+  "failure_modes": [
+    "Label equivalence: two artifacts judged the same because they share a handle rather than because their content matches.",
+    "Unstated canonicalization: parties compare content under different normalizations and disagree without either being wrong."
+  ],
+  "_meta": {
+    "tier": 1,
+    "ring": 1,
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ],
+    "related": [
+      "Identity",
+      "CompatibilityCheck",
+      "ThreeLevelCollision"
+    ]
+  },
+  "sema_id": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
+  "sema_ref": "Equivalence#23f0",
+  "sema_stub": "23f0",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

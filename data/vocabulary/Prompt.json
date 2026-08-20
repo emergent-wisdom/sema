@@ -1,12 +1,13 @@
 {
   "handle": "Prompt",
-  "mechanism": "Structured input-instruction submitted to a generative model. May carry a role tag (system, user, assistant) and optional tool-declaration attachments that shape how the model generates. Distinct from a Message (agent-to-agent communication with sender/recipient metadata) and from a raw Signal (no envelope).",
+  "mechanism": "Structured input-instruction submitted to a generative model. May carry a role tag (system, user, assistant). Distinct from a Message (agent-to-agent communication with sender/recipient metadata) and from a raw Signal (no envelope). Tool declarations, multi-turn structure and system/user separation are descendant concerns \u2014 the base is the instruction and its role.",
   "gloss": "Structured instruction to a generative model, optionally role-tagged",
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107"
+      "sema:Prompt#mh:SHA-256:5dedb478148eb9ca7b2621a571316aefcdb475174141a64c04c0a8c890355107",
+      "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97"
     ],
     "path": [
       "Infrastructure",
@@ -27,9 +28,9 @@
       "text"
     ]
   },
-  "sema_id": "sema:Prompt#mh:SHA-256:6595e7cad34f36df1e5a1022726d6966db84887f11e1ed00270a281f293c8f97",
-  "sema_ref": "Prompt#6595",
-  "sema_stub": "6595",
+  "sema_id": "sema:Prompt#mh:SHA-256:1b04d34a0c55d6d2c6fea4f1df4f517073ede2f20f1f8d1d149419010b440a0e",
+  "sema_ref": "Prompt#1b04",
+  "sema_stub": "1b04",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

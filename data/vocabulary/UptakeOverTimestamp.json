@@ -1,14 +1,14 @@
 {
   "handle": "UptakeOverTimestamp",
-  "mechanism": "Decentralized Governance Heuristic. Resolves canonical status conflicts by prioritizing Usage Volume (uptake) over Registration Time (timestamp). When querying for a concept Handle, the system returns the variant with the highest `Reference_Count` or `Execution_Count`. Utilizes {{uptake_as_ground}}.",
+  "mechanism": "Resolves canonical status conflicts by prioritizing Usage Volume (uptake) over Registration Time (timestamp). When querying for a concept Handle, the system returns the variant with the highest `Reference_Count` or `Execution_Count`. The usage signal it ranks on is the one {{uptake_as_ground}} establishes.",
   "gloss": "Usage determines canonical status, not who minted first",
   "failure_modes": [
     "The Facebook {{problem}} (Network Effects): A mediocre pattern with high early uptake becomes impossible to dislodge by a superior new pattern.",
     "Cold Start: New patterns have 0 uptake, making them invisible to discovery algorithms."
   ],
   "invariants": [
-    "Meritocracy: Canonical_Score = f(Usage, Citations, Success_Rate).",
-    "Timestamp Irrelevance: Creation_Date must NOT be a factor in relevance ranking."
+    "Canonical status is decided by the declared uptake metric.",
+    "Creation date is not a factor in ranking."
   ],
   "preconditions": [
     "Multiple patterns exist for similar concepts",
@@ -22,20 +22,22 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:UptakeOverTimestamp#mh:SHA-256:9f0fffcbeef00cd271526bb7a2849998c76e242ed74d36d0058b1849379c57ab"
+      "sema:UptakeOverTimestamp#mh:SHA-256:9f0fffcbeef00cd271526bb7a2849998c76e242ed74d36d0058b1849379c57ab",
+      "sema:UptakeOverTimestamp#mh:SHA-256:6bf8a742fd1b01e216ba358b07d006f38844aee39fff285c1367c13f6d2321a7",
+      "sema:UptakeOverTimestamp#mh:SHA-256:54445c60697025211f92b959746d4469418d7d343e673ca20f0f00fcf7937b3d"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:6bf8a742fd1b01e216ba358b07d006f38844aee39fff285c1367c13f6d2321a7",
-  "sema_ref": "UptakeOverTimestamp#6bf8",
-  "sema_stub": "6bf8",
+  "sema_id": "sema:UptakeOverTimestamp#mh:SHA-256:4583f9cb37df87ad847dfa423729dd7b203b33e48c5a5b96cb8baca54fc56df6",
+  "sema_ref": "UptakeOverTimestamp#4583",
+  "sema_stub": "4583",
   "dependencies": {
     "references": {
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:c6caf6df2b735657fed6b551af0f9fb18896d24be03a45b384723951d06c672b"
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:2882a755200d95be27c166d7d2649141db86c771feaff879d4ff44f14bbb4e88"
     }
   },
   "sema_layer": "Society",

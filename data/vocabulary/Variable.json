@@ -25,7 +25,7 @@
       }
     }
   },
-  "mechanism": "A value that can change or adapt within the system. It represents a dimension of freedom in the problem space.",
+  "mechanism": "A named container whose contents can change while the name continues to refer to the same thing. A dimension of freedom in the problem space: what varies is the contents, not the identity.",
   "gloss": "Mutable value",
   "_meta": {
     "ring": 1,
@@ -33,11 +33,22 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Variable#mh:SHA-256:f488e278141238c50584777b751863d84b094229e4568205e9ba54a9121c3aa5"
     ]
   },
-  "sema_id": "sema:Variable#mh:SHA-256:f488e278141238c50584777b751863d84b094229e4568205e9ba54a9121c3aa5",
-  "sema_ref": "Variable#f488",
-  "sema_stub": "f488",
+  "sema_id": "sema:Variable#mh:SHA-256:5333c0009a269825753bf5470554844285c46920c32e3d46ed71403090224dc7",
+  "sema_ref": "Variable#5333",
+  "sema_stub": "5333",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "invariants": [
+    "The name denotes the same variable before and after its contents change.",
+    "A reported value carries when it was read."
+  ],
+  "failure_modes": [
+    "Stale read treated as current, so a clock difference is attributed to the parties.",
+    "Identity reused: one name rebound to something that is not a later state of the same quantity."
+  ]
 }

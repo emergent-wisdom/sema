@@ -1,6 +1,6 @@
 {
   "handle": "LocalizedLearning",
-  "mechanism": "A learning process that performs the {{act}} of routing {{feedback_signal}} exclusively to the specific {{solver_manifest}} that generated the result. By partitioning memory updates by subproblem type, it prevents the catastrophic interference common in monolithic models. The feedback signal is tagged with solver ID, ensuring updates are isolated.",
+  "mechanism": "A learning process that performs the {{act}} of routing a {{feedback_signal}} to the {{solver_manifest}} identity that produced the result, and to no other. Attribution happens at the runtime node that failed; the update is keyed to the manifest that node instantiates, so the learning outlives the container. Partitioning updates this way prevents the catastrophic interference common in monolithic models.",
   "gloss": "Partitioned feedback router for solver learning",
   "failure_modes": [
     "Echo Chamber: A specialist solver over-optimizes for its narrow metric, ignoring global context.",
@@ -9,34 +9,36 @@
     "Signal Decay: Feedback arrives too late to be useful."
   ],
   "invariants": [
-    "Isolation: Update(Solver_A) cannot change Weights(Solver_B).",
-    "Attribution: Each feedback signal must identify its source solver.",
-    "Standardization: Feedback format is universal across all solver types."
+    "Isolation: an update attributed to one solver cannot alter another solver's memory.",
+    "Attribution: every feedback signal identifies the solver that produced the result."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b"
+      "sema:LocalizedLearning#mh:SHA-256:69bb2e9eea4ed50d3aa6213e7fc068cb247ec3d1737b707a9679bfba81c72f9b",
+      "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
+      "sema:LocalizedLearning#mh:SHA-256:1eec33d8fc081000b2c5927b7cfc2d4e6a8835fc9e0d46e051bb7ee34541cbdf",
+      "sema:LocalizedLearning#mh:SHA-256:d85eb389650b50414a74e396d61b86ed0966e9777b85ff05d3c8f3b69208aa17"
     ],
     "path": [
       "Mind",
       "Memory"
     ]
   },
-  "sema_id": "sema:LocalizedLearning#mh:SHA-256:14502d62b7a331dbcb80bfdf6ab07f911cfb94b80788933e83119d787ec4fe37",
-  "sema_ref": "LocalizedLearning#1450",
-  "sema_stub": "1450",
+  "sema_id": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
+  "sema_ref": "LocalizedLearning#868b",
+  "sema_stub": "868b",
   "signature": [
     "Act(FeedbackSignal)"
   ],
   "dependencies": {
     "accepts": {
-      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:9e3ba0be96a8114f7546bc9e53a37d03b5df5b37dee26c4b0fae6f108cc856fc"
+      "feedback_signal": "sema:FeedbackSignal#mh:SHA-256:69647a84ed114fda3cc3c10c14161dac2adee6010792b293d20b9c36ec1c6a18"
     },
     "references": {
-      "act": "sema:Act#mh:SHA-256:7616721cda9e81613f7c97d4ac93ba49291f97d7c7fe6fd7c49588c33d4d3b3d",
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:47aef05958dec89d4a0ccb6d8965d2bbd812dd8a3c10ef265f3150cfebee0384"
+      "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:da6d0d4755028b576f0c8c53affe23afc54ac32221142e5cc79dedfab753b2f9"
     }
   },
   "sema_layer": "Mind",

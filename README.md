@@ -121,15 +121,44 @@ Build a private registry from scratch — no PR or maintainer in the loop:
 
 ```bash
 sema init ./mylib.db
-export SEMA_DB_PATH=$(pwd)/mylib.db
+sema use ./mylib.db
 sema apply --add path/to/MyPattern.json
 sema search "..."
 ```
 
 Subsequent `sema` commands (including `sema mcp`) read from your private
-registry. See [CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
+registry. (`SEMA_DB_PATH`, if set, overrides `sema use`.) See
+[CONTRIBUTING.md](CONTRIBUTING.md) for the canonical
 contribution path and [docs/specification/versioning.md](docs/specification/versioning.md) for the
 refinement and supersession policy.
+
+Package a project database as a verified, standalone library release:
+
+```bash
+sema package ./mylib.db \
+  --name mylib \
+  --version 1.0.0 \
+  --output-dir dist/mylib-1.0.0 \
+  --github-repo acme/sema-mylib
+```
+
+Publish the generated `library.json` and versioned ZIP as assets on the
+corresponding published GitHub Release. Consumers install the Release asset URL
+for `library.json`—not the repository URL or a branch:
+
+```bash
+sema install https://github.com/acme/sema-mylib/releases/latest/download/library.json
+sema use mylib
+sema list
+sema root
+```
+
+It installs one verified snapshot at a time rather than merging vocabularies;
+the bundled vocabulary remains the offline default. Use `sema update mylib` to
+follow the installed library's recorded release pointer. See
+[Publishing and Installing Vocabulary Libraries](docs/guides/libraries.md) for
+the complete DeFi authoring, dependency-closure, packaging, GitHub Release, and
+update workflow.
 
 ### Use in Python
 
@@ -140,10 +169,10 @@ registry = RegistryManager()
 pattern = registry.get_pattern("StateLock")
 
 # Look up the canonical reference
-print(pattern["sema_ref"])  # StateLock#8bde
+print(pattern["sema_ref"])  # StateLock#c9c2
 
 # Verify an inline reference before relying on it
-assert pattern["sema_ref"] == "StateLock#8bde"
+assert pattern["sema_ref"] == "StateLock#c9c2"
 ```
 
 ### Try the Protocol (No API Keys Needed)
@@ -165,7 +194,7 @@ word = hash(canonical(definition))
 Take any concept (a coordination protocol, a reasoning pattern, a trust mechanism), express it in canonical form, hash it. That hash IS the word. Change one byte in the definition, get a different word.
 
 ```
-Cooperative: sema_handshake("StateLock#8bde")
+Cooperative: sema_handshake("StateLock#c9c2")
              -> PROCEED with assurance="prefix", or HALT
 
 Strict:      sema_handshake("StateLock", "<full 64-char hash>", strict=true)
@@ -196,7 +225,7 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | Tool | Description |
 |------|-------------|
 | `sema_search` | Search patterns by name, description, or meaning |
-| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#8bde`) |
+| `sema_lookup` | Get a pattern by its reference (e.g., `StateLock#c9c2`) |
 | `sema_resolve` | Get a pattern with dependencies expanded |
 | `sema_handshake` | Fail-closed semantic verification between agents |
 | `sema_mint` | Create a new pattern (validate, hash, add to vocabulary) |
@@ -269,7 +298,7 @@ claude mcp add ug   -- npx -y understanding-graph mcp
 
 With both installed, an agent can:
 
-1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#8bde`) so the meaning of the primitive can never drift.
+1. Anchor an understanding-graph decision node in a sema pattern hash (e.g. `StateLock#c9c2`) so the meaning of the primitive can never drift.
 2. Use `graph_semantic_search` to find all past graph nodes that reference a given sema pattern — hash-stable history, not keyword matching.
 3. Call `sema_handshake` *before* writing a decision that depends on a shared concept; if it returns `HALT`, the agent writes a `tension` node instead and stops, preventing silent divergence.
 

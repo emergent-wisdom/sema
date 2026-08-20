@@ -1,6 +1,5 @@
 {
   "handle": "ExponentialBackoff",
-  "derived_from": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
   "mechanism": "A {{backoff}} delay policy whose unjittered delay grows geometrically across consecutive unsuccessful attempts: base_delay * multiplier^attempt_index. A configurable jitter factor may perturb the candidate delay to decorrelate concurrent attempts, after which the scheduled delay is clamped to max_delay. The caller defines retry eligibility, retry budget, and when the attempt sequence resets.",
   "gloss": "Geometrically increasing capped retry delay",
   "invariants": [
@@ -44,11 +43,15 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:ExponentialBackoff#mh:SHA-256:a543a38722a0dfe96cf4bc7ccdaa615195ac058b5029651dc26d5cce1cd43128"
     ]
   },
-  "sema_id": "sema:ExponentialBackoff#mh:SHA-256:a543a38722a0dfe96cf4bc7ccdaa615195ac058b5029651dc26d5cce1cd43128",
-  "sema_ref": "ExponentialBackoff#a543",
-  "sema_stub": "a543",
+  "sema_id": "sema:ExponentialBackoff#mh:SHA-256:f5e5ff69408a272184da86cf5698f6675e9dfe2aa47917616a695e117602b828",
+  "sema_ref": "ExponentialBackoff#f5e5",
+  "sema_stub": "f5e5",
+  "extends": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
   "dependencies": {
     "references": {
       "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72"

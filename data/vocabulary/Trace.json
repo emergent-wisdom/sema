@@ -1,14 +1,11 @@
 {
   "handle": "Trace",
-  "mechanism": "A primitive for Provenance and Lineage. Attaches a chronological history log to a target entity. Every modification to the target appends a new immutable record to its trace, enabling auditability, debugging, and causal reasoning.",
+  "mechanism": "A primitive for Provenance and Lineage. Attaches a chronological history log to a target entity. Each recorded modification appends a new immutable record to its trace, enabling auditability, debugging, and causal reasoning. Coverage may be partial: a trace guarantees the ordering and immutability of the records it holds, not that every modification reached it.",
   "gloss": "Record the lineage or provenance of a target",
   "failure_modes": [
-    "Trace pollution (too many traces, signal lost in noise).",
-    "{{decay}} mismatch (too fast = lost, too slow = stale).",
-    "Namespace collision (unrelated actors confuse each other).",
-    "No accountability (cannot attribute trace to actor).",
-    "Semantic ambiguity (actors interpret same trace differently).",
-    "Feedback loops (reinforce bad traces, converge to local minimum)."
+    "Unattributable record: an entry cannot be tied to whoever produced it.",
+    "Unbounded growth: an append-only log only grows. Expiry would contradict Immutability, so truncation or archival is a separate concern.",
+    "Silent gap: a modification occurs without a record, so the absence of an entry is not evidence that nothing happened."
   ],
   "invariants": [
     "Causality: Events must be logged in monotonic order.",
@@ -18,21 +15,18 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d"
+      "sema:Trace#mh:SHA-256:90570af650f6362c2a0d7e94b23ed3cfe2c7406f3bd22352dc73582bfdbb3c3d",
+      "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab",
+      "sema:Trace#mh:SHA-256:b72ad1ec92c488b0a0c997934eaeb4c338f6414faee3654b4944c514d4b26ef8"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab",
-  "sema_ref": "Trace#314d",
-  "sema_stub": "314d",
-  "dependencies": {
-    "references": {
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
-    }
-  },
+  "sema_id": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9",
+  "sema_ref": "Trace#b68d",
+  "sema_stub": "b68d",
   "sema_layer": "Infrastructure",
   "sema_category": "Primitives"
 }

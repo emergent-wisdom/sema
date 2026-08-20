@@ -34,22 +34,23 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:TimeboxThink#mh:SHA-256:265679a37dcae704c3e9e8c958f42f11751102e0685e55b1fe277c238bd9c05e"
+      "sema:TimeboxThink#mh:SHA-256:265679a37dcae704c3e9e8c958f42f11751102e0685e55b1fe277c238bd9c05e",
+      "sema:TimeboxThink#mh:SHA-256:1f05e3beff8f73831abe43998f43256a75d0fda80217e7d78afec6a857e5f8ab"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:TimeboxThink#mh:SHA-256:1f05e3beff8f73831abe43998f43256a75d0fda80217e7d78afec6a857e5f8ab",
-  "sema_ref": "TimeboxThink#1f05",
-  "sema_stub": "1f05",
+  "sema_id": "sema:TimeboxThink#mh:SHA-256:20182c7afcb60ec0d13507de50123012afb9c590297d0e3b650ccfcdd58bfaf3",
+  "sema_ref": "TimeboxThink#2018",
+  "sema_stub": "2018",
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Mind",

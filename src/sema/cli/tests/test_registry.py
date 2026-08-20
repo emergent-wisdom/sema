@@ -1,6 +1,7 @@
 import unittest
+from unittest.mock import patch
 
-from sema.core.registry import RegistryManager
+from sema.core.registry import RegistryManager, list_dbs
 
 
 class TestRegistryManager(unittest.TestCase):
@@ -169,6 +170,27 @@ class TestRegistryManager(unittest.TestCase):
         # Check postconditions
         self.assertIn("Outcome#cd52 Shipped", pattern["postconditions"][0])
         self.assertNotIn("{{final_outcome}}", pattern["postconditions"][0])
+
+
+def test_environment_override_is_the_only_active_database(tmp_path, monkeypatch):
+    configured = tmp_path / "configured.db"
+    overridden = tmp_path / "overridden.db"
+    configured.touch()
+    overridden.touch()
+    records = {
+        str(configured): {"name": "configured", "path": str(configured)},
+        str(overridden): {"name": "overridden", "path": str(overridden)},
+    }
+    monkeypatch.setenv("SEMA_DB_PATH", str(overridden))
+
+    with (
+        patch("sema.core.registry._get_active_db_config", return_value=str(configured)),
+        patch("sema.core.registry.get_bundled_db_path", return_value=None),
+        patch("sema.core.registry._load_db_registry", return_value=records),
+    ):
+        databases = list_dbs()
+
+    assert [database["name"] for database in databases if database["active"]] == ["overridden"]
 
 
 if __name__ == "__main__":

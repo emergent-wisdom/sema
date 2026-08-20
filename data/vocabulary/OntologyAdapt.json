@@ -3,11 +3,13 @@
   "mechanism": "Derived from Piagetian psychology. When new data defies classification within the current ontology, the {{agent}} does not force-fit it or discard it. Instead, it triggers a 'Restructure' event, creating new root {{category}}s that accommodate the {{anomaly}} as a fundamental feature. Utilizes {{ontology_handshake}}.",
   "gloss": "Restructuring categories to fit data",
   "failure_modes": [
-    "{{category}} explosion (creating a new {{category}} for every {{noise}} point)."
+    "{{category}} explosion: a new {{category}} per {{noise}} point.",
+    "Orphaned classifications: data under the old roots is not revisited after a restructure."
   ],
   "invariants": [
-    "{{conservation}} of Data: No anomaly is discarded during accommodation",
-    "Fit Threshold: If ClassificationConfidence < 0.4, Trigger(Restructure)"
+    "{{conservation}} of Data: no {{anomaly}} is discarded during accommodation.",
+    "A restructure fires only for a datum that both falls below `fit_threshold` and has survived validation.",
+    "Accommodation creates {{category}}s admitting the {{anomaly}}; reshaping it to fit is assimilation."
   ],
   "preconditions": [
     "Data validated as true but unclassifiable"
@@ -19,24 +21,34 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:OntologyAdapt#mh:SHA-256:e67338652fa9214a713c8b4bc8f1ff1173a080090e84e8ca157f5e071f772a38"
+      "sema:OntologyAdapt#mh:SHA-256:e67338652fa9214a713c8b4bc8f1ff1173a080090e84e8ca157f5e071f772a38",
+      "sema:OntologyAdapt#mh:SHA-256:1390c9f564ffb7480453ab134ed09247c75651e3512ea113371e29c1d3e95387",
+      "sema:OntologyAdapt#mh:SHA-256:29970914a1bd217ceff29e9a39109832e0102eeb3576cb8fe2ac7a43271e8842"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:OntologyAdapt#mh:SHA-256:1390c9f564ffb7480453ab134ed09247c75651e3512ea113371e29c1d3e95387",
-  "sema_ref": "OntologyAdapt#1390",
-  "sema_stub": "1390",
+  "sema_id": "sema:OntologyAdapt#mh:SHA-256:a541f46f3c1ffe236a27dfaafaffd0d3dc76bf7c3fa086b5e9bcf1a945c85e63",
+  "sema_ref": "OntologyAdapt#a541",
+  "sema_stub": "a541",
+  "parameters": [
+    {
+      "name": "fit_threshold",
+      "type": "Float",
+      "range": "[0.0, 1.0]",
+      "description": "Classification confidence below which a validated datum counts as unclassifiable."
+    }
+  ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "anomaly": "sema:Anomaly#mh:SHA-256:459522f7c0225dc99953dbd5cd6c9cbb558d914abbd9d4d979e103984e0739cc",
       "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696",
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
-      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
-      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:fc51f85504eb23c4c11a7cd502fbd97c2a0d9b145a22baeaa8f1cb776f138d6e"
+      "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
+      "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235"
     }
   },
   "sema_layer": "Mind",

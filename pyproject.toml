@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "semahash"
-version = "0.3.0"
+version = "0.5.0"
 description = "Content-addressed semantics for multi-agent coordination. When the hash is the word."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -43,10 +43,10 @@ dependencies = [
 full = [
   "fastapi>=0.100",
   "uvicorn>=0.20",
-  "mcp>=1.0",
+  "mcp>=1.0,<2",
 ]
 mcp = [
-  "mcp>=1.0",
+  "mcp>=1.0,<2",
 ]
 api = [
   "fastapi>=0.100",
@@ -92,8 +92,8 @@ include = [
   "data/presets/",
   ".claude-plugin/",
   "skills/",
-  "README.md",
-  "LICENSE",
+  "/README.md",
+  "/LICENSE",
 ]
 
 [tool.ruff]

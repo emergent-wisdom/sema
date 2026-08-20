@@ -24,22 +24,24 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b"
+      "sema:BackwardChain#mh:SHA-256:04841f7ca3e84925caa3e0480d39467e3707e7fdf8eefe3650177c25fbd4c43b",
+      "sema:BackwardChain#mh:SHA-256:4f06546167f2ac9d04fadbbb0c8033f2638d91d8c319b346f4b3c735a819dfab",
+      "sema:BackwardChain#mh:SHA-256:9ff877cde5b5de2a850c5fade17d56a9da5fd5330cbba29f59953e6934de8cde"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:BackwardChain#mh:SHA-256:4f06546167f2ac9d04fadbbb0c8033f2638d91d8c319b346f4b3c735a819dfab",
-  "sema_ref": "BackwardChain#4f06",
-  "sema_stub": "4f06",
+  "sema_id": "sema:BackwardChain#mh:SHA-256:92c0e4700ff6bc202bd16dc4c77fd0b826605462cdc30d8b4230c36f61df0bb3",
+  "sema_ref": "BackwardChain#92c0",
+  "sema_stub": "92c0",
   "dependencies": {
     "references": {
-      "chain": "sema:Chain#mh:SHA-256:0bd807adb8a1d11a55f3971e7b6c079301039c8707b9106d871662d25e915e09",
-      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:c425d5121316279e8b39aa00c72c90413811d17b31b6af23706292a0867e8f06",
+      "chain": "sema:Chain#mh:SHA-256:3ba084dba5cf36bbdd43d03306c187ca75a2e3f448b555e257c26aab9b71c4fb",
+      "chain_of_thought": "sema:ChainOfThought#mh:SHA-256:27ad1f2386f58e1f9e1983c97f6dbeb8f1345e1d9b9e00af30871b97d21e0c95",
       "deduction": "sema:Deduction#mh:SHA-256:b9a034741d2b404c84277fed48ce23edb262b9a9f3166ae27fdb431d006dd6ec",
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
+      "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32"
     }
   },
   "sema_layer": "Mind",

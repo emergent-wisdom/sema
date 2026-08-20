@@ -1,16 +1,19 @@
 {
   "handle": "DriftWatch",
-  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: Establish behavioral frequency. 2. Sample: Continuous high-res observation. 3. Detect: Alert if {{distance}}(Current, Baseline) > 2 sigma. 4. Witness: Aggregated peer reports. It tracks behavioral consistency by monitoring deviations from a baseline {{aggregate}} of historical actions.",
+  "mechanism": "Reputation via micro-deviation detection. 1. Baseline: establish behavioral frequency over `window_size` samples. 2. Sample: continuous high-resolution observation. 3. Detect: alert when {{distance}}(Current, Baseline) exceeds `threshold`. 4. Witness: aggregated peer reports. Tracks behavioral consistency against a baseline {{aggregate}} of historical actions.",
   "gloss": "Reputation scoring via behavioral deviation from baseline (2-sigma alert)",
   "failure_modes": [
-    "Witness collusion: Coordinated false drift reports (mitigated by random witness selection and meta-drift analysis on witness behavior).",
-    "False reports: Single malicious witness (mitigated by N-of-M threshold requirement).",
-    "Cold start: New agents have no baseline (mitigated by probationary period with higher friction, initial baseline borrowed from similar-role agents).",
-    "Baseline gaming: {{agent}} varies early to establish wide baseline (mitigated by crystallization window limits and anomaly detection during bootstrap)."
+    "Baseline walked: the subject changes more slowly than the baseline recomputes, so no alert fires.",
+    "Witness collusion: coordinated false drift reports.",
+    "False reports: a single malicious witness.",
+    "Cold start: no baseline yet, so the watcher is silent through the establishment window.",
+    "Baseline gaming: {{agent}} varies early to establish a wide baseline.",
+    "Alert flood: continuous sampling against a sensitive threshold alerts at its false-positive rate."
   ],
   "invariants": [
-    "Baseline Persistence: Baseline must remain immutable during measurement",
-    "Drift Detection: Alert if Distance(Current, Baseline) > Threshold"
+    "Baseline is immutable while a sample is judged against it.",
+    "Baseline recomputation interval and source window are declared.",
+    "Alert when {{distance}}(Current, Baseline) > `threshold`, in the units {{distance}} returns."
   ],
   "preconditions": [
     "Baseline state is established"
@@ -19,34 +22,42 @@
     {
       "name": "threshold",
       "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Distance trigger"
+      "range": "[0.0, inf)",
+      "description": "Trigger in the units {{distance}} returns \u2014 not normalised, not sigma multiples."
     },
     {
       "name": "window_size",
       "type": "Integer",
       "range": "[10, 10000]",
-      "description": "Samples for baseline"
+      "description": "Samples forming the baseline"
+    },
+    {
+      "name": "recompute_interval",
+      "type": "Integer",
+      "range": "[0, 100000]",
+      "description": "Samples between baseline rebuilds; 0 pins it permanently."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69"
+      "sema:DriftWatch#mh:SHA-256:a20dcee6f5453e3b61973fcf01aebd6a5ed4cfb97d1402a4ed970d8629a55a69",
+      "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5",
+      "sema:DriftWatch#mh:SHA-256:37cf935687877e2a31c4cd75287e2bc7c814b49a3569203021854988f39abe9e"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:DriftWatch#mh:SHA-256:49b6f6d68dbda93034116865bb93a7bd08eff23de49a2eef87af80a40fe4a9f5",
-  "sema_ref": "DriftWatch#49b6",
-  "sema_stub": "49b6",
+  "sema_id": "sema:DriftWatch#mh:SHA-256:b696959258eb3c48ce11055634b107451d5a500bc8ba19693db4c30b5f5033bf",
+  "sema_ref": "DriftWatch#b696",
+  "sema_stub": "b696",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "aggregate": "sema:Aggregate#mh:SHA-256:4861bd34b2e422951e42b0fd804dab73daa2753ea746c0141927c3e5c6ea8f4b",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "aggregate": "sema:Aggregate#mh:SHA-256:2db6858c061515fa2257c96f4a6e4392164e9a118adc6874c69cf2279b877077",
       "distance": "sema:Distance#mh:SHA-256:dfdfe0610f91741e27f87042fc396eab765c4e48aa20fdfc0dfa7152d1333893"
     }
   },

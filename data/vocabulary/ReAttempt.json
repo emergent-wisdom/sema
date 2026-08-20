@@ -14,15 +14,20 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:ReAttempt#mh:SHA-256:be449bf89961efce218b58a985fd84f131b324655c10566a8815fceaa647ee06",
+      "sema:ReAttempt#mh:SHA-256:39a6d8dc35788fdba9bcb56064f39c16792f921d6db387dee99ebe049dc865ab",
+      "sema:ReAttempt#mh:SHA-256:51f049b421350628f058038e408e1836acaee0d68c0f60b881e2a283210149d6"
     ]
   },
-  "sema_id": "sema:ReAttempt#mh:SHA-256:be449bf89961efce218b58a985fd84f131b324655c10566a8815fceaa647ee06",
-  "sema_ref": "ReAttempt#be44",
-  "sema_stub": "be44",
+  "sema_id": "sema:ReAttempt#mh:SHA-256:18128dc39f9e9174059b4058d4e1419eb6c4ba921dbad355fabc329bc3902c48",
+  "sema_ref": "ReAttempt#1812",
+  "sema_stub": "1812",
   "dependencies": {
     "references": {
       "backoff": "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
-      "retry": "sema:Retry#mh:SHA-256:9e178c29dd1aa774432d8eb6e87fb2e93ab5b1a6db9582f737ad60e9ddf56053"
+      "retry": "sema:Retry#mh:SHA-256:4f9fdfc5b1dafd31221e9426d62c02af80c6356ef5b446eddd3f50da961d1aa2"
     }
   },
   "sema_layer": "Infrastructure",

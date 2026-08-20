@@ -8,8 +8,11 @@
     "Dependency Hell: Inline definition references other unknown patterns, triggering recursive lookups."
   ],
   "invariants": [
-    "Atomic Load: A definition is only added to Local DB if it validates fully.",
-    "Trust but Verify: Externally acquired definitions must be Hashed and Verified before loading."
+    "A definition enters local storage only if it validates fully.",
+    "An externally acquired definition is hashed and verified against the requested ID before loading.",
+    "Rejects definitions larger than `max_def_size`.",
+    "Expands inline definitions no deeper than `max_recursion_depth`.",
+    "Defaults to {{fail_closed}} when verification fails."
   ],
   "preconditions": [
     "{{message}} contains fallback data OR sender is reachable",
@@ -23,34 +26,37 @@
       "name": "max_def_size",
       "type": "PositiveInteger",
       "range": "unspecified",
-      "description": "Default: 100KB"
+      "description": "Largest inline definition accepted, in bytes. Deliberately uncapped; default 100KB."
     },
     {
       "name": "max_recursion_depth",
       "type": "Integer",
       "range": "[1, 5]",
-      "description": "Maximum inline definition expansion depth"
+      "description": "Depth of inline-definition expansion permitted before the chain is refused."
     }
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485"
+      "sema:GracefulDegradation#mh:SHA-256:f6d796365ffaa5244e54660f836f2e31ca948169f42fd305da33445cbfa30485",
+      "sema:GracefulDegradation#mh:SHA-256:1a82403193308a36bfe7623bdbd9e98dd611761e086b0e038ced0655e8db0336",
+      "sema:GracefulDegradation#mh:SHA-256:84362d70dbeb585179a9adc7352dcd96d5edd14a611ee6c7d2400a4d78395eec",
+      "sema:GracefulDegradation#mh:SHA-256:f10808f46c43a5c56cc2c16b27de525604b7888f232240cb742f276e089d4781"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:GracefulDegradation#mh:SHA-256:1a82403193308a36bfe7623bdbd9e98dd611761e086b0e038ced0655e8db0336",
-  "sema_ref": "GracefulDegradation#1a82",
-  "sema_stub": "1a82",
+  "sema_id": "sema:GracefulDegradation#mh:SHA-256:b5fb816bf7d74fb14b80795841d2043f22ac266873f442fce51c163346dc5a85",
+  "sema_ref": "GracefulDegradation#b5fb",
+  "sema_stub": "b5fb",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
-      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
+      "fail_closed": "sema:FailClosed#mh:SHA-256:d23bf6663e53ecbee5c12a120f4fe379c1dfe8bc05f0b9bf2250703d4131faaf",
+      "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef"
     }
   },
   "sema_layer": "Society",

@@ -8,15 +8,16 @@
     "Compute Cost: High-surprisal events require expensive {{gradient}} updates."
   ],
   "invariants": [
-    "Loss Magnitude: Update size proportional to surprisal (-log P)",
-    "Stability Guard: No single update may shift model more than max_update_rate"
+    "Loss contribution is proportional to surprisal, -log P(observed|predicted).",
+    "Stability Guard: no single update shifts the model more than `max_update_rate`, whatever the loss.",
+    "Update magnitude follows from the loss through `learning_rate` and the optimiser, not from surprisal directly."
   ],
   "preconditions": [
     "Actual outcome observed and diverged from prediction",
     "Prediction was made with computable probability"
   ],
   "postconditions": [
-    "Model updated proportional to surprisal",
+    "Loss weighted by surprisal; model shift bounded by `max_update_rate`",
     "Update logged for audit trail"
   ],
   "parameters": [
@@ -41,21 +42,24 @@
     "ring": 2,
     "supersedes": [
       "sema:SurprisalUpdate#mh:SHA-256:8eb2004c635b92c95a5dad62bbc4375a5a6728f493345334dd46f8ec2b4c3714",
-      "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca"
+      "sema:SurprisalUpdate#mh:SHA-256:6ef19d8b61ce228bbc61a34496b878f1e060e56790f48606fc4e81b3b8594fca",
+      "sema:SurprisalUpdate#mh:SHA-256:41a9f896757eb4b0d7132604b60e0193eaba43329953359ef5e927f69112f8df",
+      "sema:SurprisalUpdate#mh:SHA-256:6169da6dce9141595fc8b7ac8d8743e397cd44a2da04b3499b2ce910e174c2ef",
+      "sema:SurprisalUpdate#mh:SHA-256:b2f104df0f114d6ef799bb343897bc4119585cd164821e63bfa6043cb717243f"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:41a9f896757eb4b0d7132604b60e0193eaba43329953359ef5e927f69112f8df",
-  "sema_ref": "SurprisalUpdate#41a9",
-  "sema_stub": "41a9",
+  "sema_id": "sema:SurprisalUpdate#mh:SHA-256:26e53ade88809ac3ba9293b45db768fdbdb384a53cda1217c3a0dfc61d5f8408",
+  "sema_ref": "SurprisalUpdate#26e5",
+  "sema_stub": "26e5",
   "dependencies": {
     "references": {
-      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:d48670433cb6617e8e1914f9d062939bb852ef2b7188e17a1cbb1803b81dad1e",
-      "gradient": "sema:Gradient#mh:SHA-256:dcf04816f4c8639244be889bb5030889bcd786600046a64a67b3ad59a679bb96",
-      "regime_sense": "sema:RegimeSense#mh:SHA-256:430bf5a5fcfe1796a400eda12608fed3600ecb00ec50ef3f4c8934db5065a2a0"
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7",
+      "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07"
     }
   },
   "sema_layer": "Mind",

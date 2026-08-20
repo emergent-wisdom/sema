@@ -6,8 +6,8 @@
     "Priority Inversion: Low-priority {{task}} blocks high-priority {{task}} due to resource dependency."
   ],
   "invariants": [
-    "Completeness: Output contains all input items",
-    "Ordering: Item(N) >= Item(N+1) by {{criteria}}"
+    "Completeness: output contains every input item.",
+    "Ordering: sorted by descending impact-to-effort ratio."
   ],
   "preconditions": [
     "Items are comparable"
@@ -15,43 +15,29 @@
   "postconditions": [
     "Set ordered"
   ],
-  "parameters": [
-    {
-      "name": "importance_weight",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Weight for value-impact"
-    },
-    {
-      "name": "urgency_weight",
-      "type": "Float",
-      "range": "[0.0, 1.0]",
-      "description": "Weight for time-sensitivity"
-    }
-  ],
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62"
+      "sema:Prioritize#mh:SHA-256:dd165fed938b9e9d4072846d09081f3ac1ab5c278c5abc5e5b0b7bd84fafcd62",
+      "sema:Prioritize#mh:SHA-256:8028bf196f44e09cb60a59a1a067b57c3de28c2d41ad9a600a6797c335567458"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Prioritize#mh:SHA-256:8028bf196f44e09cb60a59a1a067b57c3de28c2d41ad9a600a6797c335567458",
-  "sema_ref": "Prioritize#8028",
-  "sema_stub": "8028",
+  "sema_id": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd",
+  "sema_ref": "Prioritize#99f0",
+  "sema_stub": "99f0",
   "dependencies": {
     "composes_with": {
-      "rank": "sema:Rank#mh:SHA-256:44ff9eebfbb89e603509718bad8954e38aa800ed22b697bb853e781aea9cb104"
+      "rank": "sema:Rank#mh:SHA-256:67c6fb568c5fdcfbd0de64b8a5413e943378d421dee9d5614c827e3c539bde3f"
     },
     "references": {
-      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804",
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Mind",

@@ -1,37 +1,59 @@
 {
   "handle": "PURECheck",
-  "mechanism": "The PURE triage specialization of the {{p_u_r_e}} framework: the canonical Exploration {{protocol}}. It is a {{layered_check}} that orchestrates a sequential triage using four instances of {{tri_gate}}: (1) {{tri_gate}}({{parsimony}}) (2) {{tri_gate}}({{novelty}}) (3) {{tri_gate}}({{realizable}}) (4) {{tri_gate}}({{expansive}}). Enforces the conjunctive rule: 'Explore iff NO gate is Red'. Yellow outputs accumulate as Technical Debt (Smallest Lift tasks) in the final {{solution}}.",
-  "gloss": "The PURE Triage Protocol (Parsimonious, Unique/Novel, Realizable, Expansive)",
+  "mechanism": "A {{check}} specialization of the {{p_u_r_e}} framework for a candidate {{subject}}. Evaluate the same subject and evidence snapshot independently through {{parsimony}}, {{novelty}}, {{realizable}}, and {{expansive}}, with each axis isolated from every other axis's verdict and reasoning. Apply the corresponding {{parsimony_criterion}}, {{novelty_criterion}}, {{realizable_criterion}}, or {{expansive_criterion}} to convert each axis finding into its named {{parsimony_status}}, {{novelty_status}}, {{realizable_status}}, or {{expansive_status}}, then return those four results and their conjunctive {{aggregate_status}} to the caller.",
+  "gloss": "Observational four-axis PURE viability check",
   "signature": [
-    "Protocol(Solution)"
+    "Check(Subject)"
+  ],
+  "invariants": [
+    "Completeness: Each run returns {{parsimony_status}}, {{novelty_status}}, {{realizable_status}}, and {{expansive_status}}; no axis is skipped after an earlier failure.",
+    "Isolation: Every axis evaluates the same unchanged {{subject}} and evidence snapshot in an isolated evaluation context that excludes every other axis's verdict and reasoning.",
+    "Criterion Mapping: Each axis status is Verified when its accepted criterion is met, Falsified when that criterion is not met, and Unknown when the available evidence cannot establish either result.",
+    "Non-Compensation: {{aggregate_status}} is Verified iff all four axis statuses are Verified; it is Falsified if any is Falsified, and Unknown otherwise.",
+    "Determinism: The same {{subject}}, four criteria, evidence snapshot, evaluator state, and seed yield the same five statuses.",
+    "Observational: Running the check does not mutate {{subject}}, write remediation debt, or alter caller control flow."
   ],
   "_meta": {
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f"
+      "sema:PURECheck#mh:SHA-256:3ebb730a3ae5ee95b1e1cbd4b6b1f4319a5429d217ddac05dfb685b191ce586f",
+      "sema:PURECheck#mh:SHA-256:6874cde1e9c99f3b6152bc4ecb757956732e91f7684857ad25fdc7921b7d5475",
+      "sema:PURECheck#mh:SHA-256:e27797e99add1f808b06cc5422fb2fc586af89af2e7fc7c955eaf8d79f563250",
+      "sema:PURECheck#mh:SHA-256:24b9be2158c50dac135c35421def2cad9805ab06c91e7439bfe6ea5d870998d0"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:PURECheck#mh:SHA-256:e27797e99add1f808b06cc5422fb2fc586af89af2e7fc7c955eaf8d79f563250",
-  "sema_ref": "PURECheck#e277",
-  "sema_stub": "e277",
+  "sema_id": "sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e",
+  "sema_ref": "PURECheck#574b",
+  "sema_stub": "574b",
   "dependencies": {
+    "accepts": {
+      "expansive_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "novelty_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "parsimony_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "realizable_criterion": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "subject": "sema:Subject#mh:SHA-256:433d8e6354d25b4350f39a8c2b06f29beac943adb62b677efa3bbb9bb5d0802c"
+    },
     "composes_with": {
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "expansive": "sema:Expansive#mh:SHA-256:49a7bf9576c5a3c81c4287bf5be190e00f99b3a7bab94608ff441da0dc8018b3",
+      "novelty": "sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a",
+      "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e",
+      "realizable": "sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622"
     },
     "references": {
-      "expansive": "sema:Expansive#mh:SHA-256:f246ad1edf07204d7df21541b5a563da9bea6d04e5a7dbfdca2d008642253744",
-      "layered_check": "sema:LayeredCheck#mh:SHA-256:6a86ad58c1141b1555efe8596df42dfaae516abed5c05a41092a3db7e5602aaa",
-      "novelty": "sema:Novelty#mh:SHA-256:262f2a36b4fb3ef6b2589307d7eb751cfec6e32548a444535c6e5db2d5c6c1a0",
-      "p_u_r_e": "sema:PURE#mh:SHA-256:7ed435750dde79d334021535d6fefcf015d68db51189c90bedbcc14743757436",
-      "parsimony": "sema:Parsimony#mh:SHA-256:bbc62c0fd9b1d71a06a781b4e40cf2988b6e2b61a113bf62d7ebd3ad0f149351",
-      "realizable": "sema:Realizable#mh:SHA-256:42f8270af6b0361a440bf86d1ece23a0117d34f504d9db576f30f67cf04815b3",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "tri_gate": "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824"
+      "p_u_r_e": "sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd"
+    },
+    "yields": {
+      "aggregate_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",
+      "expansive_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",
+      "novelty_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",
+      "parsimony_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80",
+      "realizable_status": "sema:Status#mh:SHA-256:8e6f3b6c796ea10bd810932d983144bd3b5b732f0dca26f960df0572c1479c80"
     }
   },
   "sema_layer": "Mind",

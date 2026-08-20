@@ -13,48 +13,59 @@
       },
       "dependencies": {
         "type": "array",
-        "description": "DAG edges (step_A -> step_B)"
+        "description": "Directed prerequisite edges (step_A -> step_B)"
       },
       "artifacts": {
         "type": "object",
         "description": "Typed outputs flowing on edges"
+      },
+      "accept_specs": {
+        "type": "object",
+        "description": "Optional mapping from edge identifiers to AcceptSpec identifiers"
+      },
+      "role_bindings": {
+        "type": "object",
+        "description": "Mapping from step identifiers to one or more Role identifiers; selects required roles without instantiating performers"
       }
     }
   },
-  "mechanism": "A directed graph of {{step}}s where the output of one {{solver}} becomes the input of another. It defines the sequence of operations required to complete a complex objective. Unlike a simple chain, a workflow handles branching, parallelism, and conditional logic. Each edge carries a typed {{artifact}} that must satisfy an {{accept_spec}} before the next node can execute. It binds {{role}}s to steps but does not instantiate them.",
+  "mechanism": "A directed graph of {{step}}s in which completion or output from one {{solver}} can enable another. It defines the operation topology required to pursue a complex objective and can express branching, parallelism, conditional logic, or declared recursion. An edge may carry a typed {{artifact}} with an {{accept_spec}}, and a step may bind one or more {{role}}s without instantiating performers. Edge payloads, acceptance policy, and role bindings remain optional unless a descendant requires them.",
   "gloss": "Directed graph of operations",
   "failure_modes": [
-    "Deadlock: Circular dependencies prevent progress.",
+    "Unresolved Cycle: A dependency cycle has no declared recursion or daemon semantics and prevents progress.",
     "Cascade Failure: One node failure propagates to all dependents.",
     "Orphan Output: A node produces artifacts that no downstream node consumes."
   ],
   "invariants": [
     "Causality: Step B cannot start before Step A's prerequisites are met.",
-    "Acyclicity: Unless explicitly recursive, workflows must terminate.",
-    "Artifact Typing: Each edge carries a typed artifact, not raw data."
+    "Cycle Declaration: A dependency cycle is permitted only when its recursion or daemon semantics are explicit; otherwise dependencies are acyclic.",
+    "Declared Edge Data: When an edge carries data, it names a typed {{artifact}} rather than untyped raw data.",
+    "Binding Separation: Any declared role binding names one or more {{role}}s without instantiating performers."
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
       "sema:Workflow#mh:SHA-256:36b2e9b976f4c8995977ea44277a6c0d2d6fba5c61e8bac80b13d4f9695e1dd9",
-      "sema:Workflow#mh:SHA-256:c08269a947e9c4b5dc11979a504aa791196de2cea81245bfb45ede8c781a2586"
+      "sema:Workflow#mh:SHA-256:c08269a947e9c4b5dc11979a504aa791196de2cea81245bfb45ede8c781a2586",
+      "sema:Workflow#mh:SHA-256:e8ce5c15c37d26e79c0bcb73685b7bee68e9cbe85dae3a0ce0002bb64439e728",
+      "sema:Workflow#mh:SHA-256:2b8a81eecc3c3656b624d8cbe2b8b2bbf115b1d045d1b98b277f24a7e94ebdf1"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:Workflow#mh:SHA-256:982bc58d26f2d57c21420514e03f33d68e10ca20b01eae9953927cb95b437042",
-  "sema_ref": "Workflow#982b",
-  "sema_stub": "982b",
+  "sema_id": "sema:Workflow#mh:SHA-256:092d027e1770222c8e2420fd7c893f6b0b1ea34042bc9283bce826925e12d3a2",
+  "sema_ref": "Workflow#092d",
+  "sema_stub": "092d",
   "dependencies": {
     "references": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4",
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
-      "role": "sema:Role#mh:SHA-256:9b2c6ae96c7b02fae8fcc5c665a789974874e8818f2641c7bc55096d28a9dff6",
-      "solver": "sema:Solver#mh:SHA-256:b7f9e18fec50d288ea829a21a59de02f65cf1ffe3eef07142389d659bd421d02",
-      "step": "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+      "role": "sema:Role#mh:SHA-256:262ab6d2c03de5beab24c98cb3168948a3bb043a6a81b68237ab53919d153999",
+      "solver": "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241",
+      "step": "sema:Step#mh:SHA-256:fa207e6f70e14a67e3baa7e4ad4df9ece59ba4d07083fbbcc992332959e1520a"
     }
   },
   "sema_layer": "Society",

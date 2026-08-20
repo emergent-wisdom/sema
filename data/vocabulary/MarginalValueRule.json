@@ -3,38 +3,50 @@
   "mechanism": "The economic {{budget}} governor of {{recursion_dive}}. It permits going one level deeper only if Expected Improvement in Quality > Incremental Cost. It calculates the marginal value of additional depth using {{estimate}} and compares against remaining {{budget}}. This ensures the system solves problems with precision proportional to their stakes\u2014simple problems get shallow treatment, complex problems get deep exploration.",
   "gloss": "Economic stop-condition for recursion",
   "failure_modes": [
-    "Underestimation: Expected value is too optimistic, wasting budget on low-value dives.",
-    "Overestimation: Expected value is too pessimistic, stopping too early on valuable problems.",
+    "Overestimation: Expected value is too optimistic, wasting budget on low-value dives.",
+    "Underestimation: Expected value is too pessimistic, stopping too early on valuable problems.",
     "Sunk Cost Fallacy: Continuing to invest because of prior investment, not future value."
   ],
   "invariants": [
-    "Marginal Comparison: Dive only if E[\u0394Quality] > Cost(Dive).",
-    "Budget Respect: Never approve a dive that exceeds remaining budget.",
-    "Diminishing Returns: Deeper levels must show proportionally higher marginal value."
+    "Dives only if expected improvement in quality exceeds the incremental cost.",
+    "Never approves a dive that exceeds the remaining {{budget}}.",
+    "The bar rises by `depth_premium` at each level, so deeper dives must clear more.",
+    "Compares future value only; prior investment does not count ({{sunk_cost_ignore}})."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "supersedes": [
       "sema:MarginalValueRule#mh:SHA-256:a46a39374cd046def6d2457b87ce2a426fe1e4b957494ff4a5b62d28665e159e",
-      "sema:MarginalValueRule#mh:SHA-256:314d8f02234530572de34b8f0616021e51e166f2341b9a5c40491e81f7ce5201"
+      "sema:MarginalValueRule#mh:SHA-256:314d8f02234530572de34b8f0616021e51e166f2341b9a5c40491e81f7ce5201",
+      "sema:MarginalValueRule#mh:SHA-256:eebb10656ec6d554fa7bba3a98b2b9ba1207d58b31d0a794563605595af0f026",
+      "sema:MarginalValueRule#mh:SHA-256:48c4d6b123db9fc25e08f32e0fb90578713dd71ed65ce7e31e9bce9bc7769e80"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:MarginalValueRule#mh:SHA-256:552ffce38f8fecae07f9faf905f0662ed284531904a94d55da19030138ff941d",
-  "sema_ref": "MarginalValueRule#552f",
-  "sema_stub": "552f",
+  "sema_id": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b",
+  "sema_ref": "MarginalValueRule#ffe1",
+  "sema_stub": "ffe1",
   "signature": [
     "Budget(RecursionDive)"
   ],
+  "parameters": [
+    {
+      "name": "depth_premium",
+      "type": "Ratio",
+      "range": "(1.0, 3.0]",
+      "description": "Factor by which the value-to-cost bar rises per level of depth."
+    }
+  ],
   "dependencies": {
     "references": {
-      "budget": "sema:Budget#mh:SHA-256:f2f58874eaeb0600039600ba5b26064164c225fd44482b269ae94e37a9df15b4",
-      "estimate": "sema:Estimate#mh:SHA-256:c6d21a9be2f862c3c4e46172f155ec129350e6dff03d18d658d694edcc34c9b7",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921"
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+      "estimate": "sema:Estimate#mh:SHA-256:0f4428479417ff278eec7ffe9149e65049956fe2f4bfd5d3f8ebdd0b708428fd",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:54763d3b1a9745e7f4a13d34b68355866c9cad797d786c8c43cb0306a37e78d3",
+      "sunk_cost_ignore": "sema:SunkCostIgnore#mh:SHA-256:c2e5392f7eee86aa652633c415404ce13a5f83f4e239ad02fd230c75b3c2313c"
     }
   },
   "sema_layer": "Mind",

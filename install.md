@@ -7,7 +7,7 @@ github: https://github.com/emergent-wisdom/sema
 
 # Install Sema
 
-Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#8bde`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#c9c2`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
 
 Referencing a pattern is not authorization to perform the actions it describes. Patterns are definitions, not permissions.
 
@@ -38,7 +38,7 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#0526`, `Vote#0aff`, `StateLock#8bde`.
+You should see results like `Consensus#b9a5`, `Vote#8493`, `StateLock#c9c2`.
 
 ## Tools available
 
@@ -49,7 +49,7 @@ You should see results like `Consensus#0526`, `Vote#0aff`, `StateLock#8bde`.
 | `sema_tree()` | Browse the taxonomy tree |
 | `sema_handshake(ref)` | Verify two agents share the same definition |
 | `sema_lookup(ref)` | Get pattern by exact reference |
-| `sema_root()` | Vocabulary fingerprint — one hash for the whole DB |
+| `sema_root()` | Semantic-set and handle-binding fingerprints for the DB |
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |
@@ -60,9 +60,9 @@ You should see results like `Consensus#0526`, `Vote#0aff`, `StateLock#8bde`.
 
 Sema handles are thinking tools, not footnotes:
 
-> "This uses `StateLock#8bde` to prevent concurrent mutation"
+> "This uses `StateLock#c9c2` to prevent concurrent mutation"
 
-> "Apply `Decompose#63f3` first, then `Prioritize#8028` the subproblems"
+> "Apply `Decompose#6994` first, then `Prioritize#99f0` the subproblems"
 
 ## Create your own vocabulary
 

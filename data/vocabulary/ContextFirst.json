@@ -1,6 +1,6 @@
 {
   "handle": "ContextFirst",
-  "mechanism": "Operational Invariant. {{prioritize}} the {{context}}. Before generating tokens or taking action, {{agent}} MUST execute a Read operation (e.g., graph_skeleton, search) on the shared state. Blind action is forbidden. It is a mandate for {{solver_node}} to execute a {{warmup}} or read-cycle before attempting any write-action.",
+  "mechanism": "{{prioritize}} the {{context}}. Before generating tokens or taking action, {{agent}} MUST execute a Read operation (e.g., graph_skeleton, search) on the shared state. Blind action is forbidden. It is a mandate for {{solver_node}} to execute a {{warmup}} or read-cycle before attempting any write-action.",
   "gloss": "Load state before acting",
   "failure_modes": [
     "{{context}} Blindness: {{agent}} acts on stale cached data.",
@@ -14,27 +14,30 @@
     "ring": 0,
     "supersedes": [
       "sema:ContextFirst#mh:SHA-256:2878bfc9402ba18d174040bc9614113e01c7a6f2bb775fe22fdccba6aca3dbe1",
-      "sema:ContextFirst#mh:SHA-256:ae7291d52b10df950c13034c25ca108b41c8e436e9b6711e16a0907db37c512f"
+      "sema:ContextFirst#mh:SHA-256:ae7291d52b10df950c13034c25ca108b41c8e436e9b6711e16a0907db37c512f",
+      "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
+      "sema:ContextFirst#mh:SHA-256:a0b6432a809a0c73841202d1802a83018f3db9d5938893415218a383ce151d6a",
+      "sema:ContextFirst#mh:SHA-256:9b48f9c973c2cac1a00e7f2d23a97f43e6df3a35caf90294856114633a7a596e"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:ContextFirst#mh:SHA-256:75505829fde04a5838eecbcc83757f2e96bdd064f0aab6eabeccc6e69ce2725a",
-  "sema_ref": "ContextFirst#7550",
-  "sema_stub": "7550",
+  "sema_id": "sema:ContextFirst#mh:SHA-256:76b5d12c19215ed42206f9fb6e2fac0e8a6b820f7d159bcc6a8b32aa9892cafa",
+  "sema_ref": "ContextFirst#76b5",
+  "sema_stub": "76b5",
   "signature": [
     "Prioritize(Context)"
   ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "prioritize": "sema:Prioritize#mh:SHA-256:8028bf196f44e09cb60a59a1a067b57c3de28c2d41ad9a600a6797c335567458",
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "prioritize": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd",
+      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "warmup": "sema:Warmup#mh:SHA-256:7ad05d8c27bdabb565d72ce56d8a896af84e5c35d5bc56afb7bdecdac5b40551"
+      "warmup": "sema:Warmup#mh:SHA-256:ed16f499e655d6d252a2bae39a8cc87ec8497426107905501920ac47644be9ef"
     }
   },
   "sema_layer": "Mind",

@@ -9,7 +9,7 @@
   ],
   "failure_modes": [
     "Sycophantic drift: evaluator shares the generator's blind spots and rubber-stamps weak outputs.",
-    "Signal poisoning in open commons: an untrusted consumer fabricates penalties to steal work (mitigated by the Receptivity Gate in \u00a77).",
+    "Signal poisoning in open commons: an untrusted consumer fabricates penalties to steal work (mitigated by {{receptivity_gate}}).",
     "Latency decay: the signal arrives long after the node has moved on, weakening the learning loop.",
     "Grade inflation: evaluators converge on 'good enough' scoring so all signals compress into a narrow band."
   ],
@@ -53,16 +53,22 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3",
+      "sema:PerformanceSignal#mh:SHA-256:7dea9b2784b3fa72856ba2b90eedc79ceb7c0b499b1c2a2bfdac205a5dbc27bf",
+      "sema:PerformanceSignal#mh:SHA-256:0f41b62437d210e1bf814dd145961f1ccd95661deaffa567989334ad298fdffb"
     ]
   },
-  "sema_id": "sema:PerformanceSignal#mh:SHA-256:10af65000a53f88e121ac8edbc6b6d3a105a5a86a5b1b370cd227e2062a4dcd3",
-  "sema_ref": "PerformanceSignal#10af",
-  "sema_stub": "10af",
+  "sema_id": "sema:PerformanceSignal#mh:SHA-256:b1306e8135cc948042a67d39d29dfe2e7bdce610371c733e9c415a8b26a677f6",
+  "sema_ref": "PerformanceSignal#b130",
+  "sema_stub": "b130",
   "dependencies": {
     "references": {
-      "feedback": "sema:Feedback#mh:SHA-256:5e6d456e19d4b57377c23d33584271b255557c076b2611c23d23afd1e542eb37",
-      "frame_error": "sema:FrameError#mh:SHA-256:f67433d411f7ce3c8582a6685e6fc43285c2e96680b404acb8f399a74198fe4b",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b6a0e82ce9362d546f5ac2da3610ced5e67a516f67fa0756aa90051a74180b82"
+      "feedback": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d",
+      "frame_error": "sema:FrameError#mh:SHA-256:1d0ac501f011a053fde50bef6bc2a781c2f916014f4b2b74de955f6d84db9c5d",
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5",
+      "receptivity_gate": "sema:ReceptivityGate#mh:SHA-256:56672e19478b968dacc6ffdaaf69627f85e5fedf06ee1256993b641a4380b571"
     }
   },
   "sema_layer": "Infrastructure",

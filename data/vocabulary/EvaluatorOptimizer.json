@@ -23,26 +23,28 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2"
+      "sema:EvaluatorOptimizer#mh:SHA-256:7ec6beac2574ee29a4e1ae88bf8420bd8c030a22867de7916800004a299b33c2",
+      "sema:EvaluatorOptimizer#mh:SHA-256:8ebdbab9207af96a57c670d2d3786bc01528f4ef645df1e3a225365ff161ff7e",
+      "sema:EvaluatorOptimizer#mh:SHA-256:2c3612741de2b6be3b4baad30b500db3bbd29fc518c40fd61987cce728aa4ecc"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:8ebdbab9207af96a57c670d2d3786bc01528f4ef645df1e3a225365ff161ff7e",
-  "sema_ref": "EvaluatorOptimizer#8ebd",
-  "sema_stub": "8ebd",
+  "sema_id": "sema:EvaluatorOptimizer#mh:SHA-256:ae098f2db7c18e00fa1dea16a305133a0778bd157652d5ee42b65f3bf86eef83",
+  "sema_ref": "EvaluatorOptimizer#ae09",
+  "sema_stub": "ae09",
   "signature": [
     "Optimize(Loop)"
   ],
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "criteria": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "meta_check": "sema:MetaCheck#mh:SHA-256:67872b0654d8a91ce849b6062e34cf8842bb315e77e7bf02cda64eb53ab4314a",
-      "optimize": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17"
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "meta_check": "sema:MetaCheck#mh:SHA-256:5ac54fce5c9e81842e2bd859f8e2aa50182082d1340e2ab9a8144067a205fe5e",
+      "optimize": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674"
     }
   },
   "sema_layer": "Society",

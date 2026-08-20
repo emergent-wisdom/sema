@@ -11,25 +11,28 @@
     "ring": 2,
     "supersedes": [
       "sema:Gardener#mh:SHA-256:5d74a3fff3bfed7f1d584d7894efca02274223d478477ffb00a99df127453d48",
-      "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c"
+      "sema:Gardener#mh:SHA-256:b0022e8f294268293a6ff11c2ae38852aa69e63ca8dce93a20c68fc6df9b064c",
+      "sema:Gardener#mh:SHA-256:3e1820fb37b894a66e5fe3e664e15067abe2e7d70a55d6b4f9ef10e362d87b71",
+      "sema:Gardener#mh:SHA-256:52f38862732f67f4fae97ec17422f694d4a03299edda23a8f91dc7d01a1bc716",
+      "sema:Gardener#mh:SHA-256:a3d395c8848875ef4584841b76b5cf0a95165a6a5584e9f8449314ae98b1b408"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_id": "sema:Gardener#mh:SHA-256:3e1820fb37b894a66e5fe3e664e15067abe2e7d70a55d6b4f9ef10e362d87b71",
-  "sema_ref": "Gardener#3e18",
-  "sema_stub": "3e18",
+  "sema_id": "sema:Gardener#mh:SHA-256:03a9a67b8becd9c37e95bb075ea8198bb1d28f1a6a76e75d74e8fba5a1a5252b",
+  "sema_ref": "Gardener#03a9",
+  "sema_stub": "03a9",
   "signature": [
     "Stigmergy(Care)"
   ],
   "dependencies": {
     "references": {
-      "care": "sema:Care#mh:SHA-256:413702da5928490b73e9aad2760480d231f2c40cf4c30a7d298ab118581ff20c",
-      "compensate": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
-      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:1a82403193308a36bfe7623bdbd9e98dd611761e086b0e038ced0655e8db0336",
-      "stigmergy": "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af"
+      "care": "sema:Care#mh:SHA-256:8b8f5e78e6b66790e450d7ff0ed3a757248423b4f63d00879d1b26c7ff333661",
+      "compensate": "sema:Compensate#mh:SHA-256:4b87623f38564fcc95b87d2cbf5df2f5ff41ef27e617ccafd76c7b7896b144e7",
+      "graceful_degradation": "sema:GracefulDegradation#mh:SHA-256:b5fb816bf7d74fb14b80795841d2043f22ac266873f442fce51c163346dc5a85",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:dd4f5a60a12b6dbe6e4a9a051189088dc0a73ef18b5ef4d9ecc361215e9551cb"
     }
   },
   "sema_layer": "Society",

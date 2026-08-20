@@ -1,6 +1,5 @@
 {
   "handle": "RolloutWatch",
-  "derived_from": "sema:Monitor#mh:SHA-256:3fc01ac62f90d7fc698768460f2801ad4e989a91bf64fe7827526b2869bca7c5",
   "gloss": "Continuous verification of deployed state against manifest",
   "mechanism": "The final {{state}} of workflow orchestration. It implements {{monitor}} by using {{observe}} to track the deployed {{solution}}'s performance on the {{system}} against the 'Definition of Done' defined in the {{rollout_manifest}}. If reality deviates from the plan (e.g., error rate spikes), it routes evidence back upstream via a {{monitor_report}}. It closes the feedback {{loop}}.",
   "signature": [
@@ -31,32 +30,35 @@
       "Reflexion"
     ],
     "supersedes": [
-      "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1"
+      "sema:RolloutWatch#mh:SHA-256:5b2db93248ae390eb136b9a06f21cc6f6c2a87fa676d015a2a8d0fa64c2c4dc1",
+      "sema:RolloutWatch#mh:SHA-256:fb6e194752fe142c36efd550427b0aa6e0041bb15a44ca95c94e85c297be15eb",
+      "sema:RolloutWatch#mh:SHA-256:fc5f0e53396d2c563d81bf111215849186491ba12e06c909296c76f7ec9a6772"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:RolloutWatch#mh:SHA-256:fb6e194752fe142c36efd550427b0aa6e0041bb15a44ca95c94e85c297be15eb",
-  "sema_ref": "RolloutWatch#fb6e",
-  "sema_stub": "fb6e",
+  "sema_id": "sema:RolloutWatch#mh:SHA-256:e8baa1d88901961450ea3e254e2da79075e8c8eb27d8e1d1de0a8f14f4f8ebfa",
+  "sema_ref": "RolloutWatch#e8ba",
+  "sema_stub": "e8ba",
+  "extends": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f",
   "dependencies": {
     "accepts": {
-      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:c0640e00390f15f0f8daaa6340cebd9852a0ff6d354e20e6d60498236c598d28"
+      "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10"
     },
     "composes_with": {
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "observe": "sema:Observe#mh:SHA-256:db88fe3226ab245793b6eb0126536dfd5eb281ceb95ddbd09f287fa85a266871"
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96"
     },
     "references": {
-      "monitor": "sema:Monitor#mh:SHA-256:72e04554c76cd2e06afaeb7284aaab96f37499b0ab3d58c76612819136447f2e",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
+      "monitor": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     },
     "yields": {
-      "monitor_report": "sema:MonitorReport#mh:SHA-256:e239e925f7a7aea755f1f1ee2c2b97245ef628ca9647726fc8995ee6e96afa0b"
+      "monitor_report": "sema:MonitorReport#mh:SHA-256:ef8eb14dc742f1f936915d8d17899e35cb0a400968f7e8c6a150a84fe35422f3"
     }
   },
   "sema_layer": "Society",

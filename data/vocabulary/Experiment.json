@@ -1,6 +1,6 @@
 {
   "handle": "Experiment",
-  "mechanism": "A structured {{protocol}} for causal discovery. Unlike {{verification}} (which confirms a claim), Experiment generates a {{solution}} (new knowledge) by isolating variables using a Control and Treatment group.",
+  "mechanism": "A structured {{protocol}} for causal discovery. Unlike {{verification}}, which confirms a claim already made, Experiment generates a {{solution}} by comparing a control group against a treatment group differing in the variable under test and, so far as declared, nothing else.",
   "gloss": "Structured causal discovery via variable isolation",
   "_meta": {
     "tier": 1,
@@ -10,23 +10,33 @@
     ],
     "supersedes": [
       "sema:Experiment#mh:SHA-256:c62fce3980caa782eba602ce44307edf9c4cb3f52eeab85523689348dd0db51e",
-      "sema:Experiment#mh:SHA-256:40e5e923ead8721b039cd6afa4e49c864a5022483e1c3ff58a12d57fe9a87499"
+      "sema:Experiment#mh:SHA-256:40e5e923ead8721b039cd6afa4e49c864a5022483e1c3ff58a12d57fe9a87499",
+      "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b",
+      "sema:Experiment#mh:SHA-256:08165b6c52dae531b39b4a900df552aff0987e341eec30108d6013bb80410a41"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Experiment#mh:SHA-256:3a0d59370d8de7ea45998bd32a52cc52feb62e18aaed29cb76b3a13786c2360b",
-  "sema_ref": "Experiment#3a0d",
-  "sema_stub": "3a0d",
+  "sema_id": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748",
+  "sema_ref": "Experiment#421e",
+  "sema_stub": "421e",
+  "invariants": [
+    "Control and treatment differ in the variable under test; every other difference is eliminated or written down.",
+    "The design commits in advance to learning from either outcome."
+  ],
+  "failure_modes": [
+    "Undeclared difference: something varied that the design did not name, so no cause is established.",
+    "Mechanism assumed: the comparison shows the variable mattered, not why."
+  ],
   "dependencies": {
     "references": {
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "verification": "sema:Verification#mh:SHA-256:99a57c2cef1d442480417b63b008e656f2b67f586886666234a41bc9251a4956"
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Mind",

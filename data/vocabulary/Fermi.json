@@ -27,20 +27,22 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:Fermi#mh:SHA-256:1e06d04bfff04954ad09852a7a4b1b583acc76c431dc926b4afe3cce5abfe210"
+      "sema:Fermi#mh:SHA-256:1e06d04bfff04954ad09852a7a4b1b583acc76c431dc926b4afe3cce5abfe210",
+      "sema:Fermi#mh:SHA-256:128b7131810fba03748bcc5dce657248d5547beeb23e87750cd76e6e59a80bd5",
+      "sema:Fermi#mh:SHA-256:964a2d4f8166deefb544d347da4f4c36b2c32885bb24f2f3e36cd3361638c9c2"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Fermi#mh:SHA-256:3325308001815324796cd17f1aa534abbd32be73cdfbbd59cb5fa75d2f1b7d13",
-  "sema_ref": "Fermi#3325",
-  "sema_stub": "3325",
+  "sema_id": "sema:Fermi#mh:SHA-256:688559c783f162aee4fc61fd380bd30094219d76a844a6a9efce9ae1feeaf622",
+  "sema_ref": "Fermi#6885",
+  "sema_stub": "6885",
   "dependencies": {
     "composes_with": {
-      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
-      "estimate": "sema:Estimate#mh:SHA-256:c6d21a9be2f862c3c4e46172f155ec129350e6dff03d18d658d694edcc34c9b7"
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "estimate": "sema:Estimate#mh:SHA-256:0f4428479417ff278eec7ffe9149e65049956fe2f4bfd5d3f8ebdd0b708428fd"
     }
   },
   "sema_layer": "Mind",

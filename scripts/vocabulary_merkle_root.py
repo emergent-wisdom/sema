@@ -69,25 +69,32 @@ def load_patterns() -> list[dict[str, Any]]:
 
 
 def compute_merkle_root(patterns: list[dict[str, Any]]) -> str:
-    """Compute Merkle root from pattern hashes.
+    """Compute the semantic-set root (compatibility wrapper)."""
+    return compute_vocabulary_roots(patterns)["semantic_root"]
 
-    Delegates to `sema.core.hashing.vocabulary_root` for the canonical
-    algorithm. Patterns must be pre-sorted by handle (the SQL query does
-    this). Kept as a thin wrapper so the existing doc-generation pipeline
-    doesn't have to reimport.
-    """
+
+def compute_vocabulary_roots(patterns: list[dict[str, Any]]) -> dict[str, Any]:
+    """Compute both canonical aggregate roots, rejecting malformed entries."""
     import sys
     from pathlib import Path as _Path
 
     sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / "src"))
-    from sema.core.hashing import vocabulary_root
+    from sema.core.hashing import pattern_hash_from_sema_id, vocabulary_roots
 
-    hashes = []
+    bindings = []
     for p in patterns:
-        h = extract_hash_from_sema_id(p.get("sema_id", ""))
-        if h:
-            hashes.append(h)
-    return vocabulary_root(hashes)
+        handle = p.get("handle")
+        if not handle:
+            raise ValueError("Pattern is missing its handle")
+        try:
+            pattern_hash = pattern_hash_from_sema_id(
+                p.get("sema_id"),
+                expected_handle=handle,
+            )
+        except ValueError as exc:
+            raise ValueError(f"Pattern {handle!r} has an invalid sema_id: {exc}") from exc
+        bindings.append((handle, pattern_hash))
+    return vocabulary_roots(bindings)
 
 
 def calculate_stats(patterns: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
@@ -109,34 +116,50 @@ def calculate_stats(patterns: list[dict[str, Any]]) -> dict[str, dict[str, int]]
 
 
 def generate_markdown_content(
-    merkle_root: str, patterns: list[dict[str, Any]], stats: dict[str, dict[str, int]]
+    roots: dict[str, Any],
+    patterns: list[dict[str, Any]],
+    stats: dict[str, dict[str, int]],
 ) -> str:
     """Generate the content for vocabulary_information.md."""
     total_patterns = len(patterns)
+    semantic_root = roots["semantic_root"]
+    catalog_root = roots["catalog_root"]
 
     content = f"""# Vocabulary Information
 
 ## System Status
 
-- **Merkle Root**: `{merkle_root}`
+- **Semantic-set Root**: `{semantic_root}`
+- **Semantic-set Scheme**: `{roots["semantic_root_scheme"]}`
+- **Catalog Root**: `{catalog_root}`
+- **Catalog Scheme**: `{roots["catalog_root_scheme"]}`
 - **Pattern Count**: {total_patterns}
-- **Verified Against Root**: `{merkle_root[:16]}…`
+- **Unique Definition Count**: {roots["definition_count"]}
+- **Verified Against Semantic Root**: `{semantic_root[:16]}…`
 
 ## Usage
 
 ### Handshake Protocol
 
-Agents use the Merkle root for fail-closed semantic verification:
+Agents use the semantic-set root to compare canonical-v2 definition sets and
+the catalog root when exact handle-to-definition bindings must also agree.
+Because canonicalization v2 hashes target handles in structured references,
+a target rename can also change dependent definition digests:
 
 ```python
-# Agent A shares vocabulary root
-R_context_A = "{merkle_root}"
+import json
 
-# Agent B computes their vocabulary root
-R_context_B = compute_vocabulary_merkle_root()
+# Agent A shares semantic-set root + scheme
+semantic_root_A = "{semantic_root}"
+scheme_A = "{roots["semantic_root_scheme"]}"
 
-if R_context_A == R_context_B:
-    print("✅ PROCEED - Shared semantics verified")
+# Agent B independently reads its local versioned roots
+local = json.loads(sema_root())
+semantic_root_B = local["semantic_root"]
+scheme_B = local["semantic_root_scheme"]
+
+if scheme_A == scheme_B and semantic_root_A == semantic_root_B:
+    print("✅ PROCEED - Definition sets match")
 else:
     print("🚫 HALT - Vocabulary mismatch")
 ```
@@ -163,7 +186,7 @@ Breakdown of patterns by Civilization Layer and Functional Category.
             content += f"| {cat} | {count} |\n"
         content += "\n"
 
-    return content
+    return content.rstrip() + "\n"
 
 
 def main():
@@ -172,17 +195,18 @@ def main():
     patterns = load_patterns()
     print(f"✓ Loaded {len(patterns)} patterns\n")
 
-    merkle_root = compute_merkle_root(patterns)
+    roots = compute_vocabulary_roots(patterns)
     stats = calculate_stats(patterns)
 
     print("=" * 80)
     print("VOCABULARY INFORMATION")
     print("=" * 80)
-    print(f"\nRoot: {merkle_root}")
+    print(f"\nSemantic-set root: {roots['semantic_root']}")
+    print(f"\nCatalog root: {roots['catalog_root']}")
     print(f"\nPattern count: {len(patterns)}")
 
     # Generate and write markdown file
-    markdown_content = generate_markdown_content(merkle_root, patterns, stats)
+    markdown_content = generate_markdown_content(roots, patterns, stats)
     with open(OUTPUT_FILE, "w") as f:
         f.write(markdown_content)
 
@@ -194,9 +218,13 @@ def main():
         with open(WEBSITE_JSON, "w") as f:
             json.dump(
                 {
-                    "root": merkle_root,
+                    "root": roots["semantic_root"],
+                    "root_scheme": roots["semantic_root_scheme"],
+                    "catalog_root": roots["catalog_root"],
+                    "catalog_root_scheme": roots["catalog_root_scheme"],
                     "count": len(patterns),
-                    "verified_against_root": merkle_root,
+                    "definition_count": roots["definition_count"],
+                    "verified_against_root": roots["semantic_root"],
                 },
                 f,
                 indent=2,

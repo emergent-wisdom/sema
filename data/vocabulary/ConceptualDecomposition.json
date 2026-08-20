@@ -3,9 +3,9 @@
   "mechanism": "The cognitive act of taking a concept \u2014 typically a problem or task \u2014 and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (at minimum exposes a Manifest + Execute surface, so it is independently delegatable). Distinct from generic {{decompose}}: Decompose merely divides; ConceptualDecomposition divides *into solver-compatible units*. This is the intellectual move that enables recursive fractal structure \u2014 because child concepts conform to the same interface as the parent, the same five-surface contract governs every level. A few agents can assign these solver roles to themselves and perform lightweight fractal intelligence for a specific problem; the resulting structure may persist as a reusable pattern or be torn down at completion. The decomposition is passed through a {{decomposition_gate}} to validate Necessity, Independence, Universality, and Completeness before any child is spawned. Children compose back via {{synthesis}} once their individual results return.",
   "gloss": "Breaking a concept into solver-contract-bound sub-concepts \u2014 the move that enables fractal recursion",
   "invariants": [
-    "Contract-binding: every sub-concept exposes the {{solver}} interface (Manifest + Execute mandatory).",
-    "Gated: decompositions pass the {{decomposition_gate}} suite (Necessity, Independence, Universality, Completeness) before children are spawned.",
-    "Recomposability: results of sub-concepts compose back to the parent concept via {{synthesis}}."
+    "Every sub-concept exposes the {{solver}} interface (Manifest + Execute) as a condition of the split being accepted, not as later repair.",
+    "Decompositions pass the {{decomposition_gate}} suite before children are spawned.",
+    "The split declares the {{synthesis}} that will recompose it; a concept with no available route is not decomposed."
   ],
   "failure_modes": [
     "Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.",
@@ -19,19 +19,24 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
+      "sema:ConceptualDecomposition#mh:SHA-256:3cf20e30a632b0a7ab64a7fb2984fe64b106ba7819af458fa5e260aa89853b1d",
+      "sema:ConceptualDecomposition#mh:SHA-256:cdf87329a5b75a1ccb9a01275f7467abaadaefcd4b77f0576ae954aee3f386be"
     ]
   },
-  "sema_id": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a",
-  "sema_ref": "ConceptualDecomposition#2cce",
-  "sema_stub": "2cce",
+  "sema_id": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
+  "sema_ref": "ConceptualDecomposition#40d9",
+  "sema_stub": "40d9",
   "dependencies": {
     "composes_with": {
-      "decomposition_gate": "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730",
-      "synthesis": "sema:Synthesis#mh:SHA-256:46b9ca1ae3a7711fc932ec43d901d25ef27b7c60c8f64f6fef818eec2027f6ea"
+      "decomposition_gate": "sema:DecompositionGate#mh:SHA-256:bd17249e6886e85f3b10f4abbf631e89a1585f24c56cc72123ebd3ad0cea3d83",
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },
     "references": {
-      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
-      "solver": "sema:Solver#mh:SHA-256:b7f9e18fec50d288ea829a21a59de02f65cf1ffe3eef07142389d659bd421d02"
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "solver": "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241"
     }
   },
   "sema_layer": "Mind",

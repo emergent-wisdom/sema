@@ -162,7 +162,7 @@ def sema_lookup(ref: str) -> str:
     """Lookup a pattern by its Sema reference (Handle#stub).
 
     Args:
-        ref: Pattern reference like "ChainOfThought#c425" or just "ChainOfThought"
+        ref: Pattern reference like "ChainOfThought#27ad" or just "ChainOfThought"
 
     Returns:
         Full pattern JSON
@@ -217,7 +217,15 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
     global REGISTRY_MGR, DEFAULT_DB_PATH
     from pathlib import Path
 
-    from ..core.registry import get_bundled_db_path, is_bundled_db, register_db, set_active_db
+    from ..core.registry import (
+        get_bundled_db_path,
+        get_registered_db,
+        get_registered_db_by_path,
+        is_bundled_db,
+        register_db,
+        set_active_db,
+        validate_registry_db,
+    )
 
     if default:
         bundled = get_bundled_db_path()
@@ -247,9 +255,22 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             indent=2,
         )
 
-    resolved = Path(db_path).expanduser().resolve()
+    selected_record = get_registered_db(db_path)
+    candidate = Path(db_path).expanduser()
+    if selected_record is not None:
+        resolved = Path(selected_record["path"]).expanduser().resolve()
+    elif candidate.exists():
+        resolved = candidate.resolve()
+        selected_record = get_registered_db_by_path(resolved)
+    else:
+        return json.dumps({"error": f"Database path or installed library not found: {db_path}"})
     if not resolved.exists():
         return json.dumps({"error": f"Database not found: {resolved}"})
+
+    try:
+        validate_registry_db(resolved)
+    except ValueError as exc:
+        return json.dumps({"error": f"Invalid Sema database: {exc}"})
 
     if is_bundled_db(str(resolved)):
         return json.dumps(
@@ -259,10 +280,19 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             }
         )
 
+    if selected_record and selected_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(selected_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            return json.dumps({"error": f"Installed library verification failed: {exc}"})
+
     DEFAULT_DB_PATH = str(resolved)
     REGISTRY_MGR = RegistryManager(db_path=str(resolved))
     set_active_db(str(resolved))
-    register_db(str(resolved))
+    if selected_record is None:
+        register_db(str(resolved))
     _served_patterns.clear()
 
     return json.dumps(
@@ -270,43 +300,47 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             "success": True,
             "db_path": str(resolved),
             "total_patterns": len(REGISTRY_MGR.registry),
-            "message": f"Switched to {resolved} ({len(REGISTRY_MGR.registry)} patterns)",
+            "message": (
+                f"Switched to {selected_record.get('name') if selected_record else resolved} "
+                f"({len(REGISTRY_MGR.registry)} patterns)"
+            ),
         },
         indent=2,
     )
 
 
 def _compute_vocabulary_root() -> tuple[str, int]:
-    """Compute the active vocabulary's Merkle root + pattern count.
-
-    Shares the algorithm with `scripts/vocabulary_merkle_root.py` and the
-    `sema root` CLI command — hashes collected in ascending-by-handle
-    order, SHA-256 over the concatenation.
-    """
+    """Compute the active semantic-set root + pattern count."""
     root = _active_workspace().vocabulary_root()
     return root["hash"], root["pattern_count"]
 
 
 @mcp.tool()
 def sema_root() -> str:
-    """Get the Merkle root of the active vocabulary.
+    """Get both aggregate roots of the active vocabulary.
 
-    The root is a single SHA-256 digest over every pattern's hash in
-    ascending-by-handle order. Two agents with byte-identical vocabularies
-    produce the same root — enabling a one-shot "do we agree on the whole
-    vocab?" check without enumerating handles.
+    The semantic-set root commits to the unordered set of definition
+    digests and ignores duplicate meanings. The catalog root separately
+    commits to exact handle-to-digest bindings. Both use versioned,
+    domain-separated RFC 9162 Merkle Tree Hash constructions.
 
-    Pairs naturally with `sema_handshake(ref="vocab", your_hash=<root>)`
-    for fail-closed alignment before multi-agent coordination.
+    Pair with `sema_handshake(ref="vocab", ...)` for semantic-set
+    alignment or `sema_handshake(ref="catalog", ...)` for namespace
+    alignment.
 
     Returns:
-        JSON with the full sema_id, short stub, and pattern count.
+        JSON with both roots, schemes, counts, full IDs, and short stubs.
     """
     return json.dumps(_active_workspace().root_payload(), indent=2)
 
 
 @mcp.tool()
-def sema_handshake(ref: str, your_hash: str | None = None, strict: bool = False) -> str:
+def sema_handshake(
+    ref: str,
+    your_hash: str | None = None,
+    strict: bool = False,
+    your_scheme: str | None = None,
+) -> str:
     """Byte-level definition agreement check between two agents.
 
     Verifies that the requesting agent and the local registry have the
@@ -320,15 +354,20 @@ def sema_handshake(ref: str, your_hash: str | None = None, strict: bool = False)
     coordinating on a pattern. It does not replace behavioral testing.
 
     Args:
-        ref: Pattern reference (e.g., "StateLock#8bde" or "StateLock"),
-             or the literal string "vocab" to handshake on the whole
-             vocabulary's Merkle root.
+        ref: Pattern reference (e.g., "StateLock#c9c2" or "StateLock"),
+             "vocab" for the semantic-set root, or "catalog" for exact
+             handle-to-definition bindings.
         your_hash: Your local hash — the 4-char pattern stub, or the
              16-char vocab root stub (or full 64-char root). If omitted,
              returns the canonical hash for you to compare.
         strict: If true, only a full 64-character hash can produce PROCEED.
              A matching stub returns REQUIRE_FULL_HASH. If false (default),
              stubs may proceed for cooperative drift detection.
+        your_scheme: Aggregate-root scheme returned by `sema_root` or an
+             initial aggregate handshake. Required whenever `your_hash` is
+             supplied for `vocab` or `catalog`. Omission or a different
+             scheme fails with HALT; `sema pull` cannot repair
+             algorithm-only drift.
 
     Returns:
         JSON with verdict: PROCEED (accepted under the selected mode), HALT
@@ -342,11 +381,19 @@ def sema_handshake(ref: str, your_hash: str | None = None, strict: bool = False)
         3. Agent B with drift: sema_handshake("StateLock", "9x7z") -> HALT
 
     Example workflow (whole vocabulary):
-        1. Agent A: sema_handshake("vocab") -> gets 16-char vocab stub
-        2. Agent B: sema_handshake("vocab", "<that stub>") -> PROCEED / HALT
+        1. Agent A: sema_handshake("vocab") -> gets stub + root_scheme
+        2. Agent B: sema_handshake(
+             "vocab", "<that stub>", your_scheme="<that scheme>"
+           ) -> PROCEED / HALT
     """
     return json.dumps(
-        _active_workspace().handshake(ref, your_hash=your_hash, strict=strict), indent=2
+        _active_workspace().handshake(
+            ref,
+            your_hash=your_hash,
+            strict=strict,
+            your_scheme=your_scheme,
+        ),
+        indent=2,
     )
 
 
@@ -372,15 +419,16 @@ def _sema_mint(pattern_json: str) -> str:
         JSON with the minted pattern's sema_id, or validation errors.
     """
     from ..core.mint import mint_pattern
-    from ..core.registry import is_bundled_db
+    from ..core.registry import is_managed_db, is_read_only_db
     from ..taxonomy_graph.graph_store import GraphStore
 
-    if is_bundled_db(DEFAULT_DB_PATH):
+    if is_read_only_db(DEFAULT_DB_PATH):
+        label = "installed library" if is_managed_db(DEFAULT_DB_PATH) else "bundled vocabulary"
         return json.dumps(
             {
                 "success": False,
                 "errors": [
-                    "Cannot mint into the bundled vocabulary — it gets overwritten on upgrade. "
+                    f"Cannot mint into the {label} — it is a read-only snapshot. "
                     "Run `sema build my.db --preset full` then `sema use my.db` to create your own vocabulary first."
                 ],
             }
@@ -426,18 +474,19 @@ def _sema_mint(pattern_json: str) -> str:
 def sema_propose_context(handles: list[str]) -> str:
     """Propose a shared definition set for multi-agent coordination.
 
-    Computes a truncated SHA-256 digest over the sorted set of canonicalized
-    pattern definitions in `handles`. The receiving agent calls
-    sema_verify_context with the same handles and compares digests.
+    Computes a truncated catalog Merkle root over the requested
+    handle-to-definition bindings. The receiving agent calls
+    sema_verify_context with the same handles and compares roots.
 
     Properties of the digest:
-      - Order-independent: this is a SET digest, not a Merkle tree. Two
-        agents that submit the same handles in different orders produce
-        the same digest.
-      - 32 bits wide (8 hex chars). That gives roughly a 65k collision
-        domain — sufficient to catch ACCIDENTAL vocabulary drift between
-        cooperating agents, but NOT a security primitive: an active
-        adversary can trivially brute-force a matching 4-byte prefix.
+      - Order-independent: handle bindings are sorted before the versioned
+        RFC 9162 tree construction.
+      - Binding-sensitive: swapping two handles' definitions changes the root.
+      - 32 bits wide (8 hex chars). Birthday collisions become likely after
+        roughly 65k independently sampled contexts. This is sufficient to
+        catch ACCIDENTAL vocabulary drift between cooperating agents, but
+        NOT a security primitive: an active adversary can brute-force a
+        matching 4-byte prefix.
       - What it verifies: that both agents have byte-identical definitions
         for every pattern in the set.
       - What it does NOT verify: that both agents will behave compatibly
@@ -445,22 +494,26 @@ def sema_propose_context(handles: list[str]) -> str:
 
     Workflow:
         1. Agent A: sema_propose_context(["StateLock", "Check", "Task"])
-           -> returns context_hash "7f3a..."
-        2. Agent A sends context_hash to Agent B
-        3. Agent B: sema_verify_context(["StateLock", "Check", "Task"], "7f3a...")
+           -> returns context_hash "7f3a..." + root_scheme
+        2. Agent A sends both values to Agent B
+        3. Agent B: sema_verify_context(
+             ["StateLock", "Check", "Task"], "7f3a...", "<scheme>"
+           )
            -> PROCEED or HALT
 
     Args:
         handles: List of pattern handles to include in the context.
 
     Returns:
-        JSON with the context_hash (truncated SHA-256 set digest) and pattern refs.
+        JSON with the context_hash, root scheme, and pattern refs.
     """
     from ..core.actions import _compute_context_hash
+    from ..core.hashing import CATALOG_ROOT_SCHEME
 
     REGISTRY_MGR.refresh()
 
     patterns = []
+    resolved_handles = []
     refs = []
     missing = []
 
@@ -469,6 +522,7 @@ def sema_propose_context(handles: list[str]) -> str:
         pattern = REGISTRY_MGR.get_pattern(clean)
         if pattern:
             patterns.append(pattern)
+            resolved_handles.append(clean)
             refs.append(pattern.get("sema_ref", clean))
         else:
             missing.append(handle)
@@ -483,42 +537,90 @@ def sema_propose_context(handles: list[str]) -> str:
             indent=2,
         )
 
-    context_hash = _compute_context_hash(patterns)
+    try:
+        context_hash = _compute_context_hash(patterns, resolved_handles)
+    except ValueError as exc:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "Invalid context identity",
+                "error": str(exc),
+            },
+            indent=2,
+        )
 
     return json.dumps(
         {
             "context_hash": context_hash,
-            "digest_kind": "truncated SHA-256 set digest, 32 bits",
+            "digest_kind": "truncated catalog Merkle root, 32 bits",
+            "root_scheme": CATALOG_ROOT_SCHEME,
             "patterns": refs,
             "count": len(patterns),
-            "action": "Send context_hash to the other agent. They verify with sema_verify_context.",
+            "action": (
+                "Send context_hash and root_scheme to the other agent. "
+                "They verify both with sema_verify_context."
+            ),
         },
         indent=2,
     )
 
 
 @mcp.tool()
-def sema_verify_context(handles: list[str], remote_hash: str) -> str:
+def sema_verify_context(
+    handles: list[str],
+    remote_hash: str,
+    remote_scheme: str | None = None,
+) -> str:
     """Verify a semantic context proposed by another agent.
 
-    Computes the local truncated SHA-256 set digest for the given pattern set
-    and compares it against the remote agent's digest. PROCEED if identical,
-    HALT if not. The digest is a drift-detection primitive between cooperating
-    agents, not a security primitive against an adversary (see
-    sema_propose_context for details).
+    Computes the local truncated catalog root for the given handle bindings
+    and compares it against the remote agent's root under the declared scheme.
+    PROCEED if both match, HALT if not. The short root is a drift-detection
+    primitive between cooperating agents, not a security primitive against an
+    adversary (see sema_propose_context for details).
 
     Args:
         handles: List of pattern handles in the proposed context.
         remote_hash: The context_hash received from the proposing agent.
+        remote_scheme: The root_scheme received from the proposing agent.
+             Omission or a different scheme fails closed.
 
     Returns:
         JSON with verdict: PROCEED (contexts match) or HALT (drift detected).
     """
     from ..core.actions import _compute_context_hash
+    from ..core.hashing import CATALOG_ROOT_SCHEME
+
+    if remote_scheme is None:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "ROOT SCHEME REQUIRED",
+                "root_scheme": CATALOG_ROOT_SCHEME,
+                "action": (
+                    "Supply the root_scheme that accompanied the remote context root; "
+                    "a digest alone does not identify the aggregate construction."
+                ),
+            },
+            indent=2,
+        )
+
+    if remote_scheme != CATALOG_ROOT_SCHEME:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "ROOT SCHEME MISMATCH",
+                "root_scheme": CATALOG_ROOT_SCHEME,
+                "remote_scheme": remote_scheme,
+                "action": "Upgrade both Sema installations before comparing context roots.",
+            },
+            indent=2,
+        )
 
     REGISTRY_MGR.refresh()
 
     patterns = []
+    resolved_handles = []
     missing = []
 
     for handle in handles:
@@ -526,6 +628,7 @@ def sema_verify_context(handles: list[str], remote_hash: str) -> str:
         pattern = REGISTRY_MGR.get_pattern(clean)
         if pattern:
             patterns.append(pattern)
+            resolved_handles.append(clean)
         else:
             missing.append(handle)
 
@@ -539,13 +642,25 @@ def sema_verify_context(handles: list[str], remote_hash: str) -> str:
             indent=2,
         )
 
-    local_hash = _compute_context_hash(patterns)
+    try:
+        local_hash = _compute_context_hash(patterns, resolved_handles)
+    except ValueError as exc:
+        return json.dumps(
+            {
+                "verdict": "HALT",
+                "reason": "Invalid local context identity",
+                "error": str(exc),
+                "root_scheme": CATALOG_ROOT_SCHEME,
+            },
+            indent=2,
+        )
 
     if local_hash == remote_hash:
         return json.dumps(
             {
                 "verdict": "PROCEED",
                 "context_hash": local_hash,
+                "root_scheme": CATALOG_ROOT_SCHEME,
                 "patterns": [p.get("sema_ref", h) for p, h in zip(patterns, handles, strict=True)],
                 "count": len(patterns),
                 "message": "Context verified. All patterns match. Safe to coordinate.",
@@ -559,6 +674,7 @@ def sema_verify_context(handles: list[str], remote_hash: str) -> str:
                 "reason": "Context digest mismatch",
                 "local_hash": local_hash,
                 "remote_hash": remote_hash,
+                "root_scheme": CATALOG_ROOT_SCHEME,
                 "patterns": handles,
                 "action": (
                     "Vocabularies differ on at least one pattern in this set. "
@@ -587,8 +703,9 @@ def _sema_pull(
 
     Returns structured JSON with `success`, `added`, `updated`, `skipped`,
     `cascaded_user`, `superseded_removed`, `superseded_kept_orphan`,
-    `upstream_removed`, `vocabulary_root_before`, and `vocabulary_root_after`
-    so callers can react programmatically instead of parsing the human log.
+    `upstream_removed`, `vocabulary_root_before`, `vocabulary_root_after`, and
+    `vocabulary_root_scheme` so callers can react programmatically instead of
+    parsing the human log.
 
     Exposed by default. Deployments that want a pinned vocabulary can set
     `SEMA_DISABLE_PULL=true` to hide this tool.

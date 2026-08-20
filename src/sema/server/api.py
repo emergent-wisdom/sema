@@ -442,8 +442,13 @@ def get_hosted_workspace(workspace_id: str):
         "ref",
         "read_only",
         "pattern_count",
+        "definition_count",
         "vocabulary_root",
         "vocabulary_root_stub",
+        "vocabulary_root_scheme",
+        "catalog_root",
+        "catalog_root_stub",
+        "catalog_root_scheme",
     )
     return {field: description[field] for field in public_fields}
 
@@ -975,7 +980,14 @@ def use_db_endpoint(payload: dict, request: Request):
     if not _is_local_request(request):
         raise HTTPException(status_code=404, detail="DB management is local-only")
 
-    from ..core.registry import is_bundled_db, register_db, set_active_db
+    from ..core.registry import (
+        get_registered_db,
+        get_registered_db_by_path,
+        is_bundled_db,
+        register_db,
+        set_active_db,
+        validate_registry_db,
+    )
 
     global DB_PATH, registry, workspace
 
@@ -999,21 +1011,48 @@ def use_db_endpoint(payload: dict, request: Request):
     if not target:
         raise HTTPException(status_code=400, detail="Missing 'path' or 'default' field")
 
-    resolved = Path(target).expanduser().resolve()
+    selected_record = get_registered_db(target)
+    candidate = Path(target).expanduser()
+    if selected_record is not None:
+        resolved = Path(selected_record["path"]).expanduser().resolve()
+    elif candidate.exists():
+        resolved = candidate.resolve()
+        selected_record = get_registered_db_by_path(resolved)
+    else:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Database path or installed library not found: {target}",
+        )
     if not resolved.exists():
         raise HTTPException(status_code=404, detail=f"Database not found: {resolved}")
+    try:
+        validate_registry_db(resolved)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=f"Invalid Sema database: {exc}") from exc
     if is_bundled_db(str(resolved)):
         raise HTTPException(
             status_code=400,
             detail="Cannot use the bundled DB as active — it gets overwritten on upgrade.",
         )
 
+    if selected_record and selected_record.get("kind") == "installed-library":
+        from ..core.libraries import LibraryError, verify_installed_library
+
+        try:
+            verify_installed_library(selected_record)
+        except (LibraryError, OSError, ValueError) as exc:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Installed library verification failed: {exc}",
+            ) from exc
+
     DB_PATH = str(resolved)
     workspace = _make_workspace(str(resolved))
     registry = workspace.registry_manager
     workspace_catalog.register_workspace(workspace)
     set_active_db(str(resolved))
-    register_db(str(resolved))
+    if selected_record is None:
+        register_db(str(resolved))
     count = len(registry.registry)
     return {"success": True, "db_path": str(resolved), "total_patterns": count}
 

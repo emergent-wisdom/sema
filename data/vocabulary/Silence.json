@@ -11,14 +11,17 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "supersedes": [
+      "sema:Silence#mh:SHA-256:cc90dc097c5c67b0cb24bc8e74c7d0a105b5877c2a075a20454114dac44b4893"
     ]
   },
-  "sema_id": "sema:Silence#mh:SHA-256:cc90dc097c5c67b0cb24bc8e74c7d0a105b5877c2a075a20454114dac44b4893",
-  "sema_ref": "Silence#cc90",
-  "sema_stub": "cc90",
+  "sema_id": "sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f",
+  "sema_ref": "Silence#1645",
+  "sema_stub": "1645",
   "dependencies": {
     "references": {
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     }
   },
   "sema_layer": "Mind",

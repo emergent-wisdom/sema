@@ -26,21 +26,23 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758"
+      "sema:CognitiveEcho#mh:SHA-256:4a95eb01f8da6218a9e6a63ab78128286771cc9cc9e9f9716892177fa3af3758",
+      "sema:CognitiveEcho#mh:SHA-256:ae14cdfccac0833037b3e3efed7c259cac9f4cbb3aa2c0279ffd6fb546b668b8",
+      "sema:CognitiveEcho#mh:SHA-256:9e10b92d9178aa5933b360f02fd1a7783328f042f9d190df36863e9701a943ed"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:CognitiveEcho#mh:SHA-256:ae14cdfccac0833037b3e3efed7c259cac9f4cbb3aa2c0279ffd6fb546b668b8",
-  "sema_ref": "CognitiveEcho#ae14",
-  "sema_stub": "ae14",
+  "sema_id": "sema:CognitiveEcho#mh:SHA-256:c84c09c719fa97e50268c901a737cf5812e92cfe9d8f81b69d4a5e511d565954",
+  "sema_ref": "CognitiveEcho#c84c",
+  "sema_stub": "c84c",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
-      "simulation": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
+      "simulation": "sema:Simulation#mh:SHA-256:1058e7090079e846251ed480d7afec0328809d22bebb6b205425b2de614787c3"
     }
   },
   "sema_layer": "Mind",

@@ -179,6 +179,7 @@ def validate_pattern(
         # 7. Forbidden Fields Check
         ALLOWED_FIELDS = {
             "handle",
+            "extends",
             "derived_from",
             "dependencies",
             "signature",
@@ -204,6 +205,15 @@ def validate_pattern(
                     f"⚠️ FORBIDDEN FIELD: '{key}' is not allowed in INSTRUCTION.md. Please remove it."
                 )
 
+        if "extends" in pattern and "derived_from" in pattern:
+            errors.append("❌ SPECIALIZATION VIOLATION: use `extends` or `derived_from`, not both.")
+
+    if "derived_from" in pattern and "extends" not in pattern:
+        warnings.append(
+            "⚠️ DEPRECATED FIELD: `derived_from` is accepted for pre-0.4 hash "
+            "compatibility; new cards should use `extends`."
+        )
+
     # Reference Existence Check (applies to both modes)
     # This requires knowledge of existing handles, so it's done separately
     if known_handles is not None:
@@ -218,5 +228,9 @@ def validate_pattern(
                                 f"❌ MISSING DEPENDENCY: '{key}' refers to '{target}', "
                                 f"which does not exist in vocabulary."
                             )
+
+        parent = clean_handle(pattern.get("extends"))
+        if parent and parent not in known_handles:
+            errors.append(f"❌ MISSING EXTENDS TARGET: '{parent}' does not exist in vocabulary.")
 
     return (len(errors) == 0, errors, warnings)

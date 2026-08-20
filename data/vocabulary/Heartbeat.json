@@ -3,11 +3,12 @@
   "mechanism": "Periodic Liveness {{signal}}: An entity emits {{signal}} (Heartbeat) every interval I. Missing K consecutive heartbeats triggers failure detection. Heartbeat may include health metrics. Receiver tracks last-seen timestamp. It feeds into the {{quorum}} detector, allowing the collective to identify and prune dead nodes.",
   "gloss": "Liveness detection via periodic signals",
   "failure_modes": [
-    "False failure detection due to network congestion (node alive but heartbeat delayed)."
+    "False failure detection: the node is alive and its heartbeat was delayed, so absence of signal was read as absence of the emitter.",
+    "Heartbeat outlives usefulness: the emitter is alive and the work it was doing is not, so liveness is reported while progress has stopped."
   ],
   "invariants": [
-    "Missing signal implies failure",
-    "{{signal}} frequency within tolerance"
+    "Missing `timeout_multiplier` consecutive intervals triggers failure DETECTION, which is a suspicion and not a fact about the emitter.",
+    "Emission interval stays within `interval`."
   ],
   "preconditions": [
     "Active component",
@@ -34,25 +35,27 @@
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2"
+      "sema:Heartbeat#mh:SHA-256:7f881d347e8ead278efa6ee9abb5ce8c50f1ea70d38f485cb2c4e911457702b2",
+      "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
+      "sema:Heartbeat#mh:SHA-256:c36fe65a4b171559a33cb36f37ec448dce8ad7092c665426bfabee3dbeb6d1c1"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Heartbeat#mh:SHA-256:d0e6ffd899704efd75b87f0365bbe48fec4a1179b81e08923779ed84be7c83c2",
-  "sema_ref": "Heartbeat#d0e6",
-  "sema_stub": "d0e6",
+  "sema_id": "sema:Heartbeat#mh:SHA-256:c5dfefe91d5460716f19e001290b47c3853173b17f0b6914793f6f51a41903ef",
+  "sema_ref": "Heartbeat#c5df",
+  "sema_stub": "c5df",
   "dependencies": {
     "accepts": {
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2"
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"
     },
     "composes_with": {
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc"
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744"
     },
     "references": {
-      "monitor": "sema:Monitor#mh:SHA-256:72e04554c76cd2e06afaeb7284aaab96f37499b0ab3d58c76612819136447f2e"
+      "monitor": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f"
     }
   },
   "sema_layer": "Infrastructure",

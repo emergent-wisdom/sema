@@ -1,10 +1,10 @@
 {
   "handle": "Induction",
-  "mechanism": "Moving from specific observations ({{datum}}) to general rules. The conclusion is probable, not certain. (The sun rose today -> The sun rises every day).",
+  "mechanism": "Moving from specific observations ({{datum}}) to general rules. The conclusion is probable, not certain. Induction has no formal justification and never acquires one, so what the pattern requires is disclosure rather than soundness.",
   "gloss": "Specific to general logic",
   "invariants": [
-    "Probabilistic: Conclusions are probable, not certain.",
-    "Generalization: Output rule covers more cases than Input data."
+    "A conclusion states the observations it generalises from and their range.",
+    "Generalization: the output rule covers more cases than the input {{datum}}."
   ],
   "_meta": {
     "ring": 1,
@@ -12,11 +12,18 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "supersedes": [
+      "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707"
     ]
   },
-  "sema_id": "sema:Induction#mh:SHA-256:abe3ea1b875d069d84888fdcdf27d52e8ad3e974e42d97d1c5da39d80a162707",
-  "sema_ref": "Induction#abe3",
-  "sema_stub": "abe3",
+  "sema_id": "sema:Induction#mh:SHA-256:1b39044c28c83bf79a7bfe108d0edaf616724b3cc0e9fec93086913101fc1530",
+  "sema_ref": "Induction#1b39",
+  "sema_stub": "1b39",
+  "failure_modes": [
+    "Unbounded extrapolation: the rule is applied outside the range the observations covered.",
+    "Unrepresentative sample: the rule is well supported and the range was never the right one."
+  ],
   "dependencies": {
     "references": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"

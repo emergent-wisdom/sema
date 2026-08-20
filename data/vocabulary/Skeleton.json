@@ -19,10 +19,11 @@
       }
     }
   },
-  "mechanism": "First generates a skeletal outline of the answer, then expands each point in parallel. Optimizes for latency over depth. Defines the parallel structure for rapid reasoning.",
+  "mechanism": "A {{topology}} in which one root outline fans out into points that can be expanded concurrently: a single level of breadth with no edges between siblings. The shape is what buys latency \u2014 every point is independent, so expansion parallelises \u2014 and what costs depth, since no point can build on another's result. Names the structure only; the generate-then-expand procedure over it belongs to its consumers.",
   "gloss": "Parallel outline-first topology",
   "invariants": [
-    "Independence: Expansion of Point A must not depend on Point B."
+    "Independence: no point's expansion may depend on another point's expansion.",
+    "Single level: the outline is one level of breadth \u2014 a point that itself fans out is a {{topology}} of a different shape."
   ],
   "_meta": {
     "tier": 1,
@@ -30,11 +31,19 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Skeleton#mh:SHA-256:c47d47fcefb07fc006ebfc53a7a6ce8e6bdc57da37a7feb5743e3f9563ab6907"
     ]
   },
-  "sema_id": "sema:Skeleton#mh:SHA-256:c47d47fcefb07fc006ebfc53a7a6ce8e6bdc57da37a7feb5743e3f9563ab6907",
-  "sema_ref": "Skeleton#c47d",
-  "sema_stub": "c47d",
+  "sema_id": "sema:Skeleton#mh:SHA-256:d9508eade0664b98581ab94a0f86b22d9e6b4cb39c33838097592c2e6c1cb285",
+  "sema_ref": "Skeleton#d950",
+  "sema_stub": "d950",
+  "dependencies": {
+    "references": {
+      "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467"
+    }
+  },
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

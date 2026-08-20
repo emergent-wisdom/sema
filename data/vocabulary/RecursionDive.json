@@ -1,6 +1,6 @@
 {
   "handle": "RecursionDive",
-  "mechanism": "Execution: The active process of traversing a {{solver_tree}} downwards. Accepts a {{solver_node}}, applies the strategy of {{decompose}} to its task, and generates child {{solver_node}}s.",
+  "mechanism": "Execution: the active process of traversing a {{solver_tree}} downwards. Accepts a {{solver_node}}, applies {{decompose}} to its task, and either generates child {{solver_node}}s or reports the node atomic.",
   "gloss": "Vertical traversal of the solution tree",
   "_meta": {
     "tier": 1,
@@ -10,23 +10,33 @@
     ],
     "supersedes": [
       "sema:RecursionDive#mh:SHA-256:cda8342178bffc23bea270e79154d4bc0cb2df2c1bd33d2fa6590ba095f8cd49",
-      "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83"
+      "sema:RecursionDive#mh:SHA-256:962fe54ff725660cdb05d786dd9ef651d7e020c69eb11a57301bed088aa91d83",
+      "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921",
+      "sema:RecursionDive#mh:SHA-256:7e67260837bfb3fd46b514f9ddfe0b6e6f62657e8af2a626a14e29f77ada285d",
+      "sema:RecursionDive#mh:SHA-256:3cb8f2f1f21a09dbc4f4a6de995284bf406c2462d3a861d6215e935205ccfbe2"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:RecursionDive#mh:SHA-256:bd1380babbca57f5f1a00721f887c9ecf6fff48d73302a28e735d956134b4921",
-  "sema_ref": "RecursionDive#bd13",
-  "sema_stub": "bd13",
+  "sema_id": "sema:RecursionDive#mh:SHA-256:54763d3b1a9745e7f4a13d34b68355866c9cad797d786c8c43cb0306a37e78d3",
+  "sema_ref": "RecursionDive#5476",
+  "sema_stub": "5476",
+  "postconditions": [
+    "Either child {{solver_node}}s exist, or the node is marked atomic"
+  ],
+  "failure_modes": [
+    "Ungoverned descent: the depth bound lives in `DepthGovernor` and `MarginalValueRule`, so an ungoverned dive descends until the substrate stops it.",
+    "Fan-in re-expanded: the runtime graph is a DAG, so a shared node is expanded once per parent."
+  ],
   "dependencies": {
     "composes_with": {
-      "decompose": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652"
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b"
     },
     "references": {
-      "solver_node": "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce"
+      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
+      "solver_tree": "sema:SolverTree#mh:SHA-256:c5ccedcd3754efcfe7ebf463837f50698be1fe7dc62e65620a8270c27d240771"
     }
   },
   "sema_layer": "Mind",

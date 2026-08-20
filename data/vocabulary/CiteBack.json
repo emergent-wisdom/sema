@@ -3,11 +3,13 @@
   "mechanism": "The agent is forbidden from stating a fact unless it can simultaneously generate a pointer (quote or ID) to the specific chunk of context that supports it. No hallucination allowed; only citation. It forces a verification step where every assertion must be supported by a {{retrieval_augment}} lookup returning the source ID.",
   "gloss": "Grounding claims in source",
   "failure_modes": [
-    "Inability to answer implicit or common-sense questions."
+    "Inability to answer implicit or common-sense questions, which have no citable source.",
+    "Citation laundering: the cited source exists but does not support the claim attached to it."
   ],
   "invariants": [
-    "Every assertion links to source ID",
-    "Source must exist in context history"
+    "Every assertion links to a source ID.",
+    "The source exists in context history.",
+    "The cited passage supports the assertion attached to it."
   ],
   "preconditions": [
     "Generated claim",
@@ -20,19 +22,21 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3"
+      "sema:CiteBack#mh:SHA-256:d09cb134d37aa235b88fbbcfa7667e3689b342d6a846bb58fad79fe2bef8e0e3",
+      "sema:CiteBack#mh:SHA-256:77855c554890913b6c7c61f5a947a502b47171f04f333ab4bcfc72e136bfd30b",
+      "sema:CiteBack#mh:SHA-256:1efb70d67a59234fe9d375bc29308c73b945a743554a0af9a334f86827af6f74"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:CiteBack#mh:SHA-256:17b1ece87db4152c4a241754f84c4722fe9dde9fa8c00c1e122e4e6139196b86",
-  "sema_ref": "CiteBack#17b1",
-  "sema_stub": "17b1",
+  "sema_id": "sema:CiteBack#mh:SHA-256:8be76800c2df7055947d33ae0cb8fed8fd8b8ea52c50d03c5da2bdbe816efcad",
+  "sema_ref": "CiteBack#8be7",
+  "sema_stub": "8be7",
   "dependencies": {
     "references": {
-      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:046a23973b254ab3ca9ee8d892c6a2a43f0ccba6145197d0f1fe3b92f1feec63"
+      "retrieval_augment": "sema:RetrievalAugment#mh:SHA-256:9c601193335e19b27f2b94ee1fe6c324e6db3278af4d408d6f594f6ff3ef7d15"
     }
   },
   "sema_layer": "Mind",

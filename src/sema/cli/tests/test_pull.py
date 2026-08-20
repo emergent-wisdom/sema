@@ -6,6 +6,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+import numpy as np
+
 from sema.cli.main import update_db
 from sema.taxonomy_graph.graph_store import GraphStore, NodeType
 
@@ -21,6 +23,7 @@ class TestPull(unittest.TestCase):
 
     def _add_pattern(self, db_path, handle, mechanism="Test mechanism", **kwargs):
         store = GraphStore(db_path)
+        store.embedding_service.get_embedding = lambda _text: np.zeros(384, dtype=np.float32)
         pattern = {
             "handle": handle,
             "mechanism": mechanism,
@@ -36,6 +39,8 @@ class TestPull(unittest.TestCase):
         }
         if "deps" in kwargs:
             pattern["dependencies"] = kwargs["deps"]
+        if "extends" in kwargs:
+            pattern["extends"] = kwargs["extends"]
         store.add_pattern(pattern)
 
     def _get_handles(self, db_path):
@@ -102,6 +107,29 @@ class TestPull(unittest.TestCase):
         handles = self._get_handles(self.user_db)
         self.assertIn("Alpha", handles)
         self.assertIn("MyCustom", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_pull_rejects_parent_update_that_would_strand_user_child(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add_pattern(self.user_db, "Parent", "Parent version one")
+        parent_v1 = self._sema_id(self.user_db, "Parent")
+        self._add_pattern(self.user_db, "Child", extends=parent_v1)
+        child_v1 = self._sema_id(self.user_db, "Child")
+        self._add_pattern(self.upstream_db, "Parent", "Parent version two")
+
+        result = update_db(verify=True)
+
+        self.assertFalse(result["success"])
+        self.assertIn("would strand Child", result["error"])
+        self.assertEqual(self._sema_id(self.user_db, "Parent"), parent_v1)
+        self.assertEqual(self._sema_id(self.user_db, "Child"), child_v1)
 
     @patch("sema.cli.main.get_default_db_path")
     @patch("sema.cli.main.get_bundled_db_path")
@@ -1193,6 +1221,48 @@ class TestExclusionList(unittest.TestCase):
     @patch("sema.cli.main.get_default_db_path")
     @patch("sema.cli.main.get_bundled_db_path")
     @patch("sema.cli.main.is_bundled_db")
+    def test_extends_exclusion_prevents_abort(self, mock_bundled_check, mock_bundled, mock_db):
+        """An excluded parent also auto-skips its extending child."""
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        # Keep this regression test independent of the process-wide embedding
+        # cache, which may be read-only or contain different warmed entries.
+        with patch(
+            "sema.taxonomy_graph.embedding_service.EmbeddingService.get_embedding",
+            return_value=np.zeros(384, dtype=np.float32),
+        ):
+            self._add(self.upstream_db, "Parent")
+            store = GraphStore(self.upstream_db)
+            parent_hash = store.get_pattern_hash("Parent")
+            store.add_pattern(
+                {
+                    "handle": "Child",
+                    "mechanism": "A specialised child.",
+                    "gloss": "Child",
+                    "extends": f"sema:Parent#mh:SHA-256:{parent_hash}",
+                    "_meta": {
+                        "path": ["Infrastructure", "Primitives"],
+                        "ring": 0,
+                        "tier": 1,
+                    },
+                }
+            )
+            self._add(self.upstream_db, "Unrelated")
+            GraphStore(self.user_db)
+
+            result = update_db(exclude=["Parent"])
+
+        self.assertTrue(result["success"])
+        handles = self._handles(self.user_db)
+        self.assertNotIn("Parent", handles)
+        self.assertNotIn("Child", handles)
+        self.assertIn("Unrelated", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
     def test_exclusion_acts_as_version_pin(self, mock_bundled_check, mock_bundled, mock_db):
         """Emergent feature: if Alpha is excluded BUT exists locally, dependents
         link to the local frozen Alpha. Excluding without deleting = version pin."""
@@ -1452,8 +1522,9 @@ class TestPullSupersessionCleanup(unittest.TestCase):
     def tearDown(self):
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
-    def _add(self, db, handle, mechanism="m", supersedes=None, deps=None):
+    def _add(self, db, handle, mechanism="m", supersedes=None, deps=None, extends=None):
         store = GraphStore(db)
+        store.embedding_service.get_embedding = lambda _text: np.zeros(384, dtype=np.float32)
         pat = {
             "handle": handle,
             "mechanism": mechanism,
@@ -1468,6 +1539,8 @@ class TestPullSupersessionCleanup(unittest.TestCase):
             pat["_meta"]["supersedes"] = supersedes
         if deps:
             pat["dependencies"] = deps
+        if extends:
+            pat["extends"] = extends
         store.add_pattern(pat)
 
     def _sema_id(self, db, handle):
@@ -1561,6 +1634,54 @@ class TestPullSupersessionCleanup(unittest.TestCase):
         )
         self.assertIn("UserOnly", handles)
         self.assertIn("NewName", handles)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_orphan_guard_counts_exact_specializing_children(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName")
+        old_sid = self._sema_id(self.user_db, "OldName")
+        self._add(self.user_db, "UserChild", extends=old_sid)
+        self._add(self.upstream_db, "NewName", supersedes=[old_sid])
+
+        result = update_db()
+
+        self.assertTrue(result["success"])
+        self.assertIn("OldName", self._handles(self.user_db))
+        self.assertIn("UserChild", self._handles(self.user_db))
+        self.assertEqual(len(result["superseded_kept_orphan"]), 1)
+
+    @patch("sema.cli.main.get_default_db_path")
+    @patch("sema.cli.main.get_bundled_db_path")
+    @patch("sema.cli.main.is_bundled_db")
+    def test_dry_run_reports_exact_child_as_supersession_orphan(
+        self, mock_bundled_check, mock_bundled, mock_db
+    ):
+        mock_db.return_value = self.user_db
+        mock_bundled.return_value = self.upstream_db
+        mock_bundled_check.return_value = False
+
+        self._add(self.user_db, "OldName")
+        old_sid = self._sema_id(self.user_db, "OldName")
+        self._add(self.user_db, "UserChild", extends=old_sid)
+        self._add(self.upstream_db, "NewName", supersedes=[old_sid])
+
+        result = update_db(dry_run=True)
+
+        self.assertTrue(result["success"])
+        self.assertEqual(result["superseded_removed"], [])
+        self.assertEqual(
+            result["superseded_kept_orphan"],
+            [("OldName", ["NewName"], ["UserChild"])],
+        )
+        self.assertEqual(result["upstream_removed"], ["OldName", "UserChild"])
+        self.assertEqual(self._handles(self.user_db), {"OldName", "UserChild"})
 
     @patch("sema.cli.main.get_default_db_path")
     @patch("sema.cli.main.get_bundled_db_path")

@@ -3,10 +3,13 @@
   "data_schema": {
     "type": "object",
     "required": [
-      "public_key",
-      "claims"
+      "identifier"
     ],
     "properties": {
+      "identifier": {
+        "type": "string",
+        "description": "The persistent handle that distinguishes this party from another within a scope. Key material, DID, UUID, account name or pseudonym are all admissible carriers \u2014 BearerToken and Role both reference an Identity without key material, so the carrier is a descendant concern."
+      },
       "public_key": {
         "type": "string",
         "description": "Cryptographic identifier (DID/Key)"
@@ -29,14 +32,17 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
     ]
   },
-  "sema_id": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427",
-  "sema_ref": "Identity#bfe2",
-  "sema_stub": "bfe2",
+  "sema_id": "sema:Identity#mh:SHA-256:b24a57fdd59ebf2ef019be30af8fa10fc127f61d346a74ab0b49f729b4e32093",
+  "sema_ref": "Identity#b24a",
+  "sema_stub": "b24a",
   "dependencies": {
     "references": {
-      "nature": "sema:Nature#mh:SHA-256:4a310dd9a1eec556adf00b932a9f2abe6a7d33081845c29ff99544fef8f78f4a"
+      "nature": "sema:Nature#mh:SHA-256:9ac1fd9a3449747d2f605067023df9e13d7a60c15e556d376272266f95cfaf37"
     }
   },
   "sema_layer": "Infrastructure",

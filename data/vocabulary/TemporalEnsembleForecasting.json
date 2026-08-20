@@ -1,6 +1,6 @@
 {
   "handle": "TemporalEnsembleForecasting",
-  "mechanism": "The paper's \u00a76.5 protocol for forecasting via ensembles of models frozen at different points in history (Temporal Checkpoint Ensemble). Decomposes prediction via {{conceptual_decomposition}} along two axes simultaneously: temporal diversity (each checkpoint reasons from a different knowledge horizon \u2014 the 2020 checkpoint knows nothing of COVID's economic aftermath; the 2022 checkpoint has internalized it) and causal-lens diversity (each forecast is run through the Forecasting Pentagon: structural, economic, political, base-rate, temporal \u2014 five non-substitutable angles that suppress each other if entangled in a single pass). A ReduceSolver composes the matrix of forecasts, not by averaging but by preserving causal reasoning from each horizon and identifying where independent knowledge states converge on the same structural driver. When three checkpoints spanning different knowledge states independently identify the same causal mechanism, that mechanism has survived a temporal adversarial test no single-model forecast can replicate.",
+  "mechanism": "A protocol for forecasting via ensembles of models frozen at different points in history (Temporal Checkpoint Ensemble). Decomposes prediction via {{conceptual_decomposition}} along two axes simultaneously: temporal diversity (each checkpoint reasons from a different knowledge horizon \u2014 the 2020 checkpoint knows nothing of COVID's economic aftermath; the 2022 checkpoint has internalized it) and causal-lens diversity (each forecast is run through the Forecasting Pentagon: structural, economic, political, base-rate, temporal \u2014 five non-substitutable angles that suppress each other if entangled in a single pass). A ReduceSolver composes the matrix of forecasts, not by averaging but by preserving causal reasoning from each horizon and identifying where independent knowledge states converge on the same structural driver. When three checkpoints spanning different knowledge states independently identify the same causal mechanism, that mechanism has survived a temporal adversarial test no single-model forecast can replicate.",
   "gloss": "Forecast by ensemble of model-checkpoints from different history horizons, each run through five non-substitutable causal lenses \u2014 convergence across time is the signal",
   "invariants": [
     "Temporal diversity source: the checkpoints differ by training-data cutoff, not by prompting \u2014 history itself is the diversity generator.",
@@ -13,14 +13,19 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "supersedes": [
+      "sema:TemporalEnsembleForecasting#mh:SHA-256:8b0ec1f4bad5cb4ba0e7ee1b6b7fa5d2425a1f3cea1fb7f7c53b98de0f81b7f5",
+      "sema:TemporalEnsembleForecasting#mh:SHA-256:3cb65a94fad3ad3374c1a9583371e20c5463bc9726a0bd174293723eae485c05",
+      "sema:TemporalEnsembleForecasting#mh:SHA-256:091385859566db27675227728ed066880f3872133c7a281312cc55022933d7ec"
     ]
   },
-  "sema_id": "sema:TemporalEnsembleForecasting#mh:SHA-256:8b0ec1f4bad5cb4ba0e7ee1b6b7fa5d2425a1f3cea1fb7f7c53b98de0f81b7f5",
-  "sema_ref": "TemporalEnsembleForecasting#8b0e",
-  "sema_stub": "8b0e",
+  "sema_id": "sema:TemporalEnsembleForecasting#mh:SHA-256:c8fa86a3e191b2431bb02f6c7d19cdea2e3bff9c7fa856b9c6a09073f52c9680",
+  "sema_ref": "TemporalEnsembleForecasting#c8fa",
+  "sema_stub": "c8fa",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:2cce877b501c3fe1fdf646e3c5ad3157b26502b7a6f7c943dfff389c055aa25a"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450"
     }
   },
   "sema_layer": "Mind",

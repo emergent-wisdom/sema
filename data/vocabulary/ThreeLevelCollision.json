@@ -1,16 +1,15 @@
 {
   "handle": "ThreeLevelCollision",
-  "mechanism": "Threat Modeling Primitive. Distinguishes three collision classes and assigns specific defenses: (1) Stub Collision (Namespace exhaustion) -> Defended by full-hash verification. (2) Hash Collision (Cryptographic failure) -> Defended by SHA-256 entropy. (3) Homograph Collision (Semantic spoofing) -> Defended by Social Uptake and Reputation. Utilizes {{fail_closed}}.",
+  "mechanism": "Distinguishes three collision classes and assigns specific defenses: (1) Stub Collision (Namespace exhaustion) -> Defended by full-hash verification. (2) Hash Collision (Cryptographic failure) -> Defended by SHA-256 entropy. (3) Homograph Collision (Semantic spoofing) -> Defended by Social Uptake and Reputation. A collision that cannot be resolved at its own level applies {{fail_closed}}.",
   "gloss": "Stub, hash, and homograph collisions are different threats",
   "failure_modes": [
     "Stub Confusion: Relying on 4-char stub (#a1b2) for security instead of convenience.",
-    "Homograph Attack: Malicious actor mints a pattern with a trusted Handle but malicious Definition.",
-    "(Social Engineering).",
+    "Homograph Attack: Malicious actor mints a pattern with a trusted Handle but malicious Definition (social engineering).",
     "Pre-image Attack: Theoretical break of SHA-256 (renders Level 2 defense void)."
   ],
   "invariants": [
     "L1 Defense: Stub match is NOT verification. Full hash check is mandatory.",
-    "L3 Defense: {{identity}} is Content, not Handle. A 'spoofed' pattern is simply a different pattern with zero reputation."
+    "L3 Defense: {{equivalence}} is decided by Content, not Handle. A 'spoofed' pattern is simply a different pattern with zero reputation."
   ],
   "preconditions": [
     "Sema Hashing Algorithm (SHA-256) is secure"
@@ -23,20 +22,23 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:ThreeLevelCollision#mh:SHA-256:5db438e5f38882afa181ea527d06b673f64139f42390b9e795cf2ecc9efa29af"
+      "sema:ThreeLevelCollision#mh:SHA-256:5db438e5f38882afa181ea527d06b673f64139f42390b9e795cf2ecc9efa29af",
+      "sema:ThreeLevelCollision#mh:SHA-256:92b1063ea9ba8b193942d71837f055a897ace9ec4391348f56e6b1e6e11cde93",
+      "sema:ThreeLevelCollision#mh:SHA-256:f9f90f76329b4b07ba1de142f14fcab8f9c5e7d901e9268a0fa03f86258a5459",
+      "sema:ThreeLevelCollision#mh:SHA-256:5f6e4672403d89974278b3855f47081899347c9884b931668b71a0758db76562"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:92b1063ea9ba8b193942d71837f055a897ace9ec4391348f56e6b1e6e11cde93",
-  "sema_ref": "ThreeLevelCollision#92b1",
-  "sema_stub": "92b1",
+  "sema_id": "sema:ThreeLevelCollision#mh:SHA-256:68476a45aac32e2fd0764e409e011637b688c364cd8c75c5bb94435b98416839",
+  "sema_ref": "ThreeLevelCollision#6847",
+  "sema_stub": "6847",
   "dependencies": {
     "references": {
-      "fail_closed": "sema:FailClosed#mh:SHA-256:eae70da02880916a695d85d3752a59e16201c9f81b8a9af238d31863b3b6b157",
-      "identity": "sema:Identity#mh:SHA-256:bfe236a2c243ed664189c99afcb9f16225b6d56cbb11e6e29522756b33c47427"
+      "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:d23bf6663e53ecbee5c12a120f4fe379c1dfe8bc05f0b9bf2250703d4131faaf"
     }
   },
   "sema_layer": "Society",

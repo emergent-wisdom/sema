@@ -4,7 +4,9 @@
     "type": "object",
     "required": [
       "break_id",
-      "severity"
+      "severity",
+      "reason",
+      "recoverable"
     ],
     "properties": {
       "break_id": {
@@ -28,10 +30,14 @@
         "type": "string",
         "format": "date-time",
         "description": "When the break occurred"
+      },
+      "recoverable": {
+        "type": "boolean",
+        "description": "Whether coordination can resume, or must terminate."
       }
     }
   },
-  "mechanism": "{{protocol}} for announcing coordination failure. Failing {{agent}} broadcasts BREAK: {severity, reason, recoverable}. Partners must ACK. Coordination terminates or pauses based on severity. Unacknowledged BREAK escalates to FAILED. It coordinates with retry logic to distinguish transient from permanent failures, optionally triggering ejection seat in catastrophic scenarios.",
+  "mechanism": "{{protocol}} for announcing coordination failure. Failing {{agent}} broadcasts BREAK: {severity, reason, recoverable}. Partners must ACK. Coordination across the {{system}} terminates or pauses based on severity. Unacknowledged BREAK escalates to FAILED. It coordinates with retry logic to distinguish transient from permanent failures, optionally triggering ejection seat in catastrophic scenarios.",
   "gloss": "Failure-announcement signal {severity, reason, recoverable}, ACK-required",
   "failure_modes": [
     "BREAK {{message}} itself fails to deliver ({{meta}}-failure).",
@@ -41,8 +47,8 @@
     "Timeout too short/long for ACK collection."
   ],
   "invariants": [
-    "No data loss during interruption",
-    "{{system}} state paused safely"
+    "Partners must ACK the BREAK; an unacknowledged announcement is not delivered coordination state.",
+    "Escalates when an ACK does not arrive within `recovery_timeout`, rather than assuming receipt."
   ],
   "preconditions": [
     "Interrupt signal",
@@ -80,22 +86,24 @@
       "Retry"
     ],
     "supersedes": [
-      "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95"
+      "sema:Break#mh:SHA-256:1a63164e5ff06e60927f3e585fc003abab80eeb4002ccf075e3b53747318fa95",
+      "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
+      "sema:Break#mh:SHA-256:c4d3f005992445b2307564e2fc00d684500c2b4239a9f06d4a17e302c8b039ff"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
-  "sema_ref": "Break#3c37",
-  "sema_stub": "3c37",
+  "sema_id": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
+  "sema_ref": "Break#5003",
+  "sema_stub": "5003",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",
       "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

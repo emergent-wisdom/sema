@@ -21,14 +21,17 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "supersedes": [
+      "sema:SurvivorCorrect#mh:SHA-256:6c9093fc93158cdc0e8e81af7cd3dbc29b9998b609d3a490a18142ae96179aea"
     ]
   },
-  "sema_id": "sema:SurvivorCorrect#mh:SHA-256:6c9093fc93158cdc0e8e81af7cd3dbc29b9998b609d3a490a18142ae96179aea",
-  "sema_ref": "SurvivorCorrect#6c90",
-  "sema_stub": "6c90",
+  "sema_id": "sema:SurvivorCorrect#mh:SHA-256:37802a37d7e4bc9080836e17c5fbf7c170bce0942ed40d8a4960c46f6ca2407c",
+  "sema_ref": "SurvivorCorrect#3780",
+  "sema_stub": "3780",
   "dependencies": {
     "references": {
-      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:8636331d386b5d9b9f7b6177fa3d3486699c5cc486e823cafb7065ae7554b5a5",
+      "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387"
     }
   },

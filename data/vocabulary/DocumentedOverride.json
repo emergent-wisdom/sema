@@ -19,20 +19,25 @@
     "path": [
       "Society",
       "Governance"
+    ],
+    "supersedes": [
+      "sema:DocumentedOverride#mh:SHA-256:17d333bda6bfc9f98ef85e9d09dd8cf84a8d8f13f13fb4e5de767bc4c8e75a54",
+      "sema:DocumentedOverride#mh:SHA-256:40548ac167ea414f493054543303e74dac28a64510aa55ea8d1807ea52a6a5c6",
+      "sema:DocumentedOverride#mh:SHA-256:2b7763b4dab9fefa6b60e2b2ffd3849509a9b5af43a4ab3604973d55916f6dc4"
     ]
   },
-  "sema_id": "sema:DocumentedOverride#mh:SHA-256:17d333bda6bfc9f98ef85e9d09dd8cf84a8d8f13f13fb4e5de767bc4c8e75a54",
-  "sema_ref": "DocumentedOverride#17d3",
-  "sema_stub": "17d3",
+  "sema_id": "sema:DocumentedOverride#mh:SHA-256:129bb6b19219e4afc278012f555b298980c4a74000195ae1e6766f2e5d40d940",
+  "sema_ref": "DocumentedOverride#129b",
+  "sema_stub": "129b",
   "dependencies": {
     "accepts": {
-      "accept_spec": "sema:AcceptSpec#mh:SHA-256:c1565bf022e5596a447f7c9d9687ac3cbf1e6960f871be16f386eec02b5df2c4"
+      "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc"
     },
     "composes_with": {
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:755f480a60517d8e99807da674019db06ab0b7b2edabcc806d833947da4446e4"
     },
     "yields": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
     }
   },
   "sema_layer": "Society",

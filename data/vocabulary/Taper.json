@@ -35,25 +35,28 @@
     "tier": 1,
     "supersedes": [
       "sema:Taper#mh:SHA-256:9687795b14b6e66574aebb5255ef84529bf7095b350513470085285e3d90a260",
-      "sema:Taper#mh:SHA-256:2044ab29206db4b7235103a9f4a1fc6a0ba647fd31e1d6f420a1581e52845e4f"
+      "sema:Taper#mh:SHA-256:2044ab29206db4b7235103a9f4a1fc6a0ba647fd31e1d6f420a1581e52845e4f",
+      "sema:Taper#mh:SHA-256:8dc5f590659da3360002d22320c458eeaa775788b16700359f704838c9d16c2e",
+      "sema:Taper#mh:SHA-256:83db268464c312c097ff6e9f579a6ae4c484097c3f4e601a4d88c8151fd9ccb0",
+      "sema:Taper#mh:SHA-256:bde1970317c7758a43f0ba62f15f06f13004a83a6fd40e1a46eb7b439591307c"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "Taper#8dc5",
-  "sema_id": "sema:Taper#mh:SHA-256:8dc5f590659da3360002d22320c458eeaa775788b16700359f704838c9d16c2e",
-  "sema_stub": "8dc5",
+  "sema_ref": "Taper#bebf",
+  "sema_id": "sema:Taper#mh:SHA-256:bebf17edba19afa6c38821869c95b162aebd4ba474e73665fcc198a569911703",
+  "sema_stub": "bebf",
   "dependencies": {
     "composes_with": {
-      "gate": "sema:Gate#mh:SHA-256:bc636a863f99226e579fa58c6016053d5940510270fe7b4f3314a418408728e8",
+      "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
       "sequence": "sema:Sequence#mh:SHA-256:0cae6b0951c4e93742259ff81ded009a85283d250c948f97cce3b9b3b8e58e1a",
-      "tri_gate": "sema:TriGate#mh:SHA-256:c182ac61d432c77460a044a71b10c553ca0fca7b7ba9204ed5335c6ab8f8b824"
+      "tri_gate": "sema:TriGate#mh:SHA-256:04a9a7cc17d29dab76ee781b7d7a3f557f68d528788da12620a320ce53d6b44c"
     },
     "references": {
-      "compress": "sema:Compress#mh:SHA-256:b50f42b2837d2df77577a11ff9b068f1d06ea32bcde75d0d2751351d62d82627",
-      "depth_governor": "sema:DepthGovernor#mh:SHA-256:a3e937d651c99333315d333034b3a3be136376bfc1a5139cc758f218640cfc87"
+      "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
+      "depth_governor": "sema:DepthGovernor#mh:SHA-256:c4ad7271dc734ab16e034e854231c12d64be68f37860b1f8f2d9e11324ab1b8e"
     }
   },
   "sema_layer": "Society",

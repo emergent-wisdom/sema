@@ -1,20 +1,23 @@
 {
   "handle": "Ballot",
-  "mechanism": "A structured container for a decision proposal. Contains: the question being decided, available options, voting rules (majority/supermajority/unanimity), and deadline. The Ballot is immutable once cast \u2014 amendments require a new Ballot carrying a fresh {{monotonic_counter}} sequence, so revocation and amendment are surfaced as distinct subsequent decisions rather than retroactive edits.",
-  "gloss": "Immutable container for collective decision inputs",
+  "mechanism": "The immutable record of one agent's cast choice in a decision. Carries which proposal, which voter, and which option was chosen. The question, the options and the decision rule belong to the `Vote` that called for it; a Ballot is the response, and `Quorum` counts these. Immutable once cast \u2014 a revision is a new Ballot carrying a fresh {{monotonic_counter}} sequence, so revocation and amendment surface as distinct later decisions rather than retroactive edits.",
+  "gloss": "Immutable record of one agent's cast choice",
   "failure_modes": [
     "Spoiled ballot: ambiguous or invalid {{select}} format.",
-    "Double Voting: Single agent submitting multiple ballots (Sybil risk)."
+    "Double voting: a single agent submits multiple ballots for one proposal (Sybil risk)."
   ],
   "invariants": [
-    "Completeness: Must specify question, options, and decision rule",
-    "Immutability: Once created, a Ballot cannot be modified"
+    "Immutable once cast: a revision is a new Ballot, not an edit.",
+    "Names one voter and one choice drawn from the options of the decision it answers.",
+    "Choice is expressed as a {{select}} over those options, not free text."
   ],
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb"
+      "sema:Ballot#mh:SHA-256:f1d7f5635ea8bc53d0e1718d1ea372bd93b829500ac69602e648e507404f7beb",
+      "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497",
+      "sema:Ballot#mh:SHA-256:43ebc85e8e87e132698c59536402d1ba715b0dbad9e6c116f97a056c60da4577"
     ],
     "path": [
       "Infrastructure",
@@ -57,13 +60,13 @@
       }
     }
   },
-  "sema_ref": "Ballot#84c3",
-  "sema_id": "sema:Ballot#mh:SHA-256:84c3ea1db9fa8ab818d4fd156a8ef0a43d15b50419ca42236869bd9119f35497",
-  "sema_stub": "84c3",
+  "sema_ref": "Ballot#e0e4",
+  "sema_id": "sema:Ballot#mh:SHA-256:e0e4a34b48dba4669e09b04c4b8c3202f95c878fc26c29480a298012753b1f3c",
+  "sema_stub": "e0e4",
   "dependencies": {
     "references": {
-      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:33824eaaf148d996cbc3ccd7521b62dbba087070d23b5421918a446df3f01c8b",
-      "select": "sema:Select#mh:SHA-256:2fa0da3874e2a9a2c8664ed919d03c28a1f6b76daf9621f069d1ca1cb18a64b6"
+      "monotonic_counter": "sema:MonotonicCounter#mh:SHA-256:d0d3ce256be4bc080a29eab7fda36381a4352a280d9a12d59179c60e71cf9bd0",
+      "select": "sema:Select#mh:SHA-256:decf9c05490dc5e6b372c5dbb7d89d2285fdd832714fc992b10fdbd6b7c2c2e3"
     }
   },
   "sema_layer": "Infrastructure",

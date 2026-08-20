@@ -1,6 +1,6 @@
 # Getting Started
 
-Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#8bde`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a growing vocabulary of cognitive patterns with cryptographic identity. Each pattern has a handle (e.g. `StateLock#c9c2`) that is a hash of its definition — two agents using the same handle are provably talking about the same thing.
 
 ## Install
 
@@ -56,15 +56,15 @@ Ask your agent:
 
 > Search sema for coordination patterns
 
-You should see results like `Consensus#0526`, `Vote#0aff`, `StateLock#8bde`.
+You should see results like `Consensus#b9a5`, `Vote#8493`, `StateLock#c9c2`.
 
 ## Use handles as words
 
 Sema handles are thinking tools, not footnotes:
 
-> "This uses `StateLock#8bde` to prevent concurrent mutation"
+> "This uses `StateLock#c9c2` to prevent concurrent mutation"
 
-> "Apply `Decompose#63f3` first, then `Prioritize#8028` the subproblems"
+> "Apply `Decompose#6994` first, then `Prioritize#99f0` the subproblems"
 
 ## Create your own vocabulary
 
@@ -88,6 +88,25 @@ sema build my-project.db --from patterns.txt
 
 Dependencies are resolved automatically.
 
+## Install a published vocabulary
+
+Published libraries use a manifest-driven flow for installing a named,
+read-only vocabulary snapshot:
+
+```bash
+sema install https://github.com/emergent-wisdom/sema/releases/latest/download/library.json
+sema use bootstrap
+sema list
+sema root
+```
+
+Installing a library does not merge it with the bundled vocabulary or another
+library. The bundled vocabulary remains the default, and `sema use --default`
+returns to it. The [remote vocabulary library guide](libraries.md) specifies
+how to author and package a library, publish both files as GitHub Release
+assets, and install it. The install target is the Release asset URL for
+`library.json`, not the repository URL or a branch.
+
 ## CLI
 
 ```bash
@@ -97,15 +116,20 @@ sema resolve Vote
 sema build my.db --preset standard
 sema use my.db
 sema list
+sema root
 ```
 
-## Stay updated
+## Keep the selected vocabulary updated
 
-After upgrading the package (`pip install -U semahash`) or whenever a new
-vocabulary release ships, sync your active DB:
+There are two deliberately different update operations.
+
+For a **writable project database**, `pull` reconciles patterns from another
+database—by default, the bundled database installed with the package—while
+preserving user-only patterns:
 
 ```bash
-sema pull             # apply upstream changes to your active DB
+pip install -U semahash
+sema pull             # bundled DB -> active writable project DB
 sema pull --dry-run   # preview without writing
 ```
 
@@ -115,6 +139,17 @@ operation is atomic (rolls back on failure). See
 [CLI reference](../tools/cli.md#pull---sync-vocabulary-from-upstream) for
 the exclusion list and version-pinning options.
 
+For an **installed read-only library**, use its recorded remote update pointer:
+
+```bash
+sema update bootstrap
+```
+
+`update` downloads and verifies a complete replacement release. It does not
+merge that release with the bundled vocabulary or another library. See the
+[library publishing and installation guide](libraries.md) for the full
+distinction.
+
 ## Tools available via MCP
 
 | Tool | What it does |
@@ -122,9 +157,9 @@ the exclusion list and version-pinning options.
 | `sema_search(query)` | Find patterns by concept |
 | `sema_resolve(handle)` | Full definition with dependencies |
 | `sema_tree()` | Browse the taxonomy tree |
-| `sema_handshake(ref, your_hash, strict)` | Detect drift by prefix, or require full-hash identity with `strict=true` |
+| `sema_handshake(ref, your_hash, strict, your_scheme)` | Detect drift by prefix; aggregate roots also require their scheme, and `strict=true` requires full-hash identity |
 | `sema_lookup(ref)` | Get pattern by exact reference |
-| `sema_root()` | Vocabulary fingerprint — one hash for the whole DB |
+| `sema_root()` | Semantic-set and handle-binding fingerprints for the DB |
 | `sema_graph_skeleton()` | High-level layout of patterns + relationships |
 | `sema_use(db_path)` | Switch active vocabulary database |
 | `sema_stats()` | Vocabulary statistics |

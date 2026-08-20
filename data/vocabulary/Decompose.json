@@ -6,40 +6,40 @@
     "Coupling Leakage: Subproblems are not truly independent; solving one breaks another."
   ],
   "invariants": [
-    "Subproblems must be independent."
+    "States the independence criterion it claims, and the split satisfies the criterion it declared."
   ],
   "preconditions": [
     "{{problem}} too large to solve directly.",
-    "Decomposition axis identifiable.",
-    "Subproblems can be independent."
+    "Decomposition axis identifiable."
   ],
   "postconditions": [
-    "Set of independent subproblems.",
-    "Combined {{solution}} equals original.",
-    "No subproblem depends on sibling."
+    "Set of subproblems, each satisfying the declared independence criterion.",
+    "Combined {{solution}} equals original."
   ],
   "_meta": {
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4"
+      "sema:Decompose#mh:SHA-256:ac569dd49b1b2d91a5f03640f30b0c0fd658b3c6a46788d46fd734760c5281a4",
+      "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
+      "sema:Decompose#mh:SHA-256:db21cdd0d7ccb82af40a5f2e19aa6e8c3b34c39ff2c3909c36ddd4e2868e3926"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Decompose#mh:SHA-256:63f31488a348d1176b6b16e770c69f196c2e03f507a240103e8297487dc4f652",
-  "sema_ref": "Decompose#63f3",
-  "sema_stub": "63f3",
+  "sema_id": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+  "sema_ref": "Decompose#6994",
+  "sema_stub": "6994",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef"
     }
   },
   "sema_layer": "Mind",

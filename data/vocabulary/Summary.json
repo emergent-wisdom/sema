@@ -6,7 +6,8 @@
     "ring": 1,
     "tier": 1,
     "supersedes": [
-      "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de"
+      "sema:Summary#mh:SHA-256:310e68dd2e7016cbc97e43f87f5aa17631699e4ca49e65d0b43c6d8811a401de",
+      "sema:Summary#mh:SHA-256:7b63fff5bd05b2c584fcb5f0da4af60d5d6bf01baaf07c2e688054250c9e226e"
     ],
     "path": [
       "Infrastructure",
@@ -38,12 +39,12 @@
       }
     }
   },
-  "sema_ref": "Summary#7b63",
-  "sema_id": "sema:Summary#mh:SHA-256:7b63fff5bd05b2c584fcb5f0da4af60d5d6bf01baaf07c2e688054250c9e226e",
-  "sema_stub": "7b63",
+  "sema_ref": "Summary#105b",
+  "sema_id": "sema:Summary#mh:SHA-256:105bfe88ac0e033c2e4ca8ecb4e748cec0d9716818329fdf40de9be0a06a0acf",
+  "sema_stub": "105b",
   "dependencies": {
     "composes_with": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3",
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "references": {

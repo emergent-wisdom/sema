@@ -1,50 +1,47 @@
 {
   "handle": "PatternEmergence",
-  "mechanism": "Observational Heuristic. Before designing a pattern 'top-down', the {{agent}} analyzes interaction logs to identify recurring behaviors that have emerged 'bottom-up'. These implicit protocols are then codified into explicit definitions. It observes usage via {{uptake_as_ground}} and formalizes the structure via {{mint_when_friction}}, ensuring it matches an existing {{pattern_discovery}} {{signal}}.",
+  "mechanism": "Before proposing a pattern top-down, the {{agent}} analyzes records of practice for recurring behavior that has emerged bottom-up. It records each evidence-backed recurring structure, its contexts, supporting instances, and counterexamples as a candidate for later evaluation and codification; if none is found, it records that result.",
   "gloss": "Recognizing implicit patterns in existing practice",
   "failure_modes": [
-    "Codifying Bad Habits: Formalizing a workaround that exists only because the underlying {{system}} is broken.",
+    "Bad-Habit Candidate: Recurrence is treated as reusable structure even though it is only a workaround for a broken {{system}}.",
     "Apophenia: Perceiving a pattern in random {{noise}} or one-off coincidences.",
-    "Over-fitting: Creating a pattern so specific to past events that it cannot {{generalize}} to future ones."
+    "Over-fitting: The candidate is so specific to past events that it cannot {{generalize}} to future ones."
   ],
   "invariants": [
-    "Descriptive Priority: The definition must describe what is happening, not what should happen (at least initially).",
-    "Existence Proof: The pattern must be observed in the wild (implicit) before being named (explicit)."
+    "Descriptive Priority: Each candidate records what is observed, not what should happen.",
+    "Existence Proof: Each candidate records observed instances before it is named."
   ],
   "preconditions": [
-    "Interaction logs available",
-    "Recurring behavior detected"
+    "Records of practice available."
   ],
   "postconditions": [
-    "Candidate pattern identified",
-    "Evidence log attached"
+    "Evidence-backed candidate pattern(s), or a recorded no-recurrence-found result, returned."
   ],
   "_meta": {
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0"
+      "sema:PatternEmergence#mh:SHA-256:6b399c301d6fb02ef7579d3ec54425646d83b2cbdf99873bb10534dfaa459fd0",
+      "sema:PatternEmergence#mh:SHA-256:8eaa2ad1a9a8465f278536f20f2d3dad3ce579dab2fb28f23da8ae9d2c5ecf69",
+      "sema:PatternEmergence#mh:SHA-256:2816103e8793806e339d12e1cd3ebff008f296a85bc3c0cd27ca13dda55d8541",
+      "sema:PatternEmergence#mh:SHA-256:cd8a9d7ed19c4aff92f6617ad198799ec57d497e54a44af46948ade08e577f2a"
     ],
     "path": [
-      "Society",
-      "Protocols"
+      "Mind",
+      "Reasoning"
     ]
   },
-  "sema_id": "sema:PatternEmergence#mh:SHA-256:2816103e8793806e339d12e1cd3ebff008f296a85bc3c0cd27ca13dda55d8541",
-  "sema_ref": "PatternEmergence#2816",
-  "sema_stub": "2816",
+  "sema_id": "sema:PatternEmergence#mh:SHA-256:c36a27715a030ff0eb89f29c6149a1e756bf7c24fc759ac21162d3edcf58152c",
+  "sema_ref": "PatternEmergence#c36a",
+  "sema_stub": "c36a",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "generalize": "sema:Generalize#mh:SHA-256:78cbd8c531e0daa24d78be404ae40023b9ae598b6b0642e925756b1822145ccf",
-      "mint_when_friction": "sema:MintWhenFriction#mh:SHA-256:76ce47097df09b4f89d8cb28d034a234cb659b9f5db6c1708930731586bb9c5e",
-      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
-      "pattern_discovery": "sema:PatternDiscovery#mh:SHA-256:f3a44176623cf57ec1cefc74f35944c2bd3fdbe658b31307755a8ae865532894",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
-      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "uptake_as_ground": "sema:UptakeAsGround#mh:SHA-256:c6caf6df2b735657fed6b551af0f9fb18896d24be03a45b384723951d06c672b"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "generalize": "sema:Generalize#mh:SHA-256:29f133fe83dfe2cd7d2b432390f59e3a64a84866b964a2ca6199f8134ba64e7e",
+      "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
+      "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },
-  "sema_layer": "Society",
-  "sema_category": "Protocols"
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
 }

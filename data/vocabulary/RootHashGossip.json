@@ -19,19 +19,20 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a"
+      "sema:RootHashGossip#mh:SHA-256:ba352d6a3f86388fa901a8b6934e087ec52ebb8ddb7bc8bafd3822381bfbf30a",
+      "sema:RootHashGossip#mh:SHA-256:87c263b8b32c10b73610683d41d32b0b14750edbe32b604b402b95834e7596d8"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:RootHashGossip#mh:SHA-256:87c263b8b32c10b73610683d41d32b0b14750edbe32b604b402b95834e7596d8",
-  "sema_ref": "RootHashGossip#87c2",
-  "sema_stub": "87c2",
+  "sema_id": "sema:RootHashGossip#mh:SHA-256:12ec6a98cbd6c22b940a361a0dc763ba039b200f2fb609e64c8f1c82248d7c6e",
+  "sema_ref": "RootHashGossip#12ec",
+  "sema_stub": "12ec",
   "dependencies": {
     "references": {
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87"
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603"
     }
   },
   "sema_layer": "Society",

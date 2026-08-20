@@ -1,13 +1,13 @@
 {
   "handle": "MonotonicCounter",
-  "mechanism": "A distributed coordination primitive where a value (clock, version, balance) can only increase. This simple constraint simplifies consensus, as any node seeing a higher value knows it is 'newer'. It is the foundation of logical clocks and CRDTs. It relies on a {{state_lock}} (or CRDT logic) to ensure the counter value never regresses.",
-  "gloss": "Logic via strictly increasing values",
+  "mechanism": "A distributed coordination primitive where a value (clock, version, balance) never decreases. This simplifies consensus: a node seeing a higher value knows it is seeing later state, without needing to compare histories. It is the foundation of logical clocks and CRDTs, and relies on a {{state_lock}} (or CRDT logic) to ensure the value never regresses.",
+  "gloss": "Value that never decreases",
   "failure_modes": [
     "Counter overflow (finite integer space)."
   ],
   "invariants": [
-    "Growth: {{value}}(T+1) >= {{value}}(T)",
-    "Merge Rule: Merge(A, B) = Max(A, B)"
+    "{{value}}(T+1) >= {{value}}(T).",
+    "A merge yields at least each of its inputs: Merge(A, B) >= A and >= B."
   ],
   "preconditions": [
     "Initial value defined"
@@ -20,19 +20,21 @@
     "ring": 0,
     "supersedes": [
       "sema:MonotonicCounter#mh:SHA-256:f5a36a7775fe69757b2ab6fbf2dc66eab6689a1487b65005ae7ddef04dbd8235",
-      "sema:MonotonicCounter#mh:SHA-256:40968470b9f8326f0171ebdc2ca7253982dc677e69aedfec61957a4ea5489131"
+      "sema:MonotonicCounter#mh:SHA-256:40968470b9f8326f0171ebdc2ca7253982dc677e69aedfec61957a4ea5489131",
+      "sema:MonotonicCounter#mh:SHA-256:33824eaaf148d996cbc3ccd7521b62dbba087070d23b5421918a446df3f01c8b",
+      "sema:MonotonicCounter#mh:SHA-256:21c63e6bc594106fb6bd773e2d91a2ecb0aebb43e550d55cfbe901e6a38628a3"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:MonotonicCounter#mh:SHA-256:33824eaaf148d996cbc3ccd7521b62dbba087070d23b5421918a446df3f01c8b",
-  "sema_ref": "MonotonicCounter#3382",
-  "sema_stub": "3382",
+  "sema_id": "sema:MonotonicCounter#mh:SHA-256:d0d3ce256be4bc080a29eab7fda36381a4352a280d9a12d59179c60e71cf9bd0",
+  "sema_ref": "MonotonicCounter#d0d3",
+  "sema_stub": "d0d3",
   "dependencies": {
     "references": {
-      "state_lock": "sema:StateLock#mh:SHA-256:8bde7c49752578e5c76e46d33b995497728f486d69d99ff618b9dbeaa7586c78",
+      "state_lock": "sema:StateLock#mh:SHA-256:c9c2809bdf97bb6ac17a8ffe428d4aa9a28294b99d64cc8a336a239d26a8afb8",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     }
   },

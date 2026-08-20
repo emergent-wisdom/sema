@@ -3,11 +3,14 @@
   "mechanism": "If the {{agent}} detects it is looping or repeating text, it deliberately injects high-temperature {{noise}} or a random oblique {{strategy}} {{card}} into its {{context}} to force a trajectory change.",
   "gloss": "Breaking local optima",
   "failure_modes": [
-    "Derailment into nonsense."
+    "Derailment into nonsense: the injection is large enough that the {{signal}} does not return.",
+    "False positive: legitimate repetition is read as a loop, and a working trajectory is perturbed."
   ],
   "invariants": [
-    "{{noise}} distribution matches parameter",
-    "{{signal}}-to-noise ratio > 0"
+    "Fires on a detected loop or repetition, not as a standing perturbation.",
+    "Injects at most `temperature` worth of {{noise}}, leaving the {{signal}} recoverable.",
+    "Returns to a coherent trajectory after the injection.",
+    "Waits `cooldown` before injecting again."
   ],
   "preconditions": [
     "Clean signal/process",
@@ -24,24 +27,46 @@
     "ring": 1,
     "supersedes": [
       "sema:NoiseInjection#mh:SHA-256:685ee3801da377f7760a3d28085a68bc01665c3ae0783e1de26ad1041096094d",
-      "sema:NoiseInjection#mh:SHA-256:08547db652ddf20462b64c7a0824173b7ccc1612c5fb2537a9785d8fb517fc49"
+      "sema:NoiseInjection#mh:SHA-256:08547db652ddf20462b64c7a0824173b7ccc1612c5fb2537a9785d8fb517fc49",
+      "sema:NoiseInjection#mh:SHA-256:9cd5f963bf3ac7a08578bef9db1086179a6e7ea274cdf5ed8b7e2fc98dfa29d4",
+      "sema:NoiseInjection#mh:SHA-256:f5b2aad2ea08ff2b8d5973e184e8e296023989f7ccf4f5fa73727fbf68e943c4"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:NoiseInjection#mh:SHA-256:9cd5f963bf3ac7a08578bef9db1086179a6e7ea274cdf5ed8b7e2fc98dfa29d4",
-  "sema_ref": "NoiseInjection#9cd5",
-  "sema_stub": "9cd5",
+  "sema_id": "sema:NoiseInjection#mh:SHA-256:99582fc78556fdadc8df343c9a670df7abb87c0030f668f30d6252a182cef083",
+  "sema_ref": "NoiseInjection#9958",
+  "sema_stub": "9958",
+  "parameters": [
+    {
+      "name": "temperature",
+      "type": "Ratio",
+      "range": "(0.0, 1.0]",
+      "description": "Magnitude of the injected noise, as a share of full randomness."
+    },
+    {
+      "name": "detection_threshold",
+      "type": "Ratio",
+      "range": "(0.0, 1.0)",
+      "description": "Similarity between successive outputs that counts as looping."
+    },
+    {
+      "name": "cooldown",
+      "type": "Duration",
+      "range": "unspecified",
+      "description": "Minimum interval between injections, so noise does not become the trajectory."
+    }
+  ],
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "card": "sema:Card#mh:SHA-256:84b75e4aa9df317e013f042ff44e2cc81e5f3092d405375f2c84e4dad9d39b0b",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "noise": "sema:Noise#mh:SHA-256:5573f7d20eb9f8db67767c9c6e1b58967793b20b1ad5ebe02688d8b77f549e5c",
-      "signal": "sema:Signal#mh:SHA-256:2ac0768f06e77d96b5d0bf8204205f519a24d704d496ce59519c9e8ddd546ab2",
-      "strategy": "sema:Strategy#mh:SHA-256:0f2fcc85aff835c79ab80064df1655f8707bc5c80bbde7c3e1a2ba672a9cd49c"
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "card": "sema:Card#mh:SHA-256:e4b2ca76f43a691e7bd7932362512a5e929c62efc6c3d2eb4a9369e5108fa074",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "noise": "sema:Noise#mh:SHA-256:fd120b472352611acc251c4c87b08d06ae1187f9f4775d8a69b4ff9b326d2569",
+      "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef"
     }
   },
   "sema_layer": "Mind",

@@ -1,13 +1,15 @@
 {
   "handle": "EpistemicCalibrate",
-  "mechanism": "Enforces a decay function on confidence as the prediction horizon increases. Unlike human intuition which maintains high confidence to signal status, this pattern forces the agent's reported certainty to mathematically degrade over time (T).",
+  "mechanism": "Enforces a {{decay}} function on confidence as the prediction horizon increases. Unlike human intuition which maintains high confidence to signal status, this pattern forces the agent's reported certainty to degrade as the horizon (T) lengthens, down to a declared floor and absent a reset event.",
   "gloss": "Structural confidence degradation",
   "failure_modes": [
-    "Paralysis (confidence drops to zero too fast)."
+    "Paralysis: confidence reaches `floor` so early that no horizon supports action.",
+    "Reset abuse: frequent reset events restore confidence faster than the horizon erodes it, which defeats the decay."
   ],
   "invariants": [
-    "Horizon {{decay}}: Confidence(T+1) < Confidence(T)",
-    "Unknown Unknowns: A reserved probability mass for 'Unmodeled Event'"
+    "Confidence at T+1 is below confidence at T, absent a reset event.",
+    "Confidence never falls below `floor`.",
+    "Reserves `unmodeled_mass` of the probability for events the model does not represent."
   ],
   "preconditions": [
     "Base prediction available"
@@ -22,19 +24,34 @@
     ],
     "ring": 2,
     "supersedes": [
-      "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437"
+      "sema:EpistemicCalibrate#mh:SHA-256:606941a7d67ed0f304f44966e00550480d1ff04f64c8196cf6fe15185a9ef437",
+      "sema:EpistemicCalibrate#mh:SHA-256:a9024e32f3f2d5b1ff0e5bf7361b951acacdc7a359afc8c4ad5823b59738cf65"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:a9024e32f3f2d5b1ff0e5bf7361b951acacdc7a359afc8c4ad5823b59738cf65",
-  "sema_ref": "EpistemicCalibrate#a902",
-  "sema_stub": "a902",
+  "sema_id": "sema:EpistemicCalibrate#mh:SHA-256:4d4c4a79c03f1ed0c946e0e21fd76efccf7a5d9fb688f2bb59ab6065e8b1573a",
+  "sema_ref": "EpistemicCalibrate#4d4c",
+  "sema_stub": "4d4c",
+  "parameters": [
+    {
+      "name": "floor",
+      "type": "Probability",
+      "range": "(0.0, 0.5)",
+      "description": "Confidence level decay may approach but not cross."
+    },
+    {
+      "name": "unmodeled_mass",
+      "type": "Probability",
+      "range": "(0.0, 0.5)",
+      "description": "Probability held back for unmodelled events, never assigned to a named outcome."
+    }
+  ],
   "dependencies": {
     "references": {
-      "decay": "sema:Decay#mh:SHA-256:ed25c7d3a502881dbdd455802f3c1d3581c2514f263d5339bc4e56221416b552"
+      "decay": "sema:Decay#mh:SHA-256:482b97f7196f35c8c50be1b2537ec6e04410a4920fcd8409bec735db3278737a"
     }
   },
   "sema_layer": "Mind",

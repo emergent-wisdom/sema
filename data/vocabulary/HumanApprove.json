@@ -6,14 +6,14 @@
     {
       "name": "challenge_required",
       "type": "Boolean",
-      "range": "unspecified",
-      "description": "Default: True"
+      "range": "{true, false}",
+      "description": "Whether the approver must match a challenge code, not merely click through."
     },
     {
       "name": "timeout",
       "type": "Duration",
       "range": "unspecified",
-      "description": "Maximum wait time for human response before escalation"
+      "description": "Longest the gate waits for a human before escalating. Deliberately uncapped."
     }
   ],
   "failure_modes": [
@@ -22,33 +22,35 @@
     "{{context}} Loss: Human lacks sufficient context to make informed decision."
   ],
   "invariants": [
-    "Cognitive Friction: Approval requires matching a context-specific challenge code.",
-    "{{audit}} Trail: All approvals/rejections logged with timestamp and rationale",
-    "Blocking: Execution MUST halt until approval received",
-    "Timeout Policy: Define behavior if approval not received within SLA"
+    "Presents the proposed {{task}}, its rationale and its risk assessment before asking.",
+    "Halts execution until a human answers, or until `timeout`.",
+    "Requires a context-specific challenge code when `challenge_required`.",
+    "Logs every approval and rejection with a timestamp and a rationale, in the {{audit}} trail.",
+    "On timeout the action does not proceed: silence is not consent."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "caution": "Bypassing removes the human-in-the-loop safety boundary.",
     "supersedes": [
-      "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea"
+      "sema:HumanApprove#mh:SHA-256:e64a6a1fc261b726fbfdcae8b5d3a3da39e3ea2e8f2d168e1a4135985e36d7ea",
+      "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_id": "sema:HumanApprove#mh:SHA-256:a00d536aac2d6660891039ecad29602e85778477b6848395424a5ccaf96afad5",
-  "sema_ref": "HumanApprove#a00d",
-  "sema_stub": "a00d",
+  "sema_id": "sema:HumanApprove#mh:SHA-256:5d0d6a006d1f45cbb1708798d609a4d08bca0a9086218c434e83877f2c2993f6",
+  "sema_ref": "HumanApprove#5d0d",
+  "sema_stub": "5d0d",
   "dependencies": {
     "accepts": {
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
       "audit": "sema:Audit#mh:SHA-256:be970add829f4f162533569b04c9ffd12ea4d070d53405a4993f0785d4074f77",
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

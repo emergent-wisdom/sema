@@ -22,20 +22,22 @@
     "tier": 2,
     "ring": 2,
     "supersedes": [
-      "sema:IntentGap#mh:SHA-256:5dc4af64c8178e975cb7d6c1325132b7af673a69e445a37f9dc1e4aa8565ef14"
+      "sema:IntentGap#mh:SHA-256:5dc4af64c8178e975cb7d6c1325132b7af673a69e445a37f9dc1e4aa8565ef14",
+      "sema:IntentGap#mh:SHA-256:98b23d5faa3bb1d941a148b9c7596f6725f1b70d3447ee247243944e75114e13",
+      "sema:IntentGap#mh:SHA-256:5248808e441eab02fd0fbc6ae41abca66c3c66e7883d3f623d2f1a802b3e1cd1"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "IntentGap#98b2",
-  "sema_id": "sema:IntentGap#mh:SHA-256:98b23d5faa3bb1d941a148b9c7596f6725f1b70d3447ee247243944e75114e13",
-  "sema_stub": "98b2",
+  "sema_ref": "IntentGap#0c14",
+  "sema_id": "sema:IntentGap#mh:SHA-256:0c14e83c328756592d5d0d2e690522c3589d33778ce38871cbcaf594f8dd679f",
+  "sema_stub": "0c14",
   "dependencies": {
     "references": {
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03"
     }
   },
   "sema_layer": "Society",

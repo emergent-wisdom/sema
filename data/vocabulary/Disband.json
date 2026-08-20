@@ -26,21 +26,24 @@
     "ring": 1,
     "supersedes": [
       "sema:Disband#mh:SHA-256:7cb883dd99a51f2408f92e5d48d69d4c3f077db9d49e3754a1f99af92126b0cf",
-      "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48"
+      "sema:Disband#mh:SHA-256:86c6e1f3030c9994f2942c01d5161dee619fdc32c442ce3649d0f94204b0db48",
+      "sema:Disband#mh:SHA-256:d5f882cd8f4a4bcbe6eaa6ba11a0eeeca57472343564378f2e2e84f5eab3f647",
+      "sema:Disband#mh:SHA-256:995359e7d1ffda3dc97ae352e53a740e68d64f79656a18659093745461871df2",
+      "sema:Disband#mh:SHA-256:3fa1c16aaa12707482447e0c7437b243937e4c4c5652f8f51e18228b53fbb346"
     ],
     "path": [
       "Society",
       "Coordination"
     ]
   },
-  "sema_id": "sema:Disband#mh:SHA-256:d5f882cd8f4a4bcbe6eaa6ba11a0eeeca57472343564378f2e2e84f5eab3f647",
-  "sema_ref": "Disband#d5f8",
-  "sema_stub": "d5f8",
+  "sema_id": "sema:Disband#mh:SHA-256:f11c01b825e33615ddb25261966af65da93ffc6a8fb72456692804040130e32a",
+  "sema_ref": "Disband#f11c",
+  "sema_stub": "f11c",
   "dependencies": {
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:e8361ca7c2ffb506b32cd36f16addc253ecbc51350f98b983db9c122bb51f106",
-      "quorum": "sema:Quorum#mh:SHA-256:d634d5cf0f165f708a5f39e54d8ad42716c11e21189459585468a294d2ebc7bc",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "ejection_seat": "sema:EjectionSeat#mh:SHA-256:a9d5ef5e3e70e5e4732543c2732e312f1efbd881a991b1521594e3b66257a8cb",
+      "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     },
     "yields": {

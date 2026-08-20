@@ -1,70 +1,74 @@
 {
   "handle": "SteelmanCheck",
-  "mechanism": "Before finalizing a {{decision}} or output, the {{agent}} MUST generate the strongest possible argument against its own conclusion. It performs a {{check}} on the {{robustness}} of the claim and a {{critique}} of the underlying {{belief}}. If the counter-argument exceeds a validity threshold, the decision is discarded or revised. It prevents confirmation {{cognitive_bias}}. Utilizes {{compatibility_check}}. For adversarial contexts, see adversarial steelmanning.",
-  "gloss": "Post-decision adversarial check: revise if counter-argument exceeds validity threshold",
+  "mechanism": "Before finalizing a {{decision}} or output, the {{agent}} MUST generate a claim-specific counter-argument to its conclusion. It uses {{critique}} to challenge the underlying {{belief}}, {{judge}} to score the counter-argument, and {{check}} to test the {{decision}}'s {{robustness}} against any counter-argument that meets `strength_threshold`. A sub-threshold counter-argument is strengthened up to `iteration_limit`; if no adequate counter-argument is produced, release is blocked. Once an adequate counter-argument exists, a Falsified robustness result requires revision or discard, Unknown blocks release pending review, and only Verified permits finalization. It prevents confirmation {{cognitive_bias}}. For adversarial contexts, see adversarial steelmanning.",
+  "gloss": "Qualify the opposition, then release only if the conclusion remains robust",
   "failure_modes": [
     "Paralysis by analysis (stuck in {{critique}} {{loop}}).",
     "Collusion: Proposer and Critic are same entity; susceptible to Strawman Waltz attack where agent generates weak counter-arguments to easily defeat them."
   ],
   "invariants": [
-    "Counter-Argument Quality: Score(Counter) > 0.7 (Must be non-trivial)",
-    "Passing critique required for release.",
-    "Strongest Counter: Generated argument must address the core claim, not weak points",
-    "Topical Relevance: EmbeddingDistance(Counter, Claim) < Threshold"
+    "Adequate opposition: before release, {{judge}} scores the counter-argument at or above `strength_threshold`.",
+    "The counter-argument identifies the specific claim it contradicts.",
+    "Release discipline: only a Verified {{check}} of the {{decision}}'s {{robustness}} after adequate opposition permits release; Falsified requires revision or discard, and Unknown requires review."
   ],
   "preconditions": [
-    "{{agent}} must be alignment-seeking; use adversarial steelmanning for adversarial/untrusted contexts",
-    "Claim is falsifiable"
+    "A {{decision}} or output exists to challenge.",
+    "The conclusion exposes a specific claim or rationale that can be contradicted."
   ],
   "postconditions": [
-    "{{critique}} generated and scored"
+    "Either bounded failure to produce an adequate counter-argument blocks release, or an adequate counter-argument and terminal {{check}} result are recorded; the {{decision}} is finalized only on Verified."
   ],
   "parameters": [
     {
       "name": "iteration_limit",
       "type": "Integer",
       "range": "[1, 5]",
-      "description": "Max strengthening attempts"
+      "description": "Maximum strengthening attempts before failure to produce adequate opposition blocks release"
     },
     {
       "name": "strength_threshold",
       "type": "Float",
       "range": "[0.7, 0.95]",
-      "description": "Min strength to pass as steelman"
+      "description": "Minimum {{judge}} score for a counter-argument to qualify as a steelman; it is not the verdict on the {{decision}}"
     }
   ],
   "_meta": {
     "tier": 2,
-    "ring": 1,
+    "ring": 2,
     "related": [
       "AdversarialSteel"
     ],
     "supersedes": [
-      "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7"
+      "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
+      "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
+      "sema:SteelmanCheck#mh:SHA-256:7611548d64d5fb63c0e09723c53192121c4846ab4ea85531da0b51ad712f3c75"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
-  "sema_ref": "SteelmanCheck#9c86",
-  "sema_stub": "9c86",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf",
+  "sema_ref": "SteelmanCheck#bd61",
+  "sema_stub": "bd61",
   "signature": [
     "Check(Robustness)",
-    "Critique(Belief)"
+    "Critique(Belief)",
+    "Judge(Critique)"
   ],
   "dependencies": {
+    "composes_with": {
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "critique": "sema:Critique#mh:SHA-256:646b71acb10a6b7f0874f3d5c7977c44d253f29f9c1231c974d85c7fba131980",
+      "judge": "sema:Judge#mh:SHA-256:704cbb71588d7a3bafa08b71c863005e31ec4400860b9cb8b094e660da9c7c6c"
+    },
     "references": {
-      "agent": "sema:Agent#mh:SHA-256:67659e263616d53dded32875421792f42fadf3137c87fe09cf9f5b9c163f10cf",
-      "belief": "sema:Belief#mh:SHA-256:7d838b98686e17c69e96df09b2c7ec870df22bba9a9bd02dc29bd62be41d5da8",
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
+      "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
+      "belief": "sema:Belief#mh:SHA-256:e160f5d3c82f6a64902c8619ec411f1c33eb0a4d031aea46bddb0f0776d5f150",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
-      "compatibility_check": "sema:CompatibilityCheck#mh:SHA-256:62b270aff05a9bc66e1dc0156ad60fbcd64f9bfb12083f22b9449ceec0c98727",
-      "critique": "sema:Critique#mh:SHA-256:0254558d2c0740261b93c246bfa4eebc279356bec6c2a039fe799fdfc2761237",
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "loop": "sema:Loop#mh:SHA-256:984a20b35090934ca5ea1f97f2026b6be48b3805ddc0802f32ba66fe6bfcaf87",
-      "robustness": "sema:Robustness#mh:SHA-256:1fa393f9475d2418957334a1802dd65a159d3e680673a0d10874a97e915da7bf"
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+      "robustness": "sema:Robustness#mh:SHA-256:5304c7824b76c6f308bb1a33ba6171d41fd061a5b104f21710bbb6c7a7c85b43"
     }
   },
   "sema_layer": "Mind",

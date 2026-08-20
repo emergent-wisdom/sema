@@ -1,6 +1,6 @@
 {
   "handle": "Compensate",
-  "mechanism": "Execute inverse actions to undo partial coordination after BREAK. On receiving BREAK, agent retrieves compensation_log (built during forward execution\u2014each action logged its inverse). Execute inverses in REVERSE chronological order (LIFO). For each inverse: attempt execution, if fail retry (inverses must be idempotent), if still fail log and continue or escalate. Report COMPENSATE_RESULT: {completed: [steps undone], failed: [steps that couldn't undo], clean: bool, downstream_confirmed: bool}. Multi-agent coordination: each agent compensates their own scope. BREAK propagates with upstream_agents hint for cross-agent dependencies\u2014downstream agents compensate first, confirm, then upstream proceeds. Compensation cannot introduce NEW coordinated work (only cleanup and notification). Triggered by {{break}}, it reads the {{time_warp_log}} in reverse to execute the idempotent inverse of each prior action.",
+  "mechanism": "Execute inverse actions to undo partial coordination across the {{system}} after BREAK. On receiving BREAK, agent retrieves compensation_log (built during forward execution\u2014each action logged its inverse). Execute inverses in REVERSE chronological order (LIFO). For each inverse: attempt execution, if fail retry (inverses must be idempotent), if still fail log and continue or escalate. Report COMPENSATE_RESULT: {completed: [steps undone], failed: [steps that couldn't undo], clean: bool, downstream_confirmed: bool}. Multi-agent coordination: each agent compensates their own scope. BREAK propagates with upstream_agents hint for cross-agent dependencies\u2014downstream agents compensate first, confirm, then upstream proceeds. Compensation cannot introduce NEW coordinated work (only cleanup and notification). Triggered by {{break}}, it reads the {{time_warp_log}} in reverse to execute the idempotent inverse of each prior action.",
   "gloss": "Structured rollback via logged inverses in LIFO order",
   "failure_modes": [
     "Inverse wasn't logged (can't compensate what wasn't tracked).",
@@ -12,15 +12,17 @@
     "Downstream agent doesn't confirm (blocks upstream compensation)."
   ],
   "invariants": [
-    "Action is semantically opposite to failure",
-    "Compensation action value >= loss value"
+    "Every forward action logs its inverse as it executes; an action with no logged inverse is not compensable.",
+    "Inverses execute in reverse chronological order.",
+    "Inverses are idempotent, so a retried compensation does not compound.",
+    "Reports per-inverse outcome, including which inverses failed."
   ],
   "preconditions": [
     "Compensation mechanism available",
     "Detected failure/loss"
   ],
   "postconditions": [
-    "{{system}} utility restored to baseline"
+    "A status report exists naming which inverses succeeded and which did not"
   ],
   "_meta": {
     "tier": 1,
@@ -31,21 +33,24 @@
     "caution": "Compensation must not erase the audit trail of what was rolled back \u2014 log both the forward action and the compensation.",
     "supersedes": [
       "sema:Compensate#mh:SHA-256:269dac24b3d83ede5ad2419fd9d78e0e0368090c677bbd272880b1b8e6921af3",
-      "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7"
+      "sema:Compensate#mh:SHA-256:81a5e6a4b35f905a4b19391777572e3905883ec599b49fdd35e0ab785af01bc7",
+      "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
+      "sema:Compensate#mh:SHA-256:9b3b07b7a02d00b6df1ecc3ee69fa3dcd2b33e07f045c67f26deb6cf311694f2",
+      "sema:Compensate#mh:SHA-256:447fb91007e09d8674d66ab2698189026a2e9f70a2b66fbaaed406006fb8b8eb"
     ],
     "path": [
       "Infrastructure",
       "Primitives"
     ]
   },
-  "sema_id": "sema:Compensate#mh:SHA-256:e23bc7c0d3825460855e7ee5e2e41f512ff8e318ad741b1ba4e0303cb66e39b9",
-  "sema_ref": "Compensate#e23b",
-  "sema_stub": "e23b",
+  "sema_id": "sema:Compensate#mh:SHA-256:4b87623f38564fcc95b87d2cbf5df2f5ff41ef27e617ccafd76c7b7896b144e7",
+  "sema_ref": "Compensate#4b87",
+  "sema_stub": "4b87",
   "dependencies": {
     "references": {
-      "break": "sema:Break#mh:SHA-256:3c370fec3d297e00ea2321826e420a429f65fc5f5da5ac61b844c821aef41018",
+      "break": "sema:Break#mh:SHA-256:5003e128ac02e7835d2094d72dc929ce4c96819b56ef167c2ca8da9f16aa402a",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
-      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:2a101afbc167bce00efa25a0439774ab1b30ef094facfaf2b8f9a5edb1b54269"
+      "time_warp_log": "sema:TimeWarpLog#mh:SHA-256:755f480a60517d8e99807da674019db06ab0b7b2edabcc806d833947da4446e4"
     }
   },
   "sema_layer": "Infrastructure",

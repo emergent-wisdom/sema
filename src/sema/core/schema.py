@@ -67,6 +67,7 @@ TierType = Literal[0, 1, 2, 3]
 # Separator for rendering paths as strings (Society/Governance). The path
 # field is ALWAYS stored as a list; string form is derived on demand.
 PATH_SEPARATOR = "/"
+FULL_SEMA_ID_PATTERN = re.compile(r"^sema:[A-Z][a-zA-Z0-9]+#mh:SHA-256:[a-f0-9]{64}$")
 
 
 def path_to_string(path: list[str]) -> str:
@@ -230,13 +231,12 @@ class DependencyRefs(BaseModel):
     @model_validator(mode="after")
     def validate_full_hash_standard(self) -> "DependencyRefs":
         """Ensure dependency values match Full Hash format (Rule 2.4)."""
-        hash_pattern = re.compile(r"^sema:[A-Z][a-zA-Z0-9]+#mh:SHA-256:[a-f0-9]{64}$")
         errors = []
         for field_name in ["references", "composes_with", "accepts", "yields"]:
             val = getattr(self, field_name)
             if val:
                 for key, value in val.items():
-                    if not hash_pattern.match(value):
+                    if not FULL_SEMA_ID_PATTERN.fullmatch(value):
                         errors.append(f"{field_name}.{key}: '{value}'")
 
         if errors:
@@ -332,8 +332,22 @@ class SemaPattern(BaseModel):
         default=None, min_length=1, description="Type signature entries"
     )
     dependencies: DependencyRefs | None = Field(default=None, description="Pattern dependencies")
+    extends: str | None = Field(
+        default=None,
+        description=(
+            "Full sema_id of the exact pattern definition this one specialises. "
+            "Hashed and version-pinned; retargeting to a newer parent is an explicit "
+            "semantic edit. Conformance to an abstract surface set goes in `signature`, "
+            "not here."
+        ),
+    )
     derived_from: str | None = Field(
-        default=None, description="Parent pattern this was derived from"
+        default=None,
+        description=(
+            "Deprecated pre-0.4 lineage field. Accepted without new relation "
+            "semantics so existing content-addressed cards remain readable and "
+            "hash-verifiable; new specialization claims should use `extends`."
+        ),
     )
     data_schema: DataSchema | None = Field(
         default=None, description="Schema for Data Structures category"
@@ -360,6 +374,28 @@ class SemaPattern(BaseModel):
                 f"Handle '{v}' cannot contain '{PATH_SEPARATOR}' (reserved for taxonomy paths)"
             )
         return v
+
+    @field_validator("extends", mode="before")
+    @classmethod
+    def validate_extends_format(cls, v: Any) -> str:
+        """Require the exact parent reference to use the full hash format."""
+        if not isinstance(v, str) or not FULL_SEMA_ID_PATTERN.fullmatch(v):
+            raise ValueError(
+                "Full Hash Standard violation (Rule 2.4): specialization references must match "
+                "'sema:Handle#mh:SHA-256:<64-char-hash>'."
+            )
+        return v
+
+    @model_validator(mode="after")
+    def validate_extends_not_self(self) -> "SemaPattern":
+        """A pattern cannot specialise itself."""
+        if {"extends", "derived_from"} <= self.model_fields_set:
+            raise ValueError("Use `extends` or legacy `derived_from`, not both")
+        if self.extends:
+            parent = self.extends.removeprefix("sema:").split("#", 1)[0]
+            if parent == self.handle:
+                raise ValueError(f"`extends` cannot refer to the pattern itself: '{self.handle}'")
+        return self
 
     @field_validator("signature")
     @classmethod

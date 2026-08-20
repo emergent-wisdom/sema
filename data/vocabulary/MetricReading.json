@@ -1,0 +1,53 @@
+{
+  "handle": "MetricReading",
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "metric_ref",
+      "value"
+    ],
+    "properties": {
+      "metric_ref": {
+        "type": "string",
+        "description": "Identifier of the Metric definition used; a full Sema ID when the definition is a vocabulary pattern"
+      },
+      "value": {
+        "description": "Number or finite numerical structure conforming to the referenced Metric's value_schema"
+      },
+      "observed_at": {
+        "type": "string",
+        "description": "Optional time, interval, event, batch, or immutable version that scopes the reading"
+      },
+      "dimensions": {
+        "type": "object",
+        "description": "Optional labels that locate the reading within dimensions allowed by the Metric definition"
+      }
+    }
+  },
+  "mechanism": "A realized value under a referenced {{metric}} definition. The reading binds its value to the definition that supplies the target property, derivation rule, and value schema. Observation time and dimensions may scope the value without redefining it.",
+  "gloss": "Quantitative value bound to a Metric definition",
+  "invariants": [
+    "Definition Conformance: `value` conforms to the `value_schema` declared by the definition identified by `metric_ref`."
+  ],
+  "failure_modes": [
+    "Definition Mismatch: a value produced under one {{metric}} definition is interpreted or compared under another."
+  ],
+  "_meta": {
+    "ring": 1,
+    "tier": 1,
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ]
+  },
+  "sema_id": "sema:MetricReading#mh:SHA-256:56a9f18faad70147312f12c1cdb1bcea9cb5d1d61042831d1fe6bfa11414ab26",
+  "sema_ref": "MetricReading#56a9",
+  "sema_stub": "56a9",
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

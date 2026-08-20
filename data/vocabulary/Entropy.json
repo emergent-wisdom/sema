@@ -11,14 +11,17 @@
     "path": [
       "Physics",
       "Primitives"
+    ],
+    "supersedes": [
+      "sema:Entropy#mh:SHA-256:323fd687b530ceedeeb7b7399fc4227f8181da3193c85afab0d66e26914a3749"
     ]
   },
-  "sema_id": "sema:Entropy#mh:SHA-256:323fd687b530ceedeeb7b7399fc4227f8181da3193c85afab0d66e26914a3749",
-  "sema_ref": "Entropy#323f",
-  "sema_stub": "323f",
+  "sema_id": "sema:Entropy#mh:SHA-256:d5f7482e6c06a1e48eadbf28e6dca0cc0eb176bf75c70e7e467284f656d20bae",
+  "sema_ref": "Entropy#d5f7",
+  "sema_stub": "d5f7",
   "dependencies": {
     "references": {
-      "message": "sema:Message#mh:SHA-256:b17515adef760297f0374e7cfcf4a7b3cc4f5f2c21ab0c0295285545c60482ea",
+      "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

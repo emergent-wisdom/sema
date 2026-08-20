@@ -11,25 +11,27 @@
     "ring": 2,
     "supersedes": [
       "sema:HypothesisEngine#mh:SHA-256:dc69956150dc53b0ecfa132dc3ab6a50008569ed82c9bd5de16ffecb9ea405d8",
-      "sema:HypothesisEngine#mh:SHA-256:dec9b5fd325c2c8649b3447c1e927559b952451b1cea7a7429dd8f4b62366731"
+      "sema:HypothesisEngine#mh:SHA-256:dec9b5fd325c2c8649b3447c1e927559b952451b1cea7a7429dd8f4b62366731",
+      "sema:HypothesisEngine#mh:SHA-256:2dae2c4a5a5ac90f2616f43a451a8f86b9c7e5f2df3b9c1b3a034c4870e1389d",
+      "sema:HypothesisEngine#mh:SHA-256:8aa62e3a7f8cd0f4837c31e58b828b18b84edbc9f0cac2e22915d26179098c94"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:HypothesisEngine#mh:SHA-256:2dae2c4a5a5ac90f2616f43a451a8f86b9c7e5f2df3b9c1b3a034c4870e1389d",
-  "sema_ref": "HypothesisEngine#2dae",
-  "sema_stub": "2dae",
+  "sema_id": "sema:HypothesisEngine#mh:SHA-256:f9e8f765ed6e5bca5355567747f7ea9acf4c9836a8f287df8831a9e18c179e3e",
+  "sema_ref": "HypothesisEngine#f9e8",
+  "sema_stub": "f9e8",
   "dependencies": {
     "references": {
-      "check": "sema:Check#mh:SHA-256:22ecc8bd2d86f344a11551e3bae74a97660e47b1127739e8a84f88f4791960c8",
-      "discover": "sema:Discover#mh:SHA-256:8895070d390ce7493b0534f56d22d9dec6eb341d0865e4214f8f0141dc6f5104",
-      "hypothesis": "sema:Hypothesis#mh:SHA-256:e13b827d9dea5d37bc7431cd20aee5acd49c69e15bf7660a0d563f741ba3fd71",
-      "simulation": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
-      "stigmergy": "sema:Stigmergy#mh:SHA-256:628247a1fb4949ebc39836a911d14d0ea963da9cead204c76039ff7339f004af",
-      "trace": "sema:Trace#mh:SHA-256:314d8d38e6de13bf191dd0d368c8c1bcf7a2d4953b165f66daf7188b90dc37ab",
-      "validate": "sema:Validate#mh:SHA-256:337ce6c03c892bd0d326d81a8ae3a51e76557391240cf9a1694ff85458fe358e"
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "discover": "sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b",
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
+      "simulation": "sema:Simulation#mh:SHA-256:1058e7090079e846251ed480d7afec0328809d22bebb6b205425b2de614787c3",
+      "stigmergy": "sema:Stigmergy#mh:SHA-256:dd4f5a60a12b6dbe6e4a9a051189088dc0a73ef18b5ef4d9ecc361215e9551cb",
+      "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9",
+      "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     }
   },
   "sema_layer": "Mind",

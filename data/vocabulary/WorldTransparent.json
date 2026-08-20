@@ -19,19 +19,22 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977"
+      "sema:WorldTransparent#mh:SHA-256:021253e5183401b81b48c466232d879b07a94638281edc77b92002482365d977",
+      "sema:WorldTransparent#mh:SHA-256:4a70f373c5298ed905d1e3afc59372689b205775e3cb6898c94a6bb076c0f64e",
+      "sema:WorldTransparent#mh:SHA-256:8440e780396b6f32b6f0f5157c33379961fce250cca368611ef283706a0c77be",
+      "sema:WorldTransparent#mh:SHA-256:7fd817f51be32a63b17f8c0601cef08d8e342637504cde82c724cbbb33e636ec"
     ],
     "path": [
       "Society",
       "Governance"
     ]
   },
-  "sema_id": "sema:WorldTransparent#mh:SHA-256:4a70f373c5298ed905d1e3afc59372689b205775e3cb6898c94a6bb076c0f64e",
-  "sema_ref": "WorldTransparent#4a70",
-  "sema_stub": "4a70",
+  "sema_id": "sema:WorldTransparent#mh:SHA-256:208a5b4b03663d8fb897e075cf8a2acdf2371a9c9aa121cdb54b6c55d03b06aa",
+  "sema_ref": "WorldTransparent#208a",
+  "sema_stub": "208a",
   "dependencies": {
     "references": {
-      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:467629a3f5dd0dd214a5ba9f703cb0f54c61ac0ea5c5f404e3dd0b3a10910887",
+      "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:2ae591c2bb79c9a8e037722f368f68b0e6a507503cfc74ab09b9bb1d43fa1856",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

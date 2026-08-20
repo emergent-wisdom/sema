@@ -1,14 +1,15 @@
 {
   "handle": "Defer",
-  "mechanism": "Strategic Postponement: When facing decision with high uncertainty, ask: \"What would I learn by waiting?\" If waiting reveals information that changes the decision, defer. If not, decide now. Avoid analysis paralysis by setting a deadline. It relies on {{prioritize}} to re-insert the task into the queue once the waiting condition is met.",
+  "mechanism": "Strategic postponement. When facing a decision under high uncertainty, run the {{epistemic_roi}} test on waiting: what would I learn, and would it change the decision? If yes, defer with a deadline; if no, decide now. Relies on {{prioritize}} to re-insert the task once the waiting condition is met.",
   "gloss": "Postponing decisions until more information available",
   "failure_modes": [
-    "{{decision}} Debt: Deferred choices accumulate until deadline forces rushed, poor decisions."
+    "{{decision}} debt: deferred choices accumulate until the deadline forces rushed decisions.",
+    "Deferred into forgotten: the WakeUpCondition never fires and no deadline was set."
   ],
   "invariants": [
-    "Deferral must have information value.",
-    "{{state}} Preservation: {{context}} must be saved for resumption",
-    "Trigger Definition: WakeUpCondition must be explicit"
+    "Waiting passes the {{epistemic_roi}} test: some outcome of waiting changes the decision.",
+    "{{state}} preservation: {{context}} is saved for resumption.",
+    "Both a WakeUpCondition and a deadline are explicit. A condition may never fire; a deadline always does."
   ],
   "preconditions": [
     "{{task}} is not urgent"
@@ -20,23 +21,26 @@
     "tier": 1,
     "ring": 2,
     "supersedes": [
-      "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3"
+      "sema:Defer#mh:SHA-256:6460dcc0c5f0fd94cc3bcb7ff9bb4fe5eee0b5e1d3ea588b73f762bd4843a6b3",
+      "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa",
+      "sema:Defer#mh:SHA-256:c09fcb90c93ac496f6f5daf9732163b3abe1c3ec3b3923705052c2188253cec8"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa",
-  "sema_ref": "Defer#2c34",
-  "sema_stub": "2c34",
+  "sema_id": "sema:Defer#mh:SHA-256:7c32a314cc801adf391bbf775b29c5d15e3e230aa80c38290231f1ca897bf0f7",
+  "sema_ref": "Defer#7c32",
+  "sema_stub": "7c32",
   "dependencies": {
     "references": {
-      "context": "sema:Context#mh:SHA-256:d5f79a21faef9ef640ab687c90a25cdf457a066fb6da23d247115b267c539132",
-      "decision": "sema:Decision#mh:SHA-256:7fdfee9027fde0e699ed12cc286565c16ff262d50d55b0668da94dcdf0712a1f",
-      "prioritize": "sema:Prioritize#mh:SHA-256:8028bf196f44e09cb60a59a1a067b57c3de28c2d41ad9a600a6797c335567458",
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
+      "epistemic_roi": "sema:EpistemicROI#mh:SHA-256:b0d863d10c0d67edc218444b72c75f05127b899af6ac0295899b6506cba9acc7",
+      "prioritize": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "task": "sema:Task#mh:SHA-256:f239278f610adea7e01a9fd019dc6be158a31919d61d301856dcbe2aa8b67804"
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },
   "sema_layer": "Mind",

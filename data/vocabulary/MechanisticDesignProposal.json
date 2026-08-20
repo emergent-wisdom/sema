@@ -3,16 +3,18 @@
   "mechanism": "A structured blueprint for a systemic {{solution}} that addresses a {{problem}} in a {{system}}. It goes beyond a standard proposal by requiring the definition of a core mechanism\u2014the specific leverage point and causal chain used to alter system behavior. The proposal integrates the 'Why it Works' (defense) and 'Why it Fails' (attack) dialectic, assessing attached {{risk}}s, along with medium-term implementation and long-term vision projections.",
   "gloss": "Dialectic blueprint of a system mechanism with temporal projections",
   "invariants": [
-    "Dialectic Balance: 'why_it_fails' must be as detailed as 'why_it_works'.",
-    "Causal Clarity: Must define the mechanism of action (how A causes B).",
-    "Novelty Requirement: 'what_is_new' must identify the unique contribution.",
-    "Temporal Completeness: Must include both medium_term and long_term_vision."
+    "`why_it_fails` names specific conditions under which the mechanism breaks, not a generic caveat.",
+    "`core_mechanism` states how A causes B, not that A and B move together.",
+    "`what_is_new` identifies the contribution that is not already available.",
+    "Carries both `medium_term` and `long_term_vision`."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06"
+      "sema:MechanisticDesignProposal#mh:SHA-256:8cf72275c6678ea0c57d497fff459f6f9c5259330524fe8f9bb3af63b7df9c06",
+      "sema:MechanisticDesignProposal#mh:SHA-256:4c393bee5b1d67791b93e4e3612ead726dac3874739f83625333244ab3d5ac6b",
+      "sema:MechanisticDesignProposal#mh:SHA-256:2f7a45b9f347ab3b11faf3ebf6351f61fcd23ce667951683247b0c0f6a700355"
     ],
     "path": [
       "Infrastructure",
@@ -71,19 +73,24 @@
       }
     }
   },
-  "sema_ref": "MechanisticDesignProposal#4c39",
-  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:4c393bee5b1d67791b93e4e3612ead726dac3874739f83625333244ab3d5ac6b",
-  "sema_stub": "4c39",
+  "sema_ref": "MechanisticDesignProposal#e36f",
+  "sema_id": "sema:MechanisticDesignProposal#mh:SHA-256:e36fcadd8c29f9e55375e8bf3085dbc9b4feecd2f0f3bd96918b3663af109cc6",
+  "sema_stub": "e36f",
+  "failure_modes": [
+    "Pro-forma dialectic: `why_it_fails` is filled with a token caveat, so the attack side is nominal.",
+    "Correlation as mechanism: `core_mechanism` names a co-movement rather than a causal chain, which makes the leverage point unactionable.",
+    "Unassessed {{risk}}: the attached risks are listed but not weighed against the projections."
+  ],
   "dependencies": {
     "accepts": {
-      "problem": "sema:Problem#mh:SHA-256:9d2c77f7ce7fd7d2e35fe45495d6124d43d35ce41b1766c6b428cfcba44486de",
+      "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     },
     "references": {
-      "risk": "sema:Risk#mh:SHA-256:329330b9f212869f983266b693b3b90a816506d6905501d682676af2dd281a30"
+      "risk": "sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91"
     },
     "yields": {
-      "solution": "sema:Solution#mh:SHA-256:48442c3e14ce25ef325cbff085d095ecf4c7735b006f162eb76e23d4315f8fa2"
+      "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
     }
   },
   "sema_layer": "Infrastructure",

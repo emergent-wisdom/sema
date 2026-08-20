@@ -1,35 +1,43 @@
 {
   "handle": "Yield",
-  "mechanism": "Negotiation concession. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in Ledger. Utilizes {{defer}}.",
+  "mechanism": "Negotiation concession. When `{{overlap}}` fails: 1. Agents declare 'Flex' (concession) and 'Weight' (importance). 2. {{system}} computes Yield-Ratio. 3. Lower-weighted preference cedes to higher. 4. Debt recorded in the {{ledger}}. Utilizes {{defer}}.",
   "gloss": "Weighted negotiation concession with deferred debt ledger",
   "failure_modes": [
-    "Weight inflation (mitigated by historical consistency tracking).",
+    "Weight inflation: a party overstates importance to win the ratio.",
     "Gaming ledger with trivial yields.",
-    "Hard constraints genuinely indistinguishable from strategic intransigence.",
-    "Ledger requires persistence infrastructure."
+    "Hard constraints genuinely indistinguishable from strategic intransigence."
   ],
   "invariants": [
-    "Yielder cannot reclaim."
+    "Both sides declare Flex and Weight before the Yield-Ratio is computed.",
+    "The lower-weighted preference cedes to the higher.",
+    "Every concession is recorded as debt in the {{ledger}}.",
+    "The concession is final for this negotiation; reciprocity runs through the {{ledger}}, not retraction."
   ],
   "_meta": {
     "tier": 2,
     "ring": 1,
     "supersedes": [
       "sema:Yield#mh:SHA-256:7eaffd4f68072f2f82302e3d2deb33a830bc9f1148b64d705cf4d08125b248e0",
-      "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf"
+      "sema:Yield#mh:SHA-256:d80209c8d3d01dff308a1917000beb714a2fe3e454e21c56643c3c8b53cd6fcf",
+      "sema:Yield#mh:SHA-256:d665e9a8a91a9ec23f8b338f875b05f1f7fe7844b8f21361b06bdd065bd78a02",
+      "sema:Yield#mh:SHA-256:eb2fedc338842ca4579f752500029d504f60a0c677ae0cd15ffd92b51fcf349c"
     ],
     "path": [
       "Society",
       "Economics"
     ]
   },
-  "sema_id": "sema:Yield#mh:SHA-256:d665e9a8a91a9ec23f8b338f875b05f1f7fe7844b8f21361b06bdd065bd78a02",
-  "sema_ref": "Yield#d665",
-  "sema_stub": "d665",
+  "sema_id": "sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50",
+  "sema_ref": "Yield#336a",
+  "sema_stub": "336a",
+  "preconditions": [
+    "A durable {{ledger}} is available to record the debt"
+  ],
   "dependencies": {
     "references": {
-      "defer": "sema:Defer#mh:SHA-256:2c34df90bea83ca4d3e6e530f852e034cf89c123732ff7835a2f883cce6c53aa",
-      "overlap": "sema:Overlap#mh:SHA-256:d70c8e5e00064f385853d70213d03d8ba547a1156024f826c4f782c4b677cefd",
+      "defer": "sema:Defer#mh:SHA-256:7c32a314cc801adf391bbf775b29c5d15e3e230aa80c38290231f1ca897bf0f7",
+      "ledger": "sema:Ledger#mh:SHA-256:4ddaf2792fd7283ceea0d6b9b01ddfff9b7274dfb1cea2bf23147c21520774e5",
+      "overlap": "sema:Overlap#mh:SHA-256:c7019daf2905344a1f3ca2232d74eea272fd284fbe14523e5aa33caa1b46c18e",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3"
     }
   },

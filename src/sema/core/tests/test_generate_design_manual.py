@@ -73,3 +73,18 @@ def test_render_manual_has_no_wall_clock_content():
 
     assert "_Generated:" not in rendered
     assert "_Patterns covered: 0" in rendered
+
+
+def test_rendered_extends_keeps_exact_parent_identity():
+    manual = load_manual_module()
+    parent = "sema:Parent#mh:SHA-256:" + ("a" * 64)
+    pattern = {
+        "handle": "Child",
+        "mechanism": "A child.",
+        "extends": parent,
+        "_meta": {"path": ["Mind", "Reasoning"]},
+    }
+
+    rendered = manual.render_pattern_entry(pattern, {})
+
+    assert f"**Extends (exact parent).** `{parent}`" in rendered

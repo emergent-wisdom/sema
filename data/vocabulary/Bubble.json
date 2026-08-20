@@ -26,21 +26,22 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Bubble#mh:SHA-256:eb9a8441896625edfa7d41935d88120a27bf53db353082e49b0c6027d45e6142"
+      "sema:Bubble#mh:SHA-256:eb9a8441896625edfa7d41935d88120a27bf53db353082e49b0c6027d45e6142",
+      "sema:Bubble#mh:SHA-256:710d656a6a86e5872807d12f25c9bcf616f4e75514cfaf6c4bd6449586cddcbc"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Bubble#mh:SHA-256:710d656a6a86e5872807d12f25c9bcf616f4e75514cfaf6c4bd6449586cddcbc",
-  "sema_ref": "Bubble#710d",
-  "sema_stub": "710d",
+  "sema_id": "sema:Bubble#mh:SHA-256:dd4e6be4e6d2751c5ebbed88908b85ad05bc2ca5071d252cb2f883eb71b29968",
+  "sema_ref": "Bubble#dd4e",
+  "sema_stub": "dd4e",
   "dependencies": {
     "references": {
-      "constraint_first": "sema:ConstraintFirst#mh:SHA-256:10b8fcc765c09236232529dc50ab31552658027fe8df05d72bbf5c22725a7fa7",
+      "constraint_first": "sema:ConstraintFirst#mh:SHA-256:7d699d6c7f5c44f16125377bb24781286e9fec56f46a307130e6c8ae13473b4d",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
-      "work": "sema:Work#mh:SHA-256:e574aab6ce5d94ab4e9acb6d92531441f46ff05ed1c2ba0a99e0d08b59f30523"
+      "work": "sema:Work#mh:SHA-256:f0c3ba2d663c900244d2ed814ed3682c56a867aa32bc3c4dfd1b19fe311aa2c6"
     }
   },
   "sema_layer": "Mind",

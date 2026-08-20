@@ -3,8 +3,8 @@
   "data_schema": {
     "type": "object",
     "required": [
-      "metric",
-      "threshold"
+      "criteria_id",
+      "rule"
     ],
     "properties": {
       "criteria_id": {
@@ -13,10 +13,10 @@
       },
       "metric": {
         "type": "string",
-        "description": "What is being measured (e.g., 'cost', 'latency')"
+        "description": "Quantity measured, where the rule is quantified."
       },
       "threshold": {
-        "description": "The target value or boundary (any type)"
+        "description": "Value compared against, where the rule is quantified."
       },
       "comparator": {
         "type": "string",
@@ -30,6 +30,10 @@
           "not_in"
         ],
         "description": "How to compare against threshold"
+      },
+      "rule": {
+        "type": "string",
+        "description": "The standard being applied, quantified or not \u2014 'under $50', 'must be reversible', 'must cite a source'."
       }
     }
   },
@@ -41,14 +45,21 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
     ]
   },
-  "sema_id": "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac",
-  "sema_ref": "Criteria#0400",
-  "sema_stub": "0400",
+  "sema_id": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+  "sema_ref": "Criteria#92ab",
+  "sema_stub": "92ab",
+  "invariants": [
+    "Decidable: applying the rule to a candidate yields pass or fail without further judgment.",
+    "Quantified criteria carry `metric`, `threshold` and `comparator` together; none of the three is meaningful alone."
+  ],
   "dependencies": {
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     }
   },
   "sema_layer": "Infrastructure",

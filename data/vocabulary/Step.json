@@ -1,15 +1,15 @@
 {
   "handle": "Step",
-  "mechanism": "An atomic unit of action. It specifies: 1. Preconditions (what must be true before), 2. Action (what to do), 3. Postconditions (what will be true after), 4. Rollback (how to undo if needed). It acts as a node in a causal graph.",
+  "mechanism": "A unit of action that declares its own boundaries. It specifies: 1. Preconditions (what must be true before), 2. Action (what to do), 3. Postconditions (what will be true after), 4. Rollback (how to undo if needed). It acts as a node in a causal graph.",
   "gloss": "Atomic action with pre/post conditions",
   "failure_modes": [
-    "Precondition Violation: Step executed when preconditions not met.",
-    "Postcondition Failure: Step completes but postconditions not achieved.",
-    "Rollback Failure: Unable to undo a failed step."
+    "Precondition violation: executed when preconditions were not met.",
+    "Postcondition failure: completes without achieving its postconditions.",
+    "Rollback failure: the declared undo does not restore the prior state, so the step is neither done nor undone."
   ],
   "invariants": [
-    "Atomicity: A Step either fully completes or fully rolls back.",
-    "Causal Closure: Step preconditions must be satisfiable by prior steps or initial state."
+    "Declares whether it can be rolled back, and how. A step that cannot be undone says so.",
+    "Causal closure: preconditions are satisfiable by prior steps or the initial state."
   ],
   "_meta": {
     "tier": 1,
@@ -20,17 +20,23 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7"
     ]
   },
-  "sema_id": "sema:Step#mh:SHA-256:aa73ad96f51e2c5fe3a5a42d251855eea9c8a75c93a50539f4d6c6635c8dd7d7",
-  "sema_ref": "Step#aa73",
-  "sema_stub": "aa73",
+  "sema_id": "sema:Step#mh:SHA-256:fa207e6f70e14a67e3baa7e4ad4df9ece59ba4d07083fbbcc992332959e1520a",
+  "sema_ref": "Step#fa20",
+  "sema_stub": "fa20",
   "data_schema": {
     "type": "object",
     "required": [
       "step_id",
       "action_type",
-      "params"
+      "params",
+      "preconditions",
+      "postconditions",
+      "rollback"
     ],
     "properties": {
       "step_id": {
@@ -61,6 +67,18 @@
             "type": "string"
           }
         }
+      },
+      "preconditions": {
+        "type": "array",
+        "description": "What must be true before the action runs."
+      },
+      "postconditions": {
+        "type": "array",
+        "description": "What will be true after it succeeds."
+      },
+      "rollback": {
+        "type": "object",
+        "description": "How to undo the action, or an explicit statement that it cannot be undone."
       }
     }
   },

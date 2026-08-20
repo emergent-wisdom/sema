@@ -3,10 +3,12 @@
   "mechanism": "The agent first generates the 'negative space' (the {{constraint}}s, safety rules, and format requirements), defining a rigid container. Only THEN does it generate the content to fill that container. It separates 'form' from 'function'. This prevents the generation of content that is creative but invalid.",
   "gloss": "Defining boundaries before content",
   "failure_modes": [
-    "Over-constraining the solution space."
+    "Over-constraining the solution space.",
+    "Retrofitting: constraints are loosened mid-pass to admit content already generated, which reverses the pattern."
   ],
   "invariants": [
-    "Constraints immutable during operation."
+    "The {{constraint}} set is generated before any content.",
+    "Constraints are fixed for the duration of a generation pass; revising them starts a new pass."
   ],
   "_meta": {
     "tier": 2,
@@ -14,11 +16,14 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "supersedes": [
+      "sema:ConstraintFirst#mh:SHA-256:10b8fcc765c09236232529dc50ab31552658027fe8df05d72bbf5c22725a7fa7"
     ]
   },
-  "sema_id": "sema:ConstraintFirst#mh:SHA-256:10b8fcc765c09236232529dc50ab31552658027fe8df05d72bbf5c22725a7fa7",
-  "sema_ref": "ConstraintFirst#10b8",
-  "sema_stub": "10b8",
+  "sema_id": "sema:ConstraintFirst#mh:SHA-256:7d699d6c7f5c44f16125377bb24781286e9fec56f46a307130e6c8ae13473b4d",
+  "sema_ref": "ConstraintFirst#7d69",
+  "sema_stub": "7d69",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"

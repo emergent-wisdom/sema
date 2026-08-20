@@ -3,8 +3,9 @@
   "mechanism": "A gap-filler used when {{datum}} is missing; treated as true temporarily to allow thinking to proceed. Must be tracked and validated.",
   "gloss": "Provisional truth",
   "invariants": [
-    "Provisionality: Must be explicitly flagged as unverified.",
-    "Tracking: Must maintain a link to the missing datum it replaces."
+    "Provisionality: must be explicitly flagged as unverified.",
+    "Tracking: must name what it stands in for \u2014 a missing {{datum}}, or a judgment not made.",
+    "Discharge: must carry a validation deadline or an invalidation trigger."
   ],
   "_meta": {
     "ring": 1,
@@ -12,13 +13,17 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Assumption#mh:SHA-256:46479820ecd594cd6c789bae96a1eb67b14d6b04d2e4371913852292c0a402a0"
     ]
   },
   "data_schema": {
     "type": "object",
     "required": [
       "premise",
-      "risk_level"
+      "risk_level",
+      "criticality"
     ],
     "properties": {
       "premise": {
@@ -46,9 +51,14 @@
       }
     }
   },
-  "sema_id": "sema:Assumption#mh:SHA-256:46479820ecd594cd6c789bae96a1eb67b14d6b04d2e4371913852292c0a402a0",
-  "sema_ref": "Assumption#4647",
-  "sema_stub": "4647",
+  "sema_id": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
+  "sema_ref": "Assumption#d99b",
+  "sema_stub": "d99b",
+  "failure_modes": [
+    "Calcified: depended on far downstream from where it was made, with nothing prompting a re-check.",
+    "Mutually inconsistent set: two assumptions each close a local gap and contradict each other in the same chain.",
+    "Judgment recorded as datum-gap: the premise replaces a decision nobody made rather than a fact nobody has, so validating it has no target."
+  ],
   "dependencies": {
     "references": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"

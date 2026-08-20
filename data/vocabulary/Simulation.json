@@ -1,27 +1,34 @@
 {
   "handle": "Simulation",
-  "mechanism": "Sandboxed Execution. Forks the current World {{state}} (W) into W'. Executes Action (A) in W'. Discards W' and returns {{outcome}} (O). W remains immutable.",
+  "mechanism": "Forks the current World {{state}} (W) into W', executes an action in W', discards W' and returns the {{outcome}}. W remains immutable. The fork is what provides isolation, which is also its limit: only effects that flow through W are contained, so a {{sandbox}} is required wherever simulated code can reach resources the fork did not copy.",
   "gloss": "A virtualized execution",
   "_meta": {
     "tier": 1,
     "ring": 0,
     "supersedes": [
-      "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270"
+      "sema:Simulation#mh:SHA-256:80351d81041c870beacea4186f56e1f8703daf12578345859a7daf35a7dea270",
+      "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
+      "sema:Simulation#mh:SHA-256:1476bfa1b0f3290a98ba6f83a3d44865d7fd148af9a1343508e0f066b5ab30d9"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Simulation#mh:SHA-256:ebb11496dccf2bb9e9f483633e9fa618751af7dddcd5d6f8d0377e8d74b7aacf",
-  "sema_ref": "Simulation#ebb1",
-  "sema_stub": "ebb1",
+  "sema_id": "sema:Simulation#mh:SHA-256:1058e7090079e846251ed480d7afec0328809d22bebb6b205425b2de614787c3",
+  "sema_ref": "Simulation#1058",
+  "sema_stub": "1058",
   "invariants": [
-    "Isolation: Side effects in W' DO NOT leak to W."
+    "Isolation within the fork: side effects on W' do not propagate to W.",
+    "Isolation extends only to state captured by the fork. Effects reaching resources outside W require a {{sandbox}} boundary."
+  ],
+  "preconditions": [
+    "W is forkable \u2014 the world state can be snapshotted at the fidelity the simulation requires"
   ],
   "dependencies": {
     "references": {
-      "outcome": "sema:Outcome#mh:SHA-256:bac20a1c92f4883e971592d642911e215370afbb56ea8afa18313a1f2959d683",
+      "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03",
+      "sandbox": "sema:Sandbox#mh:SHA-256:7106e315b4bf7c5bd418fbab5c18e54be940367f77b8bde4756d1cb95beaa16b",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2"
     }
   },

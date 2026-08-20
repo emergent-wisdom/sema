@@ -56,7 +56,9 @@ def generate_tex():
 
             for cat in categories:
                 count = len(taxonomy[layer][cat])
-                examples = ", ".join(taxonomy[layer][cat][:3])  # First 3
+                examples = ", ".join(
+                    f"\\mbox{{{escape_latex(handle)}}}" for handle in taxonomy[layer][cat][:3]
+                )  # First 3; keep CamelCase handles intact.
                 f.write(f"& {escape_latex(cat)} & {count} & {escape_latex(examples)} \\\\\n")
             f.write("\\midrule\n")
 
@@ -90,9 +92,8 @@ def generate_tex():
             layer_count = sum(len(taxonomy[layer][cat]) for cat in taxonomy[layer])
             desc = descriptions.get(layer, "")
 
-            f.write(
-                f"\n\\paragraph{{{escape_latex(layer)} Layer ({layer_count} patterns)}} {desc}\n"
-            )
+            f.write("\n\\Needspace{4\\baselineskip}\n")
+            f.write(f"\\paragraph{{{escape_latex(layer)} Layer ({layer_count} patterns)}} {desc}\n")
             f.write("\\begin{itemize}\n")
 
             for cat in sorted(taxonomy[layer].keys()):

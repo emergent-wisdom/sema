@@ -23,7 +23,7 @@
       }
     }
   },
-  "mechanism": "A multi-dimensional array of numbers representing a position in a semantic space.",
+  "mechanism": "A multi-dimensional array of numbers. The space it indexes is the caller's \u2014 semantic embeddings, statistical samples, geometric coordinates \u2014 and the pattern fixes only that the values are numeric and ordered.",
   "gloss": "Semantic position array",
   "_meta": {
     "ring": 0,
@@ -34,11 +34,17 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478"
     ]
   },
-  "sema_id": "sema:Vector#mh:SHA-256:8dacf45514d39fe2fd599b9752f8767acceffe63f4885fc8c53cf0c398809478",
-  "sema_ref": "Vector#8dac",
-  "sema_stub": "8dac",
+  "sema_id": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993",
+  "sema_ref": "Vector#4268",
+  "sema_stub": "4268",
   "sema_layer": "Infrastructure",
-  "sema_category": "Data Structures"
+  "sema_category": "Data Structures",
+  "invariants": [
+    "`dimensions` equals the length of `values`."
+  ]
 }

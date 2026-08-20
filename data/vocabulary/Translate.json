@@ -1,6 +1,6 @@
 {
   "handle": "Translate",
-  "mechanism": "The process of converting {{datum}} from one representation (Language, Format, {{protocol}}, Ontology) to target content while preserving its semantic meaning. It requires a Source Schema and a Target Schema. It is distinct from 'Summarize' (which loses information) and '{{interpret}}' (which adds meaning).",
+  "mechanism": "The process of converting {{datum}} from one representation (Language, Format, {{protocol}}, Ontology) to target content while preserving its semantic meaning. It requires a Source Schema and a Target Schema. It is distinct from 'Summarize' (which loses information) and '{{interpret}}' (which adds meaning). Whether a conversion inverts is a property of the pair, not of this pattern: see {{reversibility}}.",
   "gloss": "Convert form while preserving meaning",
   "failure_modes": [
     "Lossy Translation: Semantic nuance lost in conversion (e.g., 'Schadenfreude' -> 'Happy').",
@@ -8,8 +8,8 @@
     "Format Error: Output violates the strict syntax of the target schema."
   ],
   "invariants": [
-    "Semantic Equivalence: Meaning(Source) == Meaning(Target).",
-    "{{reversibility}}: In ideal cases, Translate(Target, Source) should recover the original (Round-trip)."
+    "The target introduces no content absent from the source.",
+    "Nothing is dropped by design: no step selects or compresses what to keep."
   ],
   "preconditions": [
     "Source data matches Source Schema",
@@ -22,24 +22,25 @@
     "tier": 1,
     "ring": 1,
     "supersedes": [
-      "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429"
+      "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429",
+      "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e",
-  "sema_ref": "Translate#b7bf",
-  "sema_stub": "b7bf",
+  "sema_id": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400",
+  "sema_ref": "Translate#8a85",
+  "sema_stub": "8a85",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "references": {
-      "interpret": "sema:Interpret#mh:SHA-256:ff6daf0b5967deb7da11c1a2ea74ce7e6ab9baf6362a53045bff656b0c5671dc",
-      "protocol": "sema:Protocol#mh:SHA-256:e53765fe6abfb95285f1b698b11cc01ab3f7e1d8f82f57186f60127d92c564db",
-      "reversibility": "sema:Reversibility#mh:SHA-256:af6fad316d76d324d6c2ac02a69fc1f2f095bfc69a48c33578e599c431e9598e"
+      "interpret": "sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa",
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
+      "reversibility": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37"
     }
   },
   "sema_layer": "Mind",

@@ -1,59 +1,36 @@
-import hashlib
-import json
 from typing import Any
 
-
-def _hash_bytes(data: bytes) -> str:
-    """SHA-256 hash of bytes, returns full hex string."""
-    return hashlib.sha256(data).hexdigest()
+from .hashing import catalog_root, pattern_hash_from_sema_id
 
 
-def _extract_semantic_fields(pattern: dict[str, Any]) -> dict[str, Any]:
-    """Extract only the semantic fields that define meaning (not metadata)."""
-    semantic_keys = [
-        "dependencies",
-        "signature",
-        "data_schema",
-        "mechanism",
-        "gloss",
-        "invariants",
-        "preconditions",
-        "postconditions",
-        "parameters",
-        "failure_modes",
-        "derived_from",
-    ]
-    return {k: pattern[k] for k in semantic_keys if k in pattern}
-
-
-def _canonicalize(data: dict[str, Any]) -> bytes:
-    """Deterministic JSON bytes: sorted keys, no whitespace."""
-    return json.dumps(data, sort_keys=True, separators=(",", ":")).encode("utf-8")
-
-
-def _compute_context_hash(patterns: list[dict[str, Any]], stub_length: int = 8) -> str:
+def _compute_context_hash(
+    patterns: list[dict[str, Any]],
+    handles: list[str],
+    stub_length: int = 8,
+) -> str:
     """
-    Compute Merkle root of a set of patterns.
+    Compute the catalog Merkle root of a set of resolved handle bindings.
 
-    1. Extract semantic fields from each pattern
-    2. Canonicalize to bytes
-    3. Hash each pattern
-    4. SORT hashes (set-consistency: order doesn't matter)
-    5. Hash the concatenated sorted hashes
-
-    Returns stub of specified length.
+    Context negotiation starts from human-readable handles, so it must bind
+    each requested handle to the exact stored content address. A digest-only
+    set would miss a swap such as ``Alpha -> x, Bravo -> y`` versus
+    ``Alpha -> y, Bravo -> x``. Returns a prefix of the full root for
+    cooperative drift detection.
     """
-    item_hashes = []
-    for pattern in patterns:
-        semantic = _extract_semantic_fields(pattern)
-        canonical = _canonicalize(semantic)
-        item_hashes.append(_hash_bytes(canonical))
+    if len(patterns) != len(handles):
+        raise ValueError("context patterns and handles must have the same length")
 
-    # Sort for set-consistency: ["A", "B"] == ["B", "A"]
-    item_hashes.sort()
+    bindings = []
+    for index, (pattern, handle) in enumerate(zip(patterns, handles, strict=True)):
+        try:
+            pattern_hash = pattern_hash_from_sema_id(
+                pattern.get("sema_id"),
+                expected_handle=handle,
+            )
+        except ValueError as exc:
+            raise ValueError(
+                f"context pattern at index {index} has an invalid sema_id: {exc}"
+            ) from exc
+        bindings.append((handle, pattern_hash))
 
-    # Merkle root: hash of concatenated sorted hashes
-    aggregate = "".join(item_hashes).encode("utf-8")
-    root_hash = _hash_bytes(aggregate)
-
-    return root_hash[:stub_length]
+    return catalog_root(bindings)[:stub_length]

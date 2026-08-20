@@ -1,6 +1,5 @@
 {
   "handle": "ManifestPlanning",
-  "derived_from": "sema:Plan#mh:SHA-256:b30fa645bb718a90c560e168a40ad6a9d2f6a1e3f40328b2f7220feaa112e20b",
   "gloss": "Transform FrameSpec into ExecutionManifest via optimization",
   "mechanism": "The architectural phase of workflow orchestration. It produces a structured {{plan}} by performing {{think}} to transform a {{frame_spec}} into a runnable {{execution_manifest}}. This process must {{optimize}} the step sequence for resource feasibility and generate a strict 'Definition of Done'.",
   "signature": [
@@ -18,29 +17,31 @@
     "tier": 2,
     "ring": 1,
     "supersedes": [
-      "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d"
+      "sema:ManifestPlanning#mh:SHA-256:8f617b10de4644e96e729f2da39560243e42755808fee6369f9330a5f9c7f66d",
+      "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
+      "sema:ManifestPlanning#mh:SHA-256:534f0732181541a00cc070bdf48758b0c052138380fb0e6979e551f95518604e"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:ManifestPlanning#mh:SHA-256:b7f211fc4e9af89158c6d7f76bc2dc1b33b78246975ab6d5fc3ee238b9f5c852",
-  "sema_ref": "ManifestPlanning#b7f2",
-  "sema_stub": "b7f2",
+  "sema_id": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
+  "sema_ref": "ManifestPlanning#8bd4",
+  "sema_stub": "8bd4",
   "dependencies": {
     "accepts": {
-      "frame_spec": "sema:FrameSpec#mh:SHA-256:c9bc3b38bb41a0bcde26967aaebf526a344444a4f516da4fa056f8c0c347a72e"
+      "frame_spec": "sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42"
     },
     "composes_with": {
-      "optimize": "sema:Optimize#mh:SHA-256:94e09b6b86c58500e9716efa1c955fc115e5179b95e48bd45c980af77d7c4c17",
-      "think": "sema:Think#mh:SHA-256:daf8d0c7b7ab3e80e062d1981f92edf13092461c865461ea29b2428e81b060f5"
+      "optimize": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674",
+      "think": "sema:Think#mh:SHA-256:5177aa242fffd16d7ed24e5f8c3e0d5e86c5a26e299cc2d4b8a07f4756126025"
     },
     "references": {
-      "plan": "sema:Plan#mh:SHA-256:02b62f57c699bb389876d147d715a7ce074f7838a1800226c165ffc601522c3d"
+      "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32"
     },
     "yields": {
-      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:4342d3162e552fdbfcde1d594a4156ca6f2e0e42fcb20a9be2bc5ba54a4af0d0"
+      "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1"
     }
   },
   "sema_layer": "Mind",

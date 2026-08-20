@@ -1,20 +1,24 @@
 {
   "handle": "Assessment",
-  "mechanism": "A structured qualitative evaluation of a target artifact, produced by critique, containing identified strengths, weaknesses, and specific recommendations for improvement. It serves as the input for reflexion and refinement loops.",
+  "mechanism": "A structured qualitative evaluation of a target artifact, produced by critique. It contains one or more specific recommendations for improvement, each tied to a specific part of the target or to its declared whole; it may also record strengths and weaknesses. It serves as input to reflexion and refinement loops.",
   "gloss": "Structured qualitative feedback",
   "invariants": [
     "Actionability: Must contain at least one specific recommendation.",
-    "Reference: Must cite specific parts of the target artifact."
+    "Reference: every weakness and recommendation identifies what it applies to \u2014 a specific part of the target artifact or its declared whole."
   ],
-  "sema_id": "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d",
-  "sema_ref": "Assessment#39df",
-  "sema_stub": "39df",
+  "sema_id": "sema:Assessment#mh:SHA-256:167a9fa1717f905acbbabb8d5d64b19001b3684a4057f252ed67615ce022dba4",
+  "sema_ref": "Assessment#167a",
+  "sema_stub": "167a",
   "_meta": {
     "ring": 1,
     "tier": 1,
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "supersedes": [
+      "sema:Assessment#mh:SHA-256:39dfae5d2333055f4c1f9c45e64059d749aeff7f9c54af69f0b3dc45d6fbc60d",
+      "sema:Assessment#mh:SHA-256:9b49ac10f27af91620b7f6d9feee2c39d4977a89c5da5b93f03c4e9a4a0aa664"
     ]
   },
   "data_schema": {
@@ -44,6 +48,7 @@
       },
       "recommendations": {
         "type": "array",
+        "minItems": 1,
         "items": {
           "type": "string"
         },

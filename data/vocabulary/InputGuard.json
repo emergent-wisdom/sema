@@ -1,6 +1,6 @@
 {
   "handle": "InputGuard",
-  "mechanism": "A validation filter that sanitizes inputs before they reach a sensitive component. It enforces schema compliance, type safety, and constraint satisfaction. Upon violation, it triggers a fail-closed behavior, rejecting the input and logging the attempt.",
+  "mechanism": "A validation filter that sanitizes inputs before they reach a sensitive component. It enforces schema compliance, type safety, and constraint satisfaction. On violation it applies {{fail_closed}} behaviour, rejecting the input and logging the attempt.",
   "gloss": "Input validation and sanitization",
   "failure_modes": [
     "Bypass via unexpected encoding or type coercion.",
@@ -11,16 +11,28 @@
     "ring": 0,
     "caution": "Validation boundary \u2014 bypass enables injection or unexpected state.",
     "supersedes": [
-      "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb"
+      "sema:InputGuard#mh:SHA-256:077022daa9665f3562ad8253b9b6c63ccf7e71d84b74ab48c44e6de421b8bdcb",
+      "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
+      "sema:InputGuard#mh:SHA-256:8c3e3319216468f86dc7e8baa97d91f18110bedc30643db39f9deb2ef52a8be9"
     ],
     "path": [
       "Infrastructure",
       "Verification"
     ]
   },
-  "sema_ref": "InputGuard#fb82",
-  "sema_id": "sema:InputGuard#mh:SHA-256:fb8233411dd70e49aba71650dccb3ccbf6704261d5e75d2ff0edef6990e415be",
-  "sema_stub": "fb82",
+  "sema_ref": "InputGuard#f33c",
+  "sema_id": "sema:InputGuard#mh:SHA-256:f33c7c914e869216a9cd3dcf182648cc9363c46b40d46fc45621145c8878134b",
+  "sema_stub": "f33c",
+  "invariants": [
+    "Declares the schema or constraint it enforces.",
+    "Names the component it guards.",
+    "No input reaches the guarded component without satisfying that constraint."
+  ],
+  "dependencies": {
+    "references": {
+      "fail_closed": "sema:FailClosed#mh:SHA-256:d23bf6663e53ecbee5c12a120f4fe379c1dfe8bc05f0b9bf2250703d4131faaf"
+    }
+  },
   "sema_layer": "Infrastructure",
   "sema_category": "Verification"
 }
