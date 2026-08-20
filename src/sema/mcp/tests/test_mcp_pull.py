@@ -15,8 +15,8 @@ if importlib.util.find_spec("mcp") is None:
 
 
 def _run_module_check(env_overrides: dict[str, str]) -> set[str]:
-    """Import the MCP server module in a clean subprocess and return the set
-    of symbols prefixed with `sema_` that the module exposes. Running in a
+    """Import the MCP server module in a clean subprocess and return its
+    registered MCP tool names. Running in a
     subprocess guarantees a clean import — the MCP FastMCP singleton mutates
     on `@mcp.tool()` decoration, so reimporting in-process would leak state
     between tests.
@@ -33,35 +33,28 @@ def _run_module_check(env_overrides: dict[str, str]) -> set[str]:
             env.pop(k, None)
 
     code = (
-        "import sys; from sema.mcp import server; "
-        "print(','.join(sorted(n for n in dir(server) if n.startswith('sema_'))))"
+        "import asyncio; from sema.mcp import server; "
+        "tools = asyncio.run(server.mcp.list_tools()); "
+        "print(','.join(sorted(tool.name for tool in tools)))"
     )
     out = subprocess.check_output([sys.executable, "-c", code], env=env, text=True)
     return set(out.strip().split(","))
 
 
 class TestSemaPullRegistration(unittest.TestCase):
-    def test_pull_registered_by_default(self):
-        """With no SEMA_DISABLE_PULL set, sema_pull is an exposed MCP tool."""
-        symbols = _run_module_check({})
-        self.assertIn("sema_pull", symbols)
+    def test_public_write_tool_names_and_env_opt_outs(self):
+        write_tool_names = {"sema_mint", "sema_pull", "_sema_mint", "_sema_pull"}
+        cases = [
+            ({}, {"sema_mint", "sema_pull"}),
+            ({"SEMA_DISABLE_MINT": "true"}, {"sema_pull"}),
+            ({"SEMA_DISABLE_PULL": "true"}, {"sema_mint"}),
+        ]
 
-    def test_mint_registered_by_default(self):
-        """0.1.28+ flips mint from opt-in to opt-out. Default is exposed."""
-        symbols = _run_module_check({})
-        self.assertIn("sema_mint", symbols)
-
-    def test_pull_disabled_by_env(self):
-        """SEMA_DISABLE_PULL=true removes the tool from the registered set."""
-        symbols = _run_module_check({"SEMA_DISABLE_PULL": "true"})
-        self.assertNotIn("sema_pull", symbols)
-        # Other tools unaffected.
-        self.assertIn("sema_search", symbols)
-
-    def test_mint_disabled_by_env(self):
-        """SEMA_DISABLE_MINT=true removes the mint tool."""
-        symbols = _run_module_check({"SEMA_DISABLE_MINT": "true"})
-        self.assertNotIn("sema_mint", symbols)
+        for env_overrides, expected in cases:
+            with self.subTest(env_overrides=env_overrides):
+                tools = _run_module_check(env_overrides)
+                self.assertEqual(tools & write_tool_names, expected)
+                self.assertIn("sema_search", tools)
 
 
 class TestSemaPullOutput(unittest.TestCase):

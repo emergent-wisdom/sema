@@ -133,8 +133,8 @@ class TestSemaMintTool(unittest.TestCase):
 class TestConditionalRegistration(unittest.TestCase):
     """Tests for SEMA_DISABLE_MINT env var gating.
 
-    Registration is opt-out: `_sema_mint` is wired into the MCP tool registry
-    by default at import time, and `SEMA_DISABLE_MINT=true` hides it. The
+    Registration is opt-out: `_sema_mint` is exposed under the documented
+    public name `sema_mint`, and `SEMA_DISABLE_MINT=true` hides it. The
     opt-out env var is asserted on a fresh subprocess import in
     `src/sema/mcp/tests/test_mcp_pull.py`; this class covers the in-process
     invariants (default registration, callable reachability, and idempotent
@@ -142,11 +142,12 @@ class TestConditionalRegistration(unittest.TestCase):
     """
 
     def test_mint_registered_by_default(self):
-        """With no SEMA_DISABLE_MINT set, _sema_mint is a registered MCP tool."""
+        """Tool discovery exposes the documented name without an underscore."""
         tools = server.mcp._tool_manager._tools
         env_val = os.environ.get("SEMA_DISABLE_MINT", "").lower()
         if env_val != "true":
-            self.assertIn("_sema_mint", tools)
+            self.assertIn("sema_mint", tools)
+            self.assertNotIn("_sema_mint", tools)
 
     def test_mint_function_exists_regardless(self):
         """_sema_mint function always exists as a callable, regardless of
@@ -156,8 +157,9 @@ class TestConditionalRegistration(unittest.TestCase):
     def test_manual_registration_is_idempotent(self):
         """Re-registering _sema_mint keeps it in the tool registry."""
         tools = server.mcp._tool_manager._tools
-        server.mcp.tool()(_sema_mint)
-        self.assertIn("_sema_mint", tools)
+        server.mcp.tool(name="sema_mint")(_sema_mint)
+        self.assertIn("sema_mint", tools)
+        self.assertNotIn("_sema_mint", tools)
 
 
 if __name__ == "__main__":
