@@ -20,6 +20,7 @@ from sema.core.hashing import (
     generate_sema_hash,
     merkle_hash,
     resolve_dependencies_to_sema_ids,
+    strict_json_loads,
 )
 
 
@@ -111,6 +112,31 @@ class TestCanonicalFormIsHashInput:
         assert merkle_hash(obj) == merkle_hash(obj)
 
 
+class TestCanonicalInputDomain:
+    @pytest.mark.parametrize("value", [float("nan"), float("inf"), float("-inf")])
+    def test_non_finite_numbers_fail_closed(self, value):
+        with pytest.raises(ValueError, match="non-finite"):
+            merkle_hash(value)
+
+    @pytest.mark.parametrize("value", [("tuple",), b"bytes", {1: "non-string key"}])
+    def test_python_only_values_fail_closed(self, value):
+        with pytest.raises(ValueError, match="canonical JSON|object keys"):
+            merkle_hash(value)
+
+    def test_lone_surrogate_fails_closed(self):
+        with pytest.raises(ValueError, match="Unicode scalar"):
+            merkle_hash("\ud800")
+
+    @pytest.mark.parametrize("source", ["NaN", "Infinity", "-Infinity", "1e400", "-1e400"])
+    def test_strict_json_rejects_non_finite_tokens_and_overflow(self, source):
+        with pytest.raises(ValueError, match="non-finite"):
+            strict_json_loads(source)
+
+    def test_strict_json_rejects_duplicate_object_members(self):
+        with pytest.raises(ValueError, match="duplicate key"):
+            strict_json_loads('{"a":1,"a":2}')
+
+
 class TestDependencyAliasCanonicalization:
     def test_single_alias_keyed_by_handle(self):
         deps = {"references": {"base": "TargetHandle#abc1"}}
@@ -155,6 +181,13 @@ class TestDependencyAliasCanonicalization:
         refs = resolved["references"]["gate"]
         assert isinstance(refs, list) and len(refs) == 2
         assert all(r == f"sema:Gate#mh:SHA-256:{'e' * 64}" for r in refs)
+
+    def test_resolver_rejects_non_string_multi_ref_members(self):
+        with pytest.raises(ValueError, match="must contain only strings"):
+            resolve_dependencies_to_sema_ids(
+                {"references": {"gate": ["Gate#aa11", 1]}},
+                {"Gate": "e" * 64}.get,
+            )
 
 
 class TestSpecializationCompatibility:

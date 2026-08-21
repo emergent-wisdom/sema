@@ -472,9 +472,12 @@ def apply_changes(
 def _validate_pattern_file(file_path: Path) -> dict:
     """Validate a single pattern file. Returns {error, data, hash}."""
     try:
-        with open(file_path) as f:
-            data = json.load(f)
-    except json.JSONDecodeError as e:
+        from ..core.hashing import strict_json_loads
+
+        data = strict_json_loads(file_path.read_bytes(), label=str(file_path))
+        if not isinstance(data, dict):
+            raise ValueError(f"{file_path} must contain one JSON object")
+    except ValueError as e:
         return {"error": f"Invalid JSON in {file_path}: {e}", "data": None}
     except Exception as e:
         return {"error": f"Cannot read {file_path}: {e}", "data": None}

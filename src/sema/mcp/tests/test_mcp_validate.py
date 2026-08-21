@@ -90,11 +90,37 @@ class TestSemaValidate(unittest.TestCase):
         self.assertFalse(result["valid"])
         self.assertTrue(any("Invalid JSON" in err for err in result["errors"]))
 
+    def test_duplicate_json_member_fails(self):
+        result = json.loads(
+            self.server.sema_validate(
+                '{"handle":"First","handle":"Second","mechanism":"A mechanism"}'
+            )
+        )
+
+        self.assertFalse(result["valid"])
+        self.assertTrue(any("duplicate key" in err for err in result["errors"]))
+
     def test_non_object_json_fails(self):
         result = json.loads(self.server.sema_validate("[]"))
 
         self.assertFalse(result["valid"])
         self.assertEqual(result["errors"], ["Pattern JSON must be an object"])
+
+    def test_non_string_handles_fail_cleanly(self):
+        for bad_handle in (1, None, ["Pattern"]):
+            with self.subTest(handle=bad_handle):
+                pattern = {
+                    "handle": bad_handle,
+                    "mechanism": "A mechanism.",
+                    "_meta": {
+                        "path": ["Infrastructure", "Primitives"],
+                        "ring": 0,
+                        "tier": 1,
+                    },
+                }
+                result = json.loads(self.server.sema_validate(json.dumps(pattern)))
+                self.assertFalse(result["valid"])
+                self.assertTrue(result["errors"])
 
 
 if __name__ == "__main__":

@@ -1,0 +1,238 @@
+{
+  "format": "sema-canonicalization-v2-test-vectors-v1",
+  "canonicalization": "semahash-v2",
+  "digest": "SHA-256",
+  "valid": [
+    {
+      "name": "empty-string",
+      "input_json": "\"\"",
+      "canonical_json": "\"\"",
+      "preimage_hex": "733a",
+      "sha256": "05d8bd490f04e608c530dc30d63647d5d5685512ba40ce9dbd61a5fe509fa5df"
+    },
+    {
+      "name": "unicode-and-whitespace",
+      "input_json": "\" e\\u0301\\t  hello \"",
+      "canonical_json": "\"\\u00e9 hello\"",
+      "preimage_hex": "733ac3a92068656c6c6f",
+      "sha256": "3536d773ca84b35caeeb1db5eebb465e7c1a05ac1d66793bc750dd0671320fd5"
+    },
+    {
+      "name": "null",
+      "input_json": "null",
+      "canonical_json": "null",
+      "preimage_hex": "703a6e756c6c",
+      "sha256": "05b74bed771c4383b19d09e8e05e94bee43c2c14a83604102d53d838eeae2f91"
+    },
+    {
+      "name": "false",
+      "input_json": "false",
+      "canonical_json": "false",
+      "preimage_hex": "703a66616c7365",
+      "sha256": "c9a4970184b58d9b301a004b24265c1e57dd9827bfcda18c411d4337bb0f984d"
+    },
+    {
+      "name": "true",
+      "input_json": "true",
+      "canonical_json": "true",
+      "preimage_hex": "703a74727565",
+      "sha256": "f7494e129e7fb80d9fa29dc0ae5179d32a8b846a78278664652ce84ff4fb6f3b"
+    },
+    {
+      "name": "integer-one",
+      "input_json": "1",
+      "canonical_json": "1",
+      "preimage_hex": "703a31",
+      "sha256": "aba6e55ba496a51cf125b18a9c107010e31fe9821e0cda8ff58905e23101f174"
+    },
+    {
+      "name": "integer-negative-zero",
+      "input_json": "-0",
+      "canonical_json": "0",
+      "preimage_hex": "703a30",
+      "sha256": "0426a3b5ebe27a4c5365d1e6da00ceeeb3f940fba1f939149bd12f4d2b76a32a"
+    },
+    {
+      "name": "real-one",
+      "input_json": "1.0",
+      "canonical_json": "1.0",
+      "preimage_hex": "703a312e30",
+      "sha256": "4506fb72fd871194d147a64285d4beb1f21453db9e5f7024ae0c731dcce78487"
+    },
+    {
+      "name": "negative-zero-real",
+      "input_json": "-0.0",
+      "canonical_json": "-0.0",
+      "preimage_hex": "703a2d302e30",
+      "sha256": "d1043a3e64d8a81fece05893bb3a2b297fa5c4619943b0f4e6a64a759e064959"
+    },
+    {
+      "name": "small-exponent",
+      "input_json": "1e-6",
+      "canonical_json": "1e-06",
+      "preimage_hex": "703a31652d3036",
+      "sha256": "4325def082a240dd2b95691e24ac0d95d73983ce398eba73d6745f564c5fd15d"
+    },
+    {
+      "name": "decimal-tenth",
+      "input_json": "0.1",
+      "canonical_json": "0.1",
+      "preimage_hex": "703a302e31",
+      "sha256": "0cb1664a072fb4af9f587a62614385a55589a145936a1907a872c391b95f72f1"
+    },
+    {
+      "name": "fixed-lower-bound",
+      "input_json": "1e-4",
+      "canonical_json": "0.0001",
+      "preimage_hex": "703a302e30303031",
+      "sha256": "825f2e991e33f55a256f16d50ef91e758b3294207b6025ab94ced3ebdec5cdfd"
+    },
+    {
+      "name": "scientific-below-fixed-bound",
+      "input_json": "1e-5",
+      "canonical_json": "1e-05",
+      "preimage_hex": "703a31652d3035",
+      "sha256": "2e3d17c0a2a7218ee502e4bfe48d446c148ca00251ddf05bc981d3ec8c2856f3"
+    },
+    {
+      "name": "fixed-upper-bound",
+      "input_json": "1e15",
+      "canonical_json": "1000000000000000.0",
+      "preimage_hex": "703a313030303030303030303030303030302e30",
+      "sha256": "3600f139282d7236c0e294b598637d6b502adc2fbfcd2e19076665c36e260f7d"
+    },
+    {
+      "name": "scientific-above-fixed-bound",
+      "input_json": "1e16",
+      "canonical_json": "1e+16",
+      "preimage_hex": "703a31652b3136",
+      "sha256": "e4ca36d4f8bebd6df95f6076304f682c93fb482e0930db04b2f65352bb6b4e83"
+    },
+    {
+      "name": "smallest-subnormal",
+      "input_json": "5e-324",
+      "canonical_json": "5e-324",
+      "preimage_hex": "703a35652d333234",
+      "sha256": "b08d1c50acf0a93bb33ae4cc5225a45e274f855ad7dc1a68466a197ebf759e8e"
+    },
+    {
+      "name": "minimum-normal",
+      "input_json": "2.2250738585072014e-308",
+      "canonical_json": "2.2250738585072014e-308",
+      "preimage_hex": "703a322e32323530373338353835303732303134652d333038",
+      "sha256": "43c7832349a9ff72c3612d7bfb82dd4c8dfbe5800103c3df5e569ba2c93465d7"
+    },
+    {
+      "name": "maximum-finite",
+      "input_json": "1.7976931348623157e308",
+      "canonical_json": "1.7976931348623157e+308",
+      "preimage_hex": "703a312e37393736393331333438363233313537652b333038",
+      "sha256": "b8a609692d843625a78c9abc354f0af46c5c9623bc1b38a2f4ae8e30d0d42518"
+    },
+    {
+      "name": "roundtrip-precision",
+      "input_json": "1.2345678901234567",
+      "canonical_json": "1.2345678901234567",
+      "preimage_hex": "703a312e32333435363738393031323334353637",
+      "sha256": "8b36087423a20b9e65a44bff70b8edede52ff4d2d0caf6e70230270d022f1fd5"
+    },
+    {
+      "name": "negative-fraction",
+      "input_json": "-123.5",
+      "canonical_json": "-123.5",
+      "preimage_hex": "703a2d3132332e35",
+      "sha256": "0cf8daf0cc14be5433326a24ce03fa90245785fa04a6504adc08085ae3883298"
+    },
+    {
+      "name": "positive-exponent",
+      "input_json": "1e20",
+      "canonical_json": "1e+20",
+      "preimage_hex": "703a31652b3230",
+      "sha256": "acde687931de399b2709fb7ce405c87ceb60b9ba699b0c52de2ebe57e3c118fa"
+    },
+    {
+      "name": "large-integer",
+      "input_json": "9007199254740993",
+      "canonical_json": "9007199254740993",
+      "preimage_hex": "703a39303037313939323534373430393933",
+      "sha256": "806870d70156e500d0a1c912842c551332d23046fce25b18b16db978bf1be1fd"
+    },
+    {
+      "name": "exact-whitespace-edges",
+      "input_json": "\"\\u00a0left\\u202f\\u202fmiddle\\u00a0\"",
+      "canonical_json": "\"left middle\"",
+      "preimage_hex": "733a6c656674206d6964646c65",
+      "sha256": "9bc9d93e535215a89c29226a96615aa609edda0072944d5a9b001562caec846c"
+    },
+    {
+      "name": "all-whitespace-code-points",
+      "input_json": "\"left\\t\\n\\u000b\\f\\r\\u001c\\u001d\\u001e\\u001f \\u0085\\u00a0\\u1680\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000right\"",
+      "canonical_json": "\"left right\"",
+      "preimage_hex": "733a6c656674207269676874",
+      "sha256": "e7b6ca11fc0562e31873e01616ac21393bc942df7dfb3116ffdde5e5e673fb4a"
+    },
+    {
+      "name": "non-whitespace-controls",
+      "input_json": "\"A\\u180e\\u200b\\ufeffB\"",
+      "canonical_json": "\"A\\u180e\\u200b\\ufeffB\"",
+      "preimage_hex": "733a41e1a08ee2808befbbbf42",
+      "sha256": "79ca54956df86e0709aef6d02f68e5ee28477ea332e8d803f8c77ec3c582ee41"
+    },
+    {
+      "name": "empty-list",
+      "input_json": "[]",
+      "canonical_json": "[]",
+      "preimage_hex": "6c3a",
+      "sha256": "95035cba8c6df149a87f124f6ece766b9bdf7835298bc4d80dd7fe224bb5d6fb"
+    },
+    {
+      "name": "empty-dict",
+      "input_json": "{}",
+      "canonical_json": "{}",
+      "preimage_hex": "643a",
+      "sha256": "394e0f7e2f800af2768228464ce30d58d764e4d1a516ce9b9c387af2f4f4984d"
+    },
+    {
+      "name": "ordered-list",
+      "input_json": "[\"a\",1]",
+      "canonical_json": "[\"a\",1]",
+      "preimage_hex": "6c3a6434333135643833613935646661656237396563633964346635623264363138303465383861616161636234316438353539373762393933323836343335633461626136653535626134393661353163663132356231386139633130373031306533316665393832316530636461386666353839303565323331303166313734",
+      "sha256": "bd3fa8723b488b1097230c2651489efa35e71eb4f366bce33f3b281ee242e125"
+    },
+    {
+      "name": "normalized-dict-order",
+      "input_json": "{\" b\":2,\"a\":1}",
+      "canonical_json": "{\"a\":1,\"b\":2}",
+      "preimage_hex": "643a64343331356438336139356466616562373965636339643466356232643631383034653838616161616362343164383535393737623939333238363433356334616261366535356261343936613531636631323562313861396331303730313065333166653938323165306364613866663538393035653233313031663137346433306563613262343038313039373038323935386465303038313939663934653463333265653631306438643836633661376537346238623461303039353534656464316635363961623230623233653337366230643339373138306339666564333834326430656264363731373437353164306163393038666264323562",
+      "sha256": "737ddda0f86f865b681699e83e91d9710ffa7fbf6304237e9cf3676e2b183b1e"
+    },
+    {
+      "name": "unicode-scalar-key-order",
+      "input_json": "{\"\\ud83d\\ude00\":1,\"\\ue000\":2}",
+      "canonical_json": "{\"\\ue000\":2,\"\\ud83d\\ude00\":1}",
+      "preimage_hex": "643a34353531373432376562613961313534336531646431343966633061373032646261363061613135616465383762623865316436356162393265343336363565346564643166353639616232306232336533373662306433393731383063396665643338343264306562643637313734373531643061633930386662643235623636656639333034336364376338663966646664366434303735373531613363316430336663623635666166393865393966633332363366623534313566346161626136653535626134393661353163663132356231386139633130373031306533316665393832316530636461386666353839303565323331303166313734",
+      "sha256": "0617dc2ee084093122e6178480a66a00eb744cc4d37107c4f957c555e92a8c26"
+    }
+  ],
+  "patterns": [
+    {
+      "name": "dependency-alias-multiplicity",
+      "input_json": "{\"handle\":\"AliasExample\",\"mechanism\":\"Uses {{first}} and {{second}}.\",\"dependencies\":{\"references\":{\"first\":\"sema:Gate#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"second\":\"sema:Gate#mh:SHA-256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}}}",
+      "hash": "d84c04c1111cfcbcf0640b2d0d4c14367b2dd945a6d0ef06d2043c43d2bf5356",
+      "full_id": "sema:AliasExample#mh:SHA-256:d84c04c1111cfcbcf0640b2d0d4c14367b2dd945a6d0ef06d2043c43d2bf5356",
+      "reference": "AliasExample#d84c",
+      "stub": "d84c"
+    }
+  ],
+  "invalid": [
+    {"name": "nan-token", "input_json": "NaN"},
+    {"name": "positive-infinity-token", "input_json": "Infinity"},
+    {"name": "negative-infinity-token", "input_json": "-Infinity"},
+    {"name": "overflowing-positive-real", "input_json": "1e400"},
+    {"name": "overflowing-negative-real", "input_json": "-1e400"},
+    {"name": "duplicate-object-member", "input_json": "{\"a\":1,\"a\":2}"},
+    {"name": "normalized-key-collision", "input_json": "{\"a \":1,\"a\":2}"},
+    {"name": "nfc-key-collision", "input_json": "{\"\\u00e9\":1,\"e\\u0301\":2}"},
+    {"name": "lone-surrogate", "input_json": "\"\\ud800\""}
+  ]
+}

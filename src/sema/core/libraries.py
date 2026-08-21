@@ -39,6 +39,7 @@ from .hashing import (
     SEMANTIC_ROOT_SCHEME,
     generate_sema_hash,
     pattern_hash_from_sema_id,
+    strict_json_loads,
     vocabulary_roots,
 )
 from .mint import mint_pattern
@@ -163,31 +164,10 @@ def library_data_dir(override: str | Path | None = None) -> Path:
 
 
 def _strict_json(data: bytes, *, label: str) -> dict[str, Any]:
-    def reject_duplicates(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
-        result: dict[str, Any] = {}
-        for key, value in pairs:
-            if key in result:
-                raise ValueError(f"duplicate key {key!r}")
-            result[key] = value
-        return result
-
-    def reject_non_finite(value: str) -> None:
-        raise ValueError(f"non-finite number {value!r} is not valid release JSON")
-
     try:
-        text = data.decode("utf-8")
-    except UnicodeDecodeError as exc:
-        raise LibraryError(f"{label} is not valid UTF-8") from exc
-    if text.startswith("\ufeff"):
-        raise LibraryError(f"{label} must be UTF-8 without a byte-order mark")
-    try:
-        value = json.loads(
-            text,
-            object_pairs_hook=reject_duplicates,
-            parse_constant=reject_non_finite,
-        )
-    except (json.JSONDecodeError, ValueError) as exc:
-        raise LibraryError(f"{label} is not valid strict JSON: {exc}") from exc
+        value = strict_json_loads(data, label=label)
+    except ValueError as exc:
+        raise LibraryError(str(exc)) from exc
     if not isinstance(value, dict):
         raise LibraryError(f"{label} must contain one JSON object")
     return value

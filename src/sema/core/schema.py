@@ -349,6 +349,7 @@ class SemaPattern(BaseModel):
             "hash-verifiable; new specialization claims should use `extends`."
         ),
     )
+
     data_schema: DataSchema | None = Field(
         default=None, description="Schema for Data Structures category"
     )
@@ -359,6 +360,17 @@ class SemaPattern(BaseModel):
     sema_stub: str | None = Field(default=None)
     sema_layer: str | None = Field(default=None)
     sema_category: str | None = Field(default=None)
+
+    @model_validator(mode="before")
+    @classmethod
+    def validate_canonical_json_domain(cls, value: Any) -> Any:
+        """Reject values that cannot participate in portable v2 hashing."""
+        from .hashing import validate_json_domain, validate_semantic_hash_input
+
+        validate_json_domain(value)
+        if isinstance(value, dict):
+            validate_semantic_hash_input(value)
+        return value
 
     @field_validator("handle")
     @classmethod

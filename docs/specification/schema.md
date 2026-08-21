@@ -9,7 +9,8 @@ Every Sema pattern is a JSON object adhering to this strict schema. This structu
   "handle": "PascalCaseName",
 
   // --- HASHED FIELDS (The Definition) ---
-  // These fields constitute the Identity. Changing one byte changes the Pattern ID.
+  // These fields constitute the Identity. Changing their canonical content changes
+  // the Pattern ID; raw spelling differences normalized by §4 do not.
   // There are exactly eleven, enumerated in §5.
 
   // 0. Specialisation: the pattern this one is a kind of.
@@ -148,22 +149,61 @@ The `signature` field declares the **Type Constructor** or **Functional Interfac
 
 If a pattern claims a signature like `Act(Deploy)`, it **MUST** actively invoke the necessary tools (e.g., `composes_with: { "deploy": "..." }`) to fulfill that contract. Empty claims are invalid.
 
-## 4. The Hashing Protocol (Merkle Tree)
+## 4. The Hashing Protocol (Normative Merkle Encoding)
 
 Sema uses a recursive Merkle Tree to generate the `sema_id`. This ensures that every component of the definition contributes to the identity.
 
-**The Calculation (canonicalization v2, semahash 0.3.0):**
+**The calculation (canonicalization v2, semahash 0.3.0):**
 
-Every node's hash input is prefixed with a single-byte type tag for domain
-separation, so structurally different values can never share a hash
-(`"1"` vs `1`, `["a","b"]` vs `{"a":"b"}`, `""` vs `[]` vs `{}`):
+The input is strict UTF-8 JSON without a byte-order mark, duplicate object
+members, non-finite or overflowing real numbers, or lone Unicode surrogates.
+JSON object keys are strings. Direct in-memory callers must supply the same
+JSON value domain; tuples, byte strings, and non-string object keys are rejected.
 
-1. **Strings:** `SHA-256("s:" + NFC-normalized, whitespace-collapsed text)`
-2. **Primitives** (number/bool/null): `SHA-256("p:" + canonical JSON)`
-3. **Lists** (order-preserving): `SHA-256("l:" + H(item1) + H(item2) + ...)`
-4. **Dicts:** `SHA-256("d:" + H(key1) + H(value1) + ...)`, entries sorted by
-   the **normalized** key. Keys that collide after normalization are
-   rejected (fail closed) rather than silently merged.
+Every node preimage starts with a two-byte ASCII domain tag. This separates
+structurally different values (`"1"` vs `1`, `["a","b"]` vs `{"a":"b"}`,
+and `""` vs `[]` vs `{}`):
+
+1. **Strings:** `SHA-256("s:" + normalized UTF-8 text)`. Apply Unicode NFC,
+   then remove leading and trailing runs of the following exact whitespace set
+   and replace every remaining non-empty run with U+0020: U+0009-U+000D,
+   U+001C-U+001F, U+0020, U+0085, U+00A0, U+1680, U+2000-U+200A,
+   U+2028-U+2029, U+202F, U+205F, and U+3000. The whitespace repertoire is a
+   protocol constant, not a property inherited from the host language.
+
+   **V2 compatibility boundary:** semahash v2 did not commit the Unicode data
+   version used by NFC. Changing that retroactively would alter some previously
+   valid external IDs. Deployments that require reproducibility across runtimes
+   must pin their runtime and Unicode normalization version. The golden vectors
+   cover stable interoperability cases, not every version-sensitive Unicode
+   string. Fully version-independent normalization requires a future hash
+   version with an explicit migration rule.
+2. **Primitives** (number/bool/null): `SHA-256("p:" + v2 primitive spelling)`.
+   Null and booleans are `null`, `true`, and `false`. Integer tokens remain
+   signed base-10 integers. Real tokens are finite IEEE 754 binary64 values and use
+   the compact finite number spelling produced by the compatibility expression
+   `json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False)`.
+   V2 deliberately distinguishes `1` from `1.0` and preserves `-0.0`. The real
+   spelling uses Python's shortest-roundtrip significant digits, with fixed
+   notation for decimal exponents from -4 through 15 and scientific notation otherwise;
+   scientific notation uses lowercase `e`, an explicit exponent sign, and at
+   least two exponent digits. An integral real in fixed notation retains `.0`.
+   This is not RFC 8785/JCS; non-Python implementations must match the golden
+   vectors below.
+
+   **V2 integer boundary:** semahash v2 did not commit a maximum integer size;
+   parsing and decimal conversion limits therefore follow the implementation
+   runtime. Deployments requiring reproducibility for unusually large integers
+   must pin that runtime. A portable size bound requires a future hash version
+   and migration rule.
+3. **Lists** (order-preserving): `SHA-256("l:" + H(item1) + H(item2) + ...)`.
+   Each child digest is the 64-character lowercase ASCII hexadecimal digest,
+   not its raw 32 bytes.
+4. **Dicts:** `SHA-256("d:" + H(key1) + H(value1) + ...)`, using the same
+   lowercase ASCII hexadecimal digests. Entries are sorted lexicographically by
+   the sequence of Unicode scalar values in the **normalized** key. This is
+   code-point order, not UTF-16 code-unit order. Keys that collide after
+   normalization are rejected rather than silently merged.
 5. **Dependencies:** aliases are authorial, so before hashing, entries are
    re-keyed by lowercased target handle. Multiple aliases referencing the
    same handle hash as a **sorted list** of refs — multiplicity is
@@ -176,6 +216,12 @@ separation, so structurally different values can never share a hash
 > same canonical form could hash two ways. 0.3.0 regenerated every
 > published hash; pre-0.3.0 vocabularies HALT on handshake and converge
 > via `sema pull`. See CHANGELOG 0.3.0.
+
+Normative interoperability cases, including exact preimages and rejection
+cases, are published in
+[`canonicalization-v2-test-vectors.json`](canonicalization-v2-test-vectors.json).
+The `input_json` field is intentionally a string so integer and real tokens
+remain distinguishable across host-language parsers.
 
 Reference implementations: `src/sema/core/hashing.py` (library) and
 `scripts/test_hash_verification.py` (dependency-free independent verifier —

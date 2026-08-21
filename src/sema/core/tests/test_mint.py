@@ -61,6 +61,105 @@ class TestMintPattern:
         assert result.success is False
         assert any("CamelCase" in e for e in result.errors)
 
+    @pytest.mark.parametrize("bad_handle", [1, None, ["Pattern"]])
+    def test_non_string_handle_fails_without_graph_mutation(self, temp_store, bad_handle):
+        pattern = {
+            "handle": bad_handle,
+            "mechanism": "Bad handle.",
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+        before_nodes = temp_store.graph.number_of_nodes()
+        before_edges = temp_store.graph.number_of_edges()
+
+        result = mint_pattern(pattern, temp_store)
+        bypass_result = temp_store.add_pattern(pattern)
+
+        assert result.success is False
+        assert bypass_result["success"] is False
+        assert temp_store.graph.number_of_nodes() == before_nodes
+        assert temp_store.graph.number_of_edges() == before_edges
+
+    def test_malformed_dependency_list_is_rejected_before_graph_mutation(self, temp_store):
+        pattern = {
+            "handle": "MalformedDependency",
+            "mechanism": "Uses {{bad}}.",
+            "dependencies": {"references": {"bad": ["Ghost", 1]}},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+        before_nodes = temp_store.graph.number_of_nodes()
+        before_edges = temp_store.graph.number_of_edges()
+
+        result = mint_pattern(pattern, temp_store)
+        bypass_result = temp_store.add_pattern(pattern)
+
+        assert result.success is False
+        assert bypass_result["success"] is False
+        assert "Dependency references must be strings" in bypass_result["error"]
+        assert temp_store._find_pattern_id("MalformedDependency") is None
+        assert temp_store.graph.number_of_nodes() == before_nodes
+        assert temp_store.graph.number_of_edges() == before_edges
+
+    def test_non_finite_value_is_rejected_before_graph_mutation(self, temp_store):
+        pattern = {
+            "handle": "NonFinite",
+            "mechanism": "A malformed pattern.",
+            "parameters": [
+                {
+                    "name": "threshold",
+                    "type": "Float",
+                    "range": "unbounded",
+                    "description": "Invalid non-finite default",
+                    "default": float("nan"),
+                }
+            ],
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+
+        result = mint_pattern(pattern, temp_store)
+
+        assert result.success is False
+        assert "INVALID CANONICAL JSON" in result.errors[0]
+        assert temp_store._find_pattern_id("NonFinite") is None
+
+        bypass_result = temp_store.add_pattern(pattern)
+        assert bypass_result["success"] is False
+        assert "Invalid canonical JSON" in bypass_result["error"]
+        assert temp_store._find_pattern_id("NonFinite") is None
+
+    def test_normalized_key_collision_is_rejected_before_graph_mutation(self, temp_store):
+        pattern = {
+            "handle": "CollidingKeys",
+            "mechanism": "A malformed data structure.",
+            "data_schema": {
+                "type": "object",
+                "properties": {
+                    "a": {"type": "string"},
+                    "a ": {"type": "number"},
+                },
+            },
+            "_meta": {
+                "path": ["Infrastructure", "Data Structures"],
+                "ring": 0,
+                "tier": 1,
+            },
+        }
+        before_nodes = temp_store.graph.number_of_nodes()
+        before_edges = temp_store.graph.number_of_edges()
+
+        result = mint_pattern(pattern, temp_store)
+
+        assert result.success is False
+        assert "collide after normalization" in result.errors[0]
+        assert temp_store.graph.number_of_nodes() == before_nodes
+        assert temp_store.graph.number_of_edges() == before_edges
+        assert temp_store._find_pattern_id("CollidingKeys") is None
+
+        bypass_result = temp_store.add_pattern(pattern)
+        assert bypass_result["success"] is False
+        assert "collide after normalization" in bypass_result["error"]
+        assert temp_store.graph.number_of_nodes() == before_nodes
+        assert temp_store.graph.number_of_edges() == before_edges
+
     def test_missing_extends_parent_rejected(self, temp_store):
         pattern = {
             "handle": "Child",

@@ -52,7 +52,11 @@ The result is a deterministic SHA-256 root hash:
 sema:MyPattern#mh:SHA-256:a1b2c3d4...
 ```
 
-Metadata fields (`handle`, `sema_id`, `_meta`) are excluded from the hash. Changing any hashed byte — even whitespace — produces a different identity. See [The Pattern Card](../specification/schema.md) §4 for the full algorithm.
+Metadata fields (`handle`, `sema_id`, `_meta`) are excluded from the hash. Changing
+the canonical content of a hashed field produces a different identity. Raw key
+order, Unicode composition, and whitespace differences that normalize to the
+same canonical form do not. See [The Pattern Card](../specification/schema.md) §4
+for the full algorithm.
 
 ## 4. Application
 

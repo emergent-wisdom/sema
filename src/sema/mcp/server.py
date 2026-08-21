@@ -418,6 +418,7 @@ def _sema_mint(pattern_json: str) -> str:
     Returns:
         JSON with the minted pattern's sema_id, or validation errors.
     """
+    from ..core.hashing import strict_json_loads
     from ..core.mint import mint_pattern
     from ..core.registry import is_managed_db, is_read_only_db
     from ..taxonomy_graph.graph_store import GraphStore
@@ -435,9 +436,11 @@ def _sema_mint(pattern_json: str) -> str:
         )
 
     try:
-        pattern = json.loads(pattern_json)
-    except json.JSONDecodeError as e:
+        pattern = strict_json_loads(pattern_json, label="Pattern JSON")
+    except ValueError as e:
         return json.dumps({"success": False, "errors": [f"Invalid JSON: {e}"]})
+    if not isinstance(pattern, dict):
+        return json.dumps({"success": False, "errors": ["Pattern JSON must be an object"]})
 
     handle = pattern.get("handle")
     if not handle:
