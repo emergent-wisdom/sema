@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.3] - 2026-08-21
+
 ### Added
 
 - Published versioned canonicalization-v2 golden vectors with exact preimages,
