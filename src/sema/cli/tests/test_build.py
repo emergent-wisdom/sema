@@ -1,6 +1,7 @@
 """Selective database-build regression tests."""
 
 import stat
+from pathlib import Path
 from unittest.mock import patch
 
 import numpy as np
@@ -24,6 +25,22 @@ def _card(handle: str, *, extends: str | None = None) -> dict:
     if extends:
         pattern["extends"] = extends
     return pattern
+
+
+def test_standard_preset_only_references_default_vocabulary():
+    repo_root = Path(__file__).resolve().parents[4]
+    preset_path = repo_root / "data" / "presets" / "standard.txt"
+    database_path = repo_root / "data" / "taxonomy.db"
+
+    requested = {
+        line.strip()
+        for line in preset_path.read_text().splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    }
+    available = RegistryManager(db_path=str(database_path)).registry
+
+    missing = sorted(requested - available.keys())
+    assert missing == [], f"standard preset references missing patterns: {missing}"
 
 
 def test_selective_build_includes_exact_extends_parent_and_is_a_edge(tmp_path):
