@@ -722,10 +722,12 @@ class GraphStore:
                     ),
                 }
 
-            # Direct mint does not pass through apply's full-corpus cycle check.
-            # Validate the proposed specialization together with committed
-            # ordinary dependencies so mixed cycles (A references B; B extends A)
-            # cannot enter through the MCP path.
+        # Direct mint does not pass through apply's full-corpus cycle check.
+        # Validate every proposed dependency graph change, not only `extends`,
+        # before mutating the node or its edges. Otherwise ordinary dependency
+        # pairs can enter through the MCP path even though `sema apply --check`
+        # rejects the same cycle.
+        if input_deps or extends_ref:
             from ..core.dependencies import validate_acyclic
 
             committed_patterns: dict[str, dict[str, Any]] = {}

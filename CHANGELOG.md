@@ -10,6 +10,13 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Fixed
+
+- Direct GraphStore and MCP minting now rejects ordinary dependency cycles before
+  mutating the database, matching the existing `sema apply --check` guarantee.
+  Explicit self-dependencies are also rejected instead of being silently removed
+  from cycle detection.
+
 ## [0.5.2] - 2026-08-21
 
 ### Fixed

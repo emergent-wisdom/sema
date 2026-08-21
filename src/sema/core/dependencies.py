@@ -147,7 +147,7 @@ def build_dependency_adjacency(
     adj: dict[str, set[str]] = defaultdict(set)
     for handle, p in merged.items():
         for dep in get_dependencies_handles(p):
-            if dep in merged and dep != handle:
+            if dep in merged:
                 adj[handle].add(dep)
     return adj
 
@@ -233,7 +233,7 @@ def topological_sort(patterns_dict: dict[str, dict]) -> list[str]:
         # Only depend on patterns that are IN this batch
         raw_deps = get_dependencies_handles(p)
         for dep in raw_deps:
-            if dep in patterns_dict and dep != handle:
+            if dep in patterns_dict:
                 adj[handle].add(dep)
 
     # Kahn's Algorithm
