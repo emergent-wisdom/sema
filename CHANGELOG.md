@@ -10,6 +10,8 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.2] - 2026-08-21
+
 ### Fixed
 
 - Removed 19 stale handles from the built-in `standard` preset. Those handles
