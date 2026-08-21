@@ -10,6 +10,20 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed 19 stale handles from the built-in `standard` preset. Those handles
+  were absent from the current bootstrap vocabulary, so selective builds warned
+  and skipped them. A regression test now requires every standard-preset handle
+  to exist in the authoritative `taxonomy.db`.
+
+### Deprecated
+
+- `data/experimental.db` is now explicitly a frozen historical snapshot. It
+  remains in the repository for review, but is not maintained, packaged, or
+  selected by any built-in Sema tooling. The bundled tool and its built-in
+  presets use only the authoritative bootstrap vocabulary in `data/taxonomy.db`.
+
 ## [0.5.1] - 2026-08-20
 
 ### Fixed

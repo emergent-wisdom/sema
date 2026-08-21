@@ -23,7 +23,6 @@ Datum
 Event
 Exception
 Goal
-Group
 Hierarchy
 Hypothesis
 Identity
@@ -104,7 +103,6 @@ CompatibilityCheck
 HumanApprove
 InputGuard
 OutputGuard
-RingWitness
 SpotAudit
 Validate
 BaseRateInclude
@@ -137,7 +135,6 @@ Scratchpad
 SelfReminder
 Stigmergy
 Abduction
-AbductiveLeap
 BackwardChain
 Bisect
 ChainOfThought
@@ -157,7 +154,6 @@ Interpret
 Invert
 LeastToMost
 Parsimony
-ProgramOfThought
 Rank
 ReAct
 Reason
@@ -187,7 +183,6 @@ AntifragileInversion
 BeamSearch
 Bubble
 Build
-CognitiveSolver
 ComputeBudget
 ContingencyPlan
 Creative
@@ -205,8 +200,6 @@ HypothesisLadder
 Kairos
 MentalSim
 MetaCheck
-MetricDissolution
-MimicMask
 Monitor
 NoiseInjection
 Novelty
@@ -239,14 +232,12 @@ Decay
 Entropy
 Gate
 Hysteresis
-Linear
 Lock
 Mutex
 Noise
 Retry
 Route
 Sign
-Switch
 Throttle
 Uncertain
 Branch
@@ -262,15 +253,11 @@ Award
 Bid
 Compromise
 ContinuousResourceAuction
-CostlySignal
 EmpathySim
 ExchangeRate
-FractalAnte
 MarginalValueRule
-MirrorStake
 ValuePeg
 Yield
-AmendLaws
 AnchorDrop
 Consensus
 ConsensusFinder
@@ -278,13 +265,10 @@ Constitution
 Delegate
 Disband
 Elect
-ForkingProtocol
-HydraConstitution
 LazyConsensus
 Rally
 Responsibility
 Role
-SolverRoot
 SolverTree
 TriGate
 UniversalSolverTree
@@ -316,7 +300,6 @@ DissentSeek
 DriftWatch
 EbbFlowSync
 EjectionSeat
-EphemeralTool
 EvaluatorOptimizer
 ExecutionManifest
 Expansive
@@ -327,7 +310,6 @@ FeedbackSignal
 Fermi
 FractalIntelligence
 FrameSpec
-GhostTrail
 Global
 GracefulDegradation
 HackDetect
@@ -335,7 +317,6 @@ Handoff
 HeldRelease
 IdempotentWrite
 IdentityHandshake
-IdentityMask
 InvariantFilter
 LatticeCommit
 MemeticSeed

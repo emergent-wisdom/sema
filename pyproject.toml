@@ -76,6 +76,8 @@ artifacts = [
 packages = ["src/sema"]
 
 [tool.hatch.build.targets.wheel.force-include]
+# data/experimental.db is a deprecated repository-only snapshot and is
+# intentionally excluded from all distributions.
 "data/vocabulary" = "sema/data/vocabulary"
 "data/taxonomy.db" = "sema/data/taxonomy.db"
 "data/graph.json" = "sema/data/graph.json"
