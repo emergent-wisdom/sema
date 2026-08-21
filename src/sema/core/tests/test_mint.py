@@ -181,6 +181,53 @@ class TestMintPattern:
         assert "Cycle detected" in result.errors[0]
         assert temp_store.get_pattern_hash("Beta") == beta_result.sema_id.rsplit(":", 1)[-1]
 
+    def test_direct_mint_rejects_cycle_through_ordinary_dependencies(self, temp_store):
+        temp_store.embedding_service.get_embedding = lambda _text: np.zeros(384, dtype=np.float32)
+        beta = {
+            "handle": "Beta",
+            "mechanism": "The initial beta definition.",
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+        beta_result = mint_pattern(beta, temp_store)
+        alpha = {
+            "handle": "Alpha",
+            "mechanism": "Uses {{beta}}.",
+            "dependencies": {"references": {"beta": beta_result.sema_id}},
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+        alpha_result = mint_pattern(alpha, temp_store)
+        updated_beta = {
+            **beta,
+            "mechanism": "Now uses {{alpha}}.",
+            "dependencies": {"references": {"alpha": alpha_result.sema_id}},
+        }
+
+        result = mint_pattern(updated_beta, temp_store)
+
+        assert result.success is False
+        assert "Cycle detected" in result.errors[0]
+        assert "Beta --> Alpha --> Beta" in result.errors[0]
+        assert temp_store.get_pattern_hash("Beta") == beta_result.sema_id.rsplit(":", 1)[-1]
+        assert temp_store.get_dependencies_from_edges("Beta") == {}
+
+    def test_direct_mint_rejects_ordinary_self_dependency(self, temp_store):
+        self_ref = {
+            "handle": "SelfRef",
+            "mechanism": "Uses {{self_ref}}.",
+            "dependencies": {
+                "references": {
+                    "self_ref": "sema:SelfRef#mh:SHA-256:" + ("0" * 64),
+                }
+            },
+            "_meta": {"path": ["Infrastructure", "Primitives"], "ring": 0, "tier": 1},
+        }
+
+        result = mint_pattern(self_ref, temp_store)
+
+        assert result.success is False
+        assert "SelfRef --> SelfRef" in result.errors[0]
+        assert temp_store._find_pattern_id("SelfRef") is None
+
     def test_store_rejects_bare_extends_reference_when_validation_is_bypassed(self, temp_store):
         child = {
             "handle": "Child",
