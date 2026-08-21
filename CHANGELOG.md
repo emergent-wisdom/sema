@@ -10,6 +10,12 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Fixed
+
+- `sema apply` now enforces Rule 7.6 layer direction against committed dependency
+  targets as well as patterns staged in the same batch. `--check` runs the same
+  preflight before returning, so dry runs no longer miss cross-corpus violations.
+
 ## [0.5.2] - 2026-08-21
 
 ### Fixed

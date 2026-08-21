@@ -650,10 +650,16 @@ class TestLayerDirectionInApply(unittest.TestCase):
         self.db_path = os.path.join(self.temp_dir, "test_taxonomy.db")
         self.patterns_dir = os.path.join(self.temp_dir, "patterns")
         os.makedirs(self.patterns_dir)
+        self.embedding_patch = patch(
+            "sema.taxonomy_graph.embedding_service.EmbeddingService.get_embedding",
+            return_value=np.zeros(384, dtype=np.float32),
+        )
+        self.embedding_patch.start()
 
     def tearDown(self):
         import shutil
 
+        self.embedding_patch.stop()
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
     def _create_pattern(
@@ -713,6 +719,73 @@ class TestLayerDirectionInApply(unittest.TestCase):
         self.assertFalse(result)
 
     @patch("sema.cli.main.get_default_db_path")
+    def test_violation_against_committed_pattern_is_rejected(self, mock_db_path):
+        """7.6: validation includes dependency targets already in the database."""
+        mock_db_path.return_value = self.db_path
+
+        committed = self._create_pattern("SocietyDep", layer="Society", category="Protocols")
+        self.assertTrue(apply_changes(add_files=[str(committed)]))
+        committed.unlink()
+
+        staged = self._create_pattern(
+            "InfraPattern",
+            layer="Infrastructure",
+            category="Primitives",
+            mechanism="Uses {{society_dep}}",
+            deps={"composes_with": {"society_dep": make_sema_id("SocietyDep")}},
+        )
+
+        self.assertFalse(apply_changes(add_files=[str(staged)]))
+        self.assertTrue(self._pattern_in_db("SocietyDep"))
+        self.assertFalse(self._pattern_in_db("InfraPattern"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_check_rejects_violation_against_committed_pattern(self, mock_db_path):
+        """7.6: --check applies the same committed-corpus validation."""
+        mock_db_path.return_value = self.db_path
+
+        committed = self._create_pattern("SocietyDep", layer="Society", category="Protocols")
+        self.assertTrue(apply_changes(add_files=[str(committed)]))
+        committed.unlink()
+
+        staged = self._create_pattern(
+            "InfraPattern",
+            layer="Infrastructure",
+            category="Primitives",
+            mechanism="Uses {{society_dep}}",
+            deps={"composes_with": {"society_dep": make_sema_id("SocietyDep")}},
+        )
+
+        self.assertFalse(apply_changes(add_files=[str(staged)], check_only=True))
+        self.assertTrue(self._pattern_in_db("SocietyDep"))
+        self.assertFalse(self._pattern_in_db("InfraPattern"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_reclassifying_target_rechecks_committed_consumers(self, mock_db_path):
+        """7.6: moving a target upward cannot strand an unstaged hard consumer."""
+        mock_db_path.return_value = self.db_path
+
+        target = self._create_pattern("Target", layer="Infrastructure", category="Primitives")
+        source = self._create_pattern(
+            "Source",
+            layer="Infrastructure",
+            category="Primitives",
+            mechanism="Uses {{target}}",
+            deps={"composes_with": {"target": make_sema_id("Target")}},
+        )
+        self.assertTrue(apply_changes(add_files=[self.patterns_dir]))
+        target.unlink()
+        source.unlink()
+        before = GraphStore(self.db_path).get_pattern_hash("Target")
+
+        reclassified = self._create_pattern("Target", layer="Society", category="Protocols")
+
+        self.assertFalse(apply_changes(add_files=[str(reclassified)], check_only=True))
+        self.assertFalse(apply_changes(add_files=[str(reclassified)]))
+        self.assertEqual(GraphStore(self.db_path).get_pattern_hash("Target"), before)
+        self.assertTrue(self._pattern_in_db("Source"))
+
+    @patch("sema.cli.main.get_default_db_path")
     def test_upward_yields_is_accepted(self, mock_db_path):
         """7.6: apply accepts Mind yielding a Society artifact (emergence)."""
         mock_db_path.return_value = self.db_path
@@ -746,6 +819,26 @@ class TestLayerDirectionInApply(unittest.TestCase):
 
         result = apply_changes(add_files=[self.patterns_dir])
         self.assertTrue(result)
+        self.assertTrue(self._pattern_in_db("InfraCitation"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_upward_reference_to_committed_pattern_is_accepted(self, mock_db_path):
+        """7.6: committed lookup does not turn a soft reference into a hard edge."""
+        mock_db_path.return_value = self.db_path
+
+        committed = self._create_pattern("SocietyConcept", layer="Society", category="Governance")
+        self.assertTrue(apply_changes(add_files=[str(committed)]))
+        committed.unlink()
+
+        staged = self._create_pattern(
+            "InfraCitation",
+            layer="Infrastructure",
+            category="Primitives",
+            mechanism="Cites {{society_concept}}",
+            deps={"references": {"society_concept": make_sema_id("SocietyConcept")}},
+        )
+
+        self.assertTrue(apply_changes(add_files=[str(staged)]))
         self.assertTrue(self._pattern_in_db("InfraCitation"))
 
     def _pattern_in_db(self, handle: str) -> bool:
