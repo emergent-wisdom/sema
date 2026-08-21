@@ -219,6 +219,20 @@ class TestParameters:
         p = SemaPattern.model_validate(base_pattern)
         assert len(p.parameters) == 2
 
+    def test_non_finite_parameter_default_rejected(self, base_pattern):
+        base_pattern["parameters"] = [
+            {
+                "name": "x",
+                "type": "Float",
+                "range": "unbounded",
+                "description": "Non-finite default",
+                "default": float("inf"),
+            }
+        ]
+
+        with pytest.raises(ValueError, match="non-finite"):
+            SemaPattern.model_validate(base_pattern)
+
     def test_parameters_string_rejected(self, base_pattern):
         """4.2: Parameters must be objects, not strings."""
         base_pattern["parameters"] = ["simple_param"]
@@ -327,6 +341,13 @@ class TestSemaPattern:
         valid_pattern["extends"] = make_sema_id(valid_pattern["handle"])
 
         with pytest.raises(ValueError, match="cannot refer to the pattern itself"):
+            SemaPattern.model_validate(valid_pattern)
+
+    @pytest.mark.parametrize("bad_handle", [1, None, ["Pattern"]])
+    def test_non_string_handle_returns_schema_error(self, valid_pattern, bad_handle):
+        valid_pattern["handle"] = bad_handle
+
+        with pytest.raises(ValueError):
             SemaPattern.model_validate(valid_pattern)
 
     def test_signature_valid(self, valid_pattern):

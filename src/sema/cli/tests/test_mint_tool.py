@@ -20,6 +20,35 @@ class TestSemaMintTool(unittest.TestCase):
         self.assertFalse(result["success"])
         self.assertTrue(any("Invalid JSON" in e for e in result["errors"]))
 
+    def test_duplicate_json_member_returns_error(self):
+        raw = _sema_mint('{"handle":"First","handle":"Second","mechanism":"A mechanism"}')
+        result = json.loads(raw)
+
+        self.assertFalse(result["success"])
+        self.assertTrue(any("duplicate key" in e for e in result["errors"]))
+
+    def test_non_object_json_returns_error(self):
+        result = json.loads(_sema_mint("[]"))
+
+        self.assertFalse(result["success"])
+        self.assertEqual(result["errors"], ["Pattern JSON must be an object"])
+
+    def test_non_string_handles_return_validation_error(self):
+        for bad_handle in (1, None, ["Pattern"]):
+            with self.subTest(handle=bad_handle):
+                pattern = {
+                    "handle": bad_handle,
+                    "mechanism": "A mechanism.",
+                    "_meta": {
+                        "path": ["Infrastructure", "Primitives"],
+                        "ring": 0,
+                        "tier": 1,
+                    },
+                }
+                result = json.loads(_sema_mint(json.dumps(pattern)))
+                self.assertFalse(result["success"])
+                self.assertTrue(result["errors"])
+
     def test_missing_handle_returns_error(self):
         """Pattern without handle → error."""
         raw = _sema_mint(json.dumps({"mechanism": "does stuff"}))

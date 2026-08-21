@@ -652,15 +652,33 @@ class GraphStore:
             Dict with solution_id, created nodes, linked nodes
             On failure: {"success": False, "error": "..."}
         """
-        from ..core.hashing import extract_handle_from_ref
+        from ..core.hashing import (
+            extract_handle_from_ref,
+            generate_sema_hash,
+            validate_json_domain,
+            validate_semantic_hash_input,
+        )
         from ..core.schema import FULL_SEMA_ID_PATTERN
 
         field_mappings = field_mappings or {}
+
+        # GraphStore is also a public write boundary. Reject values that cannot
+        # be represented by canonicalization v2 before creating any node or edge,
+        # even when a caller bypasses mint_pattern's schema validation.
+        try:
+            validate_json_domain(solution)
+        except ValueError as exc:
+            return {"success": False, "error": f"Invalid canonical JSON: {exc}"}
+
+        if not isinstance(solution, dict):
+            return {"success": False, "error": "Pattern must be a JSON object"}
 
         # 1. Validate 'handle' is present (patterns use 'handle', not 'label')
         handle = solution.get("handle") or solution.get("label")
         if not handle:
             return {"success": False, "error": "Missing required field: handle or label"}
+        if not isinstance(handle, str):
+            return {"success": False, "error": "Pattern handle must be a string"}
 
         # 2. Extract dependencies for edge creation
         #    Dependencies are stored as graph edges, NOT in pattern JSON content
@@ -673,13 +691,17 @@ class GraphStore:
             for _, items in input_deps.items():
                 if isinstance(items, dict):
                     for _, ref in items.items():
-                        if isinstance(ref, str):
-                            dep_handle = extract_handle_from_ref(ref)
-                            if dep_handle not in existing_handles and dep_handle != handle:
-                                return {
-                                    "success": False,
-                                    "error": f"Missing dependency target: {dep_handle}",
-                                }
+                        if not isinstance(ref, str):
+                            return {
+                                "success": False,
+                                "error": "Dependency references must be strings",
+                            }
+                        dep_handle = extract_handle_from_ref(ref)
+                        if dep_handle not in existing_handles and dep_handle != handle:
+                            return {
+                                "success": False,
+                                "error": f"Missing dependency target: {dep_handle}",
+                            }
 
         # `extends` is not stored in the dependency buckets, but it is equally
         # load-bearing: silently omitting IS_A would leave the hashed card and
@@ -745,14 +767,20 @@ class GraphStore:
             except ValueError as exc:
                 return {"success": False, "error": str(exc)}
 
+        # Schema and relation errors above retain their established messages.
+        # Before any graph mutation, independently prove that the actual
+        # handle-free semantic object has a canonical Merkle representation.
+        try:
+            validate_semantic_hash_input(solution, self.get_pattern_hash)
+        except ValueError as exc:
+            return {"success": False, "error": f"Invalid canonical JSON: {exc}"}
+
         # Direct mint callers do not have the CLI/pull projection. Prevent them
         # from replacing an active parent while an exact IS_A child still pins its
         # current definition. Batch callers may opt through only after validating
         # the complete projected corpus and including every necessary child edit.
         specializing_children = self.get_specializing_children(handle)
         if specializing_children and not validated_extends_batch:
-            from ..core.hashing import generate_sema_hash
-
             current_parent_ref = None
             existing_parent_id = self._handle_to_id.get(handle)
             if existing_parent_id:

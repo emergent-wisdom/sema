@@ -7,7 +7,6 @@ wide registry globals directly.
 
 from __future__ import annotations
 
-import json
 import os
 from collections import defaultdict
 from collections.abc import Callable, Iterable
@@ -19,6 +18,7 @@ from .handshake import HandshakeMode, HandshakeVerdict, decide_handshake
 from .hashing import (
     HASH_ALGO,
     pattern_hash_from_sema_id,
+    strict_json_loads,
     vocabulary_info,
     vocabulary_roots,
 )
@@ -209,8 +209,8 @@ class GraphWorkspace:
 
     def validate_pattern_json(self, pattern_json: str) -> dict[str, Any]:
         try:
-            pattern = json.loads(pattern_json)
-        except json.JSONDecodeError as e:
+            pattern = strict_json_loads(pattern_json, label="Pattern JSON")
+        except ValueError as e:
             return {"valid": False, "errors": [f"Invalid JSON: {e}"], "warnings": []}
 
         if not isinstance(pattern, dict):

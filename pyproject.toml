@@ -84,6 +84,7 @@ packages = ["src/sema"]
 "data/presets" = "sema/data/presets"
 ".claude-plugin" = "sema/.claude-plugin"
 "skills" = "sema/skills"
+"docs/specification/canonicalization-v2-test-vectors.json" = "sema/specification/canonicalization-v2-test-vectors.json"
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -94,6 +95,8 @@ include = [
   "data/presets/",
   ".claude-plugin/",
   "skills/",
+  "docs/specification/canonicalization-v2-test-vectors.json",
+  "scripts/test_hash_verification.py",
   "/README.md",
   "/LICENSE",
 ]

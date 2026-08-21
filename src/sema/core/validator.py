@@ -119,6 +119,19 @@ def validate_pattern(
     errors = []
     warnings = []
 
+    # Validate the raw value before Pydantic can coerce Python-only inputs.
+    # Direct MCP callers do not pass through a JSON decoder, and local JSON
+    # historically admitted non-finite numbers. Both must fail before GraphStore
+    # creates nodes or edges.
+    from .hashing import validate_json_domain, validate_semantic_hash_input
+
+    try:
+        validate_json_domain(pattern)
+        if isinstance(pattern, dict):
+            validate_semantic_hash_input(pattern)
+    except ValueError as exc:
+        return False, [f"❌ INVALID CANONICAL JSON: {exc}"], warnings
+
     if use_pydantic:
         # Use Pydantic schema for structured validation
         is_valid, schema_errors, schema_warnings = validate_pattern_schema(pattern)

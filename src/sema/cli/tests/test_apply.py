@@ -135,6 +135,45 @@ class TestApplyCommand(unittest.TestCase):
         self.assertFalse(result)
 
     @patch("sema.cli.main.get_default_db_path")
+    def test_add_duplicate_json_member_fails(self, mock_db_path):
+        """Local apply uses the same strict JSON boundary as remote libraries."""
+        mock_db_path.return_value = self.db_path
+
+        invalid_file = Path(self.patterns_dir) / "duplicate.json"
+        invalid_file.write_text(
+            '{"handle":"First","handle":"Second","mechanism":"m",'
+            '"_meta":{"path":["Infrastructure","Primitives"],"ring":0,"tier":1}}'
+        )
+
+        self.assertFalse(apply_changes(add_files=[str(invalid_file)]))
+        self.assertFalse(self._pattern_exists("First"))
+        self.assertFalse(self._pattern_exists("Second"))
+
+    @patch("sema.cli.main.get_default_db_path")
+    def test_add_non_string_handles_fails_cleanly(self, mock_db_path):
+        mock_db_path.return_value = self.db_path
+
+        for index, bad_handle in enumerate((1, None, ["Pattern"])):
+            with self.subTest(handle=bad_handle):
+                invalid_file = Path(self.patterns_dir) / f"bad-handle-{index}.json"
+                invalid_file.write_text(
+                    json.dumps(
+                        {
+                            "handle": bad_handle,
+                            "mechanism": "A mechanism.",
+                            "_meta": {
+                                "path": ["Infrastructure", "Primitives"],
+                                "ring": 0,
+                                "tier": 1,
+                            },
+                        }
+                    )
+                )
+                self.assertFalse(apply_changes(add_files=[str(invalid_file)]))
+
+        self.assertEqual(list(GraphStore(self.db_path).get_nodes_by_type(NodeType.PATTERN)), [])
+
+    @patch("sema.cli.main.get_default_db_path")
     def test_add_missing_file_fails(self, mock_db_path):
         """Test that adding a non-existent file fails validation."""
         mock_db_path.return_value = self.db_path

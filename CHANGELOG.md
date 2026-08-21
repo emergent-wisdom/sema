@@ -10,8 +10,21 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+- Published versioned canonicalization-v2 golden vectors with exact preimages,
+  digests, normalized values, and rejection cases for independent implementations.
+
 ### Fixed
 
+- Canonical hashing now rejects non-finite numbers, overflowing JSON reals,
+  duplicate JSON members, invalid Unicode scalar strings, non-string object keys,
+  and other Python-only values before graph mutation. Local apply and remote
+  library installation now share the same strict JSON parser. String whitespace
+  normalization now uses an explicit protocol repertoire rather than the host
+  runtime's evolving whitespace classification. The previously unversioned NFC
+  database is documented as a v2 compatibility boundary rather than silently
+  changed; all 457 official pattern identities remain unchanged.
 - `sema apply` now enforces Rule 7.6 layer direction against committed dependency
   targets as well as patterns staged in the same batch. `--check` runs the same
   preflight before returning, so dry runs no longer miss cross-corpus violations.
