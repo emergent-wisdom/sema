@@ -313,7 +313,52 @@ def apply_changes(
         except ValueError as e:
             errors.append(f"Dependency error: {e}")
 
-    # 1e. Project the full post-apply graph before any mutation. A handle match
+    # 1e. Enforce the bootstrap vocabulary's layer policy across the projected
+    # corpus before --check can return or execution can mutate the database.
+    # Besides staged dependency sources, a target that changes layer can make
+    # an unstaged committed consumer invalid. Recheck exactly those consumers,
+    # using graph edges because ordinary dependencies are not stored on nodes.
+    # Removed-only patterns are not part of the projected corpus.
+    if add_patterns and not errors:
+        from ..core.dependencies import get_layer, validate_layer_direction
+
+        staged_patterns = {pattern["handle"]: pattern for _path, pattern in add_patterns}
+        committed_patterns = {}
+        committed_dependencies = {}
+        for _nid, data in store.get_nodes_by_type(NodeType.PATTERN):
+            handle = data.get("text")
+            if not handle or handle in remove_handles:
+                continue
+            pattern = dict(((data.get("metadata") or {}).get("pattern")) or {})
+            committed_patterns[handle] = pattern
+            committed_dependencies[handle] = store.get_dependencies_from_edges(handle)
+
+        changed_layer_targets = {
+            handle
+            for handle, pattern in staged_patterns.items()
+            if handle in committed_patterns
+            and get_layer(pattern) != get_layer(committed_patterns[handle])
+        }
+        patterns_to_check = dict(staged_patterns)
+        for handle, dependencies in committed_dependencies.items():
+            if handle in staged_patterns:
+                continue
+            hard_targets = {
+                clean_handle(dependency_ref)
+                for dependency_type in ("accepts", "composes_with")
+                for dependency_ref in (dependencies.get(dependency_type) or {}).values()
+            }
+            if hard_targets & changed_layer_targets:
+                consumer = dict(committed_patterns[handle])
+                consumer["dependencies"] = dependencies
+                patterns_to_check[handle] = consumer
+
+        try:
+            validate_layer_direction(patterns_to_check, committed_patterns)
+        except ValueError as e:
+            errors.append(str(e))
+
+    # 1f. Project the full post-apply graph before any mutation. A handle match
     # is not enough for a content-addressed specialization claim, and an
     # unstaged parent can move through the ordinary dependency cascade.
     if add_patterns and not errors:
@@ -344,42 +389,14 @@ def apply_changes(
     # ============ PHASE 2: EXECUTION ============
     print("\nApplying...")
 
-    # 2a. Order + validate additions BEFORE any destructive removal.
-    # topological_sort and validate_layer_direction are pure functions of
-    # already-loaded data; running them after removals meant a dependency
-    # cycle or layer violation aborted the apply with patterns already
-    # deleted and nothing added — irreversible partial state.
+    # 2a. Order additions before any destructive removal. Validation completed
+    # in Phase 1, including the full-corpus cycle and layer-direction checks.
     if add_patterns:
         patterns_dict = {p[1]["handle"]: p[1] for p in add_patterns}
         # Filter the full projected order rather than sorting the staged batch in
         # isolation. An unstaged parent can move through an ordinary cascade; the
         # full order keeps its staged descendants after the edit that moves it.
         sorted_handles = [handle for handle in projected_order if handle in patterns_dict]
-
-        # Check layer direction (Rule 7.6)
-        # Applies only to hard dependency buckets (accepts, composes_with).
-        # yields and references are exempt — see dependencies._LAYER_CHECKED_BUCKETS.
-        #
-        # KNOWN GAP, deliberately not fixed here: pattern nodes carry the handle in
-        # data["text"], not data["handle"], so the filter below discards every row
-        # and existing_patterns is always empty. Layer direction is therefore checked
-        # only within a batch, never against committed patterns. Correcting the key
-        # would begin enforcing Rule 7.6 across all 453 patterns at once and could
-        # refuse applies that succeed today, so it needs its own change and its own
-        # review of whatever it surfaces. Dependencies also live on edges rather than
-        # on the node — see the acyclic check in Phase 1 for how to read them.
-        try:
-            from ..core.dependencies import validate_layer_direction
-
-            existing_patterns = {
-                data.get("handle", nid): data
-                for nid, data in store.get_nodes_by_type(NodeType.PATTERN)
-                if data.get("handle")
-            }
-            validate_layer_direction(patterns_dict, existing_patterns)
-        except ValueError as e:
-            print(f"  ❌ {e}")
-            return False
 
         # Map back to full tuples
         pattern_map = {p[1]["handle"]: p for p in add_patterns}

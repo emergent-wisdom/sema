@@ -12,6 +12,9 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ### Fixed
 
+- `sema apply` now enforces Rule 7.6 layer direction against committed dependency
+  targets as well as patterns staged in the same batch. `--check` runs the same
+  preflight before returning, so dry runs no longer miss cross-corpus violations.
 - Direct GraphStore and MCP minting now rejects ordinary dependency cycles before
   mutating the database, matching the existing `sema apply --check` guarantee.
   Explicit self-dependencies are also rejected instead of being silently removed
