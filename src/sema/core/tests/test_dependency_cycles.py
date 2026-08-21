@@ -100,6 +100,15 @@ def test_validate_acyclic_tolerates_edges_to_handles_outside_the_corpus():
     validate_acyclic(staged, {})
 
 
+def test_validate_acyclic_rejects_self_dependency():
+    staged = {"SelfRef": pattern("SelfRef", references=["SelfRef"])}
+
+    with pytest.raises(ValueError) as exc:
+        validate_acyclic(staged, {})
+
+    assert "SelfRef --> SelfRef" in str(exc.value)
+
+
 def test_build_dependency_adjacency_lets_the_batch_override_the_committed_version():
     committed = {"A": pattern("A", references=["B"]), "B": pattern("B")}
     staged = {"A": pattern("A", references=["C"])}

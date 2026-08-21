@@ -25,6 +25,13 @@ This file records vocabulary-level changes between versions — additions, renam
   runtime's evolving whitespace classification. The previously unversioned NFC
   database is documented as a v2 compatibility boundary rather than silently
   changed; all 457 official pattern identities remain unchanged.
+- `sema apply` now enforces Rule 7.6 layer direction against committed dependency
+  targets as well as patterns staged in the same batch. `--check` runs the same
+  preflight before returning, so dry runs no longer miss cross-corpus violations.
+- Direct GraphStore and MCP minting now rejects ordinary dependency cycles before
+  mutating the database, matching the existing `sema apply --check` guarantee.
+  Explicit self-dependencies are also rejected instead of being silently removed
+  from cycle detection.
 
 ## [0.5.2] - 2026-08-21
 
