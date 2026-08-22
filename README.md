@@ -249,7 +249,32 @@ Interactive 3D graph visualization, pattern browser, and search. Built with Reac
 
 ## Experiments
 
-The `experiments/` directory contains a controlled multi-agent design challenge comparing three conditions:
+The `experiments/` directory contains reproducible evaluations of Sema's
+claims and implementation boundaries.
+
+### Delta reconstruction
+
+The public `v0.3.0` to `v0.4.0` reconstruction experiment checks whether the
+current graph and hash-cascade algorithm can rebuild a target vocabulary from
+an earlier release. It compares both aggregate roots, semantic pattern content,
+the logical dependency graph, unhashed metadata, and the complete normalized
+read model rather than treating root equality as complete release equality.
+It also demonstrates the safe reconstruction path: integrate the delta into a
+complete staged card snapshot, compile a fresh database, verify the result, and
+only then activate it.
+
+```bash
+.venv/bin/python experiments/delta_reconstruction/reproduce.py
+```
+
+The experiment and its expected results are documented in
+[`experiments/delta_reconstruction/README.md`](experiments/delta_reconstruction/README.md).
+Small synthetic versions of its addition, removal, rename, cascade, metadata,
+and failure cases run in the regular test suite.
+
+### Multi-agent design challenge
+
+The controlled multi-agent design challenge compares three conditions:
 
 | Condition | Sema | Turns | Outcome |
 |-----------|------|-------|---------|
@@ -315,6 +340,7 @@ sema/
 ├── web/                   Web frontend (React + Three.js graph visualization)
 ├── experiments/
 │   ├── orchestrator/      Multi-agent engine (bundled for experiment reproduction)
+│   ├── delta_reconstruction/  Historical release reconstruction validation
 │   ├── sema_design_challenge/  Main experiment (3 conditions, 5 runs, full traces)
 │   └── demos/             Standalone demos (local handshake, Babel Test)
 └── pyproject.toml         Package config (extras: [mcp], [api], [full])
