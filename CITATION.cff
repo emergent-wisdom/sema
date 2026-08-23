@@ -5,11 +5,13 @@ message: >-
   this file is also valid as a standalone software citation.
 title: "Sema: When the Hash Is the Word"
 abstract: >-
-  Sema is a semantic commons that content-addresses meaning itself:
-  the definition is the identifier. By deriving identifiers from the
-  cryptographic hash of a pattern's definition, any divergence in
-  meaning produces a distinct hash, guaranteeing that misaligned
-  agents halt rather than fail silently.
+  Sema is a content-addressed reference system for reasoning and
+  communication. Participants encode and hash information under an
+  agreed representation, then reuse the content address as a verifiable
+  reference, optionally paired with a human-readable handle. Matching
+  full references establishes identity of the resolved hashed content;
+  semantic equivalence, correctness, and enforcement remain separate
+  questions.
 authors:
   - family-names: Westerberg
     given-names: Henrik
@@ -34,5 +36,5 @@ preferred-citation:
   month: 4
   publisher:
     name: Zenodo
-  doi: 10.5281/zenodo.19548971
-  url: "https://doi.org/10.5281/zenodo.19548971"
+  doi: 10.5281/zenodo.19462702
+  url: "https://doi.org/10.5281/zenodo.19462702"

@@ -12,11 +12,11 @@
 [![PyPI](https://img.shields.io/pypi/v/semahash.svg)](https://pypi.org/project/semahash/)
 [![MCP Registry](https://img.shields.io/badge/MCP_Registry-listed-blue)](https://registry.modelcontextprotocol.io/servers/io.github.emergent-wisdom/semahash)
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://github.com/emergent-wisdom/sema/blob/main/paper/sema.pdf)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19548971.svg)](https://doi.org/10.5281/zenodo.19548971)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19462702.svg)](https://doi.org/10.5281/zenodo.19462702)
 [![Code: MIT](https://img.shields.io/badge/Code-MIT-green)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE)
 [![Content: CC BY 4.0](https://img.shields.io/badge/Content-CC%20BY%204.0-lightgrey)](https://github.com/emergent-wisdom/sema/blob/main/LICENSE-CONTENT)
 
-Sema is a semantic commons that content-addresses meaning itself: the definition *is* the identifier. By deriving identifiers from the cryptographic hash of a pattern's definition, any divergence in meaning produces a distinct hash, guaranteeing that misaligned agents halt rather than fail silently.
+Sema is a content-addressed reference system for reasoning and communication. Participants encode and hash information under an agreed representation, then reuse the content address as a verifiable reference, optionally paired with a human-readable handle. Matching full references establishes identity of the resolved hashed content; semantic equivalence, correctness, and enforcement remain separate questions.
 
 **Web:** [semahash.org](https://semahash.org) · **Discord:** [Join](https://discord.gg/hRhVqAuDYQ)
 
@@ -359,8 +359,8 @@ Want to add patterns, improve existing ones, or host the frontend locally? See [
   year         = {2026},
   month        = apr,
   publisher    = {Zenodo},
-  doi          = {10.5281/zenodo.19548971},
-  url          = {https://doi.org/10.5281/zenodo.19548971}
+  doi          = {10.5281/zenodo.19462702},
+  url          = {https://doi.org/10.5281/zenodo.19462702}
 }
 ```
 

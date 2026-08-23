@@ -36,6 +36,10 @@
 \providecommand{\shorttitle}{\@title}
 
 \RequirePackage{fancyhdr}
+\RequirePackage[calc,en-US]{datetime2}
+\DTMsavenow{ewlocalbuild}
+\DTMtozulu{ewlocalbuild}{ewutcbuild}
+\renewcommand*{\today}{\DTMusedate{ewutcbuild}}
 \fancyhf{}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0.4pt}
