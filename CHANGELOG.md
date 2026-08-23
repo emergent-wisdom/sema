@@ -10,6 +10,15 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+- Published a reproducible `v0.3.0` to `v0.4.0` delta-reconstruction
+  experiment and a permanent CI contract covering additions, removals,
+  renames, dependency cascades, metadata-only changes, and incorrect deltas.
+  The validation distinguishes matching semantic and catalog roots from full
+  logical release equivalence, and verifies staged fresh compilation as the
+  safe reconstruction path.
+
 ## [0.5.3] - 2026-08-21
 
 ### Added

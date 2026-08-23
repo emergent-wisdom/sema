@@ -1,0 +1,282 @@
+{
+  "change_classification": {
+    "cascade_only_existing": 151,
+    "direct_semantic_edits_existing": 275,
+    "hash_changed_existing": 426,
+    "metadata_changed_existing": 427,
+    "metadata_only_existing": [
+      "Axiom"
+    ]
+  },
+  "experiment": "v0.3.0-to-v0.4.0",
+  "fresh_target_pattern_edge_count": 1745,
+  "fresh_target_read_model": {
+    "edge_count": 3803,
+    "edge_type_counts": {
+      "ACCEPTS": 79,
+      "COMPOSES_WITH": 185,
+      "HAS_INVARIANT": 1032,
+      "HAS_POSTCONDITION": 243,
+      "HAS_PRECONDITION": 313,
+      "HAS_SIGNATURE": 149,
+      "IN_PATH": 457,
+      "IS_A": 8,
+      "PARENT_PATH": 13,
+      "REFERENCES": 1170,
+      "RELATED_TO": 108,
+      "YIELDS": 46
+    },
+    "edges_sha256": "f1f1f5979c76e399e5e097dfb666f7b93161c0fdeb56dae70e493955854c16c4",
+    "node_count": 2061,
+    "node_type_counts": {
+      "INVARIANT": 1032,
+      "PATTERN": 457,
+      "POSTCONDITION": 243,
+      "PRECONDITION": 312,
+      "TAXONOMY_PATH": 17
+    },
+    "nodes_sha256": "8de20773cab19a0fd47fe755f55f8ead49d58da3ab52b9e78bca23e3551c2c77",
+    "read_model_sha256": "c48b0af8671a55ff5227f23f9f1bd7b475dbad54ce03ff14f444a0996f68b66f"
+  },
+  "fresh_target_roots": {
+    "catalog": "146db4c0b6172432a0694baa74263a2e33edfce2c5ba7756c33622f7bc69e324",
+    "pattern_count": 457,
+    "semantic": "502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661"
+  },
+  "release_counts": {
+    "added": 5,
+    "added_handles": [
+      "EpistemicCascade",
+      "Equivalence",
+      "ExponentialBackoff",
+      "MetricReading",
+      "Trait"
+    ],
+    "removed": 0,
+    "removed_handles": [],
+    "source_patterns": 452,
+    "target_patterns": 457
+  },
+  "source_roots": {
+    "catalog": "cce0d6acee68ef247888c0a9600d6a265002c2a842df3eac2a808e767c54d2ac",
+    "pattern_count": 452,
+    "semantic": "1ee7e8455ac416bf32b754c78481f74708fe2edfe2aa195345021ec82d5edb31"
+  },
+  "tagged_target_comparison": {
+    "pattern_edges_match_fresh_build": true,
+    "read_model": {
+      "candidate_read_model_sha256": "afedb4fca740942c3ea7956a9f345ab90b217a41151cef2b7bca107f0e16bcd0",
+      "complete_matches_fresh_target": false,
+      "derived_edges": {
+        "extra": 33,
+        "missing": 41
+      },
+      "derived_edges_match": false,
+      "derived_nodes": {
+        "extra": 0,
+        "missing": 41
+      },
+      "derived_nodes_match": false,
+      "logical_edges": {
+        "extra": 33,
+        "missing": 41
+      },
+      "logical_nodes": {
+        "extra": 0,
+        "missing": 41
+      }
+    },
+    "roots_match_fresh_build": true,
+    "tagged_db_payload_matches_fresh_build": true,
+    "tagged_json_payload_matches_fresh_build": true
+  },
+  "tags": {
+    "source": {
+      "commit": "808ebac23ba14aa170edf35185d7e89f3879e164",
+      "name": "v0.3.0"
+    },
+    "target": {
+      "commit": "56a778e14310302bbc053f9f817edddfe51c831b",
+      "name": "v0.4.0"
+    }
+  },
+  "target_roots": {
+    "catalog": "146db4c0b6172432a0694baa74263a2e33edfce2c5ba7756c33622f7bc69e324",
+    "pattern_count": 457,
+    "semantic": "502d7f981a29a4a134e3080cdc4f361049a30f30ece026224a668bda80a83661"
+  },
+  "variants": {
+    "direct_semantic_plus_added": {
+      "applied_pattern_count": 280,
+      "cascade_only_cards_omitted": 151,
+      "catalog_root_matches": true,
+      "full_payload_matches": false,
+      "full_payload_mismatch_count": 152,
+      "metadata_mismatch_count": 152,
+      "metadata_mismatch_examples": [
+        "Act",
+        "AgentDiscover",
+        "AmbiguityResolution",
+        "AnchorDrop",
+        "AntifragileInversion",
+        "AtomicBid",
+        "AttentionMarkets",
+        "Attractor",
+        "AuditTrail",
+        "Award"
+      ],
+      "metadata_mismatch_handles_sha256": "bae4bf401d47ac0702c46841f0f02804a6d534c011c869c243a915d5996fa2e2",
+      "omitted_cascade_only_identities_matching_target": 151,
+      "omitted_cascade_only_identities_seen_in_in_place_cascade": 151,
+      "pattern_edges_match": true,
+      "read_model": {
+        "candidate_read_model_sha256": "5861eca18e3627ef7bb11698341004746b1b6a6dc2f96f501398ad018f2cf587",
+        "complete_matches_fresh_target": false,
+        "derived_edges": {
+          "extra": 13,
+          "missing": 16
+        },
+        "derived_edges_match": false,
+        "derived_nodes": {
+          "extra": 1,
+          "missing": 15
+        },
+        "derived_nodes_match": false,
+        "logical_edges": {
+          "extra": 13,
+          "missing": 16
+        },
+        "logical_nodes": {
+          "extra": 153,
+          "missing": 167
+        }
+      },
+      "result_pattern_count": 457,
+      "semantic_mismatch_handles": [],
+      "semantic_patterns_match": true,
+      "semantic_root_matches": true
+    },
+    "full_target_overlay": {
+      "applied_pattern_count": 457,
+      "cascade_only_cards_omitted": 0,
+      "catalog_root_matches": true,
+      "full_payload_matches": true,
+      "full_payload_mismatch_count": 0,
+      "metadata_mismatch_count": 0,
+      "metadata_mismatch_examples": [],
+      "metadata_mismatch_handles_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "omitted_cascade_only_identities_matching_target": 0,
+      "omitted_cascade_only_identities_seen_in_in_place_cascade": 0,
+      "pattern_edges_match": true,
+      "read_model": {
+        "candidate_read_model_sha256": "c48b0af8671a55ff5227f23f9f1bd7b475dbad54ce03ff14f444a0996f68b66f",
+        "complete_matches_fresh_target": true,
+        "derived_edges": {
+          "extra": 0,
+          "missing": 0
+        },
+        "derived_edges_match": true,
+        "derived_nodes": {
+          "extra": 0,
+          "missing": 0
+        },
+        "derived_nodes_match": true,
+        "logical_edges": {
+          "extra": 0,
+          "missing": 0
+        },
+        "logical_nodes": {
+          "extra": 0,
+          "missing": 0
+        }
+      },
+      "result_pattern_count": 457,
+      "semantic_mismatch_handles": [],
+      "semantic_patterns_match": true,
+      "semantic_root_matches": true
+    },
+    "hash_changed_plus_added": {
+      "applied_pattern_count": 431,
+      "cascade_only_cards_omitted": 0,
+      "catalog_root_matches": true,
+      "full_payload_matches": false,
+      "full_payload_mismatch_count": 1,
+      "metadata_mismatch_count": 1,
+      "metadata_mismatch_examples": [
+        "Axiom"
+      ],
+      "metadata_mismatch_handles_sha256": "59d466820d86172a91f7865459a097c856e5195287c16f9b50864ff54603080f",
+      "omitted_cascade_only_identities_matching_target": 0,
+      "omitted_cascade_only_identities_seen_in_in_place_cascade": 0,
+      "pattern_edges_match": true,
+      "read_model": {
+        "candidate_read_model_sha256": "4742e41fe71cd71975087d406bd55bb247b91e8f0d3f6614fc8f2b7527036f92",
+        "complete_matches_fresh_target": false,
+        "derived_edges": {
+          "extra": 1,
+          "missing": 1
+        },
+        "derived_edges_match": false,
+        "derived_nodes": {
+          "extra": 0,
+          "missing": 0
+        },
+        "derived_nodes_match": true,
+        "logical_edges": {
+          "extra": 1,
+          "missing": 1
+        },
+        "logical_nodes": {
+          "extra": 1,
+          "missing": 1
+        }
+      },
+      "result_pattern_count": 457,
+      "semantic_mismatch_handles": [],
+      "semantic_patterns_match": true,
+      "semantic_root_matches": true
+    },
+    "staged_complete_delta_fresh_build": {
+      "applied_pattern_count": 280,
+      "build_strategy": "staged complete snapshot, then fresh current-code build",
+      "cascade_only_cards_omitted": 151,
+      "catalog_root_matches": true,
+      "explicit_removal_count": 0,
+      "full_payload_matches": true,
+      "full_payload_mismatch_count": 0,
+      "metadata_mismatch_count": 0,
+      "metadata_mismatch_examples": [],
+      "metadata_mismatch_handles_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "metadata_patch_count": 152,
+      "omitted_cascade_only_identities_matching_target": 151,
+      "omitted_cascade_only_identities_seen_in_in_place_cascade": 0,
+      "pattern_edges_match": true,
+      "read_model": {
+        "candidate_read_model_sha256": "c48b0af8671a55ff5227f23f9f1bd7b475dbad54ce03ff14f444a0996f68b66f",
+        "complete_matches_fresh_target": true,
+        "derived_edges": {
+          "extra": 0,
+          "missing": 0
+        },
+        "derived_edges_match": true,
+        "derived_nodes": {
+          "extra": 0,
+          "missing": 0
+        },
+        "derived_nodes_match": true,
+        "logical_edges": {
+          "extra": 0,
+          "missing": 0
+        },
+        "logical_nodes": {
+          "extra": 0,
+          "missing": 0
+        }
+      },
+      "result_pattern_count": 457,
+      "semantic_mismatch_handles": [],
+      "semantic_patterns_match": true,
+      "semantic_root_matches": true
+    }
+  }
+}

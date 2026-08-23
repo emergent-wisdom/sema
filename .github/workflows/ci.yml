@@ -67,6 +67,25 @@ jobs:
         if: matrix.python-version == '3.12'
         run: python scripts/verify_vocabulary_change.py
 
+  delta-reconstruction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -e .
+
+      - name: Verify historical delta reconstruction
+        run: |
+          git fetch --force origin refs/tags/v0.3.0:refs/tags/v0.3.0 refs/tags/v0.4.0:refs/tags/v0.4.0
+          python experiments/delta_reconstruction/reproduce.py
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -89,6 +108,7 @@ jobs:
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
           scripts/vocabulary_merkle_root.py
+          experiments/delta_reconstruction/reproduce.py
           hooks/
 
       - name: Format check
@@ -100,4 +120,5 @@ jobs:
           scripts/rebuild_vocabulary.py
           scripts/verify_vocabulary_change.py
           scripts/vocabulary_merkle_root.py
+          experiments/delta_reconstruction/reproduce.py
           hooks/
