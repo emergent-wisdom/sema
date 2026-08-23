@@ -40,13 +40,14 @@ run_python_step scripts/update_paper_hashes.py
 echo "Calculating stats..."
 run_python_step scripts/calculate_graph_stats.py
 
-# 5. Compile Paper (pdflatex -> bibtex -> pdflatex x2)
+# 5. Compile Paper (pdflatex -> bibtex -> pdflatex x3)
 # Clean stale aux to force fresh resolution after hash updates
 echo "Compiling PDF..."
 cd paper
 rm -f sema.aux sema.bbl sema.blg sema.log 2>/dev/null
 pdflatex -interaction=nonstopmode sema.tex > /dev/null
 bibtex sema
+pdflatex -interaction=nonstopmode sema.tex > /dev/null
 pdflatex -interaction=nonstopmode sema.tex > /dev/null
 pdflatex -interaction=nonstopmode sema.tex > /dev/null
 
