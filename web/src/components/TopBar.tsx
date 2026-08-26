@@ -1,14 +1,19 @@
 import { Search, Filter, X, Link } from 'lucide-react'
-import { useState, useRef } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useGraph, usePatterns, useSearchPatterns } from '@/hooks/useApi'
+import type { SearchResult } from '@/hooks/useApi'
+import { useDebouncedValue } from '@/hooks/useDebouncedValue'
+import { rankPatterns } from '@/lib/patternSearch'
 import { useAppStore, SEMANTIC_EDGE_TYPES, STRUCTURAL_EDGE_TYPES, ALL_FILTERABLE_EDGE_TYPES } from '@/stores/appStore'
-import type { NodeType } from '@/types/taxonomy'
+import type { NodeType, Pattern } from '@/types/taxonomy'
 import { LAYER_COLORS, NODE_TYPE_COLORS, EDGE_TYPE_COLORS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
 import { DbSwitcher } from './DbSwitcher'
 import { useDbs } from '@/hooks/useApi'
 
 const LAYERS = ['Physics', 'Mind', 'Society', 'Infrastructure']
+const MAX_SEARCH_SUGGESTIONS = 8
+const SEMANTIC_SEARCH_DELAY_MS = 300
 // Node types the filter UI offers. TAXONOMY_PATH replaced the old
 // LAYER + CATEGORY scaffolding in 0.2.0; legacy types are intentionally
 // not exposed in the filter chips (they'd be empty on current DBs).
@@ -67,7 +72,7 @@ export function TopBar() {
       <div className="w-px h-4 bg-zinc-700" />
 
       {/* Search */}
-      <SearchInput />
+      <SearchInput patterns={patterns ?? []} />
 
       <div className="w-px h-4 bg-zinc-700" />
 
@@ -83,14 +88,46 @@ export function TopBar() {
   )
 }
 
-function SearchInput() {
+function SearchInput({ patterns }: { patterns: Pattern[] }) {
   const { searchQuery, setSearchQuery, selectNodeAndFly } = useAppStore()
-  const { data: searchResults, isLoading: isSearching } = useSearchPatterns(searchQuery)
   const [isFocused, setIsFocused] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const normalizedQuery = searchQuery.trim()
+  const localResults = useMemo<SearchResult[]>(
+    () =>
+      rankPatterns(patterns, normalizedQuery)
+        .slice(0, MAX_SEARCH_SUGGESTIONS)
+        .map(({ pattern, score }) => ({
+          handle: pattern.handle,
+          gloss: pattern.gloss,
+          mechanism: pattern.mechanism,
+          category: pattern.category,
+          layer: pattern.layer,
+          sema_ref: pattern.handle,
+          source: 'keyword',
+          score,
+        })),
+    [patterns, normalizedQuery],
+  )
+  const needsSemanticResults =
+    normalizedQuery.length >= 3 && localResults.length < MAX_SEARCH_SUGGESTIONS
+  const debouncedQuery = useDebouncedValue(normalizedQuery, SEMANTIC_SEARCH_DELAY_MS)
+  const semanticQuery =
+    needsSemanticResults && debouncedQuery === normalizedQuery ? normalizedQuery : ''
+  const { data: semanticResults, isFetching: isSearching } = useSearchPatterns(
+    semanticQuery,
+    MAX_SEARCH_SUGGESTIONS,
+  )
 
-  // Use search results directly (already limited by API)
-  const suggestions = searchResults?.slice(0, 8) || []
+  const suggestions = useMemo(() => {
+    const seen = new Set(localResults.map((result) => result.handle))
+    const relatedResults = semanticQuery
+      ? (semanticResults ?? []).filter((result) => !seen.has(result.handle))
+      : []
+    return [...localResults, ...relatedResults].slice(0, MAX_SEARCH_SUGGESTIONS)
+  }, [localResults, semanticQuery, semanticResults])
+  const isWaitingForSemanticResults =
+    needsSemanticResults && (debouncedQuery !== normalizedQuery || isSearching)
 
   const handleSelect = (id: string) => {
     selectNodeAndFly(id)
@@ -124,37 +161,44 @@ function SearchInput() {
       </div>
 
       {/* Suggestions Dropdown */}
-      {isFocused && searchQuery.length >= 2 && (
+      {isFocused && normalizedQuery.length >= 2 && (
         <div className="absolute top-full left-0 mt-2 w-72 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl overflow-hidden">
-          {isSearching ? (
-            <div className="px-3 py-2 text-xs text-zinc-500">Searching...</div>
+          {suggestions.length === 0 && isWaitingForSemanticResults ? (
+            <div className="px-3 py-2 text-xs text-zinc-500">Finding related patterns...</div>
           ) : suggestions.length === 0 ? (
             <div className="px-3 py-2 text-xs text-zinc-500">No results</div>
           ) : (
-            suggestions.map((pattern) => {
-              // Extract ID from handle (e.g., "SpectralTune#76ac" -> "SpectralTune")
-              const patternId = pattern.handle.split('#')[0]
-              return (
-                <button
-                  key={pattern.handle}
-                  type="button"
-                  onClick={() => handleSelect(patternId)}
-                  className="w-full text-left px-3 py-2 hover:bg-zinc-800 transition-colors"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-zinc-200">{pattern.handle}</span>
-                    {pattern.score !== undefined && pattern.score < 1 && (
-                      <span className="text-[10px] text-zinc-600">
-                        {Math.round(pattern.score * 100)}%
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-xs text-zinc-500 line-clamp-1">
-                    {pattern.gloss}
-                  </div>
-                </button>
-              )
-            })
+            <>
+              {suggestions.map((pattern) => {
+                // Extract ID from handle (e.g., "SpectralTune#76ac" -> "SpectralTune")
+                const patternId = pattern.handle.split('#')[0]
+                return (
+                  <button
+                    key={pattern.handle}
+                    type="button"
+                    onClick={() => handleSelect(patternId)}
+                    className="w-full text-left px-3 py-2 hover:bg-zinc-800 transition-colors"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-zinc-200">{pattern.handle}</span>
+                      {pattern.score !== undefined && pattern.score < 1 && (
+                        <span className="text-[10px] text-zinc-600">
+                          {Math.round(pattern.score * 100)}%
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-xs text-zinc-500 line-clamp-1">
+                      {pattern.gloss}
+                    </div>
+                  </button>
+                )
+              })}
+              {isWaitingForSemanticResults && (
+                <div className="border-t border-zinc-800 px-3 py-1.5 text-[10px] text-zinc-600">
+                  Finding related patterns...
+                </div>
+              )}
+            </>
           )}
         </div>
       )}

@@ -2,6 +2,9 @@ import { useState, useMemo, useRef, useCallback, createContext, useContext, useE
 import { Link } from 'react-router-dom'
 import { Search, Box, Filter, X, ChevronDown, ChevronUp, Copy, Check, Book, FileText, Github, MessageCircle, Users } from 'lucide-react'
 import { usePatterns, usePattern, useSearchPatterns } from '@/hooks/useApi'
+import { useDebouncedValue } from '@/hooks/useDebouncedValue'
+import { rankPatterns } from '@/lib/patternSearch'
+import type { Pattern } from '@/types/taxonomy'
 import { LAYER_COLORS, RING_LABELS, TIER_LABELS } from '@/types/taxonomy'
 import { cn } from '@/lib/utils'
 import { ParsedText } from '@/components/DetailsPanel'
@@ -31,16 +34,44 @@ const LAYER_DESCRIPTIONS: Record<string, string> = {
 }
 
 const WORKSPACE_ENABLED = import.meta.env.VITE_ENABLE_WORKSPACE === 'true'
+const MAX_SEARCH_RESULTS = 48
+const SEMANTIC_SEARCH_LOCAL_RESULT_THRESHOLD = 24
+const SEMANTIC_SEARCH_DELAY_MS = 300
 
 export function HomePage() {
   const { data: patterns, isLoading } = usePatterns()
   const [searchQuery, setSearchQuery] = useState('')
-  const { data: searchResults, isLoading: isSearching } = useSearchPatterns(searchQuery)
   const [selectedLayer, setSelectedLayer] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [expandAll, setExpandAll] = useState(false)
   const [jsonView, setJsonView] = useState(false)
   const [copiedAllJson, setCopiedAllJson] = useState(false)
+  const normalizedQuery = searchQuery.trim()
+  const localSearchMatches = useMemo(
+    () => rankPatterns(patterns ?? [], normalizedQuery),
+    [patterns, normalizedQuery],
+  )
+  const visibleLocalMatchCount = useMemo(
+    () =>
+      localSearchMatches.filter(
+        ({ pattern }) =>
+          (!selectedLayer || pattern.layer === selectedLayer) &&
+          (!selectedCategory || pattern.category === selectedCategory),
+      ).length,
+    [localSearchMatches, selectedLayer, selectedCategory],
+  )
+  const needsSemanticResults =
+    normalizedQuery.length >= 3 &&
+    visibleLocalMatchCount < SEMANTIC_SEARCH_LOCAL_RESULT_THRESHOLD
+  const debouncedQuery = useDebouncedValue(normalizedQuery, SEMANTIC_SEARCH_DELAY_MS)
+  const semanticQuery =
+    needsSemanticResults && debouncedQuery === normalizedQuery ? normalizedQuery : ''
+  const { data: semanticResults, isFetching: isSearching } = useSearchPatterns(
+    semanticQuery,
+    MAX_SEARCH_RESULTS,
+  )
+  const isWaitingForSemanticResults =
+    needsSemanticResults && (debouncedQuery !== normalizedQuery || isSearching)
 
   // Pattern card registry for scroll-to navigation
   const cardRegistry = useRef<Map<string, { element: HTMLDivElement; setExpanded: (v: boolean) => void }>>(new Map())
@@ -81,26 +112,28 @@ export function HomePage() {
 
   // Filter patterns
   const filteredPatterns = useMemo(() => {
-    // Use search results if we have a query and results
-    let result: typeof patterns = patterns || []
+    let result: Pattern[] = patterns || []
 
-    if (searchQuery.length >= 2 && searchResults) {
-      // Map search results to Pattern-like structure
-      result = searchResults.map((r) => ({
-        id: r.handle.split('#')[0], // Extract ID from handle
-        handle: r.handle,
-        gloss: r.gloss,
-        mechanism: r.mechanism,
-        category: r.category,
-        layer: r.layer,
-        stub: r.handle.split('#')[1] || '',
-        hash: '',
-        invariants: [],
-        parameters: {},
-        // Score for display
-        _score: r.score,
-        _source: r.source,
-      })) as typeof patterns
+    if (normalizedQuery.length >= 2) {
+      const localPatterns = localSearchMatches.map(({ pattern }) => pattern)
+      const seen = new Set(localPatterns.map((pattern) => pattern.id))
+      const relatedPatterns = semanticQuery
+        ? (semanticResults ?? [])
+            .map((match): Pattern => ({
+              id: match.handle.split('#')[0],
+              handle: match.handle,
+              gloss: match.gloss,
+              mechanism: match.mechanism,
+              category: match.category,
+              layer: match.layer,
+              stub: match.handle.split('#')[1] || '',
+              hash: '',
+              invariants: [],
+              parameters: {},
+            }))
+            .filter((pattern) => !seen.has(pattern.id))
+        : []
+      result = [...localPatterns, ...relatedPatterns]
     }
 
     if (selectedLayer) {
@@ -111,8 +144,18 @@ export function HomePage() {
       result = result?.filter((p) => p.category === selectedCategory)
     }
 
-    return result || []
-  }, [patterns, searchQuery, searchResults, selectedLayer, selectedCategory])
+    return normalizedQuery.length >= 2
+      ? result.slice(0, MAX_SEARCH_RESULTS)
+      : result
+  }, [
+    patterns,
+    normalizedQuery,
+    localSearchMatches,
+    semanticQuery,
+    semanticResults,
+    selectedLayer,
+    selectedCategory,
+  ])
 
   // Group by category
   const patternsByCategory = useMemo(() => {
@@ -352,8 +395,14 @@ export function HomePage() {
               </button>
               <div className="h-4 w-px bg-zinc-800 mx-1" />
               <span className="text-sm text-zinc-600 tabular-nums">
-                <strong className="text-zinc-400">{filteredPatterns.length}</strong> patterns
+                <strong className="text-zinc-400">{filteredPatterns.length}</strong>
+                {normalizedQuery.length >= 2
+                  ? `${filteredPatterns.length === MAX_SEARCH_RESULTS ? '+' : ''} results`
+                  : ' patterns'}
               </span>
+              {isWaitingForSemanticResults && filteredPatterns.length > 0 && (
+                <span className="text-xs text-zinc-600">Finding related patterns...</span>
+              )}
             </div>
           </div>
         </div>
@@ -361,11 +410,15 @@ export function HomePage() {
 
       {/* Content */}
       <main className="max-w-6xl mx-auto px-6 py-10">
-        {isLoading || (searchQuery.length >= 2 && isSearching) ? (
+        {isLoading || (
+          normalizedQuery.length >= 2 &&
+          filteredPatterns.length === 0 &&
+          isWaitingForSemanticResults
+        ) ? (
           <div className="flex flex-col items-center justify-center py-24 gap-4">
             <div className="w-8 h-8 border-2 border-emerald-500/20 border-t-emerald-500 rounded-full animate-spin" />
             <span className="text-zinc-500 text-sm">
-              {isSearching ? 'Searching semantically...' : 'Loading patterns...'}
+              {isLoading ? 'Loading patterns...' : 'Finding related patterns...'}
             </span>
           </div>
         ) : filteredPatterns.length === 0 ? (

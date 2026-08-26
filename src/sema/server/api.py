@@ -704,12 +704,18 @@ def get_pattern_details(handle: str):
 
 
 @app.get("/api/search")
-def search_patterns(q: str, semantic: bool = True):
+def search_patterns(q: str, semantic: bool = True, limit: int | None = None):
     """Search patterns (Hybrid: Keyword + Semantic if available)."""
     keyword_results = registry.search(q, use_semantic=semantic)
 
+    def limit_results(results: list[dict]) -> list[dict]:
+        if limit is None:
+            return results
+        safe_limit = max(1, min(limit, 100))
+        return results[:safe_limit]
+
     if not semantic:
-        return keyword_results
+        return limit_results(keyword_results)
 
     # Merge results with name-match boosting
     merged = {}
@@ -741,7 +747,7 @@ def search_patterns(q: str, semantic: bool = True):
         merged[h] = r
 
     results = sorted(merged.values(), key=lambda x: x.get("score", 0), reverse=True)
-    return results
+    return limit_results(results)
 
 
 @app.get("/api/patterns/by-category/{category}")
