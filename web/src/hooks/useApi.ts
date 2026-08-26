@@ -1,8 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { GraphData, Pattern, PatternWithRelated } from '@/types/taxonomy';
 
-async function fetchJson<T>(url: string): Promise<T> {
-  const res = await fetch(url);
+async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init);
   if (!res.ok) {
     throw new Error(`Failed to fetch ${url}: ${res.statusText}`);
   }
@@ -129,11 +129,17 @@ export interface SearchResult {
   score: number;
 }
 
-export function useSearchPatterns(query: string) {
+export function useSearchPatterns(query: string, limit = 48) {
+  const normalizedQuery = query.trim();
+
   return useQuery({
-    queryKey: queryKeys.search(query),
-    queryFn: () => fetchJson<SearchResult[]>(`/api/search?q=${encodeURIComponent(query)}`),
-    enabled: query.length >= 2,
+    queryKey: [...queryKeys.search(normalizedQuery), limit],
+    queryFn: ({ signal }) =>
+      fetchJson<SearchResult[]>(
+        `/api/search?q=${encodeURIComponent(normalizedQuery)}&limit=${limit}`,
+        { signal },
+      ),
+    enabled: normalizedQuery.length >= 3,
     staleTime: 10000,
   });
 }

@@ -4,6 +4,7 @@ import re
 import sqlite3
 import tempfile
 from pathlib import Path
+from threading import Lock
 
 import numpy as np
 from pydantic import BaseModel, Field
@@ -429,6 +430,9 @@ class RegistryManager:
     def __init__(self, vocab_dir=None, db_path=None):
         self.vocab_dir = vocab_dir or get_default_vocab_dir()
         self.db_path = db_path or get_default_db_path()
+        self._semantic_lock = Lock()
+        self._embedding_service = None
+        self._semantic_candidates = None
 
         self.source = "unknown"
         self.registry = self._load_registry()
@@ -526,7 +530,10 @@ class RegistryManager:
         return registry
 
     def refresh(self):
-        self.registry = self._load_registry()
+        refreshed_registry = self._load_registry()
+        with self._semantic_lock:
+            self.registry = refreshed_registry
+            self._semantic_candidates = None
 
     def count(self) -> int:
         return len(self.registry)
@@ -814,52 +821,62 @@ class RegistryManager:
             try:
                 from sema.taxonomy_graph.embedding_service import EmbeddingService
 
-                service = EmbeddingService(self.db_path)
-                query_vec = service.get_embedding(query)
+                with self._semantic_lock:
+                    if self._embedding_service is None:
+                        self._embedding_service = EmbeddingService(self.db_path)
+                    service = self._embedding_service
+                    query_vec = service.get_embedding(query)
 
-                conn = sqlite3.connect(self.db_path)
-                cursor = conn.cursor()
-                cursor.execute(
-                    "SELECT id, text, embedding FROM nodes "
-                    "WHERE node_type='PATTERN' AND embedding IS NOT NULL"
-                )
+                    if self._semantic_candidates is None:
+                        conn = sqlite3.connect(self.db_path)
+                        cursor = conn.cursor()
+                        cursor.execute(
+                            "SELECT id, text, embedding FROM nodes "
+                            "WHERE node_type='PATTERN' AND embedding IS NOT NULL"
+                        )
 
-                candidates = []
-                handle_map = {}  # ID -> Handle
+                        candidates = []
+                        handle_map = {}  # ID -> Handle
 
-                for node_id, text, blob in cursor.fetchall():
-                    if blob:
-                        vec = np.frombuffer(blob, dtype=np.float32)
-                        candidates.append((node_id, vec))
-                        handle_map[node_id] = text  # text column is the Handle
-                conn.close()
+                        for node_id, text, blob in cursor.fetchall():
+                            if blob:
+                                vec = np.frombuffer(blob, dtype=np.float32)
+                                candidates.append((node_id, vec))
+                                handle_map[node_id] = text  # text column is the Handle
+                        conn.close()
+                        self._semantic_candidates = (candidates, handle_map)
 
-                if candidates:
-                    sim_results = service.find_similar(
-                        query_vec, candidates, top_k=20, threshold=0.2
+                    candidates, handle_map = self._semantic_candidates
+                    sim_results = (
+                        service.find_similar(
+                            query_vec, candidates, top_k=20, threshold=0.2
+                        )
+                        if candidates
+                        else []
                     )
 
-                    for node_id, score in sim_results:
-                        handle_name = handle_map.get(node_id)
-                        if handle_name and handle_name in self.registry:
-                            data = self.registry[handle_name]
+                for node_id, score in sim_results:
+                    handle_name = handle_map.get(node_id)
+                    if handle_name and handle_name in self.registry:
+                        data = self.registry[handle_name]
 
-                            resolved_gloss = self.resolve_templates(data.get("gloss", ""))
-                            resolved_mechanism = self.resolve_templates(data.get("mechanism", ""))
+                        resolved_gloss = self.resolve_templates(data.get("gloss", ""))
+                        resolved_mechanism = self.resolve_templates(data.get("mechanism", ""))
 
-                            semantic_results.append(
-                                {
-                                    "handle": data.get("sema_ref", handle_name),
-                                    "gloss": resolved_gloss,
-                                    "mechanism": resolved_mechanism,
-                                    "category": data.get("sema_category")
-                                    or data.get("category", "Unknown"),
-                                    "layer": data.get("sema_layer") or data.get("layer", "Unknown"),
-                                    "sema_ref": data.get("sema_ref", f"{handle_name}#????"),
-                                    "score": float(score),
-                                    "source": "semantic",
-                                }
-                            )
+                        semantic_results.append(
+                            {
+                                "handle": data.get("sema_ref", handle_name),
+                                "gloss": resolved_gloss,
+                                "mechanism": resolved_mechanism,
+                                "category": data.get("sema_category")
+                                or data.get("category", "Unknown"),
+                                "layer": data.get("sema_layer")
+                                or data.get("layer", "Unknown"),
+                                "sema_ref": data.get("sema_ref", f"{handle_name}#????"),
+                                "score": float(score),
+                                "source": "semantic",
+                            }
+                        )
             except (ImportError, Exception):
                 pass
 
