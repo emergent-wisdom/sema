@@ -848,9 +848,7 @@ class RegistryManager:
 
                     candidates, handle_map = self._semantic_candidates
                     sim_results = (
-                        service.find_similar(
-                            query_vec, candidates, top_k=20, threshold=0.2
-                        )
+                        service.find_similar(query_vec, candidates, top_k=20, threshold=0.2)
                         if candidates
                         else []
                     )
@@ -870,8 +868,7 @@ class RegistryManager:
                                 "mechanism": resolved_mechanism,
                                 "category": data.get("sema_category")
                                 or data.get("category", "Unknown"),
-                                "layer": data.get("sema_layer")
-                                or data.get("layer", "Unknown"),
+                                "layer": data.get("sema_layer") or data.get("layer", "Unknown"),
                                 "sema_ref": data.get("sema_ref", f"{handle_name}#????"),
                                 "score": float(score),
                                 "source": "semantic",

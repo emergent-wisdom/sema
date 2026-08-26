@@ -1,5 +1,9 @@
 """Search endpoint response bounds for interactive clients."""
 
+import pytest
+
+pytest.importorskip("fastapi")
+
 from fastapi.testclient import TestClient
 
 from sema.server import api
