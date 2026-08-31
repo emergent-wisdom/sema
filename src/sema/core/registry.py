@@ -25,9 +25,21 @@ _PKG_DB = Path(__file__).parent.parent / "data" / "taxonomy.db"
 _PKG_VOCAB = Path(__file__).parent.parent / "data" / "vocabulary"
 
 
+def _get_config_dir() -> Path:
+    """Return the per-user configuration directory.
+
+    Follow the XDG base-directory convention when the user supplies an
+    override. This keeps CLI and MCP sessions isolated in containers, tests,
+    and project-specific wrappers without changing the normal platform path.
+    """
+    xdg_config_home = os.environ.get("XDG_CONFIG_HOME")
+    base = Path(xdg_config_home).expanduser() if xdg_config_home else Path.home() / ".config"
+    return base / "sema"
+
+
 def _get_active_db_config() -> str | None:
-    """Read the active DB path from ~/.config/sema/active_db."""
-    config_file = Path.home() / ".config" / "sema" / "active_db"
+    """Read the active DB path from the per-user Sema configuration."""
+    config_file = _get_config_dir() / "active_db"
     if config_file.exists():
         path = config_file.read_text().strip()
         if path and Path(path).exists():
@@ -41,8 +53,8 @@ def get_configured_active_db() -> str | None:
 
 
 def set_active_db(path: str | None):
-    """Atomically write the active DB path to ~/.config/sema/active_db."""
-    config_dir = Path.home() / ".config" / "sema"
+    """Atomically write the active DB path to the Sema configuration."""
+    config_dir = _get_config_dir()
     config_dir.mkdir(parents=True, exist_ok=True)
     config_file = config_dir / "active_db"
     if path is None:
@@ -70,7 +82,7 @@ def set_active_db(path: str | None):
 
 
 def _get_db_registry_path() -> Path:
-    return Path.home() / ".config" / "sema" / "databases.json"
+    return _get_config_dir() / "databases.json"
 
 
 def _load_db_registry() -> dict[str, object]:
@@ -373,7 +385,7 @@ def get_default_db_path() -> str | None:
 
     Priority:
       1. SEMA_DB_PATH env var (explicit override)
-      2. Active DB from ~/.config/sema/active_db (set via `sema use`)
+      2. Active DB from the per-user Sema configuration (set via `sema use`)
       3. Dev DB (repo data/ — for local development)
       4. Bundled package DB (read-only catalog)
       5. Client fallback (download)
@@ -803,7 +815,7 @@ class RegistryManager:
             matched_fields = [f for f, s in scores.items() if s > 0]
 
             result = {
-                "handle": data.get("sema_ref", handle),
+                "handle": handle,
                 "gloss": resolved_gloss,
                 "mechanism": resolved_mechanism,
                 "category": data.get("sema_category") or data.get("category", "Unknown"),
@@ -863,7 +875,7 @@ class RegistryManager:
 
                         semantic_results.append(
                             {
-                                "handle": data.get("sema_ref", handle_name),
+                                "handle": handle_name,
                                 "gloss": resolved_gloss,
                                 "mechanism": resolved_mechanism,
                                 "category": data.get("sema_category")
@@ -1065,13 +1077,17 @@ class RegistryManager:
                 return context
 
             def _enrich(h: str) -> dict:
-                """Get full pattern for a handle."""
+                """Return the compact identity and gloss for a neighbor."""
                 if not include_content:
                     return {"handle": h}
                 pattern = self.registry.get(h, {})
                 if pattern:
-                    return pattern
-                # Fallback if not in registry
+                    neighbor = {"handle": h}
+                    for field in ("sema_ref", "gloss"):
+                        value = pattern.get(field)
+                        if isinstance(value, str) and value:
+                            neighbor[field] = value
+                    return neighbor
                 return {"handle": h}
 
             # 1. Dependencies (Successors)

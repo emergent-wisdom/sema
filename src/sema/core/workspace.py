@@ -128,9 +128,12 @@ class GraphWorkspace:
         session: WorkspaceSession | None = None,
         use_semantic: bool = True,
         enrich_top_n: int = 3,
+        limit: int | None = None,
     ) -> list[dict[str, Any]]:
         self.refresh()
         results = self.registry_manager.search(query, use_semantic=use_semantic)
+        if limit is not None:
+            results = results[: max(1, min(limit, 20))]
         if session is None:
             return results
 
@@ -138,26 +141,27 @@ class GraphWorkspace:
         new_count = 0
         for result in results:
             ref = result.get("sema_ref") or result.get("handle", "")
-            if session.has_seen(ref):
-                compacted.append(
-                    {
-                        "handle": result.get("handle"),
-                        "sema_ref": ref,
-                        "gloss": result.get("gloss"),
-                        "score": result.get("score"),
-                        "_seen": True,
-                    }
-                )
+            seen = session.has_seen(ref)
+            if seen or new_count >= enrich_top_n:
+                summary = {
+                    "handle": result.get("handle"),
+                    "sema_ref": ref,
+                    "gloss": result.get("gloss"),
+                    "score": result.get("score"),
+                }
+                summary["_seen" if seen else "_summary"] = True
+                compacted.append(summary)
+                if not seen:
+                    new_count += 1
                 continue
 
             session.mark(ref)
-            if new_count < enrich_top_n:
-                handle = result.get("handle")
-                clean_handle = handle.split("#")[0] if isinstance(handle, str) else None
-                if clean_handle and hasattr(self.registry_manager, "get_context"):
-                    context = self.registry_manager.get_context(clean_handle)
-                    if context.get("dependencies") or context.get("used_by"):
-                        result["graph_context"] = context
+            handle = result.get("handle")
+            clean_handle = handle.split("#")[0] if isinstance(handle, str) else None
+            if clean_handle and hasattr(self.registry_manager, "get_context"):
+                context = self.registry_manager.get_context(clean_handle)
+                if context.get("dependencies") or context.get("used_by"):
+                    result["graph_context"] = context
             new_count += 1
             compacted.append(result)
 

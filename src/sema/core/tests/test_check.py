@@ -25,6 +25,7 @@ from sema.core.check import (
     REF_RE,
     RefRegistry,
     RegistryUnavailableError,
+    _default_db_path,
     check_text,
     extract_refs,
     load_registry,
@@ -220,3 +221,19 @@ def test_load_registry_rejects_malformed_database(tmp_path):
 
     with pytest.raises(RegistryUnavailableError, match="cannot read registry database"):
         load_registry(str(db_path))
+
+
+def test_default_database_path_honors_xdg_config_home(tmp_path, monkeypatch):
+    home = tmp_path / "home"
+    xdg_config_home = tmp_path / "xdg-config"
+    database = tmp_path / "active.db"
+    home.mkdir()
+    database.touch()
+    active_file = xdg_config_home / "sema" / "active_db"
+    active_file.parent.mkdir(parents=True)
+    active_file.write_text(str(database))
+    monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("XDG_CONFIG_HOME", str(xdg_config_home))
+    monkeypatch.delenv("SEMA_DB_PATH", raising=False)
+
+    assert _default_db_path() == database

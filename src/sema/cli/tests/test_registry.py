@@ -1,7 +1,14 @@
+import json
 import unittest
 from unittest.mock import patch
 
-from sema.core.registry import RegistryManager, list_dbs
+from sema.core.registry import (
+    RegistryManager,
+    get_configured_active_db,
+    list_dbs,
+    register_db,
+    set_active_db,
+)
 
 
 class TestRegistryManager(unittest.TestCase):
@@ -191,6 +198,26 @@ def test_environment_override_is_the_only_active_database(tmp_path, monkeypatch)
         databases = list_dbs()
 
     assert [database["name"] for database in databases if database["active"]] == ["overridden"]
+
+
+def test_registry_and_active_database_honor_xdg_config_home(tmp_path, monkeypatch):
+    home = tmp_path / "home"
+    xdg_config_home = tmp_path / "xdg-config"
+    database = tmp_path / "project.db"
+    home.mkdir()
+    database.touch()
+    monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("XDG_CONFIG_HOME", str(xdg_config_home))
+
+    register_db(str(database), name="project")
+    set_active_db(str(database))
+
+    sema_config = xdg_config_home / "sema"
+    assert (sema_config / "active_db").read_text() == str(database.resolve())
+    records = json.loads((sema_config / "databases.json").read_text())
+    assert records[str(database.resolve())]["name"] == "project"
+    assert get_configured_active_db() == str(database.resolve())
+    assert not (home / ".config" / "sema").exists()
 
 
 if __name__ == "__main__":

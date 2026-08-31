@@ -89,6 +89,41 @@ def test_search_session_cache_is_per_session():
     assert "_seen" not in second_seen[0]
 
 
+def test_search_limits_broad_results_and_compacts_after_top_three():
+    registry = StubRegistry()
+    broad_results = [
+        {
+            "handle": f"Pattern{index}#{index:04x}",
+            "sema_ref": f"Pattern{index}#{index:04x}",
+            "gloss": f"Pattern {index} gloss",
+            "mechanism": f"Pattern {index} detailed mechanism",
+            "score": 1 - (index / 100),
+        }
+        for index in range(25)
+    ]
+
+    def broad_search(query, use_semantic=True):
+        return broad_results
+
+    registry.search = broad_search
+    workspace = GraphWorkspace(registry_manager=registry)
+    session = WorkspaceSession()
+
+    results = workspace.search("broad", session=session, limit=10)
+
+    assert len(results) == 10
+    assert all("mechanism" in result for result in results[:3])
+    assert all(result.get("_summary") is True for result in results[3:])
+    assert all("mechanism" not in result for result in results[3:])
+    assert len(session.served_patterns) == 3
+
+    registry.search = lambda query, use_semantic=True: [broad_results[5]]
+    targeted = workspace.search("Pattern5", session=session, limit=10)
+
+    assert targeted[0]["mechanism"] == "Pattern 5 detailed mechanism"
+    assert "_summary" not in targeted[0]
+
+
 def test_resolve_marks_only_the_supplied_session():
     workspace = make_workspace()
     session = WorkspaceSession()

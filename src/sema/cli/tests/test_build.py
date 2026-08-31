@@ -162,3 +162,21 @@ def test_full_build_reverifies_managed_source_selected_by_path(tmp_path):
 
     resolve_path.assert_called_once_with(source_db)
     verify.assert_called_once_with(record)
+
+
+def test_empty_build_keeps_database_and_explains_registration_failure(tmp_path, capsys):
+    destination_db = tmp_path / "project.db"
+
+    with patch(
+        "sema.cli.main.register_db",
+        side_effect=PermissionError("configuration is not writable"),
+    ):
+        assert build_db(str(destination_db), preset="empty") is False
+
+    output = capsys.readouterr().out
+    assert "could not register it" in output
+    assert "The database was kept" in output
+    assert "XDG_CONFIG_HOME" in output
+    assert f"SEMA_DB_PATH={destination_db}" in output
+    assert "✅ Built" not in output
+    assert destination_db.exists()

@@ -5,6 +5,7 @@ import numpy as np
 
 from sema.core.registry import RegistryManager
 from sema.taxonomy_graph import embedding_service
+from sema.taxonomy_graph.graph_store import GraphStore
 
 
 def _search_database(path):
@@ -89,5 +90,49 @@ def test_semantic_search_reuses_service_and_candidates(tmp_path, monkeypatch):
 
     assert FakeEmbeddingService.init_calls == 1
     assert FakeEmbeddingService.queries == ["first concept", "second concept"]
-    assert first[0]["handle"] == "Alpha#0000"
-    assert second[0]["handle"] == "Alpha#0000"
+    assert first[0]["handle"] == "Alpha"
+    assert first[0]["sema_ref"] == "Alpha#0000"
+    assert second[0]["handle"] == "Alpha"
+    assert second[0]["sema_ref"] == "Alpha#0000"
+
+
+def test_graph_context_keeps_neighbor_cards_compact(tmp_path):
+    database = tmp_path / "taxonomy.db"
+    store = GraphStore(str(database))
+    store.embedding_service.get_embedding = lambda _text: np.zeros(384, dtype=np.float32)
+    dependency = {
+        "handle": "Dependency",
+        "gloss": "A reusable dependency",
+        "mechanism": "Carries detailed behavior that search context must not duplicate.",
+        "invariants": ["The detailed contract remains available through resolve."],
+        "_meta": {
+            "path": ["Infrastructure", "Primitives"],
+            "ring": 0,
+            "tier": 1,
+        },
+    }
+    assert store.add_pattern(dependency)["success"] is True
+    parent = {
+        "handle": "Parent",
+        "gloss": "Uses one dependency",
+        "mechanism": "Uses {{dependency}} without embedding its full card in search.",
+        "dependencies": {"references": {"dependency": dependency["sema_id"]}},
+        "_meta": {
+            "path": ["Mind", "Reasoning"],
+            "ring": 1,
+            "tier": 1,
+        },
+    }
+    assert store.add_pattern(parent)["success"] is True
+
+    context = RegistryManager(db_path=str(database)).get_context("Parent")
+
+    assert context["dependencies"] == [
+        {
+            "handle": "Dependency",
+            "sema_ref": dependency["sema_ref"],
+            "gloss": "A reusable dependency",
+        }
+    ]
+    assert "mechanism" not in context["dependencies"][0]
+    assert "invariants" not in context["dependencies"][0]
