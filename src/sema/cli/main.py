@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import shlex
 import sqlite3
 import sys
 from contextlib import closing
@@ -1900,6 +1901,21 @@ def _create_empty_db(path: Path):
         store.conn.close()
 
 
+def _register_built_db(path: Path) -> bool:
+    """Register a new build and explain how to recover from config failure."""
+    try:
+        register_db(str(path))
+    except OSError as exc:
+        quoted_path = shlex.quote(str(path))
+        print(f"⚠️  Created {path}, but could not register it: {exc}")
+        print("   The database was kept.")
+        print("   Set XDG_CONFIG_HOME to a writable directory, then run:")
+        print(f"   sema use {quoted_path}")
+        print(f"   Or launch the MCP server with SEMA_DB_PATH={quoted_path} sema mcp")
+        return False
+    return True
+
+
 def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db: str = None):
     """Build a project DB from a preset or patterns file.
 
@@ -1947,16 +1963,18 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
             # copy must be writable even when its source is managed/read-only.
             dest_path.chmod(dest_path.stat().st_mode | 0o200)
             count = RegistryManager(db_path=str(dest_path)).count()
+            if not _register_built_db(dest_path):
+                return False
             print(f"✅ Built {dest_path} (full: {count} patterns)")
-            register_db(str(dest_path))
             print(f"\nTo use: sema use {dest_path}")
             return True
 
         if preset == "empty":
             dest_path.parent.mkdir(parents=True, exist_ok=True)
             _create_empty_db(dest_path)
+            if not _register_built_db(dest_path):
+                return False
             print(f"✅ Built {dest_path} (empty: 0 patterns)")
-            register_db(str(dest_path))
             print(f"\nTo use: sema use {dest_path}")
             return True
 
@@ -1979,8 +1997,9 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
     if not requested:
         dest_path.parent.mkdir(parents=True, exist_ok=True)
         _create_empty_db(dest_path)
+        if not _register_built_db(dest_path):
+            return False
         print(f"✅ Built {dest_path} (empty: 0 patterns)")
-        register_db(str(dest_path))
         print(f"\nTo use: sema use {dest_path}")
         return True
 
@@ -2111,11 +2130,12 @@ def build_db(dest: str, preset: str = None, patterns_file: str = None, source_db
     dst_conn.close()
 
     dep_count = len(resolved) - len([h for h in requested if h in resolved])
+    if not _register_built_db(dest_path):
+        return False
     print(
         f"✅ Built {dest_path}: {len(resolved)} patterns "
         f"({len(resolved) - dep_count} requested + {dep_count} dependencies)"
     )
-    register_db(str(dest_path))
     print(f"\nTo use: sema use {dest_path}")
     return True
 

@@ -140,7 +140,9 @@ def _default_db_path() -> Path:
     if "SEMA_DB_PATH" in os.environ:
         return Path(os.environ["SEMA_DB_PATH"]).expanduser()
 
-    active_file = Path.home() / ".config" / "sema" / "active_db"
+    xdg_config_home = os.environ.get("XDG_CONFIG_HOME")
+    config_home = Path(xdg_config_home).expanduser() if xdg_config_home else Path.home() / ".config"
+    active_file = config_home / "sema" / "active_db"
     if active_file.exists():
         try:
             configured = active_file.read_text().strip()

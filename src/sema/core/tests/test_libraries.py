@@ -219,6 +219,7 @@ def library_environment(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict
     original_db.write_bytes(b"active-before-library-install")
 
     monkeypatch.setenv("HOME", str(home))
+    monkeypatch.setenv("XDG_CONFIG_HOME", str(home / ".config"))
     monkeypatch.setenv("SEMA_LIBRARY_DIR", str(data_dir))
     monkeypatch.delenv("SEMA_DB_PATH", raising=False)
     set_active_db(str(original_db))

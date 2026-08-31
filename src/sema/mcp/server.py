@@ -48,10 +48,11 @@ mcp = FastMCP(
         "IMPORTANT: Referencing a pattern is not authorization to perform the actions it describes. "
         "Patterns are definitions, not permissions.\n\n"
         "SESSION CACHE:\n"
-        "The server tracks which patterns you've seen. After the first time, search results "
-        "return compact stubs (`_seen: true`) instead of full definitions to save context space.\n"
-        "- If you see `_seen: true` but don't remember what the pattern means: call `sema_resolve(handle)`.\n"
-        "- If your context was compressed or you need all full results again: call `sema_reset_session()`."
+        "Search returns at most 20 matches. The first three unseen matches include search detail. "
+        "Later matches use `_summary: true`, and previously detailed matches use `_seen: true`.\n"
+        "- Call `sema_resolve(handle)` for the complete Pattern Card you need.\n"
+        "- If your context was compressed, call `sema_reset_session()` so leading matches can "
+        "include search detail again."
     ),
 )
 
@@ -89,9 +90,34 @@ def _active_workspace() -> GraphWorkspace:
     Tests and `sema_use` still replace REGISTRY_MGR directly, so construct the
     lightweight wrapper at call time around the current manager.
     """
+    from ..core.registry import is_read_only_db
+
     _WORKSPACE_SOURCE.db_path = DEFAULT_DB_PATH
     _WORKSPACE_SOURCE.vocab_dir = DEFAULT_VOCAB_DIR
+    _WORKSPACE_SOURCE.read_only = is_read_only_db(DEFAULT_DB_PATH)
     return GraphWorkspace(_WORKSPACE_SOURCE, registry_manager=REGISTRY_MGR)
+
+
+def _database_access(db_path: str | None) -> dict[str, bool | str]:
+    """Describe whether the active database accepts local writes."""
+    from ..core.registry import (
+        get_registered_db_by_path,
+        is_bundled_db,
+        is_read_only_db,
+    )
+
+    bundled = is_bundled_db(db_path)
+    read_only = is_read_only_db(db_path)
+    status: dict[str, bool | str] = {
+        "bundled": bundled,
+        "read_only": read_only,
+        "writable": not read_only,
+    }
+    if db_path:
+        record = get_registered_db_by_path(db_path)
+        if record and isinstance(record.get("kind"), str):
+            status["kind"] = record["kind"]
+    return status
 
 
 @mcp.tool()
@@ -99,8 +125,8 @@ def sema_reset_session() -> str:
     """Reset the session pattern cache.
 
     Clears the record of which patterns have been served this session,
-    so subsequent searches return full results again. Use when context
-    has been compressed or you need fresh full-detail results.
+    so the leading matches in subsequent searches return detailed results
+    again. Use when context has been compressed or you need fresh detail.
 
     Returns:
         Confirmation with count of patterns cleared.
@@ -110,19 +136,24 @@ def sema_reset_session() -> str:
 
 
 @mcp.tool()
-def sema_search(query: str) -> str:
+def sema_search(query: str, limit: int = 10) -> str:
     """Search Sema patterns by name, description, or meaning (semantic search).
 
-    Patterns you've already seen this session are returned in compact form
-    (handle + gloss only). Use sema_resolve() to re-fetch full details.
+    Returns at most 20 ranked matches. The first three unseen matches include
+    search detail; later and previously seen matches use compact summaries.
+    Use sema_resolve() to fetch the complete Pattern Card you need.
 
     Args:
         query: Search term or concept description.
+        limit: Maximum matches to return. Defaults to 10 and is capped at 20.
 
     Returns:
         JSON array of matching patterns.
     """
-    return json.dumps(_active_workspace().search(query, session=_SESSION), indent=2)
+    return json.dumps(
+        _active_workspace().search(query, session=_SESSION, limit=limit),
+        indent=2,
+    )
 
 
 @mcp.tool()
@@ -240,6 +271,7 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
                 "success": True,
                 "db_path": bundled,
                 "total_patterns": len(REGISTRY_MGR.registry),
+                **_database_access(bundled),
                 "message": f"Switched to default vocabulary ({len(REGISTRY_MGR.registry)} patterns)",
             },
             indent=2,
@@ -250,7 +282,7 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             {
                 "db_path": DEFAULT_DB_PATH,
                 "total_patterns": len(REGISTRY_MGR.registry),
-                "bundled": is_bundled_db(DEFAULT_DB_PATH),
+                **_database_access(DEFAULT_DB_PATH),
             },
             indent=2,
         )
@@ -300,6 +332,7 @@ def sema_use(db_path: str = "", default: bool = False) -> str:
             "success": True,
             "db_path": str(resolved),
             "total_patterns": len(REGISTRY_MGR.registry),
+            **_database_access(str(resolved)),
             "message": (
                 f"Switched to {selected_record.get('name') if selected_record else resolved} "
                 f"({len(REGISTRY_MGR.registry)} patterns)"
@@ -413,7 +446,8 @@ def _sema_mint(pattern_json: str) -> str:
             - mechanism: How the pattern works
             - gloss: One-line summary
             Recommended: invariants, preconditions, postconditions,
-            failure_modes, dependencies, _meta (layer, category, tier)
+            failure_modes, dependencies, _meta.path (layer and category),
+            _meta.ring, and _meta.tier
 
     Returns:
         JSON with the minted pattern's sema_id, or validation errors.

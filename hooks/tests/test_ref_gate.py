@@ -287,7 +287,7 @@ class TestFailureModes:
             "SEMA_REF_GATE": "enforce",
             "HOME": str(tmp_path),
         }
-        for variable in ("PYTHONPATH", "SEMA_DB_PATH", "SEMA_REF_GATE_DB"):
+        for variable in ("PYTHONPATH", "SEMA_DB_PATH", "SEMA_REF_GATE_DB", "XDG_CONFIG_HOME"):
             env.pop(variable, None)
 
         result = subprocess.run(

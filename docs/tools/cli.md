@@ -168,8 +168,10 @@ sema use
 sema use --default
 ```
 
-The active DB is stored in `~/.config/sema/active_db`. If `SEMA_DB_PATH`
-is set in the environment, it takes priority over `sema use`.
+The active DB and database registry are stored under
+`$XDG_CONFIG_HOME/sema` when `XDG_CONFIG_HOME` is set. They default to
+`~/.config/sema`. If `SEMA_DB_PATH` is set in the environment, it takes
+priority over `sema use`.
 
 An installed library name selects that library's verified snapshot; it does not
 compose or merge it with the currently active vocabulary. `sema use --default`
