@@ -10,6 +10,17 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.5] - 2026-09-06
+
+All 457 bootstrap pattern identities and both aggregate roots are unchanged.
+
+### Fixed
+
+- The MCP Registry launch command installs the required MCP extra and pins the
+  package version advertised by the registry. Release metadata synchronization
+  now checks and updates that requirement, with regression coverage for missing
+  extras and stale versions.
+
 ## [0.5.4] - 2026-09-06
 
 All 457 bootstrap pattern identities and both aggregate roots are unchanged.
