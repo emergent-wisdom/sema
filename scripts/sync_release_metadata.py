@@ -9,7 +9,8 @@ Targets kept in sync:
   - src/sema/__init__.py          — `__version__`
   - src/sema/mcp/__init__.py      — `__version__`
   - .claude-plugin/plugin.json   — `version`
-  - server.json                  — `version`, `packages[].version`, and the
+  - server.json                  — `version`, `packages[].version`, pinned MCP
+                                   runtime arguments, and the
                                    pattern-count number embedded in the
                                    `description` string
   - uv.lock                      — editable `semahash` package version
@@ -123,6 +124,17 @@ def sync_server_json(version: str, pattern_count: int) -> bool:
         if pkg.get("version") != version:
             pkg["version"] = version
             changed = True
+        if pkg.get("registryType") == "pypi" and pkg.get("identifier") == "semahash":
+            # MCP is an optional extra, and uvx's --from requirement must pin
+            # the same release as the registry package metadata.
+            runtime_arguments = [
+                {"type": "positional", "value": "--from"},
+                {"type": "positional", "value": f"semahash[mcp]=={version}"},
+                {"type": "positional", "value": "sema"},
+            ]
+            if pkg.get("runtimeArguments") != runtime_arguments:
+                pkg["runtimeArguments"] = runtime_arguments
+                changed = True
 
     # Description carries the live pattern count via the phrase
     # "over <N> cognitive patterns". If that phrasing changes, update the
