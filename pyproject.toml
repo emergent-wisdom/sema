@@ -1,14 +1,15 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
 name = "semahash"
-version = "0.5.3"
+version = "0.5.4"
 description = "Content-addressed semantics for multi-agent coordination. When the hash is the word."
 readme = "README.md"
 requires-python = ">=3.10"
-license = "MIT"
+license = "MIT AND CC-BY-4.0"
+license-files = ["LICENSE", "LICENSE-CONTENT", "THIRD_PARTY_NOTICES.md"]
 authors = [
   { name = "Henrik Westerberg", email = "henrik@emergentwisdom.org" },
 ]
@@ -17,7 +18,6 @@ classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -99,6 +99,8 @@ include = [
   "scripts/test_hash_verification.py",
   "/README.md",
   "/LICENSE",
+  "/LICENSE-CONTENT",
+  "/THIRD_PARTY_NOTICES.md",
 ]
 
 [tool.ruff]

@@ -10,6 +10,10 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.5.4] - 2026-09-06
+
+All 457 bootstrap pattern identities and both aggregate roots are unchanged.
+
 ### Added
 
 - Published a reproducible `v0.3.0` to `v0.4.0` delta-reconstruction
@@ -18,6 +22,30 @@ This file records vocabulary-level changes between versions — additions, renam
   The validation distinguishes matching semantic and catalog roots from full
   logical release equivalence, and verifies staged fresh compilation as the
   safe reconstruction path.
+
+### Changed
+
+- Pattern search reuses a cached index and resolves only matched results.
+  MCP search defaults to ten matches, caps results at twenty, and returns
+  compact summaries after the first three new matches. `sema_resolve` returns
+  the complete card when needed.
+- Active database selection and the database registry respect
+  `XDG_CONFIG_HOME`, so project and test configurations can stay separate.
+- Distribution metadata now lists both existing licenses: MIT for software
+  and CC BY 4.0 for content. Packages include both license files and the
+  third-party notice.
+
+### Fixed
+
+- MCP vocabulary status reports whether the selected database is writable,
+  bundled, or an installed read-only library.
+- Search results keep the plain handle separate from the hash reference.
+  Graph neighbors use compact identity and gloss summaries.
+- The bundled browser combines local and remote search matches without
+  duplicate suggestions for the same handle.
+- `sema build` preserves the database and shows recovery instructions if it
+  cannot write the database registry.
+- `sema check` works with current graph-based databases.
 
 ## [0.5.3] - 2026-08-21
 

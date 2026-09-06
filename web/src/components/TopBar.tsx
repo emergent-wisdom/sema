@@ -120,9 +120,9 @@ function SearchInput({ patterns }: { patterns: Pattern[] }) {
   )
 
   const suggestions = useMemo(() => {
-    const seen = new Set(localResults.map((result) => result.handle))
+    const seen = new Set(localResults.map((result) => result.handle.split('#')[0]))
     const relatedResults = semanticQuery
-      ? (semanticResults ?? []).filter((result) => !seen.has(result.handle))
+      ? (semanticResults ?? []).filter((result) => !seen.has(result.handle.split('#')[0]))
       : []
     return [...localResults, ...relatedResults].slice(0, MAX_SEARCH_SUGGESTIONS)
   }, [localResults, semanticQuery, semanticResults])
