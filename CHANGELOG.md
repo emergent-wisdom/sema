@@ -10,6 +10,17 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+- `sema login`, `sema logout`, and `sema whoami` log the CLI in to a hosted
+  Sema registry through the OAuth 2.0 device authorization flow (RFC 8628).
+  The token is stored per registry origin under the Sema configuration
+  directory and can be revoked from the registry profile page.
+- `sema registry import|list|remove` publish, list, and remove your libraries
+  on the registry from the command line or from an agent, with no browser
+  visit after the one-time approval. `--registry` and `SEMA_REGISTRY_URL`
+  select another registry, and `sema install` still needs no account.
+
 ## [0.5.5] - 2026-09-06
 
 All 457 bootstrap pattern identities and both aggregate roots are unchanged.

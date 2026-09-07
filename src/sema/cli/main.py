@@ -2415,6 +2415,50 @@ def main():
     use_cmd.add_argument("path", nargs="?", default=None, help="Installed library name or DB path")
     use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
 
+    # Login / logout / whoami - device authorization against a hosted registry
+    login_cmd = subparsers.add_parser(
+        "login",
+        help="Log in to a hosted Sema registry from this machine (default: semahash.org)",
+    )
+    login_cmd.add_argument(
+        "--registry",
+        default=None,
+        help="Registry origin, e.g. https://semahash.org (or set SEMA_REGISTRY_URL)",
+    )
+    login_cmd.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="Print the approval link instead of opening a browser",
+    )
+    logout_cmd = subparsers.add_parser(
+        "logout", help="Revoke and forget the stored registry token"
+    )
+    logout_cmd.add_argument("--registry", default=None, help="Registry origin")
+    whoami_cmd = subparsers.add_parser(
+        "whoami", help="Show the account behind the stored registry token"
+    )
+    whoami_cmd.add_argument("--registry", default=None, help="Registry origin")
+
+    # Registry - publish and manage your libraries on a hosted registry
+    registry_cmd = subparsers.add_parser(
+        "registry", help="Publish and manage your libraries on a hosted registry"
+    )
+    registry_sub = registry_cmd.add_subparsers(dest="registry_command", required=True)
+    registry_import_cmd = registry_sub.add_parser(
+        "import", help="Verify and publish a GitHub Release library.json that you own"
+    )
+    registry_import_cmd.add_argument(
+        "manifest_url", help="Stable GitHub Release URL that ends with /library.json"
+    )
+    registry_import_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_list_cmd = registry_sub.add_parser("list", help="List the libraries you published")
+    registry_list_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_remove_cmd = registry_sub.add_parser(
+        "remove", help="Remove one of your libraries from the registry"
+    )
+    registry_remove_cmd.add_argument("library_id", help="Library name shown by `sema registry list`")
+    registry_remove_cmd.add_argument("--registry", default=None, help="Registry origin")
+
     # Categorize - move a pattern to a different taxonomy path
     cat_cmd = subparsers.add_parser(
         "categorize",
@@ -2509,6 +2553,22 @@ def main():
         run_server(args.host, args.port)
     elif args.command == "mcp":
         run_mcp()
+    elif args.command == "login":
+        from .registry_client import run_login
+
+        ok = run_login(args.registry, open_browser=not args.no_browser)
+    elif args.command == "logout":
+        from .registry_client import run_logout
+
+        ok = run_logout(args.registry)
+    elif args.command == "whoami":
+        from .registry_client import run_whoami
+
+        ok = run_whoami(args.registry)
+    elif args.command == "registry":
+        from .registry_client import run_registry
+
+        ok = run_registry(args.registry_command, args)
     else:
         parser.print_help()
 

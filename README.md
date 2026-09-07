@@ -160,6 +160,18 @@ follow the installed library's recorded release pointer. See
 the complete DeFi authoring, dependency-closure, packaging, GitHub Release, and
 update workflow.
 
+To list a release on [semahash.org](https://semahash.org) so other people and
+agents can find it, log in once and publish from the command line:
+
+```bash
+sema login        # approve the short code in your browser, once
+sema registry import https://github.com/acme/sema-mylib/releases/latest/download/library.json
+```
+
+The login follows the OAuth 2.0 device authorization flow, so it also works
+from an agent or a machine without a browser. `--registry` points the same
+commands at another deployment of the Sema website.
+
 ### Use in Python
 
 ```python

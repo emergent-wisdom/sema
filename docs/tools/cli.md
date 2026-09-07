@@ -309,6 +309,53 @@ fails, the installed release and the active vocabulary remain unchanged. See
 [Publishing and Installing Vocabulary Libraries](../guides/libraries.md) for the release and
 verification contract.
 
+### login - Log In to a Hosted Registry
+
+```bash
+sema login
+sema login --registry https://registry.example --no-browser
+```
+
+Starts an OAuth 2.0 device authorization (RFC 8628) against a hosted Sema
+registry. The default registry is `https://semahash.org`; `--registry` or
+`SEMA_REGISTRY_URL` selects another deployment of the Sema website. The command
+prints a short code and an approval URL, opens the browser, and waits while you
+sign in with GitHub and approve the code. The resulting bearer token is stored
+per registry origin in `$XDG_CONFIG_HOME/sema/credentials.json` (default
+`~/.config/sema/credentials.json`, mode `0600`) and expires after 90 days.
+`SEMA_REGISTRY_TOKEN` overrides the stored token for CI jobs and agents.
+
+### logout - Revoke and Forget the Registry Token
+
+```bash
+sema logout
+```
+
+Revokes the token on the registry (best effort) and removes it from the
+credentials file. Tokens can also be revoked from the registry profile page.
+
+### whoami - Show the Logged-in Account
+
+```bash
+sema whoami
+```
+
+### registry - Publish and Manage Your Libraries
+
+```bash
+sema registry import https://github.com/USER/REPO/releases/latest/download/library.json
+sema registry list
+sema registry remove REPO
+```
+
+`import` asks the registry to download, verify, and publish a `library.json`
+release that you own on GitHub; the registry checks that the repository owner
+matches your GitHub login and rejects downgrades. `list` shows the libraries
+your account published. `remove` deletes the registry copy only; the GitHub
+release and other people's installed copies are untouched. All three accept
+`--registry`, and none of them is needed for `sema install`, which works from
+any URL without an account.
+
 ### pull - Sync Vocabulary from Upstream
 
 Walks the upstream DAG in topological order and updates the active database
