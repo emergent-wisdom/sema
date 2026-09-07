@@ -10,6 +10,10 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-07
+
+All 457 bootstrap pattern identities and both aggregate roots are unchanged.
+
 ### Added
 
 - `sema login`, `sema logout`, and `sema whoami` log the CLI in to a hosted
