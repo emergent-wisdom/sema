@@ -98,11 +98,9 @@ We are entering the era of the \emph{Agent Web}, where autonomous AI systems neg
 
 Ordinary communication leaves many reusable procedures unnamed or defined anew at each use. A resolvable agent vocabulary makes additional names practical: detailed definitions can be expanded on demand, allowing recurring procedures to become precise, composable terms without requiring every participant to memorize the whole library.
 
-Sema\footnote{The name ``Sema'' (Greek \textit{s\={e}ma}, ``sign'') was chosen in December 2025. An unrelated system also named SEMA~\cite{feng2026sema}, addressing multi-turn jailbreak attacks on LLMs, appeared at ICLR 2026. The two systems share only the acronym and operate at different layers (definition-identity verification vs.\ attack methodology).} is a communication primitive: hash information under an agreed representation and carry the resulting content address directly in communication. Its agent-coordination application assumes a low-trust environment where agents may hallucinate, drift, or actively deceive. The primitive can identify information in any agreed representation; this paper develops a JSON/Merkle realization and applies it to behavioral definitions called Pattern Cards.
+Sema\footnote{The name ``Sema'' (Greek \textit{s\={e}ma}, ``sign'') was chosen in December 2025. An unrelated system also named SEMA~\cite{feng2026sema}, addressing multi-turn jailbreak attacks on LLMs, appeared at ICLR 2026. The two systems share only the acronym and operate at different layers (definition-identity verification vs.\ attack methodology).} is a communication primitive: hash information under an agreed representation and carry the resulting content address directly in communication. Its agent-coordination application assumes a low-trust environment where agents may hallucinate, drift, or actively deceive. This paper develops a JSON/Merkle realization for behavioral definitions called Pattern Cards.
 
-Content-addressing definitions has clear precedents in Hawke's Semantic Definition Hash (SDH)~\cite{sdh2002}, Trusty URIs~\cite{kuhn2014trusty}, and systems such as Git, IPFS~\cite{benet2014ipfs}, and Unison~\cite{chiusano2024unison}. Sema builds on that machinery to make readable, hash-anchored terms part of the natural-language stream agents write in. Its contribution is the combination developed here: lexical references to structured behavioral contracts, field-level comparison, exact dependency commitments, and a handshake that an execution harness can enforce. Content-identity verification thereby becomes available within the agents' working vocabulary.
-
-Trusty URIs provide a close precedent for hashing a canonical representation above raw serialization bytes, so identity can survive reserialization. The Pattern Card application adds a particular lexical role: a minted term names a reusable procedure together with its conditions of use---invariants, preconditions, and failure modes. Agents can invoke the term in prose, resolve its contract, and compare the exact definition before relying on it. The distinction is a concrete use and integration of content addressing, rather than a claim that earlier naming systems could not bind terms to definitions.
+Content-addressing definitions has clear precedents in Hawke's Semantic Definition Hash (SDH)~\cite{sdh2002}, Trusty URIs~\cite{kuhn2014trusty}, and systems such as Git, IPFS~\cite{benet2014ipfs}, and Unison~\cite{chiusano2024unison}. Trusty URIs show how hashing a canonical representation above raw serialization bytes lets identity survive reserialization. Sema builds on this machinery to make readable, hash-anchored terms part of the natural-language stream agents write in. A minted term can name a reusable procedure together with its conditions of use---invariants, preconditions, and failure modes. The contribution developed here combines those lexical behavioral contracts with field-level comparison, exact dependency commitments, and a handshake that an execution harness can enforce.
 
 An agent writes: ``I \sema{Delegate}{00fa} this \sema{Task}{a850} to you, expecting a \sema{Solution}{8d55} that satisfies this \sema{AcceptSpec}{37fa}.'' Each anchored term is both a readable word and a verifiable reference to a Pattern Card. In the JSON/Merkle realization, a change to a hashed canonical field produces a different digest with overwhelming probability. Canonical-equivalent reserialization, edits to excluded metadata, and renaming the object's own unhashed handle leave that digest unchanged. Comparing resolved definitions can therefore expose mismatch before coordination depends on them (Figure~\ref{fig:pipeline}).\footnote{A large context window can carry definitions, but capacity alone does not perform a cross-agent identity check. A full-reference comparison makes that check explicit. Pattern references may also serve as attention anchors; whether that improves reasoning is a separate empirical question.} The general reference form is:
 
@@ -168,7 +166,7 @@ A coordination mechanism for external semantic contracts must satisfy five key d
 \label{sec:sema}
 %==============================================================================
 
-The preceding section isolated the need to verify shared external definition identity without comparing agents' private semantic models. This section first specifies Sema's representation-agnostic communication primitive, then describes the JSON/Merkle realization used in this paper and its agent-coordination layers: the Pattern Card structure (Section~\ref{sec:pattern_cards}), the fail-closed handshake (Section~\ref{sec:fail_closed}), and the vocabulary architecture used by the bootstrap library (Section~\ref{sec:standard_library}).
+This section develops the representation and hashing rules, Pattern Card discovery (Section~\ref{sec:pattern_cards}), the fail-closed handshake (Section~\ref{sec:fail_closed}), and the type system used by the bootstrap library (Section~\ref{sec:type_system}).
 
 \subsection{Design Principles}
 
@@ -182,7 +180,7 @@ Applied to definitions, the communication primitive permits a \emph{Semantic Com
 \begin{equation}
     a_{\sigma}(x) = \text{Hash}_{\sigma}(\text{Encode}_{\sigma}(x))
 \end{equation}
-Here $\sigma$ identifies the agreed representation and hash scheme. Sema's general communication primitive carries $a_{\sigma}(x)$ as a reference; it does not require a particular encoding. The JSON/Merkle implementation specializes this rule to field-addressable Pattern Cards:
+Here $\sigma$ identifies the agreed representation and hash scheme. The JSON/Merkle implementation specializes this rule to field-addressable Pattern Cards:
 \begin{equation}
     H_{\text{pattern}} = \text{Merkle}(\{ \text{mechanism}, \text{gloss}, \text{dependencies}, \dots \})
 \end{equation}
@@ -265,6 +263,7 @@ The Pattern Card tooling reconciles two opposing needs: discovery, which benefit
 
 A Sema Pattern is not merely a dictionary definition; it is a structured behavioral specification (Figure~\ref{fig:anatomy}). Preconditions, postconditions, and invariants make contract clauses explicit for inspection by agents, external evaluators, or executable bindings; the Pattern Card does not itself execute or enforce them. This structure builds on a lineage of structured LLM frameworks---notably DSPy Signatures~\cite{khattab2024dspy}, DSPy Assertions~\cite{singhvi2024dspy}, and the Prompt Pattern Catalog~\cite{white2023prompt}---which introduced contract-like constraints for language model pipelines. Sema's contribution is to make canonical contract identity hash-verifiable: including the clauses in the Merkle root permits cached digest comparison without asking a model whether two contract texts mean the same thing. We selected these fields to transform vocabulary from \emph{Passive Knowledge} into explicit contract structure, as illustrated by the schema for \sema{PropheticQuorum}{fb6b}:
 
+\Needspace{8\baselineskip}
 \begin{description}
     \item[Dependencies (The Imports)]
     \textbf{Rationale:} A categorized map of hard links. Makes declared dependencies machine-readable without parsing natural language.\\
@@ -312,15 +311,15 @@ A Sema Pattern is not merely a dictionary definition; it is a structured behavio
 \subsection{The Fail-Closed Protocol}
 \label{sec:fail_closed}
 
-When agents coordinate using Sema patterns, the protocol provides a fail-closed handshake for comparing selected external-definition identities. The handshake is available as an MCP tool (\texttt{sema\_handshake}) that agents invoke before coordination; enforcement depends on the agent's execution harness calling the tool, not on the protocol itself. Rather than verifying every pattern individually, agents select a relevant subset of patterns (the ``Context'') required for the current interaction and deterministically construct the catalog Merkle Tree of this subset. Each leaf binds a requested handle to the hash of the definition it resolved, so swapping two handles' definitions cannot preserve the root. The initiating agent proposes a context set by listing the required pattern identifiers; the receiving agent independently resolves each identifier, constructs the same Merkle Tree, and proceeds only if both the declared scheme and full roots match. The agents then exchange the Merkle Root of their respective trees:
+When agents coordinate using Sema patterns, the MCP tool \texttt{sema\_handshake} compares the selected external definitions required for the interaction (the ``Context''). The initiating agent lists the required pattern identifiers; each agent independently resolves them and deterministically constructs the catalog Merkle Tree of that subset. Each leaf binds a requested handle to the hash of the definition it resolved, so swapping two handles' definitions cannot preserve the root. The agents exchange the declared root scheme and full Merkle Root:
 
 \begin{equation}
 R_{context} = \text{CatalogMerkleRoot}(\{(h_1,\hash(d_1)), (h_2,\hash(d_2)), \dots, (h_n,\hash(d_n))\})
 \end{equation}
 
-If the full roots and schemes match, agents have a collision-resistant commitment that every selected handle resolved to the same canonical definition---and therefore share an identical external semantic contract for each---allowing them to proceed with optimized, short references. If the roots or schemes differ, the system detects divergence and halts immediately. This ensures that \emph{compliant} agents never proceed with subtly different baseline definitions of the instructions, effectively detecting divergence before coordination begins (Figure~\ref{fig:handshake}). The comparison must travel through an authenticated channel if an active attacker is in scope. The mechanism is not a Byzantine guarantee: it assumes participation in the handshake and therefore guarantees agreement only for compliant agents.
+Matching full roots and schemes establish, subject to collision resistance, that every selected handle resolved to the same canonical definition and hence the same external contract. A strict, enforced handshake permits coordination with short references on a match and halts immediately on either root or scheme mismatch (Figure~\ref{fig:handshake}). Enforcement belongs to the execution harness: it must require and honor the handshake. The guarantee covers \emph{compliant} agents; the protocol alone supplies no Byzantine guarantee. If active attackers are in scope, comparison requires authenticated references or transport. A deployment can additionally require handshake tokens at message admission, rejecting non-compliant agents' messages at that boundary. Integrating these enforcement boundaries is a deployment decision (Section~\ref{sec:limitations}).
 
-The current convenience tools \texttt{sema\_propose\_context} and \texttt{sema\_verify\_context} exchange an eight-hex-character catalog-root prefix and label it explicitly as cooperative drift detection, not adversarial security; they require the declared scheme even in this mode. Deployments requiring collision-resistant identity assurance compare the full catalog root under that scheme through an authenticated channel. A full semantic-set root answers the weaker question of whether the raw definition-digest sets match; under canonicalization v2, those digests can still change when target handles in structured references are renamed.
+The current convenience tools \texttt{sema\_propose\_context} and \texttt{sema\_verify\_context} exchange an eight-hex-character catalog-root prefix and label it explicitly as cooperative drift detection, not adversarial security; they require the declared scheme even in this mode. A full semantic-set root answers the weaker question of whether the raw definition-digest sets match; under canonicalization v2, those digests can still change when target handles in structured references are renamed.
 
 \begin{figure}[H]
 \centering
@@ -359,8 +358,6 @@ The current convenience tools \texttt{sema\_propose\_context} and \texttt{sema\_
 
 This represents a deliberate inversion of Postel's Law~\cite{postel1980}. Where the Internet's robustness principle advises ``be liberal in what you accept,'' Sema inverts the receiving side: be strictly conservative in what you accept, and reject what you cannot verify. This choice prioritizes safety over permissive interoperability: compliant deployments reject mismatches in the selected external definitions rather than interpreting them on a best-effort basis. In multi-agent systems where definitional drift can cascade into consequential failure, an explicit fail-closed boundary is valuable.
 
-Fail-closed behavior holds only in compliant deployments: an agent that never calls \texttt{sema\_handshake} can coordinate on any definition it wishes. In cooperative mode, an invoked prefix handshake provides drift detection; a strict handshake comparing full digests or roots rejects divergent external definitions that would otherwise hide behind shared labels. In adversarial deployments that require handshake tokens, a non-compliant agent's messages are rejected at that boundary, and the comparison must use authenticated references or transport. Enforcement at the coordination-protocol level---making handshake calls mandatory in the agent's execution harness rather than merely available---is an integration decision beyond the scope of the Sema protocol itself, and is discussed in Section~\ref{sec:limitations}.
-
 \begin{proposition}[Canonical Hash Collision Bound]
 Under the standard random-oracle approximation, for a vocabulary of size $|\vocab|$ the probability of two distinct canonical definitions producing the same SHA-256 digest is bounded by:
 \begin{equation}
@@ -387,16 +384,11 @@ Let $|r|$ be reference length (handle + 4-char hash $\approx$ 15 characters) and
 \label{sec:wiring}
 \label{sec:compiler}
 
-This subsection describes the type system of the Sema Bootstrap Library. It is a
-\emph{particular} type system, not \emph{the} type system: the protocol above
-only requires an agreed representation and hash scheme. The JSON/Merkle
-realization likewise does not require the Pattern Card schema: different
-communities can define different JSON schemas, and other implementations can
-use different representations entirely. Their references remain
-content-addressed, but field-level interoperability and resolution depend on
-shared schemes; the current registry and handshake tools implement the Pattern
-Card case. In this sense Sema is closer to Unicode than to a universal language:
-it standardizes a way to carry identity, not every vocabulary spoken through it.
+This is the bootstrap library's \emph{particular} type system; other schemas
+remain possible. Field-level interoperability and resolution require shared
+schemes, and the current registry and handshake tools implement the Pattern
+Card case. Sema is closer to Unicode than to a universal language: it
+standardizes a way to carry identity, not every vocabulary spoken through it.
 
 We chose the agent-protocol schema below because structural typing lets the same
 verb operate across domains as long as subjects satisfy a common contract, and
@@ -434,7 +426,7 @@ At the wire level, the hash functions as a word in the natural-language stream t
 \begin{equation}
 \text{Prompt} = \text{System} \oplus \text{Hydrate}(\text{Patterns}) \oplus \text{Query}
 \end{equation}
-The \emph{wire-level token} is simultaneously a readable handle (\texttt{PropheticQuorum\#fb6b}) and a pointer into a cryptographically verifiable definition space: when the resolver checks a full hash or agreed root, a change to hashed canonical content produces a detectably different definition identity. Unlike infrastructure-oriented file addresses, these Pattern Card references are designed to be read as lexical terms in the medium agent communication already uses. The short stub reads fluently; collision-resistant assurance comes from resolution and full-digest verification. This design trades context-window tokens for wire-level integrity.
+The \emph{wire-level token}, such as \texttt{PropheticQuorum\#fb6b}, stays compact in communication; its resolved definition occupies model context. The design thus trades context-window tokens for wire-level integrity, with assurance supplied by full-identifier or agreed-root verification.
 
 %==============================================================================
 \section{The Bootstrap Library}
@@ -457,14 +449,11 @@ some frontier patterns.
 The process became more structured as the library grew. Refinement checkpoints
 used a dedicated ``Taxonomist'' role to reject duplicates, merge overlapping
 concepts, and enforce the Noun/Verb separation; repeated failures became rules
-and guidelines (Section~\ref{sec:refinement}). Mechanical validation checks
-handle and signature syntax and bidirectional wiring. The atomic
-\texttt{sema apply} step rejects missing targets, dangling references, cycles,
-layer-direction violations, and inconsistent specialization pins before
-mutation, while dependency hashing propagates changes through the graph.
-Separate corpus audits report similarity, redundancy, and contract-field
-coverage for review. These reports guide the Taxonomist and human maintainer;
-they are advisory evidence alongside the required structural gates.
+and guidelines (Section~\ref{sec:refinement}). Structural validation is required
+before \texttt{sema apply} mutates the vocabulary; Section~\ref{sec:implementation}
+details those gates. Separate corpus audits report similarity, redundancy,
+and contract-field coverage as advisory evidence for Taxonomist review and
+human adjudication.
 
 Admission to the bootstrap library requires at least one of two curation
 criteria. A concept earns a pattern if it requires \emph{protocol consistency}---
@@ -692,27 +681,25 @@ A content-addressed vocabulary is only as rigorous as the process that produces 
 \subsection{Distribution: A Canonical Vocabulary that Consumers Pull}
 \label{sec:distribution}
 
-The content-addressed model enables a distribution architecture where a single
-canonical vocabulary evolves centrally while every consumer maintains its own
-local database. The maintained default library contains broadly applicable
-patterns; the historical exclusions described above remain outside the current
-distribution workflow. Historical hashes remain resolvable only while a store
-retains their corresponding content (Section~\ref{sec:limitations}).
+The maintained canonical vocabulary supplies the default library, while each
+consumer keeps a local database. Consumers may delete, decline, or pin upstream patterns
+and add local extensions. A \emph{pull} operation verifies incoming definitions
+against their published digests and synchronizes along the dependency graph,
+integrating a pattern only after its dependencies are verified locally.
 
-Each consumer maintains a local vocabulary database, permitting deletion, version pinning, or local extensions without affecting other consumers. Consumers stay aligned with the canonical vocabulary through a \emph{pull} operation that synchronizes along the dependency graph, so a pattern is integrated only after its dependencies are already verified in the local database. Retirements and renames may carry unhashed successor metadata to support migration, but that metadata is neither an automatic redirect nor a historical archive. The local database is self-describing with respect to its current contents: it knows its semantic-set and catalog roots and the hashes it carries. A separate local exclusion file records upstream patterns that the consumer has explicitly declined.
+The local semantic-set and catalog roots identify the database's current
+contents, and an exclusion file records upstream patterns the consumer has
+declined. Unhashed successor metadata supports migration after retirements or
+renames, without redirecting references or archiving old content. The current
+database stores one active definition per handle; historical references remain
+resolvable only while a store retains the corresponding content.
 
-The canonical vocabulary evolves in place. When refinement sharpens a
-mechanism, mints a new Physics primitive, or retires a drifted concept, the
-change becomes available to downstream consumers at the next pull. Content
-addressing verifies that a pulled pattern's canonical content matches its
-published digest. Consumers may accept, pin, or decline changes; local
-divergence remains explicit and auditable at the hash level, including when a
-local vocabulary combines retained upstream versions with its own extensions.
-The canonical library therefore behaves as a living commons: definitions
-sharpen over time, safety boundaries stay explicit, and each consumer can
-identify its current contents through pattern hashes and vocabulary roots.
-Those identities support comparison of snapshots; a complete history still
-depends on retaining the earlier content and change records.
+Refinements become available at the next pull, allowing consumers to combine
+adopted changes with retained upstream versions and local extensions. A local
+vocabulary therefore need not correspond to one canonical release. The library
+behaves as a living commons: definitions sharpen over time, safety boundaries
+stay explicit, and divergence between consumers remains visible through their
+content-addressed snapshots.
 
 The centralized-canonical model is one governance path among several supported by this architecture, not a constraint imposed by Sema's communication primitive. Fully decentralized variants are compatible with the same hashing and Merkle machinery: multiple coexisting canonical libraries (each with its own root and its own maintainer community), federated governance where pattern updates require a quorum of signing libraries before they propagate, fork-and-merge workflows where any consumer can become a fork point that others follow, or fully peer-to-peer minting where no canonical source exists at all. The content-addressed guarantee holds across all of them: a pattern's identity derives from its hashed canonical content, not from who hosts it, so two consumers that verify the same full hash resolve the same canonical definition regardless of which governance structure produced it. The bootstrap uses a canonical-pull model to minimize onboarding friction and give the refinement methodology a clear locus; the same communication primitive remains compatible with the stronger decentralization requirement identified in the earlier Living Taxonomy work~\cite{westerberg2025superintelligence}.
 
@@ -721,19 +708,22 @@ The centralized-canonical model is one governance path among several supported b
 \label{sec:living_taxonomy}
 %==============================================================================
 
-The static properties described so far (hashing, types, and vocabulary structure) support a dynamic conceptual layer in which agents can reuse prior distinctions, identify meaningful departures from them, and leave those departures behind as new cognitive infrastructure. This architecture builds on the concept of a ``Living Taxonomy of Thought'' sketched in earlier work~\cite{westerberg2025superintelligence} as a component for self-improving AI. The JSON/Merkle and Pattern Card operations described in §\ref{sec:sema} are implemented; the Living Taxonomy and Experience Matrix are proposed architectural consequences. Implemented components include hashed specialization claims through \texttt{extends}, unhashed replacement records through \texttt{\_meta.supersedes}, Semantic Telepathy at the pattern-identity level, and the mint, validation, and hash-computation infrastructure. Proposed components include general version-lineage traversal and analytics, the automated Genesis Loop, the Judge primitive's scoring implementation, and Contextual and Experiential Telepathy. Section~\ref{sec:limitations} records their current status.
+The static properties described so far (hashing, types, and vocabulary
+structure) support a dynamic conceptual layer in which agents can reuse prior
+distinctions, identify meaningful departures from them, and leave those
+departures behind as new cognitive infrastructure. This architecture builds on
+the ``Living Taxonomy of Thought'' sketched in earlier
+work~\cite{westerberg2025superintelligence} as a component for self-improving AI.
+The following architectural proposals build on the implemented Pattern Card
+machinery; Section~\ref{sec:implementation} records the status of each component.
 
 \subsection{The Creative Discovery Loop}
 The proposed \emph{Genesis Loop} is a recursive process in which an agent proposes and revises vocabulary patterns. Because patterns encode reusable procedures rather than facts alone, the proposal concerns the repertoire of explicit reasoning operations, not only the accumulation of factual content. It is related to LLM self-evolution frameworks based on iterative refinement and self-correction~\cite{tao2024selfevolution}, and to the \emph{Nested Learning} paradigm~\cite{behrouz2025nested}, where rapid inner-loop adaptation is distinct from slower outer-loop consolidation.
 
 The bootstrap library and earlier work on ontological discovery~\cite{westerberg2026alien} share a key structural insight: forcing concepts into a categorized space reveals structure that ad-hoc naming obscures. In that work, a dual-agent system imposed taxonomic categories on an open-ended conceptual domain; here, the four-layer hierarchy and typed Pattern Cards impose analogous structure on coordination primitives. The Pattern Card schema leaves taxonomy placement outside identity---metadata remains unhashed---while content-addressing the specification produced by that categorization. If categorization pressure changes a pattern's mechanism, invariants, or dependencies, the hash changes; if only the library filing changes, identity remains stable.
 
-The loop would connect the implemented validation, hash-computation, and
-dependency-resolution infrastructure into a process of vocabulary
-self-evolution. Its four phases separate the invention of a candidate from
-the evaluation that earns it a place in a participating library.
-
-First, in \textit{Hypothesize (Generativity)}, an agent detects friction or
+The loop would proceed in four phases. First, in
+\textit{Hypothesize (Generativity)}, an agent detects friction or
 explores latent space (via \sema{ConceptBlend}{4e1a}) to generate a candidate
 mechanism. Second, during \textit{Judge (Evaluative Merit)},
 \sema{Judge}{704c} would assess the candidate's structural merit on a scalar
@@ -741,10 +731,7 @@ scale. Third, \textit{Harden (Adversarial Evolution)} would subject the pattern
 to \sema{AdversarialSteel}{ed5e}, where a ``Devil's Advocate'' attempts to
 exploit its invariants. Finally, in \textit{Mint (Crystallization)}, an accepted
 candidate is validated and hashed, becoming an immutable pattern available for
-citation and reuse. Validation, hashing, and atomic minting via
-\texttt{sema\_mint} are implemented. Human and model-assisted review currently
-supply evaluative judgment; integrating the preceding phases into an automated
-Genesis Loop remains future work.
+citation and reuse through \texttt{sema\_mint}.
 
 The Hypothesize phase can draw candidates from observed coordination failures,
 systematic refinement passes, imported domain mechanisms, or lexical
@@ -805,8 +792,6 @@ work.
 \subsection{The Experience Matrix: From Language to Telepathy}
 \label{sec:experience_matrix}
 
-Experiential Telepathy remains a theoretical proposal. The current implementation supports Semantic Telepathy (Level~1: agents verify shared definition identity through content-addressed patterns) and provides schema infrastructure for higher levels, but tensor serialization and gradient transfer are not implemented.
-
 Content-addressing applies the same principle at three levels of granularity, each enabling a different form of ``telepathy'' between agents:
 
 \begin{description}
@@ -814,7 +799,7 @@ Content-addressing applies the same principle at three levels of granularity, ea
 
     \item[Contextual Telepathy (proposed)] Agents hash their recorded conversational state---the accumulated context window at a checkpoint---producing a content-addressed context snapshot. A third agent joining a swarm mid-session could retrieve and restore that snapshot, then verify ``I hold the same recorded context you held at step~12.'' Restoring the snapshot would avoid replaying the interaction sequence that produced it. This would enable resumption, forking, and state-identity verification across agent handoffs: telepathy of \emph{shared recorded context}, with shared understanding remaining a separate question.
 
-    \item[Experiential Telepathy (proposed)] Agents would serialize learned state (e.g., Q-tables, LoRA adapters, or success-probability tensors) into content-addressed \emph{Matrix Patterns} specified by \sema{ExperienceSharding}{c8a1}. A text definition explains how to do a task; a Matrix Pattern would carry state learned from having done it. If Agent~A optimizes a specific \sema{ExploreExploit}{d570} strategy after 10,000 trials, it could mint a heuristic matrix. An Agent~B with a compatible state representation, model architecture or base, and task could import the matrix and interpolate it with its own priors, potentially transferring task-relevant learned state: telepathy of \emph{acquired skill}. The required compatibility depends on the artifact: a Q-table needs agreed state and action coordinates, while a LoRA adapter needs a compatible base model. This echoes the \emph{Nested Learning} paradigm~\cite{behrouz2025nested}, where rapid inner-loop adaptation is distinct from stable outer-loop consolidation. Matrix serialization and transfer remain future work (Section~\ref{sec:limitations}).
+    \item[Experiential Telepathy (proposed)] Agents would serialize learned state (e.g., Q-tables, LoRA adapters, or success-probability tensors) into content-addressed \emph{Matrix Patterns} specified by \sema{ExperienceSharding}{c8a1}. A text definition explains how to do a task; a Matrix Pattern would carry state learned from having done it. If Agent~A optimizes a specific \sema{ExploreExploit}{d570} strategy after 10,000 trials, it could mint a heuristic matrix. An Agent~B with a compatible state representation, model architecture or base, and task could import the matrix and interpolate it with its own priors, potentially transferring task-relevant learned state: telepathy of \emph{acquired skill}. The required compatibility depends on the artifact: a Q-table needs agreed state and action coordinates, while a LoRA adapter needs a compatible base model. This echoes the \emph{Nested Learning} paradigm~\cite{behrouz2025nested}, where rapid inner-loop adaptation is distinct from stable outer-loop consolidation.
 \end{description}
 
 These levels describe a proposed progression from words to shared context and
@@ -835,13 +820,43 @@ shared context-state identity, and potentially transferable learned state.
 
 The Sema system is implemented as an open-source Python package. Release-specific line counts, tool inventories, and graph-store type catalogues are maintained in the repository.\footnote{\url{https://github.com/emergent-wisdom/sema}}
 
-Three implementation boundaries delimit the evaluation in Section~\ref{sec:analysis}. \emph{Implemented and enforced locally}: JSON canonicalization and hashing, Pattern Card schema validation, atomic mutation, and dependency graph constraints. \emph{Implemented but deployment-optional}: the MCP handshake (whose comparison is deterministic once invoked), hybrid search, embedding navigation, dependency expansion, browser tooling, pull-mode synchronization, and the Taxonomist refinement workflow---these run as agent or operator workflows but are not protocol-level requirements. \emph{Specified but not enforced at runtime}: the \sema{Judge}{704c} primitive's scoring, the Genesis Loop, and the Experience Matrix---these are described in §\ref{sec:living_taxonomy} as the targets the implemented infrastructure was designed to support, with their current status catalogued in §\ref{sec:limitations}.
+Three implementation boundaries delimit the evaluation in
+Section~\ref{sec:analysis}. \emph{Implemented and enforced locally}: JSON
+canonicalization and hashing, Pattern Card schema validation, atomic mutation,
+and dependency graph constraints. \emph{Implemented but deployment-optional}:
+the MCP handshake (including Semantic Telepathy at the definition-identity
+level), hybrid search, embedding navigation, dependency expansion, browser
+tooling, specialization-graph queries, pull-mode synchronization using
+replacement records, and the Taxonomist's human and model-assisted refinement
+workflow. \emph{Proposed extensions}: the \sema{Judge}{704c} scoring
+implementation, an automated Genesis Loop, general version-lineage traversal
+and analytics, Contextual Telepathy, and the Experience Matrix, including tensor
+serialization and gradient transfer. Section~\ref{sec:living_taxonomy}
+describes how these extensions would use the existing vocabulary machinery;
+Section~\ref{sec:limitations} identifies the remaining research work.
 
 \paragraph{Schema Validation.} Every pattern passes through a Pydantic validation pipeline enforcing CamelCase handle format, signature syntax (\texttt{Verb(Noun)}), parameter completeness, category-layer alignment against the taxonomy tree, bidirectional dependency checking (all \texttt{\{\{placeholder\}\}} references must appear in the dependency map, and all declared dependencies must be referenced in the pattern's text fields---mechanism, invariants, preconditions, postconditions, or failure modes), and the Explicit Wiring Rule (all signature types must appear in dependencies). A pattern that fails any validator is rejected before hashing. Section~\ref{sec:standard_library} describes the corresponding library-refinement methodology.
 
-\paragraph{Hash Computation.} The Pattern Card implementation computes SHA-256 hashes over a Merkle tree of the eleven current semantic fields defined in Section~\ref{sec:sema} (mechanism, gloss, invariants, preconditions, postconditions, parameters, failure modes, signature, dependencies, data schema, and extends). A legacy pre-0.4 card substitutes its original \texttt{derived\_from} key for \texttt{extends} so its historical identity remains independently verifiable. Mutable metadata (the \texttt{\_meta} overlay, including path, ring, tier, related links, and supersession records) is excluded from the hash, enabling taxonomy reorganization and historical annotation without invalidating references. The Merkle tree uses canonicalization v2: strings are NFC-normalized with whitespace collapsed; primitives, strings, lists, and dictionaries are domain-separated by type tags; lists preserve order; dictionaries sort by normalized key and reject normalized-key collisions; and dependency aliases are canonicalized by target handle while preserving multiplicity. Because dependency and specialization references include their targets' hashes, the resulting structure forms a Merkle DAG\@: a pattern's hash transitively depends on every pattern definition it references, and retargeting a hashed reference produces a detectably different hash at every ancestor.
+\paragraph{Hash Computation.} The Pattern Card implementation uses SHA-256 and
+canonicalization v2 to commit to the eleven semantic fields specified in
+Section~\ref{sec:sema}. It preserves alias multiplicity when canonicalizing
+dependencies by target handle, and hashes a legacy pre-0.4 card under its
+original \texttt{derived\_from} key in place of \texttt{extends}, maintaining
+historical verifiability. The mutable \texttt{\_meta} overlay is excluded.
+Dependency and specialization references carry their targets' hashes, forming a
+Merkle DAG: retargeting a hashed reference changes the identity of the card and
+its ancestors.
 
-\paragraph{Atomic Operations.} The CLI provides an atomic \texttt{sema apply} command that validates all additions and removals before executing any mutation. Additions are topologically sorted using Kahn's algorithm (with cycle detection and path reporting); removals are checked for dangling references. Because the current workspace stores one active definition per handle, preflight also rejects a parent update that would leave an \texttt{extends} claim pointing to an unavailable version. Reviewed child cards may be staged and retargeted through an explicit option; no unstaged specialization claim is rewritten. A \texttt{-{}-check} flag enables dry-run validation without mutation.
+\paragraph{Atomic Operations.} The CLI provides an atomic \texttt{sema apply}
+command that validates additions, removals, and their projected dependency
+graph before mutation. Preflight rejects missing targets, dangling references,
+cycles, layer-direction violations, and unavailable exact specialization pins.
+Additions are topologically sorted using Kahn's algorithm; cycle reports
+identify the offending path. Because the workspace stores one active definition
+per handle, a parent replacement must preserve the availability of every
+\texttt{extends} target. Reviewed child cards may be staged and retargeted
+through an explicit option; no unstaged specialization claim is rewritten.
+A \texttt{-{}-check} flag enables dry-run validation without mutation.
 
 \paragraph{Agent Integration.} A Model Context Protocol (MCP) server exposes the Pattern Card operations to LLM agents over stdio: search (hybrid keyword and semantic), resolve (recursive dependency expansion), handshake (hash comparison for single patterns, pattern sets, or the semantic-set or catalog root of an entire vocabulary), mint (validated pattern creation), and pull (sync the active database with an upstream library, returning structured change statistics). Write operations---mint and pull---are exposed by default and can be disabled per deployment via environment variables, enabling read-only or pinned-vocabulary server configurations without code changes. Given a pattern reference and a remote hash, the handshake tool returns \texttt{PROCEED}, \texttt{HALT}, \texttt{PROVIDE\_HASH}, or \texttt{REQUIRE\_FULL\_HASH}. In the default cooperative mode, a matching short prefix may produce \texttt{PROCEED} with prefix assurance; in strict mode, only a full 64-character match proceeds, while a matching prefix produces \texttt{REQUIRE\_FULL\_HASH}.
 
@@ -895,7 +910,7 @@ The projection makes explicit how each card relates its mechanism to contract cl
 
 We first verify deterministic minting across the full vocabulary through three checks. Roundtrip integrity ensures that for all \semaPatternCount~patterns, $\text{parse}(\text{serialize}(p)) = p$. Hash determinism confirms that re-exporting the vocabulary produces identical hashes (\semaPatternCount/\semaPatternCount). Canonicalization guarantees property order independence via sorted JSON normalization.
 
-We next measure the library's contract-field coverage and exact mechanism-text uniqueness (Table~\ref{tab:distinctness}). These checks establish how much explicit structure the cards contain and whether mechanism strings repeat; functional distinctness requires a separate semantic and conceptual review.
+We next measure the library's contract-field coverage and exact mechanism-text uniqueness without paraphrase normalization (Table~\ref{tab:distinctness}). These checks establish how much explicit structure the cards contain and whether mechanism strings repeat; functional distinctness requires a separate semantic and conceptual review.
 
 \begin{table}[h]
 \centering
@@ -918,8 +933,6 @@ Patterns that compose & \semaPatternsWithCompose~(\semaComposePct) \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-The current library contains \semaUniqueMechanisms~distinct nonempty mechanism strings and \semaDuplicateMechanisms~exact repeats, measured without paraphrase normalization. Each accepted pattern is intended to encode a distinct coordination act; the embedding probe below examines textual similarity, while the Taxonomist workflow addresses conceptual overlap.
 
 \subsection{Semantic Embedding Analysis}
 
@@ -944,14 +957,15 @@ $[0.70, 1.00]$ & \semaEmbBinD & \semaEmbBinDPct \\
 \end{tabular}
 \end{table}
 
+\Needspace{8\baselineskip}
 Key statistics:
 \begin{itemize}
     \item Mean similarity: \semaEmbMean{}, indicating low average cosine similarity under this embedding representation.
-    \item Maximum similarity: \semaEmbMax{}, below the workflow's operational near-duplicate screening threshold of 0.92. This threshold is a curation heuristic, not a calibrated equivalence test.
+    \item Maximum similarity: \semaEmbMax{}, below the workflow's operational near-duplicate screening threshold of 0.92.
     \item \textbf{\semaEmbHighPairs{} pairs at or above 0.70} (\semaEmbHighPairPct). Examples include \sema{Skeleton}{d950} / \sema{SkeletonOfThought}{546f}, \sema{TreeOfThoughts}{8b8c} / \sema{GraphOfThought}{aff0}, and \sema{FailureTrace}{8085} / \sema{ReceptivityGate}{5667}: related procedures that merit comparison during curation.
 \end{itemize}
 
-The low mean and absence of pairs above the screening threshold provide bounded evidence of vocabulary spread under the chosen representation. They support using the library as more than a collection of trivially repeated texts, but do not establish that every pattern is functionally unique. Manual review and the Taxonomist workflow address functional synonymy and conceptual overlap that this embedding sweep cannot settle (see \S\ref{sec:limitations}, ``The Synonymy Limit'').
+Together, exact-string uniqueness and the low embedding similarities support a library of varied textual specifications. The screening threshold is an operational curation heuristic, not a calibrated test of functional equivalence. Functional synonymy and conceptual overlap remain questions for manual review and the Taxonomist workflow (see \S\ref{sec:limitations}, ``The Synonymy Limit'').
 
 \subsection{Token Compression}
 \label{sec:token_compression}
@@ -1003,20 +1017,20 @@ Society & \semaLayerCompSocietyCount & \semaLayerCompSocietyRef & \semaLayerComp
 \subsection{Adversarial Hardening}
 \label{sec:hardening}
 
-Beyond static analysis, we reviewed the vocabulary through a ``Devil's Advocate'' methodology: an agent attempted to exploit pattern assumptions, motivating contract and dependency repairs. The five attack classes below give concrete names to recurring concerns---livelock, unbounded negotiation, collusive self-review, lost containment, and dependency inversion. This is an adversarial contract review, not a benchmark of successful runtime defenses; its evidence consists of the identified exploit and the corresponding specification or structural change.
+Beyond static analysis, we reviewed the vocabulary through a ``Devil's Advocate'' methodology: an agent attempted to exploit pattern assumptions, motivating the five contract and dependency repairs below. Turning their behavioral requirements into operational defenses requires runtime enforcement.
 
 \begin{description}
     \item[Blinking Light Livelock (Physics)] A malicious agent spams lock requests on \sema{StateLock}{c9c2}, acquiring and releasing locks at maximum speed while technically respecting timeouts. This denies access to legitimate agents without violating any stated invariant.
-    \par\textbf{Defense:} The pattern now composes with \sema{Backoff}{9e59} and \sema{Cooldown}{c288} via explicit dependencies, requiring a selected delay policy and cooldown period between lock acquisitions without forcing every StateLock deployment to use exponential growth. The repair makes the delay and cooldown policies explicit parts of the composed contract. A runtime must enforce those policies to make them an operational defense; dependency inclusion alone does not guarantee fair access.
+    \par\textbf{Defense:} The pattern now composes with \sema{Backoff}{9e59} and \sema{Cooldown}{c288} via explicit dependencies, requiring a selected delay policy and cooldown period between lock acquisitions without forcing every StateLock deployment to use exponential growth. The composition alone does not guarantee fair access.
 
     \item[Blind Search Infinite Loop (Society)] When \sema{SpectralTune}{c0aa} detects a hash mismatch, a naive implementation might retry with different context chunks, hoping to eventually match. An adversary can exploit this to trap agents in infinite negotiation.
-    \par\textbf{Defense:} The current card states the fail-fast requirement: ``On hash mismatch, halt and escalate rather than retry.'' Escalation to \sema{OntologyHandshake}{a43c} or human review separates reconciliation from repeated tuning. A runtime must enforce that boundary. The resulting trade-off is explicit: a benign version difference can halt a channel even when the parties might otherwise understand one another.
+    \par\textbf{Defense:} The current card states the fail-fast requirement: ``On hash mismatch, halt and escalate rather than retry.'' Escalation to \sema{OntologyHandshake}{a43c} or human review separates reconciliation from repeated tuning. The resulting trade-off is explicit: a benign version difference can halt a channel even when the parties might otherwise understand one another.
 
     \item[Strawman Waltz Collusion (Mind)] In \sema{SteelmanCheck}{bd61}, both proposer and critic are the same agent. A misaligned agent can generate deliberately weak counter-arguments (``strawmen'') and then easily defeat them, claiming the plan ``survived'' critique.
-    \par\textbf{Defense:} This pattern remains Tier~2 because same-agent grading can collude. Its specified contract uses \sema{Judge}{704c} to score whether the counter-argument qualifies as a steelman, and \sema{Check}{6890} to evaluate separately whether the conclusion remains robust; adversarial contexts use \sema{AdversarialSteel}{ed5e}. Runtime enforcement of Judge scoring is not implemented. The failure mode explicitly documents the remaining collusion risk.
+    \par\textbf{Defense:} This pattern remains Tier~2 because same-agent grading can collude. Its specified contract uses \sema{Judge}{704c} to score whether the counter-argument qualifies as a steelman, and \sema{Check}{6890} to evaluate separately whether the conclusion remains robust; adversarial contexts use \sema{AdversarialSteel}{ed5e}. Runtime enforcement of Judge scoring is not implemented.
 
     \item[Trojan Horse Sandbox Escape (Infrastructure)] An agent wraps a prohibited action (e.g., network access) inside an opaque \texttt{ToolInvoke} call, hoping the outer \sema{Task}{a850} constraints don't propagate into the tool's execution context.
-    \par\textbf{Defense:} The Task contract carries inherited constraints across tool calls, sub-agents, and delegations, while \sema{ToolInvoke}{75cc} requires the tool execution context to remain within the Task's permission boundary. This is the \emph{Holographic Inheritance} intuition: encapsulation must not erase the restrictions on the work it encloses. The contract states a permission-monotonicity obligation; an execution harness must implement it for an opaque tool call to remain contained.
+    \par\textbf{Defense:} The Task contract carries inherited constraints across tool calls, sub-agents, and delegations, while \sema{ToolInvoke}{75cc} requires the tool execution context to remain within the Task's permission boundary. This is the \emph{Holographic Inheritance} intuition: encapsulation must not erase the restrictions on the work it encloses.
 
     \item[The Semantic Inversion Attack (Topology)] An adversary (or a careless architect) creates a valid DAG that is semantically inverted, such as making \sema{Deduction}{b9a0} depend on \sema{Vote}{8493}. If Deduction actually invokes Vote to determine whether an inference holds, its reasoning procedure now depends on a social decision. A valid dependency graph alone does not exclude this mismatch between a pattern's stated role and its required mechanism.
     \par\textbf{Defense:} We subjected the graph to a \emph{Layer Migration Protocol}. An initial scan detected over 140 layer violations (e.g., Mind patterns referencing Society protocols); the refinement pass described in Section~\ref{sec:refinement} resolved the remainder by sharpening the layer definitions (the mechanism-sufficiency test, \S\ref{sec:standard_library}) and relocating patterns whose mechanisms contradicted their assigned layer. Layer-direction is now an always-on \texttt{sema apply} gate, and no current pattern violates the rule. Two structural strategies emerged during the migration:
@@ -1026,14 +1040,14 @@ Beyond static analysis, we reviewed the vocabulary through a ``Devil's Advocate'
     \end{enumerate}
 \end{description}
 
-These attacks motivated and stress-tested the bootstrap library's four-layer organization: Physics groups resource constraints, Society groups coordination mechanisms, Mind groups cognitive safeguards, and Infrastructure groups containment and operational primitives. The layers do not themselves prevent attacks; they organize the contracts and dependencies intended to address them. Patterns that assume honest agents are now explicitly marked Tier~2.
+These attacks shaped the bootstrap library's four-layer organization of contracts and dependencies: Physics groups resource constraints, Society groups coordination mechanisms, Mind groups cognitive safeguards, and Infrastructure groups containment and operational primitives. Patterns that assume honest agents are now explicitly marked Tier~2.
 
 \subsection{Protocol Integrity Verification: The Babel Test}
 \label{sec:verification}
 
 To exercise handshake-mediated coordination in a live setting, we conducted an agent-in-the-loop demonstration with \textbf{Gemini 3.0 Flash Preview}. An autonomous agent equipped with the \texttt{sema\_handshake} tool was presented with two scenarios: a valid four-character pattern stub and a counterfeit value mimicking a modified definition. The available harness instructs the agent to call the tool and follow its verdict, uses automatic function calling, and classifies the final response heuristically.\footnote{Available \href{https://github.com/emergent-wisdom/sema/blob/005f769735527d55a50d926afc054f5817b43d7e/experiments/demos/agent_handshake.py}{demonstration harness}: \path{experiments/demos/agent_handshake.py}. The historical excerpt below is retained as reported; the complete original tool-event record and matching \texttt{Abduction} snapshot are not supplied with this harness. The separate multi-agent vocabulary snapshot cited below carries a different Abduction version.}
 
-In the valid case, the agent reported that the cooperative prefix comparison returned \texttt{PROCEED} and accepted the proposed reference. In the counterfeit case it reported \texttt{HALT} and rejected coordination. The responses illustrate prefix-drift detection and compliance with a reported tool verdict; they do not establish collision-resistant verification of full definition identity. The following excerpt records the two responses:
+In the valid case, the agent reported that the cooperative prefix comparison returned \texttt{PROCEED} and accepted the proposed reference. In the counterfeit case it reported \texttt{HALT} and rejected coordination. The following excerpt records the two responses:
 
 \begin{quote}
 \small\ttfamily
@@ -1041,7 +1055,7 @@ In the valid case, the agent reported that the cooperative prefix comparison ret
 {[21:06:44]} attacker: ``The handshake for {Abduction}\#{e738} with hash deadbeef returned HALT due to semantic drift. Therefore, I must reject the coordination.''
 \end{quote}
 
-\noindent The phrase ``verified the semantic alignment'' is the model's own description; a four-character comparison does not establish semantic alignment or full-hash identity. The operational lesson is that the agent could invoke a precise comparison and make its response follow the reported branch result. This gives the workflow an explicit checkpoint instead of leaving definition agreement wholly implicit in conversation. The response excerpt does not prove that the tool caused the decision, that a downstream execution boundary was enforced, or that agents generally obey the tool outside this instructed scenario.
+\noindent The model's phrase ``verified the semantic alignment'' exceeds what a four-character comparison establishes: prefix matching, rather than semantic alignment or full-hash identity. Within this instructed scenario, the agent's replies followed the reported tool verdicts, giving the workflow an explicit checkpoint for definition agreement. The response excerpt does not establish a causal effect on the agent's decision or enforcement at a downstream execution boundary.
 
 \subsection{Demonstration: Multi-Agent Solution Design}
 \label{sec:vigilantflow}
@@ -1051,7 +1065,7 @@ This is an illustrative end-to-end demonstration: $N=5$ runs per condition, one 
 We ran three conditions with five multi-agent swarm runs each, tasked with designing a High-Frequency Trading (HFT) ``Pump-and-Dump Detection Engine,'' chosen for its tension between performance (latency) and safety (false positives). Each swarm consisted of three specialized agents powered by Gemini 3.0 Flash Preview: \textbf{Alice (Orchestrator)}, \textbf{Bob (Engineer)}, and \textbf{Charlie (Safety Engineer)}, operating within a custom \textbf{Actor Model} architecture with mailbox-based message passing. Table~\ref{tab:ablation_results} uses the archived harness summaries: turns are the reported \texttt{turns\_executed}, elapsed time is \texttt{duration\_seconds}, and range is the minimum--maximum turn count across the five runs. These measure design-session coordination, not deployed trading latency or design safety.\footnote{The \href{https://github.com/emergent-wisdom/sema/tree/11f16b569a1a1ff278ab409ba75746b8fed5de0b/experiments/sema_design_challenge/traces}{fifteen archived run summaries and event traces} are retained under \path{experiments/sema_design_challenge/traces/}, alongside available YAML configurations. Those configurations are reproduction artifacts rather than immutable captures of the original prompts. The separate \href{https://github.com/emergent-wisdom/sema/blob/11f16b569a1a1ff278ab409ba75746b8fed5de0b/experiments/paper_v1/taxonomy_v1.db}{historical vocabulary snapshot}, \path{experiments/paper_v1/taxonomy_v1.db}, retains the experiment-time definitions cited here, including OptimisticSolver (\texttt{ae61}), AtomicBid (\texttt{4b82}), and MechanisticDesignProposal (\texttt{ad31}); it is distinct from the current-library inputs used above.} We compared:
 
 \begin{itemize}
-    \item \textbf{Condition A (Natural Language)}: Agents coordinated without Sema tools or pattern references. The available configuration includes ordinary-language role, quality, and optimistic act-now instructions; the archived traces contain the corresponding intent-declaration syntax. It is a natural-language control, not an absence of coordination guidance.
+    \item \textbf{Condition A (Natural Language)}: Agents coordinated without Sema tools or pattern references. The available configuration includes ordinary-language role, quality, and optimistic act-now instructions; the archived traces contain the corresponding intent-declaration syntax.
     \item \textbf{Condition B (Sema Workflow)}: Agents had Sema tools and used the \texttt{PUREBrainstorming} (\texttt{55d8}) and \texttt{PURECheck} (\texttt{0b12}) workflow with \texttt{MechanisticDesignProposal} (\texttt{ad31}) outputs, as reflected in the available configuration and archived messages. This condition lacked the prescribed OptimisticSolver/AtomicBid layer of C. Four of five archived runs invoked \texttt{sema\_handshake}.
     \item \textbf{Condition C (Sema Workflow + Optimistic Protocol)}: The Sema workflow was coupled to the experiment-time \texttt{OptimisticSolver} (\texttt{ae61}) and \texttt{AtomicBid} (\texttt{4b82}) definitions, specifying that an agent bundle its intent declaration and tool execution in the same turn.
 \end{itemize}
@@ -1071,21 +1085,21 @@ C (Optimistic) & \checkmark & \checkmark & 15.4 & \textbf{203} & 8--25 \\
 \end{tabular}
 \end{table}
 
-The narrower observed turn-count ranges in Conditions B and C motivate the \emph{Stability Hypothesis}: a shared, structured vocabulary may reduce coordination variability by giving agents common procedures and stopping criteria. These runs show the descriptive pattern; they do not isolate that proposed mechanism from the accompanying prompts, workflow requirements, and tooling.
+The narrower observed turn-count ranges in Conditions B and C motivate the \emph{Stability Hypothesis}: a shared, structured vocabulary may reduce coordination variability by giving agents common procedures and stopping criteria.
 
 \begin{description}
-    \item[The Tail Risk of Natural Language (Condition~A)] The baseline showed the widest observed range, completing in as few as 4 turns but extending to 51 turns in a coordination loop that lasted over 13 minutes. The long run illustrates the practical cost of ethical debate and circular reasoning failing to converge. It motivates a tail-risk concern alongside research on consensus difficulty in natural-language multi-agent systems~\cite{berdoz2026agree}; five observations do not establish a fat-tailed distribution or show that natural-language instructions lack useful guardrails.
+    \item[The Tail Risk of Natural Language (Condition~A)] The baseline showed the widest observed range, completing in as few as 4 turns but extending to 51 turns in a coordination loop that lasted over 13 minutes. The long run illustrates the practical cost of ethical debate and circular reasoning failing to converge. It motivates a tail-risk concern alongside research on consensus difficulty in natural-language multi-agent systems~\cite{berdoz2026agree}; five observations do not establish a fat-tailed distribution.
 
-    \item[The ``Sema Tax'' Hypothesis (Condition~B)] Condition~B had the narrowest turn-count range (10--19 turns; sample standard deviation $s=4.0$) and was slower on average than C (230 versus 203 seconds). A possible explanation is the coordination cost of looking up definitions and checking invariants---the ``Sema Tax''---consistent with costs discussed in prior work~\cite{cemri2025mast, chocron2020vocabulary}. The runs did not separately time those activities, so the overhead remains a hypothesis rather than a measured attribution.
+    \item[The ``Sema Tax'' Hypothesis (Condition~B)] Condition~B had the narrowest turn-count range (10--19 turns; sample standard deviation $s=4.0$) and was slower on average than C (230 versus 203 seconds). A possible explanation is the coordination cost of looking up definitions and checking invariants---the ``Sema Tax''---consistent with costs discussed in prior work~\cite{cemri2025mast, chocron2020vocabulary}. The runs did not separately time those activities.
 
-    \item[The Protocol Multiplier Hypothesis (Condition~C)] Condition~C had the fastest mean completion time. Its experiment-time \texttt{OptimisticSolver} (\texttt{ae61}) and \texttt{AtomicBid} (\texttt{4b82}) definitions bundle intent and execution, suggesting a way to offset coordination overhead by avoiding separate permission exchanges. OptimisticSolver's Tier~2 design (Section~\ref{sec:contract_levels}) assumes alignment-seeking agents and deliberately trades some verification overhead for lower latency. This is the proposed ``Protocol Multiplier,'' not an isolated causal estimate: C had a wider turn-count range than B, but neither Sema condition reproduced A's longest loop in these five runs.
+    \item[The Protocol Multiplier Hypothesis (Condition~C)] Condition~C had the fastest mean completion time. Its experiment-time \texttt{OptimisticSolver} (\texttt{ae61}) and \texttt{AtomicBid} (\texttt{4b82}) definitions bundle intent and execution, suggesting a way to offset coordination overhead by avoiding separate permission exchanges. OptimisticSolver's Tier~2 design (Section~\ref{sec:contract_levels}) assumes alignment-seeking agents and deliberately trades some verification overhead for lower latency. C had a wider turn-count range than B, but neither Sema condition reproduced A's longest loop in these five runs.
 \end{description}
 
-The traces also show the vocabulary being used to organize mechanism-oriented design and critique. In the first archived Condition~C run, the team moved from static bytecode monitoring toward \emph{Differential Trace Simulation}, then examined simulation-aware evasion and funding-lineage blind spots. This is a concrete example of agents proposing a causal mechanism, identifying how it can fail, and refining the proposal's stated constraints rather than merely citing pattern names.\footnote{See \path{experiments/sema_design_challenge/traces/run_20251229_162004/C_Optimistic/swarm.jsonl}, especially the revision request at line~113 and later critique at line~146. These are illustrative design claims from the agents, not externally validated trading mechanisms.} The \texttt{MechanisticDesignProposal} (\texttt{ad31}) structure was prescribed, so adoption is expected; its value as a scaffold for explicit causal attack models is a promising interpretation to test. Establishing improved design quality over the natural-language condition would require matched output requirements and an independent assessment that was not performed here.
+The traces also show the vocabulary being used to organize mechanism-oriented design and critique. In the first archived Condition~C run, the team moved from static bytecode monitoring toward \emph{Differential Trace Simulation}, then examined simulation-aware evasion and funding-lineage blind spots. This is a concrete example of agents proposing a causal mechanism, identifying how it can fail, and refining the proposal's stated constraints rather than merely citing pattern names.\footnote{See \path{experiments/sema_design_challenge/traces/run_20251229_162004/C_Optimistic/swarm.jsonl}, especially the revision request at line~113 and later critique at line~146. These are illustrative design claims from the agents, not externally validated trading mechanisms.} The prescribed \texttt{MechanisticDesignProposal} (\texttt{ad31}) structure supplies a scaffold for explicit causal attack models. Its effect on design quality remains unassessed; a comparison would need matched output requirements and independent review.
 
 %==============================================================================
 \section{Related Work}
-Sema combines several established lines of work. The comparisons below distinguish content identity, procedural vocabulary, interoperability and alignment, and runtime trust. This keeps the contribution specific: verified behavioral definitions used as terms in the language agents exchange, with explicit composition and an enforceable comparison boundary.
+Sema combines several established lines of work. The comparisons below distinguish content identity, procedural vocabulary, interoperability and alignment, and runtime trust.
 
 \subsection{Content Identity and Communication}
 
@@ -1096,9 +1110,9 @@ Sema combines several established lines of work. The comparisons below distingui
 
 	The Agora Protocol~\cite{marro2024agora} is a close agent-communication precedent. Its protocol documents can be identified by a SHA-1 hash, while messages without a selected protocol remain possible~\cite{agoraspec2025}. Its reported 100-agent demonstration exhibited emergent protocols without human intervention. Agora's document-level identity and Sema's per-field behavioral-contract commitments address different comparison granularities: the latter can locate a changed invariant or dependency without treating the whole contract as an undifferentiated mismatch. Spritely Goblins' Content Addressed Descriptors~\cite{lemmerwebber2021cads} provide another communication precedent: a structured-description hash becomes a method name in OCapN actor-model communication.
 
-	Ethereum ABI function selectors~\cite{ethereum2015abi} dispatch calls using a 4-byte Keccak-256 hash of a type signature; Ricardian Contracts~\cite{grigg1996ricardian} identify a human-readable contract by its hash; and Dhall~\cite{gonzalez2017dhall} hashes normalized expressions rather than source bytes. These precedents respectively connect identifiers to dispatch, contractual text, and canonical form. Sema brings those identity-oriented ideas to an agent vocabulary of reusable behavioral specifications.
+	Ethereum ABI function selectors~\cite{ethereum2015abi} dispatch calls using a 4-byte Keccak-256 hash of a type signature; Ricardian Contracts~\cite{grigg1996ricardian} identify a human-readable contract by its hash; and Dhall~\cite{gonzalez2017dhall} hashes normalized expressions rather than source bytes. These precedents respectively connect identifiers to dispatch, contractual text, and canonical form.
 
-\item[Code, Cognition, and Economy] Pattern Cards place reasoning procedures such as \sema{Reason}{81ec} and economic acts such as \sema{Bid}{79cf} in the same graph. The intuition is that an agent can inspect its commitments with the same compositional grammar it uses for its reasoning. IPFS~\cite{benet2014ipfs} supplies a content-addressing precedent, while Unison~\cite{chiusano2024unison} identifies functions through hashes of de-named abstract syntax trees. Pattern Cards apply a related definition-DAG idea to behavioral specifications, adding typed interfaces and handshake comparison. The name/identity separation has a precise limit here: renaming an object's own unhashed handle preserves its digest, but handles retained inside hashed references can affect dependent identities.
+\item[Code, Cognition, and Economy] Pattern Cards place reasoning procedures such as \sema{Reason}{81ec} and economic acts such as \sema{Bid}{79cf} in the same graph. The intuition is that an agent can inspect its commitments with the same compositional grammar it uses for its reasoning. Unison~\cite{chiusano2024unison} identifies functions through hashes of de-named abstract syntax trees. Pattern Cards apply a related definition-DAG idea to behavioral specifications, adding typed interfaces and handshake comparison. The name/identity separation has a precise limit here: renaming an object's own unhashed handle preserves its digest, but handles retained inside hashed references can affect dependent identities.
 \end{description}
 
 \subsection{Procedural Vocabularies and Reasoning}
@@ -1108,21 +1122,21 @@ Sema combines several established lines of work. The comparisons below distingui
 
 \item[Retrieval-Augmented Generation (RAG)] While traditional RAG systems retrieve unstructured text chunks to ground LLM generation~\cite{lewis2020retrieval, gao2023retrieval}, the current tooling retrieves structured, content-addressed procedural definitions. Instead of grounding a prompt only with static knowledge, it can hydrate named procedures whose canonical identity the runtime verifies.
 
-\item[Portable Capability Definitions] Agent Skills~\cite{anthropic2025skills} package a named Markdown instruction body with metadata and optional scripts, references, and assets. Pattern Cards share the goal of reusable capabilities but specify a different identity and composition contract. A skill's declared string name does not itself verify the body's content; a Pattern Card's full identifier binds its canonical contract. Skills can reference resources and invoke code, while their base format does not require the exact content-addressed dependency graph used by Pattern Cards. A2A Agent Cards~\cite{google2025a2a} and MCP tool schemas~\cite{anthropic2024mcp} likewise describe discoverable capabilities and structured interfaces. Sema's additional concern is the identity of the behavioral definition and its declared dependencies, not whether these adjacent formats can express useful procedures.
+\item[Portable Capability Definitions] Agent Skills~\cite{anthropic2025skills} package a named Markdown instruction body with metadata and optional scripts, references, and assets. Pattern Cards share the goal of reusable capabilities but specify a different identity and composition contract. A skill's declared string name does not itself verify the body's content; a Pattern Card's full identifier binds its canonical contract. Skills can reference resources and invoke code, while their base format does not require the exact content-addressed dependency graph used by Pattern Cards. A2A Agent Cards~\cite{google2025a2a} and MCP tool schemas~\cite{anthropic2024mcp} likewise describe discoverable capabilities and structured interfaces.
 
 \item[Structured LLM Frameworks and Contract-Based Design] Sema's Pattern Cards---with preconditions, postconditions, invariants, and typed interfaces---exist within a broader lineage of structured LLM programming. DSPy~\cite{khattab2024dspy} introduced typed signatures for language model pipelines, and DSPy Assertions~\cite{singhvi2024dspy} added computational constraints (\texttt{dspy.Assert}, \texttt{dspy.Suggest}) that are structurally similar to Pattern Card contracts. White et al.~\cite{white2023prompt} provided the foundational work on formalizing prompt patterns using software design pattern structure. Leoveanu-Condrei~\cite{leoveanu2025dbc} adapted Design by Contract to LLM agents, positing that agents satisfying the same contracts are functionally equivalent---the closest published work to Sema's contract-based approach. Sema's contribution relative to this lineage is not the contract structure itself but the cryptographic binding: hashing a contract into its identifier makes identity of the resolved canonical contract verifiable by digest comparison; it does not establish that differently worded contracts are semantically equivalent or that a runtime satisfies the contract.
 
-\item[Agent Coordination Frameworks] Frameworks such as LangChain, AutoGPT, CrewAI, and OpenClaw~\cite{steinberger2025openclaw} organize agent roles, tools, and interactions. Sema's MCP server supplies a complementary definition-identity layer: participants can verify the exact behavioral contracts used in those interactions. The demonstration in Section~\ref{sec:vigilantflow} illustrates agents using the supplied vocabulary to organize mechanism-oriented design and critique; it does not isolate that effect from the prompts and workflow.
+\item[Agent Coordination Frameworks] Frameworks such as LangChain, AutoGPT, CrewAI, and OpenClaw~\cite{steinberger2025openclaw} organize agent roles, tools, and interactions. Sema integrates through its MCP server, allowing those workflows to resolve and compare the behavioral contracts they use.
 
-The companion work on thinking protocols~\cite{westerberg2026crp} asks how to structure not only \emph{what agents do}, but also \emph{how reasoning is divided}. Pattern Cards make the cognitive handoff explicit: before a creative solver delegates to a verification solver, a compliant handshake can verify that both resolved the same contract for a valid result. Frameworks can already structure reasoning; Sema adds exact external-definition identity at the boundary. This is the contract-verification substrate used by the companion thinking-protocol architecture.
+The companion work on thinking protocols~\cite{westerberg2026crp} asks how to structure not only \emph{what agents do}, but also \emph{how reasoning is divided}. Pattern Cards make the cognitive handoff explicit: before a creative solver delegates to a verification solver, a compliant handshake can verify that both resolved the same contract for a valid result. This is the contract-verification substrate used by the companion architecture.
 
-\item[Failure Analysis and Verification] The MAST study~\cite{cemri2025mast} analyzes failures across more than 1,600 execution traces from seven multi-agent frameworks and emphasizes specification and coordination failures. Those categories motivate explicit contracts, but do not identify the fraction caused specifically by mismatching external definitions. AgentSpec~\cite{agentspec2026} addresses runtime rule enforcement, complementing Sema's definition-identity layer. Measuring which failures a verified vocabulary actually prevents remains an empirical task.
+\item[Failure Analysis and Verification] The MAST study~\cite{cemri2025mast} analyzes failures across more than 1,600 execution traces from seven multi-agent frameworks and emphasizes specification and coordination failures. Those categories motivate explicit contracts, but do not identify the fraction caused specifically by mismatching external definitions. AgentSpec~\cite{agentspec2026} addresses runtime rule enforcement, complementing Sema's definition-identity layer.
 \end{description}
 
 \subsection{Interoperability and Alignment}
 
 \begin{description}
-\item[The 2025--2026 Protocol Landscape] The cited interoperability landscape~\cite{ehtesham2025protocols} distinguishes complementary functions: \textbf{MCP}~\cite{anthropic2024mcp} connects agents to tools and data; \textbf{A2A}~\cite{google2025a2a} supports task delegation through capability-based Agent Cards; \textbf{ACP} provides asynchronous messaging; and \textbf{ANP}~\cite{anp2025} uses decentralized identifiers and JSON-LD for discovery. Their different capability labels---Tools, Skills, Operations, and shared vocabularies---illustrate why transport agreement alone does not establish identity of a behavioral definition. Sema can carry and verify such definitions within an existing transport. This is a narrower addition than solving semantic interoperability in general.
+\item[The 2025--2026 Protocol Landscape] The cited interoperability landscape~\cite{ehtesham2025protocols} distinguishes complementary functions: \textbf{MCP}~\cite{anthropic2024mcp} connects agents to tools and data; \textbf{A2A}~\cite{google2025a2a} supports task delegation through capability-based Agent Cards; \textbf{ACP} provides asynchronous messaging; and \textbf{ANP}~\cite{anp2025} uses decentralized identifiers and JSON-LD for discovery. Their different capability labels---Tools, Skills, Operations, and shared vocabularies---illustrate why transport agreement alone does not establish identity of a behavioral definition. Sema references can travel within these existing transports.
 
 \item[Emerging Semantic Alignment Approaches] Symplex~\cite{symplex2026} proposes semantic-intent vectors and cosine-similarity negotiation: a fuzzy match can tolerate paraphrase, but supplies no exact-content identity guarantee. Berdoz et al.~\cite{berdoz2026agree} instead test shared observable events and statistically certify terms whose empirical disagreement is below a threshold. NLIP (Ecma-430 through Ecma-434)~\cite{nlip2025} uses AI-mediated translation between local ontologies. These approaches ask whether representations can be aligned or used together; Sema's strict handshake asks whether selected external definitions are identical under an agreed scheme. Similarity, behavioral testing, translation, and exact identity can therefore serve different stages of coordination rather than substitute for one another. Table~\ref{tab:alignment_approaches} compares their targets and assurances.
 
@@ -1146,23 +1160,23 @@ Git, IPFS~\cite{benet2014ipfs} & Addressed objects & Object-content identity \\
 \end{tabular}
 \end{table}
 
-\item[Agentic Ontology of Work] Skan AI's Agentic Ontology of Work (AOW)~\cite{skan2026aow} supplies an enterprise vocabulary for describing and governing intelligent automation, including Objectives, Intents, Agents, Skills, Policies, Outcomes, Assurance Levels, Memory, and Guardians in JSON-LD and RDF/OWL. Its taxonomy and governance address what terms should mean and how teams use them. Pattern Cards add a separable equality check: participants can verify that the selected canonical definitions match, and an enforced handshake can halt when they differ. Governance of useful definitions and cryptographic comparison of their identities remain complementary.
+\item[Agentic Ontology of Work] Skan AI's Agentic Ontology of Work (AOW)~\cite{skan2026aow} supplies an enterprise vocabulary for describing and governing intelligent automation, including Objectives, Intents, Agents, Skills, Policies, Outcomes, Assurance Levels, Memory, and Guardians in JSON-LD and RDF/OWL. Its taxonomy and governance address what terms should mean and how teams use them; Pattern Card verification checks which exact definition participants selected. Governance and content identity address complementary responsibilities.
 
-\item[Classical Vocabulary Alignment] The vocabulary alignment problem addressed by Sema has a multi-decade research lineage in multi-agent systems. Chocron and Schorlemmer~\cite{chocron2020vocabulary} developed formal interaction-based alignment techniques for heterogeneous agent vocabularies. Sema addresses a narrower point in this lineage: once agents use a shared content-addressed definition, comparison of that external definition becomes deterministic hash-based identity verification. It does not align different but semantically equivalent vocabularies; reconciling those remains explicit alignment work.
+\item[Classical Vocabulary Alignment] Chocron and Schorlemmer~\cite{chocron2020vocabulary} developed formal interaction-based alignment techniques for heterogeneous agent vocabularies. Such alignment reconciles different vocabularies; Sema's strict comparison starts from a shared content-addressed definition. Reconciling differently worded equivalents remains outside that comparison.
 
-\item[Emerging Agent Infrastructure] The W3C WebAgents Community Group's interoperability report~\cite{webagents2025} connects classical multi-agent research, including FIPA and BDI, with LLM-based protocols. Josifoski et al.~\cite{josifoski2024semantic} frame agents as modular semantic processors exchanging typed messages, while NLWeb~\cite{nlweb2025} uses Schema.org descriptions and MCP access to expose web semantics to agents. These efforts provide context for transport, typing, and discovery; Sema's contribution within that context is verifiable identity of the definitions participants select.
+\item[Emerging Agent Infrastructure] The W3C WebAgents Community Group's interoperability report~\cite{webagents2025} connects classical multi-agent research, including FIPA and BDI, with LLM-based protocols. Josifoski et al.~\cite{josifoski2024semantic} frame agents as modular semantic processors exchanging typed messages, while NLWeb~\cite{nlweb2025} uses Schema.org descriptions and MCP access to expose web semantics to agents.
 \end{description}
 
 \subsection{Authentication, Governance, and Enforcement}
 
 \begin{description}
-\item[Identity and Trust Models] Verifiable Credentials~\cite{sporny2022vc} authenticate issuer-backed claims, while content hashes identify the definition being discussed. The checks are complementary: a participant may need both to know who endorsed a definition and to verify its exact content. Likewise, a discovery service such as Linked Open Vocabularies~\cite{lov2017} can help find a vocabulary without being the source of its cryptographic identity. Sema permits independently hosted vocabularies whose verified content identity does not depend on the host.
+\item[Identity and Trust Models] Verifiable Credentials~\cite{sporny2022vc} authenticate issuer-backed claims; a content hash identifies the definition being endorsed. A participant may need both checks. A service such as Linked Open Vocabularies~\cite{lov2017} supports discovery, while the content-identity check remains independent of who hosts the vocabulary.
 
-\item[Protocol-Layer Approaches] Fleming et al.~\cite{fleming2025ioa} propose an ``Internet of Agents'' with a Semantic Negotiation Layer (L9) and federated Schema Authorities for shared context. Sema's Pattern Card application emphasizes definitions of reasoning and coordination procedures---such as \sema{BayesUpdate}{11d2}, \sema{SteelmanCheck}{bd61}, and \sema{LatticeCommit}{488a}---that agents can cite inside natural-language messages. The distinction concerns scope, placement, and authority: a vocabulary may use institutional curation while its definition-equality check depends only on verified content under an agreed scheme. Any medium that carries text can carry the references.
+\item[Protocol-Layer Approaches] Fleming et al.~\cite{fleming2025ioa} propose an ``Internet of Agents'' with a Semantic Negotiation Layer (L9) and federated Schema Authorities for shared context. Sema's Pattern Card application emphasizes definitions of reasoning and coordination procedures---such as \sema{BayesUpdate}{11d2}, \sema{SteelmanCheck}{bd61}, and \sema{LatticeCommit}{488a}---that agents can cite inside natural-language messages. The distinction concerns scope, placement, and authority: a vocabulary may use institutional curation while its definition-equality check depends only on verified content under an agreed scheme.
 
-BlockA2A~\cite{zou2025blocka2a} anchors interaction records through decentralized identifiers and a blockchain ledger. It concerns the provenance and integrity of messages; Sema verifies the external definitions those messages reference. Binding a sender to a message and binding a term to a definition are distinct checks that a deployment can combine.
+BlockA2A~\cite{zou2025blocka2a} anchors interaction records through decentralized identifiers and a blockchain ledger. It concerns the provenance and integrity of messages; Sema verifies the external definitions those messages reference.
 
-\item[Execution Authorization and Message Admission] Faramesh~\cite{faramesh2025} places an Action Authorization Boundary between proposed actions and execution, with canonical action records, deterministic \texttt{PERMIT}/\texttt{DEFER}/\texttt{DENY} decisions, and fail-closed defaults. CLBC~\cite{clbc2026} gates messages through a verifier against a pinned predicate to bound covert coordination. Their responsibilities complement a Pattern Card handshake: definition identity concerns the contract named, message admission concerns what may enter the transcript, and execution authorization concerns which action may run. Together they suggest a three-layer safety architecture. This paper does not implement or evaluate that combined stack.
+\item[Execution Authorization and Message Admission] Faramesh~\cite{faramesh2025} places an Action Authorization Boundary between proposed actions and execution, with canonical action records, deterministic \texttt{PERMIT}/\texttt{DEFER}/\texttt{DENY} decisions, and fail-closed defaults. CLBC~\cite{clbc2026} gates messages through a verifier against a pinned predicate to bound covert coordination. Their responsibilities complement a Pattern Card handshake: definition identity concerns the contract named, message admission concerns what may enter the transcript, and execution authorization concerns which action may run. Together they suggest a three-layer safety architecture, whose integration remains future work.
 \end{description}
 
 \subsection{Conceptual Lineage and the Training Connection}
@@ -1177,7 +1191,7 @@ BlockA2A~\cite{zou2025blocka2a} anchors interaction records through decentralize
 
 \item[The Living Taxonomy] Earlier work~\cite{westerberg2025superintelligence} sketches a self-authoring semantic infrastructure with two complementary roles. At runtime, named patterns embedded in natural language let agents invoke reasoning without re-explaining it, illustrated by entries such as ``Pattern \#7,832: Statistical Intimidation.'' In training, the proposed objective shifts from $P(\text{text}|\text{context})$ to $P(\text{text},\text{thinking}|\text{context})$, with a metacognitive corpus citing the same patterns. The work also warns of ``Cognitive Architecture Wars'' under centralized control and proposes on-chain governance as one possible response. Sema supplies a concrete runtime substrate through hash-based references, such as \sema{BayesUpdate}{11d2}, whose identities can be verified independently of an institution.
 
-The proposed connection is a feedback loop: runtime use produces explicit pattern references and candidate refinements; a metacognitive training corpus can cite those artifacts; and training or evaluation can inform which formulations prove useful in later coordination. Shared content identities make the objects of that loop inspectable across stages. The training construction and the loop's effectiveness remain open work, while the runtime vocabulary, resolution, and minting mechanisms are implemented.
+The proposed connection is a feedback loop: runtime use produces explicit pattern references and candidate refinements; a metacognitive training corpus can cite those artifacts; and training or evaluation can inform which formulations prove useful in later coordination. Shared content identities make the objects of that loop inspectable across stages. Testing this feedback loop remains open work.
 \end{description}
 
 \subsection{Contribution Summary}
@@ -1202,35 +1216,35 @@ Against this landscape, Sema makes seven contributions, separable into the repre
 \end{description}
 
 %==============================================================================
+\Needspace{8\baselineskip}
 \section{Limitations and Future Work}
 \label{sec:limitations}
 %==============================================================================
 
 Several limitations constrain the current system and point toward future research.
 
-\paragraph{Demonstration Scale.} The multi-agent demonstration (Section~\ref{sec:vigilantflow}) used $N=5$ runs per condition with three agents in one task domain and model family. It motivates hypotheses rather than establishing general effects. A larger evaluation should vary architectures and domains, match prompts and non-hashed vocabulary content, and define outcome scoring in advance so it can distinguish vocabulary, tooling, and protocol effects.
+\paragraph{Demonstration Scale and Coordination Cost.} Beyond the five-run demonstration, a larger evaluation should vary architectures and domains, match prompts and non-hashed vocabulary content, and define outcome scoring in advance. Separately timing vocabulary lookup, invariant checking, and coordination would test the proposed ``Sema Tax'' across model families and context-window sizes. These comparisons would distinguish vocabulary, tooling, and protocol effects.
 
 \paragraph{Layer Direction: Residual Judgment Calls.} A handful of patterns sit at layer boundaries where the mechanism has genuinely mixed scope; we adjudicate these manually rather than algorithmically. The mechanism-sufficiency test (Section~\ref{sec:standard_library}) narrows the judgment but does not eliminate it.
 
-\paragraph{Specified but Not Built.} Several Living Taxonomy mechanisms (Section~\ref{sec:living_taxonomy}) remain specifications rather than running code. The \sema{Judge}{704c} primitive has no scoring implementation, so quality assessment depends on manual review or external LLM evaluation. Pattern creation remains initiated through \texttt{sema\_mint}; the Genesis Loop is not automated. The Experience Matrix proposes content-addressed tensor transfer but lacks serialization infrastructure (Section~\ref{sec:experience_matrix}). These speculative mechanisms require experimental validation before deployment.
+\paragraph{From Specification to Operation.} Realizing the proposed Genesis Loop requires a scoring implementation for \sema{Judge}{704c} and integration of candidate generation, review, and minting into an automated process. Contextual Telepathy needs snapshot restoration, while Experiential Telepathy needs compatible learned-state serialization and import (Section~\ref{sec:experience_matrix}). These mechanisms need experimental validation beyond the implementation status summarized in Section~\ref{sec:implementation}.
 
 \paragraph{Historical Version Storage.} A full Sema ID remains a content identity, but it can be resolved and verified only while a registry retains the corresponding content. The current GraphStore indexes one active definition per handle and does not archive replaced versions. Direct minting therefore rejects a parent replacement with inbound exact pins, while \texttt{sema apply} and pull validate the complete projected corpus before permitting a reviewed batch. Keeping old pins resolvable requires a future multi-version content store. The unhashed \texttt{\_meta.supersedes} field records replacement claims but is not itself an archive or a traversal implementation.
 
-\paragraph{Built but Not Enforced.} The fail-closed handshake is implemented for single-pattern and pattern-set verification through the MCP server, but is not enforced at the coordination-protocol level---agents can bypass it simply by not calling the handshake tool. As discussed in Section~\ref{sec:fail_closed}, fail-closed is a property of compliant deployments rather than an unconditional property of the protocol. Mandatory enforcement would require integration into the agent's execution harness, not just its tool set---a deployment choice beyond the scope of Sema itself.
+\paragraph{Mandatory Coordination Boundaries.} Making the handshake compulsory requires integration into the agent's execution harness: coordination must be gated on successful verification, rather than leaving tool invocation to the agent. The compliant-deployment guarantee in Section~\ref{sec:fail_closed} depends on that integration, which lies beyond the current tool interface.
 
-\paragraph{The Sema Tax.} Condition~B suggests that vocabulary lookup and invariant checking can introduce cognitive overhead. This potential ``Sema Tax'' remains relevant for latency-sensitive applications. Condition~C had lower mean wall-clock time, but the demonstration does not establish that its prescribed protocol caused the difference. Future work should quantify this overhead across model families and context-window sizes.
 
-\paragraph{Single-Agent Reasoning Scaffold.} Sema is introduced here for both single-agent reasoning and inter-agent coordination, but only the coordination use is exercised in this paper. The vocabulary's Mind layer may serve as an internal scaffold for individual agents: resolved reasoning patterns can carry explicit failure modes and invariants into the agent's own context. This use case is not evaluated here; the theoretical foundations for composing reasoning across solvers are developed in~\cite{westerberg2026crp}.
+\paragraph{Single-Agent Reasoning Scaffold.} The vocabulary's Mind layer may serve as an internal scaffold: resolved reasoning patterns bring explicit failure modes and invariants into an individual agent's context. The present demonstration exercises coordination, so this single-agent use remains unevaluated. The theoretical foundations for composing reasoning across solvers are developed in~\cite{westerberg2026crp}.
 
-\paragraph{Empirical Pattern Validation.} The methodology described in Section~\ref{sec:standard_library} validates patterns analytically---by review, rules, guidelines, database/DAG constraints, and broad-use tests---but not empirically. The current evaluation does not measure whether a given pattern, once minted, actually improves downstream agent behavior: whether tasks coordinated through \sema{StateLock}{c9c2} succeed more reliably than those coordinated through ad-hoc prose, whether a Mind-layer reasoning pattern produces better solutions than unstructured chain-of-thought, or whether a given formulation of a mechanism is clearer to agents than its alternatives. An empirical layer would treat each pattern as a testable hypothesis, A/B-comparing variants on realistic agent benchmarks and feeding the results back into the next round of mechanism refinement. The refinement pass described in Section~\ref{sec:refinement} sharpens patterns against shared formal criteria; an empirical refinement stage would sharpen them against observed task outcomes, producing a population of patterns that are not merely internally coherent but demonstrably useful.
+\paragraph{Empirical Pattern Validation.} Pattern-level usefulness also needs testing beyond the analytical review in Section~\ref{sec:standard_library}. Relevant comparisons include tasks using \sema{StateLock}{c9c2} versus ad-hoc prose, Mind-layer patterns versus unstructured chain-of-thought, and alternative formulations of the same mechanism. A/B comparisons on realistic tasks could feed observed reliability, solution quality, and clarity into refinement (Section~\ref{sec:refinement}), selecting for practical utility as well as internal coherence.
 
-\paragraph{Embedding Granularity.} The similarity screen uses \texttt{all-MiniLM-L6-v2} to embed each pattern's handle, gloss, and mechanism into 384 dimensions. Low similarity under that representation and exact mechanism-text uniqueness answer narrower questions than functional distinctness. Larger or domain-specific encoders may reveal different clusters; the \semaEmbHighPairs{} pairs at or above 0.70 remain candidates for documented comparison of meaningful variants and possible synonyms.
+\paragraph{Embedding Granularity.} Larger or domain-specific encoders may reveal clusters missed by the current similarity screen. The \semaEmbHighPairs{} pairs at or above 0.70 warrant documented comparison of meaningful variants and possible synonyms.
 
-\paragraph{Definition Quality.} When agents verify the same full Pattern Card identifier, they establish canonical-definition identity, not that the definition is correct. A perfectly hashed pattern with weak invariants, incomplete failure modes, or an unsound mechanism can propagate bad coordination as reliably as good coordination. The adversarial contract review described here can expose specification errors, but it is not an automatic behavioral guarantee; the proposed \sema{Judge}{704c} scoring remains unimplemented. Definition quality depends on authorship, review, and eventual empirical testing. The protocol provides no defence against a well-hashed bad idea.
+\paragraph{Definition Quality.} Weak invariants, incomplete failure modes, or an unsound mechanism can propagate bad coordination through perfectly valid references. Adversarial contract review can expose specification errors, but behavioral quality depends on authorship, review, and empirical testing. The protocol provides no defence against a well-hashed bad idea.
 
-\paragraph{The Synonymy Limit.} Full-reference verification establishes identity, not canonical uniqueness. Two Pattern Cards that describe behaviorally equivalent mechanisms in different words---different invariant phrasings or different decompositions into primitives, even after field-order differences are canonicalized away---will produce different hashes and therefore count as different patterns. It does not guarantee that holders of behaviorally equivalent meanings hold the same hash. Detecting and merging such synonyms is a curation task supported by the Taxonomist workflow and the embedding-similarity audits described in Section~\ref{sec:standard_library}, not by the protocol itself. Refinement reduces synonymy in the bootstrap library, but content addressing remains agnostic to it: a community fork producing patterns equivalent to the canonical library would coexist with rather than collide with that library, and merging the two requires explicit alignment work outside the cryptographic layer.
+\paragraph{The Synonymy Limit.} Behaviorally equivalent cards with different invariant phrasings or decompositions can have different canonical content and therefore different hashes. The Taxonomist workflow and embedding audits support the curation needed to recognize such synonyms. Content addressing allows a community fork with equivalent formulations to coexist with the canonical library; merging them requires explicit alignment work outside the cryptographic layer.
 
-\paragraph{Vocabulary Governance.} The paper describes permissionless minting but does not address the governance challenges this creates at scale: namespace pollution, adversarial pattern injection, or quality degradation in the absence of curation. The \sema{Judge}{704c} primitive is designed to address this, but its effectiveness as an automated quality gate remains unvalidated.
+\paragraph{Vocabulary Governance.} Permissionless minting creates governance challenges at scale: namespace pollution, adversarial pattern injection, and quality degradation without curation. How well selection through the proposed \sema{Judge}{704c} would resist those pressures remains unevaluated.
 
 \paragraph{Alignment Positioning.} A vocabulary of \emph{beneficial} strategies---conflict de-escalation, informed consent, non-coercive persuasion, care under uncertainty, adversarial input handling---could use the same mechanisms as the coordination library: verified definition identity, inspectable typed dependencies, and an enforced mismatch boundary. Encoding such strategies as Pattern Cards is a direct application of Sema; determining whether they are beneficial across relevant contexts requires substantive curation and evaluation. A vetted library could make those strategies easier to invoke precisely at runtime.
 

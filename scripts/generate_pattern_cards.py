@@ -146,7 +146,8 @@ def generate_pattern_cards():
         # Keep the full-ID heading with the opening lines of its card. These
         # headings often wrap, so ordinary section widow protection is not
         # enough near a page boundary.
-        lines.append("\\Needspace{7\\baselineskip}")
+        needed_lines = 11 if tier_note else 7
+        lines.append(f"\\Needspace{{{needed_lines}\\baselineskip}}")
         lines.append(f"\\subsection{{{title}}}")
         if tier_note:
             lines.append(tier_note)
