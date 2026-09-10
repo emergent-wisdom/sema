@@ -17,6 +17,7 @@ APPENDIX_PATTERNS = [
     "FractalIntelligence",
     "SpectralTune",
     "SteelmanCheck",
+    "WhyClimb",
     "OptimisticSolver",
 ]
 

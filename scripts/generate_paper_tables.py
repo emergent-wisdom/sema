@@ -80,7 +80,7 @@ def generate_tex():
 
         descriptions = {
             "Physics": "The immutable substrate.",
-            "Mind": "Hybrid cognition---always decomposable and delegatable.",
+            "Mind": "Mechanisms requiring cognition; solver contracts support decomposition and delegation.",
             "Society": "Multi-agent coordination.",
             "Infrastructure": "Operational constraints.",
         }

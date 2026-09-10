@@ -15,8 +15,13 @@ def calculate_stats():
                 patterns.append(json.load(f))
 
     pattern_count = len(patterns)
+    mechanism_texts = [p.get("mechanism", "") for p in patterns]
+    nonempty_mechanisms = [text for text in mechanism_texts if text.strip()]
+    unique_mechanism_count = len(set(nonempty_mechanisms))
+    duplicate_mechanism_count = len(nonempty_mechanisms) - unique_mechanism_count
 
-    # Edges
+    # Field-projection edges, not stored SQLite edges. Project each card's
+    # mechanism and clauses as links, alongside dependencies and related links.
     total_edges = 0
     pattern_edges = 0
     for p in patterns:
@@ -28,20 +33,13 @@ def calculate_stats():
         # Count _meta.related as edges
         total_edges += len(p.get("_meta", {}).get("related", []))
 
-        # Also count links to Invariants etc if they are considered edges?
-        # In the paper "Each pattern links to its mechanism, invariants... via typed edges"
-        # So yes.
+        # Each clause occurrence contributes one projected edge.
         total_edges += len(p.get("invariants", []))
         total_edges += len(p.get("preconditions", []))
         total_edges += len(p.get("postconditions", []))
         total_edges += len(p.get("failure_modes", []))
-        # Mechanism is 1 per pattern? "Links to its mechanism".
+        # One mechanism-field node and edge per pattern.
         total_edges += 1
-
-    # Nodes
-    # Patterns are nodes.
-    # Invariants, Pre/Post, Failures, Mechanisms are nodes?
-    # Mechanisms are unique per pattern (407).
 
     unique_invariants = set()
     unique_preconditions = set()
@@ -57,8 +55,9 @@ def calculate_stats():
         for i in p.get("failure_modes", []):
             unique_failures.add(i.strip().lower())
 
-    # Total nodes = patterns + unique constraints
-    # (mechanisms are 1:1 with patterns, so just count pattern_count)
+    # Projected nodes: patterns, their mechanism fields, and clause strings
+    # deduplicated within each field after stripping and lowercasing. Taxonomy
+    # path nodes and the store's similarity-based clause merging are not modeled.
     total_nodes = (
         pattern_count
         + len(unique_invariants)
@@ -68,17 +67,17 @@ def calculate_stats():
         + pattern_count
     )
 
-    # "Principles"?
-    # Maybe "Principles" = Preconditions + Postconditions?
+    # Preserve the existing macro name; the paper labels this quantity as
+    # unique precondition/postcondition clauses, not a separate node type.
     principles_count = len(unique_preconditions) + len(unique_postconditions)
 
     avg_edges = total_edges / pattern_count if pattern_count else 0
 
-    print(f"Total nodes: {total_nodes}")
-    print(f"Total edges: {total_edges}")
+    print(f"Field-projection nodes: {total_nodes}")
+    print(f"Field-projection edges: {total_edges}")
     print(f"Solution patterns: {pattern_count}")
     print(f"Unique invariants: {len(unique_invariants)}")
-    print(f"Principles (Pre+Post?): {principles_count}")
+    print(f"Unique pre/postcondition clauses: {principles_count}")
     # Table 3 Metrics
     with_invariants = 0
     with_pre = 0
@@ -110,7 +109,7 @@ def calculate_stats():
     print("\n--- Table 3 ---")
     print(f"Total patterns: {pattern_count}")
     print(
-        f"Patterns with formal invariants: {with_invariants} ({with_invariants / pattern_count:.0%})"
+        f"Patterns with invariant clauses: {with_invariants} ({with_invariants / pattern_count:.0%})"
     )
     print(f"Patterns with preconditions: {with_pre} ({with_pre / pattern_count:.0%})")
     print(f"Patterns with postconditions: {with_post} ({with_post / pattern_count:.0%})")
@@ -135,6 +134,8 @@ def calculate_stats():
     with open(OUTPUT_TEX, "w") as f:
         f.write("% Auto-generated stats from calculate_graph_stats.py\n")
         f.write(f"\\newcommand{{\\semaPatternCount}}{{{pattern_count}}}\n")
+        f.write(f"\\newcommand{{\\semaUniqueMechanisms}}{{{unique_mechanism_count}}}\n")
+        f.write(f"\\newcommand{{\\semaDuplicateMechanisms}}{{{duplicate_mechanism_count}}}\n")
         f.write(f"\\newcommand{{\\semaTotalNodes}}{{{total_nodes:,}}}\n")
         f.write(f"\\newcommand{{\\semaTotalEdges}}{{{total_edges:,}}}\n")
         f.write(f"\\newcommand{{\\semaAvgEdges}}{{{avg_edges:.1f}}}\n")
@@ -178,9 +179,9 @@ def calculate_stats():
         f.write(f"\\newcommand{{\\semaTierOneCount}}{{{tier_counts.get(1, 0)}}}\n")
         f.write(f"\\newcommand{{\\semaCategoryCount}}{{{len(categories)}}}\n")
 
-        # Compression stats — compute real token counts for representative
-        # Tier-1 patterns using tiktoken (cl100k_base, same tokenizer as
-        # GPT-4 / Claude). "Ref" = short reference form Handle#stub that
+        # Compression stats — compute token counts for representative
+        # patterns using tiktoken's cl100k_base tokenizer.
+        # "Ref" = short reference form Handle#stub that
         # appears in the paper. "Full" = mechanism + invariants +
         # preconditions + postconditions + failure_modes (the semantic
         # payload an agent would need to transmit if content-addressing
@@ -259,7 +260,8 @@ def calculate_stats():
             f.write(f"\\newcommand{{\\semaLayerComp{layer}Full}}{{{af:.1f}}}\n")
             f.write(f"\\newcommand{{\\semaLayerComp{layer}Ratio}}{{{rt:.1f}}}\n")
 
-        # Library-wide average (across all default patterns, not just the 4)
+        # Ratio of mean token counts across all default patterns. This is
+        # not the unweighted mean of the per-pattern ratios.
         all_rows = [r for rows in layer_buckets.values() for r in rows]
         if all_rows:
             lib_ref = sum(r[0] for r in all_rows) / len(all_rows)
@@ -269,7 +271,8 @@ def calculate_stats():
             f.write(f"\\newcommand{{\\semaLibCompFull}}{{{lib_full:.1f}}}\n")
             f.write(f"\\newcommand{{\\semaLibCompRatio}}{{{lib_ratio:.1f}}}\n")
 
-        # Embedding similarity stats (from taxonomy.db)
+        # Cached PATTERN embeddings from taxonomy.db. The graph-store input
+        # text is Handle + Gloss + Mechanism, not mechanism text alone.
         db_path = os.path.join(os.path.dirname(OUTPUT_TEX), "..", "data", "taxonomy.db")
         if os.path.exists(db_path):
             conn = sqlite3.connect(db_path)
@@ -303,19 +306,25 @@ def calculate_stats():
                 mean_sim = float(np.mean(upper))
                 max_sim = float(np.max(upper))
 
-                # Bins
+                # Cover the full cosine range, including negative similarities
+                # and the upper endpoint (allowing for floating-point roundoff).
+                bin_negative = int(np.sum(upper < 0.0))
                 bin_a = int(np.sum((upper >= 0.0) & (upper < 0.3)))
                 bin_b = int(np.sum((upper >= 0.3) & (upper < 0.5)))
                 bin_c = int(np.sum((upper >= 0.5) & (upper < 0.7)))
-                bin_d = int(np.sum((upper >= 0.7) & (upper < 1.0)))
+                bin_d = int(np.sum(upper >= 0.7))
                 high_pairs = int(np.sum(upper >= 0.70))
+                if bin_negative + bin_a + bin_b + bin_c + bin_d != total_pairs:
+                    raise RuntimeError("Embedding similarity bins do not cover every pair")
 
                 def pct(n: int) -> str:
-                    return f"{n * 100 / total_pairs:.1f}\\%"
+                    return f"{n * 100 / total_pairs:.2f}\\%"
 
                 f.write(f"\\newcommand{{\\semaEmbPairs}}{{{total_pairs:,}}}\n")
                 f.write(f"\\newcommand{{\\semaEmbMean}}{{{mean_sim:.2f}}}\n")
                 f.write(f"\\newcommand{{\\semaEmbMax}}{{{max_sim:.2f}}}\n")
+                f.write(f"\\newcommand{{\\semaEmbBinNegative}}{{{bin_negative:,}}}\n")
+                f.write(f"\\newcommand{{\\semaEmbBinNegativePct}}{{{pct(bin_negative)}}}\n")
                 f.write(f"\\newcommand{{\\semaEmbBinA}}{{{bin_a:,}}}\n")
                 f.write(f"\\newcommand{{\\semaEmbBinAPct}}{{{pct(bin_a)}}}\n")
                 f.write(f"\\newcommand{{\\semaEmbBinB}}{{{bin_b:,}}}\n")
