@@ -23,7 +23,14 @@ All 457 bootstrap pattern identities and both aggregate roots are unchanged.
 - `sema registry import|list|remove` publish, list, and remove your libraries
   on the registry from the command line or from an agent, with no browser
   visit after the one-time approval. `--registry` and `SEMA_REGISTRY_URL`
-  select another registry, and `sema install` still needs no account.
+  select another registry, and `sema install` still needs no account. A successful
+  login remembers the selected registry, with explicit flags and environment
+  settings taking precedence. Logging out keeps the registry choice.
+
+### Fixed
+
+- Credential files now use unique temporary files with owner-only permissions
+  from creation, avoiding exposure before the credentials are atomically saved.
 
 ## [0.5.5] - 2026-09-06
 

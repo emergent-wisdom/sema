@@ -2418,7 +2418,7 @@ def main():
     # Login / logout / whoami - device authorization against a hosted registry
     login_cmd = subparsers.add_parser(
         "login",
-        help="Log in to a hosted Sema registry from this machine (default: semahash.org)",
+        help="Log in to and remember a hosted Sema registry (first-use default: semahash.org)",
     )
     login_cmd.add_argument(
         "--registry",
@@ -2430,9 +2430,7 @@ def main():
         action="store_true",
         help="Print the approval link instead of opening a browser",
     )
-    logout_cmd = subparsers.add_parser(
-        "logout", help="Revoke and forget the stored registry token"
-    )
+    logout_cmd = subparsers.add_parser("logout", help="Revoke and forget the stored registry token")
     logout_cmd.add_argument("--registry", default=None, help="Registry origin")
     whoami_cmd = subparsers.add_parser(
         "whoami", help="Show the account behind the stored registry token"
@@ -2456,7 +2454,9 @@ def main():
     registry_remove_cmd = registry_sub.add_parser(
         "remove", help="Remove one of your libraries from the registry"
     )
-    registry_remove_cmd.add_argument("library_id", help="Library name shown by `sema registry list`")
+    registry_remove_cmd.add_argument(
+        "library_id", help="Library name shown by `sema registry list`"
+    )
     registry_remove_cmd.add_argument("--registry", default=None, help="Registry origin")
 
     # Categorize - move a pattern to a different taxonomy path

@@ -169,8 +169,10 @@ sema registry import https://github.com/acme/sema-mylib/releases/latest/download
 ```
 
 The login follows the OAuth 2.0 device authorization flow, so it also works
-from an agent or a machine without a browser. `--registry` points the same
-commands at another deployment of the Sema website.
+from an agent or a machine without a browser. To use another deployment, run
+`sema login --registry https://registry.example`. A successful login remembers
+that registry for subsequent commands. `--registry` and `SEMA_REGISTRY_URL`
+override the remembered choice; `https://semahash.org` is the first-use default.
 
 ### Use in Python
 

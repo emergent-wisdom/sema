@@ -317,8 +317,12 @@ sema login --registry https://registry.example --no-browser
 ```
 
 Starts an OAuth 2.0 device authorization (RFC 8628) against a hosted Sema
-registry. The default registry is `https://semahash.org`; `--registry` or
-`SEMA_REGISTRY_URL` selects another deployment of the Sema website. The command
+registry. The first-use default is `https://semahash.org`. A successful login
+remembers the selected registry for later commands, so after
+`sema login --registry https://registry.example`, plain `sema registry list`
+uses that registry. Selection order is `--registry`, `SEMA_REGISTRY_URL`, the
+remembered registry, then the first-use default. Failed logins and overrides
+on other commands do not change the remembered choice. The command
 prints a short code and an approval URL, opens the browser, and waits while you
 sign in with GitHub and approve the code. The resulting bearer token is stored
 per registry origin in `$XDG_CONFIG_HOME/sema/credentials.json` (default
@@ -332,7 +336,9 @@ sema logout
 ```
 
 Revokes the token on the registry (best effort) and removes it from the
-credentials file. Tokens can also be revoked from the registry profile page.
+credentials file. The remembered registry stays selected, so the next login
+returns to the same registry. Tokens can also be revoked from the registry
+profile page.
 
 ### whoami - Show the Logged-in Account
 

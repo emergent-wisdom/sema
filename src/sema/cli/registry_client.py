@@ -6,9 +6,10 @@ verification URL, and polls for the token while the person approves the code
 in a browser. The token is stored per registry origin under the Sema
 configuration directory with owner-only permissions.
 
-A registry is any deployment of the Sema website. The default is
-https://semahash.org, but ``--registry`` or ``SEMA_REGISTRY_URL`` selects
-another one, and ``sema install`` never needs a registry or a login.
+A registry is any deployment of the Sema website. A successful login remembers
+that registry for later commands. ``--registry`` and ``SEMA_REGISTRY_URL`` take
+precedence over the remembered choice; https://semahash.org is the first-use
+default. ``sema install`` never needs a registry or a login.
 """
 
 from __future__ import annotations
@@ -17,6 +18,7 @@ import json
 import os
 import socket
 import sys
+import tempfile
 import time
 import webbrowser
 from collections.abc import Callable
@@ -60,7 +62,13 @@ class LoginResult:
 def normalize_registry(url: str | None) -> str:
     """Return the registry origin, accepting only HTTPS or a loopback HTTP URL."""
 
-    raw = (url or os.environ.get(REGISTRY_ENV) or DEFAULT_REGISTRY).strip()
+    raw = url or os.environ.get(REGISTRY_ENV)
+    if not raw:
+        remembered = _load_credentials().get("default_registry")
+        if remembered is not None and (not isinstance(remembered, str) or not remembered.strip()):
+            raise RegistryError("Stored default registry must be a non-empty URL")
+        raw = remembered or DEFAULT_REGISTRY
+    raw = raw.strip()
     parts = urlsplit(raw)
     if (
         parts.scheme not in {"http", "https"}
@@ -97,11 +105,15 @@ def _load_credentials() -> dict[str, Any]:
 def _save_credentials(data: dict[str, Any]) -> None:
     path = credentials_path()
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(".tmp")
-    tmp.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    os.chmod(tmp, 0o600)
-    os.replace(tmp, path)
-    os.chmod(path, 0o600)
+    fd, tmp_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
+    tmp = Path(tmp_name)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as stream:
+            json.dump(data, stream, indent=2, sort_keys=True)
+            stream.write("\n")
+        os.replace(tmp, path)
+    finally:
+        tmp.unlink(missing_ok=True)
 
 
 def stored_credential(registry: str) -> dict[str, Any] | None:
@@ -112,6 +124,7 @@ def stored_credential(registry: str) -> dict[str, Any] | None:
 def store_credential(registry: str, record: dict[str, Any]) -> None:
     data = _load_credentials()
     data["registries"][registry] = record
+    data["default_registry"] = registry
     _save_credentials(data)
 
 
@@ -420,6 +433,7 @@ def run_login(registry_url: str | None, *, open_browser: bool) -> bool:
         return False
     who = f"@{result.login}" if result.login else "your account"
     say(f"✅ Logged in as {who} on {result.registry}")
+    say(f"   Remembered registry: {result.registry} (--registry or {REGISTRY_ENV} overrides it)")
     say(f"   Token stored in {credentials_path()}")
     say("   Revoke it with `sema logout` or from your profile page.")
     return True
