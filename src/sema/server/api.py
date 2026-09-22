@@ -1105,6 +1105,20 @@ def get_server_json():
 # Serve the built semahash-web frontend if available.
 # This enables `sema serve` to provide both API and UI at localhost:3000.
 
+_SPA_CACHE_HEADERS = {"Cache-Control": "no-cache"}
+
+
+def _spa_file_response(path: Path):
+    """Serve an HTML application shell that browsers must revalidate.
+
+    The shell names the hashed asset files of one build. A cached shell from
+    an older installation would request assets that an upgrade removed.
+    """
+    from fastapi.responses import FileResponse
+
+    return FileResponse(path, headers=_SPA_CACHE_HEADERS)
+
+
 _static_dir = Path(__file__).parent / "static"
 if _static_dir.exists() and (_static_dir / "index.html").exists():
     from fastapi.responses import FileResponse
@@ -1114,17 +1128,27 @@ if _static_dir.exists() and (_static_dir / "index.html").exists():
     if _assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(_assets_dir)), name="assets")
 
-    # SPA catch-all: any non-API path serves index.html.
+    # SPA catch-all: any non-API path serves the client shell.
+    # Prerendering materializes only `/` into index.html. Serving that home
+    # page markup for /graph or /docs makes React hydration fail (error
+    # #418), so every other path gets the framework's __spa-fallback.html.
     # Guard against path traversal — the resolved candidate must live inside
-    # _static_dir before we serve it. Anything suspicious falls back to
-    # index.html (the SPA will handle client-side routing / 404 rendering).
+    # _static_dir before we serve it. Anything suspicious falls back to the
+    # shell (the SPA will handle client-side routing / 404 rendering).
     _static_root = _static_dir.resolve()
+    _spa_shell = _static_dir / "__spa-fallback.html"
+    if not _spa_shell.is_file():
+        _spa_shell = _static_dir / "index.html"
 
     @app.get("/{path:path}")
     def serve_spa(path: str):
         if path.startswith("api/") or path.startswith("assets/"):
             raise HTTPException(status_code=404)
+        if path == "":
+            return _spa_file_response(_static_dir / "index.html")
         candidate = (_static_dir / path).resolve()
         if candidate.is_relative_to(_static_root) and candidate.is_file():
+            if candidate.suffix.lower() == ".html":
+                return _spa_file_response(candidate)
             return FileResponse(candidate)
-        return FileResponse(_static_dir / "index.html")
+        return _spa_file_response(_spa_shell)

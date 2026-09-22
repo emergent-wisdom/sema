@@ -69,7 +69,10 @@ export function HomePage() {
   const { data: dbs } = useDbs()
   const canSwitch = (dbs?.databases?.length ?? 0) >= 2
   const { data: workspace } = useWorkspace()
-  const { data: patterns, isLoading, error } = usePatterns()
+  const { data: patterns, error } = usePatterns()
+  // The page is prerendered without data. Treat "no data yet" as loading so
+  // the first client render matches the prerendered markup.
+  const isLoading = patterns === undefined && !error
   const arrivals = useLiveStore((state) => state.arrivals)
   const arrivedIds = useMemo(() => new Set(arrivals.map((arrival) => arrival.id)), [arrivals])
   const { copied, copy } = useCopy()
