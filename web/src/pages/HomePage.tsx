@@ -289,7 +289,10 @@ export function HomePage() {
               <li className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-5">
                 <p className="text-xs font-medium text-zinc-500">03</p>
                 <h3 className="mt-2 text-sm font-medium text-zinc-100">List it on semahash.org</h3>
-                <p className="mt-1 text-sm leading-6 text-zinc-500">Approve the login code in your browser once.</p>
+                <p className="mt-1 text-sm leading-6 text-zinc-500">
+                  Approve the login code in your browser once, or give your agent a key from your semahash.org
+                  profile.
+                </p>
                 <CommandBlock id="import" command={importCommand} copied={copied} copy={copy} />
               </li>
             </ol>

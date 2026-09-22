@@ -160,13 +160,25 @@ follow the installed library's recorded release pointer. See
 the complete DeFi authoring, dependency-closure, packaging, GitHub Release, and
 update workflow.
 
-To list a release on [semahash.org](https://semahash.org) so other people and
-agents can find it, log in once and publish from the command line:
+Libraries published on [semahash.org](https://semahash.org) can be found and
+installed by name, without an account:
+
+```bash
+sema registry search defi
+sema install mylib
+```
+
+To list a release there so other people and agents can find it, log in once
+and publish from the command line:
 
 ```bash
 sema login        # approve the short code in your browser, once
 sema registry import https://github.com/acme/sema-mylib/releases/latest/download/library.json
 ```
+
+An agent can log in with a key that you create on your semahash.org profile
+page instead: it pipes the key to `sema login --key -` or calls the
+`sema_library_login` MCP tool.
 
 The login follows the OAuth 2.0 device authorization flow, so it also works
 from an agent or a machine without a browser. To use another deployment, run
@@ -250,6 +262,10 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | `sema_stats` | Vocabulary statistics |
 | `sema_graph_skeleton` | Ultra-minimal graph overview (~150 tokens) |
 | `sema_reset_session` | Clear session cache so searches return full results again |
+| `sema_library_search` | Find libraries published on semahash.org |
+| `sema_library_install` | Verify and install a library by name or `library.json` URL |
+| `sema_library_login` | Store a semahash.org key that the user gives the agent |
+| `sema_library_publish` | Publish a GitHub release on semahash.org, after the user agrees |
 
 ## Local View
 

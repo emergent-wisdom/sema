@@ -147,6 +147,21 @@ JSON rather than accepting a publisher-supplied database. Installation does not
 activate the library; follow it with `sema use <name>`, `sema list`, and
 `sema root` to select and inspect the installed snapshot.
 
+A bare name installs a library published on a hosted registry:
+
+```bash
+sema registry search reasoning
+sema install reasoning
+sema install reasoning --registry https://registry.example
+```
+
+The registry only resolves the name to the library's stable `library.json`
+URL; installation then verifies that release exactly as above. Verification
+proves that the release is complete and consistent, not that it is the library
+you meant, so when that matters, compare the printed semantic root with one the
+publisher gives you. Names use the registry selection order described under
+`login`, and no account is needed.
+
 See [Publishing and Installing Vocabulary Libraries](../guides/libraries.md) for the exact
 manifest, artifact, verification, and trust contract.
 
@@ -314,6 +329,7 @@ verification contract.
 ```bash
 sema login
 sema login --registry https://registry.example --no-browser
+sema login --key -          # read a key from standard input
 ```
 
 Starts an OAuth 2.0 device authorization (RFC 8628) against a hosted Sema
@@ -328,6 +344,12 @@ sign in with GitHub and approve the code. The resulting bearer token is stored
 per registry origin in `$XDG_CONFIG_HOME/sema/credentials.json` (default
 `~/.config/sema/credentials.json`, mode `0600`) and expires after 90 days.
 `SEMA_REGISTRY_TOKEN` overrides the stored token for CI jobs and agents.
+
+`--key` stores a key that the account owner created on the registry's profile
+page instead of starting a device login. This suits an agent that receives the
+key in a chat: pass `-` and pipe the key on standard input so that it stays out
+of the process list and shell history. Sema checks the key with the registry
+before it stores it, and rejects a revoked or expired key.
 
 ### logout - Revoke and Forget the Registry Token
 
@@ -346,21 +368,27 @@ profile page.
 sema whoami
 ```
 
-### registry - Publish and Manage Your Libraries
+### registry - Find, Publish, and Manage Libraries
 
 ```bash
+sema registry search [WORDS...]
+sema registry show NAME
 sema registry import https://github.com/USER/REPO/releases/latest/download/library.json
 sema registry list
 sema registry remove REPO
 ```
 
+`search` lists the published libraries whose name, owner, or repository
+contains every word, and `show` prints one library's version, source, semantic
+root, license, and release URL. Neither needs an account.
+
 `import` asks the registry to download, verify, and publish a `library.json`
 release that you own on GitHub; the registry checks that the repository owner
 matches your GitHub login and rejects downgrades. `list` shows the libraries
 your account published. `remove` deletes the registry copy only; the GitHub
-release and other people's installed copies are untouched. All three accept
-`--registry`, and none of them is needed for `sema install`, which works from
-any URL without an account.
+release and other people's installed copies are untouched. Every subcommand
+accepts `--registry`, and none of them is needed for `sema install`, which works
+from any URL without an account.
 
 ### pull - Sync Vocabulary from Upstream
 

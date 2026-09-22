@@ -16,6 +16,8 @@ allowed-tools: |
   mcp__sema__sema_use
   mcp__sema__sema_root
   mcp__sema__sema_verify_context
+  mcp__sema__sema_library_search
+  mcp__sema__sema_library_install
 ---
 
 # Speak in Sema
@@ -56,6 +58,16 @@ The CLI and MCP server are **separate processes with separate DB state**. `sema 
 - `sema_use(default=true)` — switch back to the bundled vocabulary
 
 If `sema_use` MCP tool is unavailable (older server version), the MCP server cannot be hot-swapped. Use CLI for search/resolve and accept the limitation — do not confuse CLI state with MCP state.
+
+## Published libraries
+
+People publish finished vocabularies as libraries on semahash.org.
+
+- `sema_library_search(query)` finds them. No account is needed.
+- `sema_library_install(library)` verifies and installs one by name, or from any `library.json` URL such as a GitHub release or a Swarm gateway address. Then `sema_use(db_path=<name>)` switches to it.
+- Publishing needs a public GitHub release of the library, made with `sema package`. If the user gives you a key from their semahash.org profile, store it with `sema_library_login(key)`. Ask the user before `sema_library_publish(manifest_url)`, because it makes the library public.
+
+Never write a key to a file in the project.
 
 ## Vocabulary fingerprint — `sema_root`
 
