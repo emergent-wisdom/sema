@@ -148,6 +148,11 @@ export function HomePage() {
                   ) : null}
                 </div>
                 <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-400">{description}</p>
+                {dbPath ? (
+                  <p className="ref-mono mt-2 max-w-2xl truncate text-xs text-zinc-600" title={dbPath}>
+                    {dbPath}
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -178,12 +183,6 @@ export function HomePage() {
                     {workspace?.vocabulary_root_stub ? `${workspace.vocabulary_root_stub}…` : '…'}
                   </dd>
                 </div>
-                {dbPath ? (
-                  <div className="min-w-0 max-w-sm">
-                    <dt className="text-zinc-500">Database</dt>
-                    <dd className="mt-1 truncate text-zinc-400" title={dbPath}>{dbPath}</dd>
-                  </div>
-                ) : null}
               </dl>
             </div>
           </div>

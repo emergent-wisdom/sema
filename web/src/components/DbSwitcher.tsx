@@ -37,8 +37,8 @@ export function DbSwitcher() {
           'text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800',
         )}
       >
-        <Database className="w-3 h-3" />
-        <span className="font-mono">{activeName}</span>
+        <Database className="w-3 h-3 shrink-0" />
+        <span className="max-w-[14rem] truncate whitespace-nowrap font-mono">{activeName}</span>
       </button>
 
       {isOpen && (
