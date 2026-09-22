@@ -111,8 +111,8 @@ sema show StateLock
 # Browse the graph structure
 sema skeleton
 
-# Start local API + web frontend (binds to 127.0.0.1 by default)
-sema serve
+# Watch the active vocabulary in the local view (binds to 127.0.0.1 by default)
+sema serve --open
 ```
 
 ### Bring Your Own Vocabulary
@@ -251,15 +251,20 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | `sema_graph_skeleton` | Ultra-minimal graph overview (~150 tokens) |
 | `sema_reset_session` | Clear session cache so searches return full results again |
 
-## Web Frontend
+## Local View
 
 ```bash
 pip install "semahash[api]"
-sema serve
-# Open http://localhost:3000
+sema serve --open
+# Opens http://localhost:3000
 ```
 
-Interactive 3D graph visualization, pattern browser, and search. Built with React + Three.js.
+The local view shows the vocabulary selected with `sema use`, the same one a
+connected agent writes to. It follows later switches, and its 3D graph grows
+while the agent mints: new patterns light up and appear in a live list. The
+pattern browser has card, list, and JSON views. Development stays on your
+computer; [semahash.org](https://semahash.org) hosts finished libraries, and a
+writable vocabulary's page lists the optional steps to publish one there.
 
 ## Experiments
 

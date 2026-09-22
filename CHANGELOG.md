@@ -10,6 +10,36 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+All 457 bootstrap pattern identities and both aggregate roots are unchanged.
+
+### Added
+
+- The local view. `sema serve` opens a view of the active vocabulary in the
+  visual design of semahash.org: its name, whether it is writable, its root,
+  and the patterns in card, list, and JSON views. The 3D graph grows in place
+  while an agent mints; new patterns light up, and a live panel lists them and
+  can follow each one. A writable vocabulary's page ends with the optional
+  steps to publish it on semahash.org. `sema serve --open` opens the view in a
+  browser.
+- The MCP server instructions tell connected agents that they can suggest the
+  local view while building a vocabulary with the user, and describe the
+  optional publishing path: package, GitHub release, `sema login`, and
+  `sema registry import`.
+
+### Changed
+
+- `sema serve` opens the vocabulary selected with `sema use`, using the same
+  database resolution as the CLI and the MCP server, and follows a later
+  `sema use` or `sema_use` from another process. `SEMA_DB_PATH` still pins it.
+  Previously the server showed the bundled catalog unless `SEMA_DB_PATH` was
+  set.
+- The `sema-ui` skill reuses a running server and no longer stops whatever
+  process listens on its port.
+
+### Fixed
+
+- The server tests no longer read the developer's own active vocabulary.
+
 ## [0.6.0] - 2026-09-07
 
 All 457 bootstrap pattern identities and both aggregate roots are unchanged.

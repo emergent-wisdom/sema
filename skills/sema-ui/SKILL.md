@@ -1,38 +1,52 @@
 ---
 name: sema-ui
 description: |
-  Launch the Sema web UI at localhost:3030 — interactive pattern browser
-  with 3D graph, search, and live updates. Use when the user asks to
-  "open the UI", "show the graph", or wants visual access to the vocabulary.
+  Launch the Sema local view at localhost:3030 — pattern browser and a 3D
+  graph that grows while you mint. Use when the user asks to "open the UI",
+  "show the graph", or wants to watch a vocabulary being built.
 user-invocable: true
 allowed-tools: |
-  Bash(lsof -ti:3030 *)
-  Bash(kill *)
+  Bash(curl -s http://localhost:3030/api/workspace*)
   Bash(sema serve *)
-  Bash(SEMA_DB_PATH=* sema serve *)
+  Bash(uvx --from "semahash[api]" sema serve *)
 ---
 
-# Sema UI
+# Sema local view
 
-Launch the local Sema interface at http://localhost:3030.
+The local view runs on the user's computer. It shows the vocabulary selected
+with `sema use` or `sema_use`, the same database you write to, and follows a
+later switch on its own.
+
+First check whether a Sema server is already running on the port:
 
 ```bash
-lsof -ti:3030 | xargs kill 2>/dev/null
-sema serve --port 3030 &
+curl -s http://localhost:3030/api/workspace
 ```
 
-Then tell the user: **Open http://localhost:3030**
+If that returns JSON, reuse the running server. Otherwise start one in the
+background:
 
-## What's in the UI
+```bash
+sema serve --port 3030 --open &
+```
 
-- **Pattern browser** with semantic search, layer/category filters
-- **3D graph** at `/graph` showing pattern relationships
-- **Documentation** at `/docs`
-- **Database switcher** in the top bar — flip between bundled vocabulary, project DBs, and any DB registered via `sema use`
-- **Live refresh** every 5 seconds when running locally — new patterns appear in the graph as they're minted
+Without an installed `sema`, run `uvx --from "semahash[api]" sema serve --port 3030 --open &`.
+If another program already uses port 3030, choose a free port instead. Do not
+stop a process that you did not start.
 
-## Remind the user about DB selection
+Then tell the user: **Open http://localhost:3030** (the graph is at `/graph`).
 
-After launching, remind the user: *"The active database is shown in the top bar — click it to switch between the bundled vocabulary and any project DBs you've built."*
+## What's in the view
 
-This matters because the user might mint patterns into the wrong DB if they don't realize which one is active.
+- **Vocabulary page** with the active vocabulary's name, whether it is
+  writable, its root, and the patterns in card, list, and JSON views
+- **3D graph** at `/graph`, which grows in place as you mint: new patterns
+  light up, and a live panel lists them and can follow each one
+- **Vocabulary switcher** when more than one database is registered
+- **Publishing steps** on a writable vocabulary's page for when the user wants
+  to share it on semahash.org
+
+The view checks for new patterns every three seconds. If it shows the
+read-only bootstrap, the user has no writable vocabulary selected yet: build
+one with `sema build` and select it with `sema use` (or `sema_use`) before you
+mint.

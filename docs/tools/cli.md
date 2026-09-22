@@ -472,18 +472,26 @@ shields you from malformed upstream graphs that ship with dangling refs.
 create a writable project DB first. See [lifecycle.md](../guides/lifecycle.md)
 for the full conceptual model.
 
-### serve - Start API Server
+### serve - Start the Local View and API Server
 
-Starts the REST API server. Defaults to `127.0.0.1` (loopback only) so
-local-dev installs are not exposed to the LAN. Pass `--host 0.0.0.0`
-explicitly when you actually want to bind on all interfaces (e.g.
-when running inside a container or on a remote box).
+Starts the REST API server and, when the package includes it, the local view.
+Defaults to `127.0.0.1` (loopback only) so local-dev installs are not exposed
+to the LAN. Pass `--host 0.0.0.0` explicitly when you actually want to bind on
+all interfaces (e.g. when running inside a container or on a remote box).
 
 ```bash
 sema serve                           # localhost only (recommended)
+sema serve --open                    # also open the local view in a browser
 sema serve --port 3001               # different port
 sema serve --host 0.0.0.0 --port 80  # explicit external bind
 ```
+
+The server opens the same database as the CLI and the MCP server: the
+`SEMA_DB_PATH` override, else the vocabulary selected with `sema use`, else the
+bundled catalog. It follows a later `sema use`, or an agent's `sema_use`, the
+next time the local view polls; an explicit `SEMA_DB_PATH` pins it. The local
+view checks for new patterns every three seconds, so a graph grows while an
+agent mints.
 
 ### mcp - Start MCP Server
 

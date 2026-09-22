@@ -32,7 +32,7 @@ Not footnotes — actual words you think with.
 
 ## When the user wants to see patterns visually
 
-If the user asks to "see", "view", "show", or "explore" patterns visually — or asks to see the graph or browse the vocabulary — invoke the `sema-ui` skill to launch http://localhost:3030. The UI gives them an interactive pattern browser, search, and 3D graph.
+If the user asks to "see", "view", "show", or "explore" patterns visually — or asks to see the graph or browse the vocabulary — invoke the `sema-ui` skill to launch http://localhost:3030. The local view gives them a pattern browser, search, and a 3D graph that grows as you mint. When you start building a vocabulary with the user, offer it once so they can watch the work.
 
 ## Session memory
 
