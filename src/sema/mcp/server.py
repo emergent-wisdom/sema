@@ -502,7 +502,11 @@ def sema_library_publish(manifest_url: str, registry: str | None = None) -> str:
         payload = registry_import(manifest_url, origin, out=lambda _line: None)
     except RegistryError as exc:
         message = str(exc)
-        if "log in" in message.lower() or "logged in" in message.lower():
+        if "sema login" in message:
+            # The CLI's advice names a terminal command; an agent in a chat
+            # can ask for a key instead, so replace the advice rather than
+            # repeating it.
+            message = message.split(" Run `sema login`")[0].rstrip()
             message += (
                 " Ask the user for a key from their profile page on the registry and call "
                 "sema_library_login(key), or run `sema login` in a terminal."

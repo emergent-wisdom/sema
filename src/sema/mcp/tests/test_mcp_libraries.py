@@ -97,6 +97,7 @@ def test_an_agent_finds_and_installs_a_library_by_name(fake_registry, monkeypatc
 def test_publishing_needs_a_key_and_says_how_to_get_one(fake_registry):
     refused = json.loads(server.sema_library_publish(MANIFEST))
     assert "sema_library_login" in refused["error"]
+    assert refused["error"].count("sema login") == 1
 
     rejected = json.loads(server.sema_library_login("sema_" + "x" * 43))
     assert "did not accept the key" in rejected["error"]
