@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Check, Copy, ExternalLink, Network } from 'lucide-react'
 import { DbSwitcher } from '@/components/DbSwitcher'
 import { LicenseLine } from '@/components/LicenseLine'
+import { LocalLibraries } from '@/components/LocalLibraries'
 import { LocalHeader } from '@/components/LocalHeader'
 import { PatternBrowser } from '@/components/PatternBrowser'
 import { SemaLogo } from '@/components/SemaLogo'
@@ -171,6 +172,14 @@ export function HomePage() {
                     <DbSwitcher />
                   </span>
                 ) : null}
+                {isLocal ? (
+                  <a
+                    href="#on-this-computer"
+                    className="rounded-lg px-2 py-2 text-sm text-zinc-400 transition-colors hover:text-zinc-100"
+                  >
+                    On this computer
+                  </a>
+                ) : null}
               </div>
               <dl className="ref-mono flex flex-wrap gap-6 text-sm sm:gap-8">
                 <div>
@@ -307,6 +316,8 @@ export function HomePage() {
           </div>
         </section>
       ) : null}
+
+      {isLocal ? <LocalLibraries /> : null}
 
       <footer className="border-t border-zinc-800/50">
         <div className="mx-auto flex max-w-[1400px] flex-col justify-between gap-3 px-4 py-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:px-6">

@@ -31,6 +31,13 @@ export interface DbInfo {
   /** "bundled", "installed-library", or a project database. */
   kind?: string;
   read_only?: boolean;
+  pattern_count?: number | null;
+  /** Installed libraries: the verified release this copy came from. */
+  version?: string;
+  manifest_url?: string;
+  requested_manifest_url?: string;
+  update_url?: string;
+  semantic_root?: string;
 }
 
 export interface DbList {

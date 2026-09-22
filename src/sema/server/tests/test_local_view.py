@@ -9,7 +9,7 @@ pytest.importorskip("fastapi")
 
 from fastapi.testclient import TestClient
 
-from sema.core.registry import get_bundled_db_path, set_active_db
+from sema.core.registry import get_bundled_db_path, register_db, set_active_db
 from sema.server import api
 
 
@@ -58,6 +58,23 @@ def test_explicit_db_path_pins_the_local_view(
 
     local_client.get("/api/workspace")
     assert api.DB_PATH == pinned
+
+
+def test_the_database_list_counts_patterns_for_every_vocabulary(
+    local_client: TestClient, tmp_path: Path
+):
+    mine = _writable_copy(tmp_path, "mine")
+    # What `sema use` does: register the database and select it.
+    register_db(str(mine))
+    set_active_db(str(mine))
+
+    body = local_client.get("/api/dbs").json()
+    by_path = {db["path"]: db for db in body["databases"]}
+    bundled = get_bundled_db_path()
+    expected = len(api.registry.registry)
+    assert by_path[str(mine.resolve())]["pattern_count"] == expected
+    assert by_path[str(mine.resolve())]["active"] is True
+    assert by_path[bundled]["pattern_count"] == expected
 
 
 def test_a_deleted_active_vocabulary_falls_back_to_the_bundled_one(

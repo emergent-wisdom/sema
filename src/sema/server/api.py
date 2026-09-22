@@ -983,7 +983,21 @@ def get_dbs(request: Request):
     dbs = list_dbs()
     for db in dbs:
         db["active"] = db["path"] == DB_PATH
+        # Installed libraries record their count; count the other vocabularies.
+        if "pattern_count" not in db and db.get("exists"):
+            db["pattern_count"] = _count_patterns(db["path"])
     return {"current": DB_PATH, "databases": dbs, "local": True}
+
+
+def _count_patterns(db_path: str) -> int | None:
+    """Count the patterns in a vocabulary database without loading it."""
+    try:
+        uri = f"{Path(db_path).resolve().as_uri()}?mode=ro"
+        with closing(sqlite3.connect(uri, uri=True)) as conn:
+            row = conn.execute("SELECT COUNT(*) FROM nodes WHERE node_type = 'PATTERN'").fetchone()
+        return int(row[0])
+    except (sqlite3.Error, ValueError, OSError):
+        return None
 
 
 @app.post("/api/use")
