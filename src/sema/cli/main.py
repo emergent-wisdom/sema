@@ -2171,7 +2171,7 @@ def init_registry(path: str):
     return True
 
 
-def run_server(host="127.0.0.1", port=3000):
+def run_server(host="127.0.0.1", port=3000, open_browser=False):
     try:
         import uvicorn
     except ImportError:
@@ -2179,17 +2179,31 @@ def run_server(host="127.0.0.1", port=3000):
         print('  pip install "semahash[api]"')
         return
 
+    import threading
+    import webbrowser
     from pathlib import Path
+
+    from ..core.registry import get_default_db_path, is_bundled_db
 
     static_dir = Path(__file__).parent.parent / "server" / "static"
     has_ui = (static_dir / "index.html").exists()
+    browse_host = "localhost" if host in ("127.0.0.1", "0.0.0.0", "::") else host
+    url = f"http://{browse_host}:{port}"
+    db_path = get_default_db_path()
 
     print(f"Starting Sema Server on http://{host}:{port}")
+    if db_path and is_bundled_db(db_path):
+        print("  Vocabulary: the bundled bootstrap (read-only)")
+        print("  To build your own: sema build my.db --preset empty && sema use my.db")
+    elif db_path:
+        print(f"  Vocabulary: {Path(db_path).stem} (writable) at {db_path}")
     if has_ui:
-        print(f"  UI available at http://localhost:{port}")
+        print(f"  Local view: {url}")
+        print("  It follows `sema use` and updates while an agent adds patterns.")
     else:
-        print("  API only (no frontend bundled)")
-        print("  For the full UI, visit https://semahash.org")
+        print("  API only: this installation has no bundled frontend.")
+    if open_browser and has_ui:
+        threading.Timer(1.5, webbrowser.open, args=(url,)).start()
     uvicorn.run("sema.server.api:app", host=host, port=port, reload=False)
 
 
@@ -2346,10 +2360,16 @@ def main():
     # Serve
     serve = subparsers.add_parser(
         "serve",
-        help="Start API server [requires: pip install semahash[api]]",
+        help="Start the local view and API server [requires: pip install semahash[api]]",
     )
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=3000)
+    serve.add_argument(
+        "--open",
+        dest="open_browser",
+        action="store_true",
+        help="Open the local view in a browser once the server starts",
+    )
 
     # Build - create project DB from preset or patterns file
     build_cmd = subparsers.add_parser(
@@ -2550,7 +2570,7 @@ def main():
             )
             ok = pull_result.get("success", False)
     elif args.command == "serve":
-        run_server(args.host, args.port)
+        run_server(args.host, args.port, open_browser=args.open_browser)
     elif args.command == "mcp":
         run_mcp()
     elif args.command == "login":
