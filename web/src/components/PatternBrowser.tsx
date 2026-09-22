@@ -318,7 +318,7 @@ function PatternCards({
                   <div className="h-px flex-1 bg-zinc-900" />
                   <span className="text-xs tabular-nums text-zinc-700">{items.length}</span>
                 </div>
-                <div className="grid items-start gap-4 md:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   {items.map((pattern) => {
                     const selected = selectedId === pattern.id
                     return (
@@ -365,7 +365,7 @@ function PatternCard({
     <article
       id={`pat-${pattern.id}`}
       className={cn(
-        'group relative overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/50 transition-all duration-300',
+        'group relative flex flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/50 transition-all duration-300',
         arrived && 'live-arrive border-emerald-500/30',
         selected
           ? 'col-span-full border-zinc-700/60 bg-zinc-900/80'
@@ -382,7 +382,7 @@ function PatternCard({
         aria-expanded={selected}
         aria-controls={detailId}
         onClick={onSelect}
-        className="w-full p-5 pl-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-400/60"
+        className="flex w-full flex-1 flex-col p-5 pl-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-emerald-400/60"
       >
         <span className="mb-2 flex items-start justify-between gap-3">
           <span className="flex min-w-0 items-center gap-2">
@@ -413,7 +413,7 @@ function PatternCard({
         >
           {pattern.gloss}
         </span>
-        <span className="mt-4 flex flex-wrap items-center gap-2">
+        <span className="mt-auto flex flex-wrap items-center gap-2 pt-4">
           <span
             className="rounded-md border px-2 py-1 text-[11px] font-medium"
             style={{ backgroundColor: `${layerColor}15`, borderColor: `${layerColor}20`, color: layerColor }}
