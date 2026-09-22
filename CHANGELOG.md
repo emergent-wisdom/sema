@@ -25,6 +25,18 @@ All 457 bootstrap pattern identities and both aggregate roots are unchanged.
   local view while building a vocabulary with the user, and describe the
   optional publishing path: package, GitHub release, `sema login`, and
   `sema registry import`.
+- Agents can find, install, and publish libraries from a chat. The MCP tools
+  `sema_library_search`, `sema_library_install`, `sema_library_login`, and
+  `sema_library_publish` search the public registry, install a library by name
+  or from any `library.json` URL, store a key that the user gives the agent,
+  and publish a GitHub release after the user agrees.
+- `sema registry search [WORDS...]` and `sema registry show NAME` list and
+  describe published libraries without an account, and `sema install NAME`
+  installs one by name. The registry only resolves the name to the stable
+  `library.json` URL; the release is verified as before.
+- `sema login --key` stores a key created on the registry's profile page,
+  after checking it with the registry. `--key -` reads the key from standard
+  input.
 
 ### Changed
 

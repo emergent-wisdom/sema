@@ -358,3 +358,135 @@ def test_cli_parses_the_new_commands(monkeypatch, capsys):
     )
     cli_main.main()
     assert calls == [("import", MANIFEST, REGISTRY)]
+
+
+# ── Public libraries and keys for agents ────────────────────────────────────
+
+LIBRARY_ROW = {
+    "slug": "reasoning",
+    "library_id": "reasoning",
+    "version": "0.1.0",
+    "owner": "alice",
+    "repo": "reasoning",
+    "pattern_count": 3,
+    "root": "8cc3" * 16,
+    "license": None,
+    "manifest_url": MANIFEST,
+}
+
+
+class PublicRegistry:
+    """Public catalog endpoints plus key checks, as a deployed site serves them."""
+
+    def __init__(self):
+        self.key = "sema_" + "k" * 43
+        self.requests: list[httpx.Request] = []
+
+    def handler(self, request: httpx.Request) -> httpx.Response:
+        self.requests.append(request)
+        path = request.url.path
+        if path == "/api/vocabularies":
+            other = {**LIBRARY_ROW, "slug": "support", "library_id": "support", "repo": "support"}
+            return httpx.Response(200, json=[LIBRARY_ROW, other])
+        if path == "/api/vocabularies/reasoning":
+            return httpx.Response(200, json={"record": LIBRARY_ROW, "workspace": {}})
+        if path == "/api/me":
+            if request.headers.get("authorization") != f"Bearer {self.key}":
+                return httpx.Response(401, json={"detail": "Invalid or revoked API token"})
+            return httpx.Response(
+                200,
+                json={
+                    "authenticated": True,
+                    "user": {"login": "alice"},
+                    "auth": "token",
+                    "token_id": "tok_00112233aabbccdd",
+                },
+            )
+        return httpx.Response(404, json={"detail": "Vocabulary not found"})
+
+    def client(self) -> httpx.Client:
+        return httpx.Client(transport=httpx.MockTransport(self.handler), base_url=REGISTRY)
+
+
+def test_search_matches_every_word_and_needs_no_login(config_home):
+    server = PublicRegistry()
+    lines: list[str] = []
+    with server.client() as client:
+        everything = rc.registry_search("", REGISTRY, http_client=client, out=lines.append)
+        narrowed = rc.registry_search("alice supp", REGISTRY, http_client=client, out=lines.append)
+        nothing = rc.registry_search("quantum", REGISTRY, http_client=client, out=lines.append)
+
+    assert [row["slug"] for row in everything] == ["reasoning", "support"]
+    assert [row["slug"] for row in narrowed] == ["support"]
+    assert nothing == []
+    assert any("No libraries on" in line for line in lines)
+    assert all("authorization" not in request.headers for request in server.requests)
+
+
+def test_show_resolves_the_stable_release_url(config_home):
+    server = PublicRegistry()
+    lines: list[str] = []
+    with server.client() as client:
+        record = rc.registry_show("reasoning", REGISTRY, http_client=client, out=lines.append)
+        with pytest.raises(rc.RegistryError, match="No published library named missing"):
+            rc.resolve_library("missing", REGISTRY, http_client=client)
+
+    assert record["manifest_url"] == MANIFEST
+    assert any("sema install reasoning" in line for line in lines)
+
+
+def test_a_key_from_the_profile_page_is_checked_and_stored(config_home):
+    server = PublicRegistry()
+    with server.client() as client:
+        result = rc.login_with_key(f"  {server.key}\n", REGISTRY, http_client=client)
+        with pytest.raises(rc.RegistryError, match="did not accept"):
+            rc.login_with_key("sema_" + "x" * 43, REGISTRY, http_client=client)
+    with pytest.raises(rc.RegistryError, match="starts with sema_"):
+        rc.login_with_key("ghp_notakey", REGISTRY)
+
+    assert result.login == "alice"
+    stored = rc.stored_credential(REGISTRY)
+    assert stored["token"] == server.key
+    # Stored with its id, so `sema logout` can revoke the key on the registry.
+    assert stored["token_id"] == "tok_00112233aabbccdd"
+    assert rc.resolve_token(REGISTRY) == server.key
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        ("reasoning", True),
+        ("customer-support", True),
+        ("https://github.com/alice/reasoning/releases/latest/download/library.json", False),
+        ("./release/library.json", False),
+        ("library.json", False),
+        ("", False),
+    ],
+)
+def test_only_bare_names_are_looked_up_on_a_registry(source, expected):
+    assert rc.is_library_name(source) is expected
+
+
+def test_install_by_name_installs_the_release_the_registry_points_to(config_home, monkeypatch):
+    from sema.cli import main as cli_main
+    from sema.core import libraries
+
+    installed: list[str] = []
+    monkeypatch.setattr(rc, "resolve_library", lambda name, registry: dict(LIBRARY_ROW))
+
+    def fake_install(source):
+        installed.append(source)
+        return {
+            "name": "reasoning",
+            "version": "0.1.0",
+            "pattern_count": 3,
+            "semantic_root": LIBRARY_ROW["root"],
+            "catalog_root": "9a9c" * 16,
+            "path": "/tmp/reasoning.db",
+            "database_source": "generated",
+        }
+
+    monkeypatch.setattr(libraries, "install_library", fake_install)
+
+    assert cli_main.install_remote_library("reasoning", registry=REGISTRY) is True
+    assert installed == [MANIFEST]

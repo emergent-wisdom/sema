@@ -25,7 +25,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import quote, urlsplit
 
 import httpx
 
@@ -422,12 +422,188 @@ def registry_remove(
     return True
 
 
+# ── Public libraries: search, look up, and a key for agents ────────────────
+
+
+def _public_get(
+    registry: str, path: str, *, http_client: httpx.Client | None = None
+) -> tuple[int, Any]:
+    """GET a public registry endpoint without credentials."""
+
+    client = http_client or _client(DEFAULT_TIMEOUT_SECONDS)
+    try:
+        response = client.get(f"{registry}{path}")
+        if response.status_code == 404:
+            return 404, None
+        _raise_for_status(response)
+        return response.status_code, response.json()
+    except httpx.HTTPError as exc:
+        raise RegistryError(f"Could not reach {registry}: {exc}") from exc
+    except ValueError as exc:
+        raise RegistryError(f"{registry} returned an invalid response") from exc
+    finally:
+        if http_client is None:
+            client.close()
+
+
+def is_library_name(source: str) -> bool:
+    """A bare name is looked up on a registry; paths and URLs are installed directly."""
+
+    value = source.strip()
+    return bool(value) and (
+        "://" not in value
+        and "/" not in value
+        and "\\" not in value
+        and not value.endswith(".json")
+        and not Path(value).expanduser().exists()
+    )
+
+
+def _source_label(record: dict[str, Any]) -> str:
+    owner, repo = record.get("owner"), record.get("repo")
+    return f"{owner}/{repo}" if owner and repo else str(repo or record.get("manifest_url") or "")
+
+
+def registry_search(
+    query: str = "",
+    registry_url: str | None = None,
+    *,
+    http_client: httpx.Client | None = None,
+    out: Callable[[str], None] = say,
+) -> list[dict[str, Any]]:
+    """List the public libraries on a registry that match every word of a query.
+
+    Needs no login. An empty query lists every published library.
+    """
+
+    registry = normalize_registry(registry_url)
+    status, rows = _public_get(registry, "/api/vocabularies", http_client=http_client)
+    if status == 404 or not isinstance(rows, list):
+        raise RegistryError(f"{registry} does not offer a public library list")
+    terms = query.lower().split()
+
+    def matches(row: dict[str, Any]) -> bool:
+        haystack = " ".join(
+            str(row.get(key) or "")
+            for key in ("slug", "library_id", "owner", "repo", "description")
+        ).lower()
+        return all(term in haystack for term in terms)
+
+    found = [row for row in rows if isinstance(row, dict) and matches(row)]
+    if not found:
+        if query.strip():
+            out(f"No libraries on {registry} match {query.strip()!r}.")
+        else:
+            out(f"No libraries published on {registry} yet.")
+        return []
+    for row in found:
+        out(
+            f"{row.get('slug')} v{row.get('version')}: {row.get('pattern_count')} patterns, "
+            f"from {_source_label(row)}"
+        )
+    out("Install one with: sema install <name>")
+    return found
+
+
+def resolve_library(
+    name: str,
+    registry_url: str | None = None,
+    *,
+    http_client: httpx.Client | None = None,
+) -> dict[str, Any]:
+    """Return a published library's public record, including its stable manifest URL."""
+
+    registry = normalize_registry(registry_url)
+    slug = name.strip()
+    if not slug:
+        raise RegistryError("Give the name of a published library")
+    status, payload = _public_get(
+        registry, f"/api/vocabularies/{quote(slug, safe='')}", http_client=http_client
+    )
+    record = payload.get("record") if isinstance(payload, dict) else None
+    if status == 404 or not isinstance(record, dict):
+        raise RegistryError(f"No published library named {slug} on {registry}")
+    if not isinstance(record.get("manifest_url"), str) or not record["manifest_url"]:
+        raise RegistryError(f"{slug} on {registry} has no installable release")
+    return record
+
+
+def registry_show(
+    name: str,
+    registry_url: str | None = None,
+    *,
+    http_client: httpx.Client | None = None,
+    out: Callable[[str], None] = say,
+) -> dict[str, Any]:
+    registry = normalize_registry(registry_url)
+    record = resolve_library(name, registry, http_client=http_client)
+    out(f"{record.get('slug')} v{record.get('version')} from {_source_label(record)}")
+    out(f"   patterns:      {record.get('pattern_count')}")
+    out(f"   semantic root: {record.get('root')}")
+    out(f"   license:       {record.get('license') or 'not stated; check the repository'}")
+    out(f"   release:       {record.get('manifest_url')}")
+    out(f"   page:          {registry}/vocabularies/{record.get('slug')}")
+    out(f"   install with:  sema install {record.get('slug')}")
+    return record
+
+
+def login_with_key(
+    key: str,
+    registry_url: str | None = None,
+    *,
+    http_client: httpx.Client | None = None,
+    clock: Callable[[], float] = time.time,
+) -> LoginResult:
+    """Check and store a key that the person created on the registry's profile page."""
+
+    registry = normalize_registry(registry_url)
+    secret = key.strip()
+    if not secret.startswith("sema_"):
+        raise RegistryError("A Sema key starts with sema_. Create one on your profile page.")
+    client = http_client or _client(DEFAULT_TIMEOUT_SECONDS)
+    try:
+        response = client.get(f"{registry}/api/me", headers={"Authorization": f"Bearer {secret}"})
+        if response.status_code == 401:
+            raise RegistryError(
+                f"{registry} did not accept the key. It may be revoked or expired; "
+                "create a new one on your profile page."
+            )
+        _raise_for_status(response)
+        payload = response.json()
+    except httpx.HTTPError as exc:
+        raise RegistryError(f"Could not reach {registry}: {exc}") from exc
+    finally:
+        if http_client is None:
+            client.close()
+    user = payload.get("user") if isinstance(payload, dict) else None
+    if (
+        not isinstance(payload, dict)
+        or not payload.get("authenticated")
+        or not isinstance(user, dict)
+    ):
+        raise RegistryError(f"{registry} did not accept the key")
+    token_id = payload.get("token_id") if isinstance(payload.get("token_id"), str) else None
+    record = {
+        "token": secret,
+        "token_id": token_id,
+        "login": user.get("login"),
+        "created_at": int(clock()),
+        "expires_at": None,
+    }
+    store_credential(registry, record)
+    return LoginResult(registry=registry, login=record["login"], token_id=token_id, expires_at=None)
+
+
 # ── CLI entry points (print, return success) ────────────────────────────────
 
 
-def run_login(registry_url: str | None, *, open_browser: bool) -> bool:
+def run_login(registry_url: str | None, *, open_browser: bool, key: str | None = None) -> bool:
     try:
-        result = login(registry_url, open_browser=open_browser)
+        if key is not None:
+            secret = sys.stdin.readline() if key == "-" else key
+            result = login_with_key(secret, registry_url)
+        else:
+            result = login(registry_url, open_browser=open_browser)
     except RegistryError as exc:
         print(f"❌ {exc}", file=sys.stderr, flush=True)
         return False
@@ -464,6 +640,10 @@ def run_registry(command: str, args: Any) -> bool:
             registry_list(args.registry)
         elif command == "remove":
             registry_remove(args.library_id, args.registry)
+        elif command == "search":
+            registry_search(" ".join(args.query), args.registry)
+        elif command == "show":
+            registry_show(args.name, args.registry)
         else:
             print(f"❌ Unknown registry command: {command}", file=sys.stderr, flush=True)
             return False

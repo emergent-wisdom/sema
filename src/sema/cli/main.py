@@ -1574,9 +1574,23 @@ def _verify_hashes(db_path: str) -> list[str]:
     return mismatches
 
 
-def install_remote_library(manifest_source: str) -> bool:
+def install_remote_library(manifest_source: str, *, registry: str | None = None) -> bool:
     """Install a verified library release without changing the active DB."""
     from ..core.libraries import LibraryError, install_library
+    from .registry_client import is_library_name
+
+    listed: dict | None = None
+    if is_library_name(manifest_source):
+        from .registry_client import RegistryError, normalize_registry, resolve_library
+
+        try:
+            origin = normalize_registry(registry)
+            listed = resolve_library(manifest_source, origin)
+        except RegistryError as exc:
+            print(f"❌ Library installation failed: {exc}")
+            return False
+        print(f"Found {listed.get('slug')} v{listed.get('version')} on {origin}")
+        manifest_source = str(listed["manifest_url"])
 
     try:
         record = install_library(manifest_source)
@@ -1591,6 +1605,12 @@ def install_remote_library(manifest_source: str) -> bool:
     print(f"   catalog root:  {record['catalog_root']}")
     print(f"   runtime DB:    {record['path']} ({record['database_source']})")
     print(f"   Activate with: sema use {record['name']}")
+    if listed is not None and listed.get("root") and listed.get("root") != record["semantic_root"]:
+        # The registry lists the snapshot it verified; the release may be newer.
+        print(
+            f"   Note: the registry lists v{listed.get('version')} with a different root. "
+            "The installed release is the one its publisher serves now."
+        )
     return True
 
 
@@ -2416,9 +2436,15 @@ def main():
     # Install - verify and register a published library
     install_cmd = subparsers.add_parser(
         "install",
-        help="Install a verified library from a file or HTTPS library.json",
+        help="Install a verified library by registry name, file, or HTTPS library.json",
     )
-    install_cmd.add_argument("manifest", help="Path or HTTPS URL to library.json")
+    install_cmd.add_argument(
+        "manifest",
+        help="Published library name (see `sema registry search`), or a path or HTTPS URL to library.json",
+    )
+    install_cmd.add_argument(
+        "--registry", default=None, help="Registry that resolves a library name"
+    )
 
     # Update - explicitly replace a managed library with a verified release
     update_cmd = subparsers.add_parser(
@@ -2450,6 +2476,11 @@ def main():
         action="store_true",
         help="Print the approval link instead of opening a browser",
     )
+    login_cmd.add_argument(
+        "--key",
+        default=None,
+        help="Store a key created on the registry's profile page instead ('-' reads it from stdin)",
+    )
     logout_cmd = subparsers.add_parser("logout", help="Revoke and forget the stored registry token")
     logout_cmd.add_argument("--registry", default=None, help="Registry origin")
     whoami_cmd = subparsers.add_parser(
@@ -2478,6 +2509,16 @@ def main():
         "library_id", help="Library name shown by `sema registry list`"
     )
     registry_remove_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_search_cmd = registry_sub.add_parser(
+        "search", help="Find published libraries (no login needed)"
+    )
+    registry_search_cmd.add_argument("query", nargs="*", help="Words to match; empty lists all")
+    registry_search_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_show_cmd = registry_sub.add_parser(
+        "show", help="Show one published library and how to install it"
+    )
+    registry_show_cmd.add_argument("name", help="Library name from `sema registry search`")
+    registry_show_cmd.add_argument("--registry", default=None, help="Registry origin")
 
     # Categorize - move a pattern to a different taxonomy path
     cat_cmd = subparsers.add_parser(
@@ -2548,7 +2589,7 @@ def main():
             artifact_url=args.artifact_url,
         )
     elif args.command == "install":
-        ok = install_remote_library(args.manifest)
+        ok = install_remote_library(args.manifest, registry=args.registry)
     elif args.command == "update":
         ok = update_remote_library(args.name)
     elif args.command == "use":
@@ -2576,7 +2617,7 @@ def main():
     elif args.command == "login":
         from .registry_client import run_login
 
-        ok = run_login(args.registry, open_browser=not args.no_browser)
+        ok = run_login(args.registry, open_browser=not args.no_browser, key=args.key)
     elif args.command == "logout":
         from .registry_client import run_logout
 

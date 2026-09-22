@@ -52,10 +52,14 @@ mcp = FastMCP(
         'background (with uv: `uvx --from "semahash[api]" sema serve --port 3030 --open`). It '
         "shows the vocabulary selected with `sema_use` at http://localhost:3030, and its 3D graph "
         "adds each pattern you mint.\n\n"
-        "PUBLISHING: Libraries are built locally; semahash.org hosts finished ones. When the "
-        "user wants to share a library, run `sema package`, attach its library.json and pattern "
-        "archive to a GitHub release, then `sema login` and `sema registry import <library.json "
-        "URL>`. Publishing is optional.\n\n"
+        "LIBRARIES: `sema_library_search` finds published libraries on semahash.org, and "
+        "`sema_library_install` verifies and installs one by name or from any library.json "
+        "URL, such as a GitHub release or a Swarm gateway address; `sema_use` then switches to "
+        "it. No account is needed for either. To publish a finished library, run "
+        "`sema package`, attach its library.json and pattern archive to a public GitHub release, "
+        "and, after the user agrees, call `sema_library_publish(<library.json URL>)`. It needs a "
+        "key the user creates on their semahash.org profile (`sema_library_login`) or a "
+        "`sema login`. Publishing is optional.\n\n"
         "SESSION CACHE:\n"
         "Search returns at most 20 matches. The first three unseen matches include search detail. "
         "Later matches use `_summary: true`, and previously detailed matches use `_seen: true`.\n"
@@ -355,6 +359,166 @@ def _compute_vocabulary_root() -> tuple[str, int]:
     """Compute the active semantic-set root + pattern count."""
     root = _active_workspace().vocabulary_root()
     return root["hash"], root["pattern_count"]
+
+
+# ── Published libraries ─────────────────────────────────────────────────────
+# Search, install, and publish without leaving the chat. Search and install
+# need no account; publishing uses a key the user created on their profile page
+# (sema_library_login) or a `sema login` done in a terminal.
+
+
+def _library_fields(record: dict) -> dict:
+    keys = ("slug", "version", "owner", "repo", "pattern_count", "root", "license", "manifest_url")
+    return {key: record.get(key) for key in keys}
+
+
+@mcp.tool()
+def sema_library_search(query: str = "", registry: str | None = None) -> str:
+    """Find published Sema libraries on a registry, https://semahash.org by default.
+
+    No login is needed. Each result gives the library name, version, source
+    repository, pattern count, semantic root, license, and a stable library.json
+    URL. Install one with `sema_library_install(library=<name>)`.
+
+    Args:
+        query: Words that must all appear in the name, owner, or repository.
+            Empty lists every library.
+        registry: Another registry origin, for example a local test site.
+
+    Returns:
+        JSON with the matching libraries, or an error.
+    """
+    from ..cli.registry_client import RegistryError, registry_search
+
+    try:
+        rows = registry_search(query, registry, out=lambda _line: None)
+    except RegistryError as exc:
+        return json.dumps({"error": str(exc)})
+    return json.dumps({"libraries": [_library_fields(row) for row in rows]}, indent=2)
+
+
+@mcp.tool()
+def sema_library_install(library: str, registry: str | None = None) -> str:
+    """Install a published library by name, path, or library.json URL.
+
+    Sema downloads the release, verifies every pattern identity and both
+    roots, and builds a fresh read-only database before it registers the
+    library. The active vocabulary does not change: call
+    `sema_use(db_path=<name>)` to switch to it.
+
+    Args:
+        library: A name from `sema_library_search`, a local path, or an HTTPS
+            URL that ends with library.json.
+        registry: The registry that resolves a name.
+
+    Returns:
+        JSON with the installed name, version, pattern count, and roots.
+    """
+    from ..cli.registry_client import (
+        RegistryError,
+        is_library_name,
+        normalize_registry,
+        resolve_library,
+    )
+    from ..core.libraries import LibraryError, install_library
+
+    source = library.strip()
+    listed = None
+    try:
+        if is_library_name(source):
+            listed = resolve_library(source, normalize_registry(registry))
+            source = listed["manifest_url"]
+        record = install_library(source)
+    except (RegistryError, LibraryError, OSError, ValueError) as exc:
+        return json.dumps({"error": f"Library installation failed: {exc}"})
+    result = {
+        "success": True,
+        "name": record["name"],
+        "version": record["version"],
+        "pattern_count": record["pattern_count"],
+        "semantic_root": record["semantic_root"],
+        "catalog_root": record["catalog_root"],
+        "next": f"Call sema_use(db_path='{record['name']}') to switch to this library.",
+    }
+    if listed is not None and listed.get("root") not in (None, record["semantic_root"]):
+        result["note"] = (
+            f"The registry lists v{listed.get('version')} with a different root. "
+            "The installed release is the one its publisher serves now."
+        )
+    return json.dumps(result, indent=2)
+
+
+@mcp.tool()
+def sema_library_login(key: str, registry: str | None = None) -> str:
+    """Store a registry key that the user created on their profile page.
+
+    Use this when the user gives you a key that starts with `sema_`. Sema checks
+    the key with the registry and stores it under the user's Sema
+    configuration with owner-only permissions. Do not write the key into a
+    file that is committed or shared.
+
+    Args:
+        key: The key, starting with sema_.
+        registry: The registry the key belongs to, https://semahash.org by default.
+
+    Returns:
+        JSON with the account the key belongs to, or an error.
+    """
+    from ..cli.registry_client import RegistryError, login_with_key
+
+    try:
+        result = login_with_key(key, registry)
+    except RegistryError as exc:
+        return json.dumps({"error": str(exc)})
+    return json.dumps(
+        {"success": True, "registry": result.registry, "account": result.login}, indent=2
+    )
+
+
+@mcp.tool()
+def sema_library_publish(manifest_url: str, registry: str | None = None) -> str:
+    """Publish a library release on the public registry.
+
+    This is a public action: everyone can see and install the library
+    afterwards. Ask the user before you call it. The release must be a public
+    GitHub Release in a repository that the logged-in account owns. Build it
+    first with `sema package` and attach its library.json and pattern archive
+    to the release. The registry verifies the release and keeps a snapshot;
+    the GitHub release stays the source.
+
+    Args:
+        manifest_url: The release's stable URL, for example
+            https://github.com/USER/REPO/releases/latest/download/library.json
+        registry: The registry to publish on, https://semahash.org by default.
+
+    Returns:
+        JSON with the published library and its page, or an error that says
+        how to log in.
+    """
+    from ..cli.registry_client import RegistryError, normalize_registry, registry_import
+
+    try:
+        origin = normalize_registry(registry)
+        payload = registry_import(manifest_url, origin, out=lambda _line: None)
+    except RegistryError as exc:
+        message = str(exc)
+        if "log in" in message.lower() or "logged in" in message.lower():
+            message += (
+                " Ask the user for a key from their profile page on the registry and call "
+                "sema_library_login(key), or run `sema login` in a terminal."
+            )
+        return json.dumps({"error": message})
+    record = payload.get("record", {})
+    return json.dumps(
+        {
+            "success": True,
+            "operation": payload.get("operation"),
+            **_library_fields(record),
+            "library_id": record.get("library_id"),
+            "page": f"{origin}/vocabularies/{record.get('library_id')}",
+        },
+        indent=2,
+    )
 
 
 @mcp.tool()
