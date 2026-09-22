@@ -2,10 +2,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ForceGraph3D from 'react-force-graph-3d'
 import { useGraph } from '@/hooks/useApi'
 import { useAppStore } from '@/stores/appStore'
+import { useLiveStore, useRecentArrivalIds } from '@/hooks/useLiveAdditions'
 import type { GraphNode, GraphEdge, NodeType, EdgeType } from '@/types/taxonomy'
 import { LAYER_COLORS, NODE_TYPE_COLORS, EDGE_TYPE_COLORS } from '@/types/taxonomy'
 
 const DEFAULT_COLOR = '#71717a'
+const ARRIVAL_COLOR = '#a7f3d0'
+// How long a newly minted pattern stays highlighted in the graph.
+const ARRIVAL_HIGHLIGHT_MS = 20000
 
 interface Node3D {
   id: string
@@ -13,6 +17,8 @@ interface Node3D {
   color: string
   type: NodeType
   layer?: string
+  /** Size for the renderer, computed while the node's metadata is at hand. */
+  val: number
   x?: number
   y?: number
   z?: number
@@ -23,18 +29,6 @@ interface Link3D {
   target: string | Node3D
   type: EdgeType
   id: string
-}
-
-// TAXONOMY_PATH nodes carry their path in metadata.segments — use the
-// first segment (the layer) for coloring. Nodes with depth=1 are layer
-// roots (e.g. "Physics"); depth>=2 are refined subcategories
-// (e.g. "Physics/Primitives").
-function taxonomyPathLayer(node: GraphNode): string | undefined {
-  const segs = (node.metadata as Record<string, unknown>)?.segments
-  if (Array.isArray(segs) && segs.length > 0 && typeof segs[0] === 'string') {
-    return segs[0]
-  }
-  return undefined
 }
 
 function getNodeColor(node: GraphNode): string {
@@ -89,6 +83,13 @@ export function GraphCanvas() {
     clearPendingFly,
   } = useAppStore()
   const { data: apiData, isLoading } = useGraph()
+  const recentArrivals = useRecentArrivalIds(ARRIVAL_HIGHLIGHT_MS)
+  const following = useLiveStore((state) => state.follow)
+
+  // Reuse node objects between polls. The renderer stores each node's position
+  // on the object itself, so reusing it lets the graph grow in place while an
+  // agent mints, instead of laying the whole vocabulary out again.
+  const nodeCache = useRef(new Map<string, Node3D>())
 
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null)
   const [hoveredEdgeId, setHoveredEdgeId] = useState<string | null>(null)
@@ -107,6 +108,8 @@ export function GraphCanvas() {
   }, [])
 
   const cameraAngle = useRef({ theta: 0, phi: Math.PI / 2, distance: 500 })
+  // Once the person moves the camera themselves, growth no longer reframes it.
+  const userMovedCamera = useRef(false)
 
   const updateCamera = useCallback(
     (angle: { theta: number; phi: number; distance: number }) => {
@@ -134,6 +137,9 @@ export function GraphCanvas() {
 
       const angle = cameraAngle.current
       const rotateSpeed = 0.1
+      if (['=', '+', '-', '_', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+        userMovedCamera.current = true
+      }
 
       switch (e.key) {
         case '=':
@@ -246,14 +252,47 @@ export function GraphCanvas() {
       return n.handle || n.text
     }
 
-    return {
-      nodes: nodes.map((n) => ({
+    const cache = nodeCache.current
+    const presentIds = new Set((apiData?.nodes || []).map((n) => n.id))
+    for (const id of cache.keys()) {
+      if (!presentIds.has(id)) cache.delete(id)
+    }
+    const graphNodes = nodes.map((n) => {
+      const fields = {
         id: n.id,
         name: nodeLabel(n),
         color: getNodeColor(n),
         type: n.type,
         layer: n.layer,
-      })),
+        val: getNodeSize(n),
+      }
+      const existing = cache.get(n.id)
+      if (existing) return Object.assign(existing, fields)
+      cache.set(n.id, fields)
+      return fields
+    })
+
+    // A node that arrives after the first layout starts beside a neighbour
+    // that already has a position, so it grows out of the graph rather than
+    // flying in from the origin.
+    for (const e of edges) {
+      const source = cache.get(e.source)
+      const target = cache.get(e.target)
+      const pairs: Array<[Node3D | undefined, Node3D | undefined]> = [
+        [source, target],
+        [target, source],
+      ]
+      for (const [fresh, anchor] of pairs) {
+        if (fresh && anchor && fresh.x === undefined && anchor.x !== undefined) {
+          fresh.x = anchor.x + (Math.random() - 0.5) * 20
+          fresh.y = (anchor.y ?? 0) + (Math.random() - 0.5) * 20
+          fresh.z = (anchor.z ?? 0) + (Math.random() - 0.5) * 20
+        }
+      }
+    }
+
+    return {
+      nodes: graphNodes,
       links: edges.map((e) => ({
         source: e.source,
         target: e.target,
@@ -265,15 +304,31 @@ export function GraphCanvas() {
 
   // Zoom to fit when data first loads
   const hasData = graphData.nodes.length > 0
+  const nodeCount = graphData.nodes.length
   const didInitialZoom = useRef(false)
+  const framedCount = useRef(0)
   useEffect(() => {
     if (hasData && !didInitialZoom.current && fgRef.current) {
       didInitialZoom.current = true
+      framedCount.current = nodeCount
       setTimeout(() => {
         fgRef.current?.zoomToFit(400, 50)
       }, 500)
     }
   }, [hasData])
+
+  // Keep a growing graph in frame while an agent adds patterns, until the
+  // person moves the camera or follows new patterns instead. Wait for the
+  // layout to place the new nodes first.
+  useEffect(() => {
+    if (!didInitialZoom.current || userMovedCamera.current || following) return
+    if (nodeCount <= framedCount.current) return
+    framedCount.current = nodeCount
+    const timer = setTimeout(() => {
+      if (!userMovedCamera.current) fgRef.current?.zoomToFit(800, 50)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [nodeCount, following])
 
   // Fly to node when pendingFlyToNodeId changes
   useEffect(() => {
@@ -372,7 +427,15 @@ export function GraphCanvas() {
   }
 
   return (
-    <div className="absolute inset-0 bg-zinc-950">
+    <div
+      className="absolute inset-0 bg-zinc-950"
+      onPointerDown={() => {
+        userMovedCamera.current = true
+      }}
+      onWheel={() => {
+        userMovedCamera.current = true
+      }}
+    >
       <ForceGraph3D
         ref={fgRef}
         width={dimensions.width}
@@ -381,10 +444,14 @@ export function GraphCanvas() {
         nodeId="id"
         nodeLabel="name"
         nodeColor={(node: Node3D) =>
-          node.id === hoveredNodeId ? '#ffffff' : node.color
+          node.id === hoveredNodeId
+            ? '#ffffff'
+            : recentArrivals.has(node.id)
+              ? ARRIVAL_COLOR
+              : node.color
         }
         nodeRelSize={3}
-        nodeVal={(node: Node3D) => getNodeSize(node)}
+        nodeVal={(node: Node3D) => (recentArrivals.has(node.id) ? node.val * 3 : node.val)}
         nodeThreeObject={undefined}
         nodeThreeObjectExtend={false}
         linkColor={(link: Link3D) => {
