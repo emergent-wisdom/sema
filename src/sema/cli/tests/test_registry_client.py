@@ -472,10 +472,12 @@ def test_install_by_name_installs_the_release_the_registry_points_to(config_home
     from sema.core import libraries
 
     installed: list[str] = []
+    pins = []
     monkeypatch.setattr(rc, "resolve_library", lambda name, registry: dict(LIBRARY_ROW))
 
-    def fake_install(source):
+    def fake_install(source, expected=None):
         installed.append(source)
+        pins.append(expected)
         return {
             "name": "reasoning",
             "version": "0.1.0",
@@ -490,3 +492,11 @@ def test_install_by_name_installs_the_release_the_registry_points_to(config_home
 
     assert cli_main.install_remote_library("reasoning", registry=REGISTRY) is True
     assert installed == [MANIFEST]
+    assert pins[0].name == "reasoning"
+    assert pins[0].semantic_root == LIBRARY_ROW["root"]
+    assert pins[0].version == LIBRARY_ROW["version"]
+
+
+def test_a_listing_without_a_verified_root_cannot_be_installed_by_name():
+    with pytest.raises(rc.RegistryError, match="no verified release"):
+        rc.expected_release({**LIBRARY_ROW, "root": None})

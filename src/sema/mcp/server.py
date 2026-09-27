@@ -403,8 +403,10 @@ def sema_library_install(library: str, registry: str | None = None) -> str:
 
     Sema downloads the release, verifies every pattern identity and both
     roots, and builds a fresh read-only database before it registers the
-    library. The active vocabulary does not change: call
-    `sema_use(db_path=<name>)` to switch to it.
+    library. A name installs exactly the release that the registry verified;
+    if the publisher now serves a different one, nothing is installed. The
+    active vocabulary does not change: call `sema_use(db_path=<name>)` to
+    switch to it.
 
     Args:
         library: A name from `sema_library_search`, a local path, or an HTTPS
@@ -416,19 +418,33 @@ def sema_library_install(library: str, registry: str | None = None) -> str:
     """
     from ..cli.registry_client import (
         RegistryError,
+        expected_release,
         is_library_name,
         normalize_registry,
+        pinned_install_refusal,
         resolve_library,
     )
-    from ..core.libraries import LibraryError, install_library
+    from ..core.libraries import LibraryError, ReleaseMismatchError, install_library
 
     source = library.strip()
     listed = None
+    expected = None
+    origin = ""
     try:
         if is_library_name(source):
-            listed = resolve_library(source, normalize_registry(registry))
+            origin = normalize_registry(registry)
+            listed = resolve_library(source, origin)
+            expected = expected_release(listed)
             source = listed["manifest_url"]
-        record = install_library(source)
+        record = install_library(source, expected=expected)
+    except ReleaseMismatchError as exc:
+        return json.dumps(
+            {
+                "error": "Library installation refused: "
+                + pinned_install_refusal(listed or {}, origin, exc)
+                + " Ask the user before you install it from the URL.",
+            }
+        )
     except (RegistryError, LibraryError, OSError, ValueError) as exc:
         return json.dumps({"error": f"Library installation failed: {exc}"})
     result = {
@@ -440,11 +456,6 @@ def sema_library_install(library: str, registry: str | None = None) -> str:
         "catalog_root": record["catalog_root"],
         "next": f"Call sema_use(db_path='{record['name']}') to switch to this library.",
     }
-    if listed is not None and listed.get("root") not in (None, record["semantic_root"]):
-        result["note"] = (
-            f"The registry lists v{listed.get('version')} with a different root. "
-            "The installed release is the one its publisher serves now."
-        )
     return json.dumps(result, indent=2)
 
 

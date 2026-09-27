@@ -155,12 +155,16 @@ sema install reasoning
 sema install reasoning --registry https://registry.example
 ```
 
-The registry only resolves the name to the library's stable `library.json`
-URL; installation then verifies that release exactly as above. Verification
-proves that the release is complete and consistent, not that it is the library
-you meant, so when that matters, compare the printed semantic root with one the
-publisher gives you. Names use the registry selection order described under
-`login`, and no account is needed.
+A name installs exactly the release that the registry verified. Sema fetches
+the library's stable `library.json` URL and, before it writes anything, checks
+the manifest's name, version, both roots, and archive checksum against the
+registry's listing; installation then verifies the release exactly as above.
+If the publisher now serves a different release, such as a newer version that
+the registry has not verified yet or a replacement after an account takeover,
+nothing is installed, and the message gives the URL that installs the current
+release explicitly. The check proves that you get the release the registry
+verified, not that its content is harmless. Names use the registry selection
+order described under `login`, and no account is needed.
 
 See [Publishing and Installing Vocabulary Libraries](../guides/libraries.md) for the exact
 manifest, artifact, verification, and trust contract.

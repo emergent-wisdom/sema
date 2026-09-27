@@ -1575,17 +1575,29 @@ def _verify_hashes(db_path: str) -> list[str]:
 
 
 def install_remote_library(manifest_source: str, *, registry: str | None = None) -> bool:
-    """Install a verified library release without changing the active DB."""
-    from ..core.libraries import LibraryError, install_library
+    """Install a verified library release without changing the active DB.
+
+    A bare name installs exactly the release that the registry verified, and
+    nothing else: see ``registry_client.expected_release``.
+    """
+    from ..core.libraries import LibraryError, ReleaseMismatchError, install_library
     from .registry_client import is_library_name
 
     listed: dict | None = None
+    expected = None
+    origin = ""
     if is_library_name(manifest_source):
-        from .registry_client import RegistryError, normalize_registry, resolve_library
+        from .registry_client import (
+            RegistryError,
+            expected_release,
+            normalize_registry,
+            resolve_library,
+        )
 
         try:
             origin = normalize_registry(registry)
             listed = resolve_library(manifest_source, origin)
+            expected = expected_release(listed)
         except RegistryError as exc:
             print(f"❌ Library installation failed: {exc}")
             return False
@@ -1593,7 +1605,13 @@ def install_remote_library(manifest_source: str, *, registry: str | None = None)
         manifest_source = str(listed["manifest_url"])
 
     try:
-        record = install_library(manifest_source)
+        record = install_library(manifest_source, expected=expected)
+    except ReleaseMismatchError as exc:
+        from .registry_client import pinned_install_refusal
+
+        refusal = pinned_install_refusal(listed or {}, origin, exc)
+        print(f"❌ Library installation refused: {refusal}")
+        return False
     except (LibraryError, OSError, ValueError) as exc:
         print(f"❌ Library installation failed: {exc}")
         return False
@@ -1605,12 +1623,6 @@ def install_remote_library(manifest_source: str, *, registry: str | None = None)
     print(f"   catalog root:  {record['catalog_root']}")
     print(f"   runtime DB:    {record['path']} ({record['database_source']})")
     print(f"   Activate with: sema use {record['name']}")
-    if listed is not None and listed.get("root") and listed.get("root") != record["semantic_root"]:
-        # The registry lists the snapshot it verified; the release may be newer.
-        print(
-            f"   Note: the registry lists v{listed.get('version')} with a different root. "
-            "The installed release is the one its publisher serves now."
-        )
     return True
 
 

@@ -35,8 +35,10 @@ from sema.core.hashing import (
     vocabulary_roots,
 )
 from sema.core.libraries import (
+    ExpectedRelease,
     LibraryError,
     LibraryManifest,
+    ReleaseMismatchError,
     github_release_urls,
     install_library,
     package_library,
@@ -614,6 +616,90 @@ def test_tampered_zip_fails_without_registry_or_active_change(
     assert _bytes_if_present(library_environment["registry_file"]) == registry_before
     assert library_environment["active_file"].read_bytes() == active_before
     assert get_library("defi") is None
+
+
+def _swapped_release_pair(tmp_path: Path) -> tuple[Release, Release, ExpectedRelease]:
+    """A verified release, and a replacement whose own fingerprint is correct."""
+    verified = _write_release(tmp_path / "verified")
+    swapped = _write_release(
+        tmp_path / "swapped",
+        patterns=_defi_patterns(guard_revision=" after the account was taken over"),
+    )
+    swapped_manifest = LibraryManifest.model_validate(json.loads(swapped.manifest_path.read_text()))
+    # Same name and version, different patterns, and a manifest whose roots and
+    # checksum match those patterns: ordinary verification accepts it.
+    verify_library_patterns(swapped.patterns, swapped_manifest)
+    assert swapped.roots["semantic_root"] != verified.roots["semantic_root"]
+    expected = ExpectedRelease(
+        name="defi",
+        semantic_root=str(verified.roots["semantic_root"]),
+        version="1.0.0",
+        catalog_root=str(verified.roots["catalog_root"]),
+        artifact_sha256=hashlib.sha256(verified.archive_path.read_bytes()).hexdigest(),
+    )
+    return verified, swapped, expected
+
+
+def test_expected_release_refuses_a_swap_before_anything_is_written(
+    tmp_path: Path, library_environment: dict[str, Path]
+) -> None:
+    verified, swapped, expected = _swapped_release_pair(tmp_path)
+    registry_before = _bytes_if_present(library_environment["registry_file"])
+    active_before = library_environment["active_file"].read_bytes()
+
+    with pytest.raises(ReleaseMismatchError, match="semantic root"):
+        install_library(
+            swapped.manifest_path,
+            data_dir=library_environment["data_dir"],
+            expected=expected,
+        )
+
+    assert not (library_environment["data_dir"] / "defi").exists()
+    assert _bytes_if_present(library_environment["registry_file"]) == registry_before
+    assert library_environment["active_file"].read_bytes() == active_before
+    assert get_library("defi") is None
+
+    record = install_library(
+        verified.manifest_path,
+        data_dir=library_environment["data_dir"],
+        expected=expected,
+    )
+    assert record["semantic_root"] == verified.roots["semantic_root"]
+
+
+def test_install_by_name_refuses_a_swapped_release_with_a_valid_fingerprint(
+    tmp_path: Path,
+    library_environment: dict[str, Path],
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    from sema.cli import registry_client
+
+    verified, swapped, expected = _swapped_release_pair(tmp_path)
+    # The registry verified one release, but the publisher's stable URL now
+    # serves the replacement.
+    listed = {
+        "slug": "defi",
+        "version": "1.0.0",
+        "root": expected.semantic_root,
+        "catalog_root": expected.catalog_root,
+        "artifact_sha256": expected.artifact_sha256,
+        "manifest_url": str(swapped.manifest_path),
+    }
+    monkeypatch.setattr(registry_client, "resolve_library", lambda name, registry: dict(listed))
+
+    assert install_remote_library("defi", registry="https://registry.test") is False
+    output = capsys.readouterr().out
+    assert "refused" in output
+    assert "Nothing was installed" in output
+    assert get_library("defi") is None
+    assert not (library_environment["data_dir"] / "defi").exists()
+
+    listed["manifest_url"] = str(verified.manifest_path)
+    assert install_remote_library("defi", registry="https://registry.test") is True
+    installed = get_library("defi")
+    assert installed is not None
+    assert installed["semantic_root"] == verified.roots["semantic_root"]
 
 
 @pytest.mark.parametrize("defect", ["missing-dependency", "stale-id"])

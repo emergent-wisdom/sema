@@ -32,8 +32,11 @@ All 457 bootstrap pattern identities and both aggregate roots are unchanged.
   and publish a GitHub release after the user agrees.
 - `sema registry search [WORDS...]` and `sema registry show NAME` list and
   describe published libraries without an account, and `sema install NAME`
-  installs one by name. The registry only resolves the name to the stable
-  `library.json` URL; the release is verified as before.
+  installs one by name: exactly the release that the registry verified.
+  Before it writes anything, Sema checks the manifest's name, version, both
+  roots, and archive checksum against the listing, and it refuses a different
+  release, such as a replacement served after an account takeover. The
+  release is then verified as before.
 - `sema login --key` stores a key created on the registry's profile page,
   after checking it with the registry. `--key -` reads the key from standard
   input.

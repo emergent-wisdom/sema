@@ -24,13 +24,16 @@ import webbrowser
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from urllib.parse import quote, urlsplit
 
 import httpx
 
 from .. import __version__
 from ..core.registry import _get_config_dir
+
+if TYPE_CHECKING:
+    from ..core.libraries import ExpectedRelease
 
 DEFAULT_REGISTRY = "https://semahash.org"
 REGISTRY_ENV = "SEMA_REGISTRY_URL"
@@ -526,6 +529,45 @@ def resolve_library(
     if not isinstance(record.get("manifest_url"), str) or not record["manifest_url"]:
         raise RegistryError(f"{slug} on {registry} has no installable release")
     return record
+
+
+def expected_release(record: dict[str, Any]) -> ExpectedRelease:
+    """The release a registry verified, which an install by name must match exactly.
+
+    A registry name resolves to the publisher's stable URL, which can later serve a
+    different release: a new version, or a replacement after an account takeover.
+    Pinning to the verified identity stops such a release before it is installed.
+    """
+    from ..core.libraries import ExpectedRelease
+
+    slug = record.get("slug")
+    root = record.get("root")
+    if not isinstance(slug, str) or not slug or not isinstance(root, str) or not root:
+        raise RegistryError(
+            f"{slug or 'This library'} lists no verified release, so it cannot be installed by name"
+        )
+
+    def optional(key: str) -> str | None:
+        value = record.get(key)
+        return value if isinstance(value, str) and value else None
+
+    return ExpectedRelease(
+        name=slug,
+        semantic_root=root,
+        version=optional("version"),
+        catalog_root=optional("catalog_root"),
+        artifact_sha256=optional("artifact_sha256"),
+    )
+
+
+def pinned_install_refusal(record: dict[str, Any], registry: str, exc: Exception) -> str:
+    """Explain a refused install by name, and the explicit way to take the release anyway."""
+    return (
+        f"{exc}. Nothing was installed. {record.get('slug')} is verified on {registry} "
+        f"at v{record.get('version')}; its publisher may have released a version that the "
+        "registry has not verified yet, or the release was replaced. To install the "
+        f"publisher's current release anyway, run: sema install '{record.get('manifest_url')}'"
+    )
 
 
 def registry_show(

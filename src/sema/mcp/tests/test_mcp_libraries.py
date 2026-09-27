@@ -69,8 +69,9 @@ def fake_registry(tmp_path, monkeypatch):
 def test_an_agent_finds_and_installs_a_library_by_name(fake_registry, monkeypatch):
     installed: list[str] = []
 
-    def fake_install(source):
+    def fake_install(source, expected=None):
         installed.append(source)
+        assert expected is not None and expected.semantic_root == ROW["root"]
         return {
             "name": "reasoning",
             "version": "0.1.0",
@@ -108,3 +109,19 @@ def test_publishing_needs_a_key_and_says_how_to_get_one(fake_registry):
     published = json.loads(server.sema_library_publish(MANIFEST))
     assert published["success"] is True
     assert published["page"] == f"{REGISTRY}/vocabularies/reasoning"
+
+
+def test_an_agent_is_told_when_the_publisher_serves_a_different_release(fake_registry, monkeypatch):
+    def swapped_install(source, expected=None):
+        raise libraries.ReleaseMismatchError(
+            "The release on offer is not the one the registry verified: it has a different "
+            "semantic root"
+        )
+
+    monkeypatch.setattr(libraries, "install_library", swapped_install)
+
+    refused = json.loads(server.sema_library_install("reasoning"))
+    assert "refused" in refused["error"]
+    assert "Nothing was installed" in refused["error"]
+    assert MANIFEST in refused["error"]
+    assert "Ask the user" in refused["error"]

@@ -74,6 +74,10 @@ class SourceUnavailableError(LibraryError):
     """A declared source could not be fetched."""
 
 
+class ReleaseMismatchError(LibraryError):
+    """The release on offer is not the one that a registry verified."""
+
+
 class _StrictModel(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
@@ -140,6 +144,17 @@ class VerifiedLibrary:
         self.patterns = patterns
         self.order = order
         self.roots = roots
+
+
+@dataclass(frozen=True)
+class ExpectedRelease:
+    """The exact release that a registry verified and an install by name must match."""
+
+    name: str
+    semantic_root: str
+    version: str | None = None
+    catalog_root: str | None = None
+    artifact_sha256: str | None = None
 
 
 @dataclass(frozen=True)
@@ -1150,14 +1165,46 @@ def _install_loaded_manifest(
         raise
 
 
+def _check_expected_release(manifest: LibraryManifest, expected: ExpectedRelease) -> None:
+    """Refuse a manifest that differs from the release a registry verified."""
+    differences = []
+    if manifest.name.casefold() != expected.name.casefold():
+        differences.append(f"the name {manifest.name!r} instead of {expected.name!r}")
+    if expected.version is not None and manifest.version != expected.version:
+        differences.append(f"version {manifest.version} instead of {expected.version}")
+    if manifest.roots.semantic.sha256 != expected.semantic_root:
+        differences.append("a different semantic root")
+    if expected.catalog_root is not None and manifest.roots.catalog.sha256 != expected.catalog_root:
+        differences.append("a different catalog root")
+    if (
+        expected.artifact_sha256 is not None
+        and manifest.patterns.sha256 != expected.artifact_sha256
+    ):
+        differences.append("a different pattern archive")
+    if differences:
+        raise ReleaseMismatchError(
+            "The release on offer is not the one the registry verified: it has "
+            + ", ".join(differences)
+        )
+
+
 def install_library(
     manifest_source: str | Path,
     *,
     data_dir: str | Path | None = None,
     http_client: httpx.Client | None = None,
+    expected: ExpectedRelease | None = None,
 ) -> dict[str, Any]:
-    """Install and register a verified release without changing the active library."""
+    """Install and register a verified release without changing the active library.
+
+    With ``expected``, a manifest that differs from that release is refused
+    before anything is written. Installation then proves that the archive and
+    the computed roots match the manifest, so the installed patterns are
+    exactly the ones described by ``expected``.
+    """
     manifest, raw, requested_url, final_url = _load_manifest(manifest_source, client=http_client)
+    if expected is not None:
+        _check_expected_release(manifest, expected)
     return _install_loaded_manifest(
         manifest,
         raw,
