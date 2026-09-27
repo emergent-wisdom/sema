@@ -17,38 +17,39 @@
       "sema:FractalIntelligence#mh:SHA-256:9c13919670cac402fbc76a2baf0c172a2d1097dec5a7957a8e80123272753ec3",
       "sema:FractalIntelligence#mh:SHA-256:9b28e9481a03d4bef2a6f8103eb898185e1b585ac88812988c09084ac8d77b01",
       "sema:FractalIntelligence#mh:SHA-256:54810782124d5c716d1204d83ed1c40a16d66201c884c5e70473623898b4b40d",
-      "sema:FractalIntelligence#mh:SHA-256:7fad1c373b574e80fc260f64c6903f9690688887ff90f96aae2f5d6587431c1a"
+      "sema:FractalIntelligence#mh:SHA-256:7fad1c373b574e80fc260f64c6903f9690688887ff90f96aae2f5d6587431c1a",
+      "sema:FractalIntelligence#mh:SHA-256:22a03a3c350a73162e27b441004659f4540eaf1a7cb3a6ca01fce15c43af869c"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:FractalIntelligence#mh:SHA-256:22a03a3c350a73162e27b441004659f4540eaf1a7cb3a6ca01fce15c43af869c",
-  "sema_ref": "FractalIntelligence#22a0",
-  "sema_stub": "22a0",
+  "sema_id": "sema:FractalIntelligence#mh:SHA-256:13060aa6f848ea542f6d7510ad417fc3a6b1d7493aab14439167a53c02a75901",
+  "sema_ref": "FractalIntelligence#1306",
+  "sema_stub": "1306",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
-      "problem_framer": "sema:ProblemFramer#mh:SHA-256:27c36c446e3590bab1651a989dbcb9013966eceaf554ced75bfd9cf1642a8996",
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
+      "problem_framer": "sema:ProblemFramer#mh:SHA-256:258684fc2bceb692f1e02f6991d9a4444dc07c6196286abe99e064ff7588e571",
       "reason": "sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321",
-      "recursion_dive": "sema:RecursionDive#mh:SHA-256:54763d3b1a9745e7f4a13d34b68355866c9cad797d786c8c43cb0306a37e78d3",
+      "recursion_dive": "sema:RecursionDive#mh:SHA-256:a86f17bad949a7a5405f04b4bc43a3e6be28c5c31e8328ccf178fa292719d754",
       "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
-      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:0a0fee933e452552f3128e0f5491a74cdb132c8417dfc3cf2e6f1e2141e0b21b",
+      "state_snapshot": "sema:StateSnapshot#mh:SHA-256:d75752f332fe14ae3abf2253a45ab180034d2becc3a7e19e3e30da3c94b3c636",
       "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "conservation": "sema:Conservation#mh:SHA-256:0b32d007b27a9b5201c46931bdbabd09d08ff9d7b01cf49469f61709989507c2",
       "experience_sharding": "sema:ExperienceSharding#mh:SHA-256:c8a197339886a6bbec3201ead589ad7fd37bbfcde46d6470df59ded8aaa80153",
-      "specialize": "sema:Specialize#mh:SHA-256:916a25154459e500447146456a53cf4bc39641c120f8323554b53561be571d77",
+      "specialize": "sema:Specialize#mh:SHA-256:799d587f9e409c7f9fbf13f5dc83a2437068df8a0738f9bcfb910ee00c0c20a1",
       "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
       "system": "sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:32f92696f93c53120145b8dc786a24571f0114d90ffe472f6484998451553258"
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7"
     }
   },
   "sema_layer": "Mind",

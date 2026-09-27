@@ -28,19 +28,20 @@
       "sema:WorkerMode#mh:SHA-256:95993da2b311749c9e36f501b3f0e2cdaefdbbebf0fd3347f30b6ed01eb0d7cd",
       "sema:WorkerMode#mh:SHA-256:fa5a1d68014ab809187e837cb116ea4bacc4316d1c982dd9fe1b2bc5b2e4998c",
       "sema:WorkerMode#mh:SHA-256:5a39d816a3e43ab57bbda2cef5355bdcb8f62a23bad433199c59b27b1a747bf6",
-      "sema:WorkerMode#mh:SHA-256:2eadab94cd1e28057080ce0c79bd7dafc7c44d2e0b586e17321cfa70bc9bf6ff"
+      "sema:WorkerMode#mh:SHA-256:2eadab94cd1e28057080ce0c79bd7dafc7c44d2e0b586e17321cfa70bc9bf6ff",
+      "sema:WorkerMode#mh:SHA-256:b3d74926a714bcfede71ef049b803b0e7f50b54dc22130b434982eb160afb9b1"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:WorkerMode#mh:SHA-256:b3d74926a714bcfede71ef049b803b0e7f50b54dc22130b434982eb160afb9b1",
-  "sema_ref": "WorkerMode#b3d7",
-  "sema_stub": "b3d7",
+  "sema_id": "sema:WorkerMode#mh:SHA-256:ba4708992ae8c4469b3c98e025829fafa8caf6430f1da66ed74b50a8e9255990",
+  "sema_ref": "WorkerMode#ba47",
+  "sema_stub": "ba47",
   "dependencies": {
     "accepts": {
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:da6d0d4755028b576f0c8c53affe23afc54ac32221142e5cc79dedfab753b2f9"
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:4ba845fbfa60f1c3d40008e4944b1409f1734374c822f40042d0dbec2ef3c920"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
@@ -50,7 +51,7 @@
       "lock": "sema:Lock#mh:SHA-256:95c2ee952a5301d4b346a5e8693350829d88b3c600048eedcf87bb00c23ee5fb",
       "mode": "sema:Mode#mh:SHA-256:29d368514a2a815e9790a384c2aec12bd20a30e1ee06288e0aa59fdcffea0800",
       "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
-      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
+      "solver_node": "sema:SolverNode#mh:SHA-256:f895214a9b07066f4043d55d3b260e8a788bda0150b9d8fda20eafa91b846116",
       "state": "sema:State#mh:SHA-256:4f25e6a16ccd37dc0bc154cccc7055cb504d49daa8b712f372a425eb6c7b8cb2",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }

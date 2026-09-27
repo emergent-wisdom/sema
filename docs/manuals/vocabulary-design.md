@@ -1580,7 +1580,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### Belief#e160
+### Belief#09e1
 
 `Infrastructure` · `Data Structures` · R2 · T1
 
@@ -1588,11 +1588,11 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 **Mechanism.**
 
-> A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting {{evidence}}. Unlike a Fact, a Belief is subjective and mutable.
+> A unit of epistemic {{state}}. Represents a claim held by an {{agent}} with a specific confidence score (0.0 to 1.0) and a pointer to supporting evidence. Unlike a Fact, a Belief is subjective and mutable.
 
 **Invariants.**
 - Names the {{agent}} holding it; a claim with no holder is an assertion, not a Belief.
-- Carries a pointer to its supporting {{evidence}}, or records that it has none.
+- Carries a pointer to its supporting evidence, or records that it has none.
 
 #### Design
 
@@ -1627,13 +1627,15 @@ themselves; rewrite them around the semantic risk and run the placement test.
 **Critique (diagnostic, not contract requirements).**
 - Applied 2026-07-25 from the queued tranche, and the schema specification settles it outright. `confidence` appeared as both a required schema property and a parameter, and docs/specification/schema.md defines parameters as 'Identity Configuration (Control Plane) — variables that change the Hash/Identity of the pattern'. A per-instance confidence score in that field would make every confidence value a distinct pattern identity, which is a category error rather than a duplication. The parameter is gone; the schema already carried it, where instance data belongs.
 - Two invariants added where there were none. The mechanism's distinguishing claim is that a Belief is 'a claim held by an {{agent}}' — unlike a Fact — and nothing required the holder to be named. The second covers the intersection element that was optional: a pointer to supporting evidence is named in 'a claim, a confidence score, a pointer to supporting evidence', and `supporting_evidence` sat unrequired. Recording that there is none is permitted; leaving the field absent is not, because a Belief with no evidence slot cannot be distinguished from one whose evidence was never looked for.
+- Corrected 2026-09-27: supporting evidence was typed as the agent execution Context. A scientific belief can instead cite an observation, linked data, or a derivation, as this entry already admits. Retained the evidence pointer and explicit absence obligation, but removed the wrong exact type. There is no Evidence card; Datum is raw/uninterpreted and Artifact imposes workflow production and immutable addressability, so neither is an exact substitute for all admitted evidence. Plain evidence leaves representation with the caller and avoids an unjustified new mint.
 
-**In the family.** The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Paired with `Evidence` and distinguished from `Fact` by subjectivity.
+**In the family.** The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Carries pointers to supporting evidence and distinguished from `Fact` by subjectivity.
 
 **Supersedes (prior versions).**
 - `Belief#5ad9`
 - `Belief#7d83`
 - `Belief#675c`
+- `Belief#e160`
 
 ---
 
@@ -1750,15 +1752,15 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### Cache#55e2
+### Cache#465f
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
-**Gloss.** Temporary high-speed storage
+**Gloss.** Keyed storage for reusing previously obtained values
 
 **Mechanism.**
 
-> A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}} alongside the inputs that produced them, so repeat lookups bypass re-computation. Read-through, write-behind, and invalidation discipline are descendant concerns; the foundation is the keyed lookup that returns a stored value if present.
+> A temporary keyed storage layer for keeping frequently accessed {{datum}} or {{state}} alongside the inputs that produced them, so repeat lookups bypass re-computation. Read-through, write-behind, and invalidation discipline are descendant concerns; the foundation is the keyed lookup that returns a stored value if present.
 
 **Invariants.**
 - Consistency: Cache(Key) == Source(Key) if valid.
@@ -1769,7 +1771,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - Value is serializable
 
 **Postconditions.**
-- Value retrieved significantly faster than source
+- On a cache hit, the stored value for the requested key is returned without requiring recomputation.
 
 **Failure modes.**
 - Staleness: Serving outdated data after the source has changed.
@@ -1777,42 +1779,47 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 #### Design
 
-**Why it exists.** Recomputation is the single largest source of wasted compute in agent loops, and most computations are deterministic functions of their inputs. Cache names the pattern of storing (input → output) pairs so repeat lookups skip the computation. The named foundation ensures consistency and freshness aren't afterthoughts — they're invariants.
+**Why it exists.** Repeated work can be avoided by storing values under their lookup keys. Cache makes that reuse explicit together with validity and freshness obligations. Avoiding recomputation can reduce latency or source load, but the benefit depends on the workload and implementation.
 
 **Why Infrastructure.** keyed lookup storage
 
-**Can it be removed?** Removable if compute is free and determinism is absent — neither is common. In practice every agent system caches something; the pattern earns its weight by making the cache's contract explicit (consistency, freshness) rather than implicit.
+**Can it be removed?** Useful wherever a previously obtained value should be reused. IdempotentWrite uses stored outcomes to avoid repeating side effects; PathwayMemory retains routing outcomes; HeuristicSnap supplies its own latency requirements. None needs a universal promise that every lookup is faster than the source.
 
-**Intended use.** temporary high-speed storage to avoid recomputation.
+**Intended use.** temporary keyed storage to reuse previously obtained values without requiring recomputation on a hit.
 
 **Future uses.** any key-value store with staleness semantics.
 
 **Broad-use contexts.** memoized functions, RAG retrievers, pathway memory, routing decisions, computed heuristics, embedding caches, session state, prompt caches.
 
-**Broad-use intersection (review hypothesis).** a way to store keyed values and look them up. Storage semantic is the definitional floor.
+**Broad-use intersection (review hypothesis).** keyed stored values and lookup; a hit returns the stored value without requiring recomputation, subject to the stated validity and freshness contracts.
 
-**Varies (descendant territory).** eviction policy (LRU, LFU, FIFO), TTL, size limits, consistency model, distributed vs local, invalidation strategy.
+**Varies (descendant territory).** eviction policy (LRU, LFU, FIFO), TTL, size limits, distributed vs local storage, invalidation strategy, and workload-specific latency targets. These choices must respect the consistency and expired-item exclusion invariants.
 
 **Extension shape.** `LRUCache`, `TTLCache`, `DistributedCache`, `SemanticCache`, `WriteThroughCache`.
+
+_Note: The current card requires serializable values and excludes expired entries. This review preserves those boundaries; examples of memoization apply within them. Latency measurements and performance targets belong to callers or descendants, not to a universal Cache postcondition._
 
 **Design tensions.**
 - Consistency (Cache(Key) == Source(Key) if valid) vs staleness — the invariant holds only while the cached value is valid; determining 'valid' is the hard part.
 - Freshness vs hit rate — aggressive invalidation keeps data fresh and trashes the cache; lazy invalidation keeps the hit rate and risks staleness.
 - Keyed lookup vs semantic lookup — caches work great on exact keys and badly on near-matches; semantic caching is a different pattern entirely.
+- Lookup, storage, and validity-checking overhead can exceed the work avoided; latency benefit must be evaluated for the caller's workload.
 
 **Tradeoffs.**
-- Gains: massive speedup on repeat lookups, reduced load on the backing source, a clean place to instrument hit/miss rates.
-- Gives up: data freshness and simplicity — every cache becomes a new source of staleness bugs. 'There are only two hard things in CS' applies.
+- Gains: reuse of stored results and the opportunity to avoid source work or repeated side effects. Faster retrieval is a possible benefit, not a guarantee on every hit.
+- Gives up: storage space and simplicity. Validity and freshness require maintenance; an entry classified as expired must not be returned.
 
 **Critique (diagnostic, not contract requirements).**
 - Applied 2026-07-25 from the queued tranche. The schema had properties for key, value and hit and no `required` list, so an entry with neither key nor value validated — while the mechanism says the foundation is 'the keyed lookup that returns a stored value if present' and the intersection is unusually direct: 'a way to store keyed values and look them up. Storage semantic is the definitional floor.' Both are definitional and both are now required. Same shape as `Spec`.
 - `hit` stays optional. It reports what happened on a lookup rather than describing the entry, so an entry is well-formed without it.
+- Corrected 2026-09-27: a legitimate cache hit can be slower than a cheap source computation or under load, so "significantly faster" was not a universal or testable postcondition. Replaced it with the observable reuse contract and removed unconditional speed wording from mechanism and gloss. Reviewed all three direct consumers: HeuristicSnap retains its own latency contract; IdempotentWrite needs outcome reuse without repeating effects; PathwayMemory needs stored routing outcomes. Consistency, exclusion of expired entries, and serializable-value scope are unchanged. Staleness is bounded by validity/freshness checks; thrashing and performance tradeoffs remain with caller/descendant eviction and sizing policy.
 
-**In the family.** Core infrastructure primitive, paired with Source (the backing store), Invalidation (the freshness mechanism), and Key (the lookup handle). Compare with PathwayMemory — PathwayMemory is a memoization pattern for reasoning traces rather than values. Compare with HeuristicSnap — both speed up reasoning by avoiding work, but Cache is faithful repetition, HeuristicSnap is approximate lookup.
+**In the family.** Core keyed-storage primitive. PathwayMemory retains reasoning and routing outcomes; IdempotentWrite reuses committed outcomes; HeuristicSnap makes approximate reasoning reuse explicit and supplies its own latency contract. Cache provides faithful stored-value reuse rather than a general performance benchmark.
 
 **Supersedes (prior versions).**
 - `Cache#1ea9`
 - `Cache#30c9`
+- `Cache#55e2`
 
 ---
 
@@ -2254,18 +2261,20 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 **Future uses.** any "stack frame" of agentic execution.
 
-**Broad-use contexts.** agent contexts, LLM conversation contexts, multi-turn dialogue state, subprocess environments, database transaction contexts, session state.
+**Broad-use contexts.** portable agent execution frames, serializable LLM conversation state with inherited constraints, delegated-task environments, and resumable agent sessions.
 
-**Broad-use intersection (review hypothesis).** inherited constraints, available capabilities, working memory, identity claims.
+**Broad-use intersection (review hypothesis).** inherited constraints, available capabilities, working memory, identity claims, serializable state, and provenance of its items.
 
-**Varies (descendant territory).** persistence, serializability, transferability between agents, clone/fork semantics.
+**Varies (descendant territory).** serialization format, persistence backend and timing, transfer protocol, and clone/fork policy within constraint monotonicity. Serializability itself is mandatory.
 
 **Extension shape.** `PersistentContext`, `ClonableContext`, `ReadOnlyContext`, `IsolatedContext`.
+
+_Note: Historical circumstances, the assumptions used to interpret a signal, contractual terms, and supporting evidence are not themselves execution contexts. They may be carried as data within one; a reference to this card must actually mean the portable execution frame._
 
 **Design tensions.**
 - Constraint Monotonicity vs flexibility: children can add, never remove. But legitimate use cases (reducing scope on trusted delegates) want constraint removal. The library is strict — any relaxation requires re-rooting.
 - Serializability invariant vs rich in-memory state: everything must serialize to JSON. Callable references, live connections, and cached computations break serializability — they live outside Context.
-- Identity claims vs capability scoping: Context carries identity claims (who you are) but capabilities live elsewhere (what you can do). The relationship is underspecified — a Context with claimed admin identity doesn't imply admin capabilities.
+- Identity claims vs capability scoping: carrying an identity claim does not by itself grant the capabilities represented in the context. The caller must establish which claims authorize which operations.
 
 **Tradeoffs.**
 - Constraint Monotonicity buys downward safety (delegates can't exceed parent authority) at the cost of upward rigidity (no delegate-relaxation).
@@ -2273,9 +2282,10 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - Bundled structure (constraints + tools + memory + identity) buys transport convenience at the cost of per-field lifecycle coupling.
 
 **Critique (diagnostic, not contract requirements).**
-- Two invariants, two failure modes — good coverage. Context Contamination and Context Poisoning are real and well-named.
+- Reviewed 2026-09-27: the three invariants constrain inherited authority, portability, and item provenance. This is an execution-state contract, not a general definition of every ordinary-language use of context.
 - Context Poisoning mitigations not specified — InputGuard is a separate pattern that would compose, but the pattern itself doesn't declare the composition.
 - The four-part structure (Constraints, Tools, Memory, Identity) is prescribed but the field names are not enforceable — different implementations may use different keys.
+- Corrected 2026-09-27: reviewed all 38 direct borrowers across their hashed fields. Ten used Context for historical or semantic circumstances, evidence, contract terms, or a failure-label prefix. Repair those sites using their actual subject in plain language or the already-declared Artifact, rather than broadening this high-fan-in execution container or minting a catch-all type. The sidecar no longer treats serializability as optional or admits arbitrary live transaction/subprocess objects. No Context hashed field changed.
 
 **In the family.** The execution-environment container. Composed with `Constraint` (the inheritance-monotonic half), `Identity`, `Tool` (capability set), working memory. Pairs with `Task` (context flows with task dispatch) and `Card` (context travels with capability advertisements).
 
@@ -2285,7 +2295,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### Contract#0a17
+### Contract#9874
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -2293,7 +2303,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 **Mechanism.**
 
-> An immutable record of agreement between two or more {{identity}}s, acting as a multi-party {{commitment_device}}. It aggregates a set of {{condition}}s (terms) and obligations which all parties must {{sign}} to accept. Contracts serve as the binding {{context}} for disputes resolved by a {{judge}}.
+> An immutable record of agreement between two or more {{identity}}s, acting as a multi-party {{commitment_device}}. It aggregates a set of {{condition}}s (terms) and obligations which all parties must {{sign}} to accept. Contracts supply the agreed terms for disputes resolved by a {{judge}}.
 
 **Invariants.**
 - Binding only when `signatures` covers every party in `parties`.
@@ -2339,6 +2349,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - Adjudicated 2026-07-25 at 47 transitive dependents. 'Consent: must be signed by all named parties' asserted enforcement against `signatures`, which was an optional property while `parties` and `terms` were required — the fifth instance of an invariant with no guaranteed operand, after `Scratchpad`'s max_size, `SolverNode`'s budget_allocated, `FrameSpec` and `Risk`. `signatures` is now required and may be empty, so the check is always possible.
 - The deeper problem was that the invariant made an unsigned Contract impossible while two other fields presupposed one: `signatures` was optional, and the failure mode 'Unsigned: not all parties have signed (invalid)' describes exactly the state the invariant forbids. Contracts are drafted before they are signed. The invariant now binds where it can — the Contract exists unsigned, and is *binding* only once the signatures cover the parties — which reconciles the invariant, the field and the failure mode without weakening anything.
 - The strictness is deliberate and kept. The design tension notes that 'some real contracts become valid when a quorum signs rather than all' and that this pattern is all-or-nothing; a quorum variant is a descendant, and `Quorum` exists for it. The amendment path named in the second tension is folded into the immutability invariant, since 'an amendment is a new Contract' is the supersession model this library already uses and a reader of the contract field should not have to find it in commentary.
+- Corrected 2026-09-27: a judge resolving a dispute uses the agreed terms, not an agent execution container. Named those terms directly and removed the false Context citation. Parties, signatures, binding conditions, and amendment semantics are unchanged; no additional terms type is needed because Condition and the terms schema already supply the structure.
 
 **In the family.** The multi-party commitment artifact in Infrastructure. Composed with `Identity` (signers), `Condition` (terms), `Sign` (the signing op), `CommitmentDevice`. Used by `LatticeCommit`, governance, and economic-exchange patterns.
 
@@ -2346,6 +2357,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - `Contract#0624`
 - `Contract#9e78`
 - `Contract#bf33`
+- `Contract#0a17`
 
 ---
 
@@ -2744,7 +2756,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### Exception#7c68
+### Exception#ae94
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -2802,6 +2814,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - `Exception#39fb`
 - `Exception#054c`
 - `Exception#61e4`
+- `Exception#7c68`
 
 ---
 
@@ -4019,7 +4032,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### PerformanceSignal#b130
+### PerformanceSignal#9dfb
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -4070,6 +4083,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - `PerformanceSignal#10af`
 - `PerformanceSignal#7dea`
 - `PerformanceSignal#0f41`
+- `PerformanceSignal#b130`
 
 ---
 
@@ -5530,7 +5544,7 @@ An Information invariant was cited here as the second distinguishing property an
 
 ---
 
-### SolverManifest#da6d
+### SolverManifest#4ba8
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -5593,6 +5607,7 @@ This answer used to call those the 'truth-in-advertising properties', citing Acc
 - `SolverManifest#47ae`
 - `SolverManifest#47d4`
 - `SolverManifest#15bc`
+- `SolverManifest#da6d`
 
 ---
 
@@ -6129,7 +6144,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 
 ---
 
-### Tension#5732
+### Tension#40e5
 
 `Infrastructure` · `Data Structures` · R1 · T1
 
@@ -6183,6 +6198,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 - `Tension#5493`
 - `Tension#547a`
 - `Tension#c700`
+- `Tension#5732`
 
 ---
 
@@ -6239,7 +6255,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 
 ---
 
-### Trait#14c7
+### Trait#e415
 
 `Infrastructure` · `Data Structures` · R0 · T1
 
@@ -6297,6 +6313,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 
 **Supersedes (prior versions).**
 - `Trait#13ad`
+- `Trait#14c7`
 
 ---
 
@@ -7704,7 +7721,7 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 
 ---
 
-### FailClosed#d23b
+### FailClosed#dfbc
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -7772,6 +7789,7 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 - `FailClosed#eae7`
 - `FailClosed#4088`
 - `FailClosed#ac1b`
+- `FailClosed#d23b`
 
 ---
 
@@ -7991,31 +8009,33 @@ TWO CORRECTIONS to how this blocker was described. The three-outcome mismatch is
 
 **Can it be removed?** Removable in closed-world systems with pre-known peers. Essential in open multi-agent ecosystems where connections form dynamically. Greet is part of AgentProtocol's minimum-viable bundle for interoperability.
 
-**Intended use.** initial contact protocol — cryptographic identity verification + CompatibilityCheck.
+**Intended use.** mutually authenticated agent connection initiation with cryptographic identity verification and CompatibilityCheck.
 
-**Future uses.** any "hello, are we compatible?" handshake.
+**Future uses.** initial contact between previously unknown agents requiring mutual authentication and compatible communication.
 
-**Broad-use contexts.** TLS handshake, OAuth flow initiation, API-version negotiation, agent discovery greeting, human introductions, protocol version negotiation.
+**Broad-use contexts.** mutually authenticated service connections, peer-to-peer agent introductions, and protocol-version negotiation preceded by cryptographic verification of both peers.
 
-**Broad-use intersection (review hypothesis).** identity verification, compatibility check, state transition Unknown → Connected.
+**Broad-use intersection (review hypothesis).** cryptographic verification of both identities, compatibility check, connection only on success, and connection drop on failure.
 
-**Varies (descendant territory).** authentication strength, extension negotiation, fallback on incompatibility, one-way vs mutual.
+**Varies (descendant territory).** cryptographic algorithm, trusted verification material, compatible protocol versions, and extension negotiation that preserves both authentication and fail-closed connection establishment.
 
-**Extension shape.** `TLSGreet`, `OAuthGreet`, `MutualGreet`, `OpportunisticGreet`.
+**Extension shape.** Possible specializations can fix the authentication algorithm or negotiated protocol; they must retain mutual authentication and drop the connection on failure.
+
+_Note: A human introduction, unauthenticated version negotiation, or one-way authentication alone does not fulfill this card. Discovery finds a peer; Greet authenticates both peers and checks compatibility._
 
 **Design tensions.**
-- Mutual auth (invariant) vs one-sided trust — some handshakes only need one side to authenticate the other; the invariant rules out asymmetric trust relationships.
-- No-op on mismatch (invariant) vs graceful retry — drop on failure is clean and forbids iterative compatibility negotiation.
-- Cryptographic verification vs speed — every handshake pays a crypto cost, which adds up in systems with many short-lived connections.
+- Cryptographic verification has a cost on every initial connection, particularly with many short-lived peers.
+- Trusted verification material and compatible protocol versions must be selected by the caller; the card does not establish which identities the caller should trust.
 
 **Tradeoffs.**
-- Gains: authenticated identity, explicit compatibility checking, clean transition from Unknown to Connected.
-- Gives up: ad-hoc connection. The pattern ceremonies every connection; for high-trust or short-lived scenarios, the ceremony exceeds the value.
+- Gains: mutually authenticated identities, explicit compatibility checking, and connection establishment only after both checks succeed.
+- Gives up: one-sided or unauthenticated introductions. Dropping a failed connection is deliberate; a caller may initiate a new attempt under its own retry policy.
 
 **Critique (diagnostic, not contract requirements).**
-- Authentication Failure as a failure mode is binary; real auth often has degrees (TLS certificate valid but from wrong issuer, identity verified but under question).
+- Authentication acceptance is evaluated under caller-selected verification policy: a cryptographically valid certificate from an unaccepted issuer does not satisfy that policy. Greet requires both peers to pass verification; it does not select their trust policy.
 - Protocol Mismatch failure mode has no retry mechanism — Greet is one-shot, and translation/bridging happens in other patterns.
 - The handshake doesn't specify what happens after (session establishment, key derivation); these are downstream concerns the pattern punts on.
+- Reviewed 2026-09-27: the card is sound as a mutually authenticated connection primitive. Corrected commentary that admitted human introductions and one-way authentication, and removed proposed extensions that appeared to weaken the mandatory mutual-authentication and connection-drop contracts. Those are different scopes, not options on this card. Authentication failure and protocol mismatch are detected and bounded by dropping the connection; trust policy, retry orchestration, and subsequent session management remain caller concerns. No hashed field changed.
 
 **In the family.** Initial-contact primitive paired with Handshake (the generic protocol name), CompatibilityCheck (the schema verification), and AgentProtocol (the bundle that includes Greet). Compare with Discover — Discover finds agents to greet; Greet begins interaction. Sequential.
 
@@ -8156,7 +8176,7 @@ TWO CORRECTIONS to how this blocker was described. The three-outcome mismatch is
 
 ---
 
-### IdempotentWrite#fb8b
+### IdempotentWrite#7226
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -8221,6 +8241,7 @@ TWO CORRECTIONS to how this blocker was described. The three-outcome mismatch is
 - `IdempotentWrite#9b95`
 - `IdempotentWrite#e919`
 - `IdempotentWrite#ebf5`
+- `IdempotentWrite#fb8b`
 
 ---
 
@@ -9339,41 +9360,42 @@ Both were revised in the 2026-07 review and the revisions point in opposite dire
 
 #### Design
 
-**Why it exists.** Attaching verifiable identity proof to an artifact creates non-repudiable authorship/approval. Sign names this cryptographic commitment. Without it, authorship claims are soft.
+**Why it exists.** Attaching cryptographically verifiable identity proof to an artifact lets another party check authorship or approval without the signer participating. Sign names that binding and the integrity of the signed artifact; legal effect and the trustworthiness of the signing identity are separate questions.
 
 **Why Infrastructure.** attach identity proof — cryptographic primitive
 
-**Can it be removed?** Non-removable in any system that cares about authorship or approval. Contract, Award, OathBind and Witness all depend on Sign. The cryptographic guarantees are that the signature binds the signing identity to the artifact and invalidates if the artifact changes.
+**Can it be removed?** Required by consumers that need an independently verifiable identity binding and artifact integrity. Current direct consumers include Contract, Award, AuditTrail, and FailureTrace. Other ways of expressing authorship or approval need not satisfy this cryptographic card. The earlier social claim that a signer cannot deny signing was replaced by the checkable guarantee that another party can verify without the signer's cooperation.
 
-A Non-Repudiation invariant used to be cited here as the second guarantee. The 2026-07 review replaced it, because it read 'the signer cannot later deny having signed it' — a claim about what a signer can get away with socially and legally, which no cryptographic operation delivers, and which this card's own critique already conceded was *technical* non-repudiation. What replaced it is the checkable form: a third party can verify the signature without the signer's cooperation.
+**Intended use.** attach a cryptographically verifiable identity proof to an artifact.
 
-**Intended use.** attach a verifiable identity proof to an artifact.
+**Future uses.** authorship or approval attachments whose identity binding and artifact integrity can be independently verified.
 
-**Future uses.** any non-repudiable authorship/approval attachment.
+**Broad-use contexts.** public-key signatures on messages, PGP email, code signing, digitally signed documents, and signed blockchain transactions.
 
-**Broad-use contexts.** cryptographic signatures, handwritten signatures, OAuth token signing, PGP email, code signing, document notarization, blockchain transactions, wet signatures on paper.
+**Broad-use intersection (review hypothesis).** a signing identity, an artifact bound to that identity, independent verification, and invalidation when the signed artifact changes.
 
-**Broad-use intersection (review hypothesis).** identity proof, artifact to attach to, non-repudiable link.
+**Varies (descendant territory).** cryptographic algorithm, key material, verification protocol, and attachment format (detached vs embedded).
 
-**Varies (descendant territory).** algorithm (RSA, ECDSA, EdDSA, wet), key material, verification protocol, attachment format (detached vs embedded).
+**Extension shape.** Possible specializations can fix a cryptographic algorithm, attachment format, or multiple-signer protocol while retaining the three invariants.
 
-**Extension shape.** `CryptoSign`, `WetSign`, `NotarySign`, `MultiSigSign`.
+_Note: A handwritten signature alone does not provide this card's artifact-change detection. Legal enforceability, signer authority, trust in verification material, and revocation policy belong to the surrounding system._
 
 **Design tensions.**
-- Non-Repudiation vs legitimate retraction — signed commitments are permanent, even if you change your mind.
-- Integrity invariant (signature invalidates on change) vs minor edits — typo fixes invalidate the signature.
-- Public-key infrastructure dependency — Sign requires PKI, which has its own failure modes.
+- A signer can retract approval through a later statement, but that does not erase the earlier cryptographic attachment.
+- The artifact-integrity invariant applies to minor edits as well as substantive changes; even a typo correction requires a signature on the revised artifact.
+- Independent verification requires trusted verification material. How that trust is established is caller policy, not a requirement for a particular public-key infrastructure.
 
 **Tradeoffs.**
-- Gains: non-repudiable authorship, integrity guarantees.
-- Gives up: flexibility. Signed artifacts are frozen; any edit invalidates.
+- Gains: independently verifiable identity binding and integrity of the signed artifact.
+- Gives up: changing a signed artifact while preserving the same valid signature. Legal non-repudiation is not supplied by this primitive.
 
 **Critique (diagnostic, not contract requirements).**
 - Adjudicated 2026-07-25, the highest-fan-in unread pattern at 49 transitive dependents. Its own critique had the finding: 'Non-Repudiation is technical non-repudiation; legal non-repudiation has separate requirements.' The invariant said 'the signer cannot later deny having signed it', which is a claim about what a signer can get away with socially and legally, and no cryptographic operation delivers it. The design tension says the same thing from the other side — 'signed commitments are permanent, even if you change your mind'. Replaced with what technical non-repudiation actually is and what makes it checkable: a third party can verify the signature without the signer's cooperation.
 - The intersection names three elements — 'identity proof, artifact to attach to, non-repudiable link' — and nothing required the signature to carry an identity at all. Now the first invariant does.
 - Zero failure modes on a pattern that `Contract`, `Award`, `OathBind` and `Witness` all depend on. The commentary already named three and they are simply moved onto the card: the two design tensions (permanence against legitimate retraction, and a typo fix invalidating the signature) and the technical-versus-legal gap from the critique. A consuming agent reads the card, not this file.
+- Reviewed 2026-09-27: retained all three cryptographic contracts. Corrected the commentary rather than weakening those contracts: handwritten and wet signatures do not supply artifact-change detection, and technical verification does not establish legal non-repudiation. Removed those examples and extension suggestions, aligned the intersection and motivation with independent verification, and made trust infrastructure a caller choice. Retraction and brittle integrity are accepted consequences of signing exact content; legal effect is delegated to the surrounding system. No hashed field changed.
 
-**In the family.** Cryptographic primitive paired with Hash (the substrate), Witness (the attestation counterpart), and Identity (the signer). Compare with OathBind — Sign attaches identity to artifact; OathBind binds actor to rule set.
+**In the family.** Cryptographic primitive binding Identity to an artifact. Contract and Award use it for signed commitments; AuditTrail and FailureTrace use it for verifiable records. Compare with OathBind: signing attaches proof to content, while an oath binds an actor to rules.
 
 **Supersedes (prior versions).**
 - `Sign#1fb9`
@@ -9441,7 +9463,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-### StateSnapshot#0a0f
+### StateSnapshot#d757
 
 `Infrastructure` · `Primitives` · R0 · T1
 
@@ -9506,6 +9528,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `StateSnapshot#5791`
 - `StateSnapshot#53b2`
 - `StateSnapshot#56fe`
+- `StateSnapshot#0a0f`
 
 ---
 
@@ -9569,7 +9592,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-### TaskLifecycle#efdc
+### TaskLifecycle#5591
 
 `Infrastructure` · `Primitives` · R1 · T1
 
@@ -9639,6 +9662,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `TaskLifecycle#3a3e`
 - `TaskLifecycle#d935`
 - `TaskLifecycle#6fdd`
+- `TaskLifecycle#efdc`
 
 ---
 
@@ -9776,7 +9800,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-### ToolInvoke#75cc
+### ToolInvoke#1096
 
 `Infrastructure` · `Primitives` · R0 · T2
 
@@ -9839,6 +9863,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `ToolInvoke#cf0a`
 - `ToolInvoke#011f`
 - `ToolInvoke#aafc`
+- `ToolInvoke#75cc`
 
 ---
 
@@ -10236,7 +10261,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-### HumanApprove#5d0d
+### HumanApprove#cf56
 
 `Infrastructure` · `Verification` · R1 · T2
 
@@ -10256,7 +10281,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Failure modes.**
 - Approval Fatigue: Humans rubber-stamp requests without review due to high volume.
 - Blocking: {{system}} halts indefinitely if human is unavailable.
-- {{context}} Loss: Human lacks sufficient context to make informed decision.
+- Missing decision information: Human lacks sufficient information about the proposal, rationale, or risk to make an informed decision.
 
 #### Design
 
@@ -10291,19 +10316,21 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - 'Cognitive Friction: approval requires matching a context-specific challenge code' asserted the challenge unconditionally while `challenge_required` exists to make it optional. The invariant now names the parameter, so the two agree instead of one silently overriding the other.
 - The sharpest thing here is that an invariant and a failure mode share a name and describe the same behaviour from opposite sides. The invariant is 'Blocking: execution MUST halt until approval received'; the failure mode is 'Blocking: system halts indefinitely if human is unavailable'. The `timeout` parameter is the resolution and no invariant referred to it, so the card required indefinite blocking and separately lamented it. Halting is now bounded by `timeout`.
 - That raises the question the card never answered: what happens when the timeout fires. A gate whose timeout silently permits the action is worse than no gate, because it looks like a control. The new final invariant states the safe default — silence is not consent — which is `FailClosed`'s 'Ambiguity == Rejection' applied to human latency, and which the varies line leaves room for by treating the escalation path as descendant territory.
-- 'Timeout Policy: define behavior if approval not received within SLA' was an instruction to the pattern's author rather than a contract on its instances, so it could not be violated by any implementation. The intersection's presentation requirement — 'the Task presented to human, rationale, risk assessment' — was meanwhile uncontracted, which matters because the 'Context Loss' failure mode is precisely a human deciding without it.
+- 'Timeout Policy: define behavior if approval not received within SLA' was an instruction to the pattern's author rather than a contract on its instances, so it could not be violated by any implementation. The intersection's presentation requirement — 'the Task presented to human, rationale, risk assessment' — was meanwhile uncontracted, which matters because the 'Missing decision information' failure mode is precisely a human deciding without it.
 - `challenge_required`'s description was the single string 'Default: True', the fourth instance of a value where a description belongs. CORRECTED: the varies line carried '(ms to weeks — see §3.17)', a sixth document coordinate, and described `challenge_required` as '(Boolean, principled)' — reviewer commentary in a field a reader consults for guidance.
 - RESOLVED 2026-07-25: 'Blocking vs timeout — if human is unavailable, does the system halt forever? The pattern requires a timeout policy without prescribing one.' Both halves are now settled. Halting is bound by `timeout`, and the question the old tension left open — what happens when it fires — is answered by an invariant: the action does not proceed, because silence is not consent. That is `FailClosed`'s Ambiguity == Rejection applied to human latency, and it matters because a gate whose timeout silently permits is worse than no gate.
+- Corrected 2026-09-27: the approver needs the proposal, rationale, and risks, not a serialized agent execution frame. Renamed the information-loss failure and removed the false Context citation. The existing presentation invariant supplies the safeguard; affirmative consent, challenge-code policy, timeout, and audit requirements remain unchanged.
 
 **In the family.** Safety-pattern paired with EjectionSeat (forced stop), FailClosed (default deny), and AuditTrail (who approved what). Compare with DeliberativeAlign — HumanApprove is explicit human check; DeliberativeAlign is agent self-check against policy. Both are pre-action safety, at different trust assignments.
 
 **Supersedes (prior versions).**
 - `HumanApprove#e64a`
 - `HumanApprove#a00d`
+- `HumanApprove#5d0d`
 
 ---
 
-### InputGuard#f33c
+### InputGuard#0ba7
 
 `Infrastructure` · `Verification` · R0 · T2
 
@@ -10362,6 +10389,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `InputGuard#0770`
 - `InputGuard#fb82`
 - `InputGuard#8c3e`
+- `InputGuard#f33c`
 
 ---
 
@@ -10430,7 +10458,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-### OutputGuard#fa36
+### OutputGuard#3618
 
 `Infrastructure` · `Verification` · R0 · T2
 
@@ -10453,7 +10481,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 **Failure modes.**
 - Scunthorpe {{problem}}: Over-censorship blocking valid words containing restricted substrings.
-- {{context}} Blindness: Guard blocks necessary medical terms misclassified as toxicity.
+- Semantic context blindness: Guard blocks necessary medical terms misclassified as toxicity.
 - Redaction Leak: [REDACTED] markers revealing the location/length of hidden secrets.
 
 #### Design
@@ -10479,7 +10507,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Design tensions.**
 - Fail-Safe vs availability — blocking outputs on scanner failure is safe and reduces availability.
 - Scunthorpe problem (named failure) — over-censorship blocking valid words containing restricted substrings.
-- Context Blindness (named failure) — medical terms misclassified as toxicity; context-aware classifiers are adjacent patterns.
+- Semantic context blindness (named failure) — medical terms misclassified as toxicity; context-aware classifiers are adjacent patterns.
 
 **Tradeoffs.**
 - Gains: post-generation safety net, explicit PII redaction, explicit fail-safe default.
@@ -10488,7 +10516,8 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 **Critique (diagnostic, not contract requirements).**
 - Resolved 2026-07-25. 'Privacy First: If PII detected, Redaction is mandatory' contradicted the card's own `pii_mode` parameter, whose range is {Redact, Block, Hash} — two mitigations the invariant forbids — and this entry's varies line, which says mitigation strategy varies. The invariant intended as the strict one was in fact the narrow one: blocking is stronger than redaction wherever the content cannot be safely salvaged. Restated so what is mandatory is that PII does not reach egress unmitigated, with the choice of mitigation left to pii_mode.
 - Not changed, and worth recording so it is not 'fixed' later: `FailClosed` already references OutputGuard as an instance of fail-closed behaviour, so wiring the reverse direction would create a dependency cycle. The relationship exists and points the right way.
-- Scunthorpe, Context Blindness and Redaction Leak are three unusually concrete failure modes and were left untouched. Context-aware classification is an adjacent pattern, as the tension says.
+- Scunthorpe, Semantic context blindness and Redaction Leak are three unusually concrete failure modes and were left untouched. Context-aware classification is an adjacent pattern, as the tension says.
+- Corrected 2026-09-27: the medical-term example depends on linguistic meaning and domain usage, not execution-state serialization. Made that failure label explicit and removed the false Context citation. The failure scenario, scanner fail-safe behavior, and mandatory mitigation of detected PII remain unchanged; classifier quality is still the caller's responsibility.
 
 **In the family.** Safety primitive paired with InputGuard (input counterpart), FailClosed (the default), and Redact (the mitigation). Compare with InvariantFilter — OutputGuard is classifier-based; InvariantFilter is predicate-based. Different filter architectures.
 
@@ -10496,6 +10525,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 - `OutputGuard#eb44`
 - `OutputGuard#32b0`
 - `OutputGuard#1396`
+- `OutputGuard#fa36`
 
 ---
 
@@ -10697,7 +10727,7 @@ A Non-Repudiation invariant used to be cited here as the second guarantee. The 2
 
 ---
 
-### BayesUpdate#11d2
+### BayesUpdate#8656
 
 `Mind` · `Inference` · R2 · T1
 
@@ -10767,6 +10797,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `BayesUpdate#911b`
 - `BayesUpdate#3d1b`
 - `BayesUpdate#879a`
+- `BayesUpdate#11d2`
 
 ---
 
@@ -10842,7 +10873,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 
 ---
 
-### ConfidenceCalibrate#b67f
+### ConfidenceCalibrate#e357
 
 `Mind` · `Inference` · R2 · T2
 
@@ -10902,6 +10933,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `ConfidenceCalibrate#0ae5`
 - `ConfidenceCalibrate#7b1a`
 - `ConfidenceCalibrate#2145`
+- `ConfidenceCalibrate#b67f`
 
 ---
 
@@ -10968,7 +11000,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 
 ---
 
-### ContextFirst#76b5
+### ContextFirst#f157
 
 `Mind` · `Inference` · R0 · T1
 
@@ -11031,6 +11063,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `ContextFirst#7550`
 - `ContextFirst#a0b6`
 - `ContextFirst#9b48`
+- `ContextFirst#76b5`
 
 ---
 
@@ -11102,7 +11135,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 
 ---
 
-### HackDetect#acf4
+### HackDetect#1778
 
 `Mind` · `Inference` · R2 · T1
 
@@ -11171,6 +11204,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `HackDetect#a488`
 - `HackDetect#b7d7`
 - `HackDetect#a012`
+- `HackDetect#acf4`
 
 ---
 
@@ -11237,7 +11271,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 
 ---
 
-### LayeredCheck#0e4e
+### LayeredCheck#6d73
 
 `Mind` · `Inference` · R2 · T2
 
@@ -11298,10 +11332,11 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `LayeredCheck#3fad`
 - `LayeredCheck#6a86`
 - `LayeredCheck#3204`
+- `LayeredCheck#0e4e`
 
 ---
 
-### NormCheck#984f
+### NormCheck#39ba
 
 `Mind` · `Inference` · R2 · T1
 
@@ -11367,10 +11402,11 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `NormCheck#8222`
 - `NormCheck#b3a0`
 - `NormCheck#9077`
+- `NormCheck#984f`
 
 ---
 
-### NormativeJudge#65d8
+### NormativeJudge#684f
 
 `Mind` · `Inference` · R0 · T1
 
@@ -11441,6 +11477,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - `NormativeJudge#2316`
 - `NormativeJudge#bd4e`
 - `NormativeJudge#5986`
+- `NormativeJudge#65d8`
 
 ---
 
@@ -11797,7 +11834,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### SourceEvaluate#081d
+### SourceEvaluate#24f6
 
 `Mind` · `Inference` · R2 · T2
 
@@ -11855,6 +11892,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `SourceEvaluate#ceb1`
 - `SourceEvaluate#1f87`
 - `SourceEvaluate#da25`
+- `SourceEvaluate#081d`
 
 ---
 
@@ -11997,7 +12035,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### TemporalEnsembleForecasting#c8fa
+### TemporalEnsembleForecasting#2cf5
 
 `Mind` · `Inference` · R2 · T2
 
@@ -12041,10 +12079,11 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `TemporalEnsembleForecasting#8b0e`
 - `TemporalEnsembleForecasting#3cb6`
 - `TemporalEnsembleForecasting#0913`
+- `TemporalEnsembleForecasting#c8fa`
 
 ---
 
-### TruthseekingProtocol#0113
+### TruthseekingProtocol#78d5
 
 `Mind` · `Inference` · R2 · T2
 
@@ -12087,12 +12126,13 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `TruthseekingProtocol#afc1`
 - `TruthseekingProtocol#e2d3`
+- `TruthseekingProtocol#0113`
 
 ---
 
 ### Mind/Memory (15)
 
-### BeliefTracking#890a
+### BeliefTracking#c78d
 
 `Mind` · `Memory` · R2 · T2
 
@@ -12162,6 +12202,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `BeliefTracking#6f91`
 - `BeliefTracking#6142`
 - `BeliefTracking#1ae4`
+- `BeliefTracking#890a`
 
 ---
 
@@ -12561,7 +12602,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### LocalizedLearning#868b
+### LocalizedLearning#a6db
 
 `Mind` · `Memory` · R1 · T2
 
@@ -12624,10 +12665,11 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `LocalizedLearning#1450`
 - `LocalizedLearning#1eec`
 - `LocalizedLearning#d85e`
+- `LocalizedLearning#868b`
 
 ---
 
-### PathwayMemory#b15f
+### PathwayMemory#ce2e
 
 `Mind` · `Memory` · R1 · T1
 
@@ -12673,6 +12715,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Supersedes (prior versions).**
 - `PathwayMemory#b6a0`
+- `PathwayMemory#b15f`
 
 ---
 
@@ -12739,7 +12782,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### RetrievalAugment#9c60
+### RetrievalAugment#6f84
 
 `Mind` · `Memory` · R2 · T2
 
@@ -12799,6 +12842,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `RetrievalAugment#ca58`
 - `RetrievalAugment#7ca7`
 - `RetrievalAugment#95fc`
+- `RetrievalAugment#9c60`
 
 ---
 
@@ -12925,7 +12969,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### SimulationTrace#a24e
+### SimulationTrace#e187
 
 `Mind` · `Memory` · R2 · T1
 
@@ -12990,10 +13034,11 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `SimulationTrace#096e`
 - `SimulationTrace#9383`
 - `SimulationTrace#efde`
+- `SimulationTrace#a24e`
 
 ---
 
-### TraceBelief#7ccc
+### TraceBelief#7b8a
 
 `Mind` · `Memory` · R2 · T2
 
@@ -13047,6 +13092,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `TraceBelief#1881`
 - `TraceBelief#bdfa`
 - `TraceBelief#c4db`
+- `TraceBelief#7ccc`
 
 ---
 
@@ -13363,7 +13409,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### CiteBack#8be7
+### CiteBack#b840
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13429,6 +13475,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `CiteBack#d09c`
 - `CiteBack#7785`
 - `CiteBack#1efb`
+- `CiteBack#8be7`
 
 ---
 
@@ -13502,7 +13549,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### CollaborativeWritingProtocol#1305
+### CollaborativeWritingProtocol#bcd1
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -13545,10 +13592,11 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `CollaborativeWritingProtocol#8a1a`
 - `CollaborativeWritingProtocol#4d6a`
+- `CollaborativeWritingProtocol#1305`
 
 ---
 
-### ConceptualDecomposition#40d9
+### ConceptualDecomposition#9a52
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -13601,10 +13649,11 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `ConceptualDecomposition#2cce`
 - `ConceptualDecomposition#3cf2`
 - `ConceptualDecomposition#cdf8`
+- `ConceptualDecomposition#40d9`
 
 ---
 
-### ConstructOntology#30db
+### ConstructOntology#85c8
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13668,6 +13717,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `ConstructOntology#b59e`
 - `ConstructOntology#9407`
 - `ConstructOntology#3e7d`
+- `ConstructOntology#30db`
 
 ---
 
@@ -13910,7 +13960,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### DeepResearch#c1f1
+### DeepResearch#2e2b
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -13985,10 +14035,11 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - `DeepResearch#cbe3`
 - `DeepResearch#a058`
 - `DeepResearch#52e2`
+- `DeepResearch#c1f1`
 
 ---
 
-### Dialectic#ae5e
+### Dialectic#26be
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14056,6 +14107,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - `Dialectic#bc18`
 - `Dialectic#b5d0`
 - `Dialectic#6eda`
+- `Dialectic#ae5e`
 
 ---
 
@@ -14126,7 +14178,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### EpistemicCascade#5deb
+### EpistemicCascade#00ae
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14194,10 +14246,11 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Supersedes (prior versions).**
 - `EpistemicCascade#a489`
+- `EpistemicCascade#5deb`
 
 ---
 
-### Estimate#0f44
+### Estimate#3bac
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -14263,10 +14316,11 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `Estimate#bb30`
 - `Estimate#28d2`
 - `Estimate#ae72`
+- `Estimate#0f44`
 
 ---
 
-### EthicalReasoningProtocol#e18b
+### EthicalReasoningProtocol#aec8
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -14312,6 +14366,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `EthicalReasoningProtocol#6bf1`
 - `EthicalReasoningProtocol#e3a6`
 - `EthicalReasoningProtocol#8e7b`
+- `EthicalReasoningProtocol#e18b`
 
 ---
 
@@ -14449,7 +14504,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### Fermi#6885
+### Fermi#f206
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14506,6 +14561,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `Fermi#1e06`
 - `Fermi#128b`
 - `Fermi#964a`
+- `Fermi#6885`
 
 ---
 
@@ -14737,7 +14793,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### HeuristicSnap#b95f
+### HeuristicSnap#d683
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -14801,10 +14857,11 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `HeuristicSnap#cece`
 - `HeuristicSnap#bd4b`
 - `HeuristicSnap#cecf`
+- `HeuristicSnap#b95f`
 
 ---
 
-### HumanEmulatorProtocol#a632
+### HumanEmulatorProtocol#71ec
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -14847,6 +14904,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Supersedes (prior versions).**
 - `HumanEmulatorProtocol#261f`
 - `HumanEmulatorProtocol#9ba0`
+- `HumanEmulatorProtocol#a632`
 
 ---
 
@@ -14911,7 +14969,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### Interpret#1d56
+### Interpret#3f8a
 
 `Mind` · `Reasoning` · R0 · T0
 
@@ -14921,14 +14979,14 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Mechanism.**
 
-> The cognitive {{think}} act of applying a semantic {{context}} to a raw {{datum}} or {{signal}} to extract {{value}}. Unlike `Translate`, which changes form, Interpret changes the abstraction level. Operational test: a translation is reversible from its output, an interpretation is not without its context.
+> The cognitive {{think}} act of applying a semantic context to a raw {{datum}} or {{signal}} to extract {{value}}. Unlike `Translate`, which changes form, Interpret changes the abstraction level. Operational test: a translation is reversible from its output, an interpretation is not without its context.
 
 **Invariants.**
-- An interpretation names the {{context}} it was made under.
+- An interpretation names the semantic context it was made under.
 - Non-Destructive: the original signal is preserved.
 
 **Failure modes.**
-- Context drift: a stored interpretation stays fixed while the {{context}} it was made under changes, so a stale {{value}} reads as current.
+- Context drift: a stored interpretation stays fixed while the semantic context it was made under changes, so a stale {{value}} reads as current.
 
 #### Design
 
@@ -14936,7 +14994,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Why Mind.** semantic extraction from signal
 
-**Can it be removed?** Non-removable as a cognitive distinction. Every agent that acts on data is interpreting. The pattern's value is in the explicit 'meaning depends on context' invariant, which forces callers to track what context was applied.
+**Can it be removed?** Non-removable as a cognitive distinction. Naming the semantic context used to interpret a signal lets another agent identify the assumptions and circumstances behind the result. This recording obligation remains useful whether or not interpretation happens inside a portable agent execution frame.
 
 **Intended use.** apply semantic context to raw signal to extract value — change abstraction level, not form.
 
@@ -14949,6 +15007,8 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Varies (descendant territory).** context richness, interpretation depth, confidence tracking.
 
 **Extension shape.** `LegalInterpret`, `MedicalInterpret`, `ContextualInterpret`.
+
+_Note: Semantic context means the assumptions, conventions, and circumstances under which the input is interpreted. It can be carried in an execution Context, but is not itself that container. Its representation is domain-specific; the obligation to name it is unchanged._
 
 **Design tensions.**
 - Recorded context vs stable meanings — meaning is context-relative, so shared understanding requires a shared and named context rather than a shared word. The recording invariant is what makes that possible; it does not make it automatic.
@@ -14965,12 +15025,14 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `Translate` is deliberately left as prose rather than wired as a dependency: Translate already references Interpret, so an edge back would form a mutual cycle. The relationship is in the graph, from the side where it does not cycle.
 - The thinness is real and unchanged. The specific semantic layers are descendant work (`LegalInterpret`, `MedicalInterpret`), and this card's job is the recording discipline.
 - Corrected 2026-07-25: the 'doubles the storage' reading was a misreading of the card — the invariant says the operation does not consume its input, not that a caller must retain the input.
+- Corrected 2026-09-27: a legal text, a measurement, and a historical signal require domain-specific interpretive assumptions, not necessarily portable execution state. Removed the wrong Context composition while preserving the semantic-context recording obligation, original-input preservation, and context-drift failure. FrameSpec describes a problem frame and RuleSet a validity boundary; neither covers all these interpretations. Kept the concept explicit in ordinary prose rather than minting an underspecified umbrella.
 
-**In the family.** Cognitive primitive paired with Translate (syntactic change), Understand (the outcome), and Context (the substrate). Compare with FrameSpec — FrameSpec is the interpretation of a request into a contract; Interpret is the general primitive FrameSpec specializes.
+**In the family.** Cognitive primitive paired with Translate (syntactic change) and Understand (deeper semantic modeling). RequestFraming explicitly specializes Interpret to produce a FrameSpec from a request. Semantic context is the interpretive frame, not the execution Context container.
 
 **Supersedes (prior versions).**
 - `Interpret#c9ee`
 - `Interpret#ff6d`
+- `Interpret#1d56`
 
 ---
 
@@ -15174,7 +15236,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### MetaPrompt#308c
+### MetaPrompt#5d11
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -15244,6 +15306,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `MetaPrompt#a665`
 - `MetaPrompt#db51`
 - `MetaPrompt#f994`
+- `MetaPrompt#308c`
 
 ---
 
@@ -15458,7 +15521,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### ReAct#2331
+### ReAct#3361
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -15525,6 +15588,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `ReAct#c720`
 - `ReAct#bf89`
 - `ReAct#5281`
+- `ReAct#2331`
 
 ---
 
@@ -15666,7 +15730,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### RecursionDive#5476
+### RecursionDive#a86f
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -15726,6 +15790,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `RecursionDive#bd13`
 - `RecursionDive#7e67`
 - `RecursionDive#3cb8`
+- `RecursionDive#5476`
 
 ---
 
@@ -15987,7 +16052,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### RequestFraming#29e7
+### RequestFraming#e6b0
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -16050,17 +16115,19 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - Over-constraint is the eager-framer failure; the pattern doesn't bound how much to constrain.
 - Premature Optimization happens when framers slide into solving; the pattern's 'no resources committed' invariant is the discipline.
 - `derived_from` fixed: previously legacy stub `sema:Interpret` without hash; now full sema_id.
-- `RequestFraming` will move Society → Mind per §3.18.
+- RequestFraming is already in Mind: a single agent can clarify a request without requiring another independent party to execute the mechanism.
+- Corrected 2026-09-27: reviewed and explicitly retargeted the exact Interpret parent alongside its ordinary reference. Framing a request still interprets a raw message under named semantic assumptions into an explicit problem frame without consuming the message. Its own Context reference remains appropriate operational state (prior instructions, permissions, and working memory); it is not the general semantic-context type removed from Interpret.
 
 **In the family.** Interpretation primitive paired with Interpret (the verb), FrameSpec (the output), and ProblemFramer (the role). Compare with ManifestPlanning — RequestFraming is 'understand the ask'; ManifestPlanning is 'plan the solution.'
 
-**Extends (exact parent).** `sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa`
+**Extends (exact parent).** `sema:Interpret#mh:SHA-256:3f8a0dfa42c34d9db05221c948be5b9da43fad99c9e13e0daf343d510f438b8b`
 
 **Supersedes (prior versions).**
 - `RequestFraming#0695`
 - `RequestFraming#e973`
 - `RequestFraming#8c6c`
 - `RequestFraming#cbba`
+- `RequestFraming#29e7`
 
 ---
 
@@ -16184,7 +16251,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### SocraticLoop#fd22
+### SocraticLoop#4f17
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -16252,10 +16319,11 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `SocraticLoop#70fc`
 - `SocraticLoop#7d52`
 - `SocraticLoop#e966`
+- `SocraticLoop#fd22`
 
 ---
 
-### Specialize#916a
+### Specialize#799d
 
 `Mind` · `Reasoning` · R2 · T1
 
@@ -16277,7 +16345,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - Expert agent instantiated
 
 **Failure modes.**
-- {{context}} Mismatch: Applying a valid principle to a domain where its preconditions do not hold.
+- Domain mismatch: Applying a valid principle to a domain where its preconditions do not hold.
 
 #### Design
 
@@ -16300,7 +16368,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 **Extension shape.** `TemplateSpecialize`, `LegalSpecialize`, `CompilerSpecialize`.
 
 **Design tensions.**
-- Context Mismatch (named failure) — applying principle to domain where preconditions don't hold.
+- Domain mismatch (named failure) — applying principle to domain where preconditions don't hold.
 - Constraint Inheritance vs specific-case exceptions — specializations sometimes warrant relaxed constraints.
 - Type Narrowing vs over-specialization — too narrow a specialization may not be useful.
 
@@ -16309,9 +16377,10 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - Gives up: cross-domain transfer. Specialize commits to a domain.
 
 **Critique (diagnostic, not contract requirements).**
-- Context Mismatch is endemic — precondition checking is the hard part.
+- Domain mismatch is endemic — precondition checking is the hard part.
 - Constraint Inheritance is strong; some legitimate specializations need to relax.
-- No failure modes beyond Context Mismatch.
+- No failure modes beyond Domain mismatch.
+- Corrected 2026-09-27: applying a principle outside its valid domain is a domain mismatch, not a failure of an execution Context. Preserved the precondition-related failure and removed only its misleading exact reference. This scoped repair does not adjudicate the separate general-agent/expert-agent pre/postconditions or constraint-relaxation questions.
 
 **In the family.** Instantiation primitive paired with Generalize (the reverse), Specify (synonym), and Expansive (the PURE judge). Compare with Generalize — Specialize narrows, Generalize broadens.
 
@@ -16319,10 +16388,11 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Specialize#0a09`
 - `Specialize#c207`
 - `Specialize#403a`
+- `Specialize#916a`
 
 ---
 
-### SteelmanCheck#bd61
+### SteelmanCheck#b004
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -16393,6 +16463,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `SteelmanCheck#4f4c`
 - `SteelmanCheck#9c86`
 - `SteelmanCheck#7611`
+- `SteelmanCheck#bd61`
 
 ---
 
@@ -16538,7 +16609,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Summarize#3470
+### Summarize#6809
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -16592,6 +16663,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 **Supersedes (prior versions).**
 - `Summarize#6a00`
 - `Summarize#fd40`
+- `Summarize#3470`
 
 ---
 
@@ -16719,7 +16791,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Translate#8a85
+### Translate#a4a8
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -16787,6 +16859,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 **Supersedes (prior versions).**
 - `Translate#e75d`
 - `Translate#b7bf`
+- `Translate#8a85`
 
 ---
 
@@ -16845,7 +16918,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Uncertain#8e74
+### Uncertain#91b5
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -16911,20 +16984,19 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Uncertain#d530`
 - `Uncertain#a1a2`
 - `Uncertain#cada`
+- `Uncertain#8e74`
 
 ---
 
-### Understand#f1fc
+### Understand#9a6a
 
 `Mind` · `Reasoning` · R1 · T1
 
 **Gloss.** Deep semantic modeling
 
-**Signature.** `Think(Context)`
-
 **Mechanism.**
 
-> The process of applying {{think}} to construct an internal model that accurately reflects the causal structure, semantics, and {{context}} of an input. It goes beyond simple parsing to grasp 'why' and 'how'.
+> The process of applying {{think}} to construct an internal model of an input's causal structure, semantics, and surrounding circumstances. It goes beyond simple parsing to model 'why' and 'how'. The caller judges the model's adequacy against its task and evidence standard.
 
 #### Design
 
@@ -16957,14 +17029,16 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 **Critique (diagnostic, not contract requirements).**
 - Resolved 2026-07-25 — and this entry's critique was already the exemplary kind, naming each candidate contract and arguing why it stays out rather than complaining about counts. It also flagged something the card kept asserting: "The 'accurately reflects' claim remains aspirational; adequacy should be judged by the caller's domain, task, and evidence standard rather than encoded as a universal invariant." The mechanism went on asserting accuracy the commentary disclaims, so it now describes the operation and hands the adequacy standard to the caller explicitly.
-- Open, flagged rather than changed: it claims signature `Think(Context)` while its varies permits 'duration (one-shot vs over time)', and `Think`'s mechanism says 'side-effect free and INSTANTANEOUS from the perspective of the external world'. Under Rule F's Truth-in-Advertising a pattern claiming a signature must fulfil that contract entirely, so either Understand is not a Think, or Think's instantaneity is narrower than it reads. Same shape as Solver claiming Protocol(Task) while a single agent can solve alone. Signatures are load-bearing enough that this belongs to Henrik.
+- Resolved 2026-09-27: removed Think(Context), which advertised the portable execution container as the subject of general comprehension. No current source, test, or documented call site requests that signature; DissentSeek, LayeredCheck, and RequestFraming bind Understand by hash. Generic signature discovery deliberately changes, and external users must not treat it as an execution-context operation. Retained its actual Think dependency. The distinction between an atomic thinking step and extended reasoning remains a separate review question.
 - Zero invariants and zero failure modes remain correct and argued, not conceded — surface paraphrase, false coherence and context loss are diagnostic risks whose thresholds are the caller's, exactly as this entry says.
+- Corrected 2026-09-27: understanding a text or model requires its surrounding circumstances, not necessarily a portable agent execution frame. Kept that meaning in plain language and removed the false Context link rather than inventing a replacement signature. The prior critique already judged universal accuracy aspirational and said it had been removed, but the card still asserted it. Applied that recorded decision: construct the model and let the caller judge adequacy against task and evidence. No new invariant or failure-mode quota is imposed.
 
 **In the family.** Cognitive primitive paired with Interpret (semantic application), Parse (syntactic), and Model (the outcome). Compare with Think — Understand is the outcome; Think is the atomic op.
 
 **Supersedes (prior versions).**
 - `Understand#96d4`
 - `Understand#4cab`
+- `Understand#f1fc`
 
 ---
 
@@ -17104,7 +17178,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ### Mind/Strategy (81)
 
-### AdversarialSteel#ed5e
+### AdversarialSteel#90b1
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -17164,6 +17238,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `AdversarialSteel#35f0`
 - `AdversarialSteel#5e05`
 - `AdversarialSteel#aaf9`
+- `AdversarialSteel#ed5e`
 
 ---
 
@@ -17376,7 +17451,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### BeamSearch#d80b
+### BeamSearch#3457
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17432,6 +17507,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `BeamSearch#70d3`
 - `BeamSearch#fc0a`
 - `BeamSearch#899f`
+- `BeamSearch#d80b`
 
 ---
 
@@ -17507,7 +17583,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Build#8c12
+### Build#ddb2
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -17573,6 +17649,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Build#00f3`
 - `Build#24b9`
 - `Build#7798`
+- `Build#8c12`
 
 ---
 
@@ -17714,7 +17791,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Compose#8c85
+### Compose#1960
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -17787,6 +17864,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Compose#4fa2`
 - `Compose#57a9`
 - `Compose#70ed`
+- `Compose#8c85`
 
 ---
 
@@ -18381,7 +18459,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### DepthGovernor#c4ad
+### DepthGovernor#5b24
 
 `Mind` · `Strategy` · R0 · T2
 
@@ -18444,10 +18522,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DepthGovernor#a3e9`
 - `DepthGovernor#96cf`
 - `DepthGovernor#8ffa`
+- `DepthGovernor#c4ad`
 
 ---
 
-### DesignArchitect#a422
+### DesignArchitect#e237
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -18501,10 +18580,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DesignArchitect#7f55`
 - `DesignArchitect#de8c`
 - `DesignArchitect#ac15`
+- `DesignArchitect#a422`
 
 ---
 
-### DiscoveryProtocol#cc28
+### DiscoveryProtocol#09e2
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18548,6 +18628,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DiscoveryProtocol#9958`
 - `DiscoveryProtocol#7ada`
 - `DiscoveryProtocol#fcb4`
+- `DiscoveryProtocol#cc28`
 
 ---
 
@@ -18621,7 +18702,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### EmpathySim#b82a
+### EmpathySim#33c4
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18689,6 +18770,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `EmpathySim#86e9`
 - `EmpathySim#2f02`
 - `EmpathySim#8796`
+- `EmpathySim#b82a`
 
 ---
 
@@ -18821,7 +18903,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### EventReact#f71a
+### EventReact#4bad
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -18886,6 +18968,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `EventReact#a0ef`
 - `EventReact#d2e1`
 - `EventReact#6f43`
+- `EventReact#f71a`
 
 ---
 
@@ -18953,7 +19036,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### ExploreExploit#d570
+### ExploreExploit#218c
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -18967,7 +19050,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - Threshold immutable during execution.
 
 **Failure modes.**
-- {{context}} Drift: The environment changes during the Exploit phase, making the best option obsolete.
+- Environment drift: The environment changes during the Exploit phase, making the best option obsolete.
 
 #### Design
 
@@ -18999,15 +19082,17 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - Gives up: flexibility to exploration shifts late in a run. Environment changes during the exploitation phase make the best option stale; the named failure mode.
 
 **Critique (diagnostic, not contract requirements).**
-- Context Drift is the dominant failure and the pattern has no mechanism to detect it or re-enter exploration; the immutable threshold forbids exactly the adaptation you'd want.
+- Environment drift is the dominant failure and the pattern has no mechanism to detect it or re-enter exploration; the immutable threshold forbids exactly the adaptation you'd want.
 - Threshold immutability is an odd invariant — it prevents gaming but also prevents learning, which is exactly the point of exploration.
 - The 'as deadline approaches' schedule assumes deadlines exist and are known; open-ended tasks break the pattern's assumptions.
+- Corrected 2026-09-27: the named failure is a change in the environment or option payoffs, not a change of an agent execution frame. Preserved that failure and removed the misleading Context link from its label. Existing questions about the algorithm, deadline schedule, and immutable threshold remain open; this correction makes no new algorithmic claim.
 
 **In the family.** Allocation primitive paired with UCB (the specific algorithm), Bandit (the decision class), and Prioritize (resource allocation). Compare with Defer — ExploreExploit balances now vs later information; Defer waits for specific future information. Both time-trade decisions, on different axes.
 
 **Supersedes (prior versions).**
 - `ExploreExploit#88b0`
 - `ExploreExploit#f920`
+- `ExploreExploit#d570`
 
 ---
 
@@ -19072,7 +19157,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### FractalIntelligence#22a0
+### FractalIntelligence#1306
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -19131,6 +19216,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `FractalIntelligence#9b28`
 - `FractalIntelligence#5481`
 - `FractalIntelligence#7fad`
+- `FractalIntelligence#22a0`
 
 ---
 
@@ -19192,7 +19278,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### HypothesisLadder#cbd7
+### HypothesisLadder#58b5
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -19257,6 +19343,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `HypothesisLadder#b8cd`
 - `HypothesisLadder#5f0c`
 - `HypothesisLadder#fac9`
+- `HypothesisLadder#cbd7`
 
 ---
 
@@ -19422,7 +19509,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### LateralOptimization#c2da
+### LateralOptimization#a7bf
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -19495,6 +19582,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `LateralOptimization#5350`
 - `LateralOptimization#2bdb`
 - `LateralOptimization#348a`
+- `LateralOptimization#c2da`
 
 ---
 
@@ -19563,7 +19651,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### MarginalValueRule#ffe1
+### MarginalValueRule#3499
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -19628,10 +19716,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `MarginalValueRule#314d`
 - `MarginalValueRule#eebb`
 - `MarginalValueRule#48c4`
+- `MarginalValueRule#ffe1`
 
 ---
 
-### MentalSim#1ca0
+### MentalSim#c28c
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19699,6 +19788,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `MentalSim#7212`
 - `MentalSim#2874`
 - `MentalSim#9ddd`
+- `MentalSim#1ca0`
 
 ---
 
@@ -19774,7 +19864,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### MetaProtocols#1af2
+### MetaProtocols#d028
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -19817,6 +19907,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 **Supersedes (prior versions).**
 - `MetaProtocols#3561`
 - `MetaProtocols#4a47`
+- `MetaProtocols#1af2`
 
 ---
 
@@ -20036,7 +20127,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### OODA#1fd7
+### OODA#1882
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -20111,6 +20202,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `OODA#2ba0`
 - `OODA#c15f`
 - `OODA#d6de`
+- `OODA#1fd7`
 
 ---
 
@@ -20365,7 +20457,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PUREBrainstorming#856f
+### PUREBrainstorming#c7c8
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -20420,6 +20512,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREBrainstorming#2e83`
 - `PUREBrainstorming#9ba1`
 - `PUREBrainstorming#c534`
+- `PUREBrainstorming#856f`
 
 ---
 
@@ -20488,7 +20581,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PUREOptimization#ba53
+### PUREOptimization#1bed
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -20550,6 +20643,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREOptimization#d1f9`
 - `PUREOptimization#89fe`
 - `PUREOptimization#4180`
+- `PUREOptimization#ba53`
 
 ---
 
@@ -20625,7 +20719,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PerspectiveEnsemble#fe96
+### PerspectiveEnsemble#4afd
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -20687,10 +20781,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PerspectiveEnsemble#2927`
 - `PerspectiveEnsemble#3f70`
 - `PerspectiveEnsemble#1ac4`
+- `PerspectiveEnsemble#fe96`
 
 ---
 
-### PolymorphicSolver#28f1
+### PolymorphicSolver#cb20
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -20743,6 +20838,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `CognitiveSolver#42e5`
 - `PolymorphicSolver#272a`
 - `PolymorphicSolver#1362`
+- `PolymorphicSolver#28f1`
 
 ---
 
@@ -20882,7 +20978,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### ProblemFramer#27c3
+### ProblemFramer#2586
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -20942,10 +21038,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `ProblemFramer#ea80`
 - `ProblemFramer#2718`
 - `ProblemFramer#aa76`
+- `ProblemFramer#27c3`
 
 ---
 
-### RedTeam#fce8
+### RedTeam#0a32
 
 `Mind` · `Strategy` · R2 · T1
 
@@ -21008,6 +21105,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `RedTeam#7a8d`
 - `RedTeam#15c5`
 - `RedTeam#8d52`
+- `RedTeam#fce8`
 
 ---
 
@@ -21256,7 +21354,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### RigorousSolver#93b8
+### RigorousSolver#9034
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -21309,16 +21407,18 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - Reviewed again 2026-08-03 for the Metric tranche. PolymorphicSolver's Metric dependency moves through Agent, and its Interface Non-Compliance failure wording is corrected to match the existing mandatory/optional surface split. RigorousSolver already requires all five surfaces and therefore continues to strengthen the corrected parent without contradiction.
 - Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and RigorousSolver continues to narrow it.
 - Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. RigorousSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim.
+- Reviewed 2026-09-27 for the Context borrower and Cache correction tranche. PolymorphicSolver's own authored payload is unchanged; its exact identity moves with dependency definitions. The stored-result reuse contract still supports routing memory, while caller-specific latency and safety requirements remain in place. RigorousSolver still narrows the parent through all five solver surfaces, mandatory Probe, and non-compensatory acceptance gates, so the exact extends pin is explicitly retargeted after review.
 
 **In the family.** The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer.
 
-**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07`
+**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21`
 
 **Supersedes (prior versions).**
 - `RigorousSolver#169f`
 - `RigorousSolver#f041`
 - `RigorousSolver#b75d`
 - `RigorousSolver#1275`
+- `RigorousSolver#93b8`
 
 ---
 
@@ -21375,7 +21475,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### RootSolver#29d7
+### RootSolver#f7f5
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -21429,6 +21529,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `RootSolver#750d`
 - `RootSolver#6d0d`
 - `RootSolver#332e`
+- `RootSolver#29d7`
 
 ---
 
@@ -21685,7 +21786,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
-### Solver#1f06
+### Solver#a447
 
 `Mind` · `Strategy` · R0 · T0
 
@@ -21745,10 +21846,11 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - `Solver#b7f9`
 - `Solver#04b5`
 - `Solver#a9ec`
+- `Solver#1f06`
 
 ---
 
-### SteelmanFirst#74e7
+### SteelmanFirst#ef20
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -21811,6 +21913,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - `SteelmanFirst#6069`
 - `SteelmanFirst#894f`
 - `SteelmanFirst#c6af`
+- `SteelmanFirst#74e7`
 
 ---
 
@@ -21938,7 +22041,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
-### TensionHold#9fb9
+### TensionHold#b220
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -22006,6 +22109,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - `TensionHold#cca2`
 - `TensionHold#b084`
 - `TensionHold#ee6f`
+- `TensionHold#9fb9`
 
 ---
 
@@ -22188,7 +22292,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
-### UncertaintyMap#0605
+### UncertaintyMap#c412
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -22245,6 +22349,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - `UncertaintyMap#942c`
 - `UncertaintyMap#de94`
 - `UncertaintyMap#e2e9`
+- `UncertaintyMap#0605`
 
 ---
 
@@ -23163,7 +23268,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ### Society/Economics (9)
 
-### AtomicBid#005a
+### AtomicBid#5ac6
 
 `Society` · `Economics` · R1 · T2
 
@@ -23225,6 +23330,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `AtomicBid#9c0c`
 - `AtomicBid#33e1`
 - `AtomicBid#820c`
+- `AtomicBid#005a`
 
 ---
 
@@ -23301,7 +23407,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Award#2c46
+### Award#4c5d
 
 `Society` · `Economics` · R1 · T1
 
@@ -23358,10 +23464,11 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Award#cfe2`
 - `Award#af8e`
 - `Award#c5ac`
+- `Award#2c46`
 
 ---
 
-### Bid#79cf
+### Bid#647f
 
 `Society` · `Economics` · R1 · T1
 
@@ -23425,6 +23532,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Bid#1eba`
 - `Bid#5c45`
 - `Bid#f083`
+- `Bid#79cf`
 
 ---
 
@@ -23554,7 +23662,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-### Gardener#03a9
+### Gardener#e844
 
 `Society` · `Economics` · R2 · T2
 
@@ -23612,6 +23720,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - `Gardener#3e18`
 - `Gardener#52f3`
 - `Gardener#a3d3`
+- `Gardener#03a9`
 
 ---
 
@@ -24001,7 +24110,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### SolverTree#c5cc
+### SolverTree#e275
 
 `Society` · `Governance` · R1 · T1
 
@@ -24063,10 +24172,11 @@ One check that passed and is worth recording: this card's commentary describes O
 - `SolverTree#0c3f`
 - `SolverTree#2e4c`
 - `SolverTree#6ba9`
+- `SolverTree#c5cc`
 
 ---
 
-### UniversalSolverTree#32f9
+### UniversalSolverTree#655a
 
 `Society` · `Governance` · R1 · T1
 
@@ -24130,6 +24240,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `UniversalSolverTree#0923`
 - `UniversalSolverTree#7361`
 - `UniversalSolverTree#a6cb`
+- `UniversalSolverTree#32f9`
 
 ---
 
@@ -24202,7 +24313,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ### Society/Protocols (74)
 
-### AdversarialProof#dce7
+### AdversarialProof#36b4
 
 `Society` · `Protocols` · R2 · T2
 
@@ -24269,6 +24380,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AdversarialProof#2a0f`
 - `AdversarialProof#80dd`
 - `AdversarialProof#5a48`
+- `AdversarialProof#dce7`
 
 ---
 
@@ -24344,7 +24456,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### AgentProtocol#8c6e
+### AgentProtocol#86a3
 
 `Society` · `Protocols` · R1 · T2
 
@@ -24403,10 +24515,11 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AgentProtocol#6297`
 - `AgentProtocol#e6b4`
 - `AgentProtocol#6f3c`
+- `AgentProtocol#8c6e`
 
 ---
 
-### AgentSandbox#41df
+### AgentSandbox#1594
 
 `Society` · `Protocols` · R0 · T1
 
@@ -24477,6 +24590,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AgentSandbox#06f2`
 - `AgentSandbox#c092`
 - `AgentSandbox#d1da`
+- `AgentSandbox#41df`
 
 ---
 
@@ -24946,7 +25060,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### DataMinimization#6ffa
+### DataMinimization#e8c8
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25013,10 +25127,11 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `DataMinimization#0b54`
 - `DataMinimization#4acf`
 - `DataMinimization#402b`
+- `DataMinimization#6ffa`
 
 ---
 
-### DeliberativeAlign#31c6
+### DeliberativeAlign#dc9e
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25088,6 +25203,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `DeliberativeAlign#1cf2`
 - `DeliberativeAlign#9fd3`
 - `DeliberativeAlign#c7f2`
+- `DeliberativeAlign#31c6`
 
 ---
 
@@ -25212,7 +25328,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### DissentSeek#0bae
+### DissentSeek#cbe1
 
 `Society` · `Protocols` · R2 · T1
 
@@ -25277,6 +25393,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `DissentSeek#bd28`
 - `DissentSeek#ce78`
 - `DissentSeek#2ea0`
+- `DissentSeek#0bae`
 
 ---
 
@@ -25737,7 +25854,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### GenealogicalTrace#ee20
+### GenealogicalTrace#8c7f
 
 `Society` · `Protocols` · R2 · T2
 
@@ -25745,10 +25862,10 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Mechanism.**
 
-> An audit protocol that traces a concept, framing, or heuristic back to its historical or institutional origin. The agent identifies the 'Pedigree' of the idea and the 'Interest' it served at its inception (Cui Bono). This distinguishes 'Universal Truths' from 'Inherited Biases' that may no longer be relevant to the current context. It acts as a {{deep}} audit, using {{trace_belief}} to uncover origins and {{cite_back}} to validatethe lineage.
+> An audit protocol that traces a concept, framing, or heuristic back to its historical or institutional origin. The agent identifies the 'Pedigree' of the idea and the 'Interest' it served at its inception (Cui Bono). This distinguishes 'Universal Truths' from 'Inherited Biases' that may no longer be relevant to the current context. It acts as a {{deep}} audit, using {{trace_belief}} to uncover origins and {{cite_back}} to validate the lineage.
 
 **Invariants.**
-- Contextualization: Must compare Origin {{context}} vs. Current {{context}}.
+- Contextualization: Must compare the historical or institutional circumstances at the idea's origin with those of its current use.
 - Traceability: Must identify a specific origin point (Era, Author, or Institution).
 
 **Failure modes.**
@@ -25787,6 +25904,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Genetic Fallacy is the named failure; the pattern balances between 'consider origin' and 'dismiss by origin.'
 - Traceability to specific origin is often impossible.
 - Contextualization requires knowing original context.
+- Corrected 2026-09-27: a historian comparing an old policy's institutional incentives with present conditions needs historical circumstances, not two executable agent stack frames. Kept the comparison obligation and made its subject explicit in plain language. FrameSpec is a problem definition and RuleSet a validity boundary, so neither is a general replacement. No new historical-context type was minted; the remaining traceability and genetic-fallacy questions are unchanged.
 
 **In the family.** Audit primitive paired with Trace (general), SourceEvaluate (credibility), and AuditTrail. Compare with SourceEvaluate — GenealogicalTrace is origin-focused; SourceEvaluate is credibility-focused.
 
@@ -25795,6 +25913,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `GenealogicalTrace#7cf1`
 - `GenealogicalTrace#fa22`
 - `GenealogicalTrace#f30f`
+- `GenealogicalTrace#ee20`
 
 ---
 
@@ -25910,7 +26029,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### GracefulDegradation#b5fb
+### GracefulDegradation#6633
 
 `Society` · `Protocols` · R0 · T1
 
@@ -25981,6 +26100,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `GracefulDegradation#1a82`
 - `GracefulDegradation#8436`
 - `GracefulDegradation#f108`
+- `GracefulDegradation#b5fb`
 
 ---
 
@@ -26191,20 +26311,20 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### InternalConsistency#35d2
+### InternalConsistency#497b
 
 `Society` · `Protocols` · R2 · T2
 
 **Gloss.** Checking for self-contradiction
 
-**Signature.** `Check(Context)`
+**Signature.** `Check(Artifact)`
 
 **Mechanism.**
 
-> A {{check}} that validates whether the components of an {{artifact}} adhere to the Principle of Non-Contradiction. It ensures that no two propositions within the {{context}} conflict with each other. Distinct from external {{validate}} (checking against a schema) or fact-checking (checking against reality).
+> A {{check}} that validates whether the components of an {{artifact}} adhere to the Principle of Non-Contradiction. It ensures that no two propositions within the {{artifact}} conflict with each other. Distinct from external {{validate}} (checking against a schema) or fact-checking (checking against reality).
 
 **Invariants.**
-- Non-Contradiction: No two propositions within the context can logically negate each other.
+- Non-Contradiction: No two propositions within the artifact can logically negate each other.
 - Completeness: All reachable nodes in the artifact are visited.
 
 #### Design
@@ -26240,6 +26360,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - No failure modes listed; InternalConsistency has many (strict logical check missing semantic contradiction, completeness check missing structural gaps).
 - Detecting contradiction in natural-language artifacts is AI-hard; the pattern assumes it's a check, which requires the hard work to have been done elsewhere.
 - The distinction from external Validate is clean conceptually and often blurred in implementation — consistency checks often require schema/type information.
+- Corrected 2026-09-27: a consistency review compares claims within the artifact being checked, as the existing motivation and intersection already state. Reused its Artifact dependency and corrected Check(Context) to Check(Artifact), rather than importing execution-state constraints. This changes signature discovery deliberately. No new type was needed; the separate limitations around natural-language contradiction and dialectical tension remain open.
 
 **In the family.** Verification primitive paired with Validate (external consistency), Check (the general verification verb), and NonContradiction (the philosophical principle). Compare with Coherence — InternalConsistency is strict logical; Coherence is looser 'fits together.'
 
@@ -26247,6 +26368,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `InternalConsistency#862f`
 - `InternalConsistency#5e8f`
 - `InternalConsistency#6f33`
+- `InternalConsistency#35d2`
 
 ---
 
@@ -26386,7 +26508,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### MemeticSeed#ab3c
+### MemeticSeed#908c
 
 `Society` · `Protocols` · R1 · T1
 
@@ -26449,6 +26571,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `MemeticSeed#491b`
 - `MemeticSeed#cf26`
 - `MemeticSeed#0b26`
+- `MemeticSeed#ab3c`
 
 ---
 
@@ -26657,7 +26780,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### OptimisticSolver#0dca
+### OptimisticSolver#e248
 
 `Society` · `Protocols` · R1 · T2
 
@@ -26720,16 +26843,18 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Reviewed again 2026-08-03 for the Metric tranche. PolymorphicSolver's Metric dependency moves through Agent, and its Interface Non-Compliance failure wording is corrected to match the existing mandatory/optional surface split. Neither change weakens or contradicts the parent contracts OptimisticSolver narrows, so this exact retarget remains valid.
 - Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and OptimisticSolver continues to narrow it.
 - Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. OptimisticSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim.
+- Reviewed 2026-09-27 for the Context borrower and Cache correction tranche. PolymorphicSolver's own authored payload is unchanged; its exact identity moves with dependency definitions. The stored-result reuse contract still supports routing memory, while caller-specific latency and safety requirements remain in place. OptimisticSolver still narrows the parent through its parallel-runtime, turn-atomic and non-blocking constraints, so the exact extends pin is explicitly retargeted after review.
 
 **In the family.** The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery.
 
-**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07`
+**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21`
 
 **Supersedes (prior versions).**
 - `OptimisticSolver#ee29`
 - `OptimisticSolver#0074`
 - `OptimisticSolver#18c0`
 - `OptimisticSolver#f664`
+- `OptimisticSolver#0dca`
 
 ---
 
@@ -26791,7 +26916,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### OrchestrationLoop#5667
+### OrchestrationLoop#60e0
 
 `Society` · `Protocols` · R1 · T2
 
@@ -26856,6 +26981,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `OrchestrationLoop#f6f4`
 - `OrchestrationLoop#2d63`
 - `OrchestrationLoop#1190`
+- `OrchestrationLoop#5667`
 
 ---
 
@@ -26988,7 +27114,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### PermissionEscalate#1c49
+### PermissionEscalate#b239
 
 `Society` · `Protocols` · R1 · T1
 
@@ -27053,6 +27179,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `PermissionEscalate#d454`
 - `PermissionEscalate#0ca5`
 - `PermissionEscalate#8419`
+- `PermissionEscalate#1c49`
 
 ---
 
@@ -27186,7 +27313,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
-### PromptChain#61c8
+### PromptChain#02b5
 
 `Society` · `Protocols` · R0 · T2
 
@@ -27249,10 +27376,11 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `PromptChain#5097`
 - `PromptChain#2543`
 - `PromptChain#5df2`
+- `PromptChain#61c8`
 
 ---
 
-### PropheticQuorum#fb6b
+### PropheticQuorum#f7ff
 
 `Society` · `Protocols` · R1 · T1
 
@@ -27314,6 +27442,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `PropheticQuorum#c5d8`
 - `PropheticQuorum#1091`
 - `PropheticQuorum#83cc`
+- `PropheticQuorum#fb6b`
 
 ---
 
@@ -27385,7 +27514,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
-### RealizationProtocol#02e8
+### RealizationProtocol#2fe9
 
 `Society` · `Protocols` · R1 · T2
 
@@ -27460,10 +27589,11 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `RealizationProtocol#2459`
 - `RealizationProtocol#663b`
 - `RealizationProtocol#61ae`
+- `RealizationProtocol#02e8`
 
 ---
 
-### ReceptivityGate#5667
+### ReceptivityGate#0db5
 
 `Society` · `Protocols` · R1 · T1
 
@@ -27528,10 +27658,11 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 **Supersedes (prior versions).**
 - `ReceptivityGate#2709`
 - `ReceptivityGate#8e74`
+- `ReceptivityGate#5667`
 
 ---
 
-### ReversibilityCheck#dc25
+### ReversibilityCheck#7dfa
 
 `Society` · `Protocols` · R2 · T2
 
@@ -27586,6 +27717,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `ReversibilityCheck#9cd6`
 - `ReversibilityCheck#574b`
 - `ReversibilityCheck#b8b7`
+- `ReversibilityCheck#dc25`
 
 ---
 
@@ -28017,7 +28149,7 @@ This answer previously located the value in a Survival invariant reading `Functi
 
 ---
 
-### SolverNode#eaa0
+### SolverNode#f895
 
 `Society` · `Protocols` · R1 · T1
 
@@ -28077,6 +28209,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `SolverNode#4529`
 - `SolverNode#fd50`
 - `SolverNode#0d0e`
+- `SolverNode#eaa0`
 
 ---
 
@@ -28403,7 +28536,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 
 ---
 
-### SynergisticMode#dfb2
+### SynergisticMode#0ec7
 
 `Society` · `Protocols` · R2 · T2
 
@@ -28465,10 +28598,11 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `SynergisticMode#2463`
 - `SynergisticMode#02f9`
 - `SynergisticMode#6fd8`
+- `SynergisticMode#dfb2`
 
 ---
 
-### Taper#bebf
+### Taper#5a75
 
 `Society` · `Protocols` · R1 · T1
 
@@ -28527,10 +28661,11 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `Taper#8dc5`
 - `Taper#83db`
 - `Taper#bde1`
+- `Taper#bebf`
 
 ---
 
-### ThreeLevelCollision#6847
+### ThreeLevelCollision#11d6
 
 `Society` · `Protocols` · R2 · T1
 
@@ -28600,6 +28735,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `ThreeLevelCollision#92b1`
 - `ThreeLevelCollision#f9f9`
 - `ThreeLevelCollision#5f6e`
+- `ThreeLevelCollision#6847`
 
 ---
 
@@ -28671,7 +28807,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 
 ---
 
-### ToolDiscovery#8d80
+### ToolDiscovery#b165
 
 `Society` · `Protocols` · R1 · T1
 
@@ -28743,10 +28879,11 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `ToolDiscovery#bf67`
 - `ToolDiscovery#4b60`
 - `ToolDiscovery#c3c8`
+- `ToolDiscovery#8d80`
 
 ---
 
-### TranslationProxy#d0e3
+### TranslationProxy#5ee3
 
 `Society` · `Protocols` · R1 · T1
 
@@ -28811,6 +28948,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 **Supersedes (prior versions).**
 - `TranslationProxy#f0e0`
 - `TranslationProxy#e064`
+- `TranslationProxy#d0e3`
 
 ---
 
@@ -29018,7 +29156,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 
 ---
 
-### WorkerMode#b3d7
+### WorkerMode#ba47
 
 `Society` · `Protocols` · R2 · T1
 
@@ -29086,10 +29224,11 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `WorkerMode#fa5a`
 - `WorkerMode#5a39`
 - `WorkerMode#2ead`
+- `WorkerMode#b3d7`
 
 ---
 
-### Workflow#092d
+### Workflow#808d
 
 `Society` · `Protocols` · R0 · T1
 
@@ -29152,6 +29291,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - `Workflow#c082`
 - `Workflow#e8ce`
 - `Workflow#2b8a`
+- `Workflow#092d`
 
 ---
 

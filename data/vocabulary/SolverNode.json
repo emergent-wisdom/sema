@@ -16,7 +16,8 @@
       "sema:SolverNode#mh:SHA-256:058ef1f29b21b42fc7c8bdc484fc9042ffe733da49f9e5724b840224e4f589bf",
       "sema:SolverNode#mh:SHA-256:45292efbd4e607174b8e0b82535d8bede20eb408a9d341b86742e1db2982ea1a",
       "sema:SolverNode#mh:SHA-256:fd50fc5063ba52d2670169e4a8388e475cdc69084de648606236716f9ccc13b4",
-      "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77"
+      "sema:SolverNode#mh:SHA-256:0d0e8e90495ae82daaea5339b20451ce6f9e736e4be3d1806762614a317e3e77",
+      "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c"
     ],
     "path": [
       "Society",
@@ -70,17 +71,17 @@
       }
     }
   },
-  "sema_ref": "SolverNode#eaa0",
-  "sema_id": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
-  "sema_stub": "eaa0",
+  "sema_ref": "SolverNode#f895",
+  "sema_id": "sema:SolverNode#mh:SHA-256:f895214a9b07066f4043d55d3b260e8a788bda0150b9d8fda20eafa91b846116",
+  "sema_stub": "f895",
   "dependencies": {
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950",
       "problem_space": "sema:ProblemSpace#mh:SHA-256:b4ae92d26c5092dadcbba687e1e591960dfbf7689b04ef9cc5617f21b780ff28",
       "responsibility": "sema:Responsibility#mh:SHA-256:d8ccf6225585313bd3efd0198c588063cb62add74447c15fe5128c0ebfdc1d19",
       "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
-      "solver_manifest": "sema:SolverManifest#mh:SHA-256:da6d0d4755028b576f0c8c53affe23afc54ac32221142e5cc79dedfab753b2f9"
+      "solver_manifest": "sema:SolverManifest#mh:SHA-256:4ba845fbfa60f1c3d40008e4944b1409f1734374c822f40042d0dbec2ef3c920"
     }
   },
   "sema_layer": "Society",

@@ -26,12 +26,13 @@
     ],
     "supersedes": [
       "sema:ReceptivityGate#mh:SHA-256:27099802d49cf3b086d4149bd9697dd2e7ff680de09f3e1395172cf4e45c2096",
-      "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf"
+      "sema:ReceptivityGate#mh:SHA-256:8e7475b2e900e202bc7c509092b69889445c217a526e2bf692a70629ac2bfcdf",
+      "sema:ReceptivityGate#mh:SHA-256:56672e19478b968dacc6ffdaaf69627f85e5fedf06ee1256993b641a4380b571"
     ]
   },
-  "sema_id": "sema:ReceptivityGate#mh:SHA-256:56672e19478b968dacc6ffdaaf69627f85e5fedf06ee1256993b641a4380b571",
-  "sema_ref": "ReceptivityGate#5667",
-  "sema_stub": "5667",
+  "sema_id": "sema:ReceptivityGate#mh:SHA-256:0db58374b9595734af888df1f152aa802e6da20fb24e2786e44f1837f2a4f4fa",
+  "sema_ref": "ReceptivityGate#0db5",
+  "sema_stub": "0db5",
   "dependencies": {
     "composes_with": {
       "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
@@ -39,7 +40,7 @@
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
       "failure_trace": "sema:FailureTrace#mh:SHA-256:8085febc5bf923c52ce1856893c7739e5d9be3bdc021767766ad949f717a974e",
-      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:b15f1dd794db8b776de7646d2431466934bb901c3d443e0c92e85b58ad3c3ca5"
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722"
     }
   },
   "sema_layer": "Society",

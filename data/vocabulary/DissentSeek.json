@@ -23,22 +23,23 @@
     "supersedes": [
       "sema:DissentSeek#mh:SHA-256:bd28d5bd7fa2253411b69c586231a1a80b835cc56569439dc8834540dcefaf54",
       "sema:DissentSeek#mh:SHA-256:ce789971353ca0b8c002250a6e0ced756de6099be34025af28cf5617e0d16273",
-      "sema:DissentSeek#mh:SHA-256:2ea051ef22d08fc52d1dfd00a60a390e62dc0adc2b237e128eff300648ace069"
+      "sema:DissentSeek#mh:SHA-256:2ea051ef22d08fc52d1dfd00a60a390e62dc0adc2b237e128eff300648ace069",
+      "sema:DissentSeek#mh:SHA-256:0bae3f888e2184247f9089c858c3f2b8abe4c40ebcb86c743e90f93c82ca4318"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:DissentSeek#mh:SHA-256:0bae3f888e2184247f9089c858c3f2b8abe4c40ebcb86c743e90f93c82ca4318",
-  "sema_ref": "DissentSeek#0bae",
-  "sema_stub": "0bae",
+  "sema_id": "sema:DissentSeek#mh:SHA-256:cbe1c2ffdc64d0627f0fc9115ee06d1876f6baa38b80b03e712951131feedefb",
+  "sema_ref": "DissentSeek#cbe1",
+  "sema_stub": "cbe1",
   "dependencies": {
     "references": {
       "confirmation_block": "sema:ConfirmationBlock#mh:SHA-256:dbe2e2c1125c1fe51410b304f52aaee60b477a4bd36f9a20f14463be0c9482e2",
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf",
-      "understand": "sema:Understand#mh:SHA-256:f1fc5d9393f995d27a648ad6a8e4bcd81c7d117e5d64c535da706feac7e87334"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:b004eb6d85a184da7f9bb7fc06d011bc869f6eb6ad1061f30cbbbcc4c2b8f6aa",
+      "understand": "sema:Understand#mh:SHA-256:9a6aeceb2c276db98b8f62227231f27f1478fccd32e47281c302047c2c806d7d"
     }
   },
   "sema_layer": "Society",

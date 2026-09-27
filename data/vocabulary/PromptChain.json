@@ -27,24 +27,25 @@
       "sema:PromptChain#mh:SHA-256:4ad5da823f52050a9e1959eaf054e9a5c4d5777f534c796ec6bc259db676e008",
       "sema:PromptChain#mh:SHA-256:50975454f45cce4e45ae4590cd99cee4401596df424ffac720c699609dcc01a6",
       "sema:PromptChain#mh:SHA-256:2543cc5972f02b5a21d776643ba485beda876462c57a10c8949d0072e54bd620",
-      "sema:PromptChain#mh:SHA-256:5df25fb4edb7f8f3575a0b45a7c203f7f5ef1b66a5f83d9ec1049b5548cdf975"
+      "sema:PromptChain#mh:SHA-256:5df25fb4edb7f8f3575a0b45a7c203f7f5ef1b66a5f83d9ec1049b5548cdf975",
+      "sema:PromptChain#mh:SHA-256:61c81f623e0aadd0d6cde03bf3c5dbbc5ea3e0b527647552ca0e063c261e85e1"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:PromptChain#mh:SHA-256:61c81f623e0aadd0d6cde03bf3c5dbbc5ea3e0b527647552ca0e063c261e85e1",
-  "sema_ref": "PromptChain#61c8",
-  "sema_stub": "61c8",
+  "sema_id": "sema:PromptChain#mh:SHA-256:02b5f2277c89d51e35336a8735f5a8bf26304332db887961bb23790c8c82b2f9",
+  "sema_ref": "PromptChain#02b5",
+  "sema_stub": "02b5",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "composes_with": {
-      "input_guard": "sema:InputGuard#mh:SHA-256:f33c7c914e869216a9cd3dcf182648cc9363c46b40d46fc45621145c8878134b",
+      "input_guard": "sema:InputGuard#mh:SHA-256:0ba715e91627fa1f6759a739da0d4159cac6404c8b45b6e97910d98ef0e8a079",
       "re_attempt": "sema:ReAttempt#mh:SHA-256:18128dc39f9e9174059b4058d4e1419eb6c4ba921dbad355fabc329bc3902c48",
-      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:75cc12a769885fb63993dbb0ffbf0b0878c7e780fe89d6a0d49bd0bc550e60b5"
+      "tool_invoke": "sema:ToolInvoke#mh:SHA-256:1096039316801cc8ef6e2855a6300574bb8596bb8e57c2764fd3bee741fa217e"
     },
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",

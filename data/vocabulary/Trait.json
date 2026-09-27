@@ -19,7 +19,8 @@
       "Data Structures"
     ],
     "supersedes": [
-      "sema:Trait#mh:SHA-256:13adbfa9f48babf1c2de572b4eb72454879cbb1d76404fd65aee70400a72e2b7"
+      "sema:Trait#mh:SHA-256:13adbfa9f48babf1c2de572b4eb72454879cbb1d76404fd65aee70400a72e2b7",
+      "sema:Trait#mh:SHA-256:14c7e4c3545c4dbe5d22a17eba23ce4a4f521cfcc29bd46561149be740b4a808"
     ]
   },
   "data_schema": {
@@ -52,12 +53,12 @@
       }
     }
   },
-  "sema_id": "sema:Trait#mh:SHA-256:14c7e4c3545c4dbe5d22a17eba23ce4a4f521cfcc29bd46561149be740b4a808",
-  "sema_ref": "Trait#14c7",
-  "sema_stub": "14c7",
+  "sema_id": "sema:Trait#mh:SHA-256:e415fe6619857f831d831228b5532ea64d4a6a222773c828098f30d36f450b20",
+  "sema_ref": "Trait#e415",
+  "sema_stub": "e415",
   "dependencies": {
     "references": {
-      "contract": "sema:Contract#mh:SHA-256:0a175c6f4a8622b98f611614e42401c4dc4778178a438269bf5dd388006397e0",
+      "contract": "sema:Contract#mh:SHA-256:98747322ee31ffa265a8dfd6609d726e0dcba9c513e5ec85742c6c04e4afaa26",
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
     }
   },

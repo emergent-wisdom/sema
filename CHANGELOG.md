@@ -10,6 +10,31 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Fixed
+
+- Ten bootstrap patterns no longer identify evidence, agreed terms, historical
+  circumstances, interpretation context, or decision information with the
+  portable agent execution `Context`: Belief, Contract, ExploreExploit,
+  GenealogicalTrace, HumanApprove, InternalConsistency, Interpret, OutputGuard,
+  Specialize, and Understand. Their substantive obligations remain explicit.
+  Context's own definition is unchanged.
+- `InternalConsistency` now advertises `Check(Artifact)`, matching its actual
+  subject. `Understand` no longer advertises `Think(Context)`; callers using
+  signature discovery should resolve Understand directly. Its model-adequacy
+  wording now follows the already documented caller-relative standard.
+- `Cache` guarantees stored-value reuse on a hit instead of promising that
+  every lookup is significantly faster than the source. Existing consistency,
+  freshness, and serialization requirements are retained; latency targets belong
+  to the caller or a specialized pattern.
+- Design commentary for Context, Cache, Greet, Sign, and the affected consumers
+  now matches their contracts. In particular, Greet requires mutual authentication
+  and Sign describes cryptographic artifact binding, not handwritten signatures.
+- All 117 changed identities, including dependency cascades from the eleven
+  directly edited patterns, record their published 0.6.0 predecessors. The three
+  exact parent links on RequestFraming, OptimisticSolver, and RigorousSolver
+  were reviewed and explicitly retargeted. The library still has 457 patterns;
+  no new patterns were added.
+
 ## [0.6.0] - 2026-09-27
 
 All 457 bootstrap pattern identities and both aggregate roots are unchanged.

@@ -33,20 +33,21 @@
     "supersedes": [
       "sema:BayesUpdate#mh:SHA-256:911b3e915019f09fbbbde387283af064db0903ce67a7219b0f27730c236de487",
       "sema:BayesUpdate#mh:SHA-256:3d1ba13d30f25ea87acd410653f8e4477e280d0f5a204cd1eacf96de4013f7db",
-      "sema:BayesUpdate#mh:SHA-256:879afc8b39356ead46edabbc3f4f098d9e7e5995a516d573574427dcb669fa3a"
+      "sema:BayesUpdate#mh:SHA-256:879afc8b39356ead46edabbc3f4f098d9e7e5995a516d573574427dcb669fa3a",
+      "sema:BayesUpdate#mh:SHA-256:11d261e6588f2923517c746a910aa2a60e6f3998852e109ea533d7199ecd4db8"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:BayesUpdate#mh:SHA-256:11d261e6588f2923517c746a910aa2a60e6f3998852e109ea533d7199ecd4db8",
-  "sema_ref": "BayesUpdate#11d2",
-  "sema_stub": "11d2",
+  "sema_id": "sema:BayesUpdate#mh:SHA-256:865637baf030de8ee9babd2a2fdddbf68d99353516aa86eef07cf6bc1e8a5d38",
+  "sema_ref": "BayesUpdate#8656",
+  "sema_stub": "8656",
   "dependencies": {
     "references": {
       "base_rate_include": "sema:BaseRateInclude#mh:SHA-256:1e637d4655d2b503d5cc333935aa74aabb13d09f174577f4d6cdf0de77688569",
-      "belief": "sema:Belief#mh:SHA-256:e160f5d3c82f6a64902c8619ec411f1c33eb0a4d031aea46bddb0f0776d5f150",
+      "belief": "sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1",
       "observe": "sema:Observe#mh:SHA-256:4a04c0e91f072dc02a4be52bca921c38c1be46e88b1f2bcb375076fdb5103e96"
     }
   },

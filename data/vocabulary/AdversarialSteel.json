@@ -17,19 +17,20 @@
     "supersedes": [
       "sema:AdversarialSteel#mh:SHA-256:35f025a1bfbbcbcf86d8d60889b3e1c08fa43a2d439b358c4021c83de2291234",
       "sema:AdversarialSteel#mh:SHA-256:5e05f6b505964cc5058f75a14b715fb3b78ad0aa96babd91dd9e5b488e471db4",
-      "sema:AdversarialSteel#mh:SHA-256:aaf9288a5aa63817fd3cfd1143068dcf639e41fb3de1ac9d28a7e4959c1b90c5"
+      "sema:AdversarialSteel#mh:SHA-256:aaf9288a5aa63817fd3cfd1143068dcf639e41fb3de1ac9d28a7e4959c1b90c5",
+      "sema:AdversarialSteel#mh:SHA-256:ed5ea5a0048acf8703754159e2fc2fb516a23033316f2dcb58a7d77e7df71603"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:AdversarialSteel#mh:SHA-256:ed5ea5a0048acf8703754159e2fc2fb516a23033316f2dcb58a7d77e7df71603",
-  "sema_ref": "AdversarialSteel#ed5e",
-  "sema_stub": "ed5e",
+  "sema_id": "sema:AdversarialSteel#mh:SHA-256:90b1f6225005275367227017d930134959decfd97f52d7550de19cd8784c8702",
+  "sema_ref": "AdversarialSteel#90b1",
+  "sema_stub": "90b1",
   "dependencies": {
     "composes_with": {
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf"
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:b004eb6d85a184da7f9bb7fc06d011bc869f6eb6ad1061f30cbbbcc4c2b8f6aa"
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",

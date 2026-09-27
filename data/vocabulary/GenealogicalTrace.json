@@ -1,12 +1,12 @@
 {
   "handle": "GenealogicalTrace",
-  "mechanism": "An audit protocol that traces a concept, framing, or heuristic back to its historical or institutional origin. The agent identifies the 'Pedigree' of the idea and the 'Interest' it served at its inception (Cui Bono). This distinguishes 'Universal Truths' from 'Inherited Biases' that may no longer be relevant to the current context. It acts as a {{deep}} audit, using {{trace_belief}} to uncover origins and {{cite_back}} to validatethe lineage.",
+  "mechanism": "An audit protocol that traces a concept, framing, or heuristic back to its historical or institutional origin. The agent identifies the 'Pedigree' of the idea and the 'Interest' it served at its inception (Cui Bono). This distinguishes 'Universal Truths' from 'Inherited Biases' that may no longer be relevant to the current context. It acts as a {{deep}} audit, using {{trace_belief}} to uncover origins and {{cite_back}} to validate the lineage.",
   "gloss": "Auditing the historical lineage and incentives of an idea",
   "failure_modes": [
     "Genetic Fallacy: Dismissing a valid, useful idea solely because of its origin, rather than evaluating its current utility."
   ],
   "invariants": [
-    "Contextualization: Must compare Origin {{context}} vs. Current {{context}}.",
+    "Contextualization: Must compare the historical or institutional circumstances at the idea's origin with those of its current use.",
     "Traceability: Must identify a specific origin point (Era, Author, or Institution)."
   ],
   "_meta": {
@@ -16,22 +16,22 @@
       "sema:GenealogicalTrace#mh:SHA-256:0e89c456c9e33d0e5e018d64df4e347c76a5d08a6cced893ec3d1a84e28d877a",
       "sema:GenealogicalTrace#mh:SHA-256:7cf173cd27775b3e6a8e02535abd94ce568830d02c917c3edc78b54edff8178f",
       "sema:GenealogicalTrace#mh:SHA-256:fa22d007e06944e15621967431b41dad0c282fa75266656f8088396d11f48c9f",
-      "sema:GenealogicalTrace#mh:SHA-256:f30f3e798d7f6a8e56ae29f4b365fc0230308b207cfc3722129f5371e201a86b"
+      "sema:GenealogicalTrace#mh:SHA-256:f30f3e798d7f6a8e56ae29f4b365fc0230308b207cfc3722129f5371e201a86b",
+      "sema:GenealogicalTrace#mh:SHA-256:ee20e20b3781db94517530eae0e6d7b24eecba674de8860be5b70f3724761950"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:ee20e20b3781db94517530eae0e6d7b24eecba674de8860be5b70f3724761950",
-  "sema_ref": "GenealogicalTrace#ee20",
-  "sema_stub": "ee20",
+  "sema_id": "sema:GenealogicalTrace#mh:SHA-256:8c7f219eedc7c40e86dc84e0efb9e5890d373ab73fc09731ee21a2fb4183bfe7",
+  "sema_ref": "GenealogicalTrace#8c7f",
+  "sema_stub": "8c7f",
   "dependencies": {
     "references": {
-      "cite_back": "sema:CiteBack#mh:SHA-256:8be76800c2df7055947d33ae0cb8fed8fd8b8ea52c50d03c5da2bdbe816efcad",
-      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
+      "cite_back": "sema:CiteBack#mh:SHA-256:b84030c6635efa4b951843dd03918883cf1379fddb4cce9e3d098c19dfd6a604",
       "deep": "sema:Deep#mh:SHA-256:16b0cb8d6aa42a890215fb7a44e480c27360165de2249d205ee6c1b2d01896bb",
-      "trace_belief": "sema:TraceBelief#mh:SHA-256:7cccb4842ddb57f7925e00d89af759c7f8ab7e97d49b589dbdf1ddf677cc099d"
+      "trace_belief": "sema:TraceBelief#mh:SHA-256:7b8a67006e9e0f510dd1937e9b420fb8cea880ca1fd0d3d1e86ef5bffffa021a"
     }
   },
   "sema_layer": "Society",

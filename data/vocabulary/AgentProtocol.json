@@ -14,16 +14,17 @@
       "sema:AgentProtocol#mh:SHA-256:5a7f6660a1899ecda1ed37f8b781e629917ad4851a001ad11f33ea1ff91a87b3",
       "sema:AgentProtocol#mh:SHA-256:6297fe3d5b335cbe8051e147ce3235c33d30bce2f4df5ad274b18ae98b502878",
       "sema:AgentProtocol#mh:SHA-256:e6b4b936738cd1077a7a360a0c4f069590627d1676ee7c251a2f66e8d3a34ee9",
-      "sema:AgentProtocol#mh:SHA-256:6f3c8e1257ffc2d771bf895b75f48e7461ae87d1c220b49f46d7a192c948d247"
+      "sema:AgentProtocol#mh:SHA-256:6f3c8e1257ffc2d771bf895b75f48e7461ae87d1c220b49f46d7a192c948d247",
+      "sema:AgentProtocol#mh:SHA-256:8c6e771e73f271afc78b7ca1701e664d688a179b6b590cf884b5796c57664a8b"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:AgentProtocol#mh:SHA-256:8c6e771e73f271afc78b7ca1701e664d688a179b6b590cf884b5796c57664a8b",
-  "sema_ref": "AgentProtocol#8c6e",
-  "sema_stub": "8c6e",
+  "sema_id": "sema:AgentProtocol#mh:SHA-256:86a3f129036a28bab76d60f15ac835dfe779536cf02fe916f7b21cb1369ebf6d",
+  "sema_ref": "AgentProtocol#86a3",
+  "sema_stub": "86a3",
   "signature": [
     "Agent(Protocol)"
   ],
@@ -31,7 +32,7 @@
     "references": {
       "accept_spec": "sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc",
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
-      "fail_closed": "sema:FailClosed#mh:SHA-256:d23bf6663e53ecbee5c12a120f4fe379c1dfe8bc05f0b9bf2250703d4131faaf",
+      "fail_closed": "sema:FailClosed#mh:SHA-256:dfbcf50c68d036ae4f18719bf59f41eddd83b5510bd60ff1326f8854240d8066",
       "greet": "sema:Greet#mh:SHA-256:bcb066aa62cec1c03e3fac07b1b199fa8b12ab059d4faaf49374bf4a400941bd",
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
       "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",

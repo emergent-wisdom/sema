@@ -41,16 +41,17 @@
     "supersedes": [
       "sema:SteelmanCheck#mh:SHA-256:4f4ce8aca096c50b21c598a587b4b93cb3a2952114bac7c9ff1711786085f3b7",
       "sema:SteelmanCheck#mh:SHA-256:9c861bd1b525f9671144191592f0f8d963331540385d5bb1f7317e919e6b7003",
-      "sema:SteelmanCheck#mh:SHA-256:7611548d64d5fb63c0e09723c53192121c4846ab4ea85531da0b51ad712f3c75"
+      "sema:SteelmanCheck#mh:SHA-256:7611548d64d5fb63c0e09723c53192121c4846ab4ea85531da0b51ad712f3c75",
+      "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf",
-  "sema_ref": "SteelmanCheck#bd61",
-  "sema_stub": "bd61",
+  "sema_id": "sema:SteelmanCheck#mh:SHA-256:b004eb6d85a184da7f9bb7fc06d011bc869f6eb6ad1061f30cbbbcc4c2b8f6aa",
+  "sema_ref": "SteelmanCheck#b004",
+  "sema_stub": "b004",
   "signature": [
     "Check(Robustness)",
     "Critique(Belief)",
@@ -64,7 +65,7 @@
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
-      "belief": "sema:Belief#mh:SHA-256:e160f5d3c82f6a64902c8619ec411f1c33eb0a4d031aea46bddb0f0776d5f150",
+      "belief": "sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1",
       "cognitive_bias": "sema:CognitiveBias#mh:SHA-256:c8a4abe2e0ce048be16d25f890a50f8c7095e099b5ab2de23aa059942328f387",
       "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7",
       "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",

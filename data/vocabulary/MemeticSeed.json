@@ -20,22 +20,23 @@
     "supersedes": [
       "sema:MemeticSeed#mh:SHA-256:491b0bb4623d78df04ab196ef7809daa2fad14bccb130fcb9d2f0e8dffd485c3",
       "sema:MemeticSeed#mh:SHA-256:cf265f710af42a9db9e5e61327679e4a3ef1b0e1b9a8c842ea990c92fa806415",
-      "sema:MemeticSeed#mh:SHA-256:0b265a4820b792b2b0fdadbd65c0157b038f8e6ee2c46955d3e49602e09a327d"
+      "sema:MemeticSeed#mh:SHA-256:0b265a4820b792b2b0fdadbd65c0157b038f8e6ee2c46955d3e49602e09a327d",
+      "sema:MemeticSeed#mh:SHA-256:ab3cf553319d493e4a6c068e63e5c80b0e4f7fa67fe46082af600fb21ecfdadb"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:MemeticSeed#mh:SHA-256:ab3cf553319d493e4a6c068e63e5c80b0e4f7fa67fe46082af600fb21ecfdadb",
-  "sema_ref": "MemeticSeed#ab3c",
-  "sema_stub": "ab3c",
+  "sema_id": "sema:MemeticSeed#mh:SHA-256:908c0352f5da32e28b50bb72b09cacc664e06f1585a65e3d6f315a718459cd05",
+  "sema_ref": "MemeticSeed#908c",
+  "sema_stub": "908c",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "explain_beacon": "sema:ExplainBeacon#mh:SHA-256:2ae591c2bb79c9a8e037722f368f68b0e6a507503cfc74ab09b9bb1d43fa1856",
       "gradient": "sema:Gradient#mh:SHA-256:ecfc2cd2d9eb95778ef04ede8a7e872c33822f174a9e3273fa7bba92b3a30e36",
-      "translation_proxy": "sema:TranslationProxy#mh:SHA-256:d0e389e96f8b3c7b1c73a6c7055c4ca6ad78c6b6bd78ae6884ea92e01d32fc0f",
+      "translation_proxy": "sema:TranslationProxy#mh:SHA-256:5ee310b29f8822d0740e83a84344e90ee166800ab07b02781c4e318f7f6e9bf2",
       "yield": "sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50"
     }
   },

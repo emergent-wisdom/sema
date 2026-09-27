@@ -34,24 +34,25 @@
     "supersedes": [
       "sema:TensionHold#mh:SHA-256:cca2fab0c52b37549212e931c3bdf4b01b3dcaa8f95101d3ad4e7055cdab3ff0",
       "sema:TensionHold#mh:SHA-256:b084d63bf87e2b0ed75f9e27f7a3271fd30707373faa297dbdbb778b497d032e",
-      "sema:TensionHold#mh:SHA-256:ee6ff4d56abe608f928e89556e344a901b59a24afd511db625aaccb001105017"
+      "sema:TensionHold#mh:SHA-256:ee6ff4d56abe608f928e89556e344a901b59a24afd511db625aaccb001105017",
+      "sema:TensionHold#mh:SHA-256:9fb9a1e99253fed3c57921cf020b9868adfb26e15103e5417d78e9aa8e6d0419"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "TensionHold#9fb9",
-  "sema_id": "sema:TensionHold#mh:SHA-256:9fb9a1e99253fed3c57921cf020b9868adfb26e15103e5417d78e9aa8e6d0419",
-  "sema_stub": "9fb9",
+  "sema_ref": "TensionHold#b220",
+  "sema_id": "sema:TensionHold#mh:SHA-256:b220760e24a7814387f787ab1274c6ab6a57f0ba3e9844d9f8b0fb234d14a934",
+  "sema_stub": "b220",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
-      "dialectic": "sema:Dialectic#mh:SHA-256:ae5e838272a716687f09d85a399840d9af330e7c17ae21426bcd0176b50afd54",
+      "dialectic": "sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec",
       "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
     },
     "yields": {
-      "tension": "sema:Tension#mh:SHA-256:57321a5553f0c0dd43019cd5bb2b47ec3c96242657c9069d643d064175d83f0b"
+      "tension": "sema:Tension#mh:SHA-256:40e5946b8186e342a8bcbcf3e1ec0339c1c457d1d5a2bdd83689ad700ab1820a"
     }
   },
   "sema_layer": "Mind",

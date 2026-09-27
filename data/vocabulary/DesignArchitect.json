@@ -12,23 +12,24 @@
     "supersedes": [
       "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775",
       "sema:DesignArchitect#mh:SHA-256:de8c02a7c8c3f29951d1df4265648ae84cea7039dc73f2c0e9403e8c1a199d04",
-      "sema:DesignArchitect#mh:SHA-256:ac154160ca214e889cce53f96e35798b9f290a9b512217fbc567282948c491a7"
+      "sema:DesignArchitect#mh:SHA-256:ac154160ca214e889cce53f96e35798b9f290a9b512217fbc567282948c491a7",
+      "sema:DesignArchitect#mh:SHA-256:a4228704654ba9a8297638781f27175205c1febaf1779b2b4ccec476f5c093a4"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "DesignArchitect#a422",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:a4228704654ba9a8297638781f27175205c1febaf1779b2b4ccec476f5c093a4",
-  "sema_stub": "a422",
+  "sema_ref": "DesignArchitect#e237",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:e237e8318edadae2c0acd494e1b87b391f9501480c65c92d32912f56872eaed7",
+  "sema_stub": "e237",
   "dependencies": {
     "composes_with": {
       "pre_mortem": "sema:PreMortem#mh:SHA-256:e4c24813f33aa41fdb183e380d05707fe1fd813c46b4127602449a8988f47964",
-      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:bd611ca0ddfecaf9d70fd83ff2b51a6a3b121e95936c586cc5a4dfd3fa7167bf",
+      "steelman_check": "sema:SteelmanCheck#mh:SHA-256:b004eb6d85a184da7f9bb7fc06d011bc869f6eb6ad1061f30cbbbcc4c2b8f6aa",
       "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
-      "summarize": "sema:Summarize#mh:SHA-256:34707d252c9e4c88b4e28266709663cbe45533a802b02c0c1941dea7edd68b70",
-      "translate": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400"
+      "summarize": "sema:Summarize#mh:SHA-256:6809d31c350b74cd952808cf13aa00c297a21db8abaf8de126b04982d6e2c1d2",
+      "translate": "sema:Translate#mh:SHA-256:a4a87d5f381c41d0e438550e6f348ada37f24e86c1a070ef814f58130bab1a31"
     },
     "yields": {
       "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:e36fcadd8c29f9e55375e8bf3085dbc9b4feecd2f0f3bd96918b3663af109cc6"

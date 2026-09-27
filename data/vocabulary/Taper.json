@@ -38,16 +38,17 @@
       "sema:Taper#mh:SHA-256:2044ab29206db4b7235103a9f4a1fc6a0ba647fd31e1d6f420a1581e52845e4f",
       "sema:Taper#mh:SHA-256:8dc5f590659da3360002d22320c458eeaa775788b16700359f704838c9d16c2e",
       "sema:Taper#mh:SHA-256:83db268464c312c097ff6e9f579a6ae4c484097c3f4e601a4d88c8151fd9ccb0",
-      "sema:Taper#mh:SHA-256:bde1970317c7758a43f0ba62f15f06f13004a83a6fd40e1a46eb7b439591307c"
+      "sema:Taper#mh:SHA-256:bde1970317c7758a43f0ba62f15f06f13004a83a6fd40e1a46eb7b439591307c",
+      "sema:Taper#mh:SHA-256:bebf17edba19afa6c38821869c95b162aebd4ba474e73665fcc198a569911703"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "Taper#bebf",
-  "sema_id": "sema:Taper#mh:SHA-256:bebf17edba19afa6c38821869c95b162aebd4ba474e73665fcc198a569911703",
-  "sema_stub": "bebf",
+  "sema_ref": "Taper#5a75",
+  "sema_id": "sema:Taper#mh:SHA-256:5a7557a60ba8e0a07cd7d75f43ceb3b125c411e6eddf5bee63039775eab9ba7a",
+  "sema_stub": "5a75",
   "dependencies": {
     "composes_with": {
       "gate": "sema:Gate#mh:SHA-256:664dd801873a87e8aa3d67499e27e7c47923d5c0cdd129af6c09a7531ed7de15",
@@ -56,7 +57,7 @@
     },
     "references": {
       "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
-      "depth_governor": "sema:DepthGovernor#mh:SHA-256:c4ad7271dc734ab16e034e854231c12d64be68f37860b1f8f2d9e11324ab1b8e"
+      "depth_governor": "sema:DepthGovernor#mh:SHA-256:5b24d810ede53e7e6716e3e20e7c28cf578f171845af2358344c25f0c56b7b75"
     }
   },
   "sema_layer": "Society",

@@ -23,22 +23,23 @@
     "ring": 1,
     "supersedes": [
       "sema:Translate#mh:SHA-256:e75d4e97e738a7ae2a377d85a30ce4ed294160b55aa47b778e10424424817429",
-      "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e"
+      "sema:Translate#mh:SHA-256:b7bfd1bdc576b1c4dc7094be4d6b70a5561087974d96b0e330dea7a94361303e",
+      "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400",
-  "sema_ref": "Translate#8a85",
-  "sema_stub": "8a85",
+  "sema_id": "sema:Translate#mh:SHA-256:a4a87d5f381c41d0e438550e6f348ada37f24e86c1a070ef814f58130bab1a31",
+  "sema_ref": "Translate#a4a8",
+  "sema_stub": "a4a8",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
     },
     "references": {
-      "interpret": "sema:Interpret#mh:SHA-256:1d56fa332b01b617007c63b1dc7a717dde3455b0c1659bd4ab036ed82c1b17fa",
+      "interpret": "sema:Interpret#mh:SHA-256:3f8a0dfa42c34d9db05221c948be5b9da43fad99c9e13e0daf343d510f438b8b",
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
       "reversibility": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37"
     }

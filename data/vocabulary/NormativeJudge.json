@@ -35,16 +35,17 @@
     "supersedes": [
       "sema:NormativeJudge#mh:SHA-256:2316a736f6aa6939da6a9d20e0a1103958d0241ab103f5de8a0e61fba5d9e87a",
       "sema:NormativeJudge#mh:SHA-256:bd4eceb5c9c9bda592351cd95294bf43b6fa46b249594384dc15e5887c04f3e1",
-      "sema:NormativeJudge#mh:SHA-256:598646fa29fe22ba89f08763b692861d081c6e76f3531d63a8b644623e4f722e"
+      "sema:NormativeJudge#mh:SHA-256:598646fa29fe22ba89f08763b692861d081c6e76f3531d63a8b644623e4f722e",
+      "sema:NormativeJudge#mh:SHA-256:65d8e53838572b8f4e45ff019b7ee5771c799e859840497ca55cbb2ceb98854c"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:NormativeJudge#mh:SHA-256:65d8e53838572b8f4e45ff019b7ee5771c799e859840497ca55cbb2ceb98854c",
-  "sema_ref": "NormativeJudge#65d8",
-  "sema_stub": "65d8",
+  "sema_id": "sema:NormativeJudge#mh:SHA-256:684f219181e9180ffea6b4ff2947dbdb9d37a12ae690c02c088f58881f9e0726",
+  "sema_ref": "NormativeJudge#684f",
+  "sema_stub": "684f",
   "signature": [
     "Judge(Value)"
   ],
@@ -53,10 +54,10 @@
       "weights": "sema:Vector#mh:SHA-256:426835100cd1b60d25e87518ba77200fc7b7ec87b917448e09fc03b1087f6993"
     },
     "composes_with": {
-      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:fe96be721ddafdb6b2f52252780b914391b17b1de9c8372f4bd8403682ea526c"
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d"
     },
     "references": {
-      "human_approve": "sema:HumanApprove#mh:SHA-256:5d0d6a006d1f45cbb1708798d609a4d08bca0a9086218c434e83877f2c2993f6",
+      "human_approve": "sema:HumanApprove#mh:SHA-256:cf561deb1a5e93a9f221abe2621c8a2bcfebf6863bd1128fa2230ef90237e67d",
       "judge": "sema:Judge#mh:SHA-256:704cbb71588d7a3bafa08b71c863005e31ec4400860b9cb8b094e660da9c7c6c",
       "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03",
       "quorum": "sema:Quorum#mh:SHA-256:2a33f05d34bfb2667645680393ca37865d4a7d05d2056eddf4c9df0c13b21744",

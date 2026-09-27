@@ -20,16 +20,17 @@
       "sema:SolverManifest#mh:SHA-256:67acaedb52d3ca227a4ed3a462cb2834aa3ccb8d85c3ea4eff7ed3bfb879620b",
       "sema:SolverManifest#mh:SHA-256:47aef05958dec89d4a0ccb6d8965d2bbd812dd8a3c10ef265f3150cfebee0384",
       "sema:SolverManifest#mh:SHA-256:47d424b51aac06ae90c6ab67ecd415876cf3feef3e2a18897fa8cc94b75399ff",
-      "sema:SolverManifest#mh:SHA-256:15bc956376ad5741a0838b7a2a7e825df1f30849a484900dd42f0873b9059a92"
+      "sema:SolverManifest#mh:SHA-256:15bc956376ad5741a0838b7a2a7e825df1f30849a484900dd42f0873b9059a92",
+      "sema:SolverManifest#mh:SHA-256:da6d0d4755028b576f0c8c53affe23afc54ac32221142e5cc79dedfab753b2f9"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:SolverManifest#mh:SHA-256:da6d0d4755028b576f0c8c53affe23afc54ac32221142e5cc79dedfab753b2f9",
-  "sema_ref": "SolverManifest#da6d",
-  "sema_stub": "da6d",
+  "sema_id": "sema:SolverManifest#mh:SHA-256:4ba845fbfa60f1c3d40008e4944b1409f1734374c822f40042d0dbec2ef3c920",
+  "sema_ref": "SolverManifest#4ba8",
+  "sema_stub": "4ba8",
   "data_schema": {
     "type": "object",
     "description": "Typed solver identity + capabilities.",
@@ -74,7 +75,7 @@
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
-      "solver": "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241"
+      "solver": "sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b"
     }
   },
   "sema_layer": "Infrastructure",

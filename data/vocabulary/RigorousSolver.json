@@ -13,25 +13,26 @@
       "sema:RigorousSolver#mh:SHA-256:169f46575554787f8f6be182014bd4f008264153fb30c33ddfd03da1c5dea507",
       "sema:RigorousSolver#mh:SHA-256:f041fba32fa393375adb1b0334f1536546914c8e76fb6262f8288390aa375268",
       "sema:RigorousSolver#mh:SHA-256:b75d4b063fc8f90f4a1361ef08c8dac02fbf147f0c8f122ca390fdbde74d39cd",
-      "sema:RigorousSolver#mh:SHA-256:1275832b5bb4e2ad2e682f32326f8a02f105df57d582be23afd1fb1a7cfae921"
+      "sema:RigorousSolver#mh:SHA-256:1275832b5bb4e2ad2e682f32326f8a02f105df57d582be23afd1fb1a7cfae921",
+      "sema:RigorousSolver#mh:SHA-256:93b824003c5454397626a8c2afe22a03c0b5dae890b8a7bc2158f8139825bd96"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:RigorousSolver#mh:SHA-256:93b824003c5454397626a8c2afe22a03c0b5dae890b8a7bc2158f8139825bd96",
-  "sema_ref": "RigorousSolver#93b8",
-  "sema_stub": "93b8",
-  "extends": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
+  "sema_id": "sema:RigorousSolver#mh:SHA-256:9034894bb7da496602aa81afd2ea44e893a822002b1888daddb28fad4164135c",
+  "sema_ref": "RigorousSolver#9034",
+  "sema_stub": "9034",
+  "extends": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
   "dependencies": {
     "composes_with": {
       "feedback": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d",
       "probe": "sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224"
     },
     "references": {
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
-      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:fd221588fb9a754e02033f9d09f86423f60e67aeea1914fa5088cb20d8699e5e"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
+      "socratic_loop": "sema:SocraticLoop#mh:SHA-256:4f17ec8b7e28b3f223931274df090225572d754cd772fe4f738c922f16f93a18"
     }
   },
   "sema_layer": "Mind",

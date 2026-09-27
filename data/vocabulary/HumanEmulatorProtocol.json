@@ -16,16 +16,17 @@
     ],
     "supersedes": [
       "sema:HumanEmulatorProtocol#mh:SHA-256:261f38f4e5344f759765e4ceb351f59f3bcd543414672d8826b8fa33517ec896",
-      "sema:HumanEmulatorProtocol#mh:SHA-256:9ba03398875aca91b2fb60b8f10a7241ac86aaf293f243dec5f883425e07f5c2"
+      "sema:HumanEmulatorProtocol#mh:SHA-256:9ba03398875aca91b2fb60b8f10a7241ac86aaf293f243dec5f883425e07f5c2",
+      "sema:HumanEmulatorProtocol#mh:SHA-256:a63262c57451d333bebdbe63546c45835c8f21d9dd34c7e9c1c5cafd962329fc"
     ]
   },
-  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:a63262c57451d333bebdbe63546c45835c8f21d9dd34c7e9c1c5cafd962329fc",
-  "sema_ref": "HumanEmulatorProtocol#a632",
-  "sema_stub": "a632",
+  "sema_id": "sema:HumanEmulatorProtocol#mh:SHA-256:71ec667c2b2703142358385dfce6337f1e66aaf04c4f6eb31ac91f75618065bf",
+  "sema_ref": "HumanEmulatorProtocol#71ec",
+  "sema_stub": "71ec",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438"
     }
   },
   "sema_layer": "Mind",
