@@ -16,6 +16,8 @@ allowed-tools: |
   mcp__sema__sema_use
   mcp__sema__sema_root
   mcp__sema__sema_verify_context
+  mcp__sema__sema_library_search
+  mcp__sema__sema_library_install
 ---
 
 # Speak in Sema
@@ -32,7 +34,7 @@ Not footnotes — actual words you think with.
 
 ## When the user wants to see patterns visually
 
-If the user asks to "see", "view", "show", or "explore" patterns visually — or asks to see the graph or browse the vocabulary — invoke the `sema-ui` skill to launch http://localhost:3030. The UI gives them an interactive pattern browser, search, and 3D graph.
+If the user asks to "see", "view", "show", or "explore" patterns visually — or asks to see the graph or browse the vocabulary — invoke the `sema-ui` skill to launch http://localhost:3030. The local view gives them a pattern browser, search, and a 3D graph that grows as you mint. When you start building a vocabulary with the user, offer it once so they can watch the work.
 
 ## Session memory
 
@@ -56,6 +58,16 @@ The CLI and MCP server are **separate processes with separate DB state**. `sema 
 - `sema_use(default=true)` — switch back to the bundled vocabulary
 
 If `sema_use` MCP tool is unavailable (older server version), the MCP server cannot be hot-swapped. Use CLI for search/resolve and accept the limitation — do not confuse CLI state with MCP state.
+
+## Published libraries
+
+People publish finished vocabularies as libraries on semahash.org.
+
+- `sema_library_search(query)` finds them. No account is needed.
+- `sema_library_install(library)` verifies and installs one by name, or from any `library.json` URL such as a GitHub release or a Swarm gateway address. Then `sema_use(db_path=<name>)` switches to it.
+- Publishing needs a public GitHub release of the library, made with `sema package`. If the user gives you a key from their semahash.org profile, store it with `sema_library_login(key)`. Ask the user before `sema_library_publish(manifest_url)`, because it makes the library public.
+
+Never write a key to a file in the project.
 
 ## Vocabulary fingerprint — `sema_root`
 

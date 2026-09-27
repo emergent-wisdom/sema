@@ -1,8 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { GraphCanvas } from '@/components/GraphCanvas'
+import { GraphBoundary, NoGraph, supportsWebGL } from '@/components/GraphFallback'
 import { DetailsPanel } from '@/components/DetailsPanel'
+import { LiveFeed } from '@/components/LiveFeed'
 import { TopBar } from '@/components/TopBar'
 import { useAppStore } from '@/stores/appStore'
 import { useGraph } from '@/hooks/useApi'
@@ -13,6 +15,7 @@ export function GraphPage() {
   const { selectNodeAndFly, selectNode, setDetailsPanelOpen } = useAppStore()
   const { data: graphData } = useGraph()
   const didFlyToNode = useRef(false)
+  const [webgl] = useState(supportsWebGL)
 
   // If there's a node param, wait for graph to load then fly to it
   useEffect(() => {
@@ -31,21 +34,28 @@ export function GraphPage() {
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-zinc-950">
-      <GraphCanvas />
+      {webgl ? (
+        <GraphBoundary fallback={<NoGraph />}>
+          <GraphCanvas />
+        </GraphBoundary>
+      ) : (
+        <NoGraph />
+      )}
       <div className="hidden sm:block">
         <TopBar />
       </div>
       <div className="hidden sm:block">
         <DetailsPanel />
       </div>
+      <LiveFeed />
 
-      {/* Back button */}
       <Link
         to="/"
+        aria-label="Back to the vocabulary"
         className="absolute top-4 left-4 z-50 flex items-center gap-2 px-2 py-1.5 sm:px-3 sm:py-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg text-xs sm:text-sm text-zinc-300 hover:text-zinc-100 hover:bg-zinc-800 transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span className="hidden sm:inline">Back to List</span>
+        <span className="hidden sm:inline">Vocabulary</span>
       </Link>
     </div>
   )

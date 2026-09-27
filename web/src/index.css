@@ -13,12 +13,61 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* ── Design tokens ──────────────────────────────────────────────
+     Single source of truth for the visual voice, shared with semahash.org. Pages use these
+     (or the Tailwind classes that resolve to them) instead of
+     ad-hoc zinc-* soup. */
+  --ink-bg: #0a0a0c;          /* page background — near-black, hint of blue  */
+  --ink-raise: #111114;       /* raised surfaces                              */
+  --ink-line: rgba(255 255 255 / 0.07); /* hairline separators, not borders  */
+  --ink-hi: #f4f4f5;          /* headline text                                */
+  --ink-body: #a1a1aa;        /* body text (AA on --ink-bg)                   */
+  --ink-dim: #71717a;         /* captions — floor, never dimmer               */
+  --accent: #34d399;          /* emerald-400 — verification, PROCEED          */
+  --accent-dim: rgba(52 211 153 / 0.12);
+  --halt: #f87171;            /* red-400 — drift, HALT                        */
+  --halt-dim: rgba(248 113 113 / 0.10);
+  --mono:
+    'SF Mono', ui-monospace, 'JetBrains Mono', Menlo, Consolas,
+    monospace;
 }
 
 body {
   margin: 0;
-  background-color: #09090b;
+  background-color: var(--ink-bg);
   color: #fafafa;
+}
+
+/* Refs (Handle#stub) are the protocol's words — always monospace. */
+.ref-mono {
+  font-family: var(--mono);
+  font-size: 0.8125em;
+  letter-spacing: -0.01em;
+}
+
+/* ── Motion: purposeful only ──────────────────────────────────── */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise-in { animation: rise-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* Live view: a pattern the agent just minted announces itself once. */
+@keyframes live-arrive {
+  0%   { box-shadow: 0 0 0 0 rgba(52 211 153 / 0.45); border-color: rgba(52 211 153 / 0.6); }
+  100% { box-shadow: 0 0 0 10px rgba(52 211 153 / 0); }
+}
+.live-arrive { animation: live-arrive 1.6s ease-out 2; }
+
+@keyframes live-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+.live-dot { animation: live-dot 2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in, .live-arrive, .live-dot { animation: none !important; }
 }
 
 * {
@@ -58,3 +107,17 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Slim inner-pane scrollbar: thumb only, no track — for sidebars whose
+   scroll shouldn't read as a structural divider. */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(113 113 122 / 0.4) transparent;
+}
+.scroll-slim::-webkit-scrollbar { width: 5px; height: 5px; }
+.scroll-slim::-webkit-scrollbar-track { background: transparent; }
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: rgba(113 113 122 / 0.35);
+  border-radius: 4px;
+}
+.scroll-slim::-webkit-scrollbar-thumb:hover { background: rgba(113 113 122 / 0.6); }

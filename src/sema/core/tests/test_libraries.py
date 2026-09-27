@@ -11,7 +11,7 @@ import stat
 import subprocess
 import sys
 import zipfile
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import httpx
@@ -35,8 +35,10 @@ from sema.core.hashing import (
     vocabulary_roots,
 )
 from sema.core.libraries import (
+    ExpectedRelease,
     LibraryError,
     LibraryManifest,
+    ReleaseMismatchError,
     github_release_urls,
     install_library,
     package_library,
@@ -616,6 +618,90 @@ def test_tampered_zip_fails_without_registry_or_active_change(
     assert get_library("defi") is None
 
 
+def _swapped_release_pair(tmp_path: Path) -> tuple[Release, Release, ExpectedRelease]:
+    """A verified release, and a replacement whose own fingerprint is correct."""
+    verified = _write_release(tmp_path / "verified")
+    swapped = _write_release(
+        tmp_path / "swapped",
+        patterns=_defi_patterns(guard_revision=" after the account was taken over"),
+    )
+    swapped_manifest = LibraryManifest.model_validate(json.loads(swapped.manifest_path.read_text()))
+    # Same name and version, different patterns, and a manifest whose roots and
+    # checksum match those patterns: ordinary verification accepts it.
+    verify_library_patterns(swapped.patterns, swapped_manifest)
+    assert swapped.roots["semantic_root"] != verified.roots["semantic_root"]
+    expected = ExpectedRelease(
+        name="defi",
+        semantic_root=str(verified.roots["semantic_root"]),
+        version="1.0.0",
+        catalog_root=str(verified.roots["catalog_root"]),
+        artifact_sha256=hashlib.sha256(verified.archive_path.read_bytes()).hexdigest(),
+    )
+    return verified, swapped, expected
+
+
+def test_expected_release_refuses_a_swap_before_anything_is_written(
+    tmp_path: Path, library_environment: dict[str, Path]
+) -> None:
+    verified, swapped, expected = _swapped_release_pair(tmp_path)
+    registry_before = _bytes_if_present(library_environment["registry_file"])
+    active_before = library_environment["active_file"].read_bytes()
+
+    with pytest.raises(ReleaseMismatchError, match="semantic root"):
+        install_library(
+            swapped.manifest_path,
+            data_dir=library_environment["data_dir"],
+            expected=expected,
+        )
+
+    assert not (library_environment["data_dir"] / "defi").exists()
+    assert _bytes_if_present(library_environment["registry_file"]) == registry_before
+    assert library_environment["active_file"].read_bytes() == active_before
+    assert get_library("defi") is None
+
+    record = install_library(
+        verified.manifest_path,
+        data_dir=library_environment["data_dir"],
+        expected=expected,
+    )
+    assert record["semantic_root"] == verified.roots["semantic_root"]
+
+
+def test_install_by_name_refuses_a_swapped_release_with_a_valid_fingerprint(
+    tmp_path: Path,
+    library_environment: dict[str, Path],
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    from sema.cli import registry_client
+
+    verified, swapped, expected = _swapped_release_pair(tmp_path)
+    # The registry verified one release, but the publisher's stable URL now
+    # serves the replacement.
+    listed = {
+        "slug": "defi",
+        "version": "1.0.0",
+        "root": expected.semantic_root,
+        "catalog_root": expected.catalog_root,
+        "artifact_sha256": expected.artifact_sha256,
+        "manifest_url": str(swapped.manifest_path),
+    }
+    monkeypatch.setattr(registry_client, "resolve_library", lambda name, registry: dict(listed))
+
+    assert install_remote_library("defi", registry="https://registry.test") is False
+    output = capsys.readouterr().out
+    assert "refused" in output
+    assert "Nothing was installed" in output
+    assert get_library("defi") is None
+    assert not (library_environment["data_dir"] / "defi").exists()
+
+    listed["manifest_url"] = str(verified.manifest_path)
+    assert install_remote_library("defi", registry="https://registry.test") is True
+    installed = get_library("defi")
+    assert installed is not None
+    assert installed["semantic_root"] == verified.roots["semantic_root"]
+
+
 @pytest.mark.parametrize("defect", ["missing-dependency", "stale-id"])
 def test_invalid_dependency_or_identity_fails_closed(
     tmp_path: Path, library_environment: dict[str, Path], defect: str
@@ -669,6 +755,233 @@ def test_update_repoints_an_active_library(
     assert Path(old_path).exists()
     assert get_configured_active_db() == new_record["path"]
     assert new_record["catalog_root"] == release_v11.roots["catalog_root"]
+
+
+def _release_listing(release: Release) -> dict:
+    manifest = json.loads(release.manifest_path.read_text())
+    return {
+        "slug": manifest["name"],
+        "version": manifest["version"],
+        "root": manifest["roots"]["semantic"]["sha256"],
+        "catalog_root": manifest["roots"]["catalog"]["sha256"],
+        "artifact_sha256": manifest["patterns"]["sha256"],
+        "manifest_url": str(release.manifest_path),
+    }
+
+
+def _installation_state(environment: dict[str, Path]) -> tuple:
+    """Include every installed file, so refusal cannot leave a partial release."""
+    return (
+        _bytes_if_present(environment["registry_file"]),
+        environment["active_file"].read_bytes(),
+        {
+            path.relative_to(environment["data_dir"]): path.read_bytes()
+            for path in environment["data_dir"].rglob("*")
+            if path.is_file()
+        },
+    )
+
+
+def test_registry_updates_require_the_original_registry_to_verify_each_release(
+    tmp_path: Path,
+    library_environment: dict[str, Path],
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    from sema.cli import registry_client
+
+    origin = "https://original-registry.test"
+    pointer = tmp_path / "current-library.json"
+    original = _write_release(tmp_path / "v1", update_path=pointer)
+    pointer.write_bytes(original.manifest_path.read_bytes())
+    listed = _release_listing(original)
+    lookups = []
+
+    def resolve(name: str, registry: str) -> dict:
+        lookups.append((name, registry))
+        return dict(listed)
+
+    monkeypatch.setattr(registry_client, "resolve_library", resolve)
+    assert install_remote_library("defi", registry=origin)
+    assert use_db("defi")
+    old_record = get_library("defi")
+    assert old_record is not None and old_record["registry_url"] == origin
+    before = _installation_state(library_environment)
+
+    newer = _write_release(
+        tmp_path / "v1-1",
+        version="1.1.0",
+        patterns=_defi_patterns(guard_revision=" with changed release content"),
+        update_path=pointer,
+    )
+    newer_manifest = LibraryManifest.model_validate(json.loads(newer.manifest_path.read_text()))
+    verify_library_patterns(newer.patterns, newer_manifest)
+    pointer.write_bytes(newer.manifest_path.read_bytes())
+    monkeypatch.setenv(registry_client.REGISTRY_ENV, "https://different-registry.test")
+
+    # An internally consistent new release is still unapproved by the origin.
+    assert update_remote_library("defi") is False
+    assert _installation_state(library_environment) == before
+    assert "refused" in capsys.readouterr().out.lower()
+
+    listed = _release_listing(newer)
+    assert update_remote_library("defi") is True
+    updated = get_library("defi")
+    assert updated is not None
+    assert updated["version"] == "1.1.0"
+    assert updated["registry_url"] == origin
+    assert updated["catalog_root"] == newer.roots["catalog_root"]
+    assert get_configured_active_db() == updated["path"]
+    assert updated["path"] != old_record["path"]
+    assert Path(old_record["path"]).is_file()
+    before_second_update = _installation_state(library_environment)
+
+    unverified = _write_release(
+        tmp_path / "v1-2",
+        version="1.2.0",
+        patterns=_defi_patterns(guard_revision=" from another unverified release"),
+        update_path=pointer,
+    )
+    pointer.write_bytes(unverified.manifest_path.read_bytes())
+    assert update_remote_library("defi") is False
+    assert _installation_state(library_environment) == before_second_update
+    assert lookups == [("defi", origin)] * 4
+
+
+def test_registry_lookup_failure_cannot_fall_back_to_the_publisher(
+    tmp_path: Path,
+    library_environment: dict[str, Path],
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    from sema.cli import registry_client
+
+    origin = "https://registry.test"
+    pointer = tmp_path / "current-library.json"
+    original = _write_release(tmp_path / "v1", update_path=pointer)
+    pointer.write_bytes(original.manifest_path.read_bytes())
+    monkeypatch.setattr(
+        registry_client, "resolve_library", lambda name, registry: _release_listing(original)
+    )
+    assert install_remote_library("defi", registry=origin)
+    assert use_db("defi")
+    before = _installation_state(library_environment)
+    newer = _write_release(
+        tmp_path / "v1-1",
+        version="1.1.0",
+        patterns=_defi_patterns(guard_revision=" available while the registry is offline"),
+        update_path=pointer,
+    )
+    pointer.write_bytes(newer.manifest_path.read_bytes())
+
+    def unavailable(name: str, registry: str) -> dict:
+        assert (name, registry) == ("defi", origin)
+        raise registry_client.RegistryError("Registry temporarily unavailable")
+
+    monkeypatch.setattr(registry_client, "resolve_library", unavailable)
+    assert update_remote_library("defi") is False
+    assert "temporarily unavailable" in capsys.readouterr().out
+    assert _installation_state(library_environment) == before
+
+
+def test_cached_install_can_gain_protection_and_url_reinstall_cannot_remove_it(
+    tmp_path: Path, library_environment: dict[str, Path]
+) -> None:
+    from sema.cli import registry_client
+
+    origin = "https://registry.test"
+    release = _write_release(tmp_path / "release")
+    first = install_library(release.manifest_path, data_dir=library_environment["data_dir"])
+    assert first.get("registry_url") is None
+    expected = registry_client.expected_release(_release_listing(release), registry_url=origin)
+
+    # Reusing an already verified local release must still save its new origin.
+    protected = install_library(
+        release.manifest_path,
+        data_dir=library_environment["data_dir"],
+        expected=expected,
+    )
+    assert protected["path"] == first["path"]
+    assert get_library("defi")["registry_url"] == origin
+
+    reinstalled = install_library(release.manifest_path, data_dir=library_environment["data_dir"])
+    assert reinstalled["registry_url"] == origin
+    assert get_library("defi")["registry_url"] == origin
+    before = _installation_state(library_environment)
+    with pytest.raises(LibraryError):
+        update_library("defi", data_dir=library_environment["data_dir"])
+    assert _installation_state(library_environment) == before
+
+    # Finding the identical release in another catalog must not transfer trust.
+    other_registry = replace(expected, registry_url="https://another-registry.test")
+    reinstall_from_other_registry = install_library(
+        release.manifest_path,
+        data_dir=library_environment["data_dir"],
+        expected=other_registry,
+    )
+    assert reinstall_from_other_registry["registry_url"] == origin
+    assert _installation_state(library_environment) == before
+    with pytest.raises(LibraryError):
+        update_library("defi", data_dir=library_environment["data_dir"], expected=other_registry)
+    assert _installation_state(library_environment) == before
+
+
+@pytest.mark.parametrize("pin_origin", [None, "https://another-registry.test"])
+def test_core_update_cannot_bypass_the_persisted_registry_origin(
+    tmp_path: Path,
+    library_environment: dict[str, Path],
+    pin_origin: str | None,
+) -> None:
+    from sema.cli import registry_client
+
+    release = _write_release(tmp_path / "release")
+    expected = registry_client.expected_release(
+        _release_listing(release), registry_url="https://registry.test"
+    )
+    install_library(
+        release.manifest_path, data_dir=library_environment["data_dir"], expected=expected
+    )
+    before = _installation_state(library_environment)
+    # This is also a no-op update: the origin check must precede its early return.
+    supplied = replace(expected, registry_url=pin_origin) if pin_origin else None
+    with pytest.raises(LibraryError):
+        update_library("defi", data_dir=library_environment["data_dir"], expected=supplied)
+    assert _installation_state(library_environment) == before
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("name", "other-library"),
+        ("version", "2.0.0"),
+        ("semantic_root", "0" * 64),
+        ("catalog_root", "0" * 64),
+        ("artifact_sha256", "0" * 64),
+    ],
+)
+def test_even_unchanged_updates_must_match_the_registry_release(
+    tmp_path: Path,
+    library_environment: dict[str, Path],
+    field: str,
+    value: str,
+) -> None:
+    from sema.cli import registry_client
+
+    release = _write_release(tmp_path / "release")
+    expected = registry_client.expected_release(
+        _release_listing(release), registry_url="https://registry.test"
+    )
+    install_library(
+        release.manifest_path, data_dir=library_environment["data_dir"], expected=expected
+    )
+    before = _installation_state(library_environment)
+    with pytest.raises(ReleaseMismatchError):
+        update_library(
+            "defi",
+            data_dir=library_environment["data_dir"],
+            expected=replace(expected, **{field: value}),
+        )
+    assert _installation_state(library_environment) == before
 
 
 def test_failed_active_repoint_restores_previous_registry_record(

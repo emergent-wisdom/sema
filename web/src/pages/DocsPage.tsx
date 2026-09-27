@@ -143,8 +143,22 @@ export function DocsPage() {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 lg:ml-64 pt-24 pb-32">
-          {isLoading ? (
+        <main className="min-w-0 flex-1 lg:ml-64 pt-24 pb-32">
+          {!isLoading && docList && docList.length === 0 ? (
+            // An installed package carries no guides; they live on the website.
+            <div className="max-w-3xl mx-auto px-8">
+              <h2 className="text-3xl font-semibold tracking-tight text-zinc-100">Documentation</h2>
+              <p className="mt-4 text-base leading-7 text-zinc-400">
+                This installation does not include the guides. Read them on semahash.org.
+              </p>
+              <a
+                href="https://semahash.org/docs"
+                className="mt-6 inline-flex items-center rounded-lg bg-emerald-400 px-5 py-2.5 text-sm font-medium text-zinc-950 transition-colors hover:bg-emerald-300"
+              >
+                Open the documentation
+              </a>
+            </div>
+          ) : isLoading ? (
             <div className="max-w-3xl mx-auto px-8">
               <div className="space-y-4">
                 {[...Array(3)].map((_, i) => (

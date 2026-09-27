@@ -6,6 +6,7 @@ import json
 import os
 import secrets
 import sqlite3
+import threading
 import time
 from contextlib import closing
 from pathlib import Path
@@ -19,7 +20,7 @@ from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from ..client import get_default_client
+from ..core.registry import get_default_db_path
 from ..core.utils import compact_dict
 from ..core.workspace import (
     GraphWorkspace,
@@ -88,42 +89,17 @@ async def www_to_apex_redirect(request: Request, call_next):
     return await call_next(request)
 
 
-# Configuration — DB discovery order:
+# Configuration — the same DB resolution as the MCP server and the CLI, so that
+# `sema serve` shows the vocabulary an agent is writing to:
 #   1. SEMA_DB_PATH env var (explicit override)
-#   2. Bundled DB next to the installed package (`sema/data/taxonomy.db` — wheel force-include)
-#   3. Bundled DB in the source tree (`<repo>/data/taxonomy.db` — editable install / direct run)
-#   4. Bundled DB relative to CWD (`./data/taxonomy.db` — running from repo root)
+#   2. Active DB from the per-user Sema configuration (set with `sema use`)
+#   3. Repository `data/taxonomy.db` (editable install or source checkout)
+#   4. Bundled DB inside the installed package (read-only)
 #   5. User DB via platformdirs client (may try to download)
-env_db_path = os.environ.get("SEMA_DB_PATH")
-if env_db_path:
-    DB_PATH = env_db_path
-    print(f"Using DB from ENV: {DB_PATH}")
-else:
-    from pathlib import Path as _Path
-
-    import sema as _sema_pkg
-
-    _candidate_paths = [
-        _Path(_sema_pkg.__file__).parent / "data" / "taxonomy.db",
-        _Path(__file__).resolve().parents[3] / "data" / "taxonomy.db",
-        _Path.cwd() / "data" / "taxonomy.db",
-    ]
-    DB_PATH = None
-    for _p in _candidate_paths:
-        if _p.exists():
-            DB_PATH = str(_p)
-            print(f"Using bundled DB: {DB_PATH}")
-            break
-
-    if DB_PATH is None:
-        # Last resort: ask the Client (which may try to download)
-        try:
-            client = get_default_client()
-            DB_PATH = client.get_db_path()
-            print(f"Using User DB: {DB_PATH}")
-        except Exception as e:
-            print(f"Warning: Could not initialize client DB: {e}")
-            DB_PATH = "taxonomy.db"
+DB_PATH = get_default_db_path()
+if DB_PATH is None:
+    print("Warning: no Sema vocabulary database was found")
+    DB_PATH = "taxonomy.db"
 
 print(f"Loading Registry with DB: {DB_PATH}")
 
@@ -144,6 +120,31 @@ workspace = _make_workspace(DB_PATH)
 registry = workspace.registry_manager
 workspace_catalog = WorkspaceCatalog()
 workspace_catalog.register_workspace(workspace)
+
+_follow_lock = threading.Lock()
+
+
+def _follow_active_db() -> None:
+    """Switch to the vocabulary that `sema use` or an agent's `sema_use` selected.
+
+    The local view polls, so an agent that switches vocabulary in its own MCP
+    process shows up here without a restart. An explicit SEMA_DB_PATH pins the
+    server instead, and a deployment without a user configuration never switches.
+    """
+    global DB_PATH, registry, workspace
+
+    if os.environ.get("SEMA_DB_PATH"):
+        return
+    target = get_default_db_path()
+    if not target or target == DB_PATH or not Path(target).exists():
+        return
+    with _follow_lock:
+        if target == DB_PATH:
+            return
+        DB_PATH = target
+        workspace = _make_workspace(target)
+        registry = workspace.registry_manager
+        workspace_catalog.register_workspace(workspace)
 
 
 # ── GitHub Auth ───────────────────────────────────────────────────────────────
@@ -419,6 +420,7 @@ class GraphData(BaseModel):
 @app.get("/api/workspace")
 def get_workspace():
     """Describe the active graph workspace and published vocabulary root."""
+    _follow_active_db()
     return workspace.describe()
 
 
@@ -492,6 +494,7 @@ def get_hosted_workspace_root(workspace_id: str):
 @app.get("/api/graph")
 def get_graph():
     """Get the full graph structure for visualization."""
+    _follow_active_db()
     nodes = []
     edges = []
 
@@ -557,6 +560,7 @@ def get_graph():
 @app.get("/api/patterns")
 def list_patterns(category: str | None = None, layer: str | None = None, q: str | None = None):
     """List all patterns, optionally filtered or searched."""
+    _follow_active_db()
     registry.refresh()
 
     # If search query provided, use search
@@ -974,10 +978,26 @@ def get_dbs(request: Request):
 
     from ..core.registry import list_dbs
 
+    _follow_active_db()
+
     dbs = list_dbs()
     for db in dbs:
         db["active"] = db["path"] == DB_PATH
+        # Installed libraries record their count; count the other vocabularies.
+        if "pattern_count" not in db and db.get("exists"):
+            db["pattern_count"] = _count_patterns(db["path"])
     return {"current": DB_PATH, "databases": dbs, "local": True}
+
+
+def _count_patterns(db_path: str) -> int | None:
+    """Count the patterns in a vocabulary database without loading it."""
+    try:
+        uri = f"{Path(db_path).resolve().as_uri()}?mode=ro"
+        with closing(sqlite3.connect(uri, uri=True)) as conn:
+            row = conn.execute("SELECT COUNT(*) FROM nodes WHERE node_type = 'PATTERN'").fetchone()
+        return int(row[0])
+    except (sqlite3.Error, ValueError, OSError):
+        return None
 
 
 @app.post("/api/use")
@@ -1099,6 +1119,20 @@ def get_server_json():
 # Serve the built semahash-web frontend if available.
 # This enables `sema serve` to provide both API and UI at localhost:3000.
 
+_SPA_CACHE_HEADERS = {"Cache-Control": "no-cache"}
+
+
+def _spa_file_response(path: Path):
+    """Serve an HTML application shell that browsers must revalidate.
+
+    The shell names the hashed asset files of one build. A cached shell from
+    an older installation would request assets that an upgrade removed.
+    """
+    from fastapi.responses import FileResponse
+
+    return FileResponse(path, headers=_SPA_CACHE_HEADERS)
+
+
 _static_dir = Path(__file__).parent / "static"
 if _static_dir.exists() and (_static_dir / "index.html").exists():
     from fastapi.responses import FileResponse
@@ -1108,17 +1142,27 @@ if _static_dir.exists() and (_static_dir / "index.html").exists():
     if _assets_dir.exists():
         app.mount("/assets", StaticFiles(directory=str(_assets_dir)), name="assets")
 
-    # SPA catch-all: any non-API path serves index.html.
+    # SPA catch-all: any non-API path serves the client shell.
+    # Prerendering materializes only `/` into index.html. Serving that home
+    # page markup for /graph or /docs makes React hydration fail (error
+    # #418), so every other path gets the framework's __spa-fallback.html.
     # Guard against path traversal — the resolved candidate must live inside
-    # _static_dir before we serve it. Anything suspicious falls back to
-    # index.html (the SPA will handle client-side routing / 404 rendering).
+    # _static_dir before we serve it. Anything suspicious falls back to the
+    # shell (the SPA will handle client-side routing / 404 rendering).
     _static_root = _static_dir.resolve()
+    _spa_shell = _static_dir / "__spa-fallback.html"
+    if not _spa_shell.is_file():
+        _spa_shell = _static_dir / "index.html"
 
     @app.get("/{path:path}")
     def serve_spa(path: str):
         if path.startswith("api/") or path.startswith("assets/"):
             raise HTTPException(status_code=404)
+        if path == "":
+            return _spa_file_response(_static_dir / "index.html")
         candidate = (_static_dir / path).resolve()
         if candidate.is_relative_to(_static_root) and candidate.is_file():
+            if candidate.suffix.lower() == ".html":
+                return _spa_file_response(candidate)
             return FileResponse(candidate)
-        return FileResponse(_static_dir / "index.html")
+        return _spa_file_response(_spa_shell)

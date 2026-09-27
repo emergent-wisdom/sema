@@ -147,6 +147,25 @@ JSON rather than accepting a publisher-supplied database. Installation does not
 activate the library; follow it with `sema use <name>`, `sema list`, and
 `sema root` to select and inspect the installed snapshot.
 
+A bare name installs a library published on a hosted registry:
+
+```bash
+sema registry search reasoning
+sema install reasoning
+sema install reasoning --registry https://registry.example
+```
+
+A name installs exactly the release that the registry verified. Sema fetches
+the library's stable `library.json` URL and, before it writes anything, checks
+the manifest's name, version, both roots, and archive checksum against the
+registry's listing; installation then verifies the release exactly as above.
+If the publisher now serves a different release, such as a newer version that
+the registry has not verified yet or a replacement after an account takeover,
+nothing is installed, and the message gives the URL that installs the current
+release explicitly. The check proves that you get the release the registry
+verified, not that its content is harmless. Names use the registry selection
+order described under `login`, and no account is needed.
+
 See [Publishing and Installing Vocabulary Libraries](../guides/libraries.md) for the exact
 manifest, artifact, verification, and trust contract.
 
@@ -304,10 +323,87 @@ its local snapshot with the newly declared release after full verification:
 sema update defi
 ```
 
+For a library installed by name, Sema remembers the registry that verified it.
+Updates fetch that registry's current listing and require the publisher's
+release to match its name, version, both roots, and archive checksum before
+anything is written. Changing the default registry does not change this check.
+If the registry cannot verify the release, the update stops.
+
+Libraries installed directly from a URL or file continue to use their recorded
+update pointer without a registry. Older development installations that did not
+record a registry keep that behavior; reinstall the same verified release by
+name to attach its registry without changing the active library.
+
 Updates are never automatic and never merge vocabularies. If verification
 fails, the installed release and the active vocabulary remain unchanged. See
 [Publishing and Installing Vocabulary Libraries](../guides/libraries.md) for the release and
 verification contract.
+
+### login - Log In to a Hosted Registry
+
+```bash
+sema login
+sema login --registry https://registry.example --no-browser
+sema login --key -          # read a key from standard input
+```
+
+Starts an OAuth 2.0 device authorization (RFC 8628) against a hosted Sema
+registry. The first-use default is `https://semahash.org`. A successful login
+remembers the selected registry for later commands, so after
+`sema login --registry https://registry.example`, plain `sema registry list`
+uses that registry. Selection order is `--registry`, `SEMA_REGISTRY_URL`, the
+remembered registry, then the first-use default. Failed logins and overrides
+on other commands do not change the remembered choice. The command
+prints a short code and an approval URL, opens the browser, and waits while you
+sign in with GitHub and approve the code. The resulting bearer token is stored
+per registry origin in `$XDG_CONFIG_HOME/sema/credentials.json` (default
+`~/.config/sema/credentials.json`, mode `0600`) and expires after 90 days.
+`SEMA_REGISTRY_TOKEN` overrides the stored token for CI jobs and agents.
+
+`--key` stores a key that the account owner created on the registry's profile
+page instead of starting a device login. This suits an agent that receives the
+key in a chat: pass `-` and pipe the key on standard input so that it stays out
+of the process list and shell history. Sema checks the key with the registry
+before it stores it, and rejects a revoked or expired key.
+
+### logout - Revoke and Forget the Registry Token
+
+```bash
+sema logout
+```
+
+Revokes the token on the registry (best effort) and removes it from the
+credentials file. The remembered registry stays selected, so the next login
+returns to the same registry. Tokens can also be revoked from the registry
+profile page.
+
+### whoami - Show the Logged-in Account
+
+```bash
+sema whoami
+```
+
+### registry - Find, Publish, and Manage Libraries
+
+```bash
+sema registry search [WORDS...]
+sema registry show NAME
+sema registry import https://github.com/USER/REPO/releases/latest/download/library.json
+sema registry list
+sema registry remove REPO
+```
+
+`search` lists the published libraries whose name, owner, or repository
+contains every word, and `show` prints one library's version, source, semantic
+root, license, and release URL. Neither needs an account.
+
+`import` asks the registry to download, verify, and publish a `library.json`
+release that you own on GitHub; the registry checks that the repository owner
+matches your GitHub login and rejects downgrades. `list` shows the libraries
+your account published. `remove` deletes the registry copy only; the GitHub
+release and other people's installed copies are untouched. Every subcommand
+accepts `--registry`, and none of them is needed for `sema install`, which works
+from any URL without an account.
 
 ### pull - Sync Vocabulary from Upstream
 
@@ -419,18 +515,26 @@ shields you from malformed upstream graphs that ship with dangling refs.
 create a writable project DB first. See [lifecycle.md](../guides/lifecycle.md)
 for the full conceptual model.
 
-### serve - Start API Server
+### serve - Start the Local View and API Server
 
-Starts the REST API server. Defaults to `127.0.0.1` (loopback only) so
-local-dev installs are not exposed to the LAN. Pass `--host 0.0.0.0`
-explicitly when you actually want to bind on all interfaces (e.g.
-when running inside a container or on a remote box).
+Starts the REST API server and, when the package includes it, the local view.
+Defaults to `127.0.0.1` (loopback only) so local-dev installs are not exposed
+to the LAN. Pass `--host 0.0.0.0` explicitly when you actually want to bind on
+all interfaces (e.g. when running inside a container or on a remote box).
 
 ```bash
 sema serve                           # localhost only (recommended)
+sema serve --open                    # also open the local view in a browser
 sema serve --port 3001               # different port
 sema serve --host 0.0.0.0 --port 80  # explicit external bind
 ```
+
+The server opens the same database as the CLI and the MCP server: the
+`SEMA_DB_PATH` override, else the vocabulary selected with `sema use`, else the
+bundled catalog. It follows a later `sema use`, or an agent's `sema_use`, the
+next time the local view polls; an explicit `SEMA_DB_PATH` pins it. The local
+view checks for new patterns every three seconds, so a graph grows while an
+agent mints.
 
 ### mcp - Start MCP Server
 

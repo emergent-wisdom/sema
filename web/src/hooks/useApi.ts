@@ -28,6 +28,16 @@ export interface DbInfo {
   active: boolean;
   bundled: boolean;
   exists: boolean;
+  /** "bundled", "installed-library", or a project database. */
+  kind?: string;
+  read_only?: boolean;
+  pattern_count?: number | null;
+  /** Installed libraries: the verified release this copy came from. */
+  version?: string;
+  manifest_url?: string;
+  requested_manifest_url?: string;
+  update_url?: string;
+  semantic_root?: string;
 }
 
 export interface DbList {
@@ -57,7 +67,10 @@ export function useIsLocal(): boolean {
   return data !== null && data !== undefined;
 }
 
-const LOCAL_POLL_MS = 5000;
+// The local view is where people watch an agent build a vocabulary, so it
+// checks for new patterns often, also from a background tab, which keeps the
+// arrival times of new patterns right. Deployed read-only sites do not poll.
+const LOCAL_POLL_MS = 3000;
 
 function pollIfLocal(isLocal: boolean): number | false {
   return isLocal ? LOCAL_POLL_MS : false;
@@ -71,10 +84,39 @@ export function useSwitchDb() {
     onSuccess: () => {
       // Invalidate everything that depends on the active DB
       qc.invalidateQueries({ queryKey: ['dbs'] });
+      qc.invalidateQueries({ queryKey: ['workspace'] });
       qc.invalidateQueries({ queryKey: ['graph'] });
       qc.invalidateQueries({ queryKey: ['patterns'] });
       qc.invalidateQueries({ queryKey: ['pattern'] });
     },
+  });
+}
+
+/** The database the server has open, from the local-only database list. */
+export function useActiveDb(): DbInfo | null {
+  const { data } = useDbs();
+  return data?.databases.find((db) => db.active) ?? null;
+}
+
+export interface WorkspaceSummary {
+  workspace_id: string;
+  label: string;
+  db_path: string;
+  pattern_count: number;
+  vocabulary_root: string;
+  vocabulary_root_stub: string;
+  catalog_root: string;
+  catalog_root_stub: string;
+}
+
+export function useWorkspace() {
+  const isLocal = useIsLocal();
+  return useQuery({
+    queryKey: ['workspace'],
+    queryFn: () => fetchJson<WorkspaceSummary>('/api/workspace'),
+    staleTime: isLocal ? 1000 : 30000,
+    refetchInterval: pollIfLocal(isLocal),
+    refetchIntervalInBackground: isLocal,
   });
 }
 
@@ -94,7 +136,7 @@ export function useGraph() {
     queryFn: () => fetchJson<GraphData>('/api/graph'),
     staleTime: isLocal ? 1000 : 30000,
     refetchInterval: pollIfLocal(isLocal),
-    refetchIntervalInBackground: false,
+    refetchIntervalInBackground: isLocal,
   });
 }
 
@@ -105,7 +147,7 @@ export function usePatterns() {
     queryFn: () => fetchJson<Pattern[]>('/api/patterns'),
     staleTime: isLocal ? 1000 : 30000,
     refetchInterval: pollIfLocal(isLocal),
-    refetchIntervalInBackground: false,
+    refetchIntervalInBackground: isLocal,
   });
 }
 

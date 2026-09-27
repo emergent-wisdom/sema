@@ -1574,12 +1574,44 @@ def _verify_hashes(db_path: str) -> list[str]:
     return mismatches
 
 
-def install_remote_library(manifest_source: str) -> bool:
-    """Install a verified library release without changing the active DB."""
-    from ..core.libraries import LibraryError, install_library
+def install_remote_library(manifest_source: str, *, registry: str | None = None) -> bool:
+    """Install a verified library release without changing the active DB.
+
+    A bare name installs exactly the release that the registry verified, and
+    nothing else: see ``registry_client.expected_release``.
+    """
+    from ..core.libraries import LibraryError, ReleaseMismatchError, install_library
+    from .registry_client import is_library_name
+
+    listed: dict | None = None
+    expected = None
+    origin = ""
+    if is_library_name(manifest_source):
+        from .registry_client import (
+            RegistryError,
+            expected_release,
+            normalize_registry,
+            resolve_library,
+        )
+
+        try:
+            origin = normalize_registry(registry)
+            listed = resolve_library(manifest_source, origin)
+            expected = expected_release(listed, registry_url=origin)
+        except RegistryError as exc:
+            print(f"❌ Library installation failed: {exc}")
+            return False
+        print(f"Found {listed.get('slug')} v{listed.get('version')} on {origin}")
+        manifest_source = str(listed["manifest_url"])
 
     try:
-        record = install_library(manifest_source)
+        record = install_library(manifest_source, expected=expected)
+    except ReleaseMismatchError as exc:
+        from .registry_client import pinned_install_refusal
+
+        refusal = pinned_install_refusal(listed or {}, origin, exc)
+        print(f"❌ Library installation refused: {refusal}")
+        return False
     except (LibraryError, OSError, ValueError) as exc:
         print(f"❌ Library installation failed: {exc}")
         return False
@@ -1661,11 +1693,27 @@ def package_library_release(
 
 def update_remote_library(name: str) -> bool:
     """Explicitly update one installed library through its recorded pointer."""
-    from ..core.libraries import LibraryError, update_library
+    from ..core.libraries import LibraryError, ReleaseMismatchError, update_library
+    from ..core.registry import get_library
+    from .registry_client import RegistryError, expected_release, resolve_library
 
     try:
-        record, changed = update_library(name)
-    except (LibraryError, OSError, ValueError) as exc:
+        existing = get_library(name)
+        expected = None
+        if existing is not None and "registry_url" in existing:
+            origin = existing["registry_url"]
+            if not isinstance(origin, str) or not origin.strip():
+                raise LibraryError(f"Library {name!r} has an invalid recorded registry URL")
+            listed = resolve_library(existing["name"], origin)
+            expected = expected_release(listed, registry_url=origin)
+        record, changed = update_library(name, expected=expected)
+    except ReleaseMismatchError as exc:
+        print(
+            f"❌ Library update refused: {exc}. Nothing was updated. "
+            "The publisher must import this release into the original registry first."
+        )
+        return False
+    except (LibraryError, RegistryError, OSError, ValueError) as exc:
         print(f"❌ Library update failed: {exc}")
         return False
 
@@ -2171,7 +2219,7 @@ def init_registry(path: str):
     return True
 
 
-def run_server(host="127.0.0.1", port=3000):
+def run_server(host="127.0.0.1", port=3000, open_browser=False):
     try:
         import uvicorn
     except ImportError:
@@ -2179,17 +2227,31 @@ def run_server(host="127.0.0.1", port=3000):
         print('  pip install "semahash[api]"')
         return
 
+    import threading
+    import webbrowser
     from pathlib import Path
+
+    from ..core.registry import get_default_db_path, is_bundled_db
 
     static_dir = Path(__file__).parent.parent / "server" / "static"
     has_ui = (static_dir / "index.html").exists()
+    browse_host = "localhost" if host in ("127.0.0.1", "0.0.0.0", "::") else host
+    url = f"http://{browse_host}:{port}"
+    db_path = get_default_db_path()
 
     print(f"Starting Sema Server on http://{host}:{port}")
+    if db_path and is_bundled_db(db_path):
+        print("  Vocabulary: the bundled bootstrap (read-only)")
+        print("  To build your own: sema build my.db --preset empty && sema use my.db")
+    elif db_path:
+        print(f"  Vocabulary: {Path(db_path).stem} (writable) at {db_path}")
     if has_ui:
-        print(f"  UI available at http://localhost:{port}")
+        print(f"  Local view: {url}")
+        print("  It follows `sema use` and updates while an agent adds patterns.")
     else:
-        print("  API only (no frontend bundled)")
-        print("  For the full UI, visit https://semahash.org")
+        print("  API only: this installation has no bundled frontend.")
+    if open_browser and has_ui:
+        threading.Timer(1.5, webbrowser.open, args=(url,)).start()
     uvicorn.run("sema.server.api:app", host=host, port=port, reload=False)
 
 
@@ -2346,10 +2408,16 @@ def main():
     # Serve
     serve = subparsers.add_parser(
         "serve",
-        help="Start API server [requires: pip install semahash[api]]",
+        help="Start the local view and API server [requires: pip install semahash[api]]",
     )
     serve.add_argument("--host", default="127.0.0.1")
     serve.add_argument("--port", type=int, default=3000)
+    serve.add_argument(
+        "--open",
+        dest="open_browser",
+        action="store_true",
+        help="Open the local view in a browser once the server starts",
+    )
 
     # Build - create project DB from preset or patterns file
     build_cmd = subparsers.add_parser(
@@ -2396,9 +2464,15 @@ def main():
     # Install - verify and register a published library
     install_cmd = subparsers.add_parser(
         "install",
-        help="Install a verified library from a file or HTTPS library.json",
+        help="Install a verified library by registry name, file, or HTTPS library.json",
     )
-    install_cmd.add_argument("manifest", help="Path or HTTPS URL to library.json")
+    install_cmd.add_argument(
+        "manifest",
+        help="Published library name (see `sema registry search`), or a path or HTTPS URL to library.json",
+    )
+    install_cmd.add_argument(
+        "--registry", default=None, help="Registry that resolves a library name"
+    )
 
     # Update - explicitly replace a managed library with a verified release
     update_cmd = subparsers.add_parser(
@@ -2414,6 +2488,65 @@ def main():
     )
     use_cmd.add_argument("path", nargs="?", default=None, help="Installed library name or DB path")
     use_cmd.add_argument("--default", "-d", action="store_true", help="Reset to bundled vocabulary")
+
+    # Login / logout / whoami - device authorization against a hosted registry
+    login_cmd = subparsers.add_parser(
+        "login",
+        help="Log in to and remember a hosted Sema registry (first-use default: semahash.org)",
+    )
+    login_cmd.add_argument(
+        "--registry",
+        default=None,
+        help="Registry origin, e.g. https://semahash.org (or set SEMA_REGISTRY_URL)",
+    )
+    login_cmd.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="Print the approval link instead of opening a browser",
+    )
+    login_cmd.add_argument(
+        "--key",
+        default=None,
+        help="Store a key created on the registry's profile page instead ('-' reads it from stdin)",
+    )
+    logout_cmd = subparsers.add_parser("logout", help="Revoke and forget the stored registry token")
+    logout_cmd.add_argument("--registry", default=None, help="Registry origin")
+    whoami_cmd = subparsers.add_parser(
+        "whoami", help="Show the account behind the stored registry token"
+    )
+    whoami_cmd.add_argument("--registry", default=None, help="Registry origin")
+
+    # Registry - publish and manage your libraries on a hosted registry
+    registry_cmd = subparsers.add_parser(
+        "registry", help="Publish and manage your libraries on a hosted registry"
+    )
+    registry_sub = registry_cmd.add_subparsers(dest="registry_command", required=True)
+    registry_import_cmd = registry_sub.add_parser(
+        "import", help="Verify and publish a GitHub Release library.json that you own"
+    )
+    registry_import_cmd.add_argument(
+        "manifest_url", help="Stable GitHub Release URL that ends with /library.json"
+    )
+    registry_import_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_list_cmd = registry_sub.add_parser("list", help="List the libraries you published")
+    registry_list_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_remove_cmd = registry_sub.add_parser(
+        "remove", help="Remove one of your libraries from the registry"
+    )
+    registry_remove_cmd.add_argument(
+        "library_id", help="Library name shown by `sema registry list`"
+    )
+    registry_remove_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_search_cmd = registry_sub.add_parser(
+        "search", help="Find published libraries (no login needed)"
+    )
+    registry_search_cmd.add_argument("query", nargs="*", help="Words to match; empty lists all")
+    registry_search_cmd.add_argument("--registry", default=None, help="Registry origin")
+    registry_show_cmd = registry_sub.add_parser(
+        "show", help="Show one published library and how to install it"
+    )
+    registry_show_cmd.add_argument("name", help="Library name from `sema registry search`")
+    registry_show_cmd.add_argument("--registry", default=None, help="Registry origin")
 
     # Categorize - move a pattern to a different taxonomy path
     cat_cmd = subparsers.add_parser(
@@ -2484,7 +2617,7 @@ def main():
             artifact_url=args.artifact_url,
         )
     elif args.command == "install":
-        ok = install_remote_library(args.manifest)
+        ok = install_remote_library(args.manifest, registry=args.registry)
     elif args.command == "update":
         ok = update_remote_library(args.name)
     elif args.command == "use":
@@ -2506,9 +2639,25 @@ def main():
             )
             ok = pull_result.get("success", False)
     elif args.command == "serve":
-        run_server(args.host, args.port)
+        run_server(args.host, args.port, open_browser=args.open_browser)
     elif args.command == "mcp":
         run_mcp()
+    elif args.command == "login":
+        from .registry_client import run_login
+
+        ok = run_login(args.registry, open_browser=not args.no_browser, key=args.key)
+    elif args.command == "logout":
+        from .registry_client import run_logout
+
+        ok = run_logout(args.registry)
+    elif args.command == "whoami":
+        from .registry_client import run_whoami
+
+        ok = run_whoami(args.registry)
+    elif args.command == "registry":
+        from .registry_client import run_registry
+
+        ok = run_registry(args.registry_command, args)
     else:
         parser.print_help()
 

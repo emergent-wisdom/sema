@@ -165,6 +165,10 @@ distinction.
 | `sema_stats()` | Vocabulary statistics |
 | `sema_mint(pattern_json)` | Create a new pattern (hide with `SEMA_DISABLE_MINT=true`) |
 | `sema_pull()` | Sync the active DB with upstream; returns structured stats (hide with `SEMA_DISABLE_PULL=true`) |
+| `sema_library_search(query)` | Find libraries published on semahash.org |
+| `sema_library_install(library)` | Verify and install a library by name or `library.json` URL |
+| `sema_library_login(key)` | Store a semahash.org key that the user gives the agent |
+| `sema_library_publish(manifest_url)` | Publish a GitHub release on semahash.org, after the user agrees |
 
 ## Next
 

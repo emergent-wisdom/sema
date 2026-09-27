@@ -74,6 +74,10 @@ class SourceUnavailableError(LibraryError):
     """A declared source could not be fetched."""
 
 
+class ReleaseMismatchError(LibraryError):
+    """The release on offer is not the one that a registry verified."""
+
+
 class _StrictModel(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
@@ -140,6 +144,18 @@ class VerifiedLibrary:
         self.patterns = patterns
         self.order = order
         self.roots = roots
+
+
+@dataclass(frozen=True)
+class ExpectedRelease:
+    """The exact release that a registry verified and an install by name must match."""
+
+    name: str
+    semantic_root: str
+    version: str | None = None
+    catalog_root: str | None = None
+    artifact_sha256: str | None = None
+    registry_url: str | None = None
 
 
 @dataclass(frozen=True)
@@ -1052,8 +1068,13 @@ def _install_loaded_manifest(
     client: httpx.Client | None,
     allow_update: bool,
     register_release: bool = True,
+    registry_url: str | None = None,
 ) -> dict[str, Any]:
     existing = get_library(manifest.name)
+    if existing is not None and "registry_url" in existing:
+        registry_url = existing["registry_url"]
+        if not isinstance(registry_url, str) or not registry_url.strip():
+            raise LibraryError(f"Library {manifest.name!r} has an invalid recorded registry URL")
     expected_catalog = manifest.roots.catalog.sha256
     if existing:
         if existing.get("version") == manifest.version:
@@ -1063,6 +1084,10 @@ def _install_loaded_manifest(
                 )
             if Path(existing.get("path", "")).is_file():
                 verify_installed_library(existing)
+                if registry_url is not None and existing.get("registry_url") != registry_url:
+                    existing = {**existing, "registry_url": registry_url}
+                    if register_release:
+                        register_library(existing)
                 return existing
         elif not allow_update:
             raise LibraryError(
@@ -1126,6 +1151,8 @@ def _install_loaded_manifest(
             "pattern_count": len(verified.patterns),
             "database_source": "generated",
         }
+        if registry_url is not None:
+            record["registry_url"] = registry_url
         (staging_dir / "install.json").write_text(
             json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8"
         )
@@ -1150,14 +1177,46 @@ def _install_loaded_manifest(
         raise
 
 
+def _check_expected_release(manifest: LibraryManifest, expected: ExpectedRelease) -> None:
+    """Refuse a manifest that differs from the release a registry verified."""
+    differences = []
+    if manifest.name.casefold() != expected.name.casefold():
+        differences.append(f"the name {manifest.name!r} instead of {expected.name!r}")
+    if expected.version is not None and manifest.version != expected.version:
+        differences.append(f"version {manifest.version} instead of {expected.version}")
+    if manifest.roots.semantic.sha256 != expected.semantic_root:
+        differences.append("a different semantic root")
+    if expected.catalog_root is not None and manifest.roots.catalog.sha256 != expected.catalog_root:
+        differences.append("a different catalog root")
+    if (
+        expected.artifact_sha256 is not None
+        and manifest.patterns.sha256 != expected.artifact_sha256
+    ):
+        differences.append("a different pattern archive")
+    if differences:
+        raise ReleaseMismatchError(
+            "The release on offer is not the one the registry verified: it has "
+            + ", ".join(differences)
+        )
+
+
 def install_library(
     manifest_source: str | Path,
     *,
     data_dir: str | Path | None = None,
     http_client: httpx.Client | None = None,
+    expected: ExpectedRelease | None = None,
 ) -> dict[str, Any]:
-    """Install and register a verified release without changing the active library."""
+    """Install and register a verified release without changing the active library.
+
+    With ``expected``, a manifest that differs from that release is refused
+    before anything is written. Installation then proves that the archive and
+    the computed roots match the manifest, so the installed patterns are
+    exactly the ones described by ``expected``.
+    """
     manifest, raw, requested_url, final_url = _load_manifest(manifest_source, client=http_client)
+    if expected is not None:
+        _check_expected_release(manifest, expected)
     return _install_loaded_manifest(
         manifest,
         raw,
@@ -1166,6 +1225,7 @@ def install_library(
         data_dir=data_dir,
         client=http_client,
         allow_update=False,
+        registry_url=expected.registry_url if expected is not None else None,
     )
 
 
@@ -1174,15 +1234,31 @@ def update_library(
     *,
     data_dir: str | Path | None = None,
     http_client: httpx.Client | None = None,
+    expected: ExpectedRelease | None = None,
 ) -> tuple[dict[str, Any], bool]:
-    """Fetch a library's recorded update pointer and atomically install a newer release."""
+    """Atomically update a library, retaining its original registry's verification.
+
+    Registry installs require a fresh ``expected`` release from that registry.
+    Direct-source installs continue to follow their recorded update pointer.
+    """
     existing = get_library(name)
     if not existing:
         raise LibraryError(f"Library {name!r} is not installed")
+    registry_url = existing.get("registry_url")
+    if "registry_url" in existing:
+        if not isinstance(registry_url, str) or not registry_url.strip():
+            raise LibraryError(f"Library {name!r} has an invalid recorded registry URL")
+        if expected is None or expected.registry_url != registry_url:
+            raise LibraryError(
+                f"Updating {name!r} requires a verified release from its original registry "
+                f"{registry_url}. Nothing was updated."
+            )
     update_url = existing.get("update_url")
     if not update_url:
         raise LibraryError(f"Library {name!r} has no update URL")
     manifest, raw, requested_url, final_url = _load_manifest(update_url, client=http_client)
+    if expected is not None:
+        _check_expected_release(manifest, expected)
     if manifest.name.casefold() != name.casefold():
         raise LibraryError(
             f"Update pointer for {name!r} returned a different library: {manifest.name!r}"
@@ -1209,6 +1285,7 @@ def update_library(
         client=http_client,
         allow_update=True,
         register_release=False,
+        registry_url=registry_url,
     )
     try:
         register_library(record)

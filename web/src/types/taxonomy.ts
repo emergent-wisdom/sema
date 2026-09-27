@@ -80,6 +80,8 @@ export interface Pattern {
   stub: string;
   layer: string;
   category: string;
+  /** Cross-cutting domain facet from _meta.domain (e.g. "DeFi"); empty when unset. */
+  domain?: string;
   // Additional fields from INSTRUCTION.md
   signature?: string[];
   preconditions?: string[];

@@ -111,8 +111,8 @@ sema show StateLock
 # Browse the graph structure
 sema skeleton
 
-# Start local API + web frontend (binds to 127.0.0.1 by default)
-sema serve
+# Watch the active vocabulary in the local view (binds to 127.0.0.1 by default)
+sema serve --open
 ```
 
 ### Bring Your Own Vocabulary
@@ -159,6 +159,32 @@ follow the installed library's recorded release pointer. See
 [Publishing and Installing Vocabulary Libraries](docs/guides/libraries.md) for
 the complete DeFi authoring, dependency-closure, packaging, GitHub Release, and
 update workflow.
+
+Libraries published on [semahash.org](https://semahash.org) can be found and
+installed by name, without an account:
+
+```bash
+sema registry search defi
+sema install mylib
+```
+
+To list a release there so other people and agents can find it, log in once
+and publish from the command line:
+
+```bash
+sema login        # approve the short code in your browser, once
+sema registry import https://github.com/acme/sema-mylib/releases/latest/download/library.json
+```
+
+An agent can log in with a key that you create on your semahash.org profile
+page instead: it pipes the key to `sema login --key -` or calls the
+`sema_library_login` MCP tool.
+
+The login follows the OAuth 2.0 device authorization flow, so it also works
+from an agent or a machine without a browser. To use another deployment, run
+`sema login --registry https://registry.example`. A successful login remembers
+that registry for subsequent commands. `--registry` and `SEMA_REGISTRY_URL`
+override the remembered choice; `https://semahash.org` is the first-use default.
 
 ### Use in Python
 
@@ -236,16 +262,25 @@ When running as an MCP server (`sema mcp`), these tools are available:
 | `sema_stats` | Vocabulary statistics |
 | `sema_graph_skeleton` | Ultra-minimal graph overview (~150 tokens) |
 | `sema_reset_session` | Clear session cache so searches return full results again |
+| `sema_library_search` | Find libraries published on semahash.org |
+| `sema_library_install` | Verify and install a library by name or `library.json` URL |
+| `sema_library_login` | Store a semahash.org key that the user gives the agent |
+| `sema_library_publish` | Publish a GitHub release on semahash.org, after the user agrees |
 
-## Web Frontend
+## Local View
 
 ```bash
 pip install "semahash[api]"
-sema serve
-# Open http://localhost:3000
+sema serve --open
+# Opens http://localhost:3000
 ```
 
-Interactive 3D graph visualization, pattern browser, and search. Built with React + Three.js.
+The local view shows the vocabulary selected with `sema use`, the same one a
+connected agent writes to. It follows later switches, and its 3D graph grows
+while the agent mints: new patterns light up and appear in a live list. The
+pattern browser has card, list, and JSON views. Development stays on your
+computer; [semahash.org](https://semahash.org) hosts finished libraries, and a
+writable vocabulary's page lists the optional steps to publish one there.
 
 ## Experiments
 
