@@ -10,10 +10,42 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-27
+
 All 457 bootstrap pattern identities and both aggregate roots are unchanged.
 
 ### Added
 
+- `sema login`, `sema logout`, and `sema whoami` log the CLI in to a hosted
+  Sema registry through the OAuth 2.0 device authorization flow (RFC 8628).
+  The token is stored per registry origin under the Sema configuration
+  directory and can be revoked from the registry profile page.
+- `sema login --key` stores a key created on the registry's profile page,
+  after checking it with the registry. `--key -` reads the key from standard
+  input.
+- `sema registry import|list|remove` publish, list, and remove your libraries
+  on the registry from the command line or from an agent, with no browser
+  visit after the one-time approval. `--registry` and `SEMA_REGISTRY_URL`
+  select another registry, and `sema install` still needs no account. A successful
+  login remembers the selected registry, with explicit flags and environment
+  settings taking precedence. Logging out keeps the registry choice.
+- `sema registry search [WORDS...]` and `sema registry show NAME` list and
+  describe published libraries without an account, and `sema install NAME`
+  installs one by name: exactly the release that the registry verified.
+  Before it writes anything, Sema checks the manifest's name, version, both
+  roots, and archive checksum against the listing, and it refuses a different
+  release, such as a replacement served after an account takeover. The
+  release is then verified as before.
+- `sema update` keeps that protection for libraries installed by name: it
+  takes only a release that the original registry has verified, even if the
+  default registry changes later. A mismatched release or an unavailable
+  registry leaves the installed and active snapshot unchanged. Libraries
+  installed from a URL or a file update from their own source as before.
+- Agents can find, install, and publish libraries from a chat. The MCP tools
+  `sema_library_search`, `sema_library_install`, `sema_library_login`, and
+  `sema_library_publish` search the public registry, install a library by name
+  or from any `library.json` URL, store a key that the user gives the agent,
+  and publish a GitHub release after the user agrees.
 - The local view. `sema serve` opens a view of the active vocabulary in the
   visual design of semahash.org: its name, whether it is writable, its root,
   and the patterns in card, list, and JSON views. The 3D graph grows in place
@@ -25,21 +57,6 @@ All 457 bootstrap pattern identities and both aggregate roots are unchanged.
   local view while building a vocabulary with the user, and describe the
   optional publishing path: package, GitHub release, `sema login`, and
   `sema registry import`.
-- Agents can find, install, and publish libraries from a chat. The MCP tools
-  `sema_library_search`, `sema_library_install`, `sema_library_login`, and
-  `sema_library_publish` search the public registry, install a library by name
-  or from any `library.json` URL, store a key that the user gives the agent,
-  and publish a GitHub release after the user agrees.
-- `sema registry search [WORDS...]` and `sema registry show NAME` list and
-  describe published libraries without an account, and `sema install NAME`
-  installs one by name: exactly the release that the registry verified.
-  Before it writes anything, Sema checks the manifest's name, version, both
-  roots, and archive checksum against the listing, and it refuses a different
-  release, such as a replacement served after an account takeover. The
-  release is then verified as before.
-- `sema login --key` stores a key created on the registry's profile page,
-  after checking it with the registry. `--key -` reads the key from standard
-  input.
 
 ### Changed
 
@@ -53,36 +70,9 @@ All 457 bootstrap pattern identities and both aggregate roots are unchanged.
 
 ### Fixed
 
-- `sema update` now requires the original registry's verified release for
-  libraries installed by name through the CLI or MCP. The registry origin is
-  retained across updates and reinstalls, even if the default registry changes.
-  A mismatched release or unavailable registry leaves the installed and active
-  snapshot unchanged. Direct URL and file installations remain independent;
-  older development installations can attach the protection by reinstalling
-  the same verified release by name.
-- The server tests no longer read the developer's own active vocabulary.
-
-## [0.6.0] - 2026-09-07
-
-All 457 bootstrap pattern identities and both aggregate roots are unchanged.
-
-### Added
-
-- `sema login`, `sema logout`, and `sema whoami` log the CLI in to a hosted
-  Sema registry through the OAuth 2.0 device authorization flow (RFC 8628).
-  The token is stored per registry origin under the Sema configuration
-  directory and can be revoked from the registry profile page.
-- `sema registry import|list|remove` publish, list, and remove your libraries
-  on the registry from the command line or from an agent, with no browser
-  visit after the one-time approval. `--registry` and `SEMA_REGISTRY_URL`
-  select another registry, and `sema install` still needs no account. A successful
-  login remembers the selected registry, with explicit flags and environment
-  settings taking precedence. Logging out keeps the registry choice.
-
-### Fixed
-
 - Credential files now use unique temporary files with owner-only permissions
   from creation, avoiding exposure before the credentials are atomically saved.
+- The server tests no longer read the developer's own active vocabulary.
 
 ## [0.5.5] - 2026-09-06
 
