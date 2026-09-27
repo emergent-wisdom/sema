@@ -323,6 +323,17 @@ its local snapshot with the newly declared release after full verification:
 sema update defi
 ```
 
+For a library installed by name, Sema remembers the registry that verified it.
+Updates fetch that registry's current listing and require the publisher's
+release to match its name, version, both roots, and archive checksum before
+anything is written. Changing the default registry does not change this check.
+If the registry cannot verify the release, the update stops.
+
+Libraries installed directly from a URL or file continue to use their recorded
+update pointer without a registry. Older development installations that did not
+record a registry keep that behavior; reinstall the same verified release by
+name to attach its registry without changing the active library.
+
 Updates are never automatic and never merge vocabularies. If verification
 fails, the installed release and the active vocabulary remain unchanged. See
 [Publishing and Installing Vocabulary Libraries](../guides/libraries.md) for the release and

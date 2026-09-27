@@ -1597,7 +1597,7 @@ def install_remote_library(manifest_source: str, *, registry: str | None = None)
         try:
             origin = normalize_registry(registry)
             listed = resolve_library(manifest_source, origin)
-            expected = expected_release(listed)
+            expected = expected_release(listed, registry_url=origin)
         except RegistryError as exc:
             print(f"❌ Library installation failed: {exc}")
             return False
@@ -1693,11 +1693,27 @@ def package_library_release(
 
 def update_remote_library(name: str) -> bool:
     """Explicitly update one installed library through its recorded pointer."""
-    from ..core.libraries import LibraryError, update_library
+    from ..core.libraries import LibraryError, ReleaseMismatchError, update_library
+    from ..core.registry import get_library
+    from .registry_client import RegistryError, expected_release, resolve_library
 
     try:
-        record, changed = update_library(name)
-    except (LibraryError, OSError, ValueError) as exc:
+        existing = get_library(name)
+        expected = None
+        if existing is not None and "registry_url" in existing:
+            origin = existing["registry_url"]
+            if not isinstance(origin, str) or not origin.strip():
+                raise LibraryError(f"Library {name!r} has an invalid recorded registry URL")
+            listed = resolve_library(existing["name"], origin)
+            expected = expected_release(listed, registry_url=origin)
+        record, changed = update_library(name, expected=expected)
+    except ReleaseMismatchError as exc:
+        print(
+            f"❌ Library update refused: {exc}. Nothing was updated. "
+            "The publisher must import this release into the original registry first."
+        )
+        return False
+    except (LibraryError, RegistryError, OSError, ValueError) as exc:
         print(f"❌ Library update failed: {exc}")
         return False
 

@@ -53,6 +53,13 @@ All 457 bootstrap pattern identities and both aggregate roots are unchanged.
 
 ### Fixed
 
+- `sema update` now requires the original registry's verified release for
+  libraries installed by name through the CLI or MCP. The registry origin is
+  retained across updates and reinstalls, even if the default registry changes.
+  A mismatched release or unavailable registry leaves the installed and active
+  snapshot unchanged. Direct URL and file installations remain independent;
+  older development installations can attach the protection by reinstalling
+  the same verified release by name.
 - The server tests no longer read the developer's own active vocabulary.
 
 ## [0.6.0] - 2026-09-07

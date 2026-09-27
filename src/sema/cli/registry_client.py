@@ -531,7 +531,7 @@ def resolve_library(
     return record
 
 
-def expected_release(record: dict[str, Any]) -> ExpectedRelease:
+def expected_release(record: dict[str, Any], *, registry_url: str | None = None) -> ExpectedRelease:
     """The release a registry verified, which an install by name must match exactly.
 
     A registry name resolves to the publisher's stable URL, which can later serve a
@@ -557,6 +557,7 @@ def expected_release(record: dict[str, Any]) -> ExpectedRelease:
         version=optional("version"),
         catalog_root=optional("catalog_root"),
         artifact_sha256=optional("artifact_sha256"),
+        registry_url=registry_url,
     )
 
 

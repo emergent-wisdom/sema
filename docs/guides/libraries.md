@@ -234,6 +234,18 @@ snapshot, and atomically repoints an active installation. It never merges the
 new release with the old one, another library, or the bundled vocabulary. A
 failed update leaves the installed and active snapshot unchanged.
 
+Libraries installed by name also remember the registry that verified them.
+Publishers must import a new release into that registry before those users can
+update. The update checks the downloaded manifest against the registry's latest
+verified name, version, semantic root, catalog root, and archive checksum before
+writing anything. An unavailable registry or a mismatch stops the update; a
+different default registry does not replace the original one.
+
+Direct URL and file installations remain independent of registries. Older
+development installations without a recorded registry keep that direct-source
+behavior. Reinstalling the same verified release by name attaches the registry
+to the existing installation without changing the active vocabulary.
+
 `sema pull` is a different operation: it reconciles one writable local database
 with another database. Use `sema update <name>` for a published remote library.
 

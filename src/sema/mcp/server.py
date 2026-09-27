@@ -434,7 +434,7 @@ def sema_library_install(library: str, registry: str | None = None) -> str:
         if is_library_name(source):
             origin = normalize_registry(registry)
             listed = resolve_library(source, origin)
-            expected = expected_release(listed)
+            expected = expected_release(listed, registry_url=origin)
             source = listed["manifest_url"]
         record = install_library(source, expected=expected)
     except ReleaseMismatchError as exc:

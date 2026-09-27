@@ -495,6 +495,7 @@ def test_install_by_name_installs_the_release_the_registry_points_to(config_home
     assert pins[0].name == "reasoning"
     assert pins[0].semantic_root == LIBRARY_ROW["root"]
     assert pins[0].version == LIBRARY_ROW["version"]
+    assert pins[0].registry_url == REGISTRY
 
 
 def test_a_listing_without_a_verified_root_cannot_be_installed_by_name():

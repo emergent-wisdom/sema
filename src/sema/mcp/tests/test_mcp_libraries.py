@@ -72,6 +72,7 @@ def test_an_agent_finds_and_installs_a_library_by_name(fake_registry, monkeypatc
     def fake_install(source, expected=None):
         installed.append(source)
         assert expected is not None and expected.semantic_root == ROW["root"]
+        assert expected.registry_url == REGISTRY
         return {
             "name": "reasoning",
             "version": "0.1.0",
