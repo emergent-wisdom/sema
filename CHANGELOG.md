@@ -28,7 +28,7 @@ the corresponding retained snapshot.
 - `InternalConsistency` now advertises `Check(Artifact)`, matching its actual
   subject. `Understand` no longer advertises `Think(Context)`; callers using
   signature discovery should resolve Understand directly. Its model-adequacy
-  wording now follows the already documented caller-relative standard.
+  wording explicitly assigns the adequacy standard to the caller.
 - `Cache` guarantees stored-value reuse on a hit instead of promising that
   every lookup is significantly faster than the source. Existing consistency,
   freshness, and serialization requirements are retained; latency targets belong
@@ -46,7 +46,7 @@ the corresponding retained snapshot.
 - All 117 changed identities, including dependency cascades from the eleven
   directly edited patterns, record their published 0.6.0 predecessors. The three
   exact parent links on RequestFraming, OptimisticSolver, and RigorousSolver
-  were reviewed and explicitly retargeted. The library still has 457 patterns;
+  point to the updated parent definitions. The library still has 457 patterns;
   no new patterns were added.
 
 ### Documentation
