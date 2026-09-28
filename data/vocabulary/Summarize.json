@@ -20,9 +20,9 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Summarize#mh:SHA-256:6809d31c350b74cd952808cf13aa00c297a21db8abaf8de126b04982d6e2c1d2",
-  "sema_ref": "Summarize#6809",
-  "sema_stub": "6809",
+  "sema_id": "sema:Summarize#mh:SHA-256:98dbf6e131bc82331b818b0b8fe816580020629f334d12e7c4c51b3f93c1c2d5",
+  "sema_ref": "Summarize#98db",
+  "sema_stub": "98db",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
@@ -30,7 +30,7 @@
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
-      "translate": "sema:Translate#mh:SHA-256:a4a87d5f381c41d0e438550e6f348ada37f24e86c1a070ef814f58130bab1a31",
+      "translate": "sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {

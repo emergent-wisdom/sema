@@ -10,6 +10,13 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-09-28
+
+This release changes bootstrap definitions and discovery signatures. Existing
+0.6.0 snapshots remain valid for their original hashes. Consumers choosing to
+upgrade should use the new definitions and roots; old exact references require
+the corresponding retained snapshot.
+
 ### Fixed
 
 - Ten bootstrap patterns no longer identify evidence, agreed terms, historical
@@ -26,14 +33,28 @@ This file records vocabulary-level changes between versions — additions, renam
   every lookup is significantly faster than the source. Existing consistency,
   freshness, and serialization requirements are retained; latency targets belong
   to the caller or a specialized pattern.
+- `Interpret` no longer uses reversibility to distinguish translation from
+  interpretation. Translation can be one-way; its existing representation-change
+  boundary remains intact, as do Interpret's context-recording and input-preservation
+  obligations.
 - Design commentary for Context, Cache, Greet, Sign, and the affected consumers
   now matches their contracts. In particular, Greet requires mutual authentication
   and Sign describes cryptographic artifact binding, not handwritten signatures.
+- Stale commentary for Permission, Noise, Reversibility, Interpret, and Translate
+  now reflects their existing general-purpose contracts without adding new
+  requirements to those patterns.
 - All 117 changed identities, including dependency cascades from the eleven
   directly edited patterns, record their published 0.6.0 predecessors. The three
   exact parent links on RequestFraming, OptimisticSolver, and RigorousSolver
   were reviewed and explicitly retargeted. The library still has 457 patterns;
   no new patterns were added.
+
+### Documentation
+
+- The vocabulary design manual includes source-card links, parameter definitions,
+  complete instance schemas, and dependency mappings. Its authoring instructions
+  follow the staging workflow, and its introduction distinguishes structural
+  validation from semantic review.
 
 ## [0.6.0] - 2026-09-27
 

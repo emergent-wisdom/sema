@@ -41,10 +41,10 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:RequestFraming#mh:SHA-256:e6b00d17048a3221166fed0b213fdea41a6c7d800ba09df4be66519ec5c1fde3",
-  "sema_ref": "RequestFraming#e6b0",
-  "sema_stub": "e6b0",
-  "extends": "sema:Interpret#mh:SHA-256:3f8a0dfa42c34d9db05221c948be5b9da43fad99c9e13e0daf343d510f438b8b",
+  "sema_id": "sema:RequestFraming#mh:SHA-256:2280a35647a93cf3f8b03ee5fb63f8c2ec6faf19ec9627e1d9144ffa231f551e",
+  "sema_ref": "RequestFraming#2280",
+  "sema_stub": "2280",
+  "extends": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29",
   "dependencies": {
     "accepts": {
       "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237"
@@ -56,7 +56,7 @@
     "references": {
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "context_first": "sema:ContextFirst#mh:SHA-256:f157ec66ccb7e55eabe7179aeefb0dc4b36bc45e3bbea3073e50d97dab86138b",
-      "interpret": "sema:Interpret#mh:SHA-256:3f8a0dfa42c34d9db05221c948be5b9da43fad99c9e13e0daf343d510f438b8b"
+      "interpret": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29"
     },
     "yields": {
       "frame_spec": "sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42"

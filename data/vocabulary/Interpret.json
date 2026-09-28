@@ -1,7 +1,7 @@
 {
   "handle": "Interpret",
   "gloss": "Deriving semantic meaning from raw signal",
-  "mechanism": "The cognitive {{think}} act of applying a semantic context to a raw {{datum}} or {{signal}} to extract {{value}}. Unlike `Translate`, which changes form, Interpret changes the abstraction level. Operational test: a translation is reversible from its output, an interpretation is not without its context.",
+  "mechanism": "The cognitive {{think}} act of applying a semantic context to a raw {{datum}} or {{signal}} to extract {{value}}. Unlike `Translate`, which changes form, Interpret changes the abstraction level.",
   "signature": [
     "Think(Value)"
   ],
@@ -22,9 +22,9 @@
       "Reasoning"
     ]
   },
-  "sema_ref": "Interpret#3f8a",
-  "sema_id": "sema:Interpret#mh:SHA-256:3f8a0dfa42c34d9db05221c948be5b9da43fad99c9e13e0daf343d510f438b8b",
-  "sema_stub": "3f8a",
+  "sema_ref": "Interpret#98b9",
+  "sema_id": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29",
+  "sema_stub": "98b9",
   "failure_modes": [
     "Context drift: a stored interpretation stays fixed while the semantic context it was made under changes, so a stale {{value}} reads as current."
   ],

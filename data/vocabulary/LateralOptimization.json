@@ -36,9 +36,9 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:LateralOptimization#mh:SHA-256:a7bf7f22c0b6e9fc471243a633bf48562f9120046a809fe2e4e98cdc42357d3d",
-  "sema_ref": "LateralOptimization#a7bf",
-  "sema_stub": "a7bf",
+  "sema_id": "sema:LateralOptimization#mh:SHA-256:168e22fe88101fc8256a1eb40041bda926ae521ccb74f94794aa597cfac32aa4",
+  "sema_ref": "LateralOptimization#168e",
+  "sema_stub": "168e",
   "signature": [
     "Think(Creative)",
     "Optimize(Global)"
@@ -47,7 +47,7 @@
     "composes_with": {
       "optimize": "sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674",
       "reframe": "sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a",
-      "translate": "sema:Translate#mh:SHA-256:a4a87d5f381c41d0e438550e6f348ada37f24e86c1a070ef814f58130bab1a31"
+      "translate": "sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea"
     },
     "references": {
       "creative": "sema:Creative#mh:SHA-256:dff62d74e319c3783737ccf166914278660fc7de3967e4ae1d5cf251968599c2",

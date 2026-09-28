@@ -38,14 +38,14 @@
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:2fe9b727267135ef857add32ca356d721dc86c99c3c2452e4e0f99280f55cbf6",
-  "sema_ref": "RealizationProtocol#2fe9",
-  "sema_stub": "2fe9",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:78f170ff700340d41bc9ced304bda7fee7e9c959f3948f965778514e856bb06d",
+  "sema_ref": "RealizationProtocol#78f1",
+  "sema_stub": "78f1",
   "dependencies": {
     "composes_with": {
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
       "realizable": "sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:e6b00d17048a3221166fed0b213fdea41a6c7d800ba09df4be66519ec5c1fde3",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:2280a35647a93cf3f8b03ee5fb63f8c2ec6faf19ec9627e1d9144ffa231f551e",
       "rollout": "sema:Rollout#mh:SHA-256:ea8c8bdf3303e53d240d6393a776de33ff7c0980a269539d6eb22a8b35e430b4"
     },
     "references": {
