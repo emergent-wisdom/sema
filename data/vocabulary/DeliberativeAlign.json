@@ -36,16 +36,17 @@
       "sema:DeliberativeAlign#mh:SHA-256:b497c6ca668ab1c96d3efb07e257de8b3d41c82d08c08a32dbc82694841838e7",
       "sema:DeliberativeAlign#mh:SHA-256:1cf2f0c643345bc990e6538e3a3966f0736b803ffdce5e6166a3f52be00f2ee7",
       "sema:DeliberativeAlign#mh:SHA-256:9fd3cbae8fddc6fb86a806e3c2d94515aaf40b96cf734a9d5141317b6813d8a7",
-      "sema:DeliberativeAlign#mh:SHA-256:c7f2ced8d35a67fe364db103532bd7e521388dbce4c36307461e2154a3d1f336"
+      "sema:DeliberativeAlign#mh:SHA-256:c7f2ced8d35a67fe364db103532bd7e521388dbce4c36307461e2154a3d1f336",
+      "sema:DeliberativeAlign#mh:SHA-256:31c61cd06924faa3006e5e40441e85b5e5647d25ab82152c34c78a12cbd9ae20"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:31c61cd06924faa3006e5e40441e85b5e5647d25ab82152c34c78a12cbd9ae20",
-  "sema_ref": "DeliberativeAlign#31c6",
-  "sema_stub": "31c6",
+  "sema_id": "sema:DeliberativeAlign#mh:SHA-256:dc9e3078f126856429b1372620bce9fecd733f71c1429fcd1c0332908355051e",
+  "sema_ref": "DeliberativeAlign#dc9e",
+  "sema_stub": "dc9e",
   "dependencies": {
     "accepts": {
       "constitution": "sema:Constitution#mh:SHA-256:3deb8d31b8ace640b29c0a4d547191eebbcdedb46548f6c09711860be3af4645",
@@ -55,7 +56,7 @@
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
       "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756",
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
-      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
+      "solver_node": "sema:SolverNode#mh:SHA-256:f895214a9b07066f4043d55d3b260e8a788bda0150b9d8fda20eafa91b846116",
       "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }
   },

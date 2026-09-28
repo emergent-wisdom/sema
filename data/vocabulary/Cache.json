@@ -1,7 +1,7 @@
 {
   "handle": "Cache",
-  "mechanism": "A temporary high-speed storage layer for keeping frequently accessed {{datum}} or {{state}} alongside the inputs that produced them, so repeat lookups bypass re-computation. Read-through, write-behind, and invalidation discipline are descendant concerns; the foundation is the keyed lookup that returns a stored value if present.",
-  "gloss": "Temporary high-speed storage",
+  "mechanism": "A temporary keyed storage layer for keeping frequently accessed {{datum}} or {{state}} alongside the inputs that produced them, so repeat lookups bypass re-computation. Read-through, write-behind, and invalidation discipline are descendant concerns; the foundation is the keyed lookup that returns a stored value if present.",
+  "gloss": "Keyed storage for reusing previously obtained values",
   "failure_modes": [
     "Staleness: Serving outdated data after the source has changed.",
     "Thrashing: Frequent evictions due to insufficient size."
@@ -15,17 +15,18 @@
     "Value is serializable"
   ],
   "postconditions": [
-    "Value retrieved significantly faster than source"
+    "On a cache hit, the stored value for the requested key is returned without requiring recomputation."
   ],
-  "sema_id": "sema:Cache#mh:SHA-256:55e2dfe59df3e261e74c0ecdafa7216cf6fea44e60692125499924c7a8104771",
-  "sema_ref": "Cache#55e2",
-  "sema_stub": "55e2",
+  "sema_id": "sema:Cache#mh:SHA-256:465f391fb70426b0ec99c724ecf5db549d4f2e8124c821530271124aa10e17f3",
+  "sema_ref": "Cache#465f",
+  "sema_stub": "465f",
   "_meta": {
     "ring": 0,
     "tier": 1,
     "supersedes": [
       "sema:Cache#mh:SHA-256:1ea9ba40ef01b9f6072ae6bb93d37096c11655bb43a5bebe172d50365dde1073",
-      "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5"
+      "sema:Cache#mh:SHA-256:30c9445ad9acaafbda91309d2ac5da1b52aec6d5e7fee8c097fd666cb11cefa5",
+      "sema:Cache#mh:SHA-256:55e2dfe59df3e261e74c0ecdafa7216cf6fea44e60692125499924c7a8104771"
     ],
     "path": [
       "Infrastructure",

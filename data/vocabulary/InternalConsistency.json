@@ -1,12 +1,12 @@
 {
   "handle": "InternalConsistency",
-  "mechanism": "A {{check}} that validates whether the components of an {{artifact}} adhere to the Principle of Non-Contradiction. It ensures that no two propositions within the {{context}} conflict with each other. Distinct from external {{validate}} (checking against a schema) or fact-checking (checking against reality).",
+  "mechanism": "A {{check}} that validates whether the components of an {{artifact}} adhere to the Principle of Non-Contradiction. It ensures that no two propositions within the {{artifact}} conflict with each other. Distinct from external {{validate}} (checking against a schema) or fact-checking (checking against reality).",
   "gloss": "Checking for self-contradiction",
   "signature": [
-    "Check(Context)"
+    "Check(Artifact)"
   ],
   "invariants": [
-    "Non-Contradiction: No two propositions within the context can logically negate each other.",
+    "Non-Contradiction: No two propositions within the artifact can logically negate each other.",
     "Completeness: All reachable nodes in the artifact are visited."
   ],
   "_meta": {
@@ -15,24 +15,24 @@
     "supersedes": [
       "sema:InternalConsistency#mh:SHA-256:862f24b8dcbc229acfc3d2ced93ceec3b6abf982a0de4cd63b4960c077c1c7e7",
       "sema:InternalConsistency#mh:SHA-256:5e8f63a779b9918f3d1c75a4ea5b8988b025218f0f67aed0b7d6198deadf57d9",
-      "sema:InternalConsistency#mh:SHA-256:6f33a1418829c1f1fe761bd533eaa78daeca78c25bdbef94d03db04fe5b10ef7"
+      "sema:InternalConsistency#mh:SHA-256:6f33a1418829c1f1fe761bd533eaa78daeca78c25bdbef94d03db04fe5b10ef7",
+      "sema:InternalConsistency#mh:SHA-256:35d2b8f7b3eaa3a769b3a85a455729f7460b780a726ac5306e88affc04a19750"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_ref": "InternalConsistency#35d2",
-  "sema_id": "sema:InternalConsistency#mh:SHA-256:35d2b8f7b3eaa3a769b3a85a455729f7460b780a726ac5306e88affc04a19750",
-  "sema_stub": "35d2",
+  "sema_ref": "InternalConsistency#497b",
+  "sema_id": "sema:InternalConsistency#mh:SHA-256:497b37316c47ad9deaedae0ebff8a7d269a3a3dafbe4175493b164f29ba032a4",
+  "sema_stub": "497b",
   "dependencies": {
     "composes_with": {
       "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
       "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     },
     "references": {
-      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
-      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
     }
   },
   "sema_layer": "Society",

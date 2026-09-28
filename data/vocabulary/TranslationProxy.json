@@ -21,16 +21,17 @@
     "ring": 1,
     "supersedes": [
       "sema:TranslationProxy#mh:SHA-256:f0e0d8b01e88f45c1d6791f41ed1686a96e40fc48f541c31568d48bb83ad988e",
-      "sema:TranslationProxy#mh:SHA-256:e064cb7e1532435438433393ff3a3b8b87b5c86cf4705974888e9ec746f5d190"
+      "sema:TranslationProxy#mh:SHA-256:e064cb7e1532435438433393ff3a3b8b87b5c86cf4705974888e9ec746f5d190",
+      "sema:TranslationProxy#mh:SHA-256:d0e389e96f8b3c7b1c73a6c7055c4ca6ad78c6b6bd78ae6884ea92e01d32fc0f"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:TranslationProxy#mh:SHA-256:d0e389e96f8b3c7b1c73a6c7055c4ca6ad78c6b6bd78ae6884ea92e01d32fc0f",
-  "sema_ref": "TranslationProxy#d0e3",
-  "sema_stub": "d0e3",
+  "sema_id": "sema:TranslationProxy#mh:SHA-256:1db28b5e69a017012cdbdbe4355c97fba4dcd8e3522a82f9eb9dc5613bc293af",
+  "sema_ref": "TranslationProxy#1db2",
+  "sema_stub": "1db2",
   "signature": [
     "Translate(Protocol)"
   ],
@@ -40,7 +41,7 @@
       "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237",
       "ontology_handshake": "sema:OntologyHandshake#mh:SHA-256:a43c954f7a78f74aad3c49b507933cec20cc1dea54ffd5463f3a3054cb344235",
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",
-      "translate": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400"
+      "translate": "sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea"
     }
   },
   "sema_layer": "Society",

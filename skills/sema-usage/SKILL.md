@@ -231,7 +231,7 @@ For example, if someone asks "how should I start a business?":
 2. Resolve the top hits — read their mechanisms and invariants
 3. Use those patterns to *structure your answer*: "This is a `Strategy#3dc5` problem, not a `Plan#246d` problem, because..."
 
-The patterns aren't labels you slap on afterward. They're lenses that change what you see. `ExploreExploit#d570` doesn't just name a concept — it tells you *when to stop researching and start acting*. `PreMortem#e4c2` doesn't just mean "think about failure" — it has a specific mechanism for surfacing hidden risks.
+The patterns aren't labels you slap on afterward. They're lenses that change what you see. `ExploreExploit#218c` doesn't just name a concept — it tells you *when to stop researching and start acting*. `PreMortem#e4c2` doesn't just mean "think about failure" — it has a specific mechanism for surfacing hidden risks.
 
 **When to reach for sema unprompted:**
 - User asks an open-ended reasoning question (how, why, what should I)

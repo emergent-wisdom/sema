@@ -12,16 +12,17 @@
     "tier": 1,
     "supersedes": [
       "sema:Summarize#mh:SHA-256:6a000fd570638ecd8dd239be23317cf6b004e2f5ed784822f41f6658ee669c2c",
-      "sema:Summarize#mh:SHA-256:fd404c257777e046e61b8aa689fa0d12f227c0e660e5e92d2b3c1d64f3ee7ff8"
+      "sema:Summarize#mh:SHA-256:fd404c257777e046e61b8aa689fa0d12f227c0e660e5e92d2b3c1d64f3ee7ff8",
+      "sema:Summarize#mh:SHA-256:34707d252c9e4c88b4e28266709663cbe45533a802b02c0c1941dea7edd68b70"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Summarize#mh:SHA-256:34707d252c9e4c88b4e28266709663cbe45533a802b02c0c1941dea7edd68b70",
-  "sema_ref": "Summarize#3470",
-  "sema_stub": "3470",
+  "sema_id": "sema:Summarize#mh:SHA-256:98dbf6e131bc82331b818b0b8fe816580020629f334d12e7c4c51b3f93c1c2d5",
+  "sema_ref": "Summarize#98db",
+  "sema_stub": "98db",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"
@@ -29,7 +30,7 @@
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
       "compress": "sema:Compress#mh:SHA-256:b585b8c462691d24d55deee575c5ade6d6510d9f99f9c59c38d2ff025ad3721c",
-      "translate": "sema:Translate#mh:SHA-256:8a8536af39735c9ca7ab350cef5fbdc20440eb8f76d6814bd08d70ee5c1fa400",
+      "translate": "sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea",
       "value": "sema:Value#mh:SHA-256:37fd75758d04cdd7f57a636ccb5394d463713d60c33b694e37ab71f4a5a896f8"
     },
     "yields": {

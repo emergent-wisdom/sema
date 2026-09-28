@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 2023 nodes and 3798 edges.
+Graph loaded with 2023 nodes and 3786 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -1292,6 +1292,7 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Audit' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Validate' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Generalize:
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
@@ -1355,9 +1356,9 @@ Scanning 457 patterns for unlinked handle mentions...
 ⚠️  HumanApprove:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Assessment' (unlinked). Should it be '{{{ghost}}}'?
-   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Gate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  HumanEmulatorProtocol:
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -1646,6 +1647,7 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  OutputGuard:
+   • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Score' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Overlap:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
@@ -2283,6 +2285,8 @@ Scanning 457 patterns for unlinked handle mentions...
 ⚠️  UncertaintyMap:
    • Mentions 'Estimate' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Understand:
+   • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  UniqueHandle:
    • Mentions 'Resource' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
@@ -2365,7 +2369,7 @@ Scanning 457 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 388 patterns.
+Scan complete. Found unlinked handle mentions in 389 patterns.
 ```
 
 ## Semantic similarity between patterns

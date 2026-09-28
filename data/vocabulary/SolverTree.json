@@ -23,7 +23,8 @@
       "sema:SolverTree#mh:SHA-256:84e2be719b211d0795526f64ed6e7b40081fb5a7f4d9ab36ea3a7c06800aad81",
       "sema:SolverTree#mh:SHA-256:0c3f163ca8ac5f88d9548387e9b22338281d90d5404ea4281aebbe94d4b713ce",
       "sema:SolverTree#mh:SHA-256:2e4c0e7dce54bfdddd61b9ec1a19715036eb916f979695719b7b8987dce72057",
-      "sema:SolverTree#mh:SHA-256:6ba9d3f525e2bd5ab309fbb872eb0e59159eed571cd7d5dd87b81e4f58e01407"
+      "sema:SolverTree#mh:SHA-256:6ba9d3f525e2bd5ab309fbb872eb0e59159eed571cd7d5dd87b81e4f58e01407",
+      "sema:SolverTree#mh:SHA-256:c5ccedcd3754efcfe7ebf463837f50698be1fe7dc62e65620a8270c27d240771"
     ],
     "path": [
       "Society",
@@ -58,18 +59,18 @@
       }
     }
   },
-  "sema_ref": "SolverTree#c5cc",
-  "sema_id": "sema:SolverTree#mh:SHA-256:c5ccedcd3754efcfe7ebf463837f50698be1fe7dc62e65620a8270c27d240771",
-  "sema_stub": "c5cc",
+  "sema_ref": "SolverTree#e275",
+  "sema_id": "sema:SolverTree#mh:SHA-256:e275a01a2ced22c7412f23780f4bfa84ca171e9184f29d65336c24baddcc4052",
+  "sema_stub": "e275",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     },
     "references": {
       "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
-      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:868bb747edec043a9ff7b7716e716d4269b635af0945c73dc970c53aa7595b6b",
-      "root_solver": "sema:RootSolver#mh:SHA-256:29d798d343e265e5a0e7de0f84917106067fdaf958476eb9128c5b271a711acb",
-      "solver_node": "sema:SolverNode#mh:SHA-256:eaa0ead0573a5bfa30c66cd440b29ddb041ff2d4be3c50ab847ae92fc375fc5c",
+      "localized_learning": "sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950",
+      "root_solver": "sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca",
+      "solver_node": "sema:SolverNode#mh:SHA-256:f895214a9b07066f4043d55d3b260e8a788bda0150b9d8fda20eafa91b846116",
       "topology": "sema:Topology#mh:SHA-256:58ad1ff07863b0fbf1250185232c48d8815752e4ce4f32a971166a56be297467",
       "tree": "sema:Tree#mh:SHA-256:dd927c24f8165bd3ddc75b29cc96c1e43eb45bdaf084ba1e2bce2b0a71ab05ec"
     }

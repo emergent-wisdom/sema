@@ -27,7 +27,8 @@
       "sema:RealizationProtocol#mh:SHA-256:ce28411f10fd62c3204a3dd2bf7079f7cc07eb24cce02b414491284297172d34",
       "sema:RealizationProtocol#mh:SHA-256:24593e1b30dd1203d7c0bb73bf88e7687c24ef486e3d6c6ae5a4c34621981a3a",
       "sema:RealizationProtocol#mh:SHA-256:663bfe23868f8e0897c443f113a37ea2a5565df6a61dec7f4110ea855e1db0d8",
-      "sema:RealizationProtocol#mh:SHA-256:61aeb4a13ae926423ff59fe2948599ab6eca8deb4713f4952d933b10d5acafc7"
+      "sema:RealizationProtocol#mh:SHA-256:61aeb4a13ae926423ff59fe2948599ab6eca8deb4713f4952d933b10d5acafc7",
+      "sema:RealizationProtocol#mh:SHA-256:02e81a7f17b2ed533765aa8a7e7b8cbe0568fb5e26a516d9a9e6cbd5ecfe5d21"
     ],
     "path": [
       "Society",
@@ -37,14 +38,14 @@
   "signature": [
     "SolverTree(Outcome)"
   ],
-  "sema_id": "sema:RealizationProtocol#mh:SHA-256:02e81a7f17b2ed533765aa8a7e7b8cbe0568fb5e26a516d9a9e6cbd5ecfe5d21",
-  "sema_ref": "RealizationProtocol#02e8",
-  "sema_stub": "02e8",
+  "sema_id": "sema:RealizationProtocol#mh:SHA-256:78f170ff700340d41bc9ced304bda7fee7e9c959f3948f965778514e856bb06d",
+  "sema_ref": "RealizationProtocol#78f1",
+  "sema_stub": "78f1",
   "dependencies": {
     "composes_with": {
       "manifest_planning": "sema:ManifestPlanning#mh:SHA-256:8bd4fc5ad5c604cd4814a96d23565a07d890e78800281c81abdfeafe02473896",
       "realizable": "sema:Realizable#mh:SHA-256:2ed7d7f05fe50ff38d46631e5334f2229c4c1f1118e0576d88388b23a586d622",
-      "request_framing": "sema:RequestFraming#mh:SHA-256:29e7de7891c89438daa553fa0771ab246c4cea23df77f24b516ca1a806940a4d",
+      "request_framing": "sema:RequestFraming#mh:SHA-256:2280a35647a93cf3f8b03ee5fb63f8c2ec6faf19ec9627e1d9144ffa231f551e",
       "rollout": "sema:Rollout#mh:SHA-256:ea8c8bdf3303e53d240d6393a776de33ff7c0980a269539d6eb22a8b35e430b4"
     },
     "references": {
@@ -52,9 +53,9 @@
       "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
       "execution_manifest": "sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1",
       "frame_spec": "sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
       "rollout_manifest": "sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10",
-      "solver_tree": "sema:SolverTree#mh:SHA-256:c5ccedcd3754efcfe7ebf463837f50698be1fe7dc62e65620a8270c27d240771"
+      "solver_tree": "sema:SolverTree#mh:SHA-256:e275a01a2ced22c7412f23780f4bfa84ca171e9184f29d65336c24baddcc4052"
     },
     "yields": {
       "outcome": "sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03"

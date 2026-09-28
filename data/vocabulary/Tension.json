@@ -12,16 +12,17 @@
     "supersedes": [
       "sema:Tension#mh:SHA-256:54939ec0d160d8ad50590ad8e9e69b808dfafbe6a72eae8b58c9addfff1386b5",
       "sema:Tension#mh:SHA-256:547a74e52a7d1be70c14efcd8565adc2fae6a2c98d9bb7915a9b9164d578cfee",
-      "sema:Tension#mh:SHA-256:c7008633a28095a54d70d9a4a208562a8263848f126732a7a2db4ca1b0cd6074"
+      "sema:Tension#mh:SHA-256:c7008633a28095a54d70d9a4a208562a8263848f126732a7a2db4ca1b0cd6074",
+      "sema:Tension#mh:SHA-256:57321a5553f0c0dd43019cd5bb2b47ec3c96242657c9069d643d064175d83f0b"
     ],
     "path": [
       "Infrastructure",
       "Data Structures"
     ]
   },
-  "sema_id": "sema:Tension#mh:SHA-256:57321a5553f0c0dd43019cd5bb2b47ec3c96242657c9069d643d064175d83f0b",
-  "sema_ref": "Tension#5732",
-  "sema_stub": "5732",
+  "sema_id": "sema:Tension#mh:SHA-256:40e5946b8186e342a8bcbcf3e1ec0339c1c457d1d5a2bdd83689ad700ab1820a",
+  "sema_ref": "Tension#40e5",
+  "sema_stub": "40e5",
   "data_schema": {
     "type": "object",
     "required": [
@@ -59,7 +60,7 @@
   },
   "dependencies": {
     "references": {
-      "dialectic": "sema:Dialectic#mh:SHA-256:ae5e838272a716687f09d85a399840d9af330e7c17ae21426bcd0176b50afd54",
+      "dialectic": "sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec",
       "yield": "sema:Yield#mh:SHA-256:336aa68eb26e16b71fc62a16207a842730c80ffa7b8826259d423d86f825fd50"
     }
   },

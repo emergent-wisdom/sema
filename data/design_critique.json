@@ -1208,10 +1208,11 @@
       ],
       "critique": [
         "Applied 2026-07-25 from the queued tranche, and the schema specification settles it outright. `confidence` appeared as both a required schema property and a parameter, and docs/specification/schema.md defines parameters as 'Identity Configuration (Control Plane) — variables that change the Hash/Identity of the pattern'. A per-instance confidence score in that field would make every confidence value a distinct pattern identity, which is a category error rather than a duplication. The parameter is gone; the schema already carried it, where instance data belongs.",
-        "Two invariants added where there were none. The mechanism's distinguishing claim is that a Belief is 'a claim held by an {{agent}}' — unlike a Fact — and nothing required the holder to be named. The second covers the intersection element that was optional: a pointer to supporting evidence is named in 'a claim, a confidence score, a pointer to supporting evidence', and `supporting_evidence` sat unrequired. Recording that there is none is permitted; leaving the field absent is not, because a Belief with no evidence slot cannot be distinguished from one whose evidence was never looked for."
+        "Two invariants added where there were none. The mechanism's distinguishing claim is that a Belief is 'a claim held by an {{agent}}' — unlike a Fact — and nothing required the holder to be named. The second covers the intersection element that was optional: a pointer to supporting evidence is named in 'a claim, a confidence score, a pointer to supporting evidence', and `supporting_evidence` sat unrequired. Recording that there is none is permitted; leaving the field absent is not, because a Belief with no evidence slot cannot be distinguished from one whose evidence was never looked for.",
+        "Corrected 2026-09-27: supporting evidence was typed as the agent execution Context. A scientific belief can instead cite an observation, linked data, or a derivation, as this entry already admits. Retained the evidence pointer and explicit absence obligation, but removed the wrong exact type. There is no Evidence card; Datum is raw/uninterpreted and Artifact imposes workflow production and immutable addressability, so neither is an exact substitute for all admitted evidence. Plain evidence leaves representation with the caller and avoids an unjustified new mint."
       ]
     },
-    "family_discussion": "The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Paired with `Evidence` and distinguished from `Fact` by subjectivity."
+    "family_discussion": "The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Carries pointers to supporting evidence and distinguished from `Fact` by subjectivity."
   },
   "BeliefTracking": {
     "motivation": {
@@ -1585,34 +1586,38 @@
   "Cache": {
     "motivation": {
       "why_this_layer": "keyed lookup storage",
-      "why_it_exists": "Recomputation is the single largest source of wasted compute in agent loops, and most computations are deterministic functions of their inputs. Cache names the pattern of storing (input → output) pairs so repeat lookups skip the computation. The named foundation ensures consistency and freshness aren't afterthoughts — they're invariants.",
-      "removability": "Removable if compute is free and determinism is absent — neither is common. In practice every agent system caches something; the pattern earns its weight by making the cache's contract explicit (consistency, freshness) rather than implicit."
+      "why_it_exists": "Repeated work can be avoided by storing values under their lookup keys. Cache makes that reuse explicit together with validity and freshness obligations. Avoiding recomputation can reduce latency or source load, but the benefit depends on the workload and implementation.",
+      "removability": "Useful wherever a previously obtained value should be reused. IdempotentWrite uses stored outcomes to avoid repeating side effects; PathwayMemory retains routing outcomes; HeuristicSnap supplies its own latency requirements. None needs a universal promise that every lookup is faster than the source."
     },
     "usage": {
-      "intended": "temporary high-speed storage to avoid recomputation.",
+      "intended": "temporary keyed storage to reuse previously obtained values without requiring recomputation on a hit.",
       "future": "any key-value store with staleness semantics.",
       "broad_contexts": "memoized functions, RAG retrievers, pathway memory, routing decisions, computed heuristics, embedding caches, session state, prompt caches.",
-      "every_context_needs": "a way to store keyed values and look them up. Storage semantic is the definitional floor.",
-      "varies": "eviction policy (LRU, LFU, FIFO), TTL, size limits, consistency model, distributed vs local, invalidation strategy.",
+      "every_context_needs": "keyed stored values and lookup; a hit returns the stored value without requiring recomputation, subject to the stated validity and freshness contracts.",
+      "varies": "eviction policy (LRU, LFU, FIFO), TTL, size limits, distributed vs local storage, invalidation strategy, and workload-specific latency targets. These choices must respect the consistency and expired-item exclusion invariants.",
       "extensions": "`LRUCache`, `TTLCache`, `DistributedCache`, `SemanticCache`, `WriteThroughCache`.",
-      "notes": []
+      "notes": [
+        "The current card requires serializable values and excludes expired entries. This review preserves those boundaries; examples of memoization apply within them. Latency measurements and performance targets belong to callers or descendants, not to a universal Cache postcondition."
+      ]
     },
     "design": {
       "tensions": [
         "Consistency (Cache(Key) == Source(Key) if valid) vs staleness — the invariant holds only while the cached value is valid; determining 'valid' is the hard part.",
         "Freshness vs hit rate — aggressive invalidation keeps data fresh and trashes the cache; lazy invalidation keeps the hit rate and risks staleness.",
-        "Keyed lookup vs semantic lookup — caches work great on exact keys and badly on near-matches; semantic caching is a different pattern entirely."
+        "Keyed lookup vs semantic lookup — caches work great on exact keys and badly on near-matches; semantic caching is a different pattern entirely.",
+        "Lookup, storage, and validity-checking overhead can exceed the work avoided; latency benefit must be evaluated for the caller's workload."
       ],
       "tradeoffs": [
-        "Gains: massive speedup on repeat lookups, reduced load on the backing source, a clean place to instrument hit/miss rates.",
-        "Gives up: data freshness and simplicity — every cache becomes a new source of staleness bugs. 'There are only two hard things in CS' applies."
+        "Gains: reuse of stored results and the opportunity to avoid source work or repeated side effects. Faster retrieval is a possible benefit, not a guarantee on every hit.",
+        "Gives up: storage space and simplicity. Validity and freshness require maintenance; an entry classified as expired must not be returned."
       ],
       "critique": [
         "Applied 2026-07-25 from the queued tranche. The schema had properties for key, value and hit and no `required` list, so an entry with neither key nor value validated — while the mechanism says the foundation is 'the keyed lookup that returns a stored value if present' and the intersection is unusually direct: 'a way to store keyed values and look them up. Storage semantic is the definitional floor.' Both are definitional and both are now required. Same shape as `Spec`.",
-        "`hit` stays optional. It reports what happened on a lookup rather than describing the entry, so an entry is well-formed without it."
+        "`hit` stays optional. It reports what happened on a lookup rather than describing the entry, so an entry is well-formed without it.",
+        "Corrected 2026-09-27: a legitimate cache hit can be slower than a cheap source computation or under load, so \"significantly faster\" was not a universal or testable postcondition. Replaced it with the observable reuse contract and removed unconditional speed wording from mechanism and gloss. Reviewed all three direct consumers: HeuristicSnap retains its own latency contract; IdempotentWrite needs outcome reuse without repeating effects; PathwayMemory needs stored routing outcomes. Consistency, exclusion of expired entries, and serializable-value scope are unchanged. Staleness is bounded by validity/freshness checks; thrashing and performance tradeoffs remain with caller/descendant eviction and sizing policy."
       ]
     },
-    "family_discussion": "Core infrastructure primitive, paired with Source (the backing store), Invalidation (the freshness mechanism), and Key (the lookup handle). Compare with PathwayMemory — PathwayMemory is a memoization pattern for reasoning traces rather than values. Compare with HeuristicSnap — both speed up reasoning by avoiding work, but Cache is faithful repetition, HeuristicSnap is approximate lookup."
+    "family_discussion": "Core keyed-storage primitive. PathwayMemory retains reasoning and routing outcomes; IdempotentWrite reuses committed outcomes; HeuristicSnap makes approximate reasoning reuse explicit and supplies its own latency contract. Cache provides faithful stored-value reuse rather than a general performance benchmark."
   },
   "Canary": {
     "motivation": {
@@ -2938,17 +2943,19 @@
     "usage": {
       "intended": "portable execution environment — constraints, tools, memory, identity.",
       "future": "any \"stack frame\" of agentic execution.",
-      "broad_contexts": "agent contexts, LLM conversation contexts, multi-turn dialogue state, subprocess environments, database transaction contexts, session state.",
-      "every_context_needs": "inherited constraints, available capabilities, working memory, identity claims.",
-      "varies": "persistence, serializability, transferability between agents, clone/fork semantics.",
+      "broad_contexts": "portable agent execution frames, serializable LLM conversation state with inherited constraints, delegated-task environments, and resumable agent sessions.",
+      "every_context_needs": "inherited constraints, available capabilities, working memory, identity claims, serializable state, and provenance of its items.",
+      "varies": "serialization format, persistence backend and timing, transfer protocol, and clone/fork policy within constraint monotonicity. Serializability itself is mandatory.",
       "extensions": "`PersistentContext`, `ClonableContext`, `ReadOnlyContext`, `IsolatedContext`.",
-      "notes": []
+      "notes": [
+        "Historical circumstances, the assumptions used to interpret a signal, contractual terms, and supporting evidence are not themselves execution contexts. They may be carried as data within one; a reference to this card must actually mean the portable execution frame."
+      ]
     },
     "design": {
       "tensions": [
         "Constraint Monotonicity vs flexibility: children can add, never remove. But legitimate use cases (reducing scope on trusted delegates) want constraint removal. The library is strict — any relaxation requires re-rooting.",
         "Serializability invariant vs rich in-memory state: everything must serialize to JSON. Callable references, live connections, and cached computations break serializability — they live outside Context.",
-        "Identity claims vs capability scoping: Context carries identity claims (who you are) but capabilities live elsewhere (what you can do). The relationship is underspecified — a Context with claimed admin identity doesn't imply admin capabilities."
+        "Identity claims vs capability scoping: carrying an identity claim does not by itself grant the capabilities represented in the context. The caller must establish which claims authorize which operations."
       ],
       "tradeoffs": [
         "Constraint Monotonicity buys downward safety (delegates can't exceed parent authority) at the cost of upward rigidity (no delegate-relaxation).",
@@ -2956,9 +2963,10 @@
         "Bundled structure (constraints + tools + memory + identity) buys transport convenience at the cost of per-field lifecycle coupling."
       ],
       "critique": [
-        "Two invariants, two failure modes — good coverage. Context Contamination and Context Poisoning are real and well-named.",
+        "Reviewed 2026-09-27: the three invariants constrain inherited authority, portability, and item provenance. This is an execution-state contract, not a general definition of every ordinary-language use of context.",
         "Context Poisoning mitigations not specified — InputGuard is a separate pattern that would compose, but the pattern itself doesn't declare the composition.",
-        "The four-part structure (Constraints, Tools, Memory, Identity) is prescribed but the field names are not enforceable — different implementations may use different keys."
+        "The four-part structure (Constraints, Tools, Memory, Identity) is prescribed but the field names are not enforceable — different implementations may use different keys.",
+        "Corrected 2026-09-27: reviewed all 38 direct borrowers across their hashed fields. Ten used Context for historical or semantic circumstances, evidence, contract terms, or a failure-label prefix. Repair those sites using their actual subject in plain language or the already-declared Artifact, rather than broadening this high-fan-in execution container or minting a catch-all type. The sidecar no longer treats serializability as optional or admits arbitrary live transaction/subprocess objects. No Context hashed field changed."
       ]
     },
     "family_discussion": "The execution-environment container. Composed with `Constraint` (the inheritance-monotonic half), `Identity`, `Tool` (capability set), working memory. Pairs with `Task` (context flows with task dispatch) and `Card` (context travels with capability advertisements)."
@@ -3159,7 +3167,8 @@
       "critique": [
         "Adjudicated 2026-07-25 at 47 transitive dependents. 'Consent: must be signed by all named parties' asserted enforcement against `signatures`, which was an optional property while `parties` and `terms` were required — the fifth instance of an invariant with no guaranteed operand, after `Scratchpad`'s max_size, `SolverNode`'s budget_allocated, `FrameSpec` and `Risk`. `signatures` is now required and may be empty, so the check is always possible.",
         "The deeper problem was that the invariant made an unsigned Contract impossible while two other fields presupposed one: `signatures` was optional, and the failure mode 'Unsigned: not all parties have signed (invalid)' describes exactly the state the invariant forbids. Contracts are drafted before they are signed. The invariant now binds where it can — the Contract exists unsigned, and is *binding* only once the signatures cover the parties — which reconciles the invariant, the field and the failure mode without weakening anything.",
-        "The strictness is deliberate and kept. The design tension notes that 'some real contracts become valid when a quorum signs rather than all' and that this pattern is all-or-nothing; a quorum variant is a descendant, and `Quorum` exists for it. The amendment path named in the second tension is folded into the immutability invariant, since 'an amendment is a new Contract' is the supersession model this library already uses and a reader of the contract field should not have to find it in commentary."
+        "The strictness is deliberate and kept. The design tension notes that 'some real contracts become valid when a quorum signs rather than all' and that this pattern is all-or-nothing; a quorum variant is a descendant, and `Quorum` exists for it. The amendment path named in the second tension is folded into the immutability invariant, since 'an amendment is a new Contract' is the supersession model this library already uses and a reader of the contract field should not have to find it in commentary.",
+        "Corrected 2026-09-27: a judge resolving a dispute uses the agreed terms, not an agent execution container. Named those terms directly and removed the false Context citation. Parties, signatures, binding conditions, and amendment semantics are unchanged; no additional terms type is needed because Condition and the terms schema already supply the structure."
       ]
     },
     "family_discussion": "The multi-party commitment artifact in Infrastructure. Composed with `Identity` (signers), `Condition` (terms), `Sign` (the signing op), `CommitmentDevice`. Used by `LatticeCommit`, governance, and economic-exchange patterns."
@@ -5223,9 +5232,10 @@
         "Gives up: flexibility to exploration shifts late in a run. Environment changes during the exploitation phase make the best option stale; the named failure mode."
       ],
       "critique": [
-        "Context Drift is the dominant failure and the pattern has no mechanism to detect it or re-enter exploration; the immutable threshold forbids exactly the adaptation you'd want.",
+        "Environment drift is the dominant failure and the pattern has no mechanism to detect it or re-enter exploration; the immutable threshold forbids exactly the adaptation you'd want.",
         "Threshold immutability is an odd invariant — it prevents gaming but also prevents learning, which is exactly the point of exploration.",
-        "The 'as deadline approaches' schedule assumes deadlines exist and are known; open-ended tasks break the pattern's assumptions."
+        "The 'as deadline approaches' schedule assumes deadlines exist and are known; open-ended tasks break the pattern's assumptions.",
+        "Corrected 2026-09-27: the named failure is a change in the environment or option payoffs, not a change of an agent execution frame. Preserved that failure and removed the misleading Context link from its label. Existing questions about the algorithm, deadline schedule, and immutable threshold remain open; this correction makes no new algorithmic claim."
       ]
     },
     "family_discussion": "Allocation primitive paired with UCB (the specific algorithm), Bandit (the decision class), and Prioritize (resource allocation). Compare with Defer — ExploreExploit balances now vs later information; Defer waits for specific future information. Both time-trade decisions, on different axes."
@@ -5803,7 +5813,8 @@
       "critique": [
         "Genetic Fallacy is the named failure; the pattern balances between 'consider origin' and 'dismiss by origin.'",
         "Traceability to specific origin is often impossible.",
-        "Contextualization requires knowing original context."
+        "Contextualization requires knowing original context.",
+        "Corrected 2026-09-27: a historian comparing an old policy's institutional incentives with present conditions needs historical circumstances, not two executable agent stack frames. Kept the comparison obligation and made its subject explicit in plain language. FrameSpec is a problem definition and RuleSet a validity boundary, so neither is a general replacement. No new historical-context type was minted; the remaining traceability and genetic-fallacy questions are unchanged."
       ]
     },
     "family_discussion": "Audit primitive paired with Trace (general), SourceEvaluate (credibility), and AuditTrail. Compare with SourceEvaluate — GenealogicalTrace is origin-focused; SourceEvaluate is credibility-focused."
@@ -6049,28 +6060,30 @@
       "removability": "Removable in closed-world systems with pre-known peers. Essential in open multi-agent ecosystems where connections form dynamically. Greet is part of AgentProtocol's minimum-viable bundle for interoperability."
     },
     "usage": {
-      "intended": "initial contact protocol — cryptographic identity verification + CompatibilityCheck.",
-      "future": "any \"hello, are we compatible?\" handshake.",
-      "broad_contexts": "TLS handshake, OAuth flow initiation, API-version negotiation, agent discovery greeting, human introductions, protocol version negotiation.",
-      "every_context_needs": "identity verification, compatibility check, state transition Unknown → Connected.",
-      "varies": "authentication strength, extension negotiation, fallback on incompatibility, one-way vs mutual.",
-      "extensions": "`TLSGreet`, `OAuthGreet`, `MutualGreet`, `OpportunisticGreet`.",
-      "notes": []
+      "intended": "mutually authenticated agent connection initiation with cryptographic identity verification and CompatibilityCheck.",
+      "future": "initial contact between previously unknown agents requiring mutual authentication and compatible communication.",
+      "broad_contexts": "mutually authenticated service connections, peer-to-peer agent introductions, and protocol-version negotiation preceded by cryptographic verification of both peers.",
+      "every_context_needs": "cryptographic verification of both identities, compatibility check, connection only on success, and connection drop on failure.",
+      "varies": "cryptographic algorithm, trusted verification material, compatible protocol versions, and extension negotiation that preserves both authentication and fail-closed connection establishment.",
+      "extensions": "Possible specializations can fix the authentication algorithm or negotiated protocol; they must retain mutual authentication and drop the connection on failure.",
+      "notes": [
+        "A human introduction, unauthenticated version negotiation, or one-way authentication alone does not fulfill this card. Discovery finds a peer; Greet authenticates both peers and checks compatibility."
+      ]
     },
     "design": {
       "tensions": [
-        "Mutual auth (invariant) vs one-sided trust — some handshakes only need one side to authenticate the other; the invariant rules out asymmetric trust relationships.",
-        "No-op on mismatch (invariant) vs graceful retry — drop on failure is clean and forbids iterative compatibility negotiation.",
-        "Cryptographic verification vs speed — every handshake pays a crypto cost, which adds up in systems with many short-lived connections."
+        "Cryptographic verification has a cost on every initial connection, particularly with many short-lived peers.",
+        "Trusted verification material and compatible protocol versions must be selected by the caller; the card does not establish which identities the caller should trust."
       ],
       "tradeoffs": [
-        "Gains: authenticated identity, explicit compatibility checking, clean transition from Unknown to Connected.",
-        "Gives up: ad-hoc connection. The pattern ceremonies every connection; for high-trust or short-lived scenarios, the ceremony exceeds the value."
+        "Gains: mutually authenticated identities, explicit compatibility checking, and connection establishment only after both checks succeed.",
+        "Gives up: one-sided or unauthenticated introductions. Dropping a failed connection is deliberate; a caller may initiate a new attempt under its own retry policy."
       ],
       "critique": [
-        "Authentication Failure as a failure mode is binary; real auth often has degrees (TLS certificate valid but from wrong issuer, identity verified but under question).",
+        "Authentication acceptance is evaluated under caller-selected verification policy: a cryptographically valid certificate from an unaccepted issuer does not satisfy that policy. Greet requires both peers to pass verification; it does not select their trust policy.",
         "Protocol Mismatch failure mode has no retry mechanism — Greet is one-shot, and translation/bridging happens in other patterns.",
-        "The handshake doesn't specify what happens after (session establishment, key derivation); these are downstream concerns the pattern punts on."
+        "The handshake doesn't specify what happens after (session establishment, key derivation); these are downstream concerns the pattern punts on.",
+        "Reviewed 2026-09-27: the card is sound as a mutually authenticated connection primitive. Corrected commentary that admitted human introductions and one-way authentication, and removed proposed extensions that appeared to weaken the mandatory mutual-authentication and connection-drop contracts. Those are different scopes, not options on this card. Authentication failure and protocol mismatch are detected and bounded by dropping the connection; trust policy, retry orchestration, and subsequent session management remain caller concerns. No hashed field changed."
       ]
     },
     "family_discussion": "Initial-contact primitive paired with Handshake (the generic protocol name), CompatibilityCheck (the schema verification), and AgentProtocol (the bundle that includes Greet). Compare with Discover — Discover finds agents to greet; Greet begins interaction. Sequential."
@@ -6372,9 +6385,10 @@
         "'Cognitive Friction: approval requires matching a context-specific challenge code' asserted the challenge unconditionally while `challenge_required` exists to make it optional. The invariant now names the parameter, so the two agree instead of one silently overriding the other.",
         "The sharpest thing here is that an invariant and a failure mode share a name and describe the same behaviour from opposite sides. The invariant is 'Blocking: execution MUST halt until approval received'; the failure mode is 'Blocking: system halts indefinitely if human is unavailable'. The `timeout` parameter is the resolution and no invariant referred to it, so the card required indefinite blocking and separately lamented it. Halting is now bounded by `timeout`.",
         "That raises the question the card never answered: what happens when the timeout fires. A gate whose timeout silently permits the action is worse than no gate, because it looks like a control. The new final invariant states the safe default — silence is not consent — which is `FailClosed`'s 'Ambiguity == Rejection' applied to human latency, and which the varies line leaves room for by treating the escalation path as descendant territory.",
-        "'Timeout Policy: define behavior if approval not received within SLA' was an instruction to the pattern's author rather than a contract on its instances, so it could not be violated by any implementation. The intersection's presentation requirement — 'the Task presented to human, rationale, risk assessment' — was meanwhile uncontracted, which matters because the 'Context Loss' failure mode is precisely a human deciding without it.",
+        "'Timeout Policy: define behavior if approval not received within SLA' was an instruction to the pattern's author rather than a contract on its instances, so it could not be violated by any implementation. The intersection's presentation requirement — 'the Task presented to human, rationale, risk assessment' — was meanwhile uncontracted, which matters because the 'Missing decision information' failure mode is precisely a human deciding without it.",
         "`challenge_required`'s description was the single string 'Default: True', the fourth instance of a value where a description belongs. CORRECTED: the varies line carried '(ms to weeks — see §3.17)', a sixth document coordinate, and described `challenge_required` as '(Boolean, principled)' — reviewer commentary in a field a reader consults for guidance.",
-        "RESOLVED 2026-07-25: 'Blocking vs timeout — if human is unavailable, does the system halt forever? The pattern requires a timeout policy without prescribing one.' Both halves are now settled. Halting is bound by `timeout`, and the question the old tension left open — what happens when it fires — is answered by an invariant: the action does not proceed, because silence is not consent. That is `FailClosed`'s Ambiguity == Rejection applied to human latency, and it matters because a gate whose timeout silently permits is worse than no gate."
+        "RESOLVED 2026-07-25: 'Blocking vs timeout — if human is unavailable, does the system halt forever? The pattern requires a timeout policy without prescribing one.' Both halves are now settled. Halting is bound by `timeout`, and the question the old tension left open — what happens when it fires — is answered by an invariant: the action does not proceed, because silence is not consent. That is `FailClosed`'s Ambiguity == Rejection applied to human latency, and it matters because a gate whose timeout silently permits is worse than no gate.",
+        "Corrected 2026-09-27: the approver needs the proposal, rationale, and risks, not a serialized agent execution frame. Renamed the information-loss failure and removed the false Context citation. The existing presentation invariant supplies the safeguard; affirmative consent, challenge-code policy, timeout, and audit requirements remain unchanged."
       ]
     },
     "family_discussion": "Safety-pattern paired with EjectionSeat (forced stop), FailClosed (default deny), and AuditTrail (who approved what). Compare with DeliberativeAlign — HumanApprove is explicit human check; DeliberativeAlign is agent self-check against policy. Both are pre-action safety, at different trust assignments."
@@ -6808,7 +6822,8 @@
       "critique": [
         "No failure modes listed; InternalConsistency has many (strict logical check missing semantic contradiction, completeness check missing structural gaps).",
         "Detecting contradiction in natural-language artifacts is AI-hard; the pattern assumes it's a check, which requires the hard work to have been done elsewhere.",
-        "The distinction from external Validate is clean conceptually and often blurred in implementation — consistency checks often require schema/type information."
+        "The distinction from external Validate is clean conceptually and often blurred in implementation — consistency checks often require schema/type information.",
+        "Corrected 2026-09-27: a consistency review compares claims within the artifact being checked, as the existing motivation and intersection already state. Reused its Artifact dependency and corrected Check(Context) to Check(Artifact), rather than importing execution-state constraints. This changes signature discovery deliberately. No new type was needed; the separate limitations around natural-language contradiction and dialectical tension remain open."
       ]
     },
     "family_discussion": "Verification primitive paired with Validate (external consistency), Check (the general verification verb), and NonContradiction (the philosophical principle). Compare with Coherence — InternalConsistency is strict logical; Coherence is looser 'fits together.'"
@@ -6817,22 +6832,24 @@
     "motivation": {
       "why_this_layer": "semantic extraction from signal",
       "why_it_exists": "Raw signal has no meaning until interpreted in context. Interpret names the cognitive act of applying semantic context to extract value — distinct from Translate (which changes form). Without the named primitive, 'understanding' a signal gets conflated with 'receiving' it, hiding the interpretive step that adds or obscures meaning.",
-      "removability": "Non-removable as a cognitive distinction. Every agent that acts on data is interpreting. The pattern's value is in the explicit 'meaning depends on context' invariant, which forces callers to track what context was applied."
+      "removability": "Non-removable as a cognitive distinction. Naming the semantic context used to interpret a signal lets another agent identify the assumptions and circumstances behind the result. This recording obligation remains useful whether or not interpretation happens inside a portable agent execution frame."
     },
     "usage": {
       "intended": "apply semantic context to raw signal to extract value — change abstraction level, not form.",
       "future": "any semantic-extraction operation.",
       "broad_contexts": "LLM input processing, legal-text interpretation, scientific-data interpretation, musical interpretation, historical interpretation, medical imaging interpretation.",
-      "every_context_needs": "semantic context, raw input, value extraction, distinction from Translate (which preserves form/changes format) and Summarize (which loses info).",
+      "every_context_needs": "semantic context, raw input, value extraction, distinction from Translate (changes representation with the intent to preserve meaning) and Summarize (selects or compresses information).",
       "varies": "context richness, interpretation depth, confidence tracking.",
       "extensions": "`LegalInterpret`, `MedicalInterpret`, `ContextualInterpret`.",
-      "notes": []
+      "notes": [
+        "Semantic context means the assumptions, conventions, and circumstances under which the input is interpreted. It can be carried in an execution Context, but is not itself that container. Its representation is domain-specific; the obligation to name it is unchanged."
+      ]
     },
     "design": {
       "tensions": [
         "Recorded context vs stable meanings — meaning is context-relative, so shared understanding requires a shared and named context rather than a shared word. The recording invariant is what makes that possible; it does not make it automatic.",
         "Non-destructive operation vs storage — the invariant says the operation does not consume its input, which is not a requirement that a caller retain the input. Whether both representations are kept is the caller's policy, and the pattern imposes no cost it can bound.",
-        "Syntax-to-semantics move vs simplicity — the boundary against Translate is now stated as an invertibility test rather than asserted, which makes it decidable in the common case without claiming it is always sharp."
+        "Semantic extraction vs representation conversion: interpretation applies context to derive meaning, while translation changes representation with the intent to preserve it. Some workflows combine both operations. Invertibility does not decide this boundary; it depends on the particular conversion and what information is retained."
       ],
       "tradeoffs": [
         "Gains: explicit semantic context tracking, preservation of original signal, distinction from Translate.",
@@ -6843,10 +6860,12 @@
         "One of the three proposed failure modes was taken. 'Mis-interpretation' is 'the operation returned a wrong answer', true of every cognitive pattern; 'interpretive bias' is a property of the interpreter, not of the pattern. Context drift is different in kind: it follows directly from the pattern's own central claim, since a persisted interpretation carries an implicit dependency on a context that may no longer hold — and it is detectable only because of the first invariant. The two remain omitted for the reason they were proposed for: a count.",
         "`Translate` is deliberately left as prose rather than wired as a dependency: Translate already references Interpret, so an edge back would form a mutual cycle. The relationship is in the graph, from the side where it does not cycle.",
         "The thinness is real and unchanged. The specific semantic layers are descendant work (`LegalInterpret`, `MedicalInterpret`), and this card's job is the recording discipline.",
-        "Corrected 2026-07-25: the 'doubles the storage' reading was a misreading of the card — the invariant says the operation does not consume its input, not that a caller must retain the input."
+        "Corrected 2026-07-25: the 'doubles the storage' reading was a misreading of the card — the invariant says the operation does not consume its input, not that a caller must retain the input.",
+        "Corrected 2026-09-27: a legal text, a measurement, and a historical signal require domain-specific interpretive assumptions, not necessarily portable execution state. Removed the wrong Context composition while preserving the semantic-context recording obligation, original-input preservation, and context-drift failure. FrameSpec describes a problem frame and RuleSet a validity boundary; neither covers all these interpretations. Kept the concept explicit in ordinary prose rather than minting an underspecified umbrella.",
+        "Corrected 2026-09-28 after reviewing language, format, and unit conversions alongside legal, scientific, musical, and historical interpretation. Removed the universal invertibility test: Translate explicitly leaves reversibility to the conversion, so irreversible translation is not sufficient evidence that an operation is Interpret. The distinction remains semantic extraction under a named context versus representation change with the intent to preserve meaning. Context recording, input preservation, and the context-drift failure are unchanged; no domain-specific strategy or new type is imposed on this foundational pattern."
       ]
     },
-    "family_discussion": "Cognitive primitive paired with Translate (syntactic change), Understand (the outcome), and Context (the substrate). Compare with FrameSpec — FrameSpec is the interpretation of a request into a contract; Interpret is the general primitive FrameSpec specializes."
+    "family_discussion": "Cognitive primitive paired with Translate (syntactic change) and Understand (deeper semantic modeling). RequestFraming explicitly specializes Interpret to produce a FrameSpec from a request. Semantic context is the interpretive frame, not the execution Context container."
   },
   "InvariantFilter": {
     "motivation": {
@@ -8229,8 +8248,8 @@
   "Noise": {
     "motivation": {
       "why_this_layer": "irrelevant information exists whether or not anyone designs it",
-      "why_it_exists": "Every signal carries irrelevant information. Noise names the irrelevant portion — information that obscures the datum and increases cognitive load. Without the named primitive, agents don't have a handle for 'this is content I should filter out.'",
-      "removability": "Very thin — nearly a stub. The value is purely classificatory: 'this is noise, not signal.' Remove the pattern and every filter has to distinguish signal from noise without a shared vocabulary."
+      "why_it_exists": "Signals can arrive alongside irrelevant information. Noise names the portion irrelevant to the current task — information that obscures the datum and increases extraction cost. The named concept makes the relevance judgment explicit instead of treating irrelevance as a property of the information in isolation.",
+      "removability": "Useful as a shared classification relative to a task: the same information can be noise for one task and signal for another. Filtering mechanisms can share this distinction without sharing a noise model or removal strategy."
     },
     "usage": {
       "intended": "information irrelevant to current task — obscures Datum and increases extraction cost.",
@@ -8249,12 +8268,12 @@
       ],
       "tradeoffs": [
         "Gains: shared vocabulary for 'irrelevant information,' handle for filtering primitives.",
-        "Gives up: operational content. Noise is a stance; specific patterns that filter noise do the actual work."
+        "Gives up: a noise model or filtering algorithm. The parent supplies the task-relative classification; specific patterns and callers select handling strategies."
       ],
       "critique": [
-        "Almost a stub — one sentence of mechanism, no invariants, no failure modes.",
-        "Task-dependency of noise is important and unmentioned in the mechanism.",
-        "Conflates random noise with structured-but-irrelevant information; they have different handling strategies."
+        "SOUND 2026-09-28 for the reviewed task-relative classification. The mechanism explicitly says irrelevant or meaningless to the current {{task}} and declares Task as a dependency. The earlier assertion that task-dependency was unmentioned was wrong; no card change is needed to add it.",
+        "Random interference, structured irrelevant data, cognitive distraction, and adversarial additions can all obstruct the current task without sharing a distribution or removal algorithm. Keeping those strategies out of the general parent preserves the listed broad uses; it does not assert that they should be handled identically.",
+        "No extra invariant or failure mode is added to fill an empty field. Consumers must supply the task used to judge relevance; filters and their callers decide what can be removed and how much information loss is acceptable. This review does not decide the separate layer-placement question."
       ]
     },
     "family_discussion": "Foundational-info primitive paired with Signal (the counterpart), Filter (the removal operation), and Dampen (the reduction). Compare with Incongruity — Noise is irrelevant variance, Incongruity is structured mismatch. Different kinds of 'not what was expected.'"
@@ -8698,7 +8717,8 @@
         "Reviewed 2026-08-03 for exact `extends` retarget after Work's timestamp requirement was loosened. PolymorphicSolver's authored contract is unchanged; only its ordinary dependency closure and identity move. OptimisticSolver still narrows that contract through its parallel-runtime, turn-atomic, non-blocking constraints, so the retarget is mechanical rather than a new semantic claim.",
         "Reviewed again 2026-08-03 for the Metric tranche. PolymorphicSolver's Metric dependency moves through Agent, and its Interface Non-Compliance failure wording is corrected to match the existing mandatory/optional surface split. Neither change weakens or contradicts the parent contracts OptimisticSolver narrows, so this exact retarget remains valid.",
         "Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and OptimisticSolver continues to narrow it.",
-        "Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. OptimisticSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim."
+        "Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. OptimisticSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim.",
+        "Reviewed 2026-09-27 for the Context borrower and Cache correction tranche. PolymorphicSolver's own authored payload is unchanged; its exact identity moves with dependency definitions. The stored-result reuse contract still supports routing memory, while caller-specific latency and safety requirements remain in place. OptimisticSolver still narrows the parent through its parallel-runtime, turn-atomic and non-blocking constraints, so the exact extends pin is explicitly retargeted after review."
       ]
     },
     "family_discussion": "The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery."
@@ -8922,7 +8942,7 @@
       "tensions": [
         "Fail-Safe vs availability — blocking outputs on scanner failure is safe and reduces availability.",
         "Scunthorpe problem (named failure) — over-censorship blocking valid words containing restricted substrings.",
-        "Context Blindness (named failure) — medical terms misclassified as toxicity; context-aware classifiers are adjacent patterns."
+        "Semantic context blindness (named failure) — medical terms misclassified as toxicity; context-aware classifiers are adjacent patterns."
       ],
       "tradeoffs": [
         "Gains: post-generation safety net, explicit PII redaction, explicit fail-safe default.",
@@ -8931,7 +8951,8 @@
       "critique": [
         "Resolved 2026-07-25. 'Privacy First: If PII detected, Redaction is mandatory' contradicted the card's own `pii_mode` parameter, whose range is {Redact, Block, Hash} — two mitigations the invariant forbids — and this entry's varies line, which says mitigation strategy varies. The invariant intended as the strict one was in fact the narrow one: blocking is stronger than redaction wherever the content cannot be safely salvaged. Restated so what is mandatory is that PII does not reach egress unmitigated, with the choice of mitigation left to pii_mode.",
         "Not changed, and worth recording so it is not 'fixed' later: `FailClosed` already references OutputGuard as an instance of fail-closed behaviour, so wiring the reverse direction would create a dependency cycle. The relationship exists and points the right way.",
-        "Scunthorpe, Context Blindness and Redaction Leak are three unusually concrete failure modes and were left untouched. Context-aware classification is an adjacent pattern, as the tension says."
+        "Scunthorpe, Semantic context blindness and Redaction Leak are three unusually concrete failure modes and were left untouched. Context-aware classification is an adjacent pattern, as the tension says.",
+        "Corrected 2026-09-27: the medical-term example depends on linguistic meaning and domain usage, not execution-state serialization. Made that failure label explicit and removed the false Context citation. The failure scenario, scanner fail-safe behavior, and mandatory mitigation of detected PII remain unchanged; classifier quality is still the caller's responsibility."
       ]
     },
     "family_discussion": "Safety primitive paired with InputGuard (input counterpart), FailClosed (the default), and Redact (the mitigation). Compare with InvariantFilter — OutputGuard is classifier-based; InvariantFilter is predicate-based. Different filter architectures."
@@ -9431,8 +9452,8 @@
       "intended": "atomic authorization grant.",
       "future": "any access-control unit.",
       "broad_contexts": "file-system permissions, API scopes, OAuth tokens, role-capability grants, feature-access grants, capability-based security.",
-      "every_context_needs": "granting identity, recipient identity, scope (what is permitted), act-or-artifact target.",
-      "varies": "expiry, delegation support, revocation mechanism, granularity (coarse vs fine-grained), composability (multiple permissions aggregate).",
+      "every_context_needs": "recipient identity, a named permitted action, and a resource where applicable. Scope is what the grant names; the trust or policy establishing who may issue it belongs to the surrounding authorization system.",
+      "varies": "expiry, delegation support, revocation mechanism, issuing-authority representation, granularity (coarse vs fine-grained), composability (multiple permissions aggregate).",
       "extensions": "`TimedPermission`, `DelegatedPermission`, `CapabilityPermission`, `ScopedPermission`.",
       "notes": []
     },
@@ -9443,14 +9464,13 @@
       ],
       "tradeoffs": [
         "Gains: unifying authorization primitive, named unit for access control.",
-        "Gives up: richness. Permission is a single unit; real authorization has scope, conditions, and relationships the pattern doesn't capture."
+        "Gives up: a complete authorization system. The grant identifies its recipient, action, and optional resource; conditions, trusted issuers, and relationships between grants belong to callers or specialized representations."
       ],
       "critique": [
-        "Very thin — one-line mechanism, two failure modes, no invariants.",
-        "Conflates grant with check; these are distinct in real systems.",
-        "No semantics for composition — AND/OR over permissions is common and not specified.",
-        "Applied 2026-07-26 from a full read. The card had NO invariants: a one-line mechanism, two failure modes and a schema. Its intersection names scope as one of four things a Permission needs, the schema has no scope field, and privilege escalation is the named failure that absence produces — so the defining property was uncontracted. Added the claim 'atomic unit' already implies: a grant authorises what it names and nothing further.\n\nOne tension was deleted as false of the card rather than stale. It read 'Permission as grant vs permission as check — the pattern conflates the grant with the check'. The mechanism is purely the grant and there is no check anywhere on the card, so there was nothing to conflate.\n\nOPEN: `data_schema.required` names action unconditionally, while the mechanism grants permission to perform an act OR access an artifact — so a pure artifact-access grant has to invent an action to be valid, and `resource` is optional. Two of the four items the intersection names, scope and granting identity, are absent from the schema entirely. Fixing that is schema design rather than a scoping repair, so it is not done here.",
-        "PARTLY RESOLVED 2026-07-26 after review by Codex. The invariant added above read conjunctively — agent AND act AND artifact — while the mechanism grants an act OR artifact access, which is the mismatch the OPEN note itself had identified. The invariant now states the disjunction. What stays open is the schema: `required` still names `action` unconditionally, so a pure artifact-access grant must still invent one, and scope and granting identity remain absent."
+        "SOUND 2026-09-28 for the atomic-grant role. A file-read grant, an API-operation scope, and a capability grant all name what is permitted without prescribing an expiry, a revocation service, or a separate issuer field. The existing scoping invariant is useful across those contexts. Grant evaluation and composition remain caller operations; the card describes a grant, not a check.",
+        "Corrected 2026-09-28: earlier commentary said the card had no invariants and conflated grant with check. The July scoping repair already added an invariant, and neither the mechanism nor schema performs a check. Those criticisms were stale or false.",
+        "The July review added the boundary that a grant authorises only what it names, then corrected an accidental conjunction to preserve the mechanism's act-or-artifact distinction. That boundary is retained unchanged.",
+        "Reassessed 2026-09-28: requiring action does not by itself exclude artifact access. A grant can name the action read or access and the artifact in resource; this is a representation of access rather than an invented operation. The schema leaves resource optional for actions without a particular artifact. The earlier proposal for a mandatory granting identity and separate scope field is not established as a broad-use requirement: issuer trust may be supplied by the enclosing authorization system, and scope may be expressed by action and resource. A caller needing richer policy can specialize the representation. No schema or contract change is made here."
       ]
     },
     "family_discussion": "Foundational auth primitive paired with BearerToken (portable grant), Card (capability advertisement), and Check (evaluation). Compare with Token — Permission is the abstract grant; Token is the embodied artifact."
@@ -10979,7 +10999,9 @@
         "Over-constraint is the eager-framer failure; the pattern doesn't bound how much to constrain.",
         "Premature Optimization happens when framers slide into solving; the pattern's 'no resources committed' invariant is the discipline.",
         "`derived_from` fixed: previously legacy stub `sema:Interpret` without hash; now full sema_id.",
-        "`RequestFraming` will move Society → Mind per §3.18."
+        "RequestFraming is already in Mind: a single agent can clarify a request without requiring another independent party to execute the mechanism.",
+        "Corrected 2026-09-27: reviewed and explicitly retargeted the exact Interpret parent alongside its ordinary reference. Framing a request still interprets a raw message under named semantic assumptions into an explicit problem frame without consuming the message. Its own Context reference remains appropriate operational state (prior instructions, permissions, and working memory); it is not the general semantic-context type removed from Interpret.",
+        "Reviewed 2026-09-28 for the follow-up Interpret correction and explicitly retargeted its exact parent. RequestFraming still preserves the source message and produces a FrameSpec under named interpretive assumptions; neither that output nor its framing contracts depends on translations being invertible. Removing Interpret's universal invertibility test therefore preserves this specialization claim."
       ]
     },
     "family_discussion": "Interpretation primitive paired with Interpret (the verb), FrameSpec (the output), and ProblemFramer (the role). Compare with ManifestPlanning — RequestFraming is 'understand the ask'; ManifestPlanning is 'plan the solution.'"
@@ -11191,39 +11213,38 @@
   "Reversibility": {
     "motivation": {
       "why_this_layer": "condition on actions — substrate property, not authored",
-      "why_it_exists": "A decision-theoretic primitive — can this action be undone? Bezos-style Type-1/Type-2 decisions, CRDTs vs destructive ops, experimental rollback, safe-to-try assessment. Makes reversibility a first-class property rather than a caller-supplied attribute that varies in definition.",
-      "removability": "Marginal. Could be expressed as a Boolean check computed from an action's description. The pattern's added value is the Entropy constraint invariant — reversal must not violate thermodynamic limits. That constraint is not obvious without the explicit pattern."
+      "why_it_exists": "Names a shared way to assess whether an action can be undone: check that the information needed for restoration survives, then compare restoration cost with a declared limit. Callers supply the evaluation frame rather than silently redefining what a TRUE verdict means.",
+      "removability": "Useful as a shared decision predicate across rollback and other undo assessments. Its added value is the ordered information and cost tests, together with a verdict that names the caller's cost limit and information-loss tolerance. A large budget cannot override destroyed reconstruction information; a bare Boolean would hide the frame used to judge it."
     },
     "usage": {
       "intended": "Condition evaluating whether action post-state allows return to pre-state at acceptable cost.",
       "future": "any \"can we undo this?\" check-condition.",
       "broad_contexts": "Type-1 vs Type-2 decisions (Bezos), surgical reversibility judgments, regulatory-decision reversibility, financial-transaction reversibility, deployment reversibility.",
-      "every_context_needs": "pre-state, post-state, return-cost evaluation, TRUE/FALSE yield.",
-      "varies": "cost threshold, information-loss tolerance, reversibility-over-time (e.g., given time X, is it reversible?).",
+      "every_context_needs": "pre-state, post-state, assessment of whether reconstruction information survives, restoration-cost evaluation, declared cost limit and information-loss tolerance, TRUE/FALSE verdict under that frame.",
+      "varies": "caller-supplied cost units, limits, and information-loss tolerance; domain-specific evaluation methods and time windows may be fixed by descendants.",
       "extensions": "`CostBoundedReversibility`, `TimeWindowReversibility`, `PartialReversibility`.",
       "notes": []
     },
     "design": {
       "tensions": [
-        "Binary reversible/irreversible vs graded reversibility: some actions are reversible with cost (rollback effort, data loss bounded). The pattern is binary — within acceptable cost is a caveat, not a semantic.",
-        "Perfect reversal vs approximate reversal: 'zero information loss' is the strict definition, 'acceptable cost' is the loose one. The mechanism hedges; descendants could sharpen.",
-        "Physics vs decision-theoretic: Reversibility is classed as Physics (substrate property: the Second Law), but the pattern is used primarily for decision support (should I do this?). The dual role blurs the layer test."
+        "Binary verdict vs graded practical costs: TRUE/FALSE answers the question under a declared limit and information-loss tolerance, rather than describing all possible costs or tolerances. Callers needing that spectrum must evaluate or report more than one frame.",
+        "Information availability vs practical restoration: preserved reconstruction information is necessary but does not establish affordable restoration. The mechanism orders these tests; the caller must still evaluate the cost in a stated unit.",
+        "Physics vs decision support: the information-loss boundary has a substrate reading, while evaluating an action against a caller's cost and tolerance often requires judgment. Whether Physics is the best placement remains an editorial question; no layer change is made in this pass."
       ],
       "tradeoffs": [
-        "Binary output (TRUE/FALSE) buys simplicity at the cost of hiding graded reversibility.",
-        "Entropy constraint invariant buys physical grounding at the cost of forcing callers to reason about thermodynamics for decisions where the cost is effort, not entropy.",
-        "The physics-layer placement buys substrate claim at the cost of obscuring the decision-theoretic use."
+        "A binary verdict under a named frame buys a clear decision boundary at the cost of not showing the full spectrum of restoration costs and tolerances.",
+        "Information-first evaluation prevents a budget from excusing destroyed reconstruction information. It requires the caller to account for the relevant post-state and external effects, without requiring every application to compute thermodynamic entropy.",
+        "The current Physics placement emphasizes the information boundary but can obscure the judgment involved in practical undo assessments."
       ],
       "critique": [
-        "Resolved 2026-07-25. The mechanism offered two tests as alternatives — 'zero information loss (or within acceptable cost)' — and they are not alternatives. Where the post-state destroyed the information needed to reconstruct the pre-state, no budget buys it back. Information loss is a gate; cost is a threshold applied after that gate passes. The second tension notices the hedge and proposes that 'descendants could sharpen' it, but the fix is a precedence between the two tests, not a sharper version of either, and it belongs here.",
-        "The sole invariant was a fact about the world rather than a constraint on the pattern: no implementation can violate thermodynamics, so nothing could ever fail it. Its purpose — per this entry's 'Can it be removed?', which calls it the pattern's added value — is to stop a caller assuming reversal is always purchasable. That is precisely the precedence above, so it is now stated as something checkable: a FALSE that a cost limit cannot overturn.",
-        "A bare TRUE/FALSE is not reproducible without the tolerance it was judged against, the same repair as `Realizable`'s declared ground. The Varies line assigns the tolerance to descendants, which makes naming it the intersection. This also answers the third critique point: with the tolerance declared and the information gate fixed here, what the caller supplies is a threshold rather than the whole semantics.",
-        "Both proposed failure modes were accepted, because each follows from the pattern's structure rather than from a quality complaint: this is a predicate evaluated before an action that gets reversed later. False reversibility is the externality created by the action itself — a message delivered, an observer who now knows — where the pre-state is restorable and the world is not. Cost drift is the gap between when the tolerance was declared and when the reversal is attempted.",
-        "OPEN, for Henrik: the third tension's placement question. This is classed `Physics` on the strength of the Second Law, while its enumerated uses are decision support — Bezos Type-1/Type-2, regulatory and financial reversibility, deployment rollback — where the cost is effort rather than entropy. That is a layer call of the same kind already open on `Mutex` and `Axiom`, so it is flagged rather than taken.",
-        "The Bezos reference is now glossed in one clause rather than left as a shortcut, per the second critique point."
+        "Resolved 2026-07-25: information preservation and acceptable cost had been presented as alternatives. They are ordered tests: when information required to reconstruct the pre-state is destroyed, no budget restores it. The card now gates cost evaluation on that information still existing.",
+        "The former thermodynamic invariant was replaced with an operational verdict constraint: destroyed reconstruction information yields FALSE at any cost limit. Corrected 2026-09-28: removability and tradeoffs still described an Entropy invariant that no longer exists. The card is retained unchanged; the commentary now describes its actual information gate and caller-relative cost test.",
+        "The verdict names the cost limit and information-loss tolerance used. Their values belong to the caller; naming the frame belongs to the shared contract. The old commentary described acceptable cost as an unresolved hedge and assigned tolerance wholly to descendants, overlooking this existing requirement and cost_limit parameter.",
+        "The existing failure modes remain relevant: an omitted externality can make an apparently restorable action irreversible, and costs or tolerances can change before reversal is attempted. Domain evaluation and later re-evaluation belong to callers or descendants; no universal restoration algorithm is added.",
+        "SOUND 2026-09-28 for this limited review of the ordered tests and declared evaluation frame across the listed undo scenarios. The separate layer-placement question remains open: substrate information limits and cognitive decision support are both present, and this pass does not resolve that editorial choice."
       ]
     },
-    "family_discussion": "Substrate-level decision property pairing with `Entropy` (the thermodynamic limit) and with action patterns. Invoked by `PreMortem`, `ReversibilityCheck`, `SafeToTry`-style gates. The pattern names the property; specific tooling descends from it."
+    "family_discussion": "Decision property used by Translate when considering whether a conversion inverts and by ReversibilityCheck when evaluating rollback. Constraint supplies the declared limits. Entropy is a related physical consideration, not a required dependency or a current invariant of this card."
   },
   "ReversibilityCheck": {
     "motivation": {
@@ -11292,7 +11313,8 @@
         "Reviewed 2026-08-03 for exact `extends` retarget after Work's timestamp requirement was loosened. PolymorphicSolver's authored contract is unchanged; only its ordinary dependency closure and identity move. RigorousSolver continues to strengthen the parent with all five solver surfaces, mandatory Probe and non-compensatory gates, so the retarget is mechanical.",
         "Reviewed again 2026-08-03 for the Metric tranche. PolymorphicSolver's Metric dependency moves through Agent, and its Interface Non-Compliance failure wording is corrected to match the existing mandatory/optional surface split. RigorousSolver already requires all five surfaces and therefore continues to strengthen the corrected parent without contradiction.",
         "Reviewed 2026-08-03 for the Critique schema repair. PolymorphicSolver moves only through the ordinary Critique -> Reflexion dependency cascade; its authored solver contract is unchanged, and RigorousSolver continues to narrow it.",
-        "Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. RigorousSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim."
+        "Reviewed 2026-08-11 for the complete 0.5 follow-up repair batch. PolymorphicSolver's authored payload is unchanged; only its ordinary dependency closure and identity move. RigorousSolver still narrows that contract, so the exact parent pin is retargeted without adding a new semantic claim.",
+        "Reviewed 2026-09-27 for the Context borrower and Cache correction tranche. PolymorphicSolver's own authored payload is unchanged; its exact identity moves with dependency definitions. The stored-result reuse contract still supports routing memory, while caller-specific latency and safety requirements remain in place. RigorousSolver still narrows the parent through all five solver surfaces, mandatory Probe, and non-compensatory acceptance gates, so the exact extends pin is explicitly retargeted after review."
       ]
     },
     "family_discussion": "The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer."
@@ -12180,35 +12202,38 @@
   "Sign": {
     "motivation": {
       "why_this_layer": "attach identity proof — cryptographic primitive",
-      "why_it_exists": "Attaching verifiable identity proof to an artifact creates non-repudiable authorship/approval. Sign names this cryptographic commitment. Without it, authorship claims are soft.",
-      "removability": "Non-removable in any system that cares about authorship or approval. Contract, Award, OathBind and Witness all depend on Sign. The cryptographic guarantees are that the signature binds the signing identity to the artifact and invalidates if the artifact changes.\n\nA Non-Repudiation invariant used to be cited here as the second guarantee. The 2026-07 review replaced it, because it read 'the signer cannot later deny having signed it' — a claim about what a signer can get away with socially and legally, which no cryptographic operation delivers, and which this card's own critique already conceded was *technical* non-repudiation. What replaced it is the checkable form: a third party can verify the signature without the signer's cooperation."
+      "why_it_exists": "Attaching cryptographically verifiable identity proof to an artifact lets another party check authorship or approval without the signer participating. Sign names that binding and the integrity of the signed artifact; legal effect and the trustworthiness of the signing identity are separate questions.",
+      "removability": "Required by consumers that need an independently verifiable identity binding and artifact integrity. Current direct consumers include Contract, Award, AuditTrail, and FailureTrace. Other ways of expressing authorship or approval need not satisfy this cryptographic card. The earlier social claim that a signer cannot deny signing was replaced by the checkable guarantee that another party can verify without the signer's cooperation."
     },
     "usage": {
-      "intended": "attach a verifiable identity proof to an artifact.",
-      "future": "any non-repudiable authorship/approval attachment.",
-      "broad_contexts": "cryptographic signatures, handwritten signatures, OAuth token signing, PGP email, code signing, document notarization, blockchain transactions, wet signatures on paper.",
-      "every_context_needs": "identity proof, artifact to attach to, non-repudiable link.",
-      "varies": "algorithm (RSA, ECDSA, EdDSA, wet), key material, verification protocol, attachment format (detached vs embedded).",
-      "extensions": "`CryptoSign`, `WetSign`, `NotarySign`, `MultiSigSign`.",
-      "notes": []
+      "intended": "attach a cryptographically verifiable identity proof to an artifact.",
+      "future": "authorship or approval attachments whose identity binding and artifact integrity can be independently verified.",
+      "broad_contexts": "public-key signatures on messages, PGP email, code signing, digitally signed documents, and signed blockchain transactions.",
+      "every_context_needs": "a signing identity, an artifact bound to that identity, independent verification, and invalidation when the signed artifact changes.",
+      "varies": "cryptographic algorithm, key material, verification protocol, and attachment format (detached vs embedded).",
+      "extensions": "Possible specializations can fix a cryptographic algorithm, attachment format, or multiple-signer protocol while retaining the three invariants.",
+      "notes": [
+        "A handwritten signature alone does not provide this card's artifact-change detection. Legal enforceability, signer authority, trust in verification material, and revocation policy belong to the surrounding system."
+      ]
     },
     "design": {
       "tensions": [
-        "Non-Repudiation vs legitimate retraction — signed commitments are permanent, even if you change your mind.",
-        "Integrity invariant (signature invalidates on change) vs minor edits — typo fixes invalidate the signature.",
-        "Public-key infrastructure dependency — Sign requires PKI, which has its own failure modes."
+        "A signer can retract approval through a later statement, but that does not erase the earlier cryptographic attachment.",
+        "The artifact-integrity invariant applies to minor edits as well as substantive changes; even a typo correction requires a signature on the revised artifact.",
+        "Independent verification requires trusted verification material. How that trust is established is caller policy, not a requirement for a particular public-key infrastructure."
       ],
       "tradeoffs": [
-        "Gains: non-repudiable authorship, integrity guarantees.",
-        "Gives up: flexibility. Signed artifacts are frozen; any edit invalidates."
+        "Gains: independently verifiable identity binding and integrity of the signed artifact.",
+        "Gives up: changing a signed artifact while preserving the same valid signature. Legal non-repudiation is not supplied by this primitive."
       ],
       "critique": [
         "Adjudicated 2026-07-25, the highest-fan-in unread pattern at 49 transitive dependents. Its own critique had the finding: 'Non-Repudiation is technical non-repudiation; legal non-repudiation has separate requirements.' The invariant said 'the signer cannot later deny having signed it', which is a claim about what a signer can get away with socially and legally, and no cryptographic operation delivers it. The design tension says the same thing from the other side — 'signed commitments are permanent, even if you change your mind'. Replaced with what technical non-repudiation actually is and what makes it checkable: a third party can verify the signature without the signer's cooperation.",
         "The intersection names three elements — 'identity proof, artifact to attach to, non-repudiable link' — and nothing required the signature to carry an identity at all. Now the first invariant does.",
-        "Zero failure modes on a pattern that `Contract`, `Award`, `OathBind` and `Witness` all depend on. The commentary already named three and they are simply moved onto the card: the two design tensions (permanence against legitimate retraction, and a typo fix invalidating the signature) and the technical-versus-legal gap from the critique. A consuming agent reads the card, not this file."
+        "Zero failure modes on a pattern that `Contract`, `Award`, `OathBind` and `Witness` all depend on. The commentary already named three and they are simply moved onto the card: the two design tensions (permanence against legitimate retraction, and a typo fix invalidating the signature) and the technical-versus-legal gap from the critique. A consuming agent reads the card, not this file.",
+        "Reviewed 2026-09-27: retained all three cryptographic contracts. Corrected the commentary rather than weakening those contracts: handwritten and wet signatures do not supply artifact-change detection, and technical verification does not establish legal non-repudiation. Removed those examples and extension suggestions, aligned the intersection and motivation with independent verification, and made trust infrastructure a caller choice. Retraction and brittle integrity are accepted consequences of signing exact content; legal effect is delegated to the surrounding system. No hashed field changed."
       ]
     },
-    "family_discussion": "Cryptographic primitive paired with Hash (the substrate), Witness (the attestation counterpart), and Identity (the signer). Compare with OathBind — Sign attaches identity to artifact; OathBind binds actor to rule set."
+    "family_discussion": "Cryptographic primitive binding Identity to an artifact. Contract and Award use it for signed commitments; AuditTrail and FailureTrace use it for verifiable records. Compare with OathBind: signing attaches proof to content, while an oath binds an actor to rules."
   },
   "Signal": {
     "motivation": {
@@ -12795,7 +12820,7 @@
     },
     "design": {
       "tensions": [
-        "Context Mismatch (named failure) — applying principle to domain where preconditions don't hold.",
+        "Domain mismatch (named failure) — applying principle to domain where preconditions don't hold.",
         "Constraint Inheritance vs specific-case exceptions — specializations sometimes warrant relaxed constraints.",
         "Type Narrowing vs over-specialization — too narrow a specialization may not be useful."
       ],
@@ -12804,9 +12829,10 @@
         "Gives up: cross-domain transfer. Specialize commits to a domain."
       ],
       "critique": [
-        "Context Mismatch is endemic — precondition checking is the hard part.",
+        "Domain mismatch is endemic — precondition checking is the hard part.",
         "Constraint Inheritance is strong; some legitimate specializations need to relax.",
-        "No failure modes beyond Context Mismatch."
+        "No failure modes beyond Domain mismatch.",
+        "Corrected 2026-09-27: applying a principle outside its valid domain is a domain mismatch, not a failure of an execution Context. Preserved the precondition-related failure and removed only its misleading exact reference. This scoped repair does not adjudicate the separate general-agent/expert-agent pre/postconditions or constraint-relaxation questions."
       ]
     },
     "family_discussion": "Instantiation primitive paired with Generalize (the reverse), Specify (synonym), and Expansive (the PURE judge). Compare with Generalize — Specialize narrows, Generalize broadens."
@@ -14384,7 +14410,7 @@
   "Translate": {
     "motivation": {
       "why_this_layer": "convert-form-preserving-meaning",
-      "why_it_exists": "Converting representation while preserving meaning is a distinct operation from Interpret (which changes abstraction level). Translate names representation-preserving conversion.",
+      "why_it_exists": "Converting representation with the intent to preserve meaning is a distinct operation from Interpret (which changes abstraction level). Translate names that conversion while its contracts forbid introducing source-absent content or selecting information to discard.",
       "removability": "Non-removable in multi-representation systems. What makes it a distinct operation is the pair of boundaries it holds: it adds nothing, which separates it from `Interpret`, and it drops nothing by design, which separates it from `Summarize`."
     },
     "usage": {
@@ -14404,7 +14430,7 @@
       ],
       "tradeoffs": [
         "Gains: representation change with meaning preservation.",
-        "Gives up: perfect fidelity. Translation always loses something."
+        "Gives up: a universal guarantee of perfect fidelity or invertibility. Some conversions are lossless; others can lose nuance or introduce accidental distortion despite aiming to preserve meaning. The source/target pair and conversion determine that risk."
       ],
       "critique": [
         "Lossy Translation is endemic.",
@@ -14412,7 +14438,8 @@
         "Semantic Equivalence is aspirational.",
         "Applied 2026-07-26 from a full read. 'Semantic Equivalence: Meaning(Source) == Meaning(Target)' asserted what this card's own tradeoff calls impossible — 'gives up perfect fidelity' — and what its own Lossy Translation failure names. Split into the two decidable halves that add up to the same discipline: nothing added, which is the `Interpret` boundary and the Hallucination failure, and nothing dropped by design, which is the `Summarize` boundary. The removability argument still rests on Semantic Equivalence and now rests on both halves of it. The round-trip invariant was hedged twice, 'in ideal cases' and 'should', so it names the channel instead: the conversion declares whether it inverts. `Summarize` stays a quoted name rather than a placeholder, deliberately — Summarize already references Translate, so the reverse edge would cycle, and AGENTS.md's rule is to name the other pattern in prose from the side that would cycle.",
         "CORRECTED 2026-07-26 after review by Codex. The note above claimed the two decidable halves 'add up to the same discipline' as Semantic Equivalence. They do not: they are necessary conditions, and nothing on the card rules out accidental loss or distortion. The third invariant, 'declares whether the conversion round-trips', named a declaration for which the card has no field — removed, and {{reversibility}} now sits in the mechanism as the place to look. And removability still rested on 'the Semantic Equivalence invariant', which that same pass had deleted: I wrote the note saying it now rests on both halves and did not edit the field.",
-        "RESOLVED 2026-08-11: keep `Summarize` as a quoted contrast rather than a dependency. Summarize already references Translate, so a reverse edge would create a cycle; the relationship is present from the side that can state it without inverting the graph."
+        "RESOLVED 2026-08-11: keep `Summarize` as a quoted contrast rather than a dependency. Summarize already references Translate, so a reverse edge would create a cycle; the relationship is present from the side that can state it without inverting the graph.",
+        "Corrected 2026-09-28 while reviewing the Interpret boundary: the commentary called this representation-preserving conversion and asserted that translation always loses something. The listed language, format, and unit conversions instead share a representation change and meaning-preservation intent; they do not share inevitable loss. The existing incidental-loss failure remains useful, and no Translate contract changes in this pass."
       ]
     },
     "family_discussion": "Conversion primitive paired with Interpret (abstraction-level change), Compress (size-reduction), and RepresentationSwap (orthogonal-modality variant). Compare with Interpret — Translate preserves abstraction; Interpret changes it."
@@ -14678,8 +14705,9 @@
       ],
       "critique": [
         "Resolved 2026-07-25 — and this entry's critique was already the exemplary kind, naming each candidate contract and arguing why it stays out rather than complaining about counts. It also flagged something the card kept asserting: \"The 'accurately reflects' claim remains aspirational; adequacy should be judged by the caller's domain, task, and evidence standard rather than encoded as a universal invariant.\" The mechanism went on asserting accuracy the commentary disclaims, so it now describes the operation and hands the adequacy standard to the caller explicitly.",
-        "Open, flagged rather than changed: it claims signature `Think(Context)` while its varies permits 'duration (one-shot vs over time)', and `Think`'s mechanism says 'side-effect free and INSTANTANEOUS from the perspective of the external world'. Under Rule F's Truth-in-Advertising a pattern claiming a signature must fulfil that contract entirely, so either Understand is not a Think, or Think's instantaneity is narrower than it reads. Same shape as Solver claiming Protocol(Task) while a single agent can solve alone. Signatures are load-bearing enough that this belongs to Henrik.",
-        "Zero invariants and zero failure modes remain correct and argued, not conceded — surface paraphrase, false coherence and context loss are diagnostic risks whose thresholds are the caller's, exactly as this entry says."
+        "Resolved 2026-09-27: removed Think(Context), which advertised the portable execution container as the subject of general comprehension. No current source, test, or documented call site requests that signature; DissentSeek, LayeredCheck, and RequestFraming bind Understand by hash. Generic signature discovery deliberately changes, and external users must not treat it as an execution-context operation. Retained its actual Think dependency. The distinction between an atomic thinking step and extended reasoning remains a separate review question.",
+        "Zero invariants and zero failure modes remain correct and argued, not conceded — surface paraphrase, false coherence and context loss are diagnostic risks whose thresholds are the caller's, exactly as this entry says.",
+        "Corrected 2026-09-27: understanding a text or model requires its surrounding circumstances, not necessarily a portable agent execution frame. Kept that meaning in plain language and removed the false Context link rather than inventing a replacement signature. The prior critique already judged universal accuracy aspirational and said it had been removed, but the card still asserted it. Applied that recorded decision: construct the model and let the caller judge adequacy against task and evidence. No new invariant or failure-mode quota is imposed."
       ]
     },
     "family_discussion": "Cognitive primitive paired with Interpret (semantic application), Parse (syntactic), and Model (the outcome). Compare with Think — Understand is the outcome; Think is the atomic op."

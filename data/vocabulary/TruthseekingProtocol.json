@@ -16,16 +16,17 @@
     ],
     "supersedes": [
       "sema:TruthseekingProtocol#mh:SHA-256:afc1189f15d918f6cd32eb6dd7d1c711d86288e60f10ea0171b71f261800c15a",
-      "sema:TruthseekingProtocol#mh:SHA-256:e2d334636485fc094f00ec9849be6666150c73786e9a0e458520ac2a660ee29f"
+      "sema:TruthseekingProtocol#mh:SHA-256:e2d334636485fc094f00ec9849be6666150c73786e9a0e458520ac2a660ee29f",
+      "sema:TruthseekingProtocol#mh:SHA-256:0113cc785baf80552fb83dae96a2d543aeb0685143ce64a938531f71b04ce225"
     ]
   },
-  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:0113cc785baf80552fb83dae96a2d543aeb0685143ce64a938531f71b04ce225",
-  "sema_ref": "TruthseekingProtocol#0113",
-  "sema_stub": "0113",
+  "sema_id": "sema:TruthseekingProtocol#mh:SHA-256:78d5075d794539cc1ca06606ad9c1d8e09364259443c3a80e30777ef472d8bd5",
+  "sema_ref": "TruthseekingProtocol#78d5",
+  "sema_stub": "78d5",
   "dependencies": {
     "composes_with": {
-      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:40d9cc8428747ad32e921a0317e560d14031e656cfd10089992ddf161dc0e450",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:ffe1bb67e5d273f3acf3cb92876189b68752befd2ab6d0bfa406fb1929c4a17b"
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438"
     },
     "references": {
       "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"

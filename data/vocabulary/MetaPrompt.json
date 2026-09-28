@@ -26,16 +26,17 @@
       "sema:MetaPrompt#mh:SHA-256:a60668b9460c39064cec2e6b4a87e6f4d92e4164927ba453f3cf4ecdb7622f43",
       "sema:MetaPrompt#mh:SHA-256:a66501101ec29854bb461a93e28bea471b5726a17085db26987c60ac65c1488d",
       "sema:MetaPrompt#mh:SHA-256:db51ab77fd1592155749c401b495f1090c0bc820458fe34b2412ce040c7e70ef",
-      "sema:MetaPrompt#mh:SHA-256:f99473d1cac3cde3e39a0428c73a91c366925a3845747631a8f89a01137b582d"
+      "sema:MetaPrompt#mh:SHA-256:f99473d1cac3cde3e39a0428c73a91c366925a3845747631a8f89a01137b582d",
+      "sema:MetaPrompt#mh:SHA-256:308ceb209aa848e10d8d3693adf4ad8aea7d957d918958034acc1a78524e8fcc"
     ],
     "path": [
       "Mind",
       "Reasoning"
     ]
   },
-  "sema_id": "sema:MetaPrompt#mh:SHA-256:308ceb209aa848e10d8d3693adf4ad8aea7d957d918958034acc1a78524e8fcc",
-  "sema_ref": "MetaPrompt#308c",
-  "sema_stub": "308c",
+  "sema_id": "sema:MetaPrompt#mh:SHA-256:5d117201e4b2fe776f32e4effb8bb9b0d541e361ba37468250283f277026c974",
+  "sema_ref": "MetaPrompt#5d11",
+  "sema_stub": "5d11",
   "signature": [
     "Meta(Prompt)"
   ],
@@ -43,7 +44,7 @@
     "references": {
       "meta": "sema:Meta#mh:SHA-256:f277723b905f6c94549f27f7eb58597096f3052165f5ad90af8b273188cee079",
       "prompt": "sema:Prompt#mh:SHA-256:1b04d34a0c55d6d2c6fea4f1df4f517073ede2f20f1f8d1d149419010b440a0e",
-      "prompt_chain": "sema:PromptChain#mh:SHA-256:61c81f623e0aadd0d6cde03bf3c5dbbc5ea3e0b527647552ca0e063c261e85e1",
+      "prompt_chain": "sema:PromptChain#mh:SHA-256:02b5f2277c89d51e35336a8735f5a8bf26304332db887961bb23790c8c82b2f9",
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
     }
   },

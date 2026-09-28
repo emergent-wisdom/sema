@@ -12,16 +12,17 @@
       "sema:Solver#mh:SHA-256:1c9beeb5cffc0c686b5291439d830a2104225589f91a66bd0a83038f1a0a8982",
       "sema:Solver#mh:SHA-256:b7f9e18fec50d288ea829a21a59de02f65cf1ffe3eef07142389d659bd421d02",
       "sema:Solver#mh:SHA-256:04b58c815005971905e3d430112a06fb76b727882204a80fe58ace79b066a1d6",
-      "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054"
+      "sema:Solver#mh:SHA-256:a9ecf615e1964f937986b1972f498ad6d00137dd8b069ddeaf4106704845f054",
+      "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Solver#mh:SHA-256:1f06eef94b1ee0c75628274a0f80d3348b6def7cdf42ae072ec203346c3d9241",
-  "sema_ref": "Solver#1f06",
-  "sema_stub": "1f06",
+  "sema_id": "sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b",
+  "sema_ref": "Solver#a447",
+  "sema_stub": "a447",
   "invariants": [
     "Every surface it declares is callable; Manifest and Execute are mandatory.",
     "A declared surface reports its own unavailability rather than failing silently."
@@ -32,8 +33,8 @@
     },
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",
-      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:b1306e8135cc948042a67d39d29dfe2e7bdce610371c733e9c415a8b26a677f6",
-      "trait": "sema:Trait#mh:SHA-256:14c7e4c3545c4dbe5d22a17eba23ce4a4f521cfcc29bd46561149be740b4a808"
+      "performance_signal": "sema:PerformanceSignal#mh:SHA-256:9dfb41dd2ac3f271ca5d4a3ab67219a5a18aa8dbd970cdb410e7c9c1ec85488c",
+      "trait": "sema:Trait#mh:SHA-256:e415fe6619857f831d831228b5532ea64d4a6a222773c828098f30d36f450b20"
     },
     "yields": {
       "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab"
