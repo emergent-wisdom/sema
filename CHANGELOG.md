@@ -10,6 +10,12 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-10-04
+
+This release refines five bootstrap definitions, including two dependency
+cascades. Existing snapshots retain their original identities; consumers choosing
+to upgrade should use the new definitions and vocabulary roots.
+
 ### Fixed
 
 - `MechanisticDesignProposal` requires novelty claims to name their comparison
