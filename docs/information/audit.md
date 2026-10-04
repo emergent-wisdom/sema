@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 2023 nodes and 3786 edges.
+Graph loaded with 2023 nodes and 3789 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -79,7 +79,7 @@ Source: `sema.audit.missing_links` (ok)
 🔍 Scanning data/vocabulary for missing links...
 Loaded 457 patterns.
 
-Found 368 potential missing links.
+Found 367 potential missing links.
 
 🔹 AcceptSpec
    ❓ Mentions 'FrameError' but not linked.
@@ -208,7 +208,6 @@ Found 368 potential missing links.
    ❓ Mentions 'Silence' but not linked.
 🔹 DiscoveryProtocol
    ❓ Mentions 'Protocol' but not linked.
-   ❓ Mentions 'Solver' but not linked.
 🔹 Distance
    ❓ Mentions 'Identity' but not linked.
    ❓ Mentions 'Metric' but not linked.
@@ -1491,6 +1490,7 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Correlation' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Dialectic' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Novelty' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MentalSim:
@@ -2061,6 +2061,7 @@ Scanning 457 patterns for unlinked handle mentions...
    • Mentions 'Probability' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Protocol' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Shard:
    • Mentions 'Decision' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  ShoutWhisper:

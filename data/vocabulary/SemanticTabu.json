@@ -3,17 +3,17 @@
   "mechanism": "An ideation protocol where the agent explicitly lists existing mechanisms as 'Tabu' (forbidden). It must then solve the problem without using any mechanism on the list. This forces the activation of latent, low-probability pathways in the semantic network. It broadcasts the forbidden list via {{trace}} to ensure the entire swarm respects the constraint.",
   "gloss": "Constraint-based novelty enforcement",
   "failure_modes": [
-    "Paralysis: if the Tabu list covers all possible physics."
+    "Paralysis: the tabu list covers every available approach, so no solution remains."
   ],
   "invariants": [
-    "{{constraint}} Satisfaction: Output \u2229 TabuList == \u00d8",
+    "{{constraint}} Satisfaction: the output uses no listed mechanism, where sameness is {{equivalence}} under a stated canonical form.",
     "Explicit Avoidance: Reasoning trace must cite what is being avoided"
   ],
   "preconditions": [
     "Known solutions exist"
   ],
   "postconditions": [
-    "{{solution}} is structurally distinct from Clich\u00e9s"
+    "{{solution}} avoids the listed mechanisms only; distinctness from unlisted known solutions is not established."
   ],
   "_meta": {
     "tier": 1,
@@ -21,19 +21,21 @@
     "supersedes": [
       "sema:SemanticTabu#mh:SHA-256:82dd562ed60295db85be7b4dee32caf80fea5c78f6b3930c7f316f2a693e9176",
       "sema:SemanticTabu#mh:SHA-256:3ef0848c060971ade66a53019ee5feec704b52432b5be543fda8ef4cac69d5fc",
-      "sema:SemanticTabu#mh:SHA-256:0823fdbdd5e1c8c1d348b1e63f3d569d464e6af15b2848206fc803fd40a38026"
+      "sema:SemanticTabu#mh:SHA-256:0823fdbdd5e1c8c1d348b1e63f3d569d464e6af15b2848206fc803fd40a38026",
+      "sema:SemanticTabu#mh:SHA-256:984db15d8dd22523e8a99582acef4259512c31c45501c4e150559bcef2e3c5c8"
     ],
     "path": [
       "Mind",
       "Inference"
     ]
   },
-  "sema_id": "sema:SemanticTabu#mh:SHA-256:984db15d8dd22523e8a99582acef4259512c31c45501c4e150559bcef2e3c5c8",
-  "sema_ref": "SemanticTabu#984d",
-  "sema_stub": "984d",
+  "sema_id": "sema:SemanticTabu#mh:SHA-256:7a2276861f801d88543e81863a33e894b0c7dd4594644a3b91ad737b4eea8728",
+  "sema_ref": "SemanticTabu#7a22",
+  "sema_stub": "7a22",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc",
+      "equivalence": "sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c",
       "solution": "sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab",
       "trace": "sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9"
     }

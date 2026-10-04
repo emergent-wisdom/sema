@@ -13,16 +13,17 @@
       "sema:DesignArchitect#mh:SHA-256:7f55e9a2e809f4c721e9c62db8a8582c9f6b2eca5d293649c328750583a09775",
       "sema:DesignArchitect#mh:SHA-256:de8c02a7c8c3f29951d1df4265648ae84cea7039dc73f2c0e9403e8c1a199d04",
       "sema:DesignArchitect#mh:SHA-256:ac154160ca214e889cce53f96e35798b9f290a9b512217fbc567282948c491a7",
-      "sema:DesignArchitect#mh:SHA-256:a4228704654ba9a8297638781f27175205c1febaf1779b2b4ccec476f5c093a4"
+      "sema:DesignArchitect#mh:SHA-256:a4228704654ba9a8297638781f27175205c1febaf1779b2b4ccec476f5c093a4",
+      "sema:DesignArchitect#mh:SHA-256:7f6bef2156f06124719ed40031a6655516167875ce228905da35577a4d48b22f"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_ref": "DesignArchitect#7f6b",
-  "sema_id": "sema:DesignArchitect#mh:SHA-256:7f6bef2156f06124719ed40031a6655516167875ce228905da35577a4d48b22f",
-  "sema_stub": "7f6b",
+  "sema_ref": "DesignArchitect#48de",
+  "sema_id": "sema:DesignArchitect#mh:SHA-256:48deccf62675d6cbfb1bf2efa163b35f6141f8863563d08cb8ca52b0c80231ce",
+  "sema_stub": "48de",
   "dependencies": {
     "composes_with": {
       "pre_mortem": "sema:PreMortem#mh:SHA-256:e4c24813f33aa41fdb183e380d05707fe1fd813c46b4127602449a8988f47964",
@@ -32,7 +33,7 @@
       "translate": "sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea"
     },
     "yields": {
-      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:e36fcadd8c29f9e55375e8bf3085dbc9b4feecd2f0f3bd96918b3663af109cc6"
+      "mechanistic_design_proposal": "sema:MechanisticDesignProposal#mh:SHA-256:930aebe1a8b00fcfcf7c585e7c49b53f84c39988069e6d8c1721d568afe1a292"
     }
   },
   "sema_layer": "Mind",
