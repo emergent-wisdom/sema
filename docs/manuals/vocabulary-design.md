@@ -5207,7 +5207,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 
 ---
 
-### MechanisticDesignProposal#e36f
+### MechanisticDesignProposal#930a
 
 `Infrastructure` · `Data Structures` · R1 · T2
 
@@ -5222,13 +5222,14 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 **Invariants.**
 - `why_it_fails` names specific conditions under which the mechanism breaks, not a generic caveat.
 - `core_mechanism` states how A causes B, not that A and B move together.
-- `what_is_new` identifies the contribution that is not already available.
+- `what_is_new` names the solutions or practice it is compared with and the contribution they lack.
 - Carries both `medium_term` and `long_term_vision`.
 
 **Failure modes.**
 - Pro-forma dialectic: `why_it_fails` is filled with a token caveat, so the attack side is nominal.
 - Correlation as mechanism: `core_mechanism` names a co-movement rather than a causal chain, which makes the leverage point unactionable.
 - Unassessed {{risk}}: the attached risks are listed but not weighed against the projections.
+- Overclaimed novelty: `what_is_new` is set against a weak or outdated comparison, so the contribution looks larger than it is.
 
 **Data schema.**
 
@@ -5265,7 +5266,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
     },
     "what_is_new": {
       "type": "string",
-      "description": "The novel contribution. What does this do that existing solutions cannot? Why hasn't this been done before?"
+      "description": "The novel contribution, stated against named existing solutions or practice. What does this do that they cannot? Why hasn't this been done before?"
     },
     "why_it_works": {
       "type": "string",
@@ -5298,11 +5299,11 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 
 #### Design
 
-**Why it exists.** Standard design proposals describe what without why-it-works. MechanisticDesignProposal names the structured blueprint that must define the leverage point, the causal chain, what's new, and — crucially — why it fails in equal detail to why it works. Without the pattern, design proposals skew toward advocacy; with it, the dialectic is structural.
+**Why it exists.** Standard design proposals describe what without why-it-works. MechanisticDesignProposal names the structured blueprint that must define the leverage point, the causal chain and what is new against a named comparison, and — crucially — why it fails, naming the conditions under which the mechanism breaks. Without the pattern, design proposals skew toward advocacy; with it, the dialectic is structural.
 
 **Why Infrastructure.** structured blueprint artifact
 
-**Can it be removed?** Removable — lighter proposal formats exist. MechanisticDesignProposal is specifically the serious-engineering shape: causal clarity, novelty claim, dialectic balance. The dialectic-balance invariant is the anti-advocacy discipline.
+**Can it be removed?** Removable — lighter proposal formats exist. MechanisticDesignProposal is specifically the serious-engineering shape: causal clarity, a novelty claim against a named comparison, and a dialectic whose attack side names breaking conditions. That last invariant is the anti-advocacy discipline.
 
 **Intended use.** structured blueprint for systemic solution requiring core-mechanism definition.
 
@@ -5317,12 +5318,12 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 **Extension shape.** `PolicyMechanisticDesignProposal`, `TechnicalMechanisticDesignProposal`, `InstitutionalMechanisticDesignProposal`.
 
 **Design tensions.**
-- Dialectic Balance (invariant) vs pragmatic advocacy — proposals are naturally persuasive; demanding equal detail on failure modes is contrary to the advocacy genre.
-- Novelty Requirement (invariant) vs incremental improvements — most useful design is incremental; the requirement to identify unique contribution pressures proposers to over-claim.
+- Attack-side specificity (invariant) vs pragmatic advocacy — proposals are naturally persuasive, and requiring `why_it_fails` to name the conditions under which the mechanism breaks works against the advocacy genre.
+- Novelty claim (invariant) vs incremental improvements — most useful design is incremental. A named comparison lets a modest contribution be stated honestly, but the proposer still chooses the comparison, and a convenient one inflates the contribution.
 - Causal Clarity vs gestural description — 'A causes B' is often the hardest part to specify, and the pattern demands it.
 
 **Tradeoffs.**
-- Gains: structural dialectic balance, explicit mechanism-of-action requirement, novelty claims made visible.
+- Gains: a structural dialectic (both sides required, the attack side specific), an explicit mechanism-of-action requirement, novelty claims made visible and checkable.
 - Gives up: speed and sometimes simplicity. MechanisticDesignProposal is heavy; lighter formats suit routine work.
 
 **Critique (diagnostic, not contract requirements).**
@@ -5330,13 +5331,16 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - 'Dialectic Balance: why_it_fails must be as detailed as why_it_works' compares detail with no measure, and the varies line assigns 'dialectic depth' to descendants — so the comparison was both uncheckable and aimed at descendant territory. What is universal is that the attack side names conditions rather than gesturing, which is checkable and is what the balance was reaching for.
 - 'Causal Clarity: must define the mechanism of action (how A causes B)' was already good and is now explicit about what it excludes. That connects to `Correlation`, adjudicated earlier in this pass, whose new invariants forbid reading co-movement as a licence to intervene: a core_mechanism that names a correlation gives a leverage point nobody can pull, which is now this card's second failure mode.
 - Zero failure modes on a card with two consumers. The three added are the three ways the required fields get filled without doing their job — a token caveat, a correlation dressed as a mechanism, and risks listed but never weighed against the projections the card also requires.
+- Resolved 2026-10-04. `what_is_new` was required to identify 'the contribution that is not already available' without saying available to whom or compared with what, so an unanchored claim of novelty satisfied it and no second party could recheck it. The invariant now requires the comparison to be named, the repair `Realizable` and `Novelty` already carry; the schema description asks for the same, so an agent filling the field is told what the contract binds. Naming the comparison makes the over-claiming pressure in the second tension detectable rather than removing it, so the remaining way the field goes wrong, a weak or outdated comparison, is now a failure mode (disposition: detected, since the named comparison can be checked). The intersection does not mention the novelty claim while the schema requires `what_is_new` in every context; both were kept as the 2026-07-25 adjudication left them. Found while mapping the Meaning Model's alien add-on, whose candidate is this card's nine fields.
+- Corrected 2026-10-04: `why_it_exists`, `removability`, the first tension and the first tradeoff still described the 'equal detail' Dialectic Balance invariant replaced on 2026-07-25, and the family discussion named `Mechanism` and `Steelman`, which are not patterns. DesignArchitect composes `SteelmanCheck` and `PreMortem`.
 
-**In the family.** Design-artifact primitive produced by DesignArchitect. Paired with Mechanism (the leverage unit), PreMortem (why-it-fails source), and Steelman (why-it-works source). Compare with FrameSpec — MechanisticDesignProposal is the design artifact; FrameSpec is the requirement artifact.
+**In the family.** Design-artifact primitive produced by DesignArchitect, which defends a proposal with SteelmanCheck (the source of `why_it_works`) and attacks it with PreMortem (the source of `why_it_fails`). `what_is_new` is the proposer's own novelty claim; Novelty is the independent judgment of the same question against a named reference base. Compare with FrameSpec — MechanisticDesignProposal is the design artifact; FrameSpec is the requirement artifact.
 
 **Supersedes (prior versions).**
 - `MechanisticDesignProposal#8cf7`
 - `MechanisticDesignProposal#4c39`
 - `MechanisticDesignProposal#2f7a`
+- `MechanisticDesignProposal#e36f`
 
 ---
 
@@ -17457,7 +17461,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### SemanticTabu#984d
+### SemanticTabu#7a22
 
 `Mind` · `Inference` · R2 · T1
 
@@ -17470,23 +17474,24 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 > An ideation protocol where the agent explicitly lists existing mechanisms as 'Tabu' (forbidden). It must then solve the problem without using any mechanism on the list. This forces the activation of latent, low-probability pathways in the semantic network. It broadcasts the forbidden list via {{trace}} to ensure the entire swarm respects the constraint.
 
 **Invariants.**
-- {{constraint}} Satisfaction: Output ∩ TabuList == Ø
+- {{constraint}} Satisfaction: the output uses no listed mechanism, where sameness is {{equivalence}} under a stated canonical form.
 - Explicit Avoidance: Reasoning trace must cite what is being avoided
 
 **Preconditions.**
 - Known solutions exist
 
 **Postconditions.**
-- {{solution}} is structurally distinct from Clichés
+- {{solution}} avoids the listed mechanisms only; distinctness from unlisted known solutions is not established.
 
 **Failure modes.**
-- Paralysis: if the Tabu list covers all possible physics.
+- Paralysis: the tabu list covers every available approach, so no solution remains.
 
 **Dependency bindings.**
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `references` | `{{constraint}}` | `sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc` |
+| `references` | `{{equivalence}}` | `sema:Equivalence#mh:SHA-256:23f09a1881f50a07a5c565897f0837b3cfe4955a3b83250045f94abebf5b058c` |
 | `references` | `{{solution}}` | `sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab` |
 | `references` | `{{trace}}` | `sema:Trace#mh:SHA-256:b68d64423aa72b13a06714aa182baab79eb49a5a856dce56dd554fd63b41c2a9` |
 
@@ -17496,7 +17501,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Why Mind.** forbidden-set novelty enforcement
 
-**Can it be removed?** Removable — callers can restrict their own solutions. SemanticTabu is the explicit ideation-escape move; it specifically forbids known solutions to force novelty.
+**Can it be removed?** Removable — callers can restrict their own solutions. SemanticTabu is the explicit ideation-escape move: it forbids listed known solutions to push the search toward unlisted ones.
 
 **Intended use.** constraint-based novelty enforcement — forbid existing mechanisms to force latent pathways.
 
@@ -17511,9 +17516,8 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Extension shape.** `WritingSemanticTabu`, `ResearchSemanticTabu`, `PedagogicalSemanticTabu`.
 
 **Design tensions.**
-- Constraint Satisfaction (invariant: Output ∩ Tabu == Ø) vs paralysis — if Tabu covers everything, no solution exists.
+- Constraint Satisfaction (invariant) vs paralysis — if the list covers every available approach, no solution exists.
 - Explicit Avoidance (reasoning must cite what's avoided) vs natural flow — the requirement is discipline that slows reasoning.
-- Tabu list completeness — missed items slip through as 'novel.'
 
 **Tradeoffs.**
 - Gains: forced exploration of non-obvious solutions.
@@ -17523,13 +17527,15 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - Paralysis (the named failure) is structural when the Tabu list covers the available solution space.
 - Constraint Satisfaction invariant treats partial avoidance as full, which may not match intent.
 - The pattern assumes the Tabu list is honest; gaming the list is easy.
+- Resolved 2026-10-04. The postcondition promised a solution 'structurally distinct from Clichés', while the mechanism excludes only the listed mechanisms and the list-completeness tension already said missed items 'slip through as novel'. A consumer reading the postcondition would take tabu satisfaction as evidence of novelty. The postcondition now states the bounded guarantee in the form `NegativeProof` uses for a committed set, and that tension is resolved into it: the card declares the limit instead of conflicting with it. The invariant was set notation over an undefined `TabuList` and, as noted above, treated partial avoidance as full; sameness is now `Equivalence` under a stated canonical form, so a renamed or re-parameterised listed mechanism still counts as used, and strictness stays with the caller through the canonical form, which keeps 'enforcement strictness' in descendant territory as `usage.varies` says. Paralysis was reworded to this critique's own 'covers the available solution space' (editorial).
 
-**In the family.** Ideation primitive paired with Invert (the opposition move), LateralOptimization (domain shift), and NoiseInjection (escape loops). Compare with Creative — SemanticTabu forbids known; Creative encourages unknown. Different paths to novelty.
+**In the family.** Ideation primitive paired with Invert (the opposition move), LateralOptimization (domain shift), and NoiseInjection (escape loops). Compare with Creative — SemanticTabu forbids known; Creative encourages unknown. Different paths to novelty. Satisfying the list is not a novelty verdict; Novelty judges that separately.
 
 **Supersedes (prior versions).**
 - `SemanticTabu#82dd`
 - `SemanticTabu#3ef0`
 - `SemanticTabu#0823`
+- `SemanticTabu#984d`
 
 ---
 
@@ -25842,7 +25848,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### DesignArchitect#7f6b
+### DesignArchitect#48de
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -25867,7 +25873,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | `composes_with` | `{{strategy}}` | `sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef` |
 | `composes_with` | `{{summarize}}` | `sema:Summarize#mh:SHA-256:98dbf6e131bc82331b818b0b8fe816580020629f334d12e7c4c51b3f93c1c2d5` |
 | `composes_with` | `{{translate}}` | `sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea` |
-| `yields` | `{{mechanistic_design_proposal}}` | `sema:MechanisticDesignProposal#mh:SHA-256:e36fcadd8c29f9e55375e8bf3085dbc9b4feecd2f0f3bd96918b3663af109cc6` |
+| `yields` | `{{mechanistic_design_proposal}}` | `sema:MechanisticDesignProposal#mh:SHA-256:930aebe1a8b00fcfcf7c585e7c49b53f84c39988069e6d8c1721d568afe1a292` |
 
 #### Design
 
@@ -25910,10 +25916,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DesignArchitect#de8c`
 - `DesignArchitect#ac15`
 - `DesignArchitect#a422`
+- `DesignArchitect#7f6b`
 
 ---
 
-### DiscoveryProtocol#09e2
+### DiscoveryProtocol#21f4
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -25923,11 +25930,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **Mechanism.**
 
-> A protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each bound to a maximally distinct cognitive mode via GeneratorSolvers), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generate-asked-by-many-parallel-Solvers, then reduce-asked-by-a-Solver-whose-faculty-is-evaluation-and-composition-rather-than-generation. The ReduceSolver routes among modes (AggregateSolver for ensembles, TournamentSolver for adversarial selection, PortfolioSolver for quality-diversity preservation, {{synthesis}}-based merging of compatible mechanisms). TaxonomistSolver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.
+> A protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each generator bound to its own declared cognitive mode), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation, judged by {{novelty}}), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generation by many parallel {{solver}}s, then reduction by a solver whose faculty is evaluation and composition rather than generation. The reducing solver routes among modes: aggregation for ensembles, a tournament for adversarial selection, a portfolio for quality-diversity preservation, and {{synthesis}}-based merging of compatible mechanisms. A taxonomist solver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.
 
 **Invariants.**
 - Hard-boundary isolation: generators cannot see each other's outputs during generation; the reduction boundary is the first synthesis point.
-- Cognitive-mode diversity: each GeneratorSolver is bound to a maximally distinct mode, not just sampled from one model at different temperatures.
+- Cognitive-mode diversity: each generator is bound to a declared mode that no other generator shares; one model sampled at different temperatures does not make distinct modes.
 - Non-compensatory reduction gate: novelty is a gate condition, not a tiebreaker — a structurally novel mechanism survives even if it scores lower on surface plausibility.
 
 **Dependency bindings.**
@@ -25935,8 +25942,10 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
+| `composes_with` | `{{novelty}}` | `sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{discover}}` | `sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b` |
+| `references` | `{{solver}}` | `sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b` |
 
 #### Design
 
@@ -25948,7 +25957,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **Design tensions.**
 - Hard-boundary isolation vs cross-pollination — the invariant forbids generators seeing each other's outputs during generation, which prevents premature convergence and also prevents productive mid-generation exchange.
-- Cognitive-mode diversity vs coordination — requiring maximally distinct modes spreads search widely and makes reduction harder (the syntheses must bridge genuinely different modes).
+- Cognitive-mode diversity vs coordination — requiring distinct declared modes spreads search widely and makes reduction harder (the syntheses must bridge genuinely different modes).
 - Population size vs compute cost — more generators produce more diversity at linearly increasing cost.
 
 **Tradeoffs.**
@@ -25960,14 +25969,17 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - 'Maximally distinct modes' is an ideal; defining what makes modes distinct is itself judgment.
 - The reduction step is where errors compound — diverse generators producing incompatible outputs that the reducer must reconcile.
 - The protocol assumes reduction is possible; some genuinely divergent generators produce outputs that can't be synthesized, which the pattern treats as failure.
+- Resolved 2026-10-04. Cognitive-mode diversity bound each generator to a 'maximally distinct' mode, which the critique above already called an ideal. Maximality cannot be checked by anyone; what a second party can check is that each generator's mode is declared, that no two generators share one, and that temperatures of one model are not counted as modes, which was the invariant's operative clause. The mechanism was aligned so it does not claim more than the contract.
+- Resolved 2026-10-04. The mechanism named GeneratorSolvers, ReduceSolver, AggregateSolver, TournamentSolver, PortfolioSolver and TaxonomistSolver, none of which resolves, and called the solvers 'Solvers' without referencing `Solver`, the card that declares the '[descriptor]Solver' convention. The roles are now described in lowercase and `Solver` is referenced. Minting was considered and refused under this repository's rule: PatternDiscovery found no single card covering the taxonomist role (Novelty, Equivalence, OntologyAdapt and OptimalStop each cover part of it) and none covering quality-diversity selection, a real gap, but each name had one site in the library. ReduceSolver, which also appears in Solver and TemporalEnsembleForecasting, had three sites before this change and is left to a naming decision. The novelty dimension restated `Novelty`'s definition in prose and now references it. The usage block is empty, so this pass reasoned from the tensions, tradeoffs and critique.
 
-**In the family.** A protocol sibling of CollaborativeWritingProtocol and EthicalReasoningProtocol. Uses ConceptualDecomposition as its architectural method. Compare with Discover — DiscoveryProtocol is population-based; Discover is query-based. Different scales of the same intent.
+**In the family.** A protocol sibling of CollaborativeWritingProtocol and EthicalReasoningProtocol. Uses ConceptualDecomposition as its architectural method and Novelty as its reduction gate. Compare with Discover — DiscoveryProtocol is population-based; Discover is query-based. Different scales of the same intent.
 
 **Supersedes (prior versions).**
 - `DiscoveryProtocol#9958`
 - `DiscoveryProtocol#7ada`
 - `DiscoveryProtocol#fcb4`
 - `DiscoveryProtocol#cc28`
+- `DiscoveryProtocol#09e2`
 
 ---
 
@@ -28259,7 +28271,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PUREBrainstorming#c7c8
+### PUREBrainstorming#aab7
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -28282,7 +28294,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | `composes_with` | `{{pure_check}}` | `sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e` |
 | `composes_with` | `{{pure_optimization}}` | `sema:PUREOptimization#mh:SHA-256:1bed0310eb0f63317d78d111be11f7f3dd78f5ec91bb442eaf7148287d411bb6` |
 | `references` | `{{p_u_r_e}}` | `sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd` |
-| `yields` | `{{mechanistic_design_proposal}}` | `sema:MechanisticDesignProposal#mh:SHA-256:e36fcadd8c29f9e55375e8bf3085dbc9b4feecd2f0f3bd96918b3663af109cc6` |
+| `yields` | `{{mechanistic_design_proposal}}` | `sema:MechanisticDesignProposal#mh:SHA-256:930aebe1a8b00fcfcf7c585e7c49b53f84c39988069e6d8c1721d568afe1a292` |
 
 #### Design
 
@@ -28326,6 +28338,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREBrainstorming#9ba1`
 - `PUREBrainstorming#c534`
 - `PUREBrainstorming#856f`
+- `PUREBrainstorming#c7c8`
 
 ---
 

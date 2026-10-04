@@ -10,6 +10,25 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-10-04
+
+This release refines five bootstrap definitions, including two dependency
+cascades. Existing snapshots retain their original identities; consumers choosing
+to upgrade should use the new definitions and vocabulary roots.
+
+### Fixed
+
+- `MechanisticDesignProposal` requires novelty claims to name their comparison
+  and records weak or outdated comparisons as a failure mode.
+- `SemanticTabu` defines avoidance against the listed mechanisms using a stated
+  canonical form; satisfying the tabu list does not establish novelty against
+  unlisted solutions.
+- `DiscoveryProtocol` requires declared distinct cognitive modes, references
+  `Solver` and `Novelty`, and describes unminted solver roles in ordinary prose.
+- The five changed identities, including the dependency cascade to
+  `DesignArchitect` and `PUREBrainstorming`, record their published predecessors.
+  The library still contains 457 patterns.
+
 ## [0.7.0] - 2026-09-28
 
 This release changes bootstrap definitions and discovery signatures. Existing
