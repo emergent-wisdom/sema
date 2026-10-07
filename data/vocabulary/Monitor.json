@@ -27,15 +27,18 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "related": [
+      "DetectorSelfTest#8d48"
     ]
   },
-  "sema_ref": "Monitor#d316",
-  "sema_id": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f",
-  "sema_stub": "d316",
   "failure_modes": [
     "Monitoring load becomes the {{anomaly}}: the observation cost is large enough to shift the baseline it is measuring against.",
     "Baseline drift: the target changes legitimately and the unchanged baseline reports it as deviation."
   ],
+  "sema_id": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f",
+  "sema_ref": "Monitor#d316",
+  "sema_stub": "d316",
   "dependencies": {
     "composes_with": {
       "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",

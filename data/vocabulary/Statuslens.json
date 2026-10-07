@@ -1,0 +1,36 @@
+{
+  "handle": "Statuslens",
+  "gloss": "Assess checkable reasoning the same way whoever offers it; let the speaker matter only for testimony",
+  "mechanism": "When a statement is judged, its checkable reasoning is assessed as if it were anonymous, before the speaker is considered. Who said it may then adjust the weight of testimony, the claims taken on the speaker's word, through {{source_evaluate}}, but never the assessment of reasoning that can be checked.",
+  "invariants": [
+    "Checkable reasoning is assessed before, and independently of, the speaker's identity.",
+    "The speaker's identity adjusts only the weight of testimony."
+  ],
+  "failure_modes": [
+    "Halo reading: the same argument is read as insightful from a high-status speaker and as naive from a low-status one.",
+    "Testimony confusion: an unverifiable claim is accepted as if it were checked reasoning."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Prestigeloan",
+      "Motivejump"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Statuslens#mh:SHA-256:0c70df4b827787a896c15ba16dcc60280c08805dbd719389c75ffe8d043b328c",
+  "sema_ref": "Statuslens#0c70",
+  "sema_stub": "0c70",
+  "dependencies": {
+    "references": {
+      "source_evaluate": "sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

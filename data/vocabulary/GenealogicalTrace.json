@@ -22,6 +22,9 @@
     "path": [
       "Society",
       "Protocols"
+    ],
+    "related": [
+      "Sideinherit"
     ]
   },
   "sema_id": "sema:GenealogicalTrace#mh:SHA-256:8c7f219eedc7c40e86dc84e0efb9e5890d373ab73fc09731ee21a2fb4183bfe7",

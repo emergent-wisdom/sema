@@ -11,14 +11,17 @@
     ],
     "supersedes": [
       "sema:Incongruity#mh:SHA-256:a00d6f98c7b324325a2a35728e5d7daea982e408c5b00c4d95444e1b1dc5ba99"
+    ],
+    "related": [
+      "Callshort#9525"
     ]
   },
-  "sema_id": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc",
-  "sema_ref": "Incongruity#479e",
-  "sema_stub": "479e",
   "invariants": [
     "Names both the prediction and the observation; without both there is no mismatch to report."
   ],
+  "sema_id": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc",
+  "sema_ref": "Incongruity#479e",
+  "sema_stub": "479e",
   "dependencies": {
     "references": {
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc",

@@ -1,0 +1,37 @@
+{
+  "handle": "Dissentkeep",
+  "gloss": "Keep a standing route for challenging a policy after it has been adopted",
+  "mechanism": "An adopted policy keeps a standing route for challenge: who may raise one, where, and by when it will be answered. Raising a challenge through the route carries no penalty. Unlike a {{constitution}}, which is amendable only out of band, the policy names its own route back to question.",
+  "invariants": [
+    "The policy names a challenge route, who may use it and an answer deadline.",
+    "A challenge raised through the route is answered by its deadline.",
+    "Using the route carries no penalty."
+  ],
+  "failure_modes": [
+    "Closed door: once adopted, a policy can only be obeyed.",
+    "Endless relitigation: the same challenge is raised again without new grounds."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Silencevote",
+      "Correctionwelcome"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Dissentkeep#mh:SHA-256:dcb99482ad7169118ca6b854b08ef332b773f1bd508ee656ff6ba1e8a2bba062",
+  "sema_ref": "Dissentkeep#dcb9",
+  "sema_stub": "dcb9",
+  "dependencies": {
+    "references": {
+      "constitution": "sema:Constitution#mh:SHA-256:3deb8d31b8ace640b29c0a4d547191eebbcdedb46548f6c09711860be3af4645"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

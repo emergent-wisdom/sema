@@ -1,0 +1,32 @@
+{
+  "handle": "Crossripening",
+  "gloss": "Development in one area makes development in another newly possible",
+  "mechanism": "A change in one capacity or setting supplies something another developmental path lacked, such as a prerequisite, access, support, a distinction or a way of practising, so that the second path gains an opportunity for development it did not have before. The second development need not then occur, and parallel improvement without such a contribution is not an instance.",
+  "invariants": [
+    "The contribution crosses two distinguishable areas of development.",
+    "It changes what development is possible in the receiving area."
+  ],
+  "failure_modes": [
+    "Coincidence read as enabling: two areas improving at once are taken as one enabling the other.",
+    "Possibility read as certainty: a newly possible development is assumed to happen."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ConceptBlend",
+      "Cocapacity",
+      "Readyrise"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Crossripening#mh:SHA-256:9f964712c0fa7c10e842d94a84ada82d4adf7840062afbfc88af7485a987418e",
+  "sema_ref": "Crossripening#9f96",
+  "sema_stub": "9f96",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

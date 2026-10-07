@@ -29,7 +29,8 @@
     "tier": 2,
     "ring": 0,
     "related": [
-      "DissentSeek"
+      "DissentSeek",
+      "DistinguishingTest"
     ],
     "supersedes": [
       "sema:ConfirmationBlock#mh:SHA-256:3daea9633d69418a61fe6cca9416ab47156bef6d7b594a2c7be753b06205dadf",

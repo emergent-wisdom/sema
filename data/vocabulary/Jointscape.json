@@ -1,0 +1,80 @@
+{
+  "handle": "Jointscape",
+  "gloss": "The options several parties' combined choices make available, with the contribution each option needs from each party",
+  "mechanism": "A record of the {{option}}s available to two or more parties acting together. Each option lists the contribution it needs from each party involved, and options that need every party are marked as joint, since no party could reach them alone.",
+  "invariants": [
+    "Names at least two parties.",
+    "Every option lists the contribution it needs from each party involved.",
+    "Options that need every party are marked as joint."
+  ],
+  "failure_modes": [
+    "Solo listing: each party lists only its own options, and the joint ones are never generated.",
+    "Phantom contribution: an option assumes a contribution its party has not offered."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "parties",
+      "options"
+    ],
+    "properties": {
+      "parties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 2
+      },
+      "options": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "description",
+            "contributions",
+            "joint"
+          ],
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "contributions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "Party name to the contribution the option needs from it"
+            },
+            "joint": {
+              "type": "boolean",
+              "description": "True when the option needs every party"
+            }
+          }
+        }
+      }
+    }
+  },
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Overlap#c701",
+      "Decision#b140"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Jointscape#mh:SHA-256:8aca715a17f62a9a94b5f5918104dcb62b8864e5aec12f81d8003a28eac2399f",
+  "sema_ref": "Jointscape#8aca",
+  "sema_stub": "8aca",
+  "dependencies": {
+    "references": {
+      "option": "sema:Option#mh:SHA-256:134bea703754281f36b52e9e6901090a3db9ce84f0d843a8e1d18151c0c5beb0"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

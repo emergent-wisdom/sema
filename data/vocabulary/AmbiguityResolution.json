@@ -19,10 +19,11 @@
     "path": [
       "Society",
       "Protocols"
-    ]
+    ],
+    "caution": "Forced votes can delete contested data \u2014 keep deletion recoverable, and limit who may flag, since each flag compels a resolution."
   },
-  "sema_ref": "AmbiguityResolution#0bd2",
   "sema_id": "sema:AmbiguityResolution#mh:SHA-256:0bd2dd6da1b71ae6670ec4b5cb5c9fb8f2652f94eecd452ad8f7f4bb11eacff2",
+  "sema_ref": "AmbiguityResolution#0bd2",
   "sema_stub": "0bd2",
   "dependencies": {
     "composes_with": {

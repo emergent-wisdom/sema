@@ -1,0 +1,34 @@
+{
+  "handle": "ContrastClass",
+  "gloss": "A why-question asks why an outcome happened rather than an alternative, and the alternative decides which explanation answers it",
+  "mechanism": "An explanatory question asks why something happened rather than an alternative, its foil, whether the foil is stated or only implied. An answer explains the contrast by citing a difference between the causal histories of the outcome and the foil; a cause present in both does not explain why one happened rather than the other, however important it is. Changing the foil changes the answer: why a build fails on Windows rather than Linux points to what differs between the platforms, while why it fails today rather than yesterday points to what changed. Two parties can give conflicting answers to what sounds like one question when each holds a different foil, and both can be right.",
+  "invariants": [
+    "An explanatory question has a foil, stated or implied: the alternative its outcome is contrasted with.",
+    "An answer explains the contrast only by citing a difference between the causal histories of the outcome and the foil."
+  ],
+  "failure_modes": [
+    "Unstated foil: parties answer one why-question against different alternatives and take their answers to conflict.",
+    "Shared cause cited: a cause present in both the outcome and the foil is offered as the reason one happened rather than the other.",
+    "Foil drift: the alternative changes during an inquiry without notice, so evidence gathered for one contrast is applied to another."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Causation",
+      "RecursiveRootCause",
+      "Premisebridge",
+      "QuestionSubstitution"
+    ],
+    "minted": "2026-10-06T21:57:08+02:00"
+  },
+  "sema_id": "sema:ContrastClass#mh:SHA-256:7398dcd341662f9a871586de9037c08c6a825113c47694f18d764e353ba55a77",
+  "sema_ref": "ContrastClass#7398",
+  "sema_stub": "7398",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

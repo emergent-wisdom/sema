@@ -1,0 +1,33 @@
+{
+  "handle": "Swayhold",
+  "gloss": "A recognisable form or function persists through continual adjustment",
+  "mechanism": "As conditions or internal dynamics vary, ongoing adjustments contribute to keeping a form or function, and the same underlying method can make those adjustments without being replaced. Both a continuing form or function and adjustments that sustain it must be present; mere change, mere persistence, or accidental similarity across states is not an instance, and a rigid structure that withstands a disturbance without changing is not one either.",
+  "invariants": [
+    "A form or function continues over the interval considered.",
+    "Ongoing adjustments contribute to its continuation."
+  ],
+  "failure_modes": [
+    "Adjustment read as instability: visible adjustment that sustains continuity is called instability.",
+    "Survival read as adaptation: anything that survives is called adaptive, even when no adjustment sustains it.",
+    "Steadiness read as headroom: a form held steady by adjustment is taken to show spare capacity, when the adjustments may be close to their limit."
+  ],
+  "_meta": {
+    "path": [
+      "Physics",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Equilibrium",
+      "Robustness",
+      "Morphproof"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Swayhold#mh:SHA-256:171a860cdab6ec518334ed3fac14487543881f129a0df764b6664a69798f70ff",
+  "sema_ref": "Swayhold#171a",
+  "sema_stub": "171a",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

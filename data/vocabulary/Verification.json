@@ -18,16 +18,19 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "Leapsettle#3f9f"
     ]
   },
-  "sema_ref": "Verification#c8de",
-  "sema_id": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778",
-  "sema_stub": "c8de",
   "invariants": [
     "A verification states what it was checked against \u2014 which {{spec}}, or which observation.",
     "Where the underlying {{check}} yields Unknown, the verification reports Unknown.",
     "The assertion under verification exists before the verification runs."
   ],
+  "sema_id": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778",
+  "sema_ref": "Verification#c8de",
+  "sema_stub": "c8de",
   "dependencies": {
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",

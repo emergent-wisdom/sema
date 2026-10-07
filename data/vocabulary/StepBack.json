@@ -30,11 +30,11 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "MandatoryAbstraction"
     ]
   },
-  "sema_id": "sema:StepBack#mh:SHA-256:f3457758c4422538953f065b630718b766104ce13d0979c573fe55e5d1ad27b1",
-  "sema_ref": "StepBack#f345",
-  "sema_stub": "f345",
   "signature": [
     "Think(Problem)"
   ],
@@ -46,6 +46,9 @@
       "description": "Levels of abstraction this may climb before descent is forced."
     }
   ],
+  "sema_id": "sema:StepBack#mh:SHA-256:f3457758c4422538953f065b630718b766104ce13d0979c573fe55e5d1ad27b1",
+  "sema_ref": "StepBack#f345",
+  "sema_stub": "f345",
   "dependencies": {
     "references": {
       "problem": "sema:Problem#mh:SHA-256:2580c43677ec78ee7ee428d200662c6096e4eab38c2c5a868154979074cc0f08",

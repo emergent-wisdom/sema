@@ -22,10 +22,13 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "EvidenceDependence"
     ]
   },
-  "sema_ref": "SelfConsistency#4f68",
   "sema_id": "sema:SelfConsistency#mh:SHA-256:4f68cebc4f82197975d6098701b0431bafb1e79792d19cb69a8d9dbad5036b8a",
+  "sema_ref": "SelfConsistency#4f68",
   "sema_stub": "4f68",
   "dependencies": {
     "references": {

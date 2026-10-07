@@ -1,0 +1,36 @@
+{
+  "handle": "Nestmap",
+  "gloss": "Name the larger situations a moment sits inside, and what each one constrains",
+  "mechanism": "For a moment that matters, such as a conversation, a request or a decision, the enclosing situations are named from nearest to widest: this talk, inside this disagreement, inside this working relationship. Each layer is treated as a {{context}} whose constraints the inner ones inherit, and the constraint each layer places on the moment is stated.",
+  "invariants": [
+    "The enclosing situations are named from nearest to widest.",
+    "Each named layer states the constraint it places on the moment."
+  ],
+  "failure_modes": [
+    "Flat reading: the moment is handled as if nothing enclosed it.",
+    "Layer inflation: so many layers are named that the moment itself is lost."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Situfit",
+      "Framecapture"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Nestmap#mh:SHA-256:8b8f409b40e98c43817e4ee50d81d4c93ac62a614cb89ddb34087ddb0aef6437",
+  "sema_ref": "Nestmap#8b8f",
+  "sema_stub": "8b8f",
+  "dependencies": {
+    "references": {
+      "context": "sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

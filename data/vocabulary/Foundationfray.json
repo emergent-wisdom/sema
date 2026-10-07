@@ -1,0 +1,31 @@
+{
+  "handle": "Foundationfray",
+  "gloss": "Small losses in supporting practices progressively weaken the capabilities that depend on them",
+  "mechanism": "Repeated omissions, forgotten skills or deteriorating support reduce the reliability of basic practices, and more advanced activity continues for a time while its dependable conditions erode as the losses accumulate. The practice must still support the capability: a practice retired because a reliable replacement removed the dependency is not an instance.",
+  "invariants": [
+    "A supporting practice deteriorates over the interval considered.",
+    "A capability depends on that practice and weakens as it deteriorates."
+  ],
+  "failure_modes": [
+    "Success read as soundness: a few successful advanced performances are taken to show intact foundations.",
+    "Obsolescence read as fraying: an obsolete practice is defended merely because it was once foundational."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Leapdebt",
+      "Decay"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Foundationfray#mh:SHA-256:4f698724ecb7fda74fe7b123b3aabd757c1dff93254e8701054bf04e70a22257",
+  "sema_ref": "Foundationfray#4f69",
+  "sema_stub": "4f69",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

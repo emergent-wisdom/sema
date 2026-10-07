@@ -55,7 +55,8 @@
   "_meta": {
     "tier": 2,
     "related": [
-      "sema:Decompose#mh:SHA-256:31c56ead72462a2b55d1056d6d4878a4e031ebb43b7160743b861aa1c294cafe"
+      "sema:Decompose#mh:SHA-256:31c56ead72462a2b55d1056d6d4878a4e031ebb43b7160743b861aa1c294cafe",
+      "Labelsqueeze#5363"
     ],
     "ring": 2,
     "path": [

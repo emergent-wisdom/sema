@@ -1,0 +1,37 @@
+{
+  "handle": "PurposeLinkReview",
+  "gloss": "Guard against activities that continue after their link to their purpose has weakened",
+  "mechanism": "For each ongoing activity, the {{goal}} it serves and the latest evidence that it still serves it are recorded and reviewed on a schedule. An activity whose link to its goal cannot be shown is reconnected, redirected or stopped.",
+  "invariants": [
+    "Each ongoing activity names the goal it serves.",
+    "Each review records current evidence that the activity still serves that goal, or marks the link as broken."
+  ],
+  "failure_modes": [
+    "Purpose drift: the activity continues after its goal has moved or been met.",
+    "Proxy attachment: the activity is kept for its own measures, not for the goal."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Metricmirror",
+      "PracticeResponseReview",
+      "Meaningthin"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:PurposeLinkReview#mh:SHA-256:6f8593cf37e5aab8107fe18114cf93d5b06b17d742b324cc332ab14a2cdf8ed7",
+  "sema_ref": "PurposeLinkReview#6f85",
+  "sema_stub": "6f85",
+  "dependencies": {
+    "references": {
+      "goal": "sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

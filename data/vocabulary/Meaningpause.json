@@ -1,0 +1,36 @@
+{
+  "handle": "Meaningpause",
+  "gloss": "Postpone judging a claim until the speaker's meaning for its contested word is established",
+  "mechanism": "When a claim turns on a contested word, judgment of the claim waits. The listener restates, in other words, the meaning it takes the speaker to intend; the speaker confirms or corrects it; only then is the claim assessed. The listener's {{interpret}}ation is recorded with the context it was made in.",
+  "invariants": [
+    "The claim is assessed only after the speaker has confirmed or corrected a restated meaning.",
+    "The restatement does not use the contested word."
+  ],
+  "failure_modes": [
+    "Labelsnap: the listener reacts to the word's usual associations before checking what the speaker means.",
+    "Endless pause: meaning is renegotiated repeatedly so that the claim is never assessed."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "AmbiguityResolution#0bd2",
+      "Callshort"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Meaningpause#mh:SHA-256:421cdd1f70a30c57e4af6c2f78b8db4c051ffc6b204e9121444b19390caeecc7",
+  "sema_ref": "Meaningpause#421c",
+  "sema_stub": "421c",
+  "dependencies": {
+    "references": {
+      "interpret": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -22,11 +22,12 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Goalweave#5000",
+      "PurposeLinkReview#6f85"
     ]
   },
-  "sema_id": "sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70",
-  "sema_ref": "Goal#986b",
-  "sema_stub": "986b",
   "data_schema": {
     "type": "object",
     "required": [
@@ -73,6 +74,9 @@
       }
     }
   },
+  "sema_id": "sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70",
+  "sema_ref": "Goal#986b",
+  "sema_stub": "986b",
   "dependencies": {
     "references": {
       "result": "sema:Result#mh:SHA-256:c02a8d6817c2f0e14d5a9360824240f135905e8be25fd659feb76d1f44e274c6",

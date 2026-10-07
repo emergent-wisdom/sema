@@ -1,0 +1,37 @@
+{
+  "handle": "Limitlisten",
+  "gloss": "Re-measure present limits before a demanding step instead of assuming yesterday's capacity",
+  "mechanism": "Before a demanding step, current limits are measured rather than assumed, such as remaining {{budget}}, rate limits, available context and present load. The step is sized to the measured limits, and a limit that differs from the last measurement is recorded.",
+  "invariants": [
+    "Current limits are measured before each demanding step.",
+    "The step is sized to the measured limits.",
+    "A limit that changed since the last measurement is recorded."
+  ],
+  "failure_modes": [
+    "Stale capacity: a step is sized to limits that no longer hold.",
+    "Measurement drag: limits are re-measured so often that the work stalls."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Throttle#dd62",
+      "Reachsense"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Limitlisten#mh:SHA-256:bb16937632262c1fd9e6ee5c993172fa531b8aede4d401bec94c498eadab914c",
+  "sema_ref": "Limitlisten#bb16",
+  "sema_stub": "bb16",
+  "dependencies": {
+    "references": {
+      "budget": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

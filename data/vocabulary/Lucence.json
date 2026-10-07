@@ -1,0 +1,38 @@
+{
+  "handle": "Lucence",
+  "gloss": "Make a hard idea clearer for a named reader while keeping every distinction it depends on",
+  "mechanism": "Rewrite a difficult account for a named reader so that it becomes easier to follow without losing what makes it difficult. List the distinctions the account's conclusions depend on, and show where each appears in the clearer version. Unlike {{summarize}}, which keeps what is salient, this keeps what is load-bearing even when it is hard to state; whatever is left out is listed as not load-bearing.",
+  "invariants": [
+    "Names the reader the clarity is for.",
+    "Every listed load-bearing distinction appears in the clearer version.",
+    "Whatever is left out is listed, each item stated as not load-bearing."
+  ],
+  "failure_modes": [
+    "Flattening: a distinction is dropped because it was hard to state.",
+    "Clarity by omission: the account reads clearly because its difficult part is missing.",
+    "Mislabelled load: a distinction the conclusions depend on is listed as inessential."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Translate#31ed",
+      "Summary#105b"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Lucence#mh:SHA-256:b83de4598a7c11db4d05001f0a9f63a3e67edc615df2788b4d58dfa7353821a8",
+  "sema_ref": "Lucence#b83d",
+  "sema_stub": "b83d",
+  "dependencies": {
+    "references": {
+      "summarize": "sema:Summarize#mh:SHA-256:98dbf6e131bc82331b818b0b8fe816580020629f334d12e7c4c51b3f93c1c2d5"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

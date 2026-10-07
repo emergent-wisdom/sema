@@ -30,7 +30,8 @@
     "path": [
       "Mind",
       "Strategy"
-    ]
+    ],
+    "caution": "Documented attack vectors, ranked by severity, are an exploit guide \u2014 keep the report with those who patch the system."
   },
   "sema_id": "sema:RedTeam#mh:SHA-256:0a32204c14f4995c267183fa35a1fb5178624b6aacfa145b61b4c5f2d194fc19",
   "sema_ref": "RedTeam#0a32",

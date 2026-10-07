@@ -1,0 +1,31 @@
+{
+  "handle": "Syncdrift",
+  "gloss": "Activities that coordinated in time gradually move out of alignment",
+  "mechanism": "Related activities keep their individual operation while their timing changes relative to one another, so interactions that met their timing requirements increasingly arrive too early, too late or in an incompatible sequence. There must have been a working temporal relation that coordination depends on; different rhythms that keep fitting together, for example through a buffer, are not an instance.",
+  "invariants": [
+    "There was a working temporal relation between the activities, and coordination depends on it.",
+    "That relation drifts over the interval considered."
+  ],
+  "failure_modes": [
+    "Parts read as whole: each part operating correctly is taken to show that coordination is healthy.",
+    "One miss read as drift: a single missed interaction is taken as a sustained drift."
+  ],
+  "_meta": {
+    "path": [
+      "Physics",
+      "Time"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Linkfade",
+      "EbbFlowSync"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Syncdrift#mh:SHA-256:8e74226c455035003bc87733495f52bc0f5e4d631be9a178892b43b7c217081d",
+  "sema_ref": "Syncdrift#8e74",
+  "sema_stub": "8e74",
+  "sema_layer": "Physics",
+  "sema_category": "Time"
+}

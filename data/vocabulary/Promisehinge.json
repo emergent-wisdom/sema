@@ -1,0 +1,36 @@
+{
+  "handle": "Promisehinge",
+  "gloss": "A public commitment that states in advance what evidence would require revising it",
+  "mechanism": "A public commitment states, when it is made, the evidence that would require revising it and how a revision would be announced and explained, much as a {{strategy}} states its revision trigger. When that evidence appears, the commitment is revised as stated, not quietly kept and not quietly dropped.",
+  "invariants": [
+    "States, when made, the evidence that would require revision.",
+    "A revision is announced together with the evidence that triggered it."
+  ],
+  "failure_modes": [
+    "Unfalsifiable promise: no evidence could ever trigger a revision.",
+    "Quiet drop: the commitment is abandoned without the announced explanation."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "CommitmentDevice#548b",
+      "Sunsetkind"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Promisehinge#mh:SHA-256:680a37b683432500de0da328a91373a78cfe3f4df362bbb04e9bf0b4000edc4f",
+  "sema_ref": "Promisehinge#680a",
+  "sema_stub": "680a",
+  "dependencies": {
+    "references": {
+      "strategy": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

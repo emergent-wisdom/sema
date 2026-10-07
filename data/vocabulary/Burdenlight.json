@@ -1,0 +1,37 @@
+{
+  "handle": "Burdenlight",
+  "gloss": "List who bears the costs of a decision and who receives its benefits, and say where they differ",
+  "mechanism": "Before a decision is taken, its costs are listed by who bears them and its benefits by who receives them, extending the {{trade_off}} with who pays. Where the two lists name different parties, the decision record says so.",
+  "invariants": [
+    "Costs are listed with the parties who bear them.",
+    "Benefits are listed with the parties who receive them.",
+    "Where cost bearers and beneficiaries differ, the record states it."
+  ],
+  "failure_modes": [
+    "Hidden payer: costs fall on parties the analysis never names.",
+    "Netting blur: costs and benefits are netted, so their distribution disappears."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Absentseat",
+      "OpportunityCost#7f52"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Burdenlight#mh:SHA-256:ce67b135689d54cef000c6ac0e038e71a956b7b508b0a64df7de6ddf4f559320",
+  "sema_ref": "Burdenlight#ce67",
+  "sema_stub": "ce67",
+  "dependencies": {
+    "references": {
+      "trade_off": "sema:TradeOff#mh:SHA-256:7ed66791e094b316654a0bc85ebcc2d2cfb20686013c7d6fd8f0a79aaea4c169"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

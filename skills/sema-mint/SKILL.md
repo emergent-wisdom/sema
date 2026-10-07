@@ -86,12 +86,14 @@ If any step fails, the pattern is rejected with an error message. No partial wri
 Add `_meta.caution` if:
 - The pattern enables irreversible action (data loss, financial commitment, governance changes)
 - The pattern bypasses safety checks or oversight
-- The pattern enables evasion, manipulation, or covert coordination
+- The pattern enables evasion, manipulation, covert coordination, or the targeting of individuals
 - The risk isn't already explicit in the mechanism, invariants, or failure_modes
 
 Skip the flag if:
 - The pattern's existing fields make the risk self-evident
 - The pattern is purely cognitive (a reasoning lens) with no external effect
+
+A pattern that only describes a process still enables evasion, manipulation or targeting when its description doubles as a recipe for doing so; one that only describes a judgment error counts as purely cognitive.
 
 The caution sits in `_meta` (unhashed), so it can be revised without changing the pattern's identity.
 

@@ -1,0 +1,71 @@
+{
+  "handle": "Sunsetkind",
+  "extends": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696",
+  "gloss": "A classification that carries the condition under which it stops being used",
+  "mechanism": "A {{category}} defined together with its retirement condition: the observation, or the date, after which members are no longer to be treated as equivalent under it, and what to do with them then. Anyone applying the category checks the condition before relying on the grouping.",
+  "invariants": [
+    "The retirement condition is stated when the category is defined and can be checked by a party other than its author.",
+    "Once the retirement condition holds, no member is treated as equivalent under the category."
+  ],
+  "failure_modes": [
+    "Unreachable condition: the retirement condition can never be observed to hold, so the category never retires.",
+    "Unchecked expiry: the condition holds but nobody looks, and the category keeps sorting.",
+    "Hair trigger: the condition fires on noise and the classification churns."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "label",
+      "retire_when"
+    ],
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "Name of the category"
+      },
+      "parent": {
+        "type": "string",
+        "description": "Parent category ID (optional, for hierarchies)"
+      },
+      "members": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of items belonging to this category"
+      },
+      "retire_when": {
+        "type": "string",
+        "description": "The observation or date after which the category is retired"
+      },
+      "then": {
+        "type": "string",
+        "description": "What replaces the category, or what happens to its members, after retirement"
+      }
+    }
+  },
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Assumption#d99b",
+      "Strategy#3dc5",
+      "Hypothesis#0989"
+    ],
+    "minted": "2026-10-05T20:03:20+02:00"
+  },
+  "sema_id": "sema:Sunsetkind#mh:SHA-256:5e6fde064d54045237cba7141efd7a69584a99867f722dcad1ee8d16e99c56f3",
+  "sema_ref": "Sunsetkind#5e6f",
+  "sema_stub": "5e6f",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

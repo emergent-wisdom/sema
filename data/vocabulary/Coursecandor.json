@@ -1,0 +1,36 @@
+{
+  "handle": "Coursecandor",
+  "gloss": "Admit a mistaken direction, say what showed it, and set a check others can use on the correction",
+  "mechanism": "When a direction turns out to be mistaken, the party responsible says so, states what showed it, as an {{intent_gap}} analysis would, and says what changes. It then sets an observable check by which others can judge whether the correction worked.",
+  "invariants": [
+    "The admission names the mistaken direction and the evidence that showed it.",
+    "The correction comes with an observable check that others can apply."
+  ],
+  "failure_modes": [
+    "Silent pivot: the direction changes without admitting the old one was wrong.",
+    "Ritual apology: the mistake is admitted but nothing checkable follows."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Revisance",
+      "Correctionwelcome"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Coursecandor#mh:SHA-256:639ef9c0c8ad7928ce5c1db6ac5f05bd618fe2c59771cf8d8bdd361fcfe1aa87",
+  "sema_ref": "Coursecandor#639e",
+  "sema_stub": "639e",
+  "dependencies": {
+    "references": {
+      "intent_gap": "sema:IntentGap#mh:SHA-256:0c14e83c328756592d5d0d2e690522c3589d33778ce38871cbcaf594f8dd679f"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

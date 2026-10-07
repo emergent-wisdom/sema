@@ -30,7 +30,8 @@
   "_meta": {
     "tier": 2,
     "related": [
-      "sema:MentalSim#mh:SHA-256:1eca2a515c38f3be5c3956be9885e8f1e5b931a958f60b8e21d97e99dd65f3dd"
+      "sema:MentalSim#mh:SHA-256:1eca2a515c38f3be5c3956be9885e8f1e5b931a958f60b8e21d97e99dd65f3dd",
+      "Kinproxy"
     ],
     "ring": 2,
     "supersedes": [

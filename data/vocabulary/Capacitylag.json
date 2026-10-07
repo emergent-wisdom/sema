@@ -1,0 +1,34 @@
+{
+  "handle": "Capacitylag",
+  "gloss": "Expectations or demands increase ahead of the capacity available to meet them",
+  "mechanism": "New demands arrive or grow before the relevant abilities, resources or coordination have developed enough to meet them, and the gap is produced or widened by that difference in timing, even where capacity is improving. A fixed mismatch without that timing is simply insufficient capacity, and a loss of capacity under unchanged demands is not an instance. The comparison is relative to particular demands and conditions, not a judgment of general ability.",
+  "invariants": [
+    "Demands arrive or increase over the interval considered.",
+    "The capacity to meet them develops more slowly than they grow."
+  ],
+  "failure_modes": [
+    "Gap read as unwillingness: the gap is taken to show that effort is being withheld.",
+    "Output read as catching up: rising output is taken to show that capacity has caught up.",
+    "Catching up assumed: closing the gap is assumed to be the only right outcome, when demands can also be reduced or refused."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Identitylag",
+      "Scaleasynchrony",
+      "Limitlisten",
+      "CapacityPressure"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Capacitylag#mh:SHA-256:977c018cdc8c7a053bad12a6cd98275477f3f106c8ac8bf975fce1dca8b6bb2c",
+  "sema_ref": "Capacitylag#977c",
+  "sema_stub": "977c",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

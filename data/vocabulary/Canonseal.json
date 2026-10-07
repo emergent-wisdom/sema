@@ -1,0 +1,37 @@
+{
+  "handle": "Canonseal",
+  "gloss": "Score an established option by the same criteria and evidence as its alternatives",
+  "mechanism": "When an established {{option}} is compared with alternatives, it is scored by the same {{criteria}} and the same standard of evidence as they are. Its reputation, age or adoption is recorded separately; it may break a tie, but it is not counted as a criterion.",
+  "invariants": [
+    "The established option and the alternatives are scored on the same criteria.",
+    "Reputation, age and adoption are recorded separately from the criteria."
+  ],
+  "failure_modes": [
+    "Incumbent pass: the established option is excused from evidence the alternatives must provide.",
+    "Novelty bias: alternatives are favoured for being new."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Decision#b140",
+      "Sunsetkind"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Canonseal#mh:SHA-256:27fcab38faefc506d3498d94e968d283d2a0a8bb70110996fca8d4a41a1c81ba",
+  "sema_ref": "Canonseal#27fc",
+  "sema_stub": "27fc",
+  "dependencies": {
+    "references": {
+      "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "option": "sema:Option#mh:SHA-256:134bea703754281f36b52e9e6901090a3db9ce84f0d843a8e1d18151c0c5beb0"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

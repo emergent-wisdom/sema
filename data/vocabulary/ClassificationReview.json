@@ -1,0 +1,37 @@
+{
+  "handle": "ClassificationReview",
+  "gloss": "Re-check a classification of agents who can learn of it, because being classified may change them",
+  "mechanism": "When a {{category}} is applied to agents who can learn how they were classified, such as people, teams or models, the classification states when and how its fit will be re-checked against the members' current behaviour. A re-check that finds members changed toward or away from the label records that the label itself may have caused the change.",
+  "invariants": [
+    "A classification of agents who can learn of it states when and how its fit is re-checked.",
+    "Re-checks compare members' current behaviour with the classification's criteria, not with their behaviour when first classified."
+  ],
+  "failure_modes": [
+    "Looping drift: members change in response to the label and the label stops fitting.",
+    "Self-fulfilment: members conform to the label, and the conformity is taken as confirmation."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Sunsetkind",
+      "Situfit",
+      "Labelloop"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:ClassificationReview#mh:SHA-256:78a54c404f13858297b6a948f4e141036307dad7a3e0ec5070be2bcf2c1350e6",
+  "sema_ref": "ClassificationReview#78a5",
+  "sema_stub": "78a5",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "Gainmark",
+  "gloss": "After a translation, separate the meaning it preserves from the meaning it adds",
+  "mechanism": "After a {{translate}} or other rendering, the result is read against the source and split into what it preserves and what it adds: connotations, emphases or structure the source lacks. Each addition is listed with where it occurs, so readers do not attribute it to the source.",
+  "invariants": [
+    "Every addition found is listed with where it occurs.",
+    "No listed addition is attributed to the source."
+  ],
+  "failure_modes": [
+    "Invisible gain: an added connotation is read as the source's meaning.",
+    "Gain denial: additions are dismissed as faithful nuance."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Interpret#98b9",
+      "Lossprint"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Gainmark#mh:SHA-256:844e6e11a2a6352d070d881e7eb48117a05b319d91a570f059671672739ff1f8",
+  "sema_ref": "Gainmark#844e",
+  "sema_stub": "844e",
+  "dependencies": {
+    "references": {
+      "translate": "sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

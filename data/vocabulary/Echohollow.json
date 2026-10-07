@@ -1,0 +1,33 @@
+{
+  "handle": "Echohollow",
+  "gloss": "A recurring practice keeps its outward form while its responsiveness to what it meets fades",
+  "mechanism": "Repetition keeps reproducing a recognisable practice while observations, circumstances or participants' responses have less influence on how it proceeds. The practice can still produce activity, records or small changes while losing the input-sensitive relation that made its repetitions responsive. Mere repetition is not an instance: a practice fixed from the outset never had the responsiveness to lose, and a considered decision that nothing needs to change is still a response.",
+  "invariants": [
+    "The same recurring practice is identifiable across occasions.",
+    "Its response to relevant differences in what it meets weakens over the interval considered."
+  ],
+  "failure_modes": [
+    "Stability read as hollowness: a practice that keeps returning the same result because nothing relevant changed is taken to have stopped responding.",
+    "Variation read as responsiveness: small changes, such as a changing counter, are taken to show that the practice still responds.",
+    "Form judged alone: the practice is judged by its appearance without specifying which input-response relation is meant."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "PracticeResponseReview",
+      "Meaningthin",
+      "Echoverturn"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Echohollow#mh:SHA-256:ad70b8bcaf7d340f453f0e9763c62a1a47470023514ce8f4a39fdf946aaa7938",
+  "sema_ref": "Echohollow#ad70",
+  "sema_stub": "ad70",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

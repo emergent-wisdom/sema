@@ -1,0 +1,33 @@
+{
+  "handle": "Aimscatter",
+  "gloss": "Effort disperses among competing directions until none receives enough to advance",
+  "mechanism": "Several directions keep drawing on a shared supply of effort or attention, and the allocation becomes too fragmented to sustain the progress each requires. Activity can continue in every direction while advancement stalls across the set. Switching and restarting can deepen the shortage but are not essential: even perfectly efficient allocation can be spread too thin. A single stalled direction, a short gap in visible output, or broad exploration that yields comparative learning is not an instance.",
+  "invariants": [
+    "Several directions compete for a shared capacity.",
+    "Over the interval considered, none of them receives enough of it to advance."
+  ],
+  "failure_modes": [
+    "Latency read as dispersal: directions waiting on an external dependency, or developing out of sight, are taken to be starved.",
+    "Exploration read as dispersal: a broad portfolio that is producing comparative learning is taken to be scattered.",
+    "Person read as cause: dispersal is taken to show low ability or motivation."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "StalledDirectionReview",
+      "Prioritize",
+      "ComputeBudget"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Aimscatter#mh:SHA-256:ded33011881ccc15c376a842d8b9d6627ae76264cf1a80517bb3ef1fe5ec66fa",
+  "sema_ref": "Aimscatter#ded3",
+  "sema_stub": "ded3",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

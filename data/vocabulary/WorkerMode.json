@@ -34,7 +34,8 @@
     "path": [
       "Society",
       "Protocols"
-    ]
+    ],
+    "caution": "Replaces the agent's whole governing prompt with the claimed manifest's persona and blocks exit until done \u2014 claim tasks only from trusted manifests."
   },
   "sema_id": "sema:WorkerMode#mh:SHA-256:ba4708992ae8c4469b3c98e025829fafa8caf6430f1da66ed74b50a8e9255990",
   "sema_ref": "WorkerMode#ba47",

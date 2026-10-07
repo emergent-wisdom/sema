@@ -585,23 +585,23 @@ The vocabulary encodes a cognitive architecture whose theoretical foundations, i
 
 The abstract \sema{Solver}{a447} contract is an interface any
 \sema{Agent}{e127} can take on for the duration of a Task.
-\sema{PolymorphicSolver}{cb20} specifies its default realization within the
-\sema{UniversalSolverTree}{655a}, across substrates such as an LLM, a human,
+\sema{PolymorphicSolver}{f7fe} specifies its default realization within the
+\sema{UniversalSolverTree}{f9fb}, across substrates such as an LLM, a human,
 a hybrid, a tool-using agent, or a nested composition. Each exposes the same
 five surfaces: Manifest (\sema{Card}{e4b2}), Execute
-(\sema{PolymorphicSolver}{cb20} itself---the universal atom), Consult
+(\sema{PolymorphicSolver}{f7fe} itself---the universal atom), Consult
 (\sema{SocraticLoop}{4f17}), Verify (\sema{Validate}{ffd1}), and Feedback
 (\sema{PerformanceSignal}{9dfb}). The Pattern Cards specify these contracts;
 an agent or executable binding realizes them.
 
 Each Solver node decides whether to execute the work directly or to decompose
-it and delegate to child Solvers. \sema{ConceptualDecomposition}{9a52} makes the
+it and delegate to child Solvers. \sema{ConceptualDecomposition}{d0fc} makes the
 recursion contract-bound: each sub-concept exposes the same Solver interface
 and is therefore delegatable, a stronger requirement than generic
 \sema{Decompose}{6994}. Inputs arrive as a \sema{Task}{a850} with all inherited
 constraints, and outputs return as a \sema{Solution}{8d55} carrying provenance,
 including the component tree for composite work. \sema{ComputeBudget}{4091}
-provides a pre-execution gate, while \sema{MarginalValueRule}{3499} governs
+provides a pre-execution gate, while \sema{MarginalValueRule}{6611} governs
 whether another level of decomposition is worth its cost. This uniform
 interface makes a composed solver usable as a node in a larger composition.
 The claim that typed composition can extend reasoning beyond the capacity of
@@ -626,7 +626,7 @@ Adversarial stress testing (Section~\ref{sec:hardening}) can cause tier downgrad
 The vocabulary applies the \textit{Babbage Principle}~\cite{babbage1832} to
 artificial intelligence as a routing objective: assign each sub-task to the
 cheapest competent solver. The uniform Solver contract gives this division of
-cognitive labor a common interface. In the \sema{FractalIntelligence}{5e3d}
+cognitive labor a common interface. In the \sema{FractalIntelligence}{1dca}
 architecture, \sema{Decompose}{6994} separates work into sub-tasks that can be
 handled by specialized, lower-cost agents or deterministic scripts, reserving
 more capable solvers for work that requires them. The budget and marginal-value

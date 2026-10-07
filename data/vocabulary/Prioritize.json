@@ -25,6 +25,9 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "related": [
+      "StalledDirectionReview#aa6a"
     ]
   },
   "sema_id": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd",

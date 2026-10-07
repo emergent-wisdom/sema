@@ -1,0 +1,43 @@
+{
+  "handle": "DistinguishingTest",
+  "gloss": "Find an observation that rival explanations predict differently before gathering more evidence that fits them all",
+  "mechanism": "When the evidence in hand leaves two or more explanations standing, as in {{evidence_underdetermination}}, each explanation's prediction is worked out for observations not yet made, and an observation is chosen on which the predictions differ: if a failure comes from expired credentials, the request is rejected with an authentication error; if it comes from lost connectivity, the request never reaches the server. The predictions, and which outcome would favour which explanation, are recorded before the observation is made. An inconclusive result is a permitted outcome and is recorded as inconclusive, not read as favouring an explanation. Evidence that every explanation predicts equally is not sought as a test, however easy it is to obtain, and an observation is worth making only when the decision at hand depends on which explanation holds.",
+  "invariants": [
+    "Two or more explanations are named, each with its predicted outcome for the chosen observation.",
+    "The predicted outcomes differ, and they are recorded, with what each would favour, before the observation is made.",
+    "An inconclusive result is recorded as inconclusive."
+  ],
+  "failure_modes": [
+    "Confirming test: an observation every explanation predicts is gathered and read as support for the favoured one.",
+    "After-the-fact prediction: the predictions are stated once the result is known, so any outcome can be read as favouring the favoured explanation.",
+    "Forced verdict: an inconclusive result is read as favouring one explanation.",
+    "Distinction without consequence: a costly distinguishing observation is made although the decision at hand is the same under every explanation."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EmpiricalTest",
+      "ConfirmationBlock",
+      "Experiment",
+      "Falsification",
+      "CounterfactualAnchor",
+      "EpistemicROI"
+    ],
+    "minted": "2026-10-06T21:57:08+02:00"
+  },
+  "sema_id": "sema:DistinguishingTest#mh:SHA-256:0439ea3afff1b4c2272771a447e76b0a02807f40bcbb0be92fa39ff598c7ec0f",
+  "sema_ref": "DistinguishingTest#0439",
+  "sema_stub": "0439",
+  "dependencies": {
+    "references": {
+      "evidence_underdetermination": "sema:EvidenceUnderdetermination#mh:SHA-256:999b3244c9eb73cf0968148e4ff5dd11e3abc42330ed5faafe618af972079e28"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

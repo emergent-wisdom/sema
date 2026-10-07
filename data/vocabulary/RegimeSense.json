@@ -45,6 +45,9 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "related": [
+      "Edgehold#4035"
     ]
   },
   "sema_id": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07",

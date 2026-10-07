@@ -13,16 +13,19 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "CompositionEdge"
     ]
   },
-  "sema_id": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b",
-  "sema_ref": "Synthesis#4f1f",
-  "sema_stub": "4f1f",
   "invariants": [
     "Names the parts it combined.",
     "Yields one artifact, not a collection of the parts.",
     "The whole asserts something no single part asserts."
   ],
+  "sema_id": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b",
+  "sema_ref": "Synthesis#4f1f",
+  "sema_stub": "4f1f",
   "dependencies": {
     "references": {
       "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b"

@@ -1,0 +1,33 @@
+{
+  "handle": "Mirrorbloom",
+  "gloss": "A self-representation changes its maker, so the next self-representation concerns a subject partly shaped by the earlier one",
+  "mechanism": "A person or agent makes a representation of itself and responds to it in ways that change its conduct or self-understanding, and those changes become part of the subject of a later self-representation, linking successive representations through their effects on the represented self. The representation must take part in changing the self, and that change must enter a later representation; successive snapshots with no such influence are not an instance. The representation can be a portrait, a narrative or a classification.",
+  "invariants": [
+    "A self-representation takes part in changing the represented self.",
+    "That change enters a later self-representation."
+  ],
+  "failure_modes": [
+    "Self-confirmation as evidence: confirmation that a description helped produce is taken as independent evidence.",
+    "Recursion as improvement: recursive self-description is assumed to make the self more accurate or better off."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Labelloop",
+      "Identitylag",
+      "Reflexion"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00",
+    "caution": "Steering surface \u2014 a tampered self-record shapes the conduct that later confirms it, so the integrity of self-descriptions must be enforced."
+  },
+  "sema_id": "sema:Mirrorbloom#mh:SHA-256:f79db8906e2e42bf4491784be7d2bb2bea248ff6fa5376a96d87c14b584f3c82",
+  "sema_ref": "Mirrorbloom#f79d",
+  "sema_stub": "f79d",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

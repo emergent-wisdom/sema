@@ -37,7 +37,19 @@ def test_workflow_environment_targets_repo_database_and_writable_cache(monkeypat
     env = workflow.workflow_environment()
 
     assert env["SEMA_DB_PATH"] == str(workflow.REPO_ROOT / "data" / "taxonomy.db")
+    assert env["SEMA_REPO_ROOT"] == str(workflow.REPO_ROOT)
     assert env["SEMA_CACHE_DIR"].endswith("sema-cache")
+
+
+def test_development_install_problem_accepts_only_this_checkouts_source():
+    workflow = load_workflow_module()
+    own = workflow.REPO_ROOT / "src" / "sema" / "__init__.py"
+    installed = Path("/opt/venv/lib/python3.12/site-packages/sema/__init__.py")
+
+    assert workflow.development_install_problem(own) is None
+    problem = workflow.development_install_problem(installed)
+    assert problem is not None and "not to this checkout's src/" in problem
+    assert "cannot be imported" in workflow.development_install_problem(None)
 
 
 def test_generated_refresh_keeps_updated_output(tmp_path):

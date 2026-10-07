@@ -1,0 +1,33 @@
+{
+  "handle": "Echoverturn",
+  "gloss": "Repetition progressively reverses a recurring element's effect",
+  "mechanism": "A recognisable element returns, and the accumulated encounters, or their changing relations, alter its effect until it works against the effect of its earlier appearances, while the repeated form stays traceable. Recurrence must contribute to the reversal, and the earlier and later effects must be opposed in the relevant respect; fading intensity, ordinary novelty, or a reversal caused by unrelated new information is not an instance.",
+  "invariants": [
+    "A recognisable element recurs.",
+    "Its recurrence contributes to an effect opposed to that of its earlier appearances."
+  ],
+  "failure_modes": [
+    "Form read as effect: an unchanged form is assumed to keep its effect.",
+    "Reinterpretation read as reversal: any change of interpretation is called a reversal.",
+    "One audience assumed: the same repetition is assumed to work the same way on every audience."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Echohollow",
+      "Spiralback",
+      "Ruleflip"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Echoverturn#mh:SHA-256:ad14e07c41bc25f71765e81af3788c522cad219e9a2673875ea8e5edcba62ca5",
+  "sema_ref": "Echoverturn#ad14",
+  "sema_stub": "ad14",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

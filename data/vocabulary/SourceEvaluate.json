@@ -20,14 +20,20 @@
     "path": [
       "Mind",
       "Inference"
+    ],
+    "related": [
+      "Motivejump#1820",
+      "Prestigeloan#7f65",
+      "Statuslens#0c70",
+      "EvidenceDependence"
     ]
   },
-  "sema_id": "sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58",
-  "sema_ref": "SourceEvaluate#24f6",
-  "sema_stub": "24f6",
   "signature": [
     "Judge(Agent)"
   ],
+  "sema_id": "sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58",
+  "sema_ref": "SourceEvaluate#24f6",
+  "sema_stub": "24f6",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",

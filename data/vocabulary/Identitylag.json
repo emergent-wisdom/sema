@@ -1,0 +1,34 @@
+{
+  "handle": "Identitylag",
+  "gloss": "Abilities or circumstances change while self-understanding stays organised around an earlier condition",
+  "mechanism": "A person's or agent's situation changes, but the self-description guiding its expectations and choices still reflects the earlier situation, so for a period what it takes itself to be able or expected to do differs from its changed circumstances. The change can be a gain, a loss or a reorganisation, and eventual adjustment is not guaranteed. A new inaccurate belief about the self is not automatically a lag; the self-description must have been anchored to an earlier condition.",
+  "invariants": [
+    "A self-understanding was anchored to an earlier condition.",
+    "A relevant change in abilities or circumstances has not yet been incorporated into it."
+  ],
+  "failure_modes": [
+    "Persistence read as stability: a persisting self-description is taken to show that circumstances have not changed.",
+    "Disagreement read as lag: every disagreement with an outside assessment is taken as a lag in self-understanding.",
+    "Claimed change accepted: a claimed new capability is taken as real when the evidence says it is unreliable."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Memory"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Capacitylag",
+      "Mirrorbloom",
+      "SelfReminder",
+      "Proprioception"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Identitylag#mh:SHA-256:2fbd64e18248d2f644e805630b2f0daf704beab0f095fcbc8fa6b8f47789945e",
+  "sema_ref": "Identitylag#2fbd",
+  "sema_stub": "2fbd",
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
+}

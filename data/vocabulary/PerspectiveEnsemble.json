@@ -39,6 +39,9 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "related": [
+      "Crossborn#814f"
     ]
   },
   "sema_id": "sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d",

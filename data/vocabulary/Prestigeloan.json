@@ -1,0 +1,36 @@
+{
+  "handle": "Prestigeloan",
+  "gloss": "Count a source's standing as support only inside its demonstrated domain of expertise",
+  "mechanism": "When a source's standing is offered as support for a claim, the claim's domain is compared with the domain where the source's expertise has been demonstrated. When {{source_evaluate}} weighs the source, its standing counts only for claims inside that domain; outside it, the claim is weighed as if it came from a non-expert.",
+  "invariants": [
+    "The claim's domain and the source's demonstrated domain are both named.",
+    "Outside the demonstrated domain, standing adds no weight."
+  ],
+  "failure_modes": [
+    "Halo transfer: expertise in one field is treated as authority in another.",
+    "Domain inflation: the demonstrated domain is drawn wide enough to cover any claim."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Inference"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Statuslens",
+      "GenealogicalTrace#8c7f"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Prestigeloan#mh:SHA-256:7f65c759c376cb6e2b949825b32d87dc0c4f6b010c1e250893fd769c0c6ca863",
+  "sema_ref": "Prestigeloan#7f65",
+  "sema_stub": "7f65",
+  "dependencies": {
+    "references": {
+      "source_evaluate": "sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

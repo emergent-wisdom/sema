@@ -1,0 +1,35 @@
+{
+  "handle": "Analogysnap",
+  "gloss": "Learn from the exact point where an analogy stops working",
+  "mechanism": "Take an analogy's correspondence relation by relation, as an {{analogy_bridge}} writes it down. Find the first relation that does not carry over to the target, and state what that failure reveals about the target. The breakdown is read as information, not only as the limit of the analogy.",
+  "invariants": [
+    "Names the first relation that fails to carry over.",
+    "States what the failure reveals about the target, not only that the analogy fails."
+  ],
+  "failure_modes": [
+    "Overreach: the analogy is used past the point where it fails.",
+    "Dismissal: the analogy is dropped at its first failure without reading what the failure shows."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ConceptBlend#4e1a"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Analogysnap#mh:SHA-256:7e954a2014d38ecc3517a0253633cb522cc81afa3885243332c308a470998d1e",
+  "sema_ref": "Analogysnap#7e95",
+  "sema_stub": "7e95",
+  "dependencies": {
+    "references": {
+      "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:cf62f5ead4f1aaa93a26feb06a9546035a93d1103cca1fccb1d4de5f08babc4a"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

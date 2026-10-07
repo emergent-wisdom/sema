@@ -1,0 +1,36 @@
+{
+  "handle": "Blindmark",
+  "gloss": "A representation that states what it cannot express, where its users will meet the statement",
+  "mechanism": "A map, model, chart, summary or other {{artifact}} that represents something carries a statement of what it cannot express and where its omissions lie. The statement names specific omissions and sits where users of the representation meet it, not in separate documentation.",
+  "invariants": [
+    "States specific things the representation cannot express.",
+    "The statement sits where users of the representation meet it."
+  ],
+  "failure_modes": [
+    "Buried caveat: the omission statement exists where no user looks.",
+    "Ritual caveat: a generic disclaimer names no specific omission."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Observe#4a04",
+      "Nuancefilter"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Blindmark#mh:SHA-256:a0ba74bd0ba41a02448d160a807e657659f23d8a46111104ec1e58108ca98b29",
+  "sema_ref": "Blindmark#a0ba",
+  "sema_stub": "a0ba",
+  "dependencies": {
+    "references": {
+      "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

@@ -1,0 +1,34 @@
+{
+  "handle": "Recifluence",
+  "gloss": "One party's influence changes another's response, which returns to change the first party's later influence",
+  "mechanism": "An influence from one participant changes how another responds, and that changed response reaches back and alters how the first acts toward the other, so the influences exchanged develop reciprocally, possibly through more participants or indirect routes. Influence must travel out and return through a changed response that affects later influence; alternating messages, parallel responses to a third cause, or one-way persuasion are not instances.",
+  "invariants": [
+    "An influence from one party changes another party's response.",
+    "The changed response returns and affects the first party's later influence."
+  ],
+  "failure_modes": [
+    "Single author: the whole development is credited to one initiator.",
+    "Reciprocity read as equality: reciprocal influence is assumed to mean equal power, consent, agreement or mutual benefit."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Feedback",
+      "Costeer",
+      "Coflourish",
+      "Cocapacity",
+      "Focalpeer"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Recifluence#mh:SHA-256:4fba0e2a7234f81a910b220abaedd7890ba08700646aeaa090a11f0c313dcf11",
+  "sema_ref": "Recifluence#4fba",
+  "sema_stub": "4fba",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

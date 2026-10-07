@@ -20,14 +20,18 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "Meaningpause#421c",
+      "Termdrift#18ef"
     ]
   },
-  "sema_ref": "Interpret#98b9",
-  "sema_id": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29",
-  "sema_stub": "98b9",
   "failure_modes": [
     "Context drift: a stored interpretation stays fixed while the semantic context it was made under changes, so a stale {{value}} reads as current."
   ],
+  "sema_id": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29",
+  "sema_ref": "Interpret#98b9",
+  "sema_stub": "98b9",
   "dependencies": {
     "accepts": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937",

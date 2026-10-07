@@ -1,0 +1,34 @@
+{
+  "handle": "Regulapse",
+  "gloss": "A process keeps operating while its capacity to detect or correct deviations weakens",
+  "mechanism": "The paths through which deviations become visible and get corrected lose reach, sensitivity, timeliness or influence relative to the process they regulate. Operation continues while its regulation becomes less able to bring relevant deviations under control. The weakness can lie in sensing, interpretation, transmission, authority or corrective action, so it need not be a broken detector, and ordinary output can improve, decline or hold steady meanwhile. Fewer alerts alone do not show it, and an obsolete control withdrawn in favour of an equally effective one is not a loss.",
+  "invariants": [
+    "There is a continuing process and a specified kind of deviation it is regulated against.",
+    "Its actual capacity to detect or correct that kind of deviation weakens over the interval considered."
+  ],
+  "failure_modes": [
+    "Quiet read as health: a falling number of alerts is taken to show that deviations are fewer.",
+    "Detector equated with regulation: a working detector is taken to show that corrections still happen.",
+    "Count read as capacity: fewer controls are taken to mean weaker regulation, or more controls stronger."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DetectorSelfTest",
+      "Brakefade",
+      "Monitor",
+      "Feedback"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Regulapse#mh:SHA-256:662742b5df9ca0eb160d1550498775d66e2f3188b3d254b9b4a0db4e6cee1541",
+  "sema_ref": "Regulapse#6627",
+  "sema_stub": "6627",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

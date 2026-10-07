@@ -1,0 +1,38 @@
+{
+  "handle": "Twinread",
+  "gloss": "Keep two interpretations that correct each other's blind spots, without merging them",
+  "mechanism": "Two interpretations of the same material are kept side by side. Each records where it corrects the other, something the other misses or misreads, and both stay in use. Unlike a {{dialectic}}, no synthesis is sought: conflicts between the two are recorded and left open.",
+  "invariants": [
+    "Each interpretation names at least one correction it supplies to the other.",
+    "No merged interpretation replaces the two.",
+    "Conflicts between the two are recorded, not resolved."
+  ],
+  "failure_modes": [
+    "Premature synthesis: the pair is merged and the corrections are lost.",
+    "Dominance: one interpretation becomes primary and the other a footnote.",
+    "Mutual excuse: each interpretation's failures are excused by pointing at the other."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "TensionHold#b220",
+      "Twoledger"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Twinread#mh:SHA-256:c4a5556a1ac0ef14fc2eadcff00c93689f1e28a873c837cfcdaede91f59407bc",
+  "sema_ref": "Twinread#c4a5",
+  "sema_stub": "c4a5",
+  "dependencies": {
+    "references": {
+      "dialectic": "sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

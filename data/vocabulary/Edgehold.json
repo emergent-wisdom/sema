@@ -1,0 +1,37 @@
+{
+  "handle": "Edgehold",
+  "gloss": "Know where your framework stops working while lacking a replacement, and use it only inside that edge",
+  "mechanism": "When an agent finds where its current framework fails, for example through {{regime_sense}}, but has no replacement, it records the edge as the specific cases the framework fails on and how. The framework is then used only inside the edge; cases at or beyond it are flagged as outside its reach rather than forced into it, and no replacement is adopted without evidence of its own.",
+  "invariants": [
+    "The edge is recorded as the specific cases the framework fails on.",
+    "Cases at or beyond the edge are flagged as outside the framework's reach, and the framework is not relied on for them.",
+    "No replacement framework is adopted without evidence of its own."
+  ],
+  "failure_modes": [
+    "Forced replacement: a weak alternative is adopted only to have one.",
+    "Edge denial: failing cases are explained away to keep the framework whole."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "FrameError#1d0a",
+      "Uncertain#91b5"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Edgehold#mh:SHA-256:4035875c98ea481ce52f08cb3fab5d5960d2a815a608d045d5c57b05cd350e6d",
+  "sema_ref": "Edgehold#4035",
+  "sema_stub": "4035",
+  "dependencies": {
+    "references": {
+      "regime_sense": "sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

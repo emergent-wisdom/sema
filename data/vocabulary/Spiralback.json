@@ -1,0 +1,36 @@
+{
+  "handle": "Spiralback",
+  "gloss": "Return to an earlier idea naming what is new since the last visit, or record the return as a repetition",
+  "mechanism": "When an earlier idea is revisited, the return names the tool, knowledge or question that is new since the previous visit and what it changes in the reading. A return that names nothing new is recorded as a repetition, the counterpart for ideas of a {{loop}} iteration that leaves its state unchanged.",
+  "invariants": [
+    "Each return names what is new since the previous visit, or states that nothing is new.",
+    "A return that names nothing new is recorded as a repetition."
+  ],
+  "failure_modes": [
+    "Echo loop: an idea is revisited again and again with nothing new.",
+    "Setting mistaken for insight: the same reading is presented as new because the setting changed."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Revisance",
+      "Askwiden"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Spiralback#mh:SHA-256:f9b7d63ffeecdc7a9ba56ae26022bab1b40cffc08b7bb2be2e03b31423eb1e10",
+  "sema_ref": "Spiralback#f9b7",
+  "sema_stub": "f9b7",
+  "dependencies": {
+    "references": {
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

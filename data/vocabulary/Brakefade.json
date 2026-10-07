@@ -1,0 +1,35 @@
+{
+  "handle": "Brakefade",
+  "gloss": "An activity continues while the practical ability to slow, stop or reverse it diminishes",
+  "mechanism": "Means that could slow, stop or reverse an ongoing activity become less effective, less available or more costly relative to the same control objective, while the activity continues. The loss can come from worn mechanisms, changed scale, lost knowledge, dispersed authority or accumulating commitments, and it can affect one control action and not another: reversal can grow harder while stopping stays available. Output may rise, fall or hold steady, so output alone does not show that control is retained. An activity that was always hard to stop shows a limitation rather than this decline, and a changed preference for stopping is not a change in the ability to stop.",
+  "invariants": [
+    "There is an ongoing activity.",
+    "The practical capacity for at least one of slowing, stopping or reversing it declines, judged against the same control objective."
+  ],
+  "failure_modes": [
+    "Output read as control: continued production is taken to show that the activity can still be slowed, stopped or reversed.",
+    "Paper brake: a documented stop or rollback procedure is taken to be an effective one.",
+    "Burden mistaken for loss: growth in what the activity carries is read as lost control without comparing against the same control objective.",
+    "One route for all: control is declared lost, or kept, everywhere because one route weakened or held."
+  ],
+  "_meta": {
+    "path": [
+      "Physics",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "StopDrill",
+      "Regulapse",
+      "Brakegrow",
+      "Reversibility"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Brakefade#mh:SHA-256:764a4addf9c36ad86e2039e19ebe9a0146b560938b7fbc13bad2def47b79b188",
+  "sema_ref": "Brakefade#764a",
+  "sema_stub": "764a",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

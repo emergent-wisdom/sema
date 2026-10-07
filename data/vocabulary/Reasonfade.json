@@ -1,0 +1,36 @@
+{
+  "handle": "Reasonfade",
+  "gloss": "A judgment kept after its reasons are lost is held as an assumption until the reasons are restored",
+  "mechanism": "A retained judgment is checked for its reasons. If the reasons cannot be recovered from the record, the judgment is marked as reason-faded and held as an {{assumption}} rather than a finding, until its reasons are restored or it is decided again.",
+  "invariants": [
+    "A judgment whose reasons cannot be recovered is held as an assumption, not a finding.",
+    "The mark is cleared only by restoring the reasons or by deciding again."
+  ],
+  "failure_modes": [
+    "Authority substitution: the judgment's age or source is offered in place of its reasons.",
+    "Compaction loss: a summary keeps the decision and drops why it was made."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Memory"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "BeliefTracking#c78d",
+      "TraceBelief#7b8a"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Reasonfade#mh:SHA-256:3ac3e8afee958a451985a4e1abb4837e2271d7b05818a92119d4ed5a07c0816d",
+  "sema_ref": "Reasonfade#3ac3",
+  "sema_stub": "3ac3",
+  "dependencies": {
+    "references": {
+      "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
+}

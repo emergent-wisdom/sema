@@ -1,0 +1,36 @@
+{
+  "handle": "Crossborn",
+  "gloss": "A distinction that appears only when several perspectives interact, credited to the interaction",
+  "mechanism": "When several perspectives work on the same question, as in a {{perspective_ensemble}}, each distinction that appears in the combined work is checked against each perspective taken alone. A distinction none of them contains alone is recorded as crossborn and credited to the interaction, together with the perspectives whose contact produced it.",
+  "invariants": [
+    "A distinction is recorded as crossborn only if it is absent from every contributing perspective taken alone.",
+    "The perspectives whose interaction produced it are named."
+  ],
+  "failure_modes": [
+    "Hidden origin: the distinction was present in one perspective and is credited to the interaction.",
+    "New label, old distinction: a new word for an existing distinction is recorded as new."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Askwiden",
+      "Twinread"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Crossborn#mh:SHA-256:814f8269f79aa796377517db26fbbba3c8be6ea694581b2e07549bd5704f671b",
+  "sema_ref": "Crossborn#814f",
+  "sema_stub": "814f",
+  "dependencies": {
+    "references": {
+      "perspective_ensemble": "sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

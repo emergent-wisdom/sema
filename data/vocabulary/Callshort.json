@@ -1,0 +1,78 @@
+{
+  "handle": "Callshort",
+  "gloss": "A perceived shortfall in the thinking a situation calls for, read as unwilling, unable, or deliberately undeclared",
+  "mechanism": "The perceiver notices an {{incongruity}} between the thinking a situation calls for and the thinking another party shows in it, and records one reading of why. Unwilling: the effort was available in this situation and was not spent. Unable: the effort was not available in this situation. Undeclared: one of the two, with the choice deliberately withheld. The reading is held as a {{hypothesis}} about this situation, not as a finding about the party. If the shortfall disappears when the question is put differently, or comes from the parties holding different premises, the callshort is withdrawn rather than re-read.",
+  "invariants": [
+    "Carries exactly one reading: unwilling, unable, or undeclared.",
+    "An undeclared reading attributes the shortfall to neither will nor capacity.",
+    "The reading is about this situation and makes no claim about the party's general willingness or ability.",
+    "Quotes the observable the perception rests on."
+  ],
+  "failure_modes": [
+    "Default unwilling: unwilling is read with no observable that separates it from unable.",
+    "Rift misread: the shortfall came from differing premises or from how the question was put, not from effort.",
+    "Projection: the perceiver's own effort or limits at that point are read into the other party.",
+    "Veiled accusation: an undeclared reading is delivered in a way that imputes unwillingness.",
+    "Trait drift: readings about separate situations are summed into a claim about the party."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "situation",
+      "observable",
+      "reading",
+      "would_tell_against"
+    ],
+    "properties": {
+      "situation": {
+        "type": "string",
+        "description": "The situation and the thinking it called for"
+      },
+      "observable": {
+        "type": "string",
+        "description": "The quoted or pointed-to evidence of the shortfall"
+      },
+      "step": {
+        "type": "string",
+        "description": "Where the shortfall shows, for example noticing an assumption, grasping an argument, or following an implication"
+      },
+      "reading": {
+        "type": "string",
+        "enum": [
+          "unwilling",
+          "unable",
+          "undeclared"
+        ]
+      },
+      "would_tell_against": {
+        "type": "string",
+        "description": "An observation that would tell against the reading. For an undeclared reading, an observation that would show the shortfall is not one of effort."
+      }
+    }
+  },
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EmpathySim#33c4",
+      "Abduction#e738",
+      "Check#6890"
+    ],
+    "minted": "2026-10-05T20:03:20+02:00"
+  },
+  "sema_id": "sema:Callshort#mh:SHA-256:95258b0368b6bbb08b65a09c3e4274c0cbded3452418db036be54234482ff0ff",
+  "sema_ref": "Callshort#9525",
+  "sema_stub": "9525",
+  "dependencies": {
+    "references": {
+      "hypothesis": "sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14",
+      "incongruity": "sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

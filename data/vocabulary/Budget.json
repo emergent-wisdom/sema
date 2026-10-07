@@ -48,10 +48,13 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "related": [
+      "Limitlisten#bb16"
     ]
   },
-  "sema_ref": "Budget#4e3e",
   "sema_id": "sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef",
+  "sema_ref": "Budget#4e3e",
   "sema_stub": "4e3e",
   "dependencies": {
     "references": {

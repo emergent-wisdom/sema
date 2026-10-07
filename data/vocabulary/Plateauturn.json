@@ -1,0 +1,37 @@
+{
+  "handle": "Plateauturn",
+  "gloss": "When improvement stalls under one method, change the method instead of repeating it",
+  "mechanism": "Improvement under a method is tracked per attempt. When it stalls for a stated number of attempts, the plateau is recorded with the method that hit it, and the next attempt uses a changed method. Unlike a {{retry}}, which repeats the attempt, the response to a plateau is a different way of trying.",
+  "invariants": [
+    "Improvement is recorded per attempt.",
+    "After the stated number of stalled attempts, the next attempt uses a changed method.",
+    "Each plateau is recorded with the method that hit it."
+  ],
+  "failure_modes": [
+    "Grind: the same method is repeated long after it stopped improving anything.",
+    "Method churn: methods are changed before they have had a fair number of attempts."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Doubleloop",
+      "StalledDirectionReview"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Plateauturn#mh:SHA-256:240d63af51fb73df4360beefb5e632a4bbbf1f29fdecdc5deae14793ba55c87e",
+  "sema_ref": "Plateauturn#240d",
+  "sema_stub": "240d",
+  "dependencies": {
+    "references": {
+      "retry": "sema:Retry#mh:SHA-256:4f9fdfc5b1dafd31221e9426d62c02af80c6356ef5b446eddd3f50da961d1aa2"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

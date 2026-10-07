@@ -1,0 +1,37 @@
+{
+  "handle": "ChannelCheck",
+  "gloss": "Do not read a quiet channel as agreement; check whether the parties are still connected",
+  "mechanism": "When a channel between parties goes quiet beyond a stated interval, the quiet is not taken as agreement or as health. An explicit check-in asks whether the parties are still connected and whether they agree, and the answer is recorded as agreement, disagreement, disconnection or no answer, just as {{silence}} is recorded as what it is.",
+  "invariants": [
+    "A channel quiet beyond the stated interval gets an explicit check-in.",
+    "The check-in's result is recorded as agreement, disagreement, disconnection or no answer."
+  ],
+  "failure_modes": [
+    "Comfortable silence: a lost connection is mistaken for harmony.",
+    "Check-in spam: check-ins come so often that they become noise."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Silencevote",
+      "Mosaicmap",
+      "Quietsever"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:ChannelCheck#mh:SHA-256:3cebec10bded1ac4d90449f6f204dceec6f6ba3070a67ba0647c8bfe36adef64",
+  "sema_ref": "ChannelCheck#3ceb",
+  "sema_stub": "3ceb",
+  "dependencies": {
+    "references": {
+      "silence": "sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -1,0 +1,35 @@
+{
+  "handle": "EvidenceDependence",
+  "gloss": "Several confirmations of a claim share a foundation, so together they support it less than their number suggests",
+  "mechanism": "Several confirmations of a claim, such as reports, citations, test results, model outputs or agents' conclusions, rest wholly or partly on a common foundation: one source, dataset, method, model or unchecked assumption. Each adds support only for what it brings beyond that foundation, so their agreement shows little more than the foundation shows, and an error in the foundation recurs in every confirmation that rests on it instead of being cancelled by the others. The overlap is often hidden, as when confirmations repeat a source without naming it or come from systems trained on the same material. Confirmations whose foundations are separate, so that an error in one would not recur in the others, are not instances.",
+  "invariants": [
+    "Two or more confirmations of the same claim are weighed together.",
+    "Two or more of them rest, wholly or partly, on a common foundation, such as a source, dataset, method, model or assumption, so that an error in it would recur in each of those."
+  ],
+  "failure_modes": [
+    "Count read as support: dependent confirmations are weighed as if each were independent, so their agreement looks stronger than their foundation.",
+    "Hidden foundation: a shared source, training set or method goes untraced, so confirmations that echo one another are taken as separate.",
+    "Independence dismissed: confirmations with separate foundations are discounted as if they shared one."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Inference"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "SourceEvaluate",
+      "EpistemicCascade",
+      "SelfConsistency",
+      "PerspectiveEnsemble",
+      "Prestigeloan"
+    ],
+    "minted": "2026-10-06T21:57:08+02:00"
+  },
+  "sema_id": "sema:EvidenceDependence#mh:SHA-256:23ca19433d2e0bf6109a8334ef2a6d8a42124a01a802d5a8fe0c9a049a7b5582",
+  "sema_ref": "EvidenceDependence#23ca",
+  "sema_stub": "23ca",
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

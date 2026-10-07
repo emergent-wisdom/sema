@@ -1,0 +1,72 @@
+{
+  "handle": "CompositionEdge",
+  "gloss": "A link stating that a child supplies a differentiated contribution its parent's outward capability requires",
+  "mechanism": "A composition edge records that a child supplies one differentiated contribution that its parent's outward capability requires: a restaurant needs nourishment, experience, flow, economics and identity, each linked to it as a contribution rather than as a kind. When the parent is invoked, its composition children can become executable work, and the parent's {{synthesis}} states how their contributions, with routing and integration, realize its capability. The set is claimed complete for the parent's current outward promise, so a missing contribution is a defect of the carve, while siblings need only low coupling, not zero overlap. A contribution may serve several parents, each giving it its own role.",
+  "invariants": [
+    "The child supplies a contribution the parent's outward capability requires, differentiated from its siblings' contributions.",
+    "A parent's composition children are claimed complete for its current outward promise.",
+    "The parent declares a synthesis stating how its composition children's contributions realize its capability."
+  ],
+  "failure_modes": [
+    "Kind filed as part: a kind of the parent is linked as one of its contributions, so the parent appears to need every kind in order to work.",
+    "Procedural carve: the children are steps of one procedure rather than dimensions of the capability, so the set is complete for one workflow but not for the capability.",
+    "Unstated synthesis: children are attached without saying how their contributions combine, so the parent's capability is asserted rather than shown."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ConceptualDecomposition",
+      "Decompose",
+      "MECE",
+      "SpecializationEdge",
+      "MandatoryAbstraction"
+    ],
+    "minted": "2026-10-06T22:20:11+02:00"
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "parent",
+      "child",
+      "contribution",
+      "synthesis"
+    ],
+    "properties": {
+      "parent": {
+        "type": "string",
+        "description": "The capability the contribution helps realize"
+      },
+      "child": {
+        "type": "string",
+        "description": "The concept or Solver that supplies the contribution"
+      },
+      "contribution": {
+        "type": "string",
+        "description": "What the child supplies that the parent's outward capability requires, stated so that it differs from its siblings' contributions"
+      },
+      "synthesis": {
+        "type": "string",
+        "description": "Reference to the parent's declared synthesis, which states how its composition children together realize its capability"
+      },
+      "role": {
+        "type": "string",
+        "description": "Optional parent-local role, constraints or acceptance criteria the parent gives the child; one child can serve several parents in different roles"
+      }
+    }
+  },
+  "sema_id": "sema:CompositionEdge#mh:SHA-256:2be81d974795a345a4518b540b6110bed48e2e1fc084363193dc0bb609616bbb",
+  "sema_ref": "CompositionEdge#2be8",
+  "sema_stub": "2be8",
+  "dependencies": {
+    "references": {
+      "synthesis": "sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

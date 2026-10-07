@@ -1,0 +1,36 @@
+{
+  "handle": "Termdrift",
+  "gloss": "Track a key term's meaning through an explanation, and flag where the meaning shifts",
+  "mechanism": "In an explanation, argument or plan, each key term's meaning at first use is recorded, and later uses are checked against it, each use being an {{interpret}}ation in its own context. Where the meaning shifts, the shift is flagged and either made explicit or the term is split into two.",
+  "invariants": [
+    "Each key term's first meaning is recorded.",
+    "A later use with a different meaning is flagged and either made explicit or given a separate term."
+  ],
+  "failure_modes": [
+    "Equivocation: a conclusion depends on a term meaning one thing in a premise and another in the conclusion.",
+    "Term freeze: legitimate refinement of a term is blocked as drift."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Meaningpause",
+      "Lucence"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:Termdrift#mh:SHA-256:18efdce0460f0047859b5fe8ac23c3da6c03a245cfb3710245c4affc036cc5f0",
+  "sema_ref": "Termdrift#18ef",
+  "sema_stub": "18ef",
+  "dependencies": {
+    "references": {
+      "interpret": "sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

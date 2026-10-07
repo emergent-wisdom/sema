@@ -33,15 +33,18 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Localhinge#7a04"
     ]
   },
-  "sema_id": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85",
-  "sema_ref": "Hierarchy#5951",
-  "sema_stub": "5951",
   "invariants": [
     "Acyclicity: no node is above itself, directly or transitively \u2014 a cycle leaves the ranking undefined.",
     "Antisymmetry: if A is Upper to B then B is not Upper to A."
   ],
+  "sema_id": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85",
+  "sema_ref": "Hierarchy#5951",
+  "sema_stub": "5951",
   "dependencies": {
     "references": {
       "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"

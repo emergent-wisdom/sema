@@ -16,6 +16,10 @@
     ],
     "supersedes": [
       "sema:Assumption#mh:SHA-256:46479820ecd594cd6c789bae96a1eb67b14d6b04d2e4371913852292c0a402a0"
+    ],
+    "related": [
+      "Leapdebt#0bcd",
+      "Reasonfade#3ac3"
     ]
   },
   "data_schema": {
@@ -51,14 +55,14 @@
       }
     }
   },
-  "sema_id": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
-  "sema_ref": "Assumption#d99b",
-  "sema_stub": "d99b",
   "failure_modes": [
     "Calcified: depended on far downstream from where it was made, with nothing prompting a re-check.",
     "Mutually inconsistent set: two assumptions each close a local gap and contradict each other in the same chain.",
     "Judgment recorded as datum-gap: the premise replaces a decision nobody made rather than a fact nobody has, so validating it has no target."
   ],
+  "sema_id": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097",
+  "sema_ref": "Assumption#d99b",
+  "sema_stub": "d99b",
   "dependencies": {
     "references": {
       "datum": "sema:Datum#mh:SHA-256:f90456c1067ac5db4e9825a82a22bc58086022f8acd0d0f63fdfeaeb6be2e937"

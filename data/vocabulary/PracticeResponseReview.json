@@ -1,0 +1,37 @@
+{
+  "handle": "PracticeResponseReview",
+  "gloss": "Guard against a recurring practice that keeps its form after it stops responding to anything",
+  "mechanism": "A recurring practice, such as a meeting, a review or a check, records what it last changed because of what it observed. A practice that changed nothing over a stated number of cycles is reviewed. Unlike a {{loop}}, which must change state between iterations, the test is whether the practice still reacts to its input.",
+  "invariants": [
+    "Each run of the practice records what, if anything, it changed in response to what it observed.",
+    "A practice that changed nothing over the stated number of cycles is reviewed."
+  ],
+  "failure_modes": [
+    "Ritual: the practice runs on schedule and responds to nothing.",
+    "Change for show: trivial changes are made to appear responsive."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "PurposeLinkReview",
+      "DetectorSelfTest",
+      "Echohollow"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:PracticeResponseReview#mh:SHA-256:a24f1acbcd640887c5d3bef0d6a5d1893d417c4426e6a47bbc6d260ac45bee92",
+  "sema_ref": "PracticeResponseReview#a24f",
+  "sema_stub": "a24f",
+  "dependencies": {
+    "references": {
+      "loop": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

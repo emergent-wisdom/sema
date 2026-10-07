@@ -1,14 +1,17 @@
 {
   "handle": "DecompositionGate",
-  "mechanism": "The four-test decomposition suite applied as a Gate over candidate decompositions. The tests: Necessity ({{parsimony}}'s ablation applied to the split \u2014 removing any sub-concept collapses the parent), Independence (sub-concepts vary orthogonally), Universality (every instance of the parent contains every sub-concept), Completeness (addressing all sub-concepts reconstructs a functioning parent). A decomposition passes only if all four tests pass \u2014 non-compensatory. Yields a {{decision}}: on failure, the Decision carries a {{frame_error}} instructing the upstream planner to reframe rather than iterate within the current decomposition.",
-  "gloss": "Four-test gate for candidate decompositions: Necessity, Independence, Universality, Completeness",
+  "mechanism": "The four-test operator applied as a gate over candidate decompositions. The tests are judged against a provisional claim frame: the outward capability being promised, the purpose of the decomposition, and the range of instances it claims. The frame may be revised, and several frames or carves may coexist for comparison. Each candidate dimension is tested for Necessity (relative to the claimed capability, removing it collapses the parent's promise, as {{parsimony}}'s ablation applied to the split), Independence (it can change or be reimplemented without forcing the same revision in the others; lower coupling, not zero interaction, shown by change propagation, routing overlap and recurrent joint failures) and Universality (every instance in the claimed range contains it; a dimension limited to some implementations may still be a specialization under a narrower claim). The accepted set is then tested for Completeness: addressing all of it yields a functioning instance of the parent for the current promise, and a gap points to a missing axis, interaction or framing assumption. A candidate is accepted only if all three of its tests hold, so strength on one does not offset failure on another; a failed or uncertain candidate may be reframed, tried under a narrower claim, or kept with its verdict and rationale as a labelled alternative in the frontier of the {{archive_serving_frontier}}. Yields a {{decision}}. The tests structure a judgment rather than certify it, so a passing carve is the best-supported current hypothesis, and leakage that later surfaces as downstream failure raises a {{frame_error}} that reopens the carve.",
+  "gloss": "Four tests of a decomposition against a stated claim frame: each candidate dimension must pass Necessity, Independence and Universality, and the accepted set must pass Completeness",
   "invariants": [
-    "Non-compensatory: a decomposition passes only if ALL four tests pass independently.",
-    "Universality is strict: prototype-shaped concepts failing universality are rejected by design.."
+    "Every verdict is judged against a stated claim frame: the outward capability promised, the purpose of the decomposition and the range of instances it claims.",
+    "Non-compensatory: a candidate dimension is accepted only if Necessity, Independence and Universality all hold for it.",
+    "Completeness is judged for the accepted set against the current outward promise."
   ],
   "failure_modes": [
-    "Strict universality rejects legitimate prototype-shaped concepts that would succeed with family-resemblance semantics.",
-    "Completeness test falsely rejects decompositions where reconstruction is possible but not fully characterized in the candidate."
+    "Frame drift: the claim frame shifts during the carve without being restated, so verdicts judged against different frames are combined.",
+    "Premature closure: the accepted set is declared complete before any search for a missing dimension.",
+    "Completeness false reject: a set whose parts would reconstruct the parent is rejected because the reconstruction is not yet characterized.",
+    "Conformance read as truth: a carve that passes all four tests is treated as the correct ontology rather than the best-supported current hypothesis."
   ],
   "_meta": {
     "tier": 2,
@@ -20,14 +23,19 @@
     "supersedes": [
       "sema:DecompositionGate#mh:SHA-256:c4f79cfd94dce663e393b3c8db16655c04f7a457c82f23d7dce54faa6817e730",
       "sema:DecompositionGate#mh:SHA-256:3a799c865e76fa9ed63862cac1abd08ed5d98a570ab18fdbbe36af34fabdc63f",
-      "sema:DecompositionGate#mh:SHA-256:19de14eba6eeaf11e6a769b95600b5f70628e5197d56ca3d842c5b3196e79444"
+      "sema:DecompositionGate#mh:SHA-256:19de14eba6eeaf11e6a769b95600b5f70628e5197d56ca3d842c5b3196e79444",
+      "sema:DecompositionGate#mh:SHA-256:bd17249e6886e85f3b10f4abbf631e89a1585f24c56cc72123ebd3ad0cea3d83"
+    ],
+    "related": [
+      "RoutingSanityCheck"
     ]
   },
-  "sema_id": "sema:DecompositionGate#mh:SHA-256:bd17249e6886e85f3b10f4abbf631e89a1585f24c56cc72123ebd3ad0cea3d83",
-  "sema_ref": "DecompositionGate#bd17",
-  "sema_stub": "bd17",
+  "sema_id": "sema:DecompositionGate#mh:SHA-256:1b2d7263900f2721658ea188e416b2c53cb14c4ce13f35b9b82728f68fcfe7c5",
+  "sema_ref": "DecompositionGate#1b2d",
+  "sema_stub": "1b2d",
   "dependencies": {
     "references": {
+      "archive_serving_frontier": "sema:ArchiveServingFrontier#mh:SHA-256:27653c08dbb23917a945b15020bbdabae18ccc9256dda0d2249354896d4a4313",
       "frame_error": "sema:FrameError#mh:SHA-256:1d0ac501f011a053fde50bef6bc2a781c2f916014f4b2b74de955f6d84db9c5d",
       "parsimony": "sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e"
     },

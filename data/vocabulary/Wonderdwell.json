@@ -1,0 +1,37 @@
+{
+  "handle": "Wonderdwell",
+  "gloss": "Stay with something familiar, with its expectation frozen, until it yields a surprise or the time runs out",
+  "mechanism": "Before dwelling on something familiar, what is expected of it is frozen as a {{counterfactual_anchor}}. Attention then stays with the familiar thing for a stated time, and each observation that departs from the frozen expectation is recorded as a surprise. A dwell that ends without one is recorded as such.",
+  "invariants": [
+    "The expectation is frozen before the dwelling begins.",
+    "Each recorded surprise names the frozen expectation it departs from.",
+    "The dwell has a stated time limit."
+  ],
+  "failure_modes": [
+    "Novelty hunting: attention moves on before the familiar has had time to surprise.",
+    "Manufactured wonder: ordinary observations are recorded as surprises."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Crossborn",
+      "Askwiden"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Wonderdwell#mh:SHA-256:d9668fa81d43925aeffcb6c08da4fe42c0c0b9548a94466deb4c003dca026aa4",
+  "sema_ref": "Wonderdwell#d966",
+  "sema_stub": "d966",
+  "dependencies": {
+    "references": {
+      "counterfactual_anchor": "sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

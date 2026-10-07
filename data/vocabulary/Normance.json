@@ -1,0 +1,37 @@
+{
+  "handle": "Normance",
+  "gloss": "Record how far a judgment rests on social default rather than on reasons its holder can state and check",
+  "mechanism": "For a {{belief}}, the holder lists the reasons it can state and check without appeal to what others hold. Whatever support remains is recorded as social default: what is usual, what others believe, what a respected source said. The belief is then marked examined, mixed or default.",
+  "invariants": [
+    "Every listed reason can be stated and checked without appeal to what others hold.",
+    "The social defaults the belief leans on are named.",
+    "The belief is marked examined, mixed or default."
+  ],
+  "failure_modes": [
+    "Default disguised as reason: 'everyone knows' is listed as a reason.",
+    "Examination theatre: reasons are produced after the fact to make a default look examined."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Belongbend",
+      "GenealogicalTrace#8c7f"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Normance#mh:SHA-256:6844deac889c8b9a75173e065de56b6833a2f8a6db372108b467c23e76b0c496",
+  "sema_ref": "Normance#6844",
+  "sema_stub": "6844",
+  "dependencies": {
+    "references": {
+      "belief": "sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

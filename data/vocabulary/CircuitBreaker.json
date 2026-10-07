@@ -50,10 +50,13 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "related": [
+      "StopDrill#dcfb"
     ]
   },
-  "sema_ref": "CircuitBreaker#3caa",
   "sema_id": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76",
+  "sema_ref": "CircuitBreaker#3caa",
   "sema_stub": "3caa",
   "dependencies": {
     "references": {

@@ -11,9 +11,6 @@
     "Feedback must be descriptive, not just scalar.",
     "Must reference specific criteria."
   ],
-  "sema_id": "sema:Critique#mh:SHA-256:646b71acb10a6b7f0874f3d5c7977c44d253f29f9c1231c974d85c7fba131980",
-  "sema_ref": "Critique#646b",
-  "sema_stub": "646b",
   "_meta": {
     "tier": 1,
     "ring": 1,
@@ -25,8 +22,14 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "Critiquedrift#bd7c"
     ]
   },
+  "sema_id": "sema:Critique#mh:SHA-256:646b71acb10a6b7f0874f3d5c7977c44d253f29f9c1231c974d85c7fba131980",
+  "sema_ref": "Critique#646b",
+  "sema_stub": "646b",
   "dependencies": {
     "accepts": {
       "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",

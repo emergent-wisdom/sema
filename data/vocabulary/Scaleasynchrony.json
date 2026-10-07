@@ -1,0 +1,34 @@
+{
+  "handle": "Scaleasynchrony",
+  "gloss": "Two levels of a system, one depending on the other, develop at different rates, changing how well they fit",
+  "mechanism": "A level of a system depends on another in a specified respect, as individuals depend on the institution they work within, a practice on the standards that govern it, or members on the coordination among them, and the two develop at different paces in that respect. Each then meets the other in a state from a different point in its development: the faster can outgrow arrangements maintained by the slower, or the slower keeps stable what the faster has not yet settled. The difference changes their fit, straining it or giving the faster level a stable base. Levels that do not depend on each other, two parties moving at different speeds, and the travel time of one effect between parts are not instances.",
+  "invariants": [
+    "One level of a system depends on another in a specified respect.",
+    "The two develop at different rates in that respect over the interval considered, and the difference changes how well they fit."
+  ],
+  "failure_modes": [
+    "Fault located by speed: the misfit is blamed on the slower level, or the faster is taken as superior, instead of on the difference in rates.",
+    "Convergence demanded: all levels are required to develop at one pace.",
+    "Stillness read as nondevelopment: unchanged features are taken to show that a level is not developing in any respect."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Capacitylag",
+      "Identitylag",
+      "Localhinge",
+      "Ripplelag"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Scaleasynchrony#mh:SHA-256:2db649cfd9fef654fbd5200d6b30725168e10f73358cfe399462eddd8dfd752a",
+  "sema_ref": "Scaleasynchrony#2db6",
+  "sema_stub": "2db6",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

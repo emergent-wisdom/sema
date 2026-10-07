@@ -1,0 +1,36 @@
+{
+  "handle": "Silencevote",
+  "gloss": "Count only explicit assent as acceptance; record silence as silence",
+  "mechanism": "A proposal counts as accepted only by explicit assent. A party's {{silence}} is recorded as silence, separately from assent and from objection, with its reason asked for where possible, and it is never counted as agreement.",
+  "invariants": [
+    "Acceptance is recorded only from explicit assent.",
+    "Silence is recorded separately from assent and from objection."
+  ],
+  "failure_modes": [
+    "Abilene drift: a group adopts what nobody wanted because nobody objected.",
+    "Assent fatigue: explicit assent becomes a reflex given without reading."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Consensus#b9a5",
+      "Belongbend"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Silencevote#mh:SHA-256:b022a4ad1e752e8da60651c129a2fac0db03ec8643c9a386fcd25698f4157c0c",
+  "sema_ref": "Silencevote#b022",
+  "sema_stub": "b022",
+  "dependencies": {
+    "references": {
+      "silence": "sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -1,0 +1,33 @@
+{
+  "handle": "Limitblur",
+  "gloss": "Boundaries stay stated while their application becomes inconsistent or uncertain in practice",
+  "mechanism": "A stated boundary stays in force on paper while its practical application varies, erodes or becomes unclear, so the statement no longer reliably settles where the operative boundary lies. An isolated, recognised breach is not an instance, nor are stated exceptions applied consistently, nor an open revision applied consistently, which changes the boundary rather than blurring it. The boundary can be personal, organisational or technical.",
+  "invariants": [
+    "A boundary is still stated.",
+    "Its practical application becomes less consistent or less determinate over the interval considered."
+  ],
+  "failure_modes": [
+    "Breach read as blur: a single recognised breach is taken to show that the boundary has blurred.",
+    "Revision read as blur: an openly revised boundary applied consistently is taken as erosion.",
+    "Strictness assumed: blur is taken to call for stricter enforcement rather than a decision about the boundary."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "BoundaryReview",
+      "Constraint",
+      "ScopeFreeze"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Limitblur#mh:SHA-256:d7728fa2f384fc8612baa8f6d09eb4af8d3e71065366eb20b899c79a064511ac",
+  "sema_ref": "Limitblur#d772",
+  "sema_stub": "d772",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

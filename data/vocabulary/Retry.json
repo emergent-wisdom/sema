@@ -25,7 +25,8 @@
   "_meta": {
     "tier": 1,
     "related": [
-      "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72"
+      "sema:Backoff#mh:SHA-256:9e59718422f5408d7892feccb6d538a21103f9573b122b891ee3c8cf66303e72",
+      "Plateauturn#240d"
     ],
     "ring": 1,
     "supersedes": [
@@ -40,9 +41,6 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Retry#mh:SHA-256:4f9fdfc5b1dafd31221e9426d62c02af80c6356ef5b446eddd3f50da961d1aa2",
-  "sema_ref": "Retry#4f9f",
-  "sema_stub": "4f9f",
   "parameters": [
     {
       "name": "max_attempts",
@@ -51,6 +49,9 @@
       "description": "Attempts before giving up. Referenced by the third invariant, which previously named a Max_Retries nothing defined."
     }
   ],
+  "sema_id": "sema:Retry#mh:SHA-256:4f9fdfc5b1dafd31221e9426d62c02af80c6356ef5b446eddd3f50da961d1aa2",
+  "sema_ref": "Retry#4f9f",
+  "sema_stub": "4f9f",
   "dependencies": {
     "composes_with": {
       "exponential_backoff": "sema:ExponentialBackoff#mh:SHA-256:f5e5ff69408a272184da86cf5698f6675e9dfe2aa47917616a695e117602b828"

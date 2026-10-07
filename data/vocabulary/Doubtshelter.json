@@ -1,0 +1,38 @@
+{
+  "handle": "Doubtshelter",
+  "gloss": "Make voicing uncertainty or asking for evidence cost no standing in a group",
+  "mechanism": "Before a group records agreement, each member is asked for remaining doubts, and each doubt is recorded beside the agreement, scoped to the specific point it concerns. A point for which evidence is absent is marked {{uncertain}}. Voicing a doubt, or asking for clarification or evidence, is answered on its merits and never treated as a fault.",
+  "invariants": [
+    "Before agreement is recorded, each member is asked for remaining doubts.",
+    "Each doubt is recorded beside the agreement, scoped to the point it concerns.",
+    "Voicing a doubt, or requesting clarification or evidence, is never itself treated as a fault."
+  ],
+  "failure_modes": [
+    "Doubthush: members withhold uncertainty because the group seems more certain than they privately are.",
+    "Questiontoll: asking for clarification or evidence costs the asker standing.",
+    "Doubt theatre: doubts are invited and recorded but never change anything."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DissentSeek#cbe1",
+      "Silencevote"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Doubtshelter#mh:SHA-256:62d8aa0f38d4f248e11950ce3a715fb659c9bd24cbe4b434e9776d85a5667b41",
+  "sema_ref": "Doubtshelter#62d8",
+  "sema_stub": "62d8",
+  "dependencies": {
+    "references": {
+      "uncertain": "sema:Uncertain#mh:SHA-256:91b56e39fe4ccec7c6c80c865e8f679178293e85ec208eaceb9c814a9ca4bd53"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "Leapsettle",
+  "gloss": "Make a sudden advance reliable under varied conditions before building on it",
+  "mechanism": "After a sudden advance, such as a first success, a breakthrough result or a new capability, the advance is repeated under varied conditions, each repetition subject to {{verification}}, until it succeeds reliably. Work that depends on it waits until it has settled.",
+  "invariants": [
+    "The advance is repeated under conditions that differ from the first success.",
+    "Work that depends on the advance starts only after the stated reliability is reached."
+  ],
+  "failure_modes": [
+    "One-off foundation: work is built on a success that happened once.",
+    "Settling forever: the advance is retested long after it is reliable."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Leapdebt",
+      "Futurestretch"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Leapsettle#mh:SHA-256:3f9f6e4231fc21451792cbafb45c3e0455b87cc3f6a357fc3d58ae5f4f375416",
+  "sema_ref": "Leapsettle#3f9f",
+  "sema_stub": "3f9f",
+  "dependencies": {
+    "references": {
+      "verification": "sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

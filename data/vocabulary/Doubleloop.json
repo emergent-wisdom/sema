@@ -1,0 +1,37 @@
+{
+  "handle": "Doubleloop",
+  "gloss": "A feedback loop that can also revise the standard it judges outputs by, recording each revision separately",
+  "mechanism": "A {{feedback}} loop that, besides adjusting outputs, reviews the {{criteria}} it judges them by. When outputs keep failing, or keep passing without serving the goal, the criteria are reviewed, and revised only if the review finds they no longer serve the goal; each review and revision is recorded with its trigger and reason, separately from changes to the outputs.",
+  "invariants": [
+    "Reviews and revisions of the criteria are recorded separately from changes to the outputs, each with its trigger.",
+    "The criteria are revised only after a review on a recorded trigger, never to make the current output pass."
+  ],
+  "failure_modes": [
+    "Goalpost moving: the criteria are revised to make failing outputs pass.",
+    "Frozen standard: outputs are tuned against criteria that no longer serve the goal."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EvaluatorOptimizer#ae09",
+      "Reflexion#81eb"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Doubleloop#mh:SHA-256:23acb8047086c489b2a8e7eb97c2468278f75b36eb62be16f9bc0844e5ac93c5",
+  "sema_ref": "Doubleloop#23ac",
+  "sema_stub": "23ac",
+  "dependencies": {
+    "references": {
+      "criteria": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+      "feedback": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

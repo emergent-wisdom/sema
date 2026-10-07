@@ -1,0 +1,36 @@
+{
+  "handle": "Almostnot",
+  "gloss": "Learn a pattern from near misses: excluded cases that differ from members by one stated feature",
+  "mechanism": "To learn or teach a pattern, collect near misses, cases that resemble members but are deliberately excluded, and for each state the feature that excludes it. The pattern's definition, formed as in {{generalize}}, names the features the near misses lack as well as what members share.",
+  "invariants": [
+    "Each near miss states the feature that excludes it.",
+    "The definition names the features learned from the near misses."
+  ],
+  "failure_modes": [
+    "Far misses: excluded cases differ in many features, so none is learned.",
+    "Feature leak: a near miss is excluded for a feature the definition never names."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Specialize#799d",
+      "PatternDiscovery#742a"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Almostnot#mh:SHA-256:4d077fbd29b813e8cada6cc2c1c8bdbb34b81766a9f3fef3351aa7ad24a0f11f",
+  "sema_ref": "Almostnot#4d07",
+  "sema_stub": "4d07",
+  "dependencies": {
+    "references": {
+      "generalize": "sema:Generalize#mh:SHA-256:29f133fe83dfe2cd7d2b432390f59e3a64a84866b964a2ca6199f8134ba64e7e"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

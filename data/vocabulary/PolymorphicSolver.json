@@ -10,7 +10,8 @@
       "sema:CognitiveSolver#mh:SHA-256:42e50cb80b61174d3be41e57ca8e17587e5caf0bf09cf5d3fcfad72d124363f2",
       "sema:PolymorphicSolver#mh:SHA-256:272ac4237fd71c0782676ed30558bad9c08fca9373577516284bf5def22b2800",
       "sema:PolymorphicSolver#mh:SHA-256:1362a5c7db1715b6683768b75720388810451c79127e566b8f1b4c27bb52391c",
-      "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07"
+      "sema:PolymorphicSolver#mh:SHA-256:28f1d5d9b3edcc3967139a056b71acd75050f65e7002644e5a837dd5d9507a07",
+      "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21"
     ],
     "path": [
       "Mind",
@@ -25,12 +26,12 @@
     "Interface Non-Compliance: Solver omits Manifest or Execute, or advertises an optional Consult, Verify, or Feedback surface it cannot provide.",
     "Manifest Drift: Capabilities declared in Manifest do not match runtime behavior."
   ],
-  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
-  "sema_ref": "PolymorphicSolver#cb20",
-  "sema_stub": "cb20",
   "signature": [
     "Solver(Task)"
   ],
+  "sema_id": "sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd",
+  "sema_ref": "PolymorphicSolver#f7fe",
+  "sema_stub": "f7fe",
   "dependencies": {
     "accepts": {
       "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
@@ -48,7 +49,7 @@
       "performance_signal": "sema:PerformanceSignal#mh:SHA-256:9dfb41dd2ac3f271ca5d4a3ab67219a5a18aa8dbd970cdb410e7c9c1ec85488c",
       "solver": "sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b",
       "solver_node": "sema:SolverNode#mh:SHA-256:f895214a9b07066f4043d55d3b260e8a788bda0150b9d8fda20eafa91b846116",
-      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7",
+      "universal_solver_tree": "sema:UniversalSolverTree#mh:SHA-256:f9fba480ef013c98691c0ccb6cbbd58dab5183e60798c550ff0de093dbd30727",
       "validate": "sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed"
     },
     "yields": {

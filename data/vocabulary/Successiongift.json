@@ -1,0 +1,36 @@
+{
+  "handle": "Successiongift",
+  "gloss": "Before leaving a role, move everything that depends on you personally to institutions or successors",
+  "mechanism": "Before a leader or agent leaves a role, it lists what depends on it personally and moves each item to an institution, a process or a successor, by {{handoff}} where control passes. The successor is left real choices rather than fixed paths, and the handover is complete only when no listed item still depends on the departing party.",
+  "invariants": [
+    "Lists everything that depends on the departing party personally.",
+    "The handover is complete only when no listed item still depends on the departing party."
+  ],
+  "failure_modes": [
+    "Indispensability: the departing party keeps essential knowledge to itself.",
+    "Locked successor: the successor inherits commitments that leave no real choice."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Mosaicmap",
+      "Ladderdrop"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Successiongift#mh:SHA-256:5f2b2d520bc16136ebffcc59b63ed62775d5b32cbd24dd5ffba1ec5a19145432",
+  "sema_ref": "Successiongift#5f2b",
+  "sema_stub": "5f2b",
+  "dependencies": {
+    "references": {
+      "handoff": "sema:Handoff#mh:SHA-256:1323eea000780c4fc715bcc90b5ea28d6353c780ad561e86aeff723855650ab5"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

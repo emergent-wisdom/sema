@@ -1,0 +1,37 @@
+{
+  "handle": "EffectDelayCheck",
+  "gloss": "Wait out the expected propagation delay before judging a change's effect on connected systems",
+  "mechanism": "Before the effects of a change are judged, the expected delay for each affected system is stated, along the {{causation}} paths by which the change reaches it. A system is judged unaffected only after its stated delay has passed.",
+  "invariants": [
+    "The expected delay is stated for each affected system before effects are judged.",
+    "No system is judged unaffected before its stated delay has passed."
+  ],
+  "failure_modes": [
+    "Premature all-clear: a change is declared harmless before its effects could have arrived.",
+    "Endless waiting: delays are stated so long that no judgment is ever made."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "RolloutWatch#e8ba",
+      "StopDrill",
+      "Ripplelag"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:EffectDelayCheck#mh:SHA-256:bfff89c2238280b53860243ccc25c76dbb14b1a7cec9d5a20f29ba7e5e121f1d",
+  "sema_ref": "EffectDelayCheck#bfff",
+  "sema_stub": "bfff",
+  "dependencies": {
+    "references": {
+      "causation": "sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

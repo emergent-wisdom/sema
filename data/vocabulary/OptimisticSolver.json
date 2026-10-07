@@ -23,17 +23,18 @@
       "sema:OptimisticSolver#mh:SHA-256:0074aaa03aa80f73a3950535264a5512e6d6674d58bc9b3ac55a24699ac088b8",
       "sema:OptimisticSolver#mh:SHA-256:18c043757659c13a56ceab6640765f6ecf4e24a9cfffc6cdf9e6ccf7f05c2e77",
       "sema:OptimisticSolver#mh:SHA-256:f664c4e84cbf04e0c16b1fcac7c2662b4b35f4b474b76a2a47e129b36a3dc639",
-      "sema:OptimisticSolver#mh:SHA-256:0dcabc92d9b6bbac524d5e7445ecd0590872956e3e392304e6de24655dbea4f7"
+      "sema:OptimisticSolver#mh:SHA-256:0dcabc92d9b6bbac524d5e7445ecd0590872956e3e392304e6de24655dbea4f7",
+      "sema:OptimisticSolver#mh:SHA-256:e24845caf8d2f00f90715e2cbf5a5ed3525bfb8ee9e6d2c23731ada2427163b2"
     ],
     "path": [
       "Society",
       "Protocols"
     ]
   },
-  "sema_id": "sema:OptimisticSolver#mh:SHA-256:e24845caf8d2f00f90715e2cbf5a5ed3525bfb8ee9e6d2c23731ada2427163b2",
-  "sema_ref": "OptimisticSolver#e248",
-  "sema_stub": "e248",
-  "extends": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
+  "extends": "sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd",
+  "sema_id": "sema:OptimisticSolver#mh:SHA-256:63aaa2e083c615a967019ce3aa709f431ff624aafce8b90ed6229144c102fda8",
+  "sema_ref": "OptimisticSolver#63aa",
+  "sema_stub": "63aa",
   "dependencies": {
     "composes_with": {
       "atomic_bid": "sema:AtomicBid#mh:SHA-256:5ac637b4b3d74bfaea558ee36b1ee6ffcaf46fe26ac988b524e46faf9821535e",
@@ -44,8 +45,8 @@
     },
     "references": {
       "parallel": "sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5",
-      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21",
-      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:9034894bb7da496602aa81afd2ea44e893a822002b1888daddb28fad4164135c"
+      "polymorphic_solver": "sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd",
+      "rigorous_solver": "sema:RigorousSolver#mh:SHA-256:2203568438553dc7e6331a7336e2bf488fc99de0a39c601ca3f63ba3e8849038"
     }
   },
   "sema_layer": "Society",

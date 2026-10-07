@@ -1,0 +1,36 @@
+{
+  "handle": "Hearshift",
+  "gloss": "Record what each piece of consultation input changed in the decision",
+  "mechanism": "When input is gathered before a {{decision}}, the decision record answers each input: what it changed in the decision, its reasoning or the options considered, or that it changed nothing and why.",
+  "invariants": [
+    "Each gathered input is answered in the decision record.",
+    "An answer states what the input changed, or why it changed nothing."
+  ],
+  "failure_modes": [
+    "Consultation theatre: input is gathered and never appears in the record.",
+    "Loudest input: one input changes everything while others are set aside without reasons."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Reasoncommons",
+      "Costeer"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Hearshift#mh:SHA-256:4fcf1ab4c0d840838ab70d67051acd818b02472f15afcd78f27157f10c09161a",
+  "sema_ref": "Hearshift#4fcf",
+  "sema_stub": "4fcf",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

@@ -1,0 +1,37 @@
+{
+  "handle": "Valueprobe",
+  "gloss": "Choose some routes for their power to change the criteria you choose routes by",
+  "mechanism": "When choosing among routes such as sources, collaborators or projects, the chooser records its current criteria and includes at least one route picked because it could change them, an exploration move in the sense of {{explore_exploit}}. After the route, the criteria are recorded again and any change is noted.",
+  "invariants": [
+    "The choosing criteria are recorded before the route is taken.",
+    "At least one route is chosen for its potential to change the criteria.",
+    "The criteria are recorded again afterwards."
+  ],
+  "failure_modes": [
+    "Comfort routing: only routes that confirm the current criteria are chosen.",
+    "Novelty chase: routes are chosen for being different, and no change in criteria is ever recorded."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Edgehold",
+      "Doubleloop"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Valueprobe#mh:SHA-256:7aa285f32033490cfd7b44a769d799505fb082dd30d2c90cd6685b651c5e84bf",
+  "sema_ref": "Valueprobe#7aa2",
+  "sema_stub": "7aa2",
+  "dependencies": {
+    "references": {
+      "explore_exploit": "sema:ExploreExploit#mh:SHA-256:218caa1bcd426b768ebb675c78bc12e55581367814b2b2397383bb3e3e4dcdbc"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

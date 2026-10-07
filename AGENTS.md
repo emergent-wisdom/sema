@@ -447,6 +447,11 @@ explanation overhead or one critical coordination failure as that local rule.
 Under it, one ordinary borrower is not enough — fix the borrowing site instead,
 lowercasing the concept per Rule H.
 
+The coined-word seed additions are admitted on the seed criterion's breadth
+argument, without recorded friction. The
+`PatternDiscovery` gate and the collision rule still apply to each of them, and
+their handles follow the coined-handle rule in `docs/specification/naming.md` §F.
+
 Record every verdict, including the sound ones and the reason they are sound.
 Sound results are the larger half of the work and they are what stops the next
 reviewer re-deriving the same conclusion.

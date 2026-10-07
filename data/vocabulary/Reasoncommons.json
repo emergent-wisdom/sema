@@ -1,0 +1,36 @@
+{
+  "handle": "Reasoncommons",
+  "gloss": "Keep the reasons behind a shared decision readable by everyone it binds",
+  "mechanism": "Each shared {{decision}} is recorded with its reasons, the alternatives rejected and why, and who decided, in a place everyone the decision binds can read. People who were not in the room can then follow, question or revisit it.",
+  "invariants": [
+    "Each shared decision records its reasons, the rejected alternatives and who decided.",
+    "The record is readable by everyone the decision binds."
+  ],
+  "failure_modes": [
+    "Reasons in the room: only the deciders know why the decision was made.",
+    "Post-hoc reasons: reasons are written after the fact to fit the decision."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Reasonfade",
+      "Costeer"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Reasoncommons#mh:SHA-256:0f525b57f046ea35d5343b68ccf33191b41ede5422f33c4d5da8c40f2ab5d1b6",
+  "sema_ref": "Reasoncommons#0f52",
+  "sema_stub": "0f52",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

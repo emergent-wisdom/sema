@@ -1,0 +1,33 @@
+{
+  "handle": "Kinproxy",
+  "gloss": "Another party's values, care or understanding are inferred from how far it resembles the judge",
+  "mechanism": "A judge attributes values, care or understanding to another party, such as a person, an animal, a system or an unfamiliar way of working, partly because of how far its form, manner or reasoning resembles the judge's own. Resemblance raises the attribution and unlikeness lowers it, so a familiar manner is credited with understanding it may lack, and an unfamiliar form is read as indifferent or uncomprehending. Resemblance used as a cue with independently supported relevance to the quality in that context is not an instance.",
+  "invariants": [
+    "A judge attributes values, care or understanding to another party.",
+    "The attribution draws partly on the other's resemblance or unlikeness to the judge, where that resemblance has no independently supported bearing on the quality."
+  ],
+  "failure_modes": [
+    "Likeness read as care: a familiar, human-like manner is taken to show care or understanding.",
+    "Strangeness read as indifference: an unfamiliar form or way of reasoning is taken to show the absence of care or understanding.",
+    "Resemblance dismissed: every attribution that uses resemblance is discounted, including where its relevance to the quality in that context is independently supported."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EmpathySim",
+      "Statuslens",
+      "Callshort"
+    ],
+    "minted": "2026-10-06T04:14:59+02:00"
+  },
+  "sema_id": "sema:Kinproxy#mh:SHA-256:eb7667c0163e2e5b9dc301933abc4ba64421ed3269bfdebebb5631bbed07f047",
+  "sema_ref": "Kinproxy#eb76",
+  "sema_stub": "eb76",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

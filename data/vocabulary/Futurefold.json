@@ -1,0 +1,33 @@
+{
+  "handle": "Futurefold",
+  "gloss": "Planning contracts toward immediate demands, leaving fewer distant possibilities in view",
+  "mechanism": "Immediate demands increasingly occupy planning, while possibilities and consequences farther ahead receive less consideration or drop from the effective horizon. The future held in view narrows even though more distant possibilities remain available. The contraction is relative to an earlier or otherwise relevant horizon, concerns what is actively considered rather than what is possible, and can be deliberate, temporarily appropriate or harmful.",
+  "invariants": [
+    "Planning considers a narrower horizon than an earlier or otherwise relevant one.",
+    "Immediate demands take part in the narrowing."
+  ],
+  "failure_modes": [
+    "Short steps read as contraction: short execution steps are taken to show that the whole horizon narrowed.",
+    "External loss read as contraction: options removed by outside constraints are taken as a narrowed horizon.",
+    "Contraction read as error: every narrowing is treated as a mistake, including a deliberate one in an emergency."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "HorizonReview",
+      "Futureclaim",
+      "Roadmap"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Futurefold#mh:SHA-256:221d100b9f047ff1f14ab3e47f0e6fec075d4bfe45f18a7344a72f3819bd2a6e",
+  "sema_ref": "Futurefold#221d",
+  "sema_stub": "221d",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

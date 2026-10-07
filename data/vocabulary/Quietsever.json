@@ -1,0 +1,34 @@
+{
+  "handle": "Quietsever",
+  "gloss": "Communication diminishes as the connection between parties weakens",
+  "mechanism": "As parties become less able or willing to keep a responsive connection, communication between them diminishes. The quieter channel reflects the weakened connection; it does not show convergence in their views. Low message volume alone is not an instance: a team that resolved an issue and stays readily responsive is quieter without the loss, and parties can agree on some matters while their connection weakens.",
+  "invariants": [
+    "There are at least two independently situated parties.",
+    "Their responsive connection weakens, and the weakening contributes to reduced communication."
+  ],
+  "failure_modes": [
+    "Quiet read as harmony: reduced communication is taken as agreement or health.",
+    "Quiet read as abandonment: reduced communication is taken as a lost connection without asking.",
+    "Volume as measure: message counts alone are used to judge the connection."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ChannelCheck",
+      "Silence",
+      "Silencevote",
+      "Linkfade"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Quietsever#mh:SHA-256:894894fe56268528007068b62be7863888f69a1e6bd3ef1c48a685822a5301f8",
+  "sema_ref": "Quietsever#8948",
+  "sema_stub": "8948",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

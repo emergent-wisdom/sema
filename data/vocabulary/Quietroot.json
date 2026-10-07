@@ -1,0 +1,33 @@
+{
+  "handle": "Quietroot",
+  "gloss": "Development continues during an interval with little outwardly visible progress",
+  "mechanism": "Preparatory abilities, relationships or supporting structures change while the visible result being watched stays nearly unchanged. The development may later support an outward advance, but it does not depend on that advance appearing. Mere passage of time, continued effort or hoped-for improvement is not an instance, and what counts as visible depends on the observer and the measure.",
+  "invariants": [
+    "A visible result being watched stays nearly unchanged over an interval.",
+    "Development occurs during that interval in a dimension that supports the result."
+  ],
+  "failure_modes": [
+    "Stillness read as stagnation: an unchanged output is taken as proof that nothing is developing.",
+    "Plateau read as growth: every plateau is taken to hide progress.",
+    "Effort read as development: continued effort or elapsed time is taken to show development."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Readyrise",
+      "Plateauturn",
+      "LatentWander"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Quietroot#mh:SHA-256:9215269044ece905a789d482720d2ac65bbdf7c2ed57f727fb3e525abe54c34b",
+  "sema_ref": "Quietroot#9215",
+  "sema_stub": "9215",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}
