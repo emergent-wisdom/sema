@@ -1,0 +1,34 @@
+{
+  "handle": "DensityRatchet",
+  "gloss": "A practice that lets a territory feed more people becomes impossible to abandon once the population has grown to depend on it",
+  "extends": "sema:Brakefade#mh:SHA-256:764a4addf9c36ad86e2039e19ebe9a0146b560938b7fbc13bad2def47b79b188",
+  "mechanism": "A new practice, such as farming, irrigation or synthetic fertilizer, raises the number of people a territory can feed. While the practice continues, the population grows toward the new capacity, and the larger it grows, the fewer of its people the earlier practice could feed: abandoning the practice would mean losing the people it alone supports. So the practice persists and spreads even where it brings longer work, poorer health or greater risk per person than the one it replaced. A change that can be reversed without a loss of population, and continued use that rests only on preference, are not instances.",
+  "invariants": [
+    "The practice raises the number of people a territory can feed above what the earlier practice could.",
+    "The population grows beyond the earlier practice's capacity while the practice continues.",
+    "The capacity to abandon the practice without losing population declines as the population grows to depend on it."
+  ],
+  "failure_modes": [
+    "Persistence read as merit: the practice's persistence is taken to show that it gives better lives per person.",
+    "Choice imputed: the population is said to have chosen the exchange, when each step was small and no one could compare the end states.",
+    "Ratchet assumed universal: populations that shrank and abandoned the practice are overlooked."
+  ],
+  "sema_id": "sema:DensityRatchet#mh:SHA-256:2ace122db86434e8c46cc763c9cd5a6cc1842eec9205ac988f789cc5fefd99fc",
+  "sema_ref": "DensityRatchet#2ace",
+  "sema_stub": "2ace",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "_meta": {
+    "path": [
+      "Society",
+      "Economics"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "MalthusianTrap",
+      "SurplusBound",
+      "Sunbound"
+    ]
+  }
+}

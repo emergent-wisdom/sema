@@ -1,0 +1,42 @@
+{
+  "handle": "MalthusianTrap",
+  "gloss": "Population grows until output per person falls back to where births and deaths balance, so better techniques raise numbers, not living standards",
+  "mechanism": "A population lives from land and a set of techniques that together fix how much it can produce. While output per person is above the level at which births and deaths balance, numbers grow, land per person shrinks and output per person falls, until births and deaths balance again at a stable {{equilibrium}}. A better technique, a new crop or new land raises output for a time, and the population grows into it, so the lasting gain is in numbers and density, not in output per person; a disaster that removes people raises output per person until numbers recover. Populations whose births fall as income rises, and economies where output per person grows faster than population for generations, are not instances.",
+  "invariants": [
+    "Output per person falls as the number of people sharing the same land and techniques rises.",
+    "The population grows while output per person is above the level at which births and deaths balance, and shrinks while it is below.",
+    "A rise in output from new techniques or land is followed by population growth that brings output per person back toward its earlier level."
+  ],
+  "failure_modes": [
+    "Fixed ceiling: the level is treated as a constant number of people, when techniques, institutions and trade move it.",
+    "Famine read as overshoot: every famine is taken for a population outgrowing its food, when war, policy and who can obtain food cause most famines.",
+    "Applied past the transition: the trap is applied to a population whose births fall as income rises.",
+    "Living standard read from numbers: output per person is inferred from population size, missing long periods when it stayed high after a population loss."
+  ],
+  "sema_id": "sema:MalthusianTrap#mh:SHA-256:0f6b99da46aa40c7bc427c5af4545b269837f66722ccfbc34994ab50e2e951da",
+  "sema_ref": "MalthusianTrap#0f6b",
+  "sema_stub": "0f6b",
+  "_meta": {
+    "path": [
+      "Society",
+      "Economics"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DemographicTransition",
+      "DensityRatchet",
+      "SurplusBound",
+      "StructuralDemographicCycle",
+      "Sunbound"
+    ],
+    "caution": "It has been used to justify withholding famine relief; most famines followed failures of policy and of access to food, not of aggregate supply."
+  },
+  "dependencies": {
+    "references": {
+      "equilibrium": "sema:Equilibrium#mh:SHA-256:4f036318bc81500ad159994d9ab7efbec87883eccecb18e64ede15cde3e099d2"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Economics"
+}

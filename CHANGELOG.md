@@ -10,6 +10,22 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.8.1] - 2026-10-08
+
+### Added
+
+Sixteen patterns for population dynamics, cultural transmission, resource
+constraints and intergroup competition bring the vocabulary to 606 patterns:
+
+- `CumulativeCulture`, `DemographicTransition`, `DensityRatchet`,
+  `DiminishingComplexityReturns`, `ExitCage`, `FreeRiderProblem`,
+  `InnovationDiffusion`, `MalthusianTrap`, `SecurityDilemma`,
+  `StructuralDemographicCycle`, `Sunbound`, `SurplusBound`, `Twinflow`,
+  `VirginSoilEpidemic`, `Warsift` and `WaveOfAdvance`.
+
+Each pattern includes its design commentary and use boundaries. The existing
+590 definitions retain their identities.
+
 ## [0.8.0] - 2026-10-07
 
 This release adds 133 bootstrap patterns, bringing the vocabulary to 590, and aligns

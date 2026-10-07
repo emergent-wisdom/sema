@@ -1,0 +1,33 @@
+{
+  "handle": "SurplusBound",
+  "gloss": "The share of people who do not produce food can be no larger than what food producers' surplus can feed",
+  "mechanism": "Specialists, rulers, soldiers, traders and city dwellers who do not produce food live on what food-producing households grow beyond their own needs. If those households grow enough to feed themselves and, on top of that, s times their own number, at most s/(1+s) of all people can live outside food production. The bound holds for the whole system that exchanges food over a period, imports and tribute included, and stores only stretch it while they last. More output per producer, better storage or cheaper transport raise the bound; a fall in any of them forces people back into food production or into hunger. How far below the bound the share sits depends on how the surplus is taken and spent, which the bound does not decide.",
+  "invariants": [
+    "People outside food production are fed from food-producing households' surplus in the system that exchanges food, over any period longer than stores last.",
+    "If food-producing households grow enough for themselves and s times their own number, people outside food production are at most s/(1+s) of that system."
+  ],
+  "failure_modes": [
+    "Bound read as level: the share of people outside food production is predicted from the bound, when extraction, consumption and waste keep it lower.",
+    "System drawn too small: a city or region is tested on its own though imports or tribute feed it.",
+    "Surplus read as given: the bound is taken to show that producers chose to feed others, when surplus is often taken by force."
+  ],
+  "sema_id": "sema:SurplusBound#mh:SHA-256:7fe3fb8cfb1870df417d716d1472f9153387d6c9e2938fc9204321a32675da94",
+  "sema_ref": "SurplusBound#7fe3",
+  "sema_stub": "7fe3",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "_meta": {
+    "path": [
+      "Society",
+      "Economics"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "MalthusianTrap",
+      "DensityRatchet",
+      "ExitCage",
+      "Sunbound"
+    ]
+  }
+}

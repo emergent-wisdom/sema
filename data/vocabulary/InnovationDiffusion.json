@@ -1,0 +1,35 @@
+{
+  "handle": "InnovationDiffusion",
+  "gloss": "A practice spreads through a population by contact and imitation, slowly at first, then fast, then levelling off",
+  "mechanism": "People adopt a practice, tool or idea after meeting it in others, through trade, teaching, marriage or imitation. Each adopter exposes others, so adoption rises slowly while adopters are few, accelerates as contacts between adopters and non-adopters multiply, and levels off as those who will adopt have done so. Its pace depends on how often people meet across the network and on how visible, advantageous and fitting to their conditions the practice is; routes of contact, barriers, and differences in climate or custom channel where it goes. Spread by the movement of the adopting people themselves, and adoption imposed by an authority without uptake through contact, are not instances.",
+  "invariants": [
+    "People adopt the practice after encountering it in others.",
+    "The rate of new adoption depends on contact between adopters and non-adopters.",
+    "Adoption levels off as the people who will adopt have adopted."
+  ],
+  "failure_modes": [
+    "Spread read as superiority: a practice's spread is taken to show it is better, when contact, prestige or pressure can carry inferior practices.",
+    "Independent invention missed: a similar practice in two places is assumed to come from contact, when it arose separately.",
+    "Slowness blamed on non-adopters: slow uptake is read as backwardness, when the practice does not fit their conditions."
+  ],
+  "sema_id": "sema:InnovationDiffusion#mh:SHA-256:d44ab9efb7a794fa757130a30f5a7db6003818a575d1371f3c0544dca177e9b4",
+  "sema_ref": "InnovationDiffusion#d44a",
+  "sema_stub": "d44a",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "WaveOfAdvance",
+      "Twinflow",
+      "CumulativeCulture",
+      "Sideinherit",
+      "MemeticSeed"
+    ]
+  }
+}

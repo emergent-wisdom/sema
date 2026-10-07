@@ -1,0 +1,34 @@
+{
+  "handle": "CumulativeCulture",
+  "gloss": "Skills and knowledge accumulate across generations as people learn from others, improve what they inherit and pass improvements on",
+  "mechanism": "People learn skills, tools and knowledge from others and sometimes improve on what they learned. Each generation starts from the stock it inherits, so retained improvements provide a basis for further improvements beyond what anyone could invent alone. Retention and growth depend on learning, practice and innovation; population size and connections affect these processes without determining their outcome. Skills can be lost when transmission breaks down. Learning that is not passed on, and transmission that copies without ever improving, are not instances.",
+  "invariants": [
+    "Skills and knowledge are learned from others rather than reinvented by each learner.",
+    "Some learners improve on what they learned, and the improvements are passed on.",
+    "Improvements are retained long enough for later learners to build on them."
+  ],
+  "failure_modes": [
+    "Stock read as ability: differences in tools or knowledge between peoples are attributed to differences in individual ability without examining learning and transmission.",
+    "Accumulation assumed: the stock is assumed only to grow, missing losses that can follow disrupted transmission, isolation or a shrinking population.",
+    "Size alone: a large or connected population is treated as guaranteeing accumulation without examining the learning, practice and innovation that sustain it."
+  ],
+  "sema_id": "sema:CumulativeCulture#mh:SHA-256:1e8ab972439e5cb3ebba09d73a9107408a01ce8af328c05e2e3c4d34c08a7de5",
+  "sema_ref": "CumulativeCulture#1e8a",
+  "sema_stub": "1e8a",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Sideinherit",
+      "Foundationfray",
+      "InnovationDiffusion",
+      "Twinflow"
+    ]
+  }
+}

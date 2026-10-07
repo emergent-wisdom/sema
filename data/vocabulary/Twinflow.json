@@ -1,0 +1,33 @@
+{
+  "handle": "Twinflow",
+  "gloss": "The links that carry goods, people and ideas between regions also carry disease, pests and conflict",
+  "mechanism": "When regions are joined by trade, migration, pilgrimage or conquest, the same routes and contacts carry what the parties seek, such as goods, crops, techniques and ideas, and what no one sends on purpose, such as pathogens, pests, invasive species and the spread of conflict. The gains usually accumulate over many exchanges, while the harms often arrive as shocks when something dangerous first crosses the link. Denser and faster links raise both flows, and regions joined for the first time meet both at once. Harms or gains that travel by routes other than the link in question are not instances.",
+  "invariants": [
+    "A link between regions carries flows the parties seek.",
+    "The same link carries flows no party sends on purpose, which harm at least one party."
+  ],
+  "failure_modes": [
+    "Gains counted alone: a link is judged only by what its parties meant to exchange.",
+    "Isolation prescribed: cutting the link is proposed to remove a harm, ignoring the gains lost and the harms already established.",
+    "Carriers blamed: a harm that crossed the link is blamed on the traders, migrants or minorities who travel it."
+  ],
+  "sema_id": "sema:Twinflow#mh:SHA-256:947477acf8435fa11be8a39a4d344d688445401036944becd6af0636d8f705f0",
+  "sema_ref": "Twinflow#9474",
+  "sema_stub": "9474",
+  "sema_layer": "Society",
+  "sema_category": "Protocols",
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "VirginSoilEpidemic",
+      "InnovationDiffusion",
+      "Coflourish",
+      "Linkfade"
+    ]
+  }
+}

@@ -7,9 +7,9 @@ All audits below are **advisory**. Heuristic audits generate false positives; us
 Source: `sema.audit.hash_validity` (ok)
 
 ```text
-Checking hash validity for 590 patterns...
+Checking hash validity for 606 patterns...
 
-All 590 hashes valid.
+All 606 hashes valid.
 ```
 
 ## Missing or short fields
@@ -17,7 +17,7 @@ All 590 hashes valid.
 Source: `sema.audit.missing_or_short` (ok)
 
 ```text
-Auditing 590 patterns in data/vocabulary...
+Auditing 606 patterns in data/vocabulary...
 ✅ No issues found.
 ```
 
@@ -27,7 +27,7 @@ Source: `sema.audit.graph` (ok)
 
 ```text
 Loading graph...
-Graph loaded with 2460 nodes and 4824 edges.
+Graph loaded with 2523 nodes and 4942 edges.
 Checking for orphaned patterns...
 Checking for orphaned components...
 Checking for missing metadata...
@@ -45,8 +45,8 @@ Source: `sema.audit.rigor` (ok)
 
 ```text
 {
-  "total": 590,
-  "with_invariants": 550,
+  "total": 606,
+  "with_invariants": 566,
   "with_preconditions": 182,
   "with_postconditions": 172,
   "with_all_contract_fields": 169,
@@ -77,9 +77,9 @@ Source: `sema.audit.missing_links` (ok)
 
 ```text
 🔍 Scanning data/vocabulary for missing links...
-Loaded 590 patterns.
+Loaded 606 patterns.
 
-Found 381 potential missing links.
+Found 383 potential missing links.
 
 🔹 AbsenceEvidence
    ❓ Mentions 'Silence' but not linked.
@@ -573,6 +573,8 @@ Found 381 potential missing links.
    ❓ Mentions 'SteelmanCheck' but not linked.
 🔹 StrategicReading
    ❓ Mentions 'Budget' but not linked.
+🔹 SurplusBound
+   ❓ Mentions 'System' but not linked.
 🔹 SurvivorCorrect
    ❓ Mentions 'Estimate' but not linked.
 🔹 SynergisticMode
@@ -628,6 +630,8 @@ Found 381 potential missing links.
    ❓ Mentions 'Novelty' but not linked.
 🔹 Variable
    ❓ Mentions 'Identity' but not linked.
+🔹 Warsift
+   ❓ Mentions 'State' but not linked.
 🔹 WhyClimb
    ❓ Mentions 'Entropy' but not linked.
 🔹 Wonderdwell
@@ -643,7 +647,7 @@ Found 381 potential missing links.
 Source: `sema.audit.unlinked_mentions` (ok)
 
 ```text
-Scanning 590 patterns for unlinked handle mentions...
+Scanning 606 patterns for unlinked handle mentions...
 
 ⚠️  Abduction:
    • Mentions 'Anomaly' (unlinked). Should it be '{{{ghost}}}'?
@@ -1112,6 +1116,8 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Entropy' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Lock' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  CumulativeCulture:
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  CurriculumReplay:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
@@ -1164,6 +1170,14 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Retry' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Task' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Verification' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DemographicTransition:
+   • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  DensityRatchet:
+   • Mentions 'Compare' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Deploy:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
@@ -1352,6 +1366,10 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Rollout' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Sequence' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  ExitCage:
+   • Mentions 'Option' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Risk' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Expansive:
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Hypothesis' (unlinked). Should it be '{{{ghost}}}'?
@@ -1442,6 +1460,9 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Contract' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  FreeRiderProblem:
+   • Mentions 'Solution' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Value' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Futureclaim:
    • Mentions 'Act' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Futurestretch:
@@ -1696,6 +1717,8 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Overlap' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Refine' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  MalthusianTrap:
+   • Mentions 'Transition' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  MandatoryAbstraction:
    • Mentions 'Problem' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Route' (unlinked). Should it be '{{{ghost}}}'?
@@ -2368,6 +2391,9 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Chain' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Step' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SecurityDilemma:
+   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Signal' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Select:
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Result' (unlinked). Should it be '{{{ghost}}}'?
@@ -2536,6 +2562,10 @@ Scanning 590 patterns for unlinked handle mentions...
 ⚠️  StructuralCoaching:
    • Mentions 'Feedback' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Proposal' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  StructuralDemographicCycle:
+   • Mentions 'Build' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Status' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  StyleSpec:
    • Mentions 'Loop' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
@@ -2549,6 +2579,8 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Category' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Condition' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Noise' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  SurplusBound:
+   • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  SurprisalUpdate:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Context' (unlinked). Should it be '{{{ghost}}}'?
@@ -2703,6 +2735,8 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Artifact' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Criteria' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Spec' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  VirginSoilEpidemic:
+   • Mentions 'Care' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Vote:
    • Mentions 'Agent' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'Check' (unlinked). Should it be '{{{ghost}}}'?
@@ -2716,6 +2750,14 @@ Scanning 590 patterns for unlinked handle mentions...
    • Mentions 'Cache' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
    • Mentions 'System' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  Warsift:
+   • Mentions 'Belief' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Eliminate' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Outcome' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'State' (unlinked). Should it be '{{{ghost}}}'?
+⚠️  WaveOfAdvance:
+   • Mentions 'Distance' (unlinked). Should it be '{{{ghost}}}'?
+   • Mentions 'Trait' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  Webtrace:
    • Mentions 'Work' (unlinked). Should it be '{{{ghost}}}'?
 ⚠️  WhyClimb:
@@ -2752,7 +2794,7 @@ Scanning 590 patterns for unlinked handle mentions...
 ⚠️  Yield:
    • Mentions 'Ledger' (unlinked). Should it be '{{{ghost}}}'?
 
-Scan complete. Found unlinked handle mentions in 502 patterns.
+Scan complete. Found unlinked handle mentions in 514 patterns.
 ```
 
 ## Semantic similarity between patterns

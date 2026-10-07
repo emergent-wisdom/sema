@@ -1,0 +1,33 @@
+{
+  "handle": "Warsift",
+  "gloss": "Sustained war between polities eliminates those that raise less, so the survivors converge on states that extract more",
+  "mechanism": "Polities that compete in war over generations win, absorb or are absorbed according to the soldiers, weapons and supplies they can field, which depends on how much they can raise from their people and how well they administer it. Those that raise and organize less are conquered or merge into others, so the number of polities falls, and the survivors carry the fiscal and administrative institutions that each war required. No polity needs to aim at this outcome; elimination produces it. The sifting slows where terrain protects small polities, where conquest costs more than it gains, or when one empire absorbs the rest. State-building driven by trade or belief without military competition, and competition in which defeated polities survive unchanged, are not instances.",
+  "invariants": [
+    "Polities compete in war over a long period.",
+    "Success in war depends on the resources a polity can raise and administer.",
+    "Defeated polities are eliminated or absorbed, so the number of polities falls and the survivors raise more than those that disappeared."
+  ],
+  "failure_modes": [
+    "Survival read as merit: surviving states are taken to be better for their people, when the sifting favours extraction, not welfare.",
+    "One path for all: regions where war did not eliminate polities, or where states formed otherwise, are forced into the pattern.",
+    "Design imputed: the convergence is credited to rulers' plans, when elimination produces it."
+  ],
+  "sema_id": "sema:Warsift#mh:SHA-256:b01be45436600fcf748c099bb071facfa56423ec5067e279995e86cf7568138e",
+  "sema_ref": "Warsift#b01b",
+  "sema_stub": "b01b",
+  "sema_layer": "Society",
+  "sema_category": "Governance",
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "SecurityDilemma",
+      "ExitCage",
+      "StructuralDemographicCycle"
+    ]
+  }
+}

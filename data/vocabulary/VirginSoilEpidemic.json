@@ -1,0 +1,31 @@
+{
+  "handle": "VirginSoilEpidemic",
+  "gloss": "A disease reaching a population with no prior exposure kills a larger share of it, adults included, than where the disease is endemic",
+  "mechanism": "Where a disease is endemic, most adults have survived it and carry acquired immunity, so it strikes mainly the young. When it first reaches a population that has never been exposed, members of all ages fall ill at once, so the care, food-getting and defence that the healthy provide fail as well, and deaths from neglect and hunger add to those from the disease. Several new diseases arriving within a generation compound the losses, and violence, hunger or displacement at the same time raise mortality further and slow recovery. A disease new to every population, and excess deaths explained by inherited susceptibility rather than by the absence of prior exposure, are not instances.",
+  "invariants": [
+    "The population has had no prior exposure to the disease, so its adults carry no acquired immunity to it.",
+    "The share of the population the disease kills exceeds that in populations where it is endemic.",
+    "Members of all ages fall ill in the same outbreak."
+  ],
+  "failure_modes": [
+    "Germs absolve: a population's collapse is credited to disease alone, hiding the war, enslavement, hunger and displacement that raised mortality and prevented recovery.",
+    "Innate weakness assumed: excess deaths are attributed to inherited susceptibility rather than to the absence of prior exposure and to social disruption.",
+    "One disease blamed: losses from several successive diseases are credited to one."
+  ],
+  "sema_id": "sema:VirginSoilEpidemic#mh:SHA-256:d1fd811afceaea483fe483c103b1c668e86d518625f8735bfa6328923597e878",
+  "sema_ref": "VirginSoilEpidemic#d1fd",
+  "sema_stub": "d1fd",
+  "sema_layer": "Physics",
+  "sema_category": "Primitives",
+  "_meta": {
+    "path": [
+      "Physics",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Twinflow"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "handle": "DiminishingComplexityReturns",
+  "gloss": "Each added layer of a society's or organization's complexity returns less than the one before, until keeping it costs more than it yields and shocks can bring collapse",
+  "mechanism": "A society or organization meets new problems by adding complexity: more specialists, administrators, rules, infrastructure and control. The first additions solve much for little; later ones cost more and solve less, as the easier solutions are taken first and each new layer must also maintain those before it. When the return on further complexity falls below its cost, more and more of the output goes to keeping the complexity already built, reserves against shocks shrink, and a shock once absorbed can bring a rapid loss of complexity, in which simpler arrangements cost less and may serve many people better. Collapse caused only by a force too large for any arrangement, and simplification chosen without a prior fall in returns, are not instances.",
+  "invariants": [
+    "Complexity is added to meet problems.",
+    "The return on each further addition of complexity falls as complexity grows.",
+    "The reserve against shocks shrinks as the cost of maintaining the complexity rises."
+  ],
+  "failure_modes": [
+    "Returns asserted: falling returns are claimed without evidence that later additions cost more and achieved less.",
+    "Collapse read only as catastrophe: the loss of complexity is described only as disaster, when simpler arrangements may serve many people better.",
+    "Every decline as overreach: declines driven by conquest, climate or disease are forced into the pattern."
+  ],
+  "sema_id": "sema:DiminishingComplexityReturns#mh:SHA-256:cb637fe80914db90b69c313f6cca3944c8b014a7bae924235b0b63adf1d8edae",
+  "sema_ref": "DiminishingComplexityReturns#cb63",
+  "sema_stub": "cb63",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "_meta": {
+    "path": [
+      "Society",
+      "Economics"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "StructuralDemographicCycle",
+      "Foundationfray",
+      "Brakefade"
+    ]
+  }
+}

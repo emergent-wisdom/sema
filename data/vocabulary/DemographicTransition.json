@@ -1,0 +1,32 @@
+{
+  "handle": "DemographicTransition",
+  "gloss": "Deaths fall first and births follow after a lag, so a population grows fast until both are low",
+  "mechanism": "In a population where births and deaths are both high, better food supply, sanitation and medicine lower deaths, especially of children. Births fall only later, often a generation or more after deaths, as families respond to more children surviving, to children's work becoming less valuable and their schooling more costly, and to changing ideas about family size. During the lag the population grows quickly and becomes younger; when births have fallen too, growth slows and the population ages. Population change driven by migration, and falls in births that do not follow a fall in deaths, are not instances.",
+  "invariants": [
+    "Deaths fall in a population where births and deaths were both high.",
+    "Births fall after deaths, and during the lag births exceed deaths by more than before.",
+    "Growth slows once births have fallen."
+  ],
+  "failure_modes": [
+    "Stages read as law: the sequence is assumed to run on a fixed timetable, when the lag's length and the level births settle at vary widely.",
+    "Lag read as ignorance: high births during the lag are blamed on irrationality, when they can follow from what children are worth to families and the risks those families still face.",
+    "End assumed: births are assumed to settle at replacement, when they can fall well below it."
+  ],
+  "sema_id": "sema:DemographicTransition#mh:SHA-256:6e31f50b19556b5b9d064d144b5d38ad11b5035daefc2c7d335a798f6f5e7023",
+  "sema_ref": "DemographicTransition#6e31",
+  "sema_stub": "6e31",
+  "sema_layer": "Society",
+  "sema_category": "Economics",
+  "_meta": {
+    "path": [
+      "Society",
+      "Economics"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "MalthusianTrap",
+      "Ripplelag"
+    ]
+  }
+}
