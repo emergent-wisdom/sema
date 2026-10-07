@@ -10,6 +10,15 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-10-07
+
+This release adds 133 bootstrap patterns, bringing the vocabulary to 590, and aligns
+five definitions with the September revision of the Fractal Intelligence paper,
+which gives twenty released patterns new identities. Existing 0.7.1 snapshots
+retain their original identities; consumers choosing to upgrade should use the new
+definitions and vocabulary roots. The MCP server's instructions now point agents
+to patterns when a task needs reasoning.
+
 ### Added
 
 New patterns extend the vocabulary's coverage of reasoning, coordination and
