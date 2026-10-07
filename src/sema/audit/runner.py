@@ -3,6 +3,11 @@
 Each audit is launched through its package module so subprocesses resolve the
 same editable ``sema`` installation as this runner. This avoids manipulating
 ``PYTHONPATH`` and makes a missing development install fail explicitly.
+
+The checkout is ``SEMA_REPO_ROOT`` when set, as ``scripts/verify_vocabulary_change.py``
+does, and otherwise the checkout this module sits in. Run from an installed,
+non-editable package, that second root is not a checkout, so ``main`` refuses
+to run rather than write the report into the installation.
 """
 
 import os
@@ -10,8 +15,25 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
+
+def _repo_root() -> Path:
+    override = os.environ.get("SEMA_REPO_ROOT")
+    return Path(override).resolve() if override else Path(__file__).resolve().parents[3]
+
+
+REPO_ROOT = _repo_root()
 OUTPUT = REPO_ROOT / "docs" / "information" / "audit.md"
+
+
+def checkout_problem(root: Path) -> str | None:
+    """Say why ``root`` is not a Sema checkout the audit can read and write, or None."""
+    missing = [part for part in ("data/vocabulary", "data/taxonomy.db") if not (root / part).exists()]
+    if not missing:
+        return None
+    return (
+        f"{root} is not a Sema checkout (missing {', '.join(missing)}). Run the audit from a "
+        "checkout with an editable install or PYTHONPATH=src, or set SEMA_REPO_ROOT."
+    )
 
 # Order matters: blocking/structural first, heuristic/advisory after.
 AUDITS = [
@@ -43,6 +65,9 @@ def run_audit(module: str) -> tuple[int, str]:
 
 def main() -> None:
     """Run all audits and write ``docs/information/audit.md``."""
+    problem = checkout_problem(REPO_ROOT)
+    if problem:
+        raise SystemExit(f"sema.audit: {problem}")
     sections = ["# Vocabulary Audit Report\n"]
     sections.append(
         "All audits below are **advisory**. Heuristic audits generate false positives; "

@@ -304,6 +304,14 @@ Six of the new cards carry a `caution`: `ActionConvergence`, `DetectorSelfTest`,
 - `AGENTS.md` records that the three-instance friction rule is waived for the
   coined-word tranches. The prior-art gate and the collision rule still apply.
 
+### Fixed
+
+- `scripts/verify_vocabulary_change.py` fails at once, with instructions, when `sema`
+  resolves to an installed package instead of the checkout's `src/`. Run that way, the
+  audit step wrote `audit.md` into the installation while both verify modes passed and
+  the checkout's report went stale. The audit runner also takes its checkout from
+  `SEMA_REPO_ROOT`, which the workflow sets, and refuses a root that is not a checkout.
+
 ## [0.7.1] - 2026-10-04
 
 This release refines five bootstrap definitions, including two dependency

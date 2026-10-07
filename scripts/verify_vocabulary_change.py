@@ -82,8 +82,39 @@ Snapshot = dict[Path, bytes | None]
 def workflow_environment() -> dict[str, str]:
     env = os.environ.copy()
     env["SEMA_DB_PATH"] = str(REPO_ROOT / "data" / "taxonomy.db")
+    env["SEMA_REPO_ROOT"] = str(REPO_ROOT)
     env.setdefault("SEMA_CACHE_DIR", str(Path(tempfile.gettempdir()) / "sema-cache"))
     return env
+
+
+def sema_import_location() -> Path | None:
+    """Where ``import sema`` resolves for the interpreter and environment the steps use."""
+    result = subprocess.run(
+        (sys.executable, "-c", "import sema, sys; sys.stdout.write(sema.__file__)"),
+        cwd=REPO_ROOT,
+        env=workflow_environment(),
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    return Path(result.stdout.strip()) if result.returncode == 0 and result.stdout.strip() else None
+
+
+def development_install_problem(location: Path | None) -> str | None:
+    """Fail when the steps would run an installed ``sema`` instead of this checkout's source.
+
+    An installed package regenerates some outputs from its own code and paths, so a
+    workflow run that way can pass while leaving this checkout's generated files stale.
+    """
+    source = (REPO_ROOT / "src").resolve()
+    if location is None:
+        return "sema cannot be imported by the interpreter running this workflow"
+    if source not in location.resolve().parents:
+        return (
+            f"sema resolves to {location}, not to this checkout's src/. "
+            "Install it editable (pip install -e .) or run with PYTHONPATH=src."
+        )
+    return None
 
 
 def run_step(step: Step) -> int:
@@ -248,6 +279,11 @@ def main() -> int:
         for path in staged:
             print(f"  {path.relative_to(REPO_ROOT)}")
         print("Apply or remove staging files before final verification.")
+        return 1
+
+    problem = development_install_problem(sema_import_location())
+    if problem:
+        print(f"ERROR: {problem}")
         return 1
 
     mode = "refresh" if args.refresh else "check"
