@@ -1,0 +1,36 @@
+{
+  "handle": "Reachsense",
+  "gloss": "Before planning, list what is reachable now with the position and tools at hand",
+  "mechanism": "Before a {{plan}} is made, the actions reachable from the current position are listed: the tools available, their preconditions, and which preconditions are met now. The plan is built from reachable actions, or it includes the steps that extend reach.",
+  "invariants": [
+    "The reachable actions are listed, with their preconditions, before planning.",
+    "Every planned step is reachable now or follows a step that makes it reachable."
+  ],
+  "failure_modes": [
+    "Wishful plan: steps assume tools or access that are not there.",
+    "Reach blindness: a short route is missed because an available tool was never listed."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ToolDiscovery#b165",
+      "Limitlisten"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Reachsense#mh:SHA-256:f71cb6c4378b9d00403fde6aa3ebef85212a37c7437108cd7b1fe911a473ef29",
+  "sema_ref": "Reachsense#f71c",
+  "sema_stub": "f71c",
+  "dependencies": {
+    "references": {
+      "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

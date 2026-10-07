@@ -1,0 +1,41 @@
+{
+  "handle": "GeneralProblemSolvingProtocol",
+  "gloss": "Approach any problem through six dimensions: scope, evidence, constraints, stakeholders, mechanism and dynamics",
+  "mechanism": "A protocol for problems that no specialized protocol fits, obtained by applying the four-test decomposition ({{conceptual_decomposition}}) to problem-solving itself. It proposes six dimensions: scope (what is the problem: its boundary, its ambiguities and its addressable sub-problems), evidence (what is known: data, source evaluation, uncertainty), constraints (what limits a solution: resources, physical laws, regulation, ethical boundaries), stakeholders (who is involved: affected parties, competing interests, power, consent), mechanism (how a solution works: causal structure, design, components) and dynamics (how things change over time: feedback, adaptation, degradation, unintended consequences). Each dimension is addressed for the problem at hand. It is what a {{root_solver}} uses when no specialized protocol fits; the specialized protocols refine it, as an evaluation protocol deepens scope, a making protocol deepens mechanism, and an ethical protocol deepens where stakeholders meet constraints. The six are a proposal to test, not an established result.",
+  "invariants": [
+    "Each of the six dimensions is addressed for the problem at hand.",
+    "The protocol applies where no specialized protocol fits; where one fits, the problem goes to it."
+  ],
+  "failure_modes": [
+    "Dimension skipped: a problem is solved without its scope, constraints or stakeholders being stated, and the solution fails on what was left out.",
+    "Checklist reading: the six are filled in as headings without shaping the solution.",
+    "General where specific fits: the general protocol is used although a specialized protocol fits the problem and would go deeper."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "MetaProtocols",
+      "EthicalReasoningProtocol",
+      "PURE",
+      "DiscoveryProtocol",
+      "UncertaintyMap"
+    ],
+    "minted": "2026-10-06T23:39:36+02:00"
+  },
+  "sema_id": "sema:GeneralProblemSolvingProtocol#mh:SHA-256:43518550b3b0381b9ce0b95bcb5caa553cec22a604173677ef358c7f71024b16",
+  "sema_ref": "GeneralProblemSolvingProtocol#4351",
+  "sema_stub": "4351",
+  "dependencies": {
+    "references": {
+      "conceptual_decomposition": "sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538",
+      "root_solver": "sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

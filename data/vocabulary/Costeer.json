@@ -1,0 +1,38 @@
+{
+  "handle": "Costeer",
+  "gloss": "Choose a direction together, with every party's reasons stated before the choice and answered by it",
+  "mechanism": "Parties choosing a direction together each state their reasons, attached to their {{proposal}}, before any choice is made. A direction is adopted only when it answers every party's stated reasons, either by meeting them or by saying why they are outweighed. The record shows whose reasons shaped the choice and how.",
+  "invariants": [
+    "Every party's reasons are recorded before the choice is made.",
+    "The adopted direction states, for each party's reasons, whether it meets them or why they are outweighed.",
+    "No direction is adopted on one party's authority alone."
+  ],
+  "failure_modes": [
+    "Persuasion drift: one party argues until the other stops objecting, and silence is taken for agreement.",
+    "After-the-fact reasons: a direction is chosen first and reasons are written to fit it.",
+    "Unanswered reasons: reasons are recorded but the choice never addresses them."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Consensus#b9a5",
+      "Overlap#c701"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Costeer#mh:SHA-256:eeda46af6559f397dbb387a7dcd6b0612bbea2c3d02cf3e6f8da7025955fc463",
+  "sema_ref": "Costeer#eeda",
+  "sema_stub": "eeda",
+  "dependencies": {
+    "references": {
+      "proposal": "sema:Proposal#mh:SHA-256:5d0a98055eef6c963d4c9ec0403cac243720ce8927398032c19b4f5d8cc94506"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

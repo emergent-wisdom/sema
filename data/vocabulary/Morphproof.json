@@ -1,0 +1,69 @@
+{
+  "handle": "Morphproof",
+  "extends": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696",
+  "gloss": "A category defined partly by the transformations its members keep their identity under",
+  "mechanism": "A {{category}} whose definition includes a list of transformations its members survive, such as paraphrase for an argument, translation for a claim or refactoring for a program. An item belongs only if it keeps the category's defining features under each listed transformation.",
+  "invariants": [
+    "Lists the transformations under which members keep their identity.",
+    "An item that loses the defining features under a listed transformation is not a member."
+  ],
+  "failure_modes": [
+    "Untested invariance: transformations are listed but members are never tested under them.",
+    "Over-strict list: a transformation that legitimate members fail is listed, and the category empties."
+  ],
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "label",
+      "survives"
+    ],
+    "properties": {
+      "label": {
+        "type": "string",
+        "description": "Name of the category"
+      },
+      "parent": {
+        "type": "string",
+        "description": "Parent category ID (optional, for hierarchies)"
+      },
+      "members": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "IDs of items belonging to this category"
+      },
+      "survives": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "description": "Transformations under which members keep their identity"
+      }
+    }
+  },
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Equivalence#23f0",
+      "Sunsetkind"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Morphproof#mh:SHA-256:f5bbc6c7c8ae65bf21aa537fb5979279cbdd03c4be713d2a16f8b602d99c72ff",
+  "sema_ref": "Morphproof#f5bb",
+  "sema_stub": "f5bb",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

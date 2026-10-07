@@ -1,0 +1,40 @@
+{
+  "handle": "RoutingSanityCheck",
+  "gloss": "Test a candidate carve by routing a few concrete tasks through it before it is kept",
+  "mechanism": "When a {{decompose}} step proposes a candidate carve, a few concrete tasks from its domain, typically three, are generated before the carve is kept, and each is passed by {{route}} to the proposed sub-concepts. A task that finds no clean home suggests a missing dimension, and a task that belongs equally to two sub-concepts suggests that they are not independent enough. The carve is reframed until each task, or each part of a task, routes cleanly to exactly one sub-concept, or it is kept with a recorded warning; a task whose parts go to different sub-concepts is clean, while a part that could go equally to two is not. The check is empirical: it catches carves that are logically elegant but functionally weak, which the four tests, judged in the abstract, can miss.",
+  "invariants": [
+    "Concrete tasks from the carve's domain are routed through the proposed sub-concepts before the carve is kept.",
+    "A task with no clean home, or with two equal homes, leads to a reframing of the carve or to keeping it with a recorded warning."
+  ],
+  "failure_modes": [
+    "Tailored sample: the tasks are chosen to fit the proposed carve, so every one routes cleanly.",
+    "Warning forgotten: a carve kept with a routing warning is later treated as if it had routed cleanly.",
+    "Sample read as proof: a clean routing of a few tasks is taken to certify the carve."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DecompositionGate",
+      "MECE",
+      "Labelsqueeze",
+      "ConceptualDecomposition"
+    ],
+    "minted": "2026-10-06T22:20:11+02:00"
+  },
+  "sema_id": "sema:RoutingSanityCheck#mh:SHA-256:71bdf79f3d471779f7312d699718cab13efef2db27d45873aeb0e91e35c73a8b",
+  "sema_ref": "RoutingSanityCheck#71bd",
+  "sema_stub": "71bd",
+  "dependencies": {
+    "references": {
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",
+      "route": "sema:Route#mh:SHA-256:186c9df2396591a9a71b80e50f3c323e5e0df6ddf64b6552435a0d555b6dbc85"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

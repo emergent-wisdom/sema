@@ -30,7 +30,8 @@
     "path": [
       "Society",
       "Governance"
-    ]
+    ],
+    "caution": "Finalized anchors are irreversible \u2014 restarting from one can discard later transactions, and a two-thirds bloc chooses it; verify the trigger and loss before signing."
   },
   "sema_id": "sema:AnchorDrop#mh:SHA-256:63a776fe9a90b5b17802569fcbe5e01c59773b0176ee42641c0af5b3b6a6c26c",
   "sema_ref": "AnchorDrop#63a7",

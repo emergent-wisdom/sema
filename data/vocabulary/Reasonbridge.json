@@ -1,0 +1,36 @@
+{
+  "handle": "Reasonbridge",
+  "gloss": "Explain a decision in the terms of each value set it affects, without pretending they share one justification",
+  "mechanism": "A {{decision}} that affects parties with different values is explained once for each value set, giving the reasons that hold within it in its own terms. Where a value set finds no reason to support the decision, the explanation says so.",
+  "invariants": [
+    "Each affected value set receives reasons stated in its own terms.",
+    "Where a value set has no supporting reason, the explanation says so."
+  ],
+  "failure_modes": [
+    "False consensus: one justification is presented as everyone's.",
+    "Pandering: different groups are told contradictory things about what the decision does."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Goalweave",
+      "Costeer"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Reasonbridge#mh:SHA-256:f8d2cf63276ff812d41e9344739dd65f7ac4dbe9f111db17a1b1698ee7e6b6e7",
+  "sema_ref": "Reasonbridge#f8d2",
+  "sema_stub": "f8d2",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

@@ -23,14 +23,18 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "related": [
+      "Correctionwelcome#25e5",
+      "Doubleloop#23ac"
     ]
   },
-  "sema_id": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d",
-  "sema_ref": "Feedback#8821",
-  "sema_stub": "8821",
   "signature": [
     "Signal(Incongruity)"
   ],
+  "sema_id": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d",
+  "sema_ref": "Feedback#8821",
+  "sema_stub": "8821",
   "dependencies": {
     "composes_with": {
       "signal": "sema:Signal#mh:SHA-256:6eaff8a06e08e75279670bc09d88175d130815240fdfb3a21252c0364769c1fc"

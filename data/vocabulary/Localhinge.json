@@ -1,0 +1,36 @@
+{
+  "handle": "Localhinge",
+  "gloss": "Link decisions at different scales so that each level can correct the others",
+  "mechanism": "Decisions made at different levels of a {{hierarchy}}, such as team and organisation or local and central, are linked: each level has a stated route for sending corrections to the others, and each correction is answered by the level that receives it.",
+  "invariants": [
+    "Each level has a stated route for sending corrections to the other levels.",
+    "Each correction is answered by the receiving level."
+  ],
+  "failure_modes": [
+    "One-way scale: corrections flow only downward.",
+    "Local veto: every local objection blocks central decisions."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Mosaicmap",
+      "Dissentkeep"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Localhinge#mh:SHA-256:7a04e29d03a29b505561e3275ee3f10c6cdf2afcdf92bb71c14919ac6cbe8fa9",
+  "sema_ref": "Localhinge#7a04",
+  "sema_stub": "7a04",
+  "dependencies": {
+    "references": {
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

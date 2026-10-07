@@ -1,0 +1,38 @@
+{
+  "handle": "Lossprint",
+  "gloss": "Read a pattern in how several lossy renderings of one source differ in what they lose",
+  "mechanism": "The same source is rendered into several targets, such as languages, formats, modalities or audiences, each of which drops something; a single {{representation_swap}} becomes one of several. For each rendering, what it lost is listed against the source. The loss lists are then compared. A loss every rendering shares suggests something all the examined targets resist. A loss only one rendering shows suggests a blind spot of that rendering or its target. Losses that occur together suggest a structure in the source that those renderings drop as a unit. These are hypotheses about the renderings examined, not established limits of their targets. The finding is stated in terms of these differences, not in terms of what the renderings preserve.",
+  "invariants": [
+    "Uses at least two renderings of the same source into different targets.",
+    "Each rendering's losses are listed against the source, not against another rendering.",
+    "The reported pattern is stated as a relation between loss lists."
+  ],
+  "failure_modes": [
+    "Invisible loss: something no rendering carried and nobody listed drops out of every comparison.",
+    "Careless rendering: losses caused by a poor rendering are read as structure in the source.",
+    "Shared-loss tunnel vision: only what every rendering lost is examined, so target-specific blind spots are missed."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Translate#31ed",
+      "Summarize#98db"
+    ],
+    "minted": "2026-10-05T20:03:20+02:00"
+  },
+  "sema_id": "sema:Lossprint#mh:SHA-256:34c2067a057619d6d146ce794a720cb028da6b172ca93dc21efd19998729149b",
+  "sema_ref": "Lossprint#34c2",
+  "sema_stub": "34c2",
+  "dependencies": {
+    "references": {
+      "representation_swap": "sema:RepresentationSwap#mh:SHA-256:32532416b2651f7810504240d2e099ac7776f0431bcbdeb8c2d0ef26ff8c735e"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

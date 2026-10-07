@@ -6,8 +6,8 @@
      and export through `docs/guides/authoring.md`. Edit commentary in
      `data/design_critique.json`. Never edit canonical exports directly. -->
 
-_Patterns covered: 457 (from `data/vocabulary/`)_
-_Commentary entries in sidecar: 457 (from `data/design_critique.json`)_
+_Patterns covered: 590 (from `data/vocabulary/`)_
+_Commentary entries in sidecar: 590 (from `data/design_critique.json`)_
 
 This manual is the design reference for the Sema Bootstrap Library. For each pattern, it shows the definition (mechanism, invariants, pre/postconditions, failure modes, parameters, data schema, and dependency bindings) alongside the design commentary: why it exists, why it sits where it does, whether it could be removed, how it's used across contexts, its design tensions and tradeoffs, critique, and where it sits in its family. Machine validation checks structure, references, and hashes; the meaning and adequacy of the contracts require review. Source links point to the rendered card, including its staging copy when present.
 
@@ -247,9 +247,9 @@ themselves; rewrite them around the semantic risk and run the placement test.
 ---
 
 ## Patterns
-## Physics (16)
+## Physics (20)
 
-### Physics/Primitives (15)
+### Physics/Primitives (18)
 
 ### Attractor#0036
 
@@ -301,6 +301,64 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 **Supersedes (prior versions).**
 - `Attractor#8c2d`
+
+---
+
+### Brakefade#764a
+
+`Physics` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Brakefade.json)
+
+**Gloss.** An activity continues while the practical ability to slow, stop or reverse it diminishes
+
+**Mechanism.**
+
+> Means that could slow, stop or reverse an ongoing activity become less effective, less available or more costly relative to the same control objective, while the activity continues. The loss can come from worn mechanisms, changed scale, lost knowledge, dispersed authority or accumulating commitments, and it can affect one control action and not another: reversal can grow harder while stopping stays available. Output may rise, fall or hold steady, so output alone does not show that control is retained. An activity that was always hard to stop shows a limitation rather than this decline, and a changed preference for stopping is not a change in the ability to stop.
+
+**Invariants.**
+- There is an ongoing activity.
+- The practical capacity for at least one of slowing, stopping or reversing it declines, judged against the same control objective.
+
+**Failure modes.**
+- Output read as control: continued production is taken to show that the activity can still be slowed, stopped or reversed.
+- Paper brake: a documented stop or rollback procedure is taken to be an effective one.
+- Burden mistaken for loss: growth in what the activity carries is read as lost control without comparing against the same control objective.
+- One route for all: control is declared lost, or kept, everywhere because one route weakened or held.
+
+#### Design
+
+**Why it exists.** Running activities are often trusted to stay controllable because they still run and still produce. Brakefade names the loss of practical control that can build up meanwhile, so it can be recognised before anyone decides what to do about it.
+
+**Why Physics.** An activity and its means of slowing, stopping or reversing are enough: a mechanical brake can fade with no agent involved.
+
+**Can it be removed?** Reversibility asks whether one action can be undone, and CircuitBreaker and StopDrill are a means and a practice of stopping; none describes a declining ability to slow, stop or reverse an ongoing activity. Removable if control over running activities is assumed constant.
+
+**Intended use.** recognising when a running activity, system or programme is becoming harder to slow, stop or reverse.
+
+**Future uses.** long-running agents and automated pipelines whose stop and rollback routes erode as they grow.
+
+**Broad-use contexts.** deployments and rollbacks, industrial machinery, programme wind-downs, contractual commitments, model training runs, autonomous agents.
+
+**Broad-use intersection (review hypothesis).** an ongoing activity, a control action, and a comparison of its practical capacity over time against the same control objective.
+
+**Varies (descendant territory).** which control action weakens, whose capacity is meant, and what shows the decline.
+
+**Extension shape.** a variant for reversal alone; a variant for shared or distributed stop authority.
+
+**Design tensions.**
+- Showing the decline can take an attempt to stop, which may itself be costly.
+
+**Tradeoffs.**
+- Gains: lost control can be named while the activity still runs.
+- Gives up: a single verdict on whether an activity is under control.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response; StopDrill is one separately defined practice that exercises a stop route, and a passing drill on one route does not show that every route works.
+- A planned commitment whose reversal cost rises can be an instance without being a mistake.
+- Novelty, from recall and unverified: known. Nearest known concepts: brake fade in mechanical braking; lock-in and path dependence.
+
+**In the family.** Regulapse loses detection and correction, Reversibility asks whether one action can be undone, StopDrill exercises a stop, and Brakefade is the loss of practical control over an ongoing activity.
 
 ---
 
@@ -360,7 +418,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - `Correlation` is named in prose rather than wired, deliberately, because it already references Causation and an edge back would cycle. Its association contract neither establishes nor excludes this causal relation; the graph records the conceptual link without treating the two as complements.
 - The feedback-and-multi-path limitation stays as declared. The first tension owns it and the Varies line assigns 'directness (direct vs chained)' to descendants, so a minimal directed edge is the right base.
 
-**In the family.** The causal-structure anchor in Physics. Paired with `Correlation`, the normalized association measure that cannot by itself establish or exclude this relation. Feeds `Experiment` (the intervention tool), `Abduction` (inferring causes from effects), and `CausalBarrier` (enforcing causal ordering in distributed systems).
+**In the family.** The causal-structure anchor in Physics. Paired with `Correlation`, the normalized association measure that cannot by itself establish or exclude this relation. Feeds `Experiment` (the intervention tool), `Abduction` (inferring causes from effects), and `CausalBarrier` (enforcing causal ordering in distributed systems). Patterns that build on it: EffectDelayCheck, Ripplelag.
 
 **Supersedes (prior versions).**
 - `Causation#63e1`
@@ -1155,7 +1213,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - An omitted externality can make an apparently restorable action irreversible, and costs or tolerances can change before reversal is attempted. Domain evaluation and later re-evaluation belong to callers or descendants.
 - The appropriate layer remains debatable because information limits are physical, while practical undo assessments require judgment.
 
-**In the family.** Decision property used by Translate when considering whether a conversion inverts and by ReversibilityCheck when evaluating rollback. Constraint supplies the declared limits. Entropy is a related physical consideration, not a required dependency or a current invariant of this card.
+**In the family.** Decision property used by Translate when considering whether a conversion inverts and by ReversibilityCheck when evaluating rollback. Constraint supplies the declared limits. Entropy is a related physical consideration, not a required dependency or a current invariant of this card. Patterns that build on it: Trialhaven.
 
 **Supersedes (prior versions).**
 - `Reversibility#049f`
@@ -1163,7 +1221,126 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-### Physics/Time (1)
+### Ripplelag#8edf
+
+`Physics` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Ripplelag.json)
+
+**Gloss.** A change reaches connected people or systems only after a delay
+
+**Mechanism.**
+
+> A change in one part produces an effect in a connected part after transmission, accumulation or response takes time, along {{causation}} paths that may run through several links. The initiating change and its downstream effect are separated by that interval, and different paths can carry different delays. The lag concerns when the effect occurs, not when an observer learns of it, and an expected effect that has not appeared supports a hypothesis of lag, not a confirmation.
+
+**Invariants.**
+- There is an initiating change and a downstream effect causally connected to it.
+- A nonzero interval separates the change from the occurrence of the effect.
+
+**Failure modes.**
+- Late report read as lag: an immediate effect reported late is taken as delayed propagation.
+- Sequence read as propagation: a later change with an independent cause is taken as the delayed effect.
+- Waiting read as proof: an effect that has not arrived is taken as certain to arrive, or its absence after the expected delay as proof that none will.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{causation}}` | `sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850` |
+
+#### Design
+
+**Why it exists.** Effects are expected to show at once, so a change whose effects are still travelling looks harmless. Ripplelag names the delay itself, apart from how anyone judges it.
+
+**Why Physics.** Delayed propagation happens between physical systems with no agent or judgment involved, as Causation does.
+
+**Can it be removed?** Causation describes a causal relation without its timing, and EffectDelayCheck forbids judging a system unaffected early; neither describes the delay along causal paths. Removable if effects are treated as immediate.
+
+**Intended use.** recognising that a change's effects on connected people or systems may still be on their way.
+
+**Future uses.** agents acting in pipelines, organisations and ecosystems with long feedback times.
+
+**Broad-use contexts.** data pipelines, deployments, policy changes, medical treatments, supply chains, ecosystems, team workloads.
+
+**Broad-use intersection (review hypothesis).** a change, a causally connected effect, and an interval between them.
+
+**Varies (descendant territory).** the paths, their delays, and whether the delays are known.
+
+**Extension shape.** a variant for delays that vary by path; a variant for accumulation before an effect appears.
+
+**Design tensions.**
+- Delays are often unknown, so a lag can only be hypothesised until the effect appears.
+
+**Tradeoffs.**
+- Gains: effects in transit can be named.
+- Gives up: early all-clears.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. EffectDelayCheck is one separately defined judgment rule.
+- Novelty, from recall and unverified: known. Nearest known concepts: propagation delay; lagged effects; dead time in control systems.
+
+**In the family.** Causation relates cause and effect, EffectDelayCheck waits out stated delays, and Ripplelag is the delay itself.
+
+---
+
+### Swayhold#171a
+
+`Physics` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Swayhold.json)
+
+**Gloss.** A recognisable form or function persists through continual adjustment
+
+**Mechanism.**
+
+> As conditions or internal dynamics vary, ongoing adjustments contribute to keeping a form or function, and the same underlying method can make those adjustments without being replaced. Both a continuing form or function and adjustments that sustain it must be present; mere change, mere persistence, or accidental similarity across states is not an instance, and a rigid structure that withstands a disturbance without changing is not one either.
+
+**Invariants.**
+- A form or function continues over the interval considered.
+- Ongoing adjustments contribute to its continuation.
+
+**Failure modes.**
+- Adjustment read as instability: visible adjustment that sustains continuity is called instability.
+- Survival read as adaptation: anything that survives is called adaptive, even when no adjustment sustains it.
+- Steadiness read as headroom: a form held steady by adjustment is taken to show spare capacity, when the adjustments may be close to their limit.
+
+#### Design
+
+**Why it exists.** Continuity is pictured as stillness, so a form kept by constant adjustment is read as unstable. Swayhold names persistence through movement.
+
+**Why Physics.** A balancing system keeps its form through adjustment with no agent involved, as a spinning top or a thermostat-held room does.
+
+**Can it be removed?** Equilibrium is a stationary state under the dynamics, Robustness resists stress without requiring adjustment, and Morphproof defines membership by surviving transformations; none describes active maintenance of a form through continual adjustment. Removable if continuity is assumed to mean stillness.
+
+**Intended use.** recognising when a form or function is being kept by continual adjustment.
+
+**Future uses.** agents and systems that stay on task through constant small corrections.
+
+**Broad-use contexts.** dance and live performance, interpretation, homeostasis, control systems, organisations under change, agent behaviour.
+
+**Broad-use intersection (review hypothesis).** a continuing form or function and adjustments that sustain it.
+
+**Varies (descendant territory).** what counts as the same form, and what the adjustments respond to.
+
+**Extension shape.** a variant for ensembles; a variant for technical control.
+
+**Design tensions.**
+- Continuity has to be judged by each domain's own criterion.
+
+**Tradeoffs.**
+- Gains: a name for stability through motion.
+- Gives up: equating stability with stillness.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Continuity is judged by a domain's own criterion, not by the Identity card's addressability sense.
+- Novelty, from recall and unverified: known. Nearest known concepts: dynamic stability; homeostasis.
+- A steady form can hide growing strain: the adjustments absorb a growing disturbance until they cannot, so the steadiness shows nothing about how much adjustment is left.
+
+**In the family.** Equilibrium rests, Robustness resists, Morphproof survives transformations, and Swayhold persists by adjusting.
+
+---
+
+### Physics/Time (2)
 
 ### CausalBarrier#cf54
 
@@ -1261,9 +1438,64 @@ themselves; rewrite them around the semantic risk and run the placement test.
 
 ---
 
-## Infrastructure (158)
+### Syncdrift#8e74
 
-### Infrastructure/Data Structures (96)
+`Physics` · `Time` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Syncdrift.json)
+
+**Gloss.** Activities that coordinated in time gradually move out of alignment
+
+**Mechanism.**
+
+> Related activities keep their individual operation while their timing changes relative to one another, so interactions that met their timing requirements increasingly arrive too early, too late or in an incompatible sequence. There must have been a working temporal relation that coordination depends on; different rhythms that keep fitting together, for example through a buffer, are not an instance.
+
+**Invariants.**
+- There was a working temporal relation between the activities, and coordination depends on it.
+- That relation drifts over the interval considered.
+
+**Failure modes.**
+- Parts read as whole: each part operating correctly is taken to show that coordination is healthy.
+- One miss read as drift: a single missed interaction is taken as a sustained drift.
+
+#### Design
+
+**Why it exists.** Coordinated activities drift apart in time while each one still works, so the failure shows only where they meet. Syncdrift names the drift.
+
+**Why Physics.** Timing relations hold between physical processes with no agent involved; clocks and schedules can drift on their own.
+
+**Can it be removed?** EbbFlowSync enforces a particular two-mode rhythm, and Linkfade weakens connections; neither describes timing that drifts while connection and operation hold. Removable if coordinated timing is assumed stable.
+
+**Intended use.** recognising when coordinated activities are moving out of alignment.
+
+**Future uses.** agent pipelines and services with periodic windows and schedules.
+
+**Broad-use contexts.** rehearsal and ensemble playing, supply chains, maintenance schedules, batch pipelines, agent communication.
+
+**Broad-use intersection (review hypothesis).** a working temporal relation that coordination depends on, and a drift in it.
+
+**Varies (descendant territory).** the rhythms involved and how alignment is measured.
+
+**Extension shape.** a variant for periodic schedules; a variant for human ensembles.
+
+**Design tensions.**
+- Drift is gradual, so each moment looks almost aligned.
+
+**Tradeoffs.**
+- Gains: a name for coordination failing in time while every part works.
+- Gives up: reading healthy parts as a healthy whole.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It is not Linkfade: connection can stay strong while timing stops fitting.
+- Novelty, from recall and unverified: known. Nearest known concepts: clock drift; desynchronisation; schedule slip.
+
+**In the family.** Linkfade weakens connection, EbbFlowSync enforces a rhythm, and Syncdrift is timing drifting out of alignment.
+
+---
+
+## Infrastructure (167)
+
+### Infrastructure/Data Structures (101)
 
 ### AcceptSpec#37fa
 
@@ -1678,7 +1910,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - No typing beyond 'typed input/output token' — the type system Artifact participates in is effectively implicit, which gets painful at pipeline boundaries.
 - `uri` removed from `data_schema.required`; `hash` retained. The mechanism calls an Artifact a 'typed input/output token', and `Build` yields a prototype while `ProtoPack` holds a simulation trace — tokens passed between solvers in memory have no storage location. `hash` is load-bearing in the other direction, since the Immutability invariant depends on it and `CompatibilityCheck` compares definition hashes.
 
-**In the family.** The substrate on which Solution, Solve, Task outputs all flow. Pairs with Hash (how you address it) and AuditTrail (how you prove its provenance). Compare with Token (which is transient and usage-gated) and Datum (which is observational rather than produced). Artifact is specifically the 'produced by a solver' flavor.
+**In the family.** The substrate on which Solution, Solve, Task outputs all flow. Pairs with Hash (how you address it) and AuditTrail (how you prove its provenance). Compare with Token (which is transient and usage-gated) and Datum (which is observational rather than produced). Artifact is specifically the 'produced by a solver' flavor. Patterns that build on it: Blindmark.
 
 **Supersedes (prior versions).**
 - `Artifact#379a`
@@ -1885,7 +2117,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - Three failure modes added where there were none. Calcification is the second critique point's concern stated as a failure. The inconsistent set is the third tension, which had no home: two assumptions can each close a local gap and contradict each other in the same chain, and neither invariant catches it because both are locally satisfied. The third is the residue of the widened tracking invariant — a premise standing in for a decision nobody made has no validation target, which is worth naming now that such premises are admitted.
 - The Axiom and Hypothesis boundaries stay as the family section states them, and they are now mutually consistent: Hypothesis gained 'states its own defeater' and 'no proof state' earlier in this pass, Axiom claims foundational status, and this pattern is the weakest commitment with a discharge condition. The distinctions blur in use, as the third critique point says, but each card now carries a different obligation rather than a different adjective.
 
-**In the family.** The weakest epistemic commitment in its family: Datum (observed), Axiom (unprovable premise), Hypothesis (provisional proposal under test), Assumption (gap-filler to proceed). Unlike Hypothesis, Assumption doesn't imply an active test loop; unlike Axiom, it doesn't claim foundational status. Pairs tightly with BeliefTracking (to retire assumptions that later prove false) and Judgment (which frequently rests on chains of unrecognized assumptions).
+**In the family.** The weakest epistemic commitment in its family: Datum (observed), Axiom (unprovable premise), Hypothesis (provisional proposal under test), Assumption (gap-filler to proceed). Unlike Hypothesis, Assumption doesn't imply an active test loop; unlike Axiom, it doesn't claim foundational status. Pairs tightly with BeliefTracking (to retire assumptions that later prove false) and Judgment (which frequently rests on chains of unrecognized assumptions). Patterns that build on it: Leapdebt, Reasonfade.
 
 **Supersedes (prior versions).**
 - `Assumption#4647`
@@ -2216,7 +2448,7 @@ themselves; rewrite them around the semantic risk and run the placement test.
 - Two invariants added where there were none. The mechanism's distinguishing claim is that a Belief is 'a claim held by an {{agent}}' — unlike a Fact — and nothing required the holder to be named. The second covers the intersection element that was optional: a pointer to supporting evidence is named in 'a claim, a confidence score, a pointer to supporting evidence', and `supporting_evidence` sat unrequired. Recording that there is none is permitted; leaving the field absent is not, because a Belief with no evidence slot cannot be distinguished from one whose evidence was never looked for.
 - Supporting evidence can be an observation, linked data, or a derivation; it need not be an agent execution Context. The evidence pointer must be present even when it records that no evidence is available. Datum denotes raw, uninterpreted data, while Artifact requires workflow production and immutable addressability; neither covers every admitted form of evidence. Its representation therefore belongs to the caller.
 
-**In the family.** The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Carries pointers to supporting evidence and distinguished from `Fact` by subjectivity.
+**In the family.** The epistemic-state substrate. Updated by `BayesUpdate`, tracked by `BeliefTracking`, calibrated by `ConfidenceCalibrate`, traced by `TraceBelief`. Carries pointers to supporting evidence and distinguished from `Fact` by subjectivity. Patterns that build on it: Normance.
 
 **Supersedes (prior versions).**
 - `Belief#5ad9`
@@ -2740,7 +2972,7 @@ _Note: The card requires serializable values and excludes expired entries; memoi
 - Treats category membership as a property of the item; some theories treat it as a property of the observer (category as lens), and the pattern can't express that.
 - Examined, unchanged. Thin, and legitimately so — the schema (label plus members) is the teeth for a noun. One note for a future reviewer: the mechanism says items are treated as 'equivalent for certain operations', which is a quotient under an operation and deliberately NOT the exact relation `Equivalence` now names. The lowercase usage is correct per Rule H.
 
-**In the family.** Substrate for Taxonomy, Classify, Tag, Bin. Compare with Type (a more formal variant with richer semantics) and Schema (which combines types with structure). Category is the minimum viable grouping primitive; the others build richer structure on top. Its members are 'equivalent for certain operations', which is a quotient under an operation and deliberately not the exact relation `Equivalence` names — reach for `Equivalence` when the respect of sameness must be stated and exact.
+**In the family.** Substrate for Taxonomy, Classify, Tag, Bin. Compare with Type (a more formal variant with richer semantics) and Schema (which combines types with structure). Category is the minimum viable grouping primitive; the others build richer structure on top. Its members are 'equivalent for certain operations', which is a quotient under an operation and deliberately not the exact relation `Equivalence` names — reach for `Equivalence` when the respect of sameness must be stated and exact. Patterns that build on it: ClassificationReview, Labelloop, Morphproof, Situfit, Sunsetkind.
 
 ---
 
@@ -2913,6 +3145,106 @@ _Note: The card requires serializable values and excludes expired entries; memoi
 - The value of having this handle is primarily for BeliefTracking, Judge, and SteelmanCheck to reference; standalone it does little.
 
 **In the family.** A classification stub that instances (ConfirmationBias, Anchoring, etc.) specialize. Pairs with BeliefTracking (the corrective mechanism), SteelmanCheck (the debiasing move), and Judge (the target of the bias). Compare with Bias — CognitiveBias is specifically the processing-error flavor; Bias more generically covers statistical/sampling/systematic distortions.
+
+---
+
+### CompositionEdge#2be8
+
+`Infrastructure` · `Data Structures` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/CompositionEdge.json)
+
+**Gloss.** A link stating that a child supplies a differentiated contribution its parent's outward capability requires
+
+**Mechanism.**
+
+> A composition edge records that a child supplies one differentiated contribution that its parent's outward capability requires: a restaurant needs nourishment, experience, flow, economics and identity, each linked to it as a contribution rather than as a kind. When the parent is invoked, its composition children can become executable work, and the parent's {{synthesis}} states how their contributions, with routing and integration, realize its capability. The set is claimed complete for the parent's current outward promise, so a missing contribution is a defect of the carve, while siblings need only low coupling, not zero overlap. A contribution may serve several parents, each giving it its own role.
+
+**Invariants.**
+- The child supplies a contribution the parent's outward capability requires, differentiated from its siblings' contributions.
+- A parent's composition children are claimed complete for its current outward promise.
+- The parent declares a synthesis stating how its composition children's contributions realize its capability.
+
+**Failure modes.**
+- Kind filed as part: a kind of the parent is linked as one of its contributions, so the parent appears to need every kind in order to work.
+- Procedural carve: the children are steps of one procedure rather than dimensions of the capability, so the set is complete for one workflow but not for the capability.
+- Unstated synthesis: children are attached without saying how their contributions combine, so the parent's capability is asserted rather than shown.
+
+**Data schema.**
+
+```json
+{
+  "type": "object",
+  "required": [
+    "parent",
+    "child",
+    "contribution",
+    "synthesis"
+  ],
+  "properties": {
+    "parent": {
+      "type": "string",
+      "description": "The capability the contribution helps realize"
+    },
+    "child": {
+      "type": "string",
+      "description": "The concept or Solver that supplies the contribution"
+    },
+    "contribution": {
+      "type": "string",
+      "description": "What the child supplies that the parent's outward capability requires, stated so that it differs from its siblings' contributions"
+    },
+    "synthesis": {
+      "type": "string",
+      "description": "Reference to the parent's declared synthesis, which states how its composition children together realize its capability"
+    },
+    "role": {
+      "type": "string",
+      "description": "Optional parent-local role, constraints or acceptance criteria the parent gives the child; one child can serve several parents in different roles"
+    }
+  }
+}
+```
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
+
+#### Design
+
+**Why it exists.** A capability is realized by differentiated contributions that must work together, and a graph that records them only as children cannot say whether the set is complete or how the parts combine. CompositionEdge marks a child as a constitutive contribution, claims completeness for the parent's set of such children, and pairs it with the parent's synthesis, keeping it apart from the kind-of relation that a problem climbs.
+
+**Why Infrastructure.** A persistent relation between two concepts in a graph; it is a data structure, not an act.
+
+**Can it be removed?** Decompose and ConceptualDecomposition are acts of splitting and Compose is the act of assembling solved parts, not the persistent relation they leave; Workflow links the steps of an operation, where composition children are dimensions of a capability; MECE partitions along one criterion and requires zero overlap, where composition children need only lower coupling; Synthesis states how parts combine but not which parts a capability requires. Removable if a parent's children are never claimed complete.
+
+**Intended use.** recording that a concept supplies a required, differentiated contribution to another's outward capability.
+
+**Future uses.** persistent solver graphs whose composition children become executable work; agent teams dividing a capability into contributions.
+
+**Broad-use contexts.** system and software architecture, organisational design, curricula, product decomposition, concept graphs.
+
+**Broad-use intersection (review hypothesis).** a parent capability, a child contribution it requires, and a declared synthesis of the parent's composition children.
+
+**Varies (descendant territory).** how the contribution is stated, how coupled the siblings are, and whether the child becomes executable work.
+
+**Extension shape.** a variant for executable solver graphs; a variant for organisational roles.
+
+**Design tensions.**
+- Claiming completeness makes a missing contribution detectable, but the claim is only as good as the current framing of the parent's capability.
+
+**Tradeoffs.**
+- Gains: a parts set whose completeness can be checked.
+- Gives up: treating any child as optional.
+
+**Critique (diagnostic, not contract requirements).**
+- The card defines a relation type and prescribes no procedure; ConceptualDecomposition is the act that creates such edges, MandatoryAbstraction places the carve after the ascent, and SpecializationEdge is the other relation the paper keeps distinct.
+- A composition child need not be a kind of its parent, which is why the two relations cannot share one edge.
+- Novelty, from recall and unverified: known. Nearest known concepts: the part-whole relation (meronymy); constitutive composition; collectively exhaustive decomposition.
+
+**In the family.** Decompose and ConceptualDecomposition split, Synthesis recombines, SpecializationEdge links a kind to its genus, and CompositionEdge links a required contribution to the capability it serves.
 
 ---
 
@@ -3180,7 +3512,7 @@ _Note: The card requires serializable values and excludes expired entries; memoi
 - Type taxonomy (Resource/Safety/Legal/Physical) is reasonable but non-exhaustive; ethical, aesthetic, social constraints don't fit neatly.
 - Examined, unchanged. Among the strongest cards in the library: three decidable invariants, three failure modes that each arise from the named mechanism, and a required set matching its own stated intersection.
 
-**In the family.** Foundational optimization primitive. Pairs with AcceptSpec (constraints as quality bars), Budget (resource constraint specifically), and Solve (the consumer of constraints). Compare with Invariant — Constraint is a bound on valid solutions; Invariant is a property preserved across operations. Both are 'things that must hold,' at different operational points.
+**In the family.** Foundational optimization primitive. Pairs with AcceptSpec (constraints as quality bars), Budget (resource constraint specifically), and Solve (the consumer of constraints). Compare with Invariant — Constraint is a bound on valid solutions; Invariant is a property preserved across operations. Both are 'things that must hold,' at different operational points. Patterns that build on it: BoundaryReview.
 
 ---
 
@@ -3281,7 +3613,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The four-part structure (Constraints, Tools, Memory, Identity) is prescribed but the field names are not enforceable — different implementations may use different keys.
 - Historical circumstances, semantic assumptions, evidence, and contract terms have different meanings from an execution frame. A borrower should name the actual subject of its operation. Serializability excludes arbitrary live transaction or subprocess objects; an execution Context may instead carry serializable information about them.
 
-**In the family.** The execution-environment container. Composed with `Constraint` (the inheritance-monotonic half), `Identity`, `Tool` (capability set), working memory. Pairs with `Task` (context flows with task dispatch) and `Card` (context travels with capability advertisements).
+**In the family.** The execution-environment container. Composed with `Constraint` (the inheritance-monotonic half), `Identity`, `Tool` (capability set), working memory. Pairs with `Task` (context flows with task dispatch) and `Card` (context travels with capability advertisements). Patterns that build on it: Nestmap.
 
 **Supersedes (prior versions).**
 - `Context#510a`
@@ -3400,7 +3732,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The strictness is deliberate and kept. The design tension notes that 'some real contracts become valid when a quorum signs rather than all' and that this pattern is all-or-nothing; a quorum variant is a descendant, and `Quorum` exists for it. The amendment path named in the second tension is folded into the immutability invariant, since 'an amendment is a new Contract' is the supersession model this library already uses and a reader of the contract field should not have to find it in commentary.
 - A judge resolving a dispute uses the agreed terms, not an agent execution container. Condition and the terms schema provide the structure for those terms, alongside parties, signatures, binding conditions, and amendment semantics.
 
-**In the family.** The multi-party commitment artifact in Infrastructure. Composed with `Identity` (signers), `Condition` (terms), `Sign` (the signing op), `CommitmentDevice`. Used by `LatticeCommit`, governance, and economic-exchange patterns.
+**In the family.** The multi-party commitment artifact in Infrastructure. Composed with `Identity` (signers), `Condition` (terms), `Sign` (the signing op), `CommitmentDevice`. Used by `LatticeCommit`, governance, and economic-exchange patterns. Patterns that build on it: Cocapacity.
 
 **Supersedes (prior versions).**
 - `Contract#0624`
@@ -3617,7 +3949,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - A `rule` property now carries the standard in either form and is required; metric, threshold and comparator stay optional for the quantified case. The second invariant keeps them coupled, because a metric without a threshold or a threshold without a comparator decides nothing.
 - Decidability is the invariant worth having here: applying the rule yields pass or fail without further judgment. That is what separates a criterion from a preference, and it holds for both the quantified and unquantified forms.
 
-**In the family.** Substrate for Judge (scores against), Critique (produces feedback against), AcceptSpec (bounds against). Compare with Condition — Criteria are evaluation standards; Conditions are control-flow predicates. Both are 'things that evaluate,' at different operational points.
+**In the family.** Substrate for Judge (scores against), Critique (produces feedback against), AcceptSpec (bounds against). Compare with Condition — Criteria are evaluation standards; Conditions are control-flow predicates. Both are 'things that evaluate,' at different operational points. Patterns that build on it: Canonseal, Doubleloop.
 
 **Supersedes (prior versions).**
 - `Criteria#0400`
@@ -3970,7 +4302,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The Select reference (`uses {{select}}`) implies Decision is the output of a selection act. But Decision is also used for opportunistic commits where no select step happens (a Gate's passthrough on proceed). The mechanism is ambiguous about whether Decision without a select history is valid.
 - §3.18 flagged Decision as Noun-with-Verb-mechanism. The §3.11-style rewrite preserves Decision as the artifact (committed choice) and lets `Decide` (if minted) be the Verb.
 
-**In the family.** Output of `Gate` and downstream artifact for every flow-control primitive in the library. Three-state semantics (proceed / halt / debt) distinguish it from `Status` (Check's three-state: Verified / Falsified / Unknown), `Boolean` (Validate's), and `Score` (Judge's). `DocumentedOverride` pairs with debt-marked Decisions at hard seams.
+**In the family.** Output of `Gate` and downstream artifact for every flow-control primitive in the library. Three-state semantics (proceed / halt / debt) distinguish it from `Status` (Check's three-state: Verified / Falsified / Unknown), `Boolean` (Validate's), and `Score` (Judge's). `DocumentedOverride` pairs with debt-marked Decisions at hard seams. Patterns that build on it: Complexitytax, Futureclaim, Hearshift, Reasonbridge, Reasoncommons.
 
 **Supersedes (prior versions).**
 - `Decision#acfb`
@@ -4703,7 +5035,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - RESOLVED 2026-07-26: 'Stability (invariant: shouldn't change during execution) vs learning — execution often reveals the goal was mis-specified; the invariant forbids updating.' The invariant no longer forbids it. A Goal may now change by *explicit re-declaration*, and what is forbidden is changing silently. That keeps the property the stability requirement was protecting — an execution cannot quietly redefine what it was asked to do — while permitting the learning the tension said was being blocked.
 - 'Stability: Goal should not change during a single execution cycle' was hedged, and a hedged invariant is not an invariant. It also contradicted this entry's own failure mode 'Moving Target: Goal changes during execution WITHOUT PROPER SIGNALLING', which implies signalled change is legitimate. Restated as the decidable claim the failure mode already implies: revision only by explicit re-declaration, never silently.
 
-**In the family.** Foundational primitive consumed by Task, Plan, Solve, AcceptSpec, Prioritize. Sibling of Criteria (how to measure) and Purpose (why). Compare with Intent — Goal is testable end-state; Intent is the volitional precursor. Both are purpose-specifying, at different operational points.
+**In the family.** Foundational primitive consumed by Task, Plan, Solve, AcceptSpec, Prioritize. Sibling of Criteria (how to measure) and Purpose (why). Compare with Intent — Goal is testable end-state; Intent is the volitional precursor. Both are purpose-specifying, at different operational points. Patterns that build on it: Goalweave, PurposeLinkReview.
 
 **Supersedes (prior versions).**
 - `Goal#456a`
@@ -4795,7 +5127,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - No semantics for multiple inheritance, crossing hierarchies, or flat alternatives — the pattern implies strict vertical structure.
 - Two fixes. Acyclicity is definitional — if A is above B and B above A the ranking is undefined — and `Tree` already states exactly this precedent with 'Acyclicity: No node is an ancestor of itself', yet Hierarchy carried no invariants at all. Added, with Antisymmetry. And the mechanism claimed it 'Defines Upper vs. Lower relationships, inheritance, and authority', but a containment hierarchy carries neither inheritance nor authority; it now states the universal ranking and names the rest as implementer concerns. This answers the sidecar's own critique that the pattern conflates categorical, authority and containment semantics — it does, and only the ordering is common to all three.
 
-**In the family.** Foundational structural primitive paired with Tree (a specific hierarchical topology), Category (the groupable unit), and Authority (the responsibility flavor). Compare with Lattice — Hierarchy is vertical, Lattice allows both vertical and horizontal. Different structural constraints.
+**In the family.** Foundational structural primitive paired with Tree (a specific hierarchical topology), Category (the groupable unit), and Authority (the responsibility flavor). Compare with Lattice — Hierarchy is vertical, Lattice allows both vertical and horizontal. Different structural constraints. Patterns that build on it: Localhinge, SpecializationEdge.
 
 **Supersedes (prior versions).**
 - `Hierarchy#aa9b`
@@ -4885,7 +5217,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - Two invariants added where there were none. As data a Hypothesis was {proposition, confidence, status}, which is exactly what a Claim would be, so the four-way epistemic distinction the pattern exists for was absent from its own contract. Naming one observation that would tell against it is the intersection; a formal falsification specification stays descendant work, per the Varies line.
 - The enforcement complaint stands and is correctly out of scope: machinery that makes the check happen is `Falsification`'s and `EmpiricalTest`'s. What belongs here is that the defeater is stated, which is now required and is checkable.
 
-**In the family.** Core epistemic-stance primitive paired with Claim (asserted truth), Assumption (provisional proceed), Axiom (foundational). Consumed by Falsification (the test), EmpiricalTest (the pipeline), and BayesUpdate (the revision).
+**In the family.** Core epistemic-stance primitive paired with Claim (asserted truth), Assumption (provisional proceed), Axiom (foundational). Consumed by Falsification (the test), EmpiricalTest (the pipeline), and BayesUpdate (the revision). Patterns that build on it: Callshort.
 
 **Supersedes (prior versions).**
 - `Hypothesis#e95b`
@@ -4979,6 +5311,115 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 
 **Supersedes (prior versions).**
 - `Identity#bfe2`
+
+---
+
+### Jointscape#8aca
+
+`Infrastructure` · `Data Structures` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Jointscape.json)
+
+**Gloss.** The options several parties' combined choices make available, with the contribution each option needs from each party
+
+**Mechanism.**
+
+> A record of the {{option}}s available to two or more parties acting together. Each option lists the contribution it needs from each party involved, and options that need every party are marked as joint, since no party could reach them alone.
+
+**Invariants.**
+- Names at least two parties.
+- Every option lists the contribution it needs from each party involved.
+- Options that need every party are marked as joint.
+
+**Failure modes.**
+- Solo listing: each party lists only its own options, and the joint ones are never generated.
+- Phantom contribution: an option assumes a contribution its party has not offered.
+
+**Data schema.**
+
+```json
+{
+  "type": "object",
+  "required": [
+    "parties",
+    "options"
+  ],
+  "properties": {
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "description",
+          "contributions",
+          "joint"
+        ],
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "contributions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Party name to the contribution the option needs from it"
+          },
+          "joint": {
+            "type": "boolean",
+            "description": "True when the option needs every party"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{option}}` | `sema:Option#mh:SHA-256:134bea703754281f36b52e9e6901090a3db9ce84f0d843a8e1d18151c0c5beb0` |
+
+#### Design
+
+**Why it exists.** Parties planning together tend to list their own options and look for overlap. The options that exist only when they combine their contributions are never generated unless someone looks for them.
+
+**Why Infrastructure.** It is a record of options and contributions; filling it in takes judgment, but the card defines the structure.
+
+**Can it be removed?** Option defines a single alternative and Overlap intersects what parties accept; neither enumerates options that need combined contributions. Removable if joint options are left implicit.
+
+**Intended use.** two or more parties looking for what they can do together that neither can do alone.
+
+**Future uses.** multi-agent task allocation; partnership design; cross-team planning.
+
+**Broad-use contexts.** negotiation, partnerships, research collaborations, multi-agent planning, community projects, coalition building.
+
+**Broad-use intersection (review hypothesis).** at least two parties, options with per-party contributions, and joint options marked.
+
+**Varies (descendant territory).** how options are generated, how contributions are confirmed, and how options are compared.
+
+**Extension shape.** a valued variant that scores options; a dynamic variant updated as contributions change.
+
+**Design tensions.**
+- Generating joint options takes imagination the structure cannot supply.
+
+**Tradeoffs.**
+- Gains: options that need combined action become visible.
+- Gives up: the simplicity of comparing solo plans.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the zone of possible agreement; expanding the pie in negotiation.
+
+**In the family.** Option is the unit; Overlap and Decision operate on a set of options; Jointscape is the set that combined action makes available.
 
 ---
 
@@ -5200,7 +5641,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - `completeness_proof` was an optional property while invariant 2 asserted exhaustiveness — the same shape as `FrameSpec`, where the field that would demonstrate an invariant was the one left optional. Now required, and it is also where the disposition of edge cases belongs, because False Exclusivity consists precisely of an exhaustiveness claim with no evidence behind it.
 - The DecompositionGate relationship is untouched and correctly stated: that gate is the stricter four-test variant, and this pattern is the two-test one.
 
-**In the family.** Analysis-methodology primitive paired with Decompose (which can be MECE or not), Category (the bin unit), and DecompositionGate (the stricter four-test variant). Compare with ConceptualDecomposition — MECE is exclusivity+exhaustiveness; ConceptualDecomposition adds the full four tests from the paper.
+**In the family.** Analysis-methodology primitive paired with Decompose (which can be MECE or not), Category (the bin unit), and DecompositionGate (the stricter four-test variant). Compare with ConceptualDecomposition — MECE is exclusivity+exhaustiveness; ConceptualDecomposition adds the full four tests from the paper. Patterns that build on it: Labelsqueeze.
 
 **Supersedes (prior versions).**
 - `MECE#da19`
@@ -5441,7 +5882,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - '(optional)' inside an invariant is self-undermining in the same way `Goal`'s former 'should' was — a requirement that permits its own absence requires nothing.
 - Resolving it also settles what the pattern is for. `Signal` is broadcast to any observer in the medium; this pattern adds addressing to it. So the recipient is not an optional extra — without one, a Message is a Signal with a timestamp, which is the thing this card exists to be distinct from. Stated unconditionally, and `header` now says what it carries.
 
-**In the family.** Foundational communication primitive paired with Signal (the raw emission), Handshake (the negotiation), and AuditTrail (the durable log). Compare with Event — Message is addressed and immutable; Event is an atomic state-change occurrence. Different communication units.
+**In the family.** Foundational communication primitive paired with Signal (the raw emission), Handshake (the negotiation), and AuditTrail (the durable log). Compare with Event — Message is addressed and immutable; Event is an atomic state-change occurrence. Different communication units. Patterns that build on it: Nuancefilter.
 
 **Supersedes (prior versions).**
 - `Message#b175`
@@ -5595,7 +6036,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The prior critique said no schema existed even though the card required four fields. That statement was factually stale. The actual defect was that the existing schema belonged to a reading. Metric now contracts the three things its broad-use intersection already named: target property, derivation rule and quantitative value schema.
 - Goodhart's law is not an intrinsic failure of a definition: it arises when a caller turns a proxy into an optimization target. It remains a failure mode on Optimize rather than being copied onto every Metric.
 
-**In the family.** Foundational quantitative-definition primitive. `MetricReading` is a realized value under a Metric; `Score` is a normalized evaluative result; `Measurement` is the substrate act that extracts information; `Datum` is an uninterpreted fact; `Signal` transports information. Current direct definition users include Agent, Aesthetics, ExchangeRate, Optimize and Risk.
+**In the family.** Foundational quantitative-definition primitive. `MetricReading` is a realized value under a Metric; `Score` is a normalized evaluative result; `Measurement` is the substrate act that extracts information; `Datum` is an uninterpreted fact; `Signal` transports information. Current direct definition users include Agent, Aesthetics, ExchangeRate, Optimize and Risk. Patterns that build on it: Metricmirror.
 
 **Supersedes (prior versions).**
 - `Metric#8895`
@@ -5803,6 +6244,106 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 
 ---
 
+### Morphproof#f5bb
+
+`Infrastructure` · `Data Structures` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Morphproof.json)
+
+**Gloss.** A category defined partly by the transformations its members keep their identity under
+
+**Mechanism.**
+
+> A {{category}} whose definition includes a list of transformations its members survive, such as paraphrase for an argument, translation for a claim or refactoring for a program. An item belongs only if it keeps the category's defining features under each listed transformation.
+
+**Invariants.**
+- Lists the transformations under which members keep their identity.
+- An item that loses the defining features under a listed transformation is not a member.
+
+**Failure modes.**
+- Untested invariance: transformations are listed but members are never tested under them.
+- Over-strict list: a transformation that legitimate members fail is listed, and the category empties.
+
+**Data schema.**
+
+```json
+{
+  "type": "object",
+  "required": [
+    "label",
+    "survives"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Name of the category"
+    },
+    "parent": {
+      "type": "string",
+      "description": "Parent category ID (optional, for hierarchies)"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of items belonging to this category"
+    },
+    "survives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "Transformations under which members keep their identity"
+    }
+  }
+}
+```
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+
+#### Design
+
+**Why it exists.** Some categories are best defined by what their members survive: the same argument under paraphrase, the same claim under translation. Morphproof makes those transformations part of the definition.
+
+**Why Infrastructure.** It is a category definition, a data structure like its parent Category.
+
+**Can it be removed?** Equivalence decides sameness under a canonicalization; Category has no place for transformation tests. Removable if such categories are defined by features alone.
+
+**Intended use.** defining categories whose members must stay recognisable through change.
+
+**Future uses.** deduplication of arguments; claim matching across languages; refactoring safety.
+
+**Broad-use contexts.** argument mapping, translation memory, code refactoring, biological taxonomy, legal precedent, deduplication.
+
+**Broad-use intersection (review hypothesis).** a category, a list of transformations, and membership conditioned on surviving them.
+
+**Varies (descendant territory).** which transformations are listed and how survival is tested.
+
+**Extension shape.** a graded variant that scores partial survival.
+
+**Design tensions.**
+- A long transformation list can make membership impossible.
+
+**Tradeoffs.**
+- Gains: categories that track identity through change.
+- Gives up: simple feature-based membership.
+
+**Critique (diagnostic, not contract requirements).**
+- The extends claim on Category holds. The child keeps the parent's three properties and adds `survives`. The parent has no invariants that need substantiating.
+- Novelty, from recall and unverified: known. Nearest known concepts: definition by invariance under transformation.
+
+**In the family.** Category groups, Equivalence decides sameness, and Morphproof defines a category by invariance.
+
+**Extends (exact parent).** `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696`
+
+---
+
 ### Nature#9ac1
 
 `Infrastructure` · `Data Structures` · R0 · T1
@@ -5975,7 +6516,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - Applied 2026-07-25, from the queued tranche. `required` included `predicted_outcome`, which the intersection does not name — it asks only for 'executable specification, mutual exclusivity with other options in set'. Many options are weighed without a forecast attached, and the Varies line puts 'cost/benefit data attached' in descendant territory. Dropped from required, kept as a property.
 - DISAGREEING with the queued note on the second point, which said the mechanism's two prose requirements were 'invariants in all but placement' and left them alone because 'promoting them would restate the mechanism'. Restating is the point. A requirement in a mechanism is prose a consumer may read; a requirement in `invariants` is a contract a consumer must satisfy, and this review has found the same displacement on `Causation`, `Dampen`, `Discover`, `Parsimony` and `Verification` — in every case the claim was already written and simply not in the field that makes it enforceable. Consistency argues for promoting here too, and mutual exclusivity is plainly checkable.
 
-**In the family.** Foundational decision primitive paired with Choice (the act), Decision (the outcome), and Criteria (how to choose). Compare with Alternative — Option is mutually-exclusive; Alternative is looser.
+**In the family.** Foundational decision primitive paired with Choice (the act), Decision (the outcome), and Criteria (how to choose). Compare with Alternative — Option is mutually-exclusive; Alternative is looser. Patterns that build on it: Canonseal, Jointscape.
 
 **Supersedes (prior versions).**
 - `Option#b099`
@@ -6477,7 +7018,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - A grant authorizes only the act or artifact it names. It does not imply permission for related operations or resources.
 - Requiring action does not exclude artifact access: a grant can name read or access as its action and identify the artifact in resource. Resource is optional for actions without a particular artifact. Issuer trust may come from the enclosing authorization system, while action and resource express scope. Callers needing richer policy can specialize the representation.
 
-**In the family.** Foundational auth primitive paired with BearerToken (portable grant), Card (capability advertisement), and Check (evaluation). Compare with Token — Permission is the abstract grant; Token is the embodied artifact.
+**In the family.** Foundational auth primitive paired with BearerToken (portable grant), Card (capability advertisement), and Check (evaluation). Compare with Token — Permission is the abstract grant; Token is the embodied artifact. Patterns that build on it: Consentrenew, Mandatune.
 
 **Supersedes (prior versions).**
 - `Permission#7f7d`
@@ -6607,7 +7148,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - Its finding is correct: the mechanism says a Plan 'tracks the attached {{risk}}s that may derail it' and the schema had no risks field, so the data structure could not hold a responsibility the mechanism claims. Note that `{{risk}}` was already a declared dependency — the placeholder was in the mechanism all along, so the gap was in the schema alone, not in the graph.
 - Two the note did not reach, both against this entry's own intersection, which asks for 'sequence of steps, causal dependencies between steps, goal state, starting state'. There was no starting-state field at all, and `goal_ref` existed but was not required — so a Plan could validate while naming neither where it starts nor what it is for, on a card whose mechanism is entirely about transitioning from one to the other.
 
-**In the family.** Foundational planning primitive paired with ExecutionManifest (the executable version), FrameSpec (the input), and ManifestPlanning (the production step). Compare with Strategy — Plan is step sequence; Strategy is higher-level approach.
+**In the family.** Foundational planning primitive paired with ExecutionManifest (the executable version), FrameSpec (the input), and ManifestPlanning (the production step). Compare with Strategy — Plan is step sequence; Strategy is higher-level approach. Patterns that build on it: Reachsense.
 
 **Supersedes (prior versions).**
 - `Plan#64f2`
@@ -7063,7 +7604,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The aspirational Clarity invariant was replaced with three specific requirements already implied by the schema and mechanism: a decision-process-local identifier, an action or transition with its target, and at least one stated reason.
 - Failure modes remain omitted deliberately. Domain-specific adequacy, approval, amendment and routing criteria belong to the consuming decision process or a descendant rather than to this generic payload.
 
-**In the family.** Structured decision payload that a `Message` may carry. `Consensus` is its declared direct consumer. Compare with MechanisticDesignProposal — Proposal is generic; MechanisticDesignProposal has specific structure for design.
+**In the family.** Structured decision payload that a `Message` may carry. `Consensus` is its declared direct consumer. Compare with MechanisticDesignProposal — Proposal is generic; MechanisticDesignProposal has specific structure for design. Patterns that build on it: Costeer.
 
 **Supersedes (prior versions).**
 - `Proposal#4840`
@@ -7241,7 +7782,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The pattern doesn't specify what a protocol contains (message formats, state machines, acceptance rules); all deferred.
 - Declared a marker interface. All fourteen dependents use it as a category label — 'Validation {{protocol}}', 'Vocabulary Hygiene {{protocol}}', 'the abstract {{protocol}} exposing the five-surface Contract' — while the schema typed it as a concrete registry record. `Condition` sets the precedent: it declares itself a marker interface AND carries a schema for what an implementer must provide, so the schema was never the defect. With the marker framing, `version` is a property of a registry record rather than of protocol-hood, and this entry's own broad-use contexts include diplomatic and ceremonial protocols that carry none.
 
-**In the family.** Foundational communication primitive paired with Message (the unit), Handshake (the initiation), and specific protocols (Greet, Delegate, AgentProtocol). Compare with Contract — Protocol is communication rules; Contract is obligations.
+**In the family.** Foundational communication primitive paired with Message (the unit), Handshake (the initiation), and specific protocols (Greet, Delegate, AgentProtocol). Compare with Contract — Protocol is communication rules; Contract is obligations. Patterns that build on it: Disputelift.
 
 **Supersedes (prior versions).**
 - `Protocol#e537`
@@ -7814,7 +8355,7 @@ _Note: Historical circumstances, the assumptions used to interpret a signal, con
 - The queued finding is correct: 'Each significant risk must have at least one mitigation strategy' turns on an undefined 'significant' with no parameter supplying a threshold, so two parties cannot agree whether it holds — the same class as `AdversarialSteel`'s former strength invariant. It offered two fixes, parameterise or state unconditionally, and neither is right on its own: mitigation cannot be unconditional, because accepting a risk as it stands is a legitimate posture rather than a violation. What is unconditional is that the risk names its disposition, mitigation or explicit acceptance. That removes the undefined word without forbidding acceptance.
 - Two defects the note did not reach, both the pattern this review keeps finding. `required` was [probability, severity] while the intersection names four things — 'probability, severity (impact metric), mitigation (reducing actions), trigger (materialization conditions)'. And the third invariant, 'Monitoring: triggers must be observable during execution', demanded a trigger while `trigger` sat optional in the schema. An invariant requiring a field the schema leaves out is the `FrameSpec` shape again.
 
-**In the family.** Safety-planning primitive paired with Probability (the likelihood axis), Mitigation (the response), and PreMortem (the risk surfacing move). Compare with Constraint — Risk is probabilistic downside; Constraint is hard boundary.
+**In the family.** Safety-planning primitive paired with Probability (the likelihood axis), Mitigation (the response), and PreMortem (the risk surfacing move). Compare with Constraint — Risk is probabilistic downside; Constraint is hard boundary. Patterns that build on it: Brakegrow.
 
 **Supersedes (prior versions).**
 - `Risk#3774`
@@ -7919,7 +8460,7 @@ _Note: Resolved in Workflow's full review: its open-parent schema now exposes op
 - Resolved 2026-07-27: Role no longer conflates a reusable definition with its assignment. The former Society placement followed that conflation; an authored unoccupied bundle requires no independent counterparty and therefore belongs in Infrastructure.
 - Resolved 2026-07-27 after exact review: the first repair remained access-control-specific and composed already Agent-bound Permission and Responsibility instances into a supposedly unoccupied definition. The parent now defines contextual function; generic authority and obligation facets are optional, and exact grant or standing-contract semantics belong in specialized descendants or assignment callers.
 
-**In the family.** Role defines the contextual function an Identity may occupy. Permission and Responsibility are adjacent assignment-time concepts, not components of the broad parent: each canonical pattern is already bound to an Agent. Compare with Mode — Mode configures an agent's internal stance or behaviour, while Role states a function relative to an external context. Assignment or occupancy is intentionally not part of this card and has no dedicated handle yet.
+**In the family.** Role defines the contextual function an Identity may occupy. Permission and Responsibility are adjacent assignment-time concepts, not components of the broad parent: each canonical pattern is already bound to an Agent. Compare with Mode — Mode configures an agent's internal stance or behaviour, while Role states a function relative to an external context. Assignment or occupancy is intentionally not part of this card and has no dedicated handle yet. Patterns that build on it: Absentseat.
 
 **Supersedes (prior versions).**
 - `Role#9896`
@@ -8100,7 +8641,7 @@ _Note: Resolved in Workflow's full review: its open-parent schema now exposes op
 - Applied 2026-07-25 from the queued tranche. The mechanism describes 'a structured collection of {{constraint}}s and invariants' and the schema carried only `constraints`, its sole property. Fifth instance of a mechanism naming components the schema cannot hold, after `Actor`, `Step`, `Plan` and `Problem`.
 - A second gap the note did not reach. The intersection names three things — 'structured collection, immutability, validity-boundary definition' — and this card had zero invariants, so immutability was asserted in the mechanism ('the immutable input for validation logic') and required nowhere. Stated using the phrasing the library already uses for this on `Card`, `Ledger` and `Ballot`: a change is a new one, not an edit.
 
-**In the family.** Validity-substrate primitive paired with Constraint (the atomic rule), Validate (the check), and Policy (mutable counterpart). Compare with Constitution — RuleSet is immutable validation; Constitution is social governance.
+**In the family.** Validity-substrate primitive paired with Constraint (the atomic rule), Validate (the check), and Policy (mutable counterpart). Compare with Constitution — RuleSet is immutable validation; Constitution is social governance. Patterns that build on it: Ruleflip.
 
 **Supersedes (prior versions).**
 - `RuleSet#8d85`
@@ -9162,6 +9703,101 @@ This answer used to call those the 'truth-in-advertising properties', citing Acc
 
 ---
 
+### SpecializationEdge#4d20
+
+`Infrastructure` · `Data Structures` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/SpecializationEdge.json)
+
+**Gloss.** A link stating that a child concept is a kind or realization of its parent, forming the route by which problems are located
+
+**Mechanism.**
+
+> A specialization edge records that one concept is a kind or realization of another: the parent names a genus, and the child is set apart within it by a stated differentia, as a sushi bar is a kind of restaurant. These edges are what a concrete problem climbs to locate itself, from its most specific capability up to the root, and the current topology profile requires them to form a rooted, acyclic kind-of {{hierarchy}}. Kinds are open-world: the children under a parent are those found so far, and a sibling search never claims to have found them all. Because the relation belongs to the edge rather than to the node, one concept may be a kind of several parents where the graph allows multi-parent reuse. A part of what makes the parent work is not one of its kinds.
+
+**Invariants.**
+- The child is a kind or realization of the parent, with a stated differentia that distinguishes it within the parent's genus.
+- In the current topology profile, specialization edges followed upward reach the root without a cycle.
+- A parent's specialization children claim no completeness.
+
+**Failure modes.**
+- Part filed as kind: a contribution to the parent is linked as one of its kinds, so the classification route runs through something that is not a kind.
+- Closed-world reading: a parent's recorded kinds are taken as all of them, so a case that fits none is forced into the nearest.
+- Missing differentia: a child is attached without stating what distinguishes it from its siblings, so nothing shows it is a separate kind.
+
+**Data schema.**
+
+```json
+{
+  "type": "object",
+  "required": [
+    "parent",
+    "child",
+    "differentia"
+  ],
+  "properties": {
+    "parent": {
+      "type": "string",
+      "description": "The genus: the more general concept the child is a kind of"
+    },
+    "child": {
+      "type": "string",
+      "description": "The kind or realization"
+    },
+    "differentia": {
+      "type": "string",
+      "description": "What sets the child apart from its siblings within the parent's genus"
+    },
+    "role": {
+      "type": "string",
+      "description": "Optional role the child plays under this parent; it belongs to the edge, so the same child can play different roles under different parents"
+    }
+  }
+}
+```
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{hierarchy}}` | `sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85` |
+
+#### Design
+
+**Why it exists.** Concept graphs mix two relations that behave differently: a child that is a kind of its parent, and a child that is part of what makes the parent work. Conflating them breaks both, since a kind is not required for its parent to function and a part is not a route by which a problem is classified. The Fractal Intelligence paper keeps them as two typed edges. SpecializationEdge is the kind-of relation that a problem climbs to locate itself, and it lists kinds without claiming to have them all.
+
+**Why Infrastructure.** A persistent relation between two concepts in a graph; it is a data structure, not an act.
+
+**Can it be removed?** Hierarchy ranks nodes in an Upper/Lower relation without saying what the relation means, Category groups objects, and Specialize is deduction, substituting values into a principle; none is a typed, open-world kind-of edge with a stated differentia. Removable if one undifferentiated parent-child relation is enough.
+
+**Intended use.** recording that a concept is a kind or realization of another, as the route by which problems are located.
+
+**Future uses.** persistent solver and concept graphs whose routing climbs from specific capabilities to a root; agent libraries that file new capabilities under existing kinds.
+
+**Broad-use contexts.** taxonomies and ontologies, type systems, concept graphs, capability registries, library and catalogue classification.
+
+**Broad-use intersection (review hypothesis).** two concepts, a stated differentia of the child within the parent's genus, and no claim that the parent's kinds are complete.
+
+**Varies (descendant territory).** how differentia are stated, and whether a node has one parent or several.
+
+**Extension shape.** a variant for capability registries; a variant for type systems.
+
+**Design tensions.**
+- Open-world kinds keep the graph growable but give no signal when a parent's important kinds are missing.
+
+**Tradeoffs.**
+- Gains: a route for locating problems that is not mistaken for a parts list.
+- Gives up: a single parent-child relation for everything.
+
+**Critique (diagnostic, not contract requirements).**
+- The card defines a relation type and prescribes no procedure; MandatoryAbstraction is the procedure that climbs it, and CompositionEdge is the other relation the paper keeps distinct.
+- Specialize shares the word but not the meaning: it is deduction from a principle to an instance, while a specialization edge records that one concept is a kind of another.
+- Novelty, from recall and unverified: known. Nearest known concepts: the is-a relation; genus and differentia; subsumption in description logics; the open-world assumption.
+
+**In the family.** Hierarchy ranks, Category groups, CompositionEdge links a contribution to the capability it serves, and SpecializationEdge links a kind to its genus.
+
+---
+
 ### State#4f25
 
 `Infrastructure` · `Data Structures` · R0 · T1
@@ -9799,6 +10435,111 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 
 ---
 
+### Sunsetkind#5e6f
+
+`Infrastructure` · `Data Structures` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Sunsetkind.json)
+
+**Gloss.** A classification that carries the condition under which it stops being used
+
+**Mechanism.**
+
+> A {{category}} defined together with its retirement condition: the observation, or the date, after which members are no longer to be treated as equivalent under it, and what to do with them then. Anyone applying the category checks the condition before relying on the grouping.
+
+**Invariants.**
+- The retirement condition is stated when the category is defined and can be checked by a party other than its author.
+- Once the retirement condition holds, no member is treated as equivalent under the category.
+
+**Failure modes.**
+- Unreachable condition: the retirement condition can never be observed to hold, so the category never retires.
+- Unchecked expiry: the condition holds but nobody looks, and the category keeps sorting.
+- Hair trigger: the condition fires on noise and the classification churns.
+
+**Data schema.**
+
+```json
+{
+  "type": "object",
+  "required": [
+    "label",
+    "retire_when"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Name of the category"
+    },
+    "parent": {
+      "type": "string",
+      "description": "Parent category ID (optional, for hierarchies)"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs of items belonging to this category"
+    },
+    "retire_when": {
+      "type": "string",
+      "description": "The observation or date after which the category is retired"
+    },
+    "then": {
+      "type": "string",
+      "description": "What replaces the category, or what happens to its members, after retirement"
+    }
+  }
+}
+```
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+
+#### Design
+
+**Why it exists.** Categories calcify. The bootstrap already makes its provisional structures carry their own revision trigger. Hypothesis 'Names at least one observation that, if made, would tell against it'. Assumption must 'carry a validation deadline or an invalidation trigger'. Strategy 'States the observation that would cause it to be revised'. Category carries no such trigger. Sunsetkind applies the same move to classification.
+
+**Why Infrastructure.** It is a classification with two extra fields, a data structure like its parent Category. Checking the condition may need judgment, but the card defines the structure.
+
+**Can it be removed?** It could be removed if Category itself gained an optional retirement field, but that would add policy to a parent that many patterns depend on. As a descendant it costs the parent nothing.
+
+**Intended use.** classifications an agent builds while it works, such as user segments, bug types and task routes, which should not outlive the conditions that made them useful.
+
+**Future uses.** taxonomies in shared vocabularies; diagnostic categories; routing tables.
+
+**Broad-use contexts.** routing and triage labels, customer segments, threat categories, document taxonomies, model-evaluation buckets, coding schemes in research.
+
+**Broad-use intersection (review hypothesis).** a category, a retirement condition that someone other than its author can check, and a rule that membership stops counting once the condition holds.
+
+**Varies (descendant territory).** whether the condition is an observation or a date, what replaces the category, and who checks.
+
+**Extension shape.** variants bound to a date or to an observation; a sunsetkind whose retirement moves its members into a named successor category.
+
+_Note: The same move applies to commitments, tools, authority and consent. Those variants are not minted._
+
+**Design tensions.**
+- Stability against freshness: a category that may retire is harder to build on.
+- A specific condition against honest uncertainty: authors may not know in advance what should end a category.
+
+**Tradeoffs.**
+- Gains: categories stop silently outliving their usefulness.
+- Gives up: some stability for whatever depends on the category.
+
+**Critique (diagnostic, not contract requirements).**
+- The extends claim on Category holds. The child keeps the parent's label, parent and members fields and adds two of its own. The parent has no invariants that need substantiating.
+- The schema repeats the parent's three properties, because extends confers no contract inheritance.
+- Novelty, from recall and unverified: partly new. Nearest known concepts: sunset clauses in law; tripwires that trigger a review of a decision. The move is known. Applying it to classifications is the new part.
+
+**In the family.** In the bootstrap, Hypothesis, Assumption and Strategy each carry their own revision trigger. ExpiringToken and Decay retire things by time or by attenuation, not by an observed change in fit.
+
+**Extends (exact parent).** `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696`
+
+---
+
 ### System#f8eb
 
 `Infrastructure` · `Data Structures` · R0 · T1
@@ -9991,7 +10732,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 - Constraint Escape is a real failure mode but detection is hard — an adversarial agent can claim satisfaction without a check. The pattern does not require constraint-verification at child creation.
 - Zombie Task is named as a failure mode but the mechanism has no cancellation semantics. In long-running systems this surfaces as stale work with no termination protocol.
 
-**In the family.** The input type of the entire Solver family. Parent to `BoundedTask` (budget required), `ExplorationTask` (redefined acceptance), `ChildTask` (enforces holographic inheritance). Pairs with `Solution` as the canonical (Task, Solution) transaction every Solver crosses. The recursion relationship with itself is what gives `UniversalSolverTree` its fractal topology.
+**In the family.** The input type of the entire Solver family. Parent to `BoundedTask` (budget required), `ExplorationTask` (redefined acceptance), `ChildTask` (enforces holographic inheritance). Pairs with `Solution` as the canonical (Task, Solution) transaction every Solver crosses. The recursion relationship with itself is what gives `UniversalSolverTree` its fractal topology. Patterns that build on it: Futurestretch.
 
 **Supersedes (prior versions).**
 - `Task#d9f9`
@@ -10863,7 +11604,7 @@ The other has changed substance, not just wording. An Atomicity invariant was ci
 
 ---
 
-### Infrastructure/Primitives (53)
+### Infrastructure/Primitives (56)
 
 ### Act#2dfe
 
@@ -11373,7 +12114,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 - The resource type is free-form ('compute, time, energy'). A typed resource field would let Budget-compatibility checks happen at compose time.
 - The invariant read '{{conservation}}: Allocated + Remaining = Total', but the schema carries only total and remaining, so allocated IS total minus remaining and the equation cannot fail — a definitional identity, the same tautology shape as IdempotentWrite's former 'Apply(Req) == Apply(Req)'. Restated as the accounting claim this entry's own every_context_needs asks for ('a consumption/refund tracking mechanism'): the pool cannot change without a transaction explaining it. The mechanism's 'hard limit' was also softened, because varies names overdraft-allowed as a legitimate descendant — a hard limit and a legitimate overdraft variant cannot both hold.
 
-**In the family.** The resource-allocation primitive. Composed with `Conservation` (the invariant basis), `ComputeBudget` (the cognitive-scoped variant), `BoundedTask` (budget-carrying Task). Consumed by `MarginalValueRule` (the stopping-rule condition).
+**In the family.** The resource-allocation primitive. Composed with `Conservation` (the invariant basis), `ComputeBudget` (the cognitive-scoped variant), `BoundedTask` (budget-carrying Task). Consumed by `MarginalValueRule` (the stopping-rule condition). Patterns that build on it: Limitlisten.
 
 **Supersedes (prior versions).**
 - `Budget#a763`
@@ -11515,7 +12256,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 - No postconditions listed. The mechanism implies Status is the postcondition but the pattern does not assert it.
 - Verified/Falsified is a binary framing layered over three-state. A richer version might distinguish 'Verified with confidence > threshold' vs 'Verified exactly' — the pattern is uncalibrated and leaves confidence as a descendant concern.
 
-**In the family.** Anchor of the verification stack. With `Gate` (decision-producing), `Validate` (schema-match Boolean), and `Judge` (graded scalar), Check forms the four-corner taxonomy the library uses to distinguish verification roles. `Status` is Check's output type, contrasting with `Decision` (Gate), `Boolean` (Validate), and `Score` (Judge).
+**In the family.** Anchor of the verification stack. With `Gate` (decision-producing), `Validate` (schema-match Boolean), and `Judge` (graded scalar), Check forms the four-corner taxonomy the library uses to distinguish verification roles. `Status` is Check's output type, contrasting with `Decision` (Gate), `Boolean` (Validate), and `Score` (Judge). Patterns that build on it: Situfit, Twoledger, AbsenceEvidence.
 
 **Supersedes (prior versions).**
 - `Check#1544`
@@ -11619,7 +12360,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 - Zombie state (stuck OPEN) is named but unmitigated — reset logic lives outside the pattern, which is exactly where it breaks in practice.
 - False positives from transient blips are the most common production complaint and the pattern offers no built-in debouncing; that's a caller concern.
 
-**In the family.** The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (the delay discipline for recovery probes), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points.
+**In the family.** The canonical resilience primitive, paired with Retry (what CircuitBreaker replaces when retries aren't helping), Backoff (the delay discipline for recovery probes), and FailFast (the CLOSED-to-OPEN transition's semantics). Compare with Throttle — CircuitBreaker is binary (pass or fail), Throttle is graduated (rate limit). Both protect downstream resources, at different operating points. Patterns that build on it: StopDrill.
 
 **Supersedes (prior versions).**
 - `CircuitBreaker#4162`
@@ -11743,7 +12484,7 @@ _Note: Reach for `ExponentialBackoff` when the delay must grow multiplicatively;
 - CORRECTED 2026-07-26. The first repair closed only half of the gap it identified: Incomparable gained symmetry, but Less and Greater still had no reversal law, and the commentary called four outcomes a trichotomy. The card now requires one exclusive outcome and defines operand reversal: Equal and Incomparable are preserved; Less and Greater swap. These two laws replace the narrower equality- and incomparability-symmetry statements. The tolerance decision is unchanged.
 - RESOLVED 2026-08-03. The silent-coercion failure mode could be read as requiring all differently typed values to be Incomparable, wrongly rejecting legitimate numeric promotion or unit-aware comparison. It now scopes the defect to coercion performed without a declared cross-type rule; the parent stays neutral about which rules descendants choose.
 
-**In the family.** Foundational Infrastructure primitive for pairwise relation classification. Equal, Less, Greater, and Incomparable are its result values; specialized numeric, semantic, fuzzy, and partial-order comparators belong in descendants.
+**In the family.** Foundational Infrastructure primitive for pairwise relation classification. Equal, Less, Greater, and Incomparable are its result values; specialized numeric, semantic, fuzzy, and partial-order comparators belong in descendants. Patterns that build on it: Webtrace.
 
 **Supersedes (prior versions).**
 - `Compare#ebab`
@@ -12406,7 +13147,7 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 - REWORDED 2026-07-26: the timeliness tension read "the invariant 'feedback value decays with latency' is a principle, not a parameter". There is no such invariant on this card any more, and the observation was correct about why — a decay principle with no measure cannot be checked. The fast-versus-accurate tradeoff it named is real but belongs to whoever schedules the feedback loop rather than to this artifact, so it is not retained as a tension of this pattern.
 - Integrated 2026-08-03 with the Metric split. Feedback carries an observed deviation value, so its dependency now names MetricReading rather than the Metric definition. The reading itself binds the value to the definition that gives it meaning.
 
-**In the family.** Foundational closed-loop primitive paired with FeedbackSignal (the unit), Reflexion (the self-feedback variant), and Adjust (the downstream action). Used by CurriculumReplay, EvaluatorOptimizer, ConfidenceCalibrate. Compare with Observation — Feedback is attributed to an action; Observation is free-standing.
+**In the family.** Foundational closed-loop primitive paired with FeedbackSignal (the unit), Reflexion (the self-feedback variant), and Adjust (the downstream action). Used by CurriculumReplay, EvaluatorOptimizer, ConfidenceCalibrate. Compare with Observation — Feedback is attributed to an action; Observation is free-standing. Patterns that build on it: Correctionwelcome, Doubleloop.
 
 **Supersedes (prior versions).**
 - `Feedback#9b5c`
@@ -12515,6 +13256,62 @@ _Note: Retry eligibility, finite budgets, and reset conditions are caller policy
 - `FeedbackSignal#f904`
 - `FeedbackSignal#9e3b`
 - `FeedbackSignal#b17b`
+
+---
+
+### Formelt#0e39
+
+`Infrastructure` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Formelt.json)
+
+**Gloss.** A structure loses its organising boundaries while its components remain
+
+**Mechanism.**
+
+> Divisions, roles or relationships that gave components a stable arrangement become less definite or less effective while the components persist, so the prior form loosens, which can lead to dissolution, confusion or a new arrangement. The loosening is in an organising relation or boundary, not only in the components; a direct change from one well-defined arrangement to another need not include it.
+
+**Invariants.**
+- The components of a structure persist.
+- The boundaries or relations that organised them become less definite or less effective.
+
+**Failure modes.**
+- Loosening read as destruction: loss of the previous form is equated with loss of all capacity.
+- Change read as decay: every rearrangement is called a decline.
+- Old form preferred: the previous boundaries are treated as better by default.
+
+#### Design
+
+**Why it exists.** Structures can loosen while everything in them remains, and the loosening is read as either collapse or progress. Formelt names the loosening itself, which can lead to either.
+
+**Why Infrastructure.** A structure's boundaries can loosen in an architecture or a composition with no agent judging it, so the process needs no mind.
+
+**Can it be removed?** Topology represents a structure's shape and Linkfade weakens connections between participants; neither describes organising boundaries loosening while components remain. Removable if structures are assumed either intact or gone.
+
+**Intended use.** recognising when a structure is losing its organising boundaries while its components remain.
+
+**Future uses.** agent teams and software systems whose roles and module boundaries blur during transitions.
+
+**Broad-use contexts.** artistic composition, organisations in transition, informal groups, system architecture, curricula.
+
+**Broad-use intersection (review hypothesis).** persisting components and organising boundaries that become less definite.
+
+**Varies (descendant territory).** whether the loosening leads to dissolution, confusion or a new arrangement.
+
+**Extension shape.** a variant for organisations; a variant for compositions.
+
+**Design tensions.**
+- Loosening can begin a better arrangement or a collapse, and the two look alike early on.
+
+**Tradeoffs.**
+- Gains: a name for structure loosening without assuming decline.
+- Gives up: reading every loosening as decay.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It is not filed under coordination decay: Formelt can create stronger new links while old boundaries loosen, and Linkfade can occur within a stable form.
+- Novelty, from recall and unverified: known. Nearest known concepts: liminality; boundary blurring.
+
+**In the family.** Topology represents shape, Linkfade weakens links, and Formelt is a structure's boundaries loosening while its parts remain.
 
 ---
 
@@ -13008,7 +13805,7 @@ _Note: A human introduction, unauthenticated version negotiation, or one-way aut
 - The note is also right that the sidecar's 'conflates multiple kinds of mismatch' complaint is about the uses the mechanism lists rather than about the mechanism, which is operational as it stands: predicted state against observed state.
 - One invariant added from the intersection, which had no contract at all. An Incongruity that names only the observation is a report; naming both sides is what makes it a mismatch.
 
-**In the family.** Foundational primitive consumed by Anomaly, Surprisal, FailureTrace, Falsification. Sibling of Delta and Difference. Compare with Novelty — Incongruity is prediction-reality gap; Novelty is genuinely-new-without-prediction. Different shapes of 'this is unexpected.'
+**In the family.** Foundational primitive consumed by Anomaly, Surprisal, FailureTrace, Falsification. Sibling of Delta and Difference. Compare with Novelty — Incongruity is prediction-reality gap; Novelty is genuinely-new-without-prediction. Different shapes of 'this is unexpected.' Patterns that build on it: Callshort.
 
 **Supersedes (prior versions).**
 - `Incongruity#a00d`
@@ -13105,6 +13902,62 @@ _Note: A human introduction, unauthenticated version negotiation, or one-way aut
 
 ---
 
+### Limitblur#d772
+
+`Infrastructure` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Limitblur.json)
+
+**Gloss.** Boundaries stay stated while their application becomes inconsistent or uncertain in practice
+
+**Mechanism.**
+
+> A stated boundary stays in force on paper while its practical application varies, erodes or becomes unclear, so the statement no longer reliably settles where the operative boundary lies. An isolated, recognised breach is not an instance, nor are stated exceptions applied consistently, nor an open revision applied consistently, which changes the boundary rather than blurring it. The boundary can be personal, organisational or technical.
+
+**Invariants.**
+- A boundary is still stated.
+- Its practical application becomes less consistent or less determinate over the interval considered.
+
+**Failure modes.**
+- Breach read as blur: a single recognised breach is taken to show that the boundary has blurred.
+- Revision read as blur: an openly revised boundary applied consistently is taken as erosion.
+- Strictness assumed: blur is taken to call for stricter enforcement rather than a decision about the boundary.
+
+#### Design
+
+**Why it exists.** A boundary that still reads clearly can stop deciding anything in practice. Limitblur names that loss of determinacy between statement and application.
+
+**Why Infrastructure.** A technical boundary can drift through inconsistent implementation with no agent judging it, so the process needs no mind.
+
+**Can it be removed?** Constraint defines a non-negotiable condition, ScopeFreeze locks requirements, and BoundaryReview samples cases near the boundary; none describes a stated boundary losing determinacy in practice. Removable if stated boundaries are assumed to be applied as stated.
+
+**Intended use.** recognising when a stated limit, scope or rule no longer reliably decides cases.
+
+**Future uses.** agent permissions, policy boundaries and access controls that drift across components.
+
+**Broad-use contexts.** project scope, access control, budgets, personal boundaries, organisational rules, technical limits.
+
+**Broad-use intersection (review hypothesis).** a stated boundary and an application that becomes less consistent or determinate.
+
+**Varies (descendant territory).** whether the boundary is personal, organisational or technical, and how its application is sampled.
+
+**Extension shape.** a variant for access controls; a variant for personal boundaries.
+
+**Design tensions.**
+- Blur can come from good-faith exceptions that each made sense.
+
+**Tradeoffs.**
+- Gains: a name for boundaries that read clearly but decide nothing.
+- Gives up: taking a stated boundary as its own evidence.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. BoundaryReview is one separately defined review that ends each disagreement in enforcement or restatement.
+- Novelty, from recall and unverified: known. Nearest known concepts: scope creep; rule erosion; normalisation of deviance.
+
+**In the family.** Constraint states limits, ScopeFreeze locks them, BoundaryReview tests them against practice, and Limitblur is the blurring itself.
+
+---
+
 ### Loop#37f9
 
 `Infrastructure` · `Primitives` · R0 · T1
@@ -13162,7 +14015,7 @@ _Note: A human introduction, unauthenticated version negotiation, or one-way aut
 - Progress invariant conflates state change with useful progress; a loop that decrements a counter technically 'makes progress' without doing useful work.
 - Very thin — one sentence, two invariants. Real loops have richer structure (pre-conditions, post-conditions, loop invariants) the pattern doesn't capture.
 
-**In the family.** Foundational control-flow primitive paired with Cyclic (the topology class), Condition (the termination predicate), and Retry (a specific failure-handling loop). Compare with Recurse — Loop is iterative, Recurse is self-calling. Different structures for repetition.
+**In the family.** Foundational control-flow primitive paired with Cyclic (the topology class), Condition (the termination predicate), and Retry (a specific failure-handling loop). Compare with Recurse — Loop is iterative, Recurse is self-calling. Different structures for repetition. Patterns that build on it: PracticeResponseReview, Spiralback.
 
 **Supersedes (prior versions).**
 - `Loop#fb2e`
@@ -13253,7 +14106,7 @@ This answer previously argued the opposite of what the card now contracts, and t
 - Two failure modes added where there were none, and the first is what the old hedge was gesturing at without stating: monitoring load large enough to shift the baseline it measures against. That is the case where perturbation actually matters, and it is checkable in a way that 'not significantly' is not.
 - CORRECTED: the varies line carried a document coordinate — 'interval (Duration, per §3.17 — no arbitrary range)'. The reason for leaving the range open is useful and is kept; the section number is provenance a reader of that line cannot act on.
 
-**In the family.** Foundational operational primitive paired with Observe (the verb), Loop (the control flow), and Metric (the comparison target). Compare with DriftWatch — Monitor is general observation; DriftWatch is specific baseline-deviation detection.
+**In the family.** Foundational operational primitive paired with Observe (the verb), Loop (the control flow), and Metric (the comparison target). Compare with DriftWatch — Monitor is general observation; DriftWatch is specific baseline-deviation detection. Patterns that build on it: DetectorSelfTest.
 
 **Supersedes (prior versions).**
 - `Monitor#9a8f`
@@ -14015,6 +14868,62 @@ Both were revised in the 2026-07 review and the revisions point in opposite dire
 
 ---
 
+### Regulapse#6627
+
+`Infrastructure` · `Primitives` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Regulapse.json)
+
+**Gloss.** A process keeps operating while its capacity to detect or correct deviations weakens
+
+**Mechanism.**
+
+> The paths through which deviations become visible and get corrected lose reach, sensitivity, timeliness or influence relative to the process they regulate. Operation continues while its regulation becomes less able to bring relevant deviations under control. The weakness can lie in sensing, interpretation, transmission, authority or corrective action, so it need not be a broken detector, and ordinary output can improve, decline or hold steady meanwhile. Fewer alerts alone do not show it, and an obsolete control withdrawn in favour of an equally effective one is not a loss.
+
+**Invariants.**
+- There is a continuing process and a specified kind of deviation it is regulated against.
+- Its actual capacity to detect or correct that kind of deviation weakens over the interval considered.
+
+**Failure modes.**
+- Quiet read as health: a falling number of alerts is taken to show that deviations are fewer.
+- Detector equated with regulation: a working detector is taken to show that corrections still happen.
+- Count read as capacity: fewer controls are taken to mean weaker regulation, or more controls stronger.
+
+#### Design
+
+**Why it exists.** A process whose regulation weakens looks the same as a process with fewer problems, until a deviation goes uncorrected. Regulapse names the weakening coupling, wherever in the loop it lies.
+
+**Why Infrastructure.** Regulation can be wholly technical, a sensor and an actuator in a loop, so no agent's judgment is needed for it to weaken.
+
+**Can it be removed?** Monitor observes against a baseline, Feedback carries an attributed correction signal, and DetectorSelfTest tests detectors with known faults; none describes regulation weakening while the process continues. Removable if a process's regulation is assumed to stay as capable as when it was set up.
+
+**Intended use.** recognising when the detection or correction around a running process is losing its grip.
+
+**Future uses.** long-running agents and pipelines whose oversight erodes as they change.
+
+**Broad-use contexts.** production monitoring, financial controls, safety oversight, peer review, organisational governance, agent guardrails.
+
+**Broad-use intersection (review hypothesis).** a continuing process, a kind of deviation, and a comparison over time of the capacity to detect or correct it.
+
+**Varies (descendant territory).** which part of the loop weakens: sensing, interpretation, transmission, authority or action.
+
+**Extension shape.** a variant for detection alone; a variant for correction authority.
+
+**Design tensions.**
+- Regulation of one variable can weaken while another's strengthens, so a single verdict misleads.
+
+**Tradeoffs.**
+- Gains: a name for losing oversight that does not wait for an incident.
+- Gives up: reading quiet as health.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. DetectorSelfTest addresses detection only; passing detector tests does not show that correction authority or actuators are intact.
+- Novelty, from recall and unverified: known. Nearest known concepts: normalisation of deviance; control erosion; monitoring the monitors.
+
+**In the family.** Monitor observes, Feedback corrects, Brakefade loses the stop, DetectorSelfTest tests the detectors, and Regulapse is the weakening regulation itself.
+
+---
+
 ### Route#186c
 
 `Infrastructure` · `Primitives` · R0 · T1
@@ -14084,7 +14993,7 @@ Both were revised in the 2026-07 review and the revisions point in opposite dire
 - 'Best-fit handler' is the intent but the pattern doesn't specify how best-fit is measured. Descendants encode this (rule-based, ML-based, learned), but the parent should at least name the concern.
 - The three failure modes are good but miss: Routing Drift (classifier trained on old distribution keeps dispatching under shifted distribution) — common in practice.
 
-**In the family.** The N-way case in the flow-control family. Sibling to `Branch` (2-way fork), `Gate` (conditional halt), `Chain` (sequential). Often composed with `PathwayMemory` at dispatching solvers for learning-based route selection.
+**In the family.** The N-way case in the flow-control family. Sibling to `Branch` (2-way fork), `Gate` (conditional halt), `Chain` (sequential). Often composed with `PathwayMemory` at dispatching solvers for learning-based route selection. Patterns that build on it: Labelsqueeze, RoutingSanityCheck.
 
 **Supersedes (prior versions).**
 - `Switch#e7f9`
@@ -14986,6 +15895,7 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 - Argument Mismatch — schemas catch some; not all.
 - Observation Integration requires the result format to match.
 - §3.11 moves ToolInvoke from Data Structures to Primitives (it's a Verb). Broad-use confirms.
+- Caution: the card's Observation Integration invariant requires results to enter later reasoning, and nothing says they are untrusted, so a tool or source that controls its output can steer the agent. RetrievalAugment names its analogue as Retrieval Poisoning. A failure mode would state this in the hashed definition but would rehash 15 of 574 patterns; the caution states it without a cascade.
 
 **In the family.** Tool-use primitive paired with ToolDiscovery (discovery), InputGuard (validation), and Act (the execution).
 
@@ -15244,7 +16154,7 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
-### Infrastructure/Verification (9)
+### Infrastructure/Verification (10)
 
 ### AuditTrail#163b
 
@@ -15399,6 +16309,68 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 **Supersedes (prior versions).**
 - `CompatibilityCheck#62b2`
+
+---
+
+### DetectorSelfTest#8d48
+
+`Infrastructure` · `Verification` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DetectorSelfTest.json)
+
+**Gloss.** Test the detectors that guard a process, so their silence is not mistaken for health
+
+**Mechanism.**
+
+> On a stated schedule, known faults are injected or replayed, and each {{monitor}} or check that guards a process is confirmed to catch them. A detector that misses a known fault is marked failed and repaired before the process relies on it again.
+
+**Invariants.**
+- Each detector is tested with a known fault on a stated schedule.
+- A detector that misses a known fault is marked failed and is not relied on until it is repaired.
+
+**Failure modes.**
+- Silent monitor: a detector stops firing and its silence is read as health.
+- Test-only detection: detectors catch the injected faults but not real ones.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{monitor}}` | `sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f` |
+
+#### Design
+
+**Why it exists.** A process guarded by detectors is only as safe as the detectors, and a broken detector is silent, which looks like health. DetectorSelfTest tests the detectors.
+
+**Why Infrastructure.** Injecting known faults and confirming detection can be automated without judgment, which is Infrastructure/Verification.
+
+**Can it be removed?** Monitor observes state and StateAudit samples it; neither tests whether the observers still catch faults. Removable if detectors are verified another way.
+
+**Intended use.** monitoring, alerting, validation and review steps that guard a process.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** production monitoring, safety systems, financial controls, model evaluation pipelines, peer review, agent guardrails.
+
+**Broad-use intersection (review hypothesis).** scheduled fault injection or replay, and detectors that miss marked failed and not relied on until repaired.
+
+**Varies (descendant territory).** the fault catalogue and the schedule.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Injected faults may not resemble real ones.
+
+**Tradeoffs.**
+- Gains: detectors whose silence means something.
+- Gives up: the effort of testing the testers.
+
+**Critique (diagnostic, not contract requirements).**
+- Regulapse is the process this guards against. The test addresses detection only; passing it does not show that correction authority or actuators are intact.
+- Novelty, from recall and unverified: known. Nearest known concepts: monitoring the monitors; fault injection; normalisation of deviance as the failure.
+- Caution: the card injects or replays known faults on a schedule. Where detectors drive automated responses such as failover, rollback or paging, a test fault can set them off; StopDrill names its analogue as Drill harm, this card does not. The card also leaves open whether the process may run unguarded while a detector is marked failed; that is the caller's decision.
+
+**In the family.** Monitor watches, StopDrill drills the stop, and DetectorSelfTest tests the watchers; Regulapse names the weakening regulation it guards against.
 
 ---
 
@@ -15987,9 +16959,71 @@ _Note: A handwritten signature alone does not provide this card's artifact-chang
 
 ---
 
-## Mind (181)
+## Mind (261)
 
-### Mind/Inference (22)
+### Mind/Inference (28)
+
+### AbsenceEvidence#10a3
+
+`Mind` · `Inference` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/AbsenceEvidence.json)
+
+**Gloss.** Finding nothing counts against something's presence only as far as the search would have found it
+
+**Mechanism.**
+
+> A search, test, check or observation looks for something and finds nothing. That finding counts against the thing's presence only as far as the search would have detected it had it been there, which depends on whether the search's method, coverage and sensitivity reach the place, form and size the thing would take. Disabled logging, tests that never run the path in question, or a literature search in the wrong venues leave the question open however long they run, while a search shown to catch known instances makes its silence evidence. When a {{check}} reports a search that found nothing, Falsified needs that detection capability; without it the outcome is Unknown.
+
+**Invariants.**
+- A search for a specified thing has found nothing.
+- The finding counts against the thing's presence no further than the search's capability to detect it, in the place, form and size the thing would take.
+
+**Failure modes.**
+- Silence read as absence: a search that could not have detected the thing is reported as showing that it is not there.
+- Absence never credited: a search known to catch the thing finds nothing, and the finding is still treated as showing nothing.
+- Reach assumed: a search's detection capability is taken for granted rather than established for this place, form and size, by coverage analysis or by testing on known instances.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
+
+#### Design
+
+**Why it exists.** Agents report absence constantly: no errors in the logs, no failing tests, no prior work, no record of the event. The vocabulary already keeps absence of evidence apart from evidence of absence, which guards against one error and invites the opposite one, discarding empty results that were informative. Both errors have one remedy: ask whether the search would have found the thing. AbsenceEvidence names that relation.
+
+**Why Mind.** Judging what one search's empty result shows is one reasoner's inference; no second party has to take part.
+
+**Can it be removed?** Check and Uncertain keep Unknown apart from Falsified, DetectorSelfTest tests monitors with known faults, and NegativeProof proves non-membership in a committed set; none says when a search that found nothing is evidence of absence. Probe and ConfirmationBlock run searches; AbsenceEvidence weighs what their empty results show. Removable if empty results are treated as always uninformative or always conclusive.
+
+**Intended use.** judging how much a search, test or check that found nothing shows about whether the thing is there.
+
+**Future uses.** agents reporting that tests pass, logs are clean or no precedent exists; reviews of monitoring coverage; literature and code searches.
+
+**Broad-use contexts.** debugging and monitoring, software testing, literature review, security audits, medical screening, search and rescue, intelligence analysis.
+
+**Broad-use intersection (review hypothesis).** a search for a specified thing, a result of nothing, and an estimate of the search's capability to detect that thing.
+
+**Varies (descendant territory).** how detection capability is established: by design, by coverage analysis or by testing on known instances.
+
+**Extension shape.** a variant for monitoring and alerting; a variant for literature and prior-art searches.
+
+**Design tensions.**
+- Detection capability is itself uncertain, so an argument from absence inherits the uncertainty of the search's reach.
+
+**Tradeoffs.**
+- Gains: a way to say when finding nothing shows something.
+- Gives up: a blanket rule about absence in either direction.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes what an empty result shows and prescribes no search procedure. DetectorSelfTest is a guard that establishes one kind of detection capability, for monitors, by injecting known faults.
+- Novelty, from recall and unverified: known. Nearest known concepts: evidence of absence; statistical power; probability of detection in search theory; the dog that did not bark.
+
+**In the family.** Check and Uncertain keep Unknown apart from Falsified, DetectorSelfTest tests monitors with known faults, NegativeProof proves non-membership in a committed set, and AbsenceEvidence weighs an empty result by what the search could have found.
+
+---
 
 ### BaseRateInclude#1e63
 
@@ -16346,7 +17380,7 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 - The monotonicity invariant was 231 characters and ended in reviewer voice: 'the observed pre-calibration curve may be non-monotonic; the pattern's job is to produce a monotonic output.' That explanation is correct and belongs here rather than in the hashed field — it distinguishes the input curve from the output curve, which is the distinction a reader needs, and it is the sort of sentence the card-is-payload rule exists to move.
 - Second failure mode added, and `bin_count` is what makes it concrete: spreading a short track record across up to 20 bins fits noise rather than bias, so a calibration that looks precise is measuring sampling error.
 
-**In the family.** Epistemic-alignment sibling of BayesUpdate (revising the posterior), BaseRateInclude (anchoring the prior), and BeliefTracking (the audit substrate). Compare with ErrorTracking (failure-rate measurement) — ConfidenceCalibrate is meta-confidence (alignment of stated vs actual), ErrorTracking is accuracy. Both are honest-reporting patterns.
+**In the family.** Epistemic-alignment sibling of BayesUpdate (revising the posterior), BaseRateInclude (anchoring the prior), and BeliefTracking (the audit substrate). Compare with ErrorTracking (failure-rate measurement) — ConfidenceCalibrate is meta-confidence (alignment of stated vs actual), ErrorTracking is accuracy. Both are honest-reporting patterns. Patterns that build on it: Certaintyclap.
 
 **Supersedes (prior versions).**
 - `ConfidenceCalibrate#0ae5`
@@ -16443,6 +17477,62 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 **Supersedes (prior versions).**
 - `ConfirmationBlock#3dae`
 - `ConfirmationBlock#dc3f`
+
+---
+
+### ConfoundedAttribution#18ab
+
+`Mind` · `Inference` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ConfoundedAttribution.json)
+
+**Gloss.** Several things changed together, and the effect is credited to the one in view
+
+**Mechanism.**
+
+> An outcome changes after several things changed at about the same time: a feature shipped in the same week as a price change and a holiday, a fix went out with a dependency upgrade, a policy started as the season turned. The effect is credited to the change in view, usually the one the attributor made, championed or was asked about, while the others, or a common cause behind both the change and the outcome, could account for it as well. The attribution may be right; what is missing is a reason that it, rather than the others, accounts for the effect. A comparison that separates the changes, or a difference only the credited change could make, settles it. An effect with a single candidate change, or one whose alternatives have been ruled out, is not an instance.
+
+**Invariants.**
+- An outcome is credited to one change while other changes, or a cause common to the change and the outcome, could account for it.
+- No observation or comparison separates the credited change from the others.
+
+**Failure modes.**
+- Credit to the change in view: the effect is attributed to the change the attributor made or was asked about.
+- Common cause missed: a factor behind both the change and the outcome goes unexamined.
+- Attribution frozen: once credited, the change is not re-examined when another candidate comes to light.
+
+#### Design
+
+**Why it exists.** Changes rarely come one at a time, yet results are usually credited to one of them: the one someone made, championed or was asked about. The others, and any common cause, go unexamined, and the credit shapes what gets repeated. Agents meet this whenever they judge their own change from before-and-after numbers. ConfoundedAttribution names the gap: what separates the credited change from the rest?
+
+**Why Mind.** Attributing an effect is one reasoner's inference.
+
+**Can it be removed?** Causation defines what makes one event a cause of another, Correlation is association without a causal conclusion, Experiment isolates a variable in advance, and ContrastClass fixes a why-question's alternative; none describes crediting an observed effect to one of several coinciding changes. Removable if changes are assumed to come one at a time.
+
+**Intended use.** checking an attribution of an effect to one change when other changes, or a common cause, could account for it.
+
+**Future uses.** agents judging whether their own change produced a result; reviews of launches, incidents and policy changes.
+
+**Broad-use contexts.** product analytics and launches, incident review, medicine and epidemiology, economics and policy, education.
+
+**Broad-use intersection (review hypothesis).** an outcome, two or more candidate changes or a possible common cause, and an attribution to one of them.
+
+**Varies (descendant territory).** how many changes coincide, how visible each is, and what comparison could separate them.
+
+**Extension shape.** a variant for launches and incidents; a variant for observational data.
+
+**Design tensions.**
+- Separating coinciding changes often needs data that no longer exists, so the honest result may be an attribution left open.
+
+**Tradeoffs.**
+- Gains: a check on credit given to the visible change.
+- Gives up: the clean story that one change did it.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. DistinguishingTest is a way to separate the candidate changes, and ContrastClass helps state what differs.
+- Novelty, from recall and unverified: known. Nearest known concepts: confounding; omitted-variable bias; post hoc ergo propter hoc.
+
+**In the family.** Causation defines a cause, Correlation measures association, Experiment isolates a variable in advance, RegressionToMean credits a chance return, and ConfoundedAttribution credits one of several coinciding changes.
 
 ---
 
@@ -16618,6 +17708,118 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 **Supersedes (prior versions).**
 - `EpistemicCalibrate#6069`
 - `EpistemicCalibrate#a902`
+
+---
+
+### EvidenceDependence#23ca
+
+`Mind` · `Inference` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/EvidenceDependence.json)
+
+**Gloss.** Several confirmations of a claim share a foundation, so together they support it less than their number suggests
+
+**Mechanism.**
+
+> Several confirmations of a claim, such as reports, citations, test results, model outputs or agents' conclusions, rest wholly or partly on a common foundation: one source, dataset, method, model or unchecked assumption. Each adds support only for what it brings beyond that foundation, so their agreement shows little more than the foundation shows, and an error in the foundation recurs in every confirmation that rests on it instead of being cancelled by the others. The overlap is often hidden, as when confirmations repeat a source without naming it or come from systems trained on the same material. Confirmations whose foundations are separate, so that an error in one would not recur in the others, are not instances.
+
+**Invariants.**
+- Two or more confirmations of the same claim are weighed together.
+- Two or more of them rest, wholly or partly, on a common foundation, such as a source, dataset, method, model or assumption, so that an error in it would recur in each of those.
+
+**Failure modes.**
+- Count read as support: dependent confirmations are weighed as if each were independent, so their agreement looks stronger than their foundation.
+- Hidden foundation: a shared source, training set or method goes untraced, so confirmations that echo one another are taken as separate.
+- Independence dismissed: confirmations with separate foundations are discounted as if they shared one.
+
+#### Design
+
+**Why it exists.** Agreement is read as strength: five sources, five test runs or five agents saying the same thing feel like five times the support. When they rest on one foundation they show little more than that foundation does, and its errors are repeated rather than cancelled. Agents meet this constantly, since models share training data, retrieval shares indexes, and generated text is copied into later inputs. EvidenceDependence names the overlap, so that support is counted by foundations rather than by confirmations.
+
+**Why Mind.** Weighing what several confirmations support together is one reasoner's judgment; no second party has to take part.
+
+**Can it be removed?** SourceEvaluate weighs one source's credibility, EpistemicCascade grades a premise by whether an independent method checked it, and SelfConsistency takes a majority over samples from one model; none describes several confirmations sharing a foundation and what that does to their combined support. TruthseekingProtocol keeps its checks blind to one another and SelfConsistency its samples, but blindness does not make their foundations separate. Removable if confirmations are assumed to be independent.
+
+**Intended use.** weighing several confirmations of one claim by how far their foundations overlap.
+
+**Future uses.** multi-agent systems whose agents share a model, data or retrieval; majority votes over samples; reviews whose reviewers saw the same evidence; citation chains that lead back to one study.
+
+**Broad-use contexts.** research and citation, journalism and intelligence reporting, testimony, testing and code review, ensembles and multi-agent reasoning, forecasting.
+
+**Broad-use intersection (review hypothesis).** two or more confirmations of one claim, and a foundation that more than one of them rests on.
+
+**Varies (descendant territory).** the kind of foundation (source, data, method, model or assumption), how much of each confirmation rests on it, and whether the overlap is visible.
+
+**Extension shape.** a variant for model ensembles and agent panels; a variant for citation and reporting chains.
+
+**Design tensions.**
+- Foundations are costly to trace and rarely traced completely, so independence is usually estimated rather than established.
+
+**Tradeoffs.**
+- Gains: a count of support by foundations rather than by confirmations.
+- Gives up: reading agreement alone as strength.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes how a shared foundation limits combined support and prescribes no response. SelfConsistency's Consistent Wrongness failure mode is an instance: samples agree on an error because they come from one model. The Fractal Intelligence paper relies on the converse when it counts convergent failure across sub-solvers built on materially different mechanisms as evidence of a frame error.
+- Novelty, from recall and unverified: known. Nearest known concepts: non-independent evidence; circular reporting; pseudoreplication; correlated errors in ensembles.
+
+**In the family.** SourceEvaluate weighs a single source, EpistemicCascade grades how a premise was checked, SelfConsistency votes over samples from one model, and EvidenceDependence is confirmations sharing a foundation.
+
+---
+
+### EvidenceUnderdetermination#999b
+
+`Mind` · `Inference` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/EvidenceUnderdetermination.json)
+
+**Gloss.** The evidence in hand fits two or more explanations about equally, so it cannot decide between them
+
+**Mechanism.**
+
+> Two or more explanations each account for all the evidence considered, and each piece of that evidence is about as expected under one explanation as under the others. The evidence then gives no reason to prefer any of them: a preference based on simplicity, prior belief or familiarity may still be reasonable, but it is not support from this evidence. More evidence of the same kind leaves their standing unchanged, as re-reading logs that fit both 'the request never arrived' and 'it arrived but was not logged' cannot separate them. The state is relative to the evidence considered, and an observation the explanations predict differently can end it. Evidence that clearly favours one explanation over the others is not an instance.
+
+**Invariants.**
+- Two or more named explanations each account for all of the evidence considered.
+- That evidence is about as expected under each explanation, so a preference among them by simplicity, prior belief or familiarity is not support from it.
+
+**Failure modes.**
+- Preference read as finding: an explanation preferred for its simplicity or familiarity is reported as what the evidence showed.
+- More of the same: further evidence of the kind already in hand is gathered as if it could separate the explanations.
+- Underdetermination read as permanent: the explanations are treated as indistinguishable in principle when an observation exists that they predict differently.
+
+#### Design
+
+**Why it exists.** Evidence often fits several explanations about equally, and the most plausible one is then reported as if the evidence had chosen it, or more evidence of the same kind is collected. Naming the state says exactly what the evidence cannot decide, and that decides the next step: find an observation that separates the explanations, act on what they share, or hold them open.
+
+**Why Mind.** Whether evidence separates explanations is a judgment one reasoner can make alone.
+
+**Can it be removed?** Uncertain marks a void of evidence, TensionHold holds conflicting inputs, Abduction ranks candidate explanations by simplicity, scope and coherence, and Twinread keeps two complementary readings; none describes evidence that is present but fits rival explanations about equally. ConfirmationBlock seeks evidence against one's own hypothesis; here the evidence in hand counts against none of the rivals. Removable if a ranking of explanations is taken as evidence.
+
+**Intended use.** stating which explanations the evidence in hand cannot separate.
+
+**Future uses.** agents diagnosing incidents and bugs from logs; agents reporting an investigation that did not settle the cause.
+
+**Broad-use contexts.** debugging and incident response, medicine, science, history, intelligence analysis, forensic accounting.
+
+**Broad-use intersection (review hypothesis).** two or more explanations, the evidence considered, and that evidence fitting each about equally.
+
+**Varies (descendant territory).** how many explanations remain, how close the fit is, and whether any observation could separate them.
+
+**Extension shape.** a variant for diagnosis from logs and traces; a variant for choosing between scientific models.
+
+**Design tensions.**
+- Exact equality of fit is rare, so declaring the state is a judgment about when small differences in fit stop mattering.
+
+**Tradeoffs.**
+- Gains: a precise report of what the evidence cannot decide.
+- Gives up: reporting the most plausible explanation as the finding.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a state of the evidence and prescribes no response. DistinguishingTest is the guard that ends the state with an observation the explanations predict differently, and ActionConvergence is the case where the explanations call for the same next step, so the state need not end before acting.
+- Novelty, from recall and unverified: known. Nearest known concepts: underdetermination of theory by evidence; observational equivalence; identifiability; diagnosticity in the analysis of competing hypotheses.
+
+**In the family.** Uncertain marks missing evidence, TensionHold holds conflicting inputs, Abduction ranks explanations, and EvidenceUnderdetermination is evidence that fits rival explanations about equally. Patterns that build on it: DistinguishingTest, ActionConvergence.
 
 ---
 
@@ -17178,6 +18380,68 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 
 ---
 
+### Prestigeloan#7f65
+
+`Mind` · `Inference` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Prestigeloan.json)
+
+**Gloss.** Count a source's standing as support only inside its demonstrated domain of expertise
+
+**Mechanism.**
+
+> When a source's standing is offered as support for a claim, the claim's domain is compared with the domain where the source's expertise has been demonstrated. When {{source_evaluate}} weighs the source, its standing counts only for claims inside that domain; outside it, the claim is weighed as if it came from a non-expert.
+
+**Invariants.**
+- The claim's domain and the source's demonstrated domain are both named.
+- Outside the demonstrated domain, standing adds no weight.
+
+**Failure modes.**
+- Halo transfer: expertise in one field is treated as authority in another.
+- Domain inflation: the demonstrated domain is drawn wide enough to cover any claim.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{source_evaluate}}` | `sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58` |
+
+#### Design
+
+**Why it exists.** Standing earned in one field is routinely spent in another. Prestigeloan ties the weight of standing to the domain where it was earned.
+
+**Why Mind.** It refines how one agent weighs evidence from a source.
+
+**Can it be removed?** SourceEvaluate names expertise as one factor among several; Prestigeloan makes its domain a hard boundary. It could be folded into SourceEvaluate, at the cost of changing a card others depend on.
+
+**Intended use.** weighing a claim backed by a credentialed or famous source.
+
+**Future uses.** agents citing sources; recommendation systems; expert panels.
+
+**Broad-use contexts.** journalism, policy advice, medicine, investing, academic citation, model-generated citations.
+
+**Broad-use intersection (review hypothesis).** a claim's domain, a source's demonstrated domain, and a rule that standing counts only inside it.
+
+**Varies (descendant territory).** how domains are delimited and what counts as demonstration.
+
+**Extension shape.** a graded variant for adjacent domains.
+
+**Design tensions.**
+- Domains overlap, and drawing their edges is a judgment.
+
+**Tradeoffs.**
+- Gains: authority does not leak across fields.
+- Gives up: the convenience of trusting famous names.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- A descendant of SourceEvaluate was considered; SourceEvaluate's invariant that evidence must be independently verifiable does not fit standing-based weight, so the card references it instead.
+- Novelty, from recall and unverified: known. Nearest known concepts: appeal to authority outside its domain.
+
+**In the family.** SourceEvaluate weighs sources; Statuslens keeps status out of reasoning; Prestigeloan bounds standing by domain.
+
+---
+
 ### ProphetFanOut#8711
 
 `Mind` · `Inference` · R1 · T1
@@ -17349,13 +18613,69 @@ This is the first defect in this review that was wrong about its DOMAIN rather t
 
 OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and surprisal as interchangeable metric choices for RSS. They are not — the scales differ and the directions sometimes oppose, so a threshold meaningful for one is meaningless for another. Either the metric is fixed here or the threshold cannot be a parent-level parameter.
 
-**In the family.** Anomaly-detection primitive paired with DriftWatch (behavioral analogue), Anomaly (the data unit), and `OntologyAdapt` (the response). Compare with Monitor — RegimeSense specifically tracks model-reality divergence; Monitor is general observation.
+**In the family.** Anomaly-detection primitive paired with DriftWatch (behavioral analogue), Anomaly (the data unit), and `OntologyAdapt` (the response). Compare with Monitor — RegimeSense specifically tracks model-reality divergence; Monitor is general observation. Patterns that build on it: Edgehold.
 
 **Supersedes (prior versions).**
 - `RegimeSense#3e24`
 - `RegimeSense#430b`
 - `RegimeSense#56ec`
 - `RegimeSense#78eb`
+
+---
+
+### RegressionToMean#9c60
+
+`Mind` · `Inference` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/RegressionToMean.json)
+
+**Gloss.** A result picked out because it was extreme is usually followed by one closer to typical, because part of what made it extreme was chance
+
+**Mechanism.**
+
+> A measurement that varies partly by chance comes out extreme: a spike in errors, a record quarter, an unusually bad score. Because part of the extremity was chance, a later measurement of the same thing is usually closer to typical, and the expected return grows with the share of chance in the measure. Extremes are often what prompt a response, so the return tends to arrive just after it, and any real effect of the response adds to the return or offsets it rather than replacing it. Estimating what the response did therefore needs a comparison that shares the regression, such as similar extremes left alone, or the return expected from how noisy the measure is. A measure with no chance component does not regress.
+
+**Invariants.**
+- A measurement with a chance component was picked out or noticed because it was extreme.
+- Later measurements of the same thing are expected to lie closer to typical, by an amount that grows with the share of chance in the measure.
+
+**Failure modes.**
+- Return read as effect: the move back toward typical after an extreme is credited wholly to the response.
+- Decline read as harm: praise or reward after an unusually good result is blamed for the ordinary result that follows.
+- Effect dismissed as regression: a real effect of a response is written off, although regression accounts only for the part of the change that the measure's noise predicts.
+
+#### Design
+
+**Why it exists.** Action is usually taken when results are extreme, and extreme results are partly chance, so the next result tends to be less extreme whether or not the action did anything. Teams and agents then credit fixes for a return that would have happened anyway, or blame praise for the dip after a lucky peak. RegressionToMean names the expected return, so that an action is judged against the regression it shares.
+
+**Why Mind.** Judging what a change after an extreme result shows is one reasoner's inference.
+
+**Can it be removed?** Experiment compares a treatment with a control, BaseRateInclude anchors a judgment on a reference class, and Causation defines what a cause is; none describes the return toward typical after a chance extreme, or how it gets credited to the response. Removable if every change after an extreme is taken as an effect.
+
+**Intended use.** judging whether an improvement or decline after an extreme result shows an effect of what was done in between.
+
+**Future uses.** agents evaluating their own fixes after an incident; agents judging interventions, rewards or feedback from before-and-after numbers.
+
+**Broad-use contexts.** incident response and monitoring, medicine, education and coaching, management, sport, tests run on outlier segments.
+
+**Broad-use intersection (review hypothesis).** a measurement with a chance component, an extreme result, and a later comparison with it.
+
+**Varies (descendant territory).** how much of the measure is chance, how extreme the result was, and what comparison shares the regression.
+
+**Extension shape.** a variant for incident and alert metrics; a variant for units selected by extreme scores.
+
+**Design tensions.**
+- The expected return depends on how noisy the measure is, which is often unknown, so the size of the regression is itself an estimate.
+
+**Tradeoffs.**
+- Gains: a baseline for judging actions taken after extremes.
+- Gives up: crediting an action with whatever follows it.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Experiment is one way to get a comparison that shares the regression.
+- Novelty, from recall and unverified: known. Nearest known concepts: regression toward the mean (Galton); the regression fallacy; the cover jinx.
+
+**In the family.** Experiment controls a comparison, BaseRateInclude anchors on a reference class, ConfoundedAttribution credits one of several changes, and RegressionToMean is the return toward typical after a chance extreme.
 
 ---
 
@@ -17601,7 +18921,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - Independent verification is aspirational — often impossible.
 - No failure modes beyond Genetic Fallacy.
 
-**In the family.** Credibility primitive paired with Source, Evidence, and Judge. Compare with Witness — SourceEvaluate assesses credibility; Witness produces attestation.
+**In the family.** Credibility primitive paired with Source, Evidence, and Judge. Compare with Witness — SourceEvaluate assesses credibility; Witness produces attestation. Patterns that build on it: Motivejump, Prestigeloan, Statuslens.
 
 **Supersedes (prior versions).**
 - `SourceEvaluate#ceb1`
@@ -17788,7 +19108,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### TemporalEnsembleForecasting#2cf5
+### TemporalEnsembleForecasting#7e79
 
 `Mind` · `Inference` · R2 · T2
 
@@ -17809,7 +19129,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
 
 #### Design
 
@@ -17841,37 +19161,40 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `TemporalEnsembleForecasting#3cb6`
 - `TemporalEnsembleForecasting#0913`
 - `TemporalEnsembleForecasting#c8fa`
+- `TemporalEnsembleForecasting#2cf5`
 
 ---
 
-### TruthseekingProtocol#78d5
+### TruthseekingProtocol#9f5a
 
 `Mind` · `Inference` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/TruthseekingProtocol.json)
 
-**Gloss.** Layered epistemic verification (cache → coherence → decomposition → specialists → empirical), with verified claims persisting as Sema patterns — the accretion loop
+**Gloss.** Layered epistemic verification (cache → coherence → decomposition → specialists → empirical), with verified claims persisting as content-addressed records — the accretion loop
 
 **Mechanism.**
 
-> A protocol for evaluating factual claims through layered epistemic decomposition, where each verified result persists as a content-addressed Sema pattern — the system gets smarter and verification gets cheaper with every use (the accretion loop). Unlike monolithic claim evaluation (which entangles source credibility, logical consistency, and cross-referencing in one pass, letting strong evidence on any one axis suppress scrutiny on the others), the protocol applies {{conceptual_decomposition}} to verification-depth, producing five layers governed by {{marginal_value_rule}}: Layer 0 cache (has this exact claim been verified?), Layer 1 structural coherence (does this contradict the verified cache?), Layer 2 epistemic decomposition (ClaimExtractorSolver isolates falsifiable statements, ProvenanceSolver evaluates source independent of content, CoherenceSolver checks internal consistency independent of source, CorrespondenceSolver queries external data, ContestabilitySolver constructs the strongest counter-case), Layer 3 cross-domain specialists in the Cognitive Commons, Layer 4 empirical verification via primary data gathering. Each layer's Solvers operate behind the contract, blind to the others' outputs until they compose at a typed boundary. Verified claims mint as new Sema patterns that enter the Layer 0 cache. Composes with {{validate}} at each layer boundary.
+> A protocol for evaluating factual claims through layered epistemic decomposition, where each verified claim persists as a content-addressed record that later checks can reuse, so the store of verified claims expands through use (the accretion loop). Unlike monolithic claim evaluation (which entangles source credibility, logical consistency, and cross-referencing in one pass, letting strong evidence on any one axis suppress scrutiny on the others), the protocol applies {{conceptual_decomposition}} to verification-depth, producing five layers governed by {{marginal_value_rule}}: Layer 0 cache (has this exact claim been verified? a cached verdict is reused only when its recorded scope, time and provenance fit and no superseding evidence is known), Layer 1 structural coherence (does this contradict the verified cache?), Layer 2 epistemic decomposition (ClaimExtractorSolver isolates falsifiable statements, ProvenanceSolver evaluates source independent of content, CoherenceSolver checks internal consistency independent of source, CorrespondenceSolver queries external data, ContestabilitySolver constructs the strongest counter-case), Layer 3 cross-domain specialists in the Cognitive Commons, Layer 4 empirical verification via primary data gathering. Each layer's Solvers operate behind the contract, blind to the others' outputs until they compose at a typed boundary. A claim that survives deep verification is recorded as a content-addressed verified-claim entry, with its verification provenance and boundary conditions, and enters the Layer 0 cache. Only recurring verification strategies are promoted to Sema patterns; individual claims accrete as records. Composes with {{validate}} at each layer boundary.
 
 **Invariants.**
 - Layer-blind composition: Solvers within a layer do not see each other's outputs until they compose at a typed boundary — no suppression of scrutiny by a strong signal on a parallel axis.
-- Accretion monotonic: a verified claim enters the Layer-0 cache as a content-addressed pattern and remains there until superseded by a counter-claim that survives the same layers.
-- Marginal-value depth: most claims resolve at Layer 0; only claims with genuine novelty or contradiction incur higher layers' cost, governed by {{marginal_value_rule}}.
+- Accretion: a claim that survives deep verification enters the Layer-0 cache as a content-addressed record of the claim, its verification provenance and its boundary conditions. A record whose verdict no longer qualifies stays as history and is not reused.
+- Conditional reuse: a cached verdict is reused only while its recorded scope, time and provenance fit and no superseding evidence is known; a claim whose cached verdict does not qualify is checked again through the layers.
+- Marginal-value depth: an eligible cached verdict resolves a claim at Layer 0; any other claim continues past it, and {{marginal_value_rule}} sets how deep it goes.
+- Typed outcome: a check may stop without a verdict, and its typed output then reports the warrant deficit, the support still missing, not proof that the claim is false.
 
 **Dependency bindings.**
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
-| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `references` | `{{validate}}` | `sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed` |
 
 #### Design
 
-**Why it exists.** Layered epistemic decomposition: each verified result persists as content-addressed anchor. TruthseekingProtocol names this layered factual-claim evaluation. Without the pattern, truth-seeking is ad-hoc.
+**Why it exists.** Layered epistemic decomposition: each verified claim persists as a content-addressed record. TruthseekingProtocol names this layered factual-claim evaluation. Without the pattern, truth-seeking is ad-hoc.
 
 **Why Mind.** layered epistemic verification — cognitive pipeline
 
@@ -17879,7 +19202,6 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Design tensions.**
 - Layer-blind composition vs cross-layer influence.
-- Content-addressed anchors vs evolving understanding.
 - Typed boundary requirements vs flexibility.
 
 **Tradeoffs.**
@@ -17890,7 +19212,10 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - Trimmed 2026-07-25. The mechanism opened with a document coordinate — 'The paper's §6.7 protocol for…' — before it said what the pattern does. An agent that resolves this card cannot act on a section number, and `motivation.why_it_exists` already carried the same reference, so the citation was duplicated into payload. Behaviour kept, coordinate dropped from the card and retained here.
 - No failure modes listed.
 - Layer-blind composition requires infrastructure the pattern assumes.
-- Persistence as content-addressed anchor fits sema's philosophy.
+- Persistence as a content-addressed record fits sema's philosophy.
+- Caution: verified claims are recorded in a shared cache whose eligible verdicts resolve later checks of the same claim, and Layer 1 checks new claims against it. Eligibility on scope, time, provenance and known superseding evidence limits reuse, but a wrong verdict inside its recorded scope stays eligible until superseding evidence is known, so one error, or one poisoned verification, still entrenches, the same shape as PathwayMemory's contamination caution. The card has no failure modes.
+- Records and patterns have different status, as the Fractal Intelligence paper specifies: Solvers think with Sema patterns, which are reusable strategies, and about records, which are individual verified claims, so only recurring verification strategies are promoted to patterns.
+- Content-addressed records against evolving understanding, settled by keeping a record apart from its verdict: the record is fixed and stays as history, while its verdict is reused only while its recorded scope, time and provenance fit and no superseding evidence is known; otherwise the claim is checked again.
 
 **In the family.** A protocol sibling of CollaborativeWritingProtocol, DiscoveryProtocol, EthicalReasoningProtocol, HumanEmulatorProtocol, TemporalEnsembleForecasting and MetaProtocols. Uses ConceptualDecomposition, ConceptAnchor, and typed boundaries.
 
@@ -17898,10 +19223,76 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `TruthseekingProtocol#afc1`
 - `TruthseekingProtocol#e2d3`
 - `TruthseekingProtocol#0113`
+- `TruthseekingProtocol#78d5`
 
 ---
 
-### Mind/Memory (15)
+### Mind/Memory (19)
+
+### ArchiveServingFrontier#2765
+
+`Mind` · `Memory` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ArchiveServingFrontier.json)
+
+**Gloss.** Keep evaluated structures in three layers: an inclusive archive, a selective serving layer and an experimental frontier
+
+**Mechanism.**
+
+> Solved structures, meaning their decompositions, routes, outputs, gate results, provenance and observed outcomes, stay addressable after a task ends, but persistence does not make a carve canonical. Memory is therefore held as a portfolio in three layers. An inclusive archive retains evaluated solution graphs, failed routes included when they carry negative knowledge. A selective serving layer promotes recurrent, validated or niche-leading nodes and subgraphs into active use, and {{pathway_memory}} learns when to route through each. An experimental frontier receives a bounded budget for fresh, convention-resistant carves when similarity is low, routing confidence is poor, frame errors recur, stakes are high or an exploration schedule fires. Exclusion from the serving layer does not discard an archived alternative, so later evidence can promote it. Familiar problems normally use one evidence-backed incumbent rather than every retained carve, and retention stays subject to permissions, expiry and deletion requirements.
+
+**Invariants.**
+- Evaluated structures are retained in the archive whether or not they are served, failed routes included when they carry negative knowledge.
+- Only recurrent, validated or niche-leading structures are promoted to the serving layer.
+- The frontier's budget is bounded.
+
+**Failure modes.**
+- Serving read as truth: the incumbent in the serving layer is treated as the only carve, so archived alternatives are never reconsidered.
+- Archive as attic: alternatives are retained but never promoted, even when evidence favours them.
+- Unbounded frontier: exploration takes budget from familiar problems that the incumbent already serves well.
+- Retention without limits: archived structures are kept against permissions, expiry or deletion requirements.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{pathway_memory}}` | `sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722` |
+
+#### Design
+
+**Why it exists.** A system that keeps only its current best carve loses the alternatives later evidence might favour, and one that serves everything it keeps cannot route efficiently. The Fractal Intelligence paper separates retention from service: an inclusive archive, a selective serving layer and a bounded experimental frontier. ArchiveServingFrontier names that portfolio, so that failed or unpromoted candidates, such as a decomposition's labelled frontier alternatives, have a defined place.
+
+**Why Mind.** Holding evaluated structures for reuse is a memory architecture, for one system or many.
+
+**Can it be removed?** PathwayMemory learns which routes work, ExperienceSharding splits an agent when its context saturates, and ExploreExploit trades exploration against exploitation in general; none separates an inclusive archive from a selective serving layer and a bounded experimental frontier. Removable if every evaluated structure is either served or discarded.
+
+**Intended use.** keeping evaluated solution structures so that alternatives survive, proven ones are reused, and fresh carves get a bounded budget.
+
+**Future uses.** persistent solver graphs; agent memories that keep rejected plans with their verdicts; libraries of decompositions.
+
+**Broad-use contexts.** solver and knowledge graphs, research programmes, design archives, software architecture records, organisational memory.
+
+**Broad-use intersection (review hypothesis).** evaluated structures, a rule for promotion to service, and a bounded budget for exploration.
+
+**Varies (descendant territory).** the promotion criteria, the frontier's triggers and budget, and the retention policy.
+
+**Extension shape.** a variant for agent memory; a variant for a shared commons with permissions.
+
+**Design tensions.**
+- The archive costs storage and routing effort for alternatives that may never be promoted; whether retained structure pays for itself is an empirical question.
+
+**Tradeoffs.**
+- Gains: alternatives that survive exclusion from service.
+- Gives up: a single canonical structure per problem.
+
+**Critique (diagnostic, not contract requirements).**
+- Follows the Fractal Intelligence paper's three layers, which keep the stability of identity and retention apart from canonicity: persistence does not make a decomposition the right one.
+- Named for its three layers rather than as a frontier portfolio, which reads as finance's efficient-frontier portfolio.
+- Novelty, from recall and unverified: known in parts. Nearest known concepts: exploration and exploitation; quality-diversity archives; architecture decision records.
+
+**In the family.** PathwayMemory routes, ExperienceSharding splits saturated agents, ExploreExploit balances trying and using, and ArchiveServingFrontier keeps evaluated structures in archive, service and frontier.
+
+---
 
 ### BeliefTracking#c78d
 
@@ -17989,7 +19380,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - Non-destructive update is a principle; enforcement requires discipline the pattern can't provide on its own. Many 'belief tracked' graphs are actually silent-updated with token commit ceremony.
 - Storage and traversal costs grow without bound; the pattern provides no principled pruning mechanism for low-value history.
 
-**In the family.** The epistemic version-control layer for the whole reasoning stack. Pairs with BayesUpdate (mathematical revision), SurprisalUpdate (magnitude measurement), and the supersession primitives at the graph level. Compare with AuditTrail — BeliefTracking is the internal analogue, tracking belief changes; AuditTrail is the external analogue, tracking action and state changes.
+**In the family.** The epistemic version-control layer for the whole reasoning stack. Pairs with BayesUpdate (mathematical revision), SurprisalUpdate (magnitude measurement), and the supersession primitives at the graph level. Compare with AuditTrail — BeliefTracking is the internal analogue, tracking belief changes; AuditTrail is the external analogue, tracking action and state changes. Patterns that build on it: Revisance.
 
 **Supersedes (prior versions).**
 - `BeliefTracking#e02e`
@@ -18242,6 +19633,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - Model collapse is the dominant failure mode and the pattern has no structural defense — self-distillation is known to degenerate without external signal, and the pattern essentially is self-distillation.
 - 'Examples ordered by complexity' is a curriculum-learning idea; determining complexity rank is itself a non-trivial task the pattern doesn't specify.
 - 'No catastrophic forgetting' is an invariant with no enforcement mechanism — preventing forgetting is a whole research area.
+- Caution: the agent fine-tunes on its own outputs during downtime "without external supervision", and the change persists. That is self-modification outside oversight, and anything that scored well, gamed scores included, is reinforced. The only failure mode, model collapse, is a drift risk.
 
 **In the family.** Self-training primitive paired with Reflexion (deliberate feedback-driven revision), SelfDistillation (the broader technique), and PathwayMemory (reasoning trace memoization). Compare with ExperienceReplay (the RL cousin) — CurriculumReplay adds complexity ordering to the basic replay idea.
 
@@ -18442,12 +19834,68 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - OPEN, for Henrik: the erasure-coding material describes a real pattern the library does not otherwise have — K-of-N reconstruction, failure-independent placement, Reed-Solomon encoding — and it is now unhomed. Either it is minted as its own pattern (the mint gates would need checking against `Shard` and `FabricSharding`) or it is deliberately dropped. It should not go back on this card.
 - RESOLVED 2026-07-26, and both resolutions follow from this card having been two patterns fused. 'Information Redundancy invariant vs storage cost' and 'K-of-N reconstruction vs simpler designs' both described the erasure-coding material — invariants, all three parameters, and a precondition — that was removed when the card was aligned to context propagation on the evidence of its gloss, mechanism, intersection and its only consumer. Neither tension has a referent here any more. Both belong with that material wherever it lands, which is the OPEN question recorded above; putting them back on this card would restore the confusion. The second retained tension is new and is what the context reading actually exposes: requiring three fields does not establish that three fields are enough.
 
-**In the family.** Sharding primitive paired with Shard (general), ContextFirst (refresh discipline), and Decompose.
+**In the family.** Sharding primitive paired with Shard (general), ContextFirst (refresh discipline), and Decompose. Patterns that build on it: Mosaicmap.
 
 **Supersedes (prior versions).**
 - `HolographicShard#1352`
 - `HolographicShard#7eb7`
 - `HolographicShard#23fe`
+
+---
+
+### Identitylag#2fbd
+
+`Mind` · `Memory` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Identitylag.json)
+
+**Gloss.** Abilities or circumstances change while self-understanding stays organised around an earlier condition
+
+**Mechanism.**
+
+> A person's or agent's situation changes, but the self-description guiding its expectations and choices still reflects the earlier situation, so for a period what it takes itself to be able or expected to do differs from its changed circumstances. The change can be a gain, a loss or a reorganisation, and eventual adjustment is not guaranteed. A new inaccurate belief about the self is not automatically a lag; the self-description must have been anchored to an earlier condition.
+
+**Invariants.**
+- A self-understanding was anchored to an earlier condition.
+- A relevant change in abilities or circumstances has not yet been incorporated into it.
+
+**Failure modes.**
+- Persistence read as stability: a persisting self-description is taken to show that circumstances have not changed.
+- Disagreement read as lag: every disagreement with an outside assessment is taken as a lag in self-understanding.
+- Claimed change accepted: a claimed new capability is taken as real when the evidence says it is unreliable.
+
+#### Design
+
+**Why it exists.** People and agents change faster than their account of themselves, and act on the old account. Identitylag names that delay.
+
+**Why Mind.** A self-understanding belongs to one person or agent and is kept in its memory.
+
+**Can it be removed?** SelfReminder reinforces a description, Proprioception locates a task, and Identity defines addressability; none describes a self-understanding lagging behind a changed situation. Removable if self-descriptions are assumed to update at once.
+
+**Intended use.** recognising when a person, team or agent is acting on an outdated account of itself.
+
+**Future uses.** agents with persistent self-models across changes in tools, permissions or skill.
+
+**Broad-use contexts.** learning, new responsibilities, recovery, organisational self-conceptions, persistent agents.
+
+**Broad-use intersection (review hypothesis).** a self-understanding anchored to an earlier condition and a change it has not incorporated.
+
+**Varies (descendant territory).** whether the change is a gain, a loss or a reorganisation.
+
+**Extension shape.** a variant for organisations; a variant for agent self-models.
+
+**Design tensions.**
+- A self-understanding that resists a claimed change can be right.
+
+**Tradeoffs.**
+- Gains: a name for acting on an outdated self.
+- Gives up: taking a self-description as current by default.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Mirrorbloom concerns a self-description causing change; Identitylag concerns its delayed adjustment to change, and the two can coexist without either showing the other.
+- Novelty, from recall and unverified: known. Nearest known concepts: self-concept lag; identity transition.
+
+**In the family.** Capacitylag lags in capacity, Mirrorbloom changes the self through its description, SelfReminder reinforces a description, and Identitylag is self-understanding behind the self.
 
 ---
 
@@ -18791,6 +20239,66 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
+### Reasonfade#3ac3
+
+`Mind` · `Memory` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Reasonfade.json)
+
+**Gloss.** A judgment kept after its reasons are lost is held as an assumption until the reasons are restored
+
+**Mechanism.**
+
+> A retained judgment is checked for its reasons. If the reasons cannot be recovered from the record, the judgment is marked as reason-faded and held as an {{assumption}} rather than a finding, until its reasons are restored or it is decided again.
+
+**Invariants.**
+- A judgment whose reasons cannot be recovered is held as an assumption, not a finding.
+- The mark is cleared only by restoring the reasons or by deciding again.
+
+**Failure modes.**
+- Authority substitution: the judgment's age or source is offered in place of its reasons.
+- Compaction loss: a summary keeps the decision and drops why it was made.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{assumption}}` | `sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097` |
+
+#### Design
+
+**Why it exists.** Groups and agents keep judgments long after the reasons have gone: the reasons were never written down, or a summary dropped them. Such judgments then act with more authority than they have. Reasonfade demotes them to assumptions until the reasons return.
+
+**Why Mind.** It concerns what one agent's memory retains.
+
+**Can it be removed?** Assumption tracks provisional premises and BeliefTracking records belief changes; neither detects a retained judgment that has lost its reasons. Removable if retained judgments are trusted by default.
+
+**Intended use.** agents with long-lived memory, and teams with standing decisions.
+
+**Future uses.** memory compaction in agents; decision logs; institutional review.
+
+**Broad-use contexts.** agent memory compaction, organisational decisions, codebase conventions, policy, research consensus, family rules.
+
+**Broad-use intersection (review hypothesis).** a retained judgment, a search for its reasons, and assumption status when they are missing.
+
+**Varies (descendant territory).** how reasons are searched for and when re-deciding is required.
+
+**Extension shape.** a periodic audit variant; a compaction-time variant that refuses to drop reasons.
+
+**Design tensions.**
+- Demoting a well-founded judgment whose reasons were merely unrecorded costs a re-decision.
+
+**Tradeoffs.**
+- Gains: judgments lose authority when they lose their reasons.
+- Gives up: some stability of standing decisions.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: lost institutional memory; the reverse case of Chesterton's fence.
+
+**In the family.** Assumption, BeliefTracking and TraceBelief handle provisional and changing beliefs; Reasonfade catches the judgment whose reasons have gone.
+
+---
+
 ### RetrievalAugment#6f84
 
 `Mind` · `Memory` · R2 · T2
@@ -18862,6 +20370,69 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `RetrievalAugment#7ca7`
 - `RetrievalAugment#95fc`
 - `RetrievalAugment#9c60`
+
+---
+
+### Revisance#73f1
+
+`Mind` · `Memory` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Revisance.json)
+
+**Gloss.** Change your mind while naming and keeping what the old view got right
+
+**Mechanism.**
+
+> When a view is revised, the revision names what the old view got right and states how the new view keeps it, or states that nothing survives. The old view is superseded rather than erased, as in {{belief_tracking}}, so each kept part can be traced to where it came from.
+
+**Invariants.**
+- Names at least one thing the old view got right, or states that nothing survives.
+- Each kept part is restated in the terms of the new view.
+- The old view remains recorded.
+
+**Failure modes.**
+- Total conversion: the old view is dropped wholesale, including what it got right.
+- Face-saving salvage: parts are kept to avoid admitting error rather than because they still hold.
+- Unplaced keep: a kept part is asserted without saying where it now sits in the new view.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{belief_tracking}}` | `sema:BeliefTracking#mh:SHA-256:c78d68a1f4fe92e2f284e489f6987bc42183245181c6710b9d0c9e582b054e13` |
+
+#### Design
+
+**Why it exists.** Changing one's mind is usually treated as replacing a wrong view with a right one. Most abandoned views got something right, and that part is lost in a wholesale switch. Revisance makes the salvage explicit and traceable.
+
+**Why Mind.** A single agent revises its own view; the record lives in its memory.
+
+**Can it be removed?** BeliefTracking records that a belief was superseded and why; it does not ask what the old belief got right. Removable if salvage is judged unimportant.
+
+**Intended use.** an agent revising a conclusion after new evidence or criticism.
+
+**Future uses.** review cycles; retractions; model updates documented for users.
+
+**Broad-use contexts.** scientific revision, code-architecture changes, policy reversals, personal belief change, editorial corrections, agent memory updates.
+
+**Broad-use intersection (review hypothesis).** an old view kept on record, a new view, and a statement of what survives, possibly that nothing does.
+
+**Varies (descendant territory).** how much of the old view survives, how kept parts are restated, how the revision is communicated.
+
+**Extension shape.** a public-retraction variant; a team variant where the old view belonged to someone else.
+
+**Design tensions.**
+- An honest 'nothing survives' must stay available, or the pattern manufactures salvage.
+
+**Tradeoffs.**
+- Gains: revision without losing what the old view got right.
+- Gives up: the simplicity of a clean switch.
+
+**Critique (diagnostic, not contract requirements).**
+- References BeliefTracking rather than extending it: BeliefTracking requires stating priors before new evidence arrives, which a revisance done afterwards cannot meet.
+- Novelty, from recall and unverified: known. Nearest known concepts: sublation, in which a view is cancelled and kept.
+
+**In the family.** BeliefTracking and TraceBelief record belief history; Dialectic reaches a synthesis; Revisance is the salvage step within one agent's change of mind.
 
 ---
 
@@ -19193,7 +20764,7 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### Mind/Reasoning (63)
+### Mind/Reasoning (101)
 
 ### Abduction#e738
 
@@ -19268,7 +20839,8 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Critique (diagnostic, not contract requirements).**
 - Adjudicated 2026-07-25. The card is in good shape — the mechanism is a complete procedure that also situates the pattern against `Deduction` (necessary) and `Induction` (probable from instances), and all three invariants were decidable, including the escape clause 'of similar scope' on Occam's Razor, which is doing real work: simplicity only decides between candidates that explain the same amount.
 - One gap. The failure mode 'Stopping too early: adopting the first plausible explanation without considering alternatives' had no contract, and the second invariant presupposed plural candidates without requiring them — it spoke of 'comparing candidates' while nothing said there had to be more than one. Requiring two is the smallest claim that makes the ranking in the mechanism meaningful and forbids the named failure.
-- CORRECTED: the varies line ended with 'verification requirements (critical for high-stakes — see caution entry in §3.15)'. The content is right and is already carried by `_meta.caution`, which renders on the card's own manual section; the section number is a document coordinate a reader of that line cannot act on, and section numbering moves. Second instance after `ComputeBudget`'s 'see Appendix A'.
+- CORRECTED: the varies line ended with 'verification requirements (critical for high-stakes — see caution entry in §3.15)'. The content is right, and the line now states it directly; the section number is a document coordinate a reader of that line cannot act on, and section numbering moves. Second instance after `ComputeBudget`'s 'see Appendix A'.
+- No caution: the pattern is purely cognitive, which the caution rule exempts, and its risks are stated in the card: the provisional flag is an invariant and a failure mode, and the varies line requires a composed verification step for high-stakes use.
 
 **In the family.** Sits alongside Deduce and Induce as the triad of classical reasoning modes. Its closest operational sibling is ChainOfThought (the trace substrate). It feeds Hypothesis (as provisional output) and is guarded by BeliefTracking (epistemic version control) and SteelmanCheck (to avoid premature commit). The failure mode 'conspiracy thinking' is exactly what Steelman is built to counter — always pair the two in loops that produce narratives.
 
@@ -19277,6 +20849,188 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 - `Abduction#fe2b`
 - `Abduction#645a`
 - `Abduction#b62e`
+
+---
+
+### Almostnot#4d07
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Almostnot.json)
+
+**Gloss.** Learn a pattern from near misses: excluded cases that differ from members by one stated feature
+
+**Mechanism.**
+
+> To learn or teach a pattern, collect near misses, cases that resemble members but are deliberately excluded, and for each state the feature that excludes it. The pattern's definition, formed as in {{generalize}}, names the features the near misses lack as well as what members share.
+
+**Invariants.**
+- Each near miss states the feature that excludes it.
+- The definition names the features learned from the near misses.
+
+**Failure modes.**
+- Far misses: excluded cases differ in many features, so none is learned.
+- Feature leak: a near miss is excluded for a feature the definition never names.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{generalize}}` | `sema:Generalize#mh:SHA-256:29f133fe83dfe2cd7d2b432390f59e3a64a84866b964a2ca6199f8134ba64e7e` |
+
+#### Design
+
+**Why it exists.** Examples of what a pattern is teach less than examples of what it almost is. Almostnot makes near misses, and the feature that excludes each, part of learning a pattern.
+
+**Why Mind.** One learner or teacher assembles the examples.
+
+**Can it be removed?** Generalize extracts a rule from positive instances; it does not require near misses. Removable if concepts are taught by positive examples only.
+
+**Intended use.** teaching or learning a concept with sharp boundaries.
+
+**Future uses.** few-shot prompting with contrastive examples; classifier design.
+
+**Broad-use contexts.** teaching, machine learning, legal definitions, medical differential diagnosis, design guidelines, writing style guides.
+
+**Broad-use intersection (review hypothesis).** near misses, the excluding feature for each, and a definition that names those features.
+
+**Varies (descendant territory).** how near misses are found and how many are needed.
+
+**Extension shape.** a variant that generates near misses automatically.
+
+**Design tensions.**
+- Good near misses are hard to find, and far misses teach little.
+
+**Tradeoffs.**
+- Gains: sharper boundaries.
+- Gives up: the ease of collecting positive examples only.
+
+**Critique (diagnostic, not contract requirements).**
+- References Generalize rather than extending it: Generalize's held-out testing and minimum-instance parameter belong to that card and are not restated here.
+- Novelty, from recall and unverified: known. Nearest known concepts: near-miss learning; contrastive examples.
+
+**In the family.** Generalize induces from instances, Specialize deduces to instances, and Almostnot sharpens a pattern with near misses.
+
+---
+
+### Analogysnap#7e95
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Analogysnap.json)
+
+**Gloss.** Learn from the exact point where an analogy stops working
+
+**Mechanism.**
+
+> Take an analogy's correspondence relation by relation, as an {{analogy_bridge}} writes it down. Find the first relation that does not carry over to the target, and state what that failure reveals about the target. The breakdown is read as information, not only as the limit of the analogy.
+
+**Invariants.**
+- Names the first relation that fails to carry over.
+- States what the failure reveals about the target, not only that the analogy fails.
+
+**Failure modes.**
+- Overreach: the analogy is used past the point where it fails.
+- Dismissal: the analogy is dropped at its first failure without reading what the failure shows.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{analogy_bridge}}` | `sema:AnalogyBridge#mh:SHA-256:cf62f5ead4f1aaa93a26feb06a9546035a93d1103cca1fccb1d4de5f08babc4a` |
+
+#### Design
+
+**Why it exists.** Analogies are used until they fail and then dropped. The point where an analogy fails is often its most informative part, because it marks where the target differs from the source.
+
+**Why Mind.** One agent examines the analogy.
+
+**Can it be removed?** AnalogyBridge maps solutions relation by relation; it does not ask what the first failing relation teaches. Removable if analogy breakdowns are treated as noise.
+
+**Intended use.** reasoning or teaching with an analogy.
+
+**Future uses.** explanation agents; design by analogy; scientific modelling.
+
+**Broad-use contexts.** teaching, scientific modelling, design, legal reasoning by analogy, product strategy, explaining models.
+
+**Broad-use intersection (review hypothesis).** a written correspondence, the first failing relation, and a statement of what it reveals.
+
+**Varies (descendant territory).** how the correspondence is written and how deep the search for failure goes.
+
+**Extension shape.** a variant that tracks several breakpoints.
+
+**Design tensions.**
+- The first failure may be trivial while a later one is the informative one.
+
+**Tradeoffs.**
+- Gains: analogy breakdowns become findings.
+- Gives up: the comfort of a working analogy.
+
+**Critique (diagnostic, not contract requirements).**
+- References AnalogyBridge rather than extending it: Analogysnap does not transfer a solution.
+- Novelty, from recall and unverified: known. Nearest known concepts: negative analogy.
+
+**In the family.** AnalogyBridge maps, ConceptBlend fuses, and Analogysnap reads the break.
+
+---
+
+### Askwiden#819d
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Askwiden.json)
+
+**Gloss.** Record when another perspective changes which questions can be asked, not just which answers are given
+
+**Mechanism.**
+
+> Before consulting another perspective, the agent writes down its open questions, and afterwards it compares. An askwiden is recorded for each new question that uses a term or distinction the earlier list lacked; a new answer to an old question is not one. The new questions are candidates for a {{reframe}}.
+
+**Invariants.**
+- The question list is written before the other perspective is consulted.
+- An askwiden is claimed only for a question that uses a term or distinction absent from the earlier list.
+
+**Failure modes.**
+- Answer taken for question: a new answer to an old question is recorded as a new question.
+- Rewording: an old question in new words is recorded as new.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{reframe}}` | `sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a` |
+
+#### Design
+
+**Why it exists.** Consulting another perspective usually changes answers. Occasionally it changes what can be asked, which is the more valuable result and the easier one to miss. Askwiden makes that event recordable.
+
+**Why Mind.** One agent compares its own question lists.
+
+**Can it be removed?** Reframe transforms a problem statement and StepBack asks a higher-level question; neither records that a perspective enlarged the set of askable questions. Removable if that event is left implicit.
+
+**Intended use.** consulting another person, model or discipline about an open problem.
+
+**Future uses.** multi-agent review; interdisciplinary research; perspective ensembles.
+
+**Broad-use contexts.** interdisciplinary research, design reviews, consulting experts, red teaming, therapy and coaching, model ensembles.
+
+**Broad-use intersection (review hypothesis).** a question list written before, a comparison after, and a test that a new question uses a term or distinction absent before.
+
+**Varies (descendant territory).** how the before-list is gathered and how new terms are recognised.
+
+**Extension shape.** a team variant pooling question lists.
+
+**Design tensions.**
+- Writing the before-list takes time before the consultation.
+
+**Tradeoffs.**
+- Gains: perspective shifts become visible and reusable.
+- Gives up: a little speed.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the problematic; absolute presuppositions.
+
+**In the family.** StepBack and Reframe change a problem; PerspectiveEnsemble simulates perspectives; Askwiden records when a perspective changed what can be asked.
 
 ---
 
@@ -19413,6 +21167,67 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
+### Badgeread#ae4a
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Badgeread.json)
+
+**Gloss.** Recognition of a category's members comes to rest on a salient mark that co-occurs with them rather than on what makes them members
+
+**Mechanism.**
+
+> A recogniser, such as a person, a classifier or an institution, comes to identify members of a {{category}} by a mark, salient to it, that co-occurred with membership where it learned, rather than by the features that make something a member. While mark and membership stay together the recognition works; where they come apart, lookalikes bearing the mark are admitted and members without it are missed. The mark need not be false, only insufficient. A mark that defines membership, or a recogniser that checks the defining features and uses the mark only as a first cue, is not an instance.
+
+**Invariants.**
+- A recogniser identifies members of a category.
+- Its recognition rests on a mark that co-occurs with membership but does not define it.
+
+**Failure modes.**
+- Mark read as membership: a lookalike bearing the mark is taken to be a member.
+- Missing mark read as non-membership: a member without the mark is missed.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+
+#### Design
+
+**Why it exists.** Recognisers learn whatever separates members from non-members where they learned, and a conspicuous co-occurring mark often does that most cheaply. The reliance stays invisible until mark and membership part. Badgeread names recognition resting on such a mark.
+
+**Why Mind.** Recognition is a judgment made by one recogniser; no second party is needed.
+
+**Can it be removed?** Situfit checks before handling that a moment has the features its handling depends on, and names Surface match as that check's failure; Labelloop is a classification changing its members; Metricmirror reviews how a measure changes behaviour. None describes recognition coming to rest on a correlated mark. Removable if recognisers are assumed to rely only on defining features.
+
+**Intended use.** recognising when a person, classifier or institution identifies members of a category by a correlated mark rather than by what makes them members.
+
+**Future uses.** agents evaluating classifiers and screening steps, including their own, for reliance on shortcut features.
+
+**Broad-use contexts.** machine learning, field identification, hiring and credentials, security signatures, diagnosis, stereotypes.
+
+**Broad-use intersection (review hypothesis).** a recogniser, a category, and a mark that co-occurs with membership without defining it.
+
+**Varies (descendant territory).** the mark, where it was learned, and how often mark and membership part.
+
+**Extension shape.** a variant for learned classifiers; a variant for institutional credentials.
+
+**Design tensions.**
+- Marks are cheap and often right, so relying on them can be efficient until conditions change.
+
+**Tradeoffs.**
+- Gains: a name for recognition that rests on the wrong feature.
+- Gives up: treating a reliable mark as if it were the property.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Situfit is a guard against it, and Metricmirror covers what follows once those being recognised learn which mark is checked.
+- Novelty, from recall and unverified: known. Nearest known concepts: shortcut learning; spurious correlation; proxy discrimination; field marks.
+
+**In the family.** Situfit checks fit before handling, Labelloop changes members through a label, Metricmirror reviews a measure's effect on behaviour, and Badgeread is recognition resting on a correlated mark.
+
+---
+
 ### Bisect#88a2
 
 `Mind` · `Reasoning` · R2 · T2
@@ -19476,6 +21291,245 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 **Supersedes (prior versions).**
 - `Bisect#88b3`
 - `Bisect#419f`
+
+---
+
+### Blindmark#a0ba
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Blindmark.json)
+
+**Gloss.** A representation that states what it cannot express, where its users will meet the statement
+
+**Mechanism.**
+
+> A map, model, chart, summary or other {{artifact}} that represents something carries a statement of what it cannot express and where its omissions lie. The statement names specific omissions and sits where users of the representation meet it, not in separate documentation.
+
+**Invariants.**
+- States specific things the representation cannot express.
+- The statement sits where users of the representation meet it.
+
+**Failure modes.**
+- Buried caveat: the omission statement exists where no user looks.
+- Ritual caveat: a generic disclaimer names no specific omission.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{artifact}}` | `sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee` |
+
+#### Design
+
+**Why it exists.** Maps, models and summaries look complete, and their users treat them as complete. Blindmark puts a statement of specific omissions where users meet the representation.
+
+**Why Mind.** The author of a representation states its limits.
+
+**Can it be removed?** Observe discloses what an observation filtered out; Artifact defines an immutable unit; neither requires a representation to state what it cannot express. Removable if limits are left to separate documentation.
+
+**Intended use.** publishing a map, model, chart, dashboard or summary.
+
+**Future uses.** model cards; dashboards; generated summaries.
+
+**Broad-use contexts.** cartography, data visualisation, scientific models, dashboards, executive summaries, model documentation.
+
+**Broad-use intersection (review hypothesis).** a representation, specific omissions, and placement where users meet it.
+
+**Varies (descendant territory).** the form of the statement and how omissions are found.
+
+**Extension shape.** an interactive variant that shows omissions on demand.
+
+**Design tensions.**
+- Specific omissions can be hard to enumerate.
+
+**Tradeoffs.**
+- Gains: users know what the representation cannot show.
+- Gives up: some visual cleanness.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: disclosed limitations.
+
+**In the family.** Observe discloses filtering, Nuancefilter records what a relay left out, and Blindmark states what a representation cannot express.
+
+---
+
+### Callshort#9525
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Callshort.json)
+
+**Gloss.** A perceived shortfall in the thinking a situation calls for, read as unwilling, unable, or deliberately undeclared
+
+**Mechanism.**
+
+> The perceiver notices an {{incongruity}} between the thinking a situation calls for and the thinking another party shows in it, and records one reading of why. Unwilling: the effort was available in this situation and was not spent. Unable: the effort was not available in this situation. Undeclared: one of the two, with the choice deliberately withheld. The reading is held as a {{hypothesis}} about this situation, not as a finding about the party. If the shortfall disappears when the question is put differently, or comes from the parties holding different premises, the callshort is withdrawn rather than re-read.
+
+**Invariants.**
+- Carries exactly one reading: unwilling, unable, or undeclared.
+- An undeclared reading attributes the shortfall to neither will nor capacity.
+- The reading is about this situation and makes no claim about the party's general willingness or ability.
+- Quotes the observable the perception rests on.
+
+**Failure modes.**
+- Default unwilling: unwilling is read with no observable that separates it from unable.
+- Rift misread: the shortfall came from differing premises or from how the question was put, not from effort.
+- Projection: the perceiver's own effort or limits at that point are read into the other party.
+- Veiled accusation: an undeclared reading is delivered in a way that imputes unwillingness.
+- Trait drift: readings about separate situations are summed into a claim about the party.
+
+**Data schema.**
+
+```json
+{
+  "type": "object",
+  "required": [
+    "situation",
+    "observable",
+    "reading",
+    "would_tell_against"
+  ],
+  "properties": {
+    "situation": {
+      "type": "string",
+      "description": "The situation and the thinking it called for"
+    },
+    "observable": {
+      "type": "string",
+      "description": "The quoted or pointed-to evidence of the shortfall"
+    },
+    "step": {
+      "type": "string",
+      "description": "Where the shortfall shows, for example noticing an assumption, grasping an argument, or following an implication"
+    },
+    "reading": {
+      "type": "string",
+      "enum": [
+        "unwilling",
+        "unable",
+        "undeclared"
+      ]
+    },
+    "would_tell_against": {
+      "type": "string",
+      "description": "An observation that would tell against the reading. For an undeclared reading, an observation that would show the shortfall is not one of effort."
+    }
+  }
+}
+```
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{hypothesis}}` | `sema:Hypothesis#mh:SHA-256:09894332330937ab8ffd172087883db3adeddf6b7d4ca2befe31832416dedc14` |
+| `references` | `{{incongruity}}` | `sema:Incongruity#mh:SHA-256:479ed6c65501ca52ea6149d3e47638291f40158f4e73d8a5c2d71869da4006dc` |
+
+#### Design
+
+**Why it exists.** English fuses perceiving a shortfall with explaining it: 'lazy', 'didn't think', 'out of their depth'. Each carries a verdict about will or capacity. Callshort separates the perception from the explanation and makes the explanation explicit. It adds a third reading, undeclared, which names the gap while refusing to say why. In agent work the reading selects the remedy. Unwilling points to stakes, budget or permission. Unable points to missing context, decomposition or a different solver. Undeclared asks for more without imputing a motive.
+
+**Why Mind.** One perceiver can form the reading without the other party taking part, so the mechanism needs cognition and no second party. A descendant that delivers the reading to the other party would belong in Society.
+
+**Can it be removed?** Does the word need to exist? Under the bootstrap's two-criteria rule it earns a card on both criteria. On structured thinking, the card makes the perceiver state the situation, quote the observable, choose one reading and name what would tell against it. On protocol consistency, when one agent sends another an undeclared reading, both must agree that no motive is imputed. Otherwise the reading lands as the accusation it was built to avoid. Without the card, unwilling and unable survive as ordinary English words, but undeclared does not.
+
+**Intended use.** reviewing another party's answer, plan or argument when it seems to stop short of what the situation needed.
+
+**Future uses.** agent-to-agent review messages; user feedback to a model; self-review, where the perceiver and the party are the same agent at different times.
+
+**Broad-use contexts.** code review, peer review of papers, teaching and tutoring, management and coaching, human feedback on model output, multi-agent pipelines where one agent checks another's work, meetings and negotiation.
+
+**Broad-use intersection (review hypothesis).** a situation whose demand on thinking can be stated, an observable shortfall, exactly one reading, and an observation that would tell against the reading.
+
+**Varies (descendant territory).** how a reading is tested (raising the stakes or the budget tests unwilling, and supplying the missing piece tests unable), whether and how the reading is communicated, and the vocabulary of steps where shortfalls show.
+
+**Extension shape.** a communicated callshort with rules for delivering it (Society); a tested callshort that runs the discriminating checks; a self-callshort for an agent reviewing its own earlier work.
+
+_Note: The three readings are values of the reading field, not separate pattern handles. The optional step field locates where the shortfall appears._
+
+_Note: A shortfall explained by reframing or differing premises is withdrawn. Projection and unsupported attribution of unwillingness remain distinct risks._
+
+**Design tensions.**
+- Charity against accuracy: an undeclared reading can shelter a real unwillingness that the perceiver ought to name.
+- Testability against speed: requiring an observation that would tell against the reading slows casual use.
+- Situation against pattern: refusing trait claims protects the party, but repeated readings about the same party are information too.
+
+**Tradeoffs.**
+- Gains: perception and attribution are separated, the attribution is explicit and checkable, and a no-blame option exists.
+- Gives up: the speed and force of a plain accusation.
+
+**Critique (diagnostic, not contract requirements).**
+- Callshort is a reading of an incongruity, not a kind of incongruity, so it references Incongruity rather than extending it.
+- Abduction adopts the highest-ranked explanation as its working hypothesis, which an undeclared Callshort deliberately does not do.
+- The step where the shortfall shows is an optional schema field, not an invariant. A callshort without a located step is still a callshort, so the identity test does not admit the step to the hash as a requirement.
+- The withdrawal sentence in the mechanism is a boundary, not a procedure. The card states what is not a callshort without requiring the perceiver to run a rephrasing or premise check.
+- The can't-do/won't-do distinction and the will/skill distinction separate inability from unwillingness. Callshort also admits a deliberately undeclared reading, so the apparent shortfall can be named without committing to either cause.
+- Callshort names thinking that falls short of what the situation calls for. Neither part names a cause, so the undeclared reading stays open.
+
+**In the family.** EmpathySim models another agent's state, and Abduction ranks explanations. Check's Unknown is a precedent for a first-class undetermined outcome, though undeclared is a choice where Unknown reports missing evidence. Premisebridge examines whether different premises explain an apparent thinking shortfall.
+
+---
+
+### Canonseal#27fc
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Canonseal.json)
+
+**Gloss.** Score an established option by the same criteria and evidence as its alternatives
+
+**Mechanism.**
+
+> When an established {{option}} is compared with alternatives, it is scored by the same {{criteria}} and the same standard of evidence as they are. Its reputation, age or adoption is recorded separately; it may break a tie, but it is not counted as a criterion.
+
+**Invariants.**
+- The established option and the alternatives are scored on the same criteria.
+- Reputation, age and adoption are recorded separately from the criteria.
+
+**Failure modes.**
+- Incumbent pass: the established option is excused from evidence the alternatives must provide.
+- Novelty bias: alternatives are favoured for being new.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{criteria}}` | `sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb` |
+| `references` | `{{option}}` | `sema:Option#mh:SHA-256:134bea703754281f36b52e9e6901090a3db9ce84f0d843a8e1d18151c0c5beb0` |
+
+#### Design
+
+**Why it exists.** An established option is often exempt from the evidence its alternatives must supply, so its reputation decides the comparison. Canonseal scores all options on the same terms.
+
+**Why Mind.** One evaluator compares the options.
+
+**Can it be removed?** Criteria defines decidable standards and Option defines alternatives; neither forbids exempting the incumbent. Removable if incumbency is accepted as evidence.
+
+**Intended use.** comparing an established practice, tool or theory with alternatives.
+
+**Future uses.** agent tool selection; architecture reviews; replacing defaults.
+
+**Broad-use contexts.** technology choice, scientific theory comparison, policy reform, medical treatment choice, hiring, vendor selection.
+
+**Broad-use intersection (review hypothesis).** an incumbent, alternatives, shared criteria, and reputation recorded separately.
+
+**Varies (descendant territory).** the criteria and how ties are broken.
+
+**Extension shape.** a switching-cost variant that records migration cost as its own criterion.
+
+**Design tensions.**
+- Switching costs are real and must be counted somewhere, without becoming a shield.
+
+**Tradeoffs.**
+- Gains: comparisons decided on merits.
+- Gives up: deference to what is established.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: status quo bias; entrenchment.
+
+**In the family.** Decision commits to an option; Sunsetkind retires categories; Canonseal keeps incumbency from deciding comparisons.
 
 ---
 
@@ -19629,6 +21683,67 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
+### ClassificationReview#78a5
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ClassificationReview.json)
+
+**Gloss.** Re-check a classification of agents who can learn of it, because being classified may change them
+
+**Mechanism.**
+
+> When a {{category}} is applied to agents who can learn how they were classified, such as people, teams or models, the classification states when and how its fit will be re-checked against the members' current behaviour. A re-check that finds members changed toward or away from the label records that the label itself may have caused the change.
+
+**Invariants.**
+- A classification of agents who can learn of it states when and how its fit is re-checked.
+- Re-checks compare members' current behaviour with the classification's criteria, not with their behaviour when first classified.
+
+**Failure modes.**
+- Looping drift: members change in response to the label and the label stops fitting.
+- Self-fulfilment: members conform to the label, and the conformity is taken as confirmation.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+
+#### Design
+
+**Why it exists.** Classifying people or models can change them: they learn the label and move toward it or away from it. A classification that ignores this goes stale, or confirms itself. ClassificationReview schedules re-checks against current behaviour.
+
+**Why Mind.** One agent maintains the classification and its re-checks.
+
+**Can it be removed?** Sunsetkind retires a category on a stated condition and Situfit checks a single moment; neither handles members who react to being classified. Removable if the classified cannot learn of their labels.
+
+**Intended use.** classifications applied to people, teams or learning systems.
+
+**Future uses.** agent reputation systems; model evaluations that models are trained against.
+
+**Broad-use contexts.** education tracking, credit scoring, diagnosis, team performance ratings, model benchmarks, content moderation labels.
+
+**Broad-use intersection (review hypothesis).** a classification of agents who can learn of it, a re-check schedule, and comparison against current behaviour.
+
+**Varies (descendant territory).** the re-check interval and how causation by the label is assessed.
+
+**Extension shape.** a variant that hides labels from the classified.
+
+**Design tensions.**
+- Re-checking costs effort, and hiding labels may be impossible or unfair.
+
+**Tradeoffs.**
+- Gains: classifications that stay accurate about reactive members.
+- Gives up: the stability of a one-time label.
+
+**Critique (diagnostic, not contract requirements).**
+- Labelloop is the process this re-checks. Its scope, agents who can learn of the classification, is narrower than the process, which includes change through treatment, and a re-check does not by itself show whether the label caused a change.
+- Novelty, from recall and unverified: known. Nearest known concepts: the looping effect of human kinds; Goodhart's law.
+
+**In the family.** Sunsetkind retires categories, Situfit checks fit, and ClassificationReview re-checks classifications that change what they classify; Labelloop names that loop.
+
+---
+
 ### CognitiveEcho#c84c
 
 `Mind` · `Reasoning` · R2 · T1
@@ -19709,20 +21824,20 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
-### CollaborativeWritingProtocol#bcd1
+### CollaborativeWritingProtocol#99af
 
 `Mind` · `Reasoning` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/CollaborativeWritingProtocol.json)
 
-**Gloss.** Decompose quality-constrained production into substance, structure, generation, evaluation, and refinement — the five orthogonal dimensions a producer must address
+**Gloss.** Decompose quality-constrained production into substance, structure, generation, evaluation, and refinement — five intended low-coupling dimensions a producer must address
 
 **Mechanism.**
 
-> A protocol for producing textual (or any structured) output that must meet a quality standard. Decomposes the concept of quality-constrained production into five orthogonal dimensions via {{conceptual_decomposition}}: substance (what material must the artifact contain), structure (how does it organize), generation (produce freely with evaluation elsewhere), evaluation (does it meet the standard across independent quality dimensions), and refinement (surface quality on a structurally complete artifact). Two parallel mechanisms run together: a structural pipeline (ScopeDiscoverySolver → SequencingCoherenceSolver → UnitConstraintSolver → StructuralVerificationSolver → VoiceRefinementSolver) that separates generation from evaluation, and concurrent ObserverSolvers (RepetitionSolver, ContradictionSolver, IntentSolver, AudienceReceptionSolver) that externalize the silent evaluative thinking a solo writer does with interference. The protocol transfers beyond writing to any domain where something must be produced to a standard (music composition, interface design).
+> A protocol for producing textual (or any structured) output that must meet a quality standard. Decomposes the concept of quality-constrained production into five intended low-coupling dimensions via {{conceptual_decomposition}}: substance (what material must the artifact contain), structure (how does it organize), generation (produce freely with evaluation elsewhere), evaluation (does it meet the standard across independent quality dimensions), and refinement (surface quality on a structurally complete artifact). Two parallel mechanisms run together: a structural pipeline (ScopeDiscoverySolver → SequencingCoherenceSolver → UnitConstraintSolver → StructuralVerificationSolver → VoiceRefinementSolver) that separates generation from evaluation, and concurrent ObserverSolvers (RepetitionSolver, ContradictionSolver, IntentSolver, AudienceReceptionSolver) that externalize the silent evaluative thinking a solo writer does with interference. The protocol transfers beyond writing to any domain where something must be produced to a standard (music composition, interface design).
 
 **Invariants.**
-- Dimension-orthogonal: the five sub-concepts pass the four-test decomposition ({{conceptual_decomposition}}); an observer checking repetition does not generate, a generator does not self-censor toward criteria it lacks.
+- Low-coupling dimensions: the five sub-concepts pass the four-test decomposition ({{conceptual_decomposition}}); an observer checking repetition does not generate, and a generator does not self-censor toward criteria it lacks.
 - Concurrent-not-sequential: evaluative observers run alongside generation, producing typed annotations that accumulate; they are not editors.
 - Variable-depth: each of the five dimensions can itself recurse via its own sub-solver tree when the stakes warrant it ({{marginal_value_rule}} governs depth).
 
@@ -19730,42 +21845,104 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
-| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 
 #### Design
 
-**Why it exists.** Quality-constrained production fails when generator and evaluator are the same agent — the generator can't simultaneously produce and watch for repetition, style drift, or criteria mismatch. The protocol decomposes quality into five orthogonal dimensions and runs observers alongside the generator so each dimension has a dedicated watcher. Without it, quality collapses to whatever single dimension the generator happens to attend to.
+**Why it exists.** Quality-constrained production fails when generator and evaluator are the same agent — the generator can't simultaneously produce and watch for repetition, style drift, or criteria mismatch. The protocol decomposes quality into five low-coupling dimensions and runs observers alongside the generator so each dimension has a dedicated watcher. Without it, quality collapses to whatever single dimension the generator happens to attend to.
 
 **Why Mind.** quality-constrained production decomposition — cognitive
 
-**Can it be removed?** Removable for one-shot low-stakes production. Non-optional for anything that must pass a multi-dimensional quality bar (papers, code, structured artifacts). The pattern is the operational realization of one claim: that quality is decomposable, and that orthogonal observers scale where a single generator watching itself does not.
+**Can it be removed?** Removable for one-shot low-stakes production. Non-optional for anything that must pass a multi-dimensional quality bar (papers, code, structured artifacts). The pattern is the operational realization of one claim: that quality is decomposable, and that separate observers scale where a single generator watching itself does not.
 
 **Design tensions.**
-- Orthogonality invariant (dimensions don't overlap) vs real quality dimensions — in practice dimensions leak; 'clarity' and 'substance' interact in ways the decomposition tries to freeze apart.
 - Concurrent observers vs sequential review — concurrent is faster and noisier; sequential is slower but cleaner. The protocol picks concurrent, which is correct for scale and wrong for small artifacts.
 - Five dimensions, fixed in a hashed invariant — the count passes the four-test decomposition, and nothing on the card argues five rather than three or seven. Changing it does not tune this pattern, it mints a different one.
 
 **Tradeoffs.**
-- Gains: structural prevention of generator self-censorship, explicit orthogonal quality dimensions, concurrent observation that scales to long artifacts.
+- Gains: structural prevention of generator self-censorship, explicit low-coupling quality dimensions, concurrent observation that scales to long artifacts.
 - Gives up: coherence of voice (multiple observers create diverse pressures), setup cost (wiring five observers is heavier than one review), and simplicity (the protocol is, itself, a decomposition requiring its own maintenance).
 
 **Critique (diagnostic, not contract requirements).**
 - Trimmed 2026-07-25. The mechanism opened with a document coordinate — 'The paper's §6.1 protocol for…' — before it said what the pattern does. An agent that resolves this card cannot act on a section number, and `motivation.why_it_exists` already carried the same reference, so the citation was duplicated into payload. Behaviour kept, coordinate dropped from the card and retained here.
-- The four-test decomposition as validation for orthogonality is self-referential — the decomposition validates itself using its own decomposition test. Not circular, but not independent.
+- The four-test decomposition as validation for low coupling is self-referential — the decomposition validates itself using its own decomposition test. Not circular, but not independent.
 - The 'concurrent, not sequential' choice is defensible but hard to enforce — in practice agents running the protocol tend to serialize because their context windows don't support truly parallel observation.
 - Five dimensions are the current answer; revisions to the paper have suggested this is under-determined, and the pattern should probably version which version of §6.1 it encodes.
+- Dimensions that leak are expected: following the Fractal Intelligence paper, the five are intended to be low-coupling, not orthogonal, so 'clarity' and 'substance' may interact without breaking the invariant. This settles the earlier tension between an orthogonality invariant and real quality dimensions.
 
-**In the family.** A meta-protocol that bundles ConceptualDecomposition (the orthogonality step), AcceptSpec (the quality criteria), and multi-observer patterns into a named production flow. Sibling of AgentProtocol (interop bundle) but for output quality rather than messaging. Compare with Critique — CollaborativeWritingProtocol embeds Critique per-dimension, running continuously rather than as a post-hoc review.
+**In the family.** A meta-protocol that bundles ConceptualDecomposition (the decomposition step), AcceptSpec (the quality criteria), and multi-observer patterns into a named production flow. Sibling of AgentProtocol (interop bundle) but for output quality rather than messaging. Compare with Critique — CollaborativeWritingProtocol embeds Critique per-dimension, running continuously rather than as a post-hoc review.
 
 **Supersedes (prior versions).**
 - `CollaborativeWritingProtocol#8a1a`
 - `CollaborativeWritingProtocol#4d6a`
 - `CollaborativeWritingProtocol#1305`
+- `CollaborativeWritingProtocol#bcd1`
 
 ---
 
-### ConceptualDecomposition#9a52
+### Complexitytax#fb09
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Complexitytax.json)
+
+**Gloss.** Before dismissing a distinction as too complicated, state what decision it would change
+
+**Mechanism.**
+
+> A distinction proposed for dismissal as too complicated is first tested: state which {{decision}} or prediction would change if it were kept. A distinction that changes nothing may be dropped; one that changes something is kept, whatever it costs to state.
+
+**Invariants.**
+- A dismissed distinction carries a statement of what it would have changed.
+- A distinction that would change a decision or prediction is not dismissed for its length.
+
+**Failure modes.**
+- Slogan win: the shorter account is preferred because it is shorter.
+- Complexity hoard: every distinction is kept whether or not it changes anything.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decision}}` | `sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7` |
+
+#### Design
+
+**Why it exists.** Useful distinctions lose to slogans because they take longer to say. Complexitytax asks what a distinction would change before letting length decide.
+
+**Why Mind.** One agent decides whether to keep a distinction.
+
+**Can it be removed?** Decision commits to an option and Summarize compresses by salience; neither tests a distinction by its consequences. Removable if brevity is allowed to decide.
+
+**Intended use.** editing explanations, policies or plans where a distinction is about to be dropped for simplicity.
+
+**Future uses.** agent summarisation; policy drafting; teaching.
+
+**Broad-use contexts.** policy writing, teaching, product requirements, legal drafting, model output summarisation, public communication.
+
+**Broad-use intersection (review hypothesis).** a distinction, a stated consequence, and a keep-or-drop rule tied to it.
+
+**Varies (descendant territory).** what counts as a changed decision or prediction.
+
+**Extension shape.** a batch variant for reviewing many distinctions.
+
+**Design tensions.**
+- Every distinction changes something somewhere; the test needs a stated scope.
+
+**Tradeoffs.**
+- Gains: important distinctions survive simplification.
+- Gives up: some brevity.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: the sound-bite advantage.
+
+**In the family.** Lucence keeps load-bearing distinctions while clarifying; Farsimple routes through complexity; Complexitytax decides when a distinction may go.
+
+---
+
+### ConceptualDecomposition#d0fc
 
 `Mind` · `Reasoning` · R1 · T1
 
@@ -19775,35 +21952,43 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Mechanism.**
 
-> The cognitive act of taking a concept — typically a problem or task — and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (at minimum exposes a Manifest + Execute surface, so it is independently delegatable). Distinct from generic {{decompose}}: Decompose merely divides; ConceptualDecomposition divides *into solver-compatible units*. This is the intellectual move that enables recursive fractal structure — because child concepts conform to the same interface as the parent, the same five-surface contract governs every level. A few agents can assign these solver roles to themselves and perform lightweight fractal intelligence for a specific problem; the resulting structure may persist as a reusable pattern or be torn down at completion. The decomposition is passed through a {{decomposition_gate}} to validate Necessity, Independence, Universality, and Completeness before any child is spawned. Children compose back via {{synthesis}} once their individual results return.
+> The cognitive act of taking a concept, typically the capability that frames a problem, once it has been located, and breaking it into sub-concepts where each sub-concept is bound by the {{solver}} contract (it exposes at least the Manifest and Execute surfaces of the five-surface contract, so it is independently delegatable). Distinct from generic {{decompose}}: Decompose merely divides; ConceptualDecomposition divides into solver-compatible units, so the same five-surface contract governs every level and the structure can recurse. It asks which differentiated dimensions the capability needs across the instances it claims, not which steps would accomplish it, which would produce a procedural carve. Candidate dimensions are generated and each is put to the {{decomposition_gate}} tests; a failed or uncertain candidate may be reframed, narrowed or kept as a labelled alternative in the frontier of the {{archive_serving_frontier}}. A bounded search then looks for any dimension the accepted set still misses, and a {{routing_sanity_check}} routes a few concrete tasks through the carve before it is kept. Accepted dimensions are bound to the parent by {{composition_edge}} links, the split declares the {{synthesis}} that recomposes them, and recursion continues into a dimension only while the {{marginal_value_rule}} says further depth pays. A few agents can take these solver roles for one problem, and the resulting structure may persist as a reusable pattern or be torn down at completion.
 
 **Invariants.**
-- Every sub-concept exposes the {{solver}} interface (Manifest + Execute) as a condition of the split being accepted, not as later repair.
-- Decompositions pass the {{decomposition_gate}} suite before children are spawned.
-- The split declares the {{synthesis}} that will recompose it; a concept with no available route is not decomposed.
+- Every sub-concept exposes at least the Manifest and Execute surfaces of the {{solver}} interface as a condition of the split being accepted, not as later repair.
+- Only candidate dimensions that pass the {{decomposition_gate}} tests are spawned as children.
+- The split declares the {{synthesis}} that will recompose it; a concept with no available synthesis is not decomposed.
+- The concept is located before it is carved.
 
 **Failure modes.**
 - Premature decomposition: the parent concept is broken apart before it is clearly framed, producing sub-concepts that don't cover the actual problem.
-- Non-orthogonal split: the decomposition overlaps itself; the {{decomposition_gate}} Independence test should catch this but does not if the overlap is semantic rather than structural.
+- Coupled split: two dimensions cannot vary or fail separately; the {{decomposition_gate}} Independence test should catch this but can miss overlap that is semantic rather than structural.
 - Contract violation: sub-concepts that do not cleanly expose Manifest + Execute cannot be dispatched — the decomposition produced descriptions, not delegatable units.
-- Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing holographic-shard leakage.
+- Leaky abstraction: sub-concepts that require global context the Solver contract doesn't carry, forcing each child to reach back for the parent's context.
+- Procedural carve: the concept is split into the steps of one way of doing it rather than the dimensions it needs, so the carve fits one workflow and not the capability.
 
 **Dependency bindings.**
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{decomposition_gate}}` | `sema:DecompositionGate#mh:SHA-256:bd17249e6886e85f3b10f4abbf631e89a1585f24c56cc72123ebd3ad0cea3d83` |
+| `composes_with` | `{{decomposition_gate}}` | `sema:DecompositionGate#mh:SHA-256:1b2d7263900f2721658ea188e416b2c53cb14c4ce13f35b9b82728f68fcfe7c5` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
+| `references` | `{{archive_serving_frontier}}` | `sema:ArchiveServingFrontier#mh:SHA-256:27653c08dbb23917a945b15020bbdabae18ccc9256dda0d2249354896d4a4313` |
+| `references` | `{{composition_edge}}` | `sema:CompositionEdge#mh:SHA-256:2be81d974795a345a4518b540b6110bed48e2e1fc084363193dc0bb609616bbb` |
 | `references` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
+| `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
+| `references` | `{{routing_sanity_check}}` | `sema:RoutingSanityCheck#mh:SHA-256:71bdf79f3d471779f7312d699718cab13efef2db27d45873aeb0e91e35c73a8b` |
 | `references` | `{{solver}}` | `sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b` |
 
 #### Design
 
-**Why it exists.** Generic Decompose merely divides; this pattern divides *into solver-compatible units*. That constraint — every sub-concept must expose the five-surface Solver contract — is what makes fractal recursion work: because children honor the same interface as the parent, the tree composes indefinitely. Without this pattern, decomposition produces descriptions rather than delegatable sub-problems.
+**Why it exists.** Generic Decompose merely divides; this pattern divides *into solver-compatible units*. That constraint — every sub-concept must expose at least the Manifest and Execute surfaces of the Solver contract — is what makes fractal recursion work: because children honor the same interface as the parent, the tree composes indefinitely. Without this pattern, decomposition produces descriptions rather than delegatable sub-problems.
 
 **Why Mind.** breaking concept into contract-bound sub-concepts
 
 **Can it be removed?** No. The FractalIntelligence architecture rests on this move. Removing would either collapse it into generic Decompose (losing the contract-binding invariant) or require every caller to re-state 'decompose into solver-compatible chunks' at the call site.
+
+**Intended use.** breaking a located concept into solver-bound dimensions that pass the four tests, with a declared synthesis and depth set per dimension.
 
 **Design tensions.**
 - Contract-binding vs domain shapes — not every domain has natural sub-solvers, and some concepts are inherently holistic. The pattern imposes a solver shape and a holistic concept should not be decomposed at all.
@@ -19812,24 +21997,26 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 **Tradeoffs.**
 - Contract-binding buys fractal scalability at the cost of forcing every sub-concept to carry the overhead of the Solver interface, even when the sub-task is trivial.
-- DecompositionGate enforcement buys correctness (decompositions are orthogonal, complete, etc.) at the cost of latency and per-split ceremony.
+- DecompositionGate enforcement buys well-formed carves (low-coupling, complete for the claimed promise) at the cost of latency and per-split ceremony.
 - Synthesis-based recomposability buys result coherence at the cost of requiring a matching Synthesis pattern for every decomposition — sometimes not available.
 
 **Critique (diagnostic, not contract requirements).**
-- Resolved 2026-07-25, and reasoned from the card, tensions, tradeoffs and critique alone: this pattern's `usage` block is empty, so there is no declared broad-use intersection and no varies line to adjudicate placement against. It is one of 33 patterns in that state. That is flagged rather than filled — inventing an intersection would manufacture the very evidence the placement test is supposed to consult.
+- Resolved 2026-07-25, and reasoned from the card, tensions, tradeoffs and critique alone: this pattern's `usage` block declares no broad-use intersection and no varies line to adjudicate placement against. It is one of 33 patterns in that state. That is flagged rather than filled — inventing an intersection would manufacture the very evidence the placement test is supposed to consult.
 - Invariant 3 could not be satisfied in the cases this entry's own tradeoffs admit. 'Recomposability: results of sub-concepts compose back via Synthesis' is violated by construction wherever no matching synthesis exists — and the third tradeoff says exactly that, 'sometimes not available'. Restated as an obligation at split time, which is when the gate already runs: name the recomposition route, or do not split. That turns a silent breach into a refusal, and it does not require recomposition to be lossless, which is the third tension's real objection.
 - The third critique point — that the distinction from generic `Decompose` is 'asserted but not enforced' — has an enforceable answer, and it is about order. Contract-binding holds at decomposition time, so a sub-concept that cannot be made solver-shaped is rejected before the split is accepted rather than patched afterwards. Decomposing first and assigning solvers later reaches a similar end state having never been able to fail. Now stated in the invariant.
 - CORRECTED: the second critique point, that semantic coupling can survive a structural independence check, is already the second failure mode on this card — 'the Independence test should catch this but does not if the overlap is semantic rather than structural'. The critique restates the card.
 - Premature Closure was REJECTED here on placement. Declaring a decomposition complete before the Completeness criterion is exhausted is a property of that test, so it belongs to `DecompositionGate`, which currently names only the false-reject direction of Completeness and not the false-accept one. Recorded there rather than duplicated here.
 - REWORDED 2026-07-25: the recomposability tension described an invariant requiring results to compose back. What the invariant requires is that the split *declare the route* — a concept with no available synthesis is not decomposed — which is a weaker and checkable claim. The tension is retained because the gap it names moved rather than closed: declaring a route does not make the route lossless.
+- Follows the Fractal Intelligence paper's DECOMPOSE_CONCEPT: candidates are tested one at a time, failed ones may stay as frontier alternatives, a bounded completeness search and a routing sanity check come before crystallization, and depth is set per dimension by the marginal-value rule.
 
-**In the family.** The cognitive verb at the heart of the FI architecture. Gated by `DecompositionGate` (Necessity/Independence/Universality/Completeness). Produces children that conform to the `Solver` interface. Composed with `Synthesis` for recomposition. The move that differentiates FI from flat task delegation.
+**In the family.** The cognitive verb at the heart of the FI architecture. Located first by `MandatoryAbstraction`, gated by `DecompositionGate`, screened by `RoutingSanityCheck`, bound by `CompositionEdge`, deepened under `MarginalValueRule` and recomposed by `Synthesis`. Produces children that conform to the `Solver` interface. The move that differentiates FI from flat task delegation.
 
 **Supersedes (prior versions).**
 - `ConceptualDecomposition#2cce`
 - `ConceptualDecomposition#3cf2`
 - `ConceptualDecomposition#cdf8`
 - `ConceptualDecomposition#40d9`
+- `ConceptualDecomposition#9a52`
 
 ---
 
@@ -19930,6 +22117,62 @@ OPEN, from the same review: `usage.varies` offers accuracy, KL divergence and su
 
 ---
 
+### ContrastClass#7398
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ContrastClass.json)
+
+**Gloss.** A why-question asks why an outcome happened rather than an alternative, and the alternative decides which explanation answers it
+
+**Mechanism.**
+
+> An explanatory question asks why something happened rather than an alternative, its foil, whether the foil is stated or only implied. An answer explains the contrast by citing a difference between the causal histories of the outcome and the foil; a cause present in both does not explain why one happened rather than the other, however important it is. Changing the foil changes the answer: why a build fails on Windows rather than Linux points to what differs between the platforms, while why it fails today rather than yesterday points to what changed. Two parties can give conflicting answers to what sounds like one question when each holds a different foil, and both can be right.
+
+**Invariants.**
+- An explanatory question has a foil, stated or implied: the alternative its outcome is contrasted with.
+- An answer explains the contrast only by citing a difference between the causal histories of the outcome and the foil.
+
+**Failure modes.**
+- Unstated foil: parties answer one why-question against different alternatives and take their answers to conflict.
+- Shared cause cited: a cause present in both the outcome and the foil is offered as the reason one happened rather than the other.
+- Foil drift: the alternative changes during an inquiry without notice, so evidence gathered for one contrast is applied to another.
+
+#### Design
+
+**Why it exists.** Why-questions are usually asked without saying what the outcome is contrasted with, and the missing alternative decides which causes are relevant. Debugging, incident reviews and disagreements stall when people answer different contrasts while believing they share one. ContrastClass names the foil, so a question can be pinned down before it is answered.
+
+**Why Mind.** Posing and answering an explanatory question is one reasoner's work; a second party matters only when the foil is disputed.
+
+**Can it be removed?** Causation describes a causal relation, RecursiveRootCause chains why-questions, and Premisebridge compares the premises behind a disagreement; none says that a why-question is relative to an alternative or that the alternative selects the explanation. OpportunityCost also sets an outcome against an alternative, but to value a choice, not to explain an outcome. Removable if explanations are assumed to answer why-questions without a foil.
+
+**Intended use.** stating which alternative a why-question contrasts its outcome with, before answering it.
+
+**Future uses.** agents debugging by comparing failing and passing cases; agents explaining decisions to people who had a different alternative in mind; disputes between agents that answer different contrasts.
+
+**Broad-use contexts.** debugging and incident review, science and medicine, history, explanations given to users, disagreements and negotiation.
+
+**Broad-use intersection (review hypothesis).** an outcome, a foil, and an explanation that cites a difference between them.
+
+**Varies (descendant territory).** how the foil is chosen, whether it is stated, and how many alternatives it holds.
+
+**Extension shape.** a variant for debugging by comparing failing and passing cases; a variant for explanations given to users.
+
+**Design tensions.**
+- One outcome has as many correct explanations as it has foils, which can look like evasion to someone who wanted a single answer.
+
+**Tradeoffs.**
+- Gains: a way to pin down what a why-question asks.
+- Gives up: the idea that each outcome has one complete explanation.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes the structure of a why-question and prescribes no way of choosing a foil. Each step of RecursiveRootCause has a foil, and a change of foil between steps that nobody notices is a Foil drift.
+- Novelty, from recall and unverified: known. Nearest known concepts: contrast class (van Fraassen); fact and foil (Lipton); contrastive explanation in explainable AI.
+
+**In the family.** Causation names a causal relation, RecursiveRootCause chains why-questions, Premisebridge compares premises, and ContrastClass is the alternative a why-question contrasts its outcome with.
+
+---
+
 ### Critique#646b
 
 `Mind` · `Reasoning` · R1 · T1
@@ -19995,12 +22238,134 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - 'Vague Praise' is the second-most-common — Critique that satisfies the invariants vacuously by naming criteria and giving no substance.
 - 'Projection' (critiquing the artifact for not being what the critic would have built) is endemic; the pattern notes it without mitigating.
 
-**In the family.** Produces Assessment, consumed by Reflexion and Refine. Sibling of Judge (scalar), Review (structured), and Evaluate (generic). Compare with AdversarialProof — Critique assesses quality; AdversarialProof searches for prohibited content. Both are structured-output verification.
+**In the family.** Produces Assessment, consumed by Reflexion and Refine. Sibling of Judge (scalar), Review (structured), and Evaluate (generic). Compare with AdversarialProof — Critique assesses quality; AdversarialProof searches for prohibited content. Both are structured-output verification. Patterns that build on it: Critiquedrift.
 
 **Supersedes (prior versions).**
 - `Critique#3e00`
 - `Critique#0254`
 - `Critique#77f2`
+
+---
+
+### Critiquedrift#bd7c
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Critiquedrift.json)
+
+**Gloss.** Keep criticism of an action about the action and its effects, not the person's character
+
+**Mechanism.**
+
+> A {{critique}} of what someone did names the action and its effects and stays there. Any statement about the person is limited to this action; claims about their character, ability or motives are not drawn from it.
+
+**Invariants.**
+- The critique names the action and its effects.
+- No claim about the person's character, ability or motives is drawn from the action.
+
+**Failure modes.**
+- Drift: criticism of an act becomes a verdict on the person.
+- Vagueness shield: the critique avoids naming the act so as not to seem personal.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{critique}}` | `sema:Critique#mh:SHA-256:646b71acb10a6b7f0874f3d5c7977c44d253f29f9c1231c974d85c7fba131980` |
+
+#### Design
+
+**Why it exists.** Criticism of an action drifts into a judgment of the person, which makes it harder to hear and less accurate. Critiquedrift keeps the critique on the act.
+
+**Why Mind.** The critic alone controls what the critique claims.
+
+**Can it be removed?** Critique generates feedback against criteria and Jester softens delivery; neither forbids drawing character claims from an act. Removable if feedback norms already enforce it.
+
+**Intended use.** giving feedback on someone's work or behaviour.
+
+**Future uses.** agent feedback to users and other agents; code review bots.
+
+**Broad-use contexts.** management, teaching, code review, parenting, peer review, agent feedback.
+
+**Broad-use intersection (review hypothesis).** a named action, its effects, and no claims about character, ability or motives.
+
+**Varies (descendant territory).** the tone and channel of delivery.
+
+**Extension shape.** a variant for repeated actions, where patterns are named without character claims.
+
+**Design tensions.**
+- Repeated actions do form patterns, and naming them without drifting into character takes care.
+
+**Tradeoffs.**
+- Gains: criticism that can be heard and acted on.
+- Gives up: the force of a character verdict.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Callshort's Trait drift failure mode is the effort-reading case of the same drift; this card generalises the guard to any critique.
+- Novelty, from recall and unverified: known. Nearest known concepts: the fundamental attribution error; ad hominem.
+
+**In the family.** Critique generates feedback, Jester delivers it gently, Callshort limits effort readings to the situation, and Critiquedrift keeps any critique on the act.
+
+---
+
+### Crossborn#814f
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Crossborn.json)
+
+**Gloss.** A distinction that appears only when several perspectives interact, credited to the interaction
+
+**Mechanism.**
+
+> When several perspectives work on the same question, as in a {{perspective_ensemble}}, each distinction that appears in the combined work is checked against each perspective taken alone. A distinction none of them contains alone is recorded as crossborn and credited to the interaction, together with the perspectives whose contact produced it.
+
+**Invariants.**
+- A distinction is recorded as crossborn only if it is absent from every contributing perspective taken alone.
+- The perspectives whose interaction produced it are named.
+
+**Failure modes.**
+- Hidden origin: the distinction was present in one perspective and is credited to the interaction.
+- New label, old distinction: a new word for an existing distinction is recorded as new.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{perspective_ensemble}}` | `sema:PerspectiveEnsemble#mh:SHA-256:4afd1d6c7abb339c91b3bd94f791e2f57638e9a8c5431757d2c7ae1d6ce8545d` |
+
+#### Design
+
+**Why it exists.** Combining perspectives sometimes produces a distinction none of them had. Crediting it to the interaction tells the group which combinations are worth repeating.
+
+**Why Mind.** One agent can compare the combined work with each perspective alone.
+
+**Can it be removed?** PerspectiveEnsemble simulates perspectives and Askwiden records new questions for one agent; neither credits a distinction to an interaction. Removable if the origin of distinctions is not tracked.
+
+**Intended use.** interdisciplinary work, ensembles of agents and panel discussions.
+
+**Future uses.** choosing which perspectives to combine next time.
+
+**Broad-use contexts.** interdisciplinary research, design teams, multi-agent ensembles, peer review panels, mediation, product discovery.
+
+**Broad-use intersection (review hypothesis).** several perspectives, a combined result, and a per-perspective check for each new distinction.
+
+**Varies (descendant territory).** how distinctions are recognised and how perspectives are recorded.
+
+**Extension shape.** a ledger of productive pairings.
+
+**Design tensions.**
+- Proving that a perspective lacked a distinction is harder than showing it had one.
+
+**Tradeoffs.**
+- Gains: productive combinations become visible.
+- Gives up: the effort of checking each perspective.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: triangulation; parallax.
+
+**In the family.** PerspectiveEnsemble generates perspectives, Askwiden records new questions, and Crossborn records distinctions born of their contact.
 
 ---
 
@@ -20073,7 +22438,7 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - 'If subproblems interact, the split is wrong — try a different decomposition axis' is correct advice and provides no help with how to find the right axis.
 - The termination condition ('recurse until...') is not specified; depth governance lives in a separate pattern.
 
-**In the family.** Foundational mind-layer primitive paired with Compose (the inverse), ConceptualDecomposition (the domain-driven variant), and DepthGovernor/BreadthGovernor (the termination controls). Compare with Chunk — Decompose splits by functional independence, Chunk groups by association. Opposite directions of granularity control.
+**In the family.** Foundational mind-layer primitive paired with Compose (the inverse), ConceptualDecomposition (the domain-driven variant), and DepthGovernor/BreadthGovernor (the termination controls). Compare with Chunk — Decompose splits by functional independence, Chunk groups by association. Opposite directions of granularity control. Patterns that build on it: Farsimple.
 
 **Supersedes (prior versions).**
 - `Decompose#ac56`
@@ -20082,63 +22447,70 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 
 ---
 
-### DecompositionGate#bd17
+### DecompositionGate#1b2d
 
 `Mind` · `Reasoning` · R2 · T2
 
 [Source card (JSON)](../../data/vocabulary/DecompositionGate.json)
 
-**Gloss.** Four-test gate for candidate decompositions: Necessity, Independence, Universality, Completeness
+**Gloss.** Four tests of a decomposition against a stated claim frame: each candidate dimension must pass Necessity, Independence and Universality, and the accepted set must pass Completeness
 
 **Mechanism.**
 
-> The four-test decomposition suite applied as a Gate over candidate decompositions. The tests: Necessity ({{parsimony}}'s ablation applied to the split — removing any sub-concept collapses the parent), Independence (sub-concepts vary orthogonally), Universality (every instance of the parent contains every sub-concept), Completeness (addressing all sub-concepts reconstructs a functioning parent). A decomposition passes only if all four tests pass — non-compensatory. Yields a {{decision}}: on failure, the Decision carries a {{frame_error}} instructing the upstream planner to reframe rather than iterate within the current decomposition.
+> The four-test operator applied as a gate over candidate decompositions. The tests are judged against a provisional claim frame: the outward capability being promised, the purpose of the decomposition, and the range of instances it claims. The frame may be revised, and several frames or carves may coexist for comparison. Each candidate dimension is tested for Necessity (relative to the claimed capability, removing it collapses the parent's promise, as {{parsimony}}'s ablation applied to the split), Independence (it can change or be reimplemented without forcing the same revision in the others; lower coupling, not zero interaction, shown by change propagation, routing overlap and recurrent joint failures) and Universality (every instance in the claimed range contains it; a dimension limited to some implementations may still be a specialization under a narrower claim). The accepted set is then tested for Completeness: addressing all of it yields a functioning instance of the parent for the current promise, and a gap points to a missing axis, interaction or framing assumption. A candidate is accepted only if all three of its tests hold, so strength on one does not offset failure on another; a failed or uncertain candidate may be reframed, tried under a narrower claim, or kept with its verdict and rationale as a labelled alternative in the frontier of the {{archive_serving_frontier}}. Yields a {{decision}}. The tests structure a judgment rather than certify it, so a passing carve is the best-supported current hypothesis, and leakage that later surfaces as downstream failure raises a {{frame_error}} that reopens the carve.
 
 **Invariants.**
-- Non-compensatory: a decomposition passes only if ALL four tests pass independently.
-- Universality is strict: prototype-shaped concepts failing universality are rejected by design..
+- Every verdict is judged against a stated claim frame: the outward capability promised, the purpose of the decomposition and the range of instances it claims.
+- Non-compensatory: a candidate dimension is accepted only if Necessity, Independence and Universality all hold for it.
+- Completeness is judged for the accepted set against the current outward promise.
 
 **Failure modes.**
-- Strict universality rejects legitimate prototype-shaped concepts that would succeed with family-resemblance semantics.
-- Completeness test falsely rejects decompositions where reconstruction is possible but not fully characterized in the candidate.
+- Frame drift: the claim frame shifts during the carve without being restated, so verdicts judged against different frames are combined.
+- Premature closure: the accepted set is declared complete before any search for a missing dimension.
+- Completeness false reject: a set whose parts would reconstruct the parent is rejected because the reconstruction is not yet characterized.
+- Conformance read as truth: a carve that passes all four tests is treated as the correct ontology rather than the best-supported current hypothesis.
 
 **Dependency bindings.**
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
+| `references` | `{{archive_serving_frontier}}` | `sema:ArchiveServingFrontier#mh:SHA-256:27653c08dbb23917a945b15020bbdabae18ccc9256dda0d2249354896d4a4313` |
 | `references` | `{{frame_error}}` | `sema:FrameError#mh:SHA-256:1d0ac501f011a053fde50bef6bc2a781c2f916014f4b2b74de955f6d84db9c5d` |
 | `references` | `{{parsimony}}` | `sema:Parsimony#mh:SHA-256:4df866b08c5797a42a104097a24ea332aa3f4dfeccd73e38f27564cdb7cc6c9e` |
 | `yields` | `{{decision}}` | `sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7` |
 
 #### Design
 
-**Why it exists.** Not every decomposition is legitimate — some are relabelings, some have hidden dependencies, some don't cover their parent. DecompositionGate names the four-test suite (Necessity/Independence/Universality/Completeness) that candidates must pass. Without it, decomposition is a free-for-all and the library accumulates bad splits that look structured but aren't.
+**Why it exists.** Not every decomposition is legitimate — some are relabelings, some have hidden dependencies, some don't cover their parent. DecompositionGate names the four tests: Necessity, Independence and Universality for each candidate dimension, and Completeness for the accepted set. Without it, decomposition is a free-for-all and the library accumulates bad splits that look structured but aren't.
 
 **Why Mind.** four-test gate — cognitive evaluation
 
-**Can it be removed?** Non-removable for the paper's methodology. The sema library's core claim — that its taxonomy is non-arbitrary — depends on DecompositionGate rigor. Remove it and every decomposition becomes a judgment call, which is exactly what the pattern prevents.
+**Can it be removed?** Non-removable for the paper's methodology. The tests are judgments made by a model, but they give every decomposition the same inspectable structure; remove the gate and each carve is justified in its own terms or not at all.
+
+**Intended use.** testing candidate dimensions of a decomposition, one by one, against the capability, purpose and range the carve claims.
 
 **Design tensions.**
-- Non-compensatory invariant (all four pass or reject) vs soft decompositions — some real decompositions fail one test and are still useful; the gate rejects them structurally.
-- Strict universality vs prototype-shaped concepts — the named failure mode is that family-resemblance concepts (Cognition, maybe Solver) fail universality even when they're useful splits.
+- Non-compensatory acceptance vs useful partial candidates — a candidate that fails one test is not accepted into the carve even when useful; it can survive only as a frontier alternative until evidence promotes it.
 - Completeness test vs reconstruction that's possible but not characterized — decompositions where the parts reassemble into the whole but the reconstruction isn't explicit get rejected by Completeness.
 
 **Tradeoffs.**
 - Gains: rigor for decomposition claims, a filter against pseudo-decompositions, an enforceable quality bar for new taxonomic entries.
-- Gives up: legitimate prototype-shaped and partially-characterized splits. The strict tests are an intentional crucible, and real-world usefulness sometimes comes at the cost of failing one test.
+- Gives up: candidates that fail a test, which stay outside the serving carve, at most as frontier alternatives, until routing, gate or outcome evidence promotes them.
 
 **Critique (diagnostic, not contract requirements).**
-- Trimmed 2026-07-25: the universality invariant carried '(intentional crucible, per paper §2)'. A citation inside the normative field is the worst placement for provenance — the invariant is what a consumer must satisfy, and a section number is not part of satisfying it. The paper's defence of strict universality is §2 and is recorded here and in this entry's motivation.
-- Read 2026-07-25 and found sound in substance. This card is unusually self-aware: it names its own strictness as deliberate, cites the paper for it, and lists as failure modes the two costs that strictness imposes. The four tests are quoted methodology and were not reworded — if the methodology is wrong the tests are wrong, and that is an argument about the paper rather than a defect in the card.
+- Universality is judged over the claimed range, as the Fractal Intelligence paper's September revision specifies: a candidate missing from some instances may stand as a specialization under a narrower claim. This settles the earlier tension with prototype-shaped concepts, which strict universality rejected by design.
+- The four tests are quoted methodology: when the paper's methodology changes, the card follows it, as it now follows the September wording of the four tests and of the claim frame.
 - One change: an edge that was missing. The Necessity test — 'removing any sub-concept collapses the parent' — IS `Parsimony`'s ablation, and Parsimony's mechanism explicitly claims decompositions in scope: 'wherever a definition, model, design, or decomposition needs to be tested for excess parts'. Undeclared, the two cards restated one criterion in two places and could drift apart silently. Now referenced.
-- CORRECTED: the second critique point says the gate has 'no fail-one-retry mechanism'. The mechanism states what happens on failure — the Decision carries a `{{frame_error}}` instructing the upstream planner to reframe rather than iterate within the current decomposition. That is the deliberate answer to fail-one, not an omission.
+- A failed or uncertain candidate may be reframed, narrowed or kept as a labelled frontier alternative at the decomposing node; a frame error comes later, when leakage surfaces as downstream failure, and reopens the carve from above.
+- Premature closure, the false-accept direction of Completeness, is a named failure mode here, as the ConceptualDecomposition entry anticipated.
 
-**In the family.** Methodology primitive paired with ConceptualDecomposition (the consumer), CollaborativeWritingProtocol (which uses the four-test decomposition to validate orthogonality), and ConstructOntology. Compare with AcceptSpec — DecompositionGate is specifically for candidate decompositions; AcceptSpec is for any quality-bounded artifact.
+**In the family.** Methodology primitive paired with ConceptualDecomposition (the consumer), CollaborativeWritingProtocol (which uses the four-test decomposition to validate its low-coupling dimensions), and ConstructOntology. Compare with AcceptSpec — DecompositionGate is specifically for candidate decompositions; AcceptSpec is for any quality-bounded artifact. RoutingSanityCheck tests a carve with concrete tasks after the four tests.
 
 **Supersedes (prior versions).**
 - `DecompositionGate#c4f7`
 - `DecompositionGate#3a79`
 - `DecompositionGate#19de`
+- `DecompositionGate#bd17`
 
 ---
 
@@ -20390,13 +22762,191 @@ _Note: Schema correction 2026-08-03: removed Critique.data_schema because it des
 - The SocraticLoop boundary is unchanged and still asserted rather than tested. Sharpening it is a family-level question about both cards, not a fix to this one.
 - Resolved 2026-07-25: the synthesis-vs-rejection tension was correct and understated. A mandatory synthesis does not merely fail to accommodate rejection; it makes correctly rejecting a wrong thesis a contract breach, and the only compliant escape is weakening the antithesis until something fits — the invariant was manufacturing the Strawman Critic failure listed beneath it. Refutation is now a terminal outcome. Separately, the termination tension claimed infinite regress was 'named but not prevented' with 'no depth limit'; `rounds` is bounded at [1, 5], so what was missing was a second exit, and the failure mode is renamed to the budget being exhausted with no outcome.
 
-**In the family.** The self-contained thesis/antithesis/synthesis pattern. Sibling to `SocraticLoop` (external queries), `SteelmanCheck` (rigorous self-critique), `AdversarialSteel` (structural separation for adversarial safety). The synthesis-producing member of the family.
+**In the family.** The self-contained thesis/antithesis/synthesis pattern. Sibling to `SocraticLoop` (external queries), `SteelmanCheck` (rigorous self-critique), `AdversarialSteel` (structural separation for adversarial safety). The synthesis-producing member of the family. Patterns that build on it: Twinread.
 
 **Supersedes (prior versions).**
 - `Dialectic#bc18`
 - `Dialectic#b5d0`
 - `Dialectic#6eda`
 - `Dialectic#ae5e`
+
+---
+
+### Echoverturn#ad14
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Echoverturn.json)
+
+**Gloss.** Repetition progressively reverses a recurring element's effect
+
+**Mechanism.**
+
+> A recognisable element returns, and the accumulated encounters, or their changing relations, alter its effect until it works against the effect of its earlier appearances, while the repeated form stays traceable. Recurrence must contribute to the reversal, and the earlier and later effects must be opposed in the relevant respect; fading intensity, ordinary novelty, or a reversal caused by unrelated new information is not an instance.
+
+**Invariants.**
+- A recognisable element recurs.
+- Its recurrence contributes to an effect opposed to that of its earlier appearances.
+
+**Failure modes.**
+- Form read as effect: an unchanged form is assumed to keep its effect.
+- Reinterpretation read as reversal: any change of interpretation is called a reversal.
+- One audience assumed: the same repetition is assumed to work the same way on every audience.
+
+#### Design
+
+**Why it exists.** Repetition is expected to strengthen an element's effect or let it fade, not to reverse it. Echoverturn names the reversal that recurrence itself can produce.
+
+**Why Mind.** The effect of a recurring element is on a perceiver, and one perceiver suffices.
+
+**Can it be removed?** Echohollow concerns lost responsiveness while a practice persists, Spiralback revisits with new tools, and Ruleflip reverses a rule's purpose through incentives; none describes repetition reversing an element's effect. Removable if repeated elements are assumed to keep their direction of effect.
+
+**Intended use.** recognising when something repeated is starting to work against its original effect.
+
+**Future uses.** agents whose repeated phrasings, reassurances or prompts change their effect on users.
+
+**Broad-use contexts.** art and music, persuasion, rituals, reassurance in care, human-agent interaction, advertising.
+
+**Broad-use intersection (review hypothesis).** a recurring element, a recurrence that contributes, and an effect opposed to the earlier one.
+
+**Varies (descendant territory).** the element, the audience, and how many recurrences the reversal takes.
+
+**Extension shape.** a variant for persuasion; a variant for artistic motifs.
+
+**Design tensions.**
+- The reversal can depend on the audience, so it may happen for some and not for others.
+
+**Tradeoffs.**
+- Gains: a name for repetition turning against itself.
+- Gives up: assuming that repetition only reinforces or fades.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Echohollow concerns loss of responsiveness; Echoverturn concerns reversal of effect and can be intensely responsive.
+- Novelty, from recall and unverified: known. Nearest known concepts: overexposure; the boy who cried wolf.
+
+**In the family.** Echohollow empties a practice, Spiralback returns with new tools, Ruleflip turns a rule against its purpose, and Echoverturn is repetition reversing an effect.
+
+---
+
+### Edgehold#4035
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Edgehold.json)
+
+**Gloss.** Know where your framework stops working while lacking a replacement, and use it only inside that edge
+
+**Mechanism.**
+
+> When an agent finds where its current framework fails, for example through {{regime_sense}}, but has no replacement, it records the edge as the specific cases the framework fails on and how. The framework is then used only inside the edge; cases at or beyond it are flagged as outside its reach rather than forced into it, and no replacement is adopted without evidence of its own.
+
+**Invariants.**
+- The edge is recorded as the specific cases the framework fails on.
+- Cases at or beyond the edge are flagged as outside the framework's reach, and the framework is not relied on for them.
+- No replacement framework is adopted without evidence of its own.
+
+**Failure modes.**
+- Forced replacement: a weak alternative is adopted only to have one.
+- Edge denial: failing cases are explained away to keep the framework whole.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{regime_sense}}` | `sema:RegimeSense#mh:SHA-256:50396d316674bf65b204938ee8cecc48cf294223cdb90c9789d6a72bb542cb07` |
+
+#### Design
+
+**Why it exists.** When a framework fails at its edges and nothing better exists, agents either force failing cases into it or switch to something worse. Edgehold keeps the framework where it works and marks the rest as out of reach.
+
+**Why Mind.** One agent holds its own framework.
+
+**Can it be removed?** RegimeSense detects that a model has broken and FrameError signals that reframing is needed; neither covers working on with a framework whose edge is known and no replacement exists. Removable if the edges of frameworks are left implicit.
+
+**Intended use.** an agent using a model or theory known to fail on some cases.
+
+**Future uses.** research programmes in crisis; agents operating outside their training distribution.
+
+**Broad-use contexts.** science in crisis, engineering models past their validity, legal doctrine with known gaps, clinical guidelines, model deployment out of distribution, personal beliefs.
+
+**Broad-use intersection (review hypothesis).** a recorded edge, use inside it only, flags beyond it, and no replacement adopted without evidence of its own.
+
+**Varies (descendant territory).** how the edge is mapped and what is done with flagged cases.
+
+**Extension shape.** a variant that tracks candidate replacements without adopting them.
+
+**Design tensions.**
+- An edge recorded too early can make a framework look weaker than it is.
+
+**Tradeoffs.**
+- Gains: honest use of an imperfect framework.
+- Gives up: the comfort of a framework that covers everything.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: aporia; a paradigm in crisis; negative capability.
+
+**In the family.** RegimeSense detects breaks, FrameError asks for a reframe, Uncertain marks voids, and Edgehold governs work at the edge when no reframe is available.
+
+---
+
+### EffectDelayCheck#bfff
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/EffectDelayCheck.json)
+
+**Gloss.** Wait out the expected propagation delay before judging a change's effect on connected systems
+
+**Mechanism.**
+
+> Before the effects of a change are judged, the expected delay for each affected system is stated, along the {{causation}} paths by which the change reaches it. A system is judged unaffected only after its stated delay has passed.
+
+**Invariants.**
+- The expected delay is stated for each affected system before effects are judged.
+- No system is judged unaffected before its stated delay has passed.
+
+**Failure modes.**
+- Premature all-clear: a change is declared harmless before its effects could have arrived.
+- Endless waiting: delays are stated so long that no judgment is ever made.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{causation}}` | `sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850` |
+
+#### Design
+
+**Why it exists.** Changes are judged before their effects arrive, so harm that is on its way is declared absent. EffectDelayCheck states each delay and waits it out.
+
+**Why Mind.** One agent judges a change's effects.
+
+**Can it be removed?** RolloutWatch verifies deployed state against a manifest and Causation describes direct effects; neither requires waiting out stated delays before judging. Removable if effects are immediate.
+
+**Intended use.** judging the effects of deployments, policies or interventions.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** software deployments, policy changes, medical treatments, ecosystems, organisational change, multi-agent pipelines.
+
+**Broad-use intersection (review hypothesis).** a stated delay per affected system, and no judgment that a system is unaffected before its delay passes.
+
+**Varies (descendant territory).** how delays are estimated.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Some delays are unknown, and stating them is a guess.
+
+**Tradeoffs.**
+- Gains: effects are judged after they can have arrived.
+- Gives up: early all-clears.
+
+**Critique (diagnostic, not contract requirements).**
+- Ripplelag is the process this waits out. An effect that has already arrived can be judged early, passing the stated delay does not prove that no effect will come, and an underestimated delay is not caught.
+- Novelty, from recall and unverified: known. Nearest known concepts: propagation delay; lagged effects.
+
+**In the family.** RolloutWatch verifies deployed state, StopDrill keeps the stop working, and EffectDelayCheck waits for effects to arrive; Ripplelag names the delay it waits out.
 
 ---
 
@@ -20555,7 +23105,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - Signature omitted rather than guessed: the library's signature convention (constructor-style list) has no documented form for a status-propagation check, and absence is legitimate per the placement rules.
 - CORRECTED 2026-08-04 before release. The unlinked-mention audit caught a near-duplicate in this card, which is the failure the manual calls a seed's characteristic one: Status#8e6f already names a graded verification outcome (Verified/Falsified/Unknown), and this card wrote Status(conclusion) in its invariants for a different axis entirely — how independently the check was obtained. Same word, different dimension, no edge. Renamed that axis to assurance (Independent / Self / None) and added reference edges to Check and Status, so the card now composes with the existing verification vocabulary rather than shadowing it: a Check yields a Status, and this pattern grades what that Status is worth. Worth recording that the card about verification pedigree was itself minted on an unverified premise about the library's contents.
 
-**In the family.** Epistemic sibling of EpistemicCalibrate (confidence decay over horizon) and BeliefTracking (belief revision substrate); consumes Verification as its upgrade event and Assumption as its unverified-premise marker. Compare SteelmanCheck, which attacks a conclusion's content adversarially — EpistemicCascade attacks its pedigree: a conclusion can survive steelmanning and still fail here because its premises were never checked.
+**In the family.** Epistemic sibling of EpistemicCalibrate (confidence decay over horizon) and BeliefTracking (belief revision substrate); consumes Verification as its upgrade event and Assumption as its unverified-premise marker. Compare SteelmanCheck, which attacks a conclusion's content adversarially — EpistemicCascade attacks its pedigree: a conclusion can survive steelmanning and still fail here because its premises were never checked. Patterns that build on it: Twoledger.
 
 **Supersedes (prior versions).**
 - `EpistemicCascade#a489`
@@ -20666,7 +23216,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### EthicalReasoningProtocol#aec8
+### EthicalReasoningProtocol#bf96
 
 `Mind` · `Reasoning` · R1 · T2
 
@@ -20688,7 +23238,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
 | `references` | `{{deliberative_align}}` | `sema:DeliberativeAlign#mh:SHA-256:dc9e3078f126856429b1372620bce9fecd733f71c1429fcd1c0332908355051e` |
 
 #### Design
@@ -20698,6 +23248,8 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Why Mind.** is-ought separation — cognitive discipline
 
 **Can it be removed?** Removable — most agent systems don't explicitly separate is from ought. The pattern's weight is in its architectural argument: entanglement is the failure mode, decomposition is the defense. Removing it returns agents to monolithic moral reasoning, with its failure modes.
+
+**Intended use.** decision points of autonomous systems where both forecast quality and normative legitimacy must be auditable.
 
 **Design tensions.**
 - Is-ought boundary (the invariant) vs real reasoning fluency — keeping description and prescription architecturally separate is cleaner theoretically and more labored in practice.
@@ -20714,6 +23266,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - The boundary is enforced at the predict/judge interface; in practice prediction and judgment have overlapping inputs, and the clean separation is aspirational.
 - Override-as-first-class is strong; in live systems the pressure to silently tune is constant, and the typed JudgmentNote requirement is load-bearing discipline.
 - Seven capitalised concepts appeared in the text with no linked dependency and no existing pattern — PredictionSolver, ValuationSolver, PrincipleSolver, PredictionLedger, ScoreSheet, JudgmentNote, DecisionRecord — a Rule H violation that current validation does not catch. Each had one instance of explanation overhead, below MintWhenFriction's then-current three-instance rule in the 2026-07-25 review, so they were lowercased rather than minted and remain mint candidates if later evidence satisfies a declared friction rule. A Bounded override invariant was also added: the previous contract let a principle solver override every ranking and stay compliant, which turns the protocol into 'do as you like, but write it down' — the same documentation-theatre failure `DocumentedOverride` already names for itself.
+- No caution: the protocol is purely cognitive, which the caution rule exempts, and the error a caution would name is the one the protocol exists to prevent.
 
 **In the family.** A protocol pattern applying ConceptualDecomposition to right-action. Paired with ConceptualDecomposition (the method), PredictionSolver (the descriptive component), and JudgmentNote (the typed override). Compare with CollaborativeWritingProtocol — both apply decomposition to a specific domain. Both define architectural boundaries rather than cognitive rules.
 
@@ -20722,6 +23275,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `EthicalReasoningProtocol#e3a6`
 - `EthicalReasoningProtocol#8e7b`
 - `EthicalReasoningProtocol#e18b`
+- `EthicalReasoningProtocol#aec8`
 
 ---
 
@@ -20887,6 +23441,68 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Supersedes (prior versions).**
 - `ExtendedThinking#ca3c`
 - `ExtendedThinking#da3f`
+
+---
+
+### Farsimple#2209
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Farsimple.json)
+
+**Gloss.** Explain by first laying out the complexity a quick account would blur, then building a simpler account that keeps it
+
+**Mechanism.**
+
+> An explanation in two phases. The first lays out the distinctions, cases and exceptions that a quick simple account would blur, and may {{decompose}} the subject to do so. The second builds a simpler account in which each of them either survives or is named as set aside. The reader is shown both phases, and the final account is checked against the first.
+
+**Invariants.**
+- The first phase is shown to the reader, not only worked through by the explainer.
+- Each distinction raised in the first phase either survives in the final account or is named there as set aside.
+
+**Failure modes.**
+- Complexity as display: the first phase adds difficulty that the final account never uses.
+- Lost return: the explanation stops in the complex phase.
+- Quiet drop: a distinction from the first phase vanishes from the final account without being named.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
+
+#### Design
+
+**Why it exists.** Quick simple accounts often blur distinctions that a reader needs later. Farsimple shows the complexity first and then builds the simple account against it, so the simplicity can be checked rather than trusted.
+
+**Why Mind.** One explainer runs both phases.
+
+**Can it be removed?** Lucence constrains the result; Farsimple is the route through complexity. Removable if the route is judged a matter of style.
+
+**Intended use.** explaining a subject where the obvious simple account is subtly wrong.
+
+**Future uses.** tutoring agents; onboarding documents; explanations that must survive expert review.
+
+**Broad-use contexts.** teaching mathematics and science, explaining legal or medical decisions, design reviews, onboarding, explaining model behaviour.
+
+**Broad-use intersection (review hypothesis).** a first phase shown to the reader, a final simpler account, and an accounting of each distinction from the first phase.
+
+**Varies (descendant territory).** how much complexity the first phase shows, the reader's patience, and how set-aside distinctions are signposted.
+
+**Extension shape.** a variant that tests the reader between phases.
+
+**Design tensions.**
+- The first phase costs the reader time before any payoff.
+
+**Tradeoffs.**
+- Gains: a simple account that keeps faith with the complexity.
+- Gives up: speed.
+
+**Critique (diagnostic, not contract requirements).**
+- Kept separate from Lucence: one is a route, the other a constraint on the result, and either can occur without the other.
+- Novelty, from recall and unverified: known. Nearest known concepts: the 'simplicity on the other side of complexity' aphorism.
+
+**In the family.** Lucence is the constraint on the final account; LeastToMost orders subproblems from easy to hard, which is a different route.
 
 ---
 
@@ -21111,6 +23727,66 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
+### Gainmark#844e
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Gainmark.json)
+
+**Gloss.** After a translation, separate the meaning it preserves from the meaning it adds
+
+**Mechanism.**
+
+> After a {{translate}} or other rendering, the result is read against the source and split into what it preserves and what it adds: connotations, emphases or structure the source lacks. Each addition is listed with where it occurs, so readers do not attribute it to the source.
+
+**Invariants.**
+- Every addition found is listed with where it occurs.
+- No listed addition is attributed to the source.
+
+**Failure modes.**
+- Invisible gain: an added connotation is read as the source's meaning.
+- Gain denial: additions are dismissed as faithful nuance.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{translate}}` | `sema:Translate#mh:SHA-256:31ed60a9638151e862227245e0d9a4752ce6c59ee6023ddd84222c2e7afb63ea` |
+
+#### Design
+
+**Why it exists.** Translations and summaries add meaning as well as losing it: a connotation, an emphasis, a structure. Readers then credit the source with what the rendering added. Gainmark lists the additions.
+
+**Why Mind.** One reader compares the rendering with the source.
+
+**Can it be removed?** Translate forbids added content but cannot see connotation; Lossprint compares losses; neither lists what a rendering gained. Removable if renderings are assumed neutral.
+
+**Intended use.** checking a translation, summary or paraphrase before it is relied on.
+
+**Future uses.** auditing model-generated summaries; legal translation.
+
+**Broad-use contexts.** literary and legal translation, summarisation, journalism, policy paraphrase, model output review, interpretation.
+
+**Broad-use intersection (review hypothesis).** a source, a rendering, and a located list of additions.
+
+**Varies (descendant territory).** how additions are detected and how they are shown to readers.
+
+**Extension shape.** a variant that annotates additions inline.
+
+**Design tensions.**
+- Some additions are unavoidable, and listing them can look like failure.
+
+**Tradeoffs.**
+- Gains: readers know what came from the source.
+- Gives up: the appearance of a seamless rendering.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: translation loss and gain.
+
+**In the family.** Translate preserves, Lossprint compares losses, and Gainmark lists gains.
+
+---
+
 ### Generalize#29f1
 
 `Mind` · `Reasoning` · R2 · T1
@@ -21194,7 +23870,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `min_instances` closes the other half of overfitting. The intersection's first element is 'multiple instances' and the varies line names 'instance count required', so the quantity is universal and its value is descendant territory — which is the shape a parameter is for. A pattern drawn from one instance is not a generalisation, and nothing said so.
 - Second failure mode added. Overfitting is a rule too tightly fitted to its examples; the opposite failure is a rule loose enough to cover cases it should exclude, and only the new predictive test catches either.
 
-**In the family.** Canonical form of Induction. Paired with Abduction and Deduction as the reasoning triad. Compare with Compress — Generalize extracts rule structure; Compress reduces representation size. Both produce smaller artifacts from larger inputs, targeting different forms of reduction.
+**In the family.** Canonical form of Induction. Paired with Abduction and Deduction as the reasoning triad. Compare with Compress — Generalize extracts rule structure; Compress reduces representation size. Both produce smaller artifacts from larger inputs, targeting different forms of reduction. Patterns that build on it: Almostnot.
 
 **Supersedes (prior versions).**
 - `Generalize#17c9`
@@ -21340,7 +24016,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 ---
 
-### HumanEmulatorProtocol#71ec
+### HumanEmulatorProtocol#b79c
 
 `Mind` · `Reasoning` · R2 · T2
 
@@ -21350,10 +24026,10 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 **Mechanism.**
 
-> A protocol for responding to a person with variable depth: 'How should I respond to this person?' Decomposes via {{conceptual_decomposition}} into five sub-questions that suppress each other when entangled in a single context: situation (what is the context), emotion (what do they feel), intent (what do they actually need, distinct from what they say), response (what should I say), and boundary (what must I not do). Each sub-question is handled by its own Solver with its own typed outputs — SituationSolver reconstructs relational dynamics, EmotionSolver produces a structured emotional model rather than a sentiment label, IntentSolver distinguishes stated from latent need, a CalibrationSolver fits tone and register, a BoundarySolver enforces ethical constraints as a hard acceptance gate. These faculties are co-variant state monitors (not a relay race): an emotional spike changes the intent distribution; a resolved intent reframes the emotional reading. Depth scales with the stakes under {{marginal_value_rule}} — a trivial greeting resolves in one pass; a crisis triggers deep recursion into competing emotional hypotheses and latent-intent analysis.
+> A protocol for responding to a person with variable depth: 'How should I respond to this person?' Decomposes via {{conceptual_decomposition}} into five sub-questions that suppress each other when entangled in a single context: situation (what is the context), emotion (what do they feel), intent (what do they actually need, distinct from what they say), response (what should I say), and boundary (what must I not do). Each sub-question is handled by its own Solver with its own typed outputs — SituationSolver reconstructs relational dynamics, EmotionSolver produces a structured emotional model rather than a sentiment label, IntentSolver distinguishes stated from latent need, a CalibrationSolver fits tone and register, a BoundarySolver enforces ethical constraints as a hard acceptance gate. These faculties are co-variant state monitors (not a relay race): an emotional spike changes the intent distribution; a resolved intent reframes the emotional reading. Typed artifacts keep the faculties separate while letting them constrain one another continuously rather than in sequence. Depth scales with the stakes under {{marginal_value_rule}} — a trivial greeting resolves in one pass; a crisis triggers deep recursion into competing emotional hypotheses and latent-intent analysis.
 
 **Invariants.**
-- Five-faculty orthogonal: the sub-concepts pass the four-test decomposition; entangling them in one context causes mutual interference.
+- Five separately typed faculties: the sub-concepts pass the four-test decomposition, each has its own typed output, and they constrain one another continuously rather than in sequence.
 - Variable-depth: mundane interactions stay shallow; ambiguous or high-stakes ones recurse into sub-solvers without changing the protocol.
 - Boundary-gate: the BoundarySolver's output is a non-compensatory gate; no response passes if an ethical constraint is violated, regardless of other faculties' signals.
 
@@ -21361,19 +24037,18 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
-| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 
 #### Design
 
-**Why it exists.** Responding to a person requires variable-depth engagement — mundane fast, complex careful. The protocol decomposes response into five orthogonal faculties. Without the pattern, responses are either shallow-everywhere or deep-everywhere.
+**Why it exists.** Responding to a person requires variable-depth engagement — mundane fast, complex careful. The protocol decomposes response into five separately typed faculties. Without the pattern, responses are either shallow-everywhere or deep-everywhere.
 
 **Why Mind.** variable-depth empathy decomposition — cognitive
 
 **Can it be removed?** Removable — simpler response patterns work. This protocol is specifically for person-facing interaction with depth variance.
 
 **Design tensions.**
-- Five-faculty orthogonal invariant vs real human interaction complexity.
 - Variable-depth vs consistency — deep for some topics, shallow for others.
 - Five faculties, fixed in a hashed invariant — the decomposition passes the four-test check, and nothing on the card argues five rather than four or six. A different count is a different pattern, not a parameterisation of this one.
 
@@ -21384,8 +24059,9 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 **Critique (diagnostic, not contract requirements).**
 - Trimmed 2026-07-25. The mechanism opened with a document coordinate — 'The paper's §6.2 protocol for…' — before it said what the pattern does. An agent that resolves this card cannot act on a section number, and `motivation.why_it_exists` already carried the same reference, so the citation was duplicated into payload. Behaviour kept, coordinate dropped from the card and retained here.
 - Five faculties is the paper's decomposition; alternatives exist.
-- Orthogonality is aspirational.
+- The faculties are not orthogonal: following the Fractal Intelligence paper, they are co-variant state monitors kept separate by typed artifacts and constraining one another continuously, which settles the earlier tension between an orthogonality invariant and the complexity of real interaction.
 - No failure modes listed.
+- Caution: the protocol builds a model of a person's emotions and of needs they have not stated, in order to shape its replies. That model is also a lever for manipulating them, and the only safeguard is a boundary gate stated as generic ethical constraints inside the responder. The card has no failure modes.
 
 **In the family.** A protocol sibling of CollaborativeWritingProtocol, EthicalReasoningProtocol, DiscoveryProtocol, TemporalEnsembleForecasting. Uses ConceptualDecomposition.
 
@@ -21393,6 +24069,7 @@ _Note: Minted 2026-08-03 from a delegated review session; the four failure class
 - `HumanEmulatorProtocol#261f`
 - `HumanEmulatorProtocol#9ba0`
 - `HumanEmulatorProtocol#a632`
+- `HumanEmulatorProtocol#71ec`
 
 ---
 
@@ -21535,7 +24212,7 @@ _Note: Semantic context means the assumptions, conventions, and circumstances un
 - A legal text, a measurement, and a historical signal require domain-specific interpretive assumptions, not necessarily portable execution state. Interpret records those assumptions and preserves the original input. FrameSpec describes a problem frame and RuleSet a validity boundary; neither covers all these interpretations.
 - Irreversible translation is not sufficient evidence that an operation is Interpret: a translation may be one-way. The distinction is semantic extraction under a named context versus representation change with the intent to preserve meaning. The context-recording and input-preservation obligations apply across legal, scientific, musical, historical, and other interpretations.
 
-**In the family.** Cognitive primitive paired with Translate (syntactic change) and Understand (deeper semantic modeling). RequestFraming explicitly specializes Interpret to produce a FrameSpec from a request. Semantic context is the interpretive frame, not the execution Context container.
+**In the family.** Cognitive primitive paired with Translate (syntactic change) and Understand (deeper semantic modeling). RequestFraming explicitly specializes Interpret to produce a FrameSpec from a request. Semantic context is the interpretive frame, not the execution Context container. Patterns that build on it: Meaningpause, Termdrift.
 
 **Supersedes (prior versions).**
 - `Interpret#c9ee`
@@ -21613,6 +24290,188 @@ _Note: Semantic context means the assumptions, conventions, and circumstances un
 - `Invert#d1b9`
 - `Invert#5a62`
 - `Invert#f60f`
+
+---
+
+### Kinproxy#eb76
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Kinproxy.json)
+
+**Gloss.** Another party's values, care or understanding are inferred from how far it resembles the judge
+
+**Mechanism.**
+
+> A judge attributes values, care or understanding to another party, such as a person, an animal, a system or an unfamiliar way of working, partly because of how far its form, manner or reasoning resembles the judge's own. Resemblance raises the attribution and unlikeness lowers it, so a familiar manner is credited with understanding it may lack, and an unfamiliar form is read as indifferent or uncomprehending. Resemblance used as a cue with independently supported relevance to the quality in that context is not an instance.
+
+**Invariants.**
+- A judge attributes values, care or understanding to another party.
+- The attribution draws partly on the other's resemblance or unlikeness to the judge, where that resemblance has no independently supported bearing on the quality.
+
+**Failure modes.**
+- Likeness read as care: a familiar, human-like manner is taken to show care or understanding.
+- Strangeness read as indifference: an unfamiliar form or way of reasoning is taken to show the absence of care or understanding.
+- Resemblance dismissed: every attribution that uses resemblance is discounted, including where its relevance to the quality in that context is independently supported.
+
+#### Design
+
+**Why it exists.** English fuses the two: 'inhuman' means both not of our kind and without care. Judges use resemblance to themselves as evidence of values and understanding, which over-credits the familiar and under-credits the strange, and it matters most where the other is unlike any judge: animals, other cultures, artificial agents, unfamiliar solutions. Kinproxy names the inference.
+
+**Why Mind.** The attribution is one judge's inference; no second party has to take part.
+
+**Can it be removed?** EmpathySim simulates another agent's state and names Projection as a failure, and Statuslens keeps a speaker's standing out of the assessment of reasoning; neither describes attributing care or understanding from resemblance, in both directions. Removable if attributions of mind are assumed to rest only on evidence of the quality.
+
+**Intended use.** recognising when an attribution of values, care or understanding rests on the other party's resemblance to the judge.
+
+**Future uses.** agents reading people's trust in them, judging other agents' outputs, and evaluating solutions unlike any they would produce.
+
+**Broad-use contexts.** human-AI interaction, animal cognition, cross-cultural judgment, review of unfamiliar work, evaluation of unconventional solutions.
+
+**Broad-use intersection (review hypothesis).** a judge, another party, an attribution of a mental quality, and resemblance or unlikeness doing the work of evidence for that quality.
+
+**Varies (descendant territory).** the quality attributed, and the kind of resemblance: form, manner or reasoning.
+
+**Extension shape.** a variant for human trust in artificial agents; a variant for evaluating unfamiliar solutions.
+
+_Note: A cue can have evidential value through independently validated predictive performance or a supported causal account. Knowing the causal mechanism is not required; mere resemblance without that support remains the proxy described here._
+
+**Design tensions.**
+- Resemblance is sometimes good evidence, so the card cannot simply forbid its use.
+
+**Tradeoffs.**
+- Gains: a check on attributions that travel with familiarity.
+- Gives up: trusting the familiar by default.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Unlike EmpathySim's Projection, which assumes the other thinks as the judge does, Kinproxy runs both ways: it credits the familiar and discounts the strange.
+- Novelty, from recall and unverified: known. Nearest known concepts: anthropomorphism; the ELIZA effect; similarity bias.
+
+**In the family.** EmpathySim simulates another's state, Statuslens assesses reasoning apart from its speaker, Callshort reads a shortfall in thinking, and Kinproxy infers care or understanding from resemblance.
+
+---
+
+### Labelloop#1bb2
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Labelloop.json)
+
+**Gloss.** A classification changes those it classifies, altering the fit of later classifications
+
+**Mechanism.**
+
+> A {{category}} applied to people, teams, models or other responsive members becomes part of the conditions shaping their conduct, through their response to the label or through the treatment it brings. Their changed conduct then affects how the classification fits when it is applied again. Members can move toward the label, away from it, or into a different relation with its criteria, so the label can become truer, falser or differently true, and members need not know the label for its treatment to change them.
+
+**Invariants.**
+- A classification takes part in changing its members.
+- That change bears on how the classification fits or is applied later.
+
+**Failure modes.**
+- Fulfilment read as prediction: increased fit is taken to show that the classification independently predicted what it helped produce.
+- Change read as loop: members changing for other reasons is taken as the classification's effect.
+- Correlation read as cause: exposure to the label and changed behaviour occurring together are taken as proof that the label caused the change.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+
+#### Design
+
+**Why it exists.** Classifications are treated as reports on what they classify, but they also act on it. Labelloop names that loop, in which a label helps shape the fit it seems only to measure.
+
+**Why Mind.** A single party can classify itself and respond to the classification, so one agent suffices; social cases can specialise it.
+
+**Can it be removed?** Category groups objects, Situfit checks present fit, Sunsetkind carries an expiry condition, and ClassificationReview re-checks fit on a schedule; none describes a classification changing what it classifies. Removable if classified things are assumed not to respond to being classified.
+
+**Intended use.** recognising when a label or classification is changing the people, teams or systems it describes.
+
+**Future uses.** agents classifying users or other agents who respond to the classification.
+
+**Broad-use contexts.** education, diagnosis, credit scoring, team labels, recommender systems, model evaluations.
+
+**Broad-use intersection (review hypothesis).** a classification of responsive members, a change in them that the classification takes part in, and a later classification that the change bears on.
+
+**Varies (descendant territory).** whether members know the label, and whether the change moves toward or away from it.
+
+**Extension shape.** a variant for self-classification; a variant for institutional labels.
+
+**Design tensions.**
+- A label's effect is hard to separate from what it would have predicted anyway.
+
+**Tradeoffs.**
+- Gains: a name for labels that help make themselves true or false.
+- Gives up: reading fit as independent confirmation.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. ClassificationReview is one separately defined re-check; its scope, agents who can learn of the classification, is narrower than the process.
+- The scope includes movement toward the label as well as away from it, and change through treatment when members do not know the label.
+- Novelty, from recall and unverified: known. Nearest known concepts: looping effects of human kinds; self-fulfilling prophecy; the Pygmalion effect.
+
+**In the family.** Category groups, Situfit checks fit, Sunsetkind retires categories, ClassificationReview re-checks, and Labelloop is the loop by which a classification changes what it classifies.
+
+---
+
+### Labelsqueeze#5363
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Labelsqueeze.json)
+
+**Gloss.** Flag a one-label classification forced onto an object whose relevant properties point to several categories
+
+**Mechanism.**
+
+> When a classification must assign one label, as a {{route}} to one handler or an exclusive partition like {{mece}} does, and the object's relevant properties point to more than one category, the mismatch is flagged. The flag lists each candidate category with the properties that point to it. If one label is still assigned, the record states what the other categories would have triggered.
+
+**Invariants.**
+- The flag lists each candidate category with the properties pointing to it.
+- If a single label is assigned anyway, the record states what the other labels would have triggered.
+
+**Failure modes.**
+- Silent forcing: the object gets one label and the properties pointing elsewhere are dropped.
+- Label inflation: every object is flagged, and the classification stops discriminating.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{mece}}` | `sema:MECE#mh:SHA-256:ae1975b15fa25939a85a231371adec3b2431658837ad7ada72315f64b849cb78` |
+| `references` | `{{route}}` | `sema:Route#mh:SHA-256:186c9df2396591a9a71b80e50f3c323e5e0df6ddf64b6552435a0d555b6dbc85` |
+
+#### Design
+
+**Why it exists.** Systems that require one label force objects that span several into one, and the properties that pointed elsewhere vanish. Labelsqueeze makes the forcing visible and records its cost.
+
+**Why Mind.** Spotting that relevant properties cross categories is a judgment.
+
+**Can it be removed?** Route and MECE require one handler or one partition cell; neither flags an object that does not fit that requirement. Removable if forced classification is accepted silently.
+
+**Intended use.** routing, triage and classification systems that assign one label per item.
+
+**Future uses.** agent routers; taxonomy maintenance; incident classification.
+
+**Broad-use contexts.** request routing, medical coding, legal categorisation, bug triage, content moderation, library classification.
+
+**Broad-use intersection (review hypothesis).** a one-label requirement, an object whose relevant properties point to several categories, and a flag listing them.
+
+**Varies (descendant territory).** the threshold for flagging and what the system does after a flag.
+
+**Extension shape.** a variant that proposes a multi-label scheme; a variant that counts flags to find a failing taxonomy.
+
+**Design tensions.**
+- Flagging too readily erodes the classification's usefulness.
+
+**Tradeoffs.**
+- Gains: the cost of single labels becomes visible.
+- Gives up: the simplicity of one label per item.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: torque in classification; forced-choice categories.
+
+**In the family.** OntologyAdapt restructures categories when data defies them; Sunsetkind retires categories; Labelsqueeze flags single-label forcing.
 
 ---
 
@@ -21695,6 +24554,66 @@ _Note: Semantic context means the assumptions, conventions, and circumstances un
 
 ---
 
+### Lensweave#7d5b
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Lensweave.json)
+
+**Gloss.** Switch between lenses while carrying forward what each earlier lens showed
+
+**Mechanism.**
+
+> When work moves through several lenses, such as history, structure, possibility and feeling, each switch is a {{reframe}} that records what the previous lens showed before the next is applied. The final account cites what each lens contributed, and none is dropped without a stated reason.
+
+**Invariants.**
+- Each switch records what the previous lens showed.
+- The final account cites each lens's contribution or states why it was dropped.
+
+**Failure modes.**
+- Last-lens bias: only the final lens shapes the account.
+- Lens tourism: lenses are visited without anything being carried forward.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{reframe}}` | `sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a` |
+
+#### Design
+
+**Why it exists.** Switching lenses usually means forgetting what the previous one showed. Lensweave carries each lens's findings forward and makes the final account cite them.
+
+**Why Mind.** One agent moves between its own lenses.
+
+**Can it be removed?** Reframe switches perspective and Crossborn credits distinctions born of interaction; neither carries findings across a sequence of lenses. Removable if one lens suffices.
+
+**Intended use.** analysis that deliberately uses several lenses in turn.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** historical analysis, design critique, strategy, literary reading, risk review, agent analysis.
+
+**Broad-use intersection (review hypothesis).** a record at each switch, and a final account citing each lens.
+
+**Varies (descendant territory).** which lenses are used and in what order.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Carrying every finding forward can clutter the account.
+
+**Tradeoffs.**
+- Gains: accounts that keep what each lens saw.
+- Gives up: a clean single-lens account.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: integrative complexity.
+
+**In the family.** Reframe switches, Twinread keeps two readings, Crossborn credits interaction, and Lensweave carries findings across a sequence.
+
+---
+
 ### LivedProof#4aa1
 
 `Mind` · `Reasoning` · R2 · T2
@@ -21772,6 +24691,205 @@ _Note: Semantic context means the assumptions, conventions, and circumstances un
 - `LivedProof#ae2d`
 - `LivedProof#6422`
 - `LivedProof#85c2`
+
+---
+
+### Lossprint#34c2
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Lossprint.json)
+
+**Gloss.** Read a pattern in how several lossy renderings of one source differ in what they lose
+
+**Mechanism.**
+
+> The same source is rendered into several targets, such as languages, formats, modalities or audiences, each of which drops something; a single {{representation_swap}} becomes one of several. For each rendering, what it lost is listed against the source. The loss lists are then compared. A loss every rendering shares suggests something all the examined targets resist. A loss only one rendering shows suggests a blind spot of that rendering or its target. Losses that occur together suggest a structure in the source that those renderings drop as a unit. These are hypotheses about the renderings examined, not established limits of their targets. The finding is stated in terms of these differences, not in terms of what the renderings preserve.
+
+**Invariants.**
+- Uses at least two renderings of the same source into different targets.
+- Each rendering's losses are listed against the source, not against another rendering.
+- The reported pattern is stated as a relation between loss lists.
+
+**Failure modes.**
+- Invisible loss: something no rendering carried and nobody listed drops out of every comparison.
+- Careless rendering: losses caused by a poor rendering are read as structure in the source.
+- Shared-loss tunnel vision: only what every rendering lost is examined, so target-specific blind spots are missed.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{representation_swap}}` | `sema:RepresentationSwap#mh:SHA-256:32532416b2651f7810504240d2e099ac7776f0431bcbdeb8c2d0ef26ff8c735e` |
+
+#### Design
+
+**Why it exists.** A single change of representation reveals errors; that is RepresentationSwap. Comparing what several renderings each lose suggests more: what all the examined targets resist, what one rendering or its target misses, and structure in the source that renderings drop together. These are hypotheses about the renderings compared.
+
+**Why Mind.** One agent can make the renderings and compare the losses.
+
+**Can it be removed?** It could be a descendant of RepresentationSwap, except that RepresentationSwap requires that 'The core meaning must survive the swap'. Lossprint uses deliberately lossy renderings, so it references RepresentationSwap rather than extending it.
+
+**Intended use.** understanding a hard source, such as a text, a model or a policy, by rendering it several ways and studying what each rendering loses.
+
+**Future uses.** evaluating translations and summaries; finding what a model's explanations systematically leave out.
+
+**Broad-use contexts.** literary translation, explanation for several audiences, alternative data visualisations, summarisation benchmarks, cross-modal generation, plain-language rewrites of legal text.
+
+**Broad-use intersection (review hypothesis).** one source, at least two renderings into different targets, a loss list for each rendering against the source, and a finding stated as a relation between the loss lists.
+
+**Varies (descendant territory).** which targets are chosen and how many, how losses are detected, and whether one agent or several produce the renderings.
+
+**Extension shape.** an audience variant (the same content for different readers); a model variant (the same prompt answered by different models).
+
+**Design tensions.**
+- The method can compare only the losses someone noticed.
+- The quality of a rendering and the limits of its target are hard to separate.
+
+**Tradeoffs.**
+- Gains: losses become evidence rather than noise.
+- Gives up: the cost of making several renderings.
+
+**Critique (diagnostic, not contract requirements).**
+- Extending RepresentationSwap was rejected, because its Lossless Intent invariant does not hold for deliberately lossy renderings.
+- Novelty, from recall and unverified: partly new. Nearest known concepts: comparing several translations to locate what is untranslatable; using disagreement within a committee of models as a signal. No named precedent found (from recall) for reading a pattern from the differences between losses.
+
+**In the family.** RepresentationSwap aims at a lossless swap. Translate preserves meaning. Summarize drops by salience. Lossprint compares what is dropped.
+
+---
+
+### Lucence#b83d
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Lucence.json)
+
+**Gloss.** Make a hard idea clearer for a named reader while keeping every distinction it depends on
+
+**Mechanism.**
+
+> Rewrite a difficult account for a named reader so that it becomes easier to follow without losing what makes it difficult. List the distinctions the account's conclusions depend on, and show where each appears in the clearer version. Unlike {{summarize}}, which keeps what is salient, this keeps what is load-bearing even when it is hard to state; whatever is left out is listed as not load-bearing.
+
+**Invariants.**
+- Names the reader the clarity is for.
+- Every listed load-bearing distinction appears in the clearer version.
+- Whatever is left out is listed, each item stated as not load-bearing.
+
+**Failure modes.**
+- Flattening: a distinction is dropped because it was hard to state.
+- Clarity by omission: the account reads clearly because its difficult part is missing.
+- Mislabelled load: a distinction the conclusions depend on is listed as inessential.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{summarize}}` | `sema:Summarize#mh:SHA-256:98dbf6e131bc82331b818b0b8fe816580020629f334d12e7c4c51b3f93c1c2d5` |
+
+#### Design
+
+**Why it exists.** Simplifying is the usual way to make something clear, and it drops what is hard to state. Lucence makes clarity answer to the account's own load-bearing distinctions, so a clearer version that has quietly lost its difficult part fails visibly.
+
+**Why Mind.** One agent rewrites the account; no second party is needed to run it.
+
+**Can it be removed?** Summarize keeps what is salient and Translate keeps everything; neither names the reader or checks that the hard distinctions survived. Removable only if clarity for a reader is left to taste.
+
+**Intended use.** rewriting a technical, legal or philosophical account for a reader who could not follow the original.
+
+**Future uses.** model explanations to users; documentation; teaching material; handovers between agents.
+
+**Broad-use contexts.** teaching, documentation, policy plain-language rewrites, scientific communication, legal summaries for clients, agent-to-user explanations.
+
+**Broad-use intersection (review hypothesis).** a named reader, a list of load-bearing distinctions, a clearer version, and a list of what was left out.
+
+**Varies (descendant territory).** how load-bearing distinctions are identified, the reader model, the form of the clearer version.
+
+**Extension shape.** a reader-tested variant that checks comprehension; a variant for spoken explanation.
+
+**Design tensions.**
+- What counts as load-bearing is itself a judgment the author can bend.
+- Keeping every hard distinction can make the clearer version long.
+
+**Tradeoffs.**
+- Gains: clarity that does not cost the substance.
+- Gives up: the shortness that dropping difficulty buys.
+
+**Critique (diagnostic, not contract requirements).**
+- Extending Translate was rejected: Translate requires that nothing is dropped by design, and Lucence drops what it lists as not load-bearing.
+- Novelty, from recall and unverified: known. Nearest known concepts: 'as simple as possible, but not simpler'.
+
+**In the family.** Summarize compresses by salience and Translate preserves everything; Lucence preserves what the conclusions depend on. Farsimple is the two-phase route that often produces a lucence.
+
+---
+
+### MandatoryAbstraction#e172
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/MandatoryAbstraction.json)
+
+**Gloss.** Before decomposing a concrete problem, locate it by climbing specialization links to the root, then retrace the route
+
+**Mechanism.**
+
+> A concrete problem is located before it is decomposed. The ascent starts at the most specific reusable capability that frames the problem and follows adjacent {{specialization_edge}} links upward until it reaches the {{root_solver}}. At every proposed attachment, existing and plausible siblings are searched, without any claim to have found them all, and the record states the parent's genus, the child's differentia, how the higher frame changes the later carve, whether the contracts fit, and whether an informative intermediate parent was omitted. An intermediate is inserted or reused only when it changes routing, exposes a reusable invariant or changes the dimensions visible below. The route is then traversed in exact reverse order, and only after it reaches the specific subject is that capability carved by {{conceptual_decomposition}} into children bound by {{composition_edge}} links. The ascent is mandatory for every case, while further downward depth stays governed by the {{marginal_value_rule}}. Locating a case on an existing route is distinct from adding a new higher parent, which needs evidence such as sibling comparison, recurrence or a frame error.
+
+**Invariants.**
+- Every case is located by an ascent of specialization links from its most specific reusable capability to the root before it is decomposed.
+- Each attachment records the parent's genus, the child's differentia, the sibling search, the effect on the later carve, contract fit and the search for an omitted intermediate.
+- The descent before the carve retraces the ascent's route in exact reverse order.
+- The ascent is mandatory for locating a case; downward depth after the carve is set by {{marginal_value_rule}}.
+
+**Failure modes.**
+- Carve in place: the problem is decomposed where it was stated, so the carve inherits the stated framing rather than a located one.
+- Umbrella attachment: a case is hung under a broad parent although an informative intermediate would change its routing or later carve.
+- Route mismatch: the descent does not retrace the ascent exactly, so the carve is made under a frame the ascent did not establish.
+- Record read as truth: a complete, valid route record is taken to show that its parents are insightful or true.
+- Location read as accommodation: locating a case is taken as licence to add new higher parents without the evidence a topology change needs.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{composition_edge}}` | `sema:CompositionEdge#mh:SHA-256:2be81d974795a345a4518b540b6110bed48e2e1fc084363193dc0bb609616bbb` |
+| `references` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
+| `references` | `{{root_solver}}` | `sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca` |
+| `references` | `{{specialization_edge}}` | `sema:SpecializationEdge#mh:SHA-256:4d203b9383c917cc241dc8b4ab9cf6a48eb0113f86b60a0dda5cf3defb8b3017` |
+
+#### Design
+
+**Why it exists.** A problem stated in local terms carries its framing with it, and decomposing it where it stands inherits that framing, departments, procedures and all. The Fractal Intelligence paper therefore makes the ascent mandatory: climb kind-of links to the root, comparing siblings and recording genus and differentia, then retrace the route before carving. The higher frame changes what the later carve can see, and the recorded route makes the topology inspectable.
+
+**Why Mind.** Locating a problem is one reasoner's construction step over a shared graph; no second party has to take part.
+
+**Can it be removed?** StepBack takes one step up for perspective, WhyClimb climbs by purpose rather than by kind, OntologyAdapt adds categories when data defies the current ones, ProblemFramer turns a request into an acceptance spec, and RootSolver is the ascent's endpoint without describing the climb; none locates a case on a specialization route to the root, with sibling search and an exact reverse traversal, before decomposing it. Removable if problems are decomposed where they are stated.
+
+**Intended use.** locating a concrete problem in a persistent concept graph before decomposing it.
+
+**Future uses.** agents and agent teams building or extending a persistent solver graph; agents filing a new capability under existing kinds before carving it.
+
+**Broad-use contexts.** solver and capability graphs, taxonomic placement, research planning, organisational design, curriculum design.
+
+**Broad-use intersection (review hypothesis).** a concrete problem, a graph with a root, specialization links to climb, and a record of each attachment.
+
+**Varies (descendant territory).** how siblings are searched, when an intermediate parent is inserted, and how much is recorded per attachment.
+
+**Extension shape.** a variant for capability registries; a variant for research questions located before they are broken down.
+
+**Design tensions.**
+- The ascent costs effort on every case, including cases whose location seems obvious; the cost buys inspectable locations and frames that are not simply inherited.
+
+**Tradeoffs.**
+- Gains: a located frame for every carve, and a route others can inspect.
+- Gives up: decomposing problems where they are stated.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the practice; the card defines the procedure. Locating a case is distinct from changing the topology: a new higher parent needs evidence such as sibling comparison, recurrence or a frame error, which is OntologyAdapt's territory.
+- Validation can check that the route is rooted, that its edges have the right types and that the descent reverses the ascent exactly, not that a parent is insightful or true.
+- Novelty, from recall and unverified: known in parts. Nearest known concepts: genus and differentia; taxonomic placement; step-back prompting. The mandatory ascent to a single root, with an exact reverse traversal before the carve, is the Fractal Intelligence paper's construction procedure.
+
+**In the family.** StepBack gains altitude, WhyClimb climbs by purpose, OntologyAdapt restructures categories, RootSolver is the root, and MandatoryAbstraction locates a problem on a specialization route to that root before it is carved.
 
 ---
 
@@ -21857,6 +24975,246 @@ _Note: Semantic context means the assumptions, conventions, and circumstances un
 - `MetaPrompt#db51`
 - `MetaPrompt#f994`
 - `MetaPrompt#308c`
+
+---
+
+### Mirrorbloom#f79d
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Mirrorbloom.json)
+
+**Gloss.** A self-representation changes its maker, so the next self-representation concerns a subject partly shaped by the earlier one
+
+**Mechanism.**
+
+> A person or agent makes a representation of itself and responds to it in ways that change its conduct or self-understanding, and those changes become part of the subject of a later self-representation, linking successive representations through their effects on the represented self. The representation must take part in changing the self, and that change must enter a later representation; successive snapshots with no such influence are not an instance. The representation can be a portrait, a narrative or a classification.
+
+**Invariants.**
+- A self-representation takes part in changing the represented self.
+- That change enters a later self-representation.
+
+**Failure modes.**
+- Self-confirmation as evidence: confirmation that a description helped produce is taken as independent evidence.
+- Recursion as improvement: recursive self-description is assumed to make the self more accurate or better off.
+
+#### Design
+
+**Why it exists.** Self-portraits, narratives and self-descriptions are treated as records, but they also shape the self they record. Mirrorbloom names that recursion between self and representation.
+
+**Why Mind.** One person or agent can represent itself and respond to the representation.
+
+**Can it be removed?** Labelloop concerns classifications changing those they classify, and Reflexion critiques and retries after failure; neither describes successive self-representations shaping the self they represent. Removable if self-representations are assumed to leave their subject unchanged.
+
+**Intended use.** recognising when a self-portrait, narrative or self-description is changing its maker.
+
+**Future uses.** agents that write and reread descriptions of themselves in memory.
+
+**Broad-use contexts.** self-portraiture, autobiography, organisational narratives, journals, agent memory.
+
+**Broad-use intersection (review hypothesis).** a self-representation, a change in the self that it takes part in, and a later representation that the change enters.
+
+**Varies (descendant territory).** the form of representation and the direction of change.
+
+**Extension shape.** a variant for organisations; a variant for agent self-models.
+
+**Design tensions.**
+- A self-description that helps produce its own confirmation looks like an accurate one.
+
+**Tradeoffs.**
+- Gains: a name for self-representation as a cause as well as a record.
+- Gives up: treating self-descriptions as neutral records.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It overlaps Labelloop when the self-representation classifies; portraits and narratives need not classify, so it relates to Labelloop rather than extending it.
+- Novelty, from recall and unverified: known. Nearest known concepts: looping effects; narrative identity.
+- Caution: the card's future use is agents that write and reread descriptions of themselves in memory. A self-description altered by someone else is outside the card's own definition, yet it would run the same loop, producing the conduct that confirms it, so comparing record with behaviour would not expose it. Same shape as PathwayMemory's contamination caution.
+
+**In the family.** Labelloop loops through classifications, Identitylag lags behind change, Reflexion critiques after failure, and Mirrorbloom is a self-representation reshaping its maker.
+
+---
+
+### Motivejump#1820
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Motivejump.json)
+
+**Gloss.** Examine an argument before discussing the motives of whoever makes it
+
+**Mechanism.**
+
+> When an argument is disputed, its reasoning is examined before the motives of the person making it are raised. Motives may weigh on testimony, the claims taken on someone's word, through {{source_evaluate}}, but never on whether checkable reasoning holds.
+
+**Invariants.**
+- The argument is examined before any motive is raised.
+- A motive is never offered as a refutation of checkable reasoning.
+
+**Failure modes.**
+- Bulverism: an argument is assumed wrong and then explained by the speaker's motives.
+- Motive blindness: motives are ignored even when weighing testimony.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{source_evaluate}}` | `sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58` |
+
+#### Design
+
+**Why it exists.** Disagreements are often settled by explaining why the other side believes what it does instead of checking whether it is right. Motivejump examines the argument first.
+
+**Why Mind.** One agent examines the argument.
+
+**Can it be removed?** SourceEvaluate weighs a source's incentives for testimony; Motivejump keeps motives out of the assessment of reasoning. Removable if arguments are judged by their authors.
+
+**Intended use.** disputes over an argument where the arguer's interests are visible.
+
+**Future uses.** agent review of other agents' arguments; public debate summaries.
+
+**Broad-use contexts.** politics, peer review, negotiation, family disputes, online discussion, agent evaluation.
+
+**Broad-use intersection (review hypothesis).** an argument examined first, and motives limited to testimony.
+
+**Varies (descendant territory).** how the split between reasoning and testimony is drawn.
+
+**Extension shape.** a variant that records motives separately for later review.
+
+**Design tensions.**
+- Motives are sometimes the best explanation of an error once it has been found.
+
+**Tradeoffs.**
+- Gains: arguments are judged on their merits.
+- Gives up: a quick dismissal.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: Bulverism; circumstantial ad hominem.
+
+**In the family.** Statuslens keeps standing out of reasoning; Callshort's Default unwilling failure mode is the effort-gap version of the same jump.
+
+---
+
+### Nestmap#8b8f
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Nestmap.json)
+
+**Gloss.** Name the larger situations a moment sits inside, and what each one constrains
+
+**Mechanism.**
+
+> For a moment that matters, such as a conversation, a request or a decision, the enclosing situations are named from nearest to widest: this talk, inside this disagreement, inside this working relationship. Each layer is treated as a {{context}} whose constraints the inner ones inherit, and the constraint each layer places on the moment is stated.
+
+**Invariants.**
+- The enclosing situations are named from nearest to widest.
+- Each named layer states the constraint it places on the moment.
+
+**Failure modes.**
+- Flat reading: the moment is handled as if nothing enclosed it.
+- Layer inflation: so many layers are named that the moment itself is lost.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{context}}` | `sema:Context#mh:SHA-256:c1b72256dc4732033ee42cc07ff5d9fb60a7f1a3e5634449c343692a33340756` |
+
+#### Design
+
+**Why it exists.** A moment is shaped by the situations around it: a remark inside a dispute inside a relationship. Handled flat, it is misread. Nestmap names the layers and what each constrains.
+
+**Why Mind.** One agent maps the situation it is in.
+
+**Can it be removed?** Context passes inherited constraints between executions and Situfit checks category fit; neither names the situations enclosing a moment. Removable if moments are self-contained.
+
+**Intended use.** conversations, requests and decisions whose meaning depends on their surroundings.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** mediation, customer support, management, therapy, diplomacy, agent-user conversations.
+
+**Broad-use intersection (review hypothesis).** layers named from nearest to widest, each with its constraint.
+
+**Varies (descendant territory).** how many layers are named.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Naming layers can reduce a moment to its context.
+
+**Tradeoffs.**
+- Gains: moments read in their setting.
+- Gives up: the speed of a flat reading.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: laminated frames; nested ecological systems.
+
+**In the family.** Context inherits constraints, Situfit checks fit, Framecapture distributes framing, and Nestmap names the layers.
+
+---
+
+### Normance#6844
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Normance.json)
+
+**Gloss.** Record how far a judgment rests on social default rather than on reasons its holder can state and check
+
+**Mechanism.**
+
+> For a {{belief}}, the holder lists the reasons it can state and check without appeal to what others hold. Whatever support remains is recorded as social default: what is usual, what others believe, what a respected source said. The belief is then marked examined, mixed or default.
+
+**Invariants.**
+- Every listed reason can be stated and checked without appeal to what others hold.
+- The social defaults the belief leans on are named.
+- The belief is marked examined, mixed or default.
+
+**Failure modes.**
+- Default disguised as reason: 'everyone knows' is listed as a reason.
+- Examination theatre: reasons are produced after the fact to make a default look examined.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{belief}}` | `sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1` |
+
+#### Design
+
+**Why it exists.** Much of what anyone believes rests on what others believe. That is often reasonable, but it should be known. Normance separates the reasons a holder can state and check from the social defaults a belief leans on.
+
+**Why Mind.** One holder examines one belief.
+
+**Can it be removed?** GenealogicalTrace traces an idea's history and SourceEvaluate weighs testimony; neither measures how far one holder's belief rests on social default. Removable if the share of default in a belief is left unexamined.
+
+**Intended use.** an agent or person examining one of its own beliefs.
+
+**Future uses.** agents auditing beliefs inherited from training or from other agents.
+
+**Broad-use contexts.** education, journalism, model self-audit, policy positions, scientific consensus, personal convictions.
+
+**Broad-use intersection (review hypothesis).** a belief, its checkable reasons, its named social defaults, and a three-way mark.
+
+**Varies (descendant territory).** how reasons are checked and where examined ends and mixed begins.
+
+**Extension shape.** a group variant that surveys members' beliefs.
+
+**Design tensions.**
+- Relying on others is often the rational choice; the mark records reliance without condemning it.
+
+**Tradeoffs.**
+- Gains: knowing which beliefs are examined.
+- Gives up: the comfort of assuming one's beliefs are one's own.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Its operational test is listing checkable reasons and naming the social defaults.
+- Novelty, from recall and unverified: known. Nearest known concepts: conformity; epistemic deference.
+
+**In the family.** Belongbend detects bent public judgments, GenealogicalTrace traces the history of ideas, and Normance marks how far a belief leans on default.
 
 ---
 
@@ -22099,6 +25457,62 @@ _Note: Semantic context means the assumptions, conventions, and circumstances un
 - `PatternEmergence#8eaa`
 - `PatternEmergence#2816`
 - `PatternEmergence#cd8a`
+
+---
+
+### QuestionSubstitution#e963
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/QuestionSubstitution.json)
+
+**Gloss.** An easier nearby question is answered in place of the one asked, and the answer is reported as if it settled the original
+
+**Mechanism.**
+
+> A question is hard to answer directly, and a related, easier one is answered instead: asked whether a change is safe, the answer says whether it is common; asked whether a plan will work, it says whether the plan sounds reasonable; asked why something failed, it says what changed. The substitute shares words or a topic with the original, so the swap goes unnoticed, and its answer is reported as an answer to the question asked. The substitute's answer may be correct and still leave the original open. Answering a narrower or reframed question openly, with the gap to the original stated, is not an instance.
+
+**Invariants.**
+- A question is posed, and a different, easier question is answered.
+- The answer is presented as settling the question posed, without stating the gap between the two.
+
+**Failure modes.**
+- Proxy answer: an answer about how common, familiar or reasonable something is stands in for whether it is safe, true or workable.
+- Unnoticed swap: the substitute shares words with the original, so neither the answerer nor the reader sees that the question changed.
+- Substitution read everywhere: an openly narrowed answer, with its gap stated, is dismissed as evasion.
+
+#### Design
+
+**Why it exists.** Hard questions are routinely answered by easier neighbours: whether something is common for whether it is safe, whether a plan sounds reasonable for whether it will work, what changed for why it failed. The answers are often right about the substitute, which is what makes the swap hard to see. Agents do this whenever a question exceeds what they can check, and readers take the answer as settling the question asked. QuestionSubstitution names the swap so that it can be checked: which question did the answer actually address?
+
+**Why Mind.** Answering a question is one reasoner's act; no second party has to take part.
+
+**Can it be removed?** ContrastClass fixes the alternative a why-question implies, Reframe changes a problem's framing openly, and Termdrift tracks a term whose meaning shifts; none describes an easier question answered in place of the one asked and reported as its answer. Removable if answers are assumed to address the question asked.
+
+**Intended use.** checking whether an answer addresses the question that was asked or an easier neighbour of it.
+
+**Future uses.** agents reviewing their own answers before reporting them; agents judging other agents' answers; reviews of reports that claim to settle a question.
+
+**Broad-use contexts.** research and analysis, risk and safety reviews, code review, forecasting, journalism, everyday advice.
+
+**Broad-use intersection (review hypothesis).** a question asked, a different question answered, and an answer presented as settling the first.
+
+**Varies (descendant territory).** how far the substitute is from the original, and whether the gap is stated.
+
+**Extension shape.** a variant for safety and risk questions; a variant for reviewing agent answers.
+
+**Design tensions.**
+- Every hard question is answered through easier sub-questions, so substitution turns on whether the gap is stated, not on whether an easier question was asked.
+
+**Tradeoffs.**
+- Gains: a check on which question an answer actually settles.
+- Gives up: taking a plausible answer as an answer to the question asked.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. An openly narrowed answer with its gap stated is the honest alternative and is not an instance.
+- Novelty, from recall and unverified: known. Nearest known concepts: attribute substitution (Kahneman and Frederick); answering the wrong question; the streetlight effect.
+
+**In the family.** ContrastClass fixes a why-question's alternative, Reframe changes framing openly, Termdrift tracks a shifting term, and QuestionSubstitution is an easier question answered in place of the one asked.
 
 ---
 
@@ -22714,7 +26128,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - The '{{problem}} Rotation:' category-label opening was removed, one of 71 across the corpus.
 - `Reframe` pairs with `Route` in §3.14's hard-seam composition — `Gate → Decision{FrameError} → (Route | Reframe)`. Broad-use validates both as general-purpose primitives.
 
-**In the family.** Cognitive-move primitive paired with Invert (specific opposition move), Perspective (the substrate), and LateralOptimization (domain-switch variant). Compare with AntifragileInversion — Reframe is cognitive; AntifragileInversion is structural design.
+**In the family.** Cognitive-move primitive paired with Invert (specific opposition move), Perspective (the substrate), and LateralOptimization (domain-switch variant). Compare with AntifragileInversion — Reframe is cognitive; AntifragileInversion is structural design. Patterns that build on it: Askwiden, Lensweave.
 
 **Supersedes (prior versions).**
 - `Reframe#ba00`
@@ -22816,6 +26230,129 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
+### Roundtrace#8fd7
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Roundtrace.json)
+
+**Gloss.** Render a source into another representation and back, and trace each difference to a hidden assumption
+
+**Mechanism.**
+
+> A source is rendered into another representation and then back into its own, and the result is compared with the original. Each difference is traced to an assumption, something the original left implicit that the round trip had to decide, or marked as rendering noise. Unlike a one-way {{representation_swap}}, the comparison is made in the source's own representation.
+
+**Invariants.**
+- The round trip ends in the source's own representation.
+- Each difference is traced to the assumption that produced it or marked as rendering noise.
+
+**Failure modes.**
+- Noise as assumption: a difference caused by careless rendering is read as a hidden assumption.
+- Shared blind spot: both renderings share an assumption, so the round trip cannot reveal it.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{representation_swap}}` | `sema:RepresentationSwap#mh:SHA-256:32532416b2651f7810504240d2e099ac7776f0431bcbdeb8c2d0ef26ff8c735e` |
+
+#### Design
+
+**Why it exists.** A source often hides assumptions that only show when it is forced through another representation and back. Roundtrace makes the round trip and traces each difference to the assumption behind it.
+
+**Why Mind.** One agent makes and compares the renderings.
+
+**Can it be removed?** RepresentationSwap transcodes into an orthogonal modality to reveal errors, and a round trip is one of its variants; Roundtrace makes the return to the source and the tracing of each difference its central practice, in any representation. Removable if RepresentationSwap's round-trip variant is judged enough.
+
+**Intended use.** checking specifications, prompts, surveys or requirements for hidden assumptions.
+
+**Future uses.** prompt robustness checks; specification review between agents.
+
+**Broad-use contexts.** survey translation, requirements engineering, legal drafting, prompt engineering, data model migration, cross-cultural research.
+
+**Broad-use intersection (review hypothesis).** a round trip back into the source's representation, and each difference traced or marked as noise.
+
+**Varies (descendant territory).** the intermediate representation and how differences are attributed.
+
+**Extension shape.** a variant with several intermediate representations.
+
+**Design tensions.**
+- Careless renderings produce differences that look like assumptions.
+
+**Tradeoffs.**
+- Gains: hidden assumptions surface.
+- Gives up: the cost of two renderings.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: back-translation.
+
+**In the family.** RepresentationSwap changes modality to reveal errors, Gainmark lists additions, and Roundtrace exposes assumptions by returning home.
+
+---
+
+### RoutingSanityCheck#71bd
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/RoutingSanityCheck.json)
+
+**Gloss.** Test a candidate carve by routing a few concrete tasks through it before it is kept
+
+**Mechanism.**
+
+> When a {{decompose}} step proposes a candidate carve, a few concrete tasks from its domain, typically three, are generated before the carve is kept, and each is passed by {{route}} to the proposed sub-concepts. A task that finds no clean home suggests a missing dimension, and a task that belongs equally to two sub-concepts suggests that they are not independent enough. The carve is reframed until each task, or each part of a task, routes cleanly to exactly one sub-concept, or it is kept with a recorded warning; a task whose parts go to different sub-concepts is clean, while a part that could go equally to two is not. The check is empirical: it catches carves that are logically elegant but functionally weak, which the four tests, judged in the abstract, can miss.
+
+**Invariants.**
+- Concrete tasks from the carve's domain are routed through the proposed sub-concepts before the carve is kept.
+- A task with no clean home, or with two equal homes, leads to a reframing of the carve or to keeping it with a recorded warning.
+
+**Failure modes.**
+- Tailored sample: the tasks are chosen to fit the proposed carve, so every one routes cleanly.
+- Warning forgotten: a carve kept with a routing warning is later treated as if it had routed cleanly.
+- Sample read as proof: a clean routing of a few tasks is taken to certify the carve.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
+| `references` | `{{route}}` | `sema:Route#mh:SHA-256:186c9df2396591a9a71b80e50f3c323e5e0df6ddf64b6552435a0d555b6dbc85` |
+
+#### Design
+
+**Why it exists.** A carve can pass the four tests in the abstract and still fail when work arrives: a task has no clean home, or two sub-concepts claim it. RoutingSanityCheck routes a few concrete tasks through the proposed sub-concepts before the carve is kept, so that such gaps and overlaps show up before persistent use, as the Fractal Intelligence paper's decomposition algorithm prescribes.
+
+**Why Mind.** Testing a proposed carve is one reasoner's check; no second party has to take part.
+
+**Can it be removed?** DecompositionGate judges a carve against the four tests, MECE states exclusivity and exhaustiveness as a partition's invariants, and Labelsqueeze flags one item forced into a single category; none routes sample tasks through a proposed carve before it is kept. Removable if carves are kept on the four tests alone.
+
+**Intended use.** testing a candidate decomposition by routing a few concrete tasks through it before it crystallizes.
+
+**Future uses.** agents building persistent solver or concept graphs; agents designing taxonomies, folder structures or team divisions.
+
+**Broad-use contexts.** system and module design, taxonomies and classification schemes, organisational design, curricula, agent tool and solver libraries.
+
+**Broad-use intersection (review hypothesis).** a candidate carve, a few concrete tasks from its domain, and a record of where each task routes.
+
+**Varies (descendant territory).** how many tasks are used, how they are generated, and when an ambiguous route is accepted with a warning.
+
+**Extension shape.** a variant for taxonomies and classification schemes; a variant for team and role design.
+
+**Design tensions.**
+- A few tasks are a small sample, so a clean result screens out gross gaps and overlaps but does not certify the carve.
+
+**Tradeoffs.**
+- Gains: an empirical check on a carve before it is relied on.
+- Gives up: keeping a carve on its logical elegance alone.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the check; the card defines the guard. DecompositionGate judges a carve's dimensions in the abstract, and RoutingSanityCheck tests the carve with concrete work.
+- Novelty, from recall and unverified: known. Nearest known concepts: card sorting and tree testing; validating a classification scheme against sample items; test cases for a design.
+
+**In the family.** DecompositionGate tests a carve's dimensions, MECE defines a clean partition, Labelsqueeze flags single-label forcing, and RoutingSanityCheck routes sample tasks through a carve before it is kept. Patterns that build on it: ConceptualDecomposition.
+
+---
+
 ### SelfConsistency#4f68
 
 `Mind` · `Reasoning` · R2 · T2
@@ -22883,6 +26420,69 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `SelfConsistency#543d`
 - `SelfConsistency#2095`
 - `SelfConsistency#a1cd`
+
+---
+
+### Situfit#74e5
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Situfit.json)
+
+**Gloss.** Check that a moment really fits the category it is about to be handled as
+
+**Mechanism.**
+
+> Before a moment is handled as an instance of a {{category}}, such as a familiar argument, a known kind of request or a recognised failure, a {{check}} lists the features the intended handling depends on and marks each as present, absent or unknown in this moment. The fit is Verified when every listed feature is present, Falsified when any is absent, and Unknown otherwise.
+
+**Invariants.**
+- The features checked are those the intended handling depends on, not the category's full definition.
+- One absent feature falsifies the fit.
+
+**Failure modes.**
+- Surface match: the moment shares the category's look but not the features the handling needs.
+- Familiarity as fit: the moment is judged to fit because it feels familiar.
+- Forced fit: absent features are reinterpreted until the category fits.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{category}}` | `sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696` |
+| `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
+
+#### Design
+
+**Why it exists.** Moments are routinely handled as instances of familiar categories: this is that old argument, this is the usual request. The handling then fails when the moment only looks like the category. Situfit checks the features the handling depends on before acting.
+
+**Why Mind.** It is one agent's judgment about one moment.
+
+**Can it be removed?** Check is the general verification primitive and Category defines the grouping; neither ties the check to the handling that is about to happen. Removable if fit is assumed from resemblance.
+
+**Intended use.** before handling a situation the way a familiar category is handled.
+
+**Future uses.** routing requests to agents; conflict de-escalation; triage.
+
+**Broad-use contexts.** conflict and argument, customer support triage, incident response, medical triage, request routing, legal precedent.
+
+**Broad-use intersection (review hypothesis).** a category, an intended handling, the features that handling depends on, and a three-valued verdict.
+
+**Varies (descendant territory).** which features are listed, how presence is judged, and what happens on Unknown.
+
+**Extension shape.** a variant that proposes a better category on Falsified; a variant for groups of moments.
+
+**Design tensions.**
+- Listing features in advance can miss what makes this moment different.
+
+**Tradeoffs.**
+- Gains: categories are applied only where the handling fits.
+- Gives up: the speed of recognition.
+
+**Critique (diagnostic, not contract requirements).**
+- References Check rather than extending it: Check is an Infrastructure primitive, and a fit judgment needs cognition.
+- Novelty, from recall and unverified: known. Nearest known concepts: category fit; the representativeness heuristic as its failure.
+
+**In the family.** OntologyAdapt restructures categories after a misfit, and Sunsetkind retires categories; Situfit checks one moment against one category before acting.
 
 ---
 
@@ -23132,6 +26732,128 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Specialize#c207`
 - `Specialize#403a`
 - `Specialize#916a`
+
+---
+
+### Spiralback#f9b7
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Spiralback.json)
+
+**Gloss.** Return to an earlier idea naming what is new since the last visit, or record the return as a repetition
+
+**Mechanism.**
+
+> When an earlier idea is revisited, the return names the tool, knowledge or question that is new since the previous visit and what it changes in the reading. A return that names nothing new is recorded as a repetition, the counterpart for ideas of a {{loop}} iteration that leaves its state unchanged.
+
+**Invariants.**
+- Each return names what is new since the previous visit, or states that nothing is new.
+- A return that names nothing new is recorded as a repetition.
+
+**Failure modes.**
+- Echo loop: an idea is revisited again and again with nothing new.
+- Setting mistaken for insight: the same reading is presented as new because the setting changed.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{loop}}` | `sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603` |
+
+#### Design
+
+**Why it exists.** Returning to an old idea can be a deeper reading or the same reading again. Spiralback requires the return to name what is new, and records it as a repetition when nothing is.
+
+**Why Mind.** One agent revisits its own ideas.
+
+**Can it be removed?** Loop requires state to change between iterations; Revisance governs changing one's mind. Neither distinguishes a deeper return from a repeated one. Removable if revisiting is assumed to deepen understanding.
+
+**Intended use.** revisiting research questions, designs or texts.
+
+**Future uses.** agents re-reading memory; iterative drafting.
+
+**Broad-use contexts.** research, writing and revising, therapy, teaching curricula, design iteration, agent memory review.
+
+**Broad-use intersection (review hypothesis).** a return that names what is new since the last visit, or is recorded as a repetition.
+
+**Varies (descendant territory).** how novelty is judged and how returns are logged.
+
+**Extension shape.** a variant that schedules returns when new tools arrive.
+
+**Design tensions.**
+- Naming what is new can become ritual.
+
+**Tradeoffs.**
+- Gains: revisiting that can be told apart from repeating.
+- Gives up: unexamined rereading.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the spiral curriculum; the hermeneutic circle.
+
+**In the family.** Loop iterates execution, Revisance revises views, and Spiralback governs returns to ideas.
+
+---
+
+### Statuslens#0c70
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Statuslens.json)
+
+**Gloss.** Assess checkable reasoning the same way whoever offers it; let the speaker matter only for testimony
+
+**Mechanism.**
+
+> When a statement is judged, its checkable reasoning is assessed as if it were anonymous, before the speaker is considered. Who said it may then adjust the weight of testimony, the claims taken on the speaker's word, through {{source_evaluate}}, but never the assessment of reasoning that can be checked.
+
+**Invariants.**
+- Checkable reasoning is assessed before, and independently of, the speaker's identity.
+- The speaker's identity adjusts only the weight of testimony.
+
+**Failure modes.**
+- Halo reading: the same argument is read as insightful from a high-status speaker and as naive from a low-status one.
+- Testimony confusion: an unverifiable claim is accepted as if it were checked reasoning.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{source_evaluate}}` | `sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58` |
+
+#### Design
+
+**Why it exists.** The same argument is judged differently depending on who makes it. Some weight on the source is legitimate for testimony but not for reasoning anyone can check. Statuslens separates the two.
+
+**Why Mind.** One evaluator assesses the statement.
+
+**Can it be removed?** SourceEvaluate weighs sources and could seem to license status effects; Statuslens restricts that weighing to testimony. Removable only if reasoning and testimony are not distinguished.
+
+**Intended use.** evaluating arguments from people or agents of different standing.
+
+**Future uses.** agent-review pipelines with senior and junior agents; peer review.
+
+**Broad-use contexts.** peer review, hiring, code review, policy consultation, classroom discussion, model evaluation.
+
+**Broad-use intersection (review hypothesis).** a statement split into checkable reasoning and testimony, reasoning assessed blind, and testimony weighed by source.
+
+**Varies (descendant territory).** how the split is made and how blind assessment is achieved.
+
+**Extension shape.** a fully anonymised review variant.
+
+**Design tensions.**
+- Splitting reasoning from testimony is not always clean.
+
+**Tradeoffs.**
+- Gains: reasoning is judged on its merits.
+- Gives up: the shortcut of trusting status.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Kept consistent with SourceEvaluate by limiting source effects to testimony rather than contradicting that card.
+- Novelty, from recall and unverified: known. Nearest known concepts: the messenger effect; the halo effect.
+
+**In the family.** SourceEvaluate weighs testimony; Prestigeloan limits standing to its domain; Motivejump keeps motives out of the assessment of reasoning.
 
 ---
 
@@ -23503,7 +27225,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - Salience is subjective; different summaries for the same input are legitimate.
 - No failure modes listed; summarization has many (lost key info, hallucinated, biased selection).
 
-**In the family.** Cognitive-compression primitive paired with Compress (size focus), ChunkMerge (structural compression), and ContextCompress (memory management). Compare with Extract — Summarize preserves structure; Extract pulls pieces.
+**In the family.** Cognitive-compression primitive paired with Compress (size focus), ChunkMerge (structural compression), and ContextCompress (memory management). Compare with Extract — Summarize preserves structure; Extract pulls pieces. Patterns that build on it: Lucence.
 
 **Supersedes (prior versions).**
 - `Summarize#6a00`
@@ -23575,6 +27297,68 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Synthesis#3252`
 - `Synthesis#46b9`
 - `Synthesis#e349`
+
+---
+
+### Termdrift#18ef
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Termdrift.json)
+
+**Gloss.** Track a key term's meaning through an explanation, and flag where the meaning shifts
+
+**Mechanism.**
+
+> In an explanation, argument or plan, each key term's meaning at first use is recorded, and later uses are checked against it, each use being an {{interpret}}ation in its own context. Where the meaning shifts, the shift is flagged and either made explicit or the term is split into two.
+
+**Invariants.**
+- Each key term's first meaning is recorded.
+- A later use with a different meaning is flagged and either made explicit or given a separate term.
+
+**Failure modes.**
+- Equivocation: a conclusion depends on a term meaning one thing in a premise and another in the conclusion.
+- Term freeze: legitimate refinement of a term is blocked as drift.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{interpret}}` | `sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29` |
+
+#### Design
+
+**Why it exists.** Arguments go wrong when a key term means one thing in the premises and another in the conclusion. Termdrift records each term's first meaning and flags shifts.
+
+**Why Mind.** One reader tracks terms through a text.
+
+**Can it be removed?** Interpret records the context of one interpretation and Meaningpause settles a contested word with a speaker; neither tracks a term through a whole text. Removable if texts are short.
+
+**Intended use.** arguments, explanations, specifications and plans that use key terms repeatedly.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** legal reasoning, specifications, policy documents, scientific papers, long agent outputs, contracts.
+
+**Broad-use intersection (review hypothesis).** first meanings recorded, and later uses checked and flagged.
+
+**Varies (descendant territory).** which terms count as key.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+_Note: The coined handle names the failure and the card defines the guard, as ConfirmationBlock and HindsightBlock do._
+
+**Design tensions.**
+- Terms legitimately sharpen as an argument proceeds.
+
+**Tradeoffs.**
+- Gains: arguments that do not equivocate.
+- Gives up: some fluency.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: equivocation.
+
+**In the family.** Meaningpause settles words in dialogue, Interpret records contexts, and Termdrift tracks terms through a text.
 
 ---
 
@@ -23728,7 +27512,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - RESOLVED 2026-08-11: keep `Summarize` as a quoted contrast rather than a dependency. Summarize already references Translate, so a reverse edge would create a cycle; the relationship is present from the side that can state it without inverting the graph.
 - Language, format, and unit conversions share representation change and meaning-preservation intent; they do not share inevitable loss. Some conversions are lossless and others can introduce incidental loss or distortion. Invertibility depends on the conversion and the information retained.
 
-**In the family.** Conversion primitive paired with Interpret (abstraction-level change), Compress (size-reduction), and RepresentationSwap (orthogonal-modality variant). Compare with Interpret — Translate preserves abstraction; Interpret changes it.
+**In the family.** Conversion primitive paired with Interpret (abstraction-level change), Compress (size-reduction), and RepresentationSwap (orthogonal-modality variant). Compare with Interpret — Translate preserves abstraction; Interpret changes it. Patterns that build on it: Gainmark.
 
 **Supersedes (prior versions).**
 - `Translate#e75d`
@@ -23821,6 +27605,134 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
+### Twinread#c4a5
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Twinread.json)
+
+**Gloss.** Keep two interpretations that correct each other's blind spots, without merging them
+
+**Mechanism.**
+
+> Two interpretations of the same material are kept side by side. Each records where it corrects the other, something the other misses or misreads, and both stay in use. Unlike a {{dialectic}}, no synthesis is sought: conflicts between the two are recorded and left open.
+
+**Invariants.**
+- Each interpretation names at least one correction it supplies to the other.
+- No merged interpretation replaces the two.
+- Conflicts between the two are recorded, not resolved.
+
+**Failure modes.**
+- Premature synthesis: the pair is merged and the corrections are lost.
+- Dominance: one interpretation becomes primary and the other a footnote.
+- Mutual excuse: each interpretation's failures are excused by pointing at the other.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{dialectic}}` | `sema:Dialectic#mh:SHA-256:26bec9ea9924523af3aa4d24165e4131dfe2ca964a54cee6a7a12cd391bb8aec` |
+
+#### Design
+
+**Why it exists.** Interpretations that conflict are usually merged or ranked. Some pairs are more useful kept apart, because each corrects what the other misses. Twinread keeps them apart on purpose.
+
+**Why Mind.** One agent can hold both interpretations.
+
+**Can it be removed?** Dialectic must end in a synthesis or a refutation, and TensionHold blocks decisions until a resolution or a timeout; neither keeps two interpretations in use indefinitely. Removable if every conflict is to be resolved.
+
+**Intended use.** pairs of readings such as mechanistic and intentional, or quantitative and qualitative, of the same material.
+
+**Future uses.** model interpretability; mixed-methods research; dual-lens reviews.
+
+**Broad-use contexts.** physics, history, literary criticism, mixed-methods research, interpretability of models, legal interpretation.
+
+**Broad-use intersection (review hypothesis).** two interpretations, the corrections each supplies to the other, and recorded conflicts.
+
+**Varies (descendant territory).** how corrections are found and when a pair stops being worth keeping.
+
+**Extension shape.** a variant with more than two interpretations.
+
+**Design tensions.**
+- Keeping both can become a way to avoid deciding.
+- Mutual correction can decay into mutual excuse.
+
+**Tradeoffs.**
+- Gains: corrections that a merge would lose.
+- Gives up: a single coherent account.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: complementarity; polyphony.
+
+**In the family.** Dialectic synthesizes, TensionHold suspends until resolved, and Twoledger separates a frame's usefulness from its truth; Twinread keeps two frames in use together.
+
+---
+
+### Twoledger#a560
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Twoledger.json)
+
+**Gloss.** Adopt a perspective for what it opens, and check its claims on a separate ledger
+
+**Mechanism.**
+
+> When a perspective is chosen for the questions, options or moves it opens, that reason is recorded as its yield. Every claim the perspective makes is entered separately, at the assurance it has earned through its own {{check}}, graded as in {{epistemic_cascade}}. Adopting the perspective, working inside it, and the value of what it opened never raise the assurance of its claims. A perspective may be kept for its yield while some of its claims stand falsified.
+
+**Invariants.**
+- The record of adopting the perspective names what it opens.
+- Each claim of the perspective carries its own assurance, changed only by checks of that claim.
+- The perspective's yield is never counted as evidence for its claims.
+
+**Failure modes.**
+- Fruitfulness laundering: claims are believed because the perspective that makes them has been productive.
+- Premature dismissal: a productive perspective is dropped because one of its claims failed.
+- Spent yield: the perspective is kept by habit after what it opened has been used up.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{check}}` | `sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00` |
+| `references` | `{{epistemic_cascade}}` | `sema:EpistemicCascade#mh:SHA-256:00ae0d471938ddbddaec91d4e7936d31d21e0e52cbb9a7064dbd37f66dd513c4` |
+
+#### Design
+
+**Why it exists.** Perspectives are often adopted because they are productive, and their productivity then leaks into belief in their claims. EpistemicCascade already holds that assurance 'changes only through verification events, never through repetition or restatement'. Twoledger applies the same rule to a perspective's fruitfulness, and it makes the reason for adopting the perspective explicit.
+
+**Why Mind.** One agent keeps both ledgers.
+
+**Can it be removed?** Partly covered by EpistemicCascade. The card adds two things: the explicit record of what the perspective opened, and permission to keep a productive perspective whose claims fail. It can be removed if those two are judged too small to name.
+
+**Intended use.** an agent working inside a framework, model or analogy that it chose because the framework opens options.
+
+**Future uses.** research programmes, design lenses, persona prompts, simulation models.
+
+**Broad-use contexts.** scientific modelling, product strategy frameworks, literary and historical lenses, design thinking, threat modelling, analogical problem solving.
+
+**Broad-use intersection (review hypothesis).** a recorded reason for adoption (the yield), an assurance for each claim, and no transfer of credit between the two.
+
+**Varies (descendant territory).** how yield is measured, when a perspective is dropped, and the assurance scale used.
+
+**Extension shape.** a variant for frames known to be false (useful fictions); a team variant in which the yield is agreed.
+
+**Design tensions.**
+- Using a perspective fully means speaking its claims as if they were true, while the ledger says otherwise.
+- Yield and truth are not always separable: some options open only if a claim is true.
+
+**Tradeoffs.**
+- Gains: productive frames can be used without being believed.
+- Gives up: the comfort of a single coherent stance.
+
+**Critique (diagnostic, not contract requirements).**
+- Extending EpistemicCascade was considered and rejected. Twoledger is not a kind of assurance propagation; it uses that card's grading.
+- Novelty, from recall and unverified: partly new. Nearest known concepts: useful fictions ('as if' reasoning); judging a research programme by its heuristic power separately from its corroboration. No named precedent found (from recall) for the two-ledger contract.
+
+**In the family.** Reframe chooses a new perspective, EpistemicCascade grades assurance, and Assumption marks what is held provisionally. Twoledger governs what adopting a perspective is allowed to do to belief.
+
+---
+
 ### Uncertain#91b5
 
 `Mind` · `Reasoning` · R2 · T2
@@ -23890,7 +27802,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - Actionable Void is aspirational.
 - Specificity invariant requires careful scoping agents often skip.
 
-**In the family.** Epistemic-status primitive paired with Certain, Speculation, Hypothesis. Compare with Assumption — Uncertain is void-of-evidence; Assumption is provisional-truth.
+**In the family.** Epistemic-status primitive paired with Certain, Speculation, Hypothesis. Compare with Assumption — Uncertain is void-of-evidence; Assumption is provisional-truth. Patterns that build on it: Doubtshelter.
 
 **Supersedes (prior versions).**
 - `Uncertain#b159`
@@ -24029,13 +27941,73 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - A third invariant makes the 'unlike open-ended inquiry' clause enforceable: the assertion exists before the verification runs. A process that produces a claim and confirms it in one step is inquiry wearing a verifier's name, and its confirmation carries no information.
 - Binary-versus-graded stays as declared. The verdict space is two-valued and that is the useful commitment; what changed is that inconclusiveness is now reported instead of being forced into it.
 
-**In the family.** Process primitive paired with Validate (spec-focused), Check (the verb), and Audit (durable output). Compare with Falsification — Verification confirms; Falsification denies.
+**In the family.** Process primitive paired with Validate (spec-focused), Check (the verb), and Audit (durable output). Compare with Falsification — Verification confirms; Falsification denies. Patterns that build on it: Leapsettle.
 
 **Supersedes (prior versions).**
 - `Verification#eb28`
 - `Verification#9c1e`
 - `Verification#99a5`
 - `Verification#81fe`
+
+---
+
+### Webtrace#8a90
+
+`Mind` · `Reasoning` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Webtrace.json)
+
+**Gloss.** Before relying on a concept, list what resembles it, what differs from it, and what depends on it
+
+**Mechanism.**
+
+> Before a concept is relied on, three lists are made: concepts it resembles, concepts it must be told apart from, each with the {{compare}} that separates them, and concepts or work that depend on it. A concept whose differences cannot be stated is not yet ready to rely on.
+
+**Invariants.**
+- The three lists are made before the concept is relied on.
+- Each listed difference states how the two concepts are told apart.
+
+**Failure modes.**
+- Island concept: a concept is used with no sense of its neighbours.
+- Endless web: the lists grow without limit and the concept is never used.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{compare}}` | `sema:Compare#mh:SHA-256:15a079e73bd3c280efbe2b35ab4b082b2302ab65e5dd5eb1c4fba1a5f554cebe` |
+
+#### Design
+
+**Why it exists.** Concepts used without their neighbours get confused with them. Webtrace places a concept by what resembles it, what it must be told apart from, and what depends on it.
+
+**Why Mind.** One agent studies a concept.
+
+**Can it be removed?** Compare relates two values and Almostnot learns from near misses; neither maps a concept's neighbourhood before use. Removable if concepts are well known.
+
+**Intended use.** introducing or adopting a concept in a field or a vocabulary.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** teaching, ontology building, research, product terminology, legal definitions, vocabulary design.
+
+**Broad-use intersection (review hypothesis).** three lists, with each difference stated.
+
+**Varies (descendant territory).** how far the lists extend.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- The lists can grow without bound.
+
+**Tradeoffs.**
+- Gains: concepts placed among their neighbours.
+- Gives up: the speed of using a word as found.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: relational thinking; concept mapping.
+
+**In the family.** Almostnot sharpens by near misses, Morphproof by invariance, and Webtrace by neighbourhood. The prior-art search used for every card here is a webtrace.
 
 ---
 
@@ -24120,7 +28092,71 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Mind/Strategy (81)
+### Mind/Strategy (113)
+
+### ActionConvergence#89d1
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ActionConvergence.json)
+
+**Gloss.** Rival explanations call for the same next action, so it can be taken while the cause stays open
+
+**Mechanism.**
+
+> Two or more explanations remain open, as in {{evidence_underdetermination}}, yet each calls for the same next action: whether a failed release came from the new code or from a configuration change, pausing the rollout is warranted. The action can be taken without settling the cause, and agreeing on it does not establish agreement on the cause. The convergence holds for that action only; what follows it, such as a permanent remedy, can still differ between the explanations and may need them separated. Open explanations that call for different next actions are not an instance.
+
+**Invariants.**
+- Two or more explanations remain open, and each calls for the same next action.
+- Agreement on the action does not establish agreement on the cause.
+- The convergence holds for the next action only; later steps, such as a permanent remedy, can still differ between the explanations.
+
+**Failure modes.**
+- Action read as diagnosis: once the shared action is taken, the cause is treated as settled and the inquiry stops.
+- Convergence stretched: a permanent remedy is chosen as if the explanations agreed on it too.
+- Diagnosis before action: a step every open explanation calls for is delayed until the cause is settled.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{evidence_underdetermination}}` | `sema:EvidenceUnderdetermination#mh:SHA-256:999b3244c9eb73cf0968148e4ff5dd11e3abc42330ed5faafe618af972079e28` |
+
+#### Design
+
+**Why it exists.** Under uncertainty, people either wait for a diagnosis before acting or act and then treat the action as if it had settled the diagnosis. When the open explanations agree on the next step, neither is needed: the step can be taken now, and the cause stays open for the decisions where the explanations part. ActionConvergence names that situation and keeps action and diagnosis apart.
+
+**Why Mind.** Recognising that open explanations agree on a step is one reasoner's judgment, though a team often makes it together.
+
+**Can it be removed?** EpistemicROI values information at zero when every outcome leads to the same decision, and Reasonbridge explains one decision in the terms of each value set it affects; neither keeps agreement on an action apart from agreement on its cause, or limits that agreement to the next step. TensionHold blocks downstream decisions while a contradiction is held; ActionConvergence is the case where the next step need not wait for the explanations to be reconciled. Removable if acting is assumed to need a settled diagnosis.
+
+**Intended use.** acting while rival explanations remain open, when they call for the same next step.
+
+**Future uses.** agents responding to incidents before the cause is known; agent teams that agree on a step but not on why.
+
+**Broad-use contexts.** incident response, medicine (treatment before diagnosis), engineering, policy under uncertainty, negotiation.
+
+**Broad-use intersection (review hypothesis).** two or more open explanations, and a next action that each of them calls for.
+
+**Varies (descendant territory).** how far the convergence extends, and how the explanations are separated afterwards.
+
+**Extension shape.** a variant for incident response; a variant for parties who agree on a step but not on its reasons.
+
+**Design tensions.**
+- Acting can change the evidence, as pausing a rollout removes the conditions in which the failure appeared, so the shared step can make the cause harder to separate later.
+
+**Tradeoffs.**
+- Gains: action without a forced diagnosis.
+- Gives up: the sense that agreeing on what to do settles why.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a situation and prescribes no response. Reasonbridge is the normative counterpart: one decision justified differently by each value set it affects, where ActionConvergence is one action called for by each open explanation.
+- Novelty, from recall and unverified: known. Nearest known concepts: no-regret actions; robust decision-making; value of information; incompletely theorized agreement.
+- Caution: the card licenses acting before the cause is known, which can be read as licence for any step the explanations share, irreversible ones included. Its failure modes treat delay as the failure, so the caution keeps safety, reversibility and authority as separate checks.
+
+**In the family.** EpistemicROI prices information against the decision it would change, Reasonbridge explains one decision for each value set, EvidenceUnderdetermination is the open state, DistinguishingTest separates the explanations when their next steps differ, and ActionConvergence is one next action that every open explanation calls for.
+
+---
 
 ### AdversarialSteel#90b1
 
@@ -24293,6 +28329,62 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
+### Aimscatter#ded3
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Aimscatter.json)
+
+**Gloss.** Effort disperses among competing directions until none receives enough to advance
+
+**Mechanism.**
+
+> Several directions keep drawing on a shared supply of effort or attention, and the allocation becomes too fragmented to sustain the progress each requires. Activity can continue in every direction while advancement stalls across the set. Switching and restarting can deepen the shortage but are not essential: even perfectly efficient allocation can be spread too thin. A single stalled direction, a short gap in visible output, or broad exploration that yields comparative learning is not an instance.
+
+**Invariants.**
+- Several directions compete for a shared capacity.
+- Over the interval considered, none of them receives enough of it to advance.
+
+**Failure modes.**
+- Latency read as dispersal: directions waiting on an external dependency, or developing out of sight, are taken to be starved.
+- Exploration read as dispersal: a broad portfolio that is producing comparative learning is taken to be scattered.
+- Person read as cause: dispersal is taken to show low ability or motivation.
+
+#### Design
+
+**Why it exists.** Spreading effort over many directions feels like progress on all of them. Aimscatter names the point where the spread itself stops every direction from advancing.
+
+**Why Mind.** Effort and attention are an agent's or a group's to allocate; one agent suffices.
+
+**Can it be removed?** Prioritize ranks options and ComputeBudget caps total cost; neither describes effort spread too thin to advance any direction, which can happen within a respected budget. Removable if every direction is assumed to advance as long as it receives some effort.
+
+**Intended use.** recognising when work, learning or attention is divided so finely that nothing reaches its next useful result.
+
+**Future uses.** agents juggling many tasks or threads under one budget.
+
+**Broad-use contexts.** project portfolios, learning several skills, research programmes, personal commitments, multi-task agents, organisational initiatives.
+
+**Broad-use intersection (review hypothesis).** competing directions, a shared capacity, and a notion of advancement over a stated interval.
+
+**Varies (descendant territory).** what counts as advancement and over what interval.
+
+**Extension shape.** a variant for attention within one task; a variant for organisational portfolios.
+
+**Design tensions.**
+- Keeping several options open can be valuable, and looks like dispersal from outside.
+
+**Tradeoffs.**
+- Gains: a name for activity without advancement across a set.
+- Gives up: counting activity in each direction as progress.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. StalledDirectionReview acts on a period without results; that trigger also fires during legitimate latency, so it is not a diagnosis of the process.
+- Novelty, from recall and unverified: known. Nearest known concepts: spreading oneself too thin; context-switching cost.
+
+**In the family.** Prioritize ranks, ComputeBudget caps cost, StalledDirectionReview pauses what does not advance, and Aimscatter is the dispersal itself.
+
+---
+
 ### AnalogyBridge#cf62
 
 `Mind` · `Strategy` · R2 · T1
@@ -24362,7 +28454,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - The ConceptBlend overlap has a specific cause rather than being a fuzzy boundary. The mechanism's last sentence said AnalogyBridge 'merges the structural properties of the source and target domains' — merging is ConceptBlend's distinguishing move, and ConceptBlend's own mechanism says 'Unlike analogy (A is like B), blending creates C (A + B)'. One sentence was describing the sibling's operation. The boundary is now stated on this card and `{{concept_blend}}` is wired.
 - The proposed verification invariant was REJECTED on placement: 'verification of analogy's validity' is on this entry's own Varies line. What survives that test is that the mapping be stated relation by relation — the citation move `ReceptivityGate`, `AdversarialSteel` and `Dialectic` all use. It also answers the first critique point, which is the real reason to want it: attribute independence was 'easier to state than to enforce' precisely because there was no written mapping to inspect. With one, both invariants become checkable and False Analogy becomes detectable.
 
-**In the family.** Part of the creative-reasoning cluster with ConceptBlend, Reframe, and Metaphor. Draws on LatentAttachment as its search substrate. Where AnalogyBridge maps source onto target, ConceptBlend fuses them into a third; the pattern boundary is real but narrow. Adjacent to AntifragileInversion which is a specific applied analogy (biological antifragility mapped onto system design).
+**In the family.** Part of the creative-reasoning cluster with ConceptBlend, Reframe, and Metaphor. Draws on LatentAttachment as its search substrate. Where AnalogyBridge maps source onto target, ConceptBlend fuses them into a third; the pattern boundary is real but narrow. Adjacent to AntifragileInversion which is a specific applied analogy (biological antifragility mapped onto system design). Patterns that build on it: Analogysnap.
 
 **Supersedes (prior versions).**
 - `AnalogyBridge#bff7`
@@ -24533,6 +28625,128 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
+### BoundaryReview#aa3b
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/BoundaryReview.json)
+
+**Gloss.** Test stated limits against practice, and enforce or restate them where the two disagree
+
+**Mechanism.**
+
+> Stated limits, such as a {{constraint}}, a policy boundary or a budget cap, are tested against practice on a schedule by sampling cases near the boundary. Where practice and statement disagree, the limit is either enforced as stated or restated to match what is intended.
+
+**Invariants.**
+- Limits are tested against sampled cases near the boundary on a stated schedule.
+- Each disagreement between practice and statement ends in enforcement or a restatement.
+
+**Failure modes.**
+- Paper limit: the limit is stated and routinely crossed.
+- Silent restatement: practice redefines the limit without anyone deciding it.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{constraint}}` | `sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc` |
+
+#### Design
+
+**Why it exists.** Stated limits drift in practice until they mean nothing. BoundaryReview samples cases near the boundary and forces a choice: enforce the limit or restate it.
+
+**Why Mind.** One agent can test its own limits against practice.
+
+**Can it be removed?** Constraint states non-negotiable limits and ScopeFreeze locks scope; neither tests whether practice still honours them. Removable if limits are enforced automatically.
+
+**Intended use.** policies, budgets, scopes and rules that people or agents apply by hand.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** content policy, budgets, API rate limits, safety boundaries, project scope, house rules.
+
+**Broad-use intersection (review hypothesis).** scheduled boundary sampling, and enforcement or restatement on each disagreement.
+
+**Varies (descendant territory).** the sampling scheme.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Strict enforcement of a limit that should change hurts.
+
+**Tradeoffs.**
+- Gains: limits that mean what they say.
+- Gives up: the flexibility of informal drift.
+
+**Critique (diagnostic, not contract requirements).**
+- Limitblur is the process this tests for. The review does not define who may restate a limit, how to escalate, or how complete the sampling must be, and a restatement does not license anyone to rewrite someone else's policy.
+- Novelty, from recall and unverified: known. Nearest known concepts: boundary erosion; scope creep.
+
+**In the family.** Constraint states limits, ScopeFreeze locks them, and BoundaryReview tests them against practice; Limitblur names the blurring it tests for.
+
+---
+
+### Brakegrow#2b56
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Brakegrow.json)
+
+**Gloss.** Progress that also sharpens the signs that going further in the same direction would do harm
+
+**Mechanism.**
+
+> Each step of progress in a direction also records what it revealed about that direction's limits: an observable sign that further steps would do harm, kept as a {{risk}} trigger. A direction counts as brakegrow progress only while each step adds or sharpens such a sign, and it is reviewed when any recorded sign appears.
+
+**Invariants.**
+- Each step adds a harm sign for the direction or sharpens an existing one.
+- Every recorded sign is observable during the work.
+- When a recorded sign appears, the direction is reviewed before the next step.
+
+**Failure modes.**
+- Momentum blindness: steps continue while no harm sign is recorded.
+- Alarm inflation: vague signs are recorded that could never fire.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{risk}}` | `sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91` |
+
+#### Design
+
+**Why it exists.** Progress usually builds momentum and blinds the one making it to the direction's limits. Brakegrow makes each step also produce a sign of when to stop, so the ability to stop grows with the progress.
+
+**Why Mind.** It governs the direction of one agent's work.
+
+**Can it be removed?** MarginalValueRule and OptimalStop decide when to stop from estimates; neither requires progress itself to produce the stopping signs. Removable if stopping is left to separate review.
+
+**Intended use.** pursuing a direction whose benefits fall or reverse past some point.
+
+**Future uses.** optimisation loops; capability work in AI; scaling decisions.
+
+**Broad-use contexts.** optimisation and tuning, product growth, scientific programmes, AI capability development, personal training, policy rollout.
+
+**Broad-use intersection (review hypothesis).** a direction, a step, a recorded harm sign per step, and a review when a sign appears.
+
+**Varies (descendant territory).** how harm signs are found, their thresholds, and who reviews.
+
+**Extension shape.** a team variant with an independent sign-keeper.
+
+**Design tensions.**
+- Requiring a new sign each step may push vague or invented signs.
+
+**Tradeoffs.**
+- Gains: stopping ability that grows with progress.
+- Gives up: some speed per step.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: partly new. Nearest known concepts: knowing when to stop; stopping rules.
+
+**In the family.** MarginalValueRule and OptimalStop decide stopping; Risk carries the triggers; Brakegrow makes progress generate them.
+
+---
+
 ### Bubble#dd4e
 
 `Mind` · `Strategy` · R1 · T1
@@ -24615,7 +28829,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
-### Build#ddb2
+### Build#e2c4
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -24663,7 +28877,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 | --- | --- | --- |
 | `accepts` | `{{spec}}` | `sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7` |
 | `references` | `{{act}}` | `sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455` |
-| `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438` |
+| `references` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `references` | `{{plan}}` | `sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32` |
 | `references` | `{{prototype}}` | `sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b` |
 | `yields` | `{{artifact}}` | `sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee` |
@@ -24708,6 +28922,7 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `Build#24b9`
 - `Build#7798`
 - `Build#8c12`
+- `Build#ddb2`
 
 ---
 
@@ -24811,6 +29026,64 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 - `CapacityPressure#739d`
 - `CapacityPressure#f289`
 - `CapacityPressure#ddfe`
+
+---
+
+### Capacitylag#977c
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Capacitylag.json)
+
+**Gloss.** Expectations or demands increase ahead of the capacity available to meet them
+
+**Mechanism.**
+
+> New demands arrive or grow before the relevant abilities, resources or coordination have developed enough to meet them, and the gap is produced or widened by that difference in timing, even where capacity is improving. A fixed mismatch without that timing is simply insufficient capacity, and a loss of capacity under unchanged demands is not an instance. The comparison is relative to particular demands and conditions, not a judgment of general ability.
+
+**Invariants.**
+- Demands arrive or increase over the interval considered.
+- The capacity to meet them develops more slowly than they grow.
+
+**Failure modes.**
+- Gap read as unwillingness: the gap is taken to show that effort is being withheld.
+- Output read as catching up: rising output is taken to show that capacity has caught up.
+- Catching up assumed: closing the gap is assumed to be the only right outcome, when demands can also be reduced or refused.
+
+#### Design
+
+**Why it exists.** When demands outgrow capacity, the gap is read as a failing of whoever cannot meet them. Capacitylag names the timing difference that produces the gap.
+
+**Why Mind.** One agent's demands can outgrow its capacity; no second party is needed, though demands often come from others.
+
+**Can it be removed?** CapacityPressure deliberately restricts resources, and Limitlisten measures present limits before a demanding step; neither names demands getting ahead of developing capacity. Removable if demands are assumed to grow no faster than capacity.
+
+**Intended use.** recognising when demands are outrunning the capacity to meet them.
+
+**Future uses.** agents whose workloads expand faster than their tools or training.
+
+**Broad-use contexts.** growing organisations, education, new roles, rapid product growth, expanding agent workloads.
+
+**Broad-use intersection (review hypothesis).** growing demands, a capacity that develops more slowly, and a gap that the timing produces.
+
+**Varies (descendant territory).** which demands grow and which capacity lags.
+
+**Extension shape.** a variant for organisations; a variant for learners.
+
+**Design tensions.**
+- The gap invites blame, though it is a matter of timing.
+
+**Tradeoffs.**
+- Gains: a name for gaps produced by timing rather than inadequacy.
+- Gives up: reading every gap as a shortfall of the person or system.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Demands can be reduced or refused as well as met.
+- Novelty, from recall and unverified: known. Nearest known concepts: growing pains; scaling debt; demand outpacing supply.
+- Support that recedes faster than independent capacity develops is a case: the receding support is a demand arriving on the capacity that remains.
+- When a slow-changing body faces fast-changing demands, it is a Capacitylag case if the question is whether its capacity keeps up, and a Scaleasynchrony case if the question is how it fits with a level it depends on or that depends on it.
+
+**In the family.** Identitylag lags in self-understanding, Scaleasynchrony compares levels, Limitlisten measures present limits, and Capacitylag is demand outrunning capacity.
 
 ---
 
@@ -25488,6 +29761,61 @@ _Note: Artifact is immutable and content-addressed, so each pass produces a succ
 
 ---
 
+### Crossripening#9f96
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Crossripening.json)
+
+**Gloss.** Development in one area makes development in another newly possible
+
+**Mechanism.**
+
+> A change in one capacity or setting supplies something another developmental path lacked, such as a prerequisite, access, support, a distinction or a way of practising, so that the second path gains an opportunity for development it did not have before. The second development need not then occur, and parallel improvement without such a contribution is not an instance.
+
+**Invariants.**
+- The contribution crosses two distinguishable areas of development.
+- It changes what development is possible in the receiving area.
+
+**Failure modes.**
+- Coincidence read as enabling: two areas improving at once are taken as one enabling the other.
+- Possibility read as certainty: a newly possible development is assumed to happen.
+
+#### Design
+
+**Why it exists.** Development is tracked area by area, so the openings one area creates in another go unnoticed. Crossripening names that cross-area enabling.
+
+**Why Mind.** One learner can develop in one area and thereby open another; no second party is needed.
+
+**Can it be removed?** ConceptBlend merges concepts into a third, and Cocapacity records joint capacity among parties; neither describes development in one area opening development in another within the same learner or system. Removable if areas of development are assumed independent.
+
+**Intended use.** recognising when progress in one area has opened a path in another.
+
+**Future uses.** agents whose new tools or skills open further lines of learning.
+
+**Broad-use contexts.** learning, research, creative practice, organisations, curricula, agent tool use.
+
+**Broad-use intersection (review hypothesis).** two distinguishable areas, and a contribution from one that changes what development is possible in the other.
+
+**Varies (descendant territory).** what the first area supplies: a prerequisite, access, support, a distinction or a way of practising.
+
+**Extension shape.** a reciprocal variant in which several paths strengthen one another.
+
+**Design tensions.**
+- An opening is easy to claim and hard to show before the second development happens.
+
+**Tradeoffs.**
+- Gains: a name for development that opens other development.
+- Gives up: tracking each area on its own.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Reciprocity is not required; a reciprocal variant could be a separate card.
+- Novelty, from recall and unverified: known. Nearest known concepts: transfer of learning; enabling technologies; the adjacent possible.
+
+**In the family.** ConceptBlend merges concepts, Cocapacity creates joint capacity, and Crossripening is one area's development opening another's.
+
+---
+
 ### Crystallize#0642
 
 `Mind` · `Strategy` · R1 · T2
@@ -25920,7 +30248,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### DiscoveryProtocol#21f4
+### DiscoveryProtocol#299c
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -25930,7 +30258,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **Mechanism.**
 
-> A protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five orthogonal dimensions: variance (generate candidates that are precise in different directions, each generator bound to its own declared cognitive mode), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation, judged by {{novelty}}), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generation by many parallel {{solver}}s, then reduction by a solver whose faculty is evaluation and composition rather than generation. The reducing solver routes among modes: aggregation for ensembles, a tournament for adversarial selection, a portfolio for quality-diversity preservation, and {{synthesis}}-based merging of compatible mechanisms. A taxonomist solver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.
+> A protocol for population-based discovery. Distinct from the {{discover}} primitive (query-and-return): Discovery Protocol is the Generate + Reduce architecture for searching a solution space. Decomposes discovery via {{conceptual_decomposition}} into five dimensions that apply wherever a solution space must be searched: variance (generate candidates that are precise in different directions, each generator bound to its own declared cognitive mode), selection (judge which candidates are good), novelty (distinguish structural originality from surface variation, judged by {{novelty}}), composition (merge compatible fragments into solutions no single candidate contains), and saturation (detect when further generation yields diminishing novelty). Two phases behind hard boundaries: generation by many parallel {{solver}}s, then reduction by a solver whose faculty is evaluation and composition rather than generation. The reducing solver routes among modes: aggregation for ensembles, a tournament for adversarial selection, a portfolio for quality-diversity preservation, and {{synthesis}}-based merging of compatible mechanisms. A taxonomist solver classifies outputs into a growing ontological graph for saturation detection. Applies to drug discovery, hypothesis generation, strategic planning, creative production.
 
 **Invariants.**
 - Hard-boundary isolation: generators cannot see each other's outputs during generation; the reduction boundary is the first synthesis point.
@@ -25941,7 +30269,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
 | `composes_with` | `{{novelty}}` | `sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{discover}}` | `sema:Discover#mh:SHA-256:f6e09de2a5b38c031651d22539fafaa46e32869b06dae8009bde18cb249da69b` |
@@ -25980,6 +30308,72 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DiscoveryProtocol#fcb4`
 - `DiscoveryProtocol#cc28`
 - `DiscoveryProtocol#09e2`
+- `DiscoveryProtocol#21f4`
+
+---
+
+### DistinguishingTest#0439
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/DistinguishingTest.json)
+
+**Gloss.** Find an observation that rival explanations predict differently before gathering more evidence that fits them all
+
+**Mechanism.**
+
+> When the evidence in hand leaves two or more explanations standing, as in {{evidence_underdetermination}}, each explanation's prediction is worked out for observations not yet made, and an observation is chosen on which the predictions differ: if a failure comes from expired credentials, the request is rejected with an authentication error; if it comes from lost connectivity, the request never reaches the server. The predictions, and which outcome would favour which explanation, are recorded before the observation is made. An inconclusive result is a permitted outcome and is recorded as inconclusive, not read as favouring an explanation. Evidence that every explanation predicts equally is not sought as a test, however easy it is to obtain, and an observation is worth making only when the decision at hand depends on which explanation holds.
+
+**Invariants.**
+- Two or more explanations are named, each with its predicted outcome for the chosen observation.
+- The predicted outcomes differ, and they are recorded, with what each would favour, before the observation is made.
+- An inconclusive result is recorded as inconclusive.
+
+**Failure modes.**
+- Confirming test: an observation every explanation predicts is gathered and read as support for the favoured one.
+- After-the-fact prediction: the predictions are stated once the result is known, so any outcome can be read as favouring the favoured explanation.
+- Forced verdict: an inconclusive result is read as favouring one explanation.
+- Distinction without consequence: a costly distinguishing observation is made although the decision at hand is the same under every explanation.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{evidence_underdetermination}}` | `sema:EvidenceUnderdetermination#mh:SHA-256:999b3244c9eb73cf0968148e4ff5dd11e3abc42330ed5faafe618af972079e28` |
+
+#### Design
+
+**Why it exists.** Faced with rival explanations, the natural move is to gather more evidence, and most evidence that is easy to gather fits every explanation. Diagnosis advances only through observations the explanations disagree about. DistinguishingTest has the agent name the rivals, work out what each predicts, and choose the observation where they part, before looking.
+
+**Why Mind.** Choosing the next observation is one reasoner's planning step; no second party has to take part.
+
+**Can it be removed?** EmpiricalTest checks the predictions of one conclusion, ConfirmationBlock seeks evidence against one hypothesis, Experiment isolates a variable against a control, Falsification refutes a hypothesis by an observed incongruity, and CounterfactualAnchor freezes an expectation before observing; none chooses the observation on which rival explanations disagree. Removable if evidence is only ever gathered to support or refute one explanation at a time.
+
+**Intended use.** choosing the next observation when two or more explanations fit the evidence in hand.
+
+**Future uses.** agents debugging and diagnosing incidents; agents planning experiments or searches; agents settling which of two readings of a request was meant.
+
+**Broad-use contexts.** debugging and operations, medicine (differential diagnosis), science, intelligence analysis, forensic work, user research.
+
+**Broad-use intersection (review hypothesis).** two or more named explanations, their predictions for an observation not yet made, and predictions that differ.
+
+**Varies (descendant territory).** how predictions are derived, what the observation costs, and how sharply each outcome separates the explanations.
+
+**Extension shape.** a variant for differential diagnosis; a variant for choosing between readings of an instruction.
+
+**Design tensions.**
+- The most telling observation is often the most expensive, so the test chosen trades discrimination against cost.
+
+**Tradeoffs.**
+- Gains: progress through observations that separate explanations.
+- Gives up: the comfort of evidence that fits every explanation.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do. EvidenceUnderdetermination is the state it responds to.
+- EpistemicROI decides whether an observation is worth its cost; DistinguishingTest decides which observation would separate the explanations. Its Distinction without consequence failure mode is the case EpistemicROI values at zero.
+- Novelty, from recall and unverified: known. Nearest known concepts: crucial experiment; differential diagnosis; diagnosticity in the analysis of competing hypotheses; likelihood ratio.
+
+**In the family.** EmpiricalTest checks one conclusion's predictions, ConfirmationBlock seeks evidence against one hypothesis, Experiment isolates a variable, EpistemicROI prices information, and DistinguishingTest chooses the observation rival explanations disagree about. ActionConvergence is the case where the explanations agree on the next step, so separating them can wait.
 
 ---
 
@@ -26074,6 +30468,126 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `DogfoodFirst#b595`
 - `DogfoodFirst#3b9d`
 - `DogfoodFirst#2825`
+
+---
+
+### Doubleloop#23ac
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Doubleloop.json)
+
+**Gloss.** A feedback loop that can also revise the standard it judges outputs by, recording each revision separately
+
+**Mechanism.**
+
+> A {{feedback}} loop that, besides adjusting outputs, reviews the {{criteria}} it judges them by. When outputs keep failing, or keep passing without serving the goal, the criteria are reviewed, and revised only if the review finds they no longer serve the goal; each review and revision is recorded with its trigger and reason, separately from changes to the outputs.
+
+**Invariants.**
+- Reviews and revisions of the criteria are recorded separately from changes to the outputs, each with its trigger.
+- The criteria are revised only after a review on a recorded trigger, never to make the current output pass.
+
+**Failure modes.**
+- Goalpost moving: the criteria are revised to make failing outputs pass.
+- Frozen standard: outputs are tuned against criteria that no longer serve the goal.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{criteria}}` | `sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb` |
+| `references` | `{{feedback}}` | `sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d` |
+
+#### Design
+
+**Why it exists.** Feedback loops tune outputs against a fixed standard, even when the standard has stopped serving the goal. Doubleloop reviews the standard on recorded triggers and revises it when the review warrants, without letting it slide to make failures pass.
+
+**Why Mind.** One agent or system runs the loop and its review.
+
+**Can it be removed?** Feedback names what should change in outputs and EvaluatorOptimizer optimises against the evaluator's metric; neither revises the standard itself. Removable if standards are fixed by design.
+
+**Intended use.** learning loops whose success criteria may themselves be wrong.
+
+**Future uses.** agent self-improvement; evaluation design; organisational learning.
+
+**Broad-use contexts.** organisational learning, model training and evaluation, policy review, personal habits, product metrics, scientific methodology.
+
+**Broad-use intersection (review hypothesis).** a feedback loop, criteria reviewed on recorded triggers, and revisions recorded separately from outputs.
+
+**Varies (descendant territory).** what counts as a trigger and who may revise the criteria.
+
+**Extension shape.** a variant where criteria revisions need a second party's approval.
+
+**Design tensions.**
+- Revising standards is exactly how goalposts move; the trigger and the review are the guard.
+
+**Tradeoffs.**
+- Gains: standards that can be corrected.
+- Gives up: the stability of fixed standards.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle borrows the established term 'double-loop learning'. The card pins it to recorded triggers and separate records.
+- Repeated failure opens a review, not a revision: failing outputs can come from a poor process under a sound standard.
+- Novelty, from recall and unverified: known. Nearest known concepts: double-loop learning.
+
+**In the family.** Feedback adjusts output, EvaluatorOptimizer optimises against a metric, and Doubleloop revises the metric.
+
+---
+
+### Echohollow#ad70
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Echohollow.json)
+
+**Gloss.** A recurring practice keeps its outward form while its responsiveness to what it meets fades
+
+**Mechanism.**
+
+> Repetition keeps reproducing a recognisable practice while observations, circumstances or participants' responses have less influence on how it proceeds. The practice can still produce activity, records or small changes while losing the input-sensitive relation that made its repetitions responsive. Mere repetition is not an instance: a practice fixed from the outset never had the responsiveness to lose, and a considered decision that nothing needs to change is still a response.
+
+**Invariants.**
+- The same recurring practice is identifiable across occasions.
+- Its response to relevant differences in what it meets weakens over the interval considered.
+
+**Failure modes.**
+- Stability read as hollowness: a practice that keeps returning the same result because nothing relevant changed is taken to have stopped responding.
+- Variation read as responsiveness: small changes, such as a changing counter, are taken to show that the practice still responds.
+- Form judged alone: the practice is judged by its appearance without specifying which input-response relation is meant.
+
+#### Design
+
+**Why it exists.** Practices that keep their form look healthy, even after they stop responding to anything. Echohollow names the fading responsiveness behind an unchanged form.
+
+**Why Mind.** A practice responds to what it meets through an agent's or a group's handling of it; one agent suffices.
+
+**Can it be removed?** Loop requires state to change between iterations and Feedback carries an attributed correction signal; neither describes a practice whose form persists while its sensitivity to inputs fades. Removable if repetition is assumed to stay responsive.
+
+**Intended use.** recognising when a recurring practice, review or routine continues in form after it stopped responding to what it encounters.
+
+**Future uses.** agent routines and scheduled reviews that run unattended.
+
+**Broad-use contexts.** retrospectives, inspections, rehearsal and practice, recurring reports, rituals, scheduled agent jobs.
+
+**Broad-use intersection (review hypothesis).** an identifiable recurring practice and a specified input-response relation compared across occasions.
+
+**Varies (descendant territory).** which responsiveness is meant, such as to faults, to participants or to sound, and over what interval.
+
+**Extension shape.** a variant for scheduled reviews; a variant for embodied practice.
+
+**Design tensions.**
+- Responsiveness can include deciding not to change, which looks the same as hollowness from outside.
+
+**Tradeoffs.**
+- Gains: a name for form without response.
+- Gives up: reading a practice's continuation as a sign of health.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. PracticeResponseReview reviews after a stated number of unchanged cycles; that is a screening rule, not a diagnosis of the process.
+- A ceremonial repetition that serves remembrance through a stable form is not an instance, because responsiveness was never its purpose.
+- Novelty, from recall and unverified: known. Nearest known concepts: ritualism; going through the motions.
+
+**In the family.** Meaningthin weakens a purpose, Loop requires state change, PracticeResponseReview reviews unchanged cycles, and Echohollow is the fading responsiveness itself.
 
 ---
 
@@ -26246,6 +30760,69 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
+### Endsettle#d716
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Endsettle.json)
+
+**Gloss.** When something ends, close, transfer or release every open obligation before declaring the end
+
+**Mechanism.**
+
+> When an activity, project or role ends, its open obligations are listed: promises, scheduled jobs, held resources and pending replies. Each is closed, transferred by {{handoff}} or explicitly released, and the end is declared only when the list is empty.
+
+**Invariants.**
+- The open obligations are listed when the ending begins.
+- Each obligation is closed, transferred or explicitly released.
+- The end is declared only when the list is empty.
+
+**Failure modes.**
+- Zombie obligations: scheduled jobs and promises keep running after the end.
+- Endless ending: the list keeps growing and the end is never declared.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{handoff}}` | `sema:Handoff#mh:SHA-256:1323eea000780c4fc715bcc90b5ea28d6353c780ad561e86aeff723855650ab5` |
+
+#### Design
+
+**Why it exists.** Things end with obligations still running: scheduled jobs, promises, held resources. Endsettle closes the list before the end is declared.
+
+**Why Mind.** One agent can list and settle its own obligations.
+
+**Can it be removed?** Handoff passes control of a task and TaskLifecycle tracks task states; neither inventories the obligations of something ending. Removable if endings are rare.
+
+**Intended use.** projects, roles, services and agents being shut down.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** project closure, employee departure, service decommissioning, agent retirement, account deletion, contract termination.
+
+**Broad-use intersection (review hypothesis).** a list of open obligations, each closed, transferred or released, and an end declared only on an empty list.
+
+**Varies (descendant territory).** the inventory method.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+_Note: The coined handle names the failure and the card defines the guard, as ConfirmationBlock and HindsightBlock do._
+
+**Design tensions.**
+- Complete inventories are hard; something is always forgotten.
+
+**Tradeoffs.**
+- Gains: clean endings.
+- Gives up: the speed of simply stopping.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: closure; decommissioning.
+
+**In the family.** Successiongift transfers personal dependence, Handoff passes control, and Endsettle closes everything else.
+
+---
+
 ### EpistemicROI#b0d8
 
 `Mind` · `Strategy` · R2 · T1
@@ -26327,6 +30904,62 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `EpistemicROI#742a`
 - `EpistemicROI#d486`
 - `EpistemicROI#7b63`
+
+---
+
+### ErrorCostAsymmetry#b542
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ErrorCostAsymmetry.json)
+
+**Gloss.** When one kind of mistake costs far more than the other, the decision leans away from it, so the likeliest answer is not always the right action
+
+**Mechanism.**
+
+> A decision can go wrong in two directions, such as acting on a false alarm or ignoring a real one, shipping a defect or delaying a sound release, and the two mistakes cost very different amounts. Choosing by which outcome is most probable ignores that difference. The threshold for acting instead moves toward avoiding the costlier mistake: an unlikely but catastrophic failure can justify caution, and a likely but trivial one may not. The costs, and how far they differ, are stated so that the threshold can be checked and revised. Where the two mistakes cost about the same, this asymmetry does not apply.
+
+**Invariants.**
+- A decision can err in two or more directions whose costs are stated and differ substantially.
+- The threshold for acting is set from those costs together with the probabilities, not from the probabilities alone.
+
+**Failure modes.**
+- Probability-only choice: the likeliest outcome is acted on although the other mistake costs far more.
+- Unstated costs: the threshold leans one way without the costs that justify it being written down, so it cannot be checked.
+- Catastrophe everywhere: every remote, severe outcome is used to justify inaction, although its probability makes its expected cost small.
+
+#### Design
+
+**Why it exists.** Decisions are often made by asking which outcome is most likely, but the two ways of being wrong rarely cost the same. A screening test, a security alert, a release or an agent's choice between acting and asking each has a cheap mistake and an expensive one, and the threshold should lean away from the expensive one. ErrorCostAsymmetry names the lean and asks for the costs that justify it.
+
+**Why Mind.** Setting a decision threshold is one decision-maker's strategy.
+
+**Can it be removed?** Reversibility checks whether an action can be undone, FailClosed denies by default when a state is uncertain, RegretMinimization minimises the worst-case loss whatever its probability, EpistemicROI values information, and Satisfice accepts the first good-enough option; none sets a decision threshold from the unequal costs of the two ways of being wrong, weighed together with their probabilities. Removable if every error costs the same.
+
+**Intended use.** setting the threshold for a decision whose kinds of error cost very different amounts.
+
+**Future uses.** agents deciding whether to act, ask or escalate; alerting, screening and moderation thresholds; release and rollback decisions.
+
+**Broad-use contexts.** medicine and screening, security and fraud detection, engineering safety, finance, law, content moderation, agent autonomy.
+
+**Broad-use intersection (review hypothesis).** a decision that can err in two directions, the cost of each, and their probabilities.
+
+**Varies (descendant territory).** how the costs are estimated, how far apart they are, and who bears each.
+
+**Extension shape.** a variant for alert and screening thresholds; a variant for an agent choosing between acting and asking.
+
+**Design tensions.**
+- The costs often fall on different parties, so whose costs set the threshold is a value judgment, not a calculation.
+
+**Tradeoffs.**
+- Gains: thresholds that reflect what mistakes cost.
+- Gives up: acting on the likeliest answer alone.
+
+**Critique (diagnostic, not contract requirements).**
+- The card says how a threshold should lean and prescribes no particular threshold. FailClosed is one fixed choice of direction for system failures, and Reversibility supplies one common source of asymmetry.
+- Novelty, from recall and unverified: known. Nearest known concepts: asymmetric loss; decision thresholds set by error costs (Neyman-Pearson); the precautionary principle.
+
+**In the family.** Reversibility asks whether an action can be undone, FailClosed denies on uncertainty, RegretMinimization guards the worst case whatever its probability, EpistemicROI prices information, and ErrorCostAsymmetry sets a threshold from what each mistake costs and how likely it is.
 
 ---
 
@@ -26560,7 +31193,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - The 'as deadline approaches' schedule assumes deadlines exist and are known; open-ended tasks break the pattern's assumptions.
 - Environment drift means a change in the environment or option payoffs, not a change of an agent execution frame. The algorithm, deadline schedule, and immutable threshold raise separate questions about how exploration should respond to changing conditions.
 
-**In the family.** Allocation primitive paired with UCB (the specific algorithm), Bandit (the decision class), and Prioritize (resource allocation). Compare with Defer — ExploreExploit balances now vs later information; Defer waits for specific future information. Both time-trade decisions, on different axes.
+**In the family.** Allocation primitive paired with UCB (the specific algorithm), Bandit (the decision class), and Prioritize (resource allocation). Compare with Defer — ExploreExploit balances now vs later information; Defer waits for specific future information. Both time-trade decisions, on different axes. Patterns that build on it: Valueprobe.
 
 **Supersedes (prior versions).**
 - `ExploreExploit#88b0`
@@ -26640,7 +31273,62 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### FractalIntelligence#5e3d
+### Foundationfray#4f69
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Foundationfray.json)
+
+**Gloss.** Small losses in supporting practices progressively weaken the capabilities that depend on them
+
+**Mechanism.**
+
+> Repeated omissions, forgotten skills or deteriorating support reduce the reliability of basic practices, and more advanced activity continues for a time while its dependable conditions erode as the losses accumulate. The practice must still support the capability: a practice retired because a reliable replacement removed the dependency is not an instance.
+
+**Invariants.**
+- A supporting practice deteriorates over the interval considered.
+- A capability depends on that practice and weakens as it deteriorates.
+
+**Failure modes.**
+- Success read as soundness: a few successful advanced performances are taken to show intact foundations.
+- Obsolescence read as fraying: an obsolete practice is defended merely because it was once foundational.
+
+#### Design
+
+**Why it exists.** Advanced work continues on top of basics that are slowly being lost, and the loss shows only when the advanced work fails. Foundationfray names that erosion beneath.
+
+**Why Mind.** Supporting practices belong to a learner, a team or an agent; one practitioner suffices.
+
+**Can it be removed?** Leapdebt begins with a skipped foundation, and Decay attenuates a value at a set rate; neither describes present foundations eroding under the capabilities built on them. Removable if foundations are assumed to persist once established.
+
+**Intended use.** recognising when supporting practices are eroding beneath capabilities that still seem to work.
+
+**Future uses.** agents whose workflows depend on tools, memories or checks that degrade.
+
+**Broad-use contexts.** training and skills, maintenance, scientific institutions, calibration routines, agent memory and workflow dependencies.
+
+**Broad-use intersection (review hypothesis).** a supporting practice, a capability that depends on it, and accumulating losses in the practice.
+
+**Varies (descendant territory).** which support erodes and how the dependence shows.
+
+**Extension shape.** a variant for skills; a variant for technical maintenance.
+
+**Design tensions.**
+- Defending every old practice as foundational blocks legitimate change.
+
+**Tradeoffs.**
+- Gains: a name for erosion beneath working capabilities.
+- Gives up: trusting advanced results as proof of sound basics.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Decline need not be irreversible, uninterrupted or expressible through Decay's attenuation law.
+- Novelty, from recall and unverified: known. Nearest known concepts: skill fade; deferred maintenance.
+
+**In the family.** Leapdebt skips a foundation, Decay attenuates a value, and Foundationfray is a present foundation eroding.
+
+---
+
+### FractalIntelligence#1dca
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -26663,11 +31351,11 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:9a528d55f1912607b569a1663dbf4f1946e2c1bfb8facf20c4e124ebe65f43bc` |
+| `composes_with` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
 | `composes_with` | `{{localized_learning}}` | `sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950` |
-| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438` |
-| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21` |
-| `composes_with` | `{{problem_framer}}` | `sema:ProblemFramer#mh:SHA-256:0428e3addaa259d6827d1b6aa73a2a7fa4b93bad473ddb035bf3d4673408d05a` |
+| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
+| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
+| `composes_with` | `{{problem_framer}}` | `sema:ProblemFramer#mh:SHA-256:ad6b7fc1f14f2e26dd0d230f81382a2c602c365ebe4b9ad5fd390fb0c2d4c4fc` |
 | `composes_with` | `{{reason}}` | `sema:Reason#mh:SHA-256:81ec8196c7c1c761fe353c8d26463bcb61b54f844aa3422a40019f82ef202321` |
 | `composes_with` | `{{recursion_dive}}` | `sema:RecursionDive#mh:SHA-256:a86f17bad949a7a5405f04b4bc43a3e6be28c5c31e8328ccf178fa292719d754` |
 | `composes_with` | `{{reframe}}` | `sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a` |
@@ -26680,7 +31368,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | `references` | `{{strategy}}` | `sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef` |
 | `references` | `{{system}}` | `sema:System#mh:SHA-256:f8eb318a1113a10fead02fbf14ae433767ac1a69c9579cdb584cc622068e90b3` |
 | `references` | `{{task}}` | `sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d` |
-| `references` | `{{universal_solver_tree}}` | `sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7` |
+| `references` | `{{universal_solver_tree}}` | `sema:UniversalSolverTree#mh:SHA-256:f9fba480ef013c98691c0ccb6cbbd58dab5183e60798c550ff0de093dbd30727` |
 
 #### Design
 
@@ -26725,6 +31413,248 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `FractalIntelligence#5481`
 - `FractalIntelligence#7fad`
 - `FractalIntelligence#22a0`
+- `FractalIntelligence#5e3d`
+
+---
+
+### Futurefold#221d
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Futurefold.json)
+
+**Gloss.** Planning contracts toward immediate demands, leaving fewer distant possibilities in view
+
+**Mechanism.**
+
+> Immediate demands increasingly occupy planning, while possibilities and consequences farther ahead receive less consideration or drop from the effective horizon. The future held in view narrows even though more distant possibilities remain available. The contraction is relative to an earlier or otherwise relevant horizon, concerns what is actively considered rather than what is possible, and can be deliberate, temporarily appropriate or harmful.
+
+**Invariants.**
+- Planning considers a narrower horizon than an earlier or otherwise relevant one.
+- Immediate demands take part in the narrowing.
+
+**Failure modes.**
+- Short steps read as contraction: short execution steps are taken to show that the whole horizon narrowed.
+- External loss read as contraction: options removed by outside constraints are taken as a narrowed horizon.
+- Contraction read as error: every narrowing is treated as a mistake, including a deliberate one in an emergency.
+
+#### Design
+
+**Why it exists.** Urgent demands crowd out what lies further ahead, gradually and without a decision. Futurefold names that contraction of the future held in view.
+
+**Why Mind.** A planning horizon belongs to an agent's or a group's attention; one agent suffices.
+
+**Can it be removed?** Roadmap is a planning artifact, Futureclaim weighs future parties' needs, and HorizonReview keeps a distant item in each cycle; none describes the horizon contracting. Removable if planning horizons are assumed to stay where they were set.
+
+**Intended use.** recognising when planning has narrowed toward immediate demands.
+
+**Future uses.** agents and teams under continual urgent load.
+
+**Broad-use contexts.** teams under incident load, organisations in crisis, personal planning under pressure, research groups near deadlines, agents with full queues.
+
+**Broad-use intersection (review hypothesis).** a planning horizon, an earlier or relevant reference horizon, and immediate demands taking part in the narrowing.
+
+**Varies (descendant territory).** how far the horizon was and how far it contracts.
+
+**Extension shape.** a variant for organisations; a variant for personal planning.
+
+**Design tensions.**
+- Narrowing the horizon in an emergency can be right, and is still an instance.
+
+**Tradeoffs.**
+- Gains: a name for a shrinking future that does not wait for a missed opportunity.
+- Gives up: reading a full calendar as a full plan.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. HorizonReview is one separately defined always-review policy.
+- Novelty, from recall and unverified: known. Nearest known concepts: short-termism; tunnelling under scarcity; the urgent crowding out the important.
+
+**In the family.** Roadmap plans, Futureclaim weighs future needs, HorizonReview keeps a distant item in view, and Futurefold is the contraction itself.
+
+---
+
+### Futurestretch#afac
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Futurestretch.json)
+
+**Gloss.** Practise on tasks just beyond what can be done alone, with support that is withdrawn as skill grows
+
+**Mechanism.**
+
+> Practice uses a {{task}} the learner completes with support but not yet alone. Success is recorded both with support and without it, and when unsupported success passes a stated threshold, the support is withdrawn and harder tasks are chosen.
+
+**Invariants.**
+- Each practice task is one the learner completes with support but not yet alone.
+- Success is recorded both with support and without it.
+- When unsupported success passes the threshold, support is withdrawn and the task is made harder.
+
+**Failure modes.**
+- Comfort practice: tasks stay within what is already mastered.
+- Overreach: tasks stay so far beyond reach that support carries all the work.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{task}}` | `sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d` |
+
+#### Design
+
+**Why it exists.** Practice is most useful just beyond current skill, with support. Too easy teaches nothing and too hard teaches helplessness. Futurestretch keeps practice in that band and withdraws support as skill grows.
+
+**Why Mind.** One learner and its practice tasks.
+
+**Can it be removed?** Task defines a unit of work and Ladderdrop retires tools; neither selects practice in that band. Removable if practice is not deliberate.
+
+**Intended use.** tutoring, training and skill building, for people or agents.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** tutoring, sports coaching, apprenticeship, curriculum design, agent capability training, onboarding.
+
+**Broad-use intersection (review hypothesis).** tasks completed with support but not yet alone, success recorded both ways, and support withdrawn at a threshold.
+
+**Varies (descendant territory).** the threshold and the kind of support.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Measuring unsupported success requires removing support, which can discourage.
+
+**Tradeoffs.**
+- Gains: steady growth at the edge of ability.
+- Gives up: the comfort of mastered tasks.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the zone of proximal development.
+
+**In the family.** Ladderdrop withdraws tools, Leapsettle consolidates, and Futurestretch keeps practice at the edge.
+
+---
+
+### GeneralProblemSolvingProtocol#4351
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/GeneralProblemSolvingProtocol.json)
+
+**Gloss.** Approach any problem through six dimensions: scope, evidence, constraints, stakeholders, mechanism and dynamics
+
+**Mechanism.**
+
+> A protocol for problems that no specialized protocol fits, obtained by applying the four-test decomposition ({{conceptual_decomposition}}) to problem-solving itself. It proposes six dimensions: scope (what is the problem: its boundary, its ambiguities and its addressable sub-problems), evidence (what is known: data, source evaluation, uncertainty), constraints (what limits a solution: resources, physical laws, regulation, ethical boundaries), stakeholders (who is involved: affected parties, competing interests, power, consent), mechanism (how a solution works: causal structure, design, components) and dynamics (how things change over time: feedback, adaptation, degradation, unintended consequences). Each dimension is addressed for the problem at hand. It is what a {{root_solver}} uses when no specialized protocol fits; the specialized protocols refine it, as an evaluation protocol deepens scope, a making protocol deepens mechanism, and an ethical protocol deepens where stakeholders meet constraints. The six are a proposal to test, not an established result.
+
+**Invariants.**
+- Each of the six dimensions is addressed for the problem at hand.
+- The protocol applies where no specialized protocol fits; where one fits, the problem goes to it.
+
+**Failure modes.**
+- Dimension skipped: a problem is solved without its scope, constraints or stakeholders being stated, and the solution fails on what was left out.
+- Checklist reading: the six are filled in as headings without shaping the solution.
+- General where specific fits: the general protocol is used although a specialized protocol fits the problem and would go deeper.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{conceptual_decomposition}}` | `sema:ConceptualDecomposition#mh:SHA-256:d0fc6e67c984608fb949bed69ba7e5e3bc022b45bfe173042eec4846b33a5538` |
+| `references` | `{{root_solver}}` | `sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca` |
+
+#### Design
+
+**Why it exists.** An agent told to look for a pattern that fits its problem needs a fallback when no specialized protocol fits. The Fractal Intelligence paper derives one by applying the four-test decomposition to problem-solving itself: six dimensions that every problem in its claimed range has. GeneralProblemSolvingProtocol makes that fallback a named structure, and the specialized protocols become its refinements.
+
+**Why Mind.** Structuring the approach to a problem is one solver's strategy, though its stakeholders and evidence may involve others.
+
+**Can it be removed?** MetaProtocols regulate the solver tree, and the specialized protocols, such as EthicalReasoningProtocol, PURE and DiscoveryProtocol, each deepen one kind of need; none gives a structure for an arbitrary problem. Removable if every problem fits a specialized protocol.
+
+**Intended use.** approaching a problem that no specialized protocol fits.
+
+**Future uses.** a root solver's default protocol; agents planning open-ended tasks; reviews that check a plan covered every dimension.
+
+**Broad-use contexts.** engineering and design, policy and law, medicine, conflict resolution, research planning, everyday decisions.
+
+**Broad-use intersection (review hypothesis).** a problem, and the six dimensions addressed for it.
+
+**Varies (descendant territory).** how deeply each dimension is addressed, and which specialized protocol takes over a dimension.
+
+**Extension shape.** variants that deepen one dimension, as the specialized protocols do.
+
+**Design tensions.**
+- Six dimensions for every problem can be heavy for simple ones, while skipping one is how solutions fail.
+
+**Tradeoffs.**
+- Gains: a complete default structure for any problem.
+- Gives up: starting from whichever aspect of the problem is most visible.
+
+**Critique (diagnostic, not contract requirements).**
+- Follows the Fractal Intelligence paper's General Problem-Solving Protocol: the six dimensions, the four-test argument for them, the routing to specialized protocols, and the caveat that the six remain a decomposition to test.
+- Novelty, from recall and unverified: known in parts. Nearest known concepts: problem-solving schemes such as Polya's; stakeholder analysis; systems thinking's attention to dynamics.
+
+**In the family.** The specialized protocols each deepen one dimension: PURE deepens scope for evaluation, EthicalReasoningProtocol the meeting of stakeholders and constraints, and a making protocol mechanism. GeneralProblemSolvingProtocol is the default they refine.
+
+---
+
+### HorizonReview#9fd6
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/HorizonReview.json)
+
+**Gloss.** Keep at least one item beyond the immediate horizon in every planning cycle
+
+**Mechanism.**
+
+> Each planning cycle reviews at least one item on the {{roadmap}} beyond the current horizon. If a plan has held only near-horizon items for a stated number of cycles, the contraction is recorded and the horizon is reconsidered.
+
+**Invariants.**
+- Each planning cycle reviews at least one item beyond the current horizon.
+- A plan that has held only near-horizon items for the stated number of cycles is flagged.
+
+**Failure modes.**
+- Horizon collapse: urgent work crowds out everything distant.
+- Distant theatre: long-range items are reviewed in name and never acted on.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{roadmap}}` | `sema:Roadmap#mh:SHA-256:959d72fa090e38c0600aa4fc3db975a0a957b94913638a70da91351a18e733ae` |
+
+#### Design
+
+**Why it exists.** Under pressure, planning contracts to what is due next, and the distant future disappears. HorizonReview keeps at least one far item under review every cycle.
+
+**Why Mind.** One planner keeps its own horizon.
+
+**Can it be removed?** Roadmap holds items over time and Futureclaim weighs future people's needs; neither prevents planning from contracting. Removable if plans are reviewed at several horizons.
+
+**Intended use.** recurring planning under pressure.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** product planning, research agendas, personal planning, agent task queues, public budgets, maintenance planning.
+
+**Broad-use intersection (review hypothesis).** one far item reviewed per cycle, and a flag after a stated number of near-only cycles.
+
+**Varies (descendant territory).** the horizon definition.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Crises sometimes really do require near-only focus.
+
+**Tradeoffs.**
+- Gains: a horizon that survives pressure.
+- Gives up: a little focus in crises.
+
+**Critique (diagnostic, not contract requirements).**
+- Futurefold is the process this counters. Reviewing a distant item is not committing to act on it, and whether the policy suits a crisis is the caller's choice.
+- Novelty, from recall and unverified: known. Nearest known concepts: short-termism; tunnelling under scarcity.
+
+**In the family.** Futureclaim weighs future needs, Brakegrow limits harmful progress, and HorizonReview keeps the horizon open; Futurefold names the contraction it counters.
 
 ---
 
@@ -26933,6 +31863,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - No invariants or failure modes listed — the pattern is almost entirely heuristic. 'Use humor' isn't a mechanism, it's advice.
 - The recipient's 'defensive filtering' is an assumption about their psychology the pattern treats as given; for different recipients, Jester fails.
 - Conflates humor (which has its own genre discipline) with 'semantic incongruity' in general; the category is too broad.
+- Caution: the stated mechanism is to deliver content without triggering the recipient's defensive filtering, which doubles as a recipe for manipulation and for slipping content past a safety filter. The card has no invariants or failure modes.
 
 **In the family.** Social-communication primitive paired with Critique (the content), Diplomacy, and Framing. Uses Incongruity as its mechanism. Compare with Steelman — Jester delivers critique indirectly; Steelman strengthens opposing positions. Both are trust-preserving epistemic moves.
 
@@ -27013,6 +31944,66 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - The invariant 'If the moment is wrong, more effort cannot fix it' is strong — some wrong moments are fixable with enough effort.
 
 **In the family.** Temporal-sensitivity primitive paired with ReceptivityGate (the receptivity signal), AttentionMarkets (the system-load signal), and Heartbeat (the general signal substrate). Compare with Defer — Kairos detects good moments; Defer postpones until good moments. Related temporal reasoning primitives.
+
+---
+
+### Ladderdrop#5927
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Ladderdrop.json)
+
+**Gloss.** A tool that states the sign that it has done its job, and is withdrawn when the sign appears
+
+**Mechanism.**
+
+> A tool introduced to build a capacity, such as a scaffold, checklist, template or framework, states the observable sign that the capacity is built. When the sign appears, the tool is withdrawn or its continued use is justified anew. It is the move a {{sunsetkind}} makes for categories, applied to tools and triggered by success.
+
+**Invariants.**
+- The tool states the observable sign that its purpose is achieved.
+- When the sign appears, the tool is withdrawn or its continued use is justified anew.
+
+**Failure modes.**
+- Permanent scaffold: the tool stays after the capacity is built and becomes a crutch.
+- Premature removal: the tool is withdrawn before the sign appears.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{sunsetkind}}` | `sema:Sunsetkind#mh:SHA-256:5e6fde064d54045237cba7141efd7a69584a99867f722dcad1ee8d16e99c56f3` |
+
+#### Design
+
+**Why it exists.** Scaffolds and frameworks outlive their purpose and become crutches. Ladderdrop makes a tool state when it has done its job, and withdraws it then.
+
+**Why Mind.** It governs one agent's use of a tool.
+
+**Can it be removed?** Sunsetkind retires categories on a stated condition; Ladderdrop applies the same move to tools, triggered by success. Removable if tools are expected to stay.
+
+**Intended use.** introducing a checklist, template, scaffold or framework to build a skill.
+
+**Future uses.** agent prompting scaffolds; onboarding checklists; training wheels in curricula.
+
+**Broad-use contexts.** teaching, onboarding, software scaffolding, therapy techniques, coaching, agent prompting.
+
+**Broad-use intersection (review hypothesis).** a stated success sign, withdrawal when it appears, or justification for keeping the tool.
+
+**Varies (descendant territory).** how the success sign is observed and who decides on withdrawal.
+
+**Extension shape.** a gradual-withdrawal variant.
+
+**Design tensions.**
+- Removing a tool too early hurts as much as keeping it too long.
+
+**Tradeoffs.**
+- Gains: tools that do not become crutches.
+- Gives up: the comfort of a permanent aid.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: Wittgenstein's ladder; scaffolding.
+
+**In the family.** Sunsetkind retires categories and Ladderdrop retires tools; both state their ending when they are introduced.
 
 ---
 
@@ -27176,6 +32167,190 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
+### Leapdebt#0bcd
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Leapdebt.json)
+
+**Gloss.** Record what a skipped stage would have provided, and repay it or carry it explicitly into work that depends on it
+
+**Mechanism.**
+
+> When a stage of work or learning is skipped, what that stage would have provided is recorded as a debt: the check not run, the foundation not built, the case not tested. Each debt is held as an {{assumption}} with a trigger for repaying it, and work that depends on it waits for the repayment or carries the debt explicitly.
+
+**Invariants.**
+- Each skipped stage records what it would have provided.
+- Each debt is held as an assumption with a repayment trigger.
+- Work that depends on an unpaid debt waits for it or carries it explicitly.
+
+**Failure modes.**
+- Invisible debt: a skipped stage leaves no record, and later failures are never traced to it.
+- Debt paralysis: so many debts are recorded that none is repaid.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{assumption}}` | `sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097` |
+
+#### Design
+
+**Why it exists.** Skipping a stage saves time and leaves a gap that later work silently rests on. Leapdebt records the gap as an assumption with a repayment trigger.
+
+**Why Mind.** One agent records its own skipped stages.
+
+**Can it be removed?** Assumption tracks provisional premises and Reasonfade demotes judgments that have lost their reasons; neither records what a skipped stage would have provided. Removable if stages are never skipped.
+
+**Intended use.** shortcuts in learning, testing, review or construction.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** skipped tests, fast-tracked learning, MVP shortcuts, agent shortcuts under time pressure, technical debt, accelerated programmes.
+
+**Broad-use intersection (review hypothesis).** a record of what each skipped stage would have provided, a trigger for repaying it, and dependants that wait or carry it.
+
+**Varies (descendant territory).** the repayment trigger.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+_Note: The coined handle names the failure and the card defines the guard, as ConfirmationBlock and HindsightBlock do._
+
+**Design tensions.**
+- Recording every debt can make shortcuts feel as slow as the full path.
+
+**Tradeoffs.**
+- Gains: shortcuts with known costs.
+- Gives up: the illusion of free shortcuts.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: technical debt; learning gaps.
+
+**In the family.** Assumption holds provisional premises, Reasonfade catches lost reasons, and Leapdebt records skipped foundations.
+
+---
+
+### Leapsettle#3f9f
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Leapsettle.json)
+
+**Gloss.** Make a sudden advance reliable under varied conditions before building on it
+
+**Mechanism.**
+
+> After a sudden advance, such as a first success, a breakthrough result or a new capability, the advance is repeated under varied conditions, each repetition subject to {{verification}}, until it succeeds reliably. Work that depends on it waits until it has settled.
+
+**Invariants.**
+- The advance is repeated under conditions that differ from the first success.
+- Work that depends on the advance starts only after the stated reliability is reached.
+
+**Failure modes.**
+- One-off foundation: work is built on a success that happened once.
+- Settling forever: the advance is retested long after it is reliable.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{verification}}` | `sema:Verification#mh:SHA-256:c8de453752e750eb54e0494e7a222377cea99a739b049087ab426cd968b38778` |
+
+#### Design
+
+**Why it exists.** Breakthroughs are often one-off, and work built on them collapses. Leapsettle repeats the advance under varied conditions before anything rests on it.
+
+**Why Mind.** One agent consolidates its own advance.
+
+**Can it be removed?** Verification confirms a claim and Retry repeats on failure; neither consolidates a success before it is built on. Removable if successes are reliable from the start.
+
+**Intended use.** after a first success in research, engineering or learning.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** experiments, prototypes, new skills, model capabilities, first deployments, new habits.
+
+**Broad-use intersection (review hypothesis).** varied repetitions until a stated reliability, and dependants waiting.
+
+**Varies (descendant territory).** the reliability threshold and the variation in conditions.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Settling delays work that could start now.
+
+**Tradeoffs.**
+- Gains: foundations that hold.
+- Gives up: the speed of building on first success.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: replication; consolidation.
+
+**In the family.** Leapdebt records skipped stages, Futurestretch grows skill, and Leapsettle makes an advance reliable.
+
+---
+
+### Limitlisten#bb16
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Limitlisten.json)
+
+**Gloss.** Re-measure present limits before a demanding step instead of assuming yesterday's capacity
+
+**Mechanism.**
+
+> Before a demanding step, current limits are measured rather than assumed, such as remaining {{budget}}, rate limits, available context and present load. The step is sized to the measured limits, and a limit that differs from the last measurement is recorded.
+
+**Invariants.**
+- Current limits are measured before each demanding step.
+- The step is sized to the measured limits.
+- A limit that changed since the last measurement is recorded.
+
+**Failure modes.**
+- Stale capacity: a step is sized to limits that no longer hold.
+- Measurement drag: limits are re-measured so often that the work stalls.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{budget}}` | `sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef` |
+
+#### Design
+
+**Why it exists.** Agents size demanding steps to the capacity they had before, and fail when it has changed. Limitlisten measures current limits first.
+
+**Why Mind.** One agent measures its own present limits.
+
+**Can it be removed?** Budget allocates resources and Throttle rate-limits; neither requires re-measuring limits before each demanding step. Removable if limits never change.
+
+**Intended use.** demanding steps under limits that vary.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** API usage, context-limited agents, training under fatigue, budget-limited projects, manufacturing, sport.
+
+**Broad-use intersection (review hypothesis).** measured limits before demanding steps, steps sized to them, and changes recorded.
+
+**Varies (descendant territory).** which limits are measured.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Measuring costs time and sometimes resources.
+
+**Tradeoffs.**
+- Gains: steps sized to real capacity.
+- Gives up: a little speed.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: autoregulation.
+
+**In the family.** Budget sets limits, Throttle enforces them, Reachsense lists what is reachable, and Limitlisten measures the limits before acting.
+
+---
+
 ### ManifestPlanning#8bd4
 
 `Mind` · `Strategy` · R1 · T2
@@ -27253,40 +32428,43 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### MarginalValueRule#3499
+### MarginalValueRule#6611
 
 `Mind` · `Strategy` · R1 · T2
 
 [Source card (JSON)](../../data/vocabulary/MarginalValueRule.json)
 
-**Gloss.** Economic stop-condition for recursion
+**Gloss.** Deepen only while expected improvement plus an exploration credit, divided by incremental cost, exceeds a domain threshold
 
 **Signature.** `Budget(RecursionDive)`
 
 **Mechanism.**
 
-> The economic {{budget}} governor of {{recursion_dive}}. It permits going one level deeper only if Expected Improvement in Quality > Incremental Cost. It calculates the marginal value of additional depth using {{estimate}} and compares against remaining {{budget}}. This ensures the system solves problems with precision proportional to their stakes—simple problems get shallow treatment, complex problems get deep exploration.
+> The economic governor of depth for a {{recursion_dive}}. At any node, it deepens if and only if the expected improvement from going deeper, plus an exploration credit U(n), divided by the incremental cost, exceeds a domain-appropriate threshold θ and budget remains. Improvement and cost come from an {{estimate}} grounded where possible in {{pathway_memory}} records of what deepening similar problems has yielded and cost; without such history the estimate falls back to a calibrated prior, and without that to a fixed exploration budget spent on shallow probes. Incremental cost includes the interface load of an added boundary, such as translation, serialization, routing, synthesis, monitoring and semantic loss, and the value term credits any error or risk reduction that makes that load worthwhile. U(n) is inversely proportional to how much Pathway Memory exists at the node, so rarely visited nodes receive a temporary subsidy and the rule trades exploration against exploitation. θ is not a fixed depth limit: another problem or later evidence may justify more detail. Across sibling branches, the remaining {{budget}} goes to the branch with the highest ratio until no branch clears θ or the budget runs out, so problems get precision in proportion to their stakes.
 
 **Invariants.**
-- Dives only if expected improvement in quality exceeds the incremental cost.
+- Deepens if and only if (expected improvement + U(n)) / incremental cost exceeds θ and budget remains.
+- Incremental cost includes the interface load of the added boundary.
+- θ is set for the domain, not by depth: it does not rise level by level.
 - Never approves a dive that exceeds the remaining {{budget}}.
-- The bar rises by `depth_premium` at each level, so deeper dives must clear more.
 - Compares future value only; prior investment does not count ({{sunk_cost_ignore}}).
 
 **Failure modes.**
 - Overestimation: Expected value is too optimistic, wasting budget on low-value dives.
 - Underestimation: Expected value is too pessimistic, stopping too early on valuable problems.
 - Sunk Cost Fallacy: Continuing to invest because of prior investment, not future value.
+- Exploration starved: U(n) is left out, so rarely visited nodes are never deepened and their Pathway Memory never forms.
+- Interface load ignored: the cost of an added boundary is left out, so the rule deepens where the boundary costs more than it adds.
 
 **Parameters.**
 
 ```json
 [
   {
-    "name": "depth_premium",
+    "name": "theta",
     "type": "Ratio",
-    "range": "(1.0, 3.0]",
-    "description": "Factor by which the value-to-cost bar rises per level of depth."
+    "range": "(0.0, inf)",
+    "description": "Domain-appropriate threshold that the value-to-cost ratio must exceed; not a fixed depth limit."
   }
 ]
 ```
@@ -27297,45 +32475,45 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | --- | --- | --- |
 | `references` | `{{budget}}` | `sema:Budget#mh:SHA-256:4e3e536c9ecec8c1b0af017cfd0a26ba00e9f96047de4a690bf9d3db7f3720ef` |
 | `references` | `{{estimate}}` | `sema:Estimate#mh:SHA-256:3bacc0606623a0603b271a835b54157c2e86389c4282af86d88cd1ddd9ecf917` |
+| `references` | `{{pathway_memory}}` | `sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722` |
 | `references` | `{{recursion_dive}}` | `sema:RecursionDive#mh:SHA-256:a86f17bad949a7a5405f04b4bc43a3e6be28c5c31e8328ccf178fa292719d754` |
 | `references` | `{{sunk_cost_ignore}}` | `sema:SunkCostIgnore#mh:SHA-256:c2e5392f7eee86aa652633c415404ce13a5f83f4e239ad02fd230c75b3c2313c` |
 
 #### Design
 
-**Why it exists.** Recursion in solvers could continue indefinitely without an economic brake. MarginalValueRule names the per-dive economic check: go deeper only if expected quality improvement exceeds incremental cost. Without it, recursion-dive patterns have no principled termination and burn budget.
+**Why it exists.** Recursion in solvers could continue indefinitely without an economic brake. MarginalValueRule names the per-dive economic check: go deeper only if expected improvement, plus an exploration credit for rarely visited nodes, is worth the incremental cost by a domain threshold. Without it, recursion-dive patterns have no principled termination and burn budget.
 
 **Why Mind.** ratio test for depth allocation — cognitive rule
 
 **Can it be removed?** Removable in pre-budgeted recursion. The pattern's value is the per-level marginal check, which catches cases where an allowed budget would be better stopped early. Remove it and budget gets consumed to its floor rather than stopped when it stops paying.
 
-**Intended use.** economic stop-condition for recursion — go deeper only if expected-improvement > incremental-cost.
+**Intended use.** deciding whether, and on which branch, to deepen, by a value-to-cost ratio with an exploration credit.
 
 **Future uses.** any ROI-based continuation decision.
 
 **Broad-use contexts.** solver-depth decisions, research-effort stopping, optimization-iteration bounds, tree-search pruning, cognitive-effort allocation, meeting-length stopping.
 
-**Broad-use intersection (review hypothesis).** expected-improvement estimator, cost estimator, comparison rule.
+**Broad-use intersection (review hypothesis).** an expected-improvement estimate, an incremental-cost estimate that includes interface load, a domain threshold θ, and a record of how often each node has been visited.
 
-**Varies (descendant territory).** estimation method, cost-time-horizon, risk adjustment, stopping-threshold calibration, reset on surprise.
+**Varies (descendant territory).** estimation method, cost-time-horizon, risk adjustment, the choice of θ for the domain, the size of the exploration credit.
 
 **Extension shape.** `BayesianMarginalValueRule`, `RiskAdjustedMarginalValueRule`, `AdaptiveMarginalValueRule`.
 
 **Design tensions.**
 - Expected improvement vs actual — the rule is only as good as the estimate, and it errs in both directions: overestimating value wastes budget, underestimating it stops early. Both are named failure modes.
-- No override channel, by design — the rule will not approve a dive that exceeds the remaining budget even when the dive looks unusually valuable. Raising the ceiling belongs to whoever owns the budget; this pattern is the governor, not the arbiter.
-- A depth premium is mandatory — `depth_premium` has range (1.0, 3.0], which excludes a flat bar, so the card asserts that value must decay with depth. A recursion whose returns do not diminish is outside this pattern's scope, and the exclusion is visible only in the parameter range.
+- No override channel, by design — the rule will not approve a dive that exceeds the remaining budget even when the dive looks unusually valuable. Raising the ceiling belongs to whoever owns the budget; this pattern is the governor, not the arbiter. This budget rule is stricter than the paper's control loop, which checks the remaining budget before a dive and so can let the last dive overshoot.
+- Exploration credit vs budget — U(n) spends budget on rarely visited nodes before their value is known, which pays only if some of them prove worth deepening.
 
 **Tradeoffs.**
 - Gains: principled recursion termination, explicit marginal-value check, budget protection.
 - Gives up: straightforward recursion. Every dive pays the evaluation tax; for small recursions this is overhead.
 
 **Critique (diagnostic, not contract requirements).**
-- Adjudicated 2026-07-25 at ten transitive dependents and six direct consumers, the highest-fan-in card read in several batches. Three invariants, no parameters, and one of the three needed a quantity that nothing supplied: 'Diminishing Returns: deeper levels must show proportionally higher marginal value' names a rising bar with no rate. The varies line assigns 'stopping-threshold calibration' to descendants, which is where `depth_premium` belongs, and the invariant now says what rises and by how much.
-- The name of that invariant was also slightly against itself. Diminishing returns is the phenomenon — deeper levels yield less — while the rule is the response to it, a bar that rises with depth. Restated as the rule, since a consumer needs the obligation rather than the economics lesson.
+- The bar no longer rises with depth. A 2026-07-25 adjudication turned a 'diminishing returns' invariant into a `depth_premium` parameter; the Fractal Intelligence paper instead sets a domain threshold θ that is 'not a fixed depth limit' and adds an exploration credit U(n) that subsidises rarely visited nodes, which a rising bar would penalise. The card follows the paper, so `depth_premium` is replaced by `theta`.
 - 'Sunk Cost Fallacy: continuing to invest because of prior investment, not future value' was a named failure with nothing forbidding it, and `SunkCostIgnore` exists in the library for exactly this and was not referenced. Now wired, reverse edge checked first — the third time in this review that a card's own failure mode named a defect the library already had a pattern for, after `InputGuard` against `FailClosed` and `Synthesis` against `Decompose`.
 - this is the economic counterpart to ComputeBudget — both stop runaway cognition but on different axes (MVR is per-step, ComputeBudget is total-resource).
 
-**In the family.** Economic governor paired with Budget (resource bound), Estimate (marginal-value input), and DepthGovernor (quality-driven counterpart). Compare with RecursionDive — MarginalValueRule gates dives; RecursionDive is the dive itself. The economic counterpart to `ComputeBudget`: both stop runaway cognition, on different axes — this one is per-step marginal value, `ComputeBudget` is total resource.
+**In the family.** Economic governor paired with Budget (resource bound), Estimate (marginal-value input), PathwayMemory (the history estimates and the exploration credit draw on), and DepthGovernor (quality-driven counterpart). Compare with RecursionDive — MarginalValueRule gates dives; RecursionDive is the dive itself. The economic counterpart to `ComputeBudget`: both stop runaway cognition, on different axes — this one is per-step marginal value, `ComputeBudget` is total resource.
 
 **Supersedes (prior versions).**
 - `MarginalValueRule#a46a`
@@ -27343,6 +32521,64 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `MarginalValueRule#eebb`
 - `MarginalValueRule#48c4`
 - `MarginalValueRule#ffe1`
+- `MarginalValueRule#3499`
+
+---
+
+### Meaningthin#8366
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Meaningthin.json)
+
+**Gloss.** An activity continues while its connection to a valued purpose weakens
+
+**Mechanism.**
+
+> The practices that sustain an activity persist while what they accomplish, or what participants find valuable in them, becomes less connected to the purpose through which the activity mattered. Continuation and contribution separate: the activity can keep its routines, output or recognition without keeping the same relation to that purpose. Changed circumstances, changed aspirations and attachment to proxy outcomes are possible routes, not required causes. The activity need not have lost every purpose, the weakening need not be permanent or bad overall, and a practice deliberately redirected to a new purpose is not an instance.
+
+**Invariants.**
+- There is a continuing activity and a specified purpose valued from some perspective.
+- The activity's connection to that purpose weakens over the interval considered, in practical contribution or in experienced significance.
+
+**Failure modes.**
+- Output read as purpose: continued routines, output or recognition are taken to show that the purpose is still served.
+- Uncertainty read as loss: lack of evidence about the connection is taken as proof that it weakened.
+- Swapped bases: practical contribution and experienced significance are substituted for each other when judging the weakening.
+- Productivity verdict: the activity is required to justify itself through measurable output.
+
+#### Design
+
+**Why it exists.** Activities outlive the reasons they mattered, and their continuing output hides it. Meaningthin names the weakening connection itself, apart from any review that might catch it.
+
+**Why Mind.** A purpose has to be valued from some perspective, so the process needs an agent or a group; one agent suffices.
+
+**Can it be removed?** Goal pins a testable end state, Metricmirror reviews what a measure does, and PurposeLinkReview checks the link on a schedule; none describes the link weakening while the activity continues. Removable if activities are assumed to keep their purpose while they run.
+
+**Intended use.** recognising when an activity, meeting, practice or programme continues with less connection to what made it matter.
+
+**Future uses.** long-running agents and organisations whose routines outlast their reasons.
+
+**Broad-use contexts.** recurring meetings, creative routines, institutional programmes, reporting cycles, research lines, agent tasks.
+
+**Broad-use intersection (review hypothesis).** a continuing activity, a purpose valued from some perspective, and a basis for judging a weakening connection over an interval.
+
+**Varies (descendant territory).** whether the connection is judged by contribution or by experienced significance, and whose purpose is meant.
+
+**Extension shape.** a variant for collective purposes; a variant for personal meaning.
+
+**Design tensions.**
+- The connection to a purpose is often hard to observe, so uncertainty can be mistaken for loss.
+
+**Tradeoffs.**
+- Gains: a name for continuing without purpose that does not wait for failure.
+- Gives up: the assumption that a running activity is a meaningful one.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. PurposeLinkReview is one separately defined review; it treats an unshown link as broken, which does not by itself show that the process is happening.
+- Novelty, from recall and unverified: known. Nearest known concepts: goal displacement; ritualism; means becoming ends.
+
+**In the family.** Echohollow loses responsiveness, Metricmirror reviews a measure's effects, PurposeLinkReview checks the link on a schedule, and Meaningthin is the weakening connection itself.
 
 ---
 
@@ -27559,7 +32795,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### MetaProtocols#d028
+### MetaProtocols#8107
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -27580,7 +32816,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
-| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438` |
+| `composes_with` | `{{marginal_value_rule}}` | `sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71` |
 | `references` | `{{pathway_memory}}` | `sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722` |
 | `references` | `{{reframe}}` | `sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a` |
 
@@ -27613,6 +32849,67 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `MetaProtocols#3561`
 - `MetaProtocols#4a47`
 - `MetaProtocols#1af2`
+- `MetaProtocols#d028`
+
+---
+
+### Metricmirror#c7c5
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Metricmirror.json)
+
+**Gloss.** Review how a success metric changes behaviour and what valuable work it fails to count
+
+**Mechanism.**
+
+> When a {{metric}} is used to judge work, it is reviewed on a stated schedule for two things: behaviour that has shifted to raise the measure without serving the goal, and valuable activity the measure does not count. Findings are recorded with the metric.
+
+**Invariants.**
+- The metric is reviewed on a stated schedule.
+- Each review records observed gaming and valuable activity the metric misses.
+
+**Failure modes.**
+- Goodhart drift: work optimises the measure, not the goal.
+- Mirror blindness: reviews look only at the measure and so find nothing.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{metric}}` | `sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230` |
+
+#### Design
+
+**Why it exists.** Measures change what they measure. Metricmirror reviews a metric for gaming and for blind spots on a schedule, so the measure keeps serving the goal.
+
+**Why Mind.** One agent can review the metric it works under; no second party is needed.
+
+**Can it be removed?** Metric defines a measure, and NormativeJudge names Goodhart's law as a failure mode; neither schedules a review of a metric in use. Removable if metrics are trusted indefinitely.
+
+**Intended use.** any metric used to judge work.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** performance management, OKRs, model evaluation benchmarks, public sector targets, research metrics, agent reward signals.
+
+**Broad-use intersection (review hypothesis).** a review schedule, and recorded gaming and blind spots.
+
+**Varies (descendant territory).** the schedule and who reviews.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Reviewers trained on the metric may share its blind spots.
+
+**Tradeoffs.**
+- Gains: metrics that keep serving their goal.
+- Gives up: the simplicity of a fixed measure.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: Goodhart's law; Campbell's law.
+
+**In the family.** Metric defines measures, Doubleloop revises standards, and Metricmirror watches what a measure is doing to the work.
 
 ---
 
@@ -28247,6 +33544,8 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **Can it be removed?** Non-removable for the paper's quality-gate methodology. The framework codifies how Parsimony, Unique/Novelty, Realizable, Expansive compose into a single viability judgment. Remove it and the four axes exist as separate judges without a unifying contract.
 
+_Note: The U stands for Unique, and the axis is judged as novelty: structural distinctness from existing solutions, through the Novelty card. Unique was chosen because PURE reads better than PNRE. The Fractal Intelligence paper glosses the axis as "independence (Unique)", but what the framework wires is Novelty._
+
 **Design tensions.**
 - Orthogonality invariant (evaluated in isolation) vs practical review — human reviewers naturally integrate; strict isolation is discipline.
 - Four-axis invariant vs other possible dimensions — why these four? The paper argues for them; other frameworks might have different axes.
@@ -28271,7 +33570,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PUREBrainstorming#aab7
+### PUREBrainstorming#c2de
 
 `Mind` · `Strategy` · R1 · T2
 
@@ -28292,7 +33591,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | Category | Placeholder | Exact definition |
 | --- | --- | --- |
 | `composes_with` | `{{pure_check}}` | `sema:PURECheck#mh:SHA-256:574bfe492b148844233507d79302ba73135ad366d24b4b34f3de476ed903094e` |
-| `composes_with` | `{{pure_optimization}}` | `sema:PUREOptimization#mh:SHA-256:1bed0310eb0f63317d78d111be11f7f3dd78f5ec91bb442eaf7148287d411bb6` |
+| `composes_with` | `{{pure_optimization}}` | `sema:PUREOptimization#mh:SHA-256:205b2c752f68fe87dde75b65cb848bdad8527dc5713180460e6441eac3b86be6` |
 | `references` | `{{p_u_r_e}}` | `sema:PURE#mh:SHA-256:b65a673f236a094421e8ae7278ca0cc24a1de7b998caf26aef1e2022be1d0efd` |
 | `yields` | `{{mechanistic_design_proposal}}` | `sema:MechanisticDesignProposal#mh:SHA-256:930aebe1a8b00fcfcf7c585e7c49b53f84c39988069e6d8c1721d568afe1a292` |
 
@@ -28339,6 +33638,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREBrainstorming#c534`
 - `PUREBrainstorming#856f`
 - `PUREBrainstorming#c7c8`
+- `PUREBrainstorming#aab7`
 
 ---
 
@@ -28430,7 +33730,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PUREOptimization#1bed
+### PUREOptimization#205b
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -28460,7 +33760,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | `composes_with` | `{{decompose}}` | `sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b` |
 | `composes_with` | `{{optimize}}` | `sema:Optimize#mh:SHA-256:38771f5e8f583966cfb8af8ff0d2e6737c8d0bf87329ddc49d8049450e852674` |
 | `composes_with` | `{{pareto_front}}` | `sema:ParetoFront#mh:SHA-256:e6f5d6269118c342b52699a99154c79dc1e7b39e04c12bafc2f605805c0dfd02` |
-| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21` |
+| `composes_with` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
 | `composes_with` | `{{synthesis}}` | `sema:Synthesis#mh:SHA-256:4f1fecba4183e6a79bfb3bd8f1981a6b6fb9f3dced92a484a9aa466c93ae249b` |
 | `references` | `{{expansive}}` | `sema:Expansive#mh:SHA-256:49a7bf9576c5a3c81c4287bf5be190e00f99b3a7bab94608ff441da0dc8018b3` |
 | `references` | `{{novelty}}` | `sema:Novelty#mh:SHA-256:954f66918110b3dbbfadd1f47dd27ae095a8727113dce1c45d34931cf517d94a` |
@@ -28512,6 +33812,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PUREOptimization#89fe`
 - `PUREOptimization#4180`
 - `PUREOptimization#ba53`
+- `PUREOptimization#1bed`
 
 ---
 
@@ -28690,7 +33991,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - Synthesis step is under-specified — after the debate, how does final synthesis happen?
 - CORRECTED 2026-07-25: that rewrite also claimed the per-round check 'detects a persona drifting off its stance'. It cannot. The invariant measures distance *between* two persona outputs, which says nothing about either one's distance from the stance it was assigned — two personas can both drift and stay far apart, satisfying the invariant while the ensemble has stopped covering the axes it was built to cover. Detecting stance drift would need a per-persona anchor the card does not have, and that is a real gap rather than a property to claim.
 
-**In the family.** Multi-persona primitive paired with SteelmanCheck (strongest opposing), DissentSeek (active disagreement), and Debate (the activity). Compare with DiscoveryProtocol — PerspectiveEnsemble is persona-based, DiscoveryProtocol is mode-based; both enforce diversity.
+**In the family.** Multi-persona primitive paired with SteelmanCheck (strongest opposing), DissentSeek (active disagreement), and Debate (the activity). Compare with DiscoveryProtocol — PerspectiveEnsemble is persona-based, DiscoveryProtocol is mode-based; both enforce diversity. Patterns that build on it: Crossborn.
 
 **Supersedes (prior versions).**
 - `PerspectiveEnsemble#2927`
@@ -28700,7 +34001,68 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### PolymorphicSolver#cb20
+### Plateauturn#240d
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Plateauturn.json)
+
+**Gloss.** When improvement stalls under one method, change the method instead of repeating it
+
+**Mechanism.**
+
+> Improvement under a method is tracked per attempt. When it stalls for a stated number of attempts, the plateau is recorded with the method that hit it, and the next attempt uses a changed method. Unlike a {{retry}}, which repeats the attempt, the response to a plateau is a different way of trying.
+
+**Invariants.**
+- Improvement is recorded per attempt.
+- After the stated number of stalled attempts, the next attempt uses a changed method.
+- Each plateau is recorded with the method that hit it.
+
+**Failure modes.**
+- Grind: the same method is repeated long after it stopped improving anything.
+- Method churn: methods are changed before they have had a fair number of attempts.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{retry}}` | `sema:Retry#mh:SHA-256:4f9fdfc5b1dafd31221e9426d62c02af80c6356ef5b446eddd3f50da961d1aa2` |
+
+#### Design
+
+**Why it exists.** Stalled improvement is usually answered with more of the same. Plateauturn makes a plateau a signal to change method, and records which method hit it.
+
+**Why Mind.** One agent chooses its own methods.
+
+**Can it be removed?** Retry repeats an attempt, and Doubleloop revises standards; neither changes method on a plateau. Removable if methods never stall.
+
+**Intended use.** optimisation, learning and practice that improve over attempts.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** skill practice, model tuning, research, writing, sales, agent self-improvement.
+
+**Broad-use intersection (review hypothesis).** per-attempt improvement records, a stall threshold, and a changed method after it.
+
+**Varies (descendant territory).** the stall threshold and what counts as a different method.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Some methods improve in bursts after long plateaus.
+
+**Tradeoffs.**
+- Gains: progress resumes sooner.
+- Gives up: persistence with a method that might have broken through.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the learning plateau.
+
+**In the family.** Retry repeats, Doubleloop revises standards, and Plateauturn changes the method.
+
+---
+
+### PolymorphicSolver#f7fe
 
 `Mind` · `Strategy` · R1 · T1
 
@@ -28737,7 +34099,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | `references` | `{{performance_signal}}` | `sema:PerformanceSignal#mh:SHA-256:9dfb41dd2ac3f271ca5d4a3ab67219a5a18aa8dbd970cdb410e7c9c1ec85488c` |
 | `references` | `{{solver}}` | `sema:Solver#mh:SHA-256:a4478611882cced1b069f8dc551d401c74b35cefe02ed67d37d1aa135e19825b` |
 | `references` | `{{solver_node}}` | `sema:SolverNode#mh:SHA-256:f895214a9b07066f4043d55d3b260e8a788bda0150b9d8fda20eafa91b846116` |
-| `references` | `{{universal_solver_tree}}` | `sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7` |
+| `references` | `{{universal_solver_tree}}` | `sema:UniversalSolverTree#mh:SHA-256:f9fba480ef013c98691c0ccb6cbbd58dab5183e60798c550ff0de093dbd30727` |
 | `references` | `{{validate}}` | `sema:Validate#mh:SHA-256:ffd128811cea63d7a4dac2c45c95fd8ac1d8a7d3788423fb6710b622167305ed` |
 | `yields` | `{{solution}}` | `sema:Solution#mh:SHA-256:8d55004ffa8f61d6e7d12d588ae4baa9723296dd7fa501759b5e6b1b97e7c9ab` |
 
@@ -28775,6 +34137,68 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `PolymorphicSolver#272a`
 - `PolymorphicSolver#1362`
 - `PolymorphicSolver#28f1`
+- `PolymorphicSolver#cb20`
+
+---
+
+### PracticeResponseReview#a24f
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/PracticeResponseReview.json)
+
+**Gloss.** Guard against a recurring practice that keeps its form after it stops responding to anything
+
+**Mechanism.**
+
+> A recurring practice, such as a meeting, a review or a check, records what it last changed because of what it observed. A practice that changed nothing over a stated number of cycles is reviewed. Unlike a {{loop}}, which must change state between iterations, the test is whether the practice still reacts to its input.
+
+**Invariants.**
+- Each run of the practice records what, if anything, it changed in response to what it observed.
+- A practice that changed nothing over the stated number of cycles is reviewed.
+
+**Failure modes.**
+- Ritual: the practice runs on schedule and responds to nothing.
+- Change for show: trivial changes are made to appear responsive.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{loop}}` | `sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603` |
+
+#### Design
+
+**Why it exists.** Practices keep their form after they stop doing anything: the review that never changes a plan, the check that never finds anything. PracticeResponseReview tests whether a practice still responds.
+
+**Why Mind.** One agent or group reviews its own practices.
+
+**Can it be removed?** Loop requires state change between iterations of execution; it does not ask whether a human or agent practice still reacts to its input. Removable if practices are reviewed some other way.
+
+**Intended use.** recurring meetings, reviews, checks and rituals.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** stand-up meetings, code reviews, audits, retrospectives, agent self-checks, compliance rituals.
+
+**Broad-use intersection (review hypothesis).** a record of what each run changed, and a review after a stated number of cycles without change.
+
+**Varies (descendant territory).** the number of cycles and what counts as a response.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- A practice that rarely needs to act can look hollow while working.
+
+**Tradeoffs.**
+- Gains: practices that stay alive.
+- Gives up: the reassurance of ritual.
+
+**Critique (diagnostic, not contract requirements).**
+- Echohollow is the process this checks for. Reviewing after a stated number of unchanged cycles is a screening rule, not a diagnosis of it.
+- Novelty, from recall and unverified: known. Nearest known concepts: ritualism; cargo-cult practice.
+
+**In the family.** Loop requires state change, PurposeLinkReview checks purpose, and PracticeResponseReview checks responsiveness; Echohollow names the fading it checks for.
 
 ---
 
@@ -28919,7 +34343,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - CORRECTED: the critique said 'no mechanism for handling ties'. `Rank`, which this pattern composes with, names 'Score Indeterminacy: multiple items have identical scores'. The delegation is correct and the criticism was aimed at the wrong card.
 - One change the note did not ask for: 'Ordering: Item(N) >= Item(N+1) by {{criteria}}' was weaker than the mechanism, which fixes the sort key as the impact-to-effort ratio. An invariant permitting any criteria does not constrain this pattern, and the varies line does not place the sort key with descendants — it lists score granularity, re-score frequency, Pareto awareness and dependency handling. The invariant now names the ratio, and the `criteria` dependency went with the placeholder.
 
-**In the family.** Ordering primitive paired with Score (the evaluation substrate), Rank (the general operation), and Triage (the urgency-weighted variant). Compare with OptimalStop — Prioritize orders items; OptimalStop decides when to stop processing.
+**In the family.** Ordering primitive paired with Score (the evaluation substrate), Rank (the general operation), and Triage (the urgency-weighted variant). Compare with OptimalStop — Prioritize orders items; OptimalStop decides when to stop processing. Patterns that build on it: StalledDirectionReview.
 
 **Supersedes (prior versions).**
 - `Prioritize#dd16`
@@ -28927,7 +34351,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### ProblemFramer#0428
+### ProblemFramer#ad6b
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -28955,7 +34379,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | `composes_with` | `{{reframe}}` | `sema:Reframe#mh:SHA-256:cbfd4fadde729367ef8f32a68951e5852535b7f7c3edc68a502d9187b8c1d54a` |
 | `composes_with` | `{{request_framing}}` | `sema:RequestFraming#mh:SHA-256:2280a35647a93cf3f8b03ee5fb63f8c2ec6faf19ec9627e1d9144ffa231f551e` |
 | `references` | `{{root_solver}}` | `sema:RootSolver#mh:SHA-256:f7f5a39c4d93545b506ddc3eeb03660295425657486a5ab1f71811cb8e5816ca` |
-| `references` | `{{universal_solver_tree}}` | `sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7` |
+| `references` | `{{universal_solver_tree}}` | `sema:UniversalSolverTree#mh:SHA-256:f9fba480ef013c98691c0ccb6cbbd58dab5183e60798c550ff0de093dbd30727` |
 | `yields` | `{{accept_spec}}` | `sema:AcceptSpec#mh:SHA-256:37fa28b93d390f8c8eb171eaab54ff4f9e57a95ef67af024422f823545a291cc` |
 
 #### Design
@@ -28992,7 +34416,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - The AcceptSpec construction is the hardest part and the pattern defers the quality issue.
 - Ownership of high-level success/failure is strong accountability; in practice accountability often spreads across multiple roles.
 
-**In the family.** Role-pattern paired with FrameSpec (the artifact), RequestFraming (the verb), and RootSolver (the downstream anchor). Compare with DesignArchitect — ProblemFramer interprets requests; DesignArchitect produces design proposals. Different inputs, different outputs.
+**In the family.** Role-pattern paired with FrameSpec (the artifact), RequestFraming (the verb), and RootSolver (the downstream anchor). Compare with DesignArchitect — ProblemFramer interprets requests; DesignArchitect produces design proposals. Different inputs, different outputs. Patterns that build on it: Framecapture.
 
 **Supersedes (prior versions).**
 - `ProblemFramer#8b24`
@@ -29001,6 +34425,240 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `ProblemFramer#2718`
 - `ProblemFramer#aa76`
 - `ProblemFramer#27c3`
+- `ProblemFramer#0428`
+
+---
+
+### PurposeLinkReview#6f85
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/PurposeLinkReview.json)
+
+**Gloss.** Guard against activities that continue after their link to their purpose has weakened
+
+**Mechanism.**
+
+> For each ongoing activity, the {{goal}} it serves and the latest evidence that it still serves it are recorded and reviewed on a schedule. An activity whose link to its goal cannot be shown is reconnected, redirected or stopped.
+
+**Invariants.**
+- Each ongoing activity names the goal it serves.
+- Each review records current evidence that the activity still serves that goal, or marks the link as broken.
+
+**Failure modes.**
+- Purpose drift: the activity continues after its goal has moved or been met.
+- Proxy attachment: the activity is kept for its own measures, not for the goal.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{goal}}` | `sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70` |
+
+#### Design
+
+**Why it exists.** Activities outlive their purposes, and they keep running because they have always run. PurposeLinkReview keeps each activity tied to evidence that it still serves its goal.
+
+**Why Mind.** One agent reviews its own activities.
+
+**Can it be removed?** Goal specifies an end state and Metricmirror reviews measures; neither reviews whether an activity still serves its goal. Removable if activities are short-lived.
+
+**Intended use.** standing activities, recurring tasks and long projects.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** recurring meetings, maintenance tasks, legacy processes, long-running agent loops, habits, organisational programmes.
+
+**Broad-use intersection (review hypothesis).** a named goal per activity and periodic evidence that it is served.
+
+**Varies (descendant territory).** the review schedule and the evidence required.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Evidence of serving a goal can be manufactured.
+
+**Tradeoffs.**
+- Gains: activities that keep earning their place.
+- Gives up: the inertia of established activities.
+
+**Critique (diagnostic, not contract requirements).**
+- Meaningthin is the process this watches for. The review treats an unshown link as broken, which does not by itself show that the activity has lost its purpose.
+- Novelty, from recall and unverified: known. Nearest known concepts: goal displacement.
+
+**In the family.** Metricmirror watches measures, PracticeResponseReview watches responsiveness, and PurposeLinkReview watches purpose; Meaningthin names the weakening it watches for.
+
+---
+
+### Quietroot#9215
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Quietroot.json)
+
+**Gloss.** Development continues during an interval with little outwardly visible progress
+
+**Mechanism.**
+
+> Preparatory abilities, relationships or supporting structures change while the visible result being watched stays nearly unchanged. The development may later support an outward advance, but it does not depend on that advance appearing. Mere passage of time, continued effort or hoped-for improvement is not an instance, and what counts as visible depends on the observer and the measure.
+
+**Invariants.**
+- A visible result being watched stays nearly unchanged over an interval.
+- Development occurs during that interval in a dimension that supports the result.
+
+**Failure modes.**
+- Stillness read as stagnation: an unchanged output is taken as proof that nothing is developing.
+- Plateau read as growth: every plateau is taken to hide progress.
+- Effort read as development: continued effort or elapsed time is taken to show development.
+
+#### Design
+
+**Why it exists.** Progress is judged by what shows, so development beneath an unchanged result goes unseen or is abandoned. Quietroot names development during an apparently still interval.
+
+**Why Mind.** Development of abilities or relationships belongs to a learner, a group or an agent; one learner suffices.
+
+**Can it be removed?** LatentWander is a particular offline exploration technique and Plateauturn changes method when improvement stalls; neither describes development continuing while the visible result stays still. Removable if development is assumed always to show.
+
+**Intended use.** recognising that a learner, team or system may be developing in supporting dimensions while its watched result stays flat.
+
+**Future uses.** agents building capabilities whose payoff appears later.
+
+**Broad-use contexts.** skill learning, research, institution-building, relationship-building, training runs, agent capability development.
+
+**Broad-use intersection (review hypothesis).** a watched result, an interval in which it stays nearly flat, and development in a supporting dimension.
+
+**Varies (descendant territory).** which supporting dimension develops and what shows it.
+
+**Extension shape.** a variant for organisations; a variant for embodied skill.
+
+**Design tensions.**
+- Naming hidden development can justify persisting with something that is not developing.
+
+**Tradeoffs.**
+- Gains: a name for growth that does not yet show.
+- Gives up: judging development only by its visible result.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. It is not a reason to persist indefinitely.
+- Novelty, from recall and unverified: known. Nearest known concepts: latent learning; incubation; the learning plateau.
+
+**In the family.** Readyrise expresses earlier preparation, Plateauturn changes method on a stall, and Quietroot is development under a still surface.
+
+---
+
+### Reachsense#f71c
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Reachsense.json)
+
+**Gloss.** Before planning, list what is reachable now with the position and tools at hand
+
+**Mechanism.**
+
+> Before a {{plan}} is made, the actions reachable from the current position are listed: the tools available, their preconditions, and which preconditions are met now. The plan is built from reachable actions, or it includes the steps that extend reach.
+
+**Invariants.**
+- The reachable actions are listed, with their preconditions, before planning.
+- Every planned step is reachable now or follows a step that makes it reachable.
+
+**Failure modes.**
+- Wishful plan: steps assume tools or access that are not there.
+- Reach blindness: a short route is missed because an available tool was never listed.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{plan}}` | `sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32` |
+
+#### Design
+
+**Why it exists.** Plans often assume tools or access that are not there, or miss a short route an available tool would open. Reachsense lists what is reachable before planning.
+
+**Why Mind.** One agent surveys its own position and tools.
+
+**Can it be removed?** Plan orders steps and ToolDiscovery finds external tools; neither requires listing what is reachable now before planning. Removable if the environment is fully known.
+
+**Intended use.** planning in an environment of tools, permissions and positions.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** agent tool use, robotics, project planning, travel, negotiation, incident response.
+
+**Broad-use intersection (review hypothesis).** reachable actions listed with preconditions, and a plan built from them.
+
+**Varies (descendant territory).** how deeply reachability is checked.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Listing everything reachable can be expensive in rich environments.
+
+**Tradeoffs.**
+- Gains: plans that can be carried out.
+- Gives up: the freedom of planning in the abstract.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: affordances; peripersonal space.
+
+**In the family.** ToolDiscovery finds tools, Limitlisten measures limits, and Reachsense lists what can be done now.
+
+---
+
+### Readyrise#a9d2
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Readyrise.json)
+
+**Gloss.** Earlier preparation is expressed as an apparently sudden advance
+
+**Mechanism.**
+
+> Capacities prepared across earlier activity become usable together, or meet conditions in which they can be expressed, and the resulting advance looks sudden against recent performance. The preparation came earlier and may itself have been gradual or abrupt, visible or not. A sudden appearance alone does not show earlier preparation.
+
+**Invariants.**
+- An advance appears sudden relative to recent performance.
+- Earlier preparation contributes materially to the advance.
+
+**Failure modes.**
+- Trigger credited with all: the final event is credited with the whole change.
+- History invented: a preparatory history is invented to explain an unexplained success.
+- Suddenness as proof: an abrupt advance is taken to show earlier preparation without evidence of it.
+
+#### Design
+
+**Why it exists.** Sudden advances are credited to the moment they appear. Readyrise names the earlier preparation they express.
+
+**Why Mind.** Prepared capacities belong to a learner, a group or an agent; one learner suffices.
+
+**Can it be removed?** PhaseTransition requires a threshold and a discontinuous change of regime, and Leapsettle makes an advance reliable afterwards; neither describes earlier preparation surfacing as a sudden advance. Removable if advances are credited only to their trigger.
+
+**Intended use.** recognising that an apparently sudden advance rests on earlier preparation.
+
+**Future uses.** agents whose separately trained components start working together.
+
+**Broad-use contexts.** skill acquisition, scientific breakthroughs, organisational readiness, product launches, agent capability jumps.
+
+**Broad-use intersection (review hypothesis).** an advance that looks sudden and earlier preparation that contributes to it.
+
+**Varies (descendant territory).** whether the preparation was gradual or abrupt, and visible to whom.
+
+**Extension shape.** a variant for teams; a variant for combined skills.
+
+**Design tensions.**
+- Preparation is easy to reconstruct after a success, and hard to verify.
+
+**Tradeoffs.**
+- Gains: credit placed on preparation as well as on the moment of advance.
+- Gives up: the overnight-success story.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Quietroot and Readyrise are related but neither entails the other: quiet development need not yield an abrupt advance, and known preparation can produce one.
+- Novelty, from recall and unverified: known. Nearest known concepts: overnight success years in the making; insight after incubation.
+
+**In the family.** Quietroot develops under a still surface, PhaseTransition reorganises at a threshold, Leapsettle consolidates an advance, and Readyrise is preparation surfacing as a sudden advance.
 
 ---
 
@@ -29068,6 +34726,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - Sympathetic Attacker is endemic; genuinely adversarial red teams are hard to find and harder to sustain.
 - The 'no loyalty to the design' stance is philosophically clean and operationally hard in team cultures.
 - Severity/likelihood documentation is deferred in rigor; real red teams need CVSS-style methodologies the pattern doesn't specify.
+- Caution: the pattern's output is a vulnerability report that lists attack vectors with severity and likelihood, which is an exploit guide until the vectors are patched. The same reasoning gives Ruleflip its caution. The only failure mode is a sympathetic attacker.
 
 **In the family.** Adversarial-testing primitive paired with SteelmanCheck (strongest-opposing variant), AdversarialProof (exhaustive search), and DissentSeek (disagreement-seeking). Compare with PreMortem — RedTeam is adversarial-external; PreMortem is failure-future.
 
@@ -29259,7 +34918,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - Orthogonality is hard to verify; two modalities may seem orthogonal and share hidden assumptions.
 - The pattern requires skilled agents in multiple modalities; the capability gap limits applicability.
 
-**In the family.** Verification-via-modality primitive paired with Translate (the mechanism), Critique (the target), and Incongruity (the output). Compare with CiteBack — RepresentationSwap reveals errors via modality shift; CiteBack enforces source-grounding. Different verification strategies.
+**In the family.** Verification-via-modality primitive paired with Translate (the mechanism), Critique (the target), and Incongruity (the output). Compare with CiteBack — RepresentationSwap reveals errors via modality shift; CiteBack enforces source-grounding. Different verification strategies. Patterns that build on it: Lossprint, Roundtrace.
 
 **Supersedes (prior versions).**
 - `RepresentationSwap#1409`
@@ -29357,7 +35016,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - 'Retry count <= Max_Retries' named a quantity nothing defined — this card had no parameters and no schema, so the bound was unresolvable. Checked before asserting, since that claim has been made wrongly three times in this review. Now `max_attempts`, and the Varies line supports the placement by assigning 'budget' to callers rather than descendants.
 - A third invariant was added for the intersection element with no contract. The intersection names 'failure classification, retry decision, backoff computation', and all four of this card's failure modes are about misclassification — 'misclassifying persistent failure as transient', 'misclassifying transient as persistent'. Classification is the crux of the pattern and nothing required it to happen, let alone to be recorded.
 
-**In the family.** Resilience primitive paired with Backoff (the delay-policy family), ExponentialBackoff (the transient-failure strategy), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one.
+**In the family.** Resilience primitive paired with Backoff (the delay-policy family), ExponentialBackoff (the transient-failure strategy), ReAttempt (substrate-level), and CircuitBreaker (the cap). Compare with Compensate — Retry attempts the same operation; Compensate unwinds the failed one. Patterns that build on it: Plateauturn.
 
 **Supersedes (prior versions).**
 - `Retry#d53d`
@@ -29368,7 +35027,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 ---
 
-### RigorousSolver#9034
+### RigorousSolver#2203
 
 `Mind` · `Strategy` · R2 · T2
 
@@ -29390,7 +35049,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 | --- | --- | --- |
 | `composes_with` | `{{feedback}}` | `sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d` |
 | `composes_with` | `{{probe}}` | `sema:Probe#mh:SHA-256:2bb8a26d43ba0b1975fe2ce4051cfb219a9507140f12e72b819265f4ef98f224` |
-| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21` |
+| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
 | `references` | `{{socratic_loop}}` | `sema:SocraticLoop#mh:SHA-256:4f17ec8b7e28b3f223931274df090225572d754cd772fe4f738c922f16f93a18` |
 
 #### Design
@@ -29436,7 +35095,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 
 **In the family.** The assurance-specialized descendant of `PolymorphicSolver`. Sibling to `OptimisticSolver` (the opposite tradeoff). Composed with `Probe` (reality alignment), `SocraticLoop` (disambiguation before action), and `Feedback` (post-execution assurance). The correct choice when a wrong answer costs more than a delayed answer.
 
-**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21`
+**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd`
 
 **Supersedes (prior versions).**
 - `RigorousSolver#169f`
@@ -29444,6 +35103,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - `RigorousSolver#b75d`
 - `RigorousSolver#1275`
 - `RigorousSolver#93b8`
+- `RigorousSolver#9034`
 
 ---
 
@@ -29500,7 +35160,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - 'Often allows...' in the mechanism suggests the pattern permits many shapes without disciplining any.
 - Doesn't specify milestone semantics, update cadence, or revision policy.
 
-**In the family.** Strategic-planning primitive paired with Plan (tactical), Milestone (the discrete units), and Goal (the targets). Compare with Strategy — Roadmap is temporal; Strategy is approach-level.
+**In the family.** Strategic-planning primitive paired with Plan (tactical), Milestone (the discrete units), and Goal (the targets). Compare with Strategy — Roadmap is temporal; Strategy is approach-level. Patterns that build on it: HorizonReview.
 
 **Supersedes (prior versions).**
 - `Roadmap#0018`
@@ -29849,7 +35509,7 @@ OPEN, FOR HENRIK, and it is a naming question so it is his by standing rule: `us
 - No failure modes — silence can fail in many ways (interpreted as rejection, missed by observers).
 - Default action after MaxDuration is caller-dependent without guidance.
 
-**In the family.** Communication primitive paired with Signal (emission), Defer (postponement with preservation), and Abstain. Used by LatentWander (during offline processing).
+**In the family.** Communication primitive paired with Signal (emission), Defer (postponement with preservation), and Abstain. Used by LatentWander (during offline processing). Patterns that build on it: ChannelCheck, Silencevote.
 
 **Supersedes (prior versions).**
 - `Silence#cc90`
@@ -30004,6 +35664,67 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
+### StalledDirectionReview#aa6a
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/StalledDirectionReview.json)
+
+**Gloss.** Guard against effort spread over so many directions that none advances
+
+**Mechanism.**
+
+> Each active direction records the result its last period produced. A direction that produced nothing is either given more effort or paused, after the directions are ranked with {{prioritize}}, and paused directions are recorded with what would restart them.
+
+**Invariants.**
+- Each active direction records the result its last period produced.
+- A direction that produced nothing in its last period is either given more effort or paused, and the choice is recorded.
+
+**Failure modes.**
+- Thin spread: every direction gets a little effort and none advances.
+- Pause hoarding: paused directions are never revisited.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{prioritize}}` | `sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd` |
+
+#### Design
+
+**Why it exists.** Effort spread over too many directions advances none of them, and each still looks active. StalledDirectionReview makes each direction show a result or be paused.
+
+**Why Mind.** One agent allocates its own effort.
+
+**Can it be removed?** Prioritize orders tasks and ComputeBudget caps spending; neither pauses directions that produce nothing. Removable if direction counts stay small.
+
+**Intended use.** agents or teams juggling several lines of work.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** research portfolios, product roadmaps, personal projects, multi-task agents, startups, open-source maintenance.
+
+**Broad-use intersection (review hypothesis).** a result recorded per direction per period, and a give-more-or-pause rule.
+
+**Varies (descendant territory).** the period length and what counts as a result.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Some directions produce results only after long quiet periods.
+
+**Tradeoffs.**
+- Gains: effort concentrated where it moves things.
+- Gives up: the comfort of keeping every option active.
+
+**Critique (diagnostic, not contract requirements).**
+- Aimscatter is the process this responds to. A period without results can also come from legitimate latency or an external block, so the trigger is not a diagnosis of dispersal.
+- Novelty, from recall and unverified: known. Nearest known concepts: diffusion of effort.
+
+**In the family.** Prioritize ranks, TimeboxThink bounds time, and StalledDirectionReview pauses what is not advancing; Aimscatter names the dispersal it responds to.
+
+---
+
 ### SteelmanFirst#ef20
 
 `Mind` · `Strategy` · R2 · T2
@@ -30095,6 +35816,68 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
+### StopDrill#dcfb
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/StopDrill.json)
+
+**Gloss.** Exercise the means of stopping an activity while it runs, so that it still works when needed
+
+**Mechanism.**
+
+> The means of stopping or slowing an ongoing activity, such as a {{circuit_breaker}}, a kill switch or a rollback, is exercised on a stated schedule while the activity runs, and the time it takes to stop is recorded. If stopping takes longer than the stated limit, the activity does not grow until the stop is repaired.
+
+**Invariants.**
+- The stop is exercised on a stated schedule.
+- The measured time to stop is recorded and compared with a stated limit.
+- When the limit is exceeded, the activity does not grow until the stop is repaired.
+
+**Failure modes.**
+- Untested brake: the stop exists on paper and fails when it is needed.
+- Drill harm: the stop drill causes the damage it guards against.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{circuit_breaker}}` | `sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76` |
+
+#### Design
+
+**Why it exists.** The ability to stop an activity decays while the activity grows, and is discovered broken only in the emergency. StopDrill exercises the stop while there is time to fix it.
+
+**Why Mind.** One agent or operator exercises its own stop.
+
+**Can it be removed?** CircuitBreaker trips automatically on failures and Brakegrow adds harm signs as progress continues; neither exercises the stop mechanism itself. Removable if stops are never needed.
+
+**Intended use.** any growing activity with a stop, rollback or kill switch.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** deployments, AI training runs, financial trading, industrial processes, autonomous agents, public programmes.
+
+**Broad-use intersection (review hypothesis).** a scheduled stop drill, a measured stop time, and a growth freeze when the limit is exceeded.
+
+**Varies (descendant territory).** the drill schedule and the stop-time limit.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Drills interrupt work and can cause harm themselves.
+
+**Tradeoffs.**
+- Gains: a stop that works when it is needed.
+- Gives up: some uptime and growth speed.
+
+**Critique (diagnostic, not contract requirements).**
+- Brakefade is the process this guards against. A passing drill on one route does not show that every route works, and the stop-time drill does not assess every kind of reversal loss.
+- Novelty, from recall and unverified: known. Nearest known concepts: fire drills; chaos engineering.
+
+**In the family.** CircuitBreaker trips, Brakegrow watches for harm, and StopDrill keeps the brake working; Brakefade names the loss it guards against.
+
+---
+
 ### Strategy#3dc5
 
 `Mind` · `Strategy` · R1 · T1
@@ -30151,7 +35934,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - The intersection names four things and none had a contract: 'high-level goal, uncertainty acknowledgment, adaptive stance, success criteria'. Two of them are checkable and are now stated. What it optimises for and what counts as winning is the success criterion. Adaptivity becomes the revision trigger — the observation that would change the course — which is what actually separates this from a Plan, since a Plan executes its steps and a Strategy is revised against events.
 - The Varies line supports the placement by assigning 'revision triggers' to descendants: which observation matters varies, that one is named does not. Same shape as `Discover`'s stop condition and `Defer`'s deadline.
 
-**In the family.** Planning primitive paired with Plan (tactical), Roadmap (temporal-strategic), and Goal (what's being won). Compare with Plan — Strategy is adaptive; Plan is sequential.
+**In the family.** Planning primitive paired with Plan (tactical), Roadmap (temporal-strategic), and Goal (what's being won). Compare with Plan — Strategy is adaptive; Plan is sequential. Patterns that build on it: Promisehinge.
 
 **Supersedes (prior versions).**
 - `Strategy#47a4`
@@ -30552,7 +36335,7 @@ That property is narrower than it used to read here, and the narrowing matters. 
 - Very thin — philosophical framing more than mechanism.
 - Explicit Recognition is aspirational.
 
-**In the family.** Decision-framing primitive paired with OpportunityCost, Decision, and Value.
+**In the family.** Decision-framing primitive paired with OpportunityCost, Decision, and Value. Patterns that build on it: Burdenlight.
 
 **Supersedes (prior versions).**
 - `TradeOff#769c`
@@ -30631,6 +36414,128 @@ That property is narrower than it used to read here, and the narrowing matters. 
 
 ---
 
+### Valueprobe#7aa2
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Valueprobe.json)
+
+**Gloss.** Choose some routes for their power to change the criteria you choose routes by
+
+**Mechanism.**
+
+> When choosing among routes such as sources, collaborators or projects, the chooser records its current criteria and includes at least one route picked because it could change them, an exploration move in the sense of {{explore_exploit}}. After the route, the criteria are recorded again and any change is noted.
+
+**Invariants.**
+- The choosing criteria are recorded before the route is taken.
+- At least one route is chosen for its potential to change the criteria.
+- The criteria are recorded again afterwards.
+
+**Failure modes.**
+- Comfort routing: only routes that confirm the current criteria are chosen.
+- Novelty chase: routes are chosen for being different, and no change in criteria is ever recorded.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{explore_exploit}}` | `sema:ExploreExploit#mh:SHA-256:218caa1bcd426b768ebb675c78bc12e55581367814b2b2397383bb3e3e4dcdbc` |
+
+#### Design
+
+**Why it exists.** Agents choose sources and paths by their current criteria, which then never change. Valueprobe deliberately includes routes that could change the criteria, and records whether they did.
+
+**Why Mind.** It governs one agent's choice of routes.
+
+**Can it be removed?** ExploreExploit balances gathering information against using it; it does not aim exploration at the chooser's own criteria. Removable if criteria are assumed fixed.
+
+**Intended use.** choosing what to read, whom to consult or which project to join.
+
+**Future uses.** agents diversifying their sources; research agendas.
+
+**Broad-use contexts.** research, career choices, reading, hiring, product strategy, agent source selection.
+
+**Broad-use intersection (review hypothesis).** recorded criteria before and after, and at least one route chosen to test them.
+
+**Varies (descendant territory).** how routes are picked and how changes in criteria are judged.
+
+**Extension shape.** a portfolio variant with a fixed share of probing routes.
+
+**Design tensions.**
+- Probing routes cost time that confirming routes would not.
+
+**Tradeoffs.**
+- Gains: criteria that can grow.
+- Gives up: the efficiency of choosing by fixed criteria.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: transformative experience; aspiration.
+
+**In the family.** ExploreExploit explores the world, Doubleloop revises standards, and Valueprobe explores one's own criteria.
+
+---
+
+### Wonderdwell#d966
+
+`Mind` · `Strategy` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Wonderdwell.json)
+
+**Gloss.** Stay with something familiar, with its expectation frozen, until it yields a surprise or the time runs out
+
+**Mechanism.**
+
+> Before dwelling on something familiar, what is expected of it is frozen as a {{counterfactual_anchor}}. Attention then stays with the familiar thing for a stated time, and each observation that departs from the frozen expectation is recorded as a surprise. A dwell that ends without one is recorded as such.
+
+**Invariants.**
+- The expectation is frozen before the dwelling begins.
+- Each recorded surprise names the frozen expectation it departs from.
+- The dwell has a stated time limit.
+
+**Failure modes.**
+- Novelty hunting: attention moves on before the familiar has had time to surprise.
+- Manufactured wonder: ordinary observations are recorded as surprises.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{counterfactual_anchor}}` | `sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf` |
+
+#### Design
+
+**Why it exists.** Familiar things stop being looked at, and their surprises go unnoticed. Wonderdwell freezes the expectation, dwells for a set time, and records any departure.
+
+**Why Mind.** One agent's attention and expectations.
+
+**Can it be removed?** CounterfactualAnchor freezes predictions to measure surprise and Askwiden records new questions; neither prescribes dwelling on the familiar. Removable if novelty is found elsewhere.
+
+**Intended use.** research, design and inspection where the obvious may hide something.
+
+**Future uses.** agents that learn, plan and act over long horizons.
+
+**Broad-use contexts.** scientific observation, design research, code review, ethnography, quality inspection, art.
+
+**Broad-use intersection (review hypothesis).** a frozen expectation, a time-limited dwell, and recorded departures.
+
+**Varies (descendant territory).** the dwell time.
+
+**Extension shape.** variants with domain-specific thresholds and intervals.
+
+**Design tensions.**
+- Dwells often end without surprises, which can feel wasted.
+
+**Tradeoffs.**
+- Gains: surprises in familiar material.
+- Gives up: time spent on things that seemed known.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: defamiliarisation; beginner's mind.
+
+**In the family.** CounterfactualAnchor measures surprise, Askwiden records new questions, and Wonderdwell makes room for both in the familiar.
+
+---
+
 ### WorldReversible#462e
 
 `Mind` · `Strategy` · R0 · T1
@@ -30705,7 +36610,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 
 ---
 
-## Society (102)
+## Society (142)
 
 ### Society/Coordination (12)
 
@@ -30764,7 +36669,7 @@ The 2026-07 review added a second invariant that makes the first usable — ever
 - Dissonance formula (Sum(Intensity_A * Intensity_B)) is specific but arbitrary — many other dissonance measures exist and the pattern doesn't justify this choice.
 - No escape hatch for 'I will walk' — an agent with dominant alternative options can refuse to dampen, and the protocol has no way to distinguish legitimate resistance from strategic play.
 
-**In the family.** Social-layer sibling of Yield (binary submission), Consensus (full agreement), and Vote (majority rule). Uses Dampen as its reduction primitive. Compare with Quorum — Compromise is about preference intensity; Quorum is about participation count. Both are decision-reaching mechanisms, on different axes.
+**In the family.** Social-layer sibling of Yield (binary submission), Consensus (full agreement), and Vote (majority rule). Uses Dampen as its reduction primitive. Compare with Quorum — Compromise is about preference intensity; Quorum is about participation count. Both are decision-reaching mechanisms, on different axes. Patterns that build on it: Coflourish.
 
 **Supersedes (prior versions).**
 - `Compromise#39cc`
@@ -32583,7 +38488,68 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### Society/Governance (7)
+### Society/Governance (24)
+
+### Absentseat#d6ab
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Absentseat.json)
+
+**Gloss.** Represent affected parties who cannot take part, and keep the representation open to correction
+
+**Mechanism.**
+
+> When a decision affects parties who cannot take part, a {{role}} is assigned to represent each of them. The representative states the party's interests explicitly, and the statement stays open to correction by the party or its advocates when they can be reached.
+
+**Invariants.**
+- Each absent affected party has a named representative.
+- The represented interests are stated explicitly.
+- The statement stays open to correction by the party or its advocates.
+
+**Failure modes.**
+- Ventriloquism: the representative's own interests are presented as the absent party's.
+- Token seat: a representative is named but the stated interests never affect the decision.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{role}}` | `sema:Role#mh:SHA-256:262ab6d2c03de5beab24c98cb3168948a3bb043a6a81b68237ab53919d153999` |
+
+#### Design
+
+**Why it exists.** Decisions routinely affect parties who are not in the room: future users, other teams, people downstream. Absentseat gives them a representative whose claims can be corrected.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Role defines an assignable function; nothing in the bootstrap assigns representation of absent parties. Removable if absent parties are ignored.
+
+**Intended use.** decisions affecting people or agents who cannot take part.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** product design for unrepresented users, policy for future generations, ethics review, multi-agent systems with offline agents, guardianship, environmental decisions.
+
+**Broad-use intersection (review hypothesis).** a named representative per absent party, stated interests, and openness to correction.
+
+**Varies (descendant territory).** how representatives are chosen and how corrections reach them.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- A representative may misread the absent party, however well-meaning.
+
+**Tradeoffs.**
+- Gains: absent parties are considered by someone accountable.
+- Gives up: the convenience of deciding among those present.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: proxy representation; guardians for future generations.
+
+**In the family.** Futureclaim covers parties who do not yet exist, Burdenlight shows who pays, and Absentseat seats those who are absent.
+
+---
 
 ### AnchorDrop#63a7
 
@@ -32652,6 +38618,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - The invariant requires >2/3 agents signing, which is robust but brittle: a degraded cluster below 2/3 can never drop anchor, which is exactly when you'd want to.
 - First-principles re-derivation is cited but under-specified — 'bedrock axioms' is doing a lot of work with no operational definition.
 - §3.19 flagged AnchorDrop as having no current callers in the library. Broad-use test produces a rich usage-context list (markets, distributed systems, organizations), but the library's *current* patterns don't invoke it. Possible that when the library grows to cover emergency-coordination protocols, AnchorDrop becomes heavily referenced. Keep, even though it's orphan for now.
+- Caution: the system restarts from an immutable anchor, so transactions accepted after it can be lost, and the signing two-thirds decides which state survives. The trigger, disagreement above a threshold, can also be manufactured. The only failure mode is a stall.
 
 **In the family.** Lives in the coordination-under-stress cluster with Consensus, Quorum, and StateLock. AnchorDrop is the emergency-stop; Consensus is the routine agreement mechanism; Quorum is the counting threshold. Compare with PhaseTransition — AnchorDrop is what you invoke when a phase transition would be catastrophic, to force the system to stay in its current phase.
 
@@ -32660,6 +38627,127 @@ One check that passed and is worth recording: this card's commentary describes O
 - `AnchorDrop#3878`
 - `AnchorDrop#695e`
 - `AnchorDrop#669f`
+
+---
+
+### Burdenlight#ce67
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Burdenlight.json)
+
+**Gloss.** List who bears the costs of a decision and who receives its benefits, and say where they differ
+
+**Mechanism.**
+
+> Before a decision is taken, its costs are listed by who bears them and its benefits by who receives them, extending the {{trade_off}} with who pays. Where the two lists name different parties, the decision record says so.
+
+**Invariants.**
+- Costs are listed with the parties who bear them.
+- Benefits are listed with the parties who receive them.
+- Where cost bearers and beneficiaries differ, the record states it.
+
+**Failure modes.**
+- Hidden payer: costs fall on parties the analysis never names.
+- Netting blur: costs and benefits are netted, so their distribution disappears.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{trade_off}}` | `sema:TradeOff#mh:SHA-256:7ed66791e094b316654a0bc85ebcc2d2cfb20686013c7d6fd8f0a79aaea4c169` |
+
+#### Design
+
+**Why it exists.** Decisions are judged by their net effect, which hides that the costs fall on some and the benefits go to others. Burdenlight keeps the distribution visible.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** TradeOff exchanges consequences without saying who bears them; OpportunityCost prices the alternatives. Removable if only net effects matter.
+
+**Intended use.** decisions with distributed costs and benefits.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** public policy, product decisions, infrastructure, workplace changes, platform rules, resource allocation among agents.
+
+**Broad-use intersection (review hypothesis).** costs by bearer, benefits by recipient, and a statement where they differ.
+
+**Varies (descendant territory).** how bearers are identified and how costs are measured.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Listing bearers invites conflict that netting avoided.
+
+**Tradeoffs.**
+- Gains: decisions whose distribution of costs is visible.
+- Gives up: the simplicity of a net figure.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: distributional impact analysis; externalities.
+
+**In the family.** TradeOff and OpportunityCost weigh options, Absentseat represents those absent, and Burdenlight shows who pays.
+
+---
+
+### Consentrenew#9da5
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Consentrenew.json)
+
+**Gloss.** Seek fresh consent when an initiative changes its purpose, scope or consequences
+
+**Mechanism.**
+
+> Consent given for an initiative is a {{permission}} that records the purpose, scope and expected consequences it covers. A change in the initiative beyond any of them needs fresh consent from those who gave it before the change takes effect.
+
+**Invariants.**
+- Consent records the purpose, scope and consequences it covers.
+- A change beyond them needs fresh consent before it takes effect.
+
+**Failure modes.**
+- Consent creep: an initiative grows past what was consented to.
+- Consent fatigue: renewals are requested so often that consent becomes reflexive.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{permission}}` | `sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23` |
+
+#### Design
+
+**Why it exists.** Consent is given once and then stretched to cover what the initiative becomes. Consentrenew records what consent covered and asks again when that is exceeded.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Permission grants access and HumanApprove pauses before critical actions; neither renews consent when an initiative changes. Removable if consent is open-ended.
+
+**Intended use.** initiatives that use data, authority or participation granted by others.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** data use, research participation, platform terms, organisational change, agent access to user data, partnerships.
+
+**Broad-use intersection (review hypothesis).** recorded scope of consent, and fresh consent before exceeding it.
+
+**Varies (descendant territory).** what counts as a change beyond scope.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Frequent renewals make consent reflexive.
+
+**Tradeoffs.**
+- Gains: consent that tracks what it covers.
+- Gives up: the convenience of open-ended consent.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: dynamic consent.
+
+**In the family.** Mandatune revisits a mandate when the world changes; Consentrenew renews consent when the initiative changes.
 
 ---
 
@@ -32762,12 +38850,133 @@ One check that passed and is worth recording: this card's commentary describes O
 - No edge to `OathBind` was added despite the intersection naming it. Constitution's mechanism says it 'serves as the static input for oath binding', and OathBind references `rule_set` rather than this card, so the chain Constitution to RuleSet to OathBind already carries the relationship. A consumer names what it consumes.
 - RESOLVED 2026-07-25: 'Clarity invariant (machine-verifiable) vs interpretive flexibility — real constitutions have intentional ambiguity, principles that require judicial interpretation.' That objection was correct and the invariant now scopes itself: automated *penalty rules* are machine-verifiable, while principles bind interpretation without being mechanically checkable and are not held to the same test. The tension was live because a single clarity requirement was applied to both kinds of clause, and it is closed because the requirement now applies only to the kind that can meet it.
 
-**In the family.** The governance-layer rule set. Paired with `OathBind` (binding agents to constitutions), `AuditTrail` (for enforcement logging), penalty-automation patterns. Sibling to `Contract` (bilateral/multi-party) — Constitution is group-level rules, Contract is inter-party agreement.
+**In the family.** The governance-layer rule set. Paired with `OathBind` (binding agents to constitutions), `AuditTrail` (for enforcement logging), penalty-automation patterns. Sibling to `Contract` (bilateral/multi-party) — Constitution is group-level rules, Contract is inter-party agreement. Patterns that build on it: Dissentkeep.
 
 **Supersedes (prior versions).**
 - `Constitution#863b`
 - `Constitution#f749`
 - `Constitution#bc92`
+
+---
+
+### Coursecandor#639e
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Coursecandor.json)
+
+**Gloss.** Admit a mistaken direction, say what showed it, and set a check others can use on the correction
+
+**Mechanism.**
+
+> When a direction turns out to be mistaken, the party responsible says so, states what showed it, as an {{intent_gap}} analysis would, and says what changes. It then sets an observable check by which others can judge whether the correction worked.
+
+**Invariants.**
+- The admission names the mistaken direction and the evidence that showed it.
+- The correction comes with an observable check that others can apply.
+
+**Failure modes.**
+- Silent pivot: the direction changes without admitting the old one was wrong.
+- Ritual apology: the mistake is admitted but nothing checkable follows.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{intent_gap}}` | `sema:IntentGap#mh:SHA-256:0c14e83c328756592d5d0d2e690522c3589d33778ce38871cbcaf594f8dd679f` |
+
+#### Design
+
+**Why it exists.** Mistaken directions are usually changed silently, which hides the lesson and the accountability. Coursecandor admits the mistake and makes the correction checkable.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** IntentGap analyses why outcomes differed from intent, and Correctionwelcome protects correctors; neither requires the responsible party to admit the mistake and set a check. Removable if pivots need no account.
+
+**Intended use.** leaders, teams or agents changing a direction they had committed to.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** product pivots, policy reversals, research corrections, engineering rollbacks, agent strategy changes, public statements.
+
+**Broad-use intersection (review hypothesis).** a named mistaken direction, the evidence that showed it, and an observable check on the correction.
+
+**Varies (descendant territory).** the form of the admission and the check.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Admitting mistakes can be punished, which discourages honesty.
+
+**Tradeoffs.**
+- Gains: corrections others can verify.
+- Gives up: the face-saving of a silent pivot.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: after-action review; public correction.
+
+**In the family.** Revisance revises views, Correctionwelcome rewards correctors, and Coursecandor admits and checks a change of direction.
+
+---
+
+### Dissentkeep#dcb9
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Dissentkeep.json)
+
+**Gloss.** Keep a standing route for challenging a policy after it has been adopted
+
+**Mechanism.**
+
+> An adopted policy keeps a standing route for challenge: who may raise one, where, and by when it will be answered. Raising a challenge through the route carries no penalty. Unlike a {{constitution}}, which is amendable only out of band, the policy names its own route back to question.
+
+**Invariants.**
+- The policy names a challenge route, who may use it and an answer deadline.
+- A challenge raised through the route is answered by its deadline.
+- Using the route carries no penalty.
+
+**Failure modes.**
+- Closed door: once adopted, a policy can only be obeyed.
+- Endless relitigation: the same challenge is raised again without new grounds.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{constitution}}` | `sema:Constitution#mh:SHA-256:3deb8d31b8ace640b29c0a4d547191eebbcdedb46548f6c09711860be3af4645` |
+
+#### Design
+
+**Why it exists.** Once a policy is adopted, challenging it often becomes disloyalty. Dissentkeep keeps a route open, so mistakes can still be found after adoption.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Constitution is amendable only out of band, and DissentSeek actively seeks a critical view of a conclusion; neither keeps a standing challenge route open after a policy is adopted. Removable if policies are meant to be final.
+
+**Intended use.** adopted policies, rules and standards that bind others.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** organisational policy, law, engineering standards, community rules, agent operating rules, platform policies.
+
+**Broad-use intersection (review hypothesis).** a named challenge route, eligibility, an answer deadline, and no penalty for use.
+
+**Varies (descendant territory).** who may challenge, and the deadline.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Open challenge routes can be abused for delay.
+
+**Tradeoffs.**
+- Gains: policies that remain correctable.
+- Gives up: the finality of adoption.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the loyal opposition; right of petition.
+
+**In the family.** DissentSeek actively elicits dissent from a conclusion, while Dissentkeep keeps a standing challenge route open after adoption; Silencevote and Correctionwelcome protect other forms of voice.
 
 ---
 
@@ -32831,6 +39040,547 @@ One check that passed and is worth recording: this card's commentary describes O
 - `DocumentedOverride#17d3`
 - `DocumentedOverride#4054`
 - `DocumentedOverride#2b77`
+
+---
+
+### Futureclaim#a57c
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Futureclaim.json)
+
+**Gloss.** Treat the needs of future people as claims that a present decision must weigh and answer
+
+**Mechanism.**
+
+> A {{decision}} with long consequences lists its effects on parties who do not yet exist or cannot yet act, and treats each effect as a claim to be weighed and answered in the record, not as optional generosity.
+
+**Invariants.**
+- Effects on future parties are listed.
+- Each listed effect is weighed and answered in the decision record.
+
+**Failure modes.**
+- Discounting to zero: future effects are listed and given no weight.
+- Speculative claims: imagined future needs override present evidence.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decision}}` | `sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7` |
+
+#### Design
+
+**Why it exists.** Present decisions are made by those present, and future people's needs become optional generosity. Futureclaim makes them claims that must be answered.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Decision and Absentseat do not specifically require future effects to be weighed. Removable if long consequences are left to chance.
+
+**Intended use.** decisions with consequences beyond the deciders' horizon.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** climate and infrastructure, long-lived software and data, institutional design, AI development, education policy, conservation.
+
+**Broad-use intersection (review hypothesis).** listed future effects, each weighed and answered.
+
+**Varies (descendant territory).** the horizon and how future effects are estimated.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Future needs are uncertain and can be invented to support any position.
+
+**Tradeoffs.**
+- Gains: decisions answerable to those who live with them later.
+- Gives up: the freedom to discount the future completely.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: intergenerational justice.
+
+**In the family.** Absentseat represents absent parties now; Brakegrow watches for harm as progress continues; Futureclaim weighs future people's needs.
+
+---
+
+### Goalweave#5000
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Goalweave.json)
+
+**Gloss.** Agree on actions that serve several groups' different purposes without merging the purposes
+
+**Mechanism.**
+
+> Groups with different purposes agree on actions that serve each group's own {{goal}}. The agreement records, for each action, which purpose each group pursues through it, and no group is asked to adopt another's purpose.
+
+**Invariants.**
+- Each agreed action records which purpose each group pursues through it.
+- No group's participation is conditioned on adopting another group's purpose.
+
+**Failure modes.**
+- Purpose capture: one group's purpose becomes the shared goal.
+- Hollow agreement: actions are agreed but serve no group's purpose well.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{goal}}` | `sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70` |
+
+#### Design
+
+**Why it exists.** Coordination often demands a shared goal, which forces some groups to give up their own. Goalweave coordinates actions while keeping purposes distinct.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Goal specifies one end state and Consensus agrees a value; neither coordinates actions across distinct purposes. Removable if coordination always requires a shared goal.
+
+**Intended use.** coalitions and partnerships whose members want different things.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** coalitions, partnerships, open-source collaborations, multi-stakeholder projects, multi-agent cooperation with different objectives, community initiatives.
+
+**Broad-use intersection (review hypothesis).** agreed actions, each annotated with the purpose each group pursues through it.
+
+**Varies (descendant territory).** how actions are proposed and how purposes are stated.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Actions serving every purpose may be few.
+
+**Tradeoffs.**
+- Gains: cooperation without forced consensus on purpose.
+- Gives up: the clarity of one shared goal.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: overlapping consensus.
+
+**In the family.** Jointscape lists options needing all parties; Reasonbridge explains across values; Goalweave coordinates actions across purposes.
+
+---
+
+### Hearshift#4fcf
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Hearshift.json)
+
+**Gloss.** Record what each piece of consultation input changed in the decision
+
+**Mechanism.**
+
+> When input is gathered before a {{decision}}, the decision record answers each input: what it changed in the decision, its reasoning or the options considered, or that it changed nothing and why.
+
+**Invariants.**
+- Each gathered input is answered in the decision record.
+- An answer states what the input changed, or why it changed nothing.
+
+**Failure modes.**
+- Consultation theatre: input is gathered and never appears in the record.
+- Loudest input: one input changes everything while others are set aside without reasons.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decision}}` | `sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7` |
+
+#### Design
+
+**Why it exists.** Consultation often changes nothing, and nobody can tell. Hearshift makes each input's effect, or the reason it had none, part of the record.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Reasoncommons records a decision's reasons; it does not answer each input. Removable if consultation is a formality.
+
+**Intended use.** decisions preceded by consultation or review.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** public consultation, code review, product feedback, research review, user research, agent feedback loops.
+
+**Broad-use intersection (review hypothesis).** each input answered with what it changed, or why it changed nothing.
+
+**Varies (descendant territory).** how inputs are grouped and answered.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Answering every input is costly when there are many.
+
+**Tradeoffs.**
+- Gains: input that can be seen to matter.
+- Gives up: the convenience of consultation as a formality.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: participation with real influence, as against tokenism.
+
+**In the family.** Reasoncommons keeps reasons; Costeer answers reasons in joint choices; Hearshift answers consultation inputs.
+
+---
+
+### Localhinge#7a04
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Localhinge.json)
+
+**Gloss.** Link decisions at different scales so that each level can correct the others
+
+**Mechanism.**
+
+> Decisions made at different levels of a {{hierarchy}}, such as team and organisation or local and central, are linked: each level has a stated route for sending corrections to the others, and each correction is answered by the level that receives it.
+
+**Invariants.**
+- Each level has a stated route for sending corrections to the other levels.
+- Each correction is answered by the receiving level.
+
+**Failure modes.**
+- One-way scale: corrections flow only downward.
+- Local veto: every local objection blocks central decisions.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{hierarchy}}` | `sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85` |
+
+#### Design
+
+**Why it exists.** Decisions at one scale miss what other scales see, and corrections usually flow only downward. Localhinge gives every level a route to correct the others.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Hierarchy defines rank relations, not correction routes; Dissentkeep keeps challenge open at one level. Removable if a single level decides everything.
+
+**Intended use.** organisations and systems with several levels of decision.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** federal systems, large organisations, open-source governance, multi-agent hierarchies, supply chains, education systems.
+
+**Broad-use intersection (review hypothesis).** correction routes between levels, and answers to each correction.
+
+**Varies (descendant territory).** the routes and answer deadlines.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Cross-level correction can become cross-level veto.
+
+**Tradeoffs.**
+- Gains: levels that correct each other's blind spots.
+- Gives up: the simplicity of one-way authority.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: subsidiarity; polycentric governance.
+
+**In the family.** Hierarchy ranks, Mosaicmap maps spread knowledge, and Localhinge links decisions across scales.
+
+---
+
+### Mandatune#7d34
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Mandatune.json)
+
+**Gloss.** Revisit a mandate when the circumstances it was granted under change
+
+**Mechanism.**
+
+> A mandate is a {{permission}} granted for a purpose under stated circumstances, and it records those circumstances. When one of them changes materially, the mandate is revisited with those who granted it before it is used again; the initial support is not treated as standing permission under the new conditions.
+
+**Invariants.**
+- The mandate records the circumstances it was granted under.
+- A material change in a recorded circumstance triggers a revisit before the mandate is used again.
+
+**Failure modes.**
+- Stale mandate: authority granted under old conditions is used under new ones.
+- Revisit churn: trivial changes trigger constant re-authorisation.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{permission}}` | `sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23` |
+
+#### Design
+
+**Why it exists.** Mandates are granted under conditions that later change, and the support given then is spent under new conditions nobody consented to. Mandatune ties a mandate to its recorded circumstances.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Permission defines a grant but not the circumstances it rests on. Removable if mandates are assumed permanent.
+
+**Intended use.** any authority granted for a purpose, to a leader, a team or an agent.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** politics, corporate boards, project leadership, delegated agent authority, research ethics approvals, union mandates.
+
+**Broad-use intersection (review hypothesis).** a mandate with its recorded circumstances, and a revisit when one of them changes materially.
+
+**Varies (descendant territory).** what counts as material and who revisits.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Revisiting too often paralyses; too rarely, mandates go stale.
+
+**Tradeoffs.**
+- Gains: authority stays tied to the conditions it was given under.
+- Gives up: the stability of a standing mandate.
+
+**Critique (diagnostic, not contract requirements).**
+- Kept distinct from Consentrenew: Mandatune is triggered by changed circumstances, Consentrenew by a changed initiative.
+- Novelty, from recall and unverified: known. Nearest known concepts: mandate review; periodic re-authorisation.
+
+**In the family.** Consentrenew is triggered by changes in the initiative, and Mandatune by changes in the world around it; Sunsetkind and Powerreturn end things on stated conditions.
+
+---
+
+### Powerreturn#2a84
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Powerreturn.json)
+
+**Gloss.** Return concentrated authority when the reason for concentrating it has ended
+
+**Mechanism.**
+
+> Authority concentrated for a reason, such as an emergency or a deadline, states the reason and the observable sign that it has ended. When the sign appears, the authority returns to where it came from, and holding it longer needs a fresh grant. Unlike an {{expiring_token}}, which lapses by time, the return is triggered by the reason ending.
+
+**Invariants.**
+- Concentrated authority states its reason and the sign that the reason has ended.
+- When the sign appears, the authority is returned or freshly granted.
+
+**Failure modes.**
+- Emergency creep: temporary powers outlast the emergency.
+- Premature return: authority is returned while the reason still holds.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{expiring_token}}` | `sema:ExpiringToken#mh:SHA-256:6ccee8101ea0c081947b221568ce55d3b727412df9015a4ac8e876dc956efcaf` |
+
+#### Design
+
+**Why it exists.** Authority concentrated for an emergency rarely returns by itself. Powerreturn states the end sign when the power is concentrated and returns it when the sign appears.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** ExpiringToken lapses by time; Delegate transfers work, not standing authority. Removable if concentrated powers are left to political memory.
+
+**Intended use.** emergency powers, incident commanders, temporary admin rights, escalated agent permissions.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** emergency governance, incident response, temporary access rights, crisis leadership, agent privilege escalation, wartime measures.
+
+**Broad-use intersection (review hypothesis).** a stated reason, a stated end sign, and return or fresh grant when it appears.
+
+**Varies (descendant territory).** the end sign and who confirms it.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Reasons can be redefined so that they never end.
+
+**Tradeoffs.**
+- Gains: temporary power stays temporary.
+- Gives up: the convenience of retained authority.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the sunset of emergency powers.
+
+**In the family.** Sunsetkind ends categories, Ladderdrop ends tools, and Powerreturn ends concentrated authority, each on a sign stated in advance.
+
+---
+
+### Promisehinge#680a
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Promisehinge.json)
+
+**Gloss.** A public commitment that states in advance what evidence would require revising it
+
+**Mechanism.**
+
+> A public commitment states, when it is made, the evidence that would require revising it and how a revision would be announced and explained, much as a {{strategy}} states its revision trigger. When that evidence appears, the commitment is revised as stated, not quietly kept and not quietly dropped.
+
+**Invariants.**
+- States, when made, the evidence that would require revision.
+- A revision is announced together with the evidence that triggered it.
+
+**Failure modes.**
+- Unfalsifiable promise: no evidence could ever trigger a revision.
+- Quiet drop: the commitment is abandoned without the announced explanation.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{strategy}}` | `sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef` |
+
+#### Design
+
+**Why it exists.** Public commitments are either kept rigidly when evidence turns against them or dropped quietly. Promisehinge names the hinge in advance, so a change is honest and expected.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** CommitmentDevice binds against temptation and Strategy names a revision trigger for a plan; neither governs public promises. Removable if promises are assumed absolute.
+
+**Intended use.** public pledges by leaders, organisations or agents.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** public policy pledges, corporate commitments, research preregistration, product roadmaps, agent commitments to users, personal promises.
+
+**Broad-use intersection (review hypothesis).** a commitment with stated revision evidence, and an announced revision when that evidence appears.
+
+**Varies (descendant territory).** the evidence threshold and the form of the announcement.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Stating revision conditions can read as weak commitment.
+
+**Tradeoffs.**
+- Gains: commitments that can change honestly.
+- Gives up: the rhetorical force of an unconditional promise.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: conditional commitments; tripwires.
+
+**In the family.** CommitmentDevice binds, Strategy revises plans, Sunsetkind retires categories, and Promisehinge revises promises on stated evidence.
+
+---
+
+### Reasonbridge#f8d2
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Reasonbridge.json)
+
+**Gloss.** Explain a decision in the terms of each value set it affects, without pretending they share one justification
+
+**Mechanism.**
+
+> A {{decision}} that affects parties with different values is explained once for each value set, giving the reasons that hold within it in its own terms. Where a value set finds no reason to support the decision, the explanation says so.
+
+**Invariants.**
+- Each affected value set receives reasons stated in its own terms.
+- Where a value set has no supporting reason, the explanation says so.
+
+**Failure modes.**
+- False consensus: one justification is presented as everyone's.
+- Pandering: different groups are told contradictory things about what the decision does.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decision}}` | `sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7` |
+
+#### Design
+
+**Why it exists.** Decisions affecting people with different values are justified in one vocabulary and alienate everyone else. Reasonbridge gives reasons in each value set's own terms and admits where there are none.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Decision commits and Reasoncommons records reasons; neither requires reasons per value set. Removable if all affected share one value set.
+
+**Intended use.** decisions affecting groups with different values.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** public policy, organisational change, family decisions, product changes for diverse users, international agreements, agent decisions affecting different stakeholders.
+
+**Broad-use intersection (review hypothesis).** reasons per value set in its own terms, and an admission where none exist.
+
+**Varies (descendant territory).** how value sets are identified.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Speaking in each group's terms can slide into telling each group what it wants to hear.
+
+**Tradeoffs.**
+- Gains: justifications each group can follow.
+- Gives up: a single uniform justification.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: public reason; incompletely theorised agreements.
+
+**In the family.** Goalweave keeps purposes distinct in action; Costeer answers reasons in joint choices; Reasonbridge explains across values.
+
+---
+
+### Repairmand#d89a
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Repairmand.json)
+
+**Gloss.** Pair the authority to repair harm with involving those harmed in defining the repair
+
+**Mechanism.**
+
+> When harm is acknowledged, the party holding {{responsibility}} for repair involves those harmed in defining what repair means, records their definition, and reports what was done against it.
+
+**Invariants.**
+- Those harmed take part in defining the repair.
+- What was done is reported against the defined repair.
+
+**Failure modes.**
+- Unilateral repair: the harming party alone decides what counts as repair.
+- Endless repair: repair is never declared complete.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{responsibility}}` | `sema:Responsibility#mh:SHA-256:d8ccf6225585313bd3efd0198c588063cb62add74447c15fe5128c0ebfdc1d19` |
+
+#### Design
+
+**Why it exists.** When harm is done, the party that caused it usually defines the repair. Repairmand gives those harmed a voice in what repair means and reports against it.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Responsibility is continuous ownership of an invariant and Coursecandor admits mistakes; neither involves the harmed in defining repair. Removable if repair is defined unilaterally.
+
+**Intended use.** acknowledged harm by an organisation, a team or an agent.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** incident response, restorative justice, product failures affecting users, data breaches, workplace harm, agent errors affecting users.
+
+**Broad-use intersection (review hypothesis).** those harmed involved in defining repair, and a report against their definition.
+
+**Varies (descendant territory).** how those harmed are involved and when repair is complete.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Those harmed may define repair beyond what is possible.
+
+**Tradeoffs.**
+- Gains: repair that those harmed recognise.
+- Gives up: control over the repair's scope.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: restorative justice.
+
+**In the family.** Coursecandor admits mistakes, Revisance revises views, and Repairmand repairs harm with those harmed.
 
 ---
 
@@ -32922,7 +39672,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - Overreach (named failure) — claiming responsibility for scope beyond bounds — is role-creep.
 - The Single Writer Principle is strong; some genuinely shared states need multi-writer semantics via CRDT or similar.
 
-**In the family.** Governance primitive paired with Role (the capability bundle), Permission (the grant), and Invariant (what's being maintained). Compare with Task — Responsibility is continuous; Task is discrete. Different temporal structures.
+**In the family.** Governance primitive paired with Role (the capability bundle), Permission (the grant), and Invariant (what's being maintained). Compare with Task — Responsibility is continuous; Task is discrete. Different temporal structures. Patterns that build on it: Repairmand.
 
 **Supersedes (prior versions).**
 - `Responsibility#4148`
@@ -32930,6 +39680,70 @@ One check that passed and is worth recording: this card's commentary describes O
 - `Responsibility#67f5`
 - `Responsibility#8cf5`
 - `Responsibility#2971`
+
+---
+
+### Ruleflip#ba93
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Ruleflip.json)
+
+**Gloss.** Before applying a rule at scale, state how it could be satisfied while defeating its purpose, and watch for it
+
+**Mechanism.**
+
+> Before a {{rule_set}} is applied at scale, its authors state how the people or agents it governs could satisfy it while defeating its purpose, and set observable signs of that happening. After rollout the signs are watched, and a rule whose application reverses its purpose is revised.
+
+**Invariants.**
+- Before rollout, the ways the rule could be satisfied while defeating its purpose are stated.
+- Observable signs of each are watched after rollout.
+- A rule whose application reverses its purpose is revised.
+
+**Failure modes.**
+- Cobra effect: the rule rewards the very thing it was meant to reduce.
+- Paranoid drafting: imagined gaming blocks every rule from being adopted.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{rule_set}}` | `sema:RuleSet#mh:SHA-256:7ebf36ad0634307d189aa0545d3424f0d0783bf2a0df04dfafdecf64e0cc9146` |
+
+#### Design
+
+**Why it exists.** Rules create incentives, and some incentives reward the very behaviour the rule targets. Ruleflip asks how the rule could backfire before rollout, and watches for it after.
+
+**Why Society.** Rules govern several parties, so their design is governance.
+
+**Can it be removed?** RuleSet defines constraints, Metricmirror reviews metrics and Trialhaven bounds experiments; none anticipates perverse incentives in a rule before rollout. Removable if rules apply to agents who do not respond to incentives.
+
+**Intended use.** drafting rules, incentives and policies that will apply at scale.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** public policy, incentive schemes, platform rules, reward design for agents, workplace policies, regulations.
+
+**Broad-use intersection (review hypothesis).** stated backfire routes before rollout, and watched signs after it.
+
+**Varies (descendant territory).** how the backfire routes are generated.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+_Note: The coined handle names the failure and the card defines the guard, as ConfirmationBlock and HindsightBlock do._
+
+**Design tensions.**
+- Imagined gaming can paralyse rule-making.
+
+**Tradeoffs.**
+- Gains: rules that do not reward what they forbid.
+- Gives up: drafting speed.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: the cobra effect; perverse incentives.
+- Caution: the card has authors write down how the governed could satisfy the rule while defeating its purpose, and which signs will be watched. The failure modes cover badly drafted rules, not that catalogue becoming a manual for the governed. The rule itself can stay public.
+
+**In the family.** Metricmirror reviews measures in use, Trialhaven tests changes in bounds, and Ruleflip anticipates backfire.
 
 ---
 
@@ -33046,7 +39860,129 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### UniversalSolverTree#655a
+### Successiongift#5f2b
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Successiongift.json)
+
+**Gloss.** Before leaving a role, move everything that depends on you personally to institutions or successors
+
+**Mechanism.**
+
+> Before a leader or agent leaves a role, it lists what depends on it personally and moves each item to an institution, a process or a successor, by {{handoff}} where control passes. The successor is left real choices rather than fixed paths, and the handover is complete only when no listed item still depends on the departing party.
+
+**Invariants.**
+- Lists everything that depends on the departing party personally.
+- The handover is complete only when no listed item still depends on the departing party.
+
+**Failure modes.**
+- Indispensability: the departing party keeps essential knowledge to itself.
+- Locked successor: the successor inherits commitments that leave no real choice.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{handoff}}` | `sema:Handoff#mh:SHA-256:1323eea000780c4fc715bcc90b5ea28d6353c780ad561e86aeff723855650ab5` |
+
+#### Design
+
+**Why it exists.** Leaders and agents leave behind dependence on themselves: knowledge in their heads, commitments only they can keep. Successiongift transfers everything personal before departure.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** Handoff transfers control and context for a task; it does not inventory personal dependence or require leaving the successor real choices. Removable if roles never change hands.
+
+**Intended use.** anyone leaving a role others depend on.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** leadership succession, staff departures, open-source maintainers, long-running agents being retired, family businesses, project handovers.
+
+**Broad-use intersection (review hypothesis).** an inventory of personal dependencies, each transferred, and completion only when none remain.
+
+**Varies (descendant territory).** the inventory method and the transfer channels.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Leaving real choices can mean undoing the departing party's own commitments.
+
+**Tradeoffs.**
+- Gains: institutions that survive their leaders.
+- Gives up: the departing party's lasting influence.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: succession planning; institution building.
+
+**In the family.** Handoff passes control, Mosaicmap maps spread knowledge, Ladderdrop retires tools, and Successiongift retires a person's indispensability.
+
+---
+
+### Trialhaven#da45
+
+`Society` · `Governance` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Trialhaven.json)
+
+**Gloss.** Run a bounded departure from standing rules with safeguards, review points and an exit back
+
+**Mechanism.**
+
+> An experiment that departs from standing rules runs inside declared bounds of scope, duration and affected parties, with safeguards, scheduled review points and an exit route whose {{reversibility}} has been checked. Crossing a declared bound ends the trial.
+
+**Invariants.**
+- The trial declares its scope, duration and affected parties.
+- It has scheduled review points and an exit route that restores the prior state.
+- Crossing a declared bound ends the trial.
+
+**Failure modes.**
+- Permanent pilot: the trial is extended indefinitely without becoming policy.
+- Unreachable exit: by the time it is needed, the exit no longer restores the prior state.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{reversibility}}` | `sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37` |
+
+#### Design
+
+**Why it exists.** Experiments that depart from standing rules either never happen or quietly become permanent. Trialhaven bounds them, reviews them and keeps a way back.
+
+**Why Society.** It governs authority, consent or accountability among several parties, which is Society/Governance.
+
+**Can it be removed?** SacrificialProbe learns through cheap failure and AgentSandbox isolates execution; neither governs a sanctioned departure from rules with review points and an exit. Removable if rules are never suspended for experiments.
+
+**Intended use.** policy pilots, feature trials and experimental exemptions.
+
+**Future uses.** multi-agent systems where agents hold delegated authority, and human-AI governance.
+
+**Broad-use contexts.** regulatory sandboxes, product experiments, education pilots, clinical trials, organisational pilots, agent capability trials.
+
+**Broad-use intersection (review hypothesis).** declared bounds, safeguards, review points, a checked exit, and an end on crossing a bound.
+
+**Varies (descendant territory).** the bounds and the review rhythm.
+
+**Extension shape.** domain-specific variants, for example for organisations, public bodies or agent swarms.
+
+**Design tensions.**
+- Exits that worked at the start may not work at the end.
+
+**Tradeoffs.**
+- Gains: experiments that can be stopped and undone.
+- Gives up: the speed of unbounded change.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: regulatory sandbox.
+- Caution: the card departs from standing rules, which can include safety rules, and that is the schema's bypass trigger. Its failure modes cover how a trial ends, not who may start one or what it may depart from, and while it runs, its declared safeguards are the only protection the affected parties have. Same entry risk as DocumentedOverride's caution.
+
+**In the family.** SacrificialProbe and AgentSandbox isolate experiments; Trialhaven governs them as departures from rules.
+
+---
+
+### UniversalSolverTree#f9fb
 
 `Society` · `Governance` · R1 · T1
 
@@ -33056,12 +39992,12 @@ One check that passed and is worth recording: this card's commentary describes O
 
 **Mechanism.**
 
-> The theoretical aggregation of all valid {{solver_tree}}s across all agents in the system. Represents the total epistemological state of {{problem}}-solving knowledge — the collective wisdom. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within the Universal {{tree}}. At decomposition time the structure is tree-like (problems decompose top-down), but at execution time fan-in, deduplication, and cycles are permitted — the actual runtime graph is a DAG. Enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The ground truth against which {{localized_learning}} updates integrate.
+> The theoretical aggregation of all valid {{solver_tree}}s across all agents in the system. Represents the total epistemological state of {{problem}}-solving knowledge — the collective wisdom. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within the Universal {{tree}}. The name records decomposition's rooted origin, not the final topology: one {{solver_node}} strategy may serve several parents, so fan-in, deduplication and multi-parent reuse make the aggregate a rooted, acyclic directed graph. Only bounded execution protocols inside it may cycle, as when a generating and a verifying solver iterate until a gate clears; the persistent topology stays acyclic. Enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The ground truth against which {{localized_learning}} updates integrate.
 
 **Invariants.**
 - One namespace: two agents referring to the same {{solver_node}} refer to the same node.
 - A detected contradiction is recorded as one. Resolution by synthesis or rejection may be deferred.
-- Runtime shape is a DAG: fan-in and deduplication are permitted at execution even though decomposition is tree-like.
+- Rooted and acyclic: fan-in, deduplication and multi-parent reuse are permitted, and cycles occur only within bounded execution, never in the persistent topology.
 
 **Failure modes.**
 - Fragmentation: Parts of the universal tree become inaccessible across agent boundaries.
@@ -33120,7 +40056,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 **Broad-use contexts.** cross-agent learning, pattern reuse, redundancy detection, collective wisdom, problem-solving archaeology.
 
-**Broad-use intersection (review hypothesis).** aggregation semantic, DAG shape, singularity (only one logical instance).
+**Broad-use intersection (review hypothesis).** aggregation semantic, rooted acyclic shape, singularity (only one logical instance).
 
 **Varies (descendant territory).** physical instantiation (distributed DB, federated, local copy), access protocol, privacy/scope boundaries, update semantics.
 
@@ -33128,19 +40064,18 @@ One check that passed and is worth recording: this card's commentary describes O
 
 **Design tensions.**
 - Singularity invariant vs federated reality: 'logically only one Universal tree' is a theoretical claim. In practice, different agents have different views — there is no single observable universal tree. The library's answer is that singularity is the goal, synthesis and rejection are the tools.
-- Tree vs DAG: decomposition is tree-like (parent→children), but at runtime the same sub-concept may appear under multiple parents (DAG fan-in). The invariant acknowledges runtime DAG but names the pattern 'tree' — a terminology mismatch.
 - Society placement vs architectural abstraction: UniversalSolverTree is in Society/Governance because coherence requires multi-party coordination. But the structure itself is cognitive — the layer is about enforcement, not essence.
 
 **Tradeoffs.**
 - Singularity invariant buys a coherent shared knowledge structure at the cost of requiring conflict resolution that is hard at scale.
-- Tree decomposition + DAG runtime buys memory efficiency (dedup at execution) at the cost of making the structure harder to reason about.
+- Rooted decomposition with multi-parent reuse buys one shared node for each reused strategy instead of duplicated subtrees, at the cost of a structure harder to reason about than a tree.
 - Theoretical/governance framing buys clean semantics at the cost of having no runtime representation — the pattern is an abstraction, not an object.
 
 **Critique (diagnostic, not contract requirements).**
 - Resolved 2026-07-25. Two of the three invariants were uncheckable, and this entry's own first tension concedes it about one of them. 'There is logically only one Universal tree containing all knowledge' is unfalsifiable — no observation could violate a claim about the logical object — and the tension says outright that 'singularity is the goal'. The decidable content underneath is what makes the mechanism's promise of cross-agent reuse possible: one namespace, so two agents naming the same solver node mean the same node. Without that, two agents' trees cannot be compared, only concatenated.
 - 'Contradictions must EVENTUALLY be resolved' is an escape clause with no bound, so it holds at no particular time and cannot be checked at any. The repair is `TriGate`'s debt discipline: deferring the resolution is a governance choice, not recording the contradiction is not — and recording is what makes the Inconsistency failure mode below detectable rather than invisible.
 - Both critique points were REJECTED on placement. Concrete mitigations for Fragmentation and Inconsistency, and the question of how local connects to universal — synchronization, subscription, cross-publication — are 'update semantics' and 'access protocol', both on this entry's own Varies line. That each is a different governance shape is the reason they belong to descendants, not the reason to pick one here.
-- OPEN, for Henrik: the tree-versus-DAG terminology mismatch. The third invariant declares the runtime shape a DAG while the handle says tree, and the tension calls this out. Renaming is a naming decision with wide fan-in, so it is flagged rather than taken.
+- Tree versus graph, settled by the Fractal Intelligence paper: the handle names decomposition's rooted origin, not the final topology. One solver node may serve several parents, so fan-in, deduplication and multi-parent reuse make the aggregate a rooted, acyclic directed graph, and only bounded execution protocols inside it may cycle. The mechanism and the third invariant state this, so the handle stays.
 
 **In the family.** The aggregate structure in Society/Governance. Composed with `FractalIntelligence` (the architecture), `ConceptualDecomposition` (the local move), `RootSolver` (entry points). Paired with the coherence and synthesis patterns that keep the universal structure consistent across agents.
 
@@ -33151,6 +40086,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - `UniversalSolverTree#7361`
 - `UniversalSolverTree#a6cb`
 - `UniversalSolverTree#32f9`
+- `UniversalSolverTree#655a`
 
 ---
 
@@ -33230,7 +40166,7 @@ One check that passed and is worth recording: this card's commentary describes O
 
 ---
 
-### Society/Protocols (74)
+### Society/Protocols (97)
 
 ### AdversarialProof#36b4
 
@@ -33617,6 +40553,7 @@ One check that passed and is worth recording: this card's commentary describes O
 - The 'clarity must decrease over time' invariant is aspirational; nothing in the mechanism guarantees it, and contentious cases can cycle indefinitely even under vote.
 - EntropyPump as the surfacing mechanism is gestured at but not operationalized — in practice surfacing ambiguity is itself an agentic task that the pattern doesn't own.
 - Voting is a coarse resolution mechanism when the options (clarify, delete, fork) have very different costs; a three-way vote treats 'fork the graph' as equivalent in weight to 'add a clarifying note.'
+- Caution: flagged data must be clarified, deleted or forked by vote, and conflicts cannot persist, so any flag forces a deadline-driven decision that can delete data. The card has no failure modes, says nothing of recovering deleted data, and does not limit who may flag.
 
 **In the family.** Social-layer sibling of Consensus (agreement about truth claims), Vote (the counting mechanism), and Rally (mobilization around a position). AmbiguityResolution is the specific case of 'what to do when positions disagree about the meaning itself.' Pairs with EntropyPump (surfacer) and BeliefTracking (each agent's version history) to form the epistemic-integrity spine of a multi-agent namespace.
 
@@ -33698,6 +40635,67 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 **Supersedes (prior versions).**
 - `BearerToken#e5bd`
 - `BearerToken#a682`
+
+---
+
+### Belongbend#31f2
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Belongbend.json)
+
+**Gloss.** Record private judgments before discussion, so shifts that may protect group membership can be reviewed
+
+**Mechanism.**
+
+> Before a group discusses a judgment, each member records a private judgment, frozen like a {{counterfactual_anchor}}. Public statements are then compared with the private records, and each shift toward the group's apparent view is recorded with the reason the member gives for it.
+
+**Invariants.**
+- Private judgments are recorded before discussion begins and are not changed afterwards.
+- A member's public shift from its private judgment is recorded with a stated reason.
+
+**Failure modes.**
+- Preference falsification: members state the group view while privately holding another.
+- Exposed privacy: private records are not kept private, so members falsify them too.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{counterfactual_anchor}}` | `sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf` |
+
+#### Design
+
+**Why it exists.** People adjust what they say to protect their place in a group, and the group then mistakes the adjusted statements for its members' views. Recording private judgments first makes shifts visible, so they can be reviewed for bending.
+
+**Why Society.** It concerns members of a group and needs their private and public statements.
+
+**Can it be removed?** DissentSeek seeks disagreement; CounterfactualAnchor freezes predictions; neither compares private and public judgment. Removable if public statements are trusted as private views.
+
+**Intended use.** groups about to discuss a judgment on which conformity pressure is likely.
+
+**Future uses.** multi-agent deliberation where agents see each other's outputs; panels.
+
+**Broad-use contexts.** juries, hiring committees, forecasting teams, boards, research consensus, multi-agent voting.
+
+**Broad-use intersection (review hypothesis).** private judgments recorded first, public statements compared, and shifts recorded with reasons.
+
+**Varies (descendant territory).** how privacy is protected and how shifts are reviewed.
+
+**Extension shape.** a Delphi-style variant with several rounds.
+
+**Design tensions.**
+- A shift can be honest persuasion, and a stated reason cannot by itself tell persuasion from bending; a shift is a prompt for review, not a verdict.
+
+**Tradeoffs.**
+- Gains: conformity becomes visible.
+- Gives up: some trust that members speak freely.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: preference falsification; conformity.
+
+**In the family.** CounterfactualAnchor freezes predictions; Silencevote and Doubtshelter address other conformity failures; Belongbend exposes shifts that may be bent judgments.
 
 ---
 
@@ -33859,6 +40857,249 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
+### Certaintyclap#5dcc
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Certaintyclap.json)
+
+**Gloss.** Credit claims by their calibration, not by the confidence of their delivery
+
+**Mechanism.**
+
+> A group records each claim with the confidence its speaker stated, scores claims against outcomes as in {{confidence_calibrate}}, and gives credit by that score. Confident delivery earns nothing by itself.
+
+**Invariants.**
+- Claims are recorded with their stated confidence.
+- Credit follows calibration against outcomes, not the confidence of delivery.
+
+**Failure modes.**
+- Bluster reward: confident delivery earns credit that calibration would not.
+- Hedge reward: vague claims are credited because they cannot be wrong.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{confidence_calibrate}}` | `sema:ConfidenceCalibrate#mh:SHA-256:e3570290d420b5bf59848ccc1d269530bbb3124b2e1a4583e62dc2a901ab16ac` |
+
+#### Design
+
+**Why it exists.** Groups reward confident delivery, which teaches members to sound certain rather than to be calibrated. Certaintyclap moves credit to calibration.
+
+**Why Society.** It concerns how a group credits its members' claims.
+
+**Can it be removed?** ConfidenceCalibrate calibrates one agent's own confidence; it says nothing about how a group credits claims. Removable if credit is left informal.
+
+**Intended use.** forecasting, review and advisory groups where claims can be scored later.
+
+**Future uses.** agent ensembles weighted by past calibration; prediction markets.
+
+**Broad-use contexts.** forecasting, medicine, investment committees, intelligence analysis, model ensembles, meetings.
+
+**Broad-use intersection (review hypothesis).** recorded stated confidence, outcome scoring, and credit by calibration.
+
+**Varies (descendant territory).** the scoring rule and time to outcome.
+
+**Extension shape.** a variant for claims whose outcomes never arrive.
+
+**Design tensions.**
+- Many claims never get outcomes to score against.
+
+**Tradeoffs.**
+- Gains: credit tracks reliability.
+- Gives up: the persuasive force of confidence.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: the confidence heuristic; proper scoring rules.
+
+**In the family.** ConfidenceCalibrate and EpistemicCalibrate govern one agent's confidence; Certaintyclap governs how a group rewards it.
+
+---
+
+### ChannelCheck#3ceb
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/ChannelCheck.json)
+
+**Gloss.** Do not read a quiet channel as agreement; check whether the parties are still connected
+
+**Mechanism.**
+
+> When a channel between parties goes quiet beyond a stated interval, the quiet is not taken as agreement or as health. An explicit check-in asks whether the parties are still connected and whether they agree, and the answer is recorded as agreement, disagreement, disconnection or no answer, just as {{silence}} is recorded as what it is.
+
+**Invariants.**
+- A channel quiet beyond the stated interval gets an explicit check-in.
+- The check-in's result is recorded as agreement, disagreement, disconnection or no answer.
+
+**Failure modes.**
+- Comfortable silence: a lost connection is mistaken for harmony.
+- Check-in spam: check-ins come so often that they become noise.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{silence}}` | `sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f` |
+
+#### Design
+
+**Why it exists.** Quiet channels are read as harmony, but quiet is often lost connection. ChannelCheck checks in and records which it was.
+
+**Why Society.** It concerns the connection between parties.
+
+**Can it be removed?** Silence describes an agent's own abstention and Silencevote reads silence on proposals; neither checks an ongoing channel. Removable if channels are monitored otherwise.
+
+**Intended use.** ongoing relationships between people, teams or agents.
+
+**Future uses.** long-running agents and agent teams, where these failures accumulate unnoticed.
+
+**Broad-use contexts.** client relationships, remote teams, open-source collaborations, distributed agents, family, partnerships.
+
+**Broad-use intersection (review hypothesis).** a quiet interval, an explicit check-in, and a recorded result.
+
+**Varies (descendant territory).** the interval and the form of check-in.
+
+**Extension shape.** domain-specific variants with stated intervals and thresholds.
+
+**Design tensions.**
+- Check-ins can feel like surveillance.
+
+**Tradeoffs.**
+- Gains: lost connections are noticed.
+- Gives up: some quiet.
+
+**Critique (diagnostic, not contract requirements).**
+- Quietsever is the process this looks for. No answer is recorded as no answer, not as disconnection.
+- Novelty, from recall and unverified: known. Nearest known concepts: silent disengagement.
+
+**In the family.** Silence and Silencevote handle abstention and proposals, and ChannelCheck checks in on quiet channels; Quietsever names the fading connection it looks for.
+
+---
+
+### Cocapacity#0924
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Cocapacity.json)
+
+**Gloss.** Record the joint capacity an exchange creates, beyond the information it transfers
+
+**Mechanism.**
+
+> After an exchange, the parties record what they can now do together that they could not before, such as a shared term, a {{contract}}, an agreed procedure or a fact each knows the other knows. Each capacity is tested by naming a joint action it enables.
+
+**Invariants.**
+- Each new capacity is named with a joint action it enables.
+- A capacity counts only if it needs every party; an individual gain does not.
+
+**Failure modes.**
+- Information mistaken for capacity: facts were transferred, but nothing can be done together that could not be done before.
+- Unused capacity: the capacity is recorded but never exercised.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{contract}}` | `sema:Contract#mh:SHA-256:98747322ee31ffa265a8dfd6609d726e0dcba9c513e5ec85742c6c04e4afaa26` |
+
+#### Design
+
+**Why it exists.** Exchanges are usually judged by the information they transfer. Some create something more valuable: a joint capacity, such as a shared term or a mutual commitment. Cocapacity records it and tests it by a joint action.
+
+**Why Society.** The capacity is joint, so it needs several parties.
+
+**Can it be removed?** Coflourish records individual gains, Jointscape lists joint options and Contract binds terms; none records the joint capacity an exchange created. Removable if joint capacities are left implicit.
+
+**Intended use.** conversations meant to build working relationships.
+
+**Future uses.** agent-to-agent protocol negotiation; partnership kick-offs.
+
+**Broad-use contexts.** partnerships, team formation, diplomacy, multi-agent protocol setup, community organising, onboarding.
+
+**Broad-use intersection (review hypothesis).** a named capacity, a joint action it enables, and a check that it needs every party.
+
+**Varies (descendant territory).** the kinds of capacity and how they are verified.
+
+**Extension shape.** a variant that revisits capacities to see if they were used.
+
+**Design tensions.**
+- Capacities are easy to claim and hard to prove until used.
+
+**Tradeoffs.**
+- Gains: exchanges valued for what they make possible together.
+- Gives up: a simple information-transfer measure.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: common knowledge; institutional facts.
+
+**In the family.** Coflourish counts individual gains, Jointscape lists joint options, and Cocapacity records the joint capacity that makes them reachable.
+
+---
+
+### Coflourish#915e
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Coflourish.json)
+
+**Gloss.** An exchange in which every party leaves holding something new, and no party's only gain is another's concession
+
+**Mechanism.**
+
+> At the end of an exchange, each party names in its own words something it now holds that it did not hold before: an understanding, an option, a question or a capability. The exchange is a coflourish when every party names such a gain and no party's only gain is a concession by another. Unlike {{compromise}}, which settles by each side giving something up, it records what each side gained.
+
+**Invariants.**
+- Each party names its own gain; no party's gain is named for it by another.
+- A concession received does not count as a party's only gain.
+- The record states the gain each party named.
+
+**Failure modes.**
+- Polite inflation: trivial gains are named to hide that the exchange was one-sided.
+- Winner's gain: one party's gain is the other's loss, recorded as mutual growth.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{compromise}}` | `sema:Compromise#mh:SHA-256:f25faa26653b11458535137532cbad87182ed5e5415ec590bc174877d51f985c` |
+
+#### Design
+
+**Why it exists.** Exchanges are usually scored as wins, losses or compromises. A coflourish is the outcome where each party leaves with something new, and recording it requires each party's own account.
+
+**Why Society.** It needs every party to name its own gain, so it cannot be run by one agent alone.
+
+**Can it be removed?** Compromise and Consensus describe ways of settling; none records what each party gained. Removable if outcomes are scored only by agreement.
+
+**Intended use.** conversations, reviews and negotiations whose purpose is mutual growth.
+
+**Future uses.** agent-to-agent collaboration; human-AI pairing sessions; mentoring.
+
+**Broad-use contexts.** research collaboration, mentoring, design reviews, negotiation, teaching, peer review.
+
+**Broad-use intersection (review hypothesis).** every party, a gain named by each in its own words, and a rule that a concession alone does not count.
+
+**Varies (descendant territory).** the kinds of gain recognised, how gains are elicited, and how long after the exchange they are named.
+
+**Extension shape.** a delayed variant that asks again after a set time; a group variant with more than two parties.
+
+**Design tensions.**
+- Asking each party to name a gain invites polite inflation.
+
+**Tradeoffs.**
+- Gains: growth is recorded as an outcome in its own right.
+- Gives up: a single winner-loser score.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: positive-sum or win-win exchange.
+
+**In the family.** Compromise settles by mutual sacrifice and Disputelift records a better way of disagreeing; Coflourish records mutual gain.
+
+---
+
 ### ConfusedDeputy#119a
 
 `Society` · `Protocols` · R2 · T1
@@ -34013,6 +41254,130 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
+### Correctionwelcome#25e5
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Correctionwelcome.json)
+
+**Gloss.** Credit corrections that hold, including those that challenge favoured people or positions
+
+**Mechanism.**
+
+> A group records useful corrections and credits the person who made them, including when the correction challenges a favoured person, position or earlier decision. Whether a correction holds is assessed before the standing of its target is considered; a correction is {{feedback}} about the work, not a move against its author.
+
+**Invariants.**
+- A correction that holds is credited to its maker.
+- Whether a correction holds is decided before the standing of its target is considered.
+
+**Failure modes.**
+- Messenger penalty: the corrector loses standing for being right about a favoured position.
+- Correction theatre: corrections are welcomed in words and ignored in decisions.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{feedback}}` | `sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d` |
+
+#### Design
+
+**Why it exists.** Groups say they welcome correction, then punish the corrector when the target is favoured. Correctionwelcome credits corrections that hold and assesses them before looking at whom they challenge.
+
+**Why Society.** It is a norm a group maintains among its members.
+
+**Can it be removed?** Feedback describes error signals and Critique generates feedback; neither protects the person who corrects. Removable if corrections are left to individual courage.
+
+**Intended use.** teams where correction of senior people or favoured positions matters.
+
+**Future uses.** agent hierarchies; open-source projects; research labs.
+
+**Broad-use contexts.** science, engineering reviews, aviation and medicine, open source, journalism corrections, multi-agent systems.
+
+**Broad-use intersection (review hypothesis).** a correction, an assessment of whether it holds made before the target's standing is considered, and credit for its maker.
+
+**Varies (descendant territory).** the form of credit and how holding is judged.
+
+**Extension shape.** a public register of corrections.
+
+**Design tensions.**
+- Crediting corrections can encourage nitpicking.
+
+**Tradeoffs.**
+- Gains: errors are found and fixed sooner.
+- Gives up: the comfort of unchallenged favourites.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: blameless error culture.
+
+**In the family.** Doubtshelter protects doubt; Revisance makes changing one's mind graceful; Correctionwelcome protects the corrector.
+
+---
+
+### Costeer#eeda
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Costeer.json)
+
+**Gloss.** Choose a direction together, with every party's reasons stated before the choice and answered by it
+
+**Mechanism.**
+
+> Parties choosing a direction together each state their reasons, attached to their {{proposal}}, before any choice is made. A direction is adopted only when it answers every party's stated reasons, either by meeting them or by saying why they are outweighed. The record shows whose reasons shaped the choice and how.
+
+**Invariants.**
+- Every party's reasons are recorded before the choice is made.
+- The adopted direction states, for each party's reasons, whether it meets them or why they are outweighed.
+- No direction is adopted on one party's authority alone.
+
+**Failure modes.**
+- Persuasion drift: one party argues until the other stops objecting, and silence is taken for agreement.
+- After-the-fact reasons: a direction is chosen first and reasons are written to fit it.
+- Unanswered reasons: reasons are recorded but the choice never addresses them.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{proposal}}` | `sema:Proposal#mh:SHA-256:5d0a98055eef6c963d4c9ec0403cac243720ce8927398032c19b4f5d8cc94506` |
+
+#### Design
+
+**Why it exists.** Joint decisions often slide into persuasion, where one side argues until the other gives up, or into deference. Costeer makes every party's reasons part of the choice and requires the choice to answer them.
+
+**Why Society.** It structurally needs at least two parties, each with its own reasons.
+
+**Can it be removed?** Consensus agrees on a value and Proposal carries a justification; neither requires the chosen direction to answer every party's reasons. Removable if joint choice is reduced to agreement.
+
+**Intended use.** teams, or a human and an agent, choosing a direction together.
+
+**Future uses.** multi-agent planning; shared roadmaps; co-authored work.
+
+**Broad-use contexts.** product decisions, research direction, shared households, human-AI collaboration, governance, multi-agent planning.
+
+**Broad-use intersection (review hypothesis).** every party's reasons recorded before the choice, and a choice that answers each set of reasons.
+
+**Varies (descendant territory).** the decision rule, the format of reasons, and how 'outweighed' is argued.
+
+**Extension shape.** a weighted variant for unequal stakes; an asynchronous variant.
+
+**Design tensions.**
+- Answering every reason can stall decisions that need speed.
+- Saying why reasons are outweighed can become a formality.
+
+**Tradeoffs.**
+- Gains: decisions whose reasons are visible and shared.
+- Gives up: speed and unilateral authority.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: shared decision-making.
+
+**In the family.** Consensus and Ballot settle agreement; Overlap intersects accept-sets; Costeer governs how reasons shape a joint choice.
+
+---
+
 ### CounterfactualAnchor#b8c3
 
 `Society` · `Protocols` · R1 · T2
@@ -34106,7 +41471,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Vague Anchor failure mode is addressed by nothing in the invariants — 'anchor must be specific enough to be falsified' would help but isn't there.
 - Anchor Abandonment (ignoring large deltas as too uncomfortable) is a psychological failure the pattern names but can't prevent. Failure modes were previously jammed into one list entry (Hindsight Leakage + Vague Anchor + Anchor Abandonment run together); now split into three distinct entries.
 
-**In the family.** Calibration primitive paired with ConfidenceCalibrate (the aggregate update loop), BayesUpdate (the probabilistic substrate), and Prediction as the input. Compare with CommitmentDevice — CounterfactualAnchor is commitment of a prediction; CommitmentDevice is commitment of an action plan. Both use immutability to resist later revision.
+**In the family.** Calibration primitive paired with ConfidenceCalibrate (the aggregate update loop), BayesUpdate (the probabilistic substrate), and Prediction as the input. Compare with CommitmentDevice — CounterfactualAnchor is commitment of a prediction; CommitmentDevice is commitment of an action plan. Both use immutability to resist later revision. Patterns that build on it: Belongbend, Wonderdwell.
 
 **Supersedes (prior versions).**
 - `CounterfactualAnchor#f584`
@@ -34448,6 +41813,71 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
+### Disputelift#b515
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Disputelift.json)
+
+**Gloss.** A disagreement that leaves the parties disagreeing better, whether or not it is resolved
+
+**Mechanism.**
+
+> When a disagreement ends or pauses, the parties record what changed in the {{protocol}} they disagree under: a test both now accept, a term both now define the same way, a question both agree would settle the matter, or a move both agree not to make. The disagreement is a disputelift when every party adopts at least one such change. The original issue is recorded as resolved or as open, and either outcome is allowed.
+
+**Invariants.**
+- Every party adopts the recorded change, not only the party that proposed it.
+- The change concerns how the parties disagree, not which side of the issue is right.
+- The original issue is recorded as resolved or open.
+
+**Failure modes.**
+- Concession dressed as method: one side giving way on the issue is recorded as a change in how they disagree.
+- Procedural theatre: the recorded change is not used the next time the parties disagree.
+- Issue abandonment: improving the method becomes a way to stop engaging with the issue.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{protocol}}` | `sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46` |
+
+#### Design
+
+**Why it exists.** Disagreements are usually scored by whether they resolved. Many useful ones do not resolve, but they leave the parties with a shared test, a shared definition or an agreed question that would settle the matter. Disputelift makes that outcome recordable, and it requires that the outcome be shared rather than claimed by one side.
+
+**Why Society.** It needs at least two parties, each of whom adopts the change. One agent alone cannot have a disputelift.
+
+**Can it be removed?** DissentSeek and SteelmanCheck produce and strengthen disagreement, and Consensus ends one in agreement. None of them records what a disagreement changed in how the parties disagree. The card can be removed only if that outcome is judged not worth recording.
+
+**Intended use.** multi-agent review and debate, and human disagreements that recur between the same parties.
+
+**Future uses.** red-team and blue-team cycles; standing review relationships between agents.
+
+**Broad-use contexts.** scientific disputes, code-review debates, policy deliberation, adversarial agent setups, team and family conflict, editorial disagreements.
+
+**Broad-use intersection (review hypothesis).** two or more parties, a recorded change in how they disagree, adoption of that change by every party, and a recorded status for the original issue.
+
+**Varies (descendant territory).** the kinds of change (tests, terms, settling questions, excluded moves), how adoption is shown, and how long a change binds.
+
+**Extension shape.** a disputelift ledger kept across one relationship's disagreements; a disputelift check run at the end of each review round.
+
+**Design tensions.**
+- Gains in process can become a substitute for engaging the issue.
+- Requiring every party's adoption makes a disputelift rarer. A change only one side adopted is a concession, not a disputelift.
+
+**Tradeoffs.**
+- Gains: an unresolved disagreement can still be counted as productive, and what it produced is on record.
+- Gives up: simple win-or-lose scoring.
+
+**Critique (diagnostic, not contract requirements).**
+- Bound to Protocol rather than to DissentSeek. The change a disputelift records is to the rule set governing the parties' exchange, which is Protocol's own definition. DissentSeek is a source of disagreements, not what the card is about.
+- The four kinds of change listed in the mechanism are examples, not a closed list. The invariant fixes only that the change concerns how the parties disagree.
+- Novelty, from recall and unverified: new. Nearest known concepts: discussions of productive disagreement and meta-deliberation. No named concept found (from recall) that scores a disagreement by the improvement in how its parties disagree.
+
+**In the family.** DissentSeek finds disagreement, SteelmanCheck strengthens the opposing view, and Consensus ends in agreement. Disputelift records what a disagreement improved when it does not end in agreement. It pairs with Callshort: a shortfall that turns out to come from different premises is withdrawn as a callshort and becomes material for a disputelift.
+
+---
+
 ### DissentSeek#cbe1
 
 `Society` · `Protocols` · R2 · T1
@@ -34518,13 +41948,140 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - 'Smartest person who disagrees' is undefined — by whose measure? Self-selected 'smart' usually means 'agrees with me on enough priors.'
 - Triggers ConfirmationBlock, which triggers its own failure modes (performative doubt); nesting these patterns compounds the risk.
 
-**In the family.** Adversarial-epistemics primitive paired with SteelmanCheck (steelman the opposing case), RedTeam (active adversarial stance), and ConfirmationBlock (disconfirmation-seeking). Compare with ConsensusFinder — DissentSeek looks for disagreement; ConsensusFinder looks for agreement. Opposite search directions, both diagnostic.
+**In the family.** Adversarial-epistemics primitive paired with SteelmanCheck (steelman the opposing case), RedTeam (active adversarial stance), and ConfirmationBlock (disconfirmation-seeking). Compare with ConsensusFinder — DissentSeek looks for disagreement; ConsensusFinder looks for agreement. Opposite search directions, both diagnostic. Patterns that build on it: Dissentflatten.
 
 **Supersedes (prior versions).**
 - `DissentSeek#bd28`
 - `DissentSeek#ce78`
 - `DissentSeek#2ea0`
 - `DissentSeek#0bae`
+
+---
+
+### Dissentflatten#1c13
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Dissentflatten.json)
+
+**Gloss.** Record distinct objections separately instead of answering them as one opposing position
+
+**Mechanism.**
+
+> When several objections are raised, as {{dissent_seek}} invites, each is recorded with its own reason before any is answered, and each answer names the objection it answers. Objections are merged only when their reasons are the same.
+
+**Invariants.**
+- Each objection is recorded with its own reason.
+- Each answer names the objection it answers.
+- Objections are merged only when their reasons are the same.
+
+**Failure modes.**
+- Strawman merge: distinct objections are answered as if they were the weakest of them.
+- Camp framing: the objectors are treated as one opposing side.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{dissent_seek}}` | `sema:DissentSeek#mh:SHA-256:cbe1c2ffdc64d0627f0fc9115ee06d1876f6baa38b80b03e712951131feedefb` |
+
+#### Design
+
+**Why it exists.** Different objections are often answered as one, usually as the weakest of them, and the objectors are treated as one camp. Dissentflatten keeps objections and their answers separate.
+
+**Why Society.** It concerns several objectors and the party answering them.
+
+**Can it be removed?** DissentSeek produces objections and SteelmanCheck strengthens one opposing view; neither keeps several objections distinct. Removable if objections are few.
+
+**Intended use.** reviews and debates with several objectors.
+
+**Future uses.** multi-agent critique; public consultations.
+
+**Broad-use contexts.** public consultation, peer review, code review, policy debate, product feedback, multi-agent critique.
+
+**Broad-use intersection (review hypothesis).** objections recorded separately with reasons, answers naming their objection, and merging only on identical reasons.
+
+**Varies (descendant territory).** how objections are grouped and answered.
+
+**Extension shape.** a variant that tracks which objections were left unanswered.
+
+**Design tensions.**
+- Keeping objections separate multiplies the work of answering them.
+
+**Tradeoffs.**
+- Gains: every objection gets its own answer.
+- Gives up: the economy of one reply.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: out-group homogeneity; the strawman.
+
+**In the family.** DissentSeek gathers dissent and Disputelift improves how parties disagree; Dissentflatten keeps distinct objections distinct.
+
+---
+
+### Doubtshelter#62d8
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Doubtshelter.json)
+
+**Gloss.** Make voicing uncertainty or asking for evidence cost no standing in a group
+
+**Mechanism.**
+
+> Before a group records agreement, each member is asked for remaining doubts, and each doubt is recorded beside the agreement, scoped to the specific point it concerns. A point for which evidence is absent is marked {{uncertain}}. Voicing a doubt, or asking for clarification or evidence, is answered on its merits and never treated as a fault.
+
+**Invariants.**
+- Before agreement is recorded, each member is asked for remaining doubts.
+- Each doubt is recorded beside the agreement, scoped to the point it concerns.
+- Voicing a doubt, or requesting clarification or evidence, is never itself treated as a fault.
+
+**Failure modes.**
+- Doubthush: members withhold uncertainty because the group seems more certain than they privately are.
+- Questiontoll: asking for clarification or evidence costs the asker standing.
+- Doubt theatre: doubts are invited and recorded but never change anything.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{uncertain}}` | `sema:Uncertain#mh:SHA-256:91b56e39fe4ccec7c6c80c865e8f679178293e85ec208eaceb9c814a9ca4bd53` |
+
+#### Design
+
+**Why it exists.** Groups often look more certain than their members are, because voicing doubt or asking for evidence costs standing. Doubtshelter makes doubts part of the record and removes the cost of voicing them or asking.
+
+**Why Society.** It is a property of how a group treats its members, so it needs several parties.
+
+**Can it be removed?** DissentSeek seeks disagreement with a conclusion; Uncertain marks a void of evidence; neither protects the act of voicing doubt. Removable if a group's apparent certainty is trusted.
+
+**Intended use.** teams and multi-agent groups about to record agreement.
+
+**Future uses.** agent swarms where subordinate agents defer; human-AI teams.
+
+**Broad-use contexts.** engineering reviews, clinical teams, research groups, boards, classrooms, multi-agent systems.
+
+**Broad-use intersection (review hypothesis).** a round asking for doubts before agreement, doubts recorded beside it, and no penalty for voicing a doubt or asking.
+
+**Varies (descendant territory).** how doubts are elicited, anonymity, and what doubts trigger.
+
+**Extension shape.** an anonymous variant; a weighted variant where doubts trigger review above a threshold.
+
+**Design tensions.**
+- Recording every doubt can stall decisions.
+
+**Tradeoffs.**
+- Gains: agreement that reflects what members actually believe.
+- Gives up: the comfort of apparent unanimity.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Doubthush and Questiontoll are failure modes of this card rather than separate patterns; both are guarded by it.
+- Uncertain marks only a point for which evidence is absent. A doubt held despite some evidence is recorded as a scoped doubt, because Uncertain asserts a void of evidence and sets confidence to zero.
+- Novelty, from recall and unverified: known. Nearest known concepts: psychological safety; pluralistic ignorance as the failure.
+
+**In the family.** DissentSeek, Silencevote and Belongbend address related group failures; Doubtshelter protects doubt and questions.
 
 ---
 
@@ -34804,6 +42361,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - A third failure mode was added from a mechanism clause that had no contract behind it: 'Agents MUST implement receiver — non-compliance detectable via heartbeat absence'. A missing receiver stops the cascade at that agent, and heartbeat absence is weaker evidence than acknowledgement, so the detection is indirect.
 - The recovery gap the second critique point names stays out of scope, correctly. 'Recovery plan' is on the Varies line, so what happens after ejection belongs to a descendant.
 - OPEN, for the naming pass: the family discussion pairs this pattern with `FailSafe`, `HumanInTheLoop` and `Observability`, and none of the three exists. `FailSafe` is the notable one — invariant 1 was named 'Fail-Safe' after a pattern that has no card.
+- Caution: the kill signal bypasses all agent logic and consensus, so the operator key is a single control surface over the whole swarm. The failure modes cover operator error, absence and unwired receivers, not misuse or theft of the key. The same entry risk as DocumentedOverride's caution.
 
 **In the family.** Safety-primitive paired with FailSafe (default-to-safe), HumanInTheLoop (graceful override), and Observability (the monitoring substrate that tells the operator when to eject). Compare with Disband — EjectionSeat is forced hard stop; Disband is a cooperative wind-down. Different operating modes for 'end the swarm.'
 
@@ -34891,7 +42449,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Evaluation Drift is the easier failure and similarly unmitigated — stability requires discipline the pattern can't enforce.
 - 'Feedback loop converges' is the invariant and it's non-obvious — many real loops oscillate or diverge, and the pattern has no termination guarantee beyond the max-iterations fallback.
 
-**In the family.** Meta-pattern in the quality-constrained production family. Paired with Critique (the feedback substrate), Reflexion (the self-critique variant), and Refine (the improvement step). Compare with CollaborativeWritingProtocol — both are production loops; CollaborativeWritingProtocol adds the orthogonal-dimension decomposition.
+**In the family.** Meta-pattern in the quality-constrained production family. Paired with Critique (the feedback substrate), Reflexion (the self-critique variant), and Refine (the improvement step). Compare with CollaborativeWritingProtocol — both are production loops; CollaborativeWritingProtocol adds the low-coupling dimension decomposition.
 
 **Supersedes (prior versions).**
 - `EvaluatorOptimizer#7ec6`
@@ -34961,7 +42519,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - The specific decay schedule (admin→write→read→dead) is baked into the mechanism; customization requires essentially a new pattern.
 - No graceful-renewal story — the pattern is decay-only, which is safe and inflexible.
 
-**In the family.** Specialization of BearerToken with time-decay semantics. Pairs with Revocation (the sudden-termination counterpart), Permission (what degrades), and AuditTrail (who had what when). Compare with DriftWatch — ExpiringToken is scheduled capability decay; DriftWatch is detected behavioral drift. Both mitigate time-based risk.
+**In the family.** Specialization of BearerToken with time-decay semantics. Pairs with Revocation (the sudden-termination counterpart), Permission (what degrades), and AuditTrail (who had what when). Compare with DriftWatch — ExpiringToken is scheduled capability decay; DriftWatch is detected behavioral drift. Both mitigate time-based risk. Patterns that build on it: Powerreturn.
 
 **Supersedes (prior versions).**
 - `ExpiringToken#4e3c`
@@ -35128,6 +42686,128 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **Supersedes (prior versions).**
 - `FeatureFlag#9464`
+
+---
+
+### Focalpeer#3724
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Focalpeer.json)
+
+**Gloss.** A group's joint action comes to depend on a member who holds no assigned coordinating authority
+
+**Mechanism.**
+
+> Members of a group act together, and one of them, holding no assigned coordinating authority over the action, becomes the point the others organise around: they time their contributions by that member's moves, take up that member's framing, or keep their commitment because that member does. While this lasts, the joint action depends on that member in those respects, so it would falter or change if the member withdrew. The member need not intend to lead, and the others need not acknowledge it. A member whose focal position comes from assigned coordinating authority, a member who declared the action and is followed because of that declaration, and a merely visible member of a group whose action its members sustain among themselves, are not instances.
+
+**Invariants.**
+- A group acts jointly, and the member in question holds no assigned coordinating authority over that action.
+- The joint action depends on that member in a specified respect, such as timing, framing or commitment.
+
+**Failure modes.**
+- Visibility read as leadership: the most visible or vocal member is taken to organise an action the members sustain among themselves.
+- Organiser read as sole author: the joint action is credited or blamed entirely to the focal member, discounting the members' own reasons.
+- Position read as intent: the focal member is assumed to have sought the position, when the others' organising around it produced it.
+- Dependence unseen: the group is described as leaderless or role-led, so the member its action depends on goes unseen.
+
+#### Design
+
+**Why it exists.** Groups are described either as led through assigned roles or as leaderless, so a joint action that runs through one member not appointed to coordinate the action is misread both ways: its focal member goes unseen, or a merely visible member is blamed for what the group did. Focalpeer names the dependence and its test, what would change if that member withdrew.
+
+**Why Society.** The process needs a group of independent members whose joint action can depend on one of them; one party cannot instantiate it.
+
+**Can it be removed?** Role assigns a function, Elect selects a leader, Rally has a declared initiator, Stigmergy coordinates through traces with no focal member, and Recifluence loops influence between parties; none describes a group's joint action depending on a member who holds no assigned coordinating authority. Removable if leadership is assumed to come only from assignment.
+
+**Intended use.** recognising when a group's joint action depends on one member who holds no assigned coordinating authority.
+
+**Future uses.** multi-agent systems in which one agent's early plan or messages become the coordination point without anyone assigning it; projects whose contributions route through a maintainer not appointed as coordinator.
+
+**Broad-use contexts.** campaigns and protests, classrooms, teams, online communities, open-source projects, multi-agent systems, incident reviews.
+
+**Broad-use intersection (review hypothesis).** a group acting jointly, a member without assigned coordinating authority, and a respect in which the joint action depends on that member.
+
+**Varies (descendant territory).** the respect of dependence (timing, framing or commitment), and whether the member and the others know it.
+
+**Extension shape.** a variant for multi-agent systems; a variant for communities with informal coordinators.
+
+_Note: An assigned contributor role does not exclude this process. A researcher or developer can become the coordination point without being assigned coordinating authority._
+
+**Design tensions.**
+- Naming a focal member concentrates credit or blame that the group shares.
+
+**Tradeoffs.**
+- Gains: a way to see leadership that no role records.
+- Gives up: the picture of a group led only through assigned roles.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Recifluence's Single author failure mode and Responsibility's Scapegoating warn against crediting one member; Focalpeer is the case where the dependence on one member is real, and its failure modes keep the two apart.
+- Novelty, from recall and unverified: known. Nearest known concepts: emergent leadership; informal leader; opinion leader; the bus factor.
+- Caution: the card's contexts include campaigns and protests, and its counterfactual test, what would change if the member withdrew, names one person as the point the group depends on. A correct Focalpeer reading is therefore a target for steering or pressure; the failure modes guard only against misattribution.
+
+**In the family.** Role assigns a function, Elect selects a leader, Stigmergy coordinates without one, Recifluence loops influence between parties, and Focalpeer is a group's action depending on a member who holds no assigned coordinating authority over that action.
+
+---
+
+### Framecapture#46b6
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Framecapture.json)
+
+**Gloss.** Set a discussion's agenda from every participant's framing, not from the first or most powerful one
+
+**Mechanism.**
+
+> At the start of a multi-party discussion, each participant states how they frame the question, and the agenda is set from all the framings. Unlike a single {{problem_framer}}, no one participant's framing governs; a question posed inside one framing is marked with whose framing it is until the others accept it.
+
+**Invariants.**
+- Each participant's framing is recorded before the agenda is set.
+- A question posed within one framing is marked with whose framing it is.
+- The agenda is set from all the recorded framings, which the participants may merge, narrow or vote on together; no one participant's framing sets it alone.
+
+**Failure modes.**
+- Capture: the first or most powerful framing becomes the only one questions can be asked in.
+- Framing sprawl: every framing is kept open and the discussion never narrows.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{problem_framer}}` | `sema:ProblemFramer#mh:SHA-256:ad6b7fc1f14f2e26dd0d230f81382a2c602c365ebe4b9ad5fd390fb0c2d4c4fc` |
+
+#### Design
+
+**Why it exists.** The first or most powerful framing of a question decides which answers are possible, and everyone else answers inside it. Framecapture sets the agenda from all framings.
+
+**Why Society.** It concerns several participants and whose framing governs.
+
+**Can it be removed?** ProblemFramer is one solver framing a request, and Reframe changes a framing; neither distributes framing among participants. Removable if one framer is acceptable.
+
+**Intended use.** multi-party discussions where participants see the question differently.
+
+**Future uses.** multi-agent planning; stakeholder workshops.
+
+**Broad-use contexts.** stakeholder meetings, mediation, interdisciplinary research, policy design, product discovery, multi-agent planning.
+
+**Broad-use intersection (review hypothesis).** each participant's framing recorded, an agenda set from all, and questions marked with their framing.
+
+**Varies (descendant territory).** how framings are stated and merged.
+
+**Extension shape.** a variant in which framings are voted on.
+
+**Design tensions.**
+- Recording every framing can stall a discussion that needs to narrow.
+
+**Tradeoffs.**
+- Gains: questions are not settled by whoever framed them first.
+- Gives up: some speed.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: agenda-setting power.
+
+**In the family.** ProblemFramer frames for one solver, Reframe changes a frame, Askwiden records new askable questions, and Framecapture distributes framing.
 
 ---
 
@@ -35505,7 +43185,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Authority Ambiguity is named but the pattern has no authority-typing — solving it requires Identity patterns the mechanism doesn't declare as composed_with.
 - 'Agent-specific instructions' is mentioned in the mechanism but not structured — receivers parse ad-hoc.
 
-**In the family.** The swarm-coordination primitive for control transfer. Composes with `Context` (what is transferred), `Identity` (who is involved). Sibling to `Delegate` (which is initiated-by-principal task assignment); Handoff is peer-to-peer transfer of ongoing work.
+**In the family.** The swarm-coordination primitive for control transfer. Composes with `Context` (what is transferred), `Identity` (who is involved). Sibling to `Delegate` (which is initiated-by-principal task assignment); Handoff is peer-to-peer transfer of ongoing work. Patterns that build on it: Endsettle, Successiongift.
 
 **Supersedes (prior versions).**
 - `Handoff#3877`
@@ -35675,7 +43355,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - Evidence-based attribution is an invariant without operational content — what counts as evidence, how to weigh causes, are caller concerns.
 - The pattern doesn't specify what to do with the gap once identified — update decision procedure, update outcome expectations, or something else.
 
-**In the family.** Post-hoc analysis primitive paired with HindsightBlock (anti-hindsight discipline), CounterfactualAnchor (pre-commitment), and BeliefTracking (the learning substrate). Compare with IntentOverride — IntentGap is diagnostic; IntentOverride is prescriptive.
+**In the family.** Post-hoc analysis primitive paired with HindsightBlock (anti-hindsight discipline), CounterfactualAnchor (pre-commitment), and BeliefTracking (the learning substrate). Compare with IntentOverride — IntentGap is diagnostic; IntentOverride is prescriptive. Patterns that build on it: Coursecandor.
 
 **Supersedes (prior versions).**
 - `IntentGap#5dc4`
@@ -35926,6 +43606,123 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
+### Linkfade#fb82
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Linkfade.json)
+
+**Gloss.** Connections weaken while the participants keep their individual capacities
+
+**Mechanism.**
+
+> Relations that carried interaction, access or support become less effective, although the connected participants can still perform the relevant activities on their own. The weakening is between participants, not in their individual capacities. Reduced traffic by agreement, or fewer messages needed after a shared convention, is not an instance.
+
+**Invariants.**
+- A relation between participants weakens for the activity considered.
+- The participants' relevant individual capacities are retained.
+
+**Failure modes.**
+- Sum of parts: collective capacity is judged by adding individual capacities.
+- Quiet read as weakening: deliberate quiet or low demand is taken as a weakened connection.
+
+#### Design
+
+**Why it exists.** Capable participants can lose the connections that let them work together, and each still looks fine. Linkfade names the weakening between them.
+
+**Why Society.** A connection lies between participants, so the process needs at least two.
+
+**Can it be removed?** Decay attenuates a value with a half-life unless reinforced, and Quietsever concerns communication diminishing through connection loss; neither describes relations weakening while participants keep their capacities. Removable if collective capacity is assumed to equal the sum of its members.
+
+**Intended use.** recognising when the connections between capable participants are weakening.
+
+**Future uses.** distributed agents and services whose links degrade while each component stays healthy.
+
+**Broad-use contexts.** collaborators drifting apart, fragmented institutions, team handoffs, service integrations, distributed agents.
+
+**Broad-use intersection (review hypothesis).** participants, a relation between them that weakens, and individual capacities that remain.
+
+**Varies (descendant territory).** whether the relation carries interaction, access or support.
+
+**Extension shape.** a variant for organisations; a variant for technical integrations.
+
+**Design tensions.**
+- Weakened links can be compensated elsewhere, which hides them.
+
+**Tradeoffs.**
+- Gains: a name for losses between parts rather than in them.
+- Gives up: assessing a whole by its parts.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Quietsever overlaps when communication diminishes through connection loss, but Quietsever does not require retained capacities, and Linkfade covers access and support without quieter communication.
+- Novelty, from recall and unverified: known. Nearest known concepts: weakening ties; organisational silos; integration rot.
+
+**In the family.** Quietsever quiets a channel, Syncdrift loses timing, Decay attenuates a value, and Linkfade is the weakening between capable participants.
+
+---
+
+### Meaningpause#421c
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Meaningpause.json)
+
+**Gloss.** Postpone judging a claim until the speaker's meaning for its contested word is established
+
+**Mechanism.**
+
+> When a claim turns on a contested word, judgment of the claim waits. The listener restates, in other words, the meaning it takes the speaker to intend; the speaker confirms or corrects it; only then is the claim assessed. The listener's {{interpret}}ation is recorded with the context it was made in.
+
+**Invariants.**
+- The claim is assessed only after the speaker has confirmed or corrected a restated meaning.
+- The restatement does not use the contested word.
+
+**Failure modes.**
+- Labelsnap: the listener reacts to the word's usual associations before checking what the speaker means.
+- Endless pause: meaning is renegotiated repeatedly so that the claim is never assessed.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{interpret}}` | `sema:Interpret#mh:SHA-256:98b9bc57a5eeb7dc01599404ed2aabc5254d959a0a57b0377fb47c0a2aa26d29` |
+
+#### Design
+
+**Why it exists.** Many disagreements are about a word before they are about a claim. Reacting to a word's usual associations misreads the speaker and wastes the exchange. Meaningpause settles the meaning first.
+
+**Why Society.** It needs the speaker to confirm or correct the restated meaning, so it involves two parties.
+
+**Can it be removed?** AmbiguityResolution resolves ambiguous data in a knowledge base by vote; Interpret records the context of an interpretation; neither requires the speaker's confirmation before judgment. Removable if misread words are left to repair themselves.
+
+**Intended use.** a conversation in which a claim uses a contested or loaded word.
+
+**Future uses.** agent-user dialogue; review comments; cross-discipline discussion.
+
+**Broad-use contexts.** debate, peer review, therapy and mediation, cross-cultural communication, user requests to agents, legal argument.
+
+**Broad-use intersection (review hypothesis).** a contested word, a restatement in other words, the speaker's confirmation or correction, and then an assessment.
+
+**Varies (descendant territory).** how restatements are phrased and when a word counts as contested.
+
+**Extension shape.** a written variant for asynchronous review.
+
+**Design tensions.**
+- Pausing too often slows every exchange.
+
+**Tradeoffs.**
+- Gains: claims are judged as meant.
+- Gives up: some speed.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Labelsnap is the first failure mode rather than a separate pattern, because its guard would be this card.
+- Novelty, from recall and unverified: known. Nearest known concepts: clarifying terms before debate; the principle of charity.
+
+**In the family.** Interpret and AmbiguityResolution handle meaning in general; Meaningpause is the conversational guard against reacting to a word.
+
+---
+
 ### MemeticSeed#5271
 
 `Society` · `Protocols` · R1 · T1
@@ -36162,6 +43959,128 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
+### Mosaicmap#c51d
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Mosaicmap.json)
+
+**Gloss.** Map an understanding a group holds together but no member holds whole
+
+**Mechanism.**
+
+> A group's shared understanding is mapped by recording which member holds which part, how the parts connect, and which questions need several members to answer. Unlike a {{holographic_shard}}, where each part carries the whole goal, here no member holds the whole, so the map is the only account of it and is kept current.
+
+**Invariants.**
+- Each part is attributed to the members who hold it.
+- Questions that need several members are listed with the members they need.
+- The map is updated when a member who holds a part leaves.
+
+**Failure modes.**
+- Single point of knowing: a part held by one member is lost when that member leaves.
+- False sum: parts that do not connect are assumed to form a whole.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{holographic_shard}}` | `sema:HolographicShard#mh:SHA-256:6e067dcfaca5b7d656f6de48b083cd44862ea18b45c1daa5cfa3eccd751f0d02` |
+
+#### Design
+
+**Why it exists.** Groups often know together what no member knows alone, and lose it when a member leaves. Mosaicmap records who holds which part and how the parts connect.
+
+**Why Society.** The understanding is held across members, so the map spans several parties.
+
+**Can it be removed?** HolographicShard gives each part the whole goal, and Reasoncommons records decisions; neither maps an understanding that no member holds whole. Removable if a group's knowledge is held by individuals.
+
+**Intended use.** teams and multi-agent systems whose expertise is spread out.
+
+**Future uses.** agent swarms that split context; organisational memory.
+
+**Broad-use contexts.** engineering teams, hospitals, research consortia, multi-agent systems, families, open-source projects.
+
+**Broad-use intersection (review hypothesis).** parts attributed to members, connections recorded, and questions listed with the members they need.
+
+**Varies (descendant territory).** the granularity of parts and the update rhythm.
+
+**Extension shape.** a variant that flags parts held by only one member.
+
+**Design tensions.**
+- Mapping knowledge costs effort and goes stale quickly.
+
+**Tradeoffs.**
+- Gains: collective knowledge that survives departures.
+- Gives up: effort spent on upkeep.
+
+**Critique (diagnostic, not contract requirements).**
+- Novelty, from recall and unverified: known. Nearest known concepts: distributed cognition; transactive memory.
+
+**In the family.** HolographicShard spreads the goal, Reasoncommons spreads reasons, and Mosaicmap maps spread understanding.
+
+---
+
+### Nuancefilter#d36a
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Nuancefilter.json)
+
+**Gloss.** When relaying a message, record what was left out of the original
+
+**Mechanism.**
+
+> A relayed {{message}} carries a record of which parts of the original it leaves out. Omissions that would change the message's force for its new audience, such as qualifiers, conditions or counter-evidence, are named rather than merely counted.
+
+**Invariants.**
+- A relayed message records what was left out of the original.
+- An omission that changes the message's force is named.
+
+**Failure modes.**
+- Position filter: only the parts that fit the relayer's group survive the relay.
+- Qualifier stripping: qualifiers are removed, and the relayed message is stronger than its source.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{message}}` | `sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237` |
+
+#### Design
+
+**Why it exists.** Messages lose qualifiers as they travel, and they lose them selectively, keeping what fits the relayer's group. Nuancefilter makes the relay carry a record of its omissions.
+
+**Why Society.** Relaying is an exchange between the source, the relayer and a new audience.
+
+**Can it be removed?** Message defines a container and Summarize compresses; Observe discloses an observer's filtering but not a relayer's. Removable if relays are trusted to be faithful.
+
+**Intended use.** relaying research, news or instructions to a new audience.
+
+**Future uses.** agents relaying information between agents or to users; summaries of meetings.
+
+**Broad-use contexts.** science journalism, internal communications, multi-agent message passing, legal briefs, social media, meeting notes.
+
+**Broad-use intersection (review hypothesis).** a relayed message and a record of omissions, with force-changing omissions named.
+
+**Varies (descendant territory).** how omissions are identified and how much is recorded.
+
+**Extension shape.** a variant that links back to the full original.
+
+**Design tensions.**
+- Listing omissions can be as long as the message itself.
+
+**Tradeoffs.**
+- Gains: relays that admit what they dropped.
+- Gives up: some brevity.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: selective transmission; cherry-picking.
+
+**In the family.** Summarize compresses by salience, Lucence clarifies for a reader, and Nuancefilter makes relays honest about what they left out.
+
+---
+
 ### Nucleate#3e4b
 
 `Society` · `Protocols` · R1 · T1
@@ -36245,7 +44164,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 ---
 
-### OptimisticSolver#e248
+### OptimisticSolver#63aa
 
 `Society` · `Protocols` · R1 · T2
 
@@ -36279,8 +44198,8 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 | `composes_with` | `{{pathway_memory}}` | `sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722` |
 | `composes_with` | `{{reflexion}}` | `sema:Reflexion#mh:SHA-256:81eb9140703ea95f53556741df731af84c1cada66cc1e0f3a1d88e4de5fe54d8` |
 | `references` | `{{parallel}}` | `sema:Parallel#mh:SHA-256:d58d6696be11be09651e71307f0ea6f42bb45fac137ed985a61e475144f687a5` |
-| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21` |
-| `references` | `{{rigorous_solver}}` | `sema:RigorousSolver#mh:SHA-256:9034894bb7da496602aa81afd2ea44e893a822002b1888daddb28fad4164135c` |
+| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
+| `references` | `{{rigorous_solver}}` | `sema:RigorousSolver#mh:SHA-256:2203568438553dc7e6331a7336e2bf488fc99de0a39c601ca3f63ba3e8849038` |
 
 #### Design
 
@@ -36327,7 +44246,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 
 **In the family.** The velocity-specialized descendant of `PolymorphicSolver`, paired with `AtomicBid` for turn-atomic multi-agent coordination. Sibling to `RigorousSolver` (the opposite tradeoff: slower, stricter). Composed with `Reflexion` and `Compensate` for post-hoc error recovery.
 
-**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21`
+**Extends (exact parent).** `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd`
 
 **Supersedes (prior versions).**
 - `OptimisticSolver#ee29`
@@ -36335,6 +44254,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - `OptimisticSolver#18c0`
 - `OptimisticSolver#f664`
 - `OptimisticSolver#0dca`
+- `OptimisticSolver#e248`
 
 ---
 
@@ -36393,6 +44313,7 @@ _Note: OAuth RFC 6750 defines bearer semantics by possession, while RFC 7662 exp
 - No failure modes listed — Oracle has many (compromise, bias, bribery, outage).
 - Centralization pressure — a single Oracle is a single point of failure; decentralized oracles (multi-oracle with voting) are adjacent patterns.
 - The pattern assumes reality has crisp answers; ambiguous events break the Consistency invariant.
+- Caution: the oracle's signed answer resolves HeldRelease conditions and prediction-market outcomes, which move value irreversibly. The card asserts trust and has no failure modes; HeldRelease names the oracle as a trust point, this card does not.
 
 **In the family.** Bridge primitive paired with HeldRelease (condition resolver), Sign (the cryptographic backing), and Witness (related attestation). Compare with Prophet — Oracle reports external reality; Prophet predicts from internal model. Different sources of truth.
 
@@ -36831,6 +44752,69 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
+### Premisebridge#73eb
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Premisebridge.json)
+
+**Gloss.** Find the premise where two reasoners part before blaming the disagreement on effort or ability
+
+**Mechanism.**
+
+> When two parties reach different conclusions, they compare the relevant premises before either attributes the disagreement to the other's effort or ability. They state the differences they find and assess which, if any, account for the divergence. A {{callshort}} is withdrawn when the apparent shortfall is explained by a premise difference; an incidental difference does not settle that question, and matching premises alone do not establish a shortfall of effort or ability.
+
+**Invariants.**
+- The search for a differing premise comes before any attribution to effort or ability.
+- Each premise reported for a party is stated in words that party accepts as its position.
+
+**Failure modes.**
+- Effort blame: a disagreement explained by differing premises is put down to the other party's laziness or limits.
+- Premise regress: the search continues indefinitely to avoid engaging the conclusion.
+- Incidental difference: finding a premise difference is taken to explain the divergence without checking its relevance.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{callshort}}` | `sema:Callshort#mh:SHA-256:95258b0368b6bbb08b65a09c3e4274c0cbded3452418db036be54234482ff0ff` |
+
+#### Design
+
+**Why it exists.** Disagreements are routinely blamed on the other side's effort or ability when the two simply start from different premises. Premisebridge looks for the premise first.
+
+**Why Society.** Both parties take part in locating where their reasoning parts.
+
+**Can it be removed?** DissentSeek seeks out disagreement and Callshort reads effort gaps; neither locates the premise where two reasonings part. Removable if disagreements are taken at face value.
+
+**Intended use.** two parties who disagree and are inclined to blame each other's thinking.
+
+**Future uses.** agent-agent disagreement resolution; human-AI disagreements.
+
+**Broad-use contexts.** politics, science disputes, design reviews, family conflict, negotiation, agent debates.
+
+**Broad-use intersection (review hypothesis).** comparison of the relevant premises and assessment of whether their differences explain the divergence before attribution to effort or ability.
+
+**Varies (descendant territory).** how the search proceeds and how a premise is stated.
+
+**Extension shape.** a variant that records the found premise as a test both accept.
+
+**Design tensions.**
+- Some disagreements have no single parting premise.
+
+**Tradeoffs.**
+- Gains: disagreements about premises are not misread as failures of effort.
+- Gives up: the quick explanation that the other side is not thinking.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- A premise difference and a reasoning shortfall can coexist. Callshort is withdrawn when the difference explains the perceived shortfall; neither finding an incidental difference nor failing to find one settles the attribution.
+- Novelty, from recall and unverified: known. Nearest known concepts: deep disagreement; the double crux.
+
+**In the family.** Premisebridge compares the premises behind a disagreement. Callshort records a situational reading of a thinking shortfall, while Disputelift describes parties changing how they disagree. These are distinct processes, not exhaustive outcomes of the premise comparison.
+
+---
+
 ### PromiseGraph#3d39
 
 `Society` · `Protocols` · R2 · T2
@@ -37146,6 +45130,62 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
+### Quietsever#8948
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Quietsever.json)
+
+**Gloss.** Communication diminishes as the connection between parties weakens
+
+**Mechanism.**
+
+> As parties become less able or willing to keep a responsive connection, communication between them diminishes. The quieter channel reflects the weakened connection; it does not show convergence in their views. Low message volume alone is not an instance: a team that resolved an issue and stays readily responsive is quieter without the loss, and parties can agree on some matters while their connection weakens.
+
+**Invariants.**
+- There are at least two independently situated parties.
+- Their responsive connection weakens, and the weakening contributes to reduced communication.
+
+**Failure modes.**
+- Quiet read as harmony: reduced communication is taken as agreement or health.
+- Quiet read as abandonment: reduced communication is taken as a lost connection without asking.
+- Volume as measure: message counts alone are used to judge the connection.
+
+#### Design
+
+**Why it exists.** A fading connection makes a channel quiet, and a quiet channel looks like a calm one. Quietsever names the weakening connection behind the quiet.
+
+**Why Society.** The connection lies between independently situated parties, so the process needs at least two.
+
+**Can it be removed?** Silence is an agent's deliberate withholding, Silencevote reads silence on proposals, and ChannelCheck asks after a quiet interval; none describes communication diminishing because the connection weakens. Removable if quiet channels are assumed to mean nothing.
+
+**Intended use.** recognising when diminishing communication between people, teams or systems reflects a weakening connection.
+
+**Future uses.** distributed agents and long-running collaborations between people and agents.
+
+**Broad-use contexts.** client relationships, remote teams, open-source collaborations, service integrations, partnerships, families.
+
+**Broad-use intersection (review hypothesis).** two or more parties, a weakening responsive connection, and communication that diminishes because of it.
+
+**Varies (descendant territory).** whether the weakening is in ability or willingness, and which channel is meant.
+
+**Extension shape.** a variant for service-to-service connections; a variant for personal relationships.
+
+**Design tensions.**
+- Asking whether a connection has weakened can itself change the connection.
+
+**Tradeoffs.**
+- Gains: quiet can be read as a possible sign rather than a verdict.
+- Gives up: reading quiet as agreement.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. ChannelCheck is one separately defined check-in after a quiet interval.
+- Novelty, from recall and unverified: known. Nearest known concepts: silent disengagement; drifting apart.
+
+**In the family.** Silence withholds deliberately, Silencevote reads silence on proposals, ChannelCheck checks in, and Quietsever is the fading connection behind the quiet.
+
+---
+
 ### QuorumPulse#15db
 
 `Society` · `Protocols` · R2 · T1
@@ -37225,7 +45265,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 
 ---
 
-### RealizationProtocol#78f1
+### RealizationProtocol#68fb
 
 `Society` · `Protocols` · R1 · T2
 
@@ -37269,7 +45309,7 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 | `references` | `{{criteria}}` | `sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb` |
 | `references` | `{{execution_manifest}}` | `sema:ExecutionManifest#mh:SHA-256:fed57d4adcd6d9d1f82c57c3d22724485171672d77a34fdfaf7338a430f5f0b1` |
 | `references` | `{{frame_spec}}` | `sema:FrameSpec#mh:SHA-256:3c202cc3416eadb2215857b542e4fc54660d5253fca9c2d42cb999929ad18c42` |
-| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:cb20e6504606549fba8628cea7a149a51f5813e1095b07c2c5e039e09a6fdd21` |
+| `references` | `{{polymorphic_solver}}` | `sema:PolymorphicSolver#mh:SHA-256:f7fe4635a7520f918c823f0047d6fed8e38fd820c1970ef4623cc8fd78d2b0bd` |
 | `references` | `{{rollout_manifest}}` | `sema:RolloutManifest#mh:SHA-256:248df60c0a8d3d0e73d0dc29ee287c233c5761d610af135bc3baf96e1e556e10` |
 | `references` | `{{solver_tree}}` | `sema:SolverTree#mh:SHA-256:e275a01a2ced22c7412f23780f4bfa84ca171e9184f29d65336c24baddcc4052` |
 | `yields` | `{{outcome}}` | `sema:Outcome#mh:SHA-256:753768dae28040f1291ee2849d2aac2a08bbffd836cfab679bdbea9a6ff7ec03` |
@@ -37320,6 +45360,68 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `RealizationProtocol#663b`
 - `RealizationProtocol#61ae`
 - `RealizationProtocol#02e8`
+- `RealizationProtocol#78f1`
+
+---
+
+### Reasoncommons#0f52
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Reasoncommons.json)
+
+**Gloss.** Keep the reasons behind a shared decision readable by everyone it binds
+
+**Mechanism.**
+
+> Each shared {{decision}} is recorded with its reasons, the alternatives rejected and why, and who decided, in a place everyone the decision binds can read. People who were not in the room can then follow, question or revisit it.
+
+**Invariants.**
+- Each shared decision records its reasons, the rejected alternatives and who decided.
+- The record is readable by everyone the decision binds.
+
+**Failure modes.**
+- Reasons in the room: only the deciders know why the decision was made.
+- Post-hoc reasons: reasons are written after the fact to fit the decision.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{decision}}` | `sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7` |
+
+#### Design
+
+**Why it exists.** Decisions travel further than their reasons. People bound by a decision they cannot follow either obey blindly or relitigate it. Reasoncommons keeps the reasons with the decision.
+
+**Why Society.** A shared decision binds several parties, and the record is for those not in the room.
+
+**Can it be removed?** Decision records a commitment; TraceBelief and BeliefTracking record one agent's belief history; neither makes a group decision's reasons readable to those it binds. Removable if decisions are trusted on authority.
+
+**Intended use.** teams, organisations and multi-agent systems making decisions that bind others.
+
+**Future uses.** agent decision logs; architecture decision records; policy registers.
+
+**Broad-use contexts.** software architecture, public policy, organisational governance, research groups, families and households, multi-agent planning.
+
+**Broad-use intersection (review hypothesis).** a decision, its reasons, the rejected alternatives, who decided, and access for everyone bound.
+
+**Varies (descendant territory).** the format of records and how access is granted.
+
+**Extension shape.** a versioned variant that links superseding decisions.
+
+**Design tensions.**
+- Recording reasons costs time at the moment of deciding.
+
+**Tradeoffs.**
+- Gains: decisions that can be followed and revisited.
+- Gives up: the speed of unrecorded decisions.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: decision records; public reason.
+
+**In the family.** Reasonfade catches a judgment whose reasons are lost; Reasoncommons keeps them from being lost; Costeer records reasons during a joint choice.
 
 ---
 
@@ -37400,6 +45502,61 @@ _Note: Each pass operates on a current immutable Artifact version and produces i
 - `ReceptivityGate#2709`
 - `ReceptivityGate#8e74`
 - `ReceptivityGate#5667`
+
+---
+
+### Recifluence#4fba
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Recifluence.json)
+
+**Gloss.** One party's influence changes another's response, which returns to change the first party's later influence
+
+**Mechanism.**
+
+> An influence from one participant changes how another responds, and that changed response reaches back and alters how the first acts toward the other, so the influences exchanged develop reciprocally, possibly through more participants or indirect routes. Influence must travel out and return through a changed response that affects later influence; alternating messages, parallel responses to a third cause, or one-way persuasion are not instances.
+
+**Invariants.**
+- An influence from one party changes another party's response.
+- The changed response returns and affects the first party's later influence.
+
+**Failure modes.**
+- Single author: the whole development is credited to one initiator.
+- Reciprocity read as equality: reciprocal influence is assumed to mean equal power, consent, agreement or mutual benefit.
+
+#### Design
+
+**Why it exists.** Interactions are described as one party influencing another, and the loop by which each reshapes the other's influence is missed. Recifluence names that loop.
+
+**Why Society.** Influence travels between at least two parties, so the process needs a group of two or more.
+
+**Can it be removed?** Feedback requires an attributed error and an indicated adjustment, Costeer is a deliberate joint choice, and Coflourish requires mutual gain; none describes influence returning through a changed response to change later influence. Removable if influence is assumed to flow one way.
+
+**Intended use.** recognising reciprocal influence between parties as a developing loop.
+
+**Future uses.** multi-agent interaction, and agents in long conversations with people.
+
+**Broad-use contexts.** conversation, improvisation, collaborative learning, negotiation, markets, multi-agent interaction.
+
+**Broad-use intersection (review hypothesis).** two or more parties, an influence that changes a response, and a return that changes later influence.
+
+**Varies (descendant territory).** the routes, the number of parties, and what is exchanged.
+
+**Extension shape.** a variant for many parties; a variant for indirect routes.
+
+**Design tensions.**
+- Reciprocal loops can generate conflict or harm as readily as improvement.
+
+**Tradeoffs.**
+- Gains: a name for influence as a loop rather than a line.
+- Gives up: crediting outcomes to one initiator.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Reciprocal influence requires neither error nor an intended target, and implies neither improvement nor decline.
+- Novelty, from recall and unverified: known. Nearest known concepts: reciprocal determinism; circular causality; mutual adaptation.
+
+**In the family.** Feedback corrects error, Costeer chooses jointly, Coflourish leaves each party with something new, and Recifluence is influence returning through a changed response.
 
 ---
 
@@ -37816,6 +45973,64 @@ This answer previously located the value in a Survival invariant reading `Functi
 
 ---
 
+### Scaleasynchrony#2db6
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Scaleasynchrony.json)
+
+**Gloss.** Two levels of a system, one depending on the other, develop at different rates, changing how well they fit
+
+**Mechanism.**
+
+> A level of a system depends on another in a specified respect, as individuals depend on the institution they work within, a practice on the standards that govern it, or members on the coordination among them, and the two develop at different paces in that respect. Each then meets the other in a state from a different point in its development: the faster can outgrow arrangements maintained by the slower, or the slower keeps stable what the faster has not yet settled. The difference changes their fit, straining it or giving the faster level a stable base. Levels that do not depend on each other, two parties moving at different speeds, and the travel time of one effect between parts are not instances.
+
+**Invariants.**
+- One level of a system depends on another in a specified respect.
+- The two develop at different rates in that respect over the interval considered, and the difference changes how well they fit.
+
+**Failure modes.**
+- Fault located by speed: the misfit is blamed on the slower level, or the faster is taken as superior, instead of on the difference in rates.
+- Convergence demanded: all levels are required to develop at one pace.
+- Stillness read as nondevelopment: unchanged features are taken to show that a level is not developing in any respect.
+
+#### Design
+
+**Why it exists.** Individuals, teams and institutions change at different speeds, and their mismatches are blamed on whichever level seems slow. Scaleasynchrony names the difference in rates itself.
+
+**Why Society.** The levels are individuals and the collectives they form, so the process needs a group; systems with nested technical levels can specialise it.
+
+**Can it be removed?** Localhinge sets correction routes across levels, Ripplelag delays an effect between parts, and Capacitylag compares growing demands with developing capacity; none describes a level and the level it depends on developing at different rates. Removable if all levels are assumed to change together.
+
+**Intended use.** recognising mismatches that come from a level and the level it depends on developing at different speeds.
+
+**Future uses.** agents embedded in organisations, and agent teams whose members and coordination change at different rates.
+
+**Broad-use contexts.** individual and institutional learning, team and organisation change, local and system-wide adaptation, standards and practice, regulation and the technology it governs.
+
+**Broad-use intersection (review hypothesis).** two levels, one depending on the other in a specified respect, different rates of development in that respect, and a change in their fit.
+
+**Varies (descendant territory).** which levels, which respect, and whether the difference strains the fit or steadies it.
+
+**Extension shape.** a variant for technical systems with nested levels.
+
+**Design tensions.**
+- Whether a difference in rates strains the fit or steadies it can become clear only later.
+
+**Tradeoffs.**
+- Gains: a name for mismatch between levels that blames neither.
+- Gives up: expecting a system to change as one.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Different rates can protect continuity rather than signal failure.
+- The dependence and the change in fit are required because levels in general develop at different rates; without them almost any system with more than one level would be an instance.
+- Capacitylag and Identitylag are related comparisons, not cases of this card: demands and self-descriptions are not necessarily levels. A standard revised more slowly than the systems it governs is an instance when the question is how the two fit; it is a Capacitylag case when the question is whether the standard's authors can keep up with the demands on them.
+- Novelty, from recall and unverified: known. Nearest known concepts: cultural lag; pace layering; the pacing problem.
+
+**In the family.** Capacitylag compares demand and capacity, Identitylag compares self and circumstance, Localhinge links levels, and Scaleasynchrony is a level and the level it depends on developing at different rates.
+
+---
+
 ### ShoutWhisper#b12b
 
 `Society` · `Protocols` · R1 · T1
@@ -37881,12 +46096,71 @@ This answer previously located the value in a Survival invariant reading `Functi
 - Metadata leakage is the known failure — who's shouting, about what, is public.
 - The two-phase commit is clean and has its own complexity.
 - Amplitude 90% threshold is a default.
+- Caution: after open discovery, coordination continues over encrypted peer-to-peer channels, which is the schema's covert-coordination trigger in any supervised multi-agent system. The only failure mode, metadata leakage, is a privacy risk to the parties, not the oversight blind spot.
 
 **In the family.** Two-phase coordination paired with Discover (the Shout step), Handshake, and Encrypt. Compare with OntologyHandshake — ShoutWhisper is discovery+coord; OntologyHandshake is term negotiation.
 
 **Supersedes (prior versions).**
 - `ShoutWhisper#35dd`
 - `ShoutWhisper#f9a8`
+
+---
+
+### Sideinherit#45d5
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Sideinherit.json)
+
+**Gloss.** A practice, belief, capability or flaw passes between separate lines of descent rather than along one
+
+**Mechanism.**
+
+> A party or system takes up a practice, belief, capability or flaw from another outside its line of descent for that item, through copying, exchange, material taken from the other line, or contact. This transfer can make separate lines alike regardless of their relative age, generation or standing, so a shared item does not by itself establish shared ancestry. An item that each received only from a common predecessor, or that each developed independently, is not an instance.
+
+**Invariants.**
+- The parties stand outside each other's line of descent for the item considered.
+- One party holds the item at least partly because it passed from another; an item each holds only by inheritance or independent development is not an instance.
+
+**Failure modes.**
+- Likeness read as common descent: parties or systems that share an item are assumed to have inherited it from a common predecessor, when it passed between them.
+- Passage read as merit: an item that passed between lines is assumed sound because it was taken up.
+- Lineage read as closed: a line of descent is assumed to hold only what it inherited, so an item that arrived from the side is credited to the line.
+
+#### Design
+
+**Why it exists.** Shared traits can be misread as shared descent when an item actually passed between separate lines. Sideinherit distinguishes that route so provenance and the spread of a useful practice or a flaw can be traced to the transfer rather than attributed solely to ancestry.
+
+**Why Society.** Transfer needs a party that passes the item and another that takes it up, each with its own state.
+
+**Can it be removed?** GenealogicalTrace audits an idea's lineage, MemeticSeed is one subsidised way of pushing a standard to neighbours, and Normance records reliance on social default; none describes items passing between separate lines of descent. Removable if traits are assumed to travel only by descent.
+
+**Intended use.** recognising when parties or systems share a practice, belief, capability or flaw because it passed between them rather than solely through common ancestry.
+
+**Future uses.** tracing whether models share a behaviour through common training or because one learned it from the other's outputs; tracing a vulnerability copied between codebases.
+
+**Broad-use contexts.** microbiology, cultural practice, software and copied code, model training on generated data, organisations adopting one another's practices, research fields.
+
+**Broad-use intersection (review hypothesis).** a source and recipient outside each other's line of descent for an item, and the item's passage between them.
+
+**Varies (descendant territory).** the item, the route of passage, and whether the line of descent can also carry it.
+
+**Extension shape.** a variant for model and data provenance; a variant for practices passing between organisations.
+
+_Note: Equal age, generation, capability or status is not required. For example, unrelated models from different generations can acquire a shared behaviour through one model's outputs._
+
+**Design tensions.**
+- Sideways transfer is hard to tell from independent invention, since both make unrelated lines alike.
+
+**Tradeoffs.**
+- Gains: a route of origin besides descent.
+- Gives up: treating shared traits alone as proof of shared ancestry.
+
+**Critique (diagnostic, not contract requirements).**
+- The card describes a process and prescribes no response. Sideways spread can carry a sound practice as readily as a flaw.
+- Novelty, from recall and unverified: known. Nearest known concepts: horizontal gene transfer; horizontal cultural transmission; diffusion of innovations.
+
+**In the family.** GenealogicalTrace follows a line of descent, MemeticSeed pushes a standard to neighbours, Normance records social default, and Sideinherit is an item passing between separate lines of descent.
 
 ---
 
@@ -37963,6 +46237,67 @@ This answer previously located the value in a Survival invariant reading `Functi
 - `SignalReflection#aac2`
 - `SignalReflection#af7f`
 - `SignalReflection#bb4f`
+
+---
+
+### Silencevote#b022
+
+`Society` · `Protocols` · R2 · T2
+
+[Source card (JSON)](../../data/vocabulary/Silencevote.json)
+
+**Gloss.** Count only explicit assent as acceptance; record silence as silence
+
+**Mechanism.**
+
+> A proposal counts as accepted only by explicit assent. A party's {{silence}} is recorded as silence, separately from assent and from objection, with its reason asked for where possible, and it is never counted as agreement.
+
+**Invariants.**
+- Acceptance is recorded only from explicit assent.
+- Silence is recorded separately from assent and from objection.
+
+**Failure modes.**
+- Abilene drift: a group adopts what nobody wanted because nobody objected.
+- Assent fatigue: explicit assent becomes a reflex given without reading.
+
+**Dependency bindings.**
+
+| Category | Placeholder | Exact definition |
+| --- | --- | --- |
+| `references` | `{{silence}}` | `sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f` |
+
+#### Design
+
+**Why it exists.** Groups often treat the absence of objection as consent and end up adopting what nobody wanted. Silencevote counts only explicit assent.
+
+**Why Society.** It governs how a group reads its members' responses.
+
+**Can it be removed?** Silence describes an agent deliberately withholding output; it does not say how others should read that silence. Consensus requires agreement but not explicit assent from each member. Removable if silence is safely read as consent in a given setting.
+
+**Intended use.** decisions where some members may stay quiet.
+
+**Future uses.** agent approval flows; asynchronous review; open-source lazy consensus.
+
+**Broad-use contexts.** committee votes, code-review approvals, consent in medicine and research, open-source governance, family decisions, agent approvals.
+
+**Broad-use intersection (review hypothesis).** explicit assent for acceptance and silence recorded as its own category.
+
+**Varies (descendant territory).** how assent is given and how silence is followed up.
+
+**Extension shape.** a timed variant that escalates silence after a deadline.
+
+**Design tensions.**
+- Requiring explicit assent slows decisions in large groups.
+
+**Tradeoffs.**
+- Gains: acceptance means agreement.
+- Gives up: the speed of lazy consensus.
+
+**Critique (diagnostic, not contract requirements).**
+- The handle names the failure or practice; the card defines the guard, as ConfirmationBlock and HindsightBlock do.
+- Novelty, from recall and unverified: known. Nearest known concepts: silence is not consent; the Abilene paradox.
+
+**In the family.** Silence is the abstaining agent's side; Consensus is agreement; Silencevote keeps the two from being confused.
 
 ---
 
@@ -38587,6 +46922,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 - Mode Confusion happens across ontologies.
 - Explicit Declaration invariant requires OntologyHandshake-level ceremony.
 - Three fixes. `ontology_handshake` moved from `references` to `composes_with`, because an invariant that mandates participation in a handshake is an execute-level dependency and `references` is defined as metadata with no runtime effect. The 'Wild generation MUST be paired with strict verification' invariant was undecidable — no definition of wild or strict — and is restated as the structural claim underneath it, that a broadcast mode must carry the matching accept_spec adjustment. And a non-receipt failure mode was added: the mode travels as a `Signal`, whose own intersection states no delivery guarantee, so 'Mode Confusion' (which presumes receipt) did not cover an agent that never got it.
+- Caution: downstream solvers must adjust their acceptance strictness to the upstream mode, so one broadcast can lower every acceptance gate below it. The failure modes cover misreading, sticking and non-receipt, and the declaration invariant does not require the mode to be authenticated.
 
 **In the family.** Multi-agent-coordination primitive paired with OntologyHandshake (the declaration substrate), Generator/Verifier roles, and SynergisticPairing. Compare with Mode — SynergisticMode is paired-declared; Mode is single-agent.
 
@@ -39360,6 +47696,7 @@ Three of those were strengthened in the 2026-07 review rather than merely rename
 
 **Critique (diagnostic, not contract requirements).**
 - Applied 2026-07-25 from the queued tranche; zero transitive dependents, so this is tidying rather than repair. '{{identity}} Leak: information from previous tasks bleeds into the current WorkerMode session' described context bleed, not identity — the failure named is cross-task information leakage, and `Context` was already a declared dependency of this card. Renamed to use it. The '{{identity}} {{lock}}' invariant uses the agent sense correctly and is untouched, which is why the borrowed use was easy to miss: the same card uses the handle correctly one line above.
+- Caution: claiming a task sets the system prompt to the manifest's persona and flushes memory, and the mode cannot be left without a result. A hostile or mistaken manifest therefore takes over the agent. The failure modes treat reverting to default behaviour as the failure, and no precondition covers where a manifest comes from.
 
 **In the family.** Execution-state primitive paired with SolverManifest, ContextSwitch, and Identity.
 

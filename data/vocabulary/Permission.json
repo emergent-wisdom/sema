@@ -50,14 +50,18 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Consentrenew#9da5",
+      "Mandatune#7d34"
     ]
   },
-  "sema_ref": "Permission#dd1d",
-  "sema_id": "sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23",
-  "sema_stub": "dd1d",
   "invariants": [
     "Authorises only what it names: the {{agent}}, and the {{act}} or {{artifact}} identified."
   ],
+  "sema_id": "sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23",
+  "sema_ref": "Permission#dd1d",
+  "sema_stub": "dd1d",
   "dependencies": {
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",

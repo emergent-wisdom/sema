@@ -1,0 +1,37 @@
+{
+  "handle": "Premisebridge",
+  "gloss": "Find the premise where two reasoners part before blaming the disagreement on effort or ability",
+  "mechanism": "When two parties reach different conclusions, they compare the relevant premises before either attributes the disagreement to the other's effort or ability. They state the differences they find and assess which, if any, account for the divergence. A {{callshort}} is withdrawn when the apparent shortfall is explained by a premise difference; an incidental difference does not settle that question, and matching premises alone do not establish a shortfall of effort or ability.",
+  "invariants": [
+    "The search for a differing premise comes before any attribution to effort or ability.",
+    "Each premise reported for a party is stated in words that party accepts as its position."
+  ],
+  "failure_modes": [
+    "Effort blame: a disagreement explained by differing premises is put down to the other party's laziness or limits.",
+    "Premise regress: the search continues indefinitely to avoid engaging the conclusion.",
+    "Incidental difference: finding a premise difference is taken to explain the divergence without checking its relevance."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DissentSeek#cbe1",
+      "Disputelift"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Premisebridge#mh:SHA-256:73eb4e6af98dcb9a30af4d1e5aab759621d22fe1e8122b9e986e6ce2cfa1d50a",
+  "sema_ref": "Premisebridge#73eb",
+  "sema_stub": "73eb",
+  "dependencies": {
+    "references": {
+      "callshort": "sema:Callshort#mh:SHA-256:95258b0368b6bbb08b65a09c3e4274c0cbded3452418db036be54234482ff0ff"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

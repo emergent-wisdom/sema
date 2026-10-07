@@ -1,0 +1,37 @@
+{
+  "handle": "Absentseat",
+  "gloss": "Represent affected parties who cannot take part, and keep the representation open to correction",
+  "mechanism": "When a decision affects parties who cannot take part, a {{role}} is assigned to represent each of them. The representative states the party's interests explicitly, and the statement stays open to correction by the party or its advocates when they can be reached.",
+  "invariants": [
+    "Each absent affected party has a named representative.",
+    "The represented interests are stated explicitly.",
+    "The statement stays open to correction by the party or its advocates."
+  ],
+  "failure_modes": [
+    "Ventriloquism: the representative's own interests are presented as the absent party's.",
+    "Token seat: a representative is named but the stated interests never affect the decision."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Futureclaim",
+      "Burdenlight"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Absentseat#mh:SHA-256:d6ab5c37a7f855568d7bd85dc78b01952df51a6f3abed10ae7fe67760cf61706",
+  "sema_ref": "Absentseat#d6ab",
+  "sema_stub": "d6ab",
+  "dependencies": {
+    "references": {
+      "role": "sema:Role#mh:SHA-256:262ab6d2c03de5beab24c98cb3168948a3bb043a6a81b68237ab53919d153999"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

@@ -28,6 +28,10 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "related": [
+      "MandatoryAbstraction",
+      "GeneralProblemSolvingProtocol"
     ]
   },
   "data_schema": {

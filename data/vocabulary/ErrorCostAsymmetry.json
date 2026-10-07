@@ -1,0 +1,36 @@
+{
+  "handle": "ErrorCostAsymmetry",
+  "gloss": "When one kind of mistake costs far more than the other, the decision leans away from it, so the likeliest answer is not always the right action",
+  "mechanism": "A decision can go wrong in two directions, such as acting on a false alarm or ignoring a real one, shipping a defect or delaying a sound release, and the two mistakes cost very different amounts. Choosing by which outcome is most probable ignores that difference. The threshold for acting instead moves toward avoiding the costlier mistake: an unlikely but catastrophic failure can justify caution, and a likely but trivial one may not. The costs, and how far they differ, are stated so that the threshold can be checked and revised. Where the two mistakes cost about the same, this asymmetry does not apply.",
+  "invariants": [
+    "A decision can err in two or more directions whose costs are stated and differ substantially.",
+    "The threshold for acting is set from those costs together with the probabilities, not from the probabilities alone."
+  ],
+  "failure_modes": [
+    "Probability-only choice: the likeliest outcome is acted on although the other mistake costs far more.",
+    "Unstated costs: the threshold leans one way without the costs that justify it being written down, so it cannot be checked.",
+    "Catastrophe everywhere: every remote, severe outcome is used to justify inaction, although its probability makes its expected cost small."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Reversibility",
+      "FailClosed",
+      "RegretMinimization",
+      "EpistemicROI",
+      "Satisfice",
+      "Risk"
+    ],
+    "minted": "2026-10-06T23:39:36+02:00"
+  },
+  "sema_id": "sema:ErrorCostAsymmetry#mh:SHA-256:b5424bc4f5a8c260efaf1dfb1e7b1a6b675f155fd7c16ad54dd57bd8db8008f8",
+  "sema_ref": "ErrorCostAsymmetry#b542",
+  "sema_stub": "b542",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

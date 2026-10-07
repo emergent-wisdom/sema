@@ -1,0 +1,36 @@
+{
+  "handle": "Complexitytax",
+  "gloss": "Before dismissing a distinction as too complicated, state what decision it would change",
+  "mechanism": "A distinction proposed for dismissal as too complicated is first tested: state which {{decision}} or prediction would change if it were kept. A distinction that changes nothing may be dropped; one that changes something is kept, whatever it costs to state.",
+  "invariants": [
+    "A dismissed distinction carries a statement of what it would have changed.",
+    "A distinction that would change a decision or prediction is not dismissed for its length."
+  ],
+  "failure_modes": [
+    "Slogan win: the shorter account is preferred because it is shorter.",
+    "Complexity hoard: every distinction is kept whether or not it changes anything."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Lucence",
+      "Farsimple"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Complexitytax#mh:SHA-256:fb091fe7a20913cdbec3d4e3af7165ffac1731b750c8511a102e649dd714e6a0",
+  "sema_ref": "Complexitytax#fb09",
+  "sema_stub": "fb09",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

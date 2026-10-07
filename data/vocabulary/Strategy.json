@@ -5,7 +5,8 @@
   "_meta": {
     "tier": 1,
     "related": [
-      "OODA"
+      "OODA",
+      "Promisehinge#680a"
     ],
     "ring": 1,
     "supersedes": [
@@ -18,13 +19,13 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
-  "sema_ref": "Strategy#3dc5",
-  "sema_stub": "3dc5",
   "invariants": [
     "States what it optimises for, and what would count as having won.",
     "States the observation that would cause it to be revised. A course with no revision trigger is a {{plan}}."
   ],
+  "sema_id": "sema:Strategy#mh:SHA-256:3dc598d0c6af12389df445c204e17df03950dbc886656b85700e6c87c31b2eef",
+  "sema_ref": "Strategy#3dc5",
+  "sema_stub": "3dc5",
   "dependencies": {
     "references": {
       "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32"

@@ -1,0 +1,37 @@
+{
+  "handle": "Leapdebt",
+  "gloss": "Record what a skipped stage would have provided, and repay it or carry it explicitly into work that depends on it",
+  "mechanism": "When a stage of work or learning is skipped, what that stage would have provided is recorded as a debt: the check not run, the foundation not built, the case not tested. Each debt is held as an {{assumption}} with a trigger for repaying it, and work that depends on it waits for the repayment or carries the debt explicitly.",
+  "invariants": [
+    "Each skipped stage records what it would have provided.",
+    "Each debt is held as an assumption with a repayment trigger.",
+    "Work that depends on an unpaid debt waits for it or carries it explicitly."
+  ],
+  "failure_modes": [
+    "Invisible debt: a skipped stage leaves no record, and later failures are never traced to it.",
+    "Debt paralysis: so many debts are recorded that none is repaid."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Reasonfade",
+      "Trialhaven"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:Leapdebt#mh:SHA-256:0bcd291af621e572c82c2f0084987c35e5be1f0cde1385cbdbb079df340453ee",
+  "sema_ref": "Leapdebt#0bcd",
+  "sema_stub": "0bcd",
+  "dependencies": {
+    "references": {
+      "assumption": "sema:Assumption#mh:SHA-256:d99bf34ffd59aa1c8ca25f5477b1df297b8a2f9cf992c242de73d13aef88a097"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

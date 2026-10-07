@@ -1,0 +1,36 @@
+{
+  "handle": "Cocapacity",
+  "gloss": "Record the joint capacity an exchange creates, beyond the information it transfers",
+  "mechanism": "After an exchange, the parties record what they can now do together that they could not before, such as a shared term, a {{contract}}, an agreed procedure or a fact each knows the other knows. Each capacity is tested by naming a joint action it enables.",
+  "invariants": [
+    "Each new capacity is named with a joint action it enables.",
+    "A capacity counts only if it needs every party; an individual gain does not."
+  ],
+  "failure_modes": [
+    "Information mistaken for capacity: facts were transferred, but nothing can be done together that could not be done before.",
+    "Unused capacity: the capacity is recorded but never exercised."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Coflourish",
+      "Jointscape"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Cocapacity#mh:SHA-256:0924cffc9a46023862f0a81ad3c96c35111fd246c6de483789a120f1b4774fdc",
+  "sema_ref": "Cocapacity#0924",
+  "sema_stub": "0924",
+  "dependencies": {
+    "references": {
+      "contract": "sema:Contract#mh:SHA-256:98747322ee31ffa265a8dfd6609d726e0dcba9c513e5ec85742c6c04e4afaa26"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

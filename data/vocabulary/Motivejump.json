@@ -1,0 +1,36 @@
+{
+  "handle": "Motivejump",
+  "gloss": "Examine an argument before discussing the motives of whoever makes it",
+  "mechanism": "When an argument is disputed, its reasoning is examined before the motives of the person making it are raised. Motives may weigh on testimony, the claims taken on someone's word, through {{source_evaluate}}, but never on whether checkable reasoning holds.",
+  "invariants": [
+    "The argument is examined before any motive is raised.",
+    "A motive is never offered as a refutation of checkable reasoning."
+  ],
+  "failure_modes": [
+    "Bulverism: an argument is assumed wrong and then explained by the speaker's motives.",
+    "Motive blindness: motives are ignored even when weighing testimony."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Statuslens",
+      "Callshort"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Motivejump#mh:SHA-256:1820067b431c8fb5a0ff6014b7b19182c47fc9e9ed8de61b841b856465cb21f0",
+  "sema_ref": "Motivejump#1820",
+  "sema_stub": "1820",
+  "dependencies": {
+    "references": {
+      "source_evaluate": "sema:SourceEvaluate#mh:SHA-256:24f610415c3d55de5161b2816f2c9f24275388972b0a68f897cedf8c4b67dc58"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

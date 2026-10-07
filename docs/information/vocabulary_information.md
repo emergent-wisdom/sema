@@ -2,13 +2,13 @@
 
 ## System Status
 
-- **Semantic-set Root**: `ac323cb0f3a2f17928ca079e20e25e426ca7cf2144031252ebd32d1009aef9f8`
+- **Semantic-set Root**: `a7db6b927834c9370271a608d8872b7aff457ebe93c6972806d6457b3df38971`
 - **Semantic-set Scheme**: `sema-semantic-set-v1`
-- **Catalog Root**: `ee2e46f7684046ca9d4cae7fa05e348b0fc271af96994ea7f2f70c950932346c`
+- **Catalog Root**: `7eec1a26a7b1454e48507a26c382aa804ac93e8a08d290d452b0448c49e74aa8`
 - **Catalog Scheme**: `sema-catalog-v1`
-- **Pattern Count**: 457
-- **Unique Definition Count**: 457
-- **Verified Against Semantic Root**: `ac323cb0f3a2f179…`
+- **Pattern Count**: 590
+- **Unique Definition Count**: 590
+- **Verified Against Semantic Root**: `a7db6b927834c937…`
 
 ## Usage
 
@@ -23,7 +23,7 @@ a target rename can also change dependent definition digests:
 import json
 
 # Agent A shares semantic-set root + scheme
-semantic_root_A = "ac323cb0f3a2f17928ca079e20e25e426ca7cf2144031252ebd32d1009aef9f8"
+semantic_root_A = "a7db6b927834c9370271a608d8872b7aff457ebe93c6972806d6457b3df38971"
 scheme_A = "sema-semantic-set-v1"
 
 # Agent B independently reads its local versioned roots
@@ -41,35 +41,35 @@ else:
 
 Breakdown of patterns by Civilization Layer and Functional Category.
 
-### Physics (16)
+### Physics (20)
 
 | Category | Count |
 | :--- | :---: |
-| Primitives | 15 |
-| Time | 1 |
+| Primitives | 18 |
+| Time | 2 |
 
-### Mind (181)
-
-| Category | Count |
-| :--- | :---: |
-| Strategy | 81 |
-| Reasoning | 63 |
-| Inference | 22 |
-| Memory | 15 |
-
-### Society (102)
+### Mind (261)
 
 | Category | Count |
 | :--- | :---: |
-| Protocols | 74 |
+| Strategy | 113 |
+| Reasoning | 101 |
+| Inference | 28 |
+| Memory | 19 |
+
+### Society (142)
+
+| Category | Count |
+| :--- | :---: |
+| Protocols | 97 |
+| Governance | 24 |
 | Coordination | 12 |
 | Economics | 9 |
-| Governance | 7 |
 
-### Infrastructure (158)
+### Infrastructure (167)
 
 | Category | Count |
 | :--- | :---: |
-| Data Structures | 96 |
-| Primitives | 53 |
-| Verification | 9 |
+| Data Structures | 101 |
+| Primitives | 56 |
+| Verification | 10 |

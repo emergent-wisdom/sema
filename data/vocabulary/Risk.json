@@ -23,11 +23,11 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Brakegrow#2b56"
     ]
   },
-  "sema_id": "sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91",
-  "sema_ref": "Risk#e7f6",
-  "sema_stub": "e7f6",
   "data_schema": {
     "type": "object",
     "required": [
@@ -65,6 +65,9 @@
       }
     }
   },
+  "sema_id": "sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91",
+  "sema_ref": "Risk#e7f6",
+  "sema_stub": "e7f6",
   "dependencies": {
     "references": {
       "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230",

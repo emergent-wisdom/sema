@@ -1,0 +1,37 @@
+{
+  "handle": "HorizonReview",
+  "gloss": "Keep at least one item beyond the immediate horizon in every planning cycle",
+  "mechanism": "Each planning cycle reviews at least one item on the {{roadmap}} beyond the current horizon. If a plan has held only near-horizon items for a stated number of cycles, the contraction is recorded and the horizon is reconsidered.",
+  "invariants": [
+    "Each planning cycle reviews at least one item beyond the current horizon.",
+    "A plan that has held only near-horizon items for the stated number of cycles is flagged."
+  ],
+  "failure_modes": [
+    "Horizon collapse: urgent work crowds out everything distant.",
+    "Distant theatre: long-range items are reviewed in name and never acted on."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Futureclaim",
+      "Brakegrow",
+      "Futurefold"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:HorizonReview#mh:SHA-256:9fd6a9d3ff0fbc2b0f1548965dd5de72d54a2533e70213027d6c7b608f6ef30a",
+  "sema_ref": "HorizonReview#9fd6",
+  "sema_stub": "9fd6",
+  "dependencies": {
+    "references": {
+      "roadmap": "sema:Roadmap#mh:SHA-256:959d72fa090e38c0600aa4fc3db975a0a957b94913638a70da91351a18e733ae"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

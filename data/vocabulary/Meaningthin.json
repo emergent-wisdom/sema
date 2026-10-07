@@ -1,0 +1,34 @@
+{
+  "handle": "Meaningthin",
+  "gloss": "An activity continues while its connection to a valued purpose weakens",
+  "mechanism": "The practices that sustain an activity persist while what they accomplish, or what participants find valuable in them, becomes less connected to the purpose through which the activity mattered. Continuation and contribution separate: the activity can keep its routines, output or recognition without keeping the same relation to that purpose. Changed circumstances, changed aspirations and attachment to proxy outcomes are possible routes, not required causes. The activity need not have lost every purpose, the weakening need not be permanent or bad overall, and a practice deliberately redirected to a new purpose is not an instance.",
+  "invariants": [
+    "There is a continuing activity and a specified purpose valued from some perspective.",
+    "The activity's connection to that purpose weakens over the interval considered, in practical contribution or in experienced significance."
+  ],
+  "failure_modes": [
+    "Output read as purpose: continued routines, output or recognition are taken to show that the purpose is still served.",
+    "Uncertainty read as loss: lack of evidence about the connection is taken as proof that it weakened.",
+    "Swapped bases: practical contribution and experienced significance are substituted for each other when judging the weakening.",
+    "Productivity verdict: the activity is required to justify itself through measurable output."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "PurposeLinkReview",
+      "Echohollow",
+      "Metricmirror"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Meaningthin#mh:SHA-256:8366efb557de67da882c0febf98bc198ad9a3cc830dfd0bcf9f5658740040407",
+  "sema_ref": "Meaningthin#8366",
+  "sema_stub": "8366",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

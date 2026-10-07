@@ -1,0 +1,37 @@
+{
+  "handle": "EvidenceUnderdetermination",
+  "gloss": "The evidence in hand fits two or more explanations about equally, so it cannot decide between them",
+  "mechanism": "Two or more explanations each account for all the evidence considered, and each piece of that evidence is about as expected under one explanation as under the others. The evidence then gives no reason to prefer any of them: a preference based on simplicity, prior belief or familiarity may still be reasonable, but it is not support from this evidence. More evidence of the same kind leaves their standing unchanged, as re-reading logs that fit both 'the request never arrived' and 'it arrived but was not logged' cannot separate them. The state is relative to the evidence considered, and an observation the explanations predict differently can end it. Evidence that clearly favours one explanation over the others is not an instance.",
+  "invariants": [
+    "Two or more named explanations each account for all of the evidence considered.",
+    "That evidence is about as expected under each explanation, so a preference among them by simplicity, prior belief or familiarity is not support from it."
+  ],
+  "failure_modes": [
+    "Preference read as finding: an explanation preferred for its simplicity or familiarity is reported as what the evidence showed.",
+    "More of the same: further evidence of the kind already in hand is gathered as if it could separate the explanations.",
+    "Underdetermination read as permanent: the explanations are treated as indistinguishable in principle when an observation exists that they predict differently."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Inference"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Abduction",
+      "Uncertain",
+      "TensionHold",
+      "Twinread",
+      "Hypothesis",
+      "DistinguishingTest",
+      "ActionConvergence"
+    ],
+    "minted": "2026-10-06T21:57:08+02:00"
+  },
+  "sema_id": "sema:EvidenceUnderdetermination#mh:SHA-256:999b3244c9eb73cf0968148e4ff5dd11e3abc42330ed5faafe618af972079e28",
+  "sema_ref": "EvidenceUnderdetermination#999b",
+  "sema_stub": "999b",
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

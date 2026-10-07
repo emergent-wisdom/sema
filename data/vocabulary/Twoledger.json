@@ -1,0 +1,39 @@
+{
+  "handle": "Twoledger",
+  "gloss": "Adopt a perspective for what it opens, and check its claims on a separate ledger",
+  "mechanism": "When a perspective is chosen for the questions, options or moves it opens, that reason is recorded as its yield. Every claim the perspective makes is entered separately, at the assurance it has earned through its own {{check}}, graded as in {{epistemic_cascade}}. Adopting the perspective, working inside it, and the value of what it opened never raise the assurance of its claims. A perspective may be kept for its yield while some of its claims stand falsified.",
+  "invariants": [
+    "The record of adopting the perspective names what it opens.",
+    "Each claim of the perspective carries its own assurance, changed only by checks of that claim.",
+    "The perspective's yield is never counted as evidence for its claims."
+  ],
+  "failure_modes": [
+    "Fruitfulness laundering: claims are believed because the perspective that makes them has been productive.",
+    "Premature dismissal: a productive perspective is dropped because one of its claims failed.",
+    "Spent yield: the perspective is kept by habit after what it opened has been used up."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Reframe#cbfd",
+      "Assumption#d99b"
+    ],
+    "minted": "2026-10-05T20:03:20+02:00"
+  },
+  "sema_id": "sema:Twoledger#mh:SHA-256:a560e73281de99e69ebee03f6efd242925bc0acc238fdbb87fd8542666b56985",
+  "sema_ref": "Twoledger#a560",
+  "sema_stub": "a560",
+  "dependencies": {
+    "references": {
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00",
+      "epistemic_cascade": "sema:EpistemicCascade#mh:SHA-256:00ae0d471938ddbddaec91d4e7936d31d21e0e52cbb9a7064dbd37f66dd513c4"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

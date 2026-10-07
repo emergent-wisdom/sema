@@ -14,10 +14,13 @@
     "path": [
       "Society",
       "Coordination"
+    ],
+    "related": [
+      "Coflourish#915e"
     ]
   },
-  "sema_ref": "Compromise#f25f",
   "sema_id": "sema:Compromise#mh:SHA-256:f25faa26653b11458535137532cbad87182ed5e5415ec590bc174877d51f985c",
+  "sema_ref": "Compromise#f25f",
   "sema_stub": "f25f",
   "dependencies": {
     "composes_with": {

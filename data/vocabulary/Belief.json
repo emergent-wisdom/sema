@@ -14,6 +14,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Normance#6844"
     ]
   },
   "data_schema": {
@@ -47,13 +50,13 @@
       }
     }
   },
-  "sema_id": "sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1",
-  "sema_ref": "Belief#09e1",
-  "sema_stub": "09e1",
   "invariants": [
     "Names the {{agent}} holding it; a claim with no holder is an assertion, not a Belief.",
     "Carries a pointer to its supporting evidence, or records that it has none."
   ],
+  "sema_id": "sema:Belief#mh:SHA-256:09e1c919d9829e30422f3fffee11c1af4af54ac7894d157ff371ed50b03f69b1",
+  "sema_ref": "Belief#09e1",
+  "sema_stub": "09e1",
   "dependencies": {
     "references": {
       "agent": "sema:Agent#mh:SHA-256:e127459069739fffc96a71d54ef6e8c97ca53471d5349c16aa72a092a33756cd",

@@ -1,0 +1,36 @@
+{
+  "handle": "Webtrace",
+  "gloss": "Before relying on a concept, list what resembles it, what differs from it, and what depends on it",
+  "mechanism": "Before a concept is relied on, three lists are made: concepts it resembles, concepts it must be told apart from, each with the {{compare}} that separates them, and concepts or work that depend on it. A concept whose differences cannot be stated is not yet ready to rely on.",
+  "invariants": [
+    "The three lists are made before the concept is relied on.",
+    "Each listed difference states how the two concepts are told apart."
+  ],
+  "failure_modes": [
+    "Island concept: a concept is used with no sense of its neighbours.",
+    "Endless web: the lists grow without limit and the concept is never used."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Almostnot",
+      "Morphproof"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Webtrace#mh:SHA-256:8a904425ffa4d0169e855b38dedfad986064c45cee058f0a7fb126ef95706d32",
+  "sema_ref": "Webtrace#8a90",
+  "sema_stub": "8a90",
+  "dependencies": {
+    "references": {
+      "compare": "sema:Compare#mh:SHA-256:15a079e73bd3c280efbe2b35ab4b082b2302ab65e5dd5eb1c4fba1a5f554cebe"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

@@ -1,0 +1,32 @@
+{
+  "handle": "Formelt",
+  "gloss": "A structure loses its organising boundaries while its components remain",
+  "mechanism": "Divisions, roles or relationships that gave components a stable arrangement become less definite or less effective while the components persist, so the prior form loosens, which can lead to dissolution, confusion or a new arrangement. The loosening is in an organising relation or boundary, not only in the components; a direct change from one well-defined arrangement to another need not include it.",
+  "invariants": [
+    "The components of a structure persist.",
+    "The boundaries or relations that organised them become less definite or less effective."
+  ],
+  "failure_modes": [
+    "Loosening read as destruction: loss of the previous form is equated with loss of all capacity.",
+    "Change read as decay: every rearrangement is called a decline.",
+    "Old form preferred: the previous boundaries are treated as better by default."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Linkfade",
+      "Topology"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Formelt#mh:SHA-256:0e39879fc8580476a1a9969909333c6021061f8f5e5a317efb1256141cc0425c",
+  "sema_ref": "Formelt#0e39",
+  "sema_stub": "0e39",
+  "sema_layer": "Infrastructure",
+  "sema_category": "Primitives"
+}

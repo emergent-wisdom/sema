@@ -1,0 +1,36 @@
+{
+  "handle": "Critiquedrift",
+  "gloss": "Keep criticism of an action about the action and its effects, not the person's character",
+  "mechanism": "A {{critique}} of what someone did names the action and its effects and stays there. Any statement about the person is limited to this action; claims about their character, ability or motives are not drawn from it.",
+  "invariants": [
+    "The critique names the action and its effects.",
+    "No claim about the person's character, ability or motives is drawn from the action."
+  ],
+  "failure_modes": [
+    "Drift: criticism of an act becomes a verdict on the person.",
+    "Vagueness shield: the critique avoids naming the act so as not to seem personal."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Callshort",
+      "Jester#1bec"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Critiquedrift#mh:SHA-256:bd7c044fc9f6b5f9b18dcccc3916f6a56d0e876b4b87d8c2ea5cb4447ff6e36c",
+  "sema_ref": "Critiquedrift#bd7c",
+  "sema_stub": "bd7c",
+  "dependencies": {
+    "references": {
+      "critique": "sema:Critique#mh:SHA-256:646b71acb10a6b7f0874f3d5c7977c44d253f29f9c1231c974d85c7fba131980"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

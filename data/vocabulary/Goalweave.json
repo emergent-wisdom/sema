@@ -1,0 +1,36 @@
+{
+  "handle": "Goalweave",
+  "gloss": "Agree on actions that serve several groups' different purposes without merging the purposes",
+  "mechanism": "Groups with different purposes agree on actions that serve each group's own {{goal}}. The agreement records, for each action, which purpose each group pursues through it, and no group is asked to adopt another's purpose.",
+  "invariants": [
+    "Each agreed action records which purpose each group pursues through it.",
+    "No group's participation is conditioned on adopting another group's purpose."
+  ],
+  "failure_modes": [
+    "Purpose capture: one group's purpose becomes the shared goal.",
+    "Hollow agreement: actions are agreed but serve no group's purpose well."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Jointscape",
+      "Reasonbridge"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Goalweave#mh:SHA-256:5000ebac35e7934093f9ac1c6583b8b6c446cfec88f30d9d19ae6c1493b1bf92",
+  "sema_ref": "Goalweave#5000",
+  "sema_stub": "5000",
+  "dependencies": {
+    "references": {
+      "goal": "sema:Goal#mh:SHA-256:986beec5f7aea2c89962d1e93806de83c61eee9bd7364d9ce1d20bd479fa5e70"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

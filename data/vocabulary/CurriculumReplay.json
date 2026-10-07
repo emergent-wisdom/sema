@@ -27,7 +27,8 @@
     "path": [
       "Mind",
       "Memory"
-    ]
+    ],
+    "caution": "Unsupervised self-modification in idle cycles \u2014 replay reinforces whatever scored well, including gamed scores; keep a rollback checkpoint and audit what gets replayed."
   },
   "sema_id": "sema:CurriculumReplay#mh:SHA-256:0ef657942a69bcc9b32e05656bd6b5b4ca9de556c6e634174363c1c9e4c93723",
   "sema_ref": "CurriculumReplay#0ef6",

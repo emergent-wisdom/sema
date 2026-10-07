@@ -1,0 +1,37 @@
+{
+  "handle": "Farsimple",
+  "gloss": "Explain by first laying out the complexity a quick account would blur, then building a simpler account that keeps it",
+  "mechanism": "An explanation in two phases. The first lays out the distinctions, cases and exceptions that a quick simple account would blur, and may {{decompose}} the subject to do so. The second builds a simpler account in which each of them either survives or is named as set aside. The reader is shown both phases, and the final account is checked against the first.",
+  "invariants": [
+    "The first phase is shown to the reader, not only worked through by the explainer.",
+    "Each distinction raised in the first phase either survives in the final account or is named there as set aside."
+  ],
+  "failure_modes": [
+    "Complexity as display: the first phase adds difficulty that the final account never uses.",
+    "Lost return: the explanation stops in the complex phase.",
+    "Quiet drop: a distinction from the first phase vanishes from the final account without being named."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Lucence",
+      "LeastToMost#942d"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Farsimple#mh:SHA-256:220993e41362dea99d41146c35b81e70e707f84c509b2271ae5e797f15bd0046",
+  "sema_ref": "Farsimple#2209",
+  "sema_stub": "2209",
+  "dependencies": {
+    "references": {
+      "decompose": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

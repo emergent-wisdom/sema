@@ -6,7 +6,9 @@
     "tier": 1,
     "ring": 2,
     "related": [
-      "sema:HypothesisLadder#mh:SHA-256:1e4cd70cfbf442861d0a8d486cc67a7d916354b29b20925cbee2606418c84701"
+      "sema:HypothesisLadder#mh:SHA-256:1e4cd70cfbf442861d0a8d486cc67a7d916354b29b20925cbee2606418c84701",
+      "RegressionToMean",
+      "ConfoundedAttribution"
     ],
     "supersedes": [
       "sema:Experiment#mh:SHA-256:c62fce3980caa782eba602ce44307edf9c4cb3f52eeab85523689348dd0db51e",
@@ -19,9 +21,6 @@
       "Strategy"
     ]
   },
-  "sema_id": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748",
-  "sema_ref": "Experiment#421e",
-  "sema_stub": "421e",
   "invariants": [
     "Control and treatment differ in the variable under test; every other difference is eliminated or written down.",
     "The design commits in advance to learning from either outcome."
@@ -30,6 +29,9 @@
     "Undeclared difference: something varied that the design did not name, so no cause is established.",
     "Mechanism assumed: the comparison shows the variable mattered, not why."
   ],
+  "sema_id": "sema:Experiment#mh:SHA-256:421e41c03e27f10e09c08b1f884bbcb9addf0f232be0a5bf1097950b40f15748",
+  "sema_ref": "Experiment#421e",
+  "sema_stub": "421e",
   "dependencies": {
     "references": {
       "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46",

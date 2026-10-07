@@ -1,0 +1,36 @@
+{
+  "handle": "Futureclaim",
+  "gloss": "Treat the needs of future people as claims that a present decision must weigh and answer",
+  "mechanism": "A {{decision}} with long consequences lists its effects on parties who do not yet exist or cannot yet act, and treats each effect as a claim to be weighed and answered in the record, not as optional generosity.",
+  "invariants": [
+    "Effects on future parties are listed.",
+    "Each listed effect is weighed and answered in the decision record."
+  ],
+  "failure_modes": [
+    "Discounting to zero: future effects are listed and given no weight.",
+    "Speculative claims: imagined future needs override present evidence."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Absentseat",
+      "Brakegrow"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Futureclaim#mh:SHA-256:a57c755754001d989e17602c3864fefb2228b6e31632d1aad7819e5c04433d0d",
+  "sema_ref": "Futureclaim#a57c",
+  "sema_stub": "a57c",
+  "dependencies": {
+    "references": {
+      "decision": "sema:Decision#mh:SHA-256:b1407127acd4a39314fc24b418310e4b95e0347e4e22f376151ab765e2dfd2c7"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

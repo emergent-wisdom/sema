@@ -1,0 +1,67 @@
+{
+  "handle": "SpecializationEdge",
+  "gloss": "A link stating that a child concept is a kind or realization of its parent, forming the route by which problems are located",
+  "mechanism": "A specialization edge records that one concept is a kind or realization of another: the parent names a genus, and the child is set apart within it by a stated differentia, as a sushi bar is a kind of restaurant. These edges are what a concrete problem climbs to locate itself, from its most specific capability up to the root, and the current topology profile requires them to form a rooted, acyclic kind-of {{hierarchy}}. Kinds are open-world: the children under a parent are those found so far, and a sibling search never claims to have found them all. Because the relation belongs to the edge rather than to the node, one concept may be a kind of several parents where the graph allows multi-parent reuse. A part of what makes the parent work is not one of its kinds.",
+  "invariants": [
+    "The child is a kind or realization of the parent, with a stated differentia that distinguishes it within the parent's genus.",
+    "In the current topology profile, specialization edges followed upward reach the root without a cycle.",
+    "A parent's specialization children claim no completeness."
+  ],
+  "failure_modes": [
+    "Part filed as kind: a contribution to the parent is linked as one of its kinds, so the classification route runs through something that is not a kind.",
+    "Closed-world reading: a parent's recorded kinds are taken as all of them, so a case that fits none is forced into the nearest.",
+    "Missing differentia: a child is attached without stating what distinguishes it from its siblings, so nothing shows it is a separate kind."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Data Structures"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Category",
+      "Specialize",
+      "Topology",
+      "CompositionEdge",
+      "MandatoryAbstraction"
+    ],
+    "minted": "2026-10-06T22:20:11+02:00"
+  },
+  "data_schema": {
+    "type": "object",
+    "required": [
+      "parent",
+      "child",
+      "differentia"
+    ],
+    "properties": {
+      "parent": {
+        "type": "string",
+        "description": "The genus: the more general concept the child is a kind of"
+      },
+      "child": {
+        "type": "string",
+        "description": "The kind or realization"
+      },
+      "differentia": {
+        "type": "string",
+        "description": "What sets the child apart from its siblings within the parent's genus"
+      },
+      "role": {
+        "type": "string",
+        "description": "Optional role the child plays under this parent; it belongs to the edge, so the same child can play different roles under different parents"
+      }
+    }
+  },
+  "sema_id": "sema:SpecializationEdge#mh:SHA-256:4d203b9383c917cc241dc8b4ab9cf6a48eb0113f86b60a0dda5cf3defb8b3017",
+  "sema_ref": "SpecializationEdge#4d20",
+  "sema_stub": "4d20",
+  "dependencies": {
+    "references": {
+      "hierarchy": "sema:Hierarchy#mh:SHA-256:5951b6a616f97ff8ef7b78407ed0631150191253d88f00bbb2ef429cc5a8cf85"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Data Structures"
+}

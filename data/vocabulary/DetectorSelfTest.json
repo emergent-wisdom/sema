@@ -1,0 +1,39 @@
+{
+  "handle": "DetectorSelfTest",
+  "gloss": "Test the detectors that guard a process, so their silence is not mistaken for health",
+  "mechanism": "On a stated schedule, known faults are injected or replayed, and each {{monitor}} or check that guards a process is confirmed to catch them. A detector that misses a known fault is marked failed and repaired before the process relies on it again.",
+  "invariants": [
+    "Each detector is tested with a known fault on a stated schedule.",
+    "A detector that misses a known fault is marked failed and is not relied on until it is repaired."
+  ],
+  "failure_modes": [
+    "Silent monitor: a detector stops firing and its silence is read as health.",
+    "Test-only detection: detectors catch the injected faults but not real ones."
+  ],
+  "_meta": {
+    "path": [
+      "Infrastructure",
+      "Verification"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "StateAudit",
+      "StopDrill",
+      "Regulapse",
+      "AbsenceEvidence"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00",
+    "caution": "Injected or replayed faults can fire the real responses their detectors drive \u2014 keep test faults tagged and isolated from live state."
+  },
+  "sema_id": "sema:DetectorSelfTest#mh:SHA-256:8d48b9e7f6dbfc6ea93f0de86259339a64d1ad994089f2ff5d8642b1d2cc842a",
+  "sema_ref": "DetectorSelfTest#8d48",
+  "sema_stub": "8d48",
+  "dependencies": {
+    "references": {
+      "monitor": "sema:Monitor#mh:SHA-256:d31621c43589a14a237d53b3ff53c360b841cea6fe8fa8b7dc90724a686fcf8f"
+    }
+  },
+  "sema_layer": "Infrastructure",
+  "sema_category": "Verification"
+}

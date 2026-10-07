@@ -1,0 +1,39 @@
+{
+  "handle": "Situfit",
+  "gloss": "Check that a moment really fits the category it is about to be handled as",
+  "mechanism": "Before a moment is handled as an instance of a {{category}}, such as a familiar argument, a known kind of request or a recognised failure, a {{check}} lists the features the intended handling depends on and marks each as present, absent or unknown in this moment. The fit is Verified when every listed feature is present, Falsified when any is absent, and Unknown otherwise.",
+  "invariants": [
+    "The features checked are those the intended handling depends on, not the category's full definition.",
+    "One absent feature falsifies the fit."
+  ],
+  "failure_modes": [
+    "Surface match: the moment shares the category's look but not the features the handling needs.",
+    "Familiarity as fit: the moment is judged to fit because it feels familiar.",
+    "Forced fit: absent features are reinterpreted until the category fits."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "OntologyAdapt#a541",
+      "Sunsetkind",
+      "Badgeread"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Situfit#mh:SHA-256:74e56492432fc6fc7dafcdd9304e0654998b47f336371c5e665a49e35f605369",
+  "sema_ref": "Situfit#74e5",
+  "sema_stub": "74e5",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696",
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

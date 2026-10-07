@@ -28,7 +28,8 @@
     "path": [
       "Society",
       "Protocols"
-    ]
+    ],
+    "caution": "Coordination moves to encrypted channels monitors cannot read \u2014 keep a record of who whispered to whom, or collusion goes unseen."
   },
   "sema_id": "sema:ShoutWhisper#mh:SHA-256:b12ba94fa0c10a49e1d2910fa6adfcce90f99041b8d8481a855d2093e43979ac",
   "sema_ref": "ShoutWhisper#b12b",

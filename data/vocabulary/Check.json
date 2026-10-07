@@ -16,7 +16,10 @@
     "ring": 0,
     "related": [
       "Validate",
-      "Judge"
+      "Judge",
+      "Situfit#74e5",
+      "Twoledger#a560",
+      "AbsenceEvidence"
     ],
     "supersedes": [
       "sema:Check#mh:SHA-256:1544e646894003b4bac963cee70097a4bffd75f6cb753f218befb2079f8383a6",

@@ -1,0 +1,37 @@
+{
+  "handle": "StalledDirectionReview",
+  "gloss": "Guard against effort spread over so many directions that none advances",
+  "mechanism": "Each active direction records the result its last period produced. A direction that produced nothing is either given more effort or paused, after the directions are ranked with {{prioritize}}, and paused directions are recorded with what would restart them.",
+  "invariants": [
+    "Each active direction records the result its last period produced.",
+    "A direction that produced nothing in its last period is either given more effort or paused, and the choice is recorded."
+  ],
+  "failure_modes": [
+    "Thin spread: every direction gets a little effort and none advances.",
+    "Pause hoarding: paused directions are never revisited."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "TimeboxThink#2018",
+      "ComputeBudget#4091",
+      "Aimscatter"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:StalledDirectionReview#mh:SHA-256:aa6a91d4e7a3031157c0d131857f63e3b8b1c7c01560e71474e6da3f4d1dbef1",
+  "sema_ref": "StalledDirectionReview#aa6a",
+  "sema_stub": "aa6a",
+  "dependencies": {
+    "references": {
+      "prioritize": "sema:Prioritize#mh:SHA-256:99f0603f8984f4c94d02384248966603cf86d9ccf95ea62a7c481c3eccb694fd"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

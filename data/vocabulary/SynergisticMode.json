@@ -25,7 +25,8 @@
     "path": [
       "Society",
       "Protocols"
-    ]
+    ],
+    "caution": "Upstream sets downstream strictness \u2014 a forged or mistaken broadcast loosens acceptance gates below it; authenticate senders and keep a floor no mode can relax."
   },
   "data_schema": {
     "type": "object",

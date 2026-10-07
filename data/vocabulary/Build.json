@@ -29,16 +29,14 @@
       "sema:Build#mh:SHA-256:00f3e2cc017af17d5de5a121ddd38017635736aa54c5ef23ee43c84abe5ddab6",
       "sema:Build#mh:SHA-256:24b99d995cd2d544f447f9f71a3e33cc19667b89ba33591e32c70d2ab2e0f9b0",
       "sema:Build#mh:SHA-256:779891ac7847940250f7a8a7cb1610f190862df7af2e5b2fd680b0d89dc42bf2",
-      "sema:Build#mh:SHA-256:8c12768e582bf408aedc62adf2f68ebc0caba12e53191af37a35fc61befc1704"
+      "sema:Build#mh:SHA-256:8c12768e582bf408aedc62adf2f68ebc0caba12e53191af37a35fc61befc1704",
+      "sema:Build#mh:SHA-256:ddb234abcbbeab92a4b09829d2dbf22adc706c6183d529144c078170c73c65a4"
     ],
     "path": [
       "Mind",
       "Strategy"
     ]
   },
-  "sema_id": "sema:Build#mh:SHA-256:ddb234abcbbeab92a4b09829d2dbf22adc706c6183d529144c078170c73c65a4",
-  "sema_ref": "Build#ddb2",
-  "sema_stub": "ddb2",
   "signature": [
     "Act(Artifact)"
   ],
@@ -50,13 +48,16 @@
       "description": "Share of the full commitment's cost this prototype may consume."
     }
   ],
+  "sema_id": "sema:Build#mh:SHA-256:e2c44670a03fffee712f69a847aae0b6959ba58f9c7a14513cd8759d3921d5e3",
+  "sema_ref": "Build#e2c4",
+  "sema_stub": "e2c4",
   "dependencies": {
     "accepts": {
       "spec": "sema:Spec#mh:SHA-256:c9537551b2bfa2639c15270994fdbb5a52a41d098f499c5ed5d61945a7c50da7"
     },
     "references": {
       "act": "sema:Act#mh:SHA-256:2dfedd75a396f2639ce949b9f5270766350b9c7404d404c11c57140fcf030455",
-      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:3499c9b3a581cfbf59ce0ebfe7443d67099132c34d019fafc24219208d671438",
+      "marginal_value_rule": "sema:MarginalValueRule#mh:SHA-256:661109205c507b2c26d683d091de7f8b782bf2d6c2e9192373b242a9b078ac71",
       "plan": "sema:Plan#mh:SHA-256:246db278c5db286fcd78d824d85054fafb3348565ef584599b63900000c43b32",
       "prototype": "sema:Prototype#mh:SHA-256:1c44945a19114ab1c2a5d380f3b7cdc9d4def36732496309e44c070214517d6b"
     },

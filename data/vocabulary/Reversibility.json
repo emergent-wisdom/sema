@@ -24,15 +24,19 @@
     "path": [
       "Physics",
       "Primitives"
+    ],
+    "related": [
+      "Trialhaven#da45",
+      "ErrorCostAsymmetry"
     ]
   },
-  "sema_id": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37",
-  "sema_ref": "Reversibility#cb35",
-  "sema_stub": "cb35",
   "failure_modes": [
     "False reversibility: the action created externalities the pre-action analysis omitted.",
     "Cost drift: the tolerance was declared before the reversal is attempted."
   ],
+  "sema_id": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37",
+  "sema_ref": "Reversibility#cb35",
+  "sema_stub": "cb35",
   "dependencies": {
     "references": {
       "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"

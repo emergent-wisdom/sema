@@ -1,0 +1,36 @@
+{
+  "handle": "Mandatune",
+  "gloss": "Revisit a mandate when the circumstances it was granted under change",
+  "mechanism": "A mandate is a {{permission}} granted for a purpose under stated circumstances, and it records those circumstances. When one of them changes materially, the mandate is revisited with those who granted it before it is used again; the initial support is not treated as standing permission under the new conditions.",
+  "invariants": [
+    "The mandate records the circumstances it was granted under.",
+    "A material change in a recorded circumstance triggers a revisit before the mandate is used again."
+  ],
+  "failure_modes": [
+    "Stale mandate: authority granted under old conditions is used under new ones.",
+    "Revisit churn: trivial changes trigger constant re-authorisation."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Consentrenew",
+      "Sunsetkind"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Mandatune#mh:SHA-256:7d34ae7d3f9b6c68f618a8090869c42d58cbe0e7596713ca54516a123446a004",
+  "sema_ref": "Mandatune#7d34",
+  "sema_stub": "7d34",
+  "dependencies": {
+    "references": {
+      "permission": "sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

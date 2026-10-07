@@ -1,0 +1,39 @@
+{
+  "handle": "AbsenceEvidence",
+  "gloss": "Finding nothing counts against something's presence only as far as the search would have found it",
+  "mechanism": "A search, test, check or observation looks for something and finds nothing. That finding counts against the thing's presence only as far as the search would have detected it had it been there, which depends on whether the search's method, coverage and sensitivity reach the place, form and size the thing would take. Disabled logging, tests that never run the path in question, or a literature search in the wrong venues leave the question open however long they run, while a search shown to catch known instances makes its silence evidence. When a {{check}} reports a search that found nothing, Falsified needs that detection capability; without it the outcome is Unknown.",
+  "invariants": [
+    "A search for a specified thing has found nothing.",
+    "The finding counts against the thing's presence no further than the search's capability to detect it, in the place, form and size the thing would take."
+  ],
+  "failure_modes": [
+    "Silence read as absence: a search that could not have detected the thing is reported as showing that it is not there.",
+    "Absence never credited: a search known to catch the thing finds nothing, and the finding is still treated as showing nothing.",
+    "Reach assumed: a search's detection capability is taken for granted rather than established for this place, form and size, by coverage analysis or by testing on known instances."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Inference"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Uncertain",
+      "DetectorSelfTest",
+      "NegativeProof",
+      "ConfirmationBlock"
+    ],
+    "minted": "2026-10-06T21:57:08+02:00"
+  },
+  "sema_id": "sema:AbsenceEvidence#mh:SHA-256:10a326360c0d446055ab9a061e45c822d43cf11ce8d6247cd63b6148844b378c",
+  "sema_ref": "AbsenceEvidence#10a3",
+  "sema_stub": "10a3",
+  "dependencies": {
+    "references": {
+      "check": "sema:Check#mh:SHA-256:6890b221c38531710528cd84bbf3a957e29d9836dfc9c02669fc0a86709bcb00"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

@@ -1,0 +1,36 @@
+{
+  "handle": "Metricmirror",
+  "gloss": "Review how a success metric changes behaviour and what valuable work it fails to count",
+  "mechanism": "When a {{metric}} is used to judge work, it is reviewed on a stated schedule for two things: behaviour that has shifted to raise the measure without serving the goal, and valuable activity the measure does not count. Findings are recorded with the metric.",
+  "invariants": [
+    "The metric is reviewed on a stated schedule.",
+    "Each review records observed gaming and valuable activity the metric misses."
+  ],
+  "failure_modes": [
+    "Goodhart drift: work optimises the measure, not the goal.",
+    "Mirror blindness: reviews look only at the measure and so find nothing."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Doubleloop",
+      "NormativeJudge#684f"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Metricmirror#mh:SHA-256:c7c504c58ce43ef3d00812f6045e370a54a168b64289cfd21d08981e5de8c633",
+  "sema_ref": "Metricmirror#c7c5",
+  "sema_stub": "c7c5",
+  "dependencies": {
+    "references": {
+      "metric": "sema:Metric#mh:SHA-256:aa990383741b05e3b798abc7518d9e65c0cc7832b345d4cfed48714ef2501230"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

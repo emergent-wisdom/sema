@@ -14,6 +14,10 @@
     ],
     "supersedes": [
       "sema:Silence#mh:SHA-256:cc90dc097c5c67b0cb24bc8e74c7d0a105b5877c2a075a20454114dac44b4893"
+    ],
+    "related": [
+      "ChannelCheck#3ceb",
+      "Silencevote#b022"
     ]
   },
   "sema_id": "sema:Silence#mh:SHA-256:164514c0b493a18d2fea5edb243314adfaa5193d5dd9014b8a9c2d01a362a57f",

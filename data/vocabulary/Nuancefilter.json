@@ -1,0 +1,36 @@
+{
+  "handle": "Nuancefilter",
+  "gloss": "When relaying a message, record what was left out of the original",
+  "mechanism": "A relayed {{message}} carries a record of which parts of the original it leaves out. Omissions that would change the message's force for its new audience, such as qualifiers, conditions or counter-evidence, are named rather than merely counted.",
+  "invariants": [
+    "A relayed message records what was left out of the original.",
+    "An omission that changes the message's force is named."
+  ],
+  "failure_modes": [
+    "Position filter: only the parts that fit the relayer's group survive the relay.",
+    "Qualifier stripping: qualifiers are removed, and the relayed message is stronger than its source."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Summarize#98db",
+      "Lucence"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Nuancefilter#mh:SHA-256:d36af5fce6b82880c7451d81e22c9aa1e86d5f8ec7a5034ba91e850906d9ce35",
+  "sema_ref": "Nuancefilter#d36a",
+  "sema_stub": "d36a",
+  "dependencies": {
+    "references": {
+      "message": "sema:Message#mh:SHA-256:bf6d3d4643c881a8c245617c3603b13ffef26026304fc7e7c384a80cf25fd237"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

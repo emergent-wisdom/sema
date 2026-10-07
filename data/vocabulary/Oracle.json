@@ -6,9 +6,6 @@
     "Non-Interference: The Oracle reports on reality but does not alter it.",
     "Consistency: Answers to the same query at the same time must be identical."
   ],
-  "sema_id": "sema:Oracle#mh:SHA-256:cd1654cf7f025dc5e571546d808a995cdeee2a566ed84dcf0278017dd56ddd64",
-  "sema_ref": "Oracle#cd16",
-  "sema_stub": "cd16",
   "_meta": {
     "ring": 1,
     "tier": 1,
@@ -21,8 +18,12 @@
     "path": [
       "Society",
       "Protocols"
-    ]
+    ],
+    "caution": "Single trust point \u2014 one signed answer settles escrow and market outcomes irreversibly, so a corrupt oracle redirects funds; require corroboration or a dispute window."
   },
+  "sema_id": "sema:Oracle#mh:SHA-256:cd1654cf7f025dc5e571546d808a995cdeee2a566ed84dcf0278017dd56ddd64",
+  "sema_ref": "Oracle#cd16",
+  "sema_stub": "cd16",
   "dependencies": {
     "references": {
       "held_release": "sema:HeldRelease#mh:SHA-256:ce65cfd49c0f96fa291163b563d1a0ad78e09059fdd4889f571cba8d101b721f"

@@ -1,0 +1,40 @@
+{
+  "handle": "ActionConvergence",
+  "gloss": "Rival explanations call for the same next action, so it can be taken while the cause stays open",
+  "mechanism": "Two or more explanations remain open, as in {{evidence_underdetermination}}, yet each calls for the same next action: whether a failed release came from the new code or from a configuration change, pausing the rollout is warranted. The action can be taken without settling the cause, and agreeing on it does not establish agreement on the cause. The convergence holds for that action only; what follows it, such as a permanent remedy, can still differ between the explanations and may need them separated. Open explanations that call for different next actions are not an instance.",
+  "invariants": [
+    "Two or more explanations remain open, and each calls for the same next action.",
+    "Agreement on the action does not establish agreement on the cause.",
+    "The convergence holds for the next action only; later steps, such as a permanent remedy, can still differ between the explanations."
+  ],
+  "failure_modes": [
+    "Action read as diagnosis: once the shared action is taken, the cause is treated as settled and the inquiry stops.",
+    "Convergence stretched: a permanent remedy is chosen as if the explanations agreed on it too.",
+    "Diagnosis before action: a step every open explanation calls for is delayed until the cause is settled."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EpistemicROI",
+      "Reasonbridge",
+      "Twoledger"
+    ],
+    "minted": "2026-10-06T21:57:08+02:00",
+    "caution": "That every open explanation calls for a step shows only that diagnosis need not come first, not that the step is safe, reversible or authorised; check those separately, and keep the evidence the step would erase."
+  },
+  "sema_id": "sema:ActionConvergence#mh:SHA-256:89d11d41ffb14eb534d5afd67c8705340eaea1c35ca7cc7f9aa69220127b1e1e",
+  "sema_ref": "ActionConvergence#89d1",
+  "sema_stub": "89d1",
+  "dependencies": {
+    "references": {
+      "evidence_underdetermination": "sema:EvidenceUnderdetermination#mh:SHA-256:999b3244c9eb73cf0968148e4ff5dd11e3abc42330ed5faafe618af972079e28"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

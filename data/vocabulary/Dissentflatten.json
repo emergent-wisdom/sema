@@ -1,0 +1,37 @@
+{
+  "handle": "Dissentflatten",
+  "gloss": "Record distinct objections separately instead of answering them as one opposing position",
+  "mechanism": "When several objections are raised, as {{dissent_seek}} invites, each is recorded with its own reason before any is answered, and each answer names the objection it answers. Objections are merged only when their reasons are the same.",
+  "invariants": [
+    "Each objection is recorded with its own reason.",
+    "Each answer names the objection it answers.",
+    "Objections are merged only when their reasons are the same."
+  ],
+  "failure_modes": [
+    "Strawman merge: distinct objections are answered as if they were the weakest of them.",
+    "Camp framing: the objectors are treated as one opposing side."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Disputelift",
+      "Costeer"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Dissentflatten#mh:SHA-256:1c1307702a64f27859a578589a7ec473796c4b5bf9a3ff153516452008076129",
+  "sema_ref": "Dissentflatten#1c13",
+  "sema_stub": "1c13",
+  "dependencies": {
+    "references": {
+      "dissent_seek": "sema:DissentSeek#mh:SHA-256:cbe1c2ffdc64d0627f0fc9115ee06d1876f6baa38b80b03e712951131feedefb"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

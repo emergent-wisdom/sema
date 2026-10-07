@@ -1,0 +1,37 @@
+{
+  "handle": "Labelsqueeze",
+  "gloss": "Flag a one-label classification forced onto an object whose relevant properties point to several categories",
+  "mechanism": "When a classification must assign one label, as a {{route}} to one handler or an exclusive partition like {{mece}} does, and the object's relevant properties point to more than one category, the mismatch is flagged. The flag lists each candidate category with the properties that point to it. If one label is still assigned, the record states what the other categories would have triggered.",
+  "invariants": [
+    "The flag lists each candidate category with the properties pointing to it.",
+    "If a single label is assigned anyway, the record states what the other labels would have triggered."
+  ],
+  "failure_modes": [
+    "Silent forcing: the object gets one label and the properties pointing elsewhere are dropped.",
+    "Label inflation: every object is flagged, and the classification stops discriminating."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Category#d2db",
+      "OntologyAdapt#a541"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Labelsqueeze#mh:SHA-256:5363fd96234c9745a73f11e01c75c07f119428b593daffaf617233a817607ac0",
+  "sema_ref": "Labelsqueeze#5363",
+  "sema_stub": "5363",
+  "dependencies": {
+    "references": {
+      "mece": "sema:MECE#mh:SHA-256:ae1975b15fa25939a85a231371adec3b2431658837ad7ada72315f64b849cb78",
+      "route": "sema:Route#mh:SHA-256:186c9df2396591a9a71b80e50f3c323e5e0df6ddf64b6552435a0d555b6dbc85"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

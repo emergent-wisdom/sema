@@ -1,0 +1,39 @@
+{
+  "handle": "Labelloop",
+  "gloss": "A classification changes those it classifies, altering the fit of later classifications",
+  "mechanism": "A {{category}} applied to people, teams, models or other responsive members becomes part of the conditions shaping their conduct, through their response to the label or through the treatment it brings. Their changed conduct then affects how the classification fits when it is applied again. Members can move toward the label, away from it, or into a different relation with its criteria, so the label can become truer, falser or differently true, and members need not know the label for its treatment to change them.",
+  "invariants": [
+    "A classification takes part in changing its members.",
+    "That change bears on how the classification fits or is applied later."
+  ],
+  "failure_modes": [
+    "Fulfilment read as prediction: increased fit is taken to show that the classification independently predicted what it helped produce.",
+    "Change read as loop: members changing for other reasons is taken as the classification's effect.",
+    "Correlation read as cause: exposure to the label and changed behaviour occurring together are taken as proof that the label caused the change."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ClassificationReview",
+      "Situfit",
+      "Sunsetkind",
+      "Mirrorbloom"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Labelloop#mh:SHA-256:1bb27d04737c867a07deebc0e5bcc15a79a20b3e6ab94d20bc8ae8685e651d48",
+  "sema_ref": "Labelloop#1bb2",
+  "sema_stub": "1bb2",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

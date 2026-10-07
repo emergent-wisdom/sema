@@ -1,0 +1,38 @@
+{
+  "handle": "Revisance",
+  "gloss": "Change your mind while naming and keeping what the old view got right",
+  "mechanism": "When a view is revised, the revision names what the old view got right and states how the new view keeps it, or states that nothing survives. The old view is superseded rather than erased, as in {{belief_tracking}}, so each kept part can be traced to where it came from.",
+  "invariants": [
+    "Names at least one thing the old view got right, or states that nothing survives.",
+    "Each kept part is restated in the terms of the new view.",
+    "The old view remains recorded."
+  ],
+  "failure_modes": [
+    "Total conversion: the old view is dropped wholesale, including what it got right.",
+    "Face-saving salvage: parts are kept to avoid admitting error rather than because they still hold.",
+    "Unplaced keep: a kept part is asserted without saying where it now sits in the new view."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Memory"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "TraceBelief#7b8a",
+      "Dialectic#26be"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Revisance#mh:SHA-256:73f113382fbaced95b63a99861b8ea1d5fae76ff2920857fdb6e187e4cb6aebc",
+  "sema_ref": "Revisance#73f1",
+  "sema_stub": "73f1",
+  "dependencies": {
+    "references": {
+      "belief_tracking": "sema:BeliefTracking#mh:SHA-256:c78d68a1f4fe92e2f284e489f6987bc42183245181c6710b9d0c9e582b054e13"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
+}

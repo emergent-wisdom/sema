@@ -1,0 +1,38 @@
+{
+  "handle": "Ruleflip",
+  "gloss": "Before applying a rule at scale, state how it could be satisfied while defeating its purpose, and watch for it",
+  "mechanism": "Before a {{rule_set}} is applied at scale, its authors state how the people or agents it governs could satisfy it while defeating its purpose, and set observable signs of that happening. After rollout the signs are watched, and a rule whose application reverses its purpose is revised.",
+  "invariants": [
+    "Before rollout, the ways the rule could be satisfied while defeating its purpose are stated.",
+    "Observable signs of each are watched after rollout.",
+    "A rule whose application reverses its purpose is revised."
+  ],
+  "failure_modes": [
+    "Cobra effect: the rule rewards the very thing it was meant to reduce.",
+    "Paranoid drafting: imagined gaming blocks every rule from being adopted."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Metricmirror",
+      "Trialhaven"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00",
+    "caution": "The recorded ways to game the rule and the signs watched for them are an evasion guide \u2014 keep both with those who enforce it."
+  },
+  "sema_id": "sema:Ruleflip#mh:SHA-256:ba935e998951b0be35fb5f203eb40eba5d5efc6bb863043f0ab7f84e943dd79a",
+  "sema_ref": "Ruleflip#ba93",
+  "sema_stub": "ba93",
+  "dependencies": {
+    "references": {
+      "rule_set": "sema:RuleSet#mh:SHA-256:7ebf36ad0634307d189aa0545d3424f0d0783bf2a0df04dfafdecf64e0cc9146"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

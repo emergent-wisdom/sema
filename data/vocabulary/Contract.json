@@ -62,6 +62,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Cocapacity#0924"
     ]
   },
   "sema_id": "sema:Contract#mh:SHA-256:98747322ee31ffa265a8dfd6609d726e0dcba9c513e5ec85742c6c04e4afaa26",

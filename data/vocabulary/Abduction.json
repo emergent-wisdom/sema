@@ -24,7 +24,6 @@
   "_meta": {
     "ring": 1,
     "tier": 1,
-    "caution": "Best-guess inference \u2014 always provisional. Must be composed with a verification step in high-stakes domains.",
     "supersedes": [
       "sema:AbductiveLeap#mh:SHA-256:1069501989760c74143a80a2a2ee3267463e206d8998c76d38399c2498e8791d",
       "sema:Abduction#mh:SHA-256:fe2b40824246fd245dec338d1615e791787806b540b9376aae5fac14c48ce02b",
@@ -34,6 +33,9 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "EvidenceUnderdetermination"
     ]
   },
   "sema_id": "sema:Abduction#mh:SHA-256:e738d3035534bba0a6b165325ba64818abb897a0f6b9848bc00c7c17ca146921",

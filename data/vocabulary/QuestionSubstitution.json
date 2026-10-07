@@ -1,0 +1,34 @@
+{
+  "handle": "QuestionSubstitution",
+  "gloss": "An easier nearby question is answered in place of the one asked, and the answer is reported as if it settled the original",
+  "mechanism": "A question is hard to answer directly, and a related, easier one is answered instead: asked whether a change is safe, the answer says whether it is common; asked whether a plan will work, it says whether the plan sounds reasonable; asked why something failed, it says what changed. The substitute shares words or a topic with the original, so the swap goes unnoticed, and its answer is reported as an answer to the question asked. The substitute's answer may be correct and still leave the original open. Answering a narrower or reframed question openly, with the gap to the original stated, is not an instance.",
+  "invariants": [
+    "A question is posed, and a different, easier question is answered.",
+    "The answer is presented as settling the question posed, without stating the gap between the two."
+  ],
+  "failure_modes": [
+    "Proxy answer: an answer about how common, familiar or reasonable something is stands in for whether it is safe, true or workable.",
+    "Unnoticed swap: the substitute shares words with the original, so neither the answerer nor the reader sees that the question changed.",
+    "Substitution read everywhere: an openly narrowed answer, with its gap stated, is dismissed as evasion."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ContrastClass",
+      "Reframe",
+      "StepBack",
+      "Termdrift"
+    ],
+    "minted": "2026-10-06T23:39:36+02:00"
+  },
+  "sema_id": "sema:QuestionSubstitution#mh:SHA-256:e9634d683473707d6e214c6cb373b24005f37454fea1912569260308e8afadf1",
+  "sema_ref": "QuestionSubstitution#e963",
+  "sema_stub": "e963",
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

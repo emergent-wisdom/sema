@@ -30,6 +30,9 @@
     "supersedes": [
       "sema:EpistemicCascade#mh:SHA-256:a4895b4b9ee695aa277d757aac2bed96e7a9b9ecbaba4936300296aa143185d2",
       "sema:EpistemicCascade#mh:SHA-256:5deb0cd3e65bed8943c6bd6bc78d9abd6edfb8ea6652a9d85adb9521a38789cc"
+    ],
+    "related": [
+      "Twoledger#a560"
     ]
   },
   "sema_id": "sema:EpistemicCascade#mh:SHA-256:00ae0d471938ddbddaec91d4e7936d31d21e0e52cbb9a7064dbd37f66dd513c4",

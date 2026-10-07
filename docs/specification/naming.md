@@ -20,7 +20,7 @@ We strictly distinguish between four types of verification patterns. Choose the 
 
 ## 2. Naming Morphology
 
-Pattern names must be self-documenting. Use the structure: **`[SpecificNuance][ReusableType]`**.
+Pattern names must be self-documenting. Use the structure: **`[SpecificNuance][ReusableType]`**. The one exception is a coined handle for a concept English has no word for (§F).
 
 ### A. The Control Structures (Flow)
 
@@ -87,6 +87,23 @@ Every pattern must be fully functional and meaningful **in isolation**. A patter
 3. **Rename:** If the logic is inextricably tied to a parent, name it `PUREParsimony`.
 
 **Rationale:** Dependencies must be *explicit* (in the `dependencies` block), not *implicit* (in the designer's head).
+
+### F. Coined Handles
+
+A handle may be a coined word when no English word or short phrase names the
+concept. Many concepts an agent needs often are needed too rarely in everyday
+speech to have earned a word. A coined handle may be a transparent compound, such
+as `Premisebridge`, or an opaque coinage, such as `Revisance`.
+
+A coined handle carries no meaning of its own, so:
+
+* the gloss states the concept in plain English, because the gloss is what search
+  and readers rely on;
+* the handle must not collide with an existing handle or with a common English
+  word;
+* the Occupancy Test (§D) still applies.
+
+Added 2026-10-05.
 
 ## 3. Dependency Direction (The Gravity Rule)
 

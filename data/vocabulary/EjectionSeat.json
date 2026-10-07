@@ -25,7 +25,8 @@
     "path": [
       "Society",
       "Protocols"
-    ]
+    ],
+    "caution": "Unblockable by design \u2014 anyone holding the operator key can halt the whole swarm over its consensus, so scope, audit and protect that key."
   },
   "sema_id": "sema:EjectionSeat#mh:SHA-256:a9d5ef5e3e70e5e4732543c2732e312f1efbd881a991b1521594e3b66257a8cb",
   "sema_ref": "EjectionSeat#a9d5",

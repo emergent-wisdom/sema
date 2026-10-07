@@ -21,6 +21,9 @@
     "path": [
       "Society",
       "Protocols"
+    ],
+    "related": [
+      "Powerreturn#2a84"
     ]
   },
   "sema_id": "sema:ExpiringToken#mh:SHA-256:6ccee8101ea0c081947b221568ce55d3b727412df9015a4ac8e876dc956efcaf",

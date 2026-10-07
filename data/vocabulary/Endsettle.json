@@ -1,0 +1,37 @@
+{
+  "handle": "Endsettle",
+  "gloss": "When something ends, close, transfer or release every open obligation before declaring the end",
+  "mechanism": "When an activity, project or role ends, its open obligations are listed: promises, scheduled jobs, held resources and pending replies. Each is closed, transferred by {{handoff}} or explicitly released, and the end is declared only when the list is empty.",
+  "invariants": [
+    "The open obligations are listed when the ending begins.",
+    "Each obligation is closed, transferred or explicitly released.",
+    "The end is declared only when the list is empty."
+  ],
+  "failure_modes": [
+    "Zombie obligations: scheduled jobs and promises keep running after the end.",
+    "Endless ending: the list keeps growing and the end is never declared."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Successiongift",
+      "TaskLifecycle#5591"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:Endsettle#mh:SHA-256:d7165f9f862f7001866103ac29399bc7dc4e16c2ee5089b43c049dfd22ee473b",
+  "sema_ref": "Endsettle#d716",
+  "sema_stub": "d716",
+  "dependencies": {
+    "references": {
+      "handoff": "sema:Handoff#mh:SHA-256:1323eea000780c4fc715bcc90b5ea28d6353c780ad561e86aeff723855650ab5"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

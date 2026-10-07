@@ -14,6 +14,9 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Ruleflip#ba93"
     ]
   },
   "data_schema": {
@@ -36,12 +39,12 @@
       }
     }
   },
-  "sema_ref": "RuleSet#7ebf",
-  "sema_id": "sema:RuleSet#mh:SHA-256:7ebf36ad0634307d189aa0545d3424f0d0783bf2a0df04dfafdecf64e0cc9146",
-  "sema_stub": "7ebf",
   "invariants": [
     "Immutable once bound: a change is a new RuleSet, not an edit to the one already committed to."
   ],
+  "sema_id": "sema:RuleSet#mh:SHA-256:7ebf36ad0634307d189aa0545d3424f0d0783bf2a0df04dfafdecf64e0cc9146",
+  "sema_ref": "RuleSet#7ebf",
+  "sema_stub": "7ebf",
   "dependencies": {
     "references": {
       "constitution": "sema:Constitution#mh:SHA-256:3deb8d31b8ace640b29c0a4d547191eebbcdedb46548f6c09711860be3af4645",

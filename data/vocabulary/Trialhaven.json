@@ -1,0 +1,38 @@
+{
+  "handle": "Trialhaven",
+  "gloss": "Run a bounded departure from standing rules with safeguards, review points and an exit back",
+  "mechanism": "An experiment that departs from standing rules runs inside declared bounds of scope, duration and affected parties, with safeguards, scheduled review points and an exit route whose {{reversibility}} has been checked. Crossing a declared bound ends the trial.",
+  "invariants": [
+    "The trial declares its scope, duration and affected parties.",
+    "It has scheduled review points and an exit route that restores the prior state.",
+    "Crossing a declared bound ends the trial."
+  ],
+  "failure_modes": [
+    "Permanent pilot: the trial is extended indefinitely without becoming policy.",
+    "Unreachable exit: by the time it is needed, the exit no longer restores the prior state."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "SacrificialProbe#e901",
+      "AgentSandbox#1594"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00",
+    "caution": "Departs from standing rules by design \u2014 scope and audit who may declare a trial, or 'trial' becomes a label for bypassing them."
+  },
+  "sema_id": "sema:Trialhaven#mh:SHA-256:da45a57852e01967d396450d08b024feec43296a65197767d27ffca3aa8cfc3a",
+  "sema_ref": "Trialhaven#da45",
+  "sema_stub": "da45",
+  "dependencies": {
+    "references": {
+      "reversibility": "sema:Reversibility#mh:SHA-256:cb359b693e6f3e674083df81b207143179d19330d5c3ce6e1832674901074b37"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

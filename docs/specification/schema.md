@@ -116,11 +116,13 @@ Optional one-sentence warning shown to agents and humans when a pattern carries 
 Add `caution` when the pattern:
 - Enables irreversible action (data loss, financial commitment, governance changes)
 - Bypasses safety checks or oversight
-- Enables evasion, manipulation, or covert coordination
+- Enables evasion, manipulation, covert coordination, or the targeting of individuals
 
 Skip it when:
 - The risk is already explicit in the existing fields
 - The pattern is purely cognitive with no external effect
+
+A pattern that describes a process rather than prescribing an action still enables evasion, manipulation or targeting when its description doubles as a recipe for doing so. A pattern that only describes a judgment error counts as purely cognitive: exploiting such an error is open to every pattern of its kind, so a caution there would be a ritual caveat.
 
 The absence of a `caution` flag does not imply safety — many patterns with no flag still require careful application.
 

@@ -1,0 +1,41 @@
+{
+  "handle": "ArchiveServingFrontier",
+  "gloss": "Keep evaluated structures in three layers: an inclusive archive, a selective serving layer and an experimental frontier",
+  "mechanism": "Solved structures, meaning their decompositions, routes, outputs, gate results, provenance and observed outcomes, stay addressable after a task ends, but persistence does not make a carve canonical. Memory is therefore held as a portfolio in three layers. An inclusive archive retains evaluated solution graphs, failed routes included when they carry negative knowledge. A selective serving layer promotes recurrent, validated or niche-leading nodes and subgraphs into active use, and {{pathway_memory}} learns when to route through each. An experimental frontier receives a bounded budget for fresh, convention-resistant carves when similarity is low, routing confidence is poor, frame errors recur, stakes are high or an exploration schedule fires. Exclusion from the serving layer does not discard an archived alternative, so later evidence can promote it. Familiar problems normally use one evidence-backed incumbent rather than every retained carve, and retention stays subject to permissions, expiry and deletion requirements.",
+  "invariants": [
+    "Evaluated structures are retained in the archive whether or not they are served, failed routes included when they carry negative knowledge.",
+    "Only recurrent, validated or niche-leading structures are promoted to the serving layer.",
+    "The frontier's budget is bounded."
+  ],
+  "failure_modes": [
+    "Serving read as truth: the incumbent in the serving layer is treated as the only carve, so archived alternatives are never reconsidered.",
+    "Archive as attic: alternatives are retained but never promoted, even when evidence favours them.",
+    "Unbounded frontier: exploration takes budget from familiar problems that the incumbent already serves well.",
+    "Retention without limits: archived structures are kept against permissions, expiry or deletion requirements."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Memory"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ExperienceSharding",
+      "ExploreExploit",
+      "StateSnapshot",
+      "OntologyAdapt"
+    ],
+    "minted": "2026-10-06T23:39:36+02:00"
+  },
+  "sema_id": "sema:ArchiveServingFrontier#mh:SHA-256:27653c08dbb23917a945b15020bbdabae18ccc9256dda0d2249354896d4a4313",
+  "sema_ref": "ArchiveServingFrontier#2765",
+  "sema_stub": "2765",
+  "dependencies": {
+    "references": {
+      "pathway_memory": "sema:PathwayMemory#mh:SHA-256:ce2e6ce822404fae0e60a43fc2c6fbe2e4d51ab9aefee1e7a9e21da75893e722"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Memory"
+}

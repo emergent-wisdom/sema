@@ -1,0 +1,37 @@
+{
+  "handle": "Brakegrow",
+  "gloss": "Progress that also sharpens the signs that going further in the same direction would do harm",
+  "mechanism": "Each step of progress in a direction also records what it revealed about that direction's limits: an observable sign that further steps would do harm, kept as a {{risk}} trigger. A direction counts as brakegrow progress only while each step adds or sharpens such a sign, and it is reviewed when any recorded sign appears.",
+  "invariants": [
+    "Each step adds a harm sign for the direction or sharpens an existing one.",
+    "Every recorded sign is observable during the work.",
+    "When a recorded sign appears, the direction is reviewed before the next step."
+  ],
+  "failure_modes": [
+    "Momentum blindness: steps continue while no harm sign is recorded.",
+    "Alarm inflation: vague signs are recorded that could never fire."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "MarginalValueRule#3499",
+      "OptimalStop#975a"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Brakegrow#mh:SHA-256:2b56da17a8f8cc38a9a2f80c45c71acd6a38ea9f35745c1a1e14fedc37c4e876",
+  "sema_ref": "Brakegrow#2b56",
+  "sema_stub": "2b56",
+  "dependencies": {
+    "references": {
+      "risk": "sema:Risk#mh:SHA-256:e7f601ff0058d606ea87ab5f196f78f469a3133f8324617ff8a25d8072422e91"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

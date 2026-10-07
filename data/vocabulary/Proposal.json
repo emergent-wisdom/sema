@@ -43,10 +43,13 @@
     "path": [
       "Infrastructure",
       "Data Structures"
+    ],
+    "related": [
+      "Costeer#eeda"
     ]
   },
-  "sema_ref": "Proposal#5d0a",
   "sema_id": "sema:Proposal#mh:SHA-256:5d0a98055eef6c963d4c9ec0403cac243720ce8927398032c19b4f5d8cc94506",
+  "sema_ref": "Proposal#5d0a",
   "sema_stub": "5d0a",
   "dependencies": {
     "references": {

@@ -1,0 +1,36 @@
+{
+  "handle": "Repairmand",
+  "gloss": "Pair the authority to repair harm with involving those harmed in defining the repair",
+  "mechanism": "When harm is acknowledged, the party holding {{responsibility}} for repair involves those harmed in defining what repair means, records their definition, and reports what was done against it.",
+  "invariants": [
+    "Those harmed take part in defining the repair.",
+    "What was done is reported against the defined repair."
+  ],
+  "failure_modes": [
+    "Unilateral repair: the harming party alone decides what counts as repair.",
+    "Endless repair: repair is never declared complete."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Coursecandor",
+      "Revisance"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Repairmand#mh:SHA-256:d89ae56278196ef968e2007153c430e953eeb742765aabe8f3e331a37de51eaa",
+  "sema_ref": "Repairmand#d89a",
+  "sema_stub": "d89a",
+  "dependencies": {
+    "references": {
+      "responsibility": "sema:Responsibility#mh:SHA-256:d8ccf6225585313bd3efd0198c588063cb62add74447c15fe5128c0ebfdc1d19"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

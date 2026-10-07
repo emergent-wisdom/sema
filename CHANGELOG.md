@@ -10,6 +10,294 @@ This file records vocabulary-level changes between versions — additions, renam
 
 ## [Unreleased]
 
+### Added
+
+New patterns extend the vocabulary's coverage of reasoning, coordination and
+changing processes. The library now contains 590 patterns.
+
+Tranche 1:
+
+- `Callshort` reads a perceived shortfall in the thinking a situation calls for. The
+  reading is unwilling, unable, or deliberately undeclared, and it is held as a
+  hypothesis about that situation.
+- `Twoledger` adopts a perspective for what it opens and keeps its claims on a
+  separate assurance ledger.
+- `Sunsetkind` extends `Category` with a retirement condition that someone other
+  than the category's author can check.
+- `Disputelift` records how a disagreement improved the protocol its parties disagree
+  under, whether or not the disagreement was resolved.
+- `Lossprint` compares what several lossy renderings of one source each lose, and
+  states a pattern in the differences between those losses.
+
+Tranche 2:
+
+- `Lucence` makes a hard account clearer for a named reader, keeping every
+  load-bearing distinction.
+- `Farsimple` explains in two phases: it shows the complexity first, then gives a
+  simpler account that keeps it.
+- `Revisance` revises a view while naming what the old view got right.
+- `Reasonfade` holds a judgment whose reasons are lost as an assumption until the
+  reasons are restored.
+- `Coflourish` records an exchange in which every party names a gain of its own.
+- `Costeer` adopts a joint direction only when it answers every party's stated
+  reasons.
+- `Jointscape` records the options that need several parties' combined
+  contributions.
+- `Situfit` checks whether a moment has the features its intended handling as a
+  category depends on.
+- `Askwiden` records when another perspective adds an askable question.
+- `Twinread` keeps two mutually correcting interpretations without merging them.
+- `Labelsqueeze` flags a one-label classification forced onto an object that spans
+  several categories.
+- `Analogysnap` reads the first failing relation of an analogy as information.
+- `Brakegrow` makes each step of progress add a sign that going further would do harm.
+
+Tranche 3, on group behaviour. Each handle names a failure or practice, and each card
+defines the guard against it:
+
+- `Meaningpause` establishes a contested word's meaning before the claim that uses
+  it is judged.
+- `Doubtshelter` asks for doubts before agreement and makes voicing a doubt or asking
+  cost no standing.
+- `Reasoncommons` keeps a shared decision's reasons readable by everyone it binds.
+- `Statuslens` assesses checkable reasoning without regard to the speaker.
+- `Prestigeloan` counts standing only inside its demonstrated domain.
+- `Correctionwelcome` credits corrections that hold, whoever they challenge.
+- `Canonseal` scores established options on the same criteria as alternatives.
+- `Belongbend` records private judgments before discussion, so that shifts toward
+  the group view can be reviewed for conformity.
+- `Silencevote` counts only explicit assent as acceptance.
+- `Certaintyclap` credits claims by calibration, not by confident delivery.
+- `Complexitytax` asks what a distinction changes before dropping it for length.
+- `Nuancefilter` makes a relayed message record what it left out.
+- `Motivejump` examines an argument before motives are raised.
+- `Dissentflatten` records and answers distinct objections separately.
+- `Critiquedrift` keeps criticism on the action, not the person.
+- `Framecapture` sets an agenda from every participant's framing.
+- `Premisebridge` compares the premises behind a disagreement before blaming
+  effort or ability.
+- `Normance` marks how far a belief rests on social default.
+
+Tranche 4, meta-concepts named as transparent compounds:
+
+- `Crossborn` credits a distinction that no perspective held alone to the
+  interaction that produced it.
+- `Edgehold` uses a framework only inside its known edge when no replacement
+  exists.
+- `Labelloop`: a classification changes those it classifies, altering the fit
+  of later classifications. `ClassificationReview` re-checks such a
+  classification.
+- `Morphproof` extends `Category` with the transformations its members survive.
+- `Almostnot` learns a pattern from near misses.
+- `Gainmark` lists the meaning a translation adds.
+- `Roundtrace` renders a source into another representation and back, and traces
+  each difference to an assumption.
+- `Blindmark` makes a representation state what it cannot express.
+- `Valueprobe` picks routes that could change the criteria for picking routes.
+- `Mosaicmap` maps an understanding no member holds whole.
+- `Cocapacity` records the joint capacity an exchange created.
+- `Doubleloop` lets a feedback loop review its standard on recorded triggers, and
+  revise it when the review warrants.
+- `Spiralback` makes a return to an idea name what is new, or records it as a
+  repetition.
+- `Ladderdrop` withdraws a tool when its stated success sign appears.
+
+Tranche 5, governance, filed under Society/Governance:
+
+- `Mandatune` revisits a mandate when the circumstances it was granted under
+  change.
+- `Consentrenew` asks for fresh consent when an initiative outgrows what consent
+  covered.
+- `Promisehinge` states, when a public commitment is made, the evidence that would
+  revise it.
+- `Powerreturn` returns concentrated authority when its stated reason ends.
+- `Dissentkeep` keeps a route open for challenging a policy after adoption.
+- `Hearshift` answers each consultation input in the decision record.
+- `Burdenlight` lists who bears a decision's costs and who receives its benefits.
+- `Absentseat` represents affected parties who cannot take part.
+- `Futureclaim` treats future people's needs as claims to be answered.
+- `Repairmand` involves those harmed in defining the repair.
+- `Reasonbridge` explains a decision in each value set's own terms.
+- `Goalweave` agrees on actions that serve distinct purposes.
+- `Trialhaven` bounds a departure from rules, with review points and a checked
+  exit.
+- `Metricmirror` reviews a metric for gaming and for blind spots.
+- `Localhinge` links decisions across scales through correction routes.
+- `Coursecandor` admits a mistaken direction and sets a check on the correction.
+- `Successiongift` moves everything that depends on a departing party to others
+  before they leave.
+
+Tranche 6, fading capacity, drifting meaning and backfiring rules. Where a
+handle names a process, its card describes the process, and a plainly named
+card holds a practice that guards against it:
+
+- `Aimscatter`: effort disperses among competing directions until none
+  advances. `StalledDirectionReview` gives more effort to, or pauses,
+  directions that produced nothing.
+- `Meaningthin`: an activity continues while its connection to a valued purpose
+  weakens. `PurposeLinkReview` keeps each activity tied to evidence that it
+  serves its goal.
+- `Echohollow`: a recurring practice keeps its form while its responsiveness
+  fades. `PracticeResponseReview` reviews a practice that has stopped
+  responding.
+- `Regulapse`: a process keeps operating while its capacity to detect or
+  correct deviations weakens. `DetectorSelfTest` tests its detectors with known
+  faults.
+- `Brakefade`: an activity continues while the ability to slow, stop or reverse
+  it diminishes. `StopDrill` drills the stop of a running activity.
+- `Quietsever`: communication diminishes as the connection between parties
+  weakens. `ChannelCheck` checks in when a channel goes quiet.
+- `Endsettle` settles every open obligation before something is declared ended.
+- `Limitblur`: stated boundaries lose consistency in practice. `BoundaryReview`
+  tests stated limits against practice.
+- `Futurefold`: planning contracts toward immediate demands. `HorizonReview`
+  keeps one far-horizon item in every planning cycle.
+- `Termdrift` tracks a key term's meaning through a text.
+- `Ruleflip` states, before rollout, how a rule could backfire, and watches for
+  it.
+- `Leapdebt` records what a skipped stage would have provided.
+
+Tranche 7, growth, situation and reach:
+
+- `Plateauturn` changes method when improvement stalls.
+- `Futurestretch` practises just beyond what can be done alone, withdrawing
+  support as skill grows.
+- `Leapsettle` makes an advance reliable before anything is built on it.
+- `Ripplelag`: a change reaches connected systems only after a delay.
+  `EffectDelayCheck` waits out the stated delays before judging a change's
+  effects.
+- `Nestmap` names the situations a moment sits inside.
+- `Wonderdwell` dwells on the familiar with its expectation frozen.
+- `Lensweave` carries each lens's findings into the next.
+- `Webtrace` places a concept by its neighbours before it is relied on.
+- `Reachsense` lists what is reachable now before planning.
+- `Limitlisten` measures present limits before a demanding step.
+
+Tranche 8, processes, each described without a prescribed response:
+
+- `Quietroot`: development continues while the visible result stays still.
+- `Readyrise`: earlier preparation surfaces as an apparently sudden advance.
+- `Crossripening`: development in one area makes development in another
+  possible.
+- `Capacitylag`: demands grow ahead of the capacity to meet them.
+- `Identitylag`: self-understanding stays organised around an earlier condition.
+- `Scaleasynchrony`: a level of a system and a level it depends on develop at
+  different rates, changing how well they fit.
+- `Linkfade`: connections weaken while the participants keep their capacities.
+- `Syncdrift`: activities that coordinated in time move out of alignment.
+- `Foundationfray`: small losses in supporting practices weaken what depends on
+  them.
+- `Formelt`: a structure loses its organising boundaries while its parts remain.
+- `Mirrorbloom`: a self-representation changes its maker.
+- `Swayhold`: a form persists through continual adjustment.
+- `Echoverturn`: repetition reverses a recurring element's effect.
+- `Recifluence`: influence returns through a changed response and changes later
+  influence.
+
+Additional processes, each described without a prescribed response:
+
+- `Focalpeer`: a group's joint action comes to depend on a member who holds no
+  assigned coordinating authority.
+- `Sideinherit`: a practice, belief, capability or flaw passes between separate
+  lines of descent rather than along one.
+- `Badgeread`: recognition rests on a salient mark that co-occurs with a category's
+  members rather than on what makes them members.
+- `Kinproxy`: values, care or understanding are inferred from how far another party
+  resembles the judge.
+
+Patterns for reasoning about evidence and explanation. `DistinguishingTest` is a
+guard; the others are described without a prescribed response:
+
+- `EvidenceDependence`: several confirmations share a foundation, so together they
+  support a claim less than their number suggests.
+- `AbsenceEvidence`: finding nothing counts against something's presence only as far
+  as the search would have found it.
+- `EvidenceUnderdetermination`: the evidence in hand fits two or more explanations
+  about equally and cannot decide between them.
+- `DistinguishingTest` seeks an observation that rival explanations predict
+  differently before more evidence that fits them all is gathered.
+- `ActionConvergence`: rival explanations call for the same next action, which can be
+  taken while the cause stays open.
+- `ContrastClass`: a why-question asks why an outcome happened rather than an
+  alternative, and the alternative decides which explanation answers it.
+
+From the Fractal Intelligence paper's decomposition algorithm:
+
+- `MandatoryAbstraction`: a concrete problem is located by climbing specialization
+  links to the root, with a sibling search at each step, and the route is retraced
+  before the problem is decomposed.
+- `SpecializationEdge`: a child concept is a kind or realization of its parent; the
+  relation is open-world.
+- `CompositionEdge`: a child supplies a contribution its parent's capability
+  requires; a parent's composition children are claimed complete.
+- `RoutingSanityCheck`: a candidate carve is tested by routing a few concrete tasks
+  through it before it is kept.
+
+Reasoning patterns the vocabulary lacked:
+
+- `QuestionSubstitution`: an easier nearby question is answered in place of the one
+  asked, and the answer is reported as if it settled the original.
+- `RegressionToMean`: a result picked out because it was extreme is usually followed by
+  one closer to typical, because part of what made it extreme was chance.
+- `ConfoundedAttribution`: several things changed together, and the effect is
+  credited to the one in view.
+- `ErrorCostAsymmetry`: when one kind of mistake costs far more than the other, the
+  decision leans away from it.
+- `GeneralProblemSolvingProtocol`: the Fractal Intelligence paper's six dimensions
+  for a problem no specialized protocol fits.
+- `ArchiveServingFrontier`: evaluated structures are kept in an inclusive archive, a
+  selective serving layer and an experimental frontier.
+
+Older cards that the new patterns build on gain them as unhashed `related` links,
+so no existing identity changes.
+
+Six of the new cards carry a `caution`: `ActionConvergence`, `DetectorSelfTest`,
+`Focalpeer`, `Mirrorbloom`, `Ruleflip` and `Trialhaven`. Cautions are unhashed metadata, so no identity changes.
+
+### Changed
+
+- `UniversalSolverTree` no longer says cycles are permitted while also calling the graph
+  acyclic. Following the Fractal Intelligence paper, its persistent topology is a rooted
+  acyclic graph with multi-parent reuse, and only bounded execution may cycle. Eight
+  released patterns that depend on it get new identities, and each lists its 0.7.1
+  identity in `_meta.supersedes`.
+- `TruthseekingProtocol` keeps verified claims as content-addressed records rather than
+  Sema patterns; only recurring verification strategies become patterns. Following
+  the paper's September revision, a cached verdict is reused only while its recorded
+  scope, time and provenance fit and no superseding evidence is known. A record that
+  no longer qualifies stays as history and its claim is checked again, and a check
+  may end unresolved, reporting its warrant deficit.
+- `DecompositionGate`, `ConceptualDecomposition` and `MarginalValueRule` follow the
+  Fractal Intelligence paper's September revision. The four tests are judged against a
+  stated claim frame: Independence asks for lower coupling rather than orthogonality,
+  Universality holds over the claimed range, and a failed or uncertain candidate may be
+  reframed, narrowed or kept as a labelled frontier alternative.
+  `ConceptualDecomposition` adds the bounded completeness search, `RoutingSanityCheck`
+  and depth chosen per dimension. `MarginalValueRule` becomes the paper's ratio test,
+  with the exploration credit U(n) and interface load, against a domain threshold
+  `theta` that replaces the `depth_premium` parameter. `CollaborativeWritingProtocol`,
+  `DiscoveryProtocol` and `HumanEmulatorProtocol` no longer call their dimensions
+  orthogonal. With the changes above, twenty released patterns have new identities;
+  each lists its 0.7.1 identity in `_meta.supersedes`, and `sema pull` re-mints them
+  under the same handles.
+- Thirteen released patterns gain a `caution`, after a check of the 434 older patterns
+  that had none: `AmbiguityResolution`, `AnchorDrop`, `CurriculumReplay`,
+  `EjectionSeat`, `HumanEmulatorProtocol`, `Jester`, `Oracle`, `RedTeam`,
+  `ShoutWhisper`, `SynergisticMode`, `ToolInvoke`, `TruthseekingProtocol` and
+  `WorkerMode`. Cautions are unhashed metadata, so no identity changes; `sema pull`
+  delivers them to users who have not set a caution of their own.
+- `Abduction` and `EthicalReasoningProtocol` no longer carry a `caution`: both are purely
+  cognitive, which the clarified rule exempts, and the guidance their cautions held
+  stays in their manual entries. `sema pull` treats a caution already on a user's
+  copy as the user's own, so existing copies keep it.
+- `docs/specification/schema.md` and the `sema-mint` skill say when a pattern that
+  only describes a process needs a caution, and name the targeting of individuals
+  as a trigger.
+- `docs/specification/naming.md` §F allows coined handles for concepts English has
+  no word for. The gloss carries the plain-English meaning.
+- `AGENTS.md` records that the three-instance friction rule is waived for the
+  coined-word tranches. The prior-art gate and the collision rule still apply.
+
 ## [0.7.1] - 2026-10-04
 
 This release refines five bootstrap definitions, including two dependency

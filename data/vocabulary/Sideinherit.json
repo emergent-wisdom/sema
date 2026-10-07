@@ -1,0 +1,33 @@
+{
+  "handle": "Sideinherit",
+  "gloss": "A practice, belief, capability or flaw passes between separate lines of descent rather than along one",
+  "mechanism": "A party or system takes up a practice, belief, capability or flaw from another outside its line of descent for that item, through copying, exchange, material taken from the other line, or contact. This transfer can make separate lines alike regardless of their relative age, generation or standing, so a shared item does not by itself establish shared ancestry. An item that each received only from a common predecessor, or that each developed independently, is not an instance.",
+  "invariants": [
+    "The parties stand outside each other's line of descent for the item considered.",
+    "One party holds the item at least partly because it passed from another; an item each holds only by inheritance or independent development is not an instance."
+  ],
+  "failure_modes": [
+    "Likeness read as common descent: parties or systems that share an item are assumed to have inherited it from a common predecessor, when it passed between them.",
+    "Passage read as merit: an item that passed between lines is assumed sound because it was taken up.",
+    "Lineage read as closed: a line of descent is assumed to hold only what it inherited, so an item that arrived from the side is credited to the line."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "GenealogicalTrace",
+      "MemeticSeed",
+      "Normance"
+    ],
+    "minted": "2026-10-06T04:14:59+02:00"
+  },
+  "sema_id": "sema:Sideinherit#mh:SHA-256:45d582ef05e58d8839249550ecddd86802cc695cbadfea5b67b710e514fb120f",
+  "sema_ref": "Sideinherit#45d5",
+  "sema_stub": "45d5",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -1,0 +1,35 @@
+{
+  "handle": "ConfoundedAttribution",
+  "gloss": "Several things changed together, and the effect is credited to the one in view",
+  "mechanism": "An outcome changes after several things changed at about the same time: a feature shipped in the same week as a price change and a holiday, a fix went out with a dependency upgrade, a policy started as the season turned. The effect is credited to the change in view, usually the one the attributor made, championed or was asked about, while the others, or a common cause behind both the change and the outcome, could account for it as well. The attribution may be right; what is missing is a reason that it, rather than the others, accounts for the effect. A comparison that separates the changes, or a difference only the credited change could make, settles it. An effect with a single candidate change, or one whose alternatives have been ruled out, is not an instance.",
+  "invariants": [
+    "An outcome is credited to one change while other changes, or a cause common to the change and the outcome, could account for it.",
+    "No observation or comparison separates the credited change from the others."
+  ],
+  "failure_modes": [
+    "Credit to the change in view: the effect is attributed to the change the attributor made or was asked about.",
+    "Common cause missed: a factor behind both the change and the outcome goes unexamined.",
+    "Attribution frozen: once credited, the change is not re-examined when another candidate comes to light."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Inference"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Causation",
+      "Correlation",
+      "Experiment",
+      "ContrastClass",
+      "DistinguishingTest"
+    ],
+    "minted": "2026-10-06T23:39:36+02:00"
+  },
+  "sema_id": "sema:ConfoundedAttribution#mh:SHA-256:18ab53212e93905d346996f9ad168cee8cde1ac1d23bac5447298372e2a5f9a0",
+  "sema_ref": "ConfoundedAttribution#18ab",
+  "sema_stub": "18ab",
+  "sema_layer": "Mind",
+  "sema_category": "Inference"
+}

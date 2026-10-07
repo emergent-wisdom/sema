@@ -13,7 +13,8 @@
     "tier": 2,
     "related": [
       "sema:Bisect#mh:SHA-256:20cceef8a924c82071b0e536bf6164512ca1a80f1f3bad033e6efa9eb3acfff3",
-      "sema:RecursionDive#mh:SHA-256:21c78ad8cc5e658fd19356cec9b998d9af1b02c54eaa96ce2d2f0ec4d8a75639"
+      "sema:RecursionDive#mh:SHA-256:21c78ad8cc5e658fd19356cec9b998d9af1b02c54eaa96ce2d2f0ec4d8a75639",
+      "ContrastClass"
     ],
     "ring": 2,
     "supersedes": [

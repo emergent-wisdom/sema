@@ -1,0 +1,38 @@
+{
+  "handle": "StopDrill",
+  "gloss": "Exercise the means of stopping an activity while it runs, so that it still works when needed",
+  "mechanism": "The means of stopping or slowing an ongoing activity, such as a {{circuit_breaker}}, a kill switch or a rollback, is exercised on a stated schedule while the activity runs, and the time it takes to stop is recorded. If stopping takes longer than the stated limit, the activity does not grow until the stop is repaired.",
+  "invariants": [
+    "The stop is exercised on a stated schedule.",
+    "The measured time to stop is recorded and compared with a stated limit.",
+    "When the limit is exceeded, the activity does not grow until the stop is repaired."
+  ],
+  "failure_modes": [
+    "Untested brake: the stop exists on paper and fails when it is needed.",
+    "Drill harm: the stop drill causes the damage it guards against."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Brakegrow",
+      "DetectorSelfTest",
+      "Brakefade"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:StopDrill#mh:SHA-256:dcfbfbf008197ff98cd87c9750daf4a8fbff691cd733431c1d0965e0947dbfe6",
+  "sema_ref": "StopDrill#dcfb",
+  "sema_stub": "dcfb",
+  "dependencies": {
+    "references": {
+      "circuit_breaker": "sema:CircuitBreaker#mh:SHA-256:3caa9c387c04bb2ac66ec35a6cfe2665e11339f0d47576b96d68229226580c76"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

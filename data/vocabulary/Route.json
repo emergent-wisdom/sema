@@ -21,7 +21,8 @@
   "_meta": {
     "tier": 1,
     "related": [
-      "sema:Select#mh:SHA-256:b37174cf130148f0e486f85d892b6fd42d27a35d8493ff826602c0bbdc2fbde5"
+      "sema:Select#mh:SHA-256:b37174cf130148f0e486f85d892b6fd42d27a35d8493ff826602c0bbdc2fbde5",
+      "Labelsqueeze#5363"
     ],
     "ring": 0,
     "supersedes": [
@@ -34,8 +35,8 @@
       "Primitives"
     ]
   },
-  "sema_ref": "Route#186c",
   "sema_id": "sema:Route#mh:SHA-256:186c9df2396591a9a71b80e50f3c323e5e0df6ddf64b6552435a0d555b6dbc85",
+  "sema_ref": "Route#186c",
   "sema_stub": "186c",
   "dependencies": {
     "accepts": {

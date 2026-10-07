@@ -1,0 +1,36 @@
+{
+  "handle": "Certaintyclap",
+  "gloss": "Credit claims by their calibration, not by the confidence of their delivery",
+  "mechanism": "A group records each claim with the confidence its speaker stated, scores claims against outcomes as in {{confidence_calibrate}}, and gives credit by that score. Confident delivery earns nothing by itself.",
+  "invariants": [
+    "Claims are recorded with their stated confidence.",
+    "Credit follows calibration against outcomes, not the confidence of delivery."
+  ],
+  "failure_modes": [
+    "Bluster reward: confident delivery earns credit that calibration would not.",
+    "Hedge reward: vague claims are credited because they cannot be wrong."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EpistemicCalibrate#4d4c",
+      "Doubtshelter"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Certaintyclap#mh:SHA-256:5dcc5a44c6cb9fb0a92dc41f728a4bd472ed24158761b3ae52c3391ca7d3a108",
+  "sema_ref": "Certaintyclap#5dcc",
+  "sema_stub": "5dcc",
+  "dependencies": {
+    "references": {
+      "confidence_calibrate": "sema:ConfidenceCalibrate#mh:SHA-256:e3570290d420b5bf59848ccc1d269530bbb3124b2e1a4583e62dc2a901ab16ac"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

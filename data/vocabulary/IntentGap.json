@@ -29,10 +29,13 @@
     "path": [
       "Society",
       "Protocols"
+    ],
+    "related": [
+      "Coursecandor#639e"
     ]
   },
-  "sema_ref": "IntentGap#0c14",
   "sema_id": "sema:IntentGap#mh:SHA-256:0c14e83c328756592d5d0d2e690522c3589d33778ce38871cbcaf594f8dd679f",
+  "sema_ref": "IntentGap#0c14",
   "sema_stub": "0c14",
   "dependencies": {
     "references": {

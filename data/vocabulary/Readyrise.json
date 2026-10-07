@@ -1,0 +1,33 @@
+{
+  "handle": "Readyrise",
+  "gloss": "Earlier preparation is expressed as an apparently sudden advance",
+  "mechanism": "Capacities prepared across earlier activity become usable together, or meet conditions in which they can be expressed, and the resulting advance looks sudden against recent performance. The preparation came earlier and may itself have been gradual or abrupt, visible or not. A sudden appearance alone does not show earlier preparation.",
+  "invariants": [
+    "An advance appears sudden relative to recent performance.",
+    "Earlier preparation contributes materially to the advance."
+  ],
+  "failure_modes": [
+    "Trigger credited with all: the final event is credited with the whole change.",
+    "History invented: a preparatory history is invented to explain an unexplained success.",
+    "Suddenness as proof: an abrupt advance is taken to show earlier preparation without evidence of it."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Quietroot",
+      "Leapsettle",
+      "PhaseTransition"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Readyrise#mh:SHA-256:a9d27d01d191edf21f5f704bb148c7d6fe5e9e790fd9cfcd155cf3334719869b",
+  "sema_ref": "Readyrise#a9d2",
+  "sema_stub": "a9d2",
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

@@ -27,6 +27,9 @@
     "path": [
       "Mind",
       "Reasoning"
+    ],
+    "related": [
+      "Farsimple#2209"
     ]
   },
   "sema_id": "sema:Decompose#mh:SHA-256:69942e7e0dcdc7781144da58c8f09b2e8a17c247be435dadf3325cb0d0bbb22b",

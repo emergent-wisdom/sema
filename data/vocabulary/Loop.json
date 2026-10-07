@@ -6,9 +6,6 @@
     "Termination Guarantee: Must have a proven exit condition (or explicit Daemon mode).",
     "Progress: State must change between iterations to avoid infinite freeze."
   ],
-  "sema_id": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
-  "sema_ref": "Loop#37f9",
-  "sema_stub": "37f9",
   "_meta": {
     "tier": 1,
     "ring": 0,
@@ -19,8 +16,15 @@
     "path": [
       "Infrastructure",
       "Primitives"
+    ],
+    "related": [
+      "PracticeResponseReview#a24f",
+      "Spiralback#f9b7"
     ]
   },
+  "sema_id": "sema:Loop#mh:SHA-256:37f953c0b21b9b0c72a639c4e1a54354faa71f07905531d271f6bbf40c341603",
+  "sema_ref": "Loop#37f9",
+  "sema_stub": "37f9",
   "dependencies": {
     "accepts": {
       "condition": "sema:Condition#mh:SHA-256:b480f3c4da11ba6d86f6d14e0fb8521268f3c4bb38588460f7ff4253ad8d78d5"

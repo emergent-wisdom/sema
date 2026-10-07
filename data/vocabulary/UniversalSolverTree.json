@@ -1,6 +1,6 @@
 {
   "handle": "UniversalSolverTree",
-  "mechanism": "The theoretical aggregation of all valid {{solver_tree}}s across all agents in the system. Represents the total epistemological state of {{problem}}-solving knowledge \u2014 the collective wisdom. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within the Universal {{tree}}. At decomposition time the structure is tree-like (problems decompose top-down), but at execution time fan-in, deduplication, and cycles are permitted \u2014 the actual runtime graph is a DAG. Enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The ground truth against which {{localized_learning}} updates integrate.",
+  "mechanism": "The theoretical aggregation of all valid {{solver_tree}}s across all agents in the system. Represents the total epistemological state of {{problem}}-solving knowledge \u2014 the collective wisdom. Any specific problem-solving effort is a traversal or instantiation of a sub-graph within the Universal {{tree}}. The name records decomposition's rooted origin, not the final topology: one {{solver_node}} strategy may serve several parents, so fan-in, deduplication and multi-parent reuse make the aggregate a rooted, acyclic directed graph. Only bounded execution protocols inside it may cycle, as when a generating and a verifying solver iterate until a gate clears; the persistent topology stays acyclic. Enables cross-agent learning: identifying redundant efforts, reusing proven {{solver_node}} strategies, and sharing {{solution}}s. The ground truth against which {{localized_learning}} updates integrate.",
   "gloss": "Collective knowledge graph of all problem-solving",
   "failure_modes": [
     "Fragmentation: Parts of the universal tree become inaccessible across agent boundaries.",
@@ -10,7 +10,7 @@
   "invariants": [
     "One namespace: two agents referring to the same {{solver_node}} refer to the same node.",
     "A detected contradiction is recorded as one. Resolution by synthesis or rejection may be deferred.",
-    "Runtime shape is a DAG: fan-in and deduplication are permitted at execution even though decomposition is tree-like."
+    "Rooted and acyclic: fan-in, deduplication and multi-parent reuse are permitted, and cycles occur only within bounded execution, never in the persistent topology."
   ],
   "_meta": {
     "tier": 1,
@@ -21,7 +21,8 @@
       "sema:UniversalSolverTree#mh:SHA-256:0923a89effa56135175d1404578641c31d6f2d63716745aba054d7143ad0d6f9",
       "sema:UniversalSolverTree#mh:SHA-256:7361e8ea2303b8cd0970fe167548cbf9c86f7f418f175424906f563db22729ae",
       "sema:UniversalSolverTree#mh:SHA-256:a6cba3ba713ffd1c7f97e090ec45e5f1389f55a280847a1b62c56dbe7707106a",
-      "sema:UniversalSolverTree#mh:SHA-256:32f92696f93c53120145b8dc786a24571f0114d90ffe472f6484998451553258"
+      "sema:UniversalSolverTree#mh:SHA-256:32f92696f93c53120145b8dc786a24571f0114d90ffe472f6484998451553258",
+      "sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7"
     ],
     "path": [
       "Society",
@@ -50,9 +51,9 @@
       }
     }
   },
-  "sema_ref": "UniversalSolverTree#655a",
-  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:655a49fa239b7212e4868051ef01f7cfebd032be8ff2226c0beec106086a9fc7",
-  "sema_stub": "655a",
+  "sema_id": "sema:UniversalSolverTree#mh:SHA-256:f9fba480ef013c98691c0ccb6cbbd58dab5183e60798c550ff0de093dbd30727",
+  "sema_ref": "UniversalSolverTree#f9fb",
+  "sema_stub": "f9fb",
   "dependencies": {
     "references": {
       "localized_learning": "sema:LocalizedLearning#mh:SHA-256:a6dbe910a57206b1a10d3b60733dfe3b98fa85696e701674abe860ee0b730950",

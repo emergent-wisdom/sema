@@ -1,0 +1,37 @@
+{
+  "handle": "Coflourish",
+  "gloss": "An exchange in which every party leaves holding something new, and no party's only gain is another's concession",
+  "mechanism": "At the end of an exchange, each party names in its own words something it now holds that it did not hold before: an understanding, an option, a question or a capability. The exchange is a coflourish when every party names such a gain and no party's only gain is a concession by another. Unlike {{compromise}}, which settles by each side giving something up, it records what each side gained.",
+  "invariants": [
+    "Each party names its own gain; no party's gain is named for it by another.",
+    "A concession received does not count as a party's only gain.",
+    "The record states the gain each party named."
+  ],
+  "failure_modes": [
+    "Polite inflation: trivial gains are named to hide that the exchange was one-sided.",
+    "Winner's gain: one party's gain is the other's loss, recorded as mutual growth."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Disputelift",
+      "TradeOff#7ed6"
+    ],
+    "minted": "2026-10-05T21:30:54+02:00"
+  },
+  "sema_id": "sema:Coflourish#mh:SHA-256:915ef65a742932d7f56db80544fbc5667fd4cdfc26550aa92770c3cbe420f835",
+  "sema_ref": "Coflourish#915e",
+  "sema_stub": "915e",
+  "dependencies": {
+    "references": {
+      "compromise": "sema:Compromise#mh:SHA-256:f25faa26653b11458535137532cbad87182ed5e5415ec590bc174877d51f985c"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

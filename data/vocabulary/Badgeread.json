@@ -1,0 +1,39 @@
+{
+  "handle": "Badgeread",
+  "gloss": "Recognition of a category's members comes to rest on a salient mark that co-occurs with them rather than on what makes them members",
+  "mechanism": "A recogniser, such as a person, a classifier or an institution, comes to identify members of a {{category}} by a mark, salient to it, that co-occurred with membership where it learned, rather than by the features that make something a member. While mark and membership stay together the recognition works; where they come apart, lookalikes bearing the mark are admitted and members without it are missed. The mark need not be false, only insufficient. A mark that defines membership, or a recogniser that checks the defining features and uses the mark only as a first cue, is not an instance.",
+  "invariants": [
+    "A recogniser identifies members of a category.",
+    "Its recognition rests on a mark that co-occurs with membership but does not define it."
+  ],
+  "failure_modes": [
+    "Mark read as membership: a lookalike bearing the mark is taken to be a member.",
+    "Missing mark read as non-membership: a member without the mark is missed."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Reasoning"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Situfit",
+      "Labelloop",
+      "Metricmirror",
+      "Morphproof",
+      "ClassificationReview"
+    ],
+    "minted": "2026-10-06T04:14:59+02:00"
+  },
+  "sema_id": "sema:Badgeread#mh:SHA-256:ae4ae58ed4a71e44f2bde478eebc84285d1ea4d281a37354cb410e91c540f6f2",
+  "sema_ref": "Badgeread#ae4a",
+  "sema_stub": "ae4a",
+  "dependencies": {
+    "references": {
+      "category": "sema:Category#mh:SHA-256:d2db51ecab5ef8f0e434bd592f729c2ba955f0609e68a48aac9a95232447a696"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Reasoning"
+}

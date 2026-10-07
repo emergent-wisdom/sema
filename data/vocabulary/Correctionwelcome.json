@@ -1,0 +1,36 @@
+{
+  "handle": "Correctionwelcome",
+  "gloss": "Credit corrections that hold, including those that challenge favoured people or positions",
+  "mechanism": "A group records useful corrections and credits the person who made them, including when the correction challenges a favoured person, position or earlier decision. Whether a correction holds is assessed before the standing of its target is considered; a correction is {{feedback}} about the work, not a move against its author.",
+  "invariants": [
+    "A correction that holds is credited to its maker.",
+    "Whether a correction holds is decided before the standing of its target is considered."
+  ],
+  "failure_modes": [
+    "Messenger penalty: the corrector loses standing for being right about a favoured position.",
+    "Correction theatre: corrections are welcomed in words and ignored in decisions."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Doubtshelter",
+      "Revisance"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Correctionwelcome#mh:SHA-256:25e5992d0ac277012a01f3b2c8462c38dedd6e14b3fc21b5ddc0493080ebb6c3",
+  "sema_ref": "Correctionwelcome#25e5",
+  "sema_stub": "25e5",
+  "dependencies": {
+    "references": {
+      "feedback": "sema:Feedback#mh:SHA-256:8821fbee51f9b6e495277b161e874a5ba2995bf7ce4fc6e9bc9801798a983c3d"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

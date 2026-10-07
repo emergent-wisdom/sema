@@ -20,6 +20,10 @@
     "path": [
       "Mind",
       "Strategy"
+    ],
+    "related": [
+      "Lossprint#34c2",
+      "Roundtrace#8fd7"
     ]
   },
   "sema_id": "sema:RepresentationSwap#mh:SHA-256:32532416b2651f7810504240d2e099ac7776f0431bcbdeb8c2d0ef26ff8c735e",

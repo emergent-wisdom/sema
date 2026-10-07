@@ -1,0 +1,39 @@
+{
+  "handle": "Disputelift",
+  "gloss": "A disagreement that leaves the parties disagreeing better, whether or not it is resolved",
+  "mechanism": "When a disagreement ends or pauses, the parties record what changed in the {{protocol}} they disagree under: a test both now accept, a term both now define the same way, a question both agree would settle the matter, or a move both agree not to make. The disagreement is a disputelift when every party adopts at least one such change. The original issue is recorded as resolved or as open, and either outcome is allowed.",
+  "invariants": [
+    "Every party adopts the recorded change, not only the party that proposed it.",
+    "The change concerns how the parties disagree, not which side of the issue is right.",
+    "The original issue is recorded as resolved or open."
+  ],
+  "failure_modes": [
+    "Concession dressed as method: one side giving way on the issue is recorded as a change in how they disagree.",
+    "Procedural theatre: the recorded change is not used the next time the parties disagree.",
+    "Issue abandonment: improving the method becomes a way to stop engaging with the issue."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "DissentSeek#cbe1",
+      "SteelmanCheck#b004",
+      "Consensus#b9a5"
+    ],
+    "minted": "2026-10-05T20:03:20+02:00"
+  },
+  "sema_id": "sema:Disputelift#mh:SHA-256:b5151ae3762b5071110d6ae827728e84549e8ce5bbd77740cf5d34d792ea2aef",
+  "sema_ref": "Disputelift#b515",
+  "sema_stub": "b515",
+  "dependencies": {
+    "references": {
+      "protocol": "sema:Protocol#mh:SHA-256:f583ad96f598ecf0c9068f5c1390bdf247d2eb67bd7a14c7ce615c357b957b46"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

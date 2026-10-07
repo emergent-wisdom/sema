@@ -1,0 +1,37 @@
+{
+  "handle": "Framecapture",
+  "gloss": "Set a discussion's agenda from every participant's framing, not from the first or most powerful one",
+  "mechanism": "At the start of a multi-party discussion, each participant states how they frame the question, and the agenda is set from all the framings. Unlike a single {{problem_framer}}, no one participant's framing governs; a question posed inside one framing is marked with whose framing it is until the others accept it.",
+  "invariants": [
+    "Each participant's framing is recorded before the agenda is set.",
+    "A question posed within one framing is marked with whose framing it is.",
+    "The agenda is set from all the recorded framings, which the participants may merge, narrow or vote on together; no one participant's framing sets it alone."
+  ],
+  "failure_modes": [
+    "Capture: the first or most powerful framing becomes the only one questions can be asked in.",
+    "Framing sprawl: every framing is kept open and the discussion never narrows."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Reframe#cbfd",
+      "Askwiden"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Framecapture#mh:SHA-256:46b6e3f0e59f5210909728bb00c71ea968438cf46b5abc2dac9f61e69c7cdca3",
+  "sema_ref": "Framecapture#46b6",
+  "sema_stub": "46b6",
+  "dependencies": {
+    "references": {
+      "problem_framer": "sema:ProblemFramer#mh:SHA-256:ad6b7fc1f14f2e26dd0d230f81382a2c602c365ebe4b9ad5fd390fb0c2d4c4fc"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -20,7 +20,8 @@
   "_meta": {
     "tier": 1,
     "related": [
-      "Specialize"
+      "Specialize",
+      "Almostnot#4d07"
     ],
     "ring": 2,
     "supersedes": [
@@ -33,9 +34,6 @@
       "Reasoning"
     ]
   },
-  "sema_id": "sema:Generalize#mh:SHA-256:29f133fe83dfe2cd7d2b432390f59e3a64a84866b964a2ca6199f8134ba64e7e",
-  "sema_ref": "Generalize#29f1",
-  "sema_stub": "29f1",
   "parameters": [
     {
       "name": "min_instances",
@@ -44,6 +42,9 @@
       "description": "Instances required before a shared structure counts as a pattern."
     }
   ],
+  "sema_id": "sema:Generalize#mh:SHA-256:29f133fe83dfe2cd7d2b432390f59e3a64a84866b964a2ca6199f8134ba64e7e",
+  "sema_ref": "Generalize#29f1",
+  "sema_stub": "29f1",
   "dependencies": {
     "references": {
       "analogy_bridge": "sema:AnalogyBridge#mh:SHA-256:cf62f5ead4f1aaa93a26feb06a9546035a93d1103cca1fccb1d4de5f08babc4a",

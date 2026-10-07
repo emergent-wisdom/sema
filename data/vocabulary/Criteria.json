@@ -48,15 +48,19 @@
     ],
     "supersedes": [
       "sema:Criteria#mh:SHA-256:0400adf0f807511f10b40b026098056dbb7124915c2045cc85fb687fabc7f9ac"
+    ],
+    "related": [
+      "Canonseal#27fc",
+      "Doubleloop#23ac"
     ]
   },
-  "sema_id": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
-  "sema_ref": "Criteria#92ab",
-  "sema_stub": "92ab",
   "invariants": [
     "Decidable: applying the rule to a candidate yields pass or fail without further judgment.",
     "Quantified criteria carry `metric`, `threshold` and `comparator` together; none of the three is meaningful alone."
   ],
+  "sema_id": "sema:Criteria#mh:SHA-256:92ab804441f5ff5307c6e45905818372e6159c4bd64d264ac7fddd6705de8acb",
+  "sema_ref": "Criteria#92ab",
+  "sema_stub": "92ab",
   "dependencies": {
     "references": {
       "artifact": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee"

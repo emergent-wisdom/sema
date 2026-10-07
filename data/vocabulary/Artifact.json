@@ -19,11 +19,11 @@
     ],
     "supersedes": [
       "sema:Artifact#mh:SHA-256:379aeed82460aa1a42442f89572d8e621f93f900aa56686b5962dd7800adaec3"
+    ],
+    "related": [
+      "Blindmark#a0ba"
     ]
   },
-  "sema_id": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
-  "sema_ref": "Artifact#b533",
-  "sema_stub": "b533",
   "data_schema": {
     "type": "object",
     "required": [
@@ -52,6 +52,9 @@
       }
     }
   },
+  "sema_id": "sema:Artifact#mh:SHA-256:b533ad2674ec00c5e9a5f1e3920f1097e2bc1eea7263f89e8f46563fa319a0ee",
+  "sema_ref": "Artifact#b533",
+  "sema_stub": "b533",
   "sema_layer": "Infrastructure",
   "sema_category": "Data Structures"
 }

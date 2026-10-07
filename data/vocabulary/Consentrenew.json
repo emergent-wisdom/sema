@@ -1,0 +1,36 @@
+{
+  "handle": "Consentrenew",
+  "gloss": "Seek fresh consent when an initiative changes its purpose, scope or consequences",
+  "mechanism": "Consent given for an initiative is a {{permission}} that records the purpose, scope and expected consequences it covers. A change in the initiative beyond any of them needs fresh consent from those who gave it before the change takes effect.",
+  "invariants": [
+    "Consent records the purpose, scope and consequences it covers.",
+    "A change beyond them needs fresh consent before it takes effect."
+  ],
+  "failure_modes": [
+    "Consent creep: an initiative grows past what was consented to.",
+    "Consent fatigue: renewals are requested so often that consent becomes reflexive."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Governance"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Mandatune",
+      "Silencevote"
+    ],
+    "minted": "2026-10-05T21:54:54+02:00"
+  },
+  "sema_id": "sema:Consentrenew#mh:SHA-256:9da5f8adc0ed8c9c40f7e9a9884f15ca3d71ee076a1f448f9df9309960332af5",
+  "sema_ref": "Consentrenew#9da5",
+  "sema_stub": "9da5",
+  "dependencies": {
+    "references": {
+      "permission": "sema:Permission#mh:SHA-256:dd1d6ae125fa009be9d6fdbf2e036ba382ecf69407f780068cbde55318108b23"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Governance"
+}

@@ -1,0 +1,32 @@
+{
+  "handle": "Linkfade",
+  "gloss": "Connections weaken while the participants keep their individual capacities",
+  "mechanism": "Relations that carried interaction, access or support become less effective, although the connected participants can still perform the relevant activities on their own. The weakening is between participants, not in their individual capacities. Reduced traffic by agreement, or fewer messages needed after a shared convention, is not an instance.",
+  "invariants": [
+    "A relation between participants weakens for the activity considered.",
+    "The participants' relevant individual capacities are retained."
+  ],
+  "failure_modes": [
+    "Sum of parts: collective capacity is judged by adding individual capacities.",
+    "Quiet read as weakening: deliberate quiet or low demand is taken as a weakened connection."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Quietsever",
+      "Syncdrift",
+      "Decay"
+    ],
+    "minted": "2026-10-05T22:27:58+00:00"
+  },
+  "sema_id": "sema:Linkfade#mh:SHA-256:fb825a2e9e2720c42837187e7c9551bfe074e138ecab34cb4a92c06ebccbec83",
+  "sema_ref": "Linkfade#fb82",
+  "sema_stub": "fb82",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

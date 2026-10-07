@@ -1,0 +1,37 @@
+{
+  "handle": "Ripplelag",
+  "gloss": "A change reaches connected people or systems only after a delay",
+  "mechanism": "A change in one part produces an effect in a connected part after transmission, accumulation or response takes time, along {{causation}} paths that may run through several links. The initiating change and its downstream effect are separated by that interval, and different paths can carry different delays. The lag concerns when the effect occurs, not when an observer learns of it, and an expected effect that has not appeared supports a hypothesis of lag, not a confirmation.",
+  "invariants": [
+    "There is an initiating change and a downstream effect causally connected to it.",
+    "A nonzero interval separates the change from the occurrence of the effect."
+  ],
+  "failure_modes": [
+    "Late report read as lag: an immediate effect reported late is taken as delayed propagation.",
+    "Sequence read as propagation: a later change with an independent cause is taken as the delayed effect.",
+    "Waiting read as proof: an effect that has not arrived is taken as certain to arrive, or its absence after the expected delay as proof that none will."
+  ],
+  "_meta": {
+    "path": [
+      "Physics",
+      "Primitives"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "EffectDelayCheck",
+      "Scaleasynchrony"
+    ],
+    "minted": "2026-10-05T22:09:36+00:00"
+  },
+  "sema_id": "sema:Ripplelag#mh:SHA-256:8edf154dc90d80958fc11ce693d79234ac36fafb88d83934b7e61cf3ed45af00",
+  "sema_ref": "Ripplelag#8edf",
+  "sema_stub": "8edf",
+  "dependencies": {
+    "references": {
+      "causation": "sema:Causation#mh:SHA-256:ed6cdeb5f2972a180d13c58e1b51957e7309cd78052a029a56e34dad9a8a6850"
+    }
+  },
+  "sema_layer": "Physics",
+  "sema_category": "Primitives"
+}

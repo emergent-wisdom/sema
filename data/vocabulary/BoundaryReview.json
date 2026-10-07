@@ -1,0 +1,37 @@
+{
+  "handle": "BoundaryReview",
+  "gloss": "Test stated limits against practice, and enforce or restate them where the two disagree",
+  "mechanism": "Stated limits, such as a {{constraint}}, a policy boundary or a budget cap, are tested against practice on a schedule by sampling cases near the boundary. Where practice and statement disagree, the limit is either enforced as stated or restated to match what is intended.",
+  "invariants": [
+    "Limits are tested against sampled cases near the boundary on a stated schedule.",
+    "Each disagreement between practice and statement ends in enforcement or a restatement."
+  ],
+  "failure_modes": [
+    "Paper limit: the limit is stated and routinely crossed.",
+    "Silent restatement: practice redefines the limit without anyone deciding it."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "ScopeFreeze#548e",
+      "Sunsetkind",
+      "Limitblur"
+    ],
+    "minted": "2026-10-05T22:01:01+02:00"
+  },
+  "sema_id": "sema:BoundaryReview#mh:SHA-256:aa3b720f37e8f1a6ff35f000ab5f93c06487e4e8f1d471ec5d6e6be9a02aae29",
+  "sema_ref": "BoundaryReview#aa3b",
+  "sema_stub": "aa3b",
+  "dependencies": {
+    "references": {
+      "constraint": "sema:Constraint#mh:SHA-256:70136d525260a10eedf156aad1fe6c50510eadb10a89d063c7a85575b15708fc"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

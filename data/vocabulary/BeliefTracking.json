@@ -31,7 +31,8 @@
   "_meta": {
     "tier": 2,
     "related": [
-      "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a"
+      "sema:BayesUpdate#mh:SHA-256:a762656f3df6a4b6322a6da1ae14f3093e675cba380bb5e488f397863f3e8b0a",
+      "Revisance#73f1"
     ],
     "ring": 2,
     "supersedes": [

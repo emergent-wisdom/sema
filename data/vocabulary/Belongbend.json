@@ -1,0 +1,36 @@
+{
+  "handle": "Belongbend",
+  "gloss": "Record private judgments before discussion, so shifts that may protect group membership can be reviewed",
+  "mechanism": "Before a group discusses a judgment, each member records a private judgment, frozen like a {{counterfactual_anchor}}. Public statements are then compared with the private records, and each shift toward the group's apparent view is recorded with the reason the member gives for it.",
+  "invariants": [
+    "Private judgments are recorded before discussion begins and are not changed afterwards.",
+    "A member's public shift from its private judgment is recorded with a stated reason."
+  ],
+  "failure_modes": [
+    "Preference falsification: members state the group view while privately holding another.",
+    "Exposed privacy: private records are not kept private, so members falsify them too."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Silencevote",
+      "Normance"
+    ],
+    "minted": "2026-10-05T21:38:21+02:00"
+  },
+  "sema_id": "sema:Belongbend#mh:SHA-256:31f206755fd53787a1669629c924af28e7f46353b02225f624e3580d33ff1047",
+  "sema_ref": "Belongbend#31f2",
+  "sema_stub": "31f2",
+  "dependencies": {
+    "references": {
+      "counterfactual_anchor": "sema:CounterfactualAnchor#mh:SHA-256:b8c3c5aca4a8adba07c19d0f6103387c6f7cf9b67ade40b412fa39e41fdb3adf"
+    }
+  },
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

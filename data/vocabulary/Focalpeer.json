@@ -1,0 +1,37 @@
+{
+  "handle": "Focalpeer",
+  "gloss": "A group's joint action comes to depend on a member who holds no assigned coordinating authority",
+  "mechanism": "Members of a group act together, and one of them, holding no assigned coordinating authority over the action, becomes the point the others organise around: they time their contributions by that member's moves, take up that member's framing, or keep their commitment because that member does. While this lasts, the joint action depends on that member in those respects, so it would falter or change if the member withdrew. The member need not intend to lead, and the others need not acknowledge it. A member whose focal position comes from assigned coordinating authority, a member who declared the action and is followed because of that declaration, and a merely visible member of a group whose action its members sustain among themselves, are not instances.",
+  "invariants": [
+    "A group acts jointly, and the member in question holds no assigned coordinating authority over that action.",
+    "The joint action depends on that member in a specified respect, such as timing, framing or commitment."
+  ],
+  "failure_modes": [
+    "Visibility read as leadership: the most visible or vocal member is taken to organise an action the members sustain among themselves.",
+    "Organiser read as sole author: the joint action is credited or blamed entirely to the focal member, discounting the members' own reasons.",
+    "Position read as intent: the focal member is assumed to have sought the position, when the others' organising around it produced it.",
+    "Dependence unseen: the group is described as leaderless or role-led, so the member its action depends on goes unseen."
+  ],
+  "_meta": {
+    "path": [
+      "Society",
+      "Protocols"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Role",
+      "Elect",
+      "Stigmergy",
+      "Recifluence",
+      "Responsibility"
+    ],
+    "minted": "2026-10-06T04:14:59+02:00",
+    "caution": "Targeting risk \u2014 finding the member a group's joint action depends on also finds a lever for steering the group or singling that member out."
+  },
+  "sema_id": "sema:Focalpeer#mh:SHA-256:37241d8fff99ab61d022c5ce1ecc5ba0a6b576ee317176fef3774cacdc43cc1f",
+  "sema_ref": "Focalpeer#3724",
+  "sema_stub": "3724",
+  "sema_layer": "Society",
+  "sema_category": "Protocols"
+}

@@ -1,0 +1,35 @@
+{
+  "handle": "Ladderdrop",
+  "gloss": "A tool that states the sign that it has done its job, and is withdrawn when the sign appears",
+  "mechanism": "A tool introduced to build a capacity, such as a scaffold, checklist, template or framework, states the observable sign that the capacity is built. When the sign appears, the tool is withdrawn or its continued use is justified anew. It is the move a {{sunsetkind}} makes for categories, applied to tools and triggered by success.",
+  "invariants": [
+    "The tool states the observable sign that its purpose is achieved.",
+    "When the sign appears, the tool is withdrawn or its continued use is justified anew."
+  ],
+  "failure_modes": [
+    "Permanent scaffold: the tool stays after the capacity is built and becomes a crutch.",
+    "Premature removal: the tool is withdrawn before the sign appears."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Brakegrow"
+    ],
+    "minted": "2026-10-05T21:48:40+02:00"
+  },
+  "sema_id": "sema:Ladderdrop#mh:SHA-256:5927c606ecd086377bcc73861af9985470de08bc23591b22f035fcc64b9f212d",
+  "sema_ref": "Ladderdrop#5927",
+  "sema_stub": "5927",
+  "dependencies": {
+    "references": {
+      "sunsetkind": "sema:Sunsetkind#mh:SHA-256:5e6fde064d54045237cba7141efd7a69584a99867f722dcad1ee8d16e99c56f3"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}

@@ -1,0 +1,37 @@
+{
+  "handle": "Futurestretch",
+  "gloss": "Practise on tasks just beyond what can be done alone, with support that is withdrawn as skill grows",
+  "mechanism": "Practice uses a {{task}} the learner completes with support but not yet alone. Success is recorded both with support and without it, and when unsupported success passes a stated threshold, the support is withdrawn and harder tasks are chosen.",
+  "invariants": [
+    "Each practice task is one the learner completes with support but not yet alone.",
+    "Success is recorded both with support and without it.",
+    "When unsupported success passes the threshold, support is withdrawn and the task is made harder."
+  ],
+  "failure_modes": [
+    "Comfort practice: tasks stay within what is already mastered.",
+    "Overreach: tasks stay so far beyond reach that support carries all the work."
+  ],
+  "_meta": {
+    "path": [
+      "Mind",
+      "Strategy"
+    ],
+    "ring": 2,
+    "tier": 2,
+    "related": [
+      "Ladderdrop",
+      "Leapsettle"
+    ],
+    "minted": "2026-10-05T22:08:39+02:00"
+  },
+  "sema_id": "sema:Futurestretch#mh:SHA-256:afacd75f641bb0046a1cabadfa1a78ced0e1a8766824f094edb5586a625372a7",
+  "sema_ref": "Futurestretch#afac",
+  "sema_stub": "afac",
+  "dependencies": {
+    "references": {
+      "task": "sema:Task#mh:SHA-256:a85010f508f85055170c396c8fa390125c1206888c565ac10651f3969a339f8d"
+    }
+  },
+  "sema_layer": "Mind",
+  "sema_category": "Strategy"
+}
