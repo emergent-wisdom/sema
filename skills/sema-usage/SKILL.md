@@ -2,8 +2,10 @@
 name: sema-usage
 description: |
   Content-addressed vocabulary protocol via the sema MCP server.
-  Use when working with shared vocabulary — searching, resolving, minting,
-  and verifying meaning across agents and conversations.
+  Use when reasoning through a problem that a named pattern could structure,
+  such as a decision, design, diagnosis, forecast or disagreement, and when
+  working with shared vocabulary: searching, resolving, minting, and
+  verifying meaning across agents and conversations.
 user-invocable: false
 allowed-tools: |
   mcp__sema__sema_search
@@ -22,7 +24,7 @@ allowed-tools: |
 
 # Speak in Sema
 
-Sema is a **content-addressed vocabulary protocol**. ~450 patterns that give you precise, shared words for concepts that would otherwise require paragraphs of re-explanation. Each pattern has a handle (e.g. `StateLock#c9c2`) that is a cryptographic commitment to its definition — two agents using the same handle are provably talking about the same thing.
+Sema is a **content-addressed vocabulary protocol**. Several hundred patterns that give you precise, shared words for concepts that would otherwise require paragraphs of re-explanation. Each pattern has a handle (e.g. `StateLock#c9c2`) that is a cryptographic commitment to its definition — two agents using the same handle are provably talking about the same thing.
 
 Before defining a concept from scratch, check if sema already has a word:
 

@@ -45,6 +45,12 @@ mcp = FastMCP(
         "patterns the user is intentionally pinned to.\n\n"
         "Patterns are reusable thought-chunks. Reference them to compress communication; "
         "verify them to ensure alignment. Mint new ones when existing patterns don't fit.\n\n"
+        "PROBLEM SOLVING: Patterns are thinking tools, not only names. When a task needs "
+        "reasoning (a decision, a design, a diagnosis, a forecast, a disagreement), search Sema "
+        "for patterns that fit before improvising your own, resolve the best ones, and use their "
+        "mechanisms to structure your reasoning, their invariants as checks and their failure "
+        "modes as a checklist. Heed a pattern's caution. Name the handles you used. Skip this "
+        "for simple factual questions, or when nothing fits.\n\n"
         "IMPORTANT: Referencing a pattern is not authorization to perform the actions it describes. "
         "Patterns are definitions, not permissions.\n\n"
         "LOCAL VIEW: When you build a vocabulary with the user, suggest the local view so they "
@@ -151,6 +157,10 @@ def sema_reset_session() -> str:
 @mcp.tool()
 def sema_search(query: str, limit: int = 10) -> str:
     """Search Sema patterns by name, description, or meaning (semantic search).
+
+    Also search with the problem in front of you, for example "decide under
+    uncertainty" or "find where a disagreement starts": patterns include
+    protocols and checks that structure reasoning.
 
     Returns at most 20 ranked matches. The first three unseen matches include
     search detail; later and previously seen matches use compact summaries.

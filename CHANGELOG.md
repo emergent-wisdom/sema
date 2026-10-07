@@ -256,6 +256,12 @@ Six of the new cards carry a `caution`: `ActionConvergence`, `DetectorSelfTest`,
 
 ### Changed
 
+- The MCP server's instructions tell agents to think with patterns when a task needs
+  reasoning: search for patterns that fit, use their mechanisms to structure the
+  reasoning, their invariants as checks and their failure modes as a checklist, and
+  heed any caution. `sema_search` suggests searching with the problem itself, and the
+  `sema-usage` skill's description now covers reasoning tasks, so the skill loads for
+  them.
 - `UniversalSolverTree` no longer says cycles are permitted while also calling the graph
   acyclic. Following the Fractal Intelligence paper, its persistent topology is a rooted
   acyclic graph with multi-parent reuse, and only bounded execution may cycle. Eight
